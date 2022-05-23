@@ -1,0 +1,61 @@
+
+  .RolesTab {
+    font-family: sans-serif;
+    background: white;
+    color: white;
+    box-sizing: border-box;
+  }
+  
+  .react-tabs {
+    display: flex;
+    margin-left: 36px;
+    border: 1px solid #3c3e43;
+    color: #3c3e43;
+    background: white;
+  }
+  
+  .react-tabs__tab-list {
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+    margin: 0;
+    padding: 0;
+    color: #3c3e43;
+    background: white;
+  }
+  
+  .react-tabs__tab {
+    height: 70px;
+    list-style: none;
+    padding: 12px 6px;
+    cursor: pointer;
+    color: #bbb;
+  }
+  
+  .react-tabs__tab--selected {
+    background: #f7f8fa;
+    border-color: #5773aa;
+    border-left: 4px solid #fa1111f8;
+    color: #1c1d1f;
+  }
+  
+  .react-tabs__tab-panel {
+    display: none;
+    width: 300px;
+  }
+  
+  .react-tabs__tab-panel--selected {
+    display: block;
+  }
+  
+  .react-tabs__tab {
+    padding-left: 24px;
+  }
+  
+  .react-tabs__tab--selected {
+    padding-left: 21px;
+  }
+  
+  .panel-content {
+    text-align: center;
+  }

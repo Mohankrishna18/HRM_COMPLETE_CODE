@@ -1,0 +1,28 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "department": "Web Development",
+        "action": <ActionModal />
+        
+      },
+  
+      {
+        "id": 2,
+        "sku": 11854078013954528,
+        "title": "Danger Knife Grey T-Shirt",
+        "description": "Danger Knife Grey",
+        "availableSizes": ["X", "M", "L"],
+        "price": 14.9,
+        "isFreeShipping": true
+      },
+  
+      {
+        "id": 3,
+        "sku": 876661122392077,
+        "title": "White DGK Script Tee",
+        "description": "White DGK Script",
+        "availableSizes": ["X", "M", "L"],
+        "price": 14.9,
+        "isFreeShipping": true
+      },
