@@ -134,6 +134,7 @@ private String reportingManager;
 private String passportNo;
 private String passportExpiryDate;
 private String jobTitle;
+private String employmentType;
 private String primarySkills;
 private String secondarySkills;
 
@@ -144,11 +145,9 @@ public static long getSerialVersionUID() {
 }
 
 
-
 public static void setSerialVersionUID(long serialVersionUID) {
 	EmployeeMaster.serialVersionUID = serialVersionUID;
 }
-
 
 
 public String getEmployeeId() {
@@ -156,11 +155,9 @@ public String getEmployeeId() {
 }
 
 
-
 public void setEmployeeId(String employeeId) {
 	this.employeeId = employeeId;
 }
-
 
 
 public String getDepartmentName() {
@@ -168,11 +165,9 @@ public String getDepartmentName() {
 }
 
 
-
 public void setDepartmentName(String departmentName) {
 	this.departmentName = departmentName;
 }
-
 
 
 public String getOnboardingId() {
@@ -180,11 +175,9 @@ public String getOnboardingId() {
 }
 
 
-
 public void setOnboardingId(String onboardingId) {
 	this.onboardingId = onboardingId;
 }
-
 
 
 public String getDesignationName() {
@@ -192,11 +185,9 @@ public String getDesignationName() {
 }
 
 
-
 public void setDesignationName(String designationName) {
 	this.designationName = designationName;
 }
-
 
 
 public Date getDateOfJoining() {
@@ -204,11 +195,9 @@ public Date getDateOfJoining() {
 }
 
 
-
 public void setDateOfJoining(Date dateOfJoining) {
 	this.dateOfJoining = dateOfJoining;
 }
-
 
 
 public String getFirstName() {
@@ -216,11 +205,9 @@ public String getFirstName() {
 }
 
 
-
 public void setFirstName(String firstName) {
 	this.firstName = firstName;
 }
-
 
 
 public String getMiddleName() {
@@ -228,11 +215,9 @@ public String getMiddleName() {
 }
 
 
-
 public void setMiddleName(String middleName) {
 	this.middleName = middleName;
 }
-
 
 
 public String getLastName() {
@@ -240,11 +225,9 @@ public String getLastName() {
 }
 
 
-
 public void setLastName(String lastName) {
 	this.lastName = lastName;
 }
-
 
 
 public String getEmail() {
@@ -252,11 +235,9 @@ public String getEmail() {
 }
 
 
-
 public void setEmail(String email) {
 	this.email = email;
 }
-
 
 
 public String getPrimaryPhoneNumber() {
@@ -264,11 +245,9 @@ public String getPrimaryPhoneNumber() {
 }
 
 
-
 public void setPrimaryPhoneNumber(String primaryPhoneNumber) {
 	this.primaryPhoneNumber = primaryPhoneNumber;
 }
-
 
 
 public String getSecondaryPhoneNumber() {
@@ -276,11 +255,9 @@ public String getSecondaryPhoneNumber() {
 }
 
 
-
 public void setSecondaryPhoneNumber(String secondaryPhoneNumber) {
 	this.secondaryPhoneNumber = secondaryPhoneNumber;
 }
-
 
 
 public String getYearsOfExperience() {
@@ -288,11 +265,9 @@ public String getYearsOfExperience() {
 }
 
 
-
 public void setYearsOfExperience(String yearsOfExperience) {
 	this.yearsOfExperience = yearsOfExperience;
 }
-
 
 
 public Date getDateOfBirth() {
@@ -300,11 +275,9 @@ public Date getDateOfBirth() {
 }
 
 
-
 public void setDateOfBirth(Date dateOfBirth) {
 	this.dateOfBirth = dateOfBirth;
 }
-
 
 
 public String getBloodGroup() {
@@ -312,11 +285,9 @@ public String getBloodGroup() {
 }
 
 
-
 public void setBloodGroup(String bloodGroup) {
 	this.bloodGroup = bloodGroup;
 }
-
 
 
 public String getGender() {
@@ -324,11 +295,9 @@ public String getGender() {
 }
 
 
-
 public void setGender(String gender) {
 	this.gender = gender;
 }
-
 
 
 public String getMaritalStatus() {
@@ -336,11 +305,9 @@ public String getMaritalStatus() {
 }
 
 
-
 public void setMaritalStatus(String maritalStatus) {
 	this.maritalStatus = maritalStatus;
 }
-
 
 
 public String getPermanentAdress() {
@@ -348,11 +315,9 @@ public String getPermanentAdress() {
 }
 
 
-
 public void setPermanentAdress(String permanentAdress) {
 	this.permanentAdress = permanentAdress;
 }
-
 
 
 public String getPermanentState() {
@@ -360,11 +325,9 @@ public String getPermanentState() {
 }
 
 
-
 public void setPermanentState(String permanentState) {
 	this.permanentState = permanentState;
 }
-
 
 
 public String getPermanentCountry() {
@@ -372,11 +335,9 @@ public String getPermanentCountry() {
 }
 
 
-
 public void setPermanentCountry(String permanentCountry) {
 	this.permanentCountry = permanentCountry;
 }
-
 
 
 public String getPermanentPincode() {
@@ -384,11 +345,9 @@ public String getPermanentPincode() {
 }
 
 
-
 public void setPermanentPincode(String permanentPincode) {
 	this.permanentPincode = permanentPincode;
 }
-
 
 
 public String getCurrentAdress() {
@@ -396,11 +355,9 @@ public String getCurrentAdress() {
 }
 
 
-
 public void setCurrentAdress(String currentAdress) {
 	this.currentAdress = currentAdress;
 }
-
 
 
 public String getCurrentState() {
@@ -408,11 +365,9 @@ public String getCurrentState() {
 }
 
 
-
 public void setCurrentState(String currentState) {
 	this.currentState = currentState;
 }
-
 
 
 public String getCurrentCountry() {
@@ -420,11 +375,9 @@ public String getCurrentCountry() {
 }
 
 
-
 public void setCurrentCountry(String currentCountry) {
 	this.currentCountry = currentCountry;
 }
-
 
 
 public String getCurrentPincode() {
@@ -432,11 +385,9 @@ public String getCurrentPincode() {
 }
 
 
-
 public void setCurrentPincode(String currentPincode) {
 	this.currentPincode = currentPincode;
 }
-
 
 
 public String getPostgraduationBoardOfUniversity() {
@@ -444,11 +395,9 @@ public String getPostgraduationBoardOfUniversity() {
 }
 
 
-
 public void setPostgraduationBoardOfUniversity(String postgraduationBoardOfUniversity) {
 	this.postgraduationBoardOfUniversity = postgraduationBoardOfUniversity;
 }
-
 
 
 public String getPostgraduationInstituteName() {
@@ -456,11 +405,9 @@ public String getPostgraduationInstituteName() {
 }
 
 
-
 public void setPostgraduationInstituteName(String postgraduationInstituteName) {
 	this.postgraduationInstituteName = postgraduationInstituteName;
 }
-
 
 
 public String getPostgraduationInstituteCity() {
@@ -468,11 +415,9 @@ public String getPostgraduationInstituteCity() {
 }
 
 
-
 public void setPostgraduationInstituteCity(String postgraduationInstituteCity) {
 	this.postgraduationInstituteCity = postgraduationInstituteCity;
 }
-
 
 
 public String getPostgraduationCourseName() {
@@ -480,11 +425,9 @@ public String getPostgraduationCourseName() {
 }
 
 
-
 public void setPostgraduationCourseName(String postgraduationCourseName) {
 	this.postgraduationCourseName = postgraduationCourseName;
 }
-
 
 
 public Date getPostgraduationJoiningYear() {
@@ -492,11 +435,9 @@ public Date getPostgraduationJoiningYear() {
 }
 
 
-
 public void setPostgraduationJoiningYear(Date postgraduationJoiningYear) {
 	this.postgraduationJoiningYear = postgraduationJoiningYear;
 }
-
 
 
 public Date getPostgraduationPassedYear() {
@@ -504,11 +445,9 @@ public Date getPostgraduationPassedYear() {
 }
 
 
-
 public void setPostgraduationPassedYear(Date postgraduationPassedYear) {
 	this.postgraduationPassedYear = postgraduationPassedYear;
 }
-
 
 
 public String getPostgraduationGrade() {
@@ -516,11 +455,9 @@ public String getPostgraduationGrade() {
 }
 
 
-
 public void setPostgraduationGrade(String postgraduationGrade) {
 	this.postgraduationGrade = postgraduationGrade;
 }
-
 
 
 public String getGraduationBoardOfUniversity() {
@@ -528,11 +465,9 @@ public String getGraduationBoardOfUniversity() {
 }
 
 
-
 public void setGraduationBoardOfUniversity(String graduationBoardOfUniversity) {
 	this.graduationBoardOfUniversity = graduationBoardOfUniversity;
 }
-
 
 
 public String getGraduationInstituteName() {
@@ -540,11 +475,9 @@ public String getGraduationInstituteName() {
 }
 
 
-
 public void setGraduationInstituteName(String graduationInstituteName) {
 	this.graduationInstituteName = graduationInstituteName;
 }
-
 
 
 public String getGraduationInstituteCity() {
@@ -552,11 +485,9 @@ public String getGraduationInstituteCity() {
 }
 
 
-
 public void setGraduationInstituteCity(String graduationInstituteCity) {
 	this.graduationInstituteCity = graduationInstituteCity;
 }
-
 
 
 public String getGraduationCourseName() {
@@ -564,11 +495,9 @@ public String getGraduationCourseName() {
 }
 
 
-
 public void setGraduationCourseName(String graduationCourseName) {
 	this.graduationCourseName = graduationCourseName;
 }
-
 
 
 public Date getGraduationJoiningYear() {
@@ -576,11 +505,9 @@ public Date getGraduationJoiningYear() {
 }
 
 
-
 public void setGraduationJoiningYear(Date graduationJoiningYear) {
 	this.graduationJoiningYear = graduationJoiningYear;
 }
-
 
 
 public Date getGraduationPassedYear() {
@@ -588,11 +515,9 @@ public Date getGraduationPassedYear() {
 }
 
 
-
 public void setGraduationPassedYear(Date graduationPassedYear) {
 	this.graduationPassedYear = graduationPassedYear;
 }
-
 
 
 public String getGraduationGrade() {
@@ -600,11 +525,9 @@ public String getGraduationGrade() {
 }
 
 
-
 public void setGraduationGrade(String graduationGrade) {
 	this.graduationGrade = graduationGrade;
 }
-
 
 
 public String getIntermediateBoardOfUniversity() {
@@ -612,11 +535,9 @@ public String getIntermediateBoardOfUniversity() {
 }
 
 
-
 public void setIntermediateBoardOfUniversity(String intermediateBoardOfUniversity) {
 	this.intermediateBoardOfUniversity = intermediateBoardOfUniversity;
 }
-
 
 
 public String getIntermediateCollegeName() {
@@ -624,11 +545,9 @@ public String getIntermediateCollegeName() {
 }
 
 
-
 public void setIntermediateCollegeName(String intermediateCollegeName) {
 	this.intermediateCollegeName = intermediateCollegeName;
 }
-
 
 
 public String getIntermediateCollegeCity() {
@@ -636,11 +555,9 @@ public String getIntermediateCollegeCity() {
 }
 
 
-
 public void setIntermediateCollegeCity(String intermediateCollegeCity) {
 	this.intermediateCollegeCity = intermediateCollegeCity;
 }
-
 
 
 public String getIntermediateCourseName() {
@@ -648,11 +565,9 @@ public String getIntermediateCourseName() {
 }
 
 
-
 public void setIntermediateCourseName(String intermediateCourseName) {
 	this.intermediateCourseName = intermediateCourseName;
 }
-
 
 
 public Date getIntermediateJoiningYear() {
@@ -660,11 +575,9 @@ public Date getIntermediateJoiningYear() {
 }
 
 
-
 public void setIntermediateJoiningYear(Date intermediateJoiningYear) {
 	this.intermediateJoiningYear = intermediateJoiningYear;
 }
-
 
 
 public Date getIntermediatePassedYear() {
@@ -672,11 +585,9 @@ public Date getIntermediatePassedYear() {
 }
 
 
-
 public void setIntermediatePassedYear(Date intermediatePassedYear) {
 	this.intermediatePassedYear = intermediatePassedYear;
 }
-
 
 
 public String getIntermediateGrade() {
@@ -684,11 +595,9 @@ public String getIntermediateGrade() {
 }
 
 
-
 public void setIntermediateGrade(String intermediateGrade) {
 	this.intermediateGrade = intermediateGrade;
 }
-
 
 
 public String getSscBoardOfUniversity() {
@@ -696,11 +605,9 @@ public String getSscBoardOfUniversity() {
 }
 
 
-
 public void setSscBoardOfUniversity(String sscBoardOfUniversity) {
 	this.sscBoardOfUniversity = sscBoardOfUniversity;
 }
-
 
 
 public String getSscSchoolName() {
@@ -708,11 +615,9 @@ public String getSscSchoolName() {
 }
 
 
-
 public void setSscSchoolName(String sscSchoolName) {
 	this.sscSchoolName = sscSchoolName;
 }
-
 
 
 public String getSscSchoolCity() {
@@ -720,11 +625,9 @@ public String getSscSchoolCity() {
 }
 
 
-
 public void setSscSchoolCity(String sscSchoolCity) {
 	this.sscSchoolCity = sscSchoolCity;
 }
-
 
 
 public String getSscCourseName() {
@@ -732,11 +635,9 @@ public String getSscCourseName() {
 }
 
 
-
 public void setSscCourseName(String sscCourseName) {
 	this.sscCourseName = sscCourseName;
 }
-
 
 
 public Date getSscJoiningYear() {
@@ -744,11 +645,9 @@ public Date getSscJoiningYear() {
 }
 
 
-
 public void setSscJoiningYear(Date sscJoiningYear) {
 	this.sscJoiningYear = sscJoiningYear;
 }
-
 
 
 public Date getSscPassedYear() {
@@ -756,11 +655,9 @@ public Date getSscPassedYear() {
 }
 
 
-
 public void setSscPassedYear(Date sscPassedYear) {
 	this.sscPassedYear = sscPassedYear;
 }
-
 
 
 public String getSscGrade() {
@@ -768,11 +665,9 @@ public String getSscGrade() {
 }
 
 
-
 public void setSscGrade(String sscGrade) {
 	this.sscGrade = sscGrade;
 }
-
 
 
 public String getPreviousCompany1_name() {
@@ -780,11 +675,9 @@ public String getPreviousCompany1_name() {
 }
 
 
-
 public void setPreviousCompany1_name(String previousCompany1_name) {
 	this.previousCompany1_name = previousCompany1_name;
 }
-
 
 
 public String getPreviousCompany1_designation() {
@@ -792,11 +685,9 @@ public String getPreviousCompany1_designation() {
 }
 
 
-
 public void setPreviousCompany1_designation(String previousCompany1_designation) {
 	this.previousCompany1_designation = previousCompany1_designation;
 }
-
 
 
 public Date getPreviousCompany1_joiningDate() {
@@ -804,11 +695,9 @@ public Date getPreviousCompany1_joiningDate() {
 }
 
 
-
 public void setPreviousCompany1_joiningDate(Date previousCompany1_joiningDate) {
 	this.previousCompany1_joiningDate = previousCompany1_joiningDate;
 }
-
 
 
 public Date getPreviousCompany1_relievingDate() {
@@ -816,11 +705,9 @@ public Date getPreviousCompany1_relievingDate() {
 }
 
 
-
 public void setPreviousCompany1_relievingDate(Date previousCompany1_relievingDate) {
 	this.previousCompany1_relievingDate = previousCompany1_relievingDate;
 }
-
 
 
 public String getPreviousCompany1_employeeId() {
@@ -828,11 +715,9 @@ public String getPreviousCompany1_employeeId() {
 }
 
 
-
 public void setPreviousCompany1_employeeId(String previousCompany1_employeeId) {
 	this.previousCompany1_employeeId = previousCompany1_employeeId;
 }
-
 
 
 public Double getPreviousCompany1_grossSalary() {
@@ -840,11 +725,9 @@ public Double getPreviousCompany1_grossSalary() {
 }
 
 
-
 public void setPreviousCompany1_grossSalary(Double previousCompany1_grossSalary) {
 	this.previousCompany1_grossSalary = previousCompany1_grossSalary;
 }
-
 
 
 public String getPreviousCompany1_typeOfEmployment() {
@@ -852,11 +735,9 @@ public String getPreviousCompany1_typeOfEmployment() {
 }
 
 
-
 public void setPreviousCompany1_typeOfEmployment(String previousCompany1_typeOfEmployment) {
 	this.previousCompany1_typeOfEmployment = previousCompany1_typeOfEmployment;
 }
-
 
 
 public String getPreviousCompany1_reasonForRelieving() {
@@ -864,11 +745,9 @@ public String getPreviousCompany1_reasonForRelieving() {
 }
 
 
-
 public void setPreviousCompany1_reasonForRelieving(String previousCompany1_reasonForRelieving) {
 	this.previousCompany1_reasonForRelieving = previousCompany1_reasonForRelieving;
 }
-
 
 
 public String getPreviousCompany2_name() {
@@ -876,11 +755,9 @@ public String getPreviousCompany2_name() {
 }
 
 
-
 public void setPreviousCompany2_name(String previousCompany2_name) {
 	this.previousCompany2_name = previousCompany2_name;
 }
-
 
 
 public String getPreviousCompany2_designation() {
@@ -888,11 +765,9 @@ public String getPreviousCompany2_designation() {
 }
 
 
-
 public void setPreviousCompany2_designation(String previousCompany2_designation) {
 	this.previousCompany2_designation = previousCompany2_designation;
 }
-
 
 
 public Date getPreviousCompany2_joiningDate() {
@@ -900,11 +775,9 @@ public Date getPreviousCompany2_joiningDate() {
 }
 
 
-
 public void setPreviousCompany2_joiningDate(Date previousCompany2_joiningDate) {
 	this.previousCompany2_joiningDate = previousCompany2_joiningDate;
 }
-
 
 
 public Date getPreviousCompany2_relievingDate() {
@@ -912,11 +785,9 @@ public Date getPreviousCompany2_relievingDate() {
 }
 
 
-
 public void setPreviousCompany2_relievingDate(Date previousCompany2_relievingDate) {
 	this.previousCompany2_relievingDate = previousCompany2_relievingDate;
 }
-
 
 
 public String getPreviousCompany2_employeeId() {
@@ -924,11 +795,9 @@ public String getPreviousCompany2_employeeId() {
 }
 
 
-
 public void setPreviousCompany2_employeeId(String previousCompany2_employeeId) {
 	this.previousCompany2_employeeId = previousCompany2_employeeId;
 }
-
 
 
 public Double getPreviousCompany2_grossSalary() {
@@ -936,11 +805,9 @@ public Double getPreviousCompany2_grossSalary() {
 }
 
 
-
 public void setPreviousCompany2_grossSalary(Double previousCompany2_grossSalary) {
 	this.previousCompany2_grossSalary = previousCompany2_grossSalary;
 }
-
 
 
 public String getPreviousCompany2_typeOfEmployment() {
@@ -948,11 +815,9 @@ public String getPreviousCompany2_typeOfEmployment() {
 }
 
 
-
 public void setPreviousCompany2_typeOfEmployment(String previousCompany2_typeOfEmployment) {
 	this.previousCompany2_typeOfEmployment = previousCompany2_typeOfEmployment;
 }
-
 
 
 public String getPreviousCompany2_reasonForRelieving() {
@@ -960,11 +825,9 @@ public String getPreviousCompany2_reasonForRelieving() {
 }
 
 
-
 public void setPreviousCompany2_reasonForRelieving(String previousCompany2_reasonForRelieving) {
 	this.previousCompany2_reasonForRelieving = previousCompany2_reasonForRelieving;
 }
-
 
 
 public String getPreviousCompany3_name() {
@@ -972,11 +835,9 @@ public String getPreviousCompany3_name() {
 }
 
 
-
 public void setPreviousCompany3_name(String previousCompany3_name) {
 	this.previousCompany3_name = previousCompany3_name;
 }
-
 
 
 public String getPreviousCompany3_designation() {
@@ -984,11 +845,9 @@ public String getPreviousCompany3_designation() {
 }
 
 
-
 public void setPreviousCompany3_designation(String previousCompany3_designation) {
 	this.previousCompany3_designation = previousCompany3_designation;
 }
-
 
 
 public Date getPreviousCompany3_joiningDate() {
@@ -996,11 +855,9 @@ public Date getPreviousCompany3_joiningDate() {
 }
 
 
-
 public void setPreviousCompany3_joiningDate(Date previousCompany3_joiningDate) {
 	this.previousCompany3_joiningDate = previousCompany3_joiningDate;
 }
-
 
 
 public Date getPreviousCompany3_relievingDate() {
@@ -1008,11 +865,9 @@ public Date getPreviousCompany3_relievingDate() {
 }
 
 
-
 public void setPreviousCompany3_relievingDate(Date previousCompany3_relievingDate) {
 	this.previousCompany3_relievingDate = previousCompany3_relievingDate;
 }
-
 
 
 public String getPreviousCompany3_employeeId() {
@@ -1020,11 +875,9 @@ public String getPreviousCompany3_employeeId() {
 }
 
 
-
 public void setPreviousCompany3_employeeId(String previousCompany3_employeeId) {
 	this.previousCompany3_employeeId = previousCompany3_employeeId;
 }
-
 
 
 public Double getPreviousCompany3_grossSalary() {
@@ -1032,11 +885,9 @@ public Double getPreviousCompany3_grossSalary() {
 }
 
 
-
 public void setPreviousCompany3_grossSalary(Double previousCompany3_grossSalary) {
 	this.previousCompany3_grossSalary = previousCompany3_grossSalary;
 }
-
 
 
 public String getPreviousCompany3_typeOfEmployment() {
@@ -1044,11 +895,9 @@ public String getPreviousCompany3_typeOfEmployment() {
 }
 
 
-
 public void setPreviousCompany3_typeOfEmployment(String previousCompany3_typeOfEmployment) {
 	this.previousCompany3_typeOfEmployment = previousCompany3_typeOfEmployment;
 }
-
 
 
 public String getPreviousCompany3_reasonForRelieving() {
@@ -1056,11 +905,9 @@ public String getPreviousCompany3_reasonForRelieving() {
 }
 
 
-
 public void setPreviousCompany3_reasonForRelieving(String previousCompany3_reasonForRelieving) {
 	this.previousCompany3_reasonForRelieving = previousCompany3_reasonForRelieving;
 }
-
 
 
 public String getUpdatedBy() {
@@ -1068,11 +915,9 @@ public String getUpdatedBy() {
 }
 
 
-
 public void setUpdatedBy(String updatedBy) {
 	this.updatedBy = updatedBy;
 }
-
 
 
 public java.util.Date getUpdatedOn() {
@@ -1080,11 +925,9 @@ public java.util.Date getUpdatedOn() {
 }
 
 
-
 public void setUpdatedOn(java.util.Date updatedOn) {
 	this.updatedOn = updatedOn;
 }
-
 
 
 public boolean isEmployeeStatus() {
@@ -1092,11 +935,9 @@ public boolean isEmployeeStatus() {
 }
 
 
-
 public void setEmployeeStatus(boolean employeeStatus) {
 	this.employeeStatus = employeeStatus;
 }
-
 
 
 public String getReportingManager() {
@@ -1104,11 +945,9 @@ public String getReportingManager() {
 }
 
 
-
 public void setReportingManager(String reportingManager) {
 	this.reportingManager = reportingManager;
 }
-
 
 
 public String getPassportNo() {
@@ -1116,11 +955,9 @@ public String getPassportNo() {
 }
 
 
-
 public void setPassportNo(String passportNo) {
 	this.passportNo = passportNo;
 }
-
 
 
 public String getPassportExpiryDate() {
@@ -1128,11 +965,9 @@ public String getPassportExpiryDate() {
 }
 
 
-
 public void setPassportExpiryDate(String passportExpiryDate) {
 	this.passportExpiryDate = passportExpiryDate;
 }
-
 
 
 public String getJobTitle() {
@@ -1140,11 +975,19 @@ public String getJobTitle() {
 }
 
 
-
 public void setJobTitle(String jobTitle) {
 	this.jobTitle = jobTitle;
 }
 
+
+public String getEmploymentType() {
+	return employmentType;
+}
+
+
+public void setEmploymentType(String employmentType) {
+	this.employmentType = employmentType;
+}
 
 
 public String getPrimarySkills() {
@@ -1152,11 +995,9 @@ public String getPrimarySkills() {
 }
 
 
-
 public void setPrimarySkills(String primarySkills) {
 	this.primarySkills = primarySkills;
 }
-
 
 
 public String getSecondarySkills() {
@@ -1164,18 +1005,9 @@ public String getSecondarySkills() {
 }
 
 
-
 public void setSecondarySkills(String secondarySkills) {
 	this.secondarySkills = secondarySkills;
 }
-
-
-
-public EmployeeMaster() {
-	super();
-	// TODO Auto-generated constructor stub
-}
-
 
 
 }

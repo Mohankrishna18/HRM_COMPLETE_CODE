@@ -18,24 +18,32 @@ public class UserService {
 	private UserRepository repository;
 
 	public ResponseEntity updatePasswordByUsername(ResetPassword reset) {
-		EmployeeLogin returnedUser = repository.findByPassword(reset.getOldPassword());
 		try {
-			if (returnedUser != null) {
-				if (returnedUser.getPassword().equals(reset.getOldPassword())) {
-					// Date cpDate = new Date(reset.getChangePasswordDate().getTime());
-					// returnedUser.setPassword(returnedUser.getPassword());
-					// reset.setChangePasswordDate(cpDate);
-					returnedUser.setPassword(reset.getConformNewPassword());
-					repository.save(returnedUser);
-					return new ResponseEntity(returnedUser, HttpStatus.OK);
-				} else {
-					return new ResponseEntity("Enter valid UserName", HttpStatus.OK);
-				}
+			System.out.println(reset.getOldPassword());
+			EmployeeLogin returnedUser = repository.findByPassword(reset.getOldPassword());
+
+			if (!returnedUser.equals(null)) {
+				
+//				if (returnedUser.getPassword().equals(reset.getOldPassword())) {
+//					// Date cpDate = new Date(reset.getChangePasswordDate().getTime());
+//					// returnedUser.setPassword(returnedUser.getPassword());
+//					// reset.setChangePasswordDate(cpDate);
+//					returnedUser.setPassword(reset.getConformNewPassword());
+//					repository.save(returnedUser);
+//					return new ResponseEntity(returnedUser, HttpStatus.OK);
+//				} else {
+//					return new ResponseEntity("Enter valid UserName", HttpStatus.OK);
+//				}
+				returnedUser.setPassword(reset.getConfirmNewPassword());
+				System.out.println(reset.getConfirmNewPassword());
+				repository.save(returnedUser);
+
+				return new ResponseEntity("Reset successfully", HttpStatus.OK);
 			} else {
 				return new ResponseEntity("Enter valid UserName", HttpStatus.OK);
 			}
 		} catch (Exception e) {
-			return new ResponseEntity(returnedUser, HttpStatus.OK);
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
 		}
 	}
 	

@@ -1,3 +1,4 @@
+
 package com.arshaa.emp.service;
 
 import java.text.SimpleDateFormat;
@@ -47,9 +48,9 @@ public class MainServiceImpl implements MainService {
 			newOnboard.setOnboardDate(tSqlDate);
 
 			java.sql.Date tsqDate1 = new java.sql.Date(newOnboard.getUpdatedOn().getTime());
-			
-			System.out.println(new SimpleDateFormat("MM-dd-yyyy").format(newOnboard.getDateOfJoining()));
-			System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(newOnboard.getDateOfJoining()));
+		
+			//System.out.println(new SimpleDateFormat("MM-dd-yyyy").format(newOnboard.getDateOfJoining()));
+			//System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(newOnboard.getDateOfJoining()));
 			newOnboard.setUpdatedOn(tsqDate1);
 			newOnboard.setWaitingforapprovalStatus(true);
 			newOnboard.setRejectedStatus(false);
@@ -351,8 +352,11 @@ public class MainServiceImpl implements MainService {
 			master.setPreviousCompany3_typeOfEmployment(empMaster.getPreviousCompany3_typeOfEmployment());
 			master.setPreviousCompany3_reasonForRelieving(empMaster.getPreviousCompany3_reasonForRelieving());
 			master.setReportingManager(empMaster.getReportingManager());
+			master.setPassportExpiryDate(empMaster.getPassportExpiryDate());
+			master.setPassportNo(empMaster.getPassportNo());
 			master.setPrimarySkills(empMaster.getPrimarySkills());
 			master.setSecondarySkills(empMaster.getSecondarySkills());
+			master.setEmploymentType(empMaster.getEmploymentType());
 
 			EmployeeMaster master1 = emRepo.save(master);
 			System.out.println(master1);

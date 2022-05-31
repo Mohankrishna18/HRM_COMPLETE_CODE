@@ -37,12 +37,12 @@ const Sign = () => {
           `/login/authenticateUser?employeeId=${employeeId}&password=${password}`
         );
         console.log("login is successful");
-        toast.success("You are successfully Logged In");
         userStatus = resp.data;
         sessionStorage.setItem("userdata", JSON.stringify(userStatus));
 
         if (userStatus.status === true) {
           history.push("/app");
+          toast.success("You are successfully Logged In");
         }
       } catch (err) {
         console.error(err);
@@ -81,7 +81,7 @@ const Sign = () => {
              
               }}
             ></img>
-            <h1 style={{ textAlign: "center", paddingTop: "10px" }}>Login</h1>
+            <h2 style={{ textAlign: "center", paddingTop: "10px"}}>Arshaa Login</h2>
             <Form style={{ paddingTop: "40px" }}>
               <Form.Group controlld="employeeId">
                 <Form.Label style={{ fontWeight: "bold", paddingLeft: "10px" }}>
@@ -90,7 +90,7 @@ const Sign = () => {
                 <Form.Control
                   style={{ borderRadius: "15px" }}
                   type="text"
-                  placeholder="Enter your Employee Id."
+                  placeholder="Enter your Employee Id"
                   size="lg"
                   value={employeeId}
                   onChange={(e) => setEmployeeId(e.target.value)}
@@ -104,7 +104,7 @@ const Sign = () => {
                 <Form.Control
                   style={{ borderRadius: "15px" }}
                   type="password"
-                  placeholder="Enter your Password."
+                  placeholder="Enter your Password"
                   size="lg"
                   value={password}
                   validate={{

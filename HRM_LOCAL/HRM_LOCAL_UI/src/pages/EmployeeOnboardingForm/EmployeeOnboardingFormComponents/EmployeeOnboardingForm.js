@@ -30,11 +30,14 @@ const EmployeeOnboardingForm = () => {
     const [yearsOfExperience, setYearsOfExperience] = useState("")
     const [department, setDepartment] = useState("")
     const [desgination, setDesignation] = useState("")
+    const [primarySkills, setPrimarySkills] = useState("")
+    const [secondarySkills, setSecondrySkills] = useState("")
+    const [jobTitle, setJobTitle] = useState("")
+
 
 
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
-
 
     const forms = useRef(null);
 
@@ -52,6 +55,7 @@ const EmployeeOnboardingForm = () => {
     }
 
 
+
     const validateForm = () => {
         const {
             lastName,
@@ -61,18 +65,19 @@ const EmployeeOnboardingForm = () => {
             phoneNumber,
             dateOfJoining,
             yearsOfExperience,
-            designation,
+            desgination,
             department,
             typeOfEmployment,
+            primarySkills,secondarySkills,jobTitle
 
-            primarySkills,
-            secondarySkills,
-
-            jobType
 
         } = form;
 
+
+
         const newErrors = {};
+
+
 
         if (!firstName || firstName === "" || !firstName.match(/^[aA-zZ\s]+$/))
             newErrors.firstName = "Please Enter First Name";
@@ -85,22 +90,22 @@ const EmployeeOnboardingForm = () => {
             newErrors.dateOfJoining = "Please Enter Date of Joining";
         if (!yearsOfExperience || yearsOfExperience === "" || yearsOfExperience.match(/[^0-9]/g))
             newErrors.yearsOfExperience = "Please Enter Years of Experience";
-        if (!designation || designation === "") newErrors.designation = "Please Enter Designation";
+        if (!desgination || desgination === "") newErrors.desgination = "Please Enter Designation";
         if (!department || department === "")
             newErrors.department = "Please Enter department";
-            if (!typeOfEmployment || typeOfEmployment === "")
+        if (!typeOfEmployment || typeOfEmployment === "")
             newErrors.typeOfEmployment = "Please Enter type of employement";
-        if (!primarySkills || primarySkills === "")
-            newErrors.primarySkills = "Please Enter type of employement";
-            if (!secondarySkills || secondarySkills === "")
-            newErrors.secondarySkills = "Please Enter type of employement";
+          
 
         return newErrors;
     };
     //testing for commit
 
 
+
     const handleSubmit = (e) => {
+
+
 
         e.preventDefault();
         // e.target.reset();
@@ -111,10 +116,12 @@ const EmployeeOnboardingForm = () => {
             console.log(form);
             console.log("form submitted");
 
+
+
             axios.post("/emp/createNewPotentialEmployee", form)
                 .then((response) => {
                     const user = response.data;
-                    toast.success("data submitted successfully")
+                    toast.success("Form Submitted successfully")
                     console.log(user);
                 })
                 .catch((err) => { toast.error("Something Went Wrong") })
@@ -128,6 +135,8 @@ const EmployeeOnboardingForm = () => {
         axios.get("/designation/getAllDesignations")
             .then((response) => {
                 setDesignations(response.data)
+
+
 
             })
             .catch(() => { toast.error("data is not getting") })
@@ -149,6 +158,7 @@ const EmployeeOnboardingForm = () => {
 
 
     return (
+
 
 
         <Card>
@@ -260,10 +270,10 @@ const EmployeeOnboardingForm = () => {
                                     required
                                     type="text"
                                     placeholder="Designation"
-                                    controlId="designation"
+                                    controlId="desgination"
                                     value={form.desgination}
-                                    onChange={(e) => setField("designation", e.target.value)}
-                                    isInvalid={!!errors.designation}>
+                                    onChange={(e) => setField("desgination", e.target.value)}
+                                    isInvalid={!!errors.desgination}>
 
 
 
@@ -271,7 +281,6 @@ const EmployeeOnboardingForm = () => {
                                     {
                                         designations.map(designation => (
                                             <option>{designation.designationName}</option>
-                                            
                                         ))
                                     }
                                 </Form.Select>
@@ -341,13 +350,7 @@ const EmployeeOnboardingForm = () => {
                                 ></Form.Control>
                                 <Form.Control.Feedback type="invalid">
                                     {errors.yearsOfExperience}
-
-
-
                                 </Form.Control.Feedback>
-
-
-
                             </Form.Group>
                             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                 <Form.Label>Email</Form.Label>
@@ -367,7 +370,6 @@ const EmployeeOnboardingForm = () => {
 
                                 </Form.Control.Feedback>
                             </Form.Group>
-                            
                             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                         <Form.Label>Job Title</Form.Label>
                                         <Form.Control
@@ -381,7 +383,6 @@ const EmployeeOnboardingForm = () => {
                                     </Form.Group>
 
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }} >
-
                                         <Form.Label>Primary Skills*</Form.Label>
                                         <Form.Control
                                             required
@@ -389,11 +390,11 @@ const EmployeeOnboardingForm = () => {
                                             name="primarySkills"
                                             placeholder="Primary Skills"
                                             controlId="primarySkills"
-
+                                            value={form.primarySkills}
+                                           // onChange={changeHandler}
                                         />
                                     </Form.Group>
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }} >
-
                                         <Form.Label>Secondary Skills*</Form.Label>
                                         <Form.Control
                                             required
@@ -406,36 +407,30 @@ const EmployeeOnboardingForm = () => {
                                         />
                                     </Form.Group>
                  
-                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                        <Form.Label>Type Of Employeement</Form.Label>
-                                        <Form.Select
-                                            required
-                                            type="email"
-                                            placeholder="Type Of Employment"
-                                            controlId="typeOfEmployment"
-                                            value={form.typeOfEmployment}
-                                            onChange={(e) => setField("typeOfEmployment", e.target.value)}
-                                            isInvalid={!!errors.typeOfEmployment}
-                                        >
-                                            <option >Select</option>
-                                            <option value="Intern">Intern</option>
-                                            <option value="Contract">Contract</option>
-                                            <option value="FullTimeEmployement">FTE (Full Time Employment)</option>
-                                        </Form.Select>
-                                        <Form.Control.Feedback type="invalid">
-                                            {errors.typeOfEmployment}
-                                        </Form.Control.Feedback>
-                                    </Form.Group>
+                            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                <Form.Label>Type Of Employeement</Form.Label>
+                                <Form.Select
+                                    required
+                                    type="email"
+                                    placeholder="Type Of Employment"
+                                    controlId="typeOfEmployment"
+                                    value={form.typeOfEmployment}
+                                    onChange={(e) => setField("typeOfEmployment", e.target.value)}
+                                    isInvalid={!!errors.typeOfEmployment}
+                                >
+                                    <option >Select</option>
+                                    <option value="Intern">Intern</option>
+                                    <option value="Contract">Contract</option>
+                                    <option value="FullTimeEmployement">FTE (Full Time Employment)</option>
+                                </Form.Select>
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.typeOfEmployment}
+                                </Form.Control.Feedback>
+                            </Form.Group>
                         </Row>
                         <Button
                             style={{ backgroundColor: "#eb4509", float: "right" }}
-
-
-
                             type="submit"
-
-
-
                         >
                             Submit
                         </Button>

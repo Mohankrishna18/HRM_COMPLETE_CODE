@@ -5,6 +5,7 @@ import { Row, Col, Button } from "react-bootstrap";
 import Tab from "react-bootstrap/Tab";
 import ListGroup from "react-bootstrap/ListGroup";
 import { isLoggedIn } from "../utils";
+import './Sidebar.css'
 
 //Sidebar component
 const Sidebar = (props) => {
@@ -39,7 +40,8 @@ const Sidebar = (props) => {
                   </ListGroup.Item>
                 </Row>
               ))}
-              {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }
+              {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp;
+              <p style={{paddingLeft:"30px",paddingTop:""}}>V-0.1</p>
             </ListGroup>
           </div>
         </Col>

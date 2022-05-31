@@ -1,9 +1,11 @@
 package com.arshaa.departments.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.arshaa.departments.entity.Departmentmaster;
 
+@Repository
 public interface DepartmentInterface extends JpaRepository<Departmentmaster,Integer> {
 
 	
