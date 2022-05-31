@@ -6,7 +6,7 @@ import Tab from "react-bootstrap/Tab";
 import ListGroup from "react-bootstrap/ListGroup";
 import { isLoggedIn } from "../utils";
 
-//Sidebar component
+//Sidebar component is here
 const Sidebar = (props) => {
   //Routes obtained from default router config
   const menuItems = props.routes;
