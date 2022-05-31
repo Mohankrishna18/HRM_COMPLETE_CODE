@@ -7,7 +7,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { isLoggedIn } from "../utils";
 import './Sidebar.css'
 
-//Sidebar component
+//Sidebar component is here
 const Sidebar = (props) => {
   //Routes obtained from default router config
   const menuItems = props.routes;
