@@ -2,6 +2,7 @@ import React from 'react'
 import { Col, Row } from 'react-bootstrap';
 
 import AllEmployee from './AllEmployeesComponents/AllEmployee'
+import EmployeeList from './AllEmployeesComponents/EmployeeList';
 
 
 
@@ -12,7 +13,8 @@ return (
 
 <Row>
     <Col xs={12}>
-    <AllEmployee/>
+    {/* <AllEmployee/> */}
+    <EmployeeList />
     </Col>
 </Row>
 

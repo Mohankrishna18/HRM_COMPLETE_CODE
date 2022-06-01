@@ -24,6 +24,7 @@ export default function ResetPassword()
     newPassword,
     confirmNewPassword,
   };
+  // testing purpose
   function validateForm() {
     return (
       oldPassword.length > 0 &&

@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
-import Approve from "./Approve";
-import Reject from "./Reject";
 
 const ApprovedEmployeesTable = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios
-      .get("/emp/waitingForApprovelStatus")
-      .then((onboardingEmployeesResponse) => {
-        setUsers(onboardingEmployeesResponse.data.data);
+      .get("/emp/getApprovedData")
+      .then((approvedEmployeesResponse) => {
+        setUsers(approvedEmployeesResponse.data.data);
       })
       .catch((err) => console.error(err));
   }, []);
