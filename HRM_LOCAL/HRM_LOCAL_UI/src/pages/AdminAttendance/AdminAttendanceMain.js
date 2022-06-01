@@ -8,21 +8,16 @@ import EmpTable from './AdminAttendanceComponents/AdminAttendanceTable';
 
 
 const AdminAttendanceMain = () => {
-return (
-<div>
+    return (
+        <div>
+            <Row>
+                <Col>
+                    <Admin />
+                </Col>
 
-
-
-<Row>
-    <Col>
-    <Admin />
-</Col>
-
-</Row>
-
-
-</div>
-)
+            </Row>
+        </div>
+    )
 }
 
 

@@ -34,7 +34,6 @@ function EmployeeMasterForm() {
     const [primarySkills, setPrimarySkills] = useState("");
     const [secondarySkills, setSecondarySkills] = useState("");
     const [email, setEmail] = useState("");
-
     const [bloodGroup, setBloodGroup] = useState("");
     const [gender, setGender] = useState("");
     const [maritalStatus, setMaritalStatus] = useState("");
@@ -328,12 +327,11 @@ function EmployeeMasterForm() {
                                         </Form.Group>
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Middle name</Form.Label>
-                                            <Form.Control
+                                            <Form.Control 
                                                 name="middleName"
                                                 type="text"
                                                 placeholder="Middle name"
                                                 value={middleName}
-
                                                 onChange={(e) => setMiddleName(e.target.value)}
                                             />
                                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -1264,7 +1262,6 @@ function EmployeeMasterForm() {
                                                                 controlId="previousCompany2_reasonForRelieving"
                                                                 value={previousCompany2_reasonForRelieving}
                                                                 onChange={(e) => setPreviousCompany2_reasonForRelieving(e.target.value)}
-
                                                                 name="previousCompany2_reasonForRelieving"
                                                             />
                                                         </Form.Group>
@@ -1308,7 +1305,6 @@ function EmployeeMasterForm() {
                                                                 controlId="previousCompany3_joiningDate"
                                                                 value={previousCompany3_joiningDate}
                                                                 onChange={(e) => setPreviousCompany3_joiningDate(e.target.value)}
-
                                                                 name="previousCompany3_joiningDate"
                                                             />
                                                         </Form.Group>

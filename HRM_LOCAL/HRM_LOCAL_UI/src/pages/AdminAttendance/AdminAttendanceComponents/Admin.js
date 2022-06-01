@@ -5,8 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import EmpTable from './AdminAttendanceTable'
 
-
-
+//comment
 
 
 function Admin() {
@@ -73,7 +72,7 @@ function Admin() {
 
               <Form.Group as={Col} m style={{ paddingTop: '30px' }}>
 
-                <Button style={{ width: '100%', backgroundColor: "#55CE63" }}>SEARCH</Button>
+                <Button style={{ width: '100%', backgroundColor: "#08bf1a" }}>SEARCH</Button>
 
               </Form.Group>
             </Col>

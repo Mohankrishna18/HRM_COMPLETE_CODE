@@ -1,88 +1,176 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Table from 'react-bootstrap/Table'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Pagination from 'react-bootstrap/Pagination'
 import { TiTick } from "react-icons/ti";
 import { TiTimes } from "react-icons/ti";
-
+import MaterialTable from "material-table";
+import { Grid } from "@mui/material";
 
 
 //import inputdata from './Inputdata';
 const EmpTable = (props) => {
-const emps=[
-{a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Lebron", a2: "" ,a3:"" ,a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: <TiTimes style={{color: "#F62D51", fontSize:"25"}}/>, employee: "Russell estbrook",a2: "",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Janes Harden", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Jennifer Johnson", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Natalie Robinson", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "John Ferguson", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Samuel Patterson", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Jasmine James", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/> , employee: "Patricia Hamilton", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Michael Hensley", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Elijah Fisher", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Justin Wright", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Paula Reyes", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Gail Grant", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Pearl Chang", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Hanna Ponce", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Nikki ", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Stephens", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Marvel", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Brett Woodland", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Jammy Harden", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Jane Stephens", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Lorenzo Snow", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Corrine", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Annie Crame", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
-{a1: "", employee: "Luka Doncic",a2: "",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""}]
-const renderedtable=(emp, index)=>{
-return (
-<tr key={index}>
-<td>{emp.employee}</td>
-<td>{emp.a1} </td>
-<td>{emp.a2} </td>
-<td>{emp.a3} </td>
-<td>{emp.a4}</td>
-<td>{emp.a5}</td>
-<td>{emp.a6}</td>
-<td>{emp.a7}</td>
-<td>{emp.a8}</td>
-<td>{emp.a9}</td>
-<td>{emp.a10}</td>
-<td>{emp.a11}</td>
-<td>{emp.a12}</td>
-<td>{emp.a13}</td>
-<td>{emp.a14}</td>
-<td>{emp.a15}</td>
-<td>{emp.a16}</td>
-<td>{emp.a17}</td>
-<td>{emp.a18}</td>
-<td>{emp.a19}</td>
-<td>{emp.a20}</td>
-<td>{emp.a21}</td>
-<td>{emp.a22}</td>
-<td>{emp.a23}</td>
-<td>{emp.a24}</td>
-<td>{emp.a25}</td>
-<td>{emp.a26}</td>
-<td>{emp.a27}</td>
-<td>{emp.a28}</td>
-<td>{emp.a29}</td>
-<td>{emp.a30}</td>
-<td>{emp.a31}</td>
+
+    const columns = [
+        {
+            title: "Employee ID",
+            field: "employeeId",
+            type: "text",
+            headerStyle: {
+               // backgroundColor: "#f0451a",
+                color: "white",
+            },
+        },
+        {
+            title: "Employee Name",
+            field: "firstName",
+            type: "text",
+            headerStyle: {
+               // backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "Guest ID",
+            field: "id",
+            type: "text",
+            headerStyle: {
+               // backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "Phone Number",
+            field: "price",
+            headerStyle: {
+                //backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "Check-In-Date",
+            field: "checkInDate",
+            headerStyle: {
+                //backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "Check-Out-Date",
+            field: "checkOutDate",
+            headerStyle: {
+                //backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "Bed ID",
+            field: "bedId",
+            headerStyle: {
+               // backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "Due Amount",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+    ];
 
 
 
-</tr>
-)
-}
+    // useEffect(() => {
+    // axios 
+    // .get("https://fakestoreapi.com/products")
+    // .then((res) => {
+    // setData(res.data); 
+    // console.log(res.data);
+    // }) 
+    // .catch((err) => {
+    // console.log(err);
+    // // toast.error("Server Error")
+    // });
+    // }, []);
+    // const obje = { createdBy: userId };
+
+    // const emps=[
+    // {a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Lebron", a2: <TiTick style={{color: "#55CE63", fontSize:"25"}}/> ,a3:"" ,a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: <TiTimes style={{color: "#F62D51", fontSize:"25"}}/>, employee: "Russell estbrook",a2: "",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Janes Harden", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Jennifer Johnson", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Natalie Robinson", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "John Ferguson", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Samuel Patterson", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Jasmine James", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/> , employee: "Patricia Hamilton", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: <TiTick style={{color: "#55CE63", fontSize:"25"}}/>, employee: "Michael Hensley", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Elijah Fisher", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Justin Wright", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Paula Reyes", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Gail Grant", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Pearl Chang", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Hanna Ponce", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Nikki ", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Stephens", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Marvel", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Brett Woodland", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Jammy Harden", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Jane Stephens", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Lorenzo Snow", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Corrine", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Annie Crame", a2:"",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""},
+    // {a1: "", employee: "Luka Doncic",a2: "",a3:"",a4:"",a5:"",a6:"",a7:"",a8:"",a9:"",a10:"",a11:"",a12:"",a13:"",a14:"",a15:"",a16:"",a17:"",a18:"",a19:"",a20:"",a21:"",a22:"",a23:"",a24:"",a25:"",a26:"",a27:"",a28:"",a29:"",a30:"",a31:""}]
+    // const renderedtable=(emp, index)=>{
+    // return (
+    // <tr key={index}>
+    // <td>{emp.employee}</td>
+    // <td>{emp.a1} </td>
+    // <td>{emp.a2} </td>
+    // <td>{emp.a3} </td>
+    // <td>{emp.a4}</td>
+    // <td>{emp.a5}</td>
+    // <td>{emp.a6}</td>
+    // <td>{emp.a7}</td>
+    // <td>{emp.a8}</td>
+    // <td>{emp.a9}</td>
+    // <td>{emp.a10}</td>
+    // <td>{emp.a11}</td>
+    // <td>{emp.a12}</td>
+    // <td>{emp.a13}</td>
+    // <td>{emp.a14}</td>
+    // <td>{emp.a15}</td>
+    // <td>{emp.a16}</td>
+    // <td>{emp.a17}</td>
+    // <td>{emp.a18}</td>
+    // <td>{emp.a19}</td>
+    // <td>{emp.a20}</td>
+    // <td>{emp.a21}</td>
+    // <td>{emp.a22}</td>
+    // <td>{emp.a23}</td>
+    // <td>{emp.a24}</td>
+    // <td>{emp.a25}</td>
+    // <td>{emp.a26}</td>
+    // <td>{emp.a27}</td>
+    // <td>{emp.a28}</td>
+    // <td>{emp.a29}</td>
+    // <td>{emp.a30}</td>
+    // <td>{emp.a31}</td>
 
 
 
-return (
-<div className='scroll' style={{paddingBottom:'30px'}}>
-<Table striped bordered hover >
+    // </tr>
+    // )
+    // }
+
+
+
+    return (
+        <div className='scroll' style={{ paddingBottom: '30px' }}>
+            {/* <Table striped bordered hover >
 <thead>
 <tr>
 <th>Employee</th>
@@ -125,14 +213,38 @@ return (
 
 
 </tbody>
-</Table>
+</Table> */}
 
 
+            <Grid xs={12}>
+                <MaterialTable
+                    title="All Employees Attendance"
+                    // data={data}
+                    sx={{ color: "white" }}
+                    columns={columns}
+                    options={{
+                        exportButton: true,
+                        pageSize: 20,
+                        actionsColumnIndex: -1,
+                        grouping: true,
+                        addRowPosition: "first",
+                        headerStyle: {
+                            backgroundColor: "#ff7214",
+                            color: "white",
+                            fontSize: "15px",
+                            //height: "10px",
+                            //fontWeight: 'bold'
+                        },
+                        rowStyle: {
+                            fontSize: 16,
+                        },
+                    }}
+                />
+            </Grid>
 
-</div>
-)
+        </div>
+    )
 }
-
 
 
 
