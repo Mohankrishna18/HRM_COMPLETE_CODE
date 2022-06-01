@@ -19,6 +19,19 @@ function EmployeeMasterForm() {
     const userData1 = JSON.parse(userData)
     const employeeid = userData1.data.employeeId
 
+
+    
+    // const [fromDate, setFromDate] = useState("");
+    // const [toDate, setToDate] = useState("");
+
+    const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
+    const [graduationPassedYear, setGraduationPassedYear] = useState("");
+  
+    // const assignFromDate = e => {
+    //   console.log(e.target.value);
+    //   setGraduationJoiningYear(e.target.value);
+    // };
+
     // Here usestate has been used in order
     // to set and get values from the jsx
     const [firstName, setFirstName] = useState("");
@@ -58,8 +71,8 @@ function EmployeeMasterForm() {
     const [graduationInstituteName, setGraduationInstituteName] = useState("");
     const [graduationInstituteCity, setGraduationInstituteCity] = useState("");
     const [graduationCourseName, setGraduationCourseName] = useState("");
-    const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
-    const [graduationPassedYear, setGraduationPassedYear] = useState("");
+    // const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
+    // const [graduationPassedYear, setGraduationPassedYear] = useState("");
     const [graduationGrade, setGraduationGrade] = useState("");
     const [intermediateBoardOfUniversity, setIntermediateBoardOfUniversity] = useState("");
     const [intermediateCollegeName, setIntermediateCollegeName] = useState("");
@@ -286,6 +299,7 @@ function EmployeeMasterForm() {
         console.log(passportExpiryDate)
 
         toast.success("Form Submitted Successfully");
+
 
     }
 
@@ -750,6 +764,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Passed out year"
                                                                 controlId="postgraduationPassedYear"
                                                                 value={postgraduationPassedYear}
+                                                                min={postgraduationJoiningYear}
                                                                 name="postgraduationPassedYear"
                                                                 onChange={(e) => setPostgraduationPassedYear(e.target.value)}
                                                             />
@@ -850,6 +865,7 @@ function EmployeeMasterForm() {
                                                 placeholder="Passed out year"
                                                 controlId="graduationPassedYear"
                                                 name="graduationPassedYear"
+                                                min={graduationJoiningYear}
                                                 value={graduationPassedYear}
                                                 onChange={(e) => setGraduationPassedYear(e.target.value)}
                                             ></Form.Control>
@@ -954,6 +970,7 @@ function EmployeeMasterForm() {
                                                 placeholder="Passed out year"
                                                 controlId="intermediatePassedYear"
                                                 value={intermediatePassedYear}
+                                                min={intermediateJoiningYear}
                                                 onChange={(e) => setIntermediatePassedYear(e.target.value)}
                                                 name="intermediatePassedYear"
                                             ></Form.Control>
@@ -1052,6 +1069,7 @@ function EmployeeMasterForm() {
                                                 placeholder="Passed out year"
                                                 controlId="sscPassedYear"
                                                 value={sscPassedYear}
+                                                min={sscJoiningYear}
                                                 onChange={(e) => setSscPassedYear(e.target.value)}
 
                                             ></Form.Control>
@@ -1119,6 +1137,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Date of Relieving"
                                                                 controlId="previousCompany1_relievingDate"
                                                                 value={previousCompany1_relievingDate}
+                                                                min={previousCompany1_joiningDate}
                                                                 onChange={(e) => setPreviousCompany1_relievingDate(e.target.value)}
                                                                 name="previousCompany1_relievingDate"
                                                             />
@@ -1217,6 +1236,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Date of Relieving"
                                                                 controlId="previousCompany2_relievingDate"
                                                                 value={previousCompany2_relievingDate}
+                                                                min={previousCompany2_joiningDate}
                                                                 onChange={(e) => setPreviousCompany2_relievingDate(e.target.value)}
                                                                 name="previousCompany2_relievingDate"
                                                             />
@@ -1315,6 +1335,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Date of Relieving"
                                                                 controlId="prevoiusCompany3_relievingDate"
                                                                 value={previousCompany3_relievingDate}
+                                                                min={previousCompany3_joiningDate}
                                                                 onChange={(e) => setPreviousCompany3_relievingDate(e.target.value)}
 
                                                                 name="previousCompany3_relievingDate"

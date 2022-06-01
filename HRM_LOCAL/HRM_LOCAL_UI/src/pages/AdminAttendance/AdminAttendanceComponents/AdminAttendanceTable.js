@@ -167,7 +167,6 @@ const EmpTable = (props) => {
     // }
 
 
-
     return (
         <div className='scroll' style={{ paddingBottom: '30px' }}>
             {/* <Table striped bordered hover >
