@@ -26,7 +26,6 @@ function Department() {
     axios.delete(`/dept/deleteDepartment/${departmentId}`);
     loadData();
     notify();
-    window.location.reload();
   };
 
   return (

@@ -32,11 +32,7 @@ const EditDepartment = ({id}) => {
     console.log(res.data);
     notify();
 
-    window.location.reload();
   };
-
-  
-
 
   return (
     <div style={{ justifyContent: "center" }}>

@@ -37,7 +37,6 @@ const HolidayModal = () => {
     if (res.data !== null) {
       console.log(res.data);
       notify();
-      window.location.reload();
     } else {
       console.log("");
     }
