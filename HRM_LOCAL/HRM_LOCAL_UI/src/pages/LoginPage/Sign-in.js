@@ -142,7 +142,7 @@ const Sign = () => {
                     paddingLeft: "10px",
                   }}
                 >
-                  Forgot password?
+                  Reset password?
                 </a>
               </div>
               &nbsp;
