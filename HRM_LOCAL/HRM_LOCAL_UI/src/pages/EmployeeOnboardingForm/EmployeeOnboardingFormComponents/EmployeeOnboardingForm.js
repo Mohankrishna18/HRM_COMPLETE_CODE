@@ -125,7 +125,7 @@ const EmployeeOnboardingForm = () => {
 
     return (
 
-        <Card>
+        <Card className="scroll">
             <Card.Header>
                 <Card.Body>
                     <Card.Title>Employee Onboarding</Card.Title>
