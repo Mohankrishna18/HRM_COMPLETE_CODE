@@ -25,6 +25,7 @@ public class DepartmentController {
 	
 	@Autowired
 private DepartmentInterface repo;
+	@Autowired
 	private DepartmentService serv;
 
 @PostMapping("/postDepartmentMaster")

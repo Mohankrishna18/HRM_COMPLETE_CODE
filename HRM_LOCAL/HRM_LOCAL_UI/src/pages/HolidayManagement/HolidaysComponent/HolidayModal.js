@@ -17,7 +17,7 @@ const HolidayModal = () => {
 
   const [show, setShow] = useState(false);
   const validationSchema = Yup.object().shape({
-    holidayTitle: Yup.string().required("holidayTitle is required"),
+    holidayTitle: Yup.string().matches(/^[aA-zZ\s]+$/, "Invalid Name ").required("holidayTitle is required"),
     holidayDate: Yup.string().required("Holiday Date is required"),
   });
 
@@ -92,7 +92,7 @@ const HolidayModal = () => {
             <Stack gap={3}>
               <Row>
                 <Col md={12}>
-              <label>holiday Title</label>
+              <label>Holiday Title</label>
               </Col>
               </Row>
               <Row>

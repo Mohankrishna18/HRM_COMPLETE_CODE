@@ -28,7 +28,7 @@ const Approve = (props) => {
       `/emp/updateApprovStatus/${onboardingid}`,
       {
         approvedStatus: true,
-        reportingManager: setReportingManager,
+        // reportingManager: setReportingManager,
       }
       // .then(setApprovedStatus(true), console.log(approvedStatus))
     );
