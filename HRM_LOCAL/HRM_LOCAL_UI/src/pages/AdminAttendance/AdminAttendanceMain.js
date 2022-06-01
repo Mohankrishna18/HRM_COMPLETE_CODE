@@ -1,6 +1,6 @@
 import React from 'react'
-import NavBar from '../../NavBar/NavBar';
-import Sidebar from '../../NavBar/Sidebar';
+import { Col, Row } from 'react-bootstrap';
+
 import Admin from './AdminAttendanceComponents/Admin'
 import EmpTable from './AdminAttendanceComponents/AdminAttendanceTable';
 
@@ -8,17 +8,16 @@ import EmpTable from './AdminAttendanceComponents/AdminAttendanceTable';
 
 
 const AdminAttendanceMain = () => {
-return (
-<div>
+    return (
+        <div>
+            <Row>
+                <Col>
+                    <Admin />
+                </Col>
 
-
-
-<Sidebar >
-<Admin />
-<EmpTable />
-</Sidebar>
-</div>
-)
+            </Row>
+        </div>
+    )
 }
 
 

@@ -5,8 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import EmpTable from './AdminAttendanceTable'
 
-
-
+//comment
 
 
 function Admin() {
@@ -14,73 +13,76 @@ function Admin() {
 
     <Card   >
       <Card.Header>
-      
 
-      <Card.Body>
-        <Card.Title>Attendance</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">Attendance/Dashboard</Card.Subtitle>
-      </Card.Body>
 
-      <Form>
-        <Row >
-          <Form.Group as={Col} md="3"  >
+        <Card.Body>
+          <Card.Title>Attendance</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted">Attendance/Dashboard</Card.Subtitle>
+        </Card.Body>
 
-            <Form.Label >Employee Name</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Employee Name"
-            />
-        
-          </Form.Group>
-          <Form.Group as={Col} md="3">
-            <Form.Label>Select Month</Form.Label>
-            <Form.Select aria-label="Default select ">
-              <option>-</option>
-              <option value="1">January</option>
-        <option value="2">February</option>
-        <option value="3">March</option>
-        <option value="4">April</option>
-        <option value="5">May</option>
-        <option value="6">June</option>
-        <option value="7">July</option>
-        <option value="8">August</option>
-        <option value="9">September</option>
-        <option value="10">October</option>
-        <option value="11">November</option>
-        <option value="12">December</option>
-            </Form.Select>
-          </Form.Group>
+        <Form style={{ padding: 10 }}>
+          <Row >
+            <Col>
+              <Form.Group as={Col}  >
 
-          <Form.Group as={Col} md="3">
-            <Form.Label>Select Year</Form.Label>
-            <Form.Select aria-label="Default select ">
-              <option>-</option>
-              <option value="1">2019</option>
-             <option value="2">2020</option>
-              <option value="3">2021</option>
-              <option value="4">2022</option>
-             <option value="5">2023</option>
-             <option value="6">2024</option>
-            </Form.Select>
-          </Form.Group>
-          
-
-            <Form.Group as={Col} md="3" style={ {paddingTop:'30px' } }>
-
-                  <Button style={{width:'200px', backgroundColor: "#55CE63"}}>SEARCH</Button>
+                <Form.Label >Employee Name</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Employee Name"
+                />
 
               </Form.Group>
-              {/* <Form.Group as={Col} md="3" style={ {paddingTop:'30px' } }>
- <EmpTable/>
+            </Col>
+            <Col>
+              <Form.Group as={Col} >
+                <Form.Label>Select Month</Form.Label>
+                <Form.Select aria-label="Default select ">
+                  <option>Select</option>
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
+                </Form.Select>
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group as={Col} >
+                <Form.Label>Select Year</Form.Label>
+                <Form.Select aria-label="Default select ">
+                  <option>Select</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                </Form.Select>
+              </Form.Group>
+            </Col>
+            <Col>
 
+              <Form.Group as={Col} m style={{ paddingTop: '30px' }}>
 
-</Form.Group> */}
-         
-        </Row></Form>
+                <Button style={{ width: '100%', backgroundColor: "#08bf1a" }}>SEARCH</Button>
 
+              </Form.Group>
+            </Col>
+
+          </Row></Form>
+        <Row style={{ paddingTop: 20, paddingLeft: 10 }}>
+          <EmpTable />
+        </Row>
       </Card.Header>
-     
+
     </Card>
 
 

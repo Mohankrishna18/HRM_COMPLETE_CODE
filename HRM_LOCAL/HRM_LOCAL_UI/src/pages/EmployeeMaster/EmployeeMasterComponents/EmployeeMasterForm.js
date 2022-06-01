@@ -19,6 +19,19 @@ function EmployeeMasterForm() {
     const userData1 = JSON.parse(userData)
     const employeeid = userData1.data.employeeId
 
+
+    
+    // const [fromDate, setFromDate] = useState("");
+    // const [toDate, setToDate] = useState("");
+
+    const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
+    const [graduationPassedYear, setGraduationPassedYear] = useState("");
+  
+    // const assignFromDate = e => {
+    //   console.log(e.target.value);
+    //   setGraduationJoiningYear(e.target.value);
+    // };
+
     // Here usestate has been used in order
     // to set and get values from the jsx
     const [firstName, setFirstName] = useState("");
@@ -34,7 +47,6 @@ function EmployeeMasterForm() {
     const [primarySkills, setPrimarySkills] = useState("");
     const [secondarySkills, setSecondarySkills] = useState("");
     const [email, setEmail] = useState("");
-
     const [bloodGroup, setBloodGroup] = useState("");
     const [gender, setGender] = useState("");
     const [maritalStatus, setMaritalStatus] = useState("");
@@ -59,8 +71,8 @@ function EmployeeMasterForm() {
     const [graduationInstituteName, setGraduationInstituteName] = useState("");
     const [graduationInstituteCity, setGraduationInstituteCity] = useState("");
     const [graduationCourseName, setGraduationCourseName] = useState("");
-    const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
-    const [graduationPassedYear, setGraduationPassedYear] = useState("");
+    // const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
+    // const [graduationPassedYear, setGraduationPassedYear] = useState("");
     const [graduationGrade, setGraduationGrade] = useState("");
     const [intermediateBoardOfUniversity, setIntermediateBoardOfUniversity] = useState("");
     const [intermediateCollegeName, setIntermediateCollegeName] = useState("");
@@ -288,6 +300,7 @@ function EmployeeMasterForm() {
 
         toast.success("Form Submitted Successfully");
 
+
     }
 
     return (
@@ -328,12 +341,11 @@ function EmployeeMasterForm() {
                                         </Form.Group>
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Middle name</Form.Label>
-                                            <Form.Control
+                                            <Form.Control 
                                                 name="middleName"
                                                 type="text"
                                                 placeholder="Middle name"
                                                 value={middleName}
-
                                                 onChange={(e) => setMiddleName(e.target.value)}
                                             />
                                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -752,6 +764,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Passed out year"
                                                                 controlId="postgraduationPassedYear"
                                                                 value={postgraduationPassedYear}
+                                                                min={postgraduationJoiningYear}
                                                                 name="postgraduationPassedYear"
                                                                 onChange={(e) => setPostgraduationPassedYear(e.target.value)}
                                                             />
@@ -852,6 +865,7 @@ function EmployeeMasterForm() {
                                                 placeholder="Passed out year"
                                                 controlId="graduationPassedYear"
                                                 name="graduationPassedYear"
+                                                min={graduationJoiningYear}
                                                 value={graduationPassedYear}
                                                 onChange={(e) => setGraduationPassedYear(e.target.value)}
                                             ></Form.Control>
@@ -956,6 +970,7 @@ function EmployeeMasterForm() {
                                                 placeholder="Passed out year"
                                                 controlId="intermediatePassedYear"
                                                 value={intermediatePassedYear}
+                                                min={intermediateJoiningYear}
                                                 onChange={(e) => setIntermediatePassedYear(e.target.value)}
                                                 name="intermediatePassedYear"
                                             ></Form.Control>
@@ -1054,6 +1069,7 @@ function EmployeeMasterForm() {
                                                 placeholder="Passed out year"
                                                 controlId="sscPassedYear"
                                                 value={sscPassedYear}
+                                                min={sscJoiningYear}
                                                 onChange={(e) => setSscPassedYear(e.target.value)}
 
                                             ></Form.Control>
@@ -1121,6 +1137,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Date of Relieving"
                                                                 controlId="previousCompany1_relievingDate"
                                                                 value={previousCompany1_relievingDate}
+                                                                min={previousCompany1_joiningDate}
                                                                 onChange={(e) => setPreviousCompany1_relievingDate(e.target.value)}
                                                                 name="previousCompany1_relievingDate"
                                                             />
@@ -1219,6 +1236,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Date of Relieving"
                                                                 controlId="previousCompany2_relievingDate"
                                                                 value={previousCompany2_relievingDate}
+                                                                min={previousCompany2_joiningDate}
                                                                 onChange={(e) => setPreviousCompany2_relievingDate(e.target.value)}
                                                                 name="previousCompany2_relievingDate"
                                                             />
@@ -1264,7 +1282,6 @@ function EmployeeMasterForm() {
                                                                 controlId="previousCompany2_reasonForRelieving"
                                                                 value={previousCompany2_reasonForRelieving}
                                                                 onChange={(e) => setPreviousCompany2_reasonForRelieving(e.target.value)}
-
                                                                 name="previousCompany2_reasonForRelieving"
                                                             />
                                                         </Form.Group>
@@ -1308,7 +1325,6 @@ function EmployeeMasterForm() {
                                                                 controlId="previousCompany3_joiningDate"
                                                                 value={previousCompany3_joiningDate}
                                                                 onChange={(e) => setPreviousCompany3_joiningDate(e.target.value)}
-
                                                                 name="previousCompany3_joiningDate"
                                                             />
                                                         </Form.Group>
@@ -1319,6 +1335,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Date of Relieving"
                                                                 controlId="prevoiusCompany3_relievingDate"
                                                                 value={previousCompany3_relievingDate}
+                                                                min={previousCompany3_joiningDate}
                                                                 onChange={(e) => setPreviousCompany3_relievingDate(e.target.value)}
 
                                                                 name="previousCompany3_relievingDate"
