@@ -53,7 +53,7 @@ function EmployeeMasterCard() {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); 
     var yyyy = today.getFullYear();
     
-    today = dd + '-' + mm + '-' + yyyy;
+    today = mm + '-' + dd + '-' + yyyy;
     console.log(today);
 
     return (
@@ -125,7 +125,7 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 10 }}>
+                            {/* <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Text style={{}}>
                                         <h6>Email: </h6>
@@ -134,6 +134,18 @@ function EmployeeMasterCard() {
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{}}>
                                         {employeedetails.email}
+                                    </Card.Text>
+                                </Col>
+                            </Row> */}
+                            <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                    <Card.Text style={{}}>
+                                        <h6>Employee Type: </h6>
+                                    </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                    <Card.Text style={{}}>
+                                        {employeedetails.employmentType}
                                     </Card.Text>
                                 </Col>
                             </Row>
