@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 
 import { Card, Container, Row, Col, Table } from "react-bootstrap";
@@ -86,7 +85,6 @@ const MyProfile = () => {
   passportDate = dd + '-' + mm + '-' + yyyy;
   console.log(passportDate);
 
-
   return (
     <>
       <Row>
@@ -166,9 +164,7 @@ const MyProfile = () => {
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                   <Card.Text style={{}}>
-
                                     {/* {formatDate(getEmployeeDetails.dateOfJoining)} */}
-
                                     {doj}
                                   </Card.Text>
                                 </Col>
@@ -193,7 +189,7 @@ const MyProfile = () => {
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                   <Card.Text style={{}}>
-                                    {getEmployeeDetails.employeeType}
+                                    {getEmployeeDetails.employmentType}
                                   </Card.Text>
                                 </Col>
                               </Row>
@@ -553,7 +549,6 @@ const MyProfile = () => {
                     </Card>
                   </Col>
                   <Col>
-
                     <Row>
                       <Card style={{ padding: 30, marginTop: 20, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
                         <Card.Title>
@@ -621,9 +616,6 @@ const MyProfile = () => {
                           </Timeline>
                         </Card.Body>
                       </Card> */}
-                      {/* </Card> */}
-
-                  
 
                     </Row>
                   </Col>
@@ -638,5 +630,4 @@ const MyProfile = () => {
     </>
   );
 };
-
 export default MyProfile;

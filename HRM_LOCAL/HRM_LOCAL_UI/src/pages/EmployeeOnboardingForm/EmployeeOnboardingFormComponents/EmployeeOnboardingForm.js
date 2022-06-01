@@ -1,25 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import { Card, FormSelect } from "react-bootstrap";
+import { Card, FormSelect, InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
-
-
-
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
 
-
-
 import "react-toastify/dist/ReactToastify.css";
 
-
-
 const EmployeeOnboardingForm = () => {
-
-
-
 
     const [firstName, setFirstName] = useState("")
     const [middleName, setMiddleName] = useState("")
@@ -33,8 +23,6 @@ const EmployeeOnboardingForm = () => {
     const [primarySkills, setPrimarySkills] = useState("")
     const [secondarySkills, setSecondrySkills] = useState("")
     const [jobTitle, setJobTitle] = useState("")
-
-
 
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
@@ -54,8 +42,6 @@ const EmployeeOnboardingForm = () => {
             });
     }
 
-
-
     const validateForm = () => {
         const {
             lastName,
@@ -65,19 +51,12 @@ const EmployeeOnboardingForm = () => {
             phoneNumber,
             dateOfJoining,
             yearsOfExperience,
-            desgination,
+            designation,
             department,
-            typeOfEmployment,
-            primarySkills,secondarySkills,jobTitle
-
-
+            employmentType,
+            primarySkills, secondarySkills, jobTitle
         } = form;
-
-
-
         const newErrors = {};
-
-
 
         if (!firstName || firstName === "" || !firstName.match(/^[aA-zZ\s]+$/))
             newErrors.firstName = "Please Enter First Name";
@@ -90,23 +69,23 @@ const EmployeeOnboardingForm = () => {
             newErrors.dateOfJoining = "Please Enter Date of Joining";
         if (!yearsOfExperience || yearsOfExperience === "" || yearsOfExperience.match(/[^0-9]/g))
             newErrors.yearsOfExperience = "Please Enter Years of Experience";
-        if (!desgination || desgination === "") newErrors.desgination = "Please Enter Designation";
-        if (!department || department === "")
+        if (!designation || designation === "") newErrors.desgination = "Please Enter Designation";
+        if (!department || designation === "")
             newErrors.department = "Please Enter department";
-        if (!typeOfEmployment || typeOfEmployment === "")
-            newErrors.typeOfEmployment = "Please Enter type of employement";
-          
+        if (!employmentType || employmentType === "")
+            newErrors.employmentType = "Please Enter type of employement";
+            if (!primarySkills || primarySkills === "")
+            newErrors.primarySkills = "Please Enter type of primarySkills";
+            if (!secondarySkills || secondarySkills === "")
+            newErrors.secondarySkills = "Please Enter type of secondarySkills";
+            if (!jobTitle || jobTitle === "")
+            newErrors.jobTitle = "Please Enter type of jobTitle";
 
         return newErrors;
     };
     //testing for commit
 
-
-
     const handleSubmit = (e) => {
-
-
-
         e.preventDefault();
         // e.target.reset();
         const formErrors = validateForm();
@@ -115,9 +94,6 @@ const EmployeeOnboardingForm = () => {
         } else {
             console.log(form);
             console.log("form submitted");
-
-
-
             axios.post("/emp/createNewPotentialEmployee", form)
                 .then((response) => {
                     const user = response.data;
@@ -128,22 +104,14 @@ const EmployeeOnboardingForm = () => {
         }
     };
 
-
-
     const [designations, setDesignations] = useState([])
     useEffect(() => {
         axios.get("/designation/getAllDesignations")
             .then((response) => {
                 setDesignations(response.data)
-
-
-
             })
             .catch(() => { toast.error("data is not getting") })
     }, [])
-
-
-
 
     const [departments, setDepartments] = useState([])
     useEffect(() => {
@@ -155,11 +123,7 @@ const EmployeeOnboardingForm = () => {
         console.log(departments)
     }, [])
 
-
-
     return (
-
-
 
         <Card>
             <Card.Header>
@@ -169,16 +133,11 @@ const EmployeeOnboardingForm = () => {
                         Employee Onboarding Form
                     </Card.Subtitle>
 
-
-
                     <Form ref={forms} className="formone"
                         // noValidate
                         // validated={validated}
                         style={{ padding: 10 }}
                         onSubmit={handleSubmit}
-
-
-
                     >
                         <Row className="mb-5">
                             <Form.Group
@@ -193,9 +152,6 @@ const EmployeeOnboardingForm = () => {
                                     type="text"
                                     controlId="firstName"
                                     placeholder="First name"
-
-
-
                                     // onChange={(event) => setFirstName(event.target.value)}
                                     value={form.firstName}
                                     onChange={(e) => setField("firstName", e.target.value)}
@@ -203,9 +159,6 @@ const EmployeeOnboardingForm = () => {
                                 ></Form.Control>
                                 <Form.Control.Feedback type="invalid">
                                     {errors.firstName}
-
-
-
                                 </Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -233,17 +186,13 @@ const EmployeeOnboardingForm = () => {
                                 ></Form.Control>
                                 <Form.Control.Feedback type="invalid">
                                     {errors.lastName}
-
-
-
                                 </Form.Control.Feedback>
-
-
-
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                 <Form.Label>Phone No</Form.Label>
+                                <InputGroup hasValidation>
+                                            <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
                                 <Form.Control
                                     required
                                     type="text"
@@ -252,17 +201,14 @@ const EmployeeOnboardingForm = () => {
                                     value={form.phoneNumber}
                                     onChange={(e) => setField("phoneNumber", e.target.value)}
                                     isInvalid={!!errors.phoneNumber}
-                                ></Form.Control>
+                                >    
+                                </Form.Control>
                                 <Form.Control.Feedback type="invalid">
                                     {errors.phoneNumber}
 
-
-
                                 </Form.Control.Feedback>
-
-
-
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                </InputGroup>
                             </Form.Group>
                             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                 <Form.Label>Designation</Form.Label>
@@ -270,13 +216,10 @@ const EmployeeOnboardingForm = () => {
                                     required
                                     type="text"
                                     placeholder="Designation"
-                                    controlId="desgination"
-                                    value={form.desgination}
-                                    onChange={(e) => setField("desgination", e.target.value)}
-                                    isInvalid={!!errors.desgination}>
-
-
-
+                                    controlId="designation"
+                                    value={form.designation}
+                                    onChange={(e) => setField("designation", e.target.value)}
+                                    isInvalid={!!errors.designation}>
                                     <option>Select </option>
                                     {
                                         designations.map(designation => (
@@ -284,9 +227,6 @@ const EmployeeOnboardingForm = () => {
                                         ))
                                     }
                                 </Form.Select>
-
-
-
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -310,12 +250,7 @@ const EmployeeOnboardingForm = () => {
                                 <Form.Control.Feedback type="invalid">
                                     {errors.department}
 
-
-
                                 </Form.Control.Feedback>
-
-
-
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -334,8 +269,6 @@ const EmployeeOnboardingForm = () => {
                                 </Form.Control.Feedback>
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             </Form.Group>
-
-
 
                             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                 <Form.Label>Years Of Experience</Form.Label>
@@ -366,57 +299,57 @@ const EmployeeOnboardingForm = () => {
                                 <Form.Control.Feedback type="invalid">
                                     {errors.email}
 
-
-
                                 </Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                        <Form.Label>Job Title</Form.Label>
-                                        <Form.Control
-                                            name="jobTitle"
-                                            type="text"
-                                            controlId="jobTitle"
-                                            placeholder="Job Title "
-                                            value={form.jobTitle}
-                                            onChange={(e) => setField("jobTitle", e.target.value)}
-                                        ></Form.Control>
-                                    </Form.Group>
+                                <Form.Label>Job Title</Form.Label>
+                                <Form.Control
+                                    name="jobTitle"
+                                    type="text"
+                                    controlId="jobTitle"
+                                    placeholder="Job Title "
+                                    value={form.jobTitle}
+                                    onChange={(e) => setField("jobTitle", e.target.value)}
+                                ></Form.Control>
+                            </Form.Group>
+                            <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                <Form.Label>Primary Skills*</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    name="primarySkills"
+                                    placeholder="Primary Skills"
+                                    controlId="primarySkills"
+                                    value={form.primarySkills}
+                                    onChange={(e) => setField("primarySkills", e.target.value)}
+                                // onChange={changeHandler}
+                                />
+                            </Form.Group>
+                            <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                <Form.Label>Secondary Skills*</Form.Label>
+                                <Form.Control
+                                    required
+                                    type="text"
+                                    name="secondarySkills"
+                                    placeholder="SecondarySkills"
+                                    controlId="secondarySkills"
+                                    value={form.secondarySkills}
+                                    onChange={(e) => setField("secondarySkills", e.target.value)}
 
-                                    <Form.Group as={Col} md="6" style={{ padding: 10 }} >
-                                        <Form.Label>Primary Skills*</Form.Label>
-                                        <Form.Control
-                                            required
-                                            type="text"
-                                            name="primarySkills"
-                                            placeholder="Primary Skills"
-                                            controlId="primarySkills"
-                                            value={form.primarySkills}
-                                           // onChange={changeHandler}
-                                        />
-                                    </Form.Group>
-                                    <Form.Group as={Col} md="6" style={{ padding: 10 }} >
-                                        <Form.Label>Secondary Skills*</Form.Label>
-                                        <Form.Control
-                                            required
-                                            type="text"
-                                            name="secondarySkills"
-                                            placeholder="SecondarySkills"
-                                            controlId="secondarySkills"
-                                            value={form.secondarySkills}
-                                           // onChange={changeHandler}
-                                        />
-                                    </Form.Group>
-                 
+                                // onChange={changeHandler}
+                                />
+                            </Form.Group>
+
                             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                 <Form.Label>Type Of Employeement</Form.Label>
                                 <Form.Select
                                     required
-                                    type="email"
+                                    type="text"
                                     placeholder="Type Of Employment"
-                                    controlId="typeOfEmployment"
-                                    value={form.typeOfEmployment}
-                                    onChange={(e) => setField("typeOfEmployment", e.target.value)}
-                                    isInvalid={!!errors.typeOfEmployment}
+                                    controlId="employmentType"
+                                    value={form.employmentType}
+                                    onChange={(e) => setField("employmentType", e.target.value)}
+                                    isInvalid={!!errors.employmentType}
                                 >
                                     <option >Select</option>
                                     <option value="Intern">Intern</option>
@@ -424,7 +357,7 @@ const EmployeeOnboardingForm = () => {
                                     <option value="FullTimeEmployement">FTE (Full Time Employment)</option>
                                 </Form.Select>
                                 <Form.Control.Feedback type="invalid">
-                                    {errors.typeOfEmployment}
+                                    {errors.employmentType}
                                 </Form.Control.Feedback>
                             </Form.Group>
                         </Row>
@@ -441,6 +374,5 @@ const EmployeeOnboardingForm = () => {
     );
 };
 
-
-
 export default EmployeeOnboardingForm;
+
