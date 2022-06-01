@@ -3,10 +3,8 @@ import axios from "../../../Uri";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Pagination from "react-bootstrap/Pagination";
 import EditDesignation from "./EditDesignation";
 import { MdDelete } from "react-icons/md";
-import {AiFillEdit } from 'react-icons/ai'
 import { Table, Container, Button } from "react-bootstrap";
 
 const DesignationTable = () => {
@@ -21,7 +19,7 @@ const DesignationTable = () => {
     const res = await axios.get("/designation/getAllDesignations");
     setDesignations(res.data);
     console.log(res.data);
-    console.log("hai");
+    console.log("designations");
     
   };
 
@@ -68,15 +66,6 @@ const DesignationTable = () => {
           </tbody>
         </Table>
 
-        <Pagination style={{ float: "right", color: "orange" }}>
-          <Pagination.Prev />
-          <Pagination.Ellipsis />
-          <Pagination.Item>{1}</Pagination.Item>
-          <Pagination.Item>{2}</Pagination.Item>
-          <Pagination.Item>{3}</Pagination.Item>
-          <Pagination.Ellipsis />
-          <Pagination.Next />
-        </Pagination>
       </Container-fluid>
     </div>
   );
