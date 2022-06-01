@@ -28,7 +28,6 @@ const DesignationTable = () => {
     axios.delete(`/designation/deleteDesignation/${designationId}`);
     loadData();
     notify();
-    window.location.reload();
   };
 
   return (
