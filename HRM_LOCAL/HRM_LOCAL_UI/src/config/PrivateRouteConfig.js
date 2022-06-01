@@ -33,6 +33,7 @@ import {
   import LeaveToApprove from "../pages/LeaveManagement/LeaveToApprove";
   import ApprovalMain from "../pages/Approvals/ApprovalMain"
 import Employee from "../pages/AllEmployees/AllEmployeesMain";
+import AdminAttendanceMain from "../pages/AdminAttendance/AdminAttendanceMain";
   
   export default [
     {
@@ -55,6 +56,13 @@ import Employee from "../pages/AllEmployees/AllEmployeesMain";
       path: "/allEmployees",
       icon: <FcManager />,
       title: "All Employees",
+      permission: [Roles.hradmin],
+    },
+    {
+      component: AdminAttendanceMain,
+      path: "/adminAttendance",
+      icon: <FcManager />,
+      title: "Admin Attendance",
       permission: [Roles.hradmin],
     },
     {
