@@ -28,7 +28,6 @@ public class HolidayService {
 			
 			java.sql.Date tSqlDate = new java.sql.Date(newholiday.getUpdatedOn().getTime());
 			newholiday.setUpdatedOn(tSqlDate);
-			newholiday.setHolidayStatus(true);
 			Holidaymanagement newDataHolidayManagement=repo.save(newholiday);
 			   r.setStatus(true);
 			   r.setMessage("Data added successfully");
