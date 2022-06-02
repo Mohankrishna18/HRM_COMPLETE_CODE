@@ -7,32 +7,31 @@ import axios from "../../../Uri";
 
 const Approve = (props) => {
   const [onhold, setOnhold] = useState(false);
-  const [form, setForm] = useState({});
-  const [errors, setErrors] = useState({});
+
   const handleClose = () => setOnhold(false);
   const handleShow = () => setOnhold(true);
 
-  const setField = (field, value) => {
-    setForm({ ...form, [field]: value });
-    if (!!errors[field])
-      setErrors({
-        ...errors,
-        [field]: null,
-      });
-  };
+  const [approvedStatus, setApprovedStatus] = useState(false);
+  const [reportingManager1, setReportingManager] = useState("");
 
   let onboardingid = props.onboardingid;
-  console.log(onboardingid);
-  const obj = { approvedStatus: true };
-  console.log(form);
-  console.log(obj);
+  let reportingManager = props.reportingManager;
+  // console.log(props.onboardingid);
+  // console.log(approvedStatus);
+  //console.log(reportingManager);
 
-  const ApproveHandler = (e) => {
-    e.preventDefault();
-    console.log(onboardingid);
-    const form1 = Object.assign(form, obj);
-    axios.put(`/emp/updateApprovStatus/${onboardingid}`, form1);
-    handleClose();
+
+  const updateAPIData = () => {
+    handleClose;
+    setApprovedStatus(true);
+    axios.put(
+      `/emp/updateApprovStatus/${onboardingid}`,
+      {
+        approvedStatus: true,
+        // reportingManager: setReportingManager,
+      }
+      // .then(setApprovedStatus(true), console.log(approvedStatus))
+    );
   };
 
   return (
@@ -59,16 +58,19 @@ const Approve = (props) => {
                     <b>Select Reporting Manager *</b>
                   </Form.Label>
                   <Form.Select
-                    placeholder="select Gender"
-                    value={form.reportingManager}
-                    Select
-                    onChange={(e) =>
-                      setField("reportingManager", e.target.value)
-                    }
+                    aria-label="Default select example"
+                    required
+                    value={reportingManager}
+                    onChange={(e) => setReportingManager(e.target.value)}
                   >
-                    <option>Select Reporting Manager</option>
-                    <option value="RevanthKumar">Revanth Kumar</option>
-                    <option value="RevanthKumar1">Revanth Kumar1</option>
+                    <option> Select options</option>
+                    <option value="Web Developement">Revanth Kumar1 </option>
+
+                    <option value="Bootstrap Developement">
+                      Revanth Kumar2
+                    </option>
+
+                    <option value="Android Design">Revanth Kumar3</option>
                   </Form.Select>
                 </Form.Group>
                 <Button
@@ -79,7 +81,7 @@ const Approve = (props) => {
                     backgroundColor: "#ff9b44",
                     color: "#F4F8F6",
                   }}
-                  onClick={ApproveHandler}
+                  onClick={updateAPIData}
                 >
                   &nbsp; Save
                 </Button>
