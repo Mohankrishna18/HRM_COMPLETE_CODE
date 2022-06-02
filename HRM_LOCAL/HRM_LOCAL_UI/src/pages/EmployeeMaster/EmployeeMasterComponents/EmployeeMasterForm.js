@@ -128,13 +128,13 @@ function EmployeeMasterForm() {
     //     // setid(localStorage.getItem('id'))
     // }, [])
 
-    console.log(dateOfBirth)
+    // console.log(dateOfBirth)
     var dob = new Date(dateOfBirth);
     var dd = String(dob.getDate()).padStart(2, '0');
     var mm = String(dob.getMonth() + 1).padStart(2, '0');
     var yyyy = dob.getFullYear();
      dob = yyyy + '-' + mm + '-' + dd;
-    console.log(dob);
+    // console.log(dob);
 
     // console.log(dateOfJoining)
     // var doj = new Date(dateOfJoining);
@@ -238,10 +238,10 @@ function EmployeeMasterForm() {
     // console.log(firstName)
     // console.log(passportExpiryDate)
   
-    console.log(dateOfJoining)
-    console.log(dateOfBirth)
-    console.log(passportExpiryDate)
-    console.log(postgraduationPassedYear)
+    // console.log(dateOfJoining)
+    // console.log(dateOfBirth)
+    // console.log(passportExpiryDate)
+    // console.log(postgraduationPassedYear)
 
     // function for handling the edit and 
     // pushing changes of editing/updating
@@ -366,7 +366,7 @@ function EmployeeMasterForm() {
                                                 onChange={e => setFirstName(e.target.value)}
                                                 type="text" placeholder="Enter Name" />
                                         </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                        <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }} >
                                             <Form.Label>Middle name</Form.Label>
                                             <Form.Control 
                                                 name="middleName"
@@ -385,7 +385,7 @@ function EmployeeMasterForm() {
                                                 onChange={e => setLastName(e.target.value)}
                                                 type="text" placeholder="Enter Name" />
                                         </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                        <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }} >
                                             <Form.Label>Phone Number*</Form.Label>
                                             <Form.Control
                                                 required
@@ -536,7 +536,7 @@ function EmployeeMasterForm() {
                                                 onChange={(e) => setSecondarySkills(e.target.value)}
                                             />
                                         </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Date of Joining*</Form.Label>
                                             <Form.Control
                                                 required
@@ -548,7 +548,7 @@ function EmployeeMasterForm() {
                                                 value={dateOfJoining}
                                                 onChange={(e) => setDateOfJoining(e.target.value)}
                                             />
-                                        </Form.Group>
+                                        </Form.Group> */}
                                         <Card style={{ marginLeft: 8, marginRight: 50, marginTop: 20 }} >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>Permanent Address</Card.Title>
                                         </Card>
