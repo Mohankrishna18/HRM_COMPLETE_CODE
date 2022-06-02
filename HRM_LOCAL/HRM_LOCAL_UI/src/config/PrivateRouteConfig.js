@@ -98,6 +98,13 @@ export default [
     title: "Offer Approvals",
     permission: [Roles.hradmin, Roles.hr,Roles.taa],
   },
+  {
+    component: AdminAttendanceMain,
+    path: "/AdminAttendanceMain",
+    icon: <FcNeutralTrading />,
+    title: "Employees Attendance",
+    permission: [Roles.hradmin, Roles.hr,Roles.taa],
+  },
   // {
   //   component: ApprovalMain,
   //   path: "/Approvals",

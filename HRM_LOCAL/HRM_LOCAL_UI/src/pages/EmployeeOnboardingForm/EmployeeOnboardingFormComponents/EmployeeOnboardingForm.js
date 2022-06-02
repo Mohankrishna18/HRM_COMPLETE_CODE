@@ -11,18 +11,18 @@ import "react-toastify/dist/ReactToastify.css";
 
 const EmployeeOnboardingForm = () => {
 
-    const [firstName, setFirstName] = useState("")
-    const [middleName, setMiddleName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [email, setEmial] = useState("")
-    const [phoneNumber, setPhonenNumber] = useState("")
-    const [dateOfJoining, setDateOfJoining] = useState("")
-    const [yearsOfExperience, setYearsOfExperience] = useState("")
-    const [department, setDepartment] = useState("")
-    const [desgination, setDesignation] = useState("")
-    const [primarySkills, setPrimarySkills] = useState("")
-    const [secondarySkills, setSecondrySkills] = useState("")
-    const [jobTitle, setJobTitle] = useState("")
+    // const [firstName, setFirstName] = useState("")
+    // const [middleName, setMiddleName] = useState("")
+    // const [lastName, setLastName] = useState("")
+    // const [email, setEmial] = useState("")
+    // const [phoneNumber, setPhonenNumber] = useState("")
+    // const [dateOfJoining, setDateOfJoining] = useState("")
+    // const [yearsOfExperience, setYearsOfExperience] = useState("")
+    // const [department, setDepartment] = useState("")
+    // const [desgination, setDesignation] = useState("")
+    // const [primarySkills, setPrimarySkills] = useState("")
+    // const [secondarySkills, setSecondrySkills] = useState("")
+    // const [jobTitle, setJobTitle] = useState("")
 
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
@@ -84,7 +84,7 @@ const EmployeeOnboardingForm = () => {
         return newErrors;
     };
     //testing for commit
-
+const[user,setUser]=useState("")
     const handleSubmit = (e) => {
         e.preventDefault();
         // e.target.reset();
@@ -103,6 +103,8 @@ const EmployeeOnboardingForm = () => {
                 .catch((err) => { toast.error("Something Went Wrong") })
         }
     };
+    console.log(form.dateOfJoining)
+  
 
     const [designations, setDesignations] = useState([])
     useEffect(() => {
