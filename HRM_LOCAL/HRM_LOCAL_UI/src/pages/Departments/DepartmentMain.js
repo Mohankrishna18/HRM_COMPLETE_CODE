@@ -18,7 +18,6 @@ const DepartmentMain = () => {
               <Row>
                 <Col xs={12}>
                   <DepartmentModal />
-                  <Department />
                 </Col>
               </Row>
             </Container>
