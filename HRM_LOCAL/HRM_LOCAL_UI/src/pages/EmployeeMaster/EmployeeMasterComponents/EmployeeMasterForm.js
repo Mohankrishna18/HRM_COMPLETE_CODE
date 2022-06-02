@@ -145,27 +145,6 @@ function EmployeeMasterForm() {
     // console.log(doj);
 
 
-    //comment added for testing purpose in line no 148 in employeemasterform
-    //comment added for testing purpose in line no 148 in employeemasterform
-    //comment added for testing purpose in line no 148 in employeemasterform
-    //comment added for testing purpose in line no 148 in employeemasterform
-    //comment added for testing purpose in line no 148 in employeemasterform
-     //comment added for testing purpose in line no 148 in employeemasterform
-    //comment added for testing purpose in line no 148 in employeemasterform
-    //comment added for testing purpose in line no 148 in employeemasterform
-    //comment added for testing purpose in line no 148 in employeemasterform
-    //comment added for testing purpose in line no 148 in employeemasterform
-     //comment added for testing purpose in line no 148 in employeemasterform
-    //comment added for testing purpose in line no 148 in employeemasterform
-    //comment added for testing purpose in line no 148 in employeemasterform
-    //comment added for testing purpose in line no 148 in employeemasterform
-    //comment added for testing purpose in line no 148 in employeemasterform
-    
-
-    
-
-    
-    
 
 
     //get call Get the Employee onboarding Details
