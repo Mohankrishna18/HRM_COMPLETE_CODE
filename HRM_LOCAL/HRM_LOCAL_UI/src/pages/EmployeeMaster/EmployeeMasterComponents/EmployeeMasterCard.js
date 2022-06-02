@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { split } from 'lodash';
 
 function EmployeeMasterCard() {
 
@@ -48,13 +49,30 @@ function EmployeeMasterCard() {
             })
     }, [])
 
-    var today = new Date (employeedetails.dateOfJoining);
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); 
-    var yyyy = today.getFullYear();
+// console.log(employeedetails.dateOfJoining)
+// let aaa=employeedetails.dateOfJoining;
+// console.log(aaa)
+// const bbb=aaa.split(' ');
+// console.log(bbb[0]);
+// console.log(employeedetails.dateOfJoining)
+
+
+
+var doj = new Date(employeedetails.dateOfJoining);
+var dd = String(doj.getDate()).padStart(2, '0');
+var mm = String(doj.getMonth() + 1).padStart(2, '0');
+var yyyy = doj.getFullYear();
+ let doj1 = dd + '-' + mm + '-' + yyyy;
+console.log(doj1);
+
+  
+    // var today = new Date (employeedetails.dateOfJoining);
+    // var dd = String(today.getDate()).padStart(2, '0');
+    // var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+    // var yyyy = today.getFullYear();
     
-    today = mm + '-' + dd + '-' + yyyy;
-    console.log(today);
+    // today = mm + '-' + dd + '-' + yyyy;
+    // console.log(today);
 
     return (
         <Row><Col>
@@ -109,7 +127,7 @@ function EmployeeMasterCard() {
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{}}>
-                                        {today}
+                                        {employeedetails.dateOfJoining}
                                     </Card.Text>
                                 </Col>
                             </Row>

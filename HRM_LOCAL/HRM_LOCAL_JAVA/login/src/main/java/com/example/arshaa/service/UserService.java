@@ -38,7 +38,7 @@ public class UserService {
 				System.out.println(reset.getConfirmNewPassword());
 				repository.save(returnedUser);
 
-				return new ResponseEntity("Reset successfully", HttpStatus.OK);
+				return new ResponseEntity(reset.getConfirmNewPassword(), HttpStatus.OK);
 			} else {
 				return new ResponseEntity("Enter valid UserName", HttpStatus.OK);
 			}
