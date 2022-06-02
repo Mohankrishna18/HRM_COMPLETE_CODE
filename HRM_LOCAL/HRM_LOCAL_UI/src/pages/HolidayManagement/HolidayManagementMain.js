@@ -7,7 +7,6 @@ import HolidayScreen from "./HolidaysComponent/HolidayScreen";
 import Heading from "./HolidaysComponent/Heading";
 
 import { useEffect, useState } from "react";
-// import Spinner from "react-bootstrap/Spinner";
 
 const HolidayManagementMain = () => {
   
