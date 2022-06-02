@@ -112,7 +112,7 @@ function EmployeeMasterForm() {
     //const [reportingManager, setReportingManager] = useState("");
     const [profilePhoto, setProfilePhoto] = useState("");
 
-
+//Date Format
     // var dob = new Date(dateOfBirth);
     // var dd = String(dob.getDate()).padStart(2, '0');
     // var mm = String(dob.getMonth() + 1).padStart(2, '0');
