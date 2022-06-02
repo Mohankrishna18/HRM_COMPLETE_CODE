@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: localhost    Database: prod_with_data
+-- Host: localhost    Database: v1
 -- ------------------------------------------------------
 -- Server version	8.0.28
 
@@ -647,7 +647,7 @@ CREATE TABLE `onboarding` (
   `reject_date` datetime DEFAULT NULL,
   `Updated_on` date DEFAULT NULL,
   `updated_by` varchar(10) DEFAULT NULL,
-  `reporting_manager` varchar(10) DEFAULT NULL,
+  `reporting_manager` varchar(30) DEFAULT NULL,
   `employment_type` varchar(30) DEFAULT NULL,
   `job_title` varchar(20) DEFAULT NULL,
   `comments` varchar(255) DEFAULT NULL,
@@ -883,6 +883,10 @@ LOCK TABLES `usersrolesmapping` WRITE;
 /*!40000 ALTER TABLE `usersrolesmapping` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usersrolesmapping` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'v1'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -893,4 +897,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-02 15:13:06
+-- Dump completed on 2022-06-02 16:42:10
