@@ -113,6 +113,13 @@ function EmployeeMasterForm() {
     const [profilePhoto, setProfilePhoto] = useState("");
 
 
+    // var dob = new Date(dateOfBirth);
+    // var dd = String(dob.getDate()).padStart(2, '0');
+    // var mm = String(dob.getMonth() + 1).padStart(2, '0');
+    // var yyyy = dob.getFullYear();
+    // const dob1 = dd + '-' + mm + '-' + yyyy;
+    // console.log(dob1);
+
 
     // Useeffect take care that page will be rendered only once
     // useEffect(() => {
@@ -120,6 +127,22 @@ function EmployeeMasterForm() {
     //     // setage(localStorage.getItem('Age'))
     //     // setid(localStorage.getItem('id'))
     // }, [])
+
+    console.log(dateOfBirth)
+    var dob = new Date(dateOfBirth);
+    var dd = String(dob.getDate()).padStart(2, '0');
+    var mm = String(dob.getMonth() + 1).padStart(2, '0');
+    var yyyy = dob.getFullYear();
+     dob = yyyy + '-' + mm + '-' + dd;
+    console.log(dob);
+
+    // console.log(dateOfJoining)
+    // var doj = new Date(dateOfJoining);
+    // var dd = String(doj.getDate());
+    // var mm = String(doj.getMonth());
+    // var yyyy = doj.getFullYear();
+    //  doj = yyyy + '-' + mm + '-' + dd;
+    // console.log(doj);
 
     //get call Get the Employee onboarding Details
     const [employeedetails, setEmployeeDetails] = useState([])
@@ -212,8 +235,13 @@ function EmployeeMasterForm() {
 
             })
     }, [])
-    console.log(firstName)
-
+    // console.log(firstName)
+    // console.log(passportExpiryDate)
+  
+    console.log(dateOfJoining)
+    console.log(dateOfBirth)
+    console.log(passportExpiryDate)
+    console.log(postgraduationPassedYear)
 
     // function for handling the edit and 
     // pushing changes of editing/updating
@@ -294,14 +322,13 @@ function EmployeeMasterForm() {
             previousCompany3_reasonForRelieving,
            
             })
-        console.log(firstName);
-        console.log(lastName);
-        console.log(passportExpiryDate)
-
+        // console.log(firstName);
+        // console.log(lastName);
+        // console.log(passportExpiryDate)
+        
         toast.success("Form Submitted Successfully");
-
-
     }
+    
 
     return (
         <div>
@@ -406,7 +433,7 @@ function EmployeeMasterForm() {
                                                 name="dateOfBirth"
                                                 placeholder="DOB"
                                                 controlId="dateOfBirth"
-                                                value={dateOfBirth}
+                                                value={dob}
                                                 onChange={(e) => setDateOfBirth(e.target.value)}
                                             ></Form.Control>
 
@@ -509,11 +536,11 @@ function EmployeeMasterForm() {
                                                 onChange={(e) => setSecondarySkills(e.target.value)}
                                             />
                                         </Form.Group>
-                                        {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Date of Joining*</Form.Label>
                                             <Form.Control
                                                 required
-                                                disabled
+                                                // disabled
                                                 type="date"
                                                 name="dateOfJoining"
                                                 controlId="dateOfJoining"
@@ -521,7 +548,7 @@ function EmployeeMasterForm() {
                                                 value={dateOfJoining}
                                                 onChange={(e) => setDateOfJoining(e.target.value)}
                                             />
-                                        </Form.Group> */}
+                                        </Form.Group>
                                         <Card style={{ marginLeft: 8, marginRight: 50, marginTop: 20 }} >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>Permanent Address</Card.Title>
                                         </Card>

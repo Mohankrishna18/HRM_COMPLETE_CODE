@@ -50,11 +50,6 @@ function AllEmployee() {
         <Form style={{ margin: 20 }}>
 
 
-
-
-
-
-
           <Row md={12} >
             <Table >
               <thead>

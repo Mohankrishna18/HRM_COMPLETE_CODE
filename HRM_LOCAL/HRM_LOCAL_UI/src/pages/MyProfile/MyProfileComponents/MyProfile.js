@@ -4,24 +4,10 @@ import { Card, Container, Row, Col, Table } from "react-bootstrap";
 import { matches } from "lodash";
 
 
-import {
-  Timeline,
-  BodyContent,
-  Section,
-  Description,
-} from "vertical-timeline-component-react";
 
 import axios from "../../../Uri";
 
-const customTheme = {
-  yearColor: "#405b73",
-  lineColor: "#d0cdc4",
-  dotColor: "#fd7e14",
-  borderDotColor: "#ced4da",
-  titleColor: "#000000",
-  subtitleColor: "#bf9765",
-  textColor: "#262626",
-};
+
 
 // function formatDate(dateOfJoining){
 //  var datePart = dateOfJoining.match(/\d+/g),
@@ -65,9 +51,9 @@ const MyProfile = () => {
 
   var doj = new Date(getEmployeeDetails.dateOfJoining);
   var dd = String(doj.getDate()).padStart(2, '0');
-  var mm = String(doj.getMonth() + 1).padStart(2, '0');
+  var mm = String(doj.getMonth() +1).padStart(2, '0');
   var yyyy = doj.getFullYear();
-  doj = mm + '-' + dd + '-' + yyyy;
+  doj = dd + '-' + mm + '-' + yyyy;
   console.log(doj);
 
   console.log(getEmployeeDetails.dateOfBirth)
@@ -75,15 +61,16 @@ const MyProfile = () => {
   var dd = String(dob.getDate()).padStart(2, '0');
   var mm = String(dob.getMonth() + 1).padStart(2, '0');
   var yyyy = dob.getFullYear();
-  dob = dd + '-' + mm + '-' + yyyy;
+   dob = dd + '-' + mm + '-' + yyyy;
   console.log(dob);
 
+  console.log(getEmployeeDetails.passportExpiryDate)
   var passportDate = new Date(getEmployeeDetails.passportExpiryDate);
   var dd = String(passportDate.getDate()).padStart(2, '0');
   var mm = String(passportDate.getMonth() + 1).padStart(2, '0');
   var yyyy = passportDate.getFullYear();
-  passportDate = dd + '-' + mm + '-' + yyyy;
-  console.log(passportDate);
+  const passportDate1 = dd + '-' + mm + '-' + yyyy;
+  console.log(passportDate1);
 
   return (
     <>
@@ -164,8 +151,8 @@ const MyProfile = () => {
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                   <Card.Text style={{}}>
-                                    {/* {formatDate(getEmployeeDetails.dateOfJoining)} */}
-                                    {doj}
+                                    {getEmployeeDetails.dateOfJoining}
+                                    {/* {doj} */}
                                   </Card.Text>
                                 </Col>
                               </Row>
@@ -313,7 +300,7 @@ const MyProfile = () => {
                           </Col>
                           <Col md={{ offset: 1 }}>
                             <Card.Subtitle>
-                              {passportDate}
+                              {passportDate1}
                             </Card.Subtitle>
                           </Col>
                         </Row>
