@@ -36,7 +36,9 @@ private String departmentName;
 private String onboardingId;
 @Column
 private String designationName;
-@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
+//@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
+@Column
+
 private Date dateOfJoining;
 @Column
 private String firstName;
