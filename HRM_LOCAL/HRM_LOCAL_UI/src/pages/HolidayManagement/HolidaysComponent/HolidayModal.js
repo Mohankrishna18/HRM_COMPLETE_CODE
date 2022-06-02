@@ -31,14 +31,14 @@ const HolidayModal = () => {
   };
 
   const onSubmit = async (e) => {
-    console.log(e);
+    // console.log(e);
     const res = await axios.post("/holiday/addholiday", e);
     handleClose(); //Close when click on submit
     if (res.data !== null) {
-      console.log(res.data);
+      // console.log(res.data);
       notify();
     } else {
-      console.log("");
+      // console.log("");
     }
   };
   const {
