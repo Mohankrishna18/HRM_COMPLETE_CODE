@@ -4,13 +4,6 @@ import axios from "../../../Uri";
 
 
 import { Row, Col, Container } from "react-bootstrap";
-// Testing Purpose 
-
-// import Spinner from "react-bootstrap/Spinner";
-
-
-
-
 
 export default function HolidayScreen() {
   
@@ -27,12 +20,8 @@ export default function HolidayScreen() {
 
   useEffect(() => {
     axios.get("/holiday/getAllHolidays").then((res) => {
-      console.log("loading started");
-      console.log(res.data.data);
-      
+      // console.log(res.data.data);
       setHoliday(res.data.data);
-      console.log("loading ended")
-    
     })
     
    
