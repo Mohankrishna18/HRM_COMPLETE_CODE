@@ -19,7 +19,12 @@ function EmployeeMasterForm() {
     const userData1 = JSON.parse(userData)
     const employeeid = userData1.data.employeeId
 
-
+    var doj = new Date(dateOfJoining);
+    var dd = String(doj.getDate()).padStart(2, '0');
+    var mm = String(doj.getMonth() + 1).padStart(2, '0');
+    var yyyy = doj.getFullYear();
+     doj = yyyy + '-' + mm + '-' + dd;
+    // console.log(doj);
     
     // const [fromDate, setFromDate] = useState("");
     // const [toDate, setToDate] = useState("");
@@ -548,7 +553,7 @@ function EmployeeMasterForm() {
                                                 name="dateOfJoining"
                                                 controlId="dateOfJoining"
                                                 placeholder="DOJ"
-                                                value={dateOfJoining}
+                                                value={doj}
                                                 onChange={(e) => setDateOfJoining(e.target.value)}
                                             />
                                         </Form.Group> */}

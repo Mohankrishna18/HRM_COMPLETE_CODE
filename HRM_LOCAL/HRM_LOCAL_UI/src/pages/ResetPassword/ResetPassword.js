@@ -3,18 +3,16 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "../LoginPage/Sign-in.css";
 import axios from "../../Uri";
-import Card from "react-bootstrap/Card";
+
 
 import { Col, Container, Row } from "react-bootstrap";
 import { toast } from "react-toastify";
 import image from "../../Images/arshaalogo.png";
 import { useHistory } from "react-router-dom";
 
-// Testing purpose
 
-export default function ResetPassword()
 
-{
+export default function ResetPassword() {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
@@ -24,7 +22,7 @@ export default function ResetPassword()
     newPassword,
     confirmNewPassword,
   };
-  // testing purpose
+  
   function validateForm() {
     return (
       oldPassword.length > 0 &&
@@ -34,28 +32,23 @@ export default function ResetPassword()
   }
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(newPassword);
-    console.log(confirmNewPassword);
+    
     if (newPassword === confirmNewPassword) {
-      // alert("Password Reset");
-      // setText("");
-      // setConfirmText("");
+      
       history.push("/");
       toast.success("Password changed");
-      console.log("matched");
+
     } else {
-      // alert("Confirm password doesn't match");
-      // setText("");
-      // setConfirmText("");
+      
       toast.error("Password do not match");
-      console.log("password do not matched");
+      
     }
-    console.log(intialValues);
+
     const changePasswordCall = await axios.put(
       "login/resetPassword",
       intialValues
     );
-    console.log(changePasswordCall.data);
+    changePasswordCall();
   };
   return (
     <>
@@ -199,23 +192,13 @@ export default function ResetPassword()
                   width: "100%",
                   background: "#19fa0a",
                   borderRadius: "15px",
-                  color:"black"
+                  color: "black",
                 }}
                 disabled={!validateForm()}
                 onClick={handleSubmit}
               >
                 Reset Password
               </Button>
-              {/* {sessionStorage.getItem("userName") && (
-<div>
-Name:<p>{sessionStorage.getItem("userName")}</p>
-</div>
-)}
-{sessionStorage.getItem("password") && (
-<div>
-Password:<p>{sessionStorage.getItem("password")}</p>
-</div>
-)} */}
             </Form>
           </Col>
         </Row>

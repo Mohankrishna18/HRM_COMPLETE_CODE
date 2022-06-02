@@ -59,14 +59,12 @@ function EmployeeMasterCard() {
 
 
 
-// console.log(employeedetails.dateOfJoining)
-
-  var doj = new Date(employeedetails.dateOfJoining);
-  var dd = String(doj.getDate()).padStart(2, '0');
-  var mm = String(doj.getMonth() +1).padStart(2, '0');
-  var yyyy = doj.getFullYear();
-  doj = mm + '-' + dd + '-' + yyyy;
-//   console.log(doj);
+var doj = new Date(employeedetails.dateOfJoining);
+var dd = String(doj.getDate()).padStart(2, '0');
+var mm = String(doj.getMonth() + 1).padStart(2, '0');
+var yyyy = doj.getFullYear();
+ let doj1 = dd + '-' + mm + '-' + yyyy;
+// console.log(doj1);
 
   
     // var today = new Date (employeedetails.dateOfJoining);
@@ -131,7 +129,7 @@ function EmployeeMasterCard() {
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{}}>
                                         {/* {employeedetails.dateOfJoining} */}
-                                        {doj}
+                                        {doj1}
                                     </Card.Text>
                                 </Col>
                             </Row>

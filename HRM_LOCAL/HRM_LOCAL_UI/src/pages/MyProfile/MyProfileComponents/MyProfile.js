@@ -53,8 +53,8 @@ const MyProfile = () => {
   var dd = String(doj.getDate()).padStart(2, '0');
   var mm = String(doj.getMonth() +1).padStart(2, '0');
   var yyyy = doj.getFullYear();
-  doj = mm + '-' + dd + '-' + yyyy;
-  // console.log(doj);
+   var doj1 = dd + '-' + mm + '-' + yyyy;
+  // console.log(doj1);
 
   // console.log(getEmployeeDetails.dateOfBirth)
   var dob = new Date(getEmployeeDetails.dateOfBirth);
@@ -152,7 +152,7 @@ const MyProfile = () => {
                                 <Col md={{ offset: 1 }}>
                                   <Card.Text style={{}}>
                                     {/* {getEmployeeDetails.dateOfJoining} */}
-                                    {doj}
+                                    {doj1}
                                   </Card.Text>
                                 </Col>
                               </Row>
