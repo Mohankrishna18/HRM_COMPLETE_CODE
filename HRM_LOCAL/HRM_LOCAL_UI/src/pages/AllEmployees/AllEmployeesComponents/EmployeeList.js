@@ -179,6 +179,7 @@ function AllEmployee() {
               <thead>
                 <tr>
                   {/* <th>#</th> */}
+                  <th>SNO</th>
                   <th>Emp-ID</th>
                   <th>Name</th>
                   <th>Designation</th>
