@@ -92,18 +92,18 @@ const[user,setUser]=useState("")
         if (Object.keys(formErrors).length > 0) {
             setErrors(formErrors);
         } else {
-            console.log(form);
-            console.log("form submitted");
+            // console.log(form);
+            // console.log("form submitted");
             axios.post("/emp/createNewPotentialEmployee", form)
                 .then((response) => {
                     const user = response.data;
                     toast.success("Form Submitted successfully")
-                    console.log(user);
+                    // console.log(user);
                 })
                 .catch((err) => { toast.error("Something Went Wrong") })
         }
     };
-    console.log(form.dateOfJoining)
+    // console.log(form.dateOfJoining)
   
 
     const [designations, setDesignations] = useState([])
@@ -122,7 +122,7 @@ const[user,setUser]=useState("")
                 setDepartments(response.data)
             })
             .catch(() => { toast.error("data is not getting") })
-        console.log(departments)
+        // console.log(departments)
     }, [])
 
     return (
