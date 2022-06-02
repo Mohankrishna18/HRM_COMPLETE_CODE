@@ -393,7 +393,7 @@ CREATE TABLE `employeemaster` (
   `updated_by` varchar(10) DEFAULT NULL,
   `updated_on` datetime DEFAULT NULL,
   `employee_status` tinyint NOT NULL,
-  `reporting_manager` varchar(10) DEFAULT NULL,
+  `reporting_manager` varchar(50) DEFAULT NULL,
   `department_name` varchar(25) DEFAULT NULL,
   `designation_name` varchar(25) DEFAULT NULL,
   `employment_type` varchar(30) DEFAULT NULL,
@@ -646,7 +646,7 @@ CREATE TABLE `onboarding` (
   `reject_date` datetime DEFAULT NULL,
   `Updated_on` date DEFAULT NULL,
   `updated_by` varchar(10) DEFAULT NULL,
-  `reporting_manager` varchar(10) DEFAULT NULL,
+  `reporting_manager` varchar(50) DEFAULT NULL,
   `employment_type` varchar(30) DEFAULT NULL,
   `job_title` varchar(20) DEFAULT NULL,
   `comments` varchar(255) DEFAULT NULL,
@@ -892,4 +892,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-02 16:18:51
+-- Dump completed on 2022-06-02 17:15:57
