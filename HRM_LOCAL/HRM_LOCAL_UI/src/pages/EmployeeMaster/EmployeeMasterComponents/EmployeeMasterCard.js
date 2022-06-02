@@ -48,12 +48,13 @@ function EmployeeMasterCard() {
                 setEmployeeDetails(response.data.data);
             })
     }, [])
+    console.log(employeedetails)
 
-// console.log(employeedetails.dateOfJoining)
-// let aaa=employeedetails.dateOfJoining;
-// console.log(aaa)
+console.log(employeedetails.dateOfJoining)
+let aaa=employeedetails.dateOfJoining;
+console.log(aaa)
 // const bbb=aaa.split(' ');
-// console.log(bbb[0]);
+// console.log(bbb);
 // console.log(employeedetails.dateOfJoining)
 
 
