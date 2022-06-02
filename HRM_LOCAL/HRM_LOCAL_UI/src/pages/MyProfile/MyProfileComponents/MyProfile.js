@@ -21,7 +21,7 @@ import axios from "../../../Uri";
 const MyProfile = () => {
 
   const userData = sessionStorage.getItem("userdata");
-  console.log(userData);
+  // console.log(userData);
   const userData1 = JSON.parse(userData);
   const employeeid = userData1.data.employeeId;
 
@@ -37,7 +37,7 @@ const MyProfile = () => {
       });
 
   }, []);
-  console.log(getEmployeeDetails);
+  // console.log(getEmployeeDetails);
 
   // function formatDate(fromDate){
   //   var datePart = fromDate.match(/\d+/g),
@@ -47,30 +47,30 @@ const MyProfile = () => {
   //   return day + "-" + month + "-" + year;
   //  }
 
-  console.log(getEmployeeDetails.dateOfJoining)
+  // console.log(getEmployeeDetails.dateOfJoining)
 
   var doj = new Date(getEmployeeDetails.dateOfJoining);
   var dd = String(doj.getDate()).padStart(2, '0');
   var mm = String(doj.getMonth() +1).padStart(2, '0');
   var yyyy = doj.getFullYear();
-  doj = dd + '-' + mm + '-' + yyyy;
-  console.log(doj);
+  doj = mm + '-' + dd + '-' + yyyy;
+  // console.log(doj);
 
-  console.log(getEmployeeDetails.dateOfBirth)
+  // console.log(getEmployeeDetails.dateOfBirth)
   var dob = new Date(getEmployeeDetails.dateOfBirth);
   var dd = String(dob.getDate()).padStart(2, '0');
   var mm = String(dob.getMonth() + 1).padStart(2, '0');
   var yyyy = dob.getFullYear();
    dob = dd + '-' + mm + '-' + yyyy;
-  console.log(dob);
+  // console.log(dob);
 
-  console.log(getEmployeeDetails.passportExpiryDate)
+  // console.log(getEmployeeDetails.passportExpiryDate)
   var passportDate = new Date(getEmployeeDetails.passportExpiryDate);
   var dd = String(passportDate.getDate()).padStart(2, '0');
   var mm = String(passportDate.getMonth() + 1).padStart(2, '0');
   var yyyy = passportDate.getFullYear();
   const passportDate1 = dd + '-' + mm + '-' + yyyy;
-  console.log(passportDate1);
+  // console.log(passportDate1);
 
   return (
     <>
@@ -151,8 +151,8 @@ const MyProfile = () => {
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                   <Card.Text style={{}}>
-                                    {getEmployeeDetails.dateOfJoining}
-                                    {/* {doj} */}
+                                    {/* {getEmployeeDetails.dateOfJoining} */}
+                                    {doj}
                                   </Card.Text>
                                 </Col>
                               </Row>
