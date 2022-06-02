@@ -20,16 +20,16 @@ const EditDepartment = ({id}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     handleClose();
-    console.log(departmentName);
+    // console.log(departmentName);
     //setDeptId(id)
     const res = await  axios.put(`/dept/update/${id}`, {departmentName})
 
     if (res.data !== null) {
-      console.log(res.data);
+      // console.log(res.data);
     } else {
-      console.log("");
+      // console.log("");
     }
-    console.log(res.data);
+    // console.log(res.data);
     notify();
 
   };
