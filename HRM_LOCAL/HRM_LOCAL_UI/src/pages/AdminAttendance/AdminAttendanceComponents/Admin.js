@@ -70,7 +70,7 @@ function Admin() {
             </Col>
             <Col>
 
-              <Form.Group as={Col} m style={{ paddingTop: '30px' }}>
+              <Form.Group as={Col}  style={{ paddingTop: '30px' }}>
 
                 <Button style={{ width: '100%', backgroundColor: "#08bf1a" }}>SEARCH</Button>
 

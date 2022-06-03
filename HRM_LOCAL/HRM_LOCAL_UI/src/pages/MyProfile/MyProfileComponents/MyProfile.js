@@ -505,28 +505,28 @@ const MyProfile = () => {
                             </thead>
                             <tbody>
                               <tr>
-                                <th>{getEmployeeDetails.postgraduationBoardOfUniversity}</th>
-                                <th>{getEmployeeDetails.postgraduationInstituteName}</th>
-                                <th>{getEmployeeDetails.postgraduationCourseName}</th>
-                                <th>{getEmployeeDetails.postgraduationGrade}</th>
+                                <td>{getEmployeeDetails.postgraduationBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.postgraduationInstituteName}</td>
+                                <td>{getEmployeeDetails.postgraduationCourseName}</td>
+                                <td>{getEmployeeDetails.postgraduationGrade}</td>
                               </tr>
                               <tr>
-                                <th>{getEmployeeDetails.graduationBoardOfUniversity}</th>
-                                <th>{getEmployeeDetails.graduationInstituteName}</th>
-                                <th>{getEmployeeDetails.graduationCourseName}</th>
-                                <th>{getEmployeeDetails.graduationGrade}</th>
+                                <td>{getEmployeeDetails.graduationBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.graduationInstituteName}</td>
+                                <td>{getEmployeeDetails.graduationCourseName}</td>
+                                <td>{getEmployeeDetails.graduationGrade}</td>
                               </tr>
                               <tr>
-                                <th>{getEmployeeDetails.intermediateBoardOfUniversity}</th>
-                                <th>{getEmployeeDetails.intermediateCollegeName}</th>
-                                <th>{getEmployeeDetails.intermediateCourseName}</th>
-                                <th>{getEmployeeDetails.intermediateGrade}</th>
+                                <td>{getEmployeeDetails.intermediateBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.intermediateCollegeName}</td>
+                                <td>{getEmployeeDetails.intermediateCourseName}</td>
+                                <td>{getEmployeeDetails.intermediateGrade}</td>
                               </tr>
                               <tr>
-                                <th>{getEmployeeDetails.sscBoardOfUniversity}</th>
-                                <th>{getEmployeeDetails.sscSchoolName}</th>
-                                <th>{getEmployeeDetails.sscCourseName}</th>
-                                <th>{getEmployeeDetails.sscGrade}</th>
+                                <td>{getEmployeeDetails.sscBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.sscSchoolName}</td>
+                                <td>{getEmployeeDetails.sscCourseName}</td>
+                                <td>{getEmployeeDetails.sscGrade}</td>
                               </tr>
 
                             </tbody>
@@ -554,19 +554,19 @@ const MyProfile = () => {
                             </thead>
                             <tbody>
                               <tr>
-                                <th>{getEmployeeDetails.previousCompany1_name}</th>
-                                <th>{getEmployeeDetails.previousCompany1_employeeId}</th>
-                                <th>{getEmployeeDetails.previousCompany1_designation}</th>
+                                <td>{getEmployeeDetails.previousCompany1_name}</td>
+                                <td>{getEmployeeDetails.previousCompany1_employeeId}</td>
+                                <td>{getEmployeeDetails.previousCompany1_designation}</td>
                               </tr>
                               <tr>
-                                <th>{getEmployeeDetails.previousCompany2_name}</th>
-                                <th>{getEmployeeDetails.previousCompany2_employeeId}</th>
-                                <th>{getEmployeeDetails.previousCompany2_designation}</th>
+                                <td>{getEmployeeDetails.previousCompany2_name}</td>
+                                <td>{getEmployeeDetails.previousCompany2_employeeId}</td>
+                                <td>{getEmployeeDetails.previousCompany2_designation}</td>
                               </tr>
                               <tr>
-                                <th>{getEmployeeDetails.previousCompany3_name}</th>
-                                <th>{getEmployeeDetails.previousCompany3_employeeId}</th>
-                                <th>{getEmployeeDetails.previousCompany3_designation}</th>
+                                <td>{getEmployeeDetails.previousCompany3_name}</td>
+                                <td>{getEmployeeDetails.previousCompany3_employeeId}</td>
+                                <td>{getEmployeeDetails.previousCompany3_designation}</td>
                               </tr>
 
                             </tbody>
