@@ -21,7 +21,7 @@ import axios from "../../../Uri";
 const MyProfile = () => {
 
   const userData = sessionStorage.getItem("userdata");
-  console.log(userData);
+  // console.log(userData);
   const userData1 = JSON.parse(userData);
   const employeeid = userData1.data.employeeId;
 
@@ -37,7 +37,7 @@ const MyProfile = () => {
       });
 
   }, []);
-  console.log(getEmployeeDetails);
+  // console.log(getEmployeeDetails);
 
   // function formatDate(fromDate){
   //   var datePart = fromDate.match(/\d+/g),
@@ -47,30 +47,30 @@ const MyProfile = () => {
   //   return day + "-" + month + "-" + year;
   //  }
 
-  console.log(getEmployeeDetails.dateOfJoining)
+  // console.log(getEmployeeDetails.dateOfJoining)
 
   var doj = new Date(getEmployeeDetails.dateOfJoining);
   var dd = String(doj.getDate()).padStart(2, '0');
   var mm = String(doj.getMonth() +1).padStart(2, '0');
   var yyyy = doj.getFullYear();
-  doj = dd + '-' + mm + '-' + yyyy;
-  console.log(doj);
+   var doj1 = dd + '-' + mm + '-' + yyyy;
+  // console.log(doj1);
 
-  console.log(getEmployeeDetails.dateOfBirth)
+  // console.log(getEmployeeDetails.dateOfBirth)
   var dob = new Date(getEmployeeDetails.dateOfBirth);
   var dd = String(dob.getDate()).padStart(2, '0');
   var mm = String(dob.getMonth() + 1).padStart(2, '0');
   var yyyy = dob.getFullYear();
    dob = dd + '-' + mm + '-' + yyyy;
-  console.log(dob);
+  // console.log(dob);
 
-  console.log(getEmployeeDetails.passportExpiryDate)
+  // console.log(getEmployeeDetails.passportExpiryDate)
   var passportDate = new Date(getEmployeeDetails.passportExpiryDate);
   var dd = String(passportDate.getDate()).padStart(2, '0');
   var mm = String(passportDate.getMonth() + 1).padStart(2, '0');
   var yyyy = passportDate.getFullYear();
   const passportDate1 = dd + '-' + mm + '-' + yyyy;
-  console.log(passportDate1);
+  // console.log(passportDate1);
 
   return (
     <>
@@ -151,8 +151,8 @@ const MyProfile = () => {
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                   <Card.Text style={{}}>
-                                    {getEmployeeDetails.dateOfJoining}
-                                    {/* {doj} */}
+                                    {/* {getEmployeeDetails.dateOfJoining} */}
+                                    {doj1}
                                   </Card.Text>
                                 </Col>
                               </Row>
@@ -505,28 +505,28 @@ const MyProfile = () => {
                             </thead>
                             <tbody>
                               <tr>
-                                <th>{getEmployeeDetails.postgraduationBoardOfUniversity}</th>
-                                <th>{getEmployeeDetails.postgraduationInstituteName}</th>
-                                <th>{getEmployeeDetails.postgraduationCourseName}</th>
-                                <th>{getEmployeeDetails.postgraduationGrade}</th>
+                                <td>{getEmployeeDetails.postgraduationBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.postgraduationInstituteName}</td>
+                                <td>{getEmployeeDetails.postgraduationCourseName}</td>
+                                <td>{getEmployeeDetails.postgraduationGrade}</td>
                               </tr>
                               <tr>
-                                <th>{getEmployeeDetails.graduationBoardOfUniversity}</th>
-                                <th>{getEmployeeDetails.graduationInstituteName}</th>
-                                <th>{getEmployeeDetails.graduationCourseName}</th>
-                                <th>{getEmployeeDetails.graduationGrade}</th>
+                                <td>{getEmployeeDetails.graduationBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.graduationInstituteName}</td>
+                                <td>{getEmployeeDetails.graduationCourseName}</td>
+                                <td>{getEmployeeDetails.graduationGrade}</td>
                               </tr>
                               <tr>
-                                <th>{getEmployeeDetails.intermediateBoardOfUniversity}</th>
-                                <th>{getEmployeeDetails.intermediateCollegeName}</th>
-                                <th>{getEmployeeDetails.intermediateCourseName}</th>
-                                <th>{getEmployeeDetails.intermediateGrade}</th>
+                                <td>{getEmployeeDetails.intermediateBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.intermediateCollegeName}</td>
+                                <td>{getEmployeeDetails.intermediateCourseName}</td>
+                                <td>{getEmployeeDetails.intermediateGrade}</td>
                               </tr>
                               <tr>
-                                <th>{getEmployeeDetails.sscBoardOfUniversity}</th>
-                                <th>{getEmployeeDetails.sscSchoolName}</th>
-                                <th>{getEmployeeDetails.sscCourseName}</th>
-                                <th>{getEmployeeDetails.sscGrade}</th>
+                                <td>{getEmployeeDetails.sscBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.sscSchoolName}</td>
+                                <td>{getEmployeeDetails.sscCourseName}</td>
+                                <td>{getEmployeeDetails.sscGrade}</td>
                               </tr>
 
                             </tbody>
@@ -554,19 +554,19 @@ const MyProfile = () => {
                             </thead>
                             <tbody>
                               <tr>
-                                <th>{getEmployeeDetails.previousCompany1_name}</th>
-                                <th>{getEmployeeDetails.previousCompany1_employeeId}</th>
-                                <th>{getEmployeeDetails.previousCompany1_designation}</th>
+                                <td>{getEmployeeDetails.previousCompany1_name}</td>
+                                <td>{getEmployeeDetails.previousCompany1_employeeId}</td>
+                                <td>{getEmployeeDetails.previousCompany1_designation}</td>
                               </tr>
                               <tr>
-                                <th>{getEmployeeDetails.previousCompany2_name}</th>
-                                <th>{getEmployeeDetails.previousCompany2_employeeId}</th>
-                                <th>{getEmployeeDetails.previousCompany2_designation}</th>
+                                <td>{getEmployeeDetails.previousCompany2_name}</td>
+                                <td>{getEmployeeDetails.previousCompany2_employeeId}</td>
+                                <td>{getEmployeeDetails.previousCompany2_designation}</td>
                               </tr>
                               <tr>
-                                <th>{getEmployeeDetails.previousCompany3_name}</th>
-                                <th>{getEmployeeDetails.previousCompany3_employeeId}</th>
-                                <th>{getEmployeeDetails.previousCompany3_designation}</th>
+                                <td>{getEmployeeDetails.previousCompany3_name}</td>
+                                <td>{getEmployeeDetails.previousCompany3_employeeId}</td>
+                                <td>{getEmployeeDetails.previousCompany3_designation}</td>
                               </tr>
 
                             </tbody>

@@ -19,6 +19,7 @@ function DepartmentModal() {
     e.preventDefault();
     handleClose();
     console.log(departmentName);
+
     const res = await axios.post("/dept/postDepartmentMaster", {
       departmentName,
     });
@@ -30,8 +31,9 @@ function DepartmentModal() {
     console.log(res.data);
     notify();
 
-    window.location.reload();
   };
+
+  
 
   return (
     <div className="pb-5 me-3">

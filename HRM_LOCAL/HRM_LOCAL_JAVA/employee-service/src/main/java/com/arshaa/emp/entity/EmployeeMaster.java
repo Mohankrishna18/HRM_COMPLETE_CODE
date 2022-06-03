@@ -38,7 +38,6 @@ private String onboardingId;
 private String designationName;
 //@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
 @Column
-
 private Date dateOfJoining;
 @Column
 private String firstName;
@@ -47,7 +46,7 @@ private String middleName;
 @Column
 private String lastName;
 @Column
-private String email;
+private String email; 
 @Column
 private String primaryPhoneNumber;
 @Column

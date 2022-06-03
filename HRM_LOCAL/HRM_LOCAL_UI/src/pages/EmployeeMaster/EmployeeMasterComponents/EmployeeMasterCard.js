@@ -48,11 +48,11 @@ function EmployeeMasterCard() {
                 setEmployeeDetails(response.data.data);
             })
     }, [])
-    console.log(employeedetails)
+//     console.log(employeedetails)
 
-console.log(employeedetails.dateOfJoining)
-let aaa=employeedetails.dateOfJoining;
-console.log(aaa)
+// console.log(employeedetails.dateOfJoining)
+// let aaa=employeedetails.dateOfJoining;
+// console.log(aaa)
 // const bbb=aaa.split(' ');
 // console.log(bbb);
 // console.log(employeedetails.dateOfJoining)
@@ -64,7 +64,7 @@ var dd = String(doj.getDate()).padStart(2, '0');
 var mm = String(doj.getMonth() + 1).padStart(2, '0');
 var yyyy = doj.getFullYear();
  let doj1 = dd + '-' + mm + '-' + yyyy;
-console.log(doj1);
+// console.log(doj1);
 
   
     // var today = new Date (employeedetails.dateOfJoining);
@@ -128,7 +128,8 @@ console.log(doj1);
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{}}>
-                                        {employeedetails.dateOfJoining}
+                                        {/* {employeedetails.dateOfJoining} */}
+                                        {doj1}
                                     </Card.Text>
                                 </Col>
                             </Row>

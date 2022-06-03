@@ -22,12 +22,6 @@ const EditDesignation = ({id, designations}) => {
     axios.get("/dept/getAllDepartments").then((res) => 
     {
       setDepartments(res.data);
-      // res.data.map((m)=>{
-      //   console.log(m)
-      //   setDesignationData(m)
-      //   deptarray.push(m)
-
-      // })
     });
   }, []);
 
@@ -48,7 +42,7 @@ const EditDesignation = ({id, designations}) => {
     console.log(allData);
     const res = await axios.put(`/designation/updateDesignations/${id}`, allData)
     {res!==null? console.log('success'): console.log('error')}
-    window.location.reload();
+    
   }
 
   return (

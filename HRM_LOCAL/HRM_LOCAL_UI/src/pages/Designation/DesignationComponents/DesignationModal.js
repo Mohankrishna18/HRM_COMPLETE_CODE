@@ -41,24 +41,12 @@ const DesignationModal = () => {
     axios.get("/dept/getAllDepartments").then((res) =>
      {
       setDesignationData(res.data);
-      // res.data.map((m)=>{
-      //   console.log(m)
-      //   setDesignationData(m)
-      //   deptarray.push(m)
-
-      // })
+      
     });
   }, []);
 
-  //console.log(deptarray)
   console.log(designationData);
-  // console.log(department);
-  // var obje1 = designationData.reduce(function (acc, cur, i) {
-  //   acc[cur.departmentId] = cur.departmentName;
-
-  //   return acc;
-  // }, {});
-  // console.log(obje1);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     handleClose();
@@ -66,7 +54,6 @@ const DesignationModal = () => {
     const res = await axios.post("/designation/postDesignationMaster", allData);
     console.log(res.data);
     notify();
-   window.location.reload();
   };
 
   return (
@@ -133,10 +120,6 @@ const DesignationModal = () => {
               Submit
             </Button>
           </Form>
-
-          {/* <Modal.Footer>
-            
-          </Modal.Footer> */}
         </Modal.Body>
       </Modal>
     </div>
