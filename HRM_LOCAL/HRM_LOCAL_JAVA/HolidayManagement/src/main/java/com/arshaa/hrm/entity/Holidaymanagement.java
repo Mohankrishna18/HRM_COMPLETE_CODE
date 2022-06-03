@@ -20,8 +20,7 @@ public class Holidaymanagement {
 	private String holidayTitle;
 	@Column
 	private Date holidayDate;
-	@Column
-	private boolean holidayStatus;
+
 	@Column
 	private String updatedBy;
 	@Temporal(TemporalType.DATE)
@@ -44,12 +43,7 @@ public class Holidaymanagement {
 	public void setHolidayDate(Date holidayDate) {
 		this.holidayDate = holidayDate;
 	}
-	public boolean isHolidayStatus() {
-		return holidayStatus;
-	}
-	public void setHolidayStatus(boolean holidayStatus) {
-		this.holidayStatus = holidayStatus;
-	}
+
 	public String getUpdatedBy() {
 		return updatedBy;
 	}
@@ -68,7 +62,6 @@ public class Holidaymanagement {
 		this.holidayId = holidayId;
 		this.holidayTitle = holidayTitle;
 		this.holidayDate = holidayDate;
-		this.holidayStatus = holidayStatus;
 		this.updatedBy = updatedBy;
 		this.updatedOn = updatedOn;
 	}
