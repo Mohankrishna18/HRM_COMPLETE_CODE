@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Accordion, Button, Card, Form } from 'react-bootstrap';
+import { Accordion, Button, Card, Form, InputGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
@@ -11,7 +11,24 @@ import * as Yup from "yup";
 import EmployeeMasterCard from "./EmployeeMasterCard";
 import { useHistory } from 'react-router-dom';
 import { set } from 'lodash';
+import { Formik } from "formik";
 
+
+// const SignupSchema = Yup.object().shape({
+
+//     email: Yup.string().email("Invalid email").required("Required"),
+//     password: Yup.string()
+//       .min(5, "Atleast 6 characters long")
+//       .max(50, "Too Long")
+//       .required(),
+//     confirmPassword: Yup.string()
+//       .required("Required")
+//       .oneOf([Yup.ref("password"), null], "Passwords must match"),
+//     terms: Yup.bool().required().oneOf([true], "Terms must be accepted")
+//   });
+
+
+  
 
 function EmployeeMasterForm() {
 
@@ -354,7 +371,34 @@ function EmployeeMasterForm() {
                                     <Card.Title style={{ margin: 20, textAlign: "center" }}>Personal Details</Card.Title>
                                 </Card>
 
-                                <Form style={{ padding: 10 }}>
+
+                                {/* <Formik
+      validationSchema={SignupSchema}
+      onClick ={changeHandler}
+      validateOnChange={false}
+      // validatenOnBlur={false}
+      initialValues={{
+      
+        bloodGroup : "",
+        
+      }}
+      // handleChange={handleChange}
+      // isValid={validated}
+    >
+      {({
+        handleSubmit,
+        handleChange,
+        changeHandler,
+        handleBlur,
+        values,
+        touched,
+        isValid,
+        errors,
+        isValidating
+      }) => ( */}
+
+                                <Form style={{ padding: 10 }}   
+                                >
                                     <Row className="mb-5" >
                                         {/* setting a name from the input textfiled */}
                                         <Form.Group as={Col} className="mb-3" md="6" controlId="formBasicEmail">
@@ -387,14 +431,18 @@ function EmployeeMasterForm() {
                                         </Form.Group>
                                         <Form.Group as={Col} className="mb-3" md="6" controlId="formBasicEmail">
                                             <Form.Label>Last Name*</Form.Label>
+                                          
                                             <Form.Control value={lastName}
                                                 // disabled
                                                 required
                                                 onChange={e => setLastName(e.target.value)}
                                                 type="text" placeholder="Enter Name" />
+                                               
                                         </Form.Group>
                                         <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }} >
                                             <Form.Label>Phone Number*</Form.Label>
+                                            <InputGroup >
+                <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
                                             <Form.Control
                                                 required
                                                 type="text"
@@ -402,13 +450,18 @@ function EmployeeMasterForm() {
                                                 placeholder="phone Number"
                                                 value={primaryPhoneNumber}
                                                 onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
-                                            /></Form.Group>
+                                            />
+                                             </InputGroup>
+                                             </Form.Group>
                                         <Form.Group as={Col} className="mb-3" md="6" controlId="formBasicEmail">
                                             <Form.Label>secondaryPhone*</Form.Label>
+                                            <InputGroup >
+                <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
                                             <Form.Control value={secondaryPhoneNumber}
                                                 required
                                                 onChange={e => setSecondaryPhone(e.target.value)}
                                                 type="text" placeholder="Enter Phone" />
+                                                </InputGroup>
                                         </Form.Group>
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Email*</Form.Label>
@@ -456,6 +509,11 @@ function EmployeeMasterForm() {
                                                 placeholder="Blood Group "
                                                 controlId="bloodGroup"
                                                 value={bloodGroup}
+
+                                               
+                                                // isValid={touched.bloodGroup && !errors.bloodGroup}
+                                                // isInvalid={touched.bloodGroup && !!errors.bloodGroup}
+
                                                 onChange={(e) => setBloodGroup(e.target.value)}
 
                                             >
@@ -1445,6 +1503,7 @@ function EmployeeMasterForm() {
                                         Submit
                                     </Button>
                                 </Form>
+                               
                             </Card.Body></Card.Header></Card></Col></Row>
         </div>
     )
