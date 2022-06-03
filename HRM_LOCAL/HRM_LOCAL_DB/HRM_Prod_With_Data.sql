@@ -393,7 +393,7 @@ CREATE TABLE `employeemaster` (
   `updated_by` varchar(10) DEFAULT NULL,
   `updated_on` datetime DEFAULT NULL,
   `employee_status` tinyint NOT NULL,
-  `reporting_manager` varchar(10) DEFAULT NULL,
+  `reporting_manager` varchar(50) DEFAULT NULL,
   `department_name` varchar(25) DEFAULT NULL,
   `designation_name` varchar(25) DEFAULT NULL,
   `employment_type` varchar(30) DEFAULT NULL,
@@ -551,11 +551,10 @@ CREATE TABLE `holidaymaster` (
   `holiday_date` datetime NOT NULL,
   `updated_on` date NOT NULL,
   `updated_by` varchar(10) DEFAULT NULL,
-  `holiday_status` bit(1) DEFAULT NULL,
   PRIMARY KEY (`holiday_id`),
   KEY `fk_updated_by__holidaymaster_idx` (`updated_by`),
   CONSTRAINT `fk_updated_by__holidaymaster` FOREIGN KEY (`updated_by`) REFERENCES `employeemaster` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -564,7 +563,7 @@ CREATE TABLE `holidaymaster` (
 
 LOCK TABLES `holidaymaster` WRITE;
 /*!40000 ALTER TABLE `holidaymaster` DISABLE KEYS */;
-INSERT INTO `holidaymaster` VALUES (1,'sankranthi','2023-01-13 00:00:00','2022-05-27',NULL,NULL),(2,'dasara','2022-10-05 00:00:00','2022-05-28',NULL,NULL),(3,'deepavali','2022-10-24 00:00:00','2022-05-31',NULL,NULL);
+INSERT INTO `holidaymaster` VALUES (1,'sankranthi','2023-01-13 00:00:00','2022-05-27',NULL),(2,'dasara','2022-10-05 00:00:00','2022-05-28',NULL),(3,'deepavali','2022-10-24 00:00:00','2022-05-31',NULL),(4,'Diwali','2022-06-01 05:30:00','2022-06-02',NULL),(5,'qlwnd','2022-06-16 05:30:00','2022-06-02',NULL),(6,'gandhi jayanthi','2022-06-16 05:30:00','2022-06-02',NULL),(7,'gandhi jayanthi','2022-06-16 05:30:00','2022-06-02',NULL);
 /*!40000 ALTER TABLE `holidaymaster` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -647,7 +646,7 @@ CREATE TABLE `onboarding` (
   `reject_date` datetime DEFAULT NULL,
   `Updated_on` date DEFAULT NULL,
   `updated_by` varchar(10) DEFAULT NULL,
-  `reporting_manager` varchar(10) DEFAULT NULL,
+  `reporting_manager` varchar(50) DEFAULT NULL,
   `employment_type` varchar(30) DEFAULT NULL,
   `job_title` varchar(20) DEFAULT NULL,
   `comments` varchar(255) DEFAULT NULL,
@@ -893,4 +892,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-02 15:13:06
+-- Dump completed on 2022-06-02 17:15:57

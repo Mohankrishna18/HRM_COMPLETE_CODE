@@ -30,6 +30,7 @@ export default function ResetPassword() {
       confirmNewPassword.length > 0
     );
   }
+  // testing 
   const handleSubmit = async (event) => {
     event.preventDefault();
     

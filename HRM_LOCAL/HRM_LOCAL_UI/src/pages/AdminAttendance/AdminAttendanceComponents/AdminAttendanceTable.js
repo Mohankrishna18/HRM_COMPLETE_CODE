@@ -143,6 +143,134 @@ const EmpTable = (props) => {
                 color: "white",
             },
         },
+        {
+            title: "15",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "16",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "17",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "18",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "19",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "20",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "21",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "22",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "23",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "24",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "25",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "26",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "27",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "28",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "29",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "30",
+            field: "dueAmount",
+            headerStyle: {
+              //  backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
     ];
 
 
