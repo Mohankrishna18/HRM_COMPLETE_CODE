@@ -2,6 +2,7 @@ import React from "react";
 import { Col, Row ,Card,Container} from "react-bootstrap";
 
 import Designation from "./DesignationComponents/Designation";
+import EditableDesignation from "./DesignationComponents/DesignationWithMtable";
 
 const DesignationMain = () => {
   return (
@@ -16,7 +17,7 @@ const DesignationMain = () => {
             <Container>
               <Row>
                 <Col xs={12}>
-                 <Designation />
+                 <EditableDesignation />
                 </Col>
               </Row>
             </Container>
