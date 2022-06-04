@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row, Card, Container } from "react-bootstrap";
-
+import Editable from "./DepartmentComponents/DepartmentWithMtable";
 import Department from "./DepartmentComponents/Department";
 import DepartmentModal from "./DepartmentComponents/DepartmentModal";
 // Testing purpose
@@ -17,7 +17,7 @@ const DepartmentMain = () => {
             <Container>
               <Row>
                 <Col xs={12}>
-                  <DepartmentModal />
+                  <Editable />
                 </Col>
               </Row>
             </Container>
