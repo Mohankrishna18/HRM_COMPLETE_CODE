@@ -17,7 +17,8 @@ export default function Editable() {
         console.log(res.data);
     };
     const [columns, setColumns] = useState([
-        { title: 'ID', field: 'departmentId', editable: false },
+        // { title: 'ID', field: 'departmentId', editable: false },
+        // {title:"ID",field:"id"},
         { title: 'Department Name', field: 'departmentName' },
 
         //   {
@@ -35,26 +36,22 @@ export default function Editable() {
     return (
         <Grid>
             <MaterialTable
-                title="Departments"
+                title=""
                 columns={columns}
                 data={data}
                 editable={{
                     onRowAdd: newData =>
                         new Promise((resolve, reject) => {
-                            const updatedRows = [
-
-                                ...data,
-            
-                                { id: Math.floor(Math.random() * 100), ...newRow },
-            
-                              ];
+                           
+                          
                             setTimeout(() => {
                                 console.log(newData)
                                 const res = axios.post("/dept/postDepartmentMaster",
                                     newData,
                                 );
-                                loadData()
                                 setData([...data, newData]);
+                               loadData();
+                               
 
                                 resolve();
                             }, 1000)
@@ -100,11 +97,11 @@ export default function Editable() {
                                 const dataDelete = [...data];
                                 const index = oldData.departmentId;
                                 dataDelete.splice(index, 1);
-                                const res =axios.delete(`/dept/deleteDepartment/${index}`)
-                                .then((res)=>{
-                                    console.log(res)
-                                    loadData()
-                                })
+                                const res = axios.delete(`/dept/deleteDepartment/${index}`)
+                                    .then((res) => {
+                                        console.log(res)
+                                        loadData()
+                                    })
                                 console.log(dataDelete)
                                 //setData(dataDelete);
 
@@ -113,7 +110,16 @@ export default function Editable() {
                         }),
                 }}
                 options={{
-                    actionsColumnIndex: -1
+                    paging: false,
+                    addRowPosition:'first',
+                    actionsColumnIndex: -1,
+                    headerStyle: {
+
+                        backgroundColor: "#FE924A",
+
+                        color: "white",
+
+                    },
                 }}
             />
         </Grid>

@@ -7,7 +7,7 @@ import EditableDesignation from "./DesignationComponents/DesignationWithMtable";
 const DesignationMain = () => {
   return (
     <div  style={{ paddingTop: "20px" }}>
-     <Card responsive>
+     <Card responsive className="scroll">
         <Card.Header>
           <Card.Body>
             <Card.Title>Designations </Card.Title>
