@@ -135,6 +135,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setPrimarySkills(getOnboarding.getPrimarySkills());
 					employeeMaster.setSecondarySkills(getOnboarding.getSecondarySkills());
 					employeeMaster.setJobTitle(getOnboarding.getJobTitle());
+					employeeMaster.setEmploymentType(getOnboarding.getEmploymentType());
 					employeeMaster.setReportingManager(newOnboard.getReportingManager());
 					emRepo.save(employeeMaster);
 					
@@ -411,7 +412,7 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setDepartment(newOnboard.getDepartment());
 				getOnboarding.setDesignation(newOnboard.getDesignation());
 				getOnboarding.setEmail(newOnboard.getEmail());
-				getOnboarding.setEmployeeType(newOnboard.getEmployeeType());
+				getOnboarding.setEmploymentType(newOnboard.getEmploymentType());
 				getOnboarding.setFirstName(newOnboard.getFirstName());
 				getOnboarding.setJobTitle(newOnboard.getJobTitle());
 				getOnboarding.setLastName(newOnboard.getLastName());
