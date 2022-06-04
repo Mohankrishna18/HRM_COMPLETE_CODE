@@ -38,11 +38,26 @@ export default function EditableDesignation() {
 
 
     const [columns, setColumns] = useState([
-        { title: 'ID', field: 'designationId', editable: false },
-        { title: 'Designation Name', field: 'designationName' },
+        // { title: 'ID', field: 'designationId', editable: false },
         {
-            title: 'Department Name', field: 'departmentName', lookup: status
+            title: 'Designation Name', field: 'designationName', headerStyle: {
+
+                backgroundColor: "#FE924A",
+
+                color: "white",
+
+            },
         },
+        {
+            title: 'Department Name', field: 'departmentName', lookup: status, headerStyle: {
+
+                backgroundColor: "#FE924A",
+
+                color: "white",
+
+            },
+        },
+
     ]);
 
 
@@ -50,7 +65,7 @@ export default function EditableDesignation() {
     return (
         <Grid>
             <MaterialTable
-                title="Designations"
+                title=""
                 columns={columns}
                 data={data}
                 editable={{
@@ -59,9 +74,11 @@ export default function EditableDesignation() {
                         new Promise((resolve, reject) => {
                             setTimeout(() => {
                                 console.log(newData)
-                                const res = axios.post("/designation/postDesignationMaster", newData);
-                                loadData()
+                                const res = axios.post("/designation/postDesignationMaster", newData)
+                                console.log(res)
                                 setData([...data, newData]);
+                                loadData();
+                                
 
                                 resolve();
                             }, 1000)
@@ -123,7 +140,17 @@ export default function EditableDesignation() {
                         }),
                 }}
                 options={{
-                    actionsColumnIndex: -1
+                    paging: false,
+                    // paginationType:'normal',
+                    // pageSize:20,
+                    actionsColumnIndex: -1,
+                    headerStyle: {
+
+                        backgroundColor: "#FE924A",
+
+                        color: "white",
+
+                    },
                 }}
             />
         </Grid>
