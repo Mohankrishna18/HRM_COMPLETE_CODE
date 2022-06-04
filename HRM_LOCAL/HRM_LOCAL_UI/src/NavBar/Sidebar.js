@@ -41,7 +41,7 @@ const Sidebar = (props) => {
                 </Row>
               ))}
               {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp;
-              <p style={{paddingLeft:"30px",paddingTop:""}}>V-0.1</p>
+              <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>
             </ListGroup>
           </div>
         </Col>
