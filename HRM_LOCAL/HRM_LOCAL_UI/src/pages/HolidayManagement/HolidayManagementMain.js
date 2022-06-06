@@ -3,8 +3,7 @@ import { Row, Col, Card, Container } from 'react-bootstrap';
 
 // Testing purpose
 
-import HolidayScreen from "./HolidaysComponent/HolidayScreen";
-import Heading from "./HolidaysComponent/Heading";
+import HolidayTable from "./HolidaysComponent/HolidayTable";
 
 import { useEffect, useState } from "react";
 
@@ -22,8 +21,7 @@ const HolidayManagementMain = () => {
             <Container>
               <Row>
                 <Col xs={12}>
-                  <Heading />
-                  {/* <HolidayScreen /> */}
+                  <HolidayTable/>
                 </Col>
 
               </Row>
