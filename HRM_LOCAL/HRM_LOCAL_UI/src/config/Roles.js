@@ -5,5 +5,6 @@ export default {
     ceo:'ceo',
     hr:'hr',
     taa:'taa',
-    it:'it'
+    it:'it',
+    manager:'manager',
 };
