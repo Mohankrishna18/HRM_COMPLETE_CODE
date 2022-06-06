@@ -1,13 +1,13 @@
 import React from "react";
 import { Col, Row, Card, Container } from "react-bootstrap";
-
+import Editable from "./DepartmentComponents/DepartmentWithMtable";
 import Department from "./DepartmentComponents/Department";
 import DepartmentModal from "./DepartmentComponents/DepartmentModal";
 // Testing purpose
 const DepartmentMain = () => {
   return (
     <div style={{ paddingTop: "20px" }}>
-      <Card responsive>
+      <Card responsive className="scroll">
         <Card.Header>
           <Card.Body>
             <Card.Title> Departments</Card.Title>
@@ -17,8 +17,7 @@ const DepartmentMain = () => {
             <Container>
               <Row>
                 <Col xs={12}>
-                  <DepartmentModal />
-                  <Department />
+                  <Editable />
                 </Col>
               </Row>
             </Container>

@@ -1,8 +1,9 @@
 package com.arshaa.emp.entity;
 
 
-
-import java.sql.Date;
+//
+//import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -82,60 +83,20 @@ public class Onboarding {
     //private Date rejectDate;
 	@Column
 	private String updatedBy;
-	private String employeeType;
+	private String employmentType;
 	private String primarySkills;
 	private String secondarySkills;
-	public String getPrimarySkills() {
-		return primarySkills;
-	}
-	public void setPrimarySkills(String primarySkills) {
-		this.primarySkills = primarySkills;
-	}
-	public String getSecondarySkills() {
-		return secondarySkills;
-	}
-	public void setSecondarySkills(String secondarySkills) {
-		this.secondarySkills = secondarySkills;
-	}
-	public String getDepartment() {
-		return department;
-	}
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	public String getEmployeeType() {
-		return employeeType;
-	}
-	public void setEmployeeType(String employeeType) {
-		this.employeeType = employeeType;
-	}
 	public String getOnboardingId() {
 		return onboardingId;
 	}
 	public void setOnboardingId(String onboardingId) {
 		this.onboardingId = onboardingId;
 	}
-	
 	public String getDesignation() {
 		return designation;
 	}
 	public void setDesignation(String designation) {
 		this.designation = designation;
-	}
-	public Date getDateOfJoining() {
-		return dateOfJoining;
-	}
-	public void setDateOfJoining(Date dateOfJoining) {
-		this.dateOfJoining = dateOfJoining;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -154,6 +115,24 @@ public class Onboarding {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	public String getJobTitle() {
+		return jobTitle;
+	}
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
+	}
+	public String getSkillSet() {
+		return skillSet;
+	}
+	public void setSkillSet(String skillSet) {
+		this.skillSet = skillSet;
+	}
+	public String getComments() {
+		return comments;
+	}
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -191,7 +170,18 @@ public class Onboarding {
 	public void setWaitingforapprovalStatus(boolean waitingforapprovalStatus) {
 		this.waitingforapprovalStatus = waitingforapprovalStatus;
 	}
-	
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public java.util.Date getOnboardDate() {
 		return onboardDate;
 	}
@@ -213,8 +203,14 @@ public class Onboarding {
 	public java.util.Date getUpdatedOn() {
 		return updatedOn;
 	}
-	public void setUpdatedOn(Date updatedOn) {
+	public void setUpdatedOn(java.util.Date updatedOn) {
 		this.updatedOn = updatedOn;
+	}
+	public Date getDateOfJoining() {
+		return dateOfJoining;
+	}
+	public void setDateOfJoining(Date dateOfJoining) {
+		this.dateOfJoining = dateOfJoining;
 	}
 	public String getUpdatedBy() {
 		return updatedBy;
@@ -222,35 +218,33 @@ public class Onboarding {
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
-		
-	
-	public String getJobTitle() {
-		return jobTitle;
+	public String getEmploymentType() {
+		return employmentType;
 	}
-	public void setJobTitle(String jobTitle) {
-		this.jobTitle = jobTitle;
+	public void setEmploymentType(String employmentType) {
+		this.employmentType = employmentType;
 	}
-	public String getSkillSet() {
-		return skillSet;
+	public String getPrimarySkills() {
+		return primarySkills;
 	}
-	public void setSkillSet(String skillSet) {
-		this.skillSet = skillSet;
+	public void setPrimarySkills(String primarySkills) {
+		this.primarySkills = primarySkills;
 	}
-	public String getComments() {
-		return comments;
+	public String getSecondarySkills() {
+		return secondarySkills;
 	}
-	public void setComments(String comments) {
-		this.comments = comments;
+	public void setSecondarySkills(String secondarySkills) {
+		this.secondarySkills = secondarySkills;
 	}
-	public Onboarding() {
-		// TODO Auto-generated constructor stub
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
 			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
 			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
-			String department, String reportingManager, String email, java.util.Date onboardDate,
-			java.util.Date approvedDate, java.util.Date rejectDate, java.util.Date updatedOn, Date dateOfJoining,
-			String updatedBy, String employeeType, String primarySkills, String secondarySkills) {
+			String department, String reportingManager, String email, Date onboardDate, Date approvedDate,
+			Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy, String employmentType,
+			String primarySkills, String secondarySkills) {
 		super();
 		this.onboardingId = onboardingId;
 		this.designation = designation;
@@ -275,9 +269,13 @@ public class Onboarding {
 		this.updatedOn = updatedOn;
 		this.dateOfJoining = dateOfJoining;
 		this.updatedBy = updatedBy;
-		this.employeeType = employeeType;
+		this.employmentType = employmentType;
 		this.primarySkills = primarySkills;
 		this.secondarySkills = secondarySkills;
+	}
+	public Onboarding() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	
 	

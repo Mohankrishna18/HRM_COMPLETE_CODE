@@ -1,9 +1,11 @@
+
 package com.arshaa.emp.service;
 
-import java.text.SimpleDateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -47,9 +49,9 @@ public class MainServiceImpl implements MainService {
 			newOnboard.setOnboardDate(tSqlDate);
 
 			java.sql.Date tsqDate1 = new java.sql.Date(newOnboard.getUpdatedOn().getTime());
-			
-			System.out.println(new SimpleDateFormat("MM-dd-yyyy").format(newOnboard.getDateOfJoining()));
-			System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(newOnboard.getDateOfJoining()));
+		
+			//System.out.println(new SimpleDateFormat("MM-dd-yyyy").format(newOnboard.getDateOfJoining()));
+			//System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(newOnboard.getDateOfJoining()));
 			newOnboard.setUpdatedOn(tsqDate1);
 			newOnboard.setWaitingforapprovalStatus(true);
 			newOnboard.setRejectedStatus(false);
@@ -133,6 +135,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setPrimarySkills(getOnboarding.getPrimarySkills());
 					employeeMaster.setSecondarySkills(getOnboarding.getSecondarySkills());
 					employeeMaster.setJobTitle(getOnboarding.getJobTitle());
+					employeeMaster.setEmploymentType(getOnboarding.getEmploymentType());
 					employeeMaster.setReportingManager(newOnboard.getReportingManager());
 					emRepo.save(employeeMaster);
 					
@@ -351,8 +354,11 @@ public class MainServiceImpl implements MainService {
 			master.setPreviousCompany3_typeOfEmployment(empMaster.getPreviousCompany3_typeOfEmployment());
 			master.setPreviousCompany3_reasonForRelieving(empMaster.getPreviousCompany3_reasonForRelieving());
 			master.setReportingManager(empMaster.getReportingManager());
+			master.setPassportExpiryDate(empMaster.getPassportExpiryDate());
+			master.setPassportNo(empMaster.getPassportNo());
 			master.setPrimarySkills(empMaster.getPrimarySkills());
 			master.setSecondarySkills(empMaster.getSecondarySkills());
+			master.setEmploymentType(empMaster.getEmploymentType());
 
 			EmployeeMaster master1 = emRepo.save(master);
 			System.out.println(master1);
@@ -406,7 +412,7 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setDepartment(newOnboard.getDepartment());
 				getOnboarding.setDesignation(newOnboard.getDesignation());
 				getOnboarding.setEmail(newOnboard.getEmail());
-				getOnboarding.setEmployeeType(newOnboard.getEmployeeType());
+				getOnboarding.setEmploymentType(newOnboard.getEmploymentType());
 				getOnboarding.setFirstName(newOnboard.getFirstName());
 				getOnboarding.setJobTitle(newOnboard.getJobTitle());
 				getOnboarding.setLastName(newOnboard.getLastName());

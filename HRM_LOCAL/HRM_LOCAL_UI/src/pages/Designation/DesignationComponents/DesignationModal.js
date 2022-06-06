@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
+import { Table, Container } from "react-bootstrap";
 
 import { BsPlusLg } from "react-icons/bs";
+import { MdDelete } from "react-icons/md";
+import EditDesignation from "./EditDesignation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -11,12 +14,36 @@ import axios from "../../../Uri";
 //comment added for testing purpose
 
 const DesignationModal = () => {
-  const notify = () => toast("Designation is added");
-  const [designationName, setDesignationName] = useState("");
-  const [designationData, setDesignationData] = useState([]);
-  const [department, setDepartment] = useState("");
+  const notify = () => toast("Designation is deleted Successfully");
+  const [designations, setDesignations] = useState([]);
+   // const notify = () => toast("Designation is added");
+   const [designationName, setDesignationName] = useState("");
+   const [designationData, setDesignationData] = useState([]);
+   const [department, setDepartment] = useState("");
+ 
+   const [show, setShow] = useState(false);
 
-  const [show, setShow] = useState(false);
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    const res = await axios.get("/designation/getAllDesignations");
+    setDesignations(res.data);
+    // console.log(res.data);
+    // console.log("designations");
+    
+  };
+
+
+  const deleteDesignation = async (designationId) => {
+    const res = await axios.delete(`/designation/deleteDesignation/${designationId}`);
+    loadData();
+    // console.log(res);
+    notify();
+  };
+
+ 
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -27,7 +54,7 @@ const DesignationModal = () => {
   };
   const [allData, setAllData] = useState(initialvalues);
   const handleChange = (e) => {
-    console.log(e);
+    // console.log(e);
     const { name, value } = e.target;
     setAllData({
       ...allData,
@@ -35,38 +62,26 @@ const DesignationModal = () => {
     });
   };
 
-  console.log(allData.departmentName);
+  // console.log(allData.departmentName);
 
   useEffect(() => {
     axios.get("/dept/getAllDepartments").then((res) =>
      {
       setDesignationData(res.data);
-      // res.data.map((m)=>{
-      //   console.log(m)
-      //   setDesignationData(m)
-      //   deptarray.push(m)
-
-      // })
+      
     });
   }, []);
 
-  //console.log(deptarray)
-  console.log(designationData);
-  // console.log(department);
-  // var obje1 = designationData.reduce(function (acc, cur, i) {
-  //   acc[cur.departmentId] = cur.departmentName;
-
-  //   return acc;
-  // }, {});
-  // console.log(obje1);
+  // console.log(designationData);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     handleClose();
-    console.log(allData);
+    // console.log(allData);
     const res = await axios.post("/designation/postDesignationMaster", allData);
-    console.log(res.data);
+    // console.log(res.data);
+    loadData();
     notify();
-   window.location.reload();
   };
 
   return (
@@ -133,12 +148,43 @@ const DesignationModal = () => {
               Submit
             </Button>
           </Form>
-
-          {/* <Modal.Footer>
-            
-          </Modal.Footer> */}
         </Modal.Body>
       </Modal>
+
+      <Container-fluid>
+        <Table responsive="sm">
+          <thead>
+            <tr>
+              <th>Designation Id</th>
+              <th>Designation</th>
+              <th>Department</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {designations.map((designation, index) => (
+              <tr>
+                {/* <td>{designation.designationId}</td> */}
+                <th scope="row">{index+1}</th>
+                <td>{designation.designationName}</td>
+                <td>{designation.departmentName}</td>
+                <td><EditDesignation id={designation.designationId} designations={designations}/></td>
+
+                <Button
+                  className="rounded-pill"
+                  variant="white"
+                  onClick={() => deleteDesignation(designation.designationId)}
+                >
+                  {" "}
+                  <MdDelete />
+                  Delete
+                </Button>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+
+      </Container-fluid>
     </div>
   );
 };

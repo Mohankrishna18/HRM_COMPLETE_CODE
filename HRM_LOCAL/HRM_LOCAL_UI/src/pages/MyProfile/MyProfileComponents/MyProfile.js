@@ -1,26 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 import { Card, Container, Row, Col, Table } from "react-bootstrap";
+import { matches } from "lodash";
 
 
-import {
-  Timeline,
-  BodyContent,
-  Section,
-  Description,
-} from "vertical-timeline-component-react";
 
 import axios from "../../../Uri";
 
-const customTheme = {
-  yearColor: "#405b73",
-  lineColor: "#d0cdc4",
-  dotColor: "#fd7e14",
-  borderDotColor: "#ced4da",
-  titleColor: "#000000",
-  subtitleColor: "#bf9765",
-  textColor: "#262626",
-};
+
 
 // function formatDate(dateOfJoining){
 //  var datePart = dateOfJoining.match(/\d+/g),
@@ -34,9 +21,10 @@ const customTheme = {
 const MyProfile = () => {
 
   const userData = sessionStorage.getItem("userdata");
-  console.log(userData);
+  // console.log(userData);
   const userData1 = JSON.parse(userData);
   const employeeid = userData1.data.employeeId;
+
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
   var dateTime = getEmployeeDetails.dateOfJoining;
 
@@ -49,66 +37,78 @@ const MyProfile = () => {
       });
 
   }, []);
+  // console.log(getEmployeeDetails);
 
-  console.log(getEmployeeDetails);
+  // function formatDate(fromDate){
+  //   var datePart = fromDate.match(/\d+/g),
+  //     year = datePart[0].substring(2), // get only two digits
+  //     month = datePart[1],
+  //     day = datePart[2];
+  //   return day + "-" + month + "-" + year;
+  //  }
 
-  var today = new Date (getEmployeeDetails.dateOfJoining);
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); 
-var yyyy = today.getFullYear();
+  // console.log(getEmployeeDetails.dateOfJoining)
 
-today = dd + '-' + mm + '-' + yyyy;
-console.log(today);
+  var doj = new Date(getEmployeeDetails.dateOfJoining);
+  var dd = String(doj.getDate()).padStart(2, '0');
+  var mm = String(doj.getMonth() +1).padStart(2, '0');
+  var yyyy = doj.getFullYear();
+   var doj1 = dd + '-' + mm + '-' + yyyy;
+  // console.log(doj1);
 
+  // console.log(getEmployeeDetails.dateOfBirth)
+  var dob = new Date(getEmployeeDetails.dateOfBirth);
+  var dd = String(dob.getDate()).padStart(2, '0');
+  var mm = String(dob.getMonth() + 1).padStart(2, '0');
+  var yyyy = dob.getFullYear();
+   dob = dd + '-' + mm + '-' + yyyy;
+  // console.log(dob);
 
-  // useEffect(() => {
-  // axios.get("/emp/getEmployeeDataByEmployeeId/{employeeId}",)
-  // .then((response) => { // setGetEmployeeDetails(response.data) // })
-  // }, [])
-  // console.log(getEmployeeDetails)
-
+  // console.log(getEmployeeDetails.passportExpiryDate)
+  var passportDate = new Date(getEmployeeDetails.passportExpiryDate);
+  var dd = String(passportDate.getDate()).padStart(2, '0');
+  var mm = String(passportDate.getMonth() + 1).padStart(2, '0');
+  var yyyy = passportDate.getFullYear();
+  const passportDate1 = dd + '-' + mm + '-' + yyyy;
+  // console.log(passportDate1);
 
   return (
     <>
       <Row>
         <Col>
-
-          <Card responsive>
+          <Card responsive className='scroll'  style={{ marginTop:10}}>
             <Card.Header>
               <Card.Body>
                 <Card.Title> My Profile</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
                   Employee/My Profile
                 </Card.Subtitle>{" "}
-
                 <Row>
                   <Col>
                     <Card>
                       <Container>
                         <Row>
-
                           <Col>
-                          <Row>
-                          <Col>
-                            <Row style={{
-                              alignContent: "center",
-                              paddingTop: 10,
-                              paddingLeft: 100,
-                            }}>
-                              <Col>{getEmployeeDetails.profilePhoto}</Col>
-                            </Row>
-                            </Col>
-                            <Row><Col>
-                            <Card.Title
-                            style={{
-                                fontSize: 30,
-                                textAlign: "center",
-                                paddingTop: 90,
-                            }}>
-                            {getEmployeeDetails.firstName} {getEmployeeDetails.lastName}
+                            <Row>
+                              <Col>
+                                <Row style={{
+                                  alignContent: "center",
+                                  paddingTop: 10,
+                                  paddingLeft: 100,
+                                }}>
+                                  <Col>{getEmployeeDetails.profilePhoto}</Col>
+                                </Row>
+                              </Col>
+                              <Row><Col>
+                                <Card.Title
+                                  style={{
+                                    fontSize: 30,
+                                    textAlign: "center",
+                                    paddingTop: 90,
+                                  }}>
+                                  {getEmployeeDetails.firstName} {getEmployeeDetails.lastName}
 
-                        </Card.Title></Col></Row>
-
+                                </Card.Title></Col></Row>
                             </Row>
                           </Col>
 
@@ -151,7 +151,8 @@ console.log(today);
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                   <Card.Text style={{}}>
-                                    {today}
+                                    {/* {getEmployeeDetails.dateOfJoining} */}
+                                    {doj1}
                                   </Card.Text>
                                 </Col>
                               </Row>
@@ -164,6 +165,18 @@ console.log(today);
                                 <Col md={{ offset: 1 }}>
                                   <Card.Text style={{}}>
                                     {getEmployeeDetails.reportingManager}
+                                  </Card.Text>
+                                </Col>
+                              </Row>
+                              <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                  <Card.Text style={{}}>
+                                    <h6>Employee Type: </h6>
+                                  </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                  <Card.Text style={{}}>
+                                    {getEmployeeDetails.employmentType}
                                   </Card.Text>
                                 </Col>
                               </Row>
@@ -218,7 +231,7 @@ console.log(today);
                           </Col>
                           <Col md={{ offset: 1 }}>
                             <Card.Subtitle>
-                              {getEmployeeDetails.dateOfBirth}
+                            {dob}
                             </Card.Subtitle>
                           </Col>
                         </Row>
@@ -287,7 +300,7 @@ console.log(today);
                           </Col>
                           <Col md={{ offset: 1 }}>
                             <Card.Subtitle>
-                              {getEmployeeDetails.passportExpiryNo}
+                              {passportDate1}
                             </Card.Subtitle>
                           </Col>
                         </Row>
@@ -416,7 +429,7 @@ console.log(today);
                         <h5>Educational Information:</h5>
                       </Card.Title>
                       <Card.Body style={{ paddingLeft: 20 }}>
-                        <Timeline theme={customTheme}>
+                        {/* <Timeline theme={customTheme}>
                           <BodyContent>
                             <Section
                               title={
@@ -477,52 +490,121 @@ console.log(today);
                               <Description text={getEmployeeDetails.sscGrade} />
                             </Section>
                           </BodyContent>
-                        </Timeline>
+                        </Timeline> */}
+                        <Row md={12} >
+                          <Table>
+                            <thead>
+                              <tr>
+
+                                <th>University</th>
+                                <th>Institute Name</th>
+                                <th>Course</th>
+                                <th>Grade</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{getEmployeeDetails.postgraduationBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.postgraduationInstituteName}</td>
+                                <td>{getEmployeeDetails.postgraduationCourseName}</td>
+                                <td>{getEmployeeDetails.postgraduationGrade}</td>
+                              </tr>
+                              <tr>
+                                <td>{getEmployeeDetails.graduationBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.graduationInstituteName}</td>
+                                <td>{getEmployeeDetails.graduationCourseName}</td>
+                                <td>{getEmployeeDetails.graduationGrade}</td>
+                              </tr>
+                              <tr>
+                                <td>{getEmployeeDetails.intermediateBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.intermediateCollegeName}</td>
+                                <td>{getEmployeeDetails.intermediateCourseName}</td>
+                                <td>{getEmployeeDetails.intermediateGrade}</td>
+                              </tr>
+                              <tr>
+                                <td>{getEmployeeDetails.sscBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.sscSchoolName}</td>
+                                <td>{getEmployeeDetails.sscCourseName}</td>
+                                <td>{getEmployeeDetails.sscGrade}</td>
+                              </tr>
+
+                            </tbody>
+                          </Table>
+                        </Row>
                       </Card.Body>
                     </Card>
                   </Col>
                   <Col>
-                    <Card style={{ padding: 30, marginTop: 20, paddingBottom: 0 }}>
-                      <Card.Title>
-                        <h5>Experience:</h5>
-                      </Card.Title>
-                      <Card.Body style={{ paddingLeft: 20 }}>
-                        <Timeline theme={customTheme}>
-                          <BodyContent>
-                            <Section
-                              title={getEmployeeDetails.previousCompany1_name}
-                            >
-                              <Description
-                                text={getEmployeeDetails.previousCompany1_employeeId}
-                              />
-                              <Description
-                                text={getEmployeeDetails.previousCompany1_designation}
-                              />
-                            </Section>{" "}
-                            <Section
-                              title={getEmployeeDetails.previousCompany2_name}
-                            >
-                              <Description
-                                text={getEmployeeDetails.previousCompany2_designation}
-                              />
-                              <Description
-                                text={getEmployeeDetails.previousCompany2_employeeId}
-                              />
-                            </Section>{" "}
-                            <Section
-                              title={getEmployeeDetails.previousCompany3_name}
-                            >
-                              <Description
-                                text={getEmployeeDetails.previousCompany3_designation}
-                              />
-                              <Description
-                                text={getEmployeeDetails.previousCompany3_employeeId}
-                              />
-                            </Section>
-                          </BodyContent>
-                        </Timeline>
-                      </Card.Body>
-                    </Card>
+                    <Row>
+                      <Card style={{ padding: 30, marginTop: 20, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
+                        <Card.Title>
+                          <h5>Experience:</h5>
+                        </Card.Title>
+                        <Card.Body style={{ paddingLeft: 20, paddingRight: 20 }}>
+                          <Table>
+                            <thead>
+                              <tr>
+
+                                <th>Company Name</th>
+                                <th>Employee ID</th>
+                                <th>Designation</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{getEmployeeDetails.previousCompany1_name}</td>
+                                <td>{getEmployeeDetails.previousCompany1_employeeId}</td>
+                                <td>{getEmployeeDetails.previousCompany1_designation}</td>
+                              </tr>
+                              <tr>
+                                <td>{getEmployeeDetails.previousCompany2_name}</td>
+                                <td>{getEmployeeDetails.previousCompany2_employeeId}</td>
+                                <td>{getEmployeeDetails.previousCompany2_designation}</td>
+                              </tr>
+                              <tr>
+                                <td>{getEmployeeDetails.previousCompany3_name}</td>
+                                <td>{getEmployeeDetails.previousCompany3_employeeId}</td>
+                                <td>{getEmployeeDetails.previousCompany3_designation}</td>
+                              </tr>
+
+                            </tbody>
+                          </Table>
+                        </Card.Body>
+                      </Card>
+                    </Row>
+                    <Row>
+                      {/* <Card style={{ padding: 30, marginTop: 20, paddingBottom: 0 }}>
+                        <Card.Title>
+                          <h5>Promotion history:</h5>
+                        </Card.Title>
+                        <Card.Body style={{ paddingLeft: 20 }}>
+                          <Timeline theme={customTheme}>
+                            <BodyContent>
+                              <Section
+                              // title={getEmployeeDetails.previousCompany1_name}
+                              >
+                                <Description
+                                // text={getEmployeeDetails.previousCompany1_employeeId}
+                                />
+
+                              </Section>{" "}
+                              <Section
+                              //title={getEmployeeDetails.previousCompany2_name}
+                              >
+                                <Description
+                                // text={getEmployeeDetails.previousCompany2_designation}
+                                />
+
+                              </Section>{" "}
+
+                            </BodyContent>
+                          </Timeline>
+                        </Card.Body>
+                      </Card> */}
+
+                    </Row>
                   </Col>
                 </Row>
 

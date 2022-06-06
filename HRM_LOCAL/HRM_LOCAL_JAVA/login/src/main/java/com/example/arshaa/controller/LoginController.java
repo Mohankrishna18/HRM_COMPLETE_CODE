@@ -51,7 +51,7 @@ public class LoginController
     }
 	
 	@PutMapping("/resetPassword")
-	public ResponseEntity updatePasswordByUsername(ResetPassword reset) {
+	public ResponseEntity updatePasswordByUsername(@RequestBody ResetPassword reset) {
 		return service.updatePasswordByUsername(reset);
 	}
 

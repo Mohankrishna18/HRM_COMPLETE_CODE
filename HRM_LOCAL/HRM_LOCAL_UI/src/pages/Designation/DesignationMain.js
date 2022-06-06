@@ -2,11 +2,12 @@ import React from "react";
 import { Col, Row ,Card,Container} from "react-bootstrap";
 
 import Designation from "./DesignationComponents/Designation";
+import EditableDesignation from "./DesignationComponents/DesignationWithMtable";
 
 const DesignationMain = () => {
   return (
     <div  style={{ paddingTop: "20px" }}>
-     <Card responsive>
+     <Card responsive className="scroll">
         <Card.Header>
           <Card.Body>
             <Card.Title>Designations </Card.Title>
@@ -16,7 +17,7 @@ const DesignationMain = () => {
             <Container>
               <Row>
                 <Col xs={12}>
-                 <Designation />
+                 <EditableDesignation />
                 </Col>
               </Row>
             </Container>

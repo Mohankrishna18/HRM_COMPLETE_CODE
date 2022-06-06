@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { split } from 'lodash';
 
 function EmployeeMasterCard() {
 
@@ -47,14 +48,32 @@ function EmployeeMasterCard() {
                 setEmployeeDetails(response.data.data);
             })
     }, [])
+//     console.log(employeedetails)
 
-    var today = new Date (employeedetails.dateOfJoining);
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); 
-    var yyyy = today.getFullYear();
+// console.log(employeedetails.dateOfJoining)
+// let aaa=employeedetails.dateOfJoining;
+// console.log(aaa)
+// const bbb=aaa.split(' ');
+// console.log(bbb);
+// console.log(employeedetails.dateOfJoining)
+
+
+
+var doj = new Date(employeedetails.dateOfJoining);
+var dd = String(doj.getDate()).padStart(2, '0');
+var mm = String(doj.getMonth() + 1).padStart(2, '0');
+var yyyy = doj.getFullYear();
+ let doj1 = dd + '-' + mm + '-' + yyyy;
+// console.log(doj1);
+
+  
+    // var today = new Date (employeedetails.dateOfJoining);
+    // var dd = String(today.getDate()).padStart(2, '0');
+    // var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+    // var yyyy = today.getFullYear();
     
-    today = dd + '-' + mm + '-' + yyyy;
-    console.log(today);
+    // today = mm + '-' + dd + '-' + yyyy;
+    // console.log(today);
 
     return (
         <Row><Col>
@@ -109,7 +128,8 @@ function EmployeeMasterCard() {
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{}}>
-                                        {today}
+                                        {/* {employeedetails.dateOfJoining} */}
+                                        {doj1}
                                     </Card.Text>
                                 </Col>
                             </Row>
@@ -125,7 +145,7 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 10 }}>
+                            {/* <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Text style={{}}>
                                         <h6>Email: </h6>
@@ -134,6 +154,18 @@ function EmployeeMasterCard() {
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{}}>
                                         {employeedetails.email}
+                                    </Card.Text>
+                                </Col>
+                            </Row> */}
+                            <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                    <Card.Text style={{}}>
+                                        <h6>Employee Type: </h6>
+                                    </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                    <Card.Text style={{}}>
+                                        {employeedetails.employmentType}
                                     </Card.Text>
                                 </Col>
                             </Row>

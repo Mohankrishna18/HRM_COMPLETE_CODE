@@ -10,8 +10,8 @@ const EditDesignation = ({id, designations}) => {
 
   const handleClose = () => setModal(false);
   const handleShow = () => setModal(true);
-  console.log(id);
-  console.log(designations)
+  // console.log(id);
+  // console.log(designations)
 
   const initialvalues = {
     designationName: "",
@@ -22,19 +22,13 @@ const EditDesignation = ({id, designations}) => {
     axios.get("/dept/getAllDepartments").then((res) => 
     {
       setDepartments(res.data);
-      // res.data.map((m)=>{
-      //   console.log(m)
-      //   setDesignationData(m)
-      //   deptarray.push(m)
-
-      // })
     });
   }, []);
 
   const [allData, setAllData] = useState(initialvalues);
 
   const handleChange = (e) => {
-    console.log(e);
+    // console.log(e);
     const { name, value } = e.target;
     setAllData({
       ...allData,
@@ -44,11 +38,11 @@ const EditDesignation = ({id, designations}) => {
 
   const handleSubmit =  async (e) => {
     e.preventDefault();
-    console.log(id)
-    console.log(allData);
+    // console.log(id)
+    // console.log(allData);
     const res = await axios.put(`/designation/updateDesignations/${id}`, allData)
     {res!==null? console.log('success'): console.log('error')}
-    window.location.reload();
+    
   }
 
   return (

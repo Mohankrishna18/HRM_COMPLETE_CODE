@@ -11,7 +11,6 @@ const Designation = () => {
     <div>
       <Container-fluid>
         <DesignationModal />
-        <DesignationTable />
       </Container-fluid>
     </div>
   );

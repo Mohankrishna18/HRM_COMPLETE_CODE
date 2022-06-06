@@ -4,7 +4,7 @@ public class ResetPassword
 {
 	private String oldPassword;
 	private String newPassword;
-	private String conformNewPassword;
+	private String confirmNewPassword;
 	// @Temporal(TemporalType.DATE)
 	// private Date changePasswordDate = new Date(System.currentTimeMillis());
 	//
@@ -28,18 +28,18 @@ public class ResetPassword
 	public void setNewPassword(String newPassword) {
 	this.newPassword = newPassword;
 	}
-	public String getConformNewPassword() {
-	return conformNewPassword;
+	public String getConfirmNewPassword() {
+	return confirmNewPassword;
 	}
 	public void setConformNewPassword(String conformNewPassword) {
-	this.conformNewPassword = conformNewPassword;
+	this.confirmNewPassword = conformNewPassword;
 	}
 
-	public ResetPassword(String oldPassword, String newPassword, String conformNewPassword) {
+	public ResetPassword(String oldPassword, String newPassword, String confirmNewPassword) {
 	super();
 	this.oldPassword = oldPassword;
 	this.newPassword = newPassword;
-	this.conformNewPassword = conformNewPassword;
+	this.confirmNewPassword = confirmNewPassword;
 	}
 	public ResetPassword() {
 	super();
