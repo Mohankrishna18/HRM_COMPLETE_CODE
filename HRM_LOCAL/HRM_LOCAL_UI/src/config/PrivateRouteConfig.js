@@ -42,6 +42,7 @@ import UserName from "../pages/Administration/Users/UserMain";
 import RolesMain from "../pages/Administration/Roles&Permissions/RolesMain";
 import EmpAttendanceMain from "../pages/EmployeeAttendance/EmpAttendanceMain";
 import TaggedEmployeesMain from "../pages/ManagerEmployeesList/TaggedEmployeesMain";
+import ManagerLeaveHistory from "../pages/ManagerLeaveHistory/ManagerLeaveHistoryMain";
 
   
   
@@ -196,13 +197,13 @@ export default [
     ],
   },
   {
-    component: LeaveHistoryMain,
+    component: ManagerLeaveHistory,
     path: "/leavehistory",
     icon: <FcManager />,
     title: "Leave History",
     permission: [
      Roles.manager,
-      Roles.hradmin
+      
     ],
   },
   {

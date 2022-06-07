@@ -1,16 +1,22 @@
 package com.arshaa.hrm.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arshaa.hrm.entity.Holidaymanagement;
+import com.arshaa.hrm.model.HolidaysCount;
 import com.arshaa.hrm.repository.HolidayRepository;
 import com.arshaa.hrm.service.HolidayService;
 
@@ -49,6 +55,50 @@ public class HolidayManagementController {
 	{
 		return serv.getHolidays();
 	}
+	/*API TO Update HOLIDAY 
+	 *http://localhost:8065/holiday/updateholiday
+	 *PAYLOAD: 
+	{
+	"holidayTitle":"Ramzan",
+	"holidayDate":"2022-05-12",
+	"updatedOn":"2022-04-28"
+}
+	 */	
+	
+	
+	@PutMapping("/updateHolidayById/{holidayId}")
+	public ResponseEntity updateHolidayById(@PathVariable  int holidayId ,@RequestBody Holidaymanagement newholidaymaster) {
+		return serv.updateHolidayById(holidayId, newholidaymaster);
+	}
+		
+	/*API TO Delete HOLIDAY 
+	 *http://localhost:8065/holiday/updateholiday
+	 */	
+
+	@DeleteMapping("/deleteHoliday/{holidayId}")
+	public ResponseEntity DeleteHoliday(@PathVariable int holidayId) {
+		return serv.DeleteHoliday(holidayId);
+	}
+	
+	@GetMapping("getDataByYearAndMonth/{year}/{month}")
+	public ResponseEntity getData(@PathVariable int year,@PathVariable int month)
+	{
+	List<Holidaymanagement> hm=repo.findHolidaymanagementWithParticularYearAndMonth(year,month);
+
+
+
+	return new ResponseEntity(hm,HttpStatus.OK);
+	}
+	
+	@GetMapping("getDataCountByYearAndMonth/{year}/{month}")
+	public ResponseEntity getDataCount(@PathVariable int year,@PathVariable int month)
+	{
+	HolidaysCount count=new HolidaysCount();
+	int hm=repo.findHolidaymanagementCountWithParticularMonth(year,month);
+	count.setHolidayCount(hm);
+	return new ResponseEntity(hm,HttpStatus.OK);
+	}
+
 	public HolidayManagementController() {
 		// TODO Auto-generated constructor stub
 	}
