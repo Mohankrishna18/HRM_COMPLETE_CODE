@@ -140,6 +140,12 @@ ReportingManagerMain main=new ReportingManagerMain();
 return new ResponseEntity(em,HttpStatus.OK);
 }
 
+@GetMapping("/getEmployeeNameByEmployeeId/{employeeId}")
+public ResponseEntity getEmployeeNameByEmployeeId(@PathVariable String employeeId) {
+
+	return serv.getEmployeeNameByEmployeeId(employeeId);
+}
+
 // @PostMapping("/createId")
 // public String createId(@RequestBody Intern intern)
 // {

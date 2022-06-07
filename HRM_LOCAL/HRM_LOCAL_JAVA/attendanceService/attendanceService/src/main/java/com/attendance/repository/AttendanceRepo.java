@@ -12,9 +12,9 @@ import com.attendance.entity.AttendanceLog;
 @Repository
 public interface AttendanceRepo extends JpaRepository<AttendanceLog, Integer>{
 
-	@Query(value="select * from attendance_log  where month(attendance_log.punch_in) = ?1", nativeQuery=true)
+	@Query(value="select * from employeeattendance  where month(employeeattendance.punch_in) = ?1", nativeQuery=true)
 	List<AttendanceLog> findAttendanceLogWithParticularMonth(@Param("month") Integer month);
 	
-	@Query(value="select count(*) from attendance_log  where month(attendance_log.punch_in) = ?1 and employee_id=?2", nativeQuery=true)
+	@Query(value="select count(*) from employeeattendance  where month(employeeattendance.punch_in) = ?1 and employee_id=?2", nativeQuery=true)
 	int findAttendanceLogCountWithParticularMonth(@Param("month") Integer month,@Param("employee_id")String employeeId );
 }

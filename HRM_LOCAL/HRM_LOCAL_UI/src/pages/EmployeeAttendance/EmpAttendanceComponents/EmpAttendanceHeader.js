@@ -8,8 +8,7 @@ const EmpAttendanceHeader = (props) => {
     <div>
       <Row>
         <Col md={12}>
-          {/* <h5 className="mb-3">Holidays Management
-          </h5> */}
+          
         
         </Col>
         <EmpAttendanceForm />

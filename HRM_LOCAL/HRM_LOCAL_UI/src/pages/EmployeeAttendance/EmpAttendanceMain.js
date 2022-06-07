@@ -10,10 +10,7 @@ const EmpAttendanceMain = () => {
           <Card responsive className="scroll">
             <Card.Header>
               <Card.Body>
-                <Card.Title> Holiday Management</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                  Holidays
-                </Card.Subtitle>{" "}
+                <Card.Title> Employee Attendance</Card.Title>
                 <Container>
                   <Row>
                     <Col xs={12}>
