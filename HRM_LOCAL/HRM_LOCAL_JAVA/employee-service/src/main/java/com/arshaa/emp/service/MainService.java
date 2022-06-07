@@ -25,7 +25,8 @@ public interface MainService {
 	public ResponseEntity getApprovedData();
 	public ResponseEntity updateDesignationName(String employeeId, DesignationName name);
 
+    public ResponseEntity getReportingManagerByEmployeeId(String employeeId);
 
-
+    public ResponseEntity getEmployeeId();
 
 }
