@@ -16,7 +16,8 @@ public interface MainService {
 	public ResponseEntity<Onboarding> waitingForApprovelStatus();
 	public ResponseEntity updateApprovStatus(String onboardingId,HrApprovalStatus newOnboard);
 	public ResponseEntity getEmployeeDataByEmployeeId(String employeeId);
-	
+	public ResponseEntity getEmployeeNameByEmployeeId(String employeeId);
+
 	public ResponseEntity updateEmployeeDataByEmployeeId(String employeeId, EmployeeMaster empMaster);
 	public ResponseEntity<EmployeeMaster> getALLData();
 	public ResponseEntity addEmployee(EmployeeMaster newEmployee);

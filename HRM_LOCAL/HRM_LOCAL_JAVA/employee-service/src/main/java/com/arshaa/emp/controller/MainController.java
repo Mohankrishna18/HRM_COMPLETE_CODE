@@ -99,6 +99,11 @@ public class MainController {
 		return serv.updateDesignationName(employeeId, name);
 	}
 
+    @GetMapping("/getEmployeeNameByEmployeeId/{employeeId}")
+    public ResponseEntity getEmployeeNameByEmployeeId(@PathVariable String employeeId) {
+
+    	return serv.getEmployeeNameByEmployeeId(employeeId);
+	}
 	
 //	@PostMapping("/createId")
 //	public String createId(@RequestBody Intern intern)
