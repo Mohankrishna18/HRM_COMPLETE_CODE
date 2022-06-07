@@ -4,17 +4,25 @@ import image from "../Images/arshaalogo.png";
 import { NavLink, useHistory } from "react-router-dom";
 import { isLoggedIn } from "../utils";
 
+
+
 import { FaSignOutAlt } from "react-icons/fa";
 import { last } from "lodash";
 
+
+
+
 const NavBar = (props) => {
+
+
+
   //Routes obtained from default router config
   const menuItems = props.routes;
   let history = useHistory();
   //Perform logout
   function handleLogout() {
-    sessionStorage.removeItem("userdata");
-    history.push("/");
+    sessionStorage.removeItem('userdata');
+    history.push('/');
   }
 
   return (
@@ -41,24 +49,26 @@ const NavBar = (props) => {
                 </Navbar.Brand>
               </Navbar>
             </Nav>
-           
-            <Nav style={{ paddingLeft: "1520px" }}>
+
+
+
+            <Nav style={{ paddingLeft: '1420px' }}>
               <Navbar>
                 <Navbar.Brand href="#">
-                  {isLoggedIn() && (
-                    <FaSignOutAlt
-                      style={{ fontSize: "35px" }}
-                      onClick={handleLogout}
-                    />
-                  )}
+                  {isLoggedIn() && <FaSignOutAlt style={{ fontSize: '35px' }} onClick={handleLogout} />}
                 </Navbar.Brand>
               </Navbar>
             </Nav>
+
           </Navbar>
         </div>
+
       </Col>
+
     </Row>
   );
 };
+
+
 
 export default NavBar;

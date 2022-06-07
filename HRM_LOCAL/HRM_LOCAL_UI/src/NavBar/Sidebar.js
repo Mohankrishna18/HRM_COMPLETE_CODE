@@ -19,7 +19,7 @@ const Sidebar = (props) => {
   }
 
   return (
-    <Row>
+    <Row className="scroll">
       <Tab.Container id="list-group-tabs-example">
         <Col xs={12} xxl={12} xl={12} lg={12} md={12} sm={12}>
           <div style={{ boxShadow: "10px black" }}>

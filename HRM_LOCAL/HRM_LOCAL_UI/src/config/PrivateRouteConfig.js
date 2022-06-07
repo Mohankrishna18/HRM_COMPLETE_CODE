@@ -43,6 +43,7 @@ import RolesMain from "../pages/Administration/Roles&Permissions/RolesMain";
 import EmpAttendanceMain from "../pages/EmployeeAttendance/EmpAttendanceMain";
 import TaggedEmployeesMain from "../pages/ManagerEmployeesList/TaggedEmployeesMain";
 import ManagerLeaveHistory from "../pages/ManagerLeaveHistory/ManagerLeaveHistoryMain";
+import HrLeaveHistorymain from "../pages/HrLeaveHistory/HrLeaveHistorymain"
 
   
   
@@ -214,6 +215,30 @@ export default [
     permission: [
      Roles.manager,
       Roles.hradmin
+    ],
+  },
+  {
+    component: HrLeaveHistorymain,
+    path: "/HrLeaveHistory",
+    icon: <FcManager />,
+    title: "Hr Leave History ",
+    permission: [
+     Roles.manager,
+      Roles.hradmin
+    ],
+  },
+  {
+    component: LeaveHistoryMain,
+    path: "/LeaveHistory",
+    icon: <FcManager />,
+    title: "Leave History",
+    permission: [
+     
+      Roles.employee,
+      Roles.hr,
+      Roles.manager,
+      Roles.hradmin,
+      
     ],
   },
 ];
