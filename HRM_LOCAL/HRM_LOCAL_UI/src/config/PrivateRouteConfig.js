@@ -201,7 +201,7 @@ export default [
     component: ManagerLeaveHistory,
     path: "/leavehistory",
     icon: <FcManager />,
-    title: "Leave History",
+    title: "Manager Leave History",
     permission: [
      Roles.manager,
       
