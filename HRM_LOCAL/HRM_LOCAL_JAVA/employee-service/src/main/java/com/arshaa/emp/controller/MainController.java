@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.web.multipart.MultipartFile;
+
+
 
 import com.arshaa.emp.entity.EmployeeMaster;
 import com.arshaa.emp.entity.EmployeeProfile;
@@ -39,6 +42,7 @@ import com.arshaa.emp.model.ResponseMessage;
 import com.arshaa.emp.model.ResponseFile;
 import com.google.common.net.HttpHeaders;
 
+
 @RestController
 @RequestMapping("/emp")
 public class MainController {
@@ -51,6 +55,7 @@ public class MainController {
 	MainService serv;
 	@Autowired
 	ReportingManagerService eserv;
+
 	@Autowired
 	EmployeeProfileService epServ;
 
@@ -132,12 +137,29 @@ public class MainController {
 		return new ResponseEntity(em, HttpStatus.OK);
 	}
 
+
+	@GetMapping("/getEmployeeNameByEmployeeId/{employeeId}")
+	public ResponseEntity getEmployeeNameByEmployeeId(@PathVariable String employeeId) {
+
+		return serv.getEmployeeNameByEmployeeId(employeeId);
+
 	@GetMapping("/getEmployeeNameByEmployeeId/{employeeId}")
 	public ResponseEntity getEmployeeNameByEmployeeId(@PathVariable String employeeId) {
 
 		return serv.getEmployeeNameByEmployeeId(employeeId);
 	}
 
+	@GetMapping("/getReportingManagerByEmployeeId/{employeeId}")
+	public ResponseEntity getReportingManagerByEmployeeId(@PathVariable String employeeId) {
+
+		return serv.getReportingManagerByEmployeeId(employeeId);
+
+	}
+
+	@GetMapping("/getEmployeeIds")
+	public ResponseEntity getEmployeeId() {
+		return serv.getEmployeeId();
+	}
 // @PostMapping("/createId")
 // public String createId(@RequestBody Intern intern)
 // {

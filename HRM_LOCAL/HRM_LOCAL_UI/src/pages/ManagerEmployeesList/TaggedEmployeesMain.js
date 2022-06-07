@@ -1,14 +1,10 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
-
+import ManagerTable from './ManagerTable'
 const TaggedEmployeesMain = () => {
   return (
     <div>
-      <Row>
-          <Col>
-            <h1>Sravya</h1>
-          </Col>
-      </Row>
+       <ManagerTable />
     </div>
   )
 }

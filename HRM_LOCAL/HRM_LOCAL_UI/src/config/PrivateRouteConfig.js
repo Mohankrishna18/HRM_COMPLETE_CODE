@@ -199,7 +199,7 @@ export default [
   },
   {
     component: ManagerLeaveHistory,
-    path: "/leavehistory",
+    path: "/managerleavehistory",
     icon: <FcManager />,
     title: "Manager Leave History",
     permission: [

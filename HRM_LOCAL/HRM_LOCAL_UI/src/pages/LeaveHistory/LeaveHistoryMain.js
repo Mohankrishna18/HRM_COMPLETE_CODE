@@ -1,9 +1,9 @@
 import React from 'react'
-
+import LeaveEmployeeHistory from './LeaveToApply'
 const LeaveHistoryMain = () => {
   return (
     <div>
-      <h1>Happy Coding Your component chandrika and sravya</h1>
+          <LeaveEmployeeHistory />
     </div>
   )
 }
