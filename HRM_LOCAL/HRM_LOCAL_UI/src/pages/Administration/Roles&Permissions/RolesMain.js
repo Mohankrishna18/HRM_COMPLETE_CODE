@@ -1,30 +1,30 @@
 import React from "react";
-import { Card, Col, Row } from "react-bootstrap";
+import { Row, Col, Card, Container } from "react-bootstrap";
 
+// Testing purpose
 
-function RolesMain() {
+import RolesCard from "./RolesCard";
+
+const RolesMain = () => {
   return (
-    <div>
-      <Row>
-        <Col>
-        <h1>Murali</h1>
-          {/* <Card>
-            <Card.Header>
-              <Card.Body>
-                <Card.Title>Roles</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                  Administration/Roles{" "}
-                </Card.Subtitle>
-                <h1>Murali</h1>
-              </Card.Body>
-            </Card.Header>
-          </Card>
-          <RolesCard />
-          <RolesPermissions /> */}
-        </Col>
-      </Row>
+    <div style={{ paddingTop: "20px" }}>
+      <Card responsive className="scroll">
+        <Card.Header>
+          <Card.Body>
+            <Card.Title>Roles</Card.Title>
+
+            <Container>
+              <Row>
+                <Col xs={12}>
+                  <RolesCard />
+                </Col>
+              </Row>
+            </Container>
+          </Card.Body>
+        </Card.Header>
+      </Card>
     </div>
   );
-}
-
+};
+// };
 export default RolesMain;

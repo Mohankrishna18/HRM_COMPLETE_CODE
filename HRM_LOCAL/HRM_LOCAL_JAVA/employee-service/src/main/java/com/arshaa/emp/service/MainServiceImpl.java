@@ -22,6 +22,7 @@ import com.arshaa.emp.entity.EmployeeMaster;
 import com.arshaa.emp.entity.Intern;
 import com.arshaa.emp.entity.Onboarding;
 import com.arshaa.emp.model.DesignationName;
+import com.arshaa.emp.model.EmployeeName;
 import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.StringConstants;
@@ -488,5 +489,18 @@ public class MainServiceImpl implements MainService {
 
 		}
 	}
+
+	@Override
+	public ResponseEntity getEmployeeNameByEmployeeId(String employeeId) {
+		
+			EmployeeMaster employeeMaster = emRepo.getById(employeeId);
+            
+            	 
+            	 EmployeeName en=new EmployeeName();
+            	en.setEmployeeName(employeeMaster.getFirstName().concat(" ").concat(employeeMaster.getMiddleName().concat(" ").concat(employeeMaster.getLastName())));
+            	 
+     			return new ResponseEntity(en, HttpStatus.OK);
+             }
+             	
 
 }

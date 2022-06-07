@@ -134,7 +134,7 @@ export default [
     component: AdminAttendanceMain,
     path: "/AdminAttendanceMain",
     icon: <FcNeutralTrading />,
-    title: "Employees Attendance",
+    title: "Admin Attendance",
     permission: [Roles.hradmin, Roles.hr,Roles.taa],
   },
   {
