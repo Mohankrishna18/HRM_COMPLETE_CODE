@@ -100,6 +100,12 @@ public class LeaveController {
 			 
 			 	return "Deleted Successfully";
 			 }
+		// Written by Sri Divya
+
+		 @GetMapping("/getAllApprovedLeaves/{leaveStatus}")
+		 public List<User> getAllApprovedLeaves(@PathVariable String leaveStatus) {
+		 return service.findByLeaveStatus(leaveStatus);
+		 }
 	 
 	 
 	 //Get api for get  employees related to particular manager -->chandrika

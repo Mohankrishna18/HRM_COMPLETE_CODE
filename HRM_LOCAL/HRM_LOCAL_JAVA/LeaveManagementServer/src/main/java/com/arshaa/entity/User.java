@@ -49,8 +49,18 @@ public class User {
 	private String reportingManager;
 	@Column
 	private String rejectReason;
+	@Column
+	private String managerApproval;
 	
 	
+
+	public String getManagerApproval() {
+		return managerApproval;
+	}
+
+	public void setManagerApproval(String managerApproval) {
+		this.managerApproval = managerApproval;
+	}
 
 	public int getEmployeeleaveId() {
 		return employeeleaveId;
@@ -155,7 +165,7 @@ public class User {
 
 	public User(int employeeleaveId, String employeeId, String leaveType, Date fromDate, Date toDate, int numberOfDays,
 			String leaveReason, String updatedBy, Date updatedOn, String leaveStatus, String reportingManager,
-			String rejectReason) {
+			String rejectReason, String managerApproval) {
 		super();
 		this.employeeleaveId = employeeleaveId;
 		this.employeeId = employeeId;
@@ -169,7 +179,10 @@ public class User {
 		this.leaveStatus = leaveStatus;
 		this.reportingManager = reportingManager;
 		this.rejectReason = rejectReason;
+		this.managerApproval = managerApproval;
 	}
+
+	
 	
 	 
 }
