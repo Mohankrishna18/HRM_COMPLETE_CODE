@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Accordion, Button, Card, Form, InputGroup } from 'react-bootstrap';
+import { Accordion, Button, Card, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
@@ -11,48 +11,13 @@ import * as Yup from "yup";
 import EmployeeMasterCard from "./EmployeeMasterCard";
 import { useHistory } from 'react-router-dom';
 import { set } from 'lodash';
-import { Formik } from "formik";
 
-
-// const SignupSchema = Yup.object().shape({
-
-//     email: Yup.string().email("Invalid email").required("Required"),
-//     password: Yup.string()
-//       .min(5, "Atleast 6 characters long")
-//       .max(50, "Too Long")
-//       .required(),
-//     confirmPassword: Yup.string()
-//       .required("Required")
-//       .oneOf([Yup.ref("password"), null], "Passwords must match"),
-//     terms: Yup.bool().required().oneOf([true], "Terms must be accepted")
-//   });
-
-
-  
 
 function EmployeeMasterForm() {
 
     const userData = sessionStorage.getItem('userdata')
     const userData1 = JSON.parse(userData)
     const employeeid = userData1.data.employeeId
-
-    var doj = new Date(dateOfJoining);
-    var dd = String(doj.getDate()).padStart(2, '0');
-    var mm = String(doj.getMonth() + 1).padStart(2, '0');
-    var yyyy = doj.getFullYear();
-     doj = yyyy + '-' + mm + '-' + dd;
-    // console.log(doj);
-    
-    // const [fromDate, setFromDate] = useState("");
-    // const [toDate, setToDate] = useState("");
-
-    const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
-    const [graduationPassedYear, setGraduationPassedYear] = useState("");
-  
-    // const assignFromDate = e => {
-    //   console.log(e.target.value);
-    //   setGraduationJoiningYear(e.target.value);
-    // };
 
     // Here usestate has been used in order
     // to set and get values from the jsx
@@ -69,6 +34,7 @@ function EmployeeMasterForm() {
     const [primarySkills, setPrimarySkills] = useState("");
     const [secondarySkills, setSecondarySkills] = useState("");
     const [email, setEmail] = useState("");
+
     const [bloodGroup, setBloodGroup] = useState("");
     const [gender, setGender] = useState("");
     const [maritalStatus, setMaritalStatus] = useState("");
@@ -93,8 +59,8 @@ function EmployeeMasterForm() {
     const [graduationInstituteName, setGraduationInstituteName] = useState("");
     const [graduationInstituteCity, setGraduationInstituteCity] = useState("");
     const [graduationCourseName, setGraduationCourseName] = useState("");
-    // const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
-    // const [graduationPassedYear, setGraduationPassedYear] = useState("");
+    const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
+    const [graduationPassedYear, setGraduationPassedYear] = useState("");
     const [graduationGrade, setGraduationGrade] = useState("");
     const [intermediateBoardOfUniversity, setIntermediateBoardOfUniversity] = useState("");
     const [intermediateCollegeName, setIntermediateCollegeName] = useState("");
@@ -134,13 +100,6 @@ function EmployeeMasterForm() {
     //const [reportingManager, setReportingManager] = useState("");
     const [profilePhoto, setProfilePhoto] = useState("");
 
-//Date Format
-    // var dob = new Date(dateOfBirth);
-    // var dd = String(dob.getDate()).padStart(2, '0');
-    // var mm = String(dob.getMonth() + 1).padStart(2, '0');
-    // var yyyy = dob.getFullYear();
-    // const dob1 = dd + '-' + mm + '-' + yyyy;
-    // console.log(dob1);
 
 
     // Useeffect take care that page will be rendered only once
@@ -149,25 +108,6 @@ function EmployeeMasterForm() {
     //     // setage(localStorage.getItem('Age'))
     //     // setid(localStorage.getItem('id'))
     // }, [])
-
-    // console.log(dateOfBirth)
-    var dob = new Date(dateOfBirth);
-    var dd = String(dob.getDate()).padStart(2, '0');
-    var mm = String(dob.getMonth() + 1).padStart(2, '0');
-    var yyyy = dob.getFullYear();
-     dob = yyyy + '-' + mm + '-' + dd;
-    // console.log(dob);
-
-    // console.log(dateOfJoining)
-    // var doj = new Date(dateOfJoining);
-    // var dd = String(doj.getDate());
-    // var mm = String(doj.getMonth());
-    // var yyyy = doj.getFullYear();
-    //  doj = yyyy + '-' + mm + '-' + dd;
-    // console.log(doj);
-
-
-
 
     //get call Get the Employee onboarding Details
     const [employeedetails, setEmployeeDetails] = useState([])
@@ -260,13 +200,8 @@ function EmployeeMasterForm() {
 
             })
     }, [])
-    // console.log(firstName)
-    // console.log(passportExpiryDate)
-  
-    // console.log(dateOfJoining)
-    // console.log(dateOfBirth)
-    // console.log(passportExpiryDate)
-    // console.log(postgraduationPassedYear)
+    console.log(firstName)
+
 
     // function for handling the edit and 
     // pushing changes of editing/updating
@@ -347,13 +282,71 @@ function EmployeeMasterForm() {
             previousCompany3_reasonForRelieving,
            
             })
-        // console.log(firstName);
-        // console.log(lastName);
-        // console.log(passportExpiryDate)
-        
+        console.log(firstName);
+        console.log(lastName);
+        console.log(passportExpiryDate)
+
         toast.success("Form Submitted Successfully");
+
+        const url = `/emp/upload/${employeeid}/`;
+
+        const formData = new FormData();
+
+        formData.append('file', file);
+
+        formData.append('fileName', file.name);
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data',
+            },
+        };
+        console.log(formData);
+        axios.post(url,formData,config).then((response) => {
+            console.log(response.data);
+        }).catch((error)=>{
+            console.log("oops not uploaded!");
+        })
     }
-    
+    const [file,setFile]=useState("")
+    const onSubmit = async (e) => {
+        // setData(" ");
+        // data.preventDefault();
+        //e.preventDefault()
+        // console.log(data)
+
+        // reset();
+        await axios.put(`/emp/updateEmployeeDataByEmployeeId/${employeeid}`, data)
+        console.log(data);
+        // notify();
+        toast.success("Form Submitted Successfully");
+        // refreshPage();
+        const url = `/emp/upload/${employeeid}/`;
+
+        const formData = new FormData();
+
+        formData.append('file', file);
+
+        formData.append('fileName', file.name);
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data',
+            },
+        };
+        console.log(formData);
+        axios.post(url,formData,config).then((response) => {
+            console.log(response.data);
+        }).catch((error)=>{
+            console.log("oops not uploaded!");
+        })
+
+    }
+    function handleChange(event) {
+
+        setFile(event.target.files[0])
+
+        console.log(event.target.files[0])
+
+    }
 
     return (
         <div>
@@ -371,34 +364,7 @@ function EmployeeMasterForm() {
                                     <Card.Title style={{ margin: 20, textAlign: "center" }}>Personal Details</Card.Title>
                                 </Card>
 
-
-                                {/* <Formik
-      validationSchema={SignupSchema}
-      onClick ={changeHandler}
-      validateOnChange={false}
-      // validatenOnBlur={false}
-      initialValues={{
-      
-        bloodGroup : "",
-        
-      }}
-      // handleChange={handleChange}
-      // isValid={validated}
-    >
-      {({
-        handleSubmit,
-        handleChange,
-        changeHandler,
-        handleBlur,
-        values,
-        touched,
-        isValid,
-        errors,
-        isValidating
-      }) => ( */}
-
-                                <Form style={{ padding: 10 }}   
-                                >
+                                <Form style={{ padding: 10 }}>
                                     <Row className="mb-5" >
                                         {/* setting a name from the input textfiled */}
                                         <Form.Group as={Col} className="mb-3" md="6" controlId="formBasicEmail">
@@ -418,31 +384,28 @@ function EmployeeMasterForm() {
                                                 onChange={e => setFirstName(e.target.value)}
                                                 type="text" placeholder="Enter Name" />
                                         </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }} >
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Middle name</Form.Label>
-                                            <Form.Control 
+                                            <Form.Control
                                                 name="middleName"
                                                 type="text"
                                                 placeholder="Middle name"
                                                 value={middleName}
+
                                                 onChange={(e) => setMiddleName(e.target.value)}
                                             />
                                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                         </Form.Group>
                                         <Form.Group as={Col} className="mb-3" md="6" controlId="formBasicEmail">
                                             <Form.Label>Last Name*</Form.Label>
-                                          
                                             <Form.Control value={lastName}
                                                 // disabled
                                                 required
                                                 onChange={e => setLastName(e.target.value)}
                                                 type="text" placeholder="Enter Name" />
-                                               
                                         </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }} >
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Phone Number*</Form.Label>
-                                            <InputGroup >
-                <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
                                             <Form.Control
                                                 required
                                                 type="text"
@@ -450,18 +413,13 @@ function EmployeeMasterForm() {
                                                 placeholder="phone Number"
                                                 value={primaryPhoneNumber}
                                                 onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
-                                            />
-                                             </InputGroup>
-                                             </Form.Group>
+                                            /></Form.Group>
                                         <Form.Group as={Col} className="mb-3" md="6" controlId="formBasicEmail">
                                             <Form.Label>secondaryPhone*</Form.Label>
-                                            <InputGroup >
-                <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
                                             <Form.Control value={secondaryPhoneNumber}
                                                 required
                                                 onChange={e => setSecondaryPhone(e.target.value)}
                                                 type="text" placeholder="Enter Phone" />
-                                                </InputGroup>
                                         </Form.Group>
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Email*</Form.Label>
@@ -494,7 +452,7 @@ function EmployeeMasterForm() {
                                                 name="dateOfBirth"
                                                 placeholder="DOB"
                                                 controlId="dateOfBirth"
-                                                value={dob}
+                                                value={dateOfBirth}
                                                 onChange={(e) => setDateOfBirth(e.target.value)}
                                             ></Form.Control>
 
@@ -509,11 +467,6 @@ function EmployeeMasterForm() {
                                                 placeholder="Blood Group "
                                                 controlId="bloodGroup"
                                                 value={bloodGroup}
-
-                                               
-                                                // isValid={touched.bloodGroup && !errors.bloodGroup}
-                                                // isInvalid={touched.bloodGroup && !!errors.bloodGroup}
-
                                                 onChange={(e) => setBloodGroup(e.target.value)}
 
                                             >
@@ -606,12 +559,12 @@ function EmployeeMasterForm() {
                                             <Form.Label>Date of Joining*</Form.Label>
                                             <Form.Control
                                                 required
-                                                // disabled
+                                                disabled
                                                 type="date"
                                                 name="dateOfJoining"
                                                 controlId="dateOfJoining"
                                                 placeholder="DOJ"
-                                                value={doj}
+                                                value={dateOfJoining}
                                                 onChange={(e) => setDateOfJoining(e.target.value)}
                                             />
                                         </Form.Group> */}
@@ -857,7 +810,6 @@ function EmployeeMasterForm() {
                                                                 placeholder="Passed out year"
                                                                 controlId="postgraduationPassedYear"
                                                                 value={postgraduationPassedYear}
-                                                                min={postgraduationJoiningYear}
                                                                 name="postgraduationPassedYear"
                                                                 onChange={(e) => setPostgraduationPassedYear(e.target.value)}
                                                             />
@@ -958,7 +910,6 @@ function EmployeeMasterForm() {
                                                 placeholder="Passed out year"
                                                 controlId="graduationPassedYear"
                                                 name="graduationPassedYear"
-                                                min={graduationJoiningYear}
                                                 value={graduationPassedYear}
                                                 onChange={(e) => setGraduationPassedYear(e.target.value)}
                                             ></Form.Control>
@@ -1063,7 +1014,6 @@ function EmployeeMasterForm() {
                                                 placeholder="Passed out year"
                                                 controlId="intermediatePassedYear"
                                                 value={intermediatePassedYear}
-                                                min={intermediateJoiningYear}
                                                 onChange={(e) => setIntermediatePassedYear(e.target.value)}
                                                 name="intermediatePassedYear"
                                             ></Form.Control>
@@ -1162,7 +1112,6 @@ function EmployeeMasterForm() {
                                                 placeholder="Passed out year"
                                                 controlId="sscPassedYear"
                                                 value={sscPassedYear}
-                                                min={sscJoiningYear}
                                                 onChange={(e) => setSscPassedYear(e.target.value)}
 
                                             ></Form.Control>
@@ -1230,7 +1179,6 @@ function EmployeeMasterForm() {
                                                                 placeholder="Date of Relieving"
                                                                 controlId="previousCompany1_relievingDate"
                                                                 value={previousCompany1_relievingDate}
-                                                                min={previousCompany1_joiningDate}
                                                                 onChange={(e) => setPreviousCompany1_relievingDate(e.target.value)}
                                                                 name="previousCompany1_relievingDate"
                                                             />
@@ -1329,7 +1277,6 @@ function EmployeeMasterForm() {
                                                                 placeholder="Date of Relieving"
                                                                 controlId="previousCompany2_relievingDate"
                                                                 value={previousCompany2_relievingDate}
-                                                                min={previousCompany2_joiningDate}
                                                                 onChange={(e) => setPreviousCompany2_relievingDate(e.target.value)}
                                                                 name="previousCompany2_relievingDate"
                                                             />
@@ -1375,6 +1322,7 @@ function EmployeeMasterForm() {
                                                                 controlId="previousCompany2_reasonForRelieving"
                                                                 value={previousCompany2_reasonForRelieving}
                                                                 onChange={(e) => setPreviousCompany2_reasonForRelieving(e.target.value)}
+
                                                                 name="previousCompany2_reasonForRelieving"
                                                             />
                                                         </Form.Group>
@@ -1418,6 +1366,7 @@ function EmployeeMasterForm() {
                                                                 controlId="previousCompany3_joiningDate"
                                                                 value={previousCompany3_joiningDate}
                                                                 onChange={(e) => setPreviousCompany3_joiningDate(e.target.value)}
+
                                                                 name="previousCompany3_joiningDate"
                                                             />
                                                         </Form.Group>
@@ -1428,7 +1377,6 @@ function EmployeeMasterForm() {
                                                                 placeholder="Date of Relieving"
                                                                 controlId="prevoiusCompany3_relievingDate"
                                                                 value={previousCompany3_relievingDate}
-                                                                min={previousCompany3_joiningDate}
                                                                 onChange={(e) => setPreviousCompany3_relievingDate(e.target.value)}
 
                                                                 name="previousCompany3_relievingDate"
@@ -1494,7 +1442,10 @@ function EmployeeMasterForm() {
                                             />
                                         </Form.Group> */}
                                         {/* Hadinling an onclick event running an edit logic */}
-
+                                   <Form.Group>
+                                       <Form.Control
+                                        type="file" onChange={handleChange} />
+                                   </Form.Group>
                                     </Row>
                                     <Button className="rounded-pill" style={{ backgroundColor: "#eb4509", float: "right" }}
                                         onClick={e => changeHandler(e)}
@@ -1503,7 +1454,6 @@ function EmployeeMasterForm() {
                                         Submit
                                     </Button>
                                 </Form>
-                               
                             </Card.Body></Card.Header></Card></Col></Row>
         </div>
     )

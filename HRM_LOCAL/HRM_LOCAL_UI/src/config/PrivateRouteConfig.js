@@ -44,6 +44,7 @@ import EmpAttendanceMain from "../pages/EmployeeAttendance/EmpAttendanceMain";
 import TaggedEmployeesMain from "../pages/ManagerEmployeesList/TaggedEmployeesMain";
 import ManagerLeaveHistory from "../pages/ManagerLeaveHistory/ManagerLeaveHistoryMain";
 import HrLeaveHistorymain from "../pages/HrLeaveHistory/HrLeaveHistorymain"
+import ManagerLeavesToApproveMain from "../pages/ManagerLeavesToApprove/ManagerLeavesToApproveMain";
 
   
   
@@ -193,8 +194,18 @@ export default [
     icon: <FcManager />,
     title: "Leaves To Approve",
     permission: [
-      Roles.manager,
+      
       Roles.hradmin
+    ],
+  },
+  {
+    component: ManagerLeavesToApproveMain,
+    path: "/managerLeavesToApprove",
+    icon: <FcManager />,
+    title: "Manager Leaves To Approve",
+    permission: [
+      
+      Roles.manager
     ],
   },
   {
