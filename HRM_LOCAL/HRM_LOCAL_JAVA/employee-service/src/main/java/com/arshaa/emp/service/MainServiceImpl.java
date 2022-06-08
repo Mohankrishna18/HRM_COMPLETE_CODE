@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.arshaa.emp.common.EmployeeLogin;
+import com.arshaa.emp.common.GetReportingManager;
 import com.arshaa.emp.common.UserModel;
 import com.arshaa.emp.common.Users;
 import com.arshaa.emp.entity.EmployeeMaster;
 import com.arshaa.emp.entity.Intern;
 import com.arshaa.emp.entity.Onboarding;
 import com.arshaa.emp.model.DesignationName;
+import com.arshaa.emp.model.EmployeeName;
+import com.arshaa.emp.model.GetEmployeeIds;
 import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.StringConstants;
@@ -488,5 +491,49 @@ public class MainServiceImpl implements MainService {
 
 		}
 	}
+
+	@Override
+	public ResponseEntity getEmployeeNameByEmployeeId(String employeeId) {
+		
+			EmployeeMaster employeeMaster = emRepo.getById(employeeId);
+            
+            	 
+            	 EmployeeName en=new EmployeeName();
+            	en.setEmployeeName(employeeMaster.getFirstName().concat(" ").concat(employeeMaster.getMiddleName().concat(" ").concat(employeeMaster.getLastName())));
+            	 
+     			return new ResponseEntity(en, HttpStatus.OK);
+             }
+
+	@Override
+	public ResponseEntity getReportingManagerByEmployeeId(String employeeId) {
+		
+		EmployeeMaster employeeMaster = emRepo.getById(employeeId);
+
+		GetReportingManager rm=new GetReportingManager();
+		rm.setReportingmanager(employeeMaster.getReportingManager());
+			return new ResponseEntity(rm, HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity getEmployeeId() {
+
+		try {
+
+			List<EmployeeMaster> em=emRepo.findAll();
+			GetEmployeeIds ge=new GetEmployeeIds();
+			em.forEach(e->{
+				
+				ge.setEmployeeId(e.getEmployeeId());
+
+			});
+			return new ResponseEntity(ge,HttpStatus.OK);
+		}
+		catch (Exception e) {
+			return new ResponseEntity("Something went wrong",HttpStatus.OK);
+
+		}
+
+	}
+             	
 
 }

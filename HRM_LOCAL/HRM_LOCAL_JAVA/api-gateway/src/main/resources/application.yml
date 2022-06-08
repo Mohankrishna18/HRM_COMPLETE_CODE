@@ -35,7 +35,11 @@ spring:
         - id: holidayService
           uri: lb://holidayService
           predicates:
-            - Path=/holiday/**       
+            - Path=/holiday/** 
+        - id: attendanceService
+          uri: lb://attendanceService
+          predicates:
+            - Path=/attendance/**           
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin

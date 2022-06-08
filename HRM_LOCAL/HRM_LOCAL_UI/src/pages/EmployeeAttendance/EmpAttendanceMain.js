@@ -1,29 +1,31 @@
-import React from 'react'
-import NavBar from '../../NavBar/NavBar'
-import Sidebar from '../../NavBar/Sidebar'
-import EmpAttendance from './EmpAttendanceComponents/EmpAttendanceCard'
-import EmpAttendanceForm from './EmpAttendanceComponents/EmpAttendanceForm'
-import EmpAttendanceHeader from './EmpAttendanceComponents/EmpAttendanceHeader'
-import EmpAttendanceTable from './EmpAttendanceComponents/EmpAttendanceTable'
-
-
-
+import React from "react";
+import { Card, Col, Container, Row } from "react-bootstrap";
+import EmpAttendanceHeader from "./EmpAttendanceComponents/EmpAttendanceHeader";
 
 const EmpAttendanceMain = () => {
-return (
-<div>
+  return (
+    <div>
+      <Row>
+        <Col>
+          <Card responsive className="scroll">
+            <Card.Header>
+              <Card.Body>
+                <Card.Title> Employee Attendance</Card.Title>
+                <Container>
+                  <Row>
+                    <Col xs={12}>
+                      <EmpAttendanceHeader />
+                      {/* <HolidayScreen /> */}
+                    </Col>
+                  </Row>
+                </Container>
+              </Card.Body>
+            </Card.Header>
+          </Card>
+        </Col>
+      </Row>
+    </div>
+  );
+};
 
-
-
-<Sidebar>
-<EmpAttendanceHeader />
-<EmpAttendanceForm />
-<EmpAttendanceTable />
-</Sidebar>
-</div>
-)
-}
-
-
-
-export default EmpAttendanceMain
+export default EmpAttendanceMain;

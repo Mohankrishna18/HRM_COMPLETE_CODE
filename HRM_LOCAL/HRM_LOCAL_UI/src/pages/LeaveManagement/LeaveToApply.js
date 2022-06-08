@@ -1,14 +1,72 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Button, Container } from "react-bootstrap";
-
+import axios from "../../Uri";
 import { Row, Col } from "react-bootstrap";
 import LeaveTable from "../LeaveManagement/LeaveTable";
 import AddLeave from "../LeaveManagement/AddLeave";
 
 function LeaveEmployee() {
+  const [count, setCount] = useState();
+  const [entitle, setEntitle] = useState([]);
+  
+  const [leave, setLeaveData] = useState([]);
+  const userData = sessionStorage.getItem("userdata");
+  const userData1 = JSON.parse(userData);
+  var array = [];
+  const employeeid = userData1.data.employeeId;
+  console.log(employeeid);
+
+  useEffect(() => {
+    axios.get(`leave/getLeaveHistoryByEmployeeid/${employeeid}`).then((res) => {
+      console.log(res.data);
+      res.data.map((m) => {
+        console.log(m.numberofdays);
+        array.push(m.numberofdays);
+        console.log(array);
+        let sum = 0;
+
+        for (let i = 0; i < array.length; i++) {
+          sum += array[i];
+        }
+        setCount(sum);
+
+        //  const len = m.length()
+        //   for(i=0;i<=len;i+m.numberofdays){
+        //     console.log(i)
+        //   }
+      });
+      // setLeaveData(res.data);
+    });
+  }, []);
+  useEffect(() => {
+    loadData();
+  },[])
+  const loadData = () => {
+    axios.get(`/leave/Annual`).then((res) => {
+      console.log(res.data.noOfDays);
+      setEntitle(res.data.noOfDays);
+    });
+  };
+  useEffect(() => {
+    axios.get(`leave/getLeaveHistoryByEmployeeid/${employeeid}`).then((res) => {
+      console.log(res.data);
+      setLeaveData(res.data);
+    });
+  }, []);
+  // const loadData = () => {
+  //   axios.get("/leave/annualleave").then((res) => {
+  //     console.log(res);
+  //   });
+  // };
+  // useEffect(() => {
+  //   loadData();
+  // }, []);
+
+  console.log(count);
   return (
     <div>
-      <Container>
+      {/* <Container> */}
+      <Card bg="white">
         <Row>
           <Col xs={6} md={8}>
             <Card.Body>
@@ -38,6 +96,23 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
                 <Card.Body>
                   <h5>
                     {" "}
+                    <Card.Title>Remained Leaves</Card.Title>
+                 
+                       <Card.Subtitle className="mb-2 text-muted">{entitle-count}</Card.Subtitle>
+                   
+                   
+                    {/* <Card.Text>8 Today</Card.Text> */}
+                  </h5>
+                </Card.Body>
+              </Card>
+            </Card>
+          </Col>
+          <Col>
+            <Card>
+              <Card border="warning">
+                <Card.Body>
+                  <h5>
+                    {" "}
                     <Card.Title>Loss Of Pay</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">3</Card.Subtitle>
                     {/* <Card.Text>12/60</Card.Text> */}
@@ -52,22 +127,10 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
                 <Card.Body>
                   <h5>
                     {" "}
-                    <Card.Title>Comp Off</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">4</Card.Subtitle>
-                    {/* <Card.Text>8 Today</Card.Text> */}
-                  </h5>
-                </Card.Body>
-              </Card>
-            </Card>
-          </Col>
-          <Col>
-            <Card>
-              <Card border="warning">
-                <Card.Body>
-                  <h5>
-                    {" "}
-                    <Card.Title>Earned Leaves</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">5</Card.Subtitle>
+                    <Card.Title>Leaves Taken</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">
+                      {count}
+                    </Card.Subtitle>
                     {/* <Card.Text></Card.Text> */}
                   </h5>
                 </Card.Body>
@@ -82,7 +145,7 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
                     {" "}
                     <Card.Title>Total Entitled</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">
-                      12
+                      {entitle}
                     </Card.Subtitle>
                     {/* <Card.Text>12</Card.Text> */}
                   </h5>
@@ -108,7 +171,8 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
         <Row style={{ paddingTop: 20 }}>
           <LeaveTable />
         </Row>
-      </Container>
+        {/* </Container> */}
+      </Card>
     </div>
   );
 }

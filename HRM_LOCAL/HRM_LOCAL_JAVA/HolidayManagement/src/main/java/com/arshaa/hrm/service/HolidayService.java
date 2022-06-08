@@ -63,6 +63,50 @@ public class HolidayService {
 			return new ResponseEntity(r,HttpStatus.OK);
 		}
 	}
+	
+	public ResponseEntity  updateHolidayById(Integer holidayId, Holidaymanagement newHolidaymaster)
+	{
+		Response r=new Response<>();
+		try {
+			Holidaymanagement master= repo.getById(holidayId);
+			master.setHolidayTitle(newHolidaymaster.getHolidayTitle());
+			master.setHolidayDate(newHolidaymaster.getHolidayDate());
+//			master.setUpdatedBy(newHolidaymaster.getUpdatedBy());
+//			master.setUpdatedOn(newHolidaymaster.getUpdatedOn());
+
+			Holidaymanagement updatedmaster= repo.save(master);
+			System.out.println(updatedmaster);
+			   r.setStatus(true);
+			   r.setMessage("Data updated successfully");
+			   return new ResponseEntity(r,HttpStatus.OK);			   
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r,HttpStatus.OK);
+		}
+	}
+	public ResponseEntity DeleteHoliday(Integer holidayId) {
+		Response r=new Response<>();
+		try {
+		Holidaymanagement holiday= repo.getById(holidayId);
+
+		repo.delete(holiday);
+		r.setStatus(true);
+		r.setMessage("Deleted successfully");
+		return new ResponseEntity(r,HttpStatus.OK);
+		}
+		catch (Exception e) {
+		// TODO: handle exception
+
+		r.setStatus(false);
+		r.setMessage(e.getMessage());
+		return new ResponseEntity(r,HttpStatus.OK);
+		}
+	}
+
 	public HolidayService() {
 		// TODO Auto-generated constructor stub
 	}
