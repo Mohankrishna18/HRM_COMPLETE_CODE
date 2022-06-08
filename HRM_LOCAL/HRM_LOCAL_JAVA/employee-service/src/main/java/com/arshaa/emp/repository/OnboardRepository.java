@@ -14,16 +14,18 @@ import com.arshaa.emp.model.DesignationName;
 @Repository
 public interface OnboardRepository extends CrudRepository<Onboarding, String>  {
 
-	List<Onboarding> findByWaitingforapprovalStatusAndRejectedStatus(boolean b, boolean c);
+	List<Onboarding> findByWaitingforapprovalStatusAndRejectedStatus(boolean b);
 
 //	@Query(value = "SELECT * FROM Onboarding  WHERE waitingforapprovalStatus = true OR RejectedStatus = true ")
 //	List<Onboarding> findByWaitingforapprovalStatusOrRejectedStatus(boolean b, boolean c);
 //	
-	List<Onboarding> findByWaitingforapprovalStatusOrRejectedStatus(boolean waitingforapprovalStatus, boolean rejectedStatus);
+	List<Onboarding> findByWaitingforapprovalStatus(boolean waitingforapprovalStatus);
 
 	Onboarding getByOnboardingId(String onboardingId);
 
 	List<Onboarding> findByApprovedStatus(boolean approvedStatus);
+	
+	List<Onboarding> findByRejectedStatus(boolean rejectedStatus);
 
 
 }

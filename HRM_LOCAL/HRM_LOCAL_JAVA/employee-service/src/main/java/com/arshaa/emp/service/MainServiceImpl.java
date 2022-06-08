@@ -42,8 +42,8 @@ public class MainServiceImpl implements MainService {
 	@Autowired
 	@Lazy
 	private RestTemplate template;
-	
-	StringConstants sConstants=new StringConstants();
+
+	StringConstants sConstants = new StringConstants();
 
 	public ResponseEntity onBoardUser(Onboarding newOnboard) {
 		Response r = new Response<>();
@@ -52,9 +52,11 @@ public class MainServiceImpl implements MainService {
 			newOnboard.setOnboardDate(tSqlDate);
 
 			java.sql.Date tsqDate1 = new java.sql.Date(newOnboard.getUpdatedOn().getTime());
-		
-			//System.out.println(new SimpleDateFormat("MM-dd-yyyy").format(newOnboard.getDateOfJoining()));
-			//System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(newOnboard.getDateOfJoining()));
+
+			// System.out.println(new
+			// SimpleDateFormat("MM-dd-yyyy").format(newOnboard.getDateOfJoining()));
+			// System.out.println(new
+			// SimpleDateFormat("yyyy-MM-dd").format(newOnboard.getDateOfJoining()));
 			newOnboard.setUpdatedOn(tsqDate1);
 			newOnboard.setWaitingforapprovalStatus(true);
 			newOnboard.setRejectedStatus(false);
@@ -75,7 +77,7 @@ public class MainServiceImpl implements MainService {
 	public ResponseEntity<Onboarding> waitingForApprovelStatus() {
 		Response r = new Response<>();
 		try {
-			List<Onboarding> onboarding = onRepo.findByWaitingforapprovalStatusOrRejectedStatus(true, true);
+			List<Onboarding> onboarding = onRepo.findByWaitingforapprovalStatus(true);
 			if (!onboarding.isEmpty()) {
 				r.setStatus(true);
 				r.setMessage(sConstants.GET_RESPONSE);
@@ -95,13 +97,13 @@ public class MainServiceImpl implements MainService {
 	}
 
 	public ResponseEntity updateApprovStatus(String onboardingId, HrApprovalStatus newOnboard) {
-		Response response=new Response();
-		String userURL="http://urpService/user/addUser";
-		String loginURL="http://loginservice/login/addUsers";
-		String emailURL="http://emailService/mail/sendmail";
-		//String employee="ATPL";
-		//String intern="TRP";
-				
+		Response response = new Response();
+		String userURL = "http://urpService/user/addUser";
+		String loginURL = "http://loginservice/login/addUsers";
+		String emailURL = "http://emailService/mail/sendmail";
+		// String employee="ATPL";
+		// String intern="TRP";
+
 		try {
 			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 			System.out.println(getOnboarding);
@@ -119,12 +121,12 @@ public class MainServiceImpl implements MainService {
 					newOnboard.setApprovedDate(tSqlDate);
 					getOnboarding.setRejectedStatus(false);
 					getOnboarding.setWaitingforapprovalStatus(false);
-					
+
 					onRepo.save(getOnboarding);
-					
+
 					// Posting data to EmployeeMaster
-						//System.out.println(ir.getEmployeeId());
-						//getOnboarding.getOnboardingId().getChars(0, 0, null, 0);;					}
+					// System.out.println(ir.getEmployeeId());
+					// getOnboarding.getOnboardingId().getChars(0, 0, null, 0);; }
 					EmployeeMaster employeeMaster = new EmployeeMaster();
 					employeeMaster.setFirstName(getOnboarding.getFirstName());
 					employeeMaster.setEmail(getOnboarding.getEmail());
@@ -141,8 +143,8 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setEmploymentType(getOnboarding.getEmploymentType());
 					employeeMaster.setReportingManager(newOnboard.getReportingManager());
 					emRepo.save(employeeMaster);
-					
-					//Generating Random userId and Password
+
+					// Generating Random userId and Password
 					Random rand = new Random();
 					Integer intRandom = rand.nextInt(9999);
 					String userId = getOnboarding.getFirstName() + intRandom;
@@ -150,15 +152,15 @@ public class MainServiceImpl implements MainService {
 					char first = getOnboarding.getFirstName().charAt(0);
 					char last = getOnboarding.getFirstName().charAt(n - 1);
 					String password = "user" + first + last + intRandom;
-					//System.out.println("Username :" + userId + "Password" + password);
+					// System.out.println("Username :" + userId + "Password" + password);
 
-					//Posting data to UserMaster table
+					// Posting data to UserMaster table
 					Users users = new Users();
 					users.setEmployeeId(employeeMaster.getEmployeeId());
 					users.setUserName(userId);
 					template.postForObject(userURL, users, Users.class);
-					
-					//Posting data to Employee login table
+
+					// Posting data to Employee login table
 					EmployeeLogin login = new EmployeeLogin();
 					login.setEmail(getOnboarding.getEmail());
 					login.setUserName(userId);
@@ -166,8 +168,8 @@ public class MainServiceImpl implements MainService {
 					login.setEmployeeId(employeeMaster.getEmployeeId());
 					login.setUserType("employee");
 					template.postForObject(loginURL, login, EmployeeLogin.class);
-					//send mail
-					UserModel model=new UserModel();
+					// send mail
+					UserModel model = new UserModel();
 					model.setName(employeeMaster.getFirstName());
 					model.setEmail(employeeMaster.getEmail());
 					model.setUserName(userId);
@@ -178,7 +180,7 @@ public class MainServiceImpl implements MainService {
 					response.setStatus(true);
 					response.setMessage("Hr Approved successfully");
 					response.setData(employeeMaster);
-					//onRepo.delete(getOnboarding);
+					// onRepo.delete(getOnboarding);
 					return new ResponseEntity(response, HttpStatus.OK);
 				} else if (saveList.isRejectedStatus() == true) {
 					java.sql.Date tSqlDate = new java.sql.Date(newOnboard.getRejectDate().getTime());
@@ -190,29 +192,27 @@ public class MainServiceImpl implements MainService {
 				} else {
 					return new ResponseEntity("Waiting for HR Approval", HttpStatus.OK);
 				}
-			}
-			else {
+			} else {
 				return new ResponseEntity("Data not Found", HttpStatus.OK);
 			}
 
 		} catch (Exception e) {
-			return new ResponseEntity(e.getMessage() , HttpStatus.OK);
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
 
 		}
 	}
-	
-	public ResponseEntity addEmployee(@RequestBody EmployeeMaster newEmployee)
-	{
-		String userURL="http://urpService/user/addUser";
-		String loginURL="http://loginservice/login/addUsers";
-		String emailURL="http://emailService/mail/sendmail";
+
+	public ResponseEntity addEmployee(@RequestBody EmployeeMaster newEmployee) {
+		String userURL = "http://urpService/user/addUser";
+		String loginURL = "http://loginservice/login/addUsers";
+		String emailURL = "http://emailService/mail/sendmail";
 		try {
 			java.sql.Date tSqlDate = new java.sql.Date(newEmployee.getUpdatedOn().getTime());
 			newEmployee.setUpdatedOn(tSqlDate);
 			emRepo.save(newEmployee);
 			EmployeeMaster employeeMaster = new EmployeeMaster();
 
-			//Generating Random userId and Password
+			// Generating Random userId and Password
 			Random rand = new Random();
 			Integer intRandom = rand.nextInt(9999);
 			String userId = newEmployee.getFirstName() + intRandom;
@@ -220,15 +220,15 @@ public class MainServiceImpl implements MainService {
 			char first = newEmployee.getFirstName().charAt(0);
 			char last = newEmployee.getFirstName().charAt(n - 1);
 			String password = "user" + first + last + intRandom;
-			//System.out.println("Username :" + userId + "Password" + password);
+			// System.out.println("Username :" + userId + "Password" + password);
 
-			//Posting data to UserMaster table
+			// Posting data to UserMaster table
 			Users users = new Users();
 			users.setEmployeeId(newEmployee.getEmployeeId());
 			users.setUserName(userId);
 			template.postForObject(userURL, users, Users.class);
-			
-			//Posting data to Employee login table
+
+			// Posting data to Employee login table
 			EmployeeLogin login = new EmployeeLogin();
 			login.setEmail(newEmployee.getEmail());
 			login.setUserName(userId);
@@ -236,8 +236,8 @@ public class MainServiceImpl implements MainService {
 			login.setEmployeeId(newEmployee.getEmployeeId());
 			login.setUserType("employee");
 			template.postForObject(loginURL, login, EmployeeLogin.class);
-			
-			UserModel model=new UserModel();
+
+			UserModel model = new UserModel();
 			model.setName(employeeMaster.getFirstName());
 			model.setEmail(employeeMaster.getEmail());
 			model.setUserName(userId);
@@ -245,32 +245,27 @@ public class MainServiceImpl implements MainService {
 			model.setEmployeeId(employeeMaster.getEmployeeId());
 			template.postForObject(emailURL, model, UserModel.class);
 
-						return  new ResponseEntity( "Success", HttpStatus.OK) ;
+			return new ResponseEntity("Success", HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
 		}
-		catch(Exception e)
-		{
-			return  new ResponseEntity( e.getMessage(), HttpStatus.OK) ;
-		}
-		
-	
+
 	}
 
 	public ResponseEntity getEmployeeDataByEmployeeId(String employeeId) {
 		Response r = new Response<>();
 		try {
 			EmployeeMaster employeeMaster = emRepo.getById(employeeId);
-             if(!employeeMaster.equals(null))
-             {
-            	 r.setStatus(true);
-            	 r.setMessage(sConstants.GET_RESPONSE);
-            	 r.setData(employeeMaster);
-     			return new ResponseEntity(r, HttpStatus.OK);
-             }
-             else {
-            	 r.setStatus(false);
-            	 r.setMessage(sConstants.INVALID_DATA+employeeId);
-            	 return new ResponseEntity(r,HttpStatus.OK);
-             }
+			if (!employeeMaster.equals(null)) {
+				r.setStatus(true);
+				r.setMessage(sConstants.GET_RESPONSE);
+				r.setData(employeeMaster);
+				return new ResponseEntity(r, HttpStatus.OK);
+			} else {
+				r.setStatus(false);
+				r.setMessage(sConstants.INVALID_DATA + employeeId);
+				return new ResponseEntity(r, HttpStatus.OK);
+			}
 		} catch (Exception e) {
 			r.setStatus(false);
 			r.setMessage(sConstants.FAILURE_RESPONSE);
@@ -362,7 +357,18 @@ public class MainServiceImpl implements MainService {
 			master.setPrimarySkills(empMaster.getPrimarySkills());
 			master.setSecondarySkills(empMaster.getSecondarySkills());
 			master.setEmploymentType(empMaster.getEmploymentType());
+			master.setGraduationJoiningYear(empMaster.getGraduationJoiningYear());
+			master.setGraduationPassedYear(empMaster.getGraduationPassedYear());
 
+			master.setPanNumber(empMaster.getPanNumber());
+			master.setAadharNumber(empMaster.getAadharNumber());
+			master.setUanNumber(empMaster.getUanNumber());
+			master.setBankName(empMaster.getBankName());
+			master.setAccountNumber(empMaster.getAccountNumber());
+			master.setIfscCode(empMaster.getIfscCode());
+			master.setBranch(empMaster.getBranch());
+			master.setBand(empMaster.getBand());
+			master.setExitDate(empMaster.getExitDate());
 			EmployeeMaster master1 = emRepo.save(master);
 			System.out.println(master1);
 			r.setStatus(true);
@@ -375,40 +381,35 @@ public class MainServiceImpl implements MainService {
 			return new ResponseEntity(r, HttpStatus.OK);
 		}
 	}
-	
-	public ResponseEntity<EmployeeMaster> getALLData()
-	{		Response r = new Response<>();
-       try {
-    	   List<EmployeeMaster> employeeMasters= emRepo.findAll();
-  		 if(!employeeMasters.isEmpty())
-  		 {
-  	    	   r.setStatus(true);
-  	    	   r.setMessage(sConstants.GET_RESPONSE);
-  	    	   r.setData(employeeMasters);
-  			 return new ResponseEntity(r,HttpStatus.OK);
-  		 }
-  		 else {
-  			 r.setStatus(false);
-  			 r.setMessage(sConstants.NO_ENTRIES_FOUND);
-  			 
-  			return new ResponseEntity(r,HttpStatus.OK);
-  		}
-       }
-       catch (Exception e) {
-              r.setStatus(true);
-              r.setMessage(sConstants.FAILURE_RESPONSE);
-    		return new ResponseEntity(r,HttpStatus.OK);
-       }
-		 
+
+	public ResponseEntity<EmployeeMaster> getALLData() {
+		Response r = new Response<>();
+		try {
+			List<EmployeeMaster> employeeMasters = emRepo.findAll();
+			if (!employeeMasters.isEmpty()) {
+				r.setStatus(true);
+				r.setMessage(sConstants.GET_RESPONSE);
+				r.setData(employeeMasters);
+				return new ResponseEntity(r, HttpStatus.OK);
+			} else {
+				r.setStatus(false);
+				r.setMessage(sConstants.NO_ENTRIES_FOUND);
+
+				return new ResponseEntity(r, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			r.setStatus(true);
+			r.setMessage(sConstants.FAILURE_RESPONSE);
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+
 	}
-	
-	public ResponseEntity updateOnboradEmployeeBydOnboardId(String onboardingId, Onboarding newOnboard )
-	{
+
+	public ResponseEntity updateOnboradEmployeeBydOnboardId(String onboardingId, Onboarding newOnboard) {
 		Response r = new Response<>();
 		try {
 			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
-			if(!getOnboarding.equals(null))
-			{
+			if (!getOnboarding.equals(null)) {
 				getOnboarding.setApprovedStatus(newOnboard.isApprovedStatus());
 				getOnboarding.setComments(newOnboard.getComments());
 				getOnboarding.setDateOfJoining(newOnboard.getDateOfJoining());
@@ -421,97 +422,103 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setLastName(newOnboard.getLastName());
 				getOnboarding.setMiddleName(newOnboard.getMiddleName());
 				getOnboarding.setPhoneNumber(newOnboard.getPhoneNumber());
-				//getOnboarding.setRejectedStatus(newOnboard.getRe);
+				// getOnboarding.setRejectedStatus(newOnboard.getRe);
 				getOnboarding.setYearsOfExperience(newOnboard.getYearsOfExperience());
 				getOnboarding.setPrimarySkills(newOnboard.getPrimarySkills());
 				getOnboarding.setSecondarySkills(newOnboard.getSecondarySkills());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
-				Onboarding updated= onRepo.save(getOnboarding);
+				Onboarding updated = onRepo.save(getOnboarding);
 				r.setStatus(true);
 				r.setMessage(sConstants.PUT_RESPONSE);
 				r.setData(updated);
-				return new ResponseEntity<>(r,HttpStatus.OK);		
-			}
-			else {
+				return new ResponseEntity<>(r, HttpStatus.OK);
+			} else {
 				r.setStatus(false);
-				r.setMessage(sConstants.INVALID_DATA+"OnboardingId");
-				return new ResponseEntity<>(r,HttpStatus.OK);		
+				r.setMessage(sConstants.INVALID_DATA + "OnboardingId");
+				return new ResponseEntity<>(r, HttpStatus.OK);
 			}
-		}
-		catch (Exception e) {
-            r.setStatus(false);
-            r.setMessage(sConstants.FAILURE_RESPONSE);
-			return new ResponseEntity<>(r,HttpStatus.OK);		
+		} catch (Exception e) {
+			r.setStatus(false);
+			r.setMessage(sConstants.FAILURE_RESPONSE);
+			return new ResponseEntity<>(r, HttpStatus.OK);
 		}
 	}
-	
-	public ResponseEntity getApprovedData()
-	{
+
+	public ResponseEntity getApprovedData() {
 		Response r = new Response<>();
 		try {
-			
+
 			List<Onboarding> onboarding = onRepo.findByApprovedStatus(true);
 			r.setStatus(true);
 			r.setMessage(sConstants.GET_RESPONSE);
 			r.setData(onboarding);
-            return new ResponseEntity(r,HttpStatus.OK);
-		}
-		catch (Exception e) {
-            return new ResponseEntity(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
 
 		}
 	}
 	
-	public ResponseEntity updateDesignationName(String employeeId,DesignationName name)
-	{
+	public ResponseEntity getRejectedData() {
 		Response r = new Response<>();
 		try {
-			EmployeeMaster newName=emRepo.getById(employeeId);
-			if(!newName.equals(null))
-			{
+
+			List<Onboarding> onboarding = onRepo.findByRejectedStatus(true);
+			r.setStatus(true);
+			r.setMessage(sConstants.GET_RESPONSE);
+			r.setData(onboarding);
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+
+		}
+	}
+
+	public ResponseEntity updateDesignationName(String employeeId, DesignationName name) {
+		Response r = new Response<>();
+		try {
+			EmployeeMaster newName = emRepo.getById(employeeId);
+			if (!newName.equals(null)) {
 				newName.setDesignationName(name.getDesignationName());
-				EmployeeMaster updatedName= emRepo.save(newName);
+				EmployeeMaster updatedName = emRepo.save(newName);
 				r.setStatus(true);
 				r.setMessage(sConstants.PUT_RESPONSE);
 				r.setData(updatedName);
-	            return new ResponseEntity(r,HttpStatus.OK);
-			}
-			else {
+				return new ResponseEntity(r, HttpStatus.OK);
+			} else {
 				r.setStatus(false);
-				r.setMessage(sConstants.INVALID_DATA +"EmployeeId");
-	            return new ResponseEntity(r,HttpStatus.OK);
+				r.setMessage(sConstants.INVALID_DATA + "EmployeeId");
+				return new ResponseEntity(r, HttpStatus.OK);
 
-			}	
-		}
-		catch(Exception e)
-		{
+			}
+		} catch (Exception e) {
 			r.setStatus(false);
 			r.setMessage(sConstants.FAILURE_RESPONSE);
-            return new ResponseEntity(r,HttpStatus.OK);
+			return new ResponseEntity(r, HttpStatus.OK);
 
 		}
 	}
 
 	@Override
 	public ResponseEntity getEmployeeNameByEmployeeId(String employeeId) {
-		
-			EmployeeMaster employeeMaster = emRepo.getById(employeeId);
-            
-            	 
-            	 EmployeeName en=new EmployeeName();
-            	en.setEmployeeName(employeeMaster.getFirstName().concat(" ").concat(employeeMaster.getMiddleName().concat(" ").concat(employeeMaster.getLastName())));
-            	 
-     			return new ResponseEntity(en, HttpStatus.OK);
-             }
+
+		EmployeeMaster employeeMaster = emRepo.getById(employeeId);
+
+		EmployeeName en = new EmployeeName();
+		en.setEmployeeName(employeeMaster.getFirstName().concat(" ")
+				.concat(employeeMaster.getMiddleName().concat(" ").concat(employeeMaster.getLastName())));
+
+		return new ResponseEntity(en, HttpStatus.OK);
+	}
 
 	@Override
 	public ResponseEntity getReportingManagerByEmployeeId(String employeeId) {
-		
+
 		EmployeeMaster employeeMaster = emRepo.getById(employeeId);
 
-		GetReportingManager rm=new GetReportingManager();
+		GetReportingManager rm = new GetReportingManager();
 		rm.setReportingmanager(employeeMaster.getReportingManager());
-			return new ResponseEntity(rm, HttpStatus.OK);
+		return new ResponseEntity(rm, HttpStatus.OK);
 	}
 
 	@Override
@@ -519,21 +526,19 @@ public class MainServiceImpl implements MainService {
 
 		try {
 
-			List<EmployeeMaster> em=emRepo.findAll();
-			GetEmployeeIds ge=new GetEmployeeIds();
-			em.forEach(e->{
-				
+			List<EmployeeMaster> em = emRepo.findAll();
+			GetEmployeeIds ge = new GetEmployeeIds();
+			em.forEach(e -> {
+
 				ge.setEmployeeId(e.getEmployeeId());
 
 			});
-			return new ResponseEntity(ge,HttpStatus.OK);
-		}
-		catch (Exception e) {
-			return new ResponseEntity("Something went wrong",HttpStatus.OK);
+			return new ResponseEntity(ge, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity("Something went wrong", HttpStatus.OK);
 
 		}
 
 	}
-             	
 
 }
