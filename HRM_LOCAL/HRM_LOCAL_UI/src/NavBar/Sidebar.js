@@ -19,7 +19,7 @@ const Sidebar = (props) => {
   }
 
   return (
-    <Row>
+    <Row className="scroll">
       <Tab.Container id="list-group-tabs-example">
         <Col xs={12} xxl={12} xl={12} lg={12} md={12} sm={12}>
           <div style={{ boxShadow: "10px black" }}>
@@ -41,7 +41,7 @@ const Sidebar = (props) => {
                 </Row>
               ))}
               {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp;
-              <p style={{paddingLeft:"30px",paddingTop:""}}>V-0.1</p>
+              <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>
             </ListGroup>
           </div>
         </Col>

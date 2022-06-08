@@ -83,7 +83,7 @@ const EmployeeTablee = () => {
                       <th scope="row">{index + 1}</th>
                       <td>{user.onboardingId}</td>
 
-                      <td>{user.desgination}</td>
+                      <td>{user.designation}</td>
 
                       <td>{user.firstName}</td>
 

@@ -14,11 +14,13 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	List<User> findByemployeeId(String employeeId);
 
+	//changes done by chandrika
+	List<User> findUserByReportingManager(String reportingManager);
+	void deleteByLeaveType(String leaveType);
+
+	User getByEmployeeleaveId(Integer employeeleaveId);
 	
-
-
-
-	
+	List<User> findByLeaveStatus(String leaveStatus);
 
 
 

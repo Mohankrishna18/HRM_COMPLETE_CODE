@@ -45,56 +45,12 @@ public class User {
 	@Column
 
 	private Date updatedOn;
-	
-	
-	  public User(int numberOfDays, String leaveReason, String leaveStatus) {
-		super();
-		this.numberOfDays = numberOfDays;
-		this.leaveReason = leaveReason;
-		this.leaveStatus = leaveStatus;
-	}
-
-	public int getNumberOfDays() {
-		return numberOfDays;
-	}
-
-	public void setNumberOfDays(int numberOfDays) {
-		this.numberOfDays = numberOfDays;
-	}
-
-	public String getLeaveReason() {
-		return leaveReason;
-	}
-
-	public void setLeaveReason(String leaveReason) {
-		this.leaveReason = leaveReason;
-	}
-
-	public String getLeaveStatus() {
-		return leaveStatus;
-	}
-
-	public void setLeaveStatus(String leaveStatus) {
-		this.leaveStatus = leaveStatus;
-	}
-
+	private String leaveStatus;
+	private String reportingManager;
 	@Column
-	  
-	  private String leaveStatus;
-
-	public User(int employeeleaveId, String employeeId, String leaveType, Date fromDate, Date toDate, int numberofdays,
-			String leavereason, String updatedBy, Date updatedOn) {
-		super();
-		this.employeeleaveId = employeeleaveId;
-		this.employeeId = employeeId;
-		this.leaveType = leaveType;
-		this.fromDate = fromDate;
-		this.toDate = toDate;
-		this.numberOfDays = numberofdays;
-		this.leaveReason = leavereason;
-		this.updatedBy = updatedBy;
-		this.updatedOn = updatedOn;
-	}
+	private String rejectReason;
+	
+	
 
 	public int getEmployeeleaveId() {
 		return employeeleaveId;
@@ -136,20 +92,20 @@ public class User {
 		this.toDate = toDate;
 	}
 
-	public int getNumberofdays() {
+	public int getNumberOfDays() {
 		return numberOfDays;
 	}
 
-	public void setNumberofdays(int numberofdays) {
-		this.numberOfDays = numberofdays;
+	public void setNumberOfDays(int numberOfDays) {
+		this.numberOfDays = numberOfDays;
 	}
 
-	public String getLeavereason() {
+	public String getLeaveReason() {
 		return leaveReason;
 	}
 
-	public void setLeavereason(String leavereason) {
-		this.leaveReason = leavereason;
+	public void setLeaveReason(String leaveReason) {
+		this.leaveReason = leaveReason;
 	}
 
 	public String getUpdatedBy() {
@@ -168,9 +124,52 @@ public class User {
 		this.updatedOn = updatedOn;
 	}
 
-	public User() {
-		super();
-
+	public String getLeaveStatus() {
+		return leaveStatus;
 	}
 
+	public void setLeaveStatus(String leaveStatus) {
+		this.leaveStatus = leaveStatus;
+	}
+
+	public String getReportingManager() {
+		return reportingManager;
+	}
+
+	public void setReportingManager(String reportingManager) {
+		this.reportingManager = reportingManager;
+	}
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getRejectReason() {
+		return rejectReason;
+	}
+
+	public void setRejectReason(String rejectReason) {
+		this.rejectReason = rejectReason;
+	}
+
+	public User(int employeeleaveId, String employeeId, String leaveType, Date fromDate, Date toDate, int numberOfDays,
+			String leaveReason, String updatedBy, Date updatedOn, String leaveStatus, String reportingManager,
+			String rejectReason) {
+		super();
+		this.employeeleaveId = employeeleaveId;
+		this.employeeId = employeeId;
+		this.leaveType = leaveType;
+		this.fromDate = fromDate;
+		this.toDate = toDate;
+		this.numberOfDays = numberOfDays;
+		this.leaveReason = leaveReason;
+		this.updatedBy = updatedBy;
+		this.updatedOn = updatedOn;
+		this.leaveStatus = leaveStatus;
+		this.reportingManager = reportingManager;
+		this.rejectReason = rejectReason;
+	}
+	
+	 
 }
