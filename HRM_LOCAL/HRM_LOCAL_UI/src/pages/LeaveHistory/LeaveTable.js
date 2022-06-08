@@ -48,8 +48,8 @@ const LeaveTable = () => {
   const [columns, setColumns] = useState([
     { title: 'employeeId', field: 'employeeId' },
     { title: 'leave Type', field: 'leaveType', type:'date'},
-{ title: 'From', field: 'formatDate.fromDate', type:'date'},
-{ title: ' To', field: 'formatDate.toDate', type:'date'},
+{ title: 'From', field: 'fromDate', type:'date'},
+{ title: ' To', field: 'toDate', type:'date'},
 { title: 'No Of Days', field: 'numberOfDays', type:'date'},
  { title: 'Reason', field: 'leaveReason', type:'date'},
  { title: 'Leave Status', field: 'leaveStatus', type:'date'}
