@@ -3,7 +3,7 @@ import React from 'react'
 const RejectedEmployeeMain = () => {
   return (
     <div>
-      <h1>Happy birthday to you</h1>
+      <h1>Rejected employee list</h1>
     </div>
   )
 }
