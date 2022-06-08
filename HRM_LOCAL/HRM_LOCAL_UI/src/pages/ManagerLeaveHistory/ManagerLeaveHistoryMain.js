@@ -9,9 +9,9 @@ const ManagerLeaveHistory = () => {
       <Card responsive className="scroll">
         <Card.Header>
           <Card.Body>
-            <Card.Title> EmployeeLeaves Tagged To Manager History</Card.Title>
+            <Card.Title>History of EmployeeLeaves Tagged To Manager</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
-              Holidays
+            EmployeeLeaves
             </Card.Subtitle>{" "}
             <Container>
               <Row>
