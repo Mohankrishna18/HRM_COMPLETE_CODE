@@ -20,7 +20,7 @@ function Admin() {
           <Card.Subtitle className="mb-2 text-muted">Attendance/Dashboard</Card.Subtitle>
         </Card.Body>
 
-        <Form style={{ padding: 10 }}>
+        {/* <Form style={{ padding: 10 }}>
           <Row >
             <Col>
               <Form.Group as={Col}  >
@@ -77,7 +77,7 @@ function Admin() {
               </Form.Group>
             </Col>
 
-          </Row></Form>
+          </Row></Form> */}
         <Row style={{ paddingTop: 20, paddingLeft: 10 }}>
           <EmpTable />
         </Row>
