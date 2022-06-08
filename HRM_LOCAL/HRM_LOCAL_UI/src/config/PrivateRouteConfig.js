@@ -45,6 +45,7 @@ import TaggedEmployeesMain from "../pages/ManagerEmployeesList/TaggedEmployeesMa
 import ManagerLeaveHistory from "../pages/ManagerLeaveHistory/ManagerLeaveHistoryMain";
 import HrLeaveHistorymain from "../pages/HrLeaveHistory/HrLeaveHistorymain"
 import ManagerLeavesToApproveMain from "../pages/ManagerLeavesToApprove/ManagerLeavesToApproveMain";
+import EmployeeMasterForms from "../pages/AllEmployees/AllEmployeesComponents/editmyprofileroute";
 
   
   
@@ -251,6 +252,17 @@ export default [
       Roles.hradmin,
       
     ],
+  },
+  {
+
+    component: EmployeeMasterForms,
+
+    path: "/editmyprofileroute",
+
+   
+
+    permission: [Roles.hradmin,Roles.taa],
+
   },
 ];
 // testing purpose
