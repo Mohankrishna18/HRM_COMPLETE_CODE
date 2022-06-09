@@ -31,7 +31,7 @@ function AddLeave() {
   const [leaveType, setLeavetype] = useState();
   const [fromDate, setFromDate] = useState();
   const [toDate, setToDate] = useState();
-  const [leavereason, setReasonForLeaves] = useState();
+  const [leaveReason, setReasonForLeaves] = useState();
   const [remainingLeaves, setRemainingLeaves] = useState();
   const [numberOfDays, setNoOfDays] = useState();
   const [days, setDays] = useState();
@@ -72,7 +72,7 @@ function AddLeave() {
     leaveType,
     fromDate,
     toDate,
-    leavereason,
+    leaveReason,
     remainingLeaves,
     numberOfDays,
     setDays,
@@ -87,10 +87,21 @@ function AddLeave() {
     const data2 = Object.assign(data1, obj2);
     console.log(data2);
     console.log(data);
-    const res = await axios.post("/leave/applyLeave", data);
-    console.log(res.data);
-    window.location.reload();
-  };
+ 
+
+    try{
+      const res = await axios.post("/leave/applyLeave", data);
+      console.log(res.data);
+      console.log("Success")
+    }
+    catch{
+      console.log("Something wrong")
+    }
+    
+    // window.location.reload();
+
+   
+
 
   const handleClose = () => {
     setShow();
