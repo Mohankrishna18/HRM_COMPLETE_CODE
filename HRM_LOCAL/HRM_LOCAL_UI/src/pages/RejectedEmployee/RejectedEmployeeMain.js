@@ -6,6 +6,8 @@ import RejectedEmployeeArchieve from './RejectedEmployeesComponents/RejectedEmpl
 const RejectedEmployeeMain = () => {
   return (
     <div>
+
+
       <Row>
     <Col xs={12}>
     <RejectedEmployeeArchieve/>

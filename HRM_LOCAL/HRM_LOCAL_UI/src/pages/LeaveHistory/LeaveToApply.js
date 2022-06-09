@@ -40,7 +40,7 @@ function LeaveEmployeeHistory() {
     return (
         <div>
             {/* <Container> */}
-            <Card bg="white" style={{paddingTop:20, paddingLeft:30, paddingRight:30}}>
+            {/* <Card bg="white" style={{paddingTop:20, paddingLeft:30, paddingRight:30}}>
                 <Row>
                     <Col xs={6} md={8}>
                         <Card.Body>
@@ -50,7 +50,7 @@ function LeaveEmployeeHistory() {
                             </Card.Subtitle>
                         </Card.Body>
                     </Col>
-                    <Col xs={6} md={4}>
+                    <Col xs={6} md={4}> */}
                        {/*<AddLeave />  */}
 
                         {/* <Button
@@ -60,34 +60,34 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
 <h4>Add Leave</h4>
 {employee}{" "}
 </Button> */}
-                    </Col>
-                </Row>
-                {/* Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop */}
+                    {/* </Col> */}
+                {/* </Row>
+                 Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop 
                 <Row md={4}>
 
                    
                     
                     
 
-                    {/* <Col>
+                     <Col> */}
 
-<Card>
-<Card.Body>
-<h5>
+{/* <Card> */}
+ {/* <Card.Body>
+ </Card.Body><h5>
 {" "}
 
-<Card.Title>Total Entitled</Card.Title>
+<Card.Title>Total Entitled</Card.Title> */}
 {/* <Card.Text>12</Card.Text> */}
                     {/* </h5>
 </Card.Body>
 </Card>
 </Col> */}
-                </Row>
-                <Row style={{ paddingTop: 20 }}>
+                {/* </Row>*/}
+                <Row style={{ paddingTop: 20 }}> 
                     <LeaveTable />
                 </Row>
                 {/* </Container> */}
-            </Card>
+            {/* </Card> */}
         </div>
     );
 }
