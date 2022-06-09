@@ -480,7 +480,7 @@ const MyProfile = () => {
                       <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                         <Col>
                           <Card.Subtitle style={{ padding: 10 }}>
-                            pancard Number:
+                            Pancard Number:
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>
@@ -570,27 +570,52 @@ const MyProfile = () => {
                       </Row>
 
                       <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+
+                       
+
                         <Col>
+
                           <Card.Subtitle style={{ padding: 10 }}>
-                            BAND:
-                          </Card.Subtitle>{" "}
-                        </Col>
-                        <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {getEmployeeDetails.band}
-                          </Card.Text>
-                        </Col>
-                        <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
+
                             Exit Date:
+
                           </Card.Subtitle>{" "}
+
                         </Col>
+
                         <Col md={{ offset: 1 }}>
+
                           <Card.Text style={{ paddingBottom: 0 }}>
+
                             {getEmployeeDetails.exitDate}
+
                           </Card.Text>
+
                         </Col>
+
+                        <Col>
+
+                          <Card.Subtitle style={{ padding: 10 }}>
+
+                            {/* BAND: */}
+
+                          </Card.Subtitle>{" "}
+
+                        </Col>
+
+                        <Col md={{ offset: 1 }}>
+
+                          <Card.Text style={{ paddingBottom: 0 }}>
+
+                            {/* {getEmployeeDetails.band} */}
+
+                          </Card.Text>
+
+                        </Col>
+
                       </Row>
+
+
                     </Card>
                   </Col>
                 </Row>
@@ -608,7 +633,7 @@ const MyProfile = () => {
                         <thead>
                           <tr>
 
-                            <th>Sr.No.</th>
+                            {/* <th>Sr.No.</th> */}
                             <th>University</th>
                             <th>Institute Name</th>
                             <th>Course</th>
@@ -677,8 +702,8 @@ const MyProfile = () => {
                       <Table>
                         <thead>
                           <tr>
-
-                            <th>Sr.No.</th>
+{/* 
+                            <th>Sr.No.</th> */}
                             <th>Company Name</th>
                             <th>Employee ID</th>
                             <th>Designation</th>

@@ -24,14 +24,12 @@ function Admin() {
           <Row >
             <Col>
               <Form.Group as={Col}  >
-
                 <Form.Label >Employee Name</Form.Label>
                 <Form.Control
                   required
                   type="text"
                   placeholder="Employee Name"
                 />
-
               </Form.Group>
             </Col>
             <Col>
@@ -69,14 +67,10 @@ function Admin() {
               </Form.Group>
             </Col>
             <Col>
-
               <Form.Group as={Col}  style={{ paddingTop: '30px' }}>
-
                 <Button style={{ width: '100%', backgroundColor: "#08bf1a" }}>SEARCH</Button>
-
               </Form.Group>
             </Col>
-
           </Row></Form> */}
         <Row style={{ paddingTop: 20, paddingLeft: 10 }}>
           <EmpTable />
