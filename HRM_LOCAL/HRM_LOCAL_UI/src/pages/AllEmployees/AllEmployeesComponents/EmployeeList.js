@@ -1,17 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; 
 import MaterialTable from "material-table";
 import { Grid } from "@mui/material";
+//import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
+
+import EmployeeMasterForms from "./editmyprofileroute";
 
 import axios from "../../../Uri";
 
 function EmployeeList() {
-
   const [data, setData] = useState([]);
+  const [eid, setEid] = useState("");
+  const myProfile = (e) => {
+    console.log(e.target.innerText);
+    setEid(e.target.innerText);
+    localStorage.setItem('item',e.target.innerText)
+    axios
+      .get(`/emp/getEmployeeDataByEmployeeId/${e.target.innerText}`)
+      .then((response) => {
+        console.log(response.data.data);
+      });
+  };
 
   const columns = [
     {
       title: "Employee Id",
       field: "employeeId",
+      render: (rowData) => (
+        <Link to= "/app/editmyprofileroute" onClick={myProfile}>
+          {rowData.employeeId}
+        </Link>
+      ),
       type: "text",
 
       headerStyle: {
@@ -30,14 +49,14 @@ function EmployeeList() {
       },
     },
     {
-        title: "Email",
-        field: "email",
+      title: "Email",
+      field: "email",
 
-        headerStyle: {
-          backgroundColor: "#FF9E14",
-          color: "white",
-        },
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
       },
+    },
     {
       title: "Designation",
       field: "designationName",
@@ -52,7 +71,7 @@ function EmployeeList() {
     {
       title: "Date of Joining",
       field: "dateOfJoining",
-
+      type:"date",
       headerStyle: {
         backgroundColor: "#FF9E14",
         color: "white",
@@ -68,15 +87,14 @@ function EmployeeList() {
       },
     },
     {
-        title: "Reporting Manager",
-        field: "reportingManager",
+      title: "Reporting Manager",
+      field: "reportingManager",
 
-        headerStyle: {
-          backgroundColor: "#FF9E14",
-          color: "white",
-        },
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
       },
-
+    },
   ];
 
   useEffect(() => {
@@ -88,6 +106,7 @@ function EmployeeList() {
         setData(res.data.data);
 
         console.log(res.data.data);
+        console.log(res.data.data.employeeid);
       })
 
       .catch((err) => {
@@ -95,9 +114,9 @@ function EmployeeList() {
         // toast.error("Server Error")
       });
   }, []);
-
+  console.log(eid);
   return (
-    <Grid container>
+    <Grid container data1={eid}>
       <Grid xs={12}>
         <MaterialTable
           title="All Employees"

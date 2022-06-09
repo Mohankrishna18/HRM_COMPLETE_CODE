@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { split } from 'lodash';
+import { Image } from "react-bootstrap";
 
 function EmployeeMasterCard() {
 
@@ -35,58 +35,71 @@ function EmployeeMasterCard() {
     //       day = datePart[2];    
     //     return day + "-" + month + "-" + year;  
     //    }
-       
+
     // let date=employeedetails.dateOfJoining;
     // console.log(date);
     // let dateNew=`${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`
 
 
     const [employeedetails, setEmployeeDetails] = useState([])
+    const [imge, setImge] = useState([]);
     useEffect(() => {
         axios.get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
             .then((response) => {
                 setEmployeeDetails(response.data.data);
             })
     }, [])
-//     console.log(employeedetails)
-
-// console.log(employeedetails.dateOfJoining)
-// let aaa=employeedetails.dateOfJoining;
-// console.log(aaa)
-// const bbb=aaa.split(' ');
-// console.log(bbb);
-// console.log(employeedetails.dateOfJoining)
-
-
-
-var doj = new Date(employeedetails.dateOfJoining);
-var dd = String(doj.getDate()).padStart(2, '0');
-var mm = String(doj.getMonth() + 1).padStart(2, '0');
-var yyyy = doj.getFullYear();
- let doj1 = dd + '-' + mm + '-' + yyyy;
-// console.log(doj1);
-
-  
-    // var today = new Date (employeedetails.dateOfJoining);
-    // var dd = String(today.getDate()).padStart(2, '0');
-    // var mm = String(today.getMonth() + 1).padStart(2, '0'); 
-    // var yyyy = today.getFullYear();
+    useEffect(() => {
+        axios
+          .get(`/emp/files/${employeeid}`)
+          .then((response) => {
+            console.log(response.data);
+            setImge(response.data)
+          })
+          .catch((error) => {
+            console.log(error);
     
-    // today = mm + '-' + dd + '-' + yyyy;
-    // console.log(today);
+            console.log("something wrong");
+          });
+      }, []);
+    
+      console.log(imge);
+
+    var today = new Date(employeedetails.dateOfJoining);
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+
+    today = mm + '-' + dd + '-' + yyyy;
+    console.log(today);
 
     return (
         <Row><Col>
             <Card>
                 <Row>
                     <Col>
-                        <Card.Title
-                            style={{
-                                fontSize: 30,
+                        <Card.Title>
+
+                            <Col>
+                            <Image src={`data:image/jpeg;base64,${imge.url}`} style={{
+                                    height: "150px",
+                                    width: "150px",
+                                    borderRadius: "110px",
+                                    alignItems: "center",
+                                    marginTop: "50px",
+                                    marginLeft: "145px"
+                                }} />
+                            </Col>
+                            <Col style={{
+                                fontSize: 20,
                                 textAlign: "center",
-                                paddingTop: 90,
+                                paddingTop: 10,
+                                paddingBottom: 40,
+                                text: "bold",
+                                marginRight: "200px"
                             }}>
-                            {employeedetails.firstName} {employeedetails.lastName}
+                                {employeedetails.firstName} {employeedetails.lastName}
+                            </Col>
                         </Card.Title>
                     </Col>
                     <Col>
@@ -128,8 +141,7 @@ var yyyy = doj.getFullYear();
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{}}>
-                                        {/* {employeedetails.dateOfJoining} */}
-                                        {doj1}
+                                        {today}
                                     </Card.Text>
                                 </Col>
                             </Row>
@@ -160,7 +172,7 @@ var yyyy = doj.getFullYear();
                             <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Text style={{}}>
-                                        <h6>Employee Type: </h6>
+                                        <h6>Employment Type: </h6>
                                     </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
