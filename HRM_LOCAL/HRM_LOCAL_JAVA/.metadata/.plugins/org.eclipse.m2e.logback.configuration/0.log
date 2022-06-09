@@ -1038,3 +1038,150 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact org.springfra
 2022-06-08 11:17:15,712 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2022-06-08 11:17:15,712 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
 2022-06-08 11:17:15,712 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-08 13:22:58,957 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:22:58,959 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:22:58,961 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-08 13:22:59,194 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-08 13:22:59,197 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:22:59,197 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:22:59,197 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\attendanceService\attendanceService\src\test\resources
+2022-06-08 13:23:23,509 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:23:23,509 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:23:23,509 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-08 13:23:23,667 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-08 13:23:23,672 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:23:23,672 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:23:23,672 [Worker-33: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\departments\src\test\resources
+2022-06-08 13:25:20,719 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:25:20,719 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:25:20,719 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-08 13:25:20,773 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-08 13:25:20,774 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:25:20,775 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:25:20,775 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\urp-service\src\test\resources
+2022-06-08 13:28:37,668 [Worker-34: Launching EmailSender - EmailSenderApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:28:37,669 [Worker-34: Launching EmailSender - EmailSenderApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:28:37,670 [Worker-34: Launching EmailSender - EmailSenderApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-08 13:28:37,682 [Worker-34: Launching EmailSender - EmailSenderApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-08 13:28:37,684 [Worker-34: Launching EmailSender - EmailSenderApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:28:37,684 [Worker-34: Launching EmailSender - EmailSenderApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:28:37,684 [Worker-34: Launching EmailSender - EmailSenderApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\EmailSender\src\test\resources
+2022-06-08 13:28:45,687 [Worker-44: Launching employee-service - EmployeeServiceApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:28:45,688 [Worker-44: Launching employee-service - EmployeeServiceApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:28:45,688 [Worker-44: Launching employee-service - EmployeeServiceApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-08 13:28:45,715 [Worker-44: Launching employee-service - EmployeeServiceApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-08 13:28:45,716 [Worker-44: Launching employee-service - EmployeeServiceApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:28:45,716 [Worker-44: Launching employee-service - EmployeeServiceApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:28:45,717 [Worker-44: Launching employee-service - EmployeeServiceApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-08 13:28:54,734 [Worker-49: Launching HolidayManagement - HolidayManagementApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:28:54,734 [Worker-49: Launching HolidayManagement - HolidayManagementApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:28:54,734 [Worker-49: Launching HolidayManagement - HolidayManagementApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-08 13:28:54,768 [Worker-49: Launching HolidayManagement - HolidayManagementApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-08 13:28:54,769 [Worker-49: Launching HolidayManagement - HolidayManagementApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:28:54,769 [Worker-49: Launching HolidayManagement - HolidayManagementApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:28:54,769 [Worker-49: Launching HolidayManagement - HolidayManagementApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\HolidayManagement\src\test\resources
+2022-06-08 13:29:04,919 [Worker-49: Launching hrm-designations - HrmDesignationsApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:29:04,920 [Worker-49: Launching hrm-designations - HrmDesignationsApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:29:04,920 [Worker-49: Launching hrm-designations - HrmDesignationsApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-08 13:29:04,937 [Worker-49: Launching hrm-designations - HrmDesignationsApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-08 13:29:04,939 [Worker-49: Launching hrm-designations - HrmDesignationsApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:29:04,940 [Worker-49: Launching hrm-designations - HrmDesignationsApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:29:04,940 [Worker-49: Launching hrm-designations - HrmDesignationsApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-08 13:29:13,787 [Worker-41: Launching LeaveManagementServer - LeaveApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:29:13,787 [Worker-41: Launching LeaveManagementServer - LeaveApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:29:13,787 [Worker-41: Launching LeaveManagementServer - LeaveApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-08 13:29:13,890 [Worker-41: Launching LeaveManagementServer - LeaveApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-08 13:29:13,894 [Worker-41: Launching LeaveManagementServer - LeaveApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:29:13,894 [Worker-41: Launching LeaveManagementServer - LeaveApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:29:13,894 [Worker-41: Launching LeaveManagementServer - LeaveApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\LeaveManagementServer\src\test\resources
+2022-06-08 13:29:23,625 [Worker-34: Launching login - LoginApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:29:23,627 [Worker-34: Launching login - LoginApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:29:23,627 [Worker-34: Launching login - LoginApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-08 13:29:23,717 [Worker-34: Launching login - LoginApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-08 13:29:23,719 [Worker-34: Launching login - LoginApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 13:29:23,719 [Worker-34: Launching login - LoginApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 13:29:23,719 [Worker-34: Launching login - LoginApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\login\src\test\resources
+2022-06-08 14:18:28,188 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-10.0.6; built: 2021-06-29T15:28:56.259Z; git: 37e7731b4b142a882d73974ff3bec78d621bd674; jvm 17.0.1+12
+2022-06-08 14:18:28,237 [Start Help Server] INFO  o.e.j.s.s.DefaultSessionIdManager - Session workerName=node0
+2022-06-08 14:18:28,307 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@33cb9422{/help,null,AVAILABLE}
+2022-06-08 14:18:28,346 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@21de489a{HTTP/1.1, (http/1.1)}{127.0.0.1:58893}
+2022-06-08 14:18:28,377 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started Server@74a4f871{STARTING}[10.0.6,sto=0] @12539824ms
+2022-06-08 14:19:39,254 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 14:19:39,255 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 14:19:39,257 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-08 14:19:39,285 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-08 14:19:39,290 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-08 14:19:39,290 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-08 14:19:39,290 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-08 19:32:02,573 [Stop Help Server] INFO  org.eclipse.jetty.server.Server - Stopped Server@74a4f871{STOPPING}[10.0.6,sto=0]
+2022-06-08 19:32:02,709 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@21de489a{HTTP/1.1, (http/1.1)}{127.0.0.1:0}
+2022-06-08 19:32:02,727 [Stop Help Server] INFO  o.e.j.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@33cb9422{/help,null,STOPPED}
+2022-06-09 10:44:14,722 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2022-06-09 10:59:47,728 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-10.0.6; built: 2021-06-29T15:28:56.259Z; git: 37e7731b4b142a882d73974ff3bec78d621bd674; jvm 17.0.1+12
+2022-06-09 10:59:47,804 [Start Help Server] INFO  o.e.j.s.s.DefaultSessionIdManager - Session workerName=node0
+2022-06-09 10:59:47,848 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@770c46ff{/help,null,AVAILABLE}
+2022-06-09 10:59:47,882 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@1e8710dd{HTTP/1.1, (http/1.1)}{127.0.0.1:49294}
+2022-06-09 10:59:47,886 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started Server@72750bcf{STARTING}[10.0.6,sto=0] @969405ms
+2022-06-09 11:22:25,744 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:25,751 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:25,763 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-09 11:22:25,902 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-09 11:22:25,906 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:25,906 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:25,907 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\EmailSender\src\test\resources
+2022-06-09 11:22:29,017 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:29,017 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:29,019 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-09 11:22:29,031 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-09 11:22:29,034 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:29,034 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:29,034 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\HolidayManagement\src\test\resources
+2022-06-09 11:22:29,161 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:29,161 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:29,162 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-09 11:22:29,206 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-09 11:22:29,209 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:29,210 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:29,210 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\LeaveManagementServer\src\test\resources
+2022-06-09 11:22:30,373 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:30,374 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:30,374 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-09 11:22:30,388 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-09 11:22:30,392 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:30,392 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:30,392 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\attendanceService\attendanceService\src\test\resources
+2022-06-09 11:22:31,509 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:31,509 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:31,510 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-09 11:22:31,569 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-09 11:22:31,571 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:31,571 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:31,572 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\departments\src\test\resources
+2022-06-09 11:22:33,212 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:33,212 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:33,213 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-09 11:22:33,246 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-09 11:22:33,250 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:33,250 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:33,250 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-09 11:22:34,460 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:34,460 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:34,461 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-09 11:22:34,477 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-09 11:22:34,481 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:34,481 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:34,481 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-09 11:22:35,638 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:35,638 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:35,638 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-09 11:22:35,647 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-09 11:22:35,652 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:35,652 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:35,653 [Worker-37: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\login\src\test\resources
+2022-06-09 11:22:37,482 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:37,484 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:37,486 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-09 11:22:37,703 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-09 11:22:37,715 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-09 11:22:37,716 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-09 11:22:37,716 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\HRM3FINALREPOSITORIES\ThreeRepo-s\HRM_LOCAL\HRM_LOCAL_JAVA\urp-service\src\test\resources
