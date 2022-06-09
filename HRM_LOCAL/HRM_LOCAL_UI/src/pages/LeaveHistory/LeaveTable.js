@@ -1,4 +1,6 @@
 import { React, useState, useEffect } from "react";
+import MaterialTable from 'material-table'
+import Grid from '@mui/material/Grid'
 import { Table } from "react-bootstrap";
 // import axios from 'axios';
 // import {Dropdown } from 'react-bootstrap/Dropdown';
@@ -43,38 +45,52 @@ const LeaveTable = () => {
 
 
   }
+  const [columns, setColumns] = useState([
+    { title: 'employeeId', field: 'employeeId' },
+    { title: 'leave Type', field: 'leaveType', type:'date'},
+{ title: 'From', field: 'fromDate', type:'date'},
+{ title: ' To', field: 'toDate', type:'date'},
+{ title: 'No Of Days', field: 'numberOfDays', type:'date'},
+ { title: 'Reason', field: 'leaveReason', type:'date'},
+ { title: 'Leave Status', field: 'leaveStatus', type:'date'}
+]);
 
   return (
-    <div>
-      <Container-fluid  >
-        <Table responsive="sm">
-          <thead>
-            <tr>
-              {/* <th align="left">Leave Id</th>
-              <th align="left">Employee</th> */}
-              <th align="left"> Leave Type</th>
-              <th align="left"> From</th>
-              <th align="left"> To</th>
-              <th align="left"> No Of Days</th>
-              <th align="left"> Reason</th>
-              <th align="left">Leave Status</th>
-              {/* <th align="center"> Action</th> */}
-            </tr>
-          </thead>
-          <tbody>
-            {leave.map((h) => (
-              <tr>
-                {/* <td align ="left">{h.employeeleaveId}</td>
-                <td align="left">{h.employeeId}</td> */}
-                <td align="left">{h.leaveType}</td>
-                <td align="left">{formatDate(h.fromDate)}</td>
-                <td align="left">{formatDate(h.toDate)}</td>
-                <td align="left">{h.numberOfDays}</td>
-                <td align="left">{h.leaveReason}</td>
-                <td align="left">{h.leaveStatus}</td>
-                {/* //  <td align='left'>{h.leaveStatus}</td> */}
-                <td align="left">
-                  {
+    <Grid>
+    <MaterialTable
+        title=""
+        columns={columns}
+        data={leave}
+    // <div>
+    //   <Container-fluid  >
+    //     <Table responsive="sm">
+    //       <thead>
+    //         <tr>
+              //  <th align="left">Leave Id</th>
+              // <th align="left">Employee</th> 
+          //     <th align="left"> Leave Type</th>
+          //     <th align="left"> From</th>
+          //     <th align="left"> To</th>
+          //     <th align="left"> No Of Days</th>
+          //     <th align="left"> Reason</th>
+          //     <th align="left">Leave Status</th>
+          //     {/* <th align="center"> Action</th> */}
+          //   </tr>
+          // </thead>
+          // <tbody>
+          //   {leave.map((h) => (
+          //     <tr>
+                //  <td align ="left">{h.employeeleaveId}</td>
+                // <td align="left">{h.employeeId}</td> 
+                // <td align="left">{h.leaveType}</td>
+                // <td align="left">{formatDate(h.fromDate)}</td>
+                // <td align="left">{formatDate(h.toDate)}</td>
+                // <td align="left">{h.numberOfDays}</td>
+                // <td align="left">{h.leaveReason}</td>
+                // <td align="left">{h.leaveStatus}</td>
+                 //  <td align='left'>{h.leaveStatus}</td>
+                // <td align="left">
+                 // {
                     // <Form.Select aria-label="Default select example" size="sm" 
                     // onClick={dispaly}>
                     //   {/* <option>New</option> */}
@@ -83,20 +99,36 @@ const LeaveTable = () => {
                     //   {/* <option value="2">Approved </option>
                     //   <option value="3">Declined </option> */}
                     // </Form.Select>
-                  }
-                </td>
-                  {/* {enable == 1 ?(<div> <td align="left">{<EditLeave />}</td>
-                <td align="left">{<DeleteLeave />}</td></div>):(<div></div>)} */}
+                //   }
+                // </td>
+                //   {enable == 1 ?(<div> <td align="left">{<EditLeave />}</td>
+                // <td align="left">{<DeleteLeave />}</td></div>):(<div></div>)} 
                
 
-                {/* <td align="left">{h.action}</td> */}
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </Container-fluid>
-    </div>
-  );
+                // <td align="left">{h.action}</td>
+  //             </tr>
+  //           ))}
+  //         </tbody>
+  //       </Table>
+  //     </Container-fluid>
+  //   </div>
+  // );
+  options={{
+    paging: false,
+    addRowPosition:'first',
+    actionsColumnIndex: -1,
+    headerStyle: {
+
+        backgroundColor: "#FE924A",
+
+        color: "white",
+
+    },
+    exportButton: true
+}}
+/>
+</Grid>
+)
 };
 
 export default LeaveTable;

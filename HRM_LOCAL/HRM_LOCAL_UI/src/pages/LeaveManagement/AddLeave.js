@@ -1,5 +1,5 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
@@ -10,7 +10,6 @@ import { Table } from "react-bootstrap";
 import { BsPlusLg } from "react-icons/bs";
 // import Employee from "../AllEmployees/AllEmployeesComponents/Employee";
 import { toast } from "react-toastify";
-
 
 import "react-toastify/dist/ReactToastify.css";
 import LoadingOverlay from "react-loading-overlay";
@@ -34,73 +33,63 @@ function AddLeave() {
   const [toDate, setToDate] = useState();
   const [leavereason, setReasonForLeaves] = useState();
   const [remainingLeaves, setRemainingLeaves] = useState();
-  const [noOfDays, setNoOfDays] = useState();
+  const [numberOfDays, setNoOfDays] = useState();
   const [days, setDays] = useState();
-  const [dates, setDates] = useState();
+  const [typeofleave, setTypeOfLeave] = useState([]);
+  const [entitle,setEntitle]=useState([])
   //const userData1 = JSON.parse(userData);
   const userData = sessionStorage.getItem("userdata");
 
   const userData1 = JSON.parse(userData);
 
-
-
   const employeeid = userData1.data.employeeId;
-
-
 
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
 
   useEffect(() => {
-
-
-
+    // loadData();
     axios
-
-
 
       .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
 
-
-
       .then((response) => {
-
-
-
         setGetEmployeeDetails(response.data.data);
-
-
-
       });
-
-
-
   }, []);
+  useEffect(() => {
+    loadData();
+  },[])
+  const loadData = () => {
+    axios.get("/leave/Annual").then((res) => {
+      setTypeOfLeave(res.data);
+      console.log("hello");
+      setEntitle(res.data.noOfDays)
+    });
+  };
 
   const initialValues = {
-    employeeId:getEmployeeDetails.employeeId,
+    employeeId: getEmployeeDetails.employeeId,
     leaveType,
     fromDate,
     toDate,
     leavereason,
     remainingLeaves,
-    noOfDays,
-    setDays
+    numberOfDays,
+    setDays,
   };
-  const obj = { remainingLeaves: days };
-  const obj1 = {noOfDays:noOfdays}
-  const obj2 = {remainingLeaves:remainLeaves}
+
   const handleButtonClick = async (e) => {
     console.log("button clicked 123");
     e.preventDefault();
     console.log(initialValues);
     const data = Object.assign(initialValues, obj);
-    const data1 = Object.assign(data,obj1)
-    const data2 = Object.assign(data1,obj2)
+    const data1 = Object.assign(data, obj1);
+    const data2 = Object.assign(data1, obj2);
     console.log(data2);
-    console.log(data)
-      const res = await axios.post ("/leave/applyLeave",initialValues);
-      console.log(res.data)
-      window.location.reload(); 
+    console.log(data);
+    const res = await axios.post("/leave/applyLeave", data);
+    console.log(res.data);
+    window.location.reload();
   };
 
   const handleClose = () => {
@@ -112,6 +101,26 @@ function AddLeave() {
 
   const handleShow = () => setShow(true);
 
+  const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+  // a and b are javascript Date objects
+  function dateDiffInDays(a, b) {
+    // Discard the time and time-zone information.
+    const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+    const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+    return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+  } // test it
+  const a = new Date(toDate);
+  const b = new Date(fromDate);
+  const difference = dateDiffInDays(b, a);
+  //console.log(difference + 1);
+  var numberOfDay = difference + 1;
+  console.log(numberOfDays);
+  var remainLeaves = 12 - numberOfDay;
+  console.log(remainLeaves);
+  const obj = { remainingLeaves: days };
+  const obj1 = { numberOfDays: numberOfDay };
+  const obj2 = { remainingLeaves: remainLeaves };
+  console.log(obj1);
   const handleSubmit = (ee) => {
     const form = ee.currentTarget;
 
@@ -130,32 +139,9 @@ function AddLeave() {
     console.log(noOfDays);
     console.log(reasonForLeaves);
     console.log(remainingLeaves);
-    console.log(noOfDays);
+    console.log(numberOfDays);
   };
-  const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-  // a and b are javascript Date objects
-  function dateDiffInDays(a, b) {
-    // Discard the time and time-zone information.
-    const utc1 = Date.UTC(
-      a.getFullYear(),
-      a.getMonth(),
-      a.getDate()
-    );
-    const utc2 = Date.UTC(
-      b.getFullYear(),
-      b.getMonth(),
-      b.getDate()
-    );
-    return Math.floor((utc2 - utc1) / _MS_PER_DAY);
-  } // test it
-  const a = new Date(toDate);
-  const b = new Date(fromDate);
-  const difference = dateDiffInDays(b, a);
-  //console.log(difference + 1);
-  var noOfdays = difference+1;
-  console.log(noOfdays);
-  var remainLeaves = 12 - noOfdays;
-  console.log(remainLeaves)
+  console.log(typeofleave)
   return (
     <div>
       {/* <Button
@@ -198,7 +184,7 @@ function AddLeave() {
             onSubmit={handleButtonClick}
           >
             <Row className="mb-5">
-              <Form.Group
+              {/* <Form.Group
                 as={Col}
                 md="6"
                 style={{ padding: 10 }}
@@ -210,25 +196,22 @@ function AddLeave() {
                   className="employeeId"
                   type="text"
                   value={getEmployeeDetails.employeeId}
-                  onChange={(event) => setEmployeeId(getEmployeeDetails.employeeId)}
+                  onChange={(event) =>
+                    setEmployeeId(getEmployeeDetails.employeeId)
+                  }
                 />
-              </Form.Group>
+              </Form.Group> */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Leave Type</Form.Label>
+                
                 <Form.Select
                   aria-label="Default select example"
                   onChange={(event) => setLeavetype(event.target.value)}
                 >
-                  <option> Select Leave</option>    
-                  <option value="Casual Leave">Casual Leave</option>
-
-                  <option value="Compensentory">Compensentory</option>
-                  <option value="Earned Leave">Earned Leave</option>
-
-
-                  <option value="Sick Leave">Sick Leave</option>
-
-
+                  <option> Select Leave</option>
+                  <option value={typeofleave.leaveType}>{typeofleave.leaveType}</option>
+                  {/* <option value="Compensentory">Compensentory</option> */}
+                  {/* <option value="Earned Leave">Earned Leave</option> */}
                 </Form.Select>
               </Form.Group>
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -257,7 +240,6 @@ function AddLeave() {
                   onChange={(event) => {
                     setToDate(event.target.value);
                     console.log(event.target.value);
-                    
                   }}
                 />
               </Form.Group>
@@ -265,19 +247,15 @@ function AddLeave() {
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>No of Days</Form.Label>
                 <Form.Control
-
-                 required
-                  type="text"
-
+                  required
+                  type="number"
                   placeholder=""
-                  value={noOfdays}
+                  value={numberOfDay}
                   onChange={(event) => {
-                    setNoOfDays(event.target.value);
-                    setDays(12 - noOfdays);
+                    noOfdays(event.target.value);
+                    setDays(24 - numberOfDays);
                   }}
                 />
-
-
               </Form.Group>
               {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Remaining Leaves</Form.Label>
