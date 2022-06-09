@@ -44,9 +44,13 @@ const Sign = () => {
           history.push("/app");
           toast.success("You are successfully Logged In");
         }
+        else
+        {
+          toast.error("Login Failed, Please try again.");
+        }
       } catch (err) {
         console.error(err);
-        toast.error("Login Failed, Please try again.");
+        
       }
     };
 

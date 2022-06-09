@@ -1,4 +1,5 @@
 
+
 package com.arshaa.emp.service;
 
 //import java.text.SimpleDateFormat;
@@ -427,6 +428,7 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setPrimarySkills(newOnboard.getPrimarySkills());
 				getOnboarding.setSecondarySkills(newOnboard.getSecondarySkills());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
+				
 				Onboarding updated = onRepo.save(getOnboarding);
 				r.setStatus(true);
 				r.setMessage(sConstants.PUT_RESPONSE);
@@ -439,7 +441,7 @@ public class MainServiceImpl implements MainService {
 			}
 		} catch (Exception e) {
 			r.setStatus(false);
-			r.setMessage(sConstants.FAILURE_RESPONSE);
+			r.setMessage(e.getMessage());
 			return new ResponseEntity<>(r, HttpStatus.OK);
 		}
 	}
@@ -459,20 +461,24 @@ public class MainServiceImpl implements MainService {
 		}
 	}
 	
-	public ResponseEntity getRejectedData() {
+	public ResponseEntity getRejectedData()
+	{
 		Response r = new Response<>();
 		try {
-
+			
 			List<Onboarding> onboarding = onRepo.findByRejectedStatus(true);
 			r.setStatus(true);
 			r.setMessage(sConstants.GET_RESPONSE);
 			r.setData(onboarding);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+            return new ResponseEntity(r,HttpStatus.OK);
+		}
+		catch (Exception e) {
+            return new ResponseEntity(e.getMessage(),HttpStatus.OK);
 
 		}
 	}
+	
+	
 
 	public ResponseEntity updateDesignationName(String employeeId, DesignationName name) {
 		Response r = new Response<>();

@@ -1,29 +1,28 @@
 import React from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
-import ModuleHeading from "./ModuleHeading";
+import { Col, Row, Card, Container } from "react-bootstrap";
+import ModuleEditableTable from "./ModuleMTable";
 
+
+// Testing purpose
 const ModuleMain = () => {
   return (
-    <Row>
-      <Col>
-        <Card responsive className="scroll">
-          <Card.Header>
-            <Card.Body>
-              <Card.Title>Modules</Card.Title>
+    <div style={{ paddingTop: "20px" }}>
+      <Card responsive className="scroll">
+        <Card.Header>
+          <Card.Body>
+            <Card.Title>Module</Card.Title>
             
-              <Container>
-                <Row>
-                  <Col xs={12}>
-                    <ModuleHeading />
-                    
-                  </Col>
-                </Row>
-              </Container>
-            </Card.Body>
-          </Card.Header>
-        </Card>
-      </Col>
-    </Row>
+            <Container>
+              <Row>
+                <Col xs={12}>
+                  <ModuleEditableTable />
+                </Col>
+              </Row>
+            </Container>
+          </Card.Body>
+        </Card.Header>
+      </Card>
+    </div>
   );
 };
 

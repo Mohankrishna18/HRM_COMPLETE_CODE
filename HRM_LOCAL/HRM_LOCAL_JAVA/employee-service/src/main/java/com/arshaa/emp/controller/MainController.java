@@ -138,9 +138,11 @@ public ResponseEntity getApprovedData() {
 return serv.getApprovedData();
 }
 
+
+
 @GetMapping("/getRejectedData")
 public ResponseEntity getRejectedData() {
-return serv.getRejectedData();
+return serv.getApprovedData();
 }
 
 
