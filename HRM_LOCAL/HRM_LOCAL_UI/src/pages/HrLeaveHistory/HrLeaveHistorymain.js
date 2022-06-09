@@ -1,6 +1,8 @@
 import React from 'react'
 import { Row, Col, Card, Container } from "react-bootstrap";
+
 import HrApprovedLeaves from "../HrLeaveHistory/HrLeaveHistoryComponents/HrApprovedLeaves";
+
 
 const HrLeaveHistorymain = () => {
   return (

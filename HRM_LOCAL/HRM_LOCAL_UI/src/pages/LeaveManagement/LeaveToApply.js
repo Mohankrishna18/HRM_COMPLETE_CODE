@@ -20,8 +20,11 @@ function LeaveEmployee() {
     axios.get(`leave/getLeaveHistoryByEmployeeid/${employeeid}`).then((res) => {
       console.log(res.data);
       res.data.map((m) => {
+
         console.log(m.numberOfDays);
         array.push(m.numberOfDays);
+
+     
         console.log(array);
         let sum = 0;
 
