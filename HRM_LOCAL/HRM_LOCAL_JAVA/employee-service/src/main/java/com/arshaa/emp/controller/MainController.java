@@ -138,14 +138,15 @@ public class MainController {
 	}
 
 
+
+
+	@GetMapping("/getEmployeeNameByEmployeeId/{employeeId}")
+	public ResponseEntity getEmployeeNameByEmployeeId(@PathVariable String employeeId) {
+
+		return serv.getEmployeeNameByEmployeeId(employeeId);
+
 	}
 
-	@GetMapping("/getReportingManagerByEmployeeId/{employeeId}")
-	public ResponseEntity getReportingManagerByEmployeeId(@PathVariable String employeeId) {
-
-		return serv.getReportingManagerByEmployeeId(employeeId);
-
-	}
 
 	@GetMapping("/getEmployeeIds")
 	public ResponseEntity getEmployeeId() {

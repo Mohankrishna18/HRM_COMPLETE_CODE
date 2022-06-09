@@ -8,11 +8,13 @@ const RejectedEmployeeMain = () => {
     <div>
 
 
+
       <Row>
     <Col xs={12}>
     <RejectedEmployeeArchieve/>
     </Col>
 </Row>
+
 
     </div>
   )

@@ -87,6 +87,7 @@ function AddLeave() {
     const data2 = Object.assign(data1, obj2);
     console.log(data2);
     console.log(data);
+ 
 
     try{
       const res = await axios.post("/leave/applyLeave", data);
@@ -100,7 +101,7 @@ function AddLeave() {
     // window.location.reload();
 
    
-  };
+
 
   const handleClose = () => {
     setShow();
