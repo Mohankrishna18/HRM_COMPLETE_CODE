@@ -1,4 +1,3 @@
-//Default Component Imports
 import {
   FcBusinessman,
   FcSurvey,
@@ -16,6 +15,7 @@ import {
   FcMultipleInputs,
   FcNeutralTrading,
   FcAdvance,
+
 } from "react-icons/fc";
 
 //Data Imports

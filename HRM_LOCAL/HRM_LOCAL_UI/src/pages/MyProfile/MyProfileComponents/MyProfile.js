@@ -513,7 +513,7 @@ const MyProfile = () => {
 
                           <Card.Text style={{ paddingBottom: 0 }}>
 
-                            {getEmployeeDetails.passportExpiryDate}
+                            {passportDate1}
 
                           </Card.Text>
 

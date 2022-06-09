@@ -1,13 +1,19 @@
 package com.arshaa.urp.service;
 
+
+
 import java.util.List;
 import java.util.Optional;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+
+
 
 //import com.arshaa.entity.Permissions;
 import com.arshaa.urp.entity.Modulemaster;
@@ -21,391 +27,521 @@ import com.arshaa.urp.repository.RoleModuleRepository;
 import com.arshaa.urp.repository.RoleRepository;
 import com.arshaa.urp.repository.UserRepository;
 
+
+
 @Service
 public class UserService {
 
-	@Autowired
-	RoleRepository rRepo;
-	@Autowired
-	ModuleMasterRepo mRepo;
-	@Autowired
-	UserRepository uRepo;
+
+
+@Autowired
+RoleRepository rRepo;
+@Autowired
+ModuleMasterRepo mRepo;
+@Autowired
+UserRepository uRepo;
 //@Autowired
 //PermissionRepo pRepo;
-	@Autowired
-	RoleModuleRepository rmRepo;
+@Autowired
+RoleModuleRepository rmRepo;
 
-	public ResponseEntity addRole(Rolesmaster newRole) {
-		Response r = new Response<>();
-		try {
-			java.sql.Date tSqlDate = new java.sql.Date(newRole.getUpdatedOn().getTime());
 
-			newRole.setUpdatedOn(tSqlDate);
-			newRole.setRoleStatus(true);
-			Rolesmaster newDataRolesmaster = rRepo.save(newRole);
-			r.setStatus(true);
-			r.setMessage("Data added successfully");
-			r.setData(newDataRolesmaster);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
+
+public ResponseEntity addRole(Rolesmaster newRole) {
+Response r = new Response<>();
+try {
+java.sql.Date tSqlDate = new java.sql.Date(newRole.getUpdatedOn().getTime());
+
+
+
+newRole.setUpdatedOn(tSqlDate);
+newRole.setRoleStatus(true);
+Rolesmaster newDataRolesmaster = rRepo.save(newRole);
+r.setStatus(true);
+r.setMessage("Data added successfully");
+r.setData(newDataRolesmaster);
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
 // TODO: handle exception
 
-			r.setStatus(false);
-			r.setMessage(e.getMessage());
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
 
-	public ResponseEntity getRoles() {
-		Response r = new Response<>();
-		try {
 
-			List<Rolesmaster> newDataRolesmaster = rRepo.findAll();
-			r.setStatus(true);
-			r.setMessage("Data Fetching");
-			r.setData(newDataRolesmaster);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
+r.setStatus(false);
+r.setMessage(e.getMessage());
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
+
+
+
+public ResponseEntity getRoles() {
+Response r = new Response<>();
+try {
+
+
+
+List<Rolesmaster> newDataRolesmaster = rRepo.findAll();
+r.setStatus(true);
+r.setMessage("Data Fetching");
+r.setData(newDataRolesmaster);
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
 // TODO: handle exception
 
-			r.setStatus(false);
-			r.setMessage(e.getMessage());
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
 
-	public ResponseEntity updateRoleById(Integer roleId, Rolesmaster newRolemaster) {
-		Response r = new Response<>();
-		try {
-			Rolesmaster master1 = rRepo.getById(roleId);
-			master1.setRoleName(newRolemaster.getRoleName());
-			master1.setRoleStatus(newRolemaster.isRoleStatus());
-			master1.setUpdatedBy(newRolemaster.getUpdatedBy());
-			master1.setUpdatedOn(newRolemaster.getUpdatedOn());
-			master1.setPermission1(newRolemaster.getPermission1());
-			master1.setPermission2(newRolemaster.getPermission2());
-			master1.setPermission3(newRolemaster.getPermission3());
-			master1.setPermission4(newRolemaster.getPermission4());
-			master1.setPermission5(newRolemaster.getPermission5());
-			master1.setPermission6(newRolemaster.getPermission6());
-			master1.setPermission7(newRolemaster.getPermission7());
-			master1.setPermission8(newRolemaster.getPermission8());
-			master1.setPermission9(newRolemaster.getPermission9());
-			master1.setPermission10(newRolemaster.getPermission10());
 
-			Rolesmaster updatedmaster1 = rRepo.save(master1);
-			System.out.println(updatedmaster1);
+r.setStatus(false);
+r.setMessage(e.getMessage());
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
 
-			r.setStatus(true);
-			r.setMessage("Data added successfully");
-			r.setData(updatedmaster1);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
-			// TODO: handle exception
 
-			r.setStatus(false);
-			r.setMessage(e.getMessage());
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
 
-	public ResponseEntity DeleteRoleData(Integer roleId) {
-		Response r = new Response<>();
-		try {
-			Rolesmaster master2 = rRepo.getById(roleId);
+public ResponseEntity updateRoleById(Integer roleId, Rolesmaster newRolemaster) {
+Response r = new Response<>();
+try {
+Rolesmaster master1 = rRepo.getById(roleId);
+master1.setRoleName(newRolemaster.getRoleName());
+master1.setRoleStatus(newRolemaster.isRoleStatus());
+master1.setUpdatedBy(newRolemaster.getUpdatedBy());
+master1.setUpdatedOn(newRolemaster.getUpdatedOn());
+master1.setPermission1(newRolemaster.getPermission1());
+master1.setPermission2(newRolemaster.getPermission2());
+master1.setPermission3(newRolemaster.getPermission3());
+master1.setPermission4(newRolemaster.getPermission4());
+master1.setPermission5(newRolemaster.getPermission5());
+master1.setPermission6(newRolemaster.getPermission6());
+master1.setPermission7(newRolemaster.getPermission7());
+master1.setPermission8(newRolemaster.getPermission8());
+master1.setPermission9(newRolemaster.getPermission9());
+master1.setPermission10(newRolemaster.getPermission10());
 
-			rRepo.delete(master2);
-			r.setStatus(true);
-			r.setMessage("Deleted successfully");
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
+
+
+Rolesmaster updatedmaster1 = rRepo.save(master1);
+System.out.println(updatedmaster1);
+
+
+
+r.setStatus(true);
+r.setMessage("Data added successfully");
+r.setData(updatedmaster1);
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
 // TODO: handle exception
 
-			r.setStatus(false);
-			r.setMessage(e.getMessage());
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
 
-	public ResponseEntity addModule(Modulemaster newModule) {
-		Response r = new Response<>();
-		try {
 
-			java.sql.Date tSqlDate = new java.sql.Date(newModule.getUpdatedOn().getTime());
-			newModule.setUpdatedOn(tSqlDate);
-			newModule.setModuleStatus(true);
-			Modulemaster module = mRepo.save(newModule);
+r.setStatus(false);
+r.setMessage(e.getMessage());
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
 
-			r.setStatus(true);
-			r.setMessage("Data added successfully");
-			r.setData(module);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
+
+
+public ResponseEntity DeleteRoleData(Integer roleId) {
+Response r = new Response<>();
+try {
+Rolesmaster master2 = rRepo.getById(roleId);
+
+
+
+rRepo.delete(master2);
+r.setStatus(true);
+r.setMessage("Deleted successfully");
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
 // TODO: handle exception
 
-			r.setStatus(false);
-			r.setMessage(e.getMessage());
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
 
-	public ResponseEntity getModuleData() {
-		Response r = new Response<>();
-		try {
 
-			List<Modulemaster> newModulemaster = mRepo.findAll();
-			r.setStatus(true);
-			r.setMessage("Data Fetching");
-			r.setData(newModulemaster);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
+r.setStatus(false);
+r.setMessage(e.getMessage());
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
+
+
+
+public ResponseEntity addModule(Modulemaster newModule) {
+Response r = new Response<>();
+try {
+
+
+
+java.sql.Date tSqlDate = new java.sql.Date(newModule.getUpdatedOn().getTime());
+newModule.setUpdatedOn(tSqlDate);
+newModule.setModuleStatus(true);
+Modulemaster module = mRepo.save(newModule);
+
+
+
+r.setStatus(true);
+r.setMessage("Data added successfully");
+r.setData(module);
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
 // TODO: handle exception
 
-			r.setStatus(false);
-			r.setMessage("Server Error");
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
 
-	// Update Module By Module Id
 
-	public ResponseEntity updateModuleBymoduleID(int moduleId, Modulemaster newModulemaster) {
+r.setStatus(false);
+r.setMessage(e.getMessage());
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
 
-		Response r = new Response<>();
 
-		try {
 
-			Modulemaster master = mRepo.getById(moduleId);
-			master.setModuleName(newModulemaster.getModuleName());
-			master.setModuleStatus(newModulemaster.isModuleStatus());
-			Modulemaster updatedModule = mRepo.save(master);
-			r.setStatus(true);
-			r.setMessage("Updated Succesfully");
-			r.setData(updatedModule);
-			return new ResponseEntity(r, HttpStatus.OK);
+public ResponseEntity getModuleData() {
+Response r = new Response<>();
+try {
 
-		} catch (Exception e) {
-			r.setStatus(false);
-			r.setMessage("Server Error");
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
 
-	// Delete Module By Module ID
-	public ResponseEntity DeleteModuleDataByModuleID(int moduleId) {
-		Response r = new Response<>();
-		try {
-			Modulemaster master = mRepo.getById(moduleId);
-			mRepo.delete(master);
-			r.setStatus(true);
-			r.setMessage("Deleted successfully");
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
-			// TODO: handle exception
 
-			r.setStatus(false);
-			r.setMessage(e.getMessage());
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
-
-	public ResponseEntity updateModuleById(int roleId, Modulemaster newModulemaster) {
-		Response r = new Response<>();
-		try {
-
-			RoleModuleMap rmp = rmRepo.getById(roleId);
-			int id = rmp.getModuleId();
-			Modulemaster master = mRepo.getById(id);
-			master.setModuleName(newModulemaster.getModuleName());
-			master.setModuleStatus(newModulemaster.isModuleStatus());
-			master.setUpdatedBy(newModulemaster.getUpdatedBy());
-			master.setUpdatedOn(newModulemaster.getUpdatedOn());
-
-			Modulemaster updatedmaster = mRepo.save(master);
-			System.out.println(updatedmaster);
-			r.setStatus(true);
-			r.setMessage("updated successfully");
-			return new ResponseEntity(r, HttpStatus.OK);
-
-		} catch (Exception e) {
+List<Modulemaster> newModulemaster = mRepo.findAll();
+r.setStatus(true);
+r.setMessage("Data Fetching");
+r.setData(newModulemaster);
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
 // TODO: handle exception
 
-			r.setStatus(false);
-			r.setMessage(e.getMessage());
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
 
-	public ResponseEntity DeleteModuleData(int roleId) {
-		Response r = new Response<>();
-		try {
-			RoleModuleMap rmp = rmRepo.getById(roleId);
-			int id = rmp.getModuleId();
-			Modulemaster master = mRepo.getById(id);
 
-			mRepo.delete(master);
-			r.setStatus(true);
-			r.setMessage("Deleted successfully");
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
+r.setStatus(false);
+r.setMessage("Server Error");
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
+
+
+
+// Update Module By Module Id
+
+
+
+public ResponseEntity updateModuleBymoduleID(int moduleId, Modulemaster newModulemaster) {
+
+
+
+Response r = new Response<>();
+
+
+
+try {
+
+
+
+Modulemaster master = mRepo.getById(moduleId);
+master.setModuleName(newModulemaster.getModuleName());
+master.setModuleStatus(newModulemaster.isModuleStatus());
+Modulemaster updatedModule = mRepo.save(master);
+r.setStatus(true);
+r.setMessage("Updated Succesfully");
+r.setData(updatedModule);
+return new ResponseEntity(r, HttpStatus.OK);
+
+
+
+} catch (Exception e) {
+r.setStatus(false);
+r.setMessage("Server Error");
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
+
+
+
+// Delete Module By Module ID
+public ResponseEntity DeleteModuleDataByModuleID(int moduleId) {
+Response r = new Response<>();
+try {
+Modulemaster master = mRepo.getById(moduleId);
+mRepo.delete(master);
+r.setStatus(true);
+r.setMessage("Deleted successfully");
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
 // TODO: handle exception
 
-			r.setStatus(false);
-			r.setMessage(e.getMessage());
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
 
-	public ResponseEntity addUser(Users newuser) {
-		Response r = new Response<>();
-		try {
 
-			Users newData = uRepo.save(newuser);
-			r.setStatus(true);
-			r.setMessage("Data added successfully");
-			r.setData(newData);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
+r.setStatus(false);
+r.setMessage(e.getMessage());
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
+
+
+
+public ResponseEntity updateModuleById(int roleId, Modulemaster newModulemaster) {
+Response r = new Response<>();
+try {
+
+
+
+RoleModuleMap rmp = rmRepo.getById(roleId);
+int id = rmp.getModuleId();
+Modulemaster master = mRepo.getById(id);
+master.setModuleName(newModulemaster.getModuleName());
+master.setModuleStatus(newModulemaster.isModuleStatus());
+master.setUpdatedBy(newModulemaster.getUpdatedBy());
+master.setUpdatedOn(newModulemaster.getUpdatedOn());
+
+
+
+Modulemaster updatedmaster = mRepo.save(master);
+System.out.println(updatedmaster);
+r.setStatus(true);
+r.setMessage("updated successfully");
+return new ResponseEntity(r, HttpStatus.OK);
+
+
+
+} catch (Exception e) {
 // TODO: handle exception
 
-			r.setStatus(false);
-			r.setMessage(e.getMessage());
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
 
-	public ResponseEntity getUsersData() {
-		Response r = new Response<>();
-		try {
 
-			List<Users> newUser = uRepo.findAll();
-			r.setStatus(true);
-			r.setMessage("Data Fetching");
-			r.setData(newUser);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
+r.setStatus(false);
+r.setMessage(e.getMessage());
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
+
+
+
+public ResponseEntity DeleteModuleData(int roleId) {
+Response r = new Response<>();
+try {
+RoleModuleMap rmp = rmRepo.getById(roleId);
+int id = rmp.getModuleId();
+Modulemaster master = mRepo.getById(id);
+
+
+
+mRepo.delete(master);
+r.setStatus(true);
+r.setMessage("Deleted successfully");
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
 // TODO: handle exception
 
-			r.setStatus(false);
-			r.setMessage("Server Error");
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
 
-	public ResponseEntity updateUserById(int uId, Users updateUser) {
-		Response r = new Response<>();
 
-		try {
+r.setStatus(false);
+r.setMessage(e.getMessage());
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
 
-			Users u = uRepo.getById(uId);
-			u.setEmployeeId(updateUser.getEmployeeId());
-			u.setUpdatedBy(updateUser.getUpdatedBy());
-			u.setUserName(updateUser.getUserName());
-			Users upUsers = uRepo.save(u);
-			r.setStatus(true);
-			r.setMessage("Updated successfully");
-			r.setData(upUsers);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
-// TODO: handle exception
-			r.setStatus(false);
-			r.setMessage("Server Error");
-			return new ResponseEntity(r, HttpStatus.OK);
 
-		}
 
-	}
+public ResponseEntity addUser(Users newuser) {
+Response r = new Response<>();
+try {
 
-	public ResponseEntity deleteById(int uId) {
-		Response r = new Response<>();
-		try {
-			Users user = uRepo.getById(uId);
-			uRepo.delete(user);
-			r.setStatus(true);
-			r.setMessage("Deleted Successfully");
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
-// TODO: handle exception
-			r.setStatus(false);
-			r.setMessage("Server Error");
-			return new ResponseEntity(r, HttpStatus.OK);
 
-		}
 
-	}
-
-	public ResponseEntity mapRoleModule(RoleModuleMap newRM) {
-		Response r = new Response<>();
-		try {
-
-			RoleModuleMap newData = rmRepo.save(newRM);
-			r.setStatus(true);
-			r.setMessage("Data added successfully");
-			r.setData(newData);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
+Users newData = uRepo.save(newuser);
+r.setStatus(true);
+r.setMessage("Data added successfully");
+r.setData(newData);
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
 // TODO: handle exception
 
-			r.setStatus(false);
-			r.setMessage(e.getMessage());
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
 
-	public ResponseEntity deleteByrMMId(int rMMId) {
-		Response r = new Response<>();
-		try {
-			RoleModuleMap newData = rmRepo.getById(rMMId);
-			rmRepo.delete(newData);
-			r.setStatus(true);
-			r.setMessage("Deleted Successfully");
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
-			r.setStatus(false);
-			r.setMessage("Server Error");
-			return new ResponseEntity(r, HttpStatus.OK);
 
-		}
+r.setStatus(false);
+r.setMessage(e.getMessage());
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
 
-	}
 
-	public ResponseEntity getRoleById(int roleId) {
-		Response r = new Response<>();
-		try {
-			Rolesmaster getRole = rRepo.getById(roleId);
-			r.setStatus(true);
-			r.setMessage("Data fetching");
-			r.setData(getRole);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
-			r.setStatus(false);
-			r.setMessage("Server Error");
-			return new ResponseEntity(r, HttpStatus.OK);
 
-		}
-	}
+public ResponseEntity getUsersData() {
+Response r = new Response<>();
+try {
 
-	public ResponseEntity getRoleModuleData() {
-		Response r = new Response<>();
-		try {
 
-			List<RoleModuleMap> getRoleModulemaster = rmRepo.findAll();
-			r.setStatus(true);
-			r.setMessage("Data Fetching");
-			r.setData(getRoleModulemaster);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
+
+List<Users> newUser = uRepo.findAll();
+r.setStatus(true);
+r.setMessage("Data Fetching");
+r.setData(newUser);
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
 // TODO: handle exception
 
-			r.setStatus(false);
-			r.setMessage("Server Error");
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
 
-	public UserService() {
+
+r.setStatus(false);
+r.setMessage("Server Error");
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
+
+
+
+public ResponseEntity updateUserById(int uId, Users updateUser) {
+Response r = new Response<>();
+
+
+
+try {
+
+
+
+Users u = uRepo.getById(uId);
+u.setEmployeeId(updateUser.getEmployeeId());
+u.setUpdatedBy(updateUser.getUpdatedBy());
+u.setUserName(updateUser.getUserName());
+Users upUsers = uRepo.save(u);
+r.setStatus(true);
+r.setMessage("Updated successfully");
+r.setData(upUsers);
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
+// TODO: handle exception
+r.setStatus(false);
+r.setMessage("Server Error");
+return new ResponseEntity(r, HttpStatus.OK);
+
+
+
+}
+
+
+
+}
+
+
+
+public ResponseEntity deleteById(int uId) {
+Response r = new Response<>();
+try {
+Users user = uRepo.getById(uId);
+uRepo.delete(user);
+r.setStatus(true);
+r.setMessage("Deleted Successfully");
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
+// TODO: handle exception
+r.setStatus(false);
+r.setMessage("Server Error");
+return new ResponseEntity(r, HttpStatus.OK);
+
+
+
+}
+
+
+
+}
+
+
+
+public ResponseEntity mapRoleModule(RoleModuleMap newRM) {
+Response r = new Response<>();
+try {
+
+
+
+RoleModuleMap newData = rmRepo.save(newRM);
+r.setStatus(true);
+r.setMessage("Data added successfully");
+r.setData(newData);
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
+// TODO: handle exception
+
+
+
+r.setStatus(false);
+r.setMessage(e.getMessage());
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
+
+
+
+public ResponseEntity deleteByrMMId(int rMMId) {
+Response r = new Response<>();
+try {
+RoleModuleMap newData = rmRepo.getById(rMMId);
+rmRepo.delete(newData);
+r.setStatus(true);
+r.setMessage("Deleted Successfully");
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
+r.setStatus(false);
+r.setMessage("Server Error");
+return new ResponseEntity(r, HttpStatus.OK);
+
+
+
+}
+
+
+
+}
+
+
+
+public ResponseEntity getRoleById(int roleId) {
+Response r = new Response<>();
+try {
+Rolesmaster getRole = rRepo.getById(roleId);
+r.setStatus(true);
+r.setMessage("Data fetching");
+r.setData(getRole);
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
+r.setStatus(false);
+r.setMessage("Server Error");
+return new ResponseEntity(r, HttpStatus.OK);
+
+
+
+}
+}
+
+
+
+public ResponseEntity getRoleModuleData() {
+Response r = new Response<>();
+try {
+
+
+
+List<RoleModuleMap> getRoleModulemaster = rmRepo.findAll();
+r.setStatus(true);
+r.setMessage("Data Fetching");
+r.setData(getRoleModulemaster);
+return new ResponseEntity(r, HttpStatus.OK);
+} catch (Exception e) {
+// TODO: handle exception
+
+
+
+r.setStatus(false);
+r.setMessage("Server Error");
+return new ResponseEntity(r, HttpStatus.OK);
+}
+}
+
+
+
+public UserService() {
 // TODO Auto-generated constructor stub
-	}
+}
+
+
 
 // public ResponseEntity addPermission(Permissions newpermission) {
 // Response pResponse = new Response<>();

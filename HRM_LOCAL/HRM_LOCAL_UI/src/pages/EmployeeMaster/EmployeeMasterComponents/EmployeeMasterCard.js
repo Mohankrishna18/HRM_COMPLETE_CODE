@@ -88,6 +88,7 @@ function EmployeeMasterCard() {
                                     alignItems: "center",
                                     marginTop: "50px",
                                     marginLeft: "145px"
+
                                 }} />
                             </Col>
                             <Col style={{

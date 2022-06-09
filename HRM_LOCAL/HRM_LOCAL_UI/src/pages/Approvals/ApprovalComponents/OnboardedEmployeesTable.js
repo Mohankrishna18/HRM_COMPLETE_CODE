@@ -147,7 +147,9 @@ function OnboardedEmployeesTable() {
 
                         console.log(index)
                         console.log(updatedRow)
+
                         const res = axios.put(`/updatedOnbordingDataById/${index}`, updatedRow)
+
                             .then((resp) => {
                                 console.log(resp);
                                 loadData()
