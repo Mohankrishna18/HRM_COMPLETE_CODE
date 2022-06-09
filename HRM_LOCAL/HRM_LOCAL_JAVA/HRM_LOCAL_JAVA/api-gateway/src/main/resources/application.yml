@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: gatewayService
+  cloud:
+    gateway:
+      routes:
+        - id: urpService
+          uri: lb://urpService
+          predicates:
+            - Path=/user/** 
+        - id: empService
+          uri: lb://empService
+          predicates:
+            - Path=/emp/**    
+        - id: loginservice
+          uri: lb://loginservice
+          predicates:
+            - Path=/login/**    
+        - id: emailService
+          uri: lb://emailService
+          predicates:
+            - Path=/mail/**    
+        - id: designations
+          uri: lb://designations
+          predicates:
+            - Path=/designation/**    
+        - id: departments
+          uri: lb://departments
+          predicates:
+            - Path=/dept/**    
+        - id: leaveservice
+          uri: lb://leaveservice
+          predicates:
+            - Path=/leave/** 
+        - id: holidayService
+          uri: lb://holidayService
+          predicates:
+            - Path=/holiday/** 
+        - id: attendanceService
+          uri: lb://attendanceService
+          predicates:
+            - Path=/attendance/**           
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+
+server:
+  port: 6065

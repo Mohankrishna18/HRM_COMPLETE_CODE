@@ -143,10 +143,7 @@ public class MainController {
 
 		return serv.getEmployeeNameByEmployeeId(employeeId);
 
-	@GetMapping("/getEmployeeNameByEmployeeId/{employeeId}")
-	public ResponseEntity getEmployeeNameByEmployeeId(@PathVariable String employeeId) {
 
-		return serv.getEmployeeNameByEmployeeId(employeeId);
 	}
 
 	@GetMapping("/getReportingManagerByEmployeeId/{employeeId}")
