@@ -54,11 +54,13 @@ public class EmployeeMaster {
 	@Column
 	private String yearsOfExperience;
 	@Column
-	private Date dateOfBirth;
+	private String dateOfBirth;
 	@Column
 	private String bloodGroup;
 	@Column
 	private String gender;
+	@Column
+	private String projectName;
 	@Column
 	private String maritalStatus;
 	private String permanentAdress;
@@ -78,50 +80,50 @@ public class EmployeeMaster {
 	private String postgraduationInstituteName;
 	private String postgraduationInstituteCity;
 	private String postgraduationCourseName;
-	private Date postgraduationJoiningYear;
-	private Date postgraduationPassedYear;
+	private String postgraduationJoiningYear;
+	private String postgraduationPassedYear;
 	private String postgraduationGrade;
 	private String graduationBoardOfUniversity;
 	private String graduationInstituteName;
 	private String graduationInstituteCity;
 	private String graduationCourseName;
-	private Date graduationJoiningYear;
-	private Date graduationPassedYear;
+	private String graduationJoiningYear;
+	private String graduationPassedYear;
 	private String graduationGrade;
 	private String intermediateBoardOfUniversity;
 	private String intermediateCollegeName;
 	private String intermediateCollegeCity;
 	private String intermediateCourseName;
-	private Date intermediateJoiningYear;
-	private Date intermediatePassedYear;
+	private String intermediateJoiningYear;
+	private String intermediatePassedYear;
 	private String intermediateGrade;
 	private String sscBoardOfUniversity;
 	private String sscSchoolName;
 	private String sscSchoolCity;
 	private String sscCourseName;
-	private Date sscJoiningYear;
-	private Date sscPassedYear;
+	private String sscJoiningYear;
+	private String sscPassedYear;
 	private String sscGrade;
 	private String previousCompany1_name;
 	private String previousCompany1_designation;
-	private Date previousCompany1_joiningDate;
-	private Date previousCompany1_relievingDate;
+	private String previousCompany1_joiningDate;
+	private String previousCompany1_relievingDate;
 	private String previousCompany1_employeeId;
 	private Double previousCompany1_grossSalary;
 	private String previousCompany1_typeOfEmployment;
 	private String previousCompany1_reasonForRelieving;
 	private String previousCompany2_name;
 	private String previousCompany2_designation;
-	private Date previousCompany2_joiningDate;
-	private Date previousCompany2_relievingDate;
+	private String previousCompany2_joiningDate;
+	private String previousCompany2_relievingDate;
 	private String previousCompany2_employeeId;
 	private Double previousCompany2_grossSalary;
 	private String previousCompany2_typeOfEmployment;
 	private String previousCompany2_reasonForRelieving;
 	private String previousCompany3_name;
 	private String previousCompany3_designation;
-	private Date previousCompany3_joiningDate;
-	private Date previousCompany3_relievingDate;
+	private String previousCompany3_joiningDate;
+	private String previousCompany3_relievingDate;
 	private String previousCompany3_employeeId;
 	private Double previousCompany3_grossSalary;
 	private String previousCompany3_typeOfEmployment;
@@ -253,11 +255,11 @@ public class EmployeeMaster {
 		this.yearsOfExperience = yearsOfExperience;
 	}
 
-	public Date getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -275,6 +277,14 @@ public class EmployeeMaster {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 
 	public String getMaritalStatus() {
@@ -381,19 +391,19 @@ public class EmployeeMaster {
 		this.postgraduationCourseName = postgraduationCourseName;
 	}
 
-	public Date getPostgraduationJoiningYear() {
+	public String getPostgraduationJoiningYear() {
 		return postgraduationJoiningYear;
 	}
 
-	public void setPostgraduationJoiningYear(Date postgraduationJoiningYear) {
+	public void setPostgraduationJoiningYear(String postgraduationJoiningYear) {
 		this.postgraduationJoiningYear = postgraduationJoiningYear;
 	}
 
-	public Date getPostgraduationPassedYear() {
+	public String getPostgraduationPassedYear() {
 		return postgraduationPassedYear;
 	}
 
-	public void setPostgraduationPassedYear(Date postgraduationPassedYear) {
+	public void setPostgraduationPassedYear(String postgraduationPassedYear) {
 		this.postgraduationPassedYear = postgraduationPassedYear;
 	}
 
@@ -437,19 +447,19 @@ public class EmployeeMaster {
 		this.graduationCourseName = graduationCourseName;
 	}
 
-	public Date getGraduationJoiningYear() {
+	public String getGraduationJoiningYear() {
 		return graduationJoiningYear;
 	}
 
-	public void setGraduationJoiningYear(Date graduationJoiningYear) {
+	public void setGraduationJoiningYear(String graduationJoiningYear) {
 		this.graduationJoiningYear = graduationJoiningYear;
 	}
 
-	public Date getGraduationPassedYear() {
+	public String getGraduationPassedYear() {
 		return graduationPassedYear;
 	}
 
-	public void setGraduationPassedYear(Date graduationPassedYear) {
+	public void setGraduationPassedYear(String graduationPassedYear) {
 		this.graduationPassedYear = graduationPassedYear;
 	}
 
@@ -493,19 +503,19 @@ public class EmployeeMaster {
 		this.intermediateCourseName = intermediateCourseName;
 	}
 
-	public Date getIntermediateJoiningYear() {
+	public String getIntermediateJoiningYear() {
 		return intermediateJoiningYear;
 	}
 
-	public void setIntermediateJoiningYear(Date intermediateJoiningYear) {
+	public void setIntermediateJoiningYear(String intermediateJoiningYear) {
 		this.intermediateJoiningYear = intermediateJoiningYear;
 	}
 
-	public Date getIntermediatePassedYear() {
+	public String getIntermediatePassedYear() {
 		return intermediatePassedYear;
 	}
 
-	public void setIntermediatePassedYear(Date intermediatePassedYear) {
+	public void setIntermediatePassedYear(String intermediatePassedYear) {
 		this.intermediatePassedYear = intermediatePassedYear;
 	}
 
@@ -549,19 +559,19 @@ public class EmployeeMaster {
 		this.sscCourseName = sscCourseName;
 	}
 
-	public Date getSscJoiningYear() {
+	public String getSscJoiningYear() {
 		return sscJoiningYear;
 	}
 
-	public void setSscJoiningYear(Date sscJoiningYear) {
+	public void setSscJoiningYear(String sscJoiningYear) {
 		this.sscJoiningYear = sscJoiningYear;
 	}
 
-	public Date getSscPassedYear() {
+	public String getSscPassedYear() {
 		return sscPassedYear;
 	}
 
-	public void setSscPassedYear(Date sscPassedYear) {
+	public void setSscPassedYear(String sscPassedYear) {
 		this.sscPassedYear = sscPassedYear;
 	}
 
@@ -589,19 +599,19 @@ public class EmployeeMaster {
 		this.previousCompany1_designation = previousCompany1_designation;
 	}
 
-	public Date getPreviousCompany1_joiningDate() {
+	public String getPreviousCompany1_joiningDate() {
 		return previousCompany1_joiningDate;
 	}
 
-	public void setPreviousCompany1_joiningDate(Date previousCompany1_joiningDate) {
+	public void setPreviousCompany1_joiningDate(String previousCompany1_joiningDate) {
 		this.previousCompany1_joiningDate = previousCompany1_joiningDate;
 	}
 
-	public Date getPreviousCompany1_relievingDate() {
+	public String getPreviousCompany1_relievingDate() {
 		return previousCompany1_relievingDate;
 	}
 
-	public void setPreviousCompany1_relievingDate(Date previousCompany1_relievingDate) {
+	public void setPreviousCompany1_relievingDate(String previousCompany1_relievingDate) {
 		this.previousCompany1_relievingDate = previousCompany1_relievingDate;
 	}
 
@@ -653,19 +663,19 @@ public class EmployeeMaster {
 		this.previousCompany2_designation = previousCompany2_designation;
 	}
 
-	public Date getPreviousCompany2_joiningDate() {
+	public String getPreviousCompany2_joiningDate() {
 		return previousCompany2_joiningDate;
 	}
 
-	public void setPreviousCompany2_joiningDate(Date previousCompany2_joiningDate) {
+	public void setPreviousCompany2_joiningDate(String previousCompany2_joiningDate) {
 		this.previousCompany2_joiningDate = previousCompany2_joiningDate;
 	}
 
-	public Date getPreviousCompany2_relievingDate() {
+	public String getPreviousCompany2_relievingDate() {
 		return previousCompany2_relievingDate;
 	}
 
-	public void setPreviousCompany2_relievingDate(Date previousCompany2_relievingDate) {
+	public void setPreviousCompany2_relievingDate(String previousCompany2_relievingDate) {
 		this.previousCompany2_relievingDate = previousCompany2_relievingDate;
 	}
 
@@ -717,19 +727,19 @@ public class EmployeeMaster {
 		this.previousCompany3_designation = previousCompany3_designation;
 	}
 
-	public Date getPreviousCompany3_joiningDate() {
+	public String getPreviousCompany3_joiningDate() {
 		return previousCompany3_joiningDate;
 	}
 
-	public void setPreviousCompany3_joiningDate(Date previousCompany3_joiningDate) {
+	public void setPreviousCompany3_joiningDate(String previousCompany3_joiningDate) {
 		this.previousCompany3_joiningDate = previousCompany3_joiningDate;
 	}
 
-	public Date getPreviousCompany3_relievingDate() {
+	public String getPreviousCompany3_relievingDate() {
 		return previousCompany3_relievingDate;
 	}
 
-	public void setPreviousCompany3_relievingDate(Date previousCompany3_relievingDate) {
+	public void setPreviousCompany3_relievingDate(String previousCompany3_relievingDate) {
 		this.previousCompany3_relievingDate = previousCompany3_relievingDate;
 	}
 
@@ -916,5 +926,7 @@ public class EmployeeMaster {
 	public void setExitDate(String exitDate) {
 		this.exitDate = exitDate;
 	}
+
+	
 
 }
