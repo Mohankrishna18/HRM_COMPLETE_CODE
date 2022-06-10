@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Image } from "react-bootstrap";
+import Avatar from '@mui/material/Avatar';
 
 function EmployeeMasterCard() {
 
@@ -70,8 +71,8 @@ function EmployeeMasterCard() {
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
 
-    today = mm + '-' + dd + '-' + yyyy;
-    console.log(today);
+    var doj = dd + '-' + mm + '-' + yyyy;
+    console.log(doj);
 
     return (
         <Row><Col>
@@ -81,14 +82,13 @@ function EmployeeMasterCard() {
                         <Card.Title>
 
                             <Col>
-                            <Image src={`data:image/jpeg;base64,${imge.url}`} style={{
+                            <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
                                     height: "150px",
                                     width: "150px",
                                     borderRadius: "110px",
                                     alignItems: "center",
                                     marginTop: "50px",
                                     marginLeft: "145px"
-
                                 }} />
                             </Col>
                             <Col style={{
@@ -108,7 +108,7 @@ function EmployeeMasterCard() {
                             <Row
                                 style={{
                                     paddingTop: 20,
-                                    paddingBottom: 10,
+                                    paddingBottom: 15,
                                 }}
                             >
                                 <Col>
@@ -122,7 +122,7 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 10 }}>
+                            <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                     <Card.Title style={{}}>
                                         <h6> Designation:</h6>
@@ -134,7 +134,7 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 10 }}>
+                            <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                     <Card.Title style={{}}>
                                         <h6>Date of Joining: </h6>
@@ -142,11 +142,11 @@ function EmployeeMasterCard() {
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{}}>
-                                        {today}
+                                        {doj}
                                     </Card.Text>
                                 </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 10 }}>
+                            <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                     <Card.Text style={{}}>
                                         <h6>Reporting Manager: </h6>
@@ -170,7 +170,7 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row> */}
-                            <Row style={{ paddingBottom: 10 }}>
+                            <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                     <Card.Text style={{}}>
                                         <h6>Employment Type: </h6>

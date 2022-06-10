@@ -7,7 +7,7 @@ import { Image } from "react-bootstrap";
 
 import axios from "../../../Uri";
 
-
+import Avatar from '@mui/material/Avatar';
 
 
 
@@ -67,8 +67,6 @@ const MyProfile = () => {
 
   }, []);
 
-
-
   console.log(imge)
 
 
@@ -88,24 +86,57 @@ const MyProfile = () => {
   var dd = String(doj.getDate()).padStart(2, '0');
   var mm = String(doj.getMonth() + 1).padStart(2, '0');
   var yyyy = doj.getFullYear();
-  var doj1 = dd + '-' + mm + '-' + yyyy;
+  var doj1 = yyyy + '-' + mm + '-' + dd;
   // console.log(doj1);
 
-  // console.log(getEmployeeDetails.dateOfBirth)
-  var dob = new Date(getEmployeeDetails.dateOfBirth);
-  var dd = String(dob.getDate()).padStart(2, '0');
-  var mm = String(dob.getMonth() + 1).padStart(2, '0');
-  var yyyy = dob.getFullYear();
-  dob = dd + '-' + mm + '-' + yyyy;
-  // console.log(dob);
+
+
+  console.log(getEmployeeDetails.dateOfBirth)
+
+  // function ChangeFormateDate(getEmployeeDetails.dateOfBirth)
+  // {
+  //    return oldDate.toString().split("/").reverse().join("/");
+  // }
+
+
+  var dob = getEmployeeDetails.dateOfBirth;
+// console.log(dob)
+//  var dob12 = dob.split("-").reverse().join("-");
+//  console.log(dob12)
+
+
+  // var dd = dob.getDate();
+  // var mm = dob.getMonth()+1;
+  // var yyyy = dob.getFullYear();
+  // var dob1 = dd + '-' + mm + '-' + yyyy;
+  //  console.log(dob1); 
 
   // console.log(getEmployeeDetails.passportExpiryDate)
   var passportDate = new Date(getEmployeeDetails.passportExpiryDate);
   var dd = String(passportDate.getDate()).padStart(2, '0');
   var mm = String(passportDate.getMonth() + 1).padStart(2, '0');
   var yyyy = passportDate.getFullYear();
-  const passportDate1 = dd + '-' + mm + '-' + yyyy;
-  // console.log(passportDate1);
+   var passportDate1 = dd + '-' + mm + '-' + yyyy;
+   console.log(passportDate1);
+
+   var exitDate = new Date(getEmployeeDetails.exitDate);
+
+   var dd = String(exitDate.getDate()).padStart(2, '0');
+ 
+   var mm = String(exitDate.getMonth() + 1).padStart(2, '0');
+ 
+   var yyyy = exitDate.getFullYear();
+ 
+   var exitDate1 = dd + '-' + mm + '-' + yyyy;
+
+   var GraduationJoiningYear = new Date(getEmployeeDetails.graduationJoiningYear);
+  var dd = String(GraduationJoiningYear.getDate()).padStart(2, '0');
+  var mm = String(GraduationJoiningYear.getMonth() + 1).padStart(2, '0');
+  var yyyy = GraduationJoiningYear.getFullYear();
+   var GraduationJoiningYear1 = dd + '-' + mm + '-' + yyyy;
+   console.log(GraduationJoiningYear1);
+
+
 
   return (
     <>
@@ -140,7 +171,7 @@ const MyProfile = () => {
 
                                     <Col>
 
-                                      <Image src={`data:image/jpeg;base64,${imge.url}`} style={{
+                                      <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
 
                                         // {/* <Image src={imge.url} style={{ */}
 
@@ -192,7 +223,7 @@ const MyProfile = () => {
                               <Row
                                 style={{
                                   paddingTop: 20,
-                                  paddingBottom: 10,
+                                  paddingBottom: 15,
                                 }}
                               >
                                 <Col>
@@ -206,7 +237,7 @@ const MyProfile = () => {
                                   </Card.Text>
                                 </Col>
                               </Row>
-                              <Row style={{ paddingBottom: 10 }}>
+                              <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                   <Card.Title style={{}}>
                                     <h6> Designation:</h6>
@@ -218,7 +249,7 @@ const MyProfile = () => {
                                   </Card.Text>
                                 </Col>
                               </Row>
-                              <Row style={{ paddingBottom: 10 }}>
+                              <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                   <Card.Title style={{}}>
                                     <h6>Date of Joining: </h6>
@@ -231,7 +262,7 @@ const MyProfile = () => {
                                   </Card.Text>
                                 </Col>
                               </Row>
-                              <Row style={{ paddingBottom: 10 }}>
+                              <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                   <Card.Text style={{}}>
                                     <h6>Reporting Manager: </h6>
@@ -243,7 +274,7 @@ const MyProfile = () => {
                                   </Card.Text>
                                 </Col>
                               </Row>
-                              <Row style={{ paddingBottom: 10 }}>
+                              <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                   <Card.Text style={{}}>
                                     <h6>Employment Type: </h6>
@@ -265,13 +296,13 @@ const MyProfile = () => {
                 </Row>{" "}
                 <Row style={{ marginTop: 20 }}>
                   <Col>
-                    <Card style={{ padding: 30, paddingBottom: 107 }}>
+                    <Card style={{ padding: 30, paddingBottom: 45 }}>
                       <Card.Title>
                         <h5>Personal Information:</h5>
                       </Card.Title>
                       <Card.Body >
 
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
+                        <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
                           <Col>
                             <Card.Subtitle>
                               Email:
@@ -283,7 +314,7 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                         </Row>
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
+                        <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
                           <Col>
                             <Card.Subtitle
                             >
@@ -296,7 +327,7 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                         </Row>
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
+                        <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
                           <Col>
                             <Card.Subtitle
 
@@ -306,11 +337,14 @@ const MyProfile = () => {
                           </Col>
                           <Col md={{ offset: 1 }}>
                             <Card.Subtitle>
-                              {dob}
+                              {getEmployeeDetails.dateOfBirth}
+                              
+                              {/* {dob12} */}
+                              {/* {dob1} */}
                             </Card.Subtitle>
                           </Col>
                         </Row>
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
+                        <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
                           <Col>
                             <Card.Subtitle
                             >
@@ -323,7 +357,7 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                         </Row>
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
+                        <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
                           <Col>
                             <Card.Subtitle
 
@@ -337,7 +371,7 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                         </Row>
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
+                        <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
                           <Col>
                             <Card.Subtitle
 
@@ -478,47 +512,26 @@ const MyProfile = () => {
                         <h5>Additional Details:</h5>
                       </Card.Title>
                       <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
-
                         <Col>
-
                           <Card.Subtitle style={{ padding: 10 }}>
-
                             Passport Number:
-
                           </Card.Subtitle>{" "}
-
                         </Col>
-
                         <Col md={{ offset: 1 }}>
-
                           <Card.Text style={{ paddingBottom: 0 }}>
-
                             {getEmployeeDetails.passportNo}
-
                           </Card.Text>
-
                         </Col>
-
                         <Col>
-
                           <Card.Subtitle style={{ padding: 10 }}>
-
                             Passport Expiry Date:
-
                           </Card.Subtitle>{" "}
-
                         </Col>
-
                         <Col md={{ offset: 1 }}>
-
                           <Card.Text style={{ paddingBottom: 0 }}>
-
-                            {passportDate1}
-
+                            {getEmployeeDetails.passportExpiryDate}
                           </Card.Text>
-
                         </Col>
-
                       </Row>
                       <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                         <Col>
@@ -718,13 +731,12 @@ const MyProfile = () => {
 
 
                           <tr>
-                            <th>{getEmployeeDetails.postgraduationBoardOfUniversity}</th>
+                            <td>{getEmployeeDetails.postgraduationBoardOfUniversity}</td>
                             <td>{getEmployeeDetails.postgraduationInstituteName}</td>
                             <td>{getEmployeeDetails.postgraduationCourseName}</td>
                             <td>{getEmployeeDetails.postgraduationGrade}</td>
                             <td>{getEmployeeDetails.postgraduationJoiningYear}</td>
                             <td>{getEmployeeDetails.postgraduationPassedYear}</td>
-
 
                           </tr>
 
@@ -798,3 +810,4 @@ const MyProfile = () => {
   );
 };
 export default MyProfile;
+

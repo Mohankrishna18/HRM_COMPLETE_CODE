@@ -801,7 +801,7 @@ function EmployeeMasterForm() {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Passport Number</Form.Label>
                                             <Form.Control
-                                                required
+                                                
                                                 type="text"
                                                 placeholder="Passport Number"
                                                 controlId="passportNo"
@@ -815,7 +815,7 @@ function EmployeeMasterForm() {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Passport Expiry Date</Form.Label>
                                             <Form.Control
-                                                required
+                                               
                                                 type="date"
                                                 placeholder="Passport Expiry Date"
                                                 controlId="passportExpiryDate"
@@ -1649,7 +1649,8 @@ function EmployeeMasterForm() {
                                    <Form.Group style={{ padding: 10 ,paddingTop:20}}>
                                    <Form.Label>Upload Profile Picture😎* (Size should be 1 Mb)</Form.Label>
                                        <Form.Control 
-                                       required
+                                    //    required
+                                       value={name}
                                         type="file" onChange={handleChange} />
                                    </Form.Group>
                                     </Row>

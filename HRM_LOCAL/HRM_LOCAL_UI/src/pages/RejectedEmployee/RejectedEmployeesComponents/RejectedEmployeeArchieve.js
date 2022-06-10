@@ -71,6 +71,7 @@ function RejectedEmployeeArchieve() {
     {
       title: "Date of Joining",
       field: "dateOfJoining",
+      type:'date',
 
       headerStyle: {
         backgroundColor: "#FF9E14",

@@ -36,7 +36,6 @@ const Sign = () => {
         const resp = await axios.get(
           `/login/authenticateUser?employeeId=${employeeId}&password=${password}`
         );
-        console.log("login is successful");
         userStatus = resp.data;
         sessionStorage.setItem("userdata", JSON.stringify(userStatus));
 
