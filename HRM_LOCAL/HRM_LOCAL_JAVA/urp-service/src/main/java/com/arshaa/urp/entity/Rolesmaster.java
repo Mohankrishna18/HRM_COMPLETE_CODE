@@ -157,6 +157,8 @@ public class Rolesmaster {
 		this.updatedBy = updatedBy;
 	}
 
+	
+	
 
 	public Rolesmaster(int roleId, String roleName, boolean roleStatus, String permission1, String permission2,
 			String permission3, String permission4, String permission5, String permission6, String permission7,
@@ -179,13 +181,11 @@ public class Rolesmaster {
 		this.updatedBy = updatedBy;
 	}
 
-
 	
 
 	public Rolesmaster() {
 		super();
 		// TODO Auto-generated constructor stub
-
 	}
 		
 }
