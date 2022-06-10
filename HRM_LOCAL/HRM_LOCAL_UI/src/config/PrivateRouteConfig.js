@@ -223,7 +223,7 @@ export default [
     component: RejectedEmployeeMain,
     path: "/RejectedEmployeeMain",
     icon: <FcManager />,
-    title: "Rejected Employees",
+    title: "Rejected Onboards",
     permission: [
      Roles.manager,
       Roles.hradmin

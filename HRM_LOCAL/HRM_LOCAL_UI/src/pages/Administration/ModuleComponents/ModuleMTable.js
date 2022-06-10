@@ -36,7 +36,7 @@ export default function ModuleEditableTable() {
     <Grid>
       <MaterialTable
         title=""
-        columns={columns}
+        columns={columns} 
         data={data}
         editable={{
           onRowAdd: (newData) =>
