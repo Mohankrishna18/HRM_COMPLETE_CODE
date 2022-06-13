@@ -44,13 +44,12 @@ const Sign = () => {
           history.push("/app");
           toast.success("You are successfully Logged In");
         }
-        else
-        {
+        else {
           toast.error("Login Failed, Please try again.");
         }
       } catch (err) {
         console.error(err);
-        
+
       }
     };
 
@@ -74,7 +73,7 @@ const Sign = () => {
             md={6}
             sm={12}
           >
-            
+
             <img
               src={image}
               style={{
@@ -82,10 +81,10 @@ const Sign = () => {
                 width: "200px",
                 paddingLeft: "120px",
                 borderRadius: "15px",
-             
+
               }}
             ></img>
-            <h2 style={{ textAlign: "center", paddingTop: "10px"}}>Arshaa Login</h2>
+            <h2 style={{ textAlign: "center", paddingTop: "10px" }}>Arshaa Login</h2>
             <Form style={{ paddingTop: "40px" }}>
               <Form.Group controlld="employeeId">
                 <Form.Label style={{ fontWeight: "bold", paddingLeft: "10px" }}>
@@ -157,7 +156,7 @@ const Sign = () => {
                   width: "100%",
                   background: "#19fa0a",
                   borderRadius: "15px",
-                  color:"black"
+                  color: "black"
                 }}
                 disabled={!validateForm()}
                 onClick={handleSubmit}
