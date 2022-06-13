@@ -95,12 +95,13 @@ public class UserService {
 
 			Rolesmaster updatedmaster1 = rRepo.save(master1);
 			System.out.println(updatedmaster1);
+
 			r.setStatus(true);
 			r.setMessage("Data added successfully");
 			r.setData(updatedmaster1);
 			return new ResponseEntity(r, HttpStatus.OK);
 		} catch (Exception e) {
-// TODO: handle exception
+			// TODO: handle exception
 
 			r.setStatus(false);
 			r.setMessage(e.getMessage());
@@ -166,7 +167,7 @@ public class UserService {
 		}
 	}
 
-//Update Module By Module Id
+	// Update Module By Module Id
 
 	public ResponseEntity updateModuleBymoduleID(int moduleId, Modulemaster newModulemaster) {
 
@@ -190,7 +191,7 @@ public class UserService {
 		}
 	}
 
-//Delete Module By Module ID
+	// Delete Module By Module ID
 	public ResponseEntity DeleteModuleDataByModuleID(int moduleId) {
 		Response r = new Response<>();
 		try {
@@ -200,7 +201,7 @@ public class UserService {
 			r.setMessage("Deleted successfully");
 			return new ResponseEntity(r, HttpStatus.OK);
 		} catch (Exception e) {
-// TODO: handle exception
+			// TODO: handle exception
 
 			r.setStatus(false);
 			r.setMessage(e.getMessage());
@@ -208,11 +209,11 @@ public class UserService {
 		}
 	}
 
-	public ResponseEntity updateModuleById(int roleId, Modulemaster newModulemaster) {
+	public ResponseEntity updateModuleById(int moduleId, Modulemaster newModulemaster) {
 		Response r = new Response<>();
 		try {
 
-			RoleModuleMap rmp = rmRepo.getById(roleId);
+			RoleModuleMap rmp = rmRepo.getById(moduleId);
 			int id = rmp.getModuleId();
 			Modulemaster master = mRepo.getById(id);
 			master.setModuleName(newModulemaster.getModuleName());
@@ -235,16 +236,16 @@ public class UserService {
 		}
 	}
 
-	public ResponseEntity DeleteModuleData(int roleId) {
+	public ResponseEntity DeleteModuleData(int moduleId) {
 		Response r = new Response<>();
 		try {
-			RoleModuleMap rmp = rmRepo.getById(roleId);
+			RoleModuleMap rmp = rmRepo.getById(moduleId);
 			int id = rmp.getModuleId();
 			Modulemaster master = mRepo.getById(id);
 
 			mRepo.delete(master);
 			r.setStatus(true);
-			r.setMessage("Deleted successfully");
+			r.setMessage("Deleted successfully");	
 			return new ResponseEntity(r, HttpStatus.OK);
 		} catch (Exception e) {
 // TODO: handle exception

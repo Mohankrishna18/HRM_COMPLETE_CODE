@@ -36,7 +36,6 @@ const Sign = () => {
         const resp = await axios.get(
           `/login/authenticateUser?employeeId=${employeeId}&password=${password}`
         );
-        console.log("login is successful");
         userStatus = resp.data;
         sessionStorage.setItem("userdata", JSON.stringify(userStatus));
 
@@ -44,9 +43,13 @@ const Sign = () => {
           history.push("/app");
           toast.success("You are successfully Logged In");
         }
+        else
+        {
+          toast.error("Login Failed, Please try again.");
+        }
       } catch (err) {
         console.error(err);
-        toast.error("Login Failed, Please try again.");
+        
       }
     };
 

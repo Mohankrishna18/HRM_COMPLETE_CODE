@@ -88,7 +88,7 @@ function RejectedEmployeeArchieve() {
       },
     },
     {
-      title: "Reason",
+      title: "Comments",
       field: "comments",
 
       headerStyle: {
@@ -114,18 +114,18 @@ function RejectedEmployeeArchieve() {
     <Grid container>
       <Grid xs={12}>
         <MaterialTable
-          title="Rejected Onboards Archive"
+          title="Rejected Employee Archieve"
           data={data}
           sx={{ color: "white" }}
           columns={columns}
           options={{
             exportButton: true,
-            pageSize: 5,
+            pageSize: 20,
             actionsColumnIndex: -1,
             grouping: true,
             addRowPosition: "first",
             headerStyle: {
-              backgroundColor: "#1E90FF",
+              backgroundColor: "#FF9E14",
               color: "white",
               fontSize: "15px",
               //height: "10px",

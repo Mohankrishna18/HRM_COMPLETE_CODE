@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Accordion, Button, Card, Form } from 'react-bootstrap';
+import { Accordion, Button, Card, Form, InputGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
@@ -13,11 +13,82 @@ import { useHistory } from 'react-router-dom';
 import { set } from 'lodash';
 
 
+
+const INITIAL_FORM_STATE = {
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    secondaryPhone: "",
+   
+    bloodGroup: "",
+    JoiningDate: "",
+    gender: "",
+    maritalStatus: "",
+  };
+
+  const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
+  const FORM_VALIDATION = Yup.object().shape({
+    firstName: Yup.string()
+      .matches(/^[aA-zZ\s]+$/, "Invalid FirstName ")
+      .required("Required"),
+      middleName: Yup.string()
+      .matches(/^[aA-zZ\s]+$/, "Invalid FirstName "),
+  
+    lastName: Yup.string()
+      .matches(/^[aA-zZ\s]+$/, "Invalid LastName ")
+      .required("Required"),
+  
+    email: Yup.string().email("Invalid email.").required("Required"),
+
+    secondaryPhone: Yup.string()
+      .required("required")
+      .matches(phoneRegExp, "Phone number is not valid")
+      .min(10, "Phone number is not valid")
+      .max(10, "Phone number is not valid"),
+  
+    dateOfBirth: Yup.string()
+      .required("DOB is Required")
+      .test(
+        "DOB",
+        "Please choose a valid date of birth",
+        (date) => moment().diff(moment(date), "years") >= 12
+      ),
+  
+    bloodGroup: Yup.string()
+       .matches(/^(A|B|AB|O)[+-]$/, {
+        message: "Please enter valid Blood Group.",
+        excludeEmptyString: false,
+       })
+       .required("Required"),
+    }); 
+
+
+
 function EmployeeMasterForm() {
 
     const userData = sessionStorage.getItem('userdata')
     const userData1 = JSON.parse(userData)
     const employeeid = userData1.data.employeeId
+
+
+    var doj = new Date(dateOfJoining);
+    var dd = String(doj.getDate()).padStart(2, '0');
+    var mm = String(doj.getMonth() + 1).padStart(2, '0');
+    var yyyy = doj.getFullYear();
+     doj = yyyy + '-' + mm + '-' + dd;
+    // console.log(doj);
+
+    // var dob = new Date(dateOfBirth);
+    // var dd = String(dob.getDate()).padStart(2, '0');
+    // var mm = String(dob.getMonth() + 1).padStart(2, '0');
+    // var yyyy = dob.getFullYear();
+    //  var dob1 = yyyy + '-' + mm + '-' + dd;
+    // console.log(dob1);
+
 
     // Here usestate has been used in order
     // to set and get values from the jsx
@@ -34,7 +105,6 @@ function EmployeeMasterForm() {
     const [primarySkills, setPrimarySkills] = useState("");
     const [secondarySkills, setSecondarySkills] = useState("");
     const [email, setEmail] = useState("");
-
     const [bloodGroup, setBloodGroup] = useState("");
     const [gender, setGender] = useState("");
     const [maritalStatus, setMaritalStatus] = useState("");
@@ -61,6 +131,8 @@ function EmployeeMasterForm() {
     const [graduationCourseName, setGraduationCourseName] = useState("");
     const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
     const [graduationPassedYear, setGraduationPassedYear] = useState("");
+    // const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
+    // const [graduationPassedYear, setGraduationPassedYear] = useState("");
     const [graduationGrade, setGraduationGrade] = useState("");
     const [intermediateBoardOfUniversity, setIntermediateBoardOfUniversity] = useState("");
     const [intermediateCollegeName, setIntermediateCollegeName] = useState("");
@@ -97,9 +169,18 @@ function EmployeeMasterForm() {
     const [previousCompany3_employeeId, setPreviousCompany3_employeeId] = useState("");
     const [previousCompany3_typeOfEmployment, setPreviousCompany3_typeOfEmployement] = useState("");
     const [previousCompany3_reasonForRelieving, setPreviousCompany3_reasonForRelieving] = useState("");
-    //const [reportingManager, setReportingManager] = useState("");
-    const [profilePhoto, setProfilePhoto] = useState("");
 
+    const [panNumber,setPanNumber] = useState("");
+    const [aadharNumber,setAadharNumber] = useState("");
+    const [uanNumber,setUanNumber] = useState("");
+    const [bankName,setBankName] = useState("");
+    const [accountNumber,setAccountNumber] = useState("");
+    const [ifscCode,setIfscCode] = useState("");
+    const [branch,setBranch] = useState("");
+    const [band,setBand] = useState("");
+    const [exitDate,setExitDate] = useState("");
+    //const [reportingManager, setReportingManager] = useState("");
+ 
 
 
     // Useeffect take care that page will be rendered only once
@@ -198,9 +279,18 @@ function EmployeeMasterForm() {
                 setPreviousCompany3_typeOfEmployement(response.data.data.previousCompany3_typeOfEmployment)
                 setPreviousCompany3_reasonForRelieving(response.data.data.previousCompany3_reasonForRelieving)
 
+                setPanNumber(response.data.data.panNumber)
+                setAadharNumber(response.data.data.aadharNumber);
+                setUanNumber(response.data.data.uanNumber)
+                setBankName(response.data.data.bankName);
+                setAccountNumber(response.data.data.accountNumber);
+                setIfscCode(response.data.data.ifscCode);
+                setBranch(response.data.data.branch);
+                setBand(response.data.data.band);
+                setExitDate(response.data.data.exitDate);
             })
     }, [])
-    console.log(firstName)
+    // console.log(firstName)
 
 
     // function for handling the edit and 
@@ -280,11 +370,20 @@ function EmployeeMasterForm() {
             previousCompany3_employeeId,
             previousCompany3_typeOfEmployment,
             previousCompany3_reasonForRelieving,
-           
+
+            panNumber,
+            aadharNumber,
+            uanNumber,
+            bankName,
+            accountNumber,
+            ifscCode,
+            branch,
+            band,
+            exitDate
             })
-        console.log(firstName);
-        console.log(lastName);
-        console.log(passportExpiryDate)
+        // console.log(firstName);
+        // console.log(lastName);
+        // console.log(passportExpiryDate)
 
         toast.success("Form Submitted Successfully");
 
@@ -355,8 +454,8 @@ function EmployeeMasterForm() {
                     <Card className='scroll' style={{ marginTop:10}}>
                         <Card.Header>
                             <Card.Body>
-                                <Card.Title>Employee Profile</Card.Title>
-                                    <Card.Subtitle className="mb-2 text-muted">Employee Profile</Card.Subtitle>
+                                <Card.Title>Edit  My Profile</Card.Title>
+                                    <Card.Subtitle className="mb-2 text-muted">Edit My Profile</Card.Subtitle>
                                         <EmployeeMasterCard />
                                     <Card.Text style={{ margin: 20, color: "red" }}>* All fields are mandatory. Please fill the form Correctly.</Card.Text>
 
@@ -364,7 +463,8 @@ function EmployeeMasterForm() {
                                     <Card.Title style={{ margin: 20, textAlign: "center" }}>Personal Details</Card.Title>
                                 </Card>
 
-                                <Form style={{ padding: 10 }}>
+                                <Form onSubmit={e => changeHandler(e)} style={{ padding: 10 }}   
+                                >
                                     <Row className="mb-5" >
                                         {/* setting a name from the input textfiled */}
                                         <Form.Group as={Col} className="mb-3" md="6" controlId="formBasicEmail">
@@ -384,28 +484,31 @@ function EmployeeMasterForm() {
                                                 onChange={e => setFirstName(e.target.value)}
                                                 type="text" placeholder="Enter Name" />
                                         </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                        <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }} >
                                             <Form.Label>Middle name</Form.Label>
-                                            <Form.Control
+                                            <Form.Control 
                                                 name="middleName"
                                                 type="text"
                                                 placeholder="Middle name"
                                                 value={middleName}
-
                                                 onChange={(e) => setMiddleName(e.target.value)}
                                             />
                                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                         </Form.Group>
                                         <Form.Group as={Col} className="mb-3" md="6" controlId="formBasicEmail">
                                             <Form.Label>Last Name*</Form.Label>
+                                          
                                             <Form.Control value={lastName}
                                                 // disabled
                                                 required
                                                 onChange={e => setLastName(e.target.value)}
                                                 type="text" placeholder="Enter Name" />
+                                               
                                         </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                        <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }} >
                                             <Form.Label>Phone Number*</Form.Label>
+                                            <InputGroup >
+                <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
                                             <Form.Control
                                                 required
                                                 type="text"
@@ -413,13 +516,18 @@ function EmployeeMasterForm() {
                                                 placeholder="phone Number"
                                                 value={primaryPhoneNumber}
                                                 onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
-                                            /></Form.Group>
+                                            />
+                                             </InputGroup>
+                                             </Form.Group>
                                         <Form.Group as={Col} className="mb-3" md="6" controlId="formBasicEmail">
                                             <Form.Label>secondaryPhone*</Form.Label>
+                                            <InputGroup >
+                <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
                                             <Form.Control value={secondaryPhoneNumber}
                                                 required
                                                 onChange={e => setSecondaryPhone(e.target.value)}
                                                 type="text" placeholder="Enter Phone" />
+                                                </InputGroup>
                                         </Form.Group>
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Email*</Form.Label>
@@ -447,7 +555,7 @@ function EmployeeMasterForm() {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Date of Birth*</Form.Label>
                                             <Form.Control
-                                                required
+                                                // required
                                                 type="date"
                                                 name="dateOfBirth"
                                                 placeholder="DOB"
@@ -467,6 +575,11 @@ function EmployeeMasterForm() {
                                                 placeholder="Blood Group "
                                                 controlId="bloodGroup"
                                                 value={bloodGroup}
+
+                                               
+                                                // isValid={touched.bloodGroup && !errors.bloodGroup}
+                                                // isInvalid={touched.bloodGroup && !!errors.bloodGroup}
+
                                                 onChange={(e) => setBloodGroup(e.target.value)}
 
                                             >
@@ -518,19 +631,7 @@ function EmployeeMasterForm() {
                                             </Form.Select>
                                         </Form.Group>
 
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
-                                            <Form.Label>Designation*</Form.Label>
-                                            <Form.Control
-                                                required
-                                                disabled
-                                                type="text"
-                                                name="designationName"
-                                                placeholder="Designation"
-                                                controlId="designationName"
-                                                value={designationName}
-                                                onChange={(e) => setDesignationName(e.target.value)}
-                                            />
-                                        </Form.Group>
+                                       
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Primary Skills*</Form.Label>
                                             <Form.Control
@@ -559,12 +660,12 @@ function EmployeeMasterForm() {
                                             <Form.Label>Date of Joining*</Form.Label>
                                             <Form.Control
                                                 required
-                                                disabled
+                                                // disabled
                                                 type="date"
                                                 name="dateOfJoining"
                                                 controlId="dateOfJoining"
                                                 placeholder="DOJ"
-                                                value={dateOfJoining}
+                                                value={doj}
                                                 onChange={(e) => setDateOfJoining(e.target.value)}
                                             />
                                         </Form.Group> */}
@@ -694,13 +795,13 @@ function EmployeeMasterForm() {
 
                                         </Form.Group>
                                         <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 20 }}>
-                                            <Card.Title style={{ margin: 20, textAlign: "center" }}>Passport Details</Card.Title>
+                                            <Card.Title style={{ margin: 20, textAlign: "center" }}>Additional Details</Card.Title>
                                         </Card>
 
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Passport Number</Form.Label>
                                             <Form.Control
-                                                //required
+                                                
                                                 type="text"
                                                 placeholder="Passport Number"
                                                 controlId="passportNo"
@@ -714,17 +815,115 @@ function EmployeeMasterForm() {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Passport Expiry Date</Form.Label>
                                             <Form.Control
-                                                // required
+                                               
                                                 type="date"
                                                 placeholder="Passport Expiry Date"
                                                 controlId="passportExpiryDate"
                                                 name="passportExpiryDate"
                                                 value={passportExpiryDate}
                                                 onChange={(event) => setPassportExpiryDate(event.target.value)}
-
                                             ></Form.Control>
-
                                         </Form.Group>
+
+
+
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                            <Form.Label>Pan Card Number*</Form.Label>
+                                            <Form.Control
+                                                required
+                                                type="text"
+                                                placeholder="Pancard Number"
+                                                controlId="panNumber"
+                                                name="panNumber"
+                                                value={panNumber}
+                                                onChange={(event) => setPanNumber(event.target.value)}
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                            <Form.Label>Aadhar Number*</Form.Label>
+                                            <Form.Control
+                                                required
+                                                type="text"
+                                                placeholder="Aadhar Card Number"
+                                                controlId="aadharNumber"
+                                                name="panNumber"
+                                                value={aadharNumber}
+                                                onChange={(event) => setAadharNumber(event.target.value)}
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                            <Form.Label>UAN Number*</Form.Label>
+                                            <Form.Control
+                                                required
+                                                type="text"
+                                                placeholder="UAN Number"
+                                                controlId="uanNumber"
+                                                name="uanNumber"
+                                                value={uanNumber}
+                                                onChange={(event) => setUanNumber(event.target.value)}
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                            <Form.Label>Bank Name*</Form.Label>
+                                            <Form.Control
+                                                required
+                                                type="text"
+                                                placeholder="Bank Name"
+                                                controlId="bankName"
+                                                name="bankName"
+                                                value={bankName}
+                                                onChange={(event) => setBankName(event.target.value)}
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                            <Form.Label>Bank Account Number*</Form.Label>
+                                            <Form.Control
+                                                required
+                                                type="text"
+                                                placeholder="Account Number"
+                                                controlId="accountNumber"
+                                                name="accountNumber"
+                                                value={accountNumber}
+                                                onChange={(event) => setAccountNumber(event.target.value)}
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                            <Form.Label>IFSC Code*</Form.Label>
+                                            <Form.Control
+                                                required
+                                                type="text"
+                                                placeholder="IFSC Code"
+                                                controlId="ifscCode"
+                                                name="ifscCode"
+                                                value={ifscCode}
+                                                onChange={(event) => setIfscCode(event.target.value)}
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                            <Form.Label>Branch Name*</Form.Label>
+                                            <Form.Control
+                                                required
+                                                type="text"
+                                                placeholder="Branch Name"
+                                                controlId="branchName"
+                                                name="branch"
+                                                value={branch}
+                                                onChange={(event) => setBranch(event.target.value)}
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }} >
+                                            <Form.Label>BAND*</Form.Label>
+                                            <Form.Control
+                                                required
+                                                type="text"
+                                                placeholder="BAND"
+                                                controlId="band"
+                                                name="band"
+                                                value={band}
+                                                onChange={(event) => setBand(event.target.value)}
+                                            ></Form.Control>
+                                        </Form.Group>
+
                                         <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 10, marginBottom: 20 }}>
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>Educational Qualifications</Card.Title>
                                         </Card>
@@ -810,6 +1009,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Passed out year"
                                                                 controlId="postgraduationPassedYear"
                                                                 value={postgraduationPassedYear}
+                                                                min={postgraduationJoiningYear}
                                                                 name="postgraduationPassedYear"
                                                                 onChange={(e) => setPostgraduationPassedYear(e.target.value)}
                                                             />
@@ -892,7 +1092,7 @@ function EmployeeMasterForm() {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Joining Year*</Form.Label>
                                             <Form.Control
-                                                required
+                                                // required
                                                 type="date"
                                                 placeholder="Joining Year"
                                                 name="graduationJoiningYear"
@@ -905,11 +1105,12 @@ function EmployeeMasterForm() {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Passed-out Year*</Form.Label>
                                             <Form.Control
-                                                required
+                                                //required
                                                 type="date"
                                                 placeholder="Passed out year"
                                                 controlId="graduationPassedYear"
                                                 name="graduationPassedYear"
+                                                min={graduationJoiningYear}
                                                 value={graduationPassedYear}
                                                 onChange={(e) => setGraduationPassedYear(e.target.value)}
                                             ></Form.Control>
@@ -995,7 +1196,7 @@ function EmployeeMasterForm() {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Joining Year*</Form.Label>
                                             <Form.Control
-                                                required
+                                                //required
                                                 type="date"
                                                 placeholder="Joining Year"
                                                 controlId="intermediateJoiningYear"
@@ -1009,11 +1210,12 @@ function EmployeeMasterForm() {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Passed-out Year*</Form.Label>
                                             <Form.Control
-                                                required
+                                                //required
                                                 type="date"
                                                 placeholder="Passed out year"
                                                 controlId="intermediatePassedYear"
                                                 value={intermediatePassedYear}
+                                                min={intermediateJoiningYear}
                                                 onChange={(e) => setIntermediatePassedYear(e.target.value)}
                                                 name="intermediatePassedYear"
                                             ></Form.Control>
@@ -1093,7 +1295,7 @@ function EmployeeMasterForm() {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Joining Year*</Form.Label>
                                             <Form.Control
-                                                required
+                                                //required
                                                 type="date"
                                                 name="sscJoiningYear"
                                                 placeholder="Joining Year"
@@ -1106,12 +1308,13 @@ function EmployeeMasterForm() {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }} >
                                             <Form.Label>Passed-out Year*</Form.Label>
                                             <Form.Control
-                                                required
+                                                //required
                                                 type="date"
                                                 name="sscPassedYear"
                                                 placeholder="Passed out year"
                                                 controlId="sscPassedYear"
                                                 value={sscPassedYear}
+                                                min={sscJoiningYear}
                                                 onChange={(e) => setSscPassedYear(e.target.value)}
 
                                             ></Form.Control>
@@ -1179,6 +1382,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Date of Relieving"
                                                                 controlId="previousCompany1_relievingDate"
                                                                 value={previousCompany1_relievingDate}
+                                                                min={previousCompany1_joiningDate}
                                                                 onChange={(e) => setPreviousCompany1_relievingDate(e.target.value)}
                                                                 name="previousCompany1_relievingDate"
                                                             />
@@ -1277,6 +1481,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Date of Relieving"
                                                                 controlId="previousCompany2_relievingDate"
                                                                 value={previousCompany2_relievingDate}
+                                                                min={previousCompany2_joiningDate}
                                                                 onChange={(e) => setPreviousCompany2_relievingDate(e.target.value)}
                                                                 name="previousCompany2_relievingDate"
                                                             />
@@ -1322,7 +1527,6 @@ function EmployeeMasterForm() {
                                                                 controlId="previousCompany2_reasonForRelieving"
                                                                 value={previousCompany2_reasonForRelieving}
                                                                 onChange={(e) => setPreviousCompany2_reasonForRelieving(e.target.value)}
-
                                                                 name="previousCompany2_reasonForRelieving"
                                                             />
                                                         </Form.Group>
@@ -1366,7 +1570,6 @@ function EmployeeMasterForm() {
                                                                 controlId="previousCompany3_joiningDate"
                                                                 value={previousCompany3_joiningDate}
                                                                 onChange={(e) => setPreviousCompany3_joiningDate(e.target.value)}
-
                                                                 name="previousCompany3_joiningDate"
                                                             />
                                                         </Form.Group>
@@ -1377,6 +1580,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Date of Relieving"
                                                                 controlId="prevoiusCompany3_relievingDate"
                                                                 value={previousCompany3_relievingDate}
+                                                                min={previousCompany3_joiningDate}
                                                                 onChange={(e) => setPreviousCompany3_relievingDate(e.target.value)}
 
                                                                 name="previousCompany3_relievingDate"
@@ -1430,25 +1634,28 @@ function EmployeeMasterForm() {
                                                 </Accordion.Body>
                                             </Accordion.Item>
                                         </Accordion>
-                                        {/* <Form.Group controlId="formFile" className="mb-3" style={{ paddingTop: 20 }}>
-                                            <Form.Label>Choose Your Photo</Form.Label>
-                                            <Form.Control
-                                                // required
-                                                type="file"
-                                                controlId="profilePhoto"
-                                                name="profilePhoto"
-                                                value={profilePhoto}
-                                                onChange={(e) => setProfilePhoto(e.target.value)}
-                                            />
-                                        </Form.Group> */}
-                                        {/* Hadinling an onclick event running an edit logic */}
-                                   <Form.Group>
-                                       <Form.Control
+
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 ,paddingTop:20}} >
+                                                            <Form.Label>Exit Date</Form.Label>
+                                                            <Form.Control                                                                
+                                                                type="date"
+                                                                placeholder="Exit Date"
+                                                                controlId="exitDate"
+                                                                value={exitDate}
+                                                                onChange={(e) => setExitDate(e.target.value)}
+                                                                name="exitDate"
+                                                            />
+                                                        </Form.Group>
+                                   <Form.Group style={{ padding: 10 ,paddingTop:20}}>
+                                   <Form.Label>Upload Profile Picture😎* (Size should be 1 Mb)</Form.Label>
+                                       <Form.Control 
+                                    //    required
+                                       value={name}
                                         type="file" onChange={handleChange} />
                                    </Form.Group>
                                     </Row>
                                     <Button className="rounded-pill" style={{ backgroundColor: "#eb4509", float: "right" }}
-                                        onClick={e => changeHandler(e)}
+                                        
                                         type="submit"
                                         size="lg">
                                         Submit
@@ -1460,4 +1667,3 @@ function EmployeeMasterForm() {
 }
 
 export default EmployeeMasterForm;
-

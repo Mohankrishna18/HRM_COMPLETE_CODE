@@ -47,6 +47,15 @@ public class Controller {
 	public ResponseEntity getAllRoles() {
 		return serv.getRoles();
 	}
+	@PutMapping("/UpdateRoleId/{roleId}")
+	public ResponseEntity updateRoleById(@PathVariable int roleId,@RequestBody Rolesmaster newRolemaster) {
+
+		return serv.updateRoleById(roleId, newRolemaster);
+	}
+	@DeleteMapping("/deleteRoleData/{roleId}")
+	public ResponseEntity DeleteRoleData(@PathVariable int roleId) {
+		return serv.DeleteRoleData(roleId);
+	}
 
 	/*
 	 * API TO ADD MODULE http://localhost:8989/user/addRole PAYLOAD: {
@@ -65,14 +74,14 @@ public class Controller {
 		return serv.getModuleData();
 	}
 
-	@PutMapping("/updateModuleById/{roleId}")
-	public ResponseEntity updateModuleById(@PathVariable int roleId, @RequestBody Modulemaster newModulemaster) {
-		return serv.updateModuleById(roleId, newModulemaster);
+	@PutMapping("/updateModuleById/{moduleId}")
+	public ResponseEntity updateModuleById(@PathVariable int moduleId, @RequestBody Modulemaster newModulemaster) {
+		return serv.updateModuleById(moduleId, newModulemaster);
 	}
 
-	@DeleteMapping("/deleteModuleData/{roleId}")
-	public ResponseEntity DeleteModuleData(@PathVariable int roleId) {
-		return serv.DeleteModuleData(roleId);
+	@DeleteMapping("/deleteModuleData/{moduleId}")
+	public ResponseEntity DeleteModuleData(@PathVariable int moduleId) {
+		return serv.DeleteModuleData(moduleId);
 	}
 
 	/*
@@ -133,15 +142,38 @@ public class Controller {
 	}
 
 	@PutMapping("/UpdateModuleById/moduleId")
-	public ResponseEntity updateModuleBymoduleID(@PathVariable int moduleId,
-			@RequestBody Modulemaster newModulemaster) {
+	public ResponseEntity updateModuleBymoduleID(@PathVariable int moduleId,@RequestBody Modulemaster newModulemaster) {
+
 		return serv.updateModuleBymoduleID(moduleId, newModulemaster);
 	}
-
+	
 	@DeleteMapping("/DeleteModuleDataByModuleID/{moduleId}")
-	public ResponseEntity DeleteModuleDataByModuleID(@PathVariable int moduleId) {
+	public ResponseEntity DeleteModuleDataByModuleID(@PathVariable int moduleId ) {
+
 		return serv.DeleteModuleDataByModuleID(moduleId);
 	}
+	
+	
+	
+//	@PostMapping("/addPermission")
+//	public ResponseEntity addPermission(@RequestBody Permissions newpermission)
+//	{
+//		return serv.addPermission(newpermission);
+//	}
+//	@GetMapping("/getPermissions")
+//	public ResponseEntity getPerMissions()
+//	{
+//		return serv.getPerMissions();
+//	}
+//	
+//	@PutMapping("/updatePermissionById/{Id}")
+//	public ResponseEntity updatePermission( @PathVariable int uId,@RequestBody Permissions permission) {
+//		return serv.updatePermission(uId, permission);
+//	}
+//	@DeleteMapping("deletePermissionById/{id}")
+//	public ResponseEntity deleteByPermiision(int uId) {
+//		return serv.deletePermission(uId);
+//	}
 // @PostMapping("/addPermission")
 // public ResponseEntity addPermission(@RequestBody Permissions newpermission)
 // {
