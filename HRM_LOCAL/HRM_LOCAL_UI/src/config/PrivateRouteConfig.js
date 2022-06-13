@@ -1,22 +1,32 @@
 import {
   FcBusinessman,
-  FcSurvey,
-  FcDataSheet,
+  
   FcDepartment,
   FcTimeline,
   FcOvertime,
   FcManager,
-  FcReading,
-  FcSportsMode,
-  FcCollaboration,
+  
   FcConferenceCall,
-  FcCalendar,
+  
   FcLeave,
-  FcMultipleInputs,
-  FcNeutralTrading,
-  FcAdvance,
+  
+  FcFile,
+  FcApprove,
+  
+  FcDisapprove,
+  FcPodiumWithSpeaker,
+  
+  FcTodoList,
+  FcFlowChart,
+  FcPlanner,
+  FcContacts,
+  FcVoicePresentation,
+  FcCustomerSupport,
+  FcAnswers,
+  FcDatabase,
 
 } from "react-icons/fc";
+
 
 //Data Imports
 import Roles from "./Roles";
@@ -47,6 +57,7 @@ import HrLeaveHistorymain from "../pages/HrLeaveHistory/HrLeaveHistorymain"
 import ManagerLeavesToApproveMain from "../pages/ManagerLeavesToApprove/ManagerLeavesToApproveMain";
 import EmployeeMasterForms from "../pages/AllEmployees/AllEmployeesComponents/editmyprofileroute";
 
+
   
   
  
@@ -56,7 +67,7 @@ export default [
   {
     component: MyProfileMain,
     path: "/",
-    icon: <FcSportsMode />,
+    icon: <FcBusinessman />,
     title: "My Profile",
     permission: [
       Roles.employee,
@@ -72,7 +83,7 @@ export default [
   {
     component: EmployeeMaster,
     path: "/employeeProfile",
-    icon: <FcManager />,
+    icon: <FcFile />,
     title: "Edit My Profile",
     permission: [
       Roles.employee,
@@ -85,87 +96,81 @@ export default [
     ],
   },
   {
+    component: OfferApprovalMain,
+    path: "/offerApprovalMain",
+    icon: <FcApprove />,
+    title: "Offer Approvals",
+    permission: [Roles.hradmin,],
+  },
+  {
+    component: RejectedEmployeeMain,
+    path: "/RejectedEmployeeMain",
+    icon: <FcDisapprove />,
+    title: "Rejected Onboards",
+    permission: [
+     
+      Roles.hradmin
+    ],
+  },
+  {
     component: Employee,
     path: "/allEmployees",
-    icon: <FcManager />,
+    icon: <FcConferenceCall />,
     title: "All Employees",
     permission: [Roles.hradmin],
   },
   {
     component: UserName,
     path: "/users",
-    icon: <FcManager />,
+    icon: <FcPodiumWithSpeaker />,
     title: "Users",
     permission: [Roles.hradmin],
   },
   {
     component: ModuleMain,
     path: "/modules",
-    icon: <FcManager />,
+    icon: <FcTodoList />,
     title: "Modules",
     permission: [Roles.hradmin],
   },
   {
     component: RolesMain,
     path: "/roles",
-    icon: <FcManager />,
+    icon: <FcFlowChart />,
     title: "Roles",
     permission: [Roles.hradmin],
   },
   {
-    component: HolidayManagementMain,
-    path: "/holidayManagenent",
-    icon: <FcCalendar />,
-    title: "Holiday Management",
-    permission: [Roles.hradmin],
-  },
-  // {
-  //   component: EmployeeOnboardingFormMain,
-  //   path: "/onboardingForm",
-  //   icon: <FcReading />,
-  //   title: "Onboarding Form",
-  //   permission: [Roles.taa],
-  // },
-  {
-    component: OfferApprovalMain,
-    path: "/offerApprovalMain",
-    icon: <FcNeutralTrading />,
-    title: "Offer Approvals",
-    permission: [Roles.hradmin,],
-  },
-  {
-    component: AdminAttendanceMain,
-    path: "/AdminAttendanceMain",
-    icon: <FcNeutralTrading />,
-    title: "Admin Attendance",
-    permission: [Roles.hradmin, Roles.hr,Roles.taa],
-  },
-  {
-    component: EmpAttendanceMain,
-    path: "/empAttendance",
-    icon: <FcNeutralTrading />,
-    title: "Employee Attendance",
-    permission: [Roles.employee,
+    component: LeaveToApply,
+    path: "/leaveApply",
+    icon: <FcLeave />,
+    title: "Leaves To Apply",
+    permission: [
+      Roles.employee,
       Roles.hr,
       Roles.ceo,
       Roles.it,
       Roles.taa,
       Roles.hradmin,
-      Roles.manager],
+      Roles.manager
+    ],
   },
   {
-    component: TaggedEmployeesMain,
-    path: "/employeeTagged",
-    icon: <FcNeutralTrading />,
-    title: "Employees List",
-    permission: [Roles.manager,Roles.hradmin],
+    component: LeaveToApprove,
+    path: "/LeaveToApprove",
+    icon: <FcOvertime />,
+    title: "Leaves To Approve",
+    permission: [
+      
+      Roles.hradmin
+    ],
   },
   {
-    component: ApprovalMain,
-    path: "/Approvals",
-    icon: <FcCalendar />,
-    title: "Approvals",
-    permission: [Roles.taa],
+    component: HolidayManagementMain,
+    path: "/holidayManagenent",
+    icon: <FcPlanner />,
+    title: "Holiday Management",
+    permission: [Roles.hradmin],
   },
   {
     component: DepartmentMain,
@@ -181,30 +186,51 @@ export default [
     title: "Designations",
     permission: [Roles.hradmin],
   },
+  // {
+  //   component: EmployeeOnboardingFormMain,
+  //   path: "/onboardingForm",
+  //   icon: <FcReading />,
+  //   title: "Onboarding Form",
+  //   permission: [Roles.taa],
+  // },
+  
   {
-    component: LeaveToApply,
-    path: "/leaveApply",
-    icon: <FcManager />,
-    title: "Leaves To Apply",
-    permission: [
-      Roles.employee,
+    component: AdminAttendanceMain,
+    path: "/AdminAttendanceMain",
+    icon: <FcContacts />,
+    title: "Admin Attendance",
+    permission: [Roles.hradmin, Roles.hr],
+  },
+  {
+    component: EmpAttendanceMain,
+    path: "/empAttendance",
+    icon: <FcVoicePresentation />,
+    title: "Employee Attendance",
+    permission: [Roles.employee,
       Roles.hr,
       Roles.ceo,
       Roles.it,
       Roles.taa,
-      Roles.hradmin
-    ],
+      Roles.hradmin,
+      Roles.manager],
   },
   {
-    component: LeaveToApprove,
-    path: "/LeaveToApprove",
-    icon: <FcManager />,
-    title: "Leaves To Approve",
-    permission: [
-      
-      Roles.hradmin
-    ],
+    component: TaggedEmployeesMain,
+    path: "/employeeTagged",
+    icon: <FcCustomerSupport />,
+    title: "Employees List",
+    permission: [Roles.manager],
   },
+  {
+    component: ApprovalMain,
+    path: "/Approvals",
+    icon: <FcApprove />,
+    title: "Approvals",
+    permission: [Roles.taa],
+  },
+  
+  
+  
   {
     component: ManagerLeavesToApproveMain,
     path: "/managerLeavesToApprove",
@@ -218,44 +244,37 @@ export default [
   {
     component: ManagerLeaveHistory,
     path: "/managerleavehistory",
-    icon: <FcManager />,
+    icon: <FcOvertime />,
     title: "Manager Leave History",
     permission: [
      Roles.manager,
       
     ],
   },
-  {
-    component: RejectedEmployeeMain,
-    path: "/RejectedEmployeeMain",
-    icon: <FcManager />,
-    title: "Rejected Onboards",
-    permission: [
-     Roles.manager,
-      Roles.hradmin
-    ],
-  },
+  
   {
     component: HrLeaveHistorymain,
     path: "/HrLeaveHistory",
-    icon: <FcManager />,
-    title: "Hr Leave History ",
+    icon: <FcAnswers />,
+    title: "My Leave History ",
     permission: [
-     Roles.manager,
       Roles.hradmin
     ],
   },
   {
     component: LeaveHistoryMain,
     path: "/LeaveHistory",
-    icon: <FcManager />,
+    icon: <FcDatabase />,
     title: "Leave History",
     permission: [
      
       Roles.employee,
       Roles.hr,
-      Roles.manager,
+      Roles.ceo,
+      Roles.it,
+      Roles.taa,
       Roles.hradmin,
+      Roles.manager
       
     ],
   },
