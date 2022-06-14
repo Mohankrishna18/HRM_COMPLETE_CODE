@@ -65,7 +65,7 @@ const ApproveLeaveTable= (props) => {
               <th align="left"> To</th>
               <th align="left"> No Of Days</th>
               <th align="left"> Reason</th>
-              <th align="left"> Status</th>
+              <th align="left"> Manager Approval</th>
               <th align="center"> Action</th>
             </tr>
           </thead>
@@ -79,9 +79,10 @@ const ApproveLeaveTable= (props) => {
                 <td align="left">{formatDate(h.toDate)}</td>
                 <td align="left">{h.numberOfDays}</td>
                 <td align="left">{h.leaveReason}</td>
-                <td align="left">{h.leaveStatus}</td>
+                {/* <td align="left">{h.leaveStatus}</td> */}
+                <td align="left">{h.managerApproval}</td>
                 <td>{h.leaveStatus == "pending" ?(<div>
-                  <Approveleave  leaveID={h.employeeleaveId}/> <Rejectleave leaveID={h.employeeleaveId}/>
+                  <td><Approveleave  leaveID={h.employeeleaveId}/></td><td> <Rejectleave leaveID={h.employeeleaveId}/></td>
                 </div>):(<div></div>)}
 
                 {/* <td align="left">{h.action}</td> */}

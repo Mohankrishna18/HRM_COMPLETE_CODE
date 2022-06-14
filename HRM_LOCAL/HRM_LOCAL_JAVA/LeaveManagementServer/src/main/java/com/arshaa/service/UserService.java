@@ -52,6 +52,7 @@ public class UserService {
 					GetReportingManager.class);
 			user.setReportingManager(al.getReportingmanager());
 			user.setLeaveStatus("pending");
+			user.setManagerApproval("pending");
 			return repository.save(user);
 		} catch (Exception e) {
 			e.getMessage();
@@ -105,6 +106,40 @@ public class UserService {
 		}
 		return user;
 	}
+
+	public User UpdateManagerUsers(User user, Integer employeeleaveId) {
+		try {
+			User u = repository.findById(employeeleaveId).get();
+
+			user.getEmployeeleaveId();
+
+			u.getToDate();
+			u.getLeaveReason();
+			user.getManagerApproval();
+			user.getNumberOfDays();
+
+			u.setManagerApproval(user.getManagerApproval());
+//u.setLeaveReason(user.getLeaveReason());
+
+			u.setRejectReason(user.getRejectReason());
+//u.setEmployeeId(user.getEmployeeId());
+//u.setFromDate(user.getFromDate());
+//u.setToDate(user.getToDate());
+//  u.setNumberOfDays(user.getNumberOfDays());
+//u.setLeaveType(user.getLeaveType());
+			return repository.save(u);
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return user;
+	}
+
+
+
+
+
+
+
 
 	// this logic will give employees related to particular manager-->Chandrika
 	public ResponseEntity getUserByReportingManager(String reportingManager) {

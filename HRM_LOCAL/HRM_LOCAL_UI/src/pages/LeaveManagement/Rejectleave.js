@@ -23,7 +23,7 @@ const Reject = (props) => {
   };
 
   let employeeleaveId = props.leaveID;
-  const obj = { leaveStatus: "rejected" };
+  const obj = { leaveStatus: "Rejected",hrApproval:"Rejected" };
 
   const ApproveHandler = () => {
     handleClose;
