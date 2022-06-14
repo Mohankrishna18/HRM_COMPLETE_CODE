@@ -67,6 +67,13 @@ public class LeaveController {
 		 
 		 
 		 }
+	
+	@PutMapping("/managerupdateLeave/{employeeleaveId}")
+	private User UpdateManagerUsers( @RequestBody User user , @PathVariable Integer employeeleaveId) {
+		 return service.UpdateManagerUsers(user, employeeleaveId);
+		 
+		 
+		 }
 
 	 @DeleteMapping ("/deleteLeaves/{employeeleaveId}")
 	 

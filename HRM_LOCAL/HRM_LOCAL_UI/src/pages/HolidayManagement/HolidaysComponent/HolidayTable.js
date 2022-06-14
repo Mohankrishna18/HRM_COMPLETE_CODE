@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react'
 import MaterialTable from 'material-table'
 import Grid from '@mui/material/Grid'
 import axios from "../../../Uri";
+import { toast } from "react-toastify";
 export default function HolidayTable() {
     
     const [data, setData] = useState([]);
+    const userData = sessionStorage.getItem("userdata");
+    const userData1 = JSON.parse(userData);
+    const employeeid = userData1.data.employeeId;
 
     useEffect(() => {
 
@@ -43,6 +47,7 @@ export default function HolidayTable() {
     //     { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
     //     { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
     // ]);
+    const obj = {updatedBy:employeeid}
 
     return (
         <Grid>
@@ -57,11 +62,14 @@ export default function HolidayTable() {
                           
                             setTimeout(() => {
                                 console.log(newData)
+                                const newData1 = Object.assign(newData,obj)
+                                const notify = () => toast("Holiday  is Added");
                                 const res = axios.post("/holiday/addholiday",
-                                    newData,
+                                    newData1,
                                 );
-                                setData([...data, newData]);
+                                setData([...data, newData1]);
                                loadData();
+                               notify();
                                
 
                                 resolve();
@@ -80,10 +88,12 @@ export default function HolidayTable() {
 
                             setTimeout(() => {
                                 console.log(updatedRow)
+                                const notify = () => toast("Holiday  is Updated");
                                 const res = axios.put(`/holiday/updateHolidayById/${index}`, updatedRow)
                                     .then((resp) => {
                                         console.log(resp);
                                         loadData()
+                                        notify()
                                     })
 
                                     .catch((err) => {
@@ -108,10 +118,12 @@ export default function HolidayTable() {
                                 const dataDelete = [...data];
                                 const index = oldData.holidayId;
                                 dataDelete.splice(index, 1);
+                                const notify = () => toast("Holiday  is Deleted");
                                 const res = axios.delete(`/holiday/deleteHoliday/${index}`)
                                     .then((res) => {
                                         console.log(res)
                                         loadData()
+                                        notify()
                                     })
                                 console.log(dataDelete)
                                 //setData(dataDelete);
@@ -124,6 +136,7 @@ export default function HolidayTable() {
                     paging: false,
                     addRowPosition:'first',
                     actionsColumnIndex: -1,
+                    filtering: true,
                     headerStyle: {
 
                         backgroundColor: "#FE924A",

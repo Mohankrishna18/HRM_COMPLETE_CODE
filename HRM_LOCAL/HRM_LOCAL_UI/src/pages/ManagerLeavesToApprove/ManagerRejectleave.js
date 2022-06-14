@@ -23,12 +23,14 @@ const Reject = (props) => {
   };
 
   let employeeleaveId = props.leaveID;
-  const obj = { leaveStatus: "rejected" };
+  const obj = { managerApproval: "Rejected" };
 
-  const ApproveHandler = () => {
-    handleClose;
+  const RejectHandler = () => {
+    const notify = () => toast("Leave  is Rejected");
+    handleClose();
     const form1 = Object.assign(form, obj);
-    axios.put(`/leave/updateLeave/${employeeleaveId}`, form1);
+    axios.put(`/leave/managerupdateLeave/${employeeleaveId}`, obj);
+    notify();
   };
 
   return (
@@ -71,7 +73,7 @@ const Reject = (props) => {
                     backgroundColor: "#ff9b44",
                     color: "#F4F8F6",
                   }}
-                  onClick={ApproveHandler}
+                  onClick={RejectHandler}
                 >
                    Reject
                 </Button>
