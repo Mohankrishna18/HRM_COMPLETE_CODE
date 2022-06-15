@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
 import { Grid } from "@mui/material";
+import { toast } from "react-toastify";
 
 import axios from "../../../Uri";
 import { date } from "yup";
@@ -9,13 +10,53 @@ import { BsPlusLg } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 function OnboardedEmployeesTable() {
+  const [status, setStatus] = useState({});
+  const [onboard, setOnboard] = useState([]);
+  const [designation, setDesignation] = useState([]);
   const [data, setData] = useState([]);
+
+  useEffect(()=>{
+    axios.get("/dept/getAllDepartments").then((res)=>{
+      console.log(res.data)
+      setOnboard(res.data)
+    });
+  }, []);
+  console.log(onboard);
+
+  const loadDept=() => {
+    onboard.map(row=>status[row.departmentName]=row.departmentName)
+    console.log(status)
+    setStatus(status)
+  }
+  useEffect(()=>{
+    loadDept()
+  })
+
+  // useEffect(()=>{
+  //   loadData();  
+  // },[]);
+
+    useEffect(()=>{
+      axios.get("/designation/getAllDesignations").then((res)=>{
+        console.log(res.data)
+        setDesignation(res.data)
+    });
+  },[]);
+    const loadDesignation=()=>{
+      designation.map(row=>status[row.designationName]=row.designationName)
+      console.log(status)
+      setStatus(status)
+    };
+    useEffect(() => {
+      loadDesignation()
+    })
 
   const columns = [
     {
       title: "Onboarding Id",
       field: "onboardingId",
       type: "text",
+      editable:"false",
 
       headerStyle: {
         backgroundColor: "#FF9E14",
@@ -26,6 +67,18 @@ function OnboardedEmployeesTable() {
       title: "Designation",
       field: "designation",
       type: "text",
+      lookup: status,
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+      },
+    },
+    {
+      title: "Department",
+      field: "department",
+      type: "text",
+      lookup:status,
 
       headerStyle: {
         backgroundColor: "#FF9E14",
@@ -90,6 +143,42 @@ function OnboardedEmployeesTable() {
         color: "white",
       },
     },
+    {
+      title: "Job Title",
+      field: "jobTitle",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+      },
+    },
+    {
+      title: "Primary Skills",
+      field: "primarySkills",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+      },
+    },
+    {
+      title: "Secondary Skills",
+      field: "secondarySkills",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+      },
+    },
+    {
+      title: "Type Of Employeement",
+      field: "employmentType",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+      },
+    },
     
   ];
 
@@ -107,10 +196,10 @@ function OnboardedEmployeesTable() {
 
   return (
 
-    <div>
+    <div >
          
     
-    <Grid container>
+    <Grid container >
       <Grid xs={12}>
         <MaterialTable
           title="Onboard Employees"
@@ -147,24 +236,27 @@ function OnboardedEmployeesTable() {
 
                         console.log(index)
                         console.log(updatedRow)
-
+                        const notify = () => toast("Employee Details was updated")
                         const res = axios.put(`/updatedOnbordingDataById/${index}`, updatedRow)
 
                             .then((resp) => {
                                 console.log(resp);
                                 loadData()
+                                notify();
                                 setData(updatedRows)
+                                console.log("updated")
                             })
 
                             .catch((err) => {
                                 console.log("not updated")
+                                console.log(err)
                                 // toast.error("Server error");
                             });
 
                         setData(updatedRows);
-                        console.log("updated")
+                       
                         // toast.success(" Updated Successfully");
-                        console.log(updatedRows);
+                        //console.log(updatedRows);
                         resolve();
                     });
                 }),
@@ -172,7 +264,7 @@ function OnboardedEmployeesTable() {
 
           options={{
             exportButton: true,
-            pageSize: 20,
+            pageSize: 10,
             actionsColumnIndex: -1,
             grouping: true,
             addRowPosition: "first",

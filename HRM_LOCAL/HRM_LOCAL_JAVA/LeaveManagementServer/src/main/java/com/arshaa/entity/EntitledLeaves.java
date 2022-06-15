@@ -11,40 +11,37 @@ import javax.persistence.Table;
 @Table(name = "leaveentitlement")
 public class EntitledLeaves {
 
-
-
-@Id
+	@Id
 	private String leaveType;
-	
+
 	public EntitledLeaves() {
-	super();
-	// TODO Auto-generated constructor stub
-}
+		super();
+// TODO Auto-generated constructor stub
+	}
 
 	public String getLeaveType() {
-	return leaveType;
-}
+		return leaveType;
+	}
 
-public void setLeaveType(String leaveType) {
-	this.leaveType = leaveType;
-}
+	public void setLeaveType(String leaveType) {
+		this.leaveType = leaveType;
+	}
 
-public int getNoOfDays() {
-	return noOfDays;
-}
+	public int getNoOfDays() {
+		return noOfDays;
+	}
 
-public void setNoOfDays(int noOfDays) {
-	this.noOfDays = noOfDays;
-}
+	public void setNoOfDays(int noOfDays) {
+		this.noOfDays = noOfDays;
+	}
 
 	public EntitledLeaves(String leaveType, int noOfDays) {
-	super();
-	this.leaveType = leaveType;
-	this.noOfDays = noOfDays;
-}
+		super();
+		this.leaveType = leaveType;
+		this.noOfDays = noOfDays;
+	}
 
 	@Column
 	private int noOfDays;
-
 
 }
