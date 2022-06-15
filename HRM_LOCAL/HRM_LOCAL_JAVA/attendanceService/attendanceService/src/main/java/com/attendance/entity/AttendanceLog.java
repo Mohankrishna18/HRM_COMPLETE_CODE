@@ -33,9 +33,10 @@ public class AttendanceLog {
 	private String employeeFirstName;
 	private String employeeMiddleName;
 	private String employeeLastName;
+	@Column(name="punch_in")
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "IST")
 	@Temporal(TemporalType.TIMESTAMP)
-	private java.util.Date punchIn = new java.util.Date(System.currentTimeMillis());
+	private java.util.Date punchin = new java.util.Date(System.currentTimeMillis());
 	// @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
 	// @Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date punchOut;
@@ -81,11 +82,11 @@ public class AttendanceLog {
 	}
 
 	public java.util.Date getPunchIn() {
-		return punchIn;
+		return punchin;
 	}
 
 	public void setPunchIn(java.util.Date punchIn) {
-		this.punchIn = punchIn;
+		this.punchin = punchIn;
 	}
 
 	public java.util.Date getPunchOut() {
@@ -97,14 +98,14 @@ public class AttendanceLog {
 	}
 
 	public AttendanceLog(int employeeattendanceId, String employeeId, String employeeFirstName,
-			String employeeMiddleName, String employeeLastName, Date punchIn, Date punchOut) {
+			String employeeMiddleName, String employeeLastName, Date punchin, Date punchOut) {
 		super();
 		this.employeeattendanceId = employeeattendanceId;
 		this.employeeId = employeeId;
 		this.employeeFirstName = employeeFirstName;
 		this.employeeMiddleName = employeeMiddleName;
 		this.employeeLastName = employeeLastName;
-		this.punchIn = punchIn;
+		this.punchin = punchin;
 		this.punchOut = punchOut;
 	}
 

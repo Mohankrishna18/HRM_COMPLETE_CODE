@@ -82,7 +82,7 @@ const [data, setData] = useState([]);
               <th align="left"> To</th>
               <th align="left"> No Of Days</th>
               <th align="left"> Reason</th>
-              <th align="left"> Status</th>
+              {/* <th align="left"> Status</th> */}
               <th align="center"> Action</th>
             </tr>
           </thead>
@@ -96,9 +96,9 @@ const [data, setData] = useState([]);
                 <td align="left">{formatDate(h.toDate)}</td>
                 <td align="left">{h.numberOfDays}</td>
                 <td align="left">{h.leaveReason}</td>
-                <td align="left">{h.managerApproval}</td>
+                {/* <td align="left">{h.managerApproval}</td> */}
                 <td>{h.managerApproval == "pending" ?(<div>
-                  <Approve  leaveID={h.employeeleaveId}/> <Reject leaveID={h.employeeleaveId}/>
+                  <td><Approve  leaveID={h.employeeleaveId}/></td> <td><Reject leaveID={h.employeeleaveId}/></td>
                 </div>):(<div></div>)}
 
                 <td align="left">{h.action}</td>

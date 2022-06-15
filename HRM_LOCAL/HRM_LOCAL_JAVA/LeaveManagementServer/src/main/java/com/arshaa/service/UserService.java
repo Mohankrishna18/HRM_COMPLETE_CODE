@@ -25,7 +25,6 @@ public class UserService {
 	private UserRepository repository;
 	@Autowired
 	private leaveEntitlementRepository repo;
-	
 
 	@Autowired
 	@Lazy
@@ -40,10 +39,10 @@ public class UserService {
 		return findById(employeeleaveId);
 
 	}
-//	public Optional<User> findByemployeeId(String employeeId) {
-//		return repository.getAllUserByemployeeId(employeeId);
+// public Optional<User> findByemployeeId(String employeeId) {
+// return repository.getAllUserByemployeeId(employeeId);
 //
-//	}
+// }
 
 	public User save(User user) {
 		try {
@@ -52,6 +51,7 @@ public class UserService {
 					GetReportingManager.class);
 			user.setReportingManager(al.getReportingmanager());
 			user.setLeaveStatus("pending");
+			user.setManagerApproval("pending");
 			return repository.save(user);
 		} catch (Exception e) {
 			e.getMessage();
@@ -61,7 +61,7 @@ public class UserService {
 
 	public List<User> findAll() {
 		try {
-			// TODO Auto-generated method stub
+// TODO Auto-generated method stub
 			return repository.findAll();
 		} catch (Exception e) {
 			e.getMessage();
@@ -71,7 +71,7 @@ public class UserService {
 
 	public List<User> findByemployeeId(String employeeId) {
 		try {
-			// TODO Auto-generated method stub
+// TODO Auto-generated method stub
 			return (List<User>) repository.findByemployeeId(employeeId);
 		} catch (Exception e) {
 			e.getMessage();
@@ -89,15 +89,16 @@ public class UserService {
 			u.getLeaveReason();
 			user.getLeaveStatus();
 			user.getNumberOfDays();
-
+			u.setHrApproval(user.getHrApproval());
 			u.setLeaveStatus(user.getLeaveStatus());
+			u.setRejectReason(user.getRejectReason());
 //u.setLeaveReason(user.getLeaveReason());
 
 			u.setRejectReason(user.getRejectReason());
 //u.setEmployeeId(user.getEmployeeId());
 //u.setFromDate(user.getFromDate());
 //u.setToDate(user.getToDate());
-//  u.setNumberOfDays(user.getNumberOfDays());
+// u.setNumberOfDays(user.getNumberOfDays());
 //u.setLeaveType(user.getLeaveType());
 			return repository.save(u);
 		} catch (Exception e) {
@@ -106,7 +107,35 @@ public class UserService {
 		return user;
 	}
 
-	// this logic will give employees related to particular manager-->Chandrika
+	public User UpdateManagerUsers(User user, Integer employeeleaveId) {
+
+		try {
+			User u = repository.findById(employeeleaveId).get();
+
+			user.getEmployeeleaveId();
+
+			u.getToDate();
+			u.getLeaveReason();
+			user.getManagerApproval();
+			user.getNumberOfDays();
+
+			u.setManagerApproval(user.getManagerApproval());
+//u.setLeaveReason(user.getLeaveReason());
+
+			u.setRejectReason(user.getRejectReason());
+//u.setEmployeeId(user.getEmployeeId());
+//u.setFromDate(user.getFromDate());
+//u.setToDate(user.getToDate());
+// u.setNumberOfDays(user.getNumberOfDays());
+//u.setLeaveType(user.getLeaveType());
+			return repository.save(u);
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return user;
+	}
+
+// this logic will give employees related to particular manager-->Chandrika
 	public ResponseEntity getUserByReportingManager(String reportingManager) {
 		try {
 			List<User> u = repository.findUserByReportingManager(reportingManager);
@@ -117,41 +146,38 @@ public class UserService {
 		}
 
 	}
-	
+
 	public Optional<EntitledLeaves> findByleaveType(String leaveType) {
-		// TODO Auto-generated method stub
+// TODO Auto-generated method stub
 		return repo.findByleaveType(leaveType);
 	}
 
-
 	public EntitledLeaves save(EntitledLeaves entitledleaves) {
-		// TODO Auto-generated method stub
+// TODO Auto-generated method stub
 		return repo.save(entitledleaves);
 	}
-	
+
 	public EntitledLeaves updateLEave(EntitledLeaves entitledleaves) {
 		try {
-			EntitledLeaves e=repo.getByleaveType(entitledleaves.getLeaveType());
+			EntitledLeaves e = repo.getByleaveType(entitledleaves.getLeaveType());
 			e.setLeaveType(e.getLeaveType());
 			e.setNoOfDays(e.getNoOfDays());
 			return repo.save(e);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.getMessage();
 		}
-		return entitledleaves ;
-	}
-	
-	// Written by Sri Divya
-	public List<User> findByLeaveStatus(String leaveStatus){
-	try {
-	// TODO Auto-generated method stub
-	return (List<User>) repository.findByLeaveStatus(leaveStatus);
-	}
-	catch(Exception e) {
-	e.getMessage();
-	}
-	return repository.findByLeaveStatus(leaveStatus);
+		return entitledleaves;
 	}
 
+// Written by Sri Divya
+	public List<User> findByLeaveStatus(String leaveStatus) {
+		try {
+// TODO Auto-generated method stub
+			return (List<User>) repository.findByLeaveStatus(leaveStatus);
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return repository.findByLeaveStatus(leaveStatus);
+	}
 
 }

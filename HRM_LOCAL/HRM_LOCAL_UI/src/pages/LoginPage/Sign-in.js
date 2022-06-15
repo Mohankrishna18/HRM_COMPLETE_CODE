@@ -88,12 +88,12 @@ const Sign = () => {
             <Form style={{ paddingTop: "40px" }}>
               <Form.Group controlld="employeeId">
                 <Form.Label style={{ fontWeight: "bold", paddingLeft: "10px" }}>
-                  Employee Id
+                  Employee ID
                 </Form.Label>
                 <Form.Control
                   style={{ borderRadius: "15px" }}
                   type="text"
-                  placeholder="Enter your Employee Id"
+                  placeholder="Enter your Employee ID"
                   size="lg"
                   value={employeeId}
                   onChange={(e) => setEmployeeId(e.target.value)}
@@ -145,7 +145,7 @@ const Sign = () => {
                     paddingLeft: "10px",
                   }}
                 >
-                  Reset password?
+                  Reset Password?
                 </a>
               </div>
               &nbsp;

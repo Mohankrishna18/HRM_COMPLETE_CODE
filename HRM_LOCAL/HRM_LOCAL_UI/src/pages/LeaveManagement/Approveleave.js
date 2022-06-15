@@ -24,7 +24,7 @@ const Approve = (props) => {
   };
 
   let employeeleaveId = props.leaveID;
-  const obj = { leaveStatus: "approved" };
+  const obj = { leaveStatus: "Approved",hrApproval:"Approved" };
 
   const ApproveHandler = () => {
     const notify = () => toast("Leave  is approved");
@@ -60,6 +60,7 @@ const Approve = (props) => {
                     color: "#F4F8F6",
                   }}
                   onClick={ApproveHandler}
+                  onChange={(e) => setField()}
                 >
                   &nbsp; Save
                 </Button>

@@ -27,20 +27,32 @@ public class AttendanceServiceImpl implements AttendanceService{
 	@Override
 	public ResponseEntity addAttendance(AttendanceLog attendance) {
 
-		String url="http://attendanceService/emp/getEmployeeNameByEmployeeId/";
+		String url="http://empService/emp/getEmployeeNameByEmployeeId/";
 		Response response=new Response();
 		try {
 			java.sql.Date tSqlDate = new java.sql.Date(attendance.getPunchIn().getTime());
 			attendance.setPunchIn(tSqlDate);
 		
 			EmployeeName al=template.getForObject("http://empService/emp/getEmployeeNameByEmployeeId/" + attendance.getEmployeeId(),EmployeeName.class);
-			attendance.setEmployeeFirstName(al.getEmployeeName());	
-			AttendanceLog newAttendence=aRepo.save(attendance);
-			response.setStatus(true);
-			response.setMessage("PunchIn Successfull");
-			response.setData(newAttendence);
+			attendance.setEmployeeFirstName(al.getEmployeeName());
+			if(aRepo.existsByEmployeeIdAndPunchin(attendance.getEmployeeId(),attendance.getPunchIn())==true)
+			{
+				response.setStatus(true);
+				response.setMessage("PunchIn was already done today");
+				return new ResponseEntity(response,HttpStatus.OK);
+			}
+				
+			else {
+				
+
+				AttendanceLog newAttendence=aRepo.save(attendance);
+				response.setStatus(true);
+				response.setMessage("PunchIn Successfull");
+				response.setData(newAttendence);
+				
+				return new ResponseEntity(response,HttpStatus.OK);
+			}
 			
-			return new ResponseEntity(response,HttpStatus.OK);
 		}
 		catch(Exception e)
 		{

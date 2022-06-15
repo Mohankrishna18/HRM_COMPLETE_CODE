@@ -1,5 +1,6 @@
 package com.attendance.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +18,9 @@ public interface AttendanceRepo extends JpaRepository<AttendanceLog, Integer>{
 	
 	@Query(value="select count(*) from employeeattendance  where month(employeeattendance.punch_in) = ?1 and employee_id=?2", nativeQuery=true)
 	int findAttendanceLogCountWithParticularMonth(@Param("month") Integer month,@Param("employee_id")String employeeId );
+
+	//boolean existsByPunchIn(Date punchIn);
+	
+	Boolean existsByEmployeeIdAndPunchin(String employeeId,Date punchIn);
+//	testing purpose
 }

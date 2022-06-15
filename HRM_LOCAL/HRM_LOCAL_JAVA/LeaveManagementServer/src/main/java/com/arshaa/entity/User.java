@@ -1,49 +1,36 @@
+
 package com.arshaa.entity;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "employeeleaves")
 public class User {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int employeeleaveId;
-
 	@Column
 	private String employeeId;
-
 	@Column
 	private String leaveType;
-
 	@Column
-
 	private Date fromDate;
-
 	@Column
-
 	private Date toDate;
-
 	@Column
 	private int numberOfDays;
-
 	@Column
 	private String leaveReason;
-
 	@Column
 	private String updatedBy;
-
 	@Column
-
 	private Date updatedOn;
 	private String leaveStatus;
 	private String reportingManager;
@@ -51,16 +38,8 @@ public class User {
 	private String rejectReason;
 	@Column
 	private String managerApproval;
-	
-	
-
-	public String getManagerApproval() {
-		return managerApproval;
-	}
-
-	public void setManagerApproval(String managerApproval) {
-		this.managerApproval = managerApproval;
-	}
+	@Column
+	private String hrApproval;
 
 	public int getEmployeeleaveId() {
 		return employeeleaveId;
@@ -150,11 +129,6 @@ public class User {
 		this.reportingManager = reportingManager;
 	}
 
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public String getRejectReason() {
 		return rejectReason;
 	}
@@ -163,9 +137,25 @@ public class User {
 		this.rejectReason = rejectReason;
 	}
 
+	public String getManagerApproval() {
+		return managerApproval;
+	}
+
+	public void setManagerApproval(String managerApproval) {
+		this.managerApproval = managerApproval;
+	}
+
+	public String getHrApproval() {
+		return hrApproval;
+	}
+
+	public void setHrApproval(String hrApproval) {
+		this.hrApproval = hrApproval;
+	}
+
 	public User(int employeeleaveId, String employeeId, String leaveType, Date fromDate, Date toDate, int numberOfDays,
 			String leaveReason, String updatedBy, Date updatedOn, String leaveStatus, String reportingManager,
-			String rejectReason, String managerApproval) {
+			String rejectReason, String managerApproval, String hrApproval) {
 		super();
 		this.employeeleaveId = employeeleaveId;
 		this.employeeId = employeeId;
@@ -180,9 +170,11 @@ public class User {
 		this.reportingManager = reportingManager;
 		this.rejectReason = rejectReason;
 		this.managerApproval = managerApproval;
+		this.hrApproval = hrApproval;
 	}
 
-	
-	
-	 
+	public User() {
+		super();
+// TODO Auto-generated constructor stub
+	}
 }
