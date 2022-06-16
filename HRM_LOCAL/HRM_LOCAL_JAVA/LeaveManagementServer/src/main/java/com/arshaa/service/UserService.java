@@ -2,6 +2,7 @@ package com.arshaa.service;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.client.RestTemplate;
+
 import com.arshaa.entity.EntitledLeaves;
 import com.arshaa.entity.User;
 import com.arshaa.model.GetReportingManager;
@@ -27,12 +29,17 @@ public class UserService {
 	private RestTemplate template;
 
 	public Optional<User> findById(int employeeleaveId) {
+
 try {
 return repository.findById(employeeleaveId);
 } catch (Exception e) {
 e.getMessage();
 }
-return findById(employeeleaveId); }
+return findById(employeeleaveId);
+
+
+
+}
 // public Optional<User> findByemployeeId(String employeeId) {
 // return repository.getAllUserByemployeeId(employeeId);
 //
@@ -56,6 +63,7 @@ public User save(User user) {
 }
 
 	public List<User> findAll() {
+
 try {
 // TODO Auto-generated method stub
 return repository.findAll();
@@ -87,6 +95,7 @@ return findAll();
 			u.setLeaveStatus(user.getLeaveStatus());
 			u.setRejectReason(user.getRejectReason());
 //u.setLeaveReason(user.getLeaveReason()); u.setRejectReason(user.getRejectReason());
+
 //u.setEmployeeId(user.getEmployeeId());
 //u.setFromDate(user.getFromDate());
 //u.setToDate(user.getToDate());
@@ -108,7 +117,9 @@ return findAll();
 			user.getManagerApproval();
 			user.getNumberOfDays();
 			u.setManagerApproval(user.getManagerApproval());
-//u.setLeaveReason(user.getLeaveReason()); u.setRejectReason(user.getRejectReason());
+//u.setLeaveReason(user.getLeaveReason()); 
+      u.setRejectReason(user.getRejectReason());
+
 //u.setEmployeeId(user.getEmployeeId());
 //u.setFromDate(user.getFromDate());
 //u.setToDate(user.getToDate());
@@ -153,6 +164,7 @@ return findAll();
 		return entitledleaves;
 	}
 
+
 // Written by Sri Divya
 	public List<User> findByLeaveStatus(String leaveStatus) {
 		try {
@@ -163,4 +175,9 @@ return findAll();
 		}
 		return repository.findByLeaveStatus(leaveStatus);
 	}
+}
+
+
+
+
 }
