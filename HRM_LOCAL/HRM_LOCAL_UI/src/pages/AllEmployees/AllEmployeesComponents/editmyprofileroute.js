@@ -1592,7 +1592,7 @@ function EmployeeMasterForms(props) {
                                                           />
                                                       </Form.Group>
                                  <Form.Group style={{ padding: 10 ,paddingTop:20}}>
-                                 <Form.Label>Upload Profile Picture😎* (Size should be 1 Mb)</Form.Label>
+                                 <Form.Label>Upload Profile Picture* (Size should be less then 1 Mb)</Form.Label>
                                      <Form.Control 
                                      required
                                       type="file" onChange={handleChange} />

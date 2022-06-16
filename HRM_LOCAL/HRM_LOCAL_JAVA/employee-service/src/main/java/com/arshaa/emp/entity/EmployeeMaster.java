@@ -76,6 +76,7 @@ public class EmployeeMaster {
 	private String currentCountry;
 	private String currentPincode;
 	@Column
+	private String postgraduationType;
 	private String postgraduationBoardOfUniversity;
 	private String postgraduationInstituteName;
 	private String postgraduationInstituteCity;
@@ -83,6 +84,7 @@ public class EmployeeMaster {
 	private String postgraduationJoiningYear;
 	private String postgraduationPassedYear;
 	private String postgraduationGrade;
+	private String graduationType;
 	private String graduationBoardOfUniversity;
 	private String graduationInstituteName;
 	private String graduationInstituteCity;
@@ -359,6 +361,14 @@ public class EmployeeMaster {
 		this.currentPincode = currentPincode;
 	}
 
+	public String getPostgraduationType() {
+		return postgraduationType;
+	}
+
+	public void setPostgraduationType(String postgraduationType) {
+		this.postgraduationType = postgraduationType;
+	}
+
 	public String getPostgraduationBoardOfUniversity() {
 		return postgraduationBoardOfUniversity;
 	}
@@ -413,6 +423,14 @@ public class EmployeeMaster {
 
 	public void setPostgraduationGrade(String postgraduationGrade) {
 		this.postgraduationGrade = postgraduationGrade;
+	}
+
+	public String getGraduationType() {
+		return graduationType;
+	}
+
+	public void setGraduationType(String graduationType) {
+		this.graduationType = graduationType;
 	}
 
 	public String getGraduationBoardOfUniversity() {

@@ -2,7 +2,6 @@ package com.arshaa.controller;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.apache.catalina.startup.ClassLoaderFactory.Repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,26 +28,19 @@ import com.arshaa.service.UserService;
 @CrossOrigin("*")
 @RequestMapping("/leave")
 public class LeaveController {
-
 	@Autowired
 	private UserService service;
-
 	@Autowired
 	private UserRepository repo;
+	private leaveEntitlementRepository re; // @CrossOrigin(origins = "http://localhost:3000")
 
-	private leaveEntitlementRepository re;
-
-//@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/getLeaveHistoryByEmpid/{employeeleaveId}")
-
 	private Optional<User> getUsers(@PathVariable Integer employeeleaveId) {
-
 		return service.findById(employeeleaveId);
 	}
 
 	@GetMapping("/getLeaveHistoryByEmployeeid/{employeeId}")
 	public List<User> findUsers(@PathVariable String employeeId) {
-
 		return service.findByemployeeId(employeeId);
 	}
 
@@ -60,14 +52,13 @@ public class LeaveController {
 	@PostMapping("/applyLeave")
 	private User saveUser(@RequestBody User user) {
 		return service.save(user);
-
 	}
 
 	@PutMapping("/updateLeave/{employeeleaveId}")
 	private User UpdateUsers(@RequestBody User user, @PathVariable Integer employeeleaveId) {
 		return service.UpdateUsers(user, employeeleaveId);
-
 	}
+
 
 //To update the Leave status
 	@PutMapping("/managerupdateLeave/{employeeleaveId}")
@@ -77,10 +68,8 @@ public class LeaveController {
 	}
 
 	@DeleteMapping("/deleteLeaves/{employeeleaveId}")
-
 	public String deleteByEmployeeLeaveId(@PathVariable Integer employeeleaveId) {
 		repo.deleteById(employeeleaveId);
-
 		return "Deleted Successfully";
 
 	}
@@ -108,9 +97,10 @@ public class LeaveController {
 
 		return "Deleted Successfully";
 	}
-// Written by Sri Divya
 
-	@GetMapping("/getAllApprovedLeaves/{leaveStatus}")
+// Written by Sri Divya 
+  @GetMapping("/getAllApprovedLeaves/{leaveStatus}")
+
 	public List<User> getAllApprovedLeaves(@PathVariable String leaveStatus) {
 		return service.findByLeaveStatus(leaveStatus);
 	}
@@ -122,7 +112,6 @@ public class LeaveController {
 	}
 
 //get approve count
-
 	@SuppressWarnings("rawtypes")
 	@GetMapping("getDataCountByapproveleavestatus/{employeeId}")
 	public ResponseEntity getDataCount(@PathVariable String employeeId) {
@@ -141,3 +130,4 @@ public class LeaveController {
 		return a;
 	}
 }
+

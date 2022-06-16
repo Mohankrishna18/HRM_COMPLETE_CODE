@@ -71,7 +71,7 @@ function EmployeeMasterCard() {
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
 
-    var doj = dd + '-' + mm + '-' + yyyy;
+    var doj = yyyy + '-' + mm + '-' + dd;
     console.log(doj);
 
     return (
@@ -87,14 +87,14 @@ function EmployeeMasterCard() {
                                     width: "150px",
                                     borderRadius: "110px",
                                     alignItems: "center",
-                                    marginTop: "50px",
-                                    marginLeft: "145px"
+                                    marginTop: "100px",
+                                    marginLeft: "150px"
                                 }} />
                             </Col>
                             <Col style={{
                                 fontSize: 20,
                                 textAlign: "center",
-                                paddingTop: 10,
+                                paddingTop: 40,
                                 paddingBottom: 40,
                                 text: "bold",
                                 marginRight: "200px"
@@ -131,6 +131,18 @@ function EmployeeMasterCard() {
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{}}>
                                         {employeedetails.designationName}
+                                    </Card.Text>
+                                </Col>
+                            </Row>
+                            <Row style={{ paddingBottom: 15 }}>
+                                <Col>
+                                    <Card.Title style={{}}>
+                                        <h6> Years of Experience:</h6>
+                                    </Card.Title>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                    <Card.Text style={{}}>
+                                        {employeedetails.yearsOfExperience}
                                     </Card.Text>
                                 </Col>
                             </Row>
@@ -182,6 +194,44 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
+                            <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                    <Card.Text style={{}}>
+                                        <h6>BAND: </h6>
+                                    </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                    <Card.Text style={{}}>
+                                        {employeedetails.band}
+                                    </Card.Text>
+                                </Col>
+                            </Row>
+                            <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                    <Card.Text style={{}}>
+                                        <h6>Project: </h6>
+                                    </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                    <Card.Text style={{}}>
+                                        {employeedetails.project}
+                                    </Card.Text>
+                                </Col>
+                            </Row>
+                            <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                    <Card.Text style={{}}>
+                                        <h6>Cost Center Business Unit: </h6>
+                                    </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                    <Card.Text style={{}}>
+                                        {employeedetails.businessUnit}
+                                    </Card.Text>
+                                </Col>
+                            </Row>
+                          
+                        
                         </Card.Body>
                     </Col>
                 </Row>
