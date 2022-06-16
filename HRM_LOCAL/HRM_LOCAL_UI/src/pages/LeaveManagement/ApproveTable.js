@@ -43,7 +43,10 @@ const ApproveLeaveTable= (props) => {
   useEffect(() => {
     axios.get("/leave/getAllEmployees").then((res) => {
       console.log(res.data);
-      setLeaveData(res.data);
+      // setLeaveData(res.data);
+        const dat= res.data.filter((m)=>m.leaveStatus == 'pending')
+        console.log(dat)
+        setLeaveData(dat)
     });
   }, []);
   const dispaly = (e) => {
