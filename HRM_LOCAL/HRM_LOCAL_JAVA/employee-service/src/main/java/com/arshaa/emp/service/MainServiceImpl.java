@@ -301,6 +301,7 @@ public class MainServiceImpl implements MainService {
 			master.setCurrentState(empMaster.getCurrentState());
 			master.setCurrentCountry(empMaster.getCurrentCountry());
 			master.setCurrentPincode(empMaster.getCurrentPincode());
+			master.setPostgraduationType(empMaster.getPostgraduationType());	
 			master.setPostgraduationBoardOfUniversity(empMaster.getPostgraduationBoardOfUniversity());
 			master.setPostgraduationInstituteName(empMaster.getPostgraduationInstituteName());
 			master.setPostgraduationInstituteCity(empMaster.getPostgraduationInstituteCity());
@@ -308,6 +309,7 @@ public class MainServiceImpl implements MainService {
 			master.setPostgraduationJoiningYear(empMaster.getPostgraduationJoiningYear());
 			master.setPostgraduationPassedYear(empMaster.getPostgraduationPassedYear());
 			master.setPostgraduationGrade(empMaster.getPostgraduationGrade());
+			master.setGraduationType(empMaster.getGraduationType());
 			master.setGraduationBoardOfUniversity(empMaster.getGraduationBoardOfUniversity());
 			master.setGraduationInstituteName(empMaster.getGraduationInstituteName());
 			master.setGraduationInstituteCity(empMaster.getGraduationInstituteCity());

@@ -198,7 +198,7 @@ export default [
     component: AdminAttendanceMain,
     path: "/AdminAttendanceMain",
     icon: <FcContacts />,
-    title: "Admin Attendance",
+    title: "Attendance Log",
     permission: [Roles.hradmin, Roles.hr],
   },
   {
@@ -225,7 +225,7 @@ export default [
     component: ApprovalMain,
     path: "/Approvals",
     icon: <FcApprove />,
-    title: "Approvals",
+    title: "Onboarding Approvals",
     permission: [Roles.taa],
   },
   
