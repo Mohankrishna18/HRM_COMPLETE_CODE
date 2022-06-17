@@ -6,6 +6,7 @@ import { matches } from "lodash";
 import { Image } from "react-bootstrap";
 
 import axios from "../../../Uri";
+import { split } from "lodash";
 
 import Avatar from '@mui/material/Avatar';
 
@@ -19,55 +20,37 @@ const MyProfile = () => {
   const userData1 = JSON.parse(userData);
   const employeeid = userData1.data.employeeId;
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
-  var dateTime = getEmployeeDetails.dateOfJoining;
+  //var dateTime = getEmployeeDetails.dateOfJoining;
 
   const [imge, setImge] = useState([]);
 
   useEffect(() => {
-
     axios
-
       .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
-
       .then((response) => {
-
         setGetEmployeeDetails(response.data.data);
-
       });
-
   }, []);
+  console.log(getEmployeeDetails)
 
 
-
-  console.log(getEmployeeDetails);
 
   useEffect(() => {
-
     axios
-
       .get(`/emp/files/${employeeid}`)
-
       .then((response) => {
-
         console.log(response.data);
-
         setImge(response.data)
-
       })
-
       .catch((error) => {
-
         console.log(error);
         console.log("something wrong");
-
       });
-
   }, []);
-
   console.log(imge)
 
 
- 
+
 
   // function formatDate(fromDate){
   //   var datePart = fromDate.match(/\d+/g),
@@ -83,8 +66,8 @@ const MyProfile = () => {
   var dd = String(doj.getDate()).padStart(2, '0');
   var mm = String(doj.getMonth() + 1).padStart(2, '0');
   var yyyy = doj.getFullYear();
-  var doj1 = yyyy + '-' + mm + '-' + dd;
-  // console.log(doj1);
+  var doj1 = dd + '-' + mm + '-' + yyyy;
+  console.log(doj1);
 
 
 
@@ -96,10 +79,10 @@ const MyProfile = () => {
   // }
 
 
-  var dob = getEmployeeDetails.dateOfBirth;
-// console.log(dob)
-//  var dob12 = dob.split("-").reverse().join("-");
-//  console.log(dob12)
+
+  // console.log(dob)
+  //  var dob12 = dob.split("-").reverse().join("-");
+  //  console.log(dob12)
 
 
   // var dd = dob.getDate();
@@ -113,26 +96,92 @@ const MyProfile = () => {
   var dd = String(passportDate.getDate()).padStart(2, '0');
   var mm = String(passportDate.getMonth() + 1).padStart(2, '0');
   var yyyy = passportDate.getFullYear();
-   var passportDate1 = dd + '-' + mm + '-' + yyyy;
-   console.log(passportDate1);
+  var passportDate1 = dd + '-' + mm + '-' + yyyy;
+  console.log(passportDate1);
 
-   var exitDate = new Date(getEmployeeDetails.exitDate);
+  var exitDate = new Date(getEmployeeDetails.exitDate);
+  var dd = String(exitDate.getDate()).padStart(2, '0');
+  var mm = String(exitDate.getMonth() + 1).padStart(2, '0');
+  var yyyy = exitDate.getFullYear();
+  var exitDate1 = dd + '-' + mm + '-' + yyyy;
 
-   var dd = String(exitDate.getDate()).padStart(2, '0');
- 
-   var mm = String(exitDate.getMonth() + 1).padStart(2, '0');
- 
-   var yyyy = exitDate.getFullYear();
- 
-   var exitDate1 = dd + '-' + mm + '-' + yyyy;
-
-   var GraduationJoiningYear = new Date(getEmployeeDetails.graduationJoiningYear);
+  var GraduationJoiningYear = new Date(getEmployeeDetails.graduationJoiningYear);
   var dd = String(GraduationJoiningYear.getDate()).padStart(2, '0');
   var mm = String(GraduationJoiningYear.getMonth() + 1).padStart(2, '0');
   var yyyy = GraduationJoiningYear.getFullYear();
-   var GraduationJoiningYear1 = dd + '-' + mm + '-' + yyyy;
-   console.log(GraduationJoiningYear1);
+  var GraduationJoiningYear1 = dd + '-' + mm + '-' + yyyy;
+  console.log(GraduationJoiningYear1);
 
+
+  var tempDate = new Date(getEmployeeDetails.dateOfBirth);
+  var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(dob)
+
+
+
+  var tempDate = new Date(getEmployeeDetails.passportExpiryDate);
+  var ped = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(ped)
+
+  var tempDate = new Date(getEmployeeDetails.postgraduationJoiningYear);
+  var postgraduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(postgraduationJoiningYear1)
+
+  var tempDate = new Date(getEmployeeDetails.postgraduationPassedYear);
+  var postgraduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(postgraduationPassedYear1)
+
+  var tempDate = new Date(getEmployeeDetails.graduationJoiningYear);
+  var graduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(graduationJoiningYear1)
+
+  var tempDate = new Date(getEmployeeDetails.graduationPassedYear);
+  var graduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(graduationPassedYear1)
+
+  var tempDate = new Date(getEmployeeDetails.intermediateJoiningYear);
+  var intermediateJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(intermediateJoiningYear1)
+
+  var tempDate = new Date(getEmployeeDetails.intermediatePassedYear);
+  var intermediatePassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(intermediatePassedYear1)
+
+  var tempDate = new Date(getEmployeeDetails.sscJoiningYear);
+  var sscJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(sscJoiningYear1)
+
+  var tempDate = new Date(getEmployeeDetails.sscPassedYear);
+  var sscPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(sscPassedYear1)
+
+  var tempDate = new Date(getEmployeeDetails.previousCompany1_joiningDate);
+  var previousCompany1_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(previousCompany1_joiningDate1)
+
+  var tempDate = new Date(getEmployeeDetails.previousCompany1_relievingDate);
+  var previousCompany1_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(previousCompany1_relievingDate1)
+
+  var tempDate = new Date(getEmployeeDetails.previousCompany2_joiningDate);
+  var previousCompany2_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(previousCompany2_joiningDate1)
+
+  var tempDate = new Date(getEmployeeDetails.previousCompany2_relievingDate);
+  var previousCompany2_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(previousCompany2_relievingDate1)
+
+  var tempDate = new Date(getEmployeeDetails.previousCompany3_joiningDate);
+  var previousCompany3_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(previousCompany3_joiningDate1)
+
+  var tempDate = new Date(getEmployeeDetails.previousCompany3_relievingDate);
+  var previousCompany3_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(previousCompany3_relievingDate1)
+
+
+
+  var dob11 = getEmployeeDetails.dateOfBirth
 
 
   return (
@@ -173,39 +222,23 @@ const MyProfile = () => {
                                         // {/* <Image src={imge.url} style={{ */}
 
                                         height: "150px",
-
                                         width: "150px",
-
                                         borderRadius: "110px",
-
                                         alignItems: "center",
-
                                         marginTop: "50px",
-
                                         marginLeft: "70px"
-
                                       }} />
 
                                     </Col>
-
-
-
                                     <Col style={{
-
                                       fontSize: 20,
-
                                       textAlign: "center",
-
                                       paddingTop: 40,
-
                                       paddingBottom: 40,
-
                                       text: "bold",
-
                                       marginRight: "230px",
 
                                     }}>
-
                                       {getEmployeeDetails.firstName} {getEmployeeDetails.lastName}
 
                                     </Col>
@@ -248,16 +281,16 @@ const MyProfile = () => {
                               </Row>
                               <Row style={{ paddingBottom: 15 }}>
                                 <Col>
-                                    <Card.Title style={{}}>
-                                        <h6> Years of Experience:</h6>
-                                    </Card.Title>
+                                  <Card.Title style={{}}>
+                                    <h6> Years of Experience:</h6>
+                                  </Card.Title>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                    <Card.Text style={{}}>
-                                        {getEmployeeDetails.yearsOfExperience}
-                                    </Card.Text>
+                                  <Card.Text style={{}}>
+                                    {getEmployeeDetails.yearsOfExperience}
+                                  </Card.Text>
                                 </Col>
-                            </Row>
+                              </Row>
                               <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                   <Card.Title style={{}}>
@@ -297,42 +330,42 @@ const MyProfile = () => {
                               </Row>
                               <Row style={{ paddingBottom: 10 }}>
                                 <Col>
-                                    <Card.Text style={{}}>
-                                        <h6>BAND: </h6>
-                                    </Card.Text>
+                                  <Card.Text style={{}}>
+                                    <h6>BAND: </h6>
+                                  </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                    <Card.Text style={{}}>
-                                        {getEmployeeDetails.band}
-                                    </Card.Text>
+                                  <Card.Text style={{}}>
+                                    {getEmployeeDetails.band}
+                                  </Card.Text>
                                 </Col>
-                            </Row>
-                            <Row style={{ paddingBottom: 10 }}>
+                              </Row>
+                              <Row style={{ paddingBottom: 10 }}>
                                 <Col>
-                                    <Card.Text style={{}}>
-                                        <h6>Project: </h6>
-                                    </Card.Text>
+                                  <Card.Text style={{}}>
+                                    <h6>Project: </h6>
+                                  </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                    <Card.Text style={{}}>
-                                        {getEmployeeDetails.project}
-                                    </Card.Text>
+                                  <Card.Text style={{}}>
+                                    {getEmployeeDetails.project}
+                                  </Card.Text>
                                 </Col>
-                            </Row>
-                            <Row style={{ paddingBottom: 10 }}>
+                              </Row>
+                              <Row style={{ paddingBottom: 10 }}>
                                 <Col>
-                                    <Card.Text style={{}}>
-                                        <h6>Cost Center Business Unit: </h6>
-                                    </Card.Text>
+                                  <Card.Text style={{}}>
+                                    <h6>Cost Center Business Unit: </h6>
+                                  </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                    <Card.Text style={{}}>
-                                        {getEmployeeDetails.businessUnit}
-                                    </Card.Text>
+                                  <Card.Text style={{}}>
+                                    {getEmployeeDetails.businessUnit}
+                                  </Card.Text>
                                 </Col>
-                            </Row>
-                           
-                        
+                              </Row>
+
+
                             </Card.Body>
                           </Col>
                         </Row>
@@ -383,12 +416,10 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                           <Col md={{ offset: 1 }}>
-                            <Card.Subtitle>
-                              {getEmployeeDetails.dateOfBirth}
-                              
-                              {/* {dob12} */}
-                              {/* {dob1} */}
-                            </Card.Subtitle>
+                            {getEmployeeDetails.dateOfBirth ? (<Card.Subtitle>
+                              {dob}
+                            </Card.Subtitle>) : (<div></div>)}
+
                           </Col>
                         </Row>
                         <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
@@ -575,15 +606,15 @@ const MyProfile = () => {
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {getEmployeeDetails.passportExpiryDate}
-                          </Card.Text>
+                          {getEmployeeDetails.passportExpiryDate ? (<Card.Subtitle>
+                            {ped}
+                          </Card.Subtitle>) : (<div></div>)}
                         </Col>
                       </Row>
                       <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                         <Col>
                           <Card.Subtitle style={{ padding: 10 }}>
-                             PAN Card Number:
+                            PAN Card Number:
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>
@@ -674,7 +705,7 @@ const MyProfile = () => {
 
                       <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
 
-                       
+
 
                         <Col>
 
@@ -747,15 +778,19 @@ const MyProfile = () => {
                           </tr>
                         </thead>
                         <tbody>
-                         
+
                           <tr>
 
                             <td>{getEmployeeDetails.sscBoardOfUniversity}</td>
                             <td>{getEmployeeDetails.sscSchoolName}</td>
                             <td>{getEmployeeDetails.sscCourseName}</td>
                             <td>{getEmployeeDetails.sscGrade}</td>
-                            <td>{getEmployeeDetails.sscJoiningYear}</td>
-                            <td>{getEmployeeDetails.sscPassedYear}</td>
+                            <td> {getEmployeeDetails.sscJoiningYear ? (<td>
+                              {sscJoiningYear1}
+                            </td>) : (<div></div>)}</td>
+                            <td>{getEmployeeDetails.sscPassedYear ? (<td>
+                              {sscPassedYear1}
+                            </td>) : (<div></div>)}</td>
                           </tr>
 
                           <tr>
@@ -763,16 +798,25 @@ const MyProfile = () => {
                             <td>{getEmployeeDetails.intermediateCollegeName}</td>
                             <td>{getEmployeeDetails.intermediateCourseName}</td>
                             <td>{getEmployeeDetails.intermediateGrade}</td>
-                            <td>{getEmployeeDetails.intermediateJoiningYear}</td>
-                            <td>{getEmployeeDetails.intermediatePassedYear}</td>
+                            <td> {getEmployeeDetails.intermediateJoiningYear ? (<td>
+                              {intermediateJoiningYear1}
+                            </td>) : (<div></div>)}</td>
+                            <td> {getEmployeeDetails.intermediatePassedYear ? (<td>
+                              {intermediatePassedYear1}
+                            </td>) : (<div></div>)}</td>
+
                           </tr>
                           <tr>
                             <td>{getEmployeeDetails.graduationBoardOfUniversity}</td>
                             <td>{getEmployeeDetails.graduationInstituteName}</td>
                             <td>{getEmployeeDetails.graduationCourseName}</td>
                             <td>{getEmployeeDetails.graduationGrade}</td>
-                            <td>{getEmployeeDetails.graduationJoiningYear}</td>
-                            <td>{getEmployeeDetails.graduationPassedYear}</td>
+                            <td> {getEmployeeDetails.graduationJoiningYear ? (<td>
+                              {graduationJoiningYear1}
+                            </td>) : (<div></div>)}</td>
+                            <td>{getEmployeeDetails.graduationPassedYear ? (<td>
+                              {graduationPassedYear1}
+                            </td>) : (<div></div>)}</td>
 
                           </tr>
 
@@ -782,8 +826,12 @@ const MyProfile = () => {
                             <td>{getEmployeeDetails.postgraduationInstituteName}</td>
                             <td>{getEmployeeDetails.postgraduationCourseName}</td>
                             <td>{getEmployeeDetails.postgraduationGrade}</td>
-                            <td>{getEmployeeDetails.postgraduationJoiningYear}</td>
-                            <td>{getEmployeeDetails.postgraduationPassedYear}</td>
+                            <td> {getEmployeeDetails.postgraduationJoiningYear ? (<td>
+                              {postgraduationJoiningYear1}
+                            </td>) : (<div></div>)}</td>
+                            <td>{getEmployeeDetails.postgraduationPassedYear ? (<td>
+                              {postgraduationPassedYear1}
+                            </td>) : (<div></div>)}</td>
 
                           </tr>
 
@@ -804,7 +852,7 @@ const MyProfile = () => {
                       <Table>
                         <thead>
                           <tr>
-{/* 
+                            {/* 
                             <th>Sr.No.</th> */}
                             <th>Company Name</th>
                             <th>Employee ID</th>
@@ -820,22 +868,34 @@ const MyProfile = () => {
                             <td>{getEmployeeDetails.previousCompany1_name}</td>
                             <td>{getEmployeeDetails.previousCompany1_employeeId}</td>
                             <td>{getEmployeeDetails.previousCompany1_designation}</td>
-                            <td>{getEmployeeDetails.previousCompany1_joiningDate}</td>
-                            <td>{getEmployeeDetails.previousCompany1_relievingDate}</td>
+                            <td> {getEmployeeDetails.previousCompany1_joiningDate ? (<td>
+                              {previousCompany1_joiningDate1}
+                            </td>) : (<div></div>)}</td>
+                            <td>{getEmployeeDetails.previousCompany1_relievingDate ? (<td>
+                              {previousCompany1_relievingDate1}
+                            </td>) : (<div></div>)}</td>
                           </tr>
                           <tr>
                             <td>{getEmployeeDetails.previousCompany2_name}</td>
                             <td>{getEmployeeDetails.previousCompany2_employeeId}</td>
                             <td>{getEmployeeDetails.previousCompany2_designation}</td>
-                            <td>{getEmployeeDetails.previousCompany2_joiningDate}</td>
-                            <td>{getEmployeeDetails.previousCompany2_relievingDate}</td>
+                            <td> {getEmployeeDetails.previousCompany2_joiningDate ? (<td>
+                              {previousCompany2_joiningDate1}
+                            </td>) : (<div></div>)}</td>
+                            <td>{getEmployeeDetails.previousCompany2_relievingDate ? (<td>
+                              {previousCompany2_relievingDate1}
+                            </td>) : (<div></div>)}</td>
                           </tr>
                           <tr>
                             <td>{getEmployeeDetails.previousCompany3_name}</td>
                             <td>{getEmployeeDetails.previousCompany3_employeeId}</td>
                             <td>{getEmployeeDetails.previousCompany3_designation}</td>
-                            <td>{getEmployeeDetails.previousCompany3_joiningDate}</td>
-                            <td>{getEmployeeDetails.previousCompany3_relievingDate}</td>
+                            <td> {getEmployeeDetails.previousCompany3_joiningDate ? (<td>
+                              {previousCompany3_joiningDate1}
+                            </td>) : (<div></div>)}</td>
+                            <td>{getEmployeeDetails.previousCompany3_relievingDate ? (<td>
+                              {previousCompany3_relievingDate1}
+                            </td>) : (<div></div>)}</td>
                           </tr>
 
                         </tbody>

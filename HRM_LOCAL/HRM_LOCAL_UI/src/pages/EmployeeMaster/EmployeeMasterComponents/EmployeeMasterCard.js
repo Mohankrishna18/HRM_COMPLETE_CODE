@@ -71,7 +71,7 @@ function EmployeeMasterCard() {
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
 
-    var doj = yyyy + '-' + mm + '-' + dd;
+    var doj = dd + '-' + mm + '-' + yyyy;
     console.log(doj);
 
     return (

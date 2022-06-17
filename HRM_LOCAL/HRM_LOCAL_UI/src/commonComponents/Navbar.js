@@ -55,7 +55,8 @@ const NavBar = (props) => {
             <Nav style={{ paddingLeft: '1420px' }}>
               <Navbar>
                 <Navbar.Brand href="#">
-                  {isLoggedIn() && <FaSignOutAlt style={{ fontSize: '35px' }} onClick={handleLogout} />}
+                  <td>{isLoggedIn() && <FaSignOutAlt style={{ fontSize: '35px' }} onClick={handleLogout} />}</td>
+                  <td style={{paddingLeft:'10px'}}><p>V1.0</p></td>
                 </Navbar.Brand>
               </Navbar>
             </Nav>
