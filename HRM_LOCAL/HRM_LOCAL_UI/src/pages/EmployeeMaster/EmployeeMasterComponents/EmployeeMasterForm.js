@@ -1217,8 +1217,9 @@ function EmployeeMasterForm() {
                                                 <Accordion.Body>
                                                     <Row>
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                                            <Form.Label>Type of Post Graduation</Form.Label>
+                                                            <Form.Label>Type of Post Graduation *</Form.Label>
                                                             <Form.Select
+                                                            required
                                                                 type="text"
                                                                 placeholder="Type Of Post Graduation"
                                                                 controlId="postgraduationType"
@@ -1366,8 +1367,9 @@ function EmployeeMasterForm() {
                                         </Card>
 
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Type of Graduation</Form.Label>
+                                            <Form.Label>Type of Graduation *</Form.Label>
                                             <Form.Select
+                                            required
                                                 type="text"
                                                 placeholder="Type Of Graduation"
                                                 controlId="graduationType"
