@@ -144,7 +144,7 @@ export default [
     component: LeaveToApply,
     path: "/leaveApply",
     icon: <FcLeave />,
-    title: "Leaves To Apply",
+    title: "My Leaves",
     permission: [
       Roles.employee,
       Roles.hr,
@@ -235,22 +235,22 @@ export default [
     component: ManagerLeavesToApproveMain,
     path: "/managerLeavesToApprove",
     icon: <FcManager />,
-    title: "Manager Leaves To Approve",
+    title: "Leaves Waiting For Approval",
     permission: [
       
       Roles.manager
     ],
   },
-  {
-    component: ManagerLeaveHistory,
-    path: "/managerleavehistory",
-    icon: <FcOvertime />,
-    title: "Manager Leave History",
-    permission: [
-     Roles.manager,
+  // {
+  //   component: ManagerLeaveHistory,
+  //   path: "/managerleavehistory",
+  //   icon: <FcOvertime />,
+  //   title: "My Teams Leave History",
+  //   permission: [
+  //    Roles.manager,
       
-    ],
-  },
+  //   ],
+  // },
   
   {
     component: HrLeaveHistorymain,
