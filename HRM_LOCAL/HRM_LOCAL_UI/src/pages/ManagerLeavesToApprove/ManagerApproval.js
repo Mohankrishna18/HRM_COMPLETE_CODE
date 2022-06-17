@@ -60,8 +60,17 @@ const [data, setData] = useState([]);
 
     const loadData = async () => {
         const res = await axios.get(`/leave/getUserByReportingManager/${empID}`);
-        setData(res.data);
+        // setData(res.data);
         console.log(res.data);
+        const dat= res.data.filter((m)=>m.managerApproval == 'pending')
+        console.log(dat)
+        setData(dat)
+         // res.data.map((m)=>{
+         //   const app = m.filter( managerApproval === "pending")
+         //   console.log(app)
+ 
+         // })
+    
     };
   const dispaly = (e) => {
     console.log(e.target.value);
@@ -82,7 +91,7 @@ const [data, setData] = useState([]);
               <th align="left"> To</th>
               <th align="left"> No Of Days</th>
               <th align="left"> Reason</th>
-              {/* <th align="left"> Status</th> */}
+              <th align="left"> Status</th>
               <th align="center"> Action</th>
             </tr>
           </thead>
@@ -96,7 +105,7 @@ const [data, setData] = useState([]);
                 <td align="left">{formatDate(h.toDate)}</td>
                 <td align="left">{h.numberOfDays}</td>
                 <td align="left">{h.leaveReason}</td>
-                {/* <td align="left">{h.managerApproval}</td> */}
+                <td align="left">{h.managerApproval}</td>
                 <td>{h.managerApproval == "pending" ?(<div>
                   <td><Approve  leaveID={h.employeeleaveId}/></td> <td><Reject leaveID={h.employeeleaveId}/></td>
                 </div>):(<div></div>)}
