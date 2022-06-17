@@ -240,95 +240,7 @@ function EmployeeMasterForm() {
 
     //get call Get the Employee onboarding Details
     const [employeedetails, setEmployeeDetails] = useState([]);
-    const initialvalue = {
-        employeeId,
-        firstName,
-        lastName,
-        middleName,
-        dateOfBirth,
-        primaryPhoneNumber,
-        secondaryPhoneNumber,
-        email,
-        yearsOfExperience,
-        designationName,
-        primarySkills,
-        secondarySkills,
-        dateOfJoining,
-        bloodGroup,
-        gender,
-        maritalStatus,
-        permanentAdress,
-        permanentState,
-        permanentCountry,
-        permanentPincode,
-        currentAdress,
-        currentState,
-        currentCountry,
-        currentPincode,
-        passportNo,
-        passportExpiryDate,
-        postgraduationType,
-        postgraduationBoardOfUniversity,
-        postgraduationInstituteName,
-        postgraduationInstituteCity,
-        postgraduationCourseName,
-        postgraduationJoiningYear,
-        postgraduationPassedYear,
-        postgraduationGrade,
-        graduationType,
-        graduationBoardOfUniversity,
-        graduationInstituteName,
-        graduationInstituteCity,
-        graduationCourseName,
-        graduationJoiningYear,
-        graduationPassedYear,
-        graduationGrade,
-        intermediateBoardOfUniversity,
-        intermediateCollegeName,
-        intermediateCollegeCity,
-        intermediateCourseName,
-        intermediateJoiningYear,
-        intermediatePassedYear,
-        intermediateGrade,
-        sscBoardOfUniversity,
-        sscSchoolName,
-        sscSchoolCity,
-        sscCourseName,
-        sscJoiningYear,
-        sscPassedYear,
-        sscGrade,
-        previousCompany1_name,
-        previousCompany1_designation,
-        previousCompany1_joiningDate,
-        previousCompany1_relievingDate,
-        previousCompany1_employeeId,
-        previousCompany1_typeOfEmployment,
-        previousCompany1_reasonForRelieving,
-        previousCompany2_name,
-        previousCompany2_designation,
-        previousCompany2_joiningDate,
-        previousCompany2_relievingDate,
-        previousCompany2_employeeId,
-        previousCompany2_typeOfEmployment,
-        previousCompany2_reasonForRelieving,
-        previousCompany3_name,
-        previousCompany3_designation,
-        previousCompany3_joiningDate,
-        previousCompany3_relievingDate,
-        previousCompany3_employeeId,
-        previousCompany3_typeOfEmployment,
-        previousCompany3_reasonForRelieving,
-
-        panNumber,
-        aadharNumber,
-        uanNumber,
-        bankName,
-        accountNumber,
-        ifscCode,
-        branch,
-        band,
-        exitDate,
-    };
+   
     useEffect(() => {
         axios
             .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
@@ -713,23 +625,7 @@ function EmployeeMasterForm() {
                                                 {ferrors}
                                             </Form.Control.Feedback>
                                         </Form.Group>
-{/* 
-                                        <Form.Label>First Name *</Form.Label>
-                      <Form.Control
-                        value={firstName}
-                        // disabled
-                        required
-                        onChange={(e) => {
-                          setFirstName(e.target.value);
-                        }}
-                        type="text"
-                        placeholder="Enter Name"
-                        isInvalid={ferrors}
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {ferrors}
-                      </Form.Control.Feedback>
-                    </Form.Group> */}
+
 
                                         <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }}>
                                             <Form.Label>Middle name</Form.Label>
@@ -740,8 +636,8 @@ function EmployeeMasterForm() {
                                                 maxLength={50}
                                                 value={middleName}
                                                 onChange={(e) => {
+                                                    
                                                     setMiddleName(e.target.value);
-
                                                 }}
                                             />
                                         </Form.Group>
@@ -758,6 +654,12 @@ function EmployeeMasterForm() {
                                                 required
                                                 maxLength={50}
                                                 onChange={(e) => {
+                                                    if(firstName == ""){
+                                                        setFErrors("First Name is required")
+                                                    }
+                                                    else{
+                                                        setFErrors("")                                                       
+                                                    }
                                                     setLastName(e.target.value);
                                                 }}
                                                 isInvalid={serror}
@@ -786,6 +688,9 @@ function EmployeeMasterForm() {
                                                         if (lastName === "") {
                                                             setSerror("Last Name is Required");
                                                         }
+                                                        else{
+                                                            setSerror("")                                                       
+                                                        }
                                                     }}
                                                     isInvalid={thirderrors}
                                                 />
@@ -811,9 +716,7 @@ function EmployeeMasterForm() {
                                                     maxLength={10}
                                                     onChange={(e) => {
                                                         setSecondaryPhone(e.target.value);
-                                                        if (primaryPhoneNumber === "") {
-                                                            thirderrors("Primary number is Required");
-                                                        }
+                                                        
                                                     }}
                                                     type="text"
                                                     placeholder="Enter Phone"
@@ -829,6 +732,12 @@ function EmployeeMasterForm() {
                                                 value={email}
                                                 isInvalid={fourerror}
                                                 onChange={(e) => {
+                                                    if (primaryPhoneNumber === "") {
+                                                        setThirdErrors("Phone Number is Required");
+                                                    }
+                                                    else{
+                                                        setThirdErrors("")                                                       
+                                                    }
                                                     setEmail(e.target.value);
                                                 }}
                                             />
@@ -846,16 +755,20 @@ function EmployeeMasterForm() {
                                                 placeholder="DOB"
                                                 controlId="dateOfBirth"
                                                 value={dateOfBirth}
-                                                isInvalid={sixerror}
+                                                isInvalid={fiveerrors}
                                                 onChange={(e) => {
                                                     setDateOfBirth(e.target.value);
-                                                    if (yearsOfExperience === "") {
-                                                        setFiveErrors(" Year of experience is Required");
+                                                    if (email === "") {
+                                                        setFErrors("Email is Required");
                                                     }
+                                                    else{
+                                                        setFErrors("")                                                       
+                                                    }
+                                                    setEmail(e.target.value);
                                                 }}
                                             ></Form.Control>
                                             <Form.Control.Feedback type="invalid">
-                                                {sixerror}
+                                                {fiveerrors}
                                             </Form.Control.Feedback>
                                         </Form.Group>
 
@@ -867,16 +780,17 @@ function EmployeeMasterForm() {
                                                 name="bloodGroup"
                                                 placeholder="Blood Group "
                                                 controlId="bloodGroup"
-                                                isInvalid={sevenerrors}
+                                                isInvalid={sixerror}
                                                 value={bloodGroup}
-                                                // isValid={touched.bloodGroup && !errors.bloodGroup}
-                                                // isInvalid={touched.bloodGroup && !!errors.bloodGroup}
-
+ 
                                                 onChange={(e) => {
                                                     setBloodGroup(e.target.value);
                                                     if (dateOfBirth === "") {
-                                                        setSixerror(" DOB is Required");
+                                                        setFiveErrors("Email is Required");
                                                     }
+                                                    else{
+                                                        setFiveErrors("")                                                       
+                                                    }  
                                                 }}
                                             >
                                                 <option>Select</option>
@@ -890,8 +804,8 @@ function EmployeeMasterForm() {
                                                 <option value="O-">O-</option>
                                             </Form.Select>
                                             <Form.Control.Feedback type="invalid">
-                                                {sevenerrors}
-                                            </Form.Control.Feedback>
+                                                {sixerror}
+                                            </Form.Control.Feedback> 
                                         </Form.Group>
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Gender *</Form.Label>
@@ -1303,8 +1217,9 @@ function EmployeeMasterForm() {
                                                 <Accordion.Body>
                                                     <Row>
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                                            <Form.Label>Type of Post Graduation</Form.Label>
+                                                            <Form.Label>Type of Post Graduation *</Form.Label>
                                                             <Form.Select
+                                                            required
                                                                 type="text"
                                                                 placeholder="Type Of Post Graduation"
                                                                 controlId="postgraduationType"
@@ -1452,8 +1367,9 @@ function EmployeeMasterForm() {
                                         </Card>
 
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Type of Graduation</Form.Label>
+                                            <Form.Label>Type of Graduation *</Form.Label>
                                             <Form.Select
+                                            required
                                                 type="text"
                                                 placeholder="Type Of Graduation"
                                                 controlId="graduationType"
