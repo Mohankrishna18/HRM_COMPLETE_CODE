@@ -104,8 +104,8 @@ const EmployeeTablee = () => {
 
                       <td>{user.jobTitle}</td>
 
-                      <td>{user.yearsOfExperience}</td>
-                      <td>{formatDate(user.dateOfJoining)}</td>
+                      <td style={{textAlign: 'center'}}>{user.yearsOfExperience}</td>
+                      <td>{user.dateOfJoining}</td>
                        {console.log(user.comments)}
                       <td>
                         <div class="hstack gap-3">

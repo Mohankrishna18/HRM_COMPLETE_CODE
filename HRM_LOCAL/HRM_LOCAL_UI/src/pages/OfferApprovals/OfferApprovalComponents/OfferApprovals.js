@@ -20,9 +20,9 @@ function OfferApprovals() {
               </Card.Body>
               <Row>
                 <Col xs={12}>
-                  <h6>Waiting For Approval Table</h6>
+                  <h6>Waiting For Approval</h6>
                   <EmployeeTablee />
-                  <h6>Approved Emplyees Table</h6>
+                  <h6>Approved Employees</h6>
                   <ApprovedEmployeesTable/>
                 </Col>
               </Row>

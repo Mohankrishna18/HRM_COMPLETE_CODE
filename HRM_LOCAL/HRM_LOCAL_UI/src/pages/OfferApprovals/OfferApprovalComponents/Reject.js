@@ -53,14 +53,16 @@ const Reject = (props) => {
             </Modal.Header>
             <Modal.Body>
               <Form role="form">
-                <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                   <Form.Label>Comment</Form.Label>
                   <Form.Control
                     required
                     className="comments"
                     type="text"
                     controlId="comments"
-                    placeholder="comment"
+                    placeholder="Comment"
+                    as="textarea"
+                    rows={2}
                     value={form.comments}
                     onChange={(e) => setField("comments", e.target.value)}
                     isInvalid={!!errors.comments}
@@ -74,7 +76,7 @@ const Reject = (props) => {
                     backgroundColor: "#ff9b44",
                     color: "#F4F8F6",
                   }}
-                  onClick={ApproveHandler}
+                  onSubmit={ApproveHandler}
                 >
                   &nbsp; Reject
                 </Button>

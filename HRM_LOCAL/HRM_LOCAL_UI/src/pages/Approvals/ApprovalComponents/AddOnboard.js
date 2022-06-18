@@ -155,8 +155,8 @@ function AddOnboard() {
           color: "#F4F8F6",
           float: "right",
           borderRadius: "25px",
-          paddingBottom: "11.5px",
-          marginTop: "100px",
+          // paddingBottom: "11.5px",
+          // marginTop: "100px",
         }}
       >
         {" "}
@@ -171,7 +171,7 @@ function AddOnboard() {
         keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title>OnBoarding Form</Modal.Title>
+          <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -249,26 +249,41 @@ function AddOnboard() {
                 </InputGroup>
               </Form.Group>
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Designation *</Form.Label>
+                <Form.Label>Email *</Form.Label>
+                <Form.Control
+                  required
+                  type="email"
+                  placeholder="Email"
+                  controlId="email"
+                  value={form.email}
+                  onChange={(e) => setField("email", e.target.value)}
+                  isInvalid={!!errors.email}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.email}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Type Of Employment *</Form.Label>
                 <Form.Select
                   required
                   type="text"
-                  placeholder="Designation"
-                  controlId="designation"
-                  value={form.designation}
-                  onChange={(e) => setField("designation", e.target.value)}
-                  isInvalid={!!errors.designation}
+                  placeholder="Type Of Employment"
+                  controlId="employmentType"
+                  value={form.employmentType}
+                  onChange={(e) => setField("employmentType", e.target.value)}
+                  isInvalid={!!errors.employmentType}
                 >
-                  <option>Select </option>
-                  {designations.map((designation) => (
-                    <option>{designation.designationName}</option>
-                  ))}
+                  <option>Select</option>
+                  <option value="Intern">Intern</option>
+                  <option value="Contract">Contract</option>
+                  <option value="FTE">
+                    FTE 
+                  </option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
-                  {errors.designation}
+                  {errors.employmentType}
                 </Form.Control.Feedback>
-
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Department *</Form.Label>
@@ -291,6 +306,29 @@ function AddOnboard() {
                 </Form.Control.Feedback>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Designation *</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="Designation"
+                  controlId="designation"
+                  value={form.designation}
+                  onChange={(e) => setField("designation", e.target.value)}
+                  isInvalid={!!errors.designation}
+                >
+                  <option>Select </option>
+                  {designations.map((designation) => (
+                    <option>{designation.designationName}</option>
+                  ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.designation}
+                </Form.Control.Feedback>
+
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+              
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Date of Joining *</Form.Label>
                 <Form.Control
@@ -336,36 +374,8 @@ function AddOnboard() {
                   {errors.yearsOfExperience}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Email *</Form.Label>
-                <Form.Control
-                  required
-                  type="email"
-                  placeholder="Email"
-                  controlId="email"
-                  value={form.email}
-                  onChange={(e) => setField("email", e.target.value)}
-                  isInvalid={!!errors.email}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.email}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Job Title *</Form.Label>
-                <Form.Control
-                  name="jobTitle"
-                  type="text"
-                  controlId="jobTitle"
-                  placeholder="Job Title "
-                  value={form.jobTitle}
-                  onChange={(e) => setField("jobTitle", e.target.value)}
-                  isInvalid={!!errors.jobTitle}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.jobTitle}
-                </Form.Control.Feedback>
-              </Form.Group>
+              
+              
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Primary Skills *</Form.Label>
                 <Form.Control
@@ -400,37 +410,33 @@ function AddOnboard() {
                   {errors.secondarySkills}
                 </Form.Control.Feedback>
               </Form.Group>
-
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Type Of Employeement *</Form.Label>
-                <Form.Select
-                  required
+              <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                <Form.Label>Job Title *</Form.Label>
+                <Form.Control
+                  name="jobTitle"
                   type="text"
-                  placeholder="Type Of Employment"
-                  controlId="employmentType"
-                  value={form.employmentType}
-                  onChange={(e) => setField("employmentType", e.target.value)}
-                  isInvalid={!!errors.employmentType}
-                >
-                  <option>Select</option>
-                  <option value="Intern">Intern</option>
-                  <option value="Contract">Contract</option>
-                  <option value="FullTimeEmployement">
-                    FTE (Full Time Employment)
-                  </option>
-                </Form.Select>
+                  controlId="jobTitle"
+                  placeholder="Job Title "
+                  value={form.jobTitle}
+                  onChange={(e) => setField("jobTitle", e.target.value)}
+                  isInvalid={!!errors.jobTitle}
+                ></Form.Control>
                 <Form.Control.Feedback type="invalid">
-                  {errors.employmentType}
+                  {errors.jobTitle}
                 </Form.Control.Feedback>
               </Form.Group>
+              
+
+              
             </Row>
             <Button
-              style={{ backgroundColor: "#FF0000", float: "right" }}
+              style={{ backgroundColor: "#FF0000", float: "right",marginLeft:"5px" }}
               type="cancel"
               onClick={handleClose}
             >
               Close
             </Button>
+            
             <Button
               style={{ backgroundColor: "#4CBB17", float: "right" }}
               type="submit"

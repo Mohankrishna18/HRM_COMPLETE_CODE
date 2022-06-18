@@ -91,7 +91,7 @@ const ApprovedEmployeesTable = () => {
 
                       <td>{user.jobTitle}</td>
 
-                      <td>{user.yearsOfExperience}</td>
+                      <td style={{textAlign: 'center'}}>{user.yearsOfExperience}</td>
                       <td>{user.dateOfJoining}</td>
 
                       
