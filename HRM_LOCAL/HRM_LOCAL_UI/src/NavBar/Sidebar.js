@@ -40,7 +40,7 @@ const Sidebar = (props) => {
                   </ListGroup.Item>
                 </Row>
               ))}
-              {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp;
+              {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; */}
               {/* <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p> */}
             </ListGroup>
           </div>

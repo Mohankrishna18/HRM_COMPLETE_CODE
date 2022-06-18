@@ -136,7 +136,7 @@ const Sign = () => {
               </Form.Group>
               &nbsp;
               <div>
-                <a
+                <NavLink
                   class="text-muted"
                   href="/resetPassword"
                   style={{
@@ -146,7 +146,7 @@ const Sign = () => {
                   }}
                 >
                   Reset Password?
-                </a>
+                </NavLink>
               </div>
               &nbsp;
               <Button
