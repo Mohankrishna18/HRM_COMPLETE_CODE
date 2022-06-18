@@ -331,7 +331,7 @@ const MyProfile = () => {
                               <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                   <Card.Text style={{}}>
-                                    <h6>BAND: </h6>
+                                    <h6>Band: </h6>
                                   </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
@@ -647,7 +647,7 @@ const MyProfile = () => {
                         </Col>
                         <Col>
                           <Card.Subtitle style={{ padding: 10 }}>
-                            BAND:
+                            Band:
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>

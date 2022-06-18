@@ -197,7 +197,7 @@ function EmployeeMasterCard() {
                             <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Text style={{}}>
-                                        <h6>BAND: </h6>
+                                        <h6>Band: </h6>
                                     </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
