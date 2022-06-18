@@ -161,6 +161,7 @@ export default [
   //   icon: <FcOvertime />,
   //   title: "Leaves To Approve",
   //   permission: [
+
       
   //     Roles.hradmin
   //   ],
@@ -241,11 +242,13 @@ export default [
   //     Roles.manager
   //   ],
   // },
+
   // {
   //   component: ManagerLeaveHistory,
   //   path: "/managerleavehistory",
   //   icon: <FcOvertime />,
-  //   title: "Manager Leave History",
+
+  //   title: "My Teams Leave History",
   //   permission: [
   //    Roles.manager,
       
