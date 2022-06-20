@@ -63,6 +63,7 @@ const ApproveLeaveTable= (props) => {
             <tr>
               {/* <th align="left">Leave Id</th> */}
               <th align="left">Employee Id</th>
+              <th align="left">Name</th>
               <th align="left"> Leave Type</th>
               <th align="left"> From</th>
               <th align="left"> To</th>
@@ -77,6 +78,7 @@ const ApproveLeaveTable= (props) => {
               <tr>
                 {/* <td align="left">{h.employeeleaveId}</td> */}
                 <td align="left">{h.employeeId}</td>
+                <td align="left">{h.name}</td>
                 <td align="left">{h.leaveType}</td>
                 <td align="left">{formatDate(h.fromDate)}</td>
                 <td align="left">{formatDate(h.toDate)}</td>

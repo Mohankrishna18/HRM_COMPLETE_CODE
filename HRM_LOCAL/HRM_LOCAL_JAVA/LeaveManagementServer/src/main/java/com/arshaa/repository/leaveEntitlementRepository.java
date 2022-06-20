@@ -1,5 +1,6 @@
 package com.arshaa.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -7,46 +8,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.arshaa.entity.EntitledLeaves;
 import com.arshaa.entity.User;
 
-
-public interface leaveEntitlementRepository extends JpaRepository<EntitledLeaves, String  > {
-
-	Optional<EntitledLeaves> findByleaveType(String leaveType);
+public interface leaveEntitlementRepository extends JpaRepository<EntitledLeaves, Integer> {
 
 	EntitledLeaves getByleaveType(String leaveType);
 
-	//EntitledLeaves deleteByLeaveType(String leaveType);
-
-	EntitledLeaves deleteByLeaveType(String leaveType);
-	
-
-
-
 
 	
 
-	
-
-	
-     //EntitledLeaves getAllByleaveType(String leaveType);
+	Optional<EntitledLeaves> findByleaveType(String leaveType);
 
 
+	EntitledLeaves deleteByLeaveId(Integer leaveId);
 
 
+	EntitledLeaves findByleaveId(Integer leaveId);
 
-
-
-
-
-
-
-
-
-
-
-	//EntitledLeaves getnoOfDaysbyLeaveType(String leaveType);
-//	public EntitledLeaves getnoOfDaysbyLeaveType(String leaveType);
-	
-	
 
 
 }

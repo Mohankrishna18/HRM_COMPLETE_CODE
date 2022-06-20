@@ -53,15 +53,15 @@ const Approve = (props) => {
               <Modal.Title>Approve Leave</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            {/* <Form role="form">
-                <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                  <Form.Label>Comment</Form.Label>
+            <Form role="form">
+                {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                  <Form.Label>Confirm Approval</Form.Label>
                   <Form.Control
                     required
                     className="approveReason"
                     type="text"
                     controlId="approveReason"
-                    placeholder="Approve Reason"
+                    placeholder="Click 'Y' to Continue"
                     value={form.rejectReason}
                     onChange={(e) => setField("rejectReason", e.target.value)}
                     isInvalid={!!errors.rejectReason}
@@ -80,7 +80,7 @@ const Approve = (props) => {
                 >
                   &nbsp; Save
                 </Button>
-                {/* </Form> */}
+                </Form>
             </Modal.Body>
           </Modal>
           
@@ -90,3 +90,6 @@ const Approve = (props) => {
   );
 };
 export default Approve;
+
+
+

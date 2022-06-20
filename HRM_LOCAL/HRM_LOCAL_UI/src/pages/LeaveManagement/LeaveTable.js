@@ -19,14 +19,20 @@
 
 
 
+
+
 // const LeaveTable = () => {
 // const userData = sessionStorage.getItem("userdata");
 // const userData1 = JSON.parse(userData);
 
 
 
+
+
 // const employeeid = userData1.data.employeeId;
 // console.log(employeeid);
+
+
 
 
 
@@ -38,14 +44,20 @@
 
 
 
+
+
 // return day + "-" + month + "-" + year;
 // }
 // const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
 
 
 
+
+
 // const [leave, setLeaveData] = useState([]);
 // const [enable, setEnable] = useState([]);
+
+
 
 
 
@@ -59,6 +71,8 @@
 // console.log(e.target.value);
 // setEnable(e.target.value);
 // };
+
+
 
 
 
@@ -77,6 +91,8 @@
 // <th align="left"> Reason</th>
 // <th align="left"> Status</th>
 
+
+
 // <th align ="center">Reject Reason</th>
 // </tr>
 // </thead>
@@ -94,7 +110,11 @@
 // <td align="left">{h.rejectReason}</td>
 // {h.leaveStatus == "pending" ?(<div>
 
+
+
 // </div>):(<div></div>)}
+
+
 
 
 
@@ -110,6 +130,8 @@
 
 
 
+
+
 // export default LeaveTable;
 import React, { useState, useEffect } from 'react'
 import MaterialTable from 'material-table'
@@ -118,7 +140,11 @@ import axios from "../../Uri";
 export default function EmployeeLeaveHistory() {
 
 
+
+
 const [data, setData] = useState([]);
+
+
 
 
 
@@ -126,7 +152,11 @@ useEffect(() => {
 
 
 
+
+
 loadData();
+
+
 
 
 
@@ -134,8 +164,12 @@ loadData();
 
 
 
+
+
 const da = JSON.parse(sessionStorage.getItem('userdata'))
 const empID=da.data.employeeId;
+
+
 
 
 
@@ -154,7 +188,11 @@ const [columns, setColumns] = useState([
 { title: 'Reject Reason', field: 'rejectReason' },
 // { title: 'Leave Type', field: 'leaveType', type:'date'}
 
+
+
 ]);
+
+
 
 
 
@@ -162,6 +200,8 @@ const [columns, setColumns] = useState([
 // { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
 // { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
 // ]);
+
+
 
 
 
@@ -176,6 +216,8 @@ data={data}
 // new Promise((resolve, reject) => {
 
 
+
+
 // setTimeout(() => {
 // console.log(newData)
 // const res = axios.post("/holiday/addholiday",
@@ -183,6 +225,8 @@ data={data}
 // );
 // setData([...data, newData]);
 // loadData();
+
+
 
 
 
@@ -202,6 +246,8 @@ data={data}
 
 
 
+
+
 // setTimeout(() => {
 // console.log(updatedRow)
 // const res = axios.put(`/holiday/updateHolidayById/${index}`, updatedRow)
@@ -212,10 +258,14 @@ data={data}
 
 
 
+
+
 // .catch((err) => {
 // console.log("not updated")
 // // toast.error("Server error");
 // });
+
+
 
 
 
@@ -226,6 +276,8 @@ data={data}
 // resolve();
 // });
 // }),
+
+
 
 
 
@@ -248,6 +300,8 @@ data={data}
 
 
 
+
+
 // resolve()
 // }, 1000)
 // }),
@@ -260,11 +314,17 @@ headerStyle: {
 
 
 
+
+
 backgroundColor: "#FE924A",
 
 
 
+
+
 color: "white",
+
+
 
 
 
@@ -275,4 +335,3 @@ exportButton: true
 </Grid>
 )
 }
-

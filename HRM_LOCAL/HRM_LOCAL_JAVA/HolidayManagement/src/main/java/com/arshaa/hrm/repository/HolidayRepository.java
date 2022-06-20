@@ -16,5 +16,11 @@ public interface HolidayRepository extends JpaRepository<Holidaymanagement, Inte
 	
 	@Query(value="select count(*) from holidaymaster where year(holidaymaster.holiday_date)=?1 and month(holidaymaster.holiday_date) = ?2", nativeQuery=true)
 	int findHolidaymanagementCountWithParticularMonth(@Param("year") Integer year,@Param("month") Integer month );
+	@Query(value="select * from holidaymaster where holiday_date between ?1 and ?2", nativeQuery=true)
+	List<Holidaymanagement> findHolidaysBetweenTwoDays(@Param("fromDate") String fromDate, @Param("toDate") String toDate);
 
+	static List<Holidaymanagement> findHolidaymanagementWithParticularYearAndMonth(int year, int month, int date) {
+	// TODO Auto-generated method stub
+	return findHolidaymanagementWithParticularYearAndMonth(year, month, date);
+	}
 }

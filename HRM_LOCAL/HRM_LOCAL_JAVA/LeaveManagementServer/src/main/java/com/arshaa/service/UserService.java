@@ -1,5 +1,6 @@
 package com.arshaa.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,10 @@ import org.springframework.web.client.RestTemplate;
 
 import com.arshaa.entity.EntitledLeaves;
 import com.arshaa.entity.User;
+import com.arshaa.model.AllEmployeesForHr;
+import com.arshaa.model.EmployeeName;
 import com.arshaa.model.GetReportingManager;
+import com.arshaa.model.UsersByReportingManager;
 import com.arshaa.repository.UserRepository;
 import com.arshaa.repository.leaveEntitlementRepository;
 
@@ -62,16 +66,42 @@ public User save(User user) {
 	}return user;
 }
 
-	public List<User> findAll() {
+	public ResponseEntity findAll() {
+		String url="http://empService/emp/getEmployeeNameByEmployeeId/";
+		List<AllEmployeesForHr> getList=new ArrayList<>();
+		try {
+			List<User> u = repository.findAll();
+			User s=new User();
+			u.forEach(g->{
+				AllEmployeesForHr ae=new AllEmployeesForHr();
+				ae.setEmployeeId(g.getEmployeeId());
+				ae.setLeaveType(g.getLeaveType());
+				ae.setFromDate(g.getFromDate());
+				ae.setToDate(g.getToDate());
+				ae.setNumberOfDays(g.getNumberOfDays());
+				ae.setLeaveReason(g.getLeaveReason()); 
+				ae.setManagerApproval(g.getManagerApproval());
+				ae.setLeaveStatus(g.getLeaveStatus());
+				ae.setEmployeeleaveId(g.getEmployeeleaveId());
+				EmployeeName al=template.getForObject("http://empService/emp/getEmployeeNameByEmployeeId/" + g.getEmployeeId(),EmployeeName.class);
+				ae.setName(al.getEmployeeName());
+                getList.add(ae);
+			});
+			return new ResponseEntity(getList, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity("Something went wrong", HttpStatus.OK);
+		}
+		}
 
-try {
-// TODO Auto-generated method stub
-return repository.findAll();
-} catch (Exception e) {
-e.getMessage();
-}
-return findAll();
-}
+
+//try {
+//// TODO Auto-generated method stub
+//return repository.findAll();
+//} catch (Exception e) {
+//e.getMessage();
+//}
+//return findAll();
+//}
 
 	public List<User> findByemployeeId(String employeeId) {
 		try {
@@ -134,36 +164,79 @@ return findAll();
 
 // this logic will give employees related to particular manager-->Chandrika
 	public ResponseEntity getUserByReportingManager(String reportingManager) {
+//		try {
+//			List<User> u = repository.findUserByReportingManager(reportingManager);
+//			return new ResponseEntity(u, HttpStatus.OK);
+//		} catch (Exception e) {
+//			return new ResponseEntity("Something went wrong", HttpStatus.OK);
+//		}
+		String url="http://empService/emp/getEmployeeNameByEmployeeId/";
+		List<UsersByReportingManager> getList=new ArrayList<>();
 		try {
 			List<User> u = repository.findUserByReportingManager(reportingManager);
-			return new ResponseEntity(u, HttpStatus.OK);
+			User s=new User();
+			u.forEach(g->{
+				UsersByReportingManager usrm=new UsersByReportingManager();
+				usrm.setEmployeeId(g.getEmployeeId());
+				usrm.setLeaveType(g.getLeaveType());
+				usrm.setFromDate(g.getFromDate());
+				usrm.setToDate(g.getToDate());
+				usrm.setNumberOfDays(g.getNumberOfDays());
+				usrm.setLeaveReason(g.getLeaveReason()); 
+				usrm.setManagerApproval(g.getManagerApproval());
+				usrm.setEmployeeleaveId(g.getEmployeeleaveId());
+				EmployeeName al=template.getForObject("http://empService/emp/getEmployeeNameByEmployeeId/" + g.getEmployeeId(),EmployeeName.class);
+                usrm.setName(al.getEmployeeName());
+                getList.add(usrm);
+			});
+			return new ResponseEntity(getList, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity("Something went wrong", HttpStatus.OK);
-		}
-	}
 
-	public Optional<EntitledLeaves> findByleaveType(String leaveType) {
-// TODO Auto-generated method stub
-		return repo.findByleaveType(leaveType);
+		}
+
 	}
 
 	public EntitledLeaves save(EntitledLeaves entitledleaves) {
 // TODO Auto-generated method stub
 		return repo.save(entitledleaves);
 	}
+	private List<EntitledLeaves> findAllleaveTypes() {
+		// TODO Auto-generated method stub
+		return repo.findAll();
+		}
 
-	public EntitledLeaves updateLEave(EntitledLeaves entitledleaves) {
+
+
+
+		public Optional<EntitledLeaves> findByleaveType(String leaveType) {
+		// TODO Auto-generated method stub
+		return repo.findByleaveType(leaveType);
+		}
+
+
+
+
+		public EntitledLeaves UpdateLeaveType(EntitledLeaves entitledleaves, Integer leaveId) {
 		try {
-			EntitledLeaves e = repo.getByleaveType(entitledleaves.getLeaveType());
-			e.setLeaveType(e.getLeaveType());
-			e.setNoOfDays(e.getNoOfDays());
-			return repo.save(e);
+		EntitledLeaves l = repo.findByleaveId(leaveId);
+		l.getLeaveType();
+		l.getNoOfDays();
+		entitledleaves.getLeaveType();
+		entitledleaves.getNoOfDays();
+		l.setLeaveType(entitledleaves.getLeaveType());
+		l.setNoOfDays(entitledleaves.getNoOfDays());
+		//u.setLeaveReason(user.getLeaveReason());//u.setEmployeeId(user.getEmployeeId());
+		//u.setFromDate(user.getFromDate());
+		//u.setToDate(user.getToDate());
+		// u.setNumberOfDays(user.getNumberOfDays());
+		//u.setLeaveType(user.getLeaveType());
+		return repo.save(l);
 		} catch (Exception e) {
-			e.getMessage();
+		e.getMessage();
 		}
 		return entitledleaves;
-	}
-
+		}
 
 // Written by Sri Divya
 	public List<User> findByLeaveStatus(String leaveStatus) {
@@ -175,8 +248,6 @@ return findAll();
 		}
 		return repository.findByLeaveStatus(leaveStatus);
 	}
+	
+	
 }
-
-
-
-
