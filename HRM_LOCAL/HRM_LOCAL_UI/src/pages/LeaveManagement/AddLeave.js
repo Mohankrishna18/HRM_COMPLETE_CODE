@@ -39,7 +39,7 @@ const [employeeId, setEmployeeId] = useState();
 const [leaveType, setLeavetype] = useState();
 const [fromDate, setFromDate] = useState();
 const [toDate, setToDate] = useState();
-const [leavereason, setReasonForLeaves] = useState();
+const [leaveReason, setReasonForLeaves] = useState();
 const [remainingLeaves, setRemainingLeaves] = useState();
 const [numberOfDays, setNoOfDays] = useState();
 const [days, setDays] = useState();
@@ -96,7 +96,7 @@ employeeId: getEmployeeDetails.employeeId,
 leaveType,
 fromDate,
 toDate,
-leavereason,
+leaveReason,
 remainingLeaves,
 numberOfDays,
 setDays,
