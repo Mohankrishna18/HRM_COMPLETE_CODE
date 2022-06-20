@@ -64,6 +64,15 @@ function OnboardedEmployeesTable() {
       },
     },
     {
+      title: "Job Title",
+      field: "jobTitle",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+      },
+    },
+    {
       title: "Designation",
       field: "designation",
       type: "text",
@@ -143,15 +152,7 @@ function OnboardedEmployeesTable() {
         color: "white",
       },
     },
-    {
-      title: "Job Title",
-      field: "jobTitle",
-
-      headerStyle: {
-        backgroundColor: "#FF9E14",
-        color: "white",
-      },
-    },
+    
     {
       title: "Primary Skills",
       field: "primarySkills",
@@ -171,7 +172,7 @@ function OnboardedEmployeesTable() {
       },
     },
     {
-      title: "Type Of Employeement",
+      title: "Type Of Employment",
       field: "employmentType",
 
       headerStyle: {

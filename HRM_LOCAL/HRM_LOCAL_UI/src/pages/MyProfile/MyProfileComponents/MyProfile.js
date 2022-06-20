@@ -206,7 +206,8 @@ const MyProfile = () => {
                                 <Row style={{
                                   alignContent: "center",
                                   paddingTop: 50,
-                                  paddingLeft: 100,
+                                  paddingLeft: 200,
+                                  marginLeft: "170px"
                                 }}>
                                   <Col>{getEmployeeDetails.profilePhoto}</Col>
                                 </Row>
@@ -226,7 +227,7 @@ const MyProfile = () => {
                                         borderRadius: "110px",
                                         alignItems: "center",
                                         marginTop: "50px",
-                                        marginLeft: "70px"
+                                        marginLeft: "100px"
                                       }} />
 
                                     </Col>
@@ -236,7 +237,7 @@ const MyProfile = () => {
                                       paddingTop: 40,
                                       paddingBottom: 40,
                                       text: "bold",
-                                      marginRight: "230px",
+                                      marginRight: "200px",
 
                                     }}>
                                       {getEmployeeDetails.firstName} {getEmployeeDetails.lastName}
@@ -331,7 +332,7 @@ const MyProfile = () => {
                               <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                   <Card.Text style={{}}>
-                                    <h6>BAND: </h6>
+                                    <h6>Band: </h6>
                                   </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
@@ -355,7 +356,7 @@ const MyProfile = () => {
                               <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                   <Card.Text style={{}}>
-                                    <h6>Cost Center Business Unit: </h6>
+                                    <h6>Business Unit: </h6>
                                   </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
@@ -647,7 +648,7 @@ const MyProfile = () => {
                         </Col>
                         <Col>
                           <Card.Subtitle style={{ padding: 10 }}>
-                            BAND:
+                            Band:
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>

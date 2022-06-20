@@ -48,6 +48,7 @@
     "react-icons": "^4.3.1",
     "react-loading-overlay": "^1.0.1",
     "react-multiple-select-dropdown-lite": "^2.0.5",
+    "react-phone-input-2": "^2.15.0",
     "react-redux": "^8.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
