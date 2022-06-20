@@ -1,7 +1,3 @@
-
-
-
-
 import React, { useEffect, useState } from "react";
 import { Card, Button, Container } from "react-bootstrap";
 import axios from "../../Uri";
@@ -14,7 +10,10 @@ import AddLeave from "../LeaveManagement/AddLeave";
 function LeaveEmployee() {
 const [count, setCount] = useState();
 const [entitle, setEntitle] = useState([]);
-const[remainingdata,setRemainingData]=useState([]);
+const [remainingdata, setRemainingData] = useState([]);
+const [status,setStatus]=useState(false)
+
+
 
 const [leave, setLeaveData] = useState([]);
 const userData = sessionStorage.getItem("userdata");
@@ -22,6 +21,9 @@ const userData1 = JSON.parse(userData);
 var array = [];
 const employeeid = userData1.data.employeeId;
 console.log(employeeid);
+const pull_data=()=>{
+setStatus(!status)
+}
 
 
 
@@ -29,8 +31,8 @@ useEffect(() => {
 axios.get(`leave/getLeaveHistoryByEmployeeid/${employeeid}`).then((res) => {
 console.log(res.data);
 res.data.map((m) => {
-console.log(m.numberOfDays);
-array.push(m.numberOfDays);
+console.log(m.numberofdays);
+array.push(m.numberofdays);
 console.log(array);
 let sum = 0;
 
@@ -53,12 +55,11 @@ setCount(sum);
 }, []);
 useEffect(() => {
 loadData();
-},[])
+}, []);
 const loadData = () => {
 axios.get(`/leave/Annual`).then((res) => {
 console.log(res.data.noOfDays);
 setEntitle(res.data.noOfDays);
-
 });
 };
 useEffect(() => {
@@ -81,9 +82,7 @@ setRemainingData(res.data);
 // useEffect(() => {
 // loadData();
 // }, []);
-
-
-
+//
 console.log(count);
 return (
 <div>
@@ -110,9 +109,6 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
 <h4>Add Leave</h4>
 {employee}{" "}
 </Button> */}
-
-
-
 </Col>
 </Row>
 {/* Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop */}
@@ -140,10 +136,9 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
 <h5>
 {" "}
 <Card.Title>Remained Leaves</Card.Title>
-
-<Card.Subtitle className="mb-2 text-muted">{remainingdata}</Card.Subtitle>
-
-
+<Card.Subtitle className="mb-2 text-muted">
+{remainingdata}
+</Card.Subtitle>
 {/* <Card.Text>8 Today</Card.Text> */}
 </h5>
 </Card.Body>
@@ -151,10 +146,12 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
 </Card>
 </Col>
 
+
+
 <Col>
 <Card>
 <Card border="warning">
-<Card.Body>
+{count ? ( <Card.Body>
 <h5>
 {" "}
 <Card.Title>Leaves Applied</Card.Title>
@@ -163,7 +160,17 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
 </Card.Subtitle>
 {/* <Card.Text></Card.Text> */}
 </h5>
-</Card.Body>
+</Card.Body>):( <Card.Body>
+<h5>
+{" "}
+<Card.Title>Leaves Applied</Card.Title>
+<Card.Subtitle className="mb-2 text-muted">
+0
+</Card.Subtitle>
+{/* <Card.Text></Card.Text> */}
+</h5>
+</Card.Body>)}
+
 </Card>
 </Card>
 </Col>
@@ -214,4 +221,3 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
 
 
 export default LeaveEmployee;
-

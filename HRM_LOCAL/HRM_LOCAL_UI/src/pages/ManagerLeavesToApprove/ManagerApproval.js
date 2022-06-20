@@ -64,7 +64,7 @@ const [data, setData] = useState([]);
         console.log(res.data);
         const dat= res.data.filter((m)=>m.managerApproval == 'pending')
         console.log(dat)
-        setData(dat)
+        setData(dat);
          // res.data.map((m)=>{
          //   const app = m.filter( managerApproval === "pending")
          //   console.log(app)
@@ -86,6 +86,7 @@ const [data, setData] = useState([]);
             <tr>
               {/* <th align="left">Leave Id</th> */}
               <th align="left">Employee</th>
+              <th align="left">Name</th>
               <th align="left"> Leave Type</th>
               <th align="left"> From</th>
               <th align="left"> To</th>
@@ -100,6 +101,7 @@ const [data, setData] = useState([]);
               <tr>
                 {/* <td align="left">{h.employeeleaveId}</td> */}
                 <td align="left">{h.employeeId}</td>
+                <td align="left">{h.name}</td>
                 <td align="left">{h.leaveType}</td>
                 <td align="left">{formatDate(h.fromDate)}</td>
                 <td align="left">{formatDate(h.toDate)}</td>
