@@ -439,9 +439,7 @@ function EmployeeMasterForms(props) {
 
   }
   function handleChange(event) {
-
       setFile(event.target.files[0])
-
       console.log(event.target.files[0])
 }
 
