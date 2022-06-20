@@ -88,7 +88,7 @@ function EmployeeMasterCard() {
                                     borderRadius: "110px",
                                     alignItems: "center",
                                     marginTop: "100px",
-                                    marginLeft: "150px"
+                                    marginLeft: "190px"
                                 }} />
                             </Col>
                             <Col style={{
@@ -97,7 +97,7 @@ function EmployeeMasterCard() {
                                 paddingTop: 40,
                                 paddingBottom: 40,
                                 text: "bold",
-                                marginRight: "200px"
+                                marginRight: "150px"
                             }}>
                                 {employeedetails.firstName} {employeedetails.lastName}
                             </Col>

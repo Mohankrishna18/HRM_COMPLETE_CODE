@@ -206,7 +206,8 @@ const MyProfile = () => {
                                 <Row style={{
                                   alignContent: "center",
                                   paddingTop: 50,
-                                  paddingLeft: 100,
+                                  paddingLeft: 200,
+                                  marginLeft: "170px"
                                 }}>
                                   <Col>{getEmployeeDetails.profilePhoto}</Col>
                                 </Row>
@@ -226,7 +227,7 @@ const MyProfile = () => {
                                         borderRadius: "110px",
                                         alignItems: "center",
                                         marginTop: "50px",
-                                        marginLeft: "70px"
+                                        marginLeft: "100px"
                                       }} />
 
                                     </Col>
@@ -236,7 +237,7 @@ const MyProfile = () => {
                                       paddingTop: 40,
                                       paddingBottom: 40,
                                       text: "bold",
-                                      marginRight: "230px",
+                                      marginRight: "200px",
 
                                     }}>
                                       {getEmployeeDetails.firstName} {getEmployeeDetails.lastName}
