@@ -1,50 +1,127 @@
-import React from "react";
-import { Button, Col, Form, FormLabel, Row } from "react-bootstrap";
+import { React, useState, useEffect } from "react";
+import { Button, Form, Modal } from "react-bootstrap";
+import { BsPlusLg } from "react-icons/bs";
+import axios from "../../../Uri";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Row, Col, Stack, Container } from "react-bootstrap";
+
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import LoadingOverlay from "react-loading-overlay";
 
 const EmpAttendanceForm = () => {
+  // var userStatus = null;
+  function formatDate(fromDate) {
+    var datePart = fromDate.match(/\d+/g),
+      year = datePart[0].substring(2), // get only two digits
+      month = datePart[1],
+      day = datePart[2];
+    return day + "-" + month + "-" + year;
+  }
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    const res = await axios.get("/attendance/getAttendance").then((res) => {
+      setShow(res.data.data);
+      console.log(res.data.data);
+    });
+  };
+
+  const notify = () => toast("Punch-In Successfully");
+
+  const [show, setShow] = useState(false);
+  const [holiday, setHoliday] = useState([]);
+  // const validationSchema = Yup.object().shape({
+  //   holidayTitle: Yup.string()
+  //     .matches(/^[aA-zZ\s]+$/, "Invalid Name ")
+  //     .required("holidayTitle is required"),
+  //   holidayDate: Yup.string().required("Holiday Date is required"),
+  // });
+
+  // const handleClose = () => {
+  //   setShow(false);
+  //   // notify();
+  // };
+
+ const da = JSON.parse(sessionStorage.getItem('userdata')) 
+ const daa=da.data.employeeId;
+const obje = {employeeId:daa};
+  const onSubmit = async () => {
+    console.log(obje)
+    try{
+      const res = await axios.post("/attendance/employeeAttendancePunchIn", obje);
+
+
+      console.log(res.data)
+      // handleClose(); //Close when click on submit
+      loadData();
+    }catch(e){
+      console.log("Something went wrong",e)
+    }
+    
+    
+  };
+  // const {
+  //   register,
+  //   handleSubmit,
+
+  //   formState: { errors },
+  // } = useForm({
+  //   resolver: yupResolver(validationSchema),
+  // });
+
   return (
     <div>
       <Row>
-        <Form.Group as={Col} md="3" style={{ padding: 15 }}>
-          <FormLabel>Date</FormLabel>
-          <Form.Control type="date"></Form.Control>
-        </Form.Group>
-        <Form.Group as={Col} md="3" style={{ padding: 15 }}>
-          <FormLabel>Select Month</FormLabel>
-          <Form.Select>
-            <option>--</option>
-            <option>Jan</option>
-            <option>Feb</option>
-            <option>Mar</option>
-            <option>Apr</option>
-            <option>May</option>
-            <option>Jun</option>
-            <option>Jul</option>
-            <option>Aug</option>
-            <option>Sep</option>
-            <option>Oct</option>
-            <option>Nov</option>
-            <option>Dec</option>
-          </Form.Select>
-        </Form.Group>
-        <Form.Group as={Col} md="3" style={{ padding: 15 }}>
-          <FormLabel>Select Year</FormLabel>
-          <Form.Select>
-            <option>--</option>
-            <option>2020</option>
-            <option>2019</option>
-            <option>2018</option>
-            <option>2017</option>
-            <option>2016</option>
-            <option>2015</option>
-          </Form.Select>
-        </Form.Group>
-        <Form.Group as={Col} md="3" style={{ paddingTop: "45px" }}>
-          <Button style={{ width: "300px", backgroundColor: "#55ce63" }}>
-            SEARCH
+        <Col md={12}>
+          <Button
+            variant="warning"
+            onClick={onSubmit}
+            style={{
+              backgroundColor: "#ff9b44",
+              color: "#F4F8F6",
+              float: "right",
+              borderRadius: "25px",
+            }}
+          >
+            {" "}
+            <BsPlusLg />
+            Punch-In 
           </Button>
-        </Form.Group>
+        </Col>
       </Row>
+
+      <Container>
+        <Row>
+          <Col md={12}>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">SNo</th>
+                  <th scope="col">Date</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {show &&
+                  show.map((h, index) => (
+                    <tr>
+                      <th scope="row">{index + 1}</th>
+                      {/* <td>{h.data.SNo}</td> */}
+                      <td>{(h.punchIn)}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

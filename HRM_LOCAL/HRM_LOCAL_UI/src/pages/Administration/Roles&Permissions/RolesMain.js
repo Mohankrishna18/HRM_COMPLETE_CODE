@@ -1,30 +1,30 @@
-import React from 'react'
-import { Card } from 'react-bootstrap'
-import RolesCard from "./RolesCard"
-import RolesTabs from "./RolesTabs"
-import RolesPermissions from "./RolesPermissions"
-import AddRole from './AddRole'
-import Sidebar from '../../../NavBar/Sidebar'
-import NavBar from '../../../NavBar/NavBar'
+import React from "react";
+import { Col, Row, Card, Container } from "react-bootstrap";
+import RoleEditableTable from "./RoleEditableTable";
 
-function RolesMain() {
-    return (
-        <div>
-            <NavBar/>
-            <Sidebar>
-            <Card>
-                <Card.Header>
-                    <Card.Body>
-                        <Card.Title>Roles</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">Administration/Roles </Card.Subtitle>
-                    </Card.Body>
-                </Card.Header>
-            </Card>
-            <RolesCard />
-            {/* <RolesPermissions /> */}
-            </Sidebar>
-        </div>
-    )
-}
 
-export default RolesMain
+
+// Testing purpose
+const RolesMain = () => {
+  return (
+    <div style={{ paddingTop: "20px" }}>
+      <Card responsive className="scroll">
+        <Card.Header>
+          <Card.Body>
+            <Card.Title>Module</Card.Title>
+            
+            <Container>
+              <Row>
+                <Col xs={12}>
+                  <RoleEditableTable />
+                </Col>
+              </Row>
+            </Container>
+          </Card.Body>
+        </Card.Header>
+      </Card>
+    </div>
+  );
+};
+
+export default RolesMain;

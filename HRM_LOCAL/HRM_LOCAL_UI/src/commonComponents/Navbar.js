@@ -1,16 +1,38 @@
 import React from "react";
-import { Row, Col, Nav, Navbar } from "react-bootstrap";
+import { Row, Col, Nav, Navbar, Button } from "react-bootstrap";
 import image from "../Images/arshaalogo.png";
+import { NavLink, useHistory } from "react-router-dom";
+import { isLoggedIn } from "../utils";
 
-const NavBar = () => {
+
+
+import { FaSignOutAlt } from "react-icons/fa";
+import { last } from "lodash";
+
+
+
+
+const NavBar = (props) => {
+
+
+
+  //Routes obtained from default router config
+  const menuItems = props.routes;
+  let history = useHistory();
+  //Perform logout
+  function handleLogout() {
+    sessionStorage.removeItem('userdata');
+    history.push('/');
+  }
+
   return (
     <Row>
-      <Col>
+      <Col xs={12} md={12}>
         <div className="ar-top-navigation-bar">
           <Navbar
             style={{
               height: "80px",
-              background: "linear-gradient(to left,#fc6174,#fe934a)",
+              background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
             }}
           >
             <Nav>
@@ -27,11 +49,27 @@ const NavBar = () => {
                 </Navbar.Brand>
               </Navbar>
             </Nav>
+
+
+
+            <Nav style={{ paddingLeft: '1420px' }}>
+              <Navbar>
+                <Navbar.Brand href="#">
+                  <td>{isLoggedIn() && <FaSignOutAlt style={{ fontSize: '35px' }} onClick={handleLogout} />}</td>
+                  <td style={{paddingLeft:'10px'}}><p>V1.0</p></td>
+                </Navbar.Brand>
+              </Navbar>
+            </Nav>
+
           </Navbar>
         </div>
+
       </Col>
+
     </Row>
   );
 };
+
+
 
 export default NavBar;

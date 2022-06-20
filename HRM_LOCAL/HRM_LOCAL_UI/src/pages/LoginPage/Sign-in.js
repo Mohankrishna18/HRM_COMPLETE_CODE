@@ -36,7 +36,6 @@ const Sign = () => {
         const resp = await axios.get(
           `/login/authenticateUser?employeeId=${employeeId}&password=${password}`
         );
-        console.log("login is successful");
         userStatus = resp.data;
         sessionStorage.setItem("userdata", JSON.stringify(userStatus));
 
@@ -44,9 +43,13 @@ const Sign = () => {
           history.push("/app");
           toast.success("You are successfully Logged In");
         }
+        else
+        {
+          toast.error("Login Failed, Please try again.");
+        }
       } catch (err) {
         console.error(err);
-        toast.error("Login Failed, Please try again.");
+        
       }
     };
 
@@ -85,12 +88,12 @@ const Sign = () => {
             <Form style={{ paddingTop: "40px" }}>
               <Form.Group controlld="employeeId">
                 <Form.Label style={{ fontWeight: "bold", paddingLeft: "10px" }}>
-                  Employee Id
+                  Employee ID
                 </Form.Label>
                 <Form.Control
                   style={{ borderRadius: "15px" }}
                   type="text"
-                  placeholder="Enter your Employee Id"
+                  placeholder="Enter your Employee ID"
                   size="lg"
                   value={employeeId}
                   onChange={(e) => setEmployeeId(e.target.value)}
@@ -133,7 +136,7 @@ const Sign = () => {
               </Form.Group>
               &nbsp;
               <div>
-                <a
+                <NavLink
                   class="text-muted"
                   href="/resetPassword"
                   style={{
@@ -142,8 +145,8 @@ const Sign = () => {
                     paddingLeft: "10px",
                   }}
                 >
-                  Reset password?
-                </a>
+                  Reset Password?
+                </NavLink>
               </div>
               &nbsp;
               <Button

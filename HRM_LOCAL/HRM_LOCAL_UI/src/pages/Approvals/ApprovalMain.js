@@ -1,20 +1,43 @@
 import React from "react";
-import Sidebar from "../../NavBar/Sidebar";
-import { Row, Col } from "react-bootstrap";
-import OfferApproval from "./ApprovalComponents/OfferApproval";
+import { Card, Container } from "react-bootstrap";
 
-const ApprovalMain = () => {
+import { Row, Col } from "react-bootstrap";
+import OnboardedEmployeesTable from "./ApprovalComponents/OnboardedEmployeesTable";
+import AddOnboard from "./ApprovalComponents/AddOnboard";
+
+function ApprovalMain() {
   return (
-    <div>
-      <Row>
-        <Col>
-          <Sidebar>
-            <OfferApproval />
-          </Sidebar>
-        </Col>
-      </Row>
+    <div className="scroll"> 
+    <Card.Body>
+        <Row>
+         
+            
+              <Col>
+              <Card.Title>Onboardings</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
+                Onboards/Employees </Card.Subtitle>
+                </Col>
+                <Col>
+                <AddOnboard />
+                </Col>
+              
+             
+              </Row>
+            </Card.Body>
+          {/* </Col> */}
+          
+           
+       
+        
+        <Row style={{ paddingTop: 20 }}>
+          <Col>          
+          <OnboardedEmployeesTable/>
+          </Col>
+
+        </Row>
+      
     </div>
   );
-};
+}
 
 export default ApprovalMain;
