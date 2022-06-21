@@ -5,6 +5,7 @@ package com.arshaa.emp.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ import com.arshaa.emp.model.GetEmployeeIds;
 import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.StringConstants;
+import com.arshaa.emp.model.WaitingForApproval;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
 import com.arshaa.emp.repository.OnboardRepository;
 import com.thoughtworks.xstream.mapper.Mapper.Null;
@@ -77,11 +79,29 @@ public class MainServiceImpl implements MainService {
 	public ResponseEntity<Onboarding> waitingForApprovelStatus() {
 		Response r = new Response<>();
 		try {
+			WaitingForApproval wa = new WaitingForApproval();
+
 			List<Onboarding> onboarding = onRepo.findByWaitingforapprovalStatus(true);
 			if (!onboarding.isEmpty()) {
+				onboarding.forEach(on -> {
+
+					wa.setOnboardingId(on.getOnboardingId());
+					wa.setFirstName(on.getFirstName());
+					
+					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+					String strDate= formatter.format(on.getDateOfJoining());
+					
+					wa.setDateOfJoining(strDate);
+					wa.setDesignation(on.getDesignation());
+					wa.setEmail(on.getEmail());
+					wa.setJobTitle(on.getJobTitle());
+					wa.setPhoneNumber(on.getPhoneNumber());
+					wa.setYearsOfExperience(on.getYearsOfExperience());
+				});
+
 				r.setStatus(true);
 				r.setMessage(sConstants.GET_RESPONSE);
-				r.setData(onboarding);
+				r.setData(wa);
 				return new ResponseEntity(r, HttpStatus.OK);
 			} else {
 				r.setStatus(true);
@@ -301,7 +321,7 @@ public class MainServiceImpl implements MainService {
 			master.setCurrentState(empMaster.getCurrentState());
 			master.setCurrentCountry(empMaster.getCurrentCountry());
 			master.setCurrentPincode(empMaster.getCurrentPincode());
-			master.setPostgraduationType(empMaster.getPostgraduationType());	
+			master.setPostgraduationType(empMaster.getPostgraduationType());
 			master.setPostgraduationBoardOfUniversity(empMaster.getPostgraduationBoardOfUniversity());
 			master.setPostgraduationInstituteName(empMaster.getPostgraduationInstituteName());
 			master.setPostgraduationInstituteCity(empMaster.getPostgraduationInstituteCity());
@@ -429,7 +449,7 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setPrimarySkills(newOnboard.getPrimarySkills());
 				getOnboarding.setSecondarySkills(newOnboard.getSecondarySkills());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
-				
+
 				Onboarding updated = onRepo.save(getOnboarding);
 				r.setStatus(true);
 				r.setMessage(sConstants.PUT_RESPONSE);
@@ -461,25 +481,21 @@ public class MainServiceImpl implements MainService {
 
 		}
 	}
-	
-	public ResponseEntity getRejectedData()
-	{
+
+	public ResponseEntity getRejectedData() {
 		Response r = new Response<>();
 		try {
-			
+
 			List<Onboarding> onboarding = onRepo.findByRejectedStatus(true);
 			r.setStatus(true);
 			r.setMessage(sConstants.GET_RESPONSE);
 			r.setData(onboarding);
-            return new ResponseEntity(r,HttpStatus.OK);
-		}
-		catch (Exception e) {
-            return new ResponseEntity(e.getMessage(),HttpStatus.OK);
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
 
 		}
 	}
-	
-	
 
 	public ResponseEntity updateDesignationName(String employeeId, DesignationName name) {
 		Response r = new Response<>();

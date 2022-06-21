@@ -791,6 +791,19 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         {tenerror}
                                     </Form.Control.Feedback>
                                 </Form.Group>
+                                <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                  <Form.Label>Select Reporting Manager *</Form.Label>
+                  <Form.Select
+                    placeholder="select Gender"
+                    value={reportingManager}
+                    onChange={(e) => {setReportingManager(e.target.value)
+                    }}
+                  >
+                    <option>Select </option>
+                    <option value="Revanth Kumar">Revanth Kumar</option>
+                    <option value="Revanth Kumar1">Revanth Kumar1</option>
+                  </Form.Select>
+                </Form.Group>
 
                                 <Card
                                     style={{ marginLeft: 8, marginRight: 50, marginTop: 20 }}
@@ -1211,22 +1224,22 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         {twentythreerror}
                                     </Form.Control.Feedback>
                                 </Form.Group>
-                                {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                    <Form.Label>BAND</Form.Label>
+                                <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                    <Form.Label>Band</Form.Label>
                                     <Form.Select
                                         type="text"
-                                        placeholder="BAND"
+                                        placeholder="Band"
                                         controlId="band"
                                         name="band"
                                         value={band}
                                         onChange={(event) => setBand(event.target.value)}
                                     >
                                          <option>Select</option>
-                                        <option value="BAND-1">BAND-1</option>
-                                        <option value="BAND-2">BAND-2</option>
-                                        <option value="BAND-3">BAND-3</option>
+                                        <option value="Band-1">Band-1</option>
+                                        <option value="Band-2">Band-2</option>
+                                        <option value="Band-3">Band-3</option>
                                     </Form.Select>
-                                </Form.Group> */}
+                                </Form.Group>
 
                                 <Card
                                     style={{
@@ -1815,7 +1828,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                     style={{ marginLeft: 8, marginRight: 8, marginTop: 15 }}
                                 >
                                     <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                                        10th grade details
+                                        10th Grade details
                                     </Card.Title>
                                 </Card>
 
