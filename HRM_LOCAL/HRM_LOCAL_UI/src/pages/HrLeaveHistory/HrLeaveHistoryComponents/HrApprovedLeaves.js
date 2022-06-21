@@ -1,60 +1,38 @@
-import { React, useState, useEffect } from "react";
-import { Table } from "react-bootstrap";
-import axios from "../../../Uri";
-
-const HrApprovedLeaves = () => {
-
-    const [approvedLeave, setApprovedLeave] = useState([]);
- 
-
-    function formatDate(fromDate) {
-      var datePart = fromDate.match(/\d+/g),
-        year = datePart[0].substring(2), // get only two digits
-        month = datePart[1],
-        day = datePart[2];
-  
-      return day + "-" + month + "-" + year;
-    }
-  
-    useEffect(() => {
-      axios.get("leave/getAllApprovedLeaves/approved").then((res) => {
-        console.log(res.data);
-        setApprovedLeave(res.data);
-      });
-    }, []);
-
-  return (
-    <div>
-        <Container-fluid>
-        <Table responsive="sm">
-          <thead>
-            <tr>
-              <th align="left">Employee</th>
-              <th align="left"> Leave Type</th>
-              <th align="left"> From</th>
-              <th align="left"> To</th>
-              <th align="left"> No Of Days</th>
-              <th align="left"> Leave Reason</th>
-              <th align="left"> Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {approvedLeave.map((h) => (
-              <tr>
-                <td align="left">{h.employeeId}</td>
-                <td align="left">{h.leaveType}</td>
-                <td align="left">{formatDate(h.fromDate)}</td>
-                <td align="left">{formatDate(h.toDate)}</td>
-                <td align="left">{h.numberOfDays}</td>
-                <td align="left">{h.leaveReason}</td>
-                <td align="left">{h.leaveStatus}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </Container-fluid>
-    </div>
-  )
+import React, { useState, useEffect } from "react";
+import MaterialTable from "material-table";
+import Grid from "@mui/material/Grid";
+import axios from "../../../Uri";export default function HrApprovedLeaves() {
+const [data, setData] = useState([]);useEffect(() => {
+loadData();
+}, []);const loadData = async () => {
+const res = await axios.get("leave/getAllApprovedLeaves/approved");
+setData(res.data);
+console.log(res.data);
+};const [columns, setColumns] = useState([
+{ title: "Employee", field: "employeeId" },
+{ title: "Leave Type", field: "leaveType" },
+{ title: "From Date", field: "fromDate", type: "date" },
+{ title: "To Date", field: "toDate", type: "date" },
+{ title: "No.Of Days", field: "numberOfDays" },
+{ title: "Leave Reason", field: "leaveReason" },
+{ title: "Leave Status", field: "leaveStatus" },
+]);return (
+<Grid>
+<MaterialTable
+title=""
+columns={columns}
+data={data}
+options={{
+paging: false,
+addRowPosition: "first",
+actionsColumnIndex: -1,
+headerStyle: {
+backgroundColor: "#FE924A",color: "white",
+},
+exportButton: true,
+}}
+/>
+</Grid>
+);
 }
 
-export default HrApprovedLeaves

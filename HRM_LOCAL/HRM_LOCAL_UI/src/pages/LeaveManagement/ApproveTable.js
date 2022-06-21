@@ -43,7 +43,10 @@ const ApproveLeaveTable= (props) => {
   useEffect(() => {
     axios.get("/leave/getAllEmployees").then((res) => {
       console.log(res.data);
-      setLeaveData(res.data);
+      // setLeaveData(res.data);
+        const dat= res.data.filter((m)=>m.leaveStatus == 'pending')
+        console.log(dat)
+        setLeaveData(dat)
     });
   }, []);
   const dispaly = (e) => {
@@ -60,12 +63,13 @@ const ApproveLeaveTable= (props) => {
             <tr>
               {/* <th align="left">Leave Id</th> */}
               <th align="left">Employee Id</th>
+              <th align="left">Name</th>
               <th align="left"> Leave Type</th>
               <th align="left"> From</th>
               <th align="left"> To</th>
               <th align="left"> No Of Days</th>
               <th align="left"> Reason</th>
-              <th align="left"> Status</th>
+              <th align="left"> Manager Approval</th>
               <th align="center"> Action</th>
             </tr>
           </thead>
@@ -74,14 +78,16 @@ const ApproveLeaveTable= (props) => {
               <tr>
                 {/* <td align="left">{h.employeeleaveId}</td> */}
                 <td align="left">{h.employeeId}</td>
+                <td align="left">{h.name}</td>
                 <td align="left">{h.leaveType}</td>
                 <td align="left">{formatDate(h.fromDate)}</td>
                 <td align="left">{formatDate(h.toDate)}</td>
                 <td align="left">{h.numberOfDays}</td>
                 <td align="left">{h.leaveReason}</td>
-                <td align="left">{h.leaveStatus}</td>
+                {/* <td align="left">{h.leaveStatus}</td> */}
+                <td align="left">{h.managerApproval}</td>
                 <td>{h.leaveStatus == "pending" ?(<div>
-                  <Approveleave  leaveID={h.employeeleaveId}/> <Rejectleave leaveID={h.employeeleaveId}/>
+                  <td><Approveleave  leaveID={h.employeeleaveId}/></td><td> <Rejectleave leaveID={h.employeeleaveId}/></td>
                 </div>):(<div></div>)}
 
                 {/* <td align="left">{h.action}</td> */}

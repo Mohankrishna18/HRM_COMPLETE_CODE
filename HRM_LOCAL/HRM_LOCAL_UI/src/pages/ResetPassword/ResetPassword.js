@@ -158,13 +158,13 @@ export default function ResetPassword() {
                 <Form.Control
                   style={{ borderRadius: "15px" }}
                   type="password"
-                  placeholder="Enter your Confrom New password."
+                  placeholder="Enter your Confirm New password."
                   size="lg"
                   value={confirmNewPassword}
                   validate={{
                     required: {
                       value: true,
-                      errorMessage: "Please Enter your Confrom New Password",
+                      errorMessage: "Please Enter your Confirm New Password",
                     },
                     pattern: {
                       value: "^[A-Za-z0-9]+$",

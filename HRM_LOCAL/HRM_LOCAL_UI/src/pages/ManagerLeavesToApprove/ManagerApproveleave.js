@@ -24,12 +24,14 @@ const Approve = (props) => {
   };
 
   let employeeleaveId = props.leaveID;
-  const obj = { managerApproval: "approved" };
+  const obj = { managerApproval: "Approved" };
 
-  const ApproveHandler = () => {
+  const ApproveHandler = (e) => {
+    // e.prevetDefault();
     const notify = () => toast("Leave  is approved");
     handleClose();
-    axios.put(`/leave/updateLeave/${employeeleaveId}`, obj);
+    const form1 = Object.assign(form, obj);
+    axios.put(`/leave/managerupdateLeave/${employeeleaveId}`, obj);
     notify();
   };
 
@@ -51,9 +53,24 @@ const Approve = (props) => {
               <Modal.Title>Approve Leave</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+            <Form role="form">
+                {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                  <Form.Label>Confirm Approval</Form.Label>
+                  <Form.Control
+                    required
+                    className="approveReason"
+                    type="text"
+                    controlId="approveReason"
+                    placeholder="Click 'Y' to Continue"
+                    value={form.rejectReason}
+                    onChange={(e) => setField("rejectReason", e.target.value)}
+                    isInvalid={!!errors.rejectReason}
+                  ></Form.Control>
+                </Form.Group> */}
                 <Button
                   variant="warning"
                   type="submit"
+
                   style={{
                     borderRadius: "25px",
                     backgroundColor: "#ff9b44",
@@ -63,7 +80,7 @@ const Approve = (props) => {
                 >
                   &nbsp; Save
                 </Button>
-              
+                </Form>
             </Modal.Body>
           </Modal>
           
@@ -73,3 +90,6 @@ const Approve = (props) => {
   );
 };
 export default Approve;
+
+
+

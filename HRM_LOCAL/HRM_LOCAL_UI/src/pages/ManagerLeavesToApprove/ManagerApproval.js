@@ -60,8 +60,17 @@ const [data, setData] = useState([]);
 
     const loadData = async () => {
         const res = await axios.get(`/leave/getUserByReportingManager/${empID}`);
-        setData(res.data);
+        // setData(res.data);
         console.log(res.data);
+        const dat= res.data.filter((m)=>m.managerApproval == 'pending')
+        console.log(dat)
+        setData(dat);
+         // res.data.map((m)=>{
+         //   const app = m.filter( managerApproval === "pending")
+         //   console.log(app)
+ 
+         // })
+    
     };
   const dispaly = (e) => {
     console.log(e.target.value);
@@ -77,6 +86,7 @@ const [data, setData] = useState([]);
             <tr>
               {/* <th align="left">Leave Id</th> */}
               <th align="left">Employee</th>
+              <th align="left">Name</th>
               <th align="left"> Leave Type</th>
               <th align="left"> From</th>
               <th align="left"> To</th>
@@ -91,6 +101,7 @@ const [data, setData] = useState([]);
               <tr>
                 {/* <td align="left">{h.employeeleaveId}</td> */}
                 <td align="left">{h.employeeId}</td>
+                <td align="left">{h.name}</td>
                 <td align="left">{h.leaveType}</td>
                 <td align="left">{formatDate(h.fromDate)}</td>
                 <td align="left">{formatDate(h.toDate)}</td>
@@ -98,7 +109,7 @@ const [data, setData] = useState([]);
                 <td align="left">{h.leaveReason}</td>
                 <td align="left">{h.managerApproval}</td>
                 <td>{h.managerApproval == "pending" ?(<div>
-                  <Approve  leaveID={h.employeeleaveId}/> <Reject leaveID={h.employeeleaveId}/>
+                  <td><Approve  leaveID={h.employeeleaveId}/></td> <td><Reject leaveID={h.employeeleaveId}/></td>
                 </div>):(<div></div>)}
 
                 <td align="left">{h.action}</td>
