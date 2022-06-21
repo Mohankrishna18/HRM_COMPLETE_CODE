@@ -83,25 +83,25 @@ public class MainServiceImpl implements MainService {
 
 			List<Onboarding> onboarding = onRepo.findByWaitingforapprovalStatus(true);
 			if (!onboarding.isEmpty()) {
-				onboarding.forEach(on -> {
-
-					wa.setOnboardingId(on.getOnboardingId());
-					wa.setFirstName(on.getFirstName());
-					
-					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-					String strDate= formatter.format(on.getDateOfJoining());
-					
-					wa.setDateOfJoining(strDate);
-					wa.setDesignation(on.getDesignation());
-					wa.setEmail(on.getEmail());
-					wa.setJobTitle(on.getJobTitle());
-					wa.setPhoneNumber(on.getPhoneNumber());
-					wa.setYearsOfExperience(on.getYearsOfExperience());
-				});
+//				onboarding.forEach(on -> {
+//
+//					wa.setOnboardingId(on.getOnboardingId());
+//					wa.setFirstName(on.getFirstName());
+//					
+//					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+//					String strDate= formatter.format(on.getDateOfJoining());
+//					
+//					wa.setDateOfJoining(strDate);
+//					wa.setDesignation(on.getDesignation());
+//					wa.setEmail(on.getEmail());
+//					wa.setJobTitle(on.getJobTitle());
+//					wa.setPhoneNumber(on.getPhoneNumber());
+//					wa.setYearsOfExperience(on.getYearsOfExperience());
+//				});
 
 				r.setStatus(true);
 				r.setMessage(sConstants.GET_RESPONSE);
-				r.setData(wa);
+				r.setData(onboarding);
 				return new ResponseEntity(r, HttpStatus.OK);
 			} else {
 				r.setStatus(true);

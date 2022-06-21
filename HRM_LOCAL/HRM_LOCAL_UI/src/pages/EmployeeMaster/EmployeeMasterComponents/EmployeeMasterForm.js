@@ -516,7 +516,6 @@ function EmployeeMasterForm() {
                                             </Form.Control.Feedback>
                                         </Form.Group>
 
-
                                         <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }}>
                                             <Form.Label>Middle name</Form.Label>
                                             <Form.Control
