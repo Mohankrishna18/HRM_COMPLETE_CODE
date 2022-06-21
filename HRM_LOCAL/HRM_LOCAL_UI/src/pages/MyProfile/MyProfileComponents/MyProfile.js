@@ -146,12 +146,13 @@ const MyProfile = () => {
   var tempDate = new Date(getEmployeeDetails.intermediatePassedYear);
   var intermediatePassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
   console.log(intermediatePassedYear1)
-
+//gshsjhj
   var tempDate = new Date(getEmployeeDetails.sscJoiningYear);
   var sscJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
   console.log(sscJoiningYear1)
 
   var tempDate = new Date(getEmployeeDetails.sscPassedYear);
+ 
   var sscPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
   console.log(sscPassedYear1)
 
