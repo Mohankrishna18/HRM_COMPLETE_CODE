@@ -39,7 +39,11 @@ spring:
         - id: attendanceService
           uri: lb://attendanceService
           predicates:
-            - Path=/attendance/**           
+            - Path=/attendance/**
+        - id: EmploymentTypeService
+          uri: lb://EmploymentTypeService
+          predicates:
+            - Path=/employmentType/**           
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
