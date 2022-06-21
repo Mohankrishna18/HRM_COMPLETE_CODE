@@ -15,7 +15,7 @@ function ApprovalMain() {
               <Col>
               <Card.Title>Onboardings</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                Onboards/Employees </Card.Subtitle>
+                Jobs / Shortlisted Candidates </Card.Subtitle>
                 </Col>
                 <Col>
                 <AddOnboard />

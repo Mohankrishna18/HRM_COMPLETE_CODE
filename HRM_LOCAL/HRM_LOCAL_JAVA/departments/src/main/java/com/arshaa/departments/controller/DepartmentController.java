@@ -22,34 +22,41 @@ import com.arshaa.departments.service.DepartmentService;
 @RestController
 @CrossOrigin("*")
 public class DepartmentController {
-	
+
 	@Autowired
-private DepartmentInterface repo;
+	private DepartmentInterface repo;
 	@Autowired
 	private DepartmentService serv;
 
-@PostMapping("/postDepartmentMaster")
-public ResponseEntity saveData(@RequestBody Departmentmaster newDepartmentMaster) {
-	return serv.saveData(newDepartmentMaster);
-}
+	@PostMapping("/postDepartmentMaster")
+	public ResponseEntity saveData(@RequestBody Departmentmaster newDepartmentMaster) {
+		return serv.saveData(newDepartmentMaster);
+	}
+
 //get call
-@GetMapping("/getAllDepartments")
-public List<Departmentmaster> getAllDepartments() {
-	return repo.findAll();
-}
+	@GetMapping("/getAllDepartments")
+	public List<Departmentmaster> getAllDepartments() {
+		return repo.findAll();
+	}
 
-@PutMapping("/update/{departmentId}")
-public Departmentmaster updateDepartmentById(@PathVariable Integer departmentId, @RequestBody Departmentmaster newDepartmentMaster) {
-	Departmentmaster dm = repo.findByDepartmentId(departmentId);
-	dm.setDepartmentName(newDepartmentMaster.getDepartmentName());
-	return repo.save(dm);
-}
+	@PutMapping("/update/{departmentId}")
+	public Departmentmaster updateDepartmentById(@PathVariable Integer departmentId,
+			@RequestBody Departmentmaster newDepartmentMaster) {
+		Departmentmaster dm = repo.findByDepartmentId(departmentId);
+		dm.setDepartmentName(newDepartmentMaster.getDepartmentName());
+		return repo.save(dm);
+	}
 
-@DeleteMapping("/deleteDepartment/{departmentId}")
-public String  deleteDepartmentById(@PathVariable Integer departmentId) {
-	Departmentmaster dm = repo.findByDepartmentId(departmentId);
-	repo.delete(dm);
-	return "Deleted Successfully";
-}
+	@DeleteMapping("/deleteDepartment/{departmentId}")
+	public String deleteDepartmentById(@PathVariable Integer departmentId) {
+		Departmentmaster dm = repo.findByDepartmentId(departmentId);
+		repo.delete(dm);
+		return "Deleted Successfully";
+	}
+	
+	@GetMapping("/getDepartmentIdByName/{departmentName}")
+	public int getDepartmentIdByDepartmentName(@PathVariable String departmentName) {
+     return serv.getDepartmentIdByDepartmentName(departmentName);
 
+	}
 }

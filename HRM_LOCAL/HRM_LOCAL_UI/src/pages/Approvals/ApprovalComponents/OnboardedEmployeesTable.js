@@ -202,7 +202,7 @@ function OnboardedEmployeesTable() {
     <Grid container >
       <Grid xs={12}>
         <MaterialTable
-          title="Onboard Employees"
+          title="Onboard Shortlisted Candidates"
           data={data}
           sx={{ color: "white" }}
           columns={columns}

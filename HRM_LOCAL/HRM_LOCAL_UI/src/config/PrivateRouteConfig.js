@@ -226,7 +226,7 @@ export default [
     component: ApprovalMain,
     path: "/Approvals",
     icon: <FcApprove />,
-    title: "Onboarding Approvals",
+    title: "Onboardings",
     permission: [Roles.taa],
   },
   

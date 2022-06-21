@@ -119,6 +119,7 @@ function AddOnboard() {
     axios
       .get("/designation/getAllDesignations")
       .then((response) => {
+        console.log(response.data);
         setDesignations(response.data);
       })
       .catch(() => {
@@ -170,7 +171,7 @@ function AddOnboard() {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
 
@@ -183,7 +184,7 @@ function AddOnboard() {
             style={{ padding: 10 }}
             onSubmit={handleSubmit}
           >
-            <Row className="mb-5">
+            <Row className="mb-4">
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>First name *</Form.Label>
                 <Form.Control
@@ -277,9 +278,7 @@ function AddOnboard() {
                   <option>Select</option>
                   <option value="Intern">Intern</option>
                   <option value="Contract">Contract</option>
-                  <option value="FTE">
-                    FTE 
-                  </option>
+                  <option value="FTE">FTE</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.employmentType}
@@ -293,12 +292,25 @@ function AddOnboard() {
                   placeholder="Department"
                   controlId="department"
                   value={form.department}
-                  onChange={(e) => setField("department", e.target.value)}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    axios
+                      .get(
+                        `/designation/getDesignationByDepartment/${e.target.value}`
+                      )
+                      .then((response) => {
+                        console.log(response.data)
+                        setDesignations(response.data);
+                      });
+                    setField("department", e.target.value);
+                  }}
                   isInvalid={!!errors.department}
                 >
                   <option>Select </option>
                   {departments.map((departmentss) => (
-                    <option>{departmentss.departmentName}</option>
+                    <option value={departmentss.departmentId}>
+                      {departmentss.departmentName}
+                    </option>
                   ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
@@ -317,7 +329,7 @@ function AddOnboard() {
                   onChange={(e) => setField("designation", e.target.value)}
                   isInvalid={!!errors.designation}
                 >
-                  <option>Select </option>
+                  <option>Select</option>
                   {designations.map((designation) => (
                     <option>{designation.designationName}</option>
                   ))}
@@ -328,7 +340,7 @@ function AddOnboard() {
 
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
-              
+
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Date of Joining *</Form.Label>
                 <Form.Control
@@ -357,25 +369,21 @@ function AddOnboard() {
                   placeholder="Experience "
                   controlId="yearsOfExperience"
                   value={form.yearsOfExperience}
-                  onChange={(e) =>{
-                     setField("yearsOfExperience", e.target.value)
+                  onChange={(e) => {
+                    setField("yearsOfExperience", e.target.value);
                     //const yearsOfExperience = e.target.value;
 
-    // if (!yearsOfExperience || yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)) {
-    //   setField(() => ({ yearsOfExperience }));
-    // }
-  }
-}
-
-
+                    // if (!yearsOfExperience || yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)) {
+                    //   setField(() => ({ yearsOfExperience }));
+                    // }
+                  }}
                   isInvalid={!!errors.yearsOfExperience}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {errors.yearsOfExperience}
                 </Form.Control.Feedback>
               </Form.Group>
-              
-              
+
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Primary Skills *</Form.Label>
                 <Form.Control
@@ -425,25 +433,27 @@ function AddOnboard() {
                   {errors.jobTitle}
                 </Form.Control.Feedback>
               </Form.Group>
-              
-
-              
             </Row>
-            <Button
-              style={{ backgroundColor: "#FF0000", float: "right",marginLeft:"5px" }}
-              type="cancel"
-              onClick={handleClose}
-            >
-              Close
-            </Button>
-            
-            <Button
-              style={{ backgroundColor: "#4CBB17", float: "right" }}
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Submit
-            </Button>
+            <Row>
+              <Col>
+                <Button
+                  style={{ backgroundColor: "#ff9b44", borderColor: "#ff9b44", float: "right", width: "40%",height: "120%", borderRadius:"25px"}}
+                  type="submit"
+                  onClick={handleSubmit}
+                >
+                  Submit
+                </Button>
+              </Col>
+              <Col>
+                <Button
+                  style={{ backgroundColor: "#B6B6B4", borderColor: "#B6B6B4", alignItems: "center",width: "40%",height: "120%",borderRadius:"25px" }}
+                  type="cancel"
+                  onClick={handleClose}
+                >
+                  Close
+                </Button>
+              </Col>
+            </Row>
           </Form>
         </Modal.Body>
       </Modal>
