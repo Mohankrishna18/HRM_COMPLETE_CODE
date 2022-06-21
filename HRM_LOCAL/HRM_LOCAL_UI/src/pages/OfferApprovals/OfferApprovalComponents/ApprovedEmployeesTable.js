@@ -51,7 +51,7 @@ const ApprovedEmployeesTable = () => {
                     Last Name
                   </th>
 
-                  <th scope="col" class="">
+                  <th scope="col" class="" style={{textAlign: 'center'}}>
                     Email
                   </th>
 

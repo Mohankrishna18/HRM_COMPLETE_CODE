@@ -60,5 +60,11 @@ public class DesignationController {
 		dm.setDepartmentName(master.getDepartmentName());
 		return repo.save(dm);
 	}
+	
+	@GetMapping("/getDesignationByDepartment/{id}")
+	public ResponseEntity getDesignationMasterByDepartmentId(@PathVariable int id)
+	{
+		return service.getDesignationMasterByDepartmentId(id);
+	}
 
 }
