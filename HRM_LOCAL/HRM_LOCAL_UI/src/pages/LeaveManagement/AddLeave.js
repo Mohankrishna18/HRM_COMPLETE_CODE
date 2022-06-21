@@ -45,6 +45,7 @@ const [numberOfDays, setNoOfDays] = useState();
 const [days, setDays] = useState();
 const [typeofleave, setTypeOfLeave] = useState([]);
 const [entitle,setEntitle]=useState([])
+const [day,setDay]=useState('')
 //const userData1 = JSON.parse(userData);
 const userData = sessionStorage.getItem("userdata");
 
@@ -80,7 +81,8 @@ useEffect(() => {
 loadData();
 },[])
 const loadData = () => {
-axios.get("/leave/Annual").then((res) => {
+axios.get("/leave/getAllleavetypes").then((res) => {
+console.log(res.data);
 setTypeOfLeave(res.data);
 console.log("hello");
 setEntitle(res.data.noOfDays)
@@ -111,8 +113,24 @@ const data1 = Object.assign(data, obj1);
 const data2 = Object.assign(data1, obj2);
 console.log(data2);
 console.log(data);
-const res = await axios.post("/leave/applyLeave", data);
-console.log(res.data);
+try{
+const res = await axios.post("/leave/applyLeave", data)
+if(res.status === 200){
+console.log("success")
+notifySuccess("Leave Applied Successfully")
+}
+
+
+
+}
+catch(err){
+console.log(err)
+notifyError("Leave Already Applied")
+}
+
+
+
+
 
 };
 
@@ -148,7 +166,7 @@ console.log(numberOfDays);
 var remainLeaves = 12 - numberOfDay;
 console.log(remainLeaves);
 const obj = { remainingLeaves: days };
-const obj1 = { numberOfDays: numberOfDay };
+const obj1 = { numberOfDays: day };
 const obj2 = { remainingLeaves: remainLeaves };
 console.log(obj1);
 const handleSubmit = (ee) => {
@@ -249,7 +267,11 @@ aria-label="Default select example"
 onChange={(event) => setLeavetype(event.target.value)}
 >
 <option> Select Leave</option>
-<option value={typeofleave.leaveType}>{typeofleave.leaveType}</option>
+{typeofleave.map((leave) => (
+<option>{leave.leaveType}</option>
+))}
+
+{/* <option value={typeofleave.leaveType}>{typeofleave.leaveType}</option> */}
 {/* <option value="Compensentory">Compensentory</option> */}
 {/* <option value="Earned Leave">Earned Leave</option> */}
 </Form.Select>
@@ -280,6 +302,9 @@ placeholder="To Date"
 onChange={(event) => {
 setToDate(event.target.value);
 console.log(event.target.value);
+axios.get( `/holiday/${fromDate}/${event.target.value}`).then((res) => {
+setDay(res.data);
+})
 }}
 />
 </Form.Group>
@@ -292,10 +317,10 @@ console.log(event.target.value);
 required
 type="number"
 placeholder=""
-value={numberOfDay}
+value={day}
 onChange={(event) => {
-noOfdays(event.target.value);
-setDays(24 - numberOfDays);
+noOfdays(event);
+
 }}
 />
 </Form.Group>
@@ -340,4 +365,4 @@ Submit
 </div>
 );
 }
-export default AddLeave;
+export default AddLeave
