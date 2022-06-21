@@ -64,33 +64,33 @@ const ApproveLeaveTable= (props) => {
               {/* <th align="left">Leave Id</th> */}
               <th align="left">Employee Id</th>
               <th align="left">Name</th>
-              <th align="left"> Leave Type</th>
-              <th align="left"> From</th>
-              <th align="left"> To</th>
-              <th align="left"> No Of Days</th>
-              <th align="left"> Reason</th>
-              <th align="left"> Manager Approval</th>
-              <th align="center"> Action</th>
+              <th align="left">Leave Type</th>
+              <th align="left">From</th>
+              <th align="left">To</th>
+              <th align="left">No Of Days</th>
+              <th align="left">Reason</th>
+              <th align="left">Manager Approval</th>
+              <th align="center">Action</th>
             </tr>
           </thead>
           <tbody>
             {leave.map((h) => (
               <tr>
                 {/* <td align="left">{h.employeeleaveId}</td> */}
-                <td align="left">{h.employeeId}</td>
-                <td align="left">{h.name}</td>
-                <td align="left">{h.leaveType}</td>
-                <td align="left">{formatDate(h.fromDate)}</td>
-                <td align="left">{formatDate(h.toDate)}</td>
-                <td align="left">{h.numberOfDays}</td>
-                <td align="left">{h.leaveReason}</td>
+                <td align="left"><div class="p-3">{h.employeeId}</div></td>
+                <td align="left"><div class="p-3">{h.name}</div></td>
+                <td align="left"><div class="p-3">{h.leaveType}</div></td>
+                <td align="left"><div class="p-3">{formatDate(h.fromDate)}</div></td>
+                <td align="left"><div class="p-3">{formatDate(h.toDate)}</div></td>
+                <td align="left"><div class="p-3">{h.numberOfDays}</div></td>
+                <td align="left"><div class="p-3">{h.leaveReason}</div></td>
                 {/* <td align="left">{h.leaveStatus}</td> */}
-                <td align="left">{h.managerApproval}</td>
+                <td align="left"><div class="p-3">{h.managerApproval}</div></td>
                 <td>{h.leaveStatus == "pending" ?(<div>
-                  <td><Approveleave  leaveID={h.employeeleaveId}/></td><td> <Rejectleave leaveID={h.employeeleaveId}/></td>
+                  <td><Approveleave  leaveID={h.employeeleaveId}/></td><td><Rejectleave leaveID={h.employeeleaveId}/></td>
                 </div>):(<div></div>)}
 
-                {/* <td align="left">{h.action}</td> */}
+                <td align="left">{h.action}</td>
                 </td>
               </tr>
             ))}

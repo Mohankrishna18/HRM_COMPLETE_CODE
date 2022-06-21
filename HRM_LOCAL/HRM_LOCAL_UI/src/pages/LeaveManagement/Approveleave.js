@@ -37,13 +37,13 @@ const Approve = (props) => {
     <div>
       <Row>
         <Col>
-          <Button
+        <Button
             variant="white "
             className="rounded-pill"
             onClick={handleShow}
           >
             {" "}
-            <FcApproval /> Approve
+            <FcApproval/>Approve
           </Button>
 
           <Modal show={onhold} onHide={handleClose} centered>

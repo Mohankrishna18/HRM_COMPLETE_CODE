@@ -24,7 +24,9 @@ import {
   FcCustomerSupport,
   FcAnswers,
   FcDatabase,
-  FcReading
+  FcFinePrint,
+  FcReading,
+  FcBookmark
 
 } from "react-icons/fc";
 
@@ -59,6 +61,9 @@ import ManagerLeavesToApproveMain from "../pages/ManagerLeavesToApprove/ManagerL
 import EmployeeMasterForms from "../pages/AllEmployees/AllEmployeesComponents/editmyprofileroute";
 import RejectedEmployees from "../pages/LeaveManagement/RejectedEmployees";
 import createleaveTypeMain from "../pages/Createleave/CreateleaveMain";
+import BandsMain from '../pages/Bands/BandsMain';
+import EmploymentTypeMain from '../pages/EmploymentType/EmploymentTypeMain';
+
   
   
  
@@ -330,6 +335,41 @@ export default [
     ],
 
   },
+  { // added by Sri Divya
+
+    component: EmploymentTypeMain,
+
+    path: "/EmploymentType",
+
+    icon: <FcFinePrint />,
+
+    title: "Employment Types ",
+
+    permission: [
+
+      Roles.hradmin
+
+    ],
+
+  },
+
+  { // added by Sri Divya
+
+    component: BandsMain,
+
+    path: "/Bands",
+
+    icon: <FcBookmark />,
+
+    title: "Bands ",
+
+    permission: [
+
+      Roles.hradmin
+
+    ],
+
+  }
 ];
 
 // testing purpose

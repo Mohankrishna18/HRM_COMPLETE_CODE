@@ -22,8 +22,8 @@ function LeaveAdmin() {
   return (
 
     <div>
-      <Container>
-        <Row>
+      {/* <Container>
+        <Row> */}
           {/* <Col xs={6} md={8}>
             <Card.Body>
               <Card.Title>Leaves</Card.Title>
@@ -192,8 +192,8 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
    </div>
 
           
-        </Row>
-      </Container>
+        {/* </Row>
+      </Container> */}
     </div>
   );
 }
