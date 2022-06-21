@@ -18,44 +18,11 @@ import { set } from "lodash";
 import { FormHelperText } from "@mui/material";
 
 
-
+let maxLength=6;
 
 const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-const FORM_VALIDATION = Yup.object().shape({
-    firstName: Yup.string()
-        .matches(/^[aA-zZ\s]+$/, "Invalid FirstName ")
-        .required("Required"),
-    middleName: Yup.string().matches(/^[aA-zZ\s]+$/, "Invalid FirstName "),
-
-    lastName: Yup.string()
-        .matches(/^[aA-zZ\s]+$/, "Invalid LastName ")
-        .required("Required"),
-
-    email: Yup.string().email("Invalid email.").required("Required"),
-
-    secondaryPhone: Yup.string()
-        .required("required")
-        .matches(phoneRegExp, "Phone number is not valid")
-        .min(10, "Phone number is not valid")
-        .max(10, "Phone number is not valid"),
-
-    dateOfBirth: Yup.string()
-        .required("DOB is Required")
-        .test(
-            "DOB",
-            "Please choose a valid date of birth",
-            (date) => moment().diff(moment(date), "years") >= 12
-        ),
-
-    bloodGroup: Yup.string()
-        .matches(/^(A|B|AB|O)[+-]$/, {
-            message: "Please enter valid Blood Group.",
-            excludeEmptyString: false,
-        })
-        .required("Required"),
-});
 
 function EmployeeMasterForm() {
     const userData = sessionStorage.getItem("userdata");
@@ -125,7 +92,10 @@ function EmployeeMasterForm() {
     const [fourtyfour, setFourtyfour] = useState("");
     const [fourtyfive, setFourtyfive] = useState("");
     const [fourtysix, setFourtysix] = useState("");
-
+    const [fourtyseven, setFourtyseven] = useState("");
+    const [fourtyeight, setFourtyeight] = useState("");
+    const [fourtynine, setFourtynine] = useState("");
+  
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -145,6 +115,7 @@ function EmployeeMasterForm() {
     const [maritalStatus, setMaritalStatus] = useState("");
     const [designationName, setDesignationName] = useState("");
     const [dateOfJoining, setDateOfJoining] = useState("");
+     const [reportingManager, setReportingManager] = useState("");
     const [permanentAdress, setPermanentAddress] = useState("");
     const [permanentState, setPermanentState] = useState("");
     const [permanentCountry, setPermanentCountry] = useState("");
@@ -238,6 +209,7 @@ function EmployeeMasterForm() {
                 setEmail(response.data.data.email);
                 setYearsOfExperience(response.data.data.yearsOfExperience);
                 setDateOfBirth(response.data.data.dateOfBirth);
+                setReportingManager(response.data.data.reportingManager)
                 // setPassportExpiryDate(response.data.data.passportExpiryDate)
                 // setPassportNo(response.data.data.passportNo)
                 setDesignationName(response.data.data.designationName);
@@ -343,6 +315,7 @@ function EmployeeMasterForm() {
             bloodGroup,
             gender,
             maritalStatus,
+            reportingManager,
             permanentAdress,
             permanentState,
             permanentCountry,
@@ -508,7 +481,7 @@ function EmployeeMasterForm() {
                                     * All fields are mandatory. Please fill the form Correctly.
                                 </Card.Text>
 
-                                <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 20 }}>
+                                <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 20,backgroundColor:"#CCCCFF" }}>
                                     <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                         Personal Details
                                     </Card.Title>
@@ -603,18 +576,21 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 </InputGroup.Text>
                                                 <Form.Control
                                                     required
-                                                    type="text"
+                                                    type="number"
                                                     name="primaryPhoneNumber"
                                                     placeholder="phone Number"
                                                     maxLength={10}
                                                     value={primaryPhoneNumber}
                                                     onChange={(e) => {
                                                         setPrimaryPhoneNumber(e.target.value);
+                                                        if (e.target.value.length > 10) {
+                                                            setThirdErrors(" Phonenumber length should be 10 characters");;
+                                                          }
                                                         if (lastName === "") {
                                                             setSerror("Last Name is Required");
                                                         }
                                                         else{
-                                                            setSerror("")                                                       
+                                                            setSerror("")                                                      
                                                         }
                                                     }}
                                                     isInvalid={thirderrors}
@@ -639,14 +615,20 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 <Form.Control
                                                     value={secondaryPhoneNumber}
                                                     maxLength={10}
+                                                    isInvalid={fourtyseven}
                                                     onChange={(e) => {
                                                         setSecondaryPhone(e.target.value);
-                                                        
+                                                        if (e.target.value.length > 10) {
+                                                            setFourtyseven(" Phonenumber length should be 10 characters");;
+                                                          }         
                                                     }}
-                                                    type="text"
+                                                    type="number"
                                                     placeholder="Enter Phone"
                                                 />
                                             </InputGroup>
+                                            <Form.Control.Feedback type="invalid">
+                                                    {fourtyseven}
+                                                </Form.Control.Feedback>
                                         </Form.Group>
                                         
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -841,8 +823,22 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             </Form.Control.Feedback>
                                         </Form.Group>
 
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                  <Form.Label>Select Reporting Manager *</Form.Label>
+                  <Form.Select
+                    placeholder="select Gender"
+                    value={reportingManager}
+                    onChange={(e) => {setReportingManager(e.target.value)
+                    }}
+                  >
+                    <option>Select </option>
+                    <option value="Revanth Kumar">Revanth Kumar</option>
+                    <option value="Revanth Kumar1">Revanth Kumar1</option>
+                  </Form.Select>
+                </Form.Group>
+
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 50, marginTop: 20 }}
+                                            style={{ marginLeft: 8, marginRight: 50, marginTop: 20,backgroundColor:"#CCCCFF" }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                 Permanent Address
@@ -925,7 +921,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             <Form.Control.Feedback type="invalid">
                                                 {thirteenerrors}
                                             </Form.Control.Feedback>
-                                            
+                                            </Form.Group>
                                             {/* <CountryDropdown  
                                             md="6"    
                                                 preferredCountries={['gb', 'us']}                                                  
@@ -938,24 +934,25 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 onChange={(e) => setPermanentCountry(e.target.value)}>
                                     
                                             </CountryDropdown> */}
-                                        </Form.Group>
-
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Pincode *</Form.Label>
                                             <Form.Control
                                                 required
-                                                type="text"
+                                                type="number"
                                                 placeholder="Pincode"
                                                 controlId="permanentPincode"
                                                 name="permanentPincode"
                                                 isInvalid={fourteenerror}
                                                 value={permanentPincode}
- 
                                                 maxLength={6}
+                                                size={6}
                                                 onChange={(event) =>{
                                                     setPermanentPincode(event.target.value)
+                                                    if (event.target.value.length > 6) {
+                                                        setFourteenerror(" Pincode length should be 6 characters");;
+                                                      }
                                                     if (permanentCountry === "") {
-                                                        setThirteenErrors(" Country is Required");
+                                                        setThirteenErrors("Country is Required");
                                                     }
                                                     else{
                                                         setThirteenErrors("")                                                        
@@ -967,7 +964,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             </Form.Control.Feedback>
                                         </Form.Group>
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 10 }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 10 ,backgroundColor:"#CCCCFF"}}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                 Current Address
@@ -1052,7 +1049,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             <Form.Label>Pincode *</Form.Label>
                                             <Form.Control
                                                 required
-                                                type="text"
+                                                type="number"
                                                 placeholder="Pincode"
                                                 controlId="currentPincode"
                                                 value={currentPincode}
@@ -1060,6 +1057,9 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 name="currentPincode"
                                                 maxLength={6}
                                                 onChange={(e) => {setCurrentPincode(e.target.value)
+                                                    if (e.target.value.length > 6) {
+                                                        setEighteenerror(" Pincode length should be 6 characters");;
+                                                      }
                                                     if (currentCountry === "") {
                                                         setSeventeenerror(" Country is Required");
                                                     }
@@ -1072,7 +1072,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             </Form.Control.Feedback>
                                         </Form.Group>
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20 }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20 ,backgroundColor:"#CCCCFF"}}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                 Additional Details
@@ -1086,7 +1086,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 placeholder="Passport Number"
                                                 controlId="passportNo"
                                                 value={passportNo}
-                                                maxLength={50}
+                                                maxLength={15}
                                                 name="passportNo"
                                                 onChange={(e) => 
                                                     setPassportNo(e.target.value)
@@ -1126,7 +1126,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             <Form.Label>Aadhar Card Number *</Form.Label>
                                             <Form.Control
                                                 required
-                                                type="text"
+                                                type="number"
                                                 placeholder="Aadhar Card Number"
                                                 controlId="aadharNumber"
                                                 name="panNumber"
@@ -1135,6 +1135,9 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 value={aadharNumber}
                                                 onChange={(event) =>{
                                                     setAadharNumber(event.target.value)
+                                                    if (event.target.value.length > 12) {
+                                                        setNineteenerror(" Aadharcard Number length should be 12 characters");;
+                                                      }
                                                     if (currentPincode === "") {
                                                         setEighteenerror(" Pincode is Required");
                                                     }
@@ -1189,7 +1192,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             <Form.Label>Bank Account Number *</Form.Label>
                                             <Form.Control
                                                 required
-                                                type="text"
+                                                type="number"
                                                 placeholder="Account Number"
                                                 controlId="accountNumber"
                                                 name="accountNumber"
@@ -1198,6 +1201,9 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 isInvalid={twentyoneerror}
                                                 onChange={(event) =>{
                                                     setAccountNumber(event.target.value)
+                                                    if (event.target.value.length > 16) {
+                                                        setTwentyoneerror(" Pincode length should be 16 characters");;
+                                                      }
                                                     if (bankName === "") {
                                                         setTwentyerror(" Bank Name is Required");
                                                     }
@@ -1260,29 +1266,30 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 {twentythreerror}
                                             </Form.Control.Feedback>
                                         </Form.Group>
-                                        {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>BAND</Form.Label>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                            <Form.Label>Band</Form.Label>
                                             <Form.Select
                                                 type="text"
-                                                placeholder="BAND"
+                                                placeholder="Band"
                                                 controlId="band"
+                                               
                                                 name="band"
                                                 value={band}
                                                 onChange={(event) => setBand(event.target.value)}
                                             >
                                                  <option>Select</option>
-                                                <option value="BAND-1">BAND-1</option>
-                                                <option value="BAND-2">BAND-2</option>
-                                                <option value="BAND-3">BAND-3</option>
+                                                <option value="Band-1">Band-1</option>
+                                                <option value="Band-2">Band-2</option>
+                                                <option value="Band-3">Band-3</option>
                                             </Form.Select>
-                                        </Form.Group> */}
+                                        </Form.Group>
 
                                         <Card
                                             style={{
                                                 marginLeft: 8,
                                                 marginRight: 8,
                                                 marginTop: 10,
-                                                marginBottom: 20,
+                                                marginBottom: 20,backgroundColor:"#CCCCFF"
                                             }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
@@ -1294,10 +1301,10 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 marginLeft: 8,
                                                 marginRight: 8,
                                                 marginTop: 10,
-                                                marginBottom: 20,
+                                                marginBottom: 20,backgroundColor:"#CCCCFF"
                                             }}
                                         >
-                                            <Card.Title style={{ margin: 20, textAlign: "center" }}>
+                                            <Card.Title style={{ margin: 20, textAlign: "center" ,}}>
                                                 Post Graduation Details
                                             </Card.Title>
                                         </Card>
@@ -1447,7 +1454,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         </Accordion>
 
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20 }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20,backgroundColor:"#CCCCFF" }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                 Graduation Details
@@ -1674,7 +1681,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             </Form.Control.Feedback>
                                         </Form.Group>
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20 }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20 ,backgroundColor:"#CCCCFF"}}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                 12th Grade/Intermediate Details
@@ -1861,10 +1868,10 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         </Form.Group>
 
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 15 }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 15 ,backgroundColor:"#CCCCFF"}}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                                                10th grade details
+                                                10th Grade details
                                             </Card.Title>
                                         </Card>
 
@@ -2046,7 +2053,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 marginTop: "10px",
                                                 marginBottom: "20px",
                                                 marginLeft: 8,
-                                                marginRight: 8,
+                                                marginRight: 8,backgroundColor:"#CCCCFF"
                                             }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
