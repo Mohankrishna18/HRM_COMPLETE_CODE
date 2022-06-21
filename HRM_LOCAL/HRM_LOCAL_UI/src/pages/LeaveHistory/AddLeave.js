@@ -99,7 +99,7 @@ function AddLeave() {
     console.log(data);
     const res = await axios.post("/leave/applyLeave", data);
     console.log(res.data);
-    window.location.reload();
+    // window.location.reload();
   };
 
 
