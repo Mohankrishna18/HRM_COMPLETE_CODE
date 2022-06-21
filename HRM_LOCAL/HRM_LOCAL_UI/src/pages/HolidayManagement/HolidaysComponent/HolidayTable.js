@@ -3,6 +3,7 @@ import MaterialTable from 'material-table'
 import Grid from '@mui/material/Grid'
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+// import CustomDatePicker from "./customDatePicker";
 export default function HolidayTable() {
 
     const [data, setData] = useState([]);
@@ -28,12 +29,15 @@ export default function HolidayTable() {
         validate:rowData =>{        if(rowData.holidayTitle===undefined){       return  "Holiday Title is Required"         }    else if(!rowData.holidayTitle.match(/^[aA-zZ\s]+$/)){      return" Please enter valid name"    }    return true     },
        
     },
-        { title: 'Holiday Date', field: 'holidayDate', type:'date', validate:rowData=>{
+        { title: 'Holiday Date', field: 'holidayDate', type:'date', 
+        validate:rowData=>{
             if(rowData.holidayDate===undefined || rowData.holidayDate===""){
                 return "Required"
             }
             return true 
-        } },
+        }, dateSetting: { locale: "en-GB" },
+        // filterComponent: (props) => <CustomDatePicker {...props} />
+     },
 
         //   {
         //     title: 'Birth Place',
