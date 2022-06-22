@@ -49,9 +49,9 @@ public class EmailSender {
 				
 
 				msg.setText("Hello " + Name + "," + "\n"+ "Welcome to Arshaa Technologies." + "\n" + "\n"
-						+ "Please login with your username and password as we mentioned here, These are your credentials  UserName: "+userName+" Password: "+password + "\n" + "\n" + "Employee Id: "
-						+ employeeId + "\n" + "Link to login: http://10.10.10.167"+ "\n"+
-						"Kindly fill your details in Employee Profile, It doesn't take much time to fill the details please complete it by End of the Day" +"\n"+"\n"+" Note: After login, you need reset your password" +"\n"+"\n"+"Regards,"+"\n"+"Team Hr"+"\n"+"Arshaa Technologies PvtLtd");
+						+ "Please login with your Employee Id and password as we mentioned here, These are your credentials  Employee Id : " +employeeId+  " Password: " +password + "\n" + "\n" 
+						+ "\n" + "Link to login: http://10.10.10.167"+ "\n"+
+						"Kindly fill your details in Edit My Profile, It doesn't take much time to fill the details please complete it by End of the Day" +"\n"+"\n"+" Note: After login, you need to reset your password" +"\n"+"\n"+"Regards,"+"\n"+"Team Hr"+"\n"+"Arshaa Technologies PvtLtd");
 				
 				
 				mailSender.send(msg);

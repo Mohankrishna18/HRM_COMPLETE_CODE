@@ -18,10 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import org.springframework.web.multipart.MultipartFile;
-
-
 
 import com.arshaa.emp.entity.EmployeeMaster;
 import com.arshaa.emp.entity.EmployeeProfile;
@@ -32,16 +29,14 @@ import com.arshaa.emp.model.DesignationName;
 import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.ReportingManagerMain;
 import com.arshaa.emp.model.Response;
+import com.arshaa.emp.model.ResponseFile;
+import com.arshaa.emp.model.ResponseMessage;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
 import com.arshaa.emp.repository.OnboardRepository;
 import com.arshaa.emp.service.EmployeeProfileService;
 import com.arshaa.emp.service.MainService;
 import com.arshaa.emp.service.ReportingManagerService;
-
-import com.arshaa.emp.model.ResponseMessage;
-import com.arshaa.emp.model.ResponseFile;
 import com.google.common.net.HttpHeaders;
-
 
 @RestController
 @RequestMapping("/emp")
@@ -55,7 +50,6 @@ public class MainController {
 	MainService serv;
 	@Autowired
 	ReportingManagerService eserv;
-
 	@Autowired
 	EmployeeProfileService epServ;
 
@@ -114,6 +108,11 @@ public class MainController {
 		return serv.getApprovedData();
 	}
 
+	@GetMapping("/getRejectedData")
+	public ResponseEntity getRejectedData() {
+		return serv.getRejectedData();
+	}
+
 	@PutMapping("/updateDesignationName/{employeeId}")
 	public ResponseEntity updateDesignationName(@PathVariable String employeeId, @RequestBody DesignationName name) {
 		return serv.updateDesignationName(employeeId, name);
@@ -138,15 +137,17 @@ public class MainController {
 	}
 
 
-
-
 	@GetMapping("/getEmployeeNameByEmployeeId/{employeeId}")
 	public ResponseEntity getEmployeeNameByEmployeeId(@PathVariable String employeeId) {
-
 		return serv.getEmployeeNameByEmployeeId(employeeId);
 
 	}
 
+	@GetMapping("/getReportingManagerByEmployeeId/{employeeId}")
+	public ResponseEntity getReportingManagerByEmployeeId(@PathVariable String employeeId) {
+
+		return serv.getReportingManagerByEmployeeId(employeeId);
+	}
 
 	@GetMapping("/getEmployeeIds")
 	public ResponseEntity getEmployeeId() {
@@ -157,6 +158,8 @@ public class MainController {
 // {
 // return intern.getEmployeeId();
 // }
+
+// Employee Profile API's
 
 // EmployeeProfile API's
 	@PostMapping("/upload/{employeeId}")
@@ -173,30 +176,33 @@ public class MainController {
 		}
 	}
 
-//	@GetMapping("/files")
-//	public ResponseEntity<List<ResponseFile>> getListFiles() {
-//		List<ResponseFile> files = epServ.getAllFiles().map(dbFile -> {
-//			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/emp/")
-//					.path("/files/").path(dbFile.getEmployeeId()).toUriString();
-//			return new ResponseFile(dbFile.getName(), fileDownloadUri, dbFile.getType(), dbFile.getData().length);
-//		}).collect(Collectors.toList());
-//		return ResponseEntity.status(HttpStatus.OK).body(files);
-//	}
+// @GetMapping("/files")
+// public ResponseEntity<List<ResponseFile>> getListFiles() {
+// List<ResponseFile> files = epServ.getAllFiles().map(dbFile -> {
+// String fileDownloadUri =
+// ServletUriComponentsBuilder.fromCurrentContextPath().path("/emp/")
+// .path("/files/").path(dbFile.getEmployeeId()).toUriString();
+// return new ResponseFile(dbFile.getName(), fileDownloadUri, dbFile.getType(),
+// dbFile.getData().length);
+// }).collect(Collectors.toList());
+// return ResponseEntity.status(HttpStatus.OK).body(files);
+// }
 
-	// @GetMapping("/files/{id}")
-	// public ResponseEntity<byte[]> getFile(@PathVariable String id) {
-	// UploadFile fileDB = storageService.getFile(id);
-	// return ResponseEntity.ok()
-	// .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
-	// fileDB.getName() + "\"")
-	// .body(fileDB.getData);
-	// }
+// @GetMapping("/files/{id}")
+// public ResponseEntity<byte[]> getFile(@PathVariable String id) {
+// UploadFile fileDB = storageService.getFile(id);
+// return ResponseEntity.ok()
+// .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" +
+// fileDB.getName() + "\"")
+// .body(fileDB.getData);
+// }
 	@GetMapping("/files/{employeeId}")
 	public ResponseEntity<ResponseFile> getFilebyID(@PathVariable String employeeId) {
 		try {
 			EmployeeProfile fileDB = epServ.getFileByID(employeeId);
-//			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/emp/")
-//					.path("/getImage/").path(fileDB.getEmployeeId()).toUriString();
+// String fileDownloadUri =
+// ServletUriComponentsBuilder.fromCurrentContextPath().path("/emp/")
+// .path("/getImage/").path(fileDB.getEmployeeId()).toUriString();
 			ResponseFile file = new ResponseFile();
 			file.setUrl(fileDB.getData());
 			file.setName(fileDB.getName());

@@ -1,7 +1,7 @@
+
 package com.arshaa.model;
 
 public class GetReportingManager {
-
 	private String reportingmanager;
 
 	public String getReportingmanager() {

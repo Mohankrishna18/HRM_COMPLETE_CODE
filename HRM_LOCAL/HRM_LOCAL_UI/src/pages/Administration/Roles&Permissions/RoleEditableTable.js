@@ -7,15 +7,15 @@ export default function RoleEditableTable() {
     const [depname, setDepname] = useState([])
     const [status, setStatus] = useState({})
     useEffect(() => {
-        axios.get("/dept/getAllDepartments").then((res) => {
-            console.log(res.data)
-            setDepname(res.data)
+        axios.get("/user/getModuleData").then((res) => {
+            console.log(res.data.data)
+            setDepname(res.data.data)
         });
     }, []);
     console.log(depname)
     const loadDept = () => {
 
-        depname.map(row => status[row.departmentName] = row.departmentName)
+        depname.map(row => status[row.moduleName] = row.moduleName)
         console.log(status)
         setStatus(status)
 
@@ -29,9 +29,9 @@ export default function RoleEditableTable() {
         loadData();
     }, []);
     const loadData = async () => {
-        const res = await axios.get("/designation/getAllDesignations");
-        setData(res.data);
-        console.log(res.data)
+        const res = await axios.get("/user/getAllRoles");
+        setData(res.data.data);
+        console.log(res.data.data)
 
 
     };
@@ -57,6 +57,87 @@ export default function RoleEditableTable() {
 
             },
         },
+        {
+            title: 'Module-2', field: 'permission2',  lookup: status, headerStyle: {
+
+                backgroundColor: "#FE924A",
+
+                color: "white",
+
+            },
+        },
+        {
+            title: 'Module-3', field: 'permission3',  lookup: status, headerStyle: {
+
+                backgroundColor: "#FE924A",
+
+                color: "white",
+
+            },
+        },
+        {
+            title: 'Module-4', field: 'permission4',  lookup: status, headerStyle: {
+
+                backgroundColor: "#FE924A",
+
+                color: "white",
+
+            },
+        },
+        {
+            title: 'Module-5', field: 'permission5',  lookup: status, headerStyle: {
+
+                backgroundColor: "#FE924A",
+
+                color: "white",
+
+            },
+        },
+        {
+            title: 'Module-6', field: 'permission6',  lookup: status, headerStyle: {
+
+                backgroundColor: "#FE924A",
+
+                color: "white",
+
+            },
+        },
+        {
+            title: 'Module-7', field: 'permission7',  lookup: status, headerStyle: {
+
+                backgroundColor: "#FE924A",
+
+                color: "white",
+
+            },
+        },
+        {
+            title: 'Module-8', field: 'permission8',  lookup: status, headerStyle: {
+
+                backgroundColor: "#FE924A",
+
+                color: "white",
+
+            },
+        },
+        {
+            title: 'Module-9', field: 'permission9',  lookup: status, headerStyle: {
+
+                backgroundColor: "#FE924A",
+
+                color: "white",
+
+            },
+        },
+        {
+            title: 'Module-10', field: 'permission10',  lookup: status, headerStyle: {
+
+                backgroundColor: "#FE924A",
+
+                color: "white",
+
+            },
+        },
 
     ]);
 
@@ -64,7 +145,7 @@ export default function RoleEditableTable() {
 
     return (
         <Grid>
-            <MaterialTable
+            <MaterialTable responsive
                 title=""
                 columns={columns}
                 data={data}
@@ -74,7 +155,7 @@ export default function RoleEditableTable() {
                         new Promise((resolve, reject) => {
                             setTimeout(() => {
                                 console.log(newData)
-                                const res = axios.post("/designation/postDesignationMaster", newData)
+                                const res = axios.post("/user/addRole", newData)
                                 console.log(res)
                                 setData([...data, newData]);
                                 loadData();
@@ -87,7 +168,7 @@ export default function RoleEditableTable() {
                         new Promise((resolve, reject) => {
                             console.log(oldRow);
                             console.log(updatedRow);
-                            const index = oldRow.designationId;
+                            const index = oldRow.roleId;
                             console.log(index);
                             const updatedRows = [...data];
                             console.log(updatedRows);
@@ -98,7 +179,7 @@ export default function RoleEditableTable() {
 
                                 console.log(index)
                                 console.log(updatedRow)
-                                const res = axios.put(`/designation/updateDesignations/${index}`, updatedRow)
+                                const res = axios.put(`/user/UpdateRoleId/${index}`, updatedRow)
                                     .then((resp) => {
                                         console.log(resp);
                                         loadData()
@@ -125,9 +206,9 @@ export default function RoleEditableTable() {
                             setTimeout(() => {
                                 console.log(oldData)
                                 const dataDelete = [...data];
-                                const index = oldData.designationId;
+                                const index = oldData.roleId;
                                 dataDelete.splice(index, 1);
-                                const res = axios.delete(`/designation/deleteDesignation/${index}`)
+                                const res = axios.delete(`/user/deleteRoleData/${index}`)
                                     .then((res) => {
                                         console.log(res)
                                         loadData()

@@ -23,6 +23,7 @@ public interface MainService {
 	public ResponseEntity addEmployee(EmployeeMaster newEmployee);
 	public ResponseEntity updateOnboradEmployeeBydOnboardId(String onboardingId, Onboarding newOnboard );
 	public ResponseEntity getApprovedData();
+	public ResponseEntity getRejectedData();
 	public ResponseEntity updateDesignationName(String employeeId, DesignationName name);
 
     public ResponseEntity getReportingManagerByEmployeeId(String employeeId);

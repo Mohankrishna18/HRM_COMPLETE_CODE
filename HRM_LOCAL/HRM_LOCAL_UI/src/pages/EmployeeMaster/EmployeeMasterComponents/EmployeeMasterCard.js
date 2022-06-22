@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Image } from "react-bootstrap";
+import Avatar from '@mui/material/Avatar';
 
 function EmployeeMasterCard() {
 
@@ -70,8 +71,8 @@ function EmployeeMasterCard() {
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
 
-    today = mm + '-' + dd + '-' + yyyy;
-    console.log(today);
+    var doj = dd + '-' + mm + '-' + yyyy;
+    console.log(doj);
 
     return (
         <Row><Col>
@@ -81,22 +82,22 @@ function EmployeeMasterCard() {
                         <Card.Title>
 
                             <Col>
-                            <Image src={`data:image/jpeg;base64,${imge.url}`} style={{
+                            <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
                                     height: "150px",
                                     width: "150px",
                                     borderRadius: "110px",
                                     alignItems: "center",
-                                    marginTop: "50px",
-                                    marginLeft: "145px"
+                                    marginTop: "100px",
+                                    marginLeft: "190px"
                                 }} />
                             </Col>
                             <Col style={{
                                 fontSize: 20,
                                 textAlign: "center",
-                                paddingTop: 10,
+                                paddingTop: 40,
                                 paddingBottom: 40,
                                 text: "bold",
-                                marginRight: "200px"
+                                marginRight: "150px"
                             }}>
                                 {employeedetails.firstName} {employeedetails.lastName}
                             </Col>
@@ -107,7 +108,7 @@ function EmployeeMasterCard() {
                             <Row
                                 style={{
                                     paddingTop: 20,
-                                    paddingBottom: 10,
+                                    paddingBottom: 15,
                                 }}
                             >
                                 <Col>
@@ -121,7 +122,7 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 10 }}>
+                            <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                     <Card.Title style={{}}>
                                         <h6> Designation:</h6>
@@ -133,7 +134,19 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 10 }}>
+                            <Row style={{ paddingBottom: 15 }}>
+                                <Col>
+                                    <Card.Title style={{}}>
+                                        <h6> Years of Experience:</h6>
+                                    </Card.Title>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                    <Card.Text style={{}}>
+                                        {employeedetails.yearsOfExperience}
+                                    </Card.Text>
+                                </Col>
+                            </Row>
+                            <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                     <Card.Title style={{}}>
                                         <h6>Date of Joining: </h6>
@@ -141,11 +154,11 @@ function EmployeeMasterCard() {
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{}}>
-                                        {today}
+                                        {doj}
                                     </Card.Text>
                                 </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 10 }}>
+                            <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                     <Card.Text style={{}}>
                                         <h6>Reporting Manager: </h6>
@@ -169,7 +182,7 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row> */}
-                            <Row style={{ paddingBottom: 10 }}>
+                            <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                     <Card.Text style={{}}>
                                         <h6>Employment Type: </h6>
@@ -181,6 +194,44 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
+                            <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                    <Card.Text style={{}}>
+                                        <h6>Band: </h6>
+                                    </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                    <Card.Text style={{}}>
+                                        {employeedetails.band}
+                                    </Card.Text>
+                                </Col>
+                            </Row>
+                            <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                    <Card.Text style={{}}>
+                                        <h6>Project: </h6>
+                                    </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                    <Card.Text style={{}}>
+                                        {employeedetails.project}
+                                    </Card.Text>
+                                </Col>
+                            </Row>
+                            <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                    <Card.Text style={{}}>
+                                        <h6>Business Unit: </h6>
+                                    </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                    <Card.Text style={{}}>
+                                        {employeedetails.businessUnit}
+                                    </Card.Text>
+                                </Col>
+                            </Row>
+                          
+                        
                         </Card.Body>
                     </Col>
                 </Row>

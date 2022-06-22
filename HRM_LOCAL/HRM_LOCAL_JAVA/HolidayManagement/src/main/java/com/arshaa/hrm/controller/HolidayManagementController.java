@@ -1,5 +1,7 @@
 package com.arshaa.hrm.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +100,14 @@ public class HolidayManagementController {
 	count.setHolidayCount(hm);
 	return new ResponseEntity(hm,HttpStatus.OK);
 	}
+	
+	@GetMapping("/{startDate}/{endDate}")
+	public ResponseEntity <Integer> getWorkingDays(@PathVariable String startDate,@PathVariable String endDate) throws ParseException, Exception
+	{
+	return ResponseEntity.ok(serv.getWorkingDaysBetweenTwoDates(new SimpleDateFormat("yyyy-MM-dd").parse(startDate), new SimpleDateFormat("yyyy-MM-dd").parse(endDate)));
+	}
+
+
 
 	public HolidayManagementController() {
 		// TODO Auto-generated constructor stub

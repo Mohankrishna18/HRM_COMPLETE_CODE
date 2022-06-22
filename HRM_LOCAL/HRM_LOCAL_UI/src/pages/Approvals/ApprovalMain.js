@@ -7,22 +7,33 @@ import AddOnboard from "./ApprovalComponents/AddOnboard";
 
 function ApprovalMain() {
   return (
-    <div> 
+    <div className="scroll"> 
+    <Card.Body>
         <Row>
-          <Col xs={6} md={8}>
-            <Card.Body>
+         
+            
+              <Col>
               <Card.Title>Onboardings</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                Onboards/Employees
-              </Card.Subtitle>
+                Jobs / Shortlisted Candidates </Card.Subtitle>
+                </Col>
+                <Col>
+                <AddOnboard />
+                </Col>
+              
+             
+              </Row>
             </Card.Body>
-          </Col>
-          <Col xs={6} md={4}>
-            <AddOnboard />
-          </Col>
-        </Row>
+          {/* </Col> */}
+          
+           
+       
+        
         <Row style={{ paddingTop: 20 }}>
+          <Col>          
           <OnboardedEmployeesTable/>
+          </Col>
+
         </Row>
       
     </div>
