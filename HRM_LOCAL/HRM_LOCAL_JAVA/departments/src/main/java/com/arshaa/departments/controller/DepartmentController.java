@@ -59,4 +59,12 @@ public class DepartmentController {
      return serv.getDepartmentIdByDepartmentName(departmentName);
 
 	}
+	
+	@GetMapping("/getDepartmentNameById/{departmentId}")
+	public String getDepartmentNameById(@PathVariable int departmentId)
+	{
+		Departmentmaster dm = repo.findByDepartmentId(departmentId);
+
+		return dm.getDepartmentName();
+	}
 }
