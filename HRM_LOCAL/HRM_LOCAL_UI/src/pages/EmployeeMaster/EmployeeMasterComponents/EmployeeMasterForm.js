@@ -1211,6 +1211,7 @@ function EmployeeMasterForm() {
                                                     if (event.target.value.length > 16) {
                                                         setTwentyoneerror(" Bank Account Number should be 16 characters");;
                                                     }
+    //comment
                                                     if (bankName === "") {
                                                         setTwentyerror(" Bank Name is Required");
                                                     }
