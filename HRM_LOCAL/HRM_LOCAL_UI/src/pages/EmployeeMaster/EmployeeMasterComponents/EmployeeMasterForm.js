@@ -1209,7 +1209,7 @@ function EmployeeMasterForm() {
                                                 onChange={(event) => {
                                                     setAccountNumber(event.target.value)
                                                     if (event.target.value.length > 16) {
-                                                        setTwentyoneerror(" Pincode length should be 16 characters");;
+                                                        setTwentyoneerror(" Bank Account Number should be 16 characters");;
                                                     }
                                                     if (bankName === "") {
                                                         setTwentyerror(" Bank Name is Required");
