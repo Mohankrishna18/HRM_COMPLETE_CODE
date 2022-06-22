@@ -63,7 +63,7 @@ import RejectedEmployees from "../pages/LeaveManagement/RejectedEmployees";
 import createleaveTypeMain from "../pages/Createleave/CreateleaveMain";
 import BandsMain from '../pages/Bands/BandsMain';
 import EmploymentTypeMain from '../pages/EmploymentType/EmploymentTypeMain';
-
+import IntegrateLeaveToApply from '../pages/LeaveManagement/IntegrateLeaveToApply'
   
   
  
@@ -146,9 +146,24 @@ export default [
     title: "Roles",
     permission: [Roles.hradmin],
   },
+  // {
+  //   component: LeaveToApply,
+  //   path: "/leaveApply",
+  //   icon: <FcLeave />,
+  //   title: "Leaves To Apply",
+  //   permission: [
+  //     Roles.employee,
+  //     Roles.hr,
+  //     Roles.ceo,
+  //     Roles.it,
+  //     Roles.taa,
+  //     Roles.hradmin,
+  //     Roles.manager
+  //   ],
+  // },
   {
-    component: LeaveToApply,
-    path: "/leaveApply",
+    component: IntegrateLeaveToApply,
+    path: "/IntegrateLeaveToApply",
     icon: <FcLeave />,
     title: "Leaves To Apply",
     permission: [
@@ -160,7 +175,7 @@ export default [
       Roles.hradmin,
       Roles.manager
     ],
-  },
+  },  
   {
     component: LeaveToApprove,
     path: "/LeaveToApprove",

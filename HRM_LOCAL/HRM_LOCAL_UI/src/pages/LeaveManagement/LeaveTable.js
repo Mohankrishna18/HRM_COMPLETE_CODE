@@ -154,7 +154,7 @@ export default function EmployeeLeaveHistory() {
 
 
 
-        loadData();
+        loadTable();
 
 
 
@@ -173,7 +173,7 @@ export default function EmployeeLeaveHistory() {
 
 
 
-    const loadData = async () => {
+    const loadTable = async () => {
         const res = await axios.get(`leave/getLeaveHistoryByEmployeeid/${empID}`);
         setData(res.data);
         console.log(res.data);

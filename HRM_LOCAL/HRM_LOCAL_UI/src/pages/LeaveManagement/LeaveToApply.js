@@ -84,7 +84,7 @@ function LeaveEmployee() {
     return (
         <div>
             {/* <Container> */}
-            <Card bg="white">
+            {/* <Card bg="white">
                 <Row>
                     <Col xs={6} md={8}>
                         <Card.Body>
@@ -95,7 +95,7 @@ function LeaveEmployee() {
                         </Card.Body>
                     </Col>
                     <Col xs={6} md={4}>
-                        <AddLeave />
+                        <AddLeave /> */}
 
 
 
@@ -106,8 +106,8 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
 <h4>Add Leave</h4>
 {employee}{" "}
 </Button> */}
-                    </Col>
-                </Row>
+                    {/* </Col>
+                </Row> */}
                 {/* Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop */}
                 <Row md={4}>
                     <Col>
@@ -210,7 +210,7 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
                     <LeaveTable />
                 </Row>
                 {/* </Container> */}
-            </Card>
+            {/* </Card> */}
         </div>
     );
 }
