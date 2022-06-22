@@ -89,6 +89,7 @@ public class MainServiceImpl implements MainService {
 
 			List<Onboarding> onboarding = onRepo.findByWaitingforapprovalStatus(true);
 			if (!onboarding.isEmpty()) {
+
 				onboarding.forEach(on -> {
 					WaitingForApproval wa = new WaitingForApproval();
 
@@ -114,6 +115,7 @@ public class MainServiceImpl implements MainService {
 //				r.setMessage(sConstants.GET_RESPONSE);
 //				r.setData(wa);
 				return new ResponseEntity(waList, HttpStatus.OK);
+
 			} else {
 				r.setStatus(true);
 				r.setMessage(sConstants.NO_ENTRIES_FOUND);

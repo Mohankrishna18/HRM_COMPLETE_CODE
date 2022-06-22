@@ -7,7 +7,6 @@ import javax.persistence.Column;
 public class WaitingForApproval {
 
 	private String onboardingId;
-
 	private String designation;
 	private String firstName;
 //	private String lastName;
