@@ -3,8 +3,8 @@ import MaterialTable from 'material-table'
 import Grid from '@mui/material/Grid'
 import axios from "../../Uri";
 export default function EmployeeLeaveHistory() {
-    
-    
+
+
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -13,9 +13,9 @@ export default function EmployeeLeaveHistory() {
 
     }, []);
 
-    const da = JSON.parse(sessionStorage.getItem('userdata')) 
-    const empID=da.data.employeeId;
-  
+    const da = JSON.parse(sessionStorage.getItem('userdata'))
+    const empID = da.data.employeeId;
+
 
     const loadData = async () => {
         const res = await axios.get(`/leave/getUserByReportingManager/${empID}`);
@@ -24,15 +24,15 @@ export default function EmployeeLeaveHistory() {
     };
     const [columns, setColumns] = useState([
         { title: 'Employee ID', field: 'employeeId' },
-        { title: 'Leave Reason', field: 'leaveReason', type:'date'},
-    { title: 'No.Of Days', field: 'numberOfDays', type:'date'},
-    { title: 'From Date', field: 'fromDate', type:'date'},
-    { title: 'To Date', field: 'toDate', type:'date'},
-    { title: 'Leave Status', field: 'leaveStatus', type:'date'},
-    // { title: 'Leave Type', field: 'leaveType', type:'date'}
-    
+        { title: 'Leave Reason', field: 'leaveReason', type: 'date' },
+        { title: 'No.Of Days', field: 'numberOfDays', type: 'date' },
+        { title: 'From Date', field: 'fromDate', type: 'date', dateSetting: { locale: "en-GB" } },
+        { title: 'To Date', field: 'toDate', type: 'date', dateSetting: { locale: "en-GB" } },
+        { title: 'Leave Status', field: 'leaveStatus', type: 'date' },
+        // { title: 'Leave Type', field: 'leaveType', type:'date'}
+
     ]);
-    
+
 
     // const [data, setData] = useState([
     //     { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
@@ -48,8 +48,8 @@ export default function EmployeeLeaveHistory() {
                 // editable={{
                 //     onRowAdd: newData =>
                 //         new Promise((resolve, reject) => {
-                           
-                          
+
+
                 //             setTimeout(() => {
                 //                 console.log(newData)
                 //                 const res = axios.post("/holiday/addholiday",
@@ -57,7 +57,7 @@ export default function EmployeeLeaveHistory() {
                 //                 );
                 //                 setData([...data, newData]);
                 //                loadData();
-                               
+
 
                 //                 resolve();
                 //             }, 1000)
@@ -117,7 +117,7 @@ export default function EmployeeLeaveHistory() {
                 // }}
                 options={{
                     paging: false,
-                    addRowPosition:'first',
+                    addRowPosition: 'first',
                     actionsColumnIndex: -1,
                     headerStyle: {
 
@@ -132,3 +132,4 @@ export default function EmployeeLeaveHistory() {
         </Grid>
     )
 }
+
