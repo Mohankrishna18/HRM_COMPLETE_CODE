@@ -10,12 +10,35 @@ public class WaitingForApproval {
 
 	private String designation;
 	private String firstName;
-	private String lastName;
+//	private String lastName;
 	private String phoneNumber;
 	private String yearsOfExperience;
 	private String email;
     private String dateOfJoining;
 	private String jobTitle;
+	private String department;
+	private String primarySkills;
+	private String secondarySkills;
+	
+	
+	public String getPrimarySkills() {
+		return primarySkills;
+	}
+	public void setPrimarySkills(String primarySkills) {
+		this.primarySkills = primarySkills;
+	}
+	public String getSecondarySkills() {
+		return secondarySkills;
+	}
+	public void setSecondarySkills(String secondarySkills) {
+		this.secondarySkills = secondarySkills;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
 	public String getOnboardingId() {
 		return onboardingId;
 	}
@@ -34,12 +57,12 @@ public class WaitingForApproval {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+//	public String getLastName() {
+//		return lastName;
+//	}
+//	public void setLastName(String lastName) {
+//		this.lastName = lastName;
+//	}
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,7 @@ public class MainServiceImpl implements MainService {
 	StringConstants sConstants = new StringConstants();
 
 	public ResponseEntity onBoardUser(Onboarding newOnboard) {
+		String dUrl="http://departments/dept/getDepartmentNameById/";
 		Response r = new Response<>();
 		try {
 			java.sql.Date tSqlDate = new java.sql.Date(newOnboard.getOnboardDate().getTime());
@@ -59,6 +61,8 @@ public class MainServiceImpl implements MainService {
 			// SimpleDateFormat("MM-dd-yyyy").format(newOnboard.getDateOfJoining()));
 			// System.out.println(new
 			// SimpleDateFormat("yyyy-MM-dd").format(newOnboard.getDateOfJoining()));
+			String depName=template.getForObject(dUrl+newOnboard.getDepartment(), String.class);
+			newOnboard.setDepartment(depName);
 			newOnboard.setUpdatedOn(tsqDate1);
 			newOnboard.setWaitingforapprovalStatus(true);
 			newOnboard.setRejectedStatus(false);
@@ -77,32 +81,39 @@ public class MainServiceImpl implements MainService {
 	}
 
 	public ResponseEntity<Onboarding> waitingForApprovelStatus() {
-		Response r = new Response<>();
+		Response r = new Response<WaitingForApproval>();
+		
+		
 		try {
-			WaitingForApproval wa = new WaitingForApproval();
+			List<WaitingForApproval> waList = new ArrayList<>();
 
 			List<Onboarding> onboarding = onRepo.findByWaitingforapprovalStatus(true);
 			if (!onboarding.isEmpty()) {
 				onboarding.forEach(on -> {
+					WaitingForApproval wa = new WaitingForApproval();
 
 					wa.setOnboardingId(on.getOnboardingId());
-					wa.setFirstName(on.getFirstName());
+					wa.setFirstName(on.getFirstName()+" "+on.getLastName());
+					//wa.setLastName(on.getLastName());
 					
 					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 					String strDate= formatter.format(on.getDateOfJoining());
-					
+					wa.setDepartment(on.getDepartment());
 					wa.setDateOfJoining(strDate);
 					wa.setDesignation(on.getDesignation());
 					wa.setEmail(on.getEmail());
 					wa.setJobTitle(on.getJobTitle());
 					wa.setPhoneNumber(on.getPhoneNumber());
 					wa.setYearsOfExperience(on.getYearsOfExperience());
+					wa.setPrimarySkills(on.getPrimarySkills());
+					wa.setSecondarySkills(on.getSecondarySkills());
+					waList.add(wa);
 				});
 
-				r.setStatus(true);
-				r.setMessage(sConstants.GET_RESPONSE);
-				r.setData(wa);
-				return new ResponseEntity(r, HttpStatus.OK);
+//				r.setStatus(true);
+//				r.setMessage(sConstants.GET_RESPONSE);
+//				r.setData(wa);
+				return new ResponseEntity(waList, HttpStatus.OK);
 			} else {
 				r.setStatus(true);
 				r.setMessage(sConstants.NO_ENTRIES_FOUND);
