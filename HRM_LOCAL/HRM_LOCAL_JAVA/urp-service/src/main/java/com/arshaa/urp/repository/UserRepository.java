@@ -6,4 +6,6 @@ import com.arshaa.urp.entity.Users;
 
 public interface UserRepository extends JpaRepository<Users, Integer> {
 
+	Users getByEmployeeId(String employeeId);
+	
 }

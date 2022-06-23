@@ -1,202 +1,196 @@
-// import React from 'react'
-// import { Card, Col, Row } from 'react-bootstrap'
-
-// import SearchFields from './SearchFields'
-// import UserTable from './UserTable'
-
-import React, { useState, useEffect, useLayoutEffect } from 'react'
-import MaterialTable from 'material-table'
-import Grid from '@mui/material/Grid'
+import React, { useState, useEffect } from "react";
+import MaterialTable from "material-table";
+import Card from "react-bootstrap/Card";
+import Grid from "@mui/material/Grid";
 import axios from "../../../Uri";
-export default function UsersTable() {
-  const userData = sessionStorage.getItem("userdata");
 
-  const userData1 = JSON.parse(userData);
+import { Button, Modal, Stack } from "react-bootstrap";
+import ApprovalUpdateForm from "./ApprovalUpdateForm";
+import AddUser from "./AddUser";
+import ApproveDelete from "./ApproveDelete";
 
-  const employeeid = userData1.data.employeeId;
-  console.log(employeeid);
+function OnboardedEmployeesTable() {
+
+  const [show, setShow] = useState(false);
+  const [deleteUser, setDeleteUser] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const deleteHandleClose = () => setDeleteUser(false);
+  
+
+  const handleShow = () => setShow(false);
+  const viewHandleShow = () => setShow(false);
+  
+
+  const [updateOnboard, setUpdateOnboard] = useState({});
+  const [deleteOnboard, setDeleteOnboard] = useState({});
+  
+
   const [data, setData] = useState([]);
-  const [role, setRole] = useState([])
-  const [empID, setEmpID] = useState([]);
-  const [status, setStatus] = useState({})
-  const [status1, setStatus1] = useState({})
-  useEffect(() => {
-    axios.get("/user/getAllRoles").then((res) => {
-      console.log(res.data)
-      setRole(res.data.data)
-    });
-  }, []);
-  console.log(role)
-  const loadDept = () => {
-    role.map(row => status[row.roleName] = row.roleName)
-    console.log(status)
-    setStatus(status)
-  }
+  // const [empdata, setEmpdata] = useState([]);
+  const [status, setStatus] = useState(false);
+  const [deleteStatus, setDeleteStatus] = useState(false);
+  // const [status1, setStatus1] = useState(false);
+  // const [viewStatus1, setViewStatus1] = useState(false);
 
-  useEffect(() => {
-    loadDept()
-  })
-  
-  useEffect(() => {
-    axios.get("/emp/getAllEmployeeMasterData").then((res) => {
-      console.log(res.data)
-      setEmpID(res.data.data)
-    });
-  }, []);
-
-  const loadIDs = () => {
-
-    empID.map(row => status1[row.employeeId] = row.employeeId)
-    console.log(status1)
-    setStatus1(status1)
-  }
-  useEffect(() => {
-    loadIDs()
-  })
-  
-  useEffect(() => {
-    loadData();
-  }, []);
-  const loadData = async () => {
-    const res = await axios.get("/user/getUsersData");
-    setData(res.data.data);
-    console.log(res.data.data);
+  const pull_data = () => {
+    setStatus(true);
+    setDeleteStatus(true);
+    
   };
-  console.log(data)
+
+  useEffect(() => {
+    loadRoles();
+  }, [status]);
+  useEffect(() => {
+    loadRoles();
+  }, [deleteStatus]);
+  
+
+  const loadRoles = async (e) => {
+    const response = await axios.get("/user/getUsersData");
+    setData(response.data.data);
+    console.log(response.data.data);
+  };
 
   const [columns, setColumns] = useState([
-  
-
     {
-      title: 'Employee ID', field: 'employeeId', 
-      validate:rowData =>{ if(rowData.employeeId===undefined){ return "Employee ID is Required" } else if(!rowData.employeeId){ return" Please enter valid name" } return true },
-      lookup: status1, headerStyle: {
-        backgroundColor: "#FE924A",
-        color: "white",
-      },
-      
+      title: "Employee ID",
+      field: "employeeId",
+      type: "text",
     },
-    {
-    title: 'Role', field: 'userType',
-    validate:rowData=>{
-      if(rowData.userType===undefined || rowData.userType===""){
-      return "Required"
-      }
-      return true
-      },
-       lookup: status, headerStyle: {
-      backgroundColor: "#FE924A",
-      color: "white",
-    },
-  },
     
+    {
+      title: "Role",
+      field: "roleName",
+      type: "text",
+    },
   ]);
-  const obj = {updatedBy:employeeid}
 
   return (
-    <Grid>
-      <MaterialTable
-        title="User Management"
-        columns={columns}
-        data={data}
-        editable={{
-          onRowAdd: newData =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                console.log(newData)
-                const newData1 = Object.assign(newData,obj)
-                const res = axios.post("/user/addUser", newData1)
-                console.log(res)
-                setData([...data, newData]);
-                loadData();
-                resolve();
-              }, 1000)
-            }),
-          onRowUpdate: (updatedRow, oldRow) =>
-            new Promise((resolve, reject) => {
-              console.log(oldRow);
-              console.log(updatedRow);
-              const index = oldRow.uId;
-              console.log(index);
-              const updatedRows = [...data];
-              console.log(updatedRows);
-              updatedRows[oldRow.tableData.id] = updatedRow;
-              console.log(updatedRows);
-              setTimeout(() => {
-                console.log(index)
-                console.log(updatedRow)
-                const res = axios.put(`/user/updateUserById/${index}`, updatedRow)
-                  .then((resp) => {
-                    console.log(resp);
-                    loadData()
-                    setData(updatedRows)
-                  })
-                  .catch((err) => {
-                    console.log("not updated")
-                    // toast.error("Server error");
-                  });
-                setData(updatedRows);
-                console.log("updated")
-                // toast.success(" Updated Successfully");
-                console.log(updatedRows);
-                resolve();
-              });
-            }),
-          onRowDelete: oldData =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                console.log(oldData)
-                const dataDelete = [...data];
-                const index = oldData.uId;
-                dataDelete.splice(index, 1);
-                const res = axios.delete(`/user/deleteUserById/${index}`)
-                  .then((res) => {
-                    console.log(res)
-                    loadData()
-                  })
-                console.log(dataDelete)
-                //setData(dataDelete);
-                resolve()
-              }, 1000)
-            }),
+    <div>
+      <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ApprovalUpdateForm updateOnboard={updateOnboard} func={pull_data} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          {/* <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button> */}
+        </Modal.Footer>
+
+      </Modal>
+      <Modal show={deleteUser} onHide={deleteHandleClose}>
+      <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ApproveDelete deleteOnboard={deleteOnboard} func={pull_data} deleteHandleClose={deleteHandleClose}/>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          {/* <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button> */}
+        </Modal.Footer>
+
+      </Modal>
+
+      
+      <Card
+        style={{
+          paddingTop: "20px",
+          paddingRight: "10px",
+          paddingLeft: "10px",
+          paddingBottom: "10px",
         }}
-        options={{
-          paging: false,
-          // paginationType:'normal',
-          // pageSize:20,
-          addRowPosition:"first",
-          actionsColumnIndex: -1,
-          headerStyle: {
-            backgroundColor: "#FE924A",
-            color: "white",
-          },
-        }}
-      />
-    </Grid>
-  )
+      >
+        <h3 align="center" style={{ color: "orange" }}>
+          Onboarded Employees Table
+        </h3>
+        <AddUser func={pull_data} />
+        
+        <Grid style={{ borderBlockEndWidth: "2px" }}>
+          <MaterialTable
+            title="Onboarded Employees Table"
+            columns={columns}
+            style={{ color: "black", fontSize: "1rem" }}
+            data={data}
+            editable={{
+
+            }}
+            options={{
+              headerStyle: {
+                backgroundColor: "#FF9E14",
+                color: "white",
+                fontSize: "20px",
+              },
+              addRowPosition: "first",
+              actionsColumnIndex: -1,
+              grouping: true,
+              exportButton: true,
+            }}
+            actions={[
+              {
+                icon:"button",
+                
+                tooltip: "Save User",
+                onClick: (event, rowData) =>
+                  alert("You want to delete " + rowData.firstName),
+               
+              },
+            ]}
+            components={{
+              Action: (props) => (
+                <div>
+                  <Stack direction="horizontal" gap={3}>
+                    <Button
+                      variant="info"
+                      onClick={(event) => {
+                        setShow(true);
+                        console.log(props);
+                        setUpdateOnboard(props.data);
+                      }}
+                    >
+                      Edit
+                    </Button>{" "}
+                    {/* <Button
+                      variant="secondary"
+                      onClick={(event) => {
+                        setViewShow(true);
+                        console.log(props);
+                        setDeleteClient(props.data);
+                      }}
+                    >
+                      Delete
+                    </Button> */}
+                    <Button
+                      variant="primary"
+                      onClick={(event) => {
+                        setDeleteUser(true);
+                        console.log(props);
+                        setDeleteOnboard(props.data);
+                      }}
+                    >
+                      Delete
+                    </Button>
+                  </Stack>
+                </div>
+              ),
+            }}
+          />
+        </Grid>
+      </Card>
+      {/* <Example /> */}
+    </div>
+  );
 }
-
-
-// const UserName = () => {
-//     return (
-//         <div>
-//             <Row>
-//                 <Col>
-//                     <Card>
-//                         <Card.Header>
-//                             <Card.Body>
-//                                 <Card.Title>Users</Card.Title>
-//                                 <Card.Subtitle className="mb-2 text-muted">Administration/Users </Card.Subtitle>
-//                             </Card.Body>
-//                         </Card.Header>
-//                     </Card>
-//                     <SearchFields />
-//                     <UserTable />
-//                 </Col>
-//             </Row>
-
-
-//         </div>
-//     )
-// }
-
+export default OnboardedEmployeesTable;

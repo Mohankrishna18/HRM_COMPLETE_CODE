@@ -292,14 +292,15 @@ public class UserService {
 		}
 	}
 
-	public ResponseEntity updateUserById(int uId, Users updateUser) {
+	public ResponseEntity updateUserById(String employeeId, Users updateUser) {
 		Response r = new Response<>();
 
 		try {
 
-			Users u = uRepo.getById(uId);
+			Users u = uRepo.getByEmployeeId(employeeId);
 			u.setEmployeeId(updateUser.getEmployeeId());
 			u.setUpdatedBy(updateUser.getUpdatedBy());
+			u.setRoleName(updateUser.getRoleName());
 			u.setUserName(updateUser.getUserName());
 			Users upUsers = uRepo.save(u);
 			r.setStatus(true);
@@ -316,10 +317,10 @@ public class UserService {
 
 	}
 
-	public ResponseEntity deleteById(int uId) {
+	public ResponseEntity deleteById(String employeeId) {
 		Response r = new Response<>();
 		try {
-			Users user = uRepo.getById(uId);
+			Users user = uRepo.getByEmployeeId(employeeId);
 			uRepo.delete(user);
 			r.setStatus(true);
 			r.setMessage("Deleted Successfully");
