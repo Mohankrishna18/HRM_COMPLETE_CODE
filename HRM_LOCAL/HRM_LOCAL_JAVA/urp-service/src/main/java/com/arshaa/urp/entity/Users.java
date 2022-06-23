@@ -18,7 +18,7 @@ public class Users {
 	private String employeeId;
     @Column
 	private String updatedBy;
-    private String userType;
+    private String roleName;
    
     public int getuId() {
     return uId;
@@ -44,19 +44,19 @@ public class Users {
     public void setUpdatedBy(String updatedBy) {
     this.updatedBy = updatedBy;
     }
-    public String getUserType() {
-    return userType;
+    public String getRoleName() {
+    return roleName;
     }
-    public void setUserType(String userType) {
-    this.userType = userType;
+    public void setRoleName(String roleName) {
+    this.roleName = roleName;
     }
-    public Users(int uId, String userName, String employeeId, String updatedBy, String userType) {
+    public Users(int uId, String userName, String employeeId, String updatedBy, String roleName) {
     super();
     this.uId = uId;
     this.userName = userName;
     this.employeeId = employeeId;
     this.updatedBy = updatedBy;
-    this.userType = userType;
+    this.roleName = roleName;
     }
     public Users() {
     super();
