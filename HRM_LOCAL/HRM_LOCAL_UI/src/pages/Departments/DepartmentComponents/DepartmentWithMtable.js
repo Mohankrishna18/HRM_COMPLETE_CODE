@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react'
 import MaterialTable from 'material-table'
 import Grid from '@mui/material/Grid'
 import axios from "../../../Uri";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
+
+
 export default function Editable() {
     const [data, setData] = useState([]);
 
@@ -102,6 +106,10 @@ export default function Editable() {
                                         console.log(res)
                                         loadData()
                                     })
+                                    .catch((err) =>{
+                                        // alert("Cant Delete Department")
+                                        toast.error("Cannot Delete Department");
+                                    })
                                 console.log(dataDelete)
                                 //setData(dataDelete);
 
@@ -125,3 +133,4 @@ export default function Editable() {
         </Grid>
     )
 }
+

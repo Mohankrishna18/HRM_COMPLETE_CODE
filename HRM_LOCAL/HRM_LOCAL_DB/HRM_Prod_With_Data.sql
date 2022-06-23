@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: localhost    Database: prod_with_data
+-- Host: localhost    Database: hrm_latest
 -- ------------------------------------------------------
 -- Server version	8.0.28
 
@@ -118,7 +118,8 @@ CREATE TABLE `designationmaster` (
   PRIMARY KEY (`designation_id`),
   UNIQUE KEY `designation_name_UNIQUE` (`designation_name`),
   KEY `fk_updated_by__designationmaster_idx` (`updated_by`),
-  KEY `fk_department_name__designationmaster_idx` (`department_id`),
+  KEY `fk_department_name__designationmaster_idx` (`department_name`),
+  CONSTRAINT `fk_department_name__designationmaster` FOREIGN KEY (`department_name`) REFERENCES `departmentmaster` (`department_name`) ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT `fk_updated_by__designationmaster` FOREIGN KEY (`updated_by`) REFERENCES `employeemaster` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -971,4 +972,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-22 17:10:08
+-- Dump completed on 2022-06-23 13:55:45
