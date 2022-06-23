@@ -39,35 +39,35 @@ const ApprovedEmployeesTable = () => {
                     Onboarding Id
                   </th>
 
-                  <th scope="col" class="col-sm-2">
+                  <th scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                     Designation
                   </th>
 
-                  <th scope="col" class="col-sm-2">
-                    First Name
+                  <th scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
+                     Name
                   </th>
 
-                  <th scope="col" class="col-sm-2">
+                  {/* <th scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                     Last Name
-                  </th>
+                  </th> */}
 
                   <th scope="col" class="" style={{textAlign: 'center'}}>
                     Email
                   </th>
 
-                  <th scope="col" class="col-sm-2">
+                  <th scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                     Phone Number
                   </th>
 
-                  <th scope="col" class="col-sm-2">
+                  <th scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                     Job Title
                   </th>
 
-                  <th scope="col" class="">
+                  <th scope="col" class="" style={{ textAlign: 'center' }}>
                     Years Of Experience
                   </th>
 
-                  <th scope="col" class="col-sm-2">
+                  <th scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                     Date Of Joining
                   </th>
                 </tr>
@@ -78,21 +78,21 @@ const ApprovedEmployeesTable = () => {
                   users.map((user, index) => (
                     <tr>
                       <th scope="row">{index + 1}</th>
-                      <td>{user.onboardingId}</td>
+                      <td style={{ textAlign: 'center' }}>{user.onboardingId}</td>
 
-                      <td>{user.designation}</td>
+                      <td style={{ textAlign: 'center' }}>{user.designation}</td>
 
-                      <td>{user.firstName}</td>
+                      <td style={{ textAlign: 'center' }}>{user.firstName}</td>
 
-                      <td>{user.lastName}</td>
-                      <td>{user.email}</td>
+                      {/* <td style={{ textAlign: 'center' }}>{user.lastName}</td> */}
+                      <td style={{ textAlign: 'center' }}>{user.email}</td>
 
-                      <td>{user.phoneNumber}</td>
+                      <td style={{ textAlign: 'center' }}>{user.phoneNumber}</td>
 
-                      <td>{user.jobTitle}</td>
+                      <td style={{ textAlign: 'center' }}>{user.jobTitle}</td>
 
                       <td style={{textAlign: 'center'}}>{user.yearsOfExperience}</td>
-                      <td>{user.dateOfJoining}</td>
+                      <td style={{ textAlign: 'center' }}>{user.dateOfJoining}</td>
 
                       
                     </tr>

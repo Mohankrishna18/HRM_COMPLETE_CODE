@@ -11,7 +11,8 @@ const EmployeeTablee = () => {
     axios
       .get("/emp/waitingForApprovelStatus")
       .then((onboardingEmployeesResponse) => {
-        setUsers(onboardingEmployeesResponse.data.data);
+        setUsers(onboardingEmployeesResponse.data);
+        console.log(onboardingEmployeesResponse.data);
       })
       .catch((err) => console.error(err));
   }, []); // console.log(users.reportingManager) //Formate Date 
@@ -37,23 +38,25 @@ const EmployeeTablee = () => {
                 <th scope="col">No</th>
                 <th scope="col" class="th-lg">
                   Onboarding Id
-                </th> <th scope="col" class="col-sm-2">
+                </th> <th scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                   Designation
-                </th> <th scope="col" class="col-sm-2">
-                  First Name
-                </th> <th scope="col" class="col-sm-2">
+                </th> <th scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
+                   Name
+                </th> 
+                {/* <th scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                   Last Name
-                </th> <th scope="col" class="">
+                </th>  */}
+                <th scope="col" class="" style={{ textAlign: 'center' }}>
                   Email
-                </th> <th scope="col" class="col-sm-2">
+                </th> <th scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                   Phone Number
-                </th> <th scope="col" class="col-sm-2">
+                </th> <th scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                   Job Title
-                </th> <th scope="col" class="">
+                </th> <th scope="col" class="" style={{ textAlign: 'center' }}>
                   Years Of Experience
-                </th> <th scope="col" class="col-sm-2">
+                </th> <th scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                   Date Of Joining
-                </th> <th scope="col" class="th-lg">
+                </th> <th scope="col" class="th-lg" style={{ textAlign: 'center' }}>
                   {" "}
                   Actions
                 </th>
@@ -63,15 +66,15 @@ const EmployeeTablee = () => {
                 users.map((user, index) => (
                   <tr>
                     <th scope="row">{index + 1}</th>
-                    <td>{user.onboardingId}</td> 
-                    <td>{user.designation}</td> 
-                    <td>{user.firstName}</td>
-                    <td>{user.lastName}</td>
-                    <td>{user.email}</td> 
-                    <td>{user.phoneNumber}</td> 
-                    <td>{user.jobTitle}</td> 
+                    <td style={{ textAlign: 'center' }}>{user.onboardingId}</td> 
+                    <td style={{ textAlign: 'center' }}>{user.designation}</td> 
+                    <td style={{ textAlign: 'center' }}>{user.firstName}</td>
+                    {/* <td style={{ textAlign: 'center' }}>{user.lastName}</td> */}
+                    <td style={{ textAlign: 'center' }}>{user.email}</td> 
+                    <td style={{ textAlign: 'center' }}>{user.phoneNumber}</td> 
+                    <td style={{ textAlign: 'center' }}>{user.jobTitle}</td> 
                     <td style={{ textAlign: 'center' }}>{user.yearsOfExperience}</td>
-                    <td>{user.dateOfJoining}</td>
+                    <td style={{ textAlign: 'center' }}>{user.dateOfJoining}</td>
                     {console.log(user.comments)}
                     <td>
                       <div class="hstack gap-3">
