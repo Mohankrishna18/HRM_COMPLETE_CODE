@@ -14,6 +14,14 @@ const ApprovedEmployeesTable = () => {
       .catch((err) => console.error(err));
   }, []);
 
+  function formatDate(date) {
+    var datePart = date.match(/\d+/g),
+      year = datePart[0].substring(2), // get only two digits
+      month = datePart[1],
+      day = datePart[2];
+    return day + "-" + month + "-" + year;
+  }
+
   return (
     <div>
       <div class="table-responsive .text-nowrap" id="DataTable">
@@ -43,7 +51,7 @@ const ApprovedEmployeesTable = () => {
                     Last Name
                   </th>
 
-                  <th scope="col" class="">
+                  <th scope="col" class="" style={{textAlign: 'center'}}>
                     Email
                   </th>
 
@@ -72,7 +80,7 @@ const ApprovedEmployeesTable = () => {
                       <th scope="row">{index + 1}</th>
                       <td>{user.onboardingId}</td>
 
-                      <td>{user.desgination}</td>
+                      <td>{user.designation}</td>
 
                       <td>{user.firstName}</td>
 
@@ -83,7 +91,7 @@ const ApprovedEmployeesTable = () => {
 
                       <td>{user.jobTitle}</td>
 
-                      <td>{user.yearsOfExperience}</td>
+                      <td style={{textAlign: 'center'}}>{user.yearsOfExperience}</td>
                       <td>{user.dateOfJoining}</td>
 
                       

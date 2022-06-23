@@ -3,19 +3,14 @@ import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col, Table } from "react-bootstrap";
 import { matches } from "lodash";
 
-
+import { Image } from "react-bootstrap";
 
 import axios from "../../../Uri";
+import { split } from "lodash";
+
+import Avatar from '@mui/material/Avatar';
 
 
-
-// function formatDate(dateOfJoining){
-//  var datePart = dateOfJoining.match(/\d+/g),
-//     year = datePart[0].substring(2), // get only two digits
-//     month = datePart[1],
-//     day = datePart[2]; 
-//   return day + "-" + month + "-" + year;
-//  }
 
 
 const MyProfile = () => {
@@ -24,10 +19,10 @@ const MyProfile = () => {
   // console.log(userData);
   const userData1 = JSON.parse(userData);
   const employeeid = userData1.data.employeeId;
-
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
-  var dateTime = getEmployeeDetails.dateOfJoining;
+  //var dateTime = getEmployeeDetails.dateOfJoining;
 
+  const [imge, setImge] = useState([]);
 
   useEffect(() => {
     axios
@@ -35,9 +30,27 @@ const MyProfile = () => {
       .then((response) => {
         setGetEmployeeDetails(response.data.data);
       });
-
   }, []);
-  // console.log(getEmployeeDetails);
+  console.log(getEmployeeDetails)
+
+
+
+  useEffect(() => {
+    axios
+      .get(`/emp/files/${employeeid}`)
+      .then((response) => {
+        console.log(response.data);
+        setImge(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("something wrong");
+      });
+  }, []);
+  console.log(imge)
+
+
+
 
   // function formatDate(fromDate){
   //   var datePart = fromDate.match(/\d+/g),
@@ -51,32 +64,131 @@ const MyProfile = () => {
 
   var doj = new Date(getEmployeeDetails.dateOfJoining);
   var dd = String(doj.getDate()).padStart(2, '0');
-  var mm = String(doj.getMonth() +1).padStart(2, '0');
+  var mm = String(doj.getMonth() + 1).padStart(2, '0');
   var yyyy = doj.getFullYear();
-   var doj1 = dd + '-' + mm + '-' + yyyy;
-  // console.log(doj1);
+  var doj1 = dd + '-' + mm + '-' + yyyy;
+  console.log(doj1);
 
-  // console.log(getEmployeeDetails.dateOfBirth)
-  var dob = new Date(getEmployeeDetails.dateOfBirth);
-  var dd = String(dob.getDate()).padStart(2, '0');
-  var mm = String(dob.getMonth() + 1).padStart(2, '0');
-  var yyyy = dob.getFullYear();
-   dob = dd + '-' + mm + '-' + yyyy;
-  // console.log(dob);
+
+
+  console.log(getEmployeeDetails.dateOfBirth)
+
+  // function ChangeFormateDate(getEmployeeDetails.dateOfBirth)
+  // {
+  //    return oldDate.toString().split("/").reverse().join("/");
+  // }
+
+
+
+  // console.log(dob)
+  //  var dob12 = dob.split("-").reverse().join("-");
+  //  console.log(dob12)
+
+
+  // var dd = dob.getDate();
+  // var mm = dob.getMonth()+1;
+  // var yyyy = dob.getFullYear();
+  // var dob1 = dd + '-' + mm + '-' + yyyy;
+  //  console.log(dob1); 
 
   // console.log(getEmployeeDetails.passportExpiryDate)
   var passportDate = new Date(getEmployeeDetails.passportExpiryDate);
   var dd = String(passportDate.getDate()).padStart(2, '0');
   var mm = String(passportDate.getMonth() + 1).padStart(2, '0');
   var yyyy = passportDate.getFullYear();
-  const passportDate1 = dd + '-' + mm + '-' + yyyy;
-  // console.log(passportDate1);
+  var passportDate1 = dd + '-' + mm + '-' + yyyy;
+  console.log(passportDate1);
+
+  var exitDate = new Date(getEmployeeDetails.exitDate);
+  var dd = String(exitDate.getDate()).padStart(2, '0');
+  var mm = String(exitDate.getMonth() + 1).padStart(2, '0');
+  var yyyy = exitDate.getFullYear();
+  var exitDate1 = dd + '-' + mm + '-' + yyyy;
+
+  var GraduationJoiningYear = new Date(getEmployeeDetails.graduationJoiningYear);
+  var dd = String(GraduationJoiningYear.getDate()).padStart(2, '0');
+  var mm = String(GraduationJoiningYear.getMonth() + 1).padStart(2, '0');
+  var yyyy = GraduationJoiningYear.getFullYear();
+  var GraduationJoiningYear1 = dd + '-' + mm + '-' + yyyy;
+  console.log(GraduationJoiningYear1);
+
+
+  var tempDate = new Date(getEmployeeDetails.dateOfBirth);
+  var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(dob)
+
+
+
+  var tempDate = new Date(getEmployeeDetails.passportExpiryDate);
+  var ped = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(ped)
+
+  var tempDate = new Date(getEmployeeDetails.postgraduationJoiningYear);
+  var postgraduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(postgraduationJoiningYear1)
+
+  var tempDate = new Date(getEmployeeDetails.postgraduationPassedYear);
+  var postgraduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(postgraduationPassedYear1)
+
+  var tempDate = new Date(getEmployeeDetails.graduationJoiningYear);
+  var graduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(graduationJoiningYear1)
+
+  var tempDate = new Date(getEmployeeDetails.graduationPassedYear);
+  var graduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(graduationPassedYear1)
+
+  var tempDate = new Date(getEmployeeDetails.intermediateJoiningYear);
+  var intermediateJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(intermediateJoiningYear1)
+
+  var tempDate = new Date(getEmployeeDetails.intermediatePassedYear);
+  var intermediatePassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(intermediatePassedYear1)
+
+  var tempDate = new Date(getEmployeeDetails.sscJoiningYear);
+  var sscJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(sscJoiningYear1)
+
+  var tempDate = new Date(getEmployeeDetails.sscPassedYear);
+  var sscPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(sscPassedYear1)
+
+  var tempDate = new Date(getEmployeeDetails.previousCompany1_joiningDate);
+  var previousCompany1_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(previousCompany1_joiningDate1)
+
+  var tempDate = new Date(getEmployeeDetails.previousCompany1_relievingDate);
+  var previousCompany1_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(previousCompany1_relievingDate1)
+
+  var tempDate = new Date(getEmployeeDetails.previousCompany2_joiningDate);
+  var previousCompany2_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(previousCompany2_joiningDate1)
+
+  var tempDate = new Date(getEmployeeDetails.previousCompany2_relievingDate);
+  var previousCompany2_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(previousCompany2_relievingDate1)
+
+  var tempDate = new Date(getEmployeeDetails.previousCompany3_joiningDate);
+  var previousCompany3_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(previousCompany3_joiningDate1)
+
+  var tempDate = new Date(getEmployeeDetails.previousCompany3_relievingDate);
+  var previousCompany3_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(previousCompany3_relievingDate1)
+
+
+
+  var dob11 = getEmployeeDetails.dateOfBirth
+
 
   return (
     <>
       <Row>
         <Col>
-          <Card responsive className='scroll'  style={{ marginTop:10}}>
+          <Card responsive className='scroll' style={{ marginTop: 10 }}>
             <Card.Header>
               <Card.Body>
                 <Card.Title> My Profile</Card.Title>
@@ -93,21 +205,46 @@ const MyProfile = () => {
                               <Col>
                                 <Row style={{
                                   alignContent: "center",
-                                  paddingTop: 10,
-                                  paddingLeft: 100,
+                                  paddingTop: 50,
+                                  paddingLeft: 200,
+                                  marginLeft: "170px"
                                 }}>
                                   <Col>{getEmployeeDetails.profilePhoto}</Col>
                                 </Row>
                               </Col>
                               <Row><Col>
-                                <Card.Title
-                                  style={{
-                                    fontSize: 30,
-                                    textAlign: "center",
-                                    paddingTop: 90,
-                                  }}>
-                                  {getEmployeeDetails.firstName} {getEmployeeDetails.lastName}
+                                <Card.Title>
+                                  <Row>
 
+                                    <Col>
+
+                                      <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
+
+                                        // {/* <Image src={imge.url} style={{ */}
+
+                                        height: "150px",
+                                        width: "150px",
+                                        borderRadius: "110px",
+                                        alignItems: "center",
+                                        marginTop: "50px",
+                                        marginLeft: "100px"
+                                      }} />
+
+                                    </Col>
+                                    <Col style={{
+                                      fontSize: 20,
+                                      textAlign: "center",
+                                      paddingTop: 40,
+                                      paddingBottom: 40,
+                                      text: "bold",
+                                      marginRight: "200px",
+
+                                    }}>
+                                      {getEmployeeDetails.firstName} {getEmployeeDetails.lastName}
+
+                                    </Col>
+
+                                  </Row>
                                 </Card.Title></Col></Row>
                             </Row>
                           </Col>
@@ -117,7 +254,7 @@ const MyProfile = () => {
                               <Row
                                 style={{
                                   paddingTop: 20,
-                                  paddingBottom: 10,
+                                  paddingBottom: 15,
                                 }}
                               >
                                 <Col>
@@ -131,7 +268,7 @@ const MyProfile = () => {
                                   </Card.Text>
                                 </Col>
                               </Row>
-                              <Row style={{ paddingBottom: 10 }}>
+                              <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                   <Card.Title style={{}}>
                                     <h6> Designation:</h6>
@@ -143,7 +280,19 @@ const MyProfile = () => {
                                   </Card.Text>
                                 </Col>
                               </Row>
-                              <Row style={{ paddingBottom: 10 }}>
+                              <Row style={{ paddingBottom: 15 }}>
+                                <Col>
+                                  <Card.Title style={{}}>
+                                    <h6> Years of Experience:</h6>
+                                  </Card.Title>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                  <Card.Text style={{}}>
+                                    {getEmployeeDetails.yearsOfExperience}
+                                  </Card.Text>
+                                </Col>
+                              </Row>
+                              <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                   <Card.Title style={{}}>
                                     <h6>Date of Joining: </h6>
@@ -156,7 +305,7 @@ const MyProfile = () => {
                                   </Card.Text>
                                 </Col>
                               </Row>
-                              <Row style={{ paddingBottom: 10 }}>
+                              <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                   <Card.Text style={{}}>
                                     <h6>Reporting Manager: </h6>
@@ -168,10 +317,10 @@ const MyProfile = () => {
                                   </Card.Text>
                                 </Col>
                               </Row>
-                              <Row style={{ paddingBottom: 10 }}>
+                              <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                   <Card.Text style={{}}>
-                                    <h6>Employee Type: </h6>
+                                    <h6>Employment Type: </h6>
                                   </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
@@ -180,6 +329,44 @@ const MyProfile = () => {
                                   </Card.Text>
                                 </Col>
                               </Row>
+                              <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                  <Card.Text style={{}}>
+                                    <h6>Band: </h6>
+                                  </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                  <Card.Text style={{}}>
+                                    {getEmployeeDetails.band}
+                                  </Card.Text>
+                                </Col>
+                              </Row>
+                              <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                  <Card.Text style={{}}>
+                                    <h6>Project: </h6>
+                                  </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                  <Card.Text style={{}}>
+                                    {getEmployeeDetails.project}
+                                  </Card.Text>
+                                </Col>
+                              </Row>
+                              <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                  <Card.Text style={{}}>
+                                    <h6>Business Unit: </h6>
+                                  </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                  <Card.Text style={{}}>
+                                    {getEmployeeDetails.businessUnit}
+                                  </Card.Text>
+                                </Col>
+                              </Row>
+
+
                             </Card.Body>
                           </Col>
                         </Row>
@@ -190,13 +377,13 @@ const MyProfile = () => {
                 </Row>{" "}
                 <Row style={{ marginTop: 20 }}>
                   <Col>
-                    <Card style={{ padding: 30, paddingBottom: 70 }}>
+                    <Card style={{ padding: 30, paddingBottom: 45 }}>
                       <Card.Title>
                         <h5>Personal Information:</h5>
                       </Card.Title>
                       <Card.Body >
 
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
+                        <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
                           <Col>
                             <Card.Subtitle>
                               Email:
@@ -208,7 +395,7 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                         </Row>
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
+                        <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
                           <Col>
                             <Card.Subtitle
                             >
@@ -221,7 +408,7 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                         </Row>
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
+                        <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
                           <Col>
                             <Card.Subtitle
 
@@ -230,12 +417,13 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                           <Col md={{ offset: 1 }}>
-                            <Card.Subtitle>
-                            {dob}
-                            </Card.Subtitle>
+                            {getEmployeeDetails.dateOfBirth ? (<Card.Subtitle>
+                              {dob}
+                            </Card.Subtitle>) : (<div></div>)}
+
                           </Col>
                         </Row>
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
+                        <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
                           <Col>
                             <Card.Subtitle
                             >
@@ -248,7 +436,7 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                         </Row>
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
+                        <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
                           <Col>
                             <Card.Subtitle
 
@@ -262,7 +450,7 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                         </Row>
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
+                        <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
                           <Col>
                             <Card.Subtitle
 
@@ -276,40 +464,13 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                         </Row>
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
-                          <Col>
-                            <Card.Subtitle
 
-                            >
-                              Passport Number:
-                            </Card.Subtitle>
-                          </Col>
-                          <Col md={{ offset: 1 }}>
-                            <Card.Subtitle>
-                              {getEmployeeDetails.passportNo}
-                            </Card.Subtitle>
-                          </Col>
-                        </Row>
-                        <Row style={{ paddingLeft: 15, paddingBottom: 30 }}>
-                          <Col>
-                            <Card.Subtitle
-
-                            >
-                              Passport Expity Date:
-                            </Card.Subtitle>
-                          </Col>
-                          <Col md={{ offset: 1 }}>
-                            <Card.Subtitle>
-                              {passportDate1}
-                            </Card.Subtitle>
-                          </Col>
-                        </Row>
                       </Card.Body>
 
                     </Card>
                   </Col>
                   <Col>
-                    <Card style={{ padding: 30, paddingBottom: 50 }}>
+                    <Card style={{ padding: 30, paddingBottom: 0 }}>
                       <Card.Title>
                         <h5>Address:</h5>
                       </Card.Title>
@@ -422,191 +583,330 @@ const MyProfile = () => {
                     </Card>
                   </Col>
                 </Row>
-                <Row>
+
+                <Row style={{ marginTop: 20 }}>
                   <Col>
-                    <Card style={{ padding: 30, marginTop: 20, paddingBottom: 0 }}>
+                    <Card style={{ padding: 30, paddingBottom: 20 }}>
                       <Card.Title>
-                        <h5>Educational Information:</h5>
+                        <h5>Additional Details:</h5>
                       </Card.Title>
-                      <Card.Body style={{ paddingLeft: 20 }}>
-                        {/* <Timeline theme={customTheme}>
-                          <BodyContent>
-                            <Section
-                              title={
-                                getEmployeeDetails.postgraduationBoardOfUniversity
-                              }
-                            >
-                              <Description
-                                text={getEmployeeDetails.postgraduationInstituteName}
-                              />
-                              <Description
-                                text={getEmployeeDetails.postgraduationCourseName}
-                              />
-                              <Description
-                                text={getEmployeeDetails.postgraduationGrade}
-                              />
-                            </Section>
-                            <Section
-                              title={
-                                getEmployeeDetails.graduationBoardOfUniversity
-                              }
-                            >
-                              <Description
-                                text={getEmployeeDetails.graduationInstituteName}
-                              />{" "}
-                              <Description
-                                text={getEmployeeDetails.graduationCourseName}
-                              />
-                              <Description
-                                text={getEmployeeDetails.graduationGrade}
-                              />
-                            </Section>{" "}
-                            <Section
-                              title={
-                                getEmployeeDetails.intermediateBoardOfUniversity
-                              }
-                            >
-                              <Description
-                                text={
-                                  getEmployeeDetails.intermediateInstituteName
-                                }
-                              />
-                              <Description
-                                text={getEmployeeDetails.intermediateCourseName}
-                              />
-                              <Description
-                                text={getEmployeeDetails.intermediateGrade}
-                              />
-                            </Section>{" "}
-                            <Section
-                              title={getEmployeeDetails.sscBoardOfUniversity}
-                            >
-                              <Description
-                                text={getEmployeeDetails.sscInstituteName}
-                              />
-                              <Description
-                                text={getEmployeeDetails.sscCourseName}
-                              />
-                              <Description text={getEmployeeDetails.sscGrade} />
-                            </Section>
-                          </BodyContent>
-                        </Timeline> */}
-                        <Row md={12} >
-                          <Table>
-                            <thead>
-                              <tr>
+                      <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Passport Number:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {getEmployeeDetails.passportNo}
+                          </Card.Text>
+                        </Col>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Passport Expiry Date:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          {getEmployeeDetails.passportExpiryDate ? (<Card.Subtitle>
+                            {ped}
+                          </Card.Subtitle>) : (<div></div>)}
+                        </Col>
+                      </Row>
+                      <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            PAN Card Number:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {getEmployeeDetails.panNumber}
+                          </Card.Text>
+                        </Col>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Aadhar Card Number:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {getEmployeeDetails.aadharNumber}
+                          </Card.Text>
+                        </Col>
+                      </Row>
 
-                                <th>University</th>
-                                <th>Institute Name</th>
-                                <th>Course</th>
-                                <th>Grade</th>
+                      <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            UAN Number:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {getEmployeeDetails.uanNumber}
+                          </Card.Text>
+                        </Col>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Band:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {getEmployeeDetails.band}
+                          </Card.Text>
+                        </Col>
+                      </Row>
 
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>{getEmployeeDetails.postgraduationBoardOfUniversity}</td>
-                                <td>{getEmployeeDetails.postgraduationInstituteName}</td>
-                                <td>{getEmployeeDetails.postgraduationCourseName}</td>
-                                <td>{getEmployeeDetails.postgraduationGrade}</td>
-                              </tr>
-                              <tr>
-                                <td>{getEmployeeDetails.graduationBoardOfUniversity}</td>
-                                <td>{getEmployeeDetails.graduationInstituteName}</td>
-                                <td>{getEmployeeDetails.graduationCourseName}</td>
-                                <td>{getEmployeeDetails.graduationGrade}</td>
-                              </tr>
-                              <tr>
-                                <td>{getEmployeeDetails.intermediateBoardOfUniversity}</td>
-                                <td>{getEmployeeDetails.intermediateCollegeName}</td>
-                                <td>{getEmployeeDetails.intermediateCourseName}</td>
-                                <td>{getEmployeeDetails.intermediateGrade}</td>
-                              </tr>
-                              <tr>
-                                <td>{getEmployeeDetails.sscBoardOfUniversity}</td>
-                                <td>{getEmployeeDetails.sscSchoolName}</td>
-                                <td>{getEmployeeDetails.sscCourseName}</td>
-                                <td>{getEmployeeDetails.sscGrade}</td>
-                              </tr>
+                      <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Bank Name:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {getEmployeeDetails.bankName}
+                          </Card.Text>
+                        </Col>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Account Number:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {getEmployeeDetails.accountNumber}
+                          </Card.Text>
+                        </Col>
+                      </Row>
 
-                            </tbody>
-                          </Table>
-                        </Row>
-                      </Card.Body>
+                      <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            IFSC Code:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {getEmployeeDetails.ifscCode}
+                          </Card.Text>
+                        </Col>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Branch:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {getEmployeeDetails.branch}
+                          </Card.Text>
+                        </Col>
+                      </Row>
+
+                      <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+
+
+
+                        <Col>
+
+                          <Card.Subtitle style={{ padding: 10 }}>
+
+                            Exit Date:
+
+                          </Card.Subtitle>{" "}
+
+                        </Col>
+
+                        <Col md={{ offset: 1 }}>
+
+                          <Card.Text style={{ paddingBottom: 0 }}>
+
+                            {getEmployeeDetails.exitDate}
+
+                          </Card.Text>
+
+                        </Col>
+
+                        <Col>
+
+                          <Card.Subtitle style={{ padding: 10 }}>
+
+                            {/* BAND: */}
+
+                          </Card.Subtitle>{" "}
+
+                        </Col>
+
+                        <Col md={{ offset: 1 }}>
+
+                          <Card.Text style={{ paddingBottom: 0 }}>
+
+                            {/* {getEmployeeDetails.band} */}
+
+                          </Card.Text>
+
+                        </Col>
+
+                      </Row>
+
+
                     </Card>
                   </Col>
-                  <Col>
-                    <Row>
-                      <Card style={{ padding: 30, marginTop: 20, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
-                        <Card.Title>
-                          <h5>Experience:</h5>
-                        </Card.Title>
-                        <Card.Body style={{ paddingLeft: 20, paddingRight: 20 }}>
-                          <Table>
-                            <thead>
-                              <tr>
-
-                                <th>Company Name</th>
-                                <th>Employee ID</th>
-                                <th>Designation</th>
-
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>{getEmployeeDetails.previousCompany1_name}</td>
-                                <td>{getEmployeeDetails.previousCompany1_employeeId}</td>
-                                <td>{getEmployeeDetails.previousCompany1_designation}</td>
-                              </tr>
-                              <tr>
-                                <td>{getEmployeeDetails.previousCompany2_name}</td>
-                                <td>{getEmployeeDetails.previousCompany2_employeeId}</td>
-                                <td>{getEmployeeDetails.previousCompany2_designation}</td>
-                              </tr>
-                              <tr>
-                                <td>{getEmployeeDetails.previousCompany3_name}</td>
-                                <td>{getEmployeeDetails.previousCompany3_employeeId}</td>
-                                <td>{getEmployeeDetails.previousCompany3_designation}</td>
-                              </tr>
-
-                            </tbody>
-                          </Table>
-                        </Card.Body>
-                      </Card>
-                    </Row>
-                    <Row>
-                      {/* <Card style={{ padding: 30, marginTop: 20, paddingBottom: 0 }}>
-                        <Card.Title>
-                          <h5>Promotion history:</h5>
-                        </Card.Title>
-                        <Card.Body style={{ paddingLeft: 20 }}>
-                          <Timeline theme={customTheme}>
-                            <BodyContent>
-                              <Section
-                              // title={getEmployeeDetails.previousCompany1_name}
-                              >
-                                <Description
-                                // text={getEmployeeDetails.previousCompany1_employeeId}
-                                />
-
-                              </Section>{" "}
-                              <Section
-                              //title={getEmployeeDetails.previousCompany2_name}
-                              >
-                                <Description
-                                // text={getEmployeeDetails.previousCompany2_designation}
-                                />
-
-                              </Section>{" "}
-
-                            </BodyContent>
-                          </Timeline>
-                        </Card.Body>
-                      </Card> */}
-
-                    </Row>
-                  </Col>
                 </Row>
+
+                <Row style={{ marginTop: 20, marginRight: 10 }}>
+
+                  <Card style={{ padding: 30, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
+                    <Card.Title>
+                      <h5>Educational Information:</h5>
+                    </Card.Title>
+                    <Card.Body style={{ paddingLeft: 20 }}>
+
+
+                      <Table>
+                        <thead>
+                          <tr>
+
+                            {/* <th>Sr.No.</th> */}
+                            <th>University</th>
+                            <th>Institute Name</th>
+                            <th>Course</th>
+                            <th>Grade</th>
+                            <th>Joining Date</th>
+                            <th>Passed-Out Date</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          <tr>
+
+                            <td>{getEmployeeDetails.sscBoardOfUniversity}</td>
+                            <td>{getEmployeeDetails.sscSchoolName}</td>
+                            <td>{getEmployeeDetails.sscCourseName}</td>
+                            <td>{getEmployeeDetails.sscGrade}</td>
+                            <td> {getEmployeeDetails.sscJoiningYear ? (<td>
+                              {sscJoiningYear1}
+                            </td>) : (<div></div>)}</td>
+                            <td>{getEmployeeDetails.sscPassedYear ? (<td>
+                              {sscPassedYear1}
+                            </td>) : (<div></div>)}</td>
+                          </tr>
+
+                          <tr>
+                            <td>{getEmployeeDetails.intermediateBoardOfUniversity}</td>
+                            <td>{getEmployeeDetails.intermediateCollegeName}</td>
+                            <td>{getEmployeeDetails.intermediateCourseName}</td>
+                            <td>{getEmployeeDetails.intermediateGrade}</td>
+                            <td> {getEmployeeDetails.intermediateJoiningYear ? (<td>
+                              {intermediateJoiningYear1}
+                            </td>) : (<div></div>)}</td>
+                            <td> {getEmployeeDetails.intermediatePassedYear ? (<td>
+                              {intermediatePassedYear1}
+                            </td>) : (<div></div>)}</td>
+
+                          </tr>
+                          <tr>
+                            <td>{getEmployeeDetails.graduationBoardOfUniversity}</td>
+                            <td>{getEmployeeDetails.graduationInstituteName}</td>
+                            <td>{getEmployeeDetails.graduationCourseName}</td>
+                            <td>{getEmployeeDetails.graduationGrade}</td>
+                            <td> {getEmployeeDetails.graduationJoiningYear ? (<td>
+                              {graduationJoiningYear1}
+                            </td>) : (<div></div>)}</td>
+                            <td>{getEmployeeDetails.graduationPassedYear ? (<td>
+                              {graduationPassedYear1}
+                            </td>) : (<div></div>)}</td>
+
+                          </tr>
+
+
+                          <tr>
+                            <td>{getEmployeeDetails.postgraduationBoardOfUniversity}</td>
+                            <td>{getEmployeeDetails.postgraduationInstituteName}</td>
+                            <td>{getEmployeeDetails.postgraduationCourseName}</td>
+                            <td>{getEmployeeDetails.postgraduationGrade}</td>
+                            <td> {getEmployeeDetails.postgraduationJoiningYear ? (<td>
+                              {postgraduationJoiningYear1}
+                            </td>) : (<div></div>)}</td>
+                            <td>{getEmployeeDetails.postgraduationPassedYear ? (<td>
+                              {postgraduationPassedYear1}
+                            </td>) : (<div></div>)}</td>
+
+                          </tr>
+
+
+                        </tbody>
+                      </Table>
+
+                    </Card.Body>
+                  </Card>
+                </Row>
+
+                <Row style={{ marginRight: 10 }}>
+                  <Card style={{ padding: 30, marginTop: 20, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
+                    <Card.Title>
+                      <h5>Experience:</h5>
+                    </Card.Title>
+                    <Card.Body style={{ paddingLeft: 20, paddingRight: 20 }}>
+                      <Table>
+                        <thead>
+                          <tr>
+                            {/* 
+                            <th>Sr.No.</th> */}
+                            <th>Company Name</th>
+                            <th>Employee ID</th>
+                            <th>Designation</th>
+                            <th>Joining Date</th>
+                            <th>Relieving Date</th>
+
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>{getEmployeeDetails.previousCompany1_name}</td>
+                            <td>{getEmployeeDetails.previousCompany1_employeeId}</td>
+                            <td>{getEmployeeDetails.previousCompany1_designation}</td>
+                            <td> {getEmployeeDetails.previousCompany1_joiningDate ? (<td>
+                              {previousCompany1_joiningDate1}
+                            </td>) : (<div></div>)}</td>
+                            <td>{getEmployeeDetails.previousCompany1_relievingDate ? (<td>
+                              {previousCompany1_relievingDate1}
+                            </td>) : (<div></div>)}</td>
+                          </tr>
+                          <tr>
+                            <td>{getEmployeeDetails.previousCompany2_name}</td>
+                            <td>{getEmployeeDetails.previousCompany2_employeeId}</td>
+                            <td>{getEmployeeDetails.previousCompany2_designation}</td>
+                            <td> {getEmployeeDetails.previousCompany2_joiningDate ? (<td>
+                              {previousCompany2_joiningDate1}
+                            </td>) : (<div></div>)}</td>
+                            <td>{getEmployeeDetails.previousCompany2_relievingDate ? (<td>
+                              {previousCompany2_relievingDate1}
+                            </td>) : (<div></div>)}</td>
+                          </tr>
+                          <tr>
+                            <td>{getEmployeeDetails.previousCompany3_name}</td>
+                            <td>{getEmployeeDetails.previousCompany3_employeeId}</td>
+                            <td>{getEmployeeDetails.previousCompany3_designation}</td>
+                            <td> {getEmployeeDetails.previousCompany3_joiningDate ? (<td>
+                              {previousCompany3_joiningDate1}
+                            </td>) : (<div></div>)}</td>
+                            <td>{getEmployeeDetails.previousCompany3_relievingDate ? (<td>
+                              {previousCompany3_relievingDate1}
+                            </td>) : (<div></div>)}</td>
+                          </tr>
+
+                        </tbody>
+                      </Table>
+                    </Card.Body>
+                  </Card>
+                </Row>
+
+
+
 
               </Card.Body>
             </Card.Header>

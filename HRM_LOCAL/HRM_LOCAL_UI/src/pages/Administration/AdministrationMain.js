@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from '../../NavBar/NavBar'
 import Sidebar from '../../NavBar/Sidebar'
-import UserMain from './Users/UserMain'
+import UserMain from './Users/UserMain';
 
 
 

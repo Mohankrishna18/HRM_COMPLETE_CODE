@@ -28,7 +28,7 @@ const Approve = (props) => {
   console.log(obj);
 
   const ApproveHandler = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log(onboardingid);
     const form1 = Object.assign(form, obj);
     axios.put(`/emp/updateApprovStatus/${onboardingid}`, form1);
