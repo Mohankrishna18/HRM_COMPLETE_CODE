@@ -64,7 +64,7 @@ const [data, setData] = useState([]);
         console.log(res.data);
         const dat= res.data.filter((m)=>m.managerApproval == 'pending')
         console.log(dat)
-        setData(dat)
+        setData(dat);
          // res.data.map((m)=>{
          //   const app = m.filter( managerApproval === "pending")
          //   console.log(app)
@@ -85,7 +85,8 @@ const [data, setData] = useState([]);
           <thead>
             <tr>
               {/* <th align="left">Leave Id</th> */}
-              <th align="left">Employee</th>
+              <th align="left">Employee Id</th>
+              <th align="left">Name</th>
               <th align="left"> Leave Type</th>
               <th align="left"> From</th>
               <th align="left"> To</th>
@@ -99,13 +100,14 @@ const [data, setData] = useState([]);
             {data.map((h) => (
               <tr>
                 {/* <td align="left">{h.employeeleaveId}</td> */}
-                <td align="left">{h.employeeId}</td>
-                <td align="left">{h.leaveType}</td>
-                <td align="left">{formatDate(h.fromDate)}</td>
-                <td align="left">{formatDate(h.toDate)}</td>
-                <td align="left">{h.numberOfDays}</td>
-                <td align="left">{h.leaveReason}</td>
-                <td align="left">{h.managerApproval}</td>
+                <td align="left"><div class="p-2">{h.employeeId}</div></td>
+                <td align="left"><div class="p-2">{h.name}</div></td>
+                <td align="left"><div class="p-2">{h.leaveType}</div></td>
+                <td align="left"><div class="p-2">{formatDate(h.fromDate)}</div></td>
+                <td align="left"><div class="p-2">{formatDate(h.toDate)}</div></td>
+                <td align="left"><div class="p-2">{h.numberOfDays}</div></td>
+                <td align="left"><div class="p-2">{h.leaveReason}</div></td>
+                <td align="left"><div class="p-2">{h.managerApproval}</div></td>
                 <td>{h.managerApproval == "pending" ?(<div>
                   <td><Approve  leaveID={h.employeeleaveId}/></td> <td><Reject leaveID={h.employeeleaveId}/></td>
                 </div>):(<div></div>)}

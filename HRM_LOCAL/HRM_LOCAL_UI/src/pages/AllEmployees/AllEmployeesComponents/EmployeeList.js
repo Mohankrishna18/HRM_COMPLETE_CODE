@@ -90,6 +90,7 @@ color: "white",
 title: "Date of Joining",
 field: "dateOfJoining",
 type:"date",
+dateSetting: { locale: "en-GB" },
 headerStyle: {
 backgroundColor: "#FF9E14",
 color: "white",
@@ -148,6 +149,7 @@ console.log(err);
 }, []);
 console.log(eid);
 return (
+    <div className="scroll">
 <Grid container data1={eid}>
 <Grid xs={12}>
 <MaterialTable
@@ -174,7 +176,7 @@ fontSize: 16,
 }}
 />
 </Grid>
-</Grid>
+</Grid></div>
 );
 }
 

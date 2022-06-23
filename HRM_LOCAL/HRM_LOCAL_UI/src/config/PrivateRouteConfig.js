@@ -24,6 +24,9 @@ import {
   FcCustomerSupport,
   FcAnswers,
   FcDatabase,
+  FcFinePrint,
+  FcReading,
+  FcBookmark
 
 } from "react-icons/fc";
 
@@ -35,29 +38,32 @@ import Roles from "./Roles";
 import MyProfileMain from "../pages/MyProfile/MyProfileMain";
 import EmployeeMaster from "../pages/EmployeeMaster/EmployeeMasterMain";
 import HolidayManagementMain from "../pages/HolidayManagement/HolidayManagementMain";
-// import EmployeeOnboardingFormMain from "../pages/EmployeeOnboardingForm/EmployeeOnboardingFormMain";
+import EmployeeOnboardingFormMain from "../pages/EmployeeOnboardingForm/EmployeeOnboardingFormMain";
 import OfferApprovalMain from "../pages/OfferApprovals/OfferApprovalMain";
 import DepartmentMain from "../pages/Departments/DepartmentMain";
 import DesignationMain from "../pages/Designation/DesignationMain";
-// import LeaveToApply from "../pages/LeaveManagement/LeaveToApply";
-// import LeaveToApprove from "../pages/LeaveManagement/LeaveToApprove";
+import LeaveToApply from "../pages/LeaveManagement/LeaveToApply";
+import LeaveToApprove from "../pages/LeaveManagement/LeaveToApprove";
 import ApprovalMain from "../pages/Approvals/ApprovalMain";
 import Employee from "../pages/AllEmployees/AllEmployeesMain";
 
-// import AdminAttendanceMain from "../pages/AdminAttendance/AdminAttendanceMain";
-// import LeaveHistoryMain from "../pages/LeaveHistory/LeaveHistoryMain";
+import AdminAttendanceMain from "../pages/AdminAttendance/AdminAttendanceMain";
+import LeaveHistoryMain from "../pages/LeaveHistory/LeaveHistoryMain";
 import RejectedEmployeeMain from "../pages/RejectedEmployee/RejectedEmployeeMain";
-// import ModuleMain from "../pages/Administration/ModuleComponents/ModuleMain";
-// import UserName from "../pages/Administration/Users/UserMain";
-// import RolesMain from "../pages/Administration/Roles&Permissions/RolesMain";
-// import EmpAttendanceMain from "../pages/EmployeeAttendance/EmpAttendanceMain";
-// import TaggedEmployeesMain from "../pages/ManagerEmployeesList/TaggedEmployeesMain";
-// import ManagerLeaveHistory from "../pages/ManagerLeaveHistory/ManagerLeaveHistoryMain";
-// import HrLeaveHistorymain from "../pages/HrLeaveHistory/HrLeaveHistorymain"
-// import ManagerLeavesToApproveMain from "../pages/ManagerLeavesToApprove/ManagerLeavesToApproveMain";
+import ModuleMain from "../pages/Administration/ModuleComponents/ModuleMain";
+import UserName from "../pages/Administration/Users/UserMain";
+import RolesMain from "../pages/Administration/Roles&Permissions/RolesMain";
+import EmpAttendanceMain from "../pages/EmployeeAttendance/EmpAttendanceMain";
+import TaggedEmployeesMain from "../pages/ManagerEmployeesList/TaggedEmployeesMain";
+import ManagerLeaveHistory from "../pages/ManagerLeaveHistory/ManagerLeaveHistoryMain";
+import HrLeaveHistorymain from "../pages/HrLeaveHistory/HrLeaveHistorymain"
+import ManagerLeavesToApproveMain from "../pages/ManagerLeavesToApprove/ManagerLeavesToApproveMain";
 import EmployeeMasterForms from "../pages/AllEmployees/AllEmployeesComponents/editmyprofileroute";
-
-
+import RejectedEmployees from "../pages/LeaveManagement/RejectedEmployees";
+import createleaveTypeMain from "../pages/Createleave/CreateleaveMain";
+import BandsMain from '../pages/Bands/BandsMain';
+import EmploymentTypeMain from '../pages/EmploymentType/EmploymentTypeMain';
+import IntegrateLeaveToApply from '../pages/LeaveManagement/IntegrateLeaveToApply'
   
   
  
@@ -140,6 +146,7 @@ export default [
   //   title: "Roles",
   //   permission: [Roles.hradmin],
   // },
+
   // {
   //   component: LeaveToApply,
   //   path: "/leaveApply",
@@ -159,8 +166,31 @@ export default [
   //   component: LeaveToApprove,
   //   path: "/LeaveToApprove",
   //   icon: <FcOvertime />,
-  //   title: "Leaves To Approve",
+  //   title: "Leaves Waiting For Approval",
   //   permission: [
+
+//   {
+//     component: IntegrateLeaveToApply,
+//     path: "/IntegrateLeaveToApply",
+//     icon: <FcLeave />,
+//     title: "Leaves To Apply",
+//     permission: [
+//       Roles.employee,
+//       Roles.hr,
+//       Roles.ceo,
+//       Roles.it,
+//       Roles.taa,
+//       Roles.hradmin,
+//       Roles.manager
+//     ],
+//   },  
+//   {
+//     component: LeaveToApprove,
+//     path: "/LeaveToApprove",
+//     icon: <FcOvertime />,
+//     title: "Leaves Waiting For Approval",
+//     permission: [
+
 
       
   //     Roles.hradmin
@@ -226,7 +256,7 @@ export default [
     component: ApprovalMain,
     path: "/Approvals",
     icon: <FcApprove />,
-    title: "Onboarding Approvals",
+    title: "Onboardings",
     permission: [Roles.taa],
   },
   
@@ -236,10 +266,20 @@ export default [
   //   component: ManagerLeavesToApproveMain,
   //   path: "/managerLeavesToApprove",
   //   icon: <FcManager />,
-  //   title: "Manager Leaves To Approve",
+  //   title: "Leaves Waiting For Approval",
   //   permission: [
       
   //     Roles.manager
+  //   ],
+  // },
+  // {
+  //   component: RejectedEmployees,
+  //   path: "/LeaveManagement",
+  //   icon: <FcOvertime />,
+  //   title: "Rejected Employees Leaves History",
+  //   permission: [
+  //    Roles.hradmin,
+      
   //   ],
   // },
 
@@ -292,5 +332,68 @@ export default [
     permission: [Roles.hradmin,Roles.taa],
 
   },
+  // {
+
+  //   component: createleaveTypeMain,
+
+  //   path: "/CreateLeaves",
+
+  //   icon: <FcManager />,
+
+  //   title: "Leave Type",
+
+  //   permission: [
+
+     
+
+     
+
+  //     Roles.hr,
+
+     
+
+  //     Roles.hradmin,
+
+     
+
+  //   ],
+
+  // },
+  // { // added by Sri Divya
+
+  //   component: EmploymentTypeMain,
+
+  //   path: "/EmploymentType",
+
+  //   icon: <FcFinePrint />,
+
+  //   title: "Employment Types ",
+
+  //   permission: [
+
+  //     Roles.hradmin
+
+  //   ],
+
+  // },
+
+  // { // added by Sri Divya
+
+  //   component: BandsMain,
+
+  //   path: "/Bands",
+
+  //   icon: <FcBookmark />,
+
+  //   title: "Bands ",
+
+  //   permission: [
+
+  //     Roles.hradmin
+
+  //   ],
+
+  // }
 ];
+
 // testing purpose

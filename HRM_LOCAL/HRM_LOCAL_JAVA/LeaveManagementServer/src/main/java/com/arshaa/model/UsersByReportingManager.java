@@ -30,14 +30,17 @@ private Date toDate;
 
 
 
-@Column
+
 private int numberOfDays;
 
 
 
-@Column
+
 private String leaveReason;
+
+private String managerApproval;
 private String Name;
+private int employeeleaveId;
 public String getEmployeeId() {
 return employeeId;
 }
@@ -79,6 +82,18 @@ return Name;
 }
 public void setName(String name) {
 Name = name;
+}
+public String getManagerApproval() {
+	return managerApproval;
+}
+public void setManagerApproval(String managerApproval) {
+	this.managerApproval = managerApproval;
+}
+public int getEmployeeleaveId() {
+	return employeeleaveId;
+}
+public void setEmployeeleaveId(int employeeleaveId) {
+	this.employeeleaveId = employeeleaveId;
 }
 
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState } from "react";
-import { Accordion, Card } from "react-bootstrap";
+import { Accordion, Card, Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
@@ -77,6 +77,7 @@ function EmployeeMasterCard() {
     return (
         <Row><Col>
             <Card>
+                <Container>
                 <Row>
                     <Col>
                         <Card.Title>
@@ -86,18 +87,21 @@ function EmployeeMasterCard() {
                                     height: "150px",
                                     width: "150px",
                                     borderRadius: "110px",
-                                    alignItems: "center",
+                                    // alignItems: "center",
                                     marginTop: "100px",
-                                    marginLeft: "190px"
+                                    marginLeft: "25%"
+                                    // alignContent:"center"
                                 }} />
                             </Col>
                             <Col style={{
                                 fontSize: 20,
-                                textAlign: "center",
+                                // textAlign: "center",
                                 paddingTop: 40,
                                 paddingBottom: 40,
                                 text: "bold",
-                                marginRight: "150px"
+                                marginLeft: "24%"
+                                // marginRight: "50px"
+                                // alignContent:"center"
                             }}>
                                 {employeedetails.firstName} {employeedetails.lastName}
                             </Col>
@@ -235,7 +239,7 @@ function EmployeeMasterCard() {
                         </Card.Body>
                     </Col>
                 </Row>
-
+                </Container>
             </Card>
         </Col>
         </Row>

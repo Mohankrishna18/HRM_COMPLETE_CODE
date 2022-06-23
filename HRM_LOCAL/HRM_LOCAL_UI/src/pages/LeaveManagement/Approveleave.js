@@ -37,13 +37,13 @@ const Approve = (props) => {
     <div>
       <Row>
         <Col>
-          <Button
+        <Button
             variant="white "
             className="rounded-pill"
             onClick={handleShow}
           >
             {" "}
-            <FcApproval /> Approve
+            <FcApproval/>Approve
           </Button>
 
           <Modal show={onhold} onHide={handleClose} centered>
@@ -51,6 +51,20 @@ const Approve = (props) => {
               <Modal.Title>Approve Leave</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+              <Form role="form">
+                {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                  <Form.Label>Comment</Form.Label>
+                  <Form.Control
+                    required
+                    className="rejectReason"
+                    type="text"
+                    controlId="rejectReason"
+                    placeholder="reject Reason"
+                    value={form.rejectReason}
+                    onChange={(e) => setField("rejectReason", e.target.value)}
+                    isInvalid={!!errors.rejectReason}
+                  ></Form.Control>
+                </Form.Group> */}
                 <Button
                   variant="warning"
                   type="submit"
@@ -60,11 +74,11 @@ const Approve = (props) => {
                     color: "#F4F8F6",
                   }}
                   onClick={ApproveHandler}
-                  onChange={(e) => setField()}
+                  // onChange={(e) => setField()}
                 >
                   &nbsp; Save
                 </Button>
-              
+              </Form>
             </Modal.Body>
           </Modal>
           

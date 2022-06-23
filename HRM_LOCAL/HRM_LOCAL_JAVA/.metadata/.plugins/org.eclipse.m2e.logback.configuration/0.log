@@ -1193,3 +1193,807 @@ org.eclipse.core.runtime.CoreException: Could not resolve artifact org.springfra
 2022-06-08 11:44:12,474 [Worker-29: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2022-06-08 11:44:12,474 [Worker-29: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
 2022-06-08 11:44:12,474 [Worker-29: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\Hrm_complete_code_work\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\urp-service\src\test\resources
+2022-06-21 12:19:39,190 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2022-06-21 12:20:05,861 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2022-06-21 12:20:10,036 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:attendenceService:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\attendanceService\attendanceService\pom.xml.
+2022-06-21 12:20:19,951 [Worker-10: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:EmailSender:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\EmailSender\pom.xml.
+2022-06-21 12:20:21,970 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:20:21,970 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:20:21,974 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:20:22,000 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:20:22,003 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:20:22,003 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:20:22,004 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\EmailSender\src\test\resources
+2022-06-21 12:20:22,086 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_attendanceService_attendanceService/src/main/java
+2022-06-21 12:20:22,087 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_attendanceService_attendanceService/src/main/resources
+2022-06-21 12:20:22,113 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_attendanceService_attendanceService/src/main/resources
+2022-06-21 12:20:22,140 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_attendanceService_attendanceService/src/test/java
+2022-06-21 12:20:23,739 [Worker-17: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:EmailSender:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\EmailSender\pom.xml.
+2022-06-21 12:20:25,557 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:20:25,558 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:20:25,559 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:20:25,607 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:20:25,609 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:20:25,609 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:20:25,609 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\EmailSender\src\test\resources
+2022-06-21 12:20:28,424 [Worker-17: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: net.arshaa:urp-service:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\HolidayManagement\pom.xml.
+2022-06-21 12:20:29,840 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:20:29,841 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:20:29,841 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:20:29,857 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:20:29,859 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:20:29,859 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:20:29,859 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\HolidayManagement\src\test\resources
+2022-06-21 12:20:30,694 [Worker-5: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:signServer:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\LeaveManagementServer\pom.xml.
+2022-06-21 12:20:32,239 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:20:32,239 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:20:32,239 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:20:32,248 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:20:32,250 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:20:32,250 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:20:32,250 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\LeaveManagementServer\src\test\resources
+2022-06-21 12:20:32,336 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 26 sec
+2022-06-21 12:20:32,338 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2022-06-21 12:20:35,746 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:attendenceService:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\attendanceService\attendanceService\pom.xml.
+2022-06-21 12:20:36,553 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: net.arshaa:urp-service:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\urp-service\pom.xml.
+2022-06-21 12:20:36,914 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: net.arshaa:employee-service:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\employee-service\pom.xml.
+2022-06-21 12:20:37,226 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.arshaa:eureka-server:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\eureka-server\pom.xml.
+2022-06-21 12:20:37,577 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:EmailSender:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\EmailSender\pom.xml.
+2022-06-21 12:20:37,988 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.arshaa.gateway:api-gateway:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\api-gateway\pom.xml.
+2022-06-21 12:20:38,285 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:EmailSender:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\EmailSender\pom.xml.
+2022-06-21 12:20:38,470 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.arshaa.gateway:api-gateway:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\api-gateway\pom.xml.
+2022-06-21 12:20:38,655 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.arshaa.designations:designation-master:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\hrm-designations\pom.xml.
+2022-06-21 12:20:38,853 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: net.arshaa:urp-service:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\HolidayManagement\pom.xml.
+2022-06-21 12:20:39,036 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:attendenceService:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\attendanceService\attendanceService\pom.xml.
+2022-06-21 12:20:39,232 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: net.arshaa:employee-service:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\employee-service\pom.xml.
+2022-06-21 12:20:39,416 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:signServer:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\LeaveManagementServer\pom.xml.
+2022-06-21 12:20:39,643 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:login:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\login\pom.xml.
+2022-06-21 12:20:39,874 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.arshaa.departments:departments-service:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\departments\pom.xml.
+2022-06-21 12:20:40,043 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: net.arshaa:urp-service:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HolidayManagement\pom.xml.
+2022-06-21 12:20:40,235 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:login:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\login\pom.xml.
+2022-06-21 12:20:40,459 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.arshaa.designations:designation-master:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\hrm-designations\pom.xml.
+2022-06-21 12:20:40,748 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.arshaa:eureka-server:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\eureka-server\pom.xml.
+2022-06-21 12:20:40,974 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:signServer:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\LeaveManagementServer\pom.xml.
+2022-06-21 12:20:41,165 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.arshaa.departments:departments-service:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\departments\pom.xml.
+2022-06-21 12:20:41,332 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: net.arshaa:urp-service:0.0.1-SNAPSHOT @ C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\urp-service\pom.xml.
+2022-06-21 12:20:52,828 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:20:52,828 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:20:52,829 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2022-06-21 12:20:52,959 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:20:52,961 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:20:52,961 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:20:52,961 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\api-gateway\src\test\resources
+2022-06-21 12:20:53,044 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /employee-service/src/main/java
+2022-06-21 12:20:53,044 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /employee-service/src/main/resources
+2022-06-21 12:20:53,072 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /employee-service/src/main/resources
+2022-06-21 12:20:53,096 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /employee-service/src/test/java
+2022-06-21 12:20:59,679 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:20:59,679 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:20:59,681 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:20:59,720 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:20:59,722 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:20:59,722 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:20:59,722 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\attendanceService\attendanceService\src\test\resources
+2022-06-21 12:21:03,887 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:03,887 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:03,888 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:03,906 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:03,912 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:03,913 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:03,913 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\departments\src\test\resources
+2022-06-21 12:21:09,185 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:09,186 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:09,186 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:09,225 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:09,227 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:09,227 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:09,227 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-21 12:21:10,705 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:10,705 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:10,706 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:10,725 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:10,726 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:10,727 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:10,727 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\eureka-server\src\test\resources
+2022-06-21 12:21:13,252 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:13,253 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:13,253 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:13,550 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:13,552 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:13,552 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:13,552 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-21 12:21:15,044 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:15,045 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:15,045 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:15,098 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:15,099 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:15,100 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:15,100 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\login\src\test\resources
+2022-06-21 12:21:16,049 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:16,049 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:16,051 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:16,064 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:16,067 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:16,067 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:16,067 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\urp-service\src\test\resources
+2022-06-21 12:21:16,933 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:16,933 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:16,934 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:17,193 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:17,200 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:17,208 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:17,209 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HolidayManagement\src\test\resources
+2022-06-21 12:21:19,219 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:19,219 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:19,220 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:19,229 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:19,232 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:19,232 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:19,233 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\LeaveManagementServer\src\test\resources
+2022-06-21 12:21:20,808 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:20,808 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:20,809 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2022-06-21 12:21:20,839 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:20,845 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:20,845 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:20,846 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\api-gateway\src\test\resources
+2022-06-21 12:21:22,627 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:22,628 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:22,630 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:22,644 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:22,647 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:22,647 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:22,648 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\attendanceService\attendanceService\src\test\resources
+2022-06-21 12:21:23,779 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:23,779 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:23,780 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:23,789 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:23,790 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:23,790 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:23,791 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\departments\src\test\resources
+2022-06-21 12:21:27,770 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:27,770 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:27,772 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:27,793 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:27,796 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:27,796 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:27,798 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-21 12:21:29,432 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:29,432 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:29,433 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:29,477 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:29,504 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:29,517 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:29,518 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\eureka-server\src\test\resources
+2022-06-21 12:21:31,160 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:31,161 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:31,163 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:31,175 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:31,180 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:31,180 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:31,180 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-21 12:21:32,423 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:32,423 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:32,424 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:32,433 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:32,436 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:32,437 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:32,438 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\login\src\test\resources
+2022-06-21 12:21:34,212 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:34,212 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:34,214 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:34,226 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:34,229 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:34,229 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:34,229 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\urp-service\src\test\resources
+2022-06-21 12:21:35,499 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:35,499 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:35,501 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:35,502 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:35,505 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:35,505 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:35,505 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-21 12:21:36,385 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_EmailSender/src/main/java
+2022-06-21 12:21:36,385 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_EmailSender/src/main/resources
+2022-06-21 12:21:36,424 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_EmailSender/src/main/resources
+2022-06-21 12:21:36,446 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_EmailSender/src/test/java
+2022-06-21 12:21:41,062 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:41,062 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:41,064 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:41,077 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:41,079 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:41,079 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:41,079 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\EmailSender\src\test\resources
+2022-06-21 12:21:41,324 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_hrm-designations/src/main/java
+2022-06-21 12:21:41,325 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_hrm-designations/src/main/resources
+2022-06-21 12:21:41,346 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_hrm-designations/src/main/resources
+2022-06-21 12:21:41,363 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_hrm-designations/src/test/java
+2022-06-21 12:21:46,329 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:46,330 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:46,331 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:46,341 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:46,344 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:46,344 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:46,345 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\EmailSender\src\test\resources
+2022-06-21 12:21:48,249 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:48,249 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:48,250 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:48,262 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:48,264 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:48,264 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:48,264 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-21 12:21:50,213 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:50,214 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:50,215 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:50,221 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:50,222 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:50,223 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:50,223 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-21 12:21:50,321 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:50,321 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:50,322 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:50,322 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:50,324 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:50,324 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:50,324 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-21 12:21:51,432 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:51,432 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:51,433 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:51,434 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:51,439 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:51,440 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:51,440 [Worker-22: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-21 12:21:52,036 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /departments/src/main/java
+2022-06-21 12:21:52,036 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /departments/src/main/resources
+2022-06-21 12:21:52,140 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /departments/src/main/resources
+2022-06-21 12:21:52,192 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /departments/src/test/java
+2022-06-21 12:21:53,548 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:53,548 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:53,550 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:53,552 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:53,555 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:53,555 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:53,555 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-21 12:21:56,176 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:56,176 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:56,177 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:56,260 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:56,287 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:56,288 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:56,291 [Worker-8: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\departments\src\test\resources
+2022-06-21 12:21:56,624 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /eureka-server/src/main/java
+2022-06-21 12:21:56,625 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /eureka-server/src/main/resources
+2022-06-21 12:21:56,704 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /eureka-server/src/main/resources
+2022-06-21 12:21:56,757 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /eureka-server/src/test/java
+2022-06-21 12:21:58,893 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:58,893 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:58,894 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:21:58,904 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:21:58,911 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:21:58,911 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:21:58,912 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\departments\src\test\resources
+2022-06-21 12:22:00,883 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /hrm-designations/src/main/java
+2022-06-21 12:22:00,883 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /hrm-designations/src/main/resources
+2022-06-21 12:22:00,910 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /hrm-designations/src/main/resources
+2022-06-21 12:22:00,936 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /hrm-designations/src/test/java
+2022-06-21 12:22:02,086 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:02,086 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:02,087 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:02,105 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:02,107 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:02,107 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:02,107 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\eureka-server\src\test\resources
+2022-06-21 12:22:07,377 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:07,377 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:07,379 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:07,434 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:07,435 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:07,435 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:07,436 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-21 12:22:09,932 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:09,932 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:09,933 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:09,942 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:09,944 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:09,944 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:09,944 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-21 12:22:11,347 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:11,347 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:11,347 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:11,348 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:11,349 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:11,349 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:11,349 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-21 12:22:11,836 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_LeaveManagementServer/src/main/java
+2022-06-21 12:22:11,836 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_LeaveManagementServer/src/main/resources
+2022-06-21 12:22:11,885 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_LeaveManagementServer/src/main/resources
+2022-06-21 12:22:11,926 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_LeaveManagementServer/src/test/java
+2022-06-21 12:22:15,612 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:15,613 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:15,614 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:15,630 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:15,631 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:15,631 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:15,631 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\LeaveManagementServer\src\test\resources
+2022-06-21 12:22:15,900 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_HolidayManagement/src/main/java
+2022-06-21 12:22:15,900 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_HolidayManagement/src/main/resources
+2022-06-21 12:22:15,919 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_HolidayManagement/src/main/resources
+2022-06-21 12:22:15,944 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_HolidayManagement/src/test/java
+2022-06-21 12:22:18,490 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:18,491 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:18,492 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:18,509 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:18,511 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:18,511 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:18,511 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\HolidayManagement\src\test\resources
+2022-06-21 12:22:18,733 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_urp-service/src/main/java
+2022-06-21 12:22:18,733 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_urp-service/src/main/resources
+2022-06-21 12:22:18,752 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_urp-service/src/main/resources
+2022-06-21 12:22:18,783 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_urp-service/src/test/java
+2022-06-21 12:22:20,797 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:20,797 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:20,798 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:20,933 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:20,935 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:20,935 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:20,935 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\HolidayManagement\src\test\resources
+2022-06-21 12:22:21,349 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /EmailSender/src/main/java
+2022-06-21 12:22:21,349 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /EmailSender/src/main/resources
+2022-06-21 12:22:21,406 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /EmailSender/src/main/resources
+2022-06-21 12:22:21,442 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /EmailSender/src/test/java
+2022-06-21 12:22:23,597 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:23,597 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:23,599 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:23,606 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:23,607 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:23,607 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:23,607 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\EmailSender\src\test\resources
+2022-06-21 12:22:23,886 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HolidayManagement/src/main/java
+2022-06-21 12:22:23,887 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HolidayManagement/src/main/resources
+2022-06-21 12:22:23,900 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HolidayManagement/src/main/resources
+2022-06-21 12:22:23,915 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HolidayManagement/src/test/java
+2022-06-21 12:22:25,825 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_eureka-server/src/main/java
+2022-06-21 12:22:25,826 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_eureka-server/src/main/resources
+2022-06-21 12:22:25,870 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_eureka-server/src/main/resources
+2022-06-21 12:22:25,894 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_eureka-server/src/test/java
+2022-06-21 12:22:26,432 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:26,432 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:26,433 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:26,442 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:26,444 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:26,444 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:26,444 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\EmailSender\src\test\resources
+2022-06-21 12:22:27,468 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_api-gateway/src/main/java
+2022-06-21 12:22:27,469 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_api-gateway/src/main/resources
+2022-06-21 12:22:27,493 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_api-gateway/src/main/resources
+2022-06-21 12:22:27,519 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_api-gateway/src/test/java
+2022-06-21 12:22:27,765 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:27,765 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:27,766 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:27,790 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:27,791 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:27,792 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:27,792 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\LeaveManagementServer\src\test\resources
+2022-06-21 12:22:31,201 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:31,201 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:31,202 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2022-06-21 12:22:31,225 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:31,227 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:31,227 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:31,227 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\api-gateway\src\test\resources
+2022-06-21 12:22:31,703 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /urp-service/src/main/java
+2022-06-21 12:22:31,704 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /urp-service/src/main/resources
+2022-06-21 12:22:31,726 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /urp-service/src/main/resources
+2022-06-21 12:22:31,751 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /urp-service/src/test/java
+2022-06-21 12:22:33,102 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:33,102 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:33,103 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2022-06-21 12:22:33,146 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:33,148 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:33,148 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:33,148 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\api-gateway\src\test\resources
+2022-06-21 12:22:34,415 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:34,415 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:34,416 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:34,430 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:34,431 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:34,432 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:34,432 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\eureka-server\src\test\resources
+2022-06-21 12:22:34,719 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_employee-service/src/main/java
+2022-06-21 12:22:34,719 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_employee-service/src/main/resources
+2022-06-21 12:22:34,742 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_employee-service/src/main/resources
+2022-06-21 12:22:34,766 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_employee-service/src/test/java
+2022-06-21 12:22:38,659 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:38,659 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:38,660 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:38,672 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:38,674 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:38,674 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:38,674 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-21 12:22:40,103 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:40,103 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:40,104 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:40,108 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:40,110 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:40,110 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:40,110 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-21 12:22:41,770 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:41,771 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:41,772 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:41,783 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:41,784 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:41,784 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:41,785 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\urp-service\src\test\resources
+2022-06-21 12:22:42,851 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:42,852 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:42,852 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:42,858 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:42,861 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:42,861 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:42,861 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HolidayManagement\src\test\resources
+2022-06-21 12:22:43,520 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:43,520 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:43,520 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:43,521 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:43,522 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:43,522 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:43,522 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-21 12:22:44,311 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:44,311 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:44,311 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:44,319 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:44,321 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:44,321 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:44,321 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\login\src\test\resources
+2022-06-21 12:22:45,217 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:45,217 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:45,218 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:45,228 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:45,229 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:45,229 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:45,229 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\urp-service\src\test\resources
+2022-06-21 12:22:47,117 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:47,117 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:47,118 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:47,118 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:47,119 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:47,120 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:47,120 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-21 12:22:47,544 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_departments/src/main/java
+2022-06-21 12:22:47,545 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_departments/src/main/resources
+2022-06-21 12:22:47,584 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_departments/src/main/resources
+2022-06-21 12:22:47,609 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_departments/src/test/java
+2022-06-21 12:22:50,246 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /LeaveManagementServer/src/main/java
+2022-06-21 12:22:50,246 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /LeaveManagementServer/src/main/resources
+2022-06-21 12:22:50,261 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /LeaveManagementServer/src/main/resources
+2022-06-21 12:22:50,279 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /LeaveManagementServer/src/test/java
+2022-06-21 12:22:53,868 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:53,868 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:53,870 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:53,882 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:53,884 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:53,884 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:53,884 [Worker-20: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\departments\src\test\resources
+2022-06-21 12:22:54,162 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:54,162 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:54,163 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:54,163 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:54,164 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:54,164 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:54,165 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-21 12:22:56,506 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_attendanceService_attendanceService/src/main/java
+2022-06-21 12:22:56,507 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_attendanceService_attendanceService/src/main/resources
+2022-06-21 12:22:56,508 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_attendanceService_attendanceService/src/main/resources
+2022-06-21 12:22:56,510 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_attendanceService_attendanceService/src/test/java
+2022-06-21 12:22:58,780 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:58,780 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:58,782 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:22:58,809 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:58,811 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:58,811 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:58,811 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\attendanceService\attendanceService\src\test\resources
+2022-06-21 12:22:59,026 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:59,026 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:59,027 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:59,027 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:22:59,029 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:22:59,029 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:22:59,029 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\attendanceService\attendanceService\src\test\resources
+2022-06-21 12:22:59,990 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_login/src/main/java
+2022-06-21 12:22:59,991 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_login/src/main/resources
+2022-06-21 12:23:00,034 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /HRM_LOCAL_JAVA_login/src/main/resources
+2022-06-21 12:23:00,108 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /HRM_LOCAL_JAVA_login/src/test/java
+2022-06-21 12:23:04,847 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:04,847 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:04,848 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:23:04,868 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:04,870 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:04,870 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:04,871 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\login\src\test\resources
+2022-06-21 12:23:06,377 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:06,377 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:06,378 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:23:06,389 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:06,390 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:06,390 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:06,391 [Worker-19: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\LeaveManagementServer\src\test\resources
+2022-06-21 12:23:07,522 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:07,522 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:07,523 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:07,523 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:07,524 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:07,524 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:07,524 [Worker-9: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\login\src\test\resources
+2022-06-21 12:23:08,653 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /attendanceService_attendanceService/src/main/java
+2022-06-21 12:23:08,653 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /attendanceService_attendanceService/src/main/resources
+2022-06-21 12:23:10,976 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /attendanceService_attendanceService/src/main/resources
+2022-06-21 12:23:11,095 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /attendanceService_attendanceService/src/test/java
+2022-06-21 12:23:12,086 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:12,086 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:12,087 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:12,087 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:12,089 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:12,089 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:12,089 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\login\src\test\resources
+2022-06-21 12:23:13,850 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:13,851 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:13,851 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:23:13,874 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:13,876 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:13,876 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:13,876 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HolidayManagement\src\test\resources
+2022-06-21 12:23:15,571 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /login/src/main/java
+2022-06-21 12:23:15,571 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /login/src/main/resources
+2022-06-21 12:23:15,646 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /login/src/main/resources
+2022-06-21 12:23:15,692 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /login/src/test/java
+2022-06-21 12:23:20,882 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:20,884 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:20,885 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:23:20,896 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:20,897 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:20,897 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:20,897 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\attendanceService\attendanceService\src\test\resources
+2022-06-21 12:23:26,367 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:26,367 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:26,368 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:23:26,395 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:26,396 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:26,396 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:26,396 [Worker-4: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\login\src\test\resources
+2022-06-21 12:23:27,769 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:27,769 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:27,770 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:27,770 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:27,772 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:27,772 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:27,772 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\login\src\test\resources
+2022-06-21 12:23:29,430 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /api-gateway/src/main/java
+2022-06-21 12:23:29,430 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /api-gateway/src/main/resources
+2022-06-21 12:23:29,678 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /api-gateway/src/main/resources
+2022-06-21 12:23:29,736 [Worker-23: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /api-gateway/src/test/java
+2022-06-21 12:23:33,994 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:33,995 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:33,998 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2022-06-21 12:23:34,031 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:34,032 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:34,032 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:34,033 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\api-gateway\src\test\resources
+2022-06-21 12:23:34,196 [Worker-23: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 181 sec
+2022-06-21 12:23:35,448 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:35,448 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:35,449 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2022-06-21 12:23:35,623 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:35,625 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:35,625 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:35,625 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\api-gateway\src\test\resources
+2022-06-21 12:23:37,077 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:37,077 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:37,078 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:23:37,140 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:37,142 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:37,142 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:37,142 [Worker-7: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-21 12:23:37,294 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:37,294 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:37,294 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:37,295 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:23:37,296 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:23:37,296 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:23:37,296 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\login\src\test\resources
+2022-06-21 12:24:00,857 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:24:00,857 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:24:00,858 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:24:00,868 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:24:00,870 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:24:00,870 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:24:00,870 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\departments\src\test\resources
+2022-06-21 12:24:05,295 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:24:05,295 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:24:05,295 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:24:05,300 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:24:05,302 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:24:05,302 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:24:05,302 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\EmailSender\src\test\resources
+2022-06-21 12:25:04,238 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:25:04,238 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:25:04,238 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:25:04,242 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:25:04,243 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:25:04,243 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:25:04,243 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\attendanceService\attendanceService\src\test\resources
+2022-06-21 12:28:06,846 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:28:06,846 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:28:06,846 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 12:28:06,855 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 12:28:06,857 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 12:28:06,857 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 12:28:06,857 [Worker-25: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-21 13:40:37,932 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 13:40:37,934 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 13:40:37,934 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 13:40:37,966 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 13:40:37,968 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 13:40:37,969 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 13:40:37,969 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\LeaveManagementServer\src\test\resources
+2022-06-21 13:43:10,897 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 13:43:10,897 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 13:43:10,898 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 13:43:10,905 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 13:43:10,907 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 13:43:10,907 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 13:43:10,907 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\urp-service\src\test\resources
+2022-06-21 14:03:43,861 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2022-06-21 14:08:27,973 [Worker-12: Launching eureka-server - EurekaServerApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:27,977 [Worker-12: Launching eureka-server - EurekaServerApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:27,980 [Worker-12: Launching eureka-server - EurekaServerApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:08:28,001 [Worker-12: Launching eureka-server - EurekaServerApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:08:28,004 [Worker-12: Launching eureka-server - EurekaServerApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:28,004 [Worker-12: Launching eureka-server - EurekaServerApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:28,004 [Worker-12: Launching eureka-server - EurekaServerApplication] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\eureka-server\src\test\resources
+2022-06-21 14:08:32,840 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:32,840 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:32,842 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:08:32,853 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:08:32,855 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:32,855 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:32,856 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\EmailSender\src\test\resources
+2022-06-21 14:08:36,517 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:36,517 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:36,518 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:08:36,611 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:08:36,614 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:36,614 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:36,614 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\EmailSender\src\test\resources
+2022-06-21 14:08:40,536 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:40,536 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:40,537 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:08:40,668 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:08:40,670 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:40,670 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:40,671 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\HolidayManagement\src\test\resources
+2022-06-21 14:08:43,527 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:43,527 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:43,528 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:08:43,545 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:08:43,547 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:43,547 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:43,547 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\LeaveManagementServer\src\test\resources
+2022-06-21 14:08:46,938 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:46,938 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:46,939 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2022-06-21 14:08:47,114 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:08:47,117 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:47,117 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:47,117 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\api-gateway\src\test\resources
+2022-06-21 14:08:50,276 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:50,276 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:50,277 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:08:50,284 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:08:50,287 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:50,287 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:50,288 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\attendanceService\attendanceService\src\test\resources
+2022-06-21 14:08:51,561 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:51,561 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:51,562 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:08:51,575 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:08:51,580 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:51,580 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:51,581 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\departments\src\test\resources
+2022-06-21 14:08:53,962 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:53,962 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:53,962 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:08:53,969 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:08:53,970 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:53,970 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:53,970 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-21 14:08:55,275 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:55,275 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:55,281 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:08:55,286 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:08:55,288 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:55,289 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:55,289 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\eureka-server\src\test\resources
+2022-06-21 14:08:56,506 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:56,506 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:56,508 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:08:56,516 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:08:56,518 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:56,518 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:56,518 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-21 14:08:57,754 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:57,754 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:57,755 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:08:57,765 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:08:57,767 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:57,767 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:57,768 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\login\src\test\resources
+2022-06-21 14:08:59,168 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:59,169 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:59,169 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:08:59,178 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:08:59,180 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:08:59,180 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:08:59,180 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HRM_LOCAL_JAVA\urp-service\src\test\resources
+2022-06-21 14:09:00,088 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:00,088 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:00,088 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:09:00,100 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:09:00,102 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:00,103 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:00,103 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\HolidayManagement\src\test\resources
+2022-06-21 14:09:01,481 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:01,481 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:01,482 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:09:01,494 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:09:01,495 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:01,495 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:01,495 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\LeaveManagementServer\src\test\resources
+2022-06-21 14:09:02,504 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:02,505 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:02,505 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2022-06-21 14:09:02,518 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:09:02,521 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:02,521 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:02,522 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\api-gateway\src\test\resources
+2022-06-21 14:09:03,556 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:03,556 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:03,556 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:09:03,567 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:09:03,568 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:03,568 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:03,568 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\attendanceService\attendanceService\src\test\resources
+2022-06-21 14:09:04,261 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:04,261 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:04,262 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:09:04,271 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:09:04,274 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:04,274 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:04,274 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\departments\src\test\resources
+2022-06-21 14:09:05,845 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:05,846 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:05,846 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:09:05,857 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:09:05,859 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:05,859 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:05,859 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\employee-service\src\test\resources
+2022-06-21 14:09:06,758 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:06,759 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:06,759 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:09:06,770 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:09:06,771 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:06,772 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:06,772 [Worker-0: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\hrm-designations\src\test\resources
+2022-06-21 14:09:07,923 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:07,923 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:07,924 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:09:07,939 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:09:07,941 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:07,941 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:07,941 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\login\src\test\resources
+2022-06-21 14:09:08,612 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:08,612 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:08,613 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-06-21 14:09:08,631 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-06-21 14:09:08,632 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-06-21 14:09:08,633 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-06-21 14:09:08,633 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Azeem\Desktop\june21\HRM_COMPLETE_CODE\HRM_LOCAL\HRM_LOCAL_JAVA\urp-service\src\test\resources

@@ -37,6 +37,7 @@
     "lodash": "^4.17.21",
     "material-table": "^1.63.0",
     "mdb-react-ui-kit": "^3.0.0",
+    "moment": "^2.29.3",
     "node-sass": "^7.0.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.2.3",

@@ -1,3 +1,4 @@
+
 package com.arshaa.controller;
 
 import java.util.List;
@@ -30,9 +31,13 @@ import com.arshaa.service.UserService;
 public class LeaveController {
 	@Autowired
 	private UserService service;
+	
 	@Autowired
 	private UserRepository repo;
+	
+	@Autowired
 	private leaveEntitlementRepository re; // @CrossOrigin(origins = "http://localhost:3000")
+	
 
 	@GetMapping("/getLeaveHistoryByEmpid/{employeeleaveId}")
 	private Optional<User> getUsers(@PathVariable Integer employeeleaveId) {
@@ -45,7 +50,7 @@ public class LeaveController {
 	}
 
 	@GetMapping("/getAllEmployees")
-	public List<User> getAllUsers() {
+	public ResponseEntity getAllUsers() {
 		return service.findAll();
 	}
 
@@ -85,18 +90,22 @@ public class LeaveController {
 		return service.save(entitledleaves);
 	}
 
-	@PutMapping("put/{leaveType}")
-	public EntitledLeaves UpdateLeaveType(@RequestBody EntitledLeaves entitledleaves) {
 
-		return service.save(entitledleaves);
+	@GetMapping("/getAllleavetypes")
+	public List <EntitledLeaves> findAllLeaveTypes() {
+	return re.findAll();
+	}
+	@PutMapping("put/{leaveId}")
+	public EntitledLeaves UpdateLeaveType(@RequestBody EntitledLeaves entitledleaves, @PathVariable Integer leaveId) { 
+		return service.UpdateLeaveType(entitledleaves, leaveId);
+	}
+	@DeleteMapping("/delete/{leaveId}")
+	public String deleteByLeaveId(@PathVariable EntitledLeaves leaveId) {
+	re.delete(leaveId);
+	return "Deleted Successfully";
 	}
 
-	@DeleteMapping("delete/{leaveType}")
-	public String deleteType(@PathVariable String leaveType) {
-		re.deleteByLeaveType(leaveType);
 
-		return "Deleted Successfully";
-	}
 
 // Written by Sri Divya 
   @GetMapping("/getAllApprovedLeaves/{leaveStatus}")
@@ -129,5 +138,5 @@ public class LeaveController {
 		int a = repo.findNumberOfRemainingLeavesByEmployeeId(employeeId);
 		return a;
 	}
+	
 }
-
