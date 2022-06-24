@@ -131,22 +131,22 @@ export default [
     title: "Roles",
     permission: [Roles.hradmin],
   },
-
-  {
-    component: LeaveToApply,
-    path: "/leaveApply",
-    icon: <FcLeave />,
-    title: "Leaves To Apply",
-    permission: [
-      Roles.employee,
-      Roles.hr,
-      Roles.ceo,
-      Roles.it,
-      Roles.taa,
-      Roles.hradmin,
-      Roles.manager,
-    ],
-  },
+// present we are not using this componentNamed as LeaveToApply instead this we are using componentNamed as IntegrateLeaveToApply
+  // {
+  //   component: LeaveToApply,
+  //   path: "/leaveApply",
+  //   icon: <FcLeave />,
+  //   title: "Leaves To Apply",
+  //   permission: [
+  //     Roles.employee,
+  //     Roles.hr,
+  //     Roles.ceo,
+  //     Roles.it,
+  //     Roles.taa,
+  //     Roles.hradmin,
+  //     Roles.manager,
+  //   ],
+  // },
   {
     component: LeaveToApprove,
     path: "/LeaveToApprove",
@@ -170,13 +170,13 @@ export default [
       Roles.manager,
     ],
   },
-  {
-    component: LeaveToApprove,
-    path: "/LeaveToApprove",
-    icon: <FcOvertime />,
-    title: "Leaves Waiting For Approval",
-    permission: [Roles.hradmin],
-  },
+  // {
+  //   component: LeaveToApprove,
+  //   path: "/LeaveToApprove",
+  //   icon: <FcOvertime />,
+  //   title: "Leaves Waiting For Approval",
+  //   permission: [Roles.hradmin],
+  // },
   {
     component: HolidayManagementMain,
     path: "/holidayManagenent",
@@ -258,14 +258,14 @@ export default [
     permission: [Roles.hradmin],
   },
 
-  {
-    component: ManagerLeaveHistory,
-    path: "/managerleavehistory",
-    icon: <FcOvertime />,
+  // {
+  //   component: ManagerLeaveHistory,
+  //   path: "/managerleavehistory",
+  //   icon: <FcOvertime />,
 
-    title: "My Teams Leave History",
-    permission: [Roles.manager],
-  },
+  //   title: "My Teams Leave History",
+  //   permission: [Roles.manager],
+  // },
 
   {
     component: HrLeaveHistorymain,
