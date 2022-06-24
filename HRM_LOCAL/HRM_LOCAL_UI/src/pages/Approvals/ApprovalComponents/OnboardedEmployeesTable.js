@@ -75,6 +75,7 @@ function OnboardedEmployeesTable() {
       },
     },
     {
+      
       title: "Designation",
       field: "designation",
       type: "text",

@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.attendance.entity.AttendanceLog;
+import com.attendance.model.Punchout;
 import com.attendance.service.AttendanceService;
 
 @CrossOrigin("*")
@@ -27,6 +29,12 @@ public class AttendanceController {
 	public ResponseEntity addAttendance(@RequestBody AttendanceLog attendance)
 	{
 		return aServ.addAttendance(attendance);
+	}
+	
+	@PutMapping("/addPunchOut/{employeeId}")
+	public ResponseEntity addpunchOut(@RequestBody Punchout attendance,@PathVariable String employeeId) {
+    
+		return aServ.addpunchOut(attendance, employeeId);
 	}
 
 	@GetMapping("/getAttendanceLogByMonth/{month}")

@@ -13,6 +13,9 @@ import "react-toastify/dist/ReactToastify.css";
 import LoadingOverlay from "react-loading-overlay";
 
 const EmpAttendanceForm = () => {
+
+  const [employeeId, setEmployeeId] = useState("");
+  const [punchout, setPunchout] = useState("");
   // var userStatus = null;
   function formatDate(fromDate) {
     var datePart = fromDate.match(/\d+/g),
@@ -26,11 +29,18 @@ const EmpAttendanceForm = () => {
     loadData();
   }, []);
 
+  const intialValues = {
+    employeeId, 
+    punchout
+  }
+
   const loadData = async () => {
-    const res = await axios.get("/attendance/getAttendance").then((res) => {
-      setShow(res.data.data);
-      console.log(res.data.data);
-    });
+    const res = await axios
+      .get("/attendance/getAttendance", obje)
+      .then((res) => {
+        setShow(res.data.data);
+        console.log(res.data.data);
+      });
   };
 
   const notify = () => toast("Punch-In Successfully");
@@ -49,23 +59,35 @@ const EmpAttendanceForm = () => {
   //   // notify();
   // };
 
- const da = JSON.parse(sessionStorage.getItem('userdata')) 
- const daa=da.data.employeeId;
-const obje = {employeeId:daa};
-  const onSubmit = async () => {
-    console.log(obje)
+  const da = JSON.parse(sessionStorage.getItem("userdata"));
+  const daa = da.data.employeeId;
+  const obje = { employeeId: daa };
+  const punchOutSubmit = async () =>{
+    console.log(obje);
     try{
-      const res = await axios.post("/attendance/employeeAttendancePunchIn", obje);
+      const punchOutResponse = await axios.put(`/attendance/addPunchOut/${obje}`, intialValues);
+      console.log(punchOutResponse.data);
+      loadData();
+    }
+    catch(error){
+      console.log("Something went wrong",error);
+    }
+  }
+  
+  const onSubmit = async () => {
+    console.log(obje);
+    try {
+      const res = await axios.post(
+        "/attendance/employeeAttendancePunchIn",
+        obje
+      );
 
-
-      console.log(res.data)
+      console.log(res.data);
       // handleClose(); //Close when click on submit
       loadData();
-    }catch(e){
-      console.log("Something went wrong",e)
+    } catch (e) {
+      console.log("Something went wrong", e);
     }
-    
-    
   };
   // const {
   //   register,
@@ -92,7 +114,23 @@ const obje = {employeeId:daa};
           >
             {" "}
             <BsPlusLg />
-            Punch-In 
+            Punch-In
+          </Button>
+        </Col>
+        <Col md={12}>
+          <Button
+            variant="warning"
+            onClick={punchOutSubmit}
+            style={{
+              backgroundColor: "#ff9b44",
+              color: "#F4F8F6",
+              float: "right",
+              borderRadius: "25px",
+            }}
+          >
+            {" "}
+            <BsPlusLg />
+            Punch-Out
           </Button>
         </Col>
       </Row>
@@ -105,6 +143,9 @@ const obje = {employeeId:daa};
                 <tr>
                   <th scope="col">SNo</th>
                   <th scope="col">Date</th>
+                  <th scope="col">Punch-In Time</th>
+                  <th scope="col">Punch-Out Time</th>
+                  <th scope="col">Duration</th>
                 </tr>
               </thead>
 
@@ -114,7 +155,10 @@ const obje = {employeeId:daa};
                     <tr>
                       <th scope="row">{index + 1}</th>
                       {/* <td>{h.data.SNo}</td> */}
-                      <td>{(h.punchIn)}</td>
+                      <td>{h.punchinDate}</td>
+                      <td>{h.punchin}</td>
+                      <td>{h.punchout}</td>
+                      <td>{h.duration}</td>
                     </tr>
                   ))}
               </tbody>
