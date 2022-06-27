@@ -418,7 +418,7 @@ function IntegrateLeaveToApply() {
 
             </Card>
             <Modal
-                size="lg"
+                size="sl"
                 show={show}
                 onHide={handleClose}
                 backdrop="static"
@@ -437,7 +437,7 @@ function IntegrateLeaveToApply() {
                         style={{ padding: 10 }}
                         onSubmit={handleButtonClick}
                     >
-                        <Row className="mb-5">
+                        <Row className="mb-2">
                             {/* <Form.Group
     as={Col}
     md="6"
@@ -455,7 +455,7 @@ function IntegrateLeaveToApply() {
     }
     />
     </Form.Group> */}
-                            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                            <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                                 <Form.Label>Leave Type</Form.Label>
 
                                 <Form.Select
@@ -472,7 +472,7 @@ function IntegrateLeaveToApply() {
                                     {/* <option value="Earned Leave">Earned Leave</option> */}
                                 </Form.Select>
                             </Form.Group>
-                            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                            <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                 <Form.Label>From</Form.Label>
                                 <Form.Control
                                     required
@@ -486,8 +486,8 @@ function IntegrateLeaveToApply() {
                             </Form.Group>
                             <Form.Group
                                 as={Col}
-                                md="6"
-                                style={{ padding: 15 }}
+                                md="4"
+                                style={{ padding: 10 }}
                                 controlId="validationCustom02"
                             >
                                 <Form.Label>To</Form.Label>
@@ -495,11 +495,20 @@ function IntegrateLeaveToApply() {
                                     required
                                     type="date"
                                     placeholder="To Date"
+                                    min={fromDate}
                                     onChange={(event) => {
                                         setToDate(event.target.value);
                                         console.log(event.target.value);
                                         axios.get(`/holiday/${fromDate}/${event.target.value}`).then((res) => {
-                                            setDay(res.data);
+                                            if(res.data>30){
+                                                alert("Limit exceeded")
+                                                const err = "Limit exceeded"
+                                            }
+                                            else{
+                                                setDay(res.data);
+                                            }
+                                           
+                                            
                                         })
                                     }}
                                 />
@@ -507,11 +516,11 @@ function IntegrateLeaveToApply() {
 
 
 
-                            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                            <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                 <Form.Label>No of Days</Form.Label>
                                 <Form.Control
                                     required
-                                    type="number"
+                                    type=""
                                     placeholder=""
                                     value={day}
                                     onChange={(event) => {
@@ -530,31 +539,36 @@ function IntegrateLeaveToApply() {
     onChange={(event) => setRemainingLeaves(event.target.value)}
     />
     </Form.Group> */}
-                            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                            <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                                 <Form.Label>Leave Reason</Form.Label>
                                 <Form.Control
                                     required
+                                    as="textarea"
                                     type="text"
+                                    rows={2}
                                     placeholder=""
                                     onChange={(event) => setReasonForLeaves(event.target.value)}
                                 />
                             </Form.Group>
-                            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                            <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                                 <Form.Group controlId="formFileMultiple" className="mb-3">
                                     <Form.Label>
                                         Upload Doctor's Certificate for Sick/Medical Leave
                                     </Form.Label>
                                     <Form.Control type="file" multiple />
                                 </Form.Group>
-                            </Form.Group>
-                        </Row>
-                        <Button
-                            style={{ backgroundColor: "#FF9B44", float: "right" }}
+                                <div class="col-md-12 text-center">
+                                <Button
+                            style={{ backgroundColor: "#FF9B44",borderRadius: "15px" }}
                             type="submit"
                             onClick={handleClose}
                         >
                             Submit
                         </Button>
+                        </div>
+                            </Form.Group>
+                        </Row>
+                        
                     </Form>
                 </Modal.Body>
             </Modal>

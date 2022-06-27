@@ -38,6 +38,8 @@ private int numberOfDays;
 
 private String leaveReason;
 
+private String leaveStatus;
+
 private String managerApproval;
 private String Name;
 private int employeeleaveId;
@@ -94,6 +96,12 @@ public int getEmployeeleaveId() {
 }
 public void setEmployeeleaveId(int employeeleaveId) {
 	this.employeeleaveId = employeeleaveId;
+}
+public String getLeaveStatus() {
+	return leaveStatus;
+}
+public void setLeaveStatus(String leaveStatus) {
+	this.leaveStatus = leaveStatus;
 }
 
 
