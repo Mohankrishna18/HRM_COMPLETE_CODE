@@ -178,14 +178,14 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
            <Card.Subtitle className="mb-2 text-muted">
            EmployeeLeaves
            </Card.Subtitle>{" "}
-           <Container>
+           {/* <Container> */}
              <Row>
                <Col xs={12}>
                <ApproveLeaveTable />
                </Col>
 
              </Row>
-           </Container>
+           {/* </Container> */}
          </Card.Body>
        </Card.Header>
      </Card>

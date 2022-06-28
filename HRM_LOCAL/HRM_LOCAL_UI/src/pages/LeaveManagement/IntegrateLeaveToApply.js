@@ -39,7 +39,8 @@ function IntegrateLeaveToApply() {
     const [numberOfDays, setNoOfDays] = useState();
     const [days, setDays] = useState();
     const [typeofleave, setTypeOfLeave] = useState([]);
-    const [entitle, setEntitle] = useState([])
+    const [entitle, setEntitle] = useState([]);
+    const [entitlee, setEntitlee] = useState([])
     const [day, setDay] = useState('')
     const [remainingdata, setRemainingData] = useState([]);
     const [count, setCount] = useState();
@@ -80,17 +81,17 @@ function IntegrateLeaveToApply() {
                 setGetEmployeeDetails(response.data.data);
             });
     }, []);
-    // useEffect(() => {
-    //     loadData();
-    // }, [])
-    // const loadData = () => {
-    //     axios.get("/leave/getAllleavetypes").then((res) => {
-    //         console.log(res.data);
-    //         setTypeOfLeave(res.data);
-    //         console.log("hello");
-    //         setEntitle(res.data.noOfDays)
-    //     });
-    // };
+    useEffect(() => {
+        loadData();
+    }, [])
+    const loadData = () => {
+        axios.get("/leave/getAllleavetypes").then((res) => {
+            console.log(res.data);
+            setTypeOfLeave(res.data);
+            console.log("hello");
+            setEntitlee(res.data.noOfDays)
+        });
+    };
 
 
     useEffect(() => {
