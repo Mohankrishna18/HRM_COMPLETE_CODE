@@ -13,32 +13,47 @@ import "react-toastify/dist/ReactToastify.css";
 import LoadingOverlay from "react-loading-overlay";
 
 const EmpAttendanceForm = () => {
-
   const [employeeId, setEmployeeId] = useState("");
-  const [punchout, setPunchout] = useState("");
+  const [punchinDate, setPunchinDate] = useState("");
+  // const [date, setDate] = useState("");
+
   // var userStatus = null;
-  function formatDate(fromDate) {
-    var datePart = fromDate.match(/\d+/g),
-      year = datePart[0].substring(2), // get only two digits
+
+  // var tempDate = new Date(show.punchinDate);
+  // var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  // console.log(dob)
+
+  function formatDate(punchinDate) {
+    var datePart = punchinDate.match(/\d+/g),
+    day = datePart[0], // get only two digits
       month = datePart[1],
-      day = datePart[2];
+      year = datePart[2];
     return day + "-" + month + "-" + year;
   }
+  function reverseString(str) {
+    var newString = "";
+    for (var i = str.length - 1; i >= 0; i--) {
+        newString += str[i];
+    }
+    return newString;
+}
+//reverseString('hello');
 
   useEffect(() => {
     loadData();
   }, []);
 
   const intialValues = {
-    employeeId, 
-    punchout
-  }
+    employeeId,
+    // punchout
+  };
 
   const loadData = async () => {
     const res = await axios
-      .get("/attendance/getAttendance", obje)
+      .get(`/attendance/getAttendance/${obje.employeeId}`)
       .then((res) => {
         setShow(res.data.data);
+      
         console.log(res.data.data);
       });
   };
@@ -46,13 +61,7 @@ const EmpAttendanceForm = () => {
   const notify = () => toast("Punch-In Successfully");
 
   const [show, setShow] = useState(false);
-  const [holiday, setHoliday] = useState([]);
-  // const validationSchema = Yup.object().shape({
-  //   holidayTitle: Yup.string()
-  //     .matches(/^[aA-zZ\s]+$/, "Invalid Name ")
-  //     .required("holidayTitle is required"),
-  //   holidayDate: Yup.string().required("Holiday Date is required"),
-  // });
+
 
   // const handleClose = () => {
   //   setShow(false);
@@ -61,19 +70,37 @@ const EmpAttendanceForm = () => {
 
   const da = JSON.parse(sessionStorage.getItem("userdata"));
   const daa = da.data.employeeId;
-  const obje = { employeeId: daa };
-  const punchOutSubmit = async () =>{
-    console.log(obje);
-    try{
-      const punchOutResponse = await axios.put(`/attendance/addPunchOut/${obje}`, intialValues);
-      console.log(punchOutResponse.data);
-      loadData();
-    }
-    catch(error){
-      console.log("Something went wrong",error);
-    }
-  }
   
+  const obje = { employeeId: daa };
+  // const date = show.punchinDate;
+  // console.log(date);
+
+  const punchOutSubmit = async () => {
+    const date = new Date()
+    var datePart= date.getDate()
+    var datePart1 = date.getMonth()+1
+    var datePart2 = date.getFullYear()
+    var datePart3= date.getTime()
+    console.log(datePart3)
+    const da = datePart+"-0"+datePart1+"-"+datePart2
+    console.log(da)
+     //var da1 = reverseString(da) 
+     //console.log(da1)
+    show.map((m)=>{
+      console.log(m.punchinDate)
+    })
+    console.log(obje.employeeId);
+    try {
+      const punchOutResponse = await axios.put(
+        `/attendance/addPunchOut/${obje.employeeId}?date=${da}`,obje);
+
+      console.log(punchOutResponse);
+      loadData();
+    } catch (error) {
+      console.log("Something went wrong", error);
+    }
+  };
+
   const onSubmit = async () => {
     console.log(obje);
     try {
@@ -101,37 +128,41 @@ const EmpAttendanceForm = () => {
   return (
     <div>
       <Row>
-        <Col md={12}>
-          <Button
-            variant="warning"
-            onClick={onSubmit}
-            style={{
-              backgroundColor: "#ff9b44",
-              color: "#F4F8F6",
-              float: "right",
-              borderRadius: "25px",
-            }}
-          >
-            {" "}
-            <BsPlusLg />
-            Punch-In
-          </Button>
+        <Col md={6}>
+          <td>
+            <Button
+              variant="warning"
+              onClick={onSubmit}
+              style={{
+                backgroundColor: "#ff9b44",
+                color: "#F4F8F6",
+                float: "right",
+                borderRadius: "25px",
+              }}
+            >
+              {" "}
+              <BsPlusLg />
+              Punch-In
+            </Button>
+          </td>
         </Col>
-        <Col md={12}>
-          <Button
-            variant="warning"
-            onClick={punchOutSubmit}
-            style={{
-              backgroundColor: "#ff9b44",
-              color: "#F4F8F6",
-              float: "right",
-              borderRadius: "25px",
-            }}
-          >
-            {" "}
-            <BsPlusLg />
-            Punch-Out
-          </Button>
+        <Col md={6}>
+          <td>
+            <Button
+              variant="warning"
+              onClick={punchOutSubmit}
+              style={{
+                backgroundColor: "#ff9b44",
+                color: "#F4F8F6",
+                float: "right",
+                borderRadius: "25px",
+              }}
+            >
+              {" "}
+              <BsPlusLg />
+              Punch-Out
+            </Button>
+          </td>
         </Col>
       </Row>
 
@@ -155,7 +186,7 @@ const EmpAttendanceForm = () => {
                     <tr>
                       <th scope="row">{index + 1}</th>
                       {/* <td>{h.data.SNo}</td> */}
-                      <td>{h.punchinDate}</td>
+                      <td>{formatDate(h.punchinDate)}</td>
                       <td>{h.punchin}</td>
                       <td>{h.punchout}</td>
                       <td>{h.duration}</td>
