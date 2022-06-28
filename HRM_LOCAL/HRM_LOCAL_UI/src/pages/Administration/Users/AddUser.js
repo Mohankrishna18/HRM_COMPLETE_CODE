@@ -123,7 +123,7 @@ function AddUser(props) {
           float: "right",
           borderRadius: "25px",
           paddingBottom: "11.5px",
-          marginTop: "100px",
+          marginTop: "10px",
         }}
       >
         {" "}

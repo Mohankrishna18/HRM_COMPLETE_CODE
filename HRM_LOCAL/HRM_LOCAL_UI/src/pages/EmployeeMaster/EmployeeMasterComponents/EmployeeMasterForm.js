@@ -18,9 +18,7 @@ import { set } from "lodash";
 import { FormHelperText } from "@mui/material";
 
 
-// let maxLength = 6;
-
-// var reg_name_lastname = /^[a-zA-Z\s]*$/;
+let maxLength = 6;
 
 const phoneRegExp =
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -179,6 +177,9 @@ function EmployeeMasterForm() {
     const [previousCompany3_employeeId, setPreviousCompany3_employeeId] = useState("");
     const [previousCompany3_typeOfEmployment, setPreviousCompany3_typeOfEmployement] = useState("");
     const [previousCompany3_reasonForRelieving, setPreviousCompany3_reasonForRelieving] = useState("");
+    const [employmentType, setEmploymentType] = useState("");
+    const [departmentName, setDepartmentName] = useState("");
+    const [projectName, setProjectName] = useState("");
 
     const [panNumber, setPanNumber] = useState("");
     const [aadharNumber, setAadharNumber] = useState("");
@@ -282,6 +283,9 @@ function EmployeeMasterForm() {
                 setPreviousCompany3_employeeId(response.data.data.previousCompany3_employeeId);
                 setPreviousCompany3_typeOfEmployement(response.data.data.previousCompany3_typeOfEmployment);
                 setPreviousCompany3_reasonForRelieving(response.data.data.previousCompany3_reasonForRelieving);
+                setEmploymentType(response.data.data.employmentType);
+                setDepartmentName(response.data.data.departmentName);
+                setProjectName(response.data.data.projectName);
 
                 setPanNumber(response.data.data.panNumber);
                 setAadharNumber(response.data.data.aadharNumber);
@@ -379,6 +383,9 @@ function EmployeeMasterForm() {
             previousCompany3_employeeId,
             previousCompany3_typeOfEmployment,
             previousCompany3_reasonForRelieving,
+            employmentType,
+            departmentName,
+            projectName,
 
             panNumber,
             aadharNumber,
@@ -471,7 +478,7 @@ function EmployeeMasterForm() {
         <div>
             <Row>
                 <Col>
-                    <Card className="scroll" style={{ marginTop: 10 }}>
+                    <Card className="scroll" style={{ marginTop: 0 }}>
                         <Card.Header>
                             <Card.Body>
                                 <Card.Title>Edit My Profile</Card.Title>
@@ -480,10 +487,10 @@ function EmployeeMasterForm() {
                                 </Card.Subtitle>
                                 <EmployeeMasterCard />
                                 <Card.Text style={{ margin: 20, color: "red" }}>
-                                    * All fields are mandatory.Please fill the form Correctly.
+                                    * All fields are mandatory. Please fill the form Correctly.
                                 </Card.Text>
 
-                                <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#CCCCFF" }}>
+                                <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#ffcf62" }}>
                                     <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                         Personal Details
                                     </Card.Title>
@@ -505,7 +512,7 @@ function EmployeeMasterForm() {
                                                 value={firstName}
                                                 // disabled
                                                 required
-                                                maxLength={30}
+                                                maxLength={50}
                                                 onChange={(e) => {
                                                     setFirstName(e.target.value);
                                                 }}
@@ -518,15 +525,17 @@ function EmployeeMasterForm() {
                                             </Form.Control.Feedback>
                                         </Form.Group>
 
+
                                         <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }}>
                                             <Form.Label>Middle name</Form.Label>
                                             <Form.Control
                                                 name="middleName"
                                                 type="text"
                                                 placeholder="Middle name"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 value={middleName}
                                                 onChange={(e) => {
+
                                                     setMiddleName(e.target.value);
                                                 }}
                                             />
@@ -542,7 +551,7 @@ function EmployeeMasterForm() {
                                                 value={lastName}
                                                 // disabled
                                                 required
-                                                maxLength={30}
+                                                maxLength={50}
                                                 onChange={(e) => {
                                                     if (firstName == "") {
                                                         setFErrors("First Name is required")
@@ -561,6 +570,13 @@ function EmployeeMasterForm() {
                                             </Form.Control.Feedback>
                                         </Form.Group>
 
+                                        {/* <PhoneInput
+
+// country={"india"}
+className="marginBottom"
+value={primaryPhoneNumber}
+onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
+/> */}
                                         <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }}>
                                             <Form.Label>Phone Number *</Form.Label>
                                             <InputGroup>
@@ -767,59 +783,365 @@ function EmployeeMasterForm() {
                                             </Form.Control.Feedback>
                                         </Form.Group>
 
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Primary Skills *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                name="primarySkills"
-                                                placeholder="Primary Skills"
-                                                controlId="primarySkills"
-                                                maxLength={30}
-                                                value={primarySkills}
-                                                onChange={(e) => {
-                                                    setPrimarySkills(e.target.value)
-                                                    if (gender === "") {
-                                                        setEighterror(" Marital Status is Required");
-                                                    }
-                                                    else {
-                                                        setEighterror("")
-                                                    }
-                                                }}
-                                                isInvalid={nineerrors}
-                                            />
-                                            <Form.Control.Feedback type="invalid">
-                                                {nineerrors}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Secondary Skills *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                name="secondarySkills"
-                                                placeholder="SecondarySkills"
-                                                controlId="secondarySkills"
-                                                maxLength={30}
-                                                value={secondarySkills}
-                                                isInvalid={tenerror}
-                                                onChange={(e) => {
-                                                    setSecondarySkills(e.target.value);
-                                                    if (primarySkills === "") {
-                                                        setNineErrors(" Primary skill is Required");
-                                                    }
-                                                    else {
-                                                        setNineErrors("")
-                                                    }
-                                                }}
-                                            />
-                                            <Form.Control.Feedback type="invalid">
-                                                {tenerror}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
+                                        <Row>
+                                            <Col>
 
+                                                <Card
+                                                    style={{ marginLeft: 0, marginRight: 0, marginTop: 20, backgroundColor: "#CCCCFF" }}
+                                                >
+                                                    <Card.Title style={{ margin: 20, textAlign: "center" }}>
+                                                        Permanent Address
+                                                    </Card.Title>
+                                                </Card>
+
+                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                    <Form.Label>Address *</Form.Label>
+                                                    <Form.Control
+                                                        required
+                                                        as="textarea"
+                                                        rows={4}
+                                                        type="text"
+                                                        name="permanentAdress"
+                                                        placeholder="Address"
+                                                        controlId="permanentAdress"
+                                                        value={permanentAdress}
+                                                        isInvalid={elevenerrors}
+                                                        maxLength={125}
+                                                        onChange={(e) => {
+                                                            setPermanentAddress(e.target.value)
+                                                            if (primarySkills === "") {
+                                                                setTenerror(" Secondary skill is Required");
+                                                            }
+                                                            else {
+                                                                setTenerror("")
+                                                            }
+                                                        }}
+
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {elevenerrors}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                    <Form.Label>State *</Form.Label>
+                                                    <Form.Control
+                                                        required
+                                                        type="text"
+                                                        placeholder="State"
+                                                        name="permanentState"
+                                                        controlId="permanentState"
+                                                        maxLength={50}
+                                                        isInvalid={tweleveerror}
+                                                        value={permanentState}
+                                                        onChange={(e) => {
+                                                            setPermanentState(e.target.value)
+                                                            if (permanentAdress === "") {
+                                                                setElevenErrors(" Address is Required");
+                                                            }
+                                                            else {
+                                                                setElevenErrors("")
+                                                            }
+                                                        }}
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {tweleveerror}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                    <Form.Label>Country *</Form.Label>
+                                                    <Form.Control
+                                                        required
+                                                        type="text"
+                                                        placeholder="Country"
+                                                        name="permanentCountry"
+                                                        controlId="permanentCountry"
+                                                        maxLength={50}
+                                                        // options={countries}
+                                                        value={permanentCountry}
+                                                        isInvalid={thirteenerrors}
+                                                        onChange={(e) => {
+                                                            setPermanentCountry(e.target.value)
+                                                            if (permanentState === "") {
+                                                                setTweleveerror(" State is Required");
+                                                            }
+                                                            else {
+                                                                setTweleveerror("")
+                                                            }
+                                                        }}
+                                                    >
+                                                        {/* <option>Select Country</option> */}
+
+                                                    </Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {thirteenerrors}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                {/* <CountryDropdown  
+                                            md="6"    
+                                                preferredCountries={['gb', 'us']}                                                  
+                                                required
+                                                type="text"
+                                                placeholder="Country"
+                                                name="permanentCountry"
+                                                controlId="permanentCountry"                                                
+                                                value={permanentCountry}
+                                                onChange={(e) => setPermanentCountry(e.target.value)}>
+                                   
+                                            </CountryDropdown> */}
+                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                    <Form.Label>Pincode *</Form.Label>
+                                                    <Form.Control
+                                                        required
+                                                        type="number"
+                                                        placeholder="Pincode"
+                                                        controlId="permanentPincode"
+                                                        name="permanentPincode"
+                                                        isInvalid={fourteenerror}
+                                                        value={permanentPincode}
+                                                        maxLength={6}
+                                                        size={6}
+                                                        onChange={(event) => {
+                                                            setPermanentPincode(event.target.value)
+                                                            if (event.target.value.length > 6) {
+                                                                setFourteenerror(" Pincode length should be 6 characters");;
+                                                            }
+                                                            if (permanentCountry === "") {
+                                                                setThirteenErrors("Country is Required");
+                                                            }
+                                                            else {
+                                                                setThirteenErrors("")
+                                                            }
+                                                        }}
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {fourteenerror}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                            </Col>
+                                            <Col>
+                                                <Card
+                                                    style={{ marginLeft: 10, marginRight: 0, marginTop: 20, backgroundColor: "#CCCCFF" }}
+                                                >
+                                                    <Card.Title style={{ margin: 20, textAlign: "center" }}>
+                                                        Current Address
+                                                    </Card.Title>
+                                                </Card>
+                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                    <Form.Label>Address *</Form.Label>
+                                                    <Form.Control
+                                                        required
+                                                        as="textarea"
+                                                        rows={4}
+                                                        type="text"
+                                                        placeholder="Address"
+                                                        controlId="currentAdress"
+                                                        isInvalid={fifteenerrors}
+                                                        value={currentAdress}
+                                                        name="currentAdress"
+                                                        maxLength={125}
+                                                        onChange={(e) => {
+                                                            setCurrentAddress(e.target.value)
+                                                            if (permanentPincode === "") {
+                                                                setFourteenerror(" Pincode is Required");
+                                                            }
+                                                            else {
+                                                                setFourteenerror("")
+                                                            }
+                                                        }}
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {fifteenerrors}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+
+                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                    <Form.Label>State *</Form.Label>
+                                                    <Form.Control
+                                                        required
+                                                        type="text"
+                                                        placeholder="State"
+                                                        name="currentState"
+                                                        controlId="currentState"
+                                                        maxLength={50}
+                                                        isInvalid={sixteenerror}
+                                                        value={currentState}
+                                                        onChange={(e) => {
+                                                            setCurrentState(e.target.value)
+                                                            if (currentAdress === "") {
+                                                                setFifteenErrors(" Address is Required");
+                                                            }
+                                                            else {
+                                                                setFifteenErrors("")
+                                                            }
+                                                        }}
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {sixteenerror}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                    <Form.Label>Country *</Form.Label>
+                                                    <Form.Control
+                                                        required
+                                                        type="text"
+                                                        placeholder="Country"
+                                                        //controlId="currentCountry"
+                                                        value={currentCountry}
+                                                        isInvalid={seventeenerror}
+                                                        maxLength={50}
+                                                        name="currentCountry"
+                                                        onChange={(e) => {
+                                                            setCurrentCountry(e.target.value)
+                                                            if (currentState === "") {
+                                                                setSixteenerror(" State is Required");
+                                                            }
+                                                            else {
+                                                                setSixteenerror("")
+                                                            }
+                                                        }
+                                                        }
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {seventeenerror}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                    <Form.Label>Pincode *</Form.Label>
+                                                    <Form.Control
+                                                        required
+                                                        type="number"
+                                                        placeholder="Pincode"
+                                                        controlId="currentPincode"
+                                                        value={currentPincode}
+                                                        isInvalid={eighteenerror}
+                                                        name="currentPincode"
+                                                        maxLength={6}
+                                                        onChange={(e) => {
+                                                            setCurrentPincode(e.target.value)
+                                                            if (e.target.value.length > 6) {
+                                                                setEighteenerror(" Pincode length should be 6 characters");;
+                                                            }
+                                                            if (currentCountry === "") {
+                                                                setSeventeenerror(" Country is Required");
+                                                            }
+                                                            else {
+                                                                setSeventeenerror("")
+                                                            }
+                                                        }}
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {eighteenerror}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                            </Col>
+                                        </Row>
+
+                                        <Card
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#CCCCFF" }}
+                                        >
+                                            <Card.Title style={{ margin: 20, textAlign: "center" }}>
+                                                Employment Details
+                                            </Card.Title>
+                                        </Card>
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Select Reporting Manager *</Form.Label>
+                                            <Form.Label>Primary Skills</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Primary Skills"
+                                                controlId="primarySkils"
+                                                value={primarySkills}
+                                                maxLength={15}
+                                                name="primarySkills"
+                                                onChange={(e) =>
+                                                    setPrimarySkills(e.target.value)
+
+
+                                                }
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                            <Form.Label>Secondary Skills</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Secondary Skills"
+                                                controlId="secondarySkills"
+                                                value={secondarySkills}
+                                                maxLength={15}
+                                                name="secondarySkills"
+                                                onChange={(e) =>
+                                                    setSecondarySkills(e.target.value)
+
+
+                                                }
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                            <Form.Label>Employment Type</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Type of Employee"
+                                                controlId="employmentType"
+                                                value={employmentType}
+                                                maxLength={15}
+                                                name="employmentType"
+                                                onChange={(e) =>
+                                                    setEmploymentType(e.target.value)
+
+
+                                                }
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                            <Form.Label>Band</Form.Label>
+                                            <Form.Select
+                                                type="text"
+                                                placeholder="Band"
+                                                controlId="band"
+
+                                                name="band"
+                                                value={band}
+                                                onChange={(event) => setBand(event.target.value)}
+                                            >
+                                                <option>Select</option>
+                                                <option value="Band-1">Band-1</option>
+                                                <option value="Band-2">Band-2</option>
+                                                <option value="Band-3">Band-3</option>
+                                            </Form.Select>
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                            <Form.Label>Department</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Department Name"
+                                                controlId="departmentName"
+                                                value={departmentName}
+                                                maxLength={15}
+                                                name="departmentName"
+                                                onChange={(e) =>
+                                                    setDepartmentName(e.target.value)
+
+
+                                                }
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                            <Form.Label>Designation</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="Designation Name"
+                                                controlId="designationName"
+                                                value={designationName}
+                                                maxLength={15}
+                                                name="designationName"
+                                                onChange={(e) =>
+                                                    setDesignationName(e.target.value)
+
+
+                                                }
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                            <Form.Label>Reporting Manager *</Form.Label>
                                             <Form.Select
                                                 placeholder="select Gender"
                                                 value={reportingManager}
@@ -832,251 +1154,24 @@ function EmployeeMasterForm() {
                                                 <option value="Revanth Kumar1">Revanth Kumar1</option>
                                             </Form.Select>
                                         </Form.Group>
-
-                                        <Card
-                                            style={{ marginLeft: 8, marginRight: 50, marginTop: 20, backgroundColor: "#CCCCFF" }}
-                                        >
-                                            <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                                                Permanent Address
-                                            </Card.Title>
-                                        </Card>
-
-                                        <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                                            <Form.Label>Address *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                as="textarea"
-                                                rows={4}
+                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                            <Form.Label>Project</Form.Label>
+                                            <Form.Select
                                                 type="text"
-                                                name="permanentAdress"
-                                                placeholder="Address"
-                                                controlId="permanentAdress"
-                                                value={permanentAdress}
-                                                isInvalid={elevenerrors}
-                                                maxLength={125}
-                                                onChange={(e) => {
-                                                    setPermanentAddress(e.target.value)
-                                                    if (primarySkills === "") {
-                                                        setTenerror(" Secondary skill is Required");
-                                                    }
-                                                    else {
-                                                        setTenerror("")
-                                                    }
-                                                }}
-
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {elevenerrors}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 15 }}>
-                                            <Form.Label>State *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                placeholder="State"
-                                                name="permanentState"
-                                                controlId="permanentState"
-                                                maxLength={30}
-                                                isInvalid={tweleveerror}
-                                                value={permanentState}
-                                                onChange={(e) => {
-                                                    setPermanentState(e.target.value)
-                                                    if (permanentAdress === "") {
-                                                        setElevenErrors(" Address is Required");
-                                                    }
-                                                    else {
-                                                        setElevenErrors("")
-                                                    }
-                                                }}
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {tweleveerror}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 15 }}>
-                                            <Form.Label>Country *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                placeholder="Country"
-                                                name="permanentCountry"
-                                                controlId="permanentCountry"
-                                                maxLength={30}
-                                                // options={countries}
-                                                value={permanentCountry}
-                                                isInvalid={thirteenerrors}
-                                                onChange={(e) => {
-                                                    setPermanentCountry(e.target.value)
-                                                    if (permanentState === "") {
-                                                        setTweleveerror(" State is Required");
-                                                    }
-                                                    else {
-                                                        setTweleveerror("")
-                                                    }
-                                                }}
+                                                placeholder="Project"
+                                                controlId="project"
+                                                value={projectName}
+                                                maxLength={15}
+                                                name="projectName"
+                                                onChange={(e) =>
+                                                    setProjectName(e.target.value)
+                                                }
                                             >
-                                                {/* <option>Select Country</option> */}
-
-                                            </Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {thirteenerrors}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        {/* <CountryDropdown  
-                                            md="6"    
-                                                preferredCountries={['gb', 'us']}                                                  
-                                                required
-                                                type="text"
-                                                placeholder="Country"
-                                                name="permanentCountry"
-                                                controlId="permanentCountry"                                                
-                                                value={permanentCountry}
-                                                onChange={(e) => setPermanentCountry(e.target.value)}>
-                                    
-                                            </CountryDropdown> */}
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Pincode *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="number"
-                                                placeholder="Pincode"
-                                                controlId="permanentPincode"
-                                                name="permanentPincode"
-                                                isInvalid={fourteenerror}
-                                                value={permanentPincode}
-                                                maxLength={6}
-                                                size={6}
-                                                onChange={(event) => {
-                                                    setPermanentPincode(event.target.value)
-                                                    if (event.target.value.length > 6) {
-                                                        setFourteenerror(" Pincode length should be 6 characters");;
-                                                    }
-                                                    if (permanentCountry === "") {
-                                                        setThirteenErrors("Country is Required");
-                                                    }
-                                                    else {
-                                                        setThirteenErrors("")
-                                                    }
-                                                }}
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {fourteenerror}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 10, backgroundColor: "#CCCCFF" }}
-                                        >
-                                            <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                                                Current Address
-                                            </Card.Title>
-                                        </Card>
-                                        <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                                            <Form.Label>Address *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                as="textarea"
-                                                rows={4}
-                                                type="text"
-                                                placeholder="Address"
-                                                controlId="currentAdress"
-                                                isInvalid={fifteenerrors}
-                                                value={currentAdress}
-                                                name="currentAdress"
-                                                maxLength={125}
-                                                onChange={(e) => {
-                                                    setCurrentAddress(e.target.value)
-                                                    if (permanentPincode === "") {
-                                                        setFourteenerror(" Pincode is Required");
-                                                    }
-                                                    else {
-                                                        setFourteenerror("")
-                                                    }
-                                                }}
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {fifteenerrors}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>State *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                placeholder="State"
-                                                name="currentState"
-                                                controlId="currentState"
-                                                maxLength={30}
-                                                isInvalid={sixteenerror}
-                                                value={currentState}
-                                                onChange={(e) => {
-                                                    setCurrentState(e.target.value)
-                                                    if (currentAdress === "") {
-                                                        setFifteenErrors(" Address is Required");
-                                                    }
-                                                    else {
-                                                        setFifteenErrors("")
-                                                    }
-                                                }}
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {sixteenerror}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Country *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                placeholder="Country"
-                                                //controlId="currentCountry"
-                                                value={currentCountry}
-                                                isInvalid={seventeenerror}
-                                                maxLength={30}
-                                                name="currentCountry"
-                                                onChange={(e) => {
-                                                    setCurrentCountry(e.target.value)
-                                                    if (currentState === "") {
-                                                        setSixteenerror(" State is Required");
-                                                    }
-                                                    else {
-                                                        setSixteenerror("")
-                                                    }
-                                                }
-                                                }
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {seventeenerror}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Pincode *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="number"
-                                                placeholder="Pincode"
-                                                controlId="currentPincode"
-                                                value={currentPincode}
-                                                isInvalid={eighteenerror}
-                                                name="currentPincode"
-                                                maxLength={6}
-                                                onChange={(e) => {
-                                                    setCurrentPincode(e.target.value)
-                                                    if (e.target.value.length > 6) {
-                                                        setEighteenerror(" Pincode length should be 6 characters");;
-                                                    }
-                                                    if (currentCountry === "") {
-                                                        setSeventeenerror(" Country is Required");
-                                                    }
-                                                    else {
-                                                        setSeventeenerror("")
-                                                    }
-                                                }}
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {eighteenerror}
-                                            </Form.Control.Feedback>
+                                                <option>Select</option>
+                                                <option value="HRM">HRM</option>
+                                                <option value="DEP">DEP</option>
+                                                <option value="PropertEase">PropertEase</option>
+                                            </Form.Select>
                                         </Form.Group>
                                         <Card
                                             style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#CCCCFF" }}
@@ -1085,6 +1180,7 @@ function EmployeeMasterForm() {
                                                 Additional Details
                                             </Card.Title>
                                         </Card>
+
 
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Passport Number</Form.Label>
@@ -1124,7 +1220,7 @@ function EmployeeMasterForm() {
                                                 placeholder="PAN Card Number"
                                                 controlId="panNumber"
                                                 name="panNumber"
-                                                maxLength={15}
+                                                maxLength={50}
                                                 value={panNumber}
                                                 onChange={(event) => setPanNumber(event.target.value)}
                                             ></Form.Control>
@@ -1178,7 +1274,7 @@ function EmployeeMasterForm() {
                                                 placeholder="Bank Name"
                                                 controlId="bankName"
                                                 name="bankName"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 value={bankName}
                                                 isInvalid={twentyerror}
                                                 onChange={(event) => {
@@ -1203,15 +1299,14 @@ function EmployeeMasterForm() {
                                                 placeholder="Account Number"
                                                 controlId="accountNumber"
                                                 name="accountNumber"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 value={accountNumber}
                                                 isInvalid={twentyoneerror}
                                                 onChange={(event) => {
                                                     setAccountNumber(event.target.value)
                                                     if (event.target.value.length > 16) {
-                                                        setTwentyoneerror(" Bank Account Number should be 16 characters");;
+                                                        setTwentyoneerror(" Pincode length should be 16 characters");;
                                                     }
-    //comment   
                                                     if (bankName === "") {
                                                         setTwentyerror(" Bank Name is Required");
                                                     }
@@ -1232,7 +1327,7 @@ function EmployeeMasterForm() {
                                                 placeholder="IFSC Code"
                                                 controlId="ifscCode"
                                                 name="ifscCode"
-                                                maxLength={10}
+                                                maxLength={50}
                                                 value={ifscCode}
                                                 isInvalid={twentytwoerror}
                                                 onChange={(event) => {
@@ -1257,7 +1352,7 @@ function EmployeeMasterForm() {
                                                 placeholder="Branch Name"
                                                 controlId="branchName"
                                                 name="branch"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 value={branch}
                                                 isInvalid={twentythreerror}
 
@@ -1276,23 +1371,7 @@ function EmployeeMasterForm() {
                                                 {twentythreerror}
                                             </Form.Control.Feedback>
                                         </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Band</Form.Label>
-                                            <Form.Select
-                                                type="text"
-                                                placeholder="Band"
-                                                controlId="band"
 
-                                                name="band"
-                                                value={band}
-                                                onChange={(event) => setBand(event.target.value)}
-                                            >
-                                                <option>Select</option>
-                                                <option value="Band-1">Band-1</option>
-                                                <option value="Band-2">Band-2</option>
-                                                <option value="Band-3">Band-3</option>
-                                            </Form.Select>
-                                        </Form.Group>
 
                                         <Card
                                             style={{
@@ -1387,7 +1466,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Institute City"
                                                                 controlId="postgraduationInstituteCity"
                                                                 value={postgraduationInstituteCity}
-                                                                maxLength={30}
+                                                                maxLength={50}
                                                                 name="postgraduationInstituteCity"
                                                                 onChange={(e) =>
                                                                     setPostgraduationInstituteCity(e.target.value)
@@ -1401,7 +1480,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Course Name"
                                                                 controlId="postgraduationCourseName"
                                                                 value={postgraduationCourseName}
-                                                                maxLength={30}
+                                                                maxLength={50}
                                                                 name="postgraduationCourseName"
                                                                 onChange={(e) =>
                                                                     setPostgraduationCourseName(e.target.value)
@@ -1415,7 +1494,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Joining Year"
                                                                 controlId="postgraduationJoiningYear"
                                                                 value={postgraduationJoiningYear}
-                                                                maxLength={30}
+                                                                maxLength={50}
                                                                 name="postgraduationJoiningYear"
                                                                 onChange={(e) =>
                                                                     setPostgraduationJoiningYear(e.target.value)
@@ -1431,7 +1510,7 @@ function EmployeeMasterForm() {
                                                                 value={postgraduationPassedYear}
 
                                                                 min={postgraduationJoiningYear}
-                                                                maxLength={30}
+                                                                maxLength={50}
                                                                 name="postgraduationPassedYear"
                                                                 onChange={(e) =>
                                                                     setPostgraduationPassedYear(e.target.value)
@@ -1478,7 +1557,7 @@ function EmployeeMasterForm() {
                                                 type="text"
                                                 placeholder="Type Of Graduation"
                                                 controlId="graduationType"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 name="graduationType"
                                                 value={graduationType}
                                                 isInvalid={twentyfourerror}
@@ -1516,18 +1595,12 @@ function EmployeeMasterForm() {
                                                 placeholder="University Name"
                                                 controlId="graduationBoardOfUniversity"
                                                 name="graduationBoardOfUniversity"
-                                                // pattern="/^[a-zA-Z\s]*$/"
-
                                                 value={graduationBoardOfUniversity}
                                                 isInvalid={twentyfiveerror}
                                                 maxLength={50}
 
                                                 onChange={(e) => {
                                                     setGraduationBoardOfUniversity(e.target.value)
-                                                    // if (reg_name_lastname.test($('#graduationBoardOfUniversity').val())) { //
-                                                    //     setTwentyfiveerror("Correct your First Name: only letters and spaces.");
-                                                    //     valid = false;
-                                                    // }
                                                     if (graduationType === "") {
                                                         setTwentyfourerror("Type of Graduation is Required");
                                                     }
@@ -1550,7 +1623,7 @@ function EmployeeMasterForm() {
                                                 placeholder="Institute Name "
                                                 controlId="graduationInstituteName"
                                                 name="graduationInstituteName"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 value={graduationInstituteName}
                                                 isInvalid={twentysixerror}
                                                 onChange={(e) => {
@@ -1575,7 +1648,7 @@ function EmployeeMasterForm() {
                                                 type="text"
                                                 placeholder="Institute City"
                                                 controlId="graduationInstituteCity"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 value={graduationInstituteCity}
                                                 isInvalid={twentysevenerror}
 
@@ -1602,7 +1675,7 @@ function EmployeeMasterForm() {
                                                 type="text"
                                                 placeholder="Course Name"
                                                 name="graduationCourseName"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 value={graduationCourseName}
                                                 isInvalid={twentyeighterror}
                                                 onChange={(e) => {
@@ -1627,7 +1700,7 @@ function EmployeeMasterForm() {
                                                 placeholder="Joining Year"
                                                 name="graduationJoiningYear"
                                                 controlId="graduationJoiningYear"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 value={graduationJoiningYear}
                                                 isInvalid={twentynineerror}
                                                 onChange={(e) => {
@@ -1653,7 +1726,7 @@ function EmployeeMasterForm() {
                                                 placeholder="Passed out year"
                                                 controlId="graduationPassedYear"
                                                 name="graduationPassedYear"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 min={graduationJoiningYear}
                                                 value={graduationPassedYear}
                                                 isInvalid={thirtyerror}
@@ -1714,7 +1787,7 @@ function EmployeeMasterForm() {
                                                 controlId="intermediateBoardOfUniversity"
                                                 value={intermediateBoardOfUniversity}
                                                 isInvalid={thirtytwoerror}
-                                                maxLength={30}
+                                                maxLength={50}
                                                 onChange={(e) => {
                                                     setIntermediateBoardOfUniversity(e.target.value)
                                                     if (graduationGrade === "") {
@@ -1740,7 +1813,7 @@ function EmployeeMasterForm() {
                                                 controlId="intermediateCollegeName"
                                                 value={intermediateCollegeName}
                                                 isInvalid={thirtythreeerror}
-                                                maxLength={30}
+                                                maxLength={50}
                                                 onChange={(e) => {
                                                     setIntermediateCollegeName(e.target.value)
                                                     if (intermediateBoardOfUniversity === "") {
@@ -1765,7 +1838,7 @@ function EmployeeMasterForm() {
                                                 controlId="intermediateCollegeCity"
                                                 value={intermediateCollegeCity}
                                                 isInvalid={thirtyfourerror}
-                                                maxLength={30}
+                                                maxLength={50}
                                                 onChange={(e) => {
                                                     setIntermediateCollegeCity(e.target.value)
                                                     if (intermediateCollegeName === "") {
@@ -1789,7 +1862,7 @@ function EmployeeMasterForm() {
                                                 placeholder="Course Name"
                                                 name="intermediateCourseName"
                                                 controlId="intermediateCourseName"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 value={intermediateCourseName}
                                                 isInvalid={thirtyfiveerror}
                                                 // onChange={changeHandler}
@@ -1899,7 +1972,7 @@ function EmployeeMasterForm() {
                                                 type="text"
                                                 placeholder="Board"
                                                 controlId="sscBoardOfUniversity"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 value={sscBoardOfUniversity}
                                                 isInvalid={thirtynineerror}
                                                 onChange={(e) => {
@@ -1925,7 +1998,7 @@ function EmployeeMasterForm() {
                                                 type="text"
                                                 placeholder="School Name "
                                                 controlId="sscSchoolName"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 value={sscSchoolName}
                                                 isInvalid={fourty}
                                                 onChange={(e) => {
@@ -1950,7 +2023,7 @@ function EmployeeMasterForm() {
                                                 type="text"
                                                 placeholder="School City"
                                                 controlId="sscSchoolCity"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 value={sscSchoolCity}
                                                 isInvalid={fourtyone}
                                                 name="sscSchoolCity"
@@ -1975,7 +2048,7 @@ function EmployeeMasterForm() {
                                                 type="text"
                                                 placeholder="Course Name"
                                                 controlId="sscCourseName"
-                                                maxLength={30}
+                                                maxLength={50}
                                                 value={sscCourseName}
                                                 isInvalid={fourtytwo}
                                                 name="sscCourseName"
@@ -2091,7 +2164,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Company Name"
                                                                 controlId="previousCompany1_name"
                                                                 value={previousCompany1_name}
-                                                                maxLength={30}
+                                                                maxLength={50}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany1_name(e.target.value)
                                                                 }
@@ -2105,7 +2178,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Designation"
                                                                 controlId="previousCompany1_designation"
                                                                 value={previousCompany1_designation}
-                                                                maxLength={30}
+                                                                maxLength={50}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany1_designation(
                                                                         e.target.value
@@ -2152,7 +2225,7 @@ function EmployeeMasterForm() {
                                                                 placeholder="Employee ID"
                                                                 controlId="previousCompany1_employeeId"
                                                                 value={previousCompany1_employeeId}
-                                                                maxLength={30}
+                                                                maxLength={50}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany1_employeeId(e.target.value)
                                                                 }
@@ -2191,7 +2264,6 @@ function EmployeeMasterForm() {
                                                                 as="textarea"
                                                                 rows={2}
                                                                 type="text"
-                                                                maxLength={120}
                                                                 placeholder="Reason"
                                                                 controlId="previousCompany1_reasonForRelieving"
                                                                 value={previousCompany1_reasonForRelieving}
@@ -2218,7 +2290,7 @@ function EmployeeMasterForm() {
                                                                 type="text"
                                                                 placeholder="Company Name"
                                                                 controlId="previousCompany2_name"
-                                                                maxLength={30}
+                                                                maxLength={50}
                                                                 value={previousCompany2_name}
                                                                 onChange={(event) =>
                                                                     setPreviousCompany2_name(event.target.value)
@@ -2232,7 +2304,7 @@ function EmployeeMasterForm() {
                                                                 type="text"
                                                                 placeholder="Designation"
                                                                 controlId="previousCompany2_designation"
-                                                                maxLength={30}
+                                                                maxLength={50}
                                                                 value={previousCompany2_designation}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany2_designation(
@@ -2344,7 +2416,7 @@ function EmployeeMasterForm() {
                                                                 type="text"
                                                                 placeholder="Company Name"
                                                                 controlId="previousCompany3_name"
-                                                                maxLength={30}
+                                                                maxLength={50}
                                                                 value={previousCompany3_name}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany3_name(e.target.value)
@@ -2358,7 +2430,7 @@ function EmployeeMasterForm() {
                                                                 type="text"
                                                                 placeholder="Designation"
                                                                 controlId="previousCompany3_designation"
-                                                                maxLength={30}
+                                                                maxLength={50}
                                                                 value={previousCompany3_designation}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany3_designation(
@@ -2405,7 +2477,7 @@ function EmployeeMasterForm() {
                                                                 type="text"
                                                                 placeholder="Employee ID"
                                                                 controlId="previousCompany3_employeeId"
-                                                                maxLength={30}
+                                                                maxLength={50}
                                                                 value={previousCompany3_employeeId}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany3_employeeId(e.target.value)
@@ -2443,7 +2515,6 @@ function EmployeeMasterForm() {
                                                                 as="textarea"
                                                                 rows={2}
                                                                 type="text"
-                                                                maxLength={120}
                                                                 placeholder="Reason"
                                                                 controlId="previousCompany3_reasonForRelieving"
                                                                 value={previousCompany3_reasonForRelieving}
@@ -2511,4 +2582,3 @@ function EmployeeMasterForm() {
 }
 
 export default EmployeeMasterForm;
-

@@ -14,6 +14,7 @@ const ApprovalUpdateForm = (props) => {
   console.log(props.updateOnboard);
 
   const [employeeId, setEmployeeId] = useState(props.updateOnboard.employeeId);
+  const [userName, setUserName] = useState(props.updateOnboard.userName);
   const [roleName, setRoleName] = useState(
     props.updateOnboard.roleName
   );
@@ -39,6 +40,7 @@ const ApprovalUpdateForm = (props) => {
     const {
 
       employeeId,
+      userName,
       roleName,
 
     } = form;
@@ -47,6 +49,8 @@ const ApprovalUpdateForm = (props) => {
 
     if (!employeeId || employeeId === "")
       newErrors.employeeId = "Please Enter Employee ID";
+      if (!userName || userName === "")
+      newErrors.userName = "Please Enter User Name";
     if (!roleName || roleName === "")
       newErrors.roleName = "Please Enter Role";
 
@@ -62,11 +66,13 @@ const ApprovalUpdateForm = (props) => {
       .put(`/user/updateUserById/${props.updateOnboard.employeeId}`, {
      
         employeeId,
+        userName,
         roleName,
        
       })
       .then((response) => {
         const user = response.data;
+        console.log(response);
         if (response.data.status) {
           props.func();
         }
@@ -80,7 +86,7 @@ const ApprovalUpdateForm = (props) => {
         console.log(err);
         toast.error("Something Went Wrong");
       });
-
+      props.handleClose();
   };
 
 
@@ -142,6 +148,24 @@ const ApprovalUpdateForm = (props) => {
                 </Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {errors.employeeId}
+                </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>User Name</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Employee ID"
+                  controlId="userName"
+                  value={userName}
+                  isInvalid={!!errors.userName}
+                >
+                 
+                </Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.userName}
                 </Form.Control.Feedback>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>

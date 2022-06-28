@@ -1,26 +1,26 @@
 import React from 'react';
-import {Row, Col, Button} from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import axios from "../../../Uri";
 
 const ApproveDelete = (props) => {
     console.log(props.deleteOnboard)
-   
-    
-    const deleteuser=async()=>{
-        try{
-            const res =await axios.delete(`/user/deleteUserById/${props.deleteOnboard.employeeId}`)
+
+
+    const deleteuser = async () => {
+        try {
+            const res = await axios.delete(`/user/deleteUserById/${props.deleteOnboard.employeeId}`)
             console.log(res)
-            if(res.data.status){
+            if (res.data.status) {
                 props.func();
             }
         }
-        catch(error){
+        catch (error) {
             console.log(error)
         }
-        
+
         // .then((res)=>{
         //     console.log(res)
-            
+
         //     if (res.data.status) {
         //         props.func();
 
@@ -31,22 +31,23 @@ const ApproveDelete = (props) => {
         //     console.log(err)
         //     console.log("Not deleted")
         // })
-        props.handleClosed()
+        props.deleteHandleClose()
     }
-  return (
-    <div>
-        <Row>
-            <Row> Are You Sure You want to delete {props.deleteOnboard.employeeId}</Row>
+    return (
+        <div>
             <Row>
-                <Col><Button onClick={deleteuser}>Yes</Button></Col>
+                <Col>
+                    <Row><Col style={{ paddingLeft:"10px" }}> Are you sure that you want to delete {props.deleteOnboard.userName}?</Col></Row>
+                    <Row>
+                        <Col><Button onClick={deleteuser}>Yes</Button></Col>
+                    </Row>
+                </Col>
             </Row>
 
-        </Row>
-       
-        
-        
-    </div>
-  )
+
+
+        </div>
+    )
 }
 
 export default ApproveDelete;

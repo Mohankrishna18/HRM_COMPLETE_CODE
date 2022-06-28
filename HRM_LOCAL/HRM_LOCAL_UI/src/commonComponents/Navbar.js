@@ -1,19 +1,62 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col, Nav, Navbar, Button } from "react-bootstrap";
 import image from "../Images/arshaalogo.png";
 import { NavLink, useHistory } from "react-router-dom";
 import { isLoggedIn } from "../utils";
+
+
+
 import { FaSignOutAlt } from "react-icons/fa";
+import axios from "../Uri";
 import { last } from "lodash";
+import Avatar from '@mui/material/Avatar';
+
 const NavBar = (props) => {
+
+  const userData = sessionStorage.getItem("userdata");
+  // console.log(userData);
+  const userData1 = JSON.parse(userData);
+  const employeeid = userData1.data.employeeId;
+
+  const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
+  const [imge, setImge] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
+      .then((response) => {
+        setGetEmployeeDetails(response.data.data);
+      });
+  }, []);
+  console.log(getEmployeeDetails)
+
+
+
+  useEffect(() => {
+    axios
+      .get(`/emp/files/${employeeid}`)
+      .then((response) => {
+        console.log(response.data);
+        setImge(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("something wrong");
+      });
+  }, []);
+  console.log(imge)
+
+
+
   //Routes obtained from default router config
   const menuItems = props.routes;
   let history = useHistory();
   //Perform logout
   function handleLogout() {
-    sessionStorage.removeItem("userdata");
-    history.push("/");
+    sessionStorage.removeItem('userdata');
+    history.push('/');
   }
+
   return (
     <Row>
       <Col xs={12} md={12}>
@@ -40,29 +83,55 @@ const NavBar = (props) => {
                 </Navbar>
               </Nav>
             </Col>
-            <Col xs={2} md={{ span: 1, offset: 1 }}>
-              <Nav>
+            <Col style={{
+
+              paddingRight: "20px",
+            }}>
+
+              <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
+
+              }} /></Col>
+            <Col style={{
+
+              paddingRight: "40px",
+            }}>
+              {getEmployeeDetails.firstName}
+
+              <br />
+              {getEmployeeDetails.lastName}
+            </Col>
+            <br />
+            <Col xs={2} md={{ span: 1, offset: 0 }}>
+              <Nav >
                 <Navbar>
                   <Navbar.Brand href="#">
                     <td>
                       {isLoggedIn() && (
                         <FaSignOutAlt
-                          style={{ fontSize: "35px" }}
+                          style={{ fontSize: "34px", paddingTop: "10px" }}
                           onClick={handleLogout}
+
                         />
                       )}
+                      <div style={{ fontSize: "15px" }}>
+                        <p onClick={handleLogout}>Logout  <br /> <span>V1.0</span></p>
+
+                      </div>
                     </td>
-                    <td style={{ paddingLeft: "10px" }}>
-                      <p>V1.0</p>
-                    </td>
+
                   </Navbar.Brand>
                 </Navbar>
               </Nav>{" "}
             </Col>
           </Navbar>
-        </div>{" "}
-      </Col>{" "}
+        </div>
+
+      </Col>
+
     </Row>
   );
 };
+
+
+
 export default NavBar;

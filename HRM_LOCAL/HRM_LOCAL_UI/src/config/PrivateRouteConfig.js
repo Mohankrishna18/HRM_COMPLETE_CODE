@@ -232,7 +232,7 @@ export default [
     component: TaggedEmployeesMain,
     path: "/employeeTagged",
     icon: <FcCustomerSupport />,
-    title: "Employees List",
+    title: "Reportee's List",
     permission: [Roles.manager],
   },
   {
