@@ -22,7 +22,7 @@ export default function ResetPassword() {
     newPassword,
     confirmNewPassword,
   };
-  
+
   function validateForm() {
     return (
       oldPassword.length > 0 &&
@@ -31,178 +31,219 @@ export default function ResetPassword() {
     );
   }
   // testing 
+  const [validated, setValidated] = useState(false);
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    if (newPassword === confirmNewPassword) {
-      
-      history.push("/");
-      toast.success("Password changed");
-
-    } else {
-      
-      toast.error("Password do not match");
-      
+    setValidated(true);
+    try {
+      if (oldPassword != "" && newPassword != "" && confirmNewPassword != "") {
+        if (newPassword === confirmNewPassword) {
+          history.push("/");
+          toast.success("Password changed");
+        }
+       else {
+        toast.error("Password does'nt match");
+      }
+      }
+      else{
+        toast.error("Every Field is Mandatory");
+      }
     }
+    catch (err) {
+      console.error(err);
+    }
+    // if (newPassword === confirmNewPassword) {
+    //   history.push("/");
+    //   toast.success("Password changed");
 
+    // } else {
+
+    //   toast.error("Password do not match");
+    // }
     const changePasswordCall = await axios.put(
       "login/resetPassword",
       intialValues
     );
-    changePasswordCall();
+    // changePasswordCall();
   };
   return (
     <>
       <Container>
-        <Row style={{ marginTop: "40px", marginLeft: "40px" }}>
-          <Col
-            className="p-5 m-auto shadow-sm rounded-lg"
-            style={{
-              height: "650px",
-              width: "430px",
-              alignments: "center",
-              background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
-              borderRadius: "25px",
-            }}
-            lg={5}
-            md={6}
-            sm={12}
-          >
-            <img
-              src={image}
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Row style={{ marginTop: "40px", marginLeft: "40px" }}>
+            <Col
+              className="p-5 m-auto shadow-sm rounded-lg"
               style={{
-                height: "110px",
-                width: "200px",
-                paddingLeft: "120px",
-                borderRadius: "15px",
+                height: "700px",
+                width: "430px",
+                alignments: "center",
+                background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
+                borderRadius: "25px",
               }}
-            ></img>
-            <h1 style={{ textAlign: "center", paddingTop: "10px" }}>
-              Reset Password
-            </h1>
-            <Form style={{ paddingTop: "40px" }}>
-              <Form.Group controlid="fornBasicPassword">
-                <Form.Label style={{ fontWeight: "bold", paddingLeft: "10px" }}>
-                  Old Password
-                </Form.Label>
-                <Form.Control
-                  style={{ borderRadius: "15px" }}
-                  type="password"
-                  placeholder="Enter your Old Password."
-                  size="lg"
-                  value={oldPassword}
-                  validate={{
-                    required: {
-                      value: true,
-                      errorMessage: "Please Enter your Old Password",
-                    },
-                    pattern: {
-                      value: "^[A-Za-z0-9]+$",
-                      errorMessage:
-                        "Your password must be composed only with letter and numbers",
-                    },
-                    minLength: {
-                      value: 8,
-                      errorMessage:
-                        "Your password must be between 6 and 16 characters",
-                    },
-                    maxLength: {
-                      value: 16,
-                      errorMessage:
-                        "Your password must be between 6 and 16 characters",
-                    },
-                  }}
-                  onChange={(e) => setOldPassword(e.target.value)}
-                />
-              </Form.Group>
-              &nbsp;
-              <Form.Group controlid="fornBasicPassword">
-                <Form.Label style={{ fontWeight: "bold", paddingLeft: "10px" }}>
-                  New Password
-                </Form.Label>
-                <Form.Control
-                  style={{ borderRadius: "15px" }}
-                  type="password"
-                  placeholder="Enter your New password."
-                  size="lg"
-                  value={newPassword}
-                  validate={{
-                    required: {
-                      value: true,
-                      errorMessage: "Please Enter your New Password",
-                    },
-                    pattern: {
-                      value: "^[A-Za-z0-9]+$",
-                      errorMessage:
-                        "Your password must be composed only with letter and numbers",
-                    },
-                    minLength: {
-                      value: 8,
-                      errorMessage:
-                        "Your password must be between 6 and 16 characters",
-                    },
-                    maxLength: {
-                      value: 16,
-                      errorMessage:
-                        "Your password must be between 6 and 16 characters",
-                    },
-                  }}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                />
-              </Form.Group>
-              &nbsp;{" "}
-              <Form.Group controlid="fornBasicPassword">
-                <Form.Label style={{ fontWeight: "bold", paddingLeft: "10px" }}>
-                  Confirm New Password
-                </Form.Label>
-                <Form.Control
-                  style={{ borderRadius: "15px" }}
-                  type="password"
-                  placeholder="Enter your Confirm New password."
-                  size="lg"
-                  value={confirmNewPassword}
-                  validate={{
-                    required: {
-                      value: true,
-                      errorMessage: "Please Enter your Confirm New Password",
-                    },
-                    pattern: {
-                      value: "^[A-Za-z0-9]+$",
-                      errorMessage:
-                        "Your password must be composed only with letter and numbers",
-                    },
-                    minLength: {
-                      value: 8,
-                      errorMessage:
-                        "Your password must be between 6 and 16 characters",
-                    },
-                    maxLength: {
-                      value: 16,
-                      errorMessage:
-                        "Your password must be between 6 and 16 characters",
-                    },
-                  }}
-                  onChange={(e) => setConfirmNewPassword(e.target.value)}
-                />
-              </Form.Group>
-              &nbsp;
-              <Button
-                size="lg"
-                type="submit"
+              lg={5}
+              md={6}
+              sm={12}
+            >
+              <img
+                src={image}
                 style={{
-                  width: "100%",
-                  background: "#19fa0a",
+                  height: "110px",
+                  width: "200px",
+                  paddingLeft: "120px",
                   borderRadius: "15px",
-                  color: "black",
                 }}
-                disabled={!validateForm()}
-                onClick={handleSubmit}
-              >
+              ></img>
+              <h1 style={{ textAlign: "center", paddingTop: "10px" }}>
                 Reset Password
-              </Button>
-            </Form>
-          </Col>
-        </Row>
+              </h1>
+              <Form style={{ paddingTop: "10px" }}>
+                <Form.Group as={Col} md="12" controlId="validationCustom04">
+                  <Form.Label style={{ marginTop: "10px", fontWeight: "bold" }}>Old Password</Form.Label>
+                  <Form.Control type="Password" placeholder="Enter your oldPassword" required
+                    style={{ borderRadius: "15px" }}
+                    size="lg"
+                    value={oldPassword}
+                    maxLength={14}
+                    validate={{
+                      required: {
+                        value: true,
+                        errorMessage: "Please enter your oldPassword",
+                      },
+                      pattern: {
+                        value: "^[A-Za-z0-9]+$",
+                        errorMessage:
+                          "Your password must be composed only with letter and numbers",
+                      },
+                      minLength: {
+                        value: 6,
+                        errorMessage:
+                          "Your password must be between 6 and 16 characters",
+                      },
+                      maxLength: {
+                        value: 16,
+                        errorMessage:
+                          "Your password must be between 6 and 16 characters",
+                      },
+                    }}
+                    onChange={(e) => {
+                      const str = e.target.value;
+                      //let length = f.length;
+                      if (`${str.length}` > 12) {
+                        alert("Password should not be nore than 12 characters");
+                      }
+                      else {
+                        setOldPassword(e.target.value)
+                      }
+                    }
+                    } />
+                  <Form.Control.Feedback type="invalid" style={{ color: 'blue' }}>
+                    Please Enter Valid newPassword.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Col} md="12" controlId="validationCustom04">
+                  <Form.Label style={{ marginTop: "20px", fontWeight: "bold" }}>New Password</Form.Label>
+                  <Form.Control type="Password" placeholder="Enter your newPassword" required
+                    style={{ borderRadius: "15px" }}
+                    size="lg"
+                    value={newPassword}
+                    maxLength={14}
+                    validate={{
+                      required: {
+                        value: true,
+                        errorMessage: "Please enter your newPassword",
+                      },
+                      pattern: {
+                        value: "^[A-Za-z0-9]+$",
+                        errorMessage:
+                          "Your password must be composed only with letter and numbers",
+                      },
+                      minLength: {
+                        value: 6,
+                        errorMessage:
+                          "Your password must be between 6 and 16 characters",
+                      },
+                      maxLength: {
+                        value: 16,
+                        errorMessage:
+                          "Your password must be between 6 and 16 characters",
+                      },
+                    }}
+                    onChange={(e) => {
+                      const str = e.target.value;
+                      if (`${str.length}` > 12) {
+                        alert("Password should not be nore than 12 characters");
+                      }
+                      else {
+                        setNewPassword(e.target.value)
+                      }
+                    }
+                    } />
+                  <Form.Control.Feedback type="invalid" style={{ color: 'blue' }}>
+                    Please Enter Valid New Password.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Col} md="12" controlId="validationCustom04">
+                  <Form.Label style={{ marginTop: "20px", fontWeight: "bold" }}>Confirm New Password</Form.Label>
+                  <Form.Control type="Password" placeholder="Enter your confirmNewPassword" required
+                    style={{ borderRadius: "15px" }}
+                    size="lg"
+                    value={confirmNewPassword}
+                    maxLength={14}
+                    validate={{
+                      required: {
+                        value: true,
+                        errorMessage: "Please enter your confirmNewPassword",
+                      },
+                      pattern: {
+                        value: "^[A-Za-z0-9]+$",
+                        errorMessage:
+                          "Your password must be composed only with letter and numbers",
+                      },
+                      minLength: {
+                        value: 6,
+                        errorMessage:
+                          "Your password must be between 6 and 16 characters",
+                      },
+                      maxLength: {
+                        value: 16,
+                        errorMessage:
+                          "Your password must be between 6 and 16 characters",
+                      },
+                    }}
+                    onChange={(e) => {
+                      const str = e.target.value;
+                      //let length = f.length;
+                      if (`${str.length}` > 12) {
+                        alert("confirmNewPassword should not be nore than 12 characters");
+                      }
+                      else {
+                        setConfirmNewPassword(e.target.value)
+                      }
+                    }
+                    } />
+                  <Form.Control.Feedback type="invalid" style={{ color: 'blue' }}>
+                    Please Enter Valid confirm New Password.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                &nbsp;
+                <Button
+                  size="lg"
+                  type="submit"
+                  style={{
+                    width: "100%",
+                    background: "#19fa0a",
+                    borderRadius: "15px",
+                    color: "black",
+                  }}
+                  // disabled={!validateForm()}
+                  onClick={handleSubmit}
+                >
+                  Reset Password
+                </Button>
+              </Form>
+            </Col>
+          </Row>
+        </Form>
       </Container>
     </>
   );

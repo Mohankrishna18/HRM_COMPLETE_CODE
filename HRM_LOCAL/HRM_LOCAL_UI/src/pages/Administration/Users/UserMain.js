@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,createContext} from "react";
 import MaterialTable from "material-table";
 import Card from "react-bootstrap/Card";
 import Grid from "@mui/material/Grid";
@@ -28,24 +28,31 @@ function OnboardedEmployeesTable() {
 
   const [data, setData] = useState([]);
   // const [empdata, setEmpdata] = useState([]);
-  const [status, setStatus] = useState(false);
+  const [addStatus, setAddStatus] = useState(false);
   const [deleteStatus, setDeleteStatus] = useState(false);
+  const [updateStatus, setUpdateStatus] = useState(false);
   // const [status1, setStatus1] = useState(false);
   // const [viewStatus1, setViewStatus1] = useState(false);
 
-  const pull_data = () => {
-    setStatus(true);
-    setDeleteStatus(true);
+  const pull_dataAdd = () => {
+    setAddStatus(!addStatus);
+    
+  };
+
+  const pull_dataDelete = () => {
+    setDeleteStatus(!deleteStatus);
+    
+  };
+
+  const pull_dataUpdate = () => {
+    setUpdateStatus(!updateStatus);
     
   };
 
   useEffect(() => {
     loadRoles();
-  }, [status]);
-  useEffect(() => {
-    loadRoles();
-  }, [deleteStatus]);
-  
+  }, [addStatus,deleteStatus, updateStatus]);
+ 
 
   const loadRoles = async (e) => {
     const response = await axios.get("/user/getUsersData");
@@ -59,7 +66,11 @@ function OnboardedEmployeesTable() {
       field: "employeeId",
       type: "text",
     },
-    
+    {
+      title: "User Name",
+      field: "userName",
+      type: "text",
+    },
     {
       title: "Role",
       field: "roleName",
@@ -74,7 +85,7 @@ function OnboardedEmployeesTable() {
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ApprovalUpdateForm updateOnboard={updateOnboard} func={pull_data} />
+          <ApprovalUpdateForm updateOnboard={updateOnboard} func={pull_dataUpdate} handleClose={handleClose}  />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -88,39 +99,29 @@ function OnboardedEmployeesTable() {
       </Modal>
       <Modal show={deleteUser} onHide={deleteHandleClose}>
       <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Delete User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ApproveDelete deleteOnboard={deleteOnboard} func={pull_data} deleteHandleClose={deleteHandleClose}/>
+          <ApproveDelete deleteOnboard={deleteOnboard} func={pull_dataDelete} deleteHandleClose={deleteHandleClose}/>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          {/* <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button> */}
-        </Modal.Footer>
 
       </Modal>
 
       
       <Card
         style={{
-          paddingTop: "20px",
-          paddingRight: "10px",
-          paddingLeft: "10px",
-          paddingBottom: "10px",
+          paddingTop: "10px",
+          // paddingRight: "10px",
+          // paddingLeft: "10px",
+          // paddingBottom: "10px",
         }}
       >
-        <h3 align="center" style={{ color: "orange" }}>
-          Onboarded Employees Table
-        </h3>
-        <AddUser func={pull_data} />
+        
+        <AddUser func={pull_dataAdd} />
         
         <Grid style={{ borderBlockEndWidth: "2px" }}>
           <MaterialTable
-            title="Onboarded Employees Table"
+            title="Users Details"
             columns={columns}
             style={{ color: "black", fontSize: "1rem" }}
             data={data}

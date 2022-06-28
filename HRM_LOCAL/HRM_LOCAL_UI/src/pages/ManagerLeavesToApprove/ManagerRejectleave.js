@@ -46,7 +46,7 @@ const Reject = (props) => {
             <FcCancel /> Reject
           </Button>
 
-          <Modal show={onhold} onHide={handleClose} size="sm" centered>
+          <Modal show={onhold} onHide={handleClose} size="md" centered>
             <Modal.Header closeButton>
               <Modal.Title>Reject</Modal.Title>
             </Modal.Header>
@@ -56,6 +56,8 @@ const Reject = (props) => {
                   <Form.Label>Comment</Form.Label>
                   <Form.Control
                     required
+                    as="textarea"
+                    rows={2}
                     className="rejectReason"
                     type="text"
                     controlId="rejectReason"

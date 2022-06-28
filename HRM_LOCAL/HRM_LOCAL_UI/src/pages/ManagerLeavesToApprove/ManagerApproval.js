@@ -120,6 +120,7 @@ const [data, setData] = useState([]);
           </TableHead>
         <TableBody>
           {/* <tbody> */}
+          {/* if(!(data.length==0))?( */}
             {data.map((h) => (
               <TableRow>
                 {/* <td align="left">{h.employeeleaveId}</td> */}
@@ -139,6 +140,9 @@ const [data, setData] = useState([]);
                 {/* </TableCell> */}
               </TableRow>
             ))}
+          {/* ):(
+            <h2>No Records to Display</h2>
+          ) */}
             </TableBody>
           {/* </tbody> */}
         </Table>

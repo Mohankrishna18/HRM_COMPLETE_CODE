@@ -346,7 +346,7 @@ function IntegrateLeaveToApply() {
                                 <Card.Body>
                                     <h5>
                                         {" "}
-                                        <Card.Title>Total Entitled</Card.Title>
+                                        <Card.Title>Total EarnedLeaves</Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted">
                                             {entitle}
                                         </Card.Subtitle>
@@ -362,7 +362,7 @@ function IntegrateLeaveToApply() {
                                 <Card.Body>
                                     <h5>
                                         {" "}
-                                        <Card.Title>Remained Leaves</Card.Title>
+                                        <Card.Title>Leave Balance</Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted">
                                             {remainingdata}
                                         </Card.Subtitle>
@@ -375,32 +375,32 @@ function IntegrateLeaveToApply() {
 
 
 
-                    <Col>
-                        <Card>
-                            <Card border="warning">
-                                {count == undefined ? (<Card.Body>
-                                    <h5>
-                                        {" "}
-                                        <Card.Title>Leaves Applied</Card.Title>
+                    {/* <Col> */}
+                        {/* <Card> */}
+                            {/* <Card border="warning"> */}
+                                {/* {count == undefined ? (<Card.Body> */}
+                                    {/* <h5> */}
+                                        {/* {" "} */}
+                                        {/* <Card.Title>Leaves Applied</Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted">
                                             0
-                                        </Card.Subtitle>
+                                        </Card.Subtitle> */}
                                         {/* <Card.Text></Card.Text> */}
-                                    </h5>
-                                </Card.Body>) : (<Card.Body>
-                                    <h5>
-                                        {" "}
-                                        <Card.Title>Leaves Applied</Card.Title>
+                                    {/* </h5> */}
+                                {/* </Card.Body>) : (<Card.Body> */}
+                                    {/* <h5> */}
+                                        {/* {" "} */}
+                                        {/* <Card.Title>Leaves Applied</Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted">
                                             {count}
-                                        </Card.Subtitle>
+                                        </Card.Subtitle> */}
                                         {/* <Card.Text></Card.Text> */}
-                                    </h5>
-                                </Card.Body>)}
+                                    {/* </h5> */}
+                                {/* </Card.Body>)} */}
 
-                            </Card>
-                        </Card>
-                    </Col>
+                            {/* </Card> */}
+                        {/* </Card> */}
+                    {/* </Col> */}
                     <Col>
                         <Card>
                             <Card border="warning">
