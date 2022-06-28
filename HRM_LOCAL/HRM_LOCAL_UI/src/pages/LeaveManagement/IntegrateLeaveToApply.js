@@ -80,17 +80,17 @@ function IntegrateLeaveToApply() {
                 setGetEmployeeDetails(response.data.data);
             });
     }, []);
-    useEffect(() => {
-        loadData();
-    }, [])
-    const loadData = () => {
-        axios.get("/leave/getAllleavetypes").then((res) => {
-            console.log(res.data);
-            setTypeOfLeave(res.data);
-            console.log("hello");
-            setEntitle(res.data.noOfDays)
-        });
-    };
+    // useEffect(() => {
+    //     loadData();
+    // }, [])
+    // const loadData = () => {
+    //     axios.get("/leave/getAllleavetypes").then((res) => {
+    //         console.log(res.data);
+    //         setTypeOfLeave(res.data);
+    //         console.log("hello");
+    //         setEntitle(res.data.noOfDays)
+    //     });
+    // };
 
 
     useEffect(() => {

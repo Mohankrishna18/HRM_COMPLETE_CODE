@@ -175,7 +175,7 @@ function EmployeeMasterForms(props) {
   const [branch,setBranch] = useState("");
   const [band,setBand] = useState("");
   const [exitDate,setExitDate] = useState("");
-  //const [reportingManager, setReportingManager] = useState("");
+  const [reportingManager, setReportingManager] = useState("");
 
 
 
