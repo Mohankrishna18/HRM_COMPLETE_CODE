@@ -49,7 +49,7 @@ export default function RoleEditableTable() {
             },
         },
         {
-            title: 'Module-1', field: 'permission1',  lookup: status, headerStyle: {
+            title: 'Permission-1', field: 'permission1',  lookup: status, headerStyle: {
 
                 backgroundColor: "#FE924A",
 
@@ -58,7 +58,7 @@ export default function RoleEditableTable() {
             },
         },
         {
-            title: 'Module-2', field: 'permission2',  lookup: status, headerStyle: {
+            title: 'Permission-2', field: 'permission2',  lookup: status, headerStyle: {
 
                 backgroundColor: "#FE924A",
 
@@ -67,7 +67,7 @@ export default function RoleEditableTable() {
             },
         },
         {
-            title: 'Module-3', field: 'permission3',  lookup: status, headerStyle: {
+            title: 'Permission-3', field: 'permission3',  lookup: status, headerStyle: {
 
                 backgroundColor: "#FE924A",
 
@@ -76,7 +76,7 @@ export default function RoleEditableTable() {
             },
         },
         {
-            title: 'Module-4', field: 'permission4',  lookup: status, headerStyle: {
+            title: 'Permission-4', field: 'permission4',  lookup: status, headerStyle: {
 
                 backgroundColor: "#FE924A",
 
@@ -85,7 +85,7 @@ export default function RoleEditableTable() {
             },
         },
         {
-            title: 'Module-5', field: 'permission5',  lookup: status, headerStyle: {
+            title: 'Permission-5', field: 'permission5',  lookup: status, headerStyle: {
 
                 backgroundColor: "#FE924A",
 
@@ -94,7 +94,7 @@ export default function RoleEditableTable() {
             },
         },
         {
-            title: 'Module-6', field: 'permission6',  lookup: status, headerStyle: {
+            title: 'Permission-6', field: 'permission6',  lookup: status, headerStyle: {
 
                 backgroundColor: "#FE924A",
 
@@ -103,7 +103,7 @@ export default function RoleEditableTable() {
             },
         },
         {
-            title: 'Module-7', field: 'permission7',  lookup: status, headerStyle: {
+            title: 'Permission-7', field: 'permission7',  lookup: status, headerStyle: {
 
                 backgroundColor: "#FE924A",
 
@@ -112,7 +112,7 @@ export default function RoleEditableTable() {
             },
         },
         {
-            title: 'Module-8', field: 'permission8',  lookup: status, headerStyle: {
+            title: 'Permission-8', field: 'permission8',  lookup: status, headerStyle: {
 
                 backgroundColor: "#FE924A",
 
@@ -121,7 +121,7 @@ export default function RoleEditableTable() {
             },
         },
         {
-            title: 'Module-9', field: 'permission9',  lookup: status, headerStyle: {
+            title: 'Permission-9', field: 'permission9',  lookup: status, headerStyle: {
 
                 backgroundColor: "#FE924A",
 
@@ -130,7 +130,7 @@ export default function RoleEditableTable() {
             },
         },
         {
-            title: 'Module-10', field: 'permission10',  lookup: status, headerStyle: {
+            title: 'Permission-10', field: 'permission10',  lookup: status, headerStyle: {
 
                 backgroundColor: "#FE924A",
 

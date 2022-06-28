@@ -7,7 +7,6 @@ export default function EditableDesignation() {
   const [data, setData] = useState([]);
   const [depname, setDepname] = useState([]);
   const [status, setStatus] = useState({});
-  
 
   useEffect(() => {
     axios.get("/dept/getAllDepartments").then((res) => {
@@ -20,7 +19,7 @@ export default function EditableDesignation() {
     // const status1 = [];
     depname.map((row) => {
       status[row.departmentName] = row.departmentName;
-    //   status1[row.departmentId] = row.departmentName;
+      //   status1[row.departmentId] = row.departmentName;
     });
     // console.log(status1);
     console.log(status);
@@ -38,36 +37,27 @@ export default function EditableDesignation() {
     setData(res.data);
     console.log(res.data);
   };
-//   const myclick = (e) => {
-//     // console.log(rowData.departmentName)
-//     console.log(e);
-//     console.log("hai");
-//   };
-//   console.log("hai");
+  //   const myclick = (e) => {
+  //     // console.log(rowData.departmentName)
+  //     console.log(e);
+  //     console.log("hai");
+  //   };
+  //   console.log("hai");
 
-//   var obj = depname.reduce(function (acc, cur, i) {
-//     acc[cur.departmentId] = cur.departmentName;
-//     return acc;
-//   }, {});
+  //   var obj = depname.reduce(function (acc, cur, i) {
+  //     acc[cur.departmentId] = cur.departmentName;
+  //     return acc;
+  //   }, {});
 
   const [columns, setColumns] = useState([
     // { title: 'ID', field: 'designationId', editable: false },
     {
-      title: "Designation Name",
-      field: "designationName",
-      headerStyle: {
-        backgroundColor: "#FE924A",
-
-        color: "white",
-      },
-    },
-    {
       title: "Department Name",
       field: "departmentName",
       lookup: status,
-    //   render: (rowData) => (
-    //     <div onScroll={myclick}>{rowData.departmentName}</div>
-    //  )
+      //   render: (rowData) => (
+      //     <div onScroll={myclick}>{rowData.departmentName}</div>
+      //  )
 
       headerStyle: {
         backgroundColor: "#FE924A",
@@ -80,6 +70,15 @@ export default function EditableDesignation() {
         //     console.log(i.target.dataset.value);
         //     console.log(i);
         // }}
+      },
+    },
+    {
+      title: "Designation Name",
+      field: "designationName",
+      headerStyle: {
+        backgroundColor: "#FE924A",
+
+        color: "white",
       },
     },
   ]);

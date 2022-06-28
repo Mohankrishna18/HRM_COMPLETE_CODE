@@ -41,7 +41,6 @@ public class Onboarding {
 	@Column
 	private String lastName;
 	private String jobTitle;
-	private String skillSet;
 	private String comments;
 	@Column
 	private String phoneNumber;
@@ -122,12 +121,7 @@ public class Onboarding {
 	public void setJobTitle(String jobTitle) {
 		this.jobTitle = jobTitle;
 	}
-	public String getSkillSet() {
-		return skillSet;
-	}
-	public void setSkillSet(String skillSet) {
-		this.skillSet = skillSet;
-	}
+
 	public String getComments() {
 		return comments;
 	}
@@ -252,8 +246,7 @@ public class Onboarding {
 		this.middleName = middleName;
 		this.lastName = lastName;
 		this.jobTitle = jobTitle;
-		this.skillSet = skillSet;
-		this.comments = comments;
+				this.comments = comments;
 		this.phoneNumber = phoneNumber;
 		this.yearsOfExperience = yearsOfExperience;
 		this.employeeId = employeeId;

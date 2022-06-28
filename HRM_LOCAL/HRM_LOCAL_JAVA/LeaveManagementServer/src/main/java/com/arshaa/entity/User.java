@@ -32,7 +32,9 @@ public class User {
 	private String updatedBy;
 	@Column
 	private Date updatedOn;
+	@Column
 	private String leaveStatus;
+	@Column
 	private String reportingManager;
 	@Column
 	private String rejectReason;
