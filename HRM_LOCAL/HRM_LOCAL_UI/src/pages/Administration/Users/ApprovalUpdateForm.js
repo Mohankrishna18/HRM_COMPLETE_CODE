@@ -79,7 +79,7 @@ const ApprovalUpdateForm = (props) => {
         else {
           console.log("Props not Send")
         }
-        toast.success("Form Submitted successfully");
+        toast.success("Form updated successfully");
         // console.log(user);
       })
       .catch((err) => {
