@@ -45,7 +45,6 @@ const ApproveDelete = (props) => {
             </Row>
 
 
-
         </div>
     )
 }
