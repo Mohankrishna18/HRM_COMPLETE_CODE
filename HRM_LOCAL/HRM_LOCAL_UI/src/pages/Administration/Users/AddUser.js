@@ -73,7 +73,7 @@ function AddUser(props) {
           else{
             console.log("Props Not Send");
           }
-          toast.success("Employee Onboarded Successfully");
+          toast.success("User added Successfully");
           // console.log(user);
           setTimeout(5000);
           handleClose();
@@ -128,7 +128,7 @@ function AddUser(props) {
       >
         {" "}
         <BsPlusLg />
-        Add New Onboard
+        Add User
       </Button>
       <Modal
         size="lg"
