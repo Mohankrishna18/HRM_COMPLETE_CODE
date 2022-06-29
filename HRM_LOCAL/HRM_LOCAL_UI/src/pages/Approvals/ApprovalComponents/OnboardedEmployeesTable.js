@@ -13,56 +13,58 @@ function OnboardedEmployeesTable() {
   const [status, setStatus] = useState({});
   const [onboard, setOnboard] = useState([]);
   const [designation, setDesignation] = useState([]);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
 
-  useEffect(()=>{
-    axios.get("/dept/getAllDepartments").then((res)=>{
-      console.log(res.data)
-      setOnboard(res.data)
+  useEffect(() => {
+    axios.get("/dept/getAllDepartments").then((res) => {
+      console.log(res.data.data);
+      setOnboard(res.data);
     });
   }, []);
-  console.log(onboard);
+  // console.log(onboard);
 
-  const loadDept=() => {
-    onboard.map(row=>status[row.departmentName]=row.departmentName)
-    console.log(status)
-    setStatus(status)
-  }
-  useEffect(()=>{
-    loadDept()
-  })
+  const loadDept = () => {
+    onboard.map((row) => (status[row.departmentName] = row.departmentName));
+    console.log(status);
+    setStatus(status);
+  };
+  useEffect(() => {
+    loadDept();
+  });
 
   // useEffect(()=>{
   //   loadData();
   // },[]);
 
-    useEffect(()=>{
-      axios.get("/designation/getAllDesignations").then((res)=>{
-        console.log(res.data)
-        setDesignation(res.data)
+  useEffect(() => {
+    axios.get("/designation/getAllDesignations").then((res) => {
+      console.log(res.data);
+      setDesignation(res.data);
     });
-  },[]);
-    const loadDesignation=()=>{
-      designation.map(row=>status[row.designationName]=row.designationName)
-      console.log(status)
-      setStatus(status)
-    };
-    useEffect(() => {
-      loadDesignation()
-    })
+  }, []);
+  const loadDesignation = () => {
+    designation.map(
+      (row) => (status[row.designationName] = row.designationName)
+    );
+    console.log(status);
+    setStatus(status);
+  };
+  useEffect(() => {
+    loadDesignation();
+  });
 
   const columns = [
-    {
-      title: "Onboarding Id",
-      field: "onboardingId",
-      type: "text",
-      editable:"false",
+    // {
+    //   title: "Onboarding Id",
+    //   field: "onboardingId",
+    //   // type: "text",
+    //   // editable:"false",
 
-      headerStyle: {
-        backgroundColor: "#FF9E14",
-        color: "white",
-      },
-    },
+    //   headerStyle: {
+    //     backgroundColor: "#FF9E14",
+    //     color: "white",
+    //   },
+    // },
     {
       title: "Job Title",
       field: "jobTitle",
@@ -73,6 +75,7 @@ function OnboardedEmployeesTable() {
       },
     },
     {
+      
       title: "Designation",
       field: "designation",
       type: "text",
@@ -87,7 +90,7 @@ function OnboardedEmployeesTable() {
       title: "Department",
       field: "department",
       type: "text",
-      lookup:status,
+      lookup: status,
 
       headerStyle: {
         backgroundColor: "#FF9E14",
@@ -95,7 +98,7 @@ function OnboardedEmployeesTable() {
       },
     },
     {
-      title: "First Name",
+      title: "Full Name",
       field: "firstName",
       type: "text",
 
@@ -104,16 +107,7 @@ function OnboardedEmployeesTable() {
         color: "white",
       },
     },
-    {
-      title: "Last Name",
-      field: "lastName",
-      type: "text",
 
-      headerStyle: {
-        backgroundColor: "#FF9E14",
-        color: "white",
-      },
-    },
     {
       title: "Email",
       field: "email",
@@ -137,8 +131,8 @@ function OnboardedEmployeesTable() {
     {
       title: "Date of Joining",
       field: "dateOfJoining",
-        type: 'date',
-        headerStyle: {
+      type: "date",
+      headerStyle: {
         backgroundColor: "#FF9E14",
         color: "white",
       },
@@ -152,135 +146,116 @@ function OnboardedEmployeesTable() {
         color: "white",
       },
     },
-    
     {
       title: "Primary Skills",
       field: "primarySkills",
+      type: "text",
 
       headerStyle: {
         backgroundColor: "#FF9E14",
         color: "white",
       },
     },
-    {
-      title: "Secondary Skills",
-      field: "secondarySkills",
-
-      headerStyle: {
-        backgroundColor: "#FF9E14",
-        color: "white",
-      },
-    },
-    {
-      title: "Type Of Employment",
-      field: "employmentType",
-
-      headerStyle: {
-        backgroundColor: "#FF9E14",
-        color: "white",
-      },
-    },
-
   ];
 
   useEffect(() => {
     axios
       .get("/emp/waitingForApprovelStatus")
       .then((res) => {
-        setData(res.data.data);
-        console.log(res.data.data);
+        setData(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+  console.log(data);
 
   return (
-
-    <div >
-
-    <Grid container >
-      <Grid xs={12}>
-        <MaterialTable
-          title="Onboard Employees"
-          data={data}
-          sx={{ color: "white" }}
-          columns={columns}
-          editable={{
-            // onRowAdd: newData =>
-
-            //     new Promise((resolve, reject) => {
-            //         setTimeout(() => {
-            //             console.log(newData)
-            //             const res = axios.post("/designation/postDesignationMaster", newData)
-            //             console.log(res)
-            //             setData([...data, newData]);
-            //             loadData();
-
-            //             resolve();
-            //         }, 1000)
-            //     }),
-            onRowUpdate: (updatedRow, oldRow) =>
-                new Promise((resolve, reject) => {
-                    console.log(oldRow);
-                    console.log(updatedRow);
-                    const index = oldRow.onboardingId;
-                    console.log(index);
-                    const updatedRows = [...data];
-                    console.log(updatedRows);
-                    updatedRows[oldRow.tableData.id] = updatedRow;
-                    console.log(updatedRows);
-
-                    setTimeout(() => {
-
-                        console.log(index)
-                        console.log(updatedRow)
-                        const notify = () => toast("Employee Details was updated")
-                        const res = axios.put(`/updatedOnbordingDataById/${index}`, updatedRow)
-
-                            .then((resp) => {
-                                console.log(resp);
-                                loadData()
-                                notify();
-                                setData(updatedRows)
-                                console.log("updated")
-                            })
-
-                            .catch((err) => {
-                                console.log("not updated")
-                                console.log(err)
-                                // toast.error("Server error");
-                            });
-
-                        setData(updatedRows);
-
-                        // toast.success(" Updated Successfully");
-                        //console.log(updatedRows);
-                        resolve();
-                    });
-                }),
-              }}
-
-          options={{
-            exportButton: true,
-            pageSize: 10,
-            actionsColumnIndex: -1,
-            grouping: true,
-            addRowPosition: "first",
-            headerStyle: {
-              backgroundColor: "#FF9E14",
-              color: "white",
-              fontSize: "15px",
-              //height: "10px",
-              //fontWeight: 'bold'
-            },
-            rowStyle: {
-              fontSize: 16,
-            },
-          }}
-        />
+    <div>
+      <Grid container>
+        <Grid xs={12}>
+          <MaterialTable
+            title="Onboard Employees"
+            data={data}
+            sx={{ color: "white" }}
+            columns={columns}
+            editable={{
+              // onRowAdd: newData =>
+  
+              //     new Promise((resolve, reject) => {
+              //         setTimeout(() => {
+              //             console.log(newData)
+              //             const res = axios.post("/designation/postDesignationMaster", newData)
+              //             console.log(res)
+              //             setData([...data, newData]);
+              //             loadData();
+                          
+  
+              //             resolve();
+              //         }, 1000)
+              //     }),
+              onRowUpdate: (updatedRow, oldRow) =>
+                  new Promise((resolve, reject) => {
+                      console.log(oldRow);
+                      console.log(updatedRow);
+                      const index = oldRow.onboardingId;
+                      console.log(index);
+                      const updatedRows = [...data];
+                      console.log(updatedRows);
+                      updatedRows[oldRow.tableData.id] = updatedRow;
+                      console.log(updatedRows);
+  
+                      setTimeout(() => {
+  
+                          console.log(index)
+                          console.log(updatedRow)
+                          const notify = () => toast("Employee Details was updated")
+                          const res = axios.put(`/updatedOnbordingDataById/${index}`, updatedRow)
+  
+                              .then((resp) => {
+                                  console.log(resp);
+                                  loadData()
+                                  notify();
+                                  setData(updatedRows)
+                                  console.log("updated")
+                              })
+  
+                              .catch((err) => {
+                                  console.log("not updated")
+                                  console.log(err)
+                                  // toast.error("Server error");
+                              });
+  
+                          setData(updatedRows);
+                         
+                          // toast.success(" Updated Successfully");
+                          //console.log(updatedRows);
+                          resolve();
+                      });
+                  }),
+                }}
+  
+            options={{
+              exportButton: true,
+              pageSize: 10,
+              actionsColumnIndex: -1,
+              grouping: true,
+              addRowPosition: "first",
+              headerStyle: {
+                backgroundColor: "#FF9E14",
+                color: "white",
+                fontSize: "15px",
+                //height: "10px",
+                //fontWeight: 'bold'
+              },
+              rowStyle: {
+                fontSize: 16,
+              },
+            }}
+          />
+        </Grid>
       </Grid>
-    </Grid>
     </div>
   );
 }
@@ -303,8 +278,6 @@ export default OnboardedEmployeesTable;
 //   const handleClose = () => setShow(false);
 //   const handleShow = () => setShow(true);
 //   const [updateOnboard, setUpdateOnboard] = useState({});
-  
-
 
 //   const [data, setData] = useState([]);
 //   const [status, setStatus] = useState(false);
@@ -408,7 +381,7 @@ export default OnboardedEmployeesTable;
 //     {
 //       title: "Job Title",
 //       field: "jobTitle",
-      
+
 //       // validate: (rowData) => {
 //       // if (
 //       // rowData.subscriptionEndDate === undefined ||
@@ -594,7 +567,6 @@ export default OnboardedEmployeesTable;
 //               //       resolve();
 //               //     });
 //               //   }),
-                
 
 //               // Delete Data
 
@@ -608,7 +580,7 @@ export default OnboardedEmployeesTable;
 //               //       const index = oldData.clientId;
 
 //               //       dataDelete.splice(index, 1);
-  
+
 //               //       const res = axios
 //               //         .delete(`/client/deleteclient/${index}`)
 //               //         .then((res) => {
@@ -639,22 +611,22 @@ export default OnboardedEmployeesTable;
 //             actions={[
 //               {
 //                 icon:"button",
-                
+
 //                 tooltip: "Save User",
 //                 onClick: (event, rowData) =>
 //                   alert("You want to delete " + rowData.firstName),
-               
+
 //               },
 //             ]}
 //             components={{
 //               Action: (props) => (
 //                 // <Button
 //                 //   onClick={(event) => props.action.onClick(event, props.data)}
-                  
+
 //                 // >
 //                 //   Delete
 //                 // </Button>
-//                 <Button 
+//                 <Button
 //                 onClick={(event)=>{
 //                   setShow(true);
 //                   console.log(props);

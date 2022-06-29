@@ -90,6 +90,7 @@ color: "white",
 title: "Date of Joining",
 field: "dateOfJoining",
 type:"date",
+dateSetting: { locale: "en-GB" },
 headerStyle: {
 backgroundColor: "#FF9E14",
 color: "white",

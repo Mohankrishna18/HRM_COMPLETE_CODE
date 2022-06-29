@@ -1,5 +1,6 @@
 package com.attendance.repository;
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +22,16 @@ public interface AttendanceRepo extends JpaRepository<AttendanceLog, Integer>{
 
 	//boolean existsByPunchIn(Date punchIn);
 	
-	Boolean existsByEmployeeIdAndPunchin(String employeeId,Date punchIn);
+	Boolean existsByEmployeeIdAndPunchinDate(String employeeId,Date punchIn);
 //	testing purpose
+
+@Query(value="SELECT TIMEDIFF(employeeattendance.punch_out,employeeattendance.punch_in) FROM employeeattendance Where employee_id=?1",nativeQuery = true)
+Time getTime(String employeeId);
+
+
+	AttendanceLog getByEmployeeId(String employeeId);
+
+	//boolean existsByEmployeeIdAndAttendanceDate(String employeeId, Date attendanceDate);
+
+	//boolean existsByEmployeeIdAndPunchoutDate(String employeeId, Date punchout);
 }

@@ -149,6 +149,8 @@ public User save(User user) {
 			u.setManagerApproval(user.getManagerApproval());
 //u.setLeaveReason(user.getLeaveReason()); 
       u.setRejectReason(user.getRejectReason());
+//      user.getManagersRejectReason();
+      u.setManagersRejectReason(user.getManagersRejectReason());
 
 //u.setEmployeeId(user.getEmployeeId());
 //u.setFromDate(user.getFromDate());
@@ -185,6 +187,7 @@ public User save(User user) {
 				usrm.setLeaveReason(g.getLeaveReason()); 
 				usrm.setManagerApproval(g.getManagerApproval());
 				usrm.setEmployeeleaveId(g.getEmployeeleaveId());
+				usrm.setLeaveStatus(g.getLeaveStatus());
 				EmployeeName al=template.getForObject("http://empService/emp/getEmployeeNameByEmployeeId/" + g.getEmployeeId(),EmployeeName.class);
                 usrm.setName(al.getEmployeeName());
                 getList.add(usrm);

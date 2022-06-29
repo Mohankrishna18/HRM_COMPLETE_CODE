@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,7 @@ public class MainServiceImpl implements MainService {
 	StringConstants sConstants = new StringConstants();
 
 	public ResponseEntity onBoardUser(Onboarding newOnboard) {
+		String dUrl="http://departments/dept/getDepartmentNameById/";
 		Response r = new Response<>();
 		try {
 			java.sql.Date tSqlDate = new java.sql.Date(newOnboard.getOnboardDate().getTime());
@@ -59,6 +61,8 @@ public class MainServiceImpl implements MainService {
 			// SimpleDateFormat("MM-dd-yyyy").format(newOnboard.getDateOfJoining()));
 			// System.out.println(new
 			// SimpleDateFormat("yyyy-MM-dd").format(newOnboard.getDateOfJoining()));
+			String depName=template.getForObject(dUrl+newOnboard.getDepartment(), String.class);
+			newOnboard.setDepartment(depName);
 			newOnboard.setUpdatedOn(tsqDate1);
 			newOnboard.setWaitingforapprovalStatus(true);
 			newOnboard.setRejectedStatus(false);
@@ -77,32 +81,41 @@ public class MainServiceImpl implements MainService {
 	}
 
 	public ResponseEntity<Onboarding> waitingForApprovelStatus() {
-		Response r = new Response<>();
+		Response r = new Response<WaitingForApproval>();
+		
+		
 		try {
-			WaitingForApproval wa = new WaitingForApproval();
+			List<WaitingForApproval> waList = new ArrayList<>();
 
 			List<Onboarding> onboarding = onRepo.findByWaitingforapprovalStatus(true);
 			if (!onboarding.isEmpty()) {
-//				onboarding.forEach(on -> {
-//
-//					wa.setOnboardingId(on.getOnboardingId());
-//					wa.setFirstName(on.getFirstName());
-//					
-//					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-//					String strDate= formatter.format(on.getDateOfJoining());
-//					
-//					wa.setDateOfJoining(strDate);
-//					wa.setDesignation(on.getDesignation());
-//					wa.setEmail(on.getEmail());
-//					wa.setJobTitle(on.getJobTitle());
-//					wa.setPhoneNumber(on.getPhoneNumber());
-//					wa.setYearsOfExperience(on.getYearsOfExperience());
-//				});
 
-				r.setStatus(true);
-				r.setMessage(sConstants.GET_RESPONSE);
-				r.setData(onboarding);
-				return new ResponseEntity(r, HttpStatus.OK);
+				onboarding.forEach(on -> {
+					WaitingForApproval wa = new WaitingForApproval();
+
+					wa.setOnboardingId(on.getOnboardingId());
+					wa.setFirstName(on.getFirstName()+" "+on.getLastName());
+					//wa.setLastName(on.getLastName());
+					
+					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+					String strDate= formatter.format(on.getDateOfJoining());
+					wa.setDepartment(on.getDepartment());
+					wa.setDateOfJoining(strDate);
+					wa.setDesignation(on.getDesignation());
+					wa.setEmail(on.getEmail());
+					wa.setJobTitle(on.getJobTitle());
+					wa.setPhoneNumber(on.getPhoneNumber());
+					wa.setYearsOfExperience(on.getYearsOfExperience());
+					wa.setPrimarySkills(on.getPrimarySkills());
+					wa.setSecondarySkills(on.getSecondarySkills());
+					waList.add(wa);
+				});
+
+//				r.setStatus(true);
+//				r.setMessage(sConstants.GET_RESPONSE);
+//				r.setData(wa);
+				return new ResponseEntity(waList, HttpStatus.OK);
+
 			} else {
 				r.setStatus(true);
 				r.setMessage(sConstants.NO_ENTRIES_FOUND);
@@ -117,111 +130,114 @@ public class MainServiceImpl implements MainService {
 	}
 
 	public ResponseEntity updateApprovStatus(String onboardingId, HrApprovalStatus newOnboard) {
-		Response response = new Response();
-		String userURL = "http://urpService/user/addUser";
-		String loginURL = "http://loginservice/login/addUsers";
-		String emailURL = "http://emailService/mail/sendmail";
-		// String employee="ATPL";
-		// String intern="TRP";
+        Response response = new Response();
+        String userURL = "http://urpService/user/addUser";
+        String loginURL = "http://loginservice/login/addUsers";
+        String emailURL = "http://emailService/mail/sendmail";
+        // String employee="ATPL";
+        // String intern="TRP";
 
-		try {
-			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
-			System.out.println(getOnboarding);
-			if (!getOnboarding.equals(null)) {
-				getOnboarding.setApprovedStatus(newOnboard.isApprovedStatus());
-				getOnboarding.setRejectedStatus(newOnboard.isRejectedStatus());
-				getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
-				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
-				getOnboarding.setReportingManager(newOnboard.getReportingManager());
-				getOnboarding.setComments(newOnboard.getComments());
-				Onboarding saveList = onRepo.save(getOnboarding);
+        try {
+            Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+            System.out.println(getOnboarding);
+            if (!getOnboarding.equals(null)) {
+                getOnboarding.setApprovedStatus(newOnboard.isApprovedStatus());
+                getOnboarding.setRejectedStatus(newOnboard.isRejectedStatus());
+                getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
+                getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
+                getOnboarding.setReportingManager(newOnboard.getReportingManager());
+                getOnboarding.setComments(newOnboard.getComments());
+                getOnboarding.setBand(newOnboard.getBand());
+                getOnboarding.setProjectName(newOnboard.getProjectName());
+                Onboarding saveList = onRepo.save(getOnboarding);
 
-				if (saveList.isApprovedStatus() == true) {
-					java.sql.Date tSqlDate = new java.sql.Date(newOnboard.getApprovedDate().getTime());
-					newOnboard.setApprovedDate(tSqlDate);
-					getOnboarding.setRejectedStatus(false);
-					getOnboarding.setWaitingforapprovalStatus(false);
+                if (saveList.isApprovedStatus() == true) {
+                    java.sql.Date tSqlDate = new java.sql.Date(newOnboard.getApprovedDate().getTime());
+                    newOnboard.setApprovedDate(tSqlDate);
+                    getOnboarding.setRejectedStatus(false);
+                    getOnboarding.setWaitingforapprovalStatus(false);
 
-					onRepo.save(getOnboarding);
+                    onRepo.save(getOnboarding);
 
-					// Posting data to EmployeeMaster
-					// System.out.println(ir.getEmployeeId());
-					// getOnboarding.getOnboardingId().getChars(0, 0, null, 0);; }
-					EmployeeMaster employeeMaster = new EmployeeMaster();
-					employeeMaster.setFirstName(getOnboarding.getFirstName());
-					employeeMaster.setEmail(getOnboarding.getEmail());
-					employeeMaster.setDepartmentName(getOnboarding.getDepartment());
-					employeeMaster.setDesignationName(getOnboarding.getDesignation());
-					employeeMaster.setLastName(getOnboarding.getLastName());
-					employeeMaster.setMiddleName(getOnboarding.getMiddleName());
-					employeeMaster.setPrimaryPhoneNumber(getOnboarding.getPhoneNumber());
-					employeeMaster.setDateOfJoining(getOnboarding.getDateOfJoining());
-					employeeMaster.setYearsOfExperience(getOnboarding.getYearsOfExperience());
-					employeeMaster.setPrimarySkills(getOnboarding.getPrimarySkills());
-					employeeMaster.setSecondarySkills(getOnboarding.getSecondarySkills());
-					employeeMaster.setJobTitle(getOnboarding.getJobTitle());
-					employeeMaster.setEmploymentType(getOnboarding.getEmploymentType());
-					employeeMaster.setReportingManager(newOnboard.getReportingManager());
-					emRepo.save(employeeMaster);
+                    // Posting data to EmployeeMaster
+                    // System.out.println(ir.getEmployeeId());
+                    // getOnboarding.getOnboardingId().getChars(0, 0, null, 0);; }
+                    EmployeeMaster employeeMaster = new EmployeeMaster();
+                    employeeMaster.setFirstName(getOnboarding.getFirstName());
+                    employeeMaster.setEmail(getOnboarding.getEmail());
+                    employeeMaster.setDepartmentName(getOnboarding.getDepartment());
+                    employeeMaster.setDesignationName(getOnboarding.getDesignation());
+                    employeeMaster.setLastName(getOnboarding.getLastName());
+                    employeeMaster.setMiddleName(getOnboarding.getMiddleName());
+                    employeeMaster.setPrimaryPhoneNumber(getOnboarding.getPhoneNumber());
+                    employeeMaster.setDateOfJoining(getOnboarding.getDateOfJoining());
+                    employeeMaster.setYearsOfExperience(getOnboarding.getYearsOfExperience());
+                    employeeMaster.setPrimarySkills(getOnboarding.getPrimarySkills());
+                    employeeMaster.setSecondarySkills(getOnboarding.getSecondarySkills());
+                    employeeMaster.setJobTitle(getOnboarding.getJobTitle());
+                    employeeMaster.setEmploymentType(getOnboarding.getEmploymentType());
+                    employeeMaster.setReportingManager(newOnboard.getReportingManager());
+                    employeeMaster.setBand(getOnboarding.getBand());
+                    employeeMaster.setProjectName(getOnboarding.getProjectName());
+                    emRepo.save(employeeMaster);
 
-					// Generating Random userId and Password
-					Random rand = new Random();
-					Integer intRandom = rand.nextInt(9999);
-					String userId = getOnboarding.getFirstName() + intRandom;
-					int n = getOnboarding.getFirstName().length();
-					char first = getOnboarding.getFirstName().charAt(0);
-					char last = getOnboarding.getFirstName().charAt(n - 1);
-					String password = "user" + first + last + intRandom;
-					// System.out.println("Username :" + userId + "Password" + password);
+                    // Generating Random userId and Password
+                    Random rand = new Random();
+                    Integer intRandom = rand.nextInt(9999);
+                    String userId = getOnboarding.getFirstName() + intRandom;
+                    int n = getOnboarding.getFirstName().length();
+                    char first = getOnboarding.getFirstName().charAt(0);
+                    char last = getOnboarding.getFirstName().charAt(n - 1);
+                    String password = "user" + first + last + intRandom;
+                    // System.out.println("Username :" + userId + "Password" + password);
 
-					// Posting data to UserMaster table
-					Users users = new Users();
-					users.setEmployeeId(employeeMaster.getEmployeeId());
-					users.setUserName(userId);
-					template.postForObject(userURL, users, Users.class);
+                    // Posting data to UserMaster table
+                    Users users = new Users();
+                    users.setEmployeeId(employeeMaster.getEmployeeId());
+                    users.setUserName(userId);
+                    template.postForObject(userURL, users, Users.class);
 
-					// Posting data to Employee login table
-					EmployeeLogin login = new EmployeeLogin();
-					login.setEmail(getOnboarding.getEmail());
-					login.setUserName(userId);
-					login.setPassword(password);
-					login.setEmployeeId(employeeMaster.getEmployeeId());
-					login.setUserType("employee");
-					template.postForObject(loginURL, login, EmployeeLogin.class);
-					// send mail
-					UserModel model = new UserModel();
-					model.setName(employeeMaster.getFirstName());
-					model.setEmail(employeeMaster.getEmail());
-					model.setUserName(userId);
-					model.setPassword(password);
-					model.setEmployeeId(employeeMaster.getEmployeeId());
-					template.postForObject(emailURL, model, UserModel.class);
+                    // Posting data to Employee login table
+                    EmployeeLogin login = new EmployeeLogin();
+                    login.setEmail(getOnboarding.getEmail());
+                    login.setUserName(userId);
+                    login.setPassword(password);
+                    login.setEmployeeId(employeeMaster.getEmployeeId());
+                    login.setUserType("employee");
+                    template.postForObject(loginURL, login, EmployeeLogin.class);
+                    // send mail
+                    UserModel model = new UserModel();
+                    model.setName(employeeMaster.getFirstName());
+                    model.setEmail(employeeMaster.getEmail());
+                    model.setUserName(userId);
+                    model.setPassword(password);
+                    model.setEmployeeId(employeeMaster.getEmployeeId());
+                    template.postForObject(emailURL, model, UserModel.class);
 
-					response.setStatus(true);
-					response.setMessage("Hr Approved successfully");
-					response.setData(employeeMaster);
-					// onRepo.delete(getOnboarding);
-					return new ResponseEntity(response, HttpStatus.OK);
-				} else if (saveList.isRejectedStatus() == true) {
-					java.sql.Date tSqlDate = new java.sql.Date(newOnboard.getRejectDate().getTime());
-					newOnboard.setRejectDate(tSqlDate);
-					getOnboarding.setApprovedStatus(false);
-					getOnboarding.setWaitingforapprovalStatus(false);
-					onRepo.save(getOnboarding);
-					return new ResponseEntity("HR Rejected Successfully", HttpStatus.OK);
-				} else {
-					return new ResponseEntity("Waiting for HR Approval", HttpStatus.OK);
-				}
-			} else {
-				return new ResponseEntity("Data not Found", HttpStatus.OK);
-			}
+                    response.setStatus(true);
+                    response.setMessage("Hr Approved successfully");
+                    response.setData(employeeMaster);
+                    // onRepo.delete(getOnboarding);
+                    return new ResponseEntity(response, HttpStatus.OK);
+                } else if (saveList.isRejectedStatus() == true) {
+                    java.sql.Date tSqlDate = new java.sql.Date(newOnboard.getRejectDate().getTime());
+                    newOnboard.setRejectDate(tSqlDate);
+                    getOnboarding.setApprovedStatus(false);
+                    getOnboarding.setWaitingforapprovalStatus(false);
+                    onRepo.save(getOnboarding);
+                    return new ResponseEntity("HR Rejected Successfully", HttpStatus.OK);
+                } else {
+                    return new ResponseEntity("Waiting for HR Approval", HttpStatus.OK);
+                }
+            } else {
+                return new ResponseEntity("Data not Found", HttpStatus.OK);
+            }
 
-		} catch (Exception e) {
-			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
 
-		}
-	}
-
+        }
+    }
 	public ResponseEntity addEmployee(@RequestBody EmployeeMaster newEmployee) {
 		String userURL = "http://urpService/user/addUser";
 		String loginURL = "http://loginservice/login/addUsers";

@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.attendance.entity.AttendanceLog;
+import com.attendance.model.Punchout;
 
 
 public interface AttendanceService {
 
 	public ResponseEntity addAttendance(AttendanceLog attendance);
+	public ResponseEntity addpunchOut(Punchout attendance,String employeeId);
 	public ResponseEntity updateAttendanceById(AttendanceLog attendance,int id);
 	public ResponseEntity deleteAttendanceById(AttendanceLog attendance,int id);
 	public ResponseEntity getAttendance();

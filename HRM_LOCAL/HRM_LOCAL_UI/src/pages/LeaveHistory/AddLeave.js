@@ -11,13 +11,19 @@ import { BsPlusLg } from "react-icons/bs";
 // import Employee from "../AllEmployees/AllEmployeesComponents/Employee";
 import { toast } from "react-toastify";
 
+
+
 import "react-toastify/dist/ReactToastify.css";
 import LoadingOverlay from "react-loading-overlay";
+
+
 
 function AddLeave() {
   // let employee = "Add Leave";
   // let currentEmployee = "ATP-004";
   // let leaveType = "sick";
+
+
 
   const [show, setShow] = useState(false);
   //const [fromDate, setFromDate] = useState(null);
@@ -25,6 +31,8 @@ function AddLeave() {
   const notifyError = (message) => toast.error(message);
   const [validated, setValidated] = useState(false);
   const [value, setValue] = useState();
+
+
 
   //useState for form
   const [employeeId, setEmployeeId] = useState();
@@ -39,21 +47,35 @@ function AddLeave() {
   //const userData1 = JSON.parse(userData);
   const userData = sessionStorage.getItem("userdata");
 
+
+
   const userData1 = JSON.parse(userData);
+
+
 
   const employeeid = userData1.data.employeeId;
 
+
+
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
+
+
 
   useEffect(() => {
     axios
 
+
+
       .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
+
+
 
       .then((response) => {
         setGetEmployeeDetails(response.data.data);
       });
   }, []);
+
+
 
   const initialValues = {
     employeeId: getEmployeeDetails.employeeId,
@@ -65,7 +87,7 @@ function AddLeave() {
     numberOfDays,
     setDays,
   };
-  
+
   const handleButtonClick = async (e) => {
     console.log("button clicked 123");
     e.preventDefault();
@@ -77,8 +99,10 @@ function AddLeave() {
     console.log(data);
     const res = await axios.post("/leave/applyLeave", data);
     console.log(res.data);
-    window.location.reload();
+    // window.location.reload();
   };
+
+
 
   const handleClose = () => {
     setShow();
@@ -87,9 +111,13 @@ function AddLeave() {
     console.log("");
   };
 
+
+
   const handleShow = () => setShow(true);
 
-  
+
+
+
   const _MS_PER_DAY = 1000 * 60 * 60 * 24;
   // a and b are javascript Date objects
   function dateDiffInDays(a, b) {
@@ -113,13 +141,21 @@ function AddLeave() {
   const handleSubmit = (ee) => {
     const form = ee.currentTarget;
 
+
+
     if (form.checkValidity() === false) {
       ee.preventDefault();
+
+
 
       ee.stopPropagation();
     }
 
+
+
     setValidated(true);
+
+
 
     console.log(employeeId);
     console.log(leaveType);
@@ -133,10 +169,10 @@ function AddLeave() {
   return (
     <div>
       {/* <Button
-        onClick={handleShow}
-        style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRadius:'29px',paddingTop:"9px" }}
-      >
-        <h4 style={{color: 'black'}}>Add Leave</h4>   </Button> */}
+onClick={handleShow}
+style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRadius:'29px',paddingTop:"9px" }}
+>
+<h4 style={{color: 'black'}}>Add Leave</h4> </Button> */}
       <Button
         variant="warning"
         onClick={handleShow}
@@ -164,6 +200,8 @@ function AddLeave() {
           <Modal.Title>Apply Leave</Modal.Title>
         </Modal.Header>
 
+
+
         <Modal.Body>
           <Form
             noValidate
@@ -173,22 +211,22 @@ function AddLeave() {
           >
             <Row className="mb-5">
               {/* <Form.Group
-                as={Col}
-                md="6"
-                style={{ padding: 10 }}
-                controlId="validationCustom01"
-              >
-                <Form.Label>Employee Id</Form.Label>
-                <Form.Control
-                  required
-                  className="employeeId"
-                  type="text"
-                  value={getEmployeeDetails.employeeId}
-                  onChange={(event) =>
-                    setEmployeeId(getEmployeeDetails.employeeId)
-                  }
-                />
-              </Form.Group> */}
+as={Col}
+md="6"
+style={{ padding: 10 }}
+controlId="validationCustom01"
+>
+<Form.Label>Employee Id</Form.Label>
+<Form.Control
+required
+className="employeeId"
+type="text"
+value={getEmployeeDetails.employeeId}
+onChange={(event) =>
+setEmployeeId(getEmployeeDetails.employeeId)
+}
+/>
+</Form.Group> */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Leave Type</Form.Label>
                 <Form.Select
@@ -197,7 +235,7 @@ function AddLeave() {
                 >
                   <option> Select Leave</option>
                   <option value="Annual Leave">Annual Leave</option>
-                <option value="Compensentory">Compensentory</option>
+                  <option value="Compensentory">Compensentory</option>
                   <option value="Earned Leave">Earned Leave</option>
                 </Form.Select>
               </Form.Group>
@@ -231,6 +269,8 @@ function AddLeave() {
                 />
               </Form.Group>
 
+
+
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>No of Days</Form.Label>
                 <Form.Control
@@ -245,15 +285,15 @@ function AddLeave() {
                 />
               </Form.Group>
               {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Remaining Leaves</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder=""
-                  value={remainLeaves}
-                   onChange={(event) => setRemainingLeaves(event.target.value)}
-                />
-              </Form.Group> */}
+<Form.Label>Remaining Leaves</Form.Label>
+<Form.Control
+required
+type="text"
+placeholder=""
+value={remainLeaves}
+onChange={(event) => setRemainingLeaves(event.target.value)}
+/>
+</Form.Group> */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Leave Reason</Form.Label>
                 <Form.Control

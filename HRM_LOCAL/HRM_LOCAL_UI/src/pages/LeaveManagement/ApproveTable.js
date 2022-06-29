@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Table,Container,Row,Card } from "react-bootstrap";
+// import { Table,Container,Row,Card } from "react-bootstrap";
 // import axios from 'axios';
 // import {Dropdown } from 'react-bootstrap/Dropdown';
 import Dropdown from "react-bootstrap/Dropdown";
@@ -15,7 +15,14 @@ import EditLeave from "./EditLeave";
 import DeleteLeave from "./DeleteLeave";
 import { Col } from "react-bootstrap";
 import Approveleave from "./Approveleave";
-import Rejectleave from "./Rejectleave"
+import Rejectleave from "./Rejectleave";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 //
 //const userData1 = JSON.parse(userData);
@@ -57,46 +64,102 @@ const ApproveLeaveTable= (props) => {
   return (
  
     <div>
-      <Container-fluid>
-        <Table responsive="sm">
-          <thead>
-            <tr>
+      {/* <Container-fluid> */}
+      <TableContainer sx={{ maxWidth: 1800 }} component={Paper}>
+      {leave.length > 0 ? (
+      <Table aria-label="customized table">
+        <TableHead>
+          <TableRow
+            sx={{
+              "& th": {
+                fontSize: "1rem",
+                color: "rgb(255, 255, 255)",
+                backgroundColor: "#fe924a"
+              }
+            }}
+          >
               {/* <th align="left">Leave Id</th> */}
-              <th align="left">Employee Id</th>
-              <th align="left">Name</th>
-              <th align="left"> Leave Type</th>
-              <th align="left"> From</th>
-              <th align="left"> To</th>
-              <th align="left"> No Of Days</th>
-              <th align="left"> Reason</th>
-              <th align="left"> Manager Approval</th>
-              <th align="center"> Action</th>
-            </tr>
-          </thead>
-          <tbody>
+              <TableCell align="center">Employee Id</TableCell>
+              <TableCell align="center">Name</TableCell>
+              <TableCell align="center">Leave Type</TableCell>
+              <TableCell align="center">From</TableCell>
+              <TableCell align="center">To</TableCell>
+              <TableCell align="center">No Of Days</TableCell>
+              <TableCell align="center">Reason</TableCell>
+              <TableCell align="center">Manager Approval</TableCell>
+              <TableCell align="center">Actions</TableCell>
+              </TableRow>
+          </TableHead>
+          <TableBody>
             {leave.map((h) => (
-              <tr>
+              <TableRow>
                 {/* <td align="left">{h.employeeleaveId}</td> */}
-                <td align="left">{h.employeeId}</td>
-                <td align="left">{h.name}</td>
-                <td align="left">{h.leaveType}</td>
-                <td align="left">{formatDate(h.fromDate)}</td>
-                <td align="left">{formatDate(h.toDate)}</td>
-                <td align="left">{h.numberOfDays}</td>
-                <td align="left">{h.leaveReason}</td>
+                <TableCell align="center">{h.employeeId}</TableCell>
+                <TableCell align="center">{h.name}</TableCell>
+                <TableCell align="center">{h.leaveType}</TableCell>
+                <TableCell align="center">{formatDate(h.fromDate)}</TableCell>
+                <TableCell align="center">{formatDate(h.toDate)}</TableCell>
+                <TableCell align="center">{h.numberOfDays}</TableCell>
+                <TableCell align="center">{h.leaveReason}</TableCell>
                 {/* <td align="left">{h.leaveStatus}</td> */}
-                <td align="left">{h.managerApproval}</td>
-                <td>{h.leaveStatus == "pending" ?(<div>
-                  <td><Approveleave  leaveID={h.employeeleaveId}/></td><td> <Rejectleave leaveID={h.employeeleaveId}/></td>
+                <TableCell align="center">{h.managerApproval}</TableCell>
+                {h.leaveStatus == "pending" ?(<div>
+                  <TableCell><Approveleave  leaveID={h.employeeleaveId}/></TableCell><TableCell><Rejectleave leaveID={h.employeeleaveId}/></TableCell>
                 </div>):(<div></div>)}
 
                 {/* <td align="left">{h.action}</td> */}
-                </td>
-              </tr>
+                </TableRow>
             ))}
-          </tbody>
+             </TableBody>
+             </Table>
+              ) : (
+                <Table aria-label="customized table">
+                <TableHead>
+                  <TableRow
+                    sx={{
+                      "& th": {
+                        fontSize: "1rem",
+                        color: "rgb(255, 255, 255)",
+                        backgroundColor: "#fe924a"
+                      }
+                    }}
+                  >
+      
+                    {/* <th align="left">Leave Id</th> */}
+                    <TableCell align="center">Employee Id</TableCell>
+                    <TableCell align="center">Name</TableCell>
+                    <TableCell align="center"> Leave Type</TableCell>
+                    <TableCell align="center"> From</TableCell>
+                    <TableCell align="center"> To</TableCell>
+                    <TableCell align="center"> No Of Days</TableCell>
+                    <TableCell align="center"> Reason</TableCell>
+                    <TableCell align="center"> Status</TableCell>
+                    <TableCell align="center"> Actions</TableCell>
+                    {/* </tr> */}
+                  </TableRow>
+                  {/* </thead> */}
+                </TableHead>
+                <TableBody>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell><h6 className="text-center">No Records Found</h6></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                
+                </TableBody>
+             
+                {/* </tbody> */}
+              </Table>
+                      
+                  )} 
+        </TableContainer>
+          {/* </tbody>
         </Table>
-      </Container-fluid>
+      </Container-fluid> */}
     </div>
   );
 };

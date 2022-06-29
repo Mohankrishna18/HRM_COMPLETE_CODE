@@ -1,127 +1,99 @@
 import React, { useEffect, useState } from "react";
-import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 const ApprovedEmployeesTable = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("/emp/getApprovedData")
-      .then((approvedEmployeesResponse) => {
-        setUsers(approvedEmployeesResponse.data.data);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+    approvedData();
+  }, []); // console.log(users.reportingManager)
 
+  const approvedData = async () => {
+  const approvedEmployeesResponse = await axios.get("/emp/getApprovedData");
+    console.log(approvedEmployeesResponse.data);
+    setUsers(approvedEmployeesResponse.data.data);
+  }
+
+  //Formate Date
   function formatDate(date) {
     var datePart = date.match(/\d+/g),
-      year = datePart[0].substring(2), // get only two digits
+      year = datePart[0].subsing(2), // get only two digits
       month = datePart[1],
       day = datePart[2];
     return day + "-" + month + "-" + year;
   }
-
+  
   return (
+
     <div>
-      <div class="table-responsive .text-nowrap" id="DataTable">
-        <Row>
-          <Col md={12}>
-            <table
-              class="table table-hover table-bordered  w-auto"
-              cellspacing="0"
-              width="100%"
+      <TableContainer sx={{ maxWidth: 1800 }} component={Paper}>
+        <Table aria-label="customized table">
+          <TableHead>
+            <TableRow
+              sx={{
+                "& th": {
+                  fontSize: "1rem",
+                  color: "rgb(255, 255, 255)",
+                  backgroundColor: "#fe924a"
+                }
+              }}
             >
-              <thead>
-                <tr>
-                  <th scope="col">No</th>
-                  <th scope="col" class="th-lg">
-                    Onboarding Id
-                  </th>
 
-                  <th scope="col" class="col-sm-2">
-                    Designation
-                  </th>
+              <TableCell scope="col">No</TableCell>
+              <TableCell scope="col" class="TableCell-lg">
+                Onboarding Id
+              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
+                Designation
+              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
+                Name
+              </TableCell>
+              {/* <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
+                  Last Name
+                </TableCell>  */}
+              <TableCell scope="col" class="" style={{ textAlign: 'center' }}>
+                Email
+              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
+                Phone Number
+              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
+                Job Title
+              </TableCell> <TableCell scope="col" class="" style={{ textAlign: 'center' }}>
+                Years Of Experience
+              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
+                Date Of Joining
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {users &&
+              users.map((user, index) => (
+                <TableRow>
+                  <TableCell scope="row">{index + 1}</TableCell>
+                  <TableCell
+                    style={{ textAlign: 'center' }}>{user.onboardingId}</TableCell>
+                  <TableCell style={{ textAlign: 'center' }}>{user.designation}</TableCell>
+                  <TableCell style={{ textAlign: 'center' }}>{user.firstName}</TableCell>
+                  {/* <TableCell style={{ textAlign: 'center' }}>{user.lastName}</TableCell> */}
+                  <TableCell style={{ textAlign: 'center' }}>{user.email}</TableCell>
+                  <TableCell style={{ textAlign: 'center' }}>{user.phoneNumber}</TableCell>
+                  <TableCell style={{ textAlign: 'center' }}>{user.jobTitle}</TableCell>
+                  <TableCell style={{ textAlign: 'center' }}>{user.yearsOfExperience}</TableCell>
+                  <TableCell style={{ textAlign: 'center' }}>{user.dateOfJoining}</TableCell>
 
-                  <th scope="col" class="col-sm-2">
-                    First Name
-                  </th>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
 
-                  <th scope="col" class="col-sm-2">
-                    Last Name
-                  </th>
+    </div >
 
-                  <th scope="col" class="">
-                    Email
-                  </th>
-
-                  <th scope="col" class="col-sm-2">
-                    Phone Number
-                  </th>
-
-                  <th scope="col" class="col-sm-2">
-                    Job Title
-                  </th>
-
-                  <th scope="col" class="">
-                    Years Of Experience
-                  </th>
-
-                  <th scope="col" class="col-sm-2">
-                    Date Of Joining
-                  </th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {users &&
-                  users.map((user, index) => (
-                    <tr>
-                      <th scope="row">{index + 1}</th>
-                      <td>{user.onboardingId}</td>
-
-                      <td>{user.designation}</td>
-
-                      <td>{user.firstName}</td>
-
-                      <td>{user.lastName}</td>
-                      <td>{user.email}</td>
-
-                      <td>{user.phoneNumber}</td>
-
-                      <td>{user.jobTitle}</td>
-
-                      <td style={{textAlign: 'center'}}>{user.yearsOfExperience}</td>
-                      <td>{user.dateOfJoining}</td>
-
-                      
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </Col>
-        </Row>
-      </div>
-      {/* <div class="panel-footer">
- <div class="row">
-   <div class="col col-xs-4">Page 1 of 5
-   </div>
-   <div class="col col-xs-8">
-     <ul class="pagination hidden-xs pull-right">
-       <li><a href="#">1</a></li>
-       <li><a href="#">2</a></li>
-       <li><a href="#">3</a></li>
-       <li><a href="#">4</a></li>
-       <li><a href="#">5</a></li>
-     </ul>
-     <ul class="pagination visible-xs pull-right">
-         <li><a href="#">«</a></li>
-         <li><a href="#">»</a></li>
-     </ul>
-   </div>
- </div>
- </div> */}
-    </div>
   );
 };
 export default ApprovedEmployeesTable;

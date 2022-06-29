@@ -31,7 +31,7 @@ function EmployeeMasterCard() {
 
     // function formatDate(dateOfJoining){
     //     var datePart = employeedetails.dateOfJoining.match(/\d+/g),  
-    //       year = datePart[0].substring(4), // get only two digits 
+    //       year = datePart[0].substring(4), // get only two digits
     //       month = datePart[1],  
     //       day = datePart[2];    
     //     return day + "-" + month + "-" + year;  
@@ -59,11 +59,11 @@ function EmployeeMasterCard() {
           })
           .catch((error) => {
             console.log(error);
-    
+   
             console.log("something wrong");
           });
       }, []);
-    
+   
       console.log(imge);
 
     var today = new Date(employeedetails.dateOfJoining);
@@ -133,7 +133,19 @@ function EmployeeMasterCard() {
                                         {employeedetails.designationName}
                                     </Card.Text>
                                 </Col>
-                            </Row>
+                            </Row><Row style={{ paddingBottom: 15 }}>
+                                <Col>
+                                  <Card.Title style={{}}>
+                                    <h6>Department:</h6>
+                                  </Card.Title>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                  <Card.Text style={{}}>
+                                    {employeedetails.departmentName}
+                                  </Card.Text>
+                                </Col>
+                              </Row>
+
                             <Row style={{ paddingBottom: 15 }}>
                                 <Col>
                                     <Card.Title style={{}}>
@@ -230,8 +242,8 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
-                          
-                        
+                         
+                       
                         </Card.Body>
                     </Col>
                 </Row>
