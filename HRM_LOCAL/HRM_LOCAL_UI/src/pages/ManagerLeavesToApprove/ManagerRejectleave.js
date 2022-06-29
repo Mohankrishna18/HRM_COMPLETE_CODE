@@ -58,13 +58,13 @@ const Reject = (props) => {
                     required
                     as="textarea"
                     rows={2}
-                    className="rejectReason"
+                    className="managersRejectReason"
                     type="text"
-                    controlId="rejectReason"
+                    controlId="managersRejectReason"
                     placeholder="reject Reason"
-                    value={form.rejectReason}
-                    onChange={(e) => setField("rejectReason", e.target.value)}
-                    isInvalid={!!errors.rejectReason}
+                    value={form.managersRejectReason}
+                    onChange={(e) => setField("managersRejectReason", e.target.value)}
+                    isInvalid={!!errors.managersRejectReason}
                   ></Form.Control>
                 </Form.Group>
                 <div class="col-md-12 text-center">

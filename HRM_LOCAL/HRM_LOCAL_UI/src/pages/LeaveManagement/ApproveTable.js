@@ -66,6 +66,7 @@ const ApproveLeaveTable= (props) => {
     <div>
       {/* <Container-fluid> */}
       <TableContainer sx={{ maxWidth: 1800 }} component={Paper}>
+      {leave.length > 0 ? (
       <Table aria-label="customized table">
         <TableHead>
           <TableRow
@@ -111,6 +112,50 @@ const ApproveLeaveTable= (props) => {
             ))}
              </TableBody>
              </Table>
+              ) : (
+                <Table aria-label="customized table">
+                <TableHead>
+                  <TableRow
+                    sx={{
+                      "& th": {
+                        fontSize: "1rem",
+                        color: "rgb(255, 255, 255)",
+                        backgroundColor: "#fe924a"
+                      }
+                    }}
+                  >
+      
+                    {/* <th align="left">Leave Id</th> */}
+                    <TableCell align="center">Employee Id</TableCell>
+                    <TableCell align="center">Name</TableCell>
+                    <TableCell align="center"> Leave Type</TableCell>
+                    <TableCell align="center"> From</TableCell>
+                    <TableCell align="center"> To</TableCell>
+                    <TableCell align="center"> No Of Days</TableCell>
+                    <TableCell align="center"> Reason</TableCell>
+                    <TableCell align="center"> Status</TableCell>
+                    <TableCell align="center"> Actions</TableCell>
+                    {/* </tr> */}
+                  </TableRow>
+                  {/* </thead> */}
+                </TableHead>
+                <TableBody>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell><h6 className="text-center">No Records Found</h6></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                
+                </TableBody>
+             
+                {/* </tbody> */}
+              </Table>
+                      
+                  )} 
         </TableContainer>
           {/* </tbody>
         </Table>

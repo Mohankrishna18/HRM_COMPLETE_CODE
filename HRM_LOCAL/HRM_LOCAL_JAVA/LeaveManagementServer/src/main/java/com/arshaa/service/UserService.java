@@ -149,6 +149,8 @@ public User save(User user) {
 			u.setManagerApproval(user.getManagerApproval());
 //u.setLeaveReason(user.getLeaveReason()); 
       u.setRejectReason(user.getRejectReason());
+//      user.getManagersRejectReason();
+      u.setManagersRejectReason(user.getManagersRejectReason());
 
 //u.setEmployeeId(user.getEmployeeId());
 //u.setFromDate(user.getFromDate());

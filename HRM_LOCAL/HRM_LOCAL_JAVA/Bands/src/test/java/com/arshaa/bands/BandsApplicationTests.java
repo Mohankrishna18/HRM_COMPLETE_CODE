@@ -1,10 +1,10 @@
-package hrm.demo;
+package com.arshaa.bands;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class BandsApplicationTests {
 
 	@Test
 	void contextLoads() {
