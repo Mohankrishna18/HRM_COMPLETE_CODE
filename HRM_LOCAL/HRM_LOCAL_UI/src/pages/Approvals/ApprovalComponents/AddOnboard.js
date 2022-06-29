@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
-function AddOnboard() {
+function AddOnboard(props) {
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -68,11 +68,11 @@ function AddOnboard() {
     if (!dateOfJoining || dateOfJoining === "")
       newErrors.dateOfJoining = "Please Enter Date of Joining";
     // if (
-    //   !yearsOfExperience ||
-    //   yearsOfExperience === "" ||
-    //   yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)
+    // !yearsOfExperience ||
+    // yearsOfExperience === "" ||
+    // yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)
     // )
-    //   newErrors.yearsOfExperience = "Please Enter Years of Experience";
+    // newErrors.yearsOfExperience = "Please Enter Years of Experience";
     if (!designation || designation === "")
       newErrors.designation = "Please Enter Designation";
     if (!department || department === "")
@@ -145,10 +145,10 @@ function AddOnboard() {
   return (
     <div>
       {/* <Button
-        onClick={handleShow}
-        style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRadius:'29px',paddingTop:"9px" }}
-      >
-        <h4 style={{color: 'black'}}>Add Leave</h4>   </Button> */}
+onClick={handleShow}
+style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRadius:'29px',paddingTop:"9px" }}
+>
+<h4 style={{color: 'black'}}>Add Leave</h4> </Button> */}
 
       <Button
         variant="warning"
@@ -271,14 +271,14 @@ function AddOnboard() {
                   controlId="email"
                   value={form.email}
                   // maxLength={60}
-                  onChange={(e) =>{ setField("email", e.target.value)
-                  if (form.phoneNumber === "") {
-                    setThirdErrors(" Phone Number is Required");
-                }
-                else{
-                  setThirdErrors("")                                                        
-                }}
-                }
+                  onChange={(e) => {
+                    setField("email", e.target.value);
+                    if (form.phoneNumber === "") {
+                      setThirdErrors(" Phone Number is Required");
+                    } else {
+                      setThirdErrors("");
+                    }
+                  }}
                   isInvalid={!!errors.email}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
@@ -395,7 +395,7 @@ function AddOnboard() {
                     //const yearsOfExperience = e.target.value;
 
                     // if (!yearsOfExperience || yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)) {
-                    //   setField(() => ({ yearsOfExperience }));
+                    // setField(() => ({ yearsOfExperience }));
                     // }
                   }}
                   isInvalid={!!errors.yearsOfExperience}

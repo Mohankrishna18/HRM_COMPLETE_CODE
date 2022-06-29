@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -41,29 +42,12 @@ public class AttendanceServiceImpl implements AttendanceService{
 		String url="http://empService/emp/getEmployeeNameByEmployeeId/";
 		Response response=new Response();
 		try {
-			
-			AttendanceLog newAttendance=new AttendanceLog();
-			java.sql.Date tSqlDate = new java.sql.Date(attendance.getPunchin().getTime());
-			newAttendance.setPunchin(tSqlDate);
-			
-			java.sql.Date tSqlDate1 = new java.sql.Date(attendance.getUpdatedOn().getTime());
-			newAttendance.setUpdatedOn(tSqlDate);
-			
-			java.sql.Date tSqlDate2 = new java.sql.Date(attendance.getPunchinDate().getTime());
-			newAttendance.setPunchinDate(tSqlDate);
-			
-			newAttendance.setStatus(true);
-			//newAttendance.setPunchout("Not yet");
-			
-			newAttendance.setEmployeeId(attendance.getEmployeeId());
-			
-			//Rest template call to get employee name
-			
+			java.sql.Date tSqlDate = new java.sql.Date(attendance.getPunchIn().getTime());
+			attendance.setPunchIn(tSqlDate);
+		
 			EmployeeName al=template.getForObject("http://empService/emp/getEmployeeNameByEmployeeId/" + attendance.getEmployeeId(),EmployeeName.class);
-			newAttendance.setEmployeeFirstName(al.getEmployeeName());
-			newAttendance.setUpdatedby(attendance.getUpdatedby());
-			
-			if(aRepo.existsByEmployeeIdAndPunchinDate(attendance.getEmployeeId(),attendance.getPunchinDate())==true)
+			attendance.setEmployeeFirstName(al.getEmployeeName());
+			if(aRepo.existsByEmployeeIdAndPunchin(attendance.getEmployeeId(),attendance.getPunchIn())==true)
 			{
 				response.setStatus(true);
 				response.setMessage("PunchIn was already done today");
@@ -71,11 +55,14 @@ public class AttendanceServiceImpl implements AttendanceService{
 			}
 				
 			else {
-				newAttendance.setStatus(true);
-				AttendanceLog newAttendence2=aRepo.save(newAttendance);
+				
+
+				attendance.setStatus(true);
+				AttendanceLog newAttendence=aRepo.save(attendance);
 				response.setStatus(true);
 				response.setMessage("PunchIn Successfull");
-				response.setData(newAttendence2);
+				response.setData(newAttendence);
+				
 				return new ResponseEntity(response,HttpStatus.OK);
 			}
 			
@@ -180,11 +167,13 @@ public class AttendanceServiceImpl implements AttendanceService{
 
 	@Override
 	public ResponseEntity findAttendanceLogCountWithParticularMonth(int month, String employeeId) {
+		List<Response> r=new ArrayList<>(); 
 		Response response=new Response();
 		try {
 			int getLog=aRepo.findAttendanceLogCountWithParticularMonth(month,employeeId);
 			if(getLog!=0)
 			{
+				
 				response.setStatus(true);
 				response.setMessage("Data Fetching");
 				response.setData(getLog);
@@ -205,14 +194,17 @@ public class AttendanceServiceImpl implements AttendanceService{
 		}
 		}
 
+
 	@Override
-	public ResponseEntity addpunchOut(Punchout attendance, String employeeId) {
+	public ResponseEntity addpunchOut(Punchout attendance, String employeeId,Date punchinDate) {
+		List<Response> r=new ArrayList<>(); 
 		Response response=new Response();
 		try {
+			System.out.println("EmployeeId"+employeeId);
+			AttendanceLog newAttendance=aRepo.getByEmployeeIdAndPunchinDate(employeeId,punchinDate);
 			
-			AttendanceLog newAttendance=aRepo.getByEmployeeId(employeeId);
-			
-			
+			System.out.println("newAttendance"+newAttendance);
+
 		    //System.out.println("formattedDate"+formattedDate);
 
 		    //Date d=new java.sql.Date(formattedDate);
@@ -232,11 +224,12 @@ public class AttendanceServiceImpl implements AttendanceService{
 			newAttendance.setPunchout(formattedDate);
 			
 			
-			if(newAttendance.getStatus()==false)
+			if(newAttendance.isStatus()==false)
 			{	
 				response.setStatus(true);
 				response.setMessage("PunchOut was already done today");
-				return new ResponseEntity(response,HttpStatus.OK);
+				r.add(response);
+				return new ResponseEntity(r,HttpStatus.OK);
 				
 			}
 				
@@ -270,17 +263,16 @@ public class AttendanceServiceImpl implements AttendanceService{
 //				Long t=newAttendence2.getPunchin();
 //				Timestamp ts=new Timestamp(t);
 
-				Time tim=aRepo.getTime(newAttendence2.getEmployeeId());
+				Time tim=aRepo.getTime(employeeId,punchinDate);
 				System.out.println("Duration"+tim);
 				newAttendence2.setDuration(tim);
-				aRepo.save(newAttendence2);
+				AttendanceLog at=aRepo.save(newAttendence2);
 				response.setStatus(true);
 				response.setMessage("PunchOut Successfull");
-				response.setData(newAttendence2);
-				return new ResponseEntity(response,HttpStatus.OK);
-
+				response.setData(at);
+				r.add(response);
+				return new ResponseEntity(r,HttpStatus.OK);
 			}
-			
 		}
 		catch(Exception e)
 		{
@@ -290,4 +282,27 @@ public class AttendanceServiceImpl implements AttendanceService{
 		}
 
 }
+
+	@Override
+	public ResponseEntity getAttendanceByEmployeeId(String employeeId) {
+		
+		Response response=new Response();
+		try {
+			List<AttendanceLog> att = aRepo.getAllByEmployeeId(employeeId);
+			response.setStatus(true);
+			response.setMessage("Fetching Data");
+			response.setData(att);
+			
+			return new ResponseEntity(response,HttpStatus.OK);
+			
+		}
+		catch(Exception e){
+			response.setStatus(false);
+			response.setMessage("Something Went Wrong");
+			
+			return new ResponseEntity(response,HttpStatus.OK);
+		}
+	
+	}
+
 }

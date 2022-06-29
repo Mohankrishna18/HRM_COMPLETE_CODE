@@ -88,33 +88,34 @@ public class MainServiceImpl implements MainService {
 			List<WaitingForApproval> waList = new ArrayList<>();
 
 			List<Onboarding> onboarding = onRepo.findByWaitingforapprovalStatus(true);
-			if (!onboarding.isEmpty()) {
+		if (!onboarding.isEmpty()) {
+//
+//				onboarding.forEach(on -> {
+//					WaitingForApproval wa = new WaitingForApproval();
+//
+//					wa.setOnboardingId(on.getOnboardingId());
+//					wa.setFirstName(on.getFirstName()+" "+on.getLastName());
+//					//wa.setLastName(on.getLastName());
+//					
+//					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+//					String strDate= formatter.format(on.getDateOfJoining());
+//					wa.setDepartment(on.getDepartment());
+//					wa.setDateOfJoining(strDate);
+//					wa.setDesignation(on.getDesignation());
+//					wa.setEmail(on.getEmail());
+//					wa.setJobTitle(on.getJobTitle());
+//					wa.setPhoneNumber(on.getPhoneNumber());
+//					wa.setEmploymentType(on.getEmploymentType());
+//					wa.setYearsOfExperience(on.getYearsOfExperience());
+//					wa.setPrimarySkills(on.getPrimarySkills());
+//					wa.setSecondarySkills(on.getSecondarySkills());
+//					waList.add(wa);
+//				});
 
-				onboarding.forEach(on -> {
-					WaitingForApproval wa = new WaitingForApproval();
-
-					wa.setOnboardingId(on.getOnboardingId());
-					wa.setFirstName(on.getFirstName()+" "+on.getLastName());
-					//wa.setLastName(on.getLastName());
-					
-					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-					String strDate= formatter.format(on.getDateOfJoining());
-					wa.setDepartment(on.getDepartment());
-					wa.setDateOfJoining(strDate);
-					wa.setDesignation(on.getDesignation());
-					wa.setEmail(on.getEmail());
-					wa.setJobTitle(on.getJobTitle());
-					wa.setPhoneNumber(on.getPhoneNumber());
-					wa.setYearsOfExperience(on.getYearsOfExperience());
-					wa.setPrimarySkills(on.getPrimarySkills());
-					wa.setSecondarySkills(on.getSecondarySkills());
-					waList.add(wa);
-				});
-
-//				r.setStatus(true);
-//				r.setMessage(sConstants.GET_RESPONSE);
-//				r.setData(wa);
-				return new ResponseEntity(waList, HttpStatus.OK);
+				r.setStatus(true);
+				r.setMessage(sConstants.GET_RESPONSE);
+				r.setData(onboarding);
+				return new ResponseEntity(r, HttpStatus.OK);
 
 			} else {
 				r.setStatus(true);

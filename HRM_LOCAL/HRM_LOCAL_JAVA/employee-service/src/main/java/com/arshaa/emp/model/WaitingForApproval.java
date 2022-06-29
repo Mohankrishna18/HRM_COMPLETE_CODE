@@ -18,8 +18,15 @@ public class WaitingForApproval {
 	private String department;
 	private String primarySkills;
 	private String secondarySkills;
+	private String employmentType;
 	
 	
+	public String getEmploymentType() {
+		return employmentType;
+	}
+	public void setEmploymentType(String employmentType) {
+		this.employmentType = employmentType;
+	}
 	public String getPrimarySkills() {
 		return primarySkills;
 	}
