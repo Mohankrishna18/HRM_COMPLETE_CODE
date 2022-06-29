@@ -12,15 +12,18 @@ import Paper from "@mui/material/Paper";
 
 const EmployeeTablee = () => {
   const [users, setUsers] = useState([]);
+
   useEffect(() => {
-    axios
-      .get("/emp/waitingForApprovelStatus")
-      .then((onboardingEmployeesResponse) => {
-        setUsers(onboardingEmployeesResponse.data);
-        console.log(onboardingEmployeesResponse.data);
-      })
-      .catch((err) => console.error(err));
-  }, []); // console.log(users.reportingManager) //Formate Date 
+    approvedData();
+  }, []); // console.log(users.reportingManager)
+
+  const approvedData = async () => {
+  const approvedEmployeesResponse = await axios.get("/emp/waitingForApprovelStatus");
+    console.log(approvedEmployeesResponse.data);
+    setUsers(approvedEmployeesResponse.data.data);
+  }
+
+  //Formate Date
   function formatDate(date) {
     var datePart = date.match(/\d+/g),
       year = datePart[0].subsing(2), // get only two digits
@@ -28,6 +31,7 @@ const EmployeeTablee = () => {
       day = datePart[2];
     return day + "-" + month + "-" + year;
   }
+
   return (
 
     <div>
@@ -72,31 +76,35 @@ const EmployeeTablee = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users && users.map((user, index) => (
-              <TableRow>
-                <TableCell scope="row">{index + 1}</TableCell>
-                <TableCell
-                  style={{ textAlign: 'center' }}>{user.onboardingId}</TableCell>
-                <TableCell style={{ textAlign: 'center' }}>{user.designation}</TableCell>
-                <TableCell style={{ textAlign: 'center' }}>{user.firstName}</TableCell>
-                {/* <TableCell style={{ textAlign: 'center' }}>{user.lastName}</TableCell> */}
-                <TableCell style={{ textAlign: 'center' }}>{user.email}</TableCell>
-                <TableCell style={{ textAlign: 'center' }}>{user.phoneNumber}</TableCell>
-                <TableCell style={{ textAlign: 'center' }}>{user.jobTitle}</TableCell>
-                <TableCell style={{ textAlign: 'center' }}>{user.yearsOfExperience}</TableCell>
-                <TableCell style={{ textAlign: 'center' }}>{user.dateOfJoining}</TableCell>
-                {console.log(user.comments)}
-                <TableCell>
-                  <div class="hstack gap-3">
-                    <div>
-                      <Approve onboardingid={user.onboardingId} reportingManager={user.reportingManager} />
-                    </div> <div>
-                      <Reject onboardingid={user.onboardingId} comments={user.comments} />
-                    </div>
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
+            {/* {users.length == 0 ? (<h4 align="center"> Oops..! No Records Found</h4>) : ( */}
+              <>
+                {users && users.map((user, index) => (
+                  <TableRow>
+                    <TableCell scope="row">{index + 1}</TableCell>
+                    <TableCell
+                      style={{ textAlign: 'center' }}>{user.onboardingId}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{user.designation}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{user.firstName}</TableCell>
+                    {/* <TableCell style={{ textAlign: 'center' }}>{user.lastName}</TableCell> */}
+                    <TableCell style={{ textAlign: 'center' }}>{user.email}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{user.phoneNumber}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{user.jobTitle}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{user.yearsOfExperience}</TableCell>
+                    <TableCell style={{ textAlign: 'center' }}>{formatDate(user.dateOfJoining)}</TableCell>
+                    {console.log(user.comments)}
+                    <TableCell>
+                      <div class="hstack gap-3">
+                        <div>
+                          <Approve onboardingid={user.onboardingId} reportingManager={user.reportingManager} />
+                        </div> <div>
+                          <Reject onboardingid={user.onboardingId} comments={user.comments} />
+                        </div>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </>
+            {/* )} */}
           </TableBody>
         </Table>
       </TableContainer>

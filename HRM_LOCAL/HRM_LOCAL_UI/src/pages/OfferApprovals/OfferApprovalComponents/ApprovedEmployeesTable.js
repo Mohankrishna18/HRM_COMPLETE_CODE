@@ -10,14 +10,18 @@ import Paper from "@mui/material/Paper";
 
 const ApprovedEmployeesTable = () => {
   const [users, setUsers] = useState([]);
+
   useEffect(() => {
-    axios
-      .get("/emp/getApprovedData")
-      .then((approvedEmployeesResponse) => {
-        setUsers(approvedEmployeesResponse.data.data);
-      })
-      .catch((err) => console.error(err));
-  }, []); // console.log(users.reportingManager) //Formate Date 
+    approvedData();
+  }, []); // console.log(users.reportingManager)
+
+  const approvedData = async () => {
+  const approvedEmployeesResponse = await axios.get("/emp/getApprovedData");
+    console.log(approvedEmployeesResponse.data);
+    setUsers(approvedEmployeesResponse.data.data);
+  }
+
+  //Formate Date
   function formatDate(date) {
     var datePart = date.match(/\d+/g),
       year = datePart[0].subsing(2), // get only two digits
@@ -25,6 +29,7 @@ const ApprovedEmployeesTable = () => {
       day = datePart[2];
     return day + "-" + month + "-" + year;
   }
+  
   return (
 
     <div>
