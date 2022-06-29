@@ -16,9 +16,9 @@ function ApprovalMain() {
               Jobs / Shortlisted Candidates{" "}
             </Card.Subtitle>
           </Col>
-          <Col>
-            <AddOnboard />
-          </Col>
+          {/* <Col>
+                <AddOnboard />
+                </Col> */}
         </Row>
       </Card.Body>
       {/* </Col> */}
