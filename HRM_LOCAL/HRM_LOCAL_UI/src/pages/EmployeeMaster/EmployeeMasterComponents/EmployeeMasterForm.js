@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from "react";
 import { Accordion, Button, Card, Form, InputGroup } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -490,7 +491,7 @@ function EmployeeMasterForm() {
                                     * All fields are mandatory. Please fill the form Correctly.
                                 </Card.Text>
 
-                                <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#ffcf62" }}>
+                                <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}>
                                     <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                         Personal Details
                                     </Card.Title>
@@ -787,14 +788,14 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             <Col>
 
                                                 <Card
-                                                    style={{ marginLeft: 0, marginRight: 0, marginTop: 20, backgroundColor: "#CCCCFF" }}
+                                                    style={{ marginLeft: 0, marginRight: 0, marginTop: 20, backgroundColor: "#FAFDD0" }}
                                                 >
                                                     <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                         Permanent Address
                                                     </Card.Title>
                                                 </Card>
 
-                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                <Form.Group as={Col} md="12" style={{ paddingTop: 10 }}>
                                                     <Form.Label>Address *</Form.Label>
                                                     <Form.Control
                                                         required
@@ -822,7 +823,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                         {elevenerrors}
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
-                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                <Form.Group as={Col} md="12" style={{ paddingTop: 20 }}>
                                                     <Form.Label>State *</Form.Label>
                                                     <Form.Control
                                                         required
@@ -847,7 +848,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                         {tweleveerror}
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
-                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                <Form.Group as={Col} md="12" style={{ paddingTop: 20 }}>
                                                     <Form.Label>Country *</Form.Label>
                                                     <Form.Control
                                                         required
@@ -886,9 +887,9 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 controlId="permanentCountry"                                                
                                                 value={permanentCountry}
                                                 onChange={(e) => setPermanentCountry(e.target.value)}>
-                                   
+                                    
                                             </CountryDropdown> */}
-                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                <Form.Group as={Col} md="12" style={{ paddingTop: 20, }}>
                                                     <Form.Label>Pincode *</Form.Label>
                                                     <Form.Control
                                                         required
@@ -920,9 +921,9 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             </Col>
                                             <Col>
                                                 <Card
-                                                    style={{ marginLeft: 10, marginRight: 0, marginTop: 20, backgroundColor: "#CCCCFF" }}
+                                                    style={{ marginLeft: 10, marginRight: 0, marginTop: 20, backgroundColor: "#FAFDD0" }}
                                                 >
-                                                    <Card.Title style={{ margin: 20, textAlign: "center" }}>
+                                                    <Card.Title style={{ margin: 20, textAlign: "center",paddingLeft:20 }}>
                                                         Current Address
                                                     </Card.Title>
                                                 </Card>
@@ -968,7 +969,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                         onChange={(e) => {
                                                             setCurrentState(e.target.value)
                                                             if (currentAdress === "") {
-                                                                setFifteenErrors(" Address is Required");
+                                                                setFifteenErrors("Address is Required");
                                                             }
                                                             else {
                                                                 setFifteenErrors("")
@@ -1037,7 +1038,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         </Row>
 
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#CCCCFF" }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                 Employment Details
@@ -1046,6 +1047,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Primary Skills</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 type="text"
                                                 placeholder="Primary Skills"
                                                 controlId="primarySkils"
@@ -1062,6 +1064,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Secondary Skills</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 type="text"
                                                 placeholder="Secondary Skills"
                                                 controlId="secondarySkills"
@@ -1078,6 +1081,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Employment Type</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 type="text"
                                                 placeholder="Type of Employee"
                                                 controlId="employmentType"
@@ -1094,6 +1098,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Band</Form.Label>
                                             <Form.Select
+                                                disabled
                                                 type="text"
                                                 placeholder="Band"
                                                 controlId="band"
@@ -1111,6 +1116,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Department</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 type="text"
                                                 placeholder="Department Name"
                                                 controlId="departmentName"
@@ -1127,6 +1133,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Designation</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 type="text"
                                                 placeholder="Designation Name"
                                                 controlId="designationName"
@@ -1143,6 +1150,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Reporting Manager *</Form.Label>
                                             <Form.Select
+                                               disabled
                                                 placeholder="select Gender"
                                                 value={reportingManager}
                                                 onChange={(e) => {
@@ -1157,6 +1165,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Project</Form.Label>
                                             <Form.Select
+                                                disabled
                                                 type="text"
                                                 placeholder="Project"
                                                 controlId="project"
@@ -1174,7 +1183,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             </Form.Select>
                                         </Form.Group>
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#CCCCFF" }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                 Additional Details
@@ -1378,7 +1387,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 marginLeft: 8,
                                                 marginRight: 8,
                                                 marginTop: 10,
-                                                marginBottom: 20, backgroundColor: "#CCCCFF"
+                                                marginBottom: 20, backgroundColor: "#FAFDD0"
                                             }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
@@ -1390,7 +1399,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 marginLeft: 8,
                                                 marginRight: 8,
                                                 marginTop: 10,
-                                                marginBottom: 20, backgroundColor: "#CCCCFF"
+                                                marginBottom: 20, backgroundColor: "#FAFDD0"
                                             }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center", }}>
@@ -1543,7 +1552,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         </Accordion>
 
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#CCCCFF" }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                 Graduation Details
@@ -1771,7 +1780,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             </Form.Control.Feedback>
                                         </Form.Group>
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#CCCCFF" }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                 12th Grade/Intermediate Details
@@ -1958,10 +1967,10 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         </Form.Group>
 
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#CCCCFF" }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                                                10th Grade details
+                                                10th Grade Details
                                             </Card.Title>
                                         </Card>
 
@@ -2145,7 +2154,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 marginTop: "10px",
                                                 marginBottom: "20px",
                                                 marginLeft: 8,
-                                                marginRight: 8, backgroundColor: "#CCCCFF"
+                                                marginRight: 8, backgroundColor: "#FAFDD0"
                                             }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
@@ -2236,6 +2245,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Employment Type</Form.Label>
                                                             <Form.Select
+                                                            
                                                                 type="text"
                                                                 placeholder="Employment Type"
                                                                 controlId="previousCompany1_typeOfEmployeement"

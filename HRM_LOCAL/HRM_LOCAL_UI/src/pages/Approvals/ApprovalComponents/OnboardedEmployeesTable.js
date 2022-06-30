@@ -719,7 +719,7 @@ function OnboardedEmployeesTable() {
 
   const loadData = async (e) => {
     const response = await axios.get("/emp/waitingForApprovelStatus");
-    setData(response.data);
+    setData(response.data.data);
     console.log(response.data);
   };
 
