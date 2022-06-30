@@ -56,6 +56,7 @@ public class Onboarding {
 	private boolean waitingforapprovalStatus;
 	private String department;
 	private String reportingManager;
+	
 	public String getReportingManager() {
 		return reportingManager;
 	}
@@ -85,6 +86,24 @@ public class Onboarding {
 	private String employmentType;
 	private String primarySkills;
 	private String secondarySkills;
+	
+	private String projectName;
+	private String band;
+	
+	
+	
+	public String getProjectName() {
+		return projectName;
+	}
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+	public String getBand() {
+		return band;
+	}
+	public void setBand(String band) {
+		this.band = band;
+	}
 	public String getOnboardingId() {
 		return onboardingId;
 	}
@@ -238,7 +257,7 @@ public class Onboarding {
 			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
 			String department, String reportingManager, String email, Date onboardDate, Date approvedDate,
 			Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy, String employmentType,
-			String primarySkills, String secondarySkills) {
+			String primarySkills, String secondarySkills, String projectName, String band) {
 		super();
 		this.onboardingId = onboardingId;
 		this.designation = designation;
@@ -246,7 +265,7 @@ public class Onboarding {
 		this.middleName = middleName;
 		this.lastName = lastName;
 		this.jobTitle = jobTitle;
-				this.comments = comments;
+	    this.comments = comments;
 		this.phoneNumber = phoneNumber;
 		this.yearsOfExperience = yearsOfExperience;
 		this.employeeId = employeeId;
@@ -265,6 +284,9 @@ public class Onboarding {
 		this.employmentType = employmentType;
 		this.primarySkills = primarySkills;
 		this.secondarySkills = secondarySkills;
+		this.projectName = projectName;
+		this.band = band;
+		
 	}
 	public Onboarding() {
 		super();

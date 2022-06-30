@@ -43,7 +43,11 @@ spring:
         - id: EmploymentTypeService
           uri: lb://EmploymentTypeService
           predicates:
-            - Path=/employmentType/**           
+            - Path=/employmentType/**
+        - id: bands
+          uri: lb://bands
+          predicates:
+            - Path=/bands/**           
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
