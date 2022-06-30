@@ -26,7 +26,9 @@ const EmployeeTablee = () => {
   //Formate Date
   function formatDate(date) {
     var datePart = date.match(/\d+/g),
+
       year = datePart[0], // get only two digits
+
       month = datePart[1],
       day = datePart[2];
     return day + "-" + month + "-" + year;
