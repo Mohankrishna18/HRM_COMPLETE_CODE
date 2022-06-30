@@ -31,54 +31,41 @@ public class AttendanceLog {
 	private int employeeattendanceId;
 	@Column
 	private String employeeId;
-	@Column
 	private String employeeFirstName;
-	
+	private String employeeMiddleName;
+	private String employeeLastName;
+	@Column(name="punch_in")
+	@JsonFormat(pattern = "HH:mm:ss", timezone = "IST")
+	@Temporal(TemporalType.TIME)
+	private java.util.Date punchin = new java.util.Date(System.currentTimeMillis());
+	// @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
+	// @Temporal(TemporalType.TIMESTAMP)
 	
 	@Column(name="date")
 	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "IST")
 	@Temporal(TemporalType.DATE)
-	private java.util.Date punchinDate = new java.util.Date(System.currentTimeMillis());
-	
+	private java.util.Date punchinDate = new java.util.Date(System.currentTimeMillis());	
+	@Column(name="punch_out")
+	private String punchout;
+
 	private boolean status;
 	
+	private Time duration;
 	
+	public java.util.Date getPunchinDate() {
+		return punchinDate;
+	}
 
-	public boolean getStatus() {
+	public void setPunchinDate(java.util.Date punchinDate) {
+		this.punchinDate = punchinDate;
+	}
+
+	public boolean isStatus() {
 		return status;
 	}
 
 	public void setStatus(boolean status) {
 		this.status = status;
-	}
-
-	
-	@Column(name="punch_in")
-	@JsonFormat(pattern = "HH:mm:ss", timezone = "IST")
-	@Temporal(TemporalType.TIME)
-	private java.util.Date punchin = new java.util.Date(System.currentTimeMillis());
-	private Time duration;
-	
-@Column(name="punch_out")
-//	@JsonFormat(pattern="HH:mm:ss", timezone="IST")
-//	@Temporal(TemporalType.TIME)
-	private String punchout;
-	
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "IST")
-	@Temporal(TemporalType.TIMESTAMP)
-	private java.util.Date updatedOn = new java.util.Date(System.currentTimeMillis());
-	
-    private String updatedby;
-
-    
-    //Getters and setters
-    
-	public Time getDuration() {
-		return duration;
-	}
-
-	public void setDuration(Time duration) {
-		this.duration = duration;
 	}
 
 	public int getEmployeeattendanceId() {
@@ -105,17 +92,28 @@ public class AttendanceLog {
 		this.employeeFirstName = employeeFirstName;
 	}
 
-	
-
-	
-	
-
-	public java.util.Date getPunchinDate() {
-		return punchinDate;
+	public String getEmployeeMiddleName() {
+		return employeeMiddleName;
 	}
 
-	public void setPunchinDate(java.util.Date punchinDate) {
-		this.punchinDate = punchinDate;
+	public void setEmployeeMiddleName(String employeeMiddleName) {
+		this.employeeMiddleName = employeeMiddleName;
+	}
+
+	public String getEmployeeLastName() {
+		return employeeLastName;
+	}
+
+	public void setEmployeeLastName(String employeeLastName) {
+		this.employeeLastName = employeeLastName;
+	}
+
+	public java.util.Date getPunchIn() {
+		return punchin;
+	}
+
+	public void setPunchIn(java.util.Date punchIn) {
+		this.punchin = punchIn;
 	}
 
 	
@@ -135,50 +133,39 @@ public class AttendanceLog {
 
 	public void setPunchout(String punchout) {
 		this.punchout = punchout;
-	}
-
-	public java.util.Date getUpdatedOn() {
-		return updatedOn;
-	}
-
-	public void setUpdatedOn(java.util.Date updatedOn) {
-		this.updatedOn = updatedOn;
-	}
-
-	public String getUpdatedby() {
-		return updatedby;
-	}
-
-	public void setUpdatedby(String updatedby) {
-		this.updatedby = updatedby;
+	
 	}
 	
-	//constructors
-
 	
-	public AttendanceLog() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
-	public AttendanceLog(int employeeattendanceId, String employeeId, String employeeFirstName, Date punchinDate,
-			boolean status, Date punchin, Time duration, String punchout, Date updatedOn, String updatedby) {
+	public AttendanceLog(int employeeattendanceId, String employeeId, String employeeFirstName,
+			String employeeMiddleName, String employeeLastName, Date punchin, Date punchinDate, String punchout,
+			boolean status, Time duration) {
 		super();
 		this.employeeattendanceId = employeeattendanceId;
 		this.employeeId = employeeId;
 		this.employeeFirstName = employeeFirstName;
-		this.punchinDate = punchinDate;
-		this.status = status;
+		this.employeeMiddleName = employeeMiddleName;
+		this.employeeLastName = employeeLastName;
 		this.punchin = punchin;
-		this.duration = duration;
+		this.punchinDate = punchinDate;
 		this.punchout = punchout;
-		this.updatedOn = updatedOn;
-		this.updatedby = updatedby;
+		this.status = status;
+		this.duration = duration;
+	}
+
+	public AttendanceLog() {
+		super();
+
+	}
+
+	public Time getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Time tim) {
+		this.duration = tim;
 	}
 
 	
-
-	
-	
-		
 }

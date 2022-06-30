@@ -22,16 +22,21 @@ public interface AttendanceRepo extends JpaRepository<AttendanceLog, Integer>{
 
 	//boolean existsByPunchIn(Date punchIn);
 	
-	Boolean existsByEmployeeIdAndPunchinDate(String employeeId,Date punchIn);
+	Boolean existsByEmployeeIdAndPunchin(String employeeId,Date punchIn);
 //	testing purpose
 
-@Query(value="SELECT TIMEDIFF(employeeattendance.punch_out,employeeattendance.punch_in) FROM employeeattendance Where employee_id=?1",nativeQuery = true)
-Time getTime(String employeeId);
+
+@Query(value="SELECT TIMEDIFF(employeeattendance.punch_out,employeeattendance.punch_in) FROM employeeattendance Where employee_id=?1 AND date=?2",nativeQuery = true)
+Time getTime(String employeeId,Date punchinDate);
 
 
 	AttendanceLog getByEmployeeId(String employeeId);
+	List<AttendanceLog> getAllByEmployeeId(String employeeId);
+
+	AttendanceLog getByEmployeeIdAndPunchinDate(String employeeId, Date punchinDate);
 
 	//boolean existsByEmployeeIdAndAttendanceDate(String employeeId, Date attendanceDate);
 
 	//boolean existsByEmployeeIdAndPunchoutDate(String employeeId, Date punchout);
+
 }

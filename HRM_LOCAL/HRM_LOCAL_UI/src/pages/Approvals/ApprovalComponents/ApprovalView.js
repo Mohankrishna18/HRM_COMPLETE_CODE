@@ -9,42 +9,25 @@ import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-const ApprovalUpdateForm = (props) => {
-  console.log(props.updateOnboard);
+const ApprovalView = (props) => {
+  console.log(props.viewOnboard);
+  // console.log(props.firstName)
 
-  const [firstName, setFirstName] = useState(props.updateOnboard.firstName);
-  const [middleName, setMiddleName] = useState(props.updateOnboard.middleName);
-  const [lastName, setLastName] = useState(props.updateOnboard.lastName);
-  const [email, setEmail] = useState(props.updateOnboard.email);
-  const [phoneNumber, setPhonenNumber] = useState(
-    props.updateOnboard.phoneNumber
-  );
-  const [dateOfJoining, setDateOfJoining] = useState(
-    props.updateOnboard.dateOfJoining
-  );
-  const [yearsOfExperience, setYearsOfExperience] = useState(
-    props.updateOnboard.yearsOfExperience
-  );
-  const [department, setDepartment] = useState(props.updateOnboard.department);
-  const [designation, setDesignation] = useState(
-    props.updateOnboard.designation
-  );
-  const [employmentType, setEmployementType] = useState(
-    props.updateOnboard.employmentType
-  );
-  const [primarySkills, setPrimarySkills] = useState(
-    props.updateOnboard.primarySkills
-  );
-  const [secondarySkills, setSecondrySkills] = useState(
-    props.updateOnboard.secondarySkills
-  );
-  const [jobTitle, setJobTitle] = useState(props.updateOnboard.jobTitle);
+  // const [firstName, setFirstName] = useState("")
+  // const [middleName, setMiddleName] = useState("")
+  // const [lastName, setLastName] = useState("")
+  // const [email, setEmial] = useState("")
+  // const [phoneNumber, setPhonenNumber] = useState("")
+  // const [dateOfJoining, setDateOfJoining] = useState("")
+  // const [yearsOfExperience, setYearsOfExperience] = useState("")
+  // const [department, setDepartment] = useState("")
+  // const [desgination, setDesignation] = useState("")
+  // const [primarySkills, setPrimarySkills] = useState("")
+  // const [secondarySkills, setSecondrySkills] = useState("")
+  // const [jobTitle, setJobTitle] = useState("")
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-
-//   const handleClose = () => setShow();
-//   const handleShow = () => setShow(true);
 
   const forms = useRef(null);
 
@@ -114,65 +97,30 @@ const ApprovalUpdateForm = (props) => {
 
     return newErrors;
   };
-
   //testing for commit
   const [user, setUser] = useState("");
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .put(
-        `/emp/updatedOnbordingDataById/${props.updateOnboard.onboardingId}`,
-        {
-          firstName,
-          middleName,
-          lastName,
-          email,
-          phoneNumber,
-          dateOfJoining,
-          yearsOfExperience,
-          designation,
-          department,
-          employmentType,
-          primarySkills,
-          secondarySkills,
-          jobTitle,
-        }
-      )
-      .then((response) => {
-        const user = response.data;
-        if (response.data.status) {
-          props.func();
-        } else {
-          console.log("Props not Send");
-        }
-        toast.success("Form Submitted successfully");
-        // console.log(user);
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Something Went Wrong");
-      });
-      props.handleClose()
-
     // e.target.reset();
-    // const formErrors = validateForm();
-    // if (Object.keys(formErrors).length > 0) {
-    //     setErrors(formErrors);
-    // } else {
-    //     // console.log(form);
-    //     // console.log("form submitted");
-    //     axios.put(`/emp/updateApprovStatus${props.updateOnboard.onboardingId}`, form)
-    //         .then((response) => {
-    //             const user = response.data;
-    //             toast.success("Form Submitted successfully")
-    //             // console.log(user);
-    //         })
-    //         .catch((err) => { toast.error("Something Went Wrong") })
-    // }
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+    } else {
+      // console.log(form);
+      // console.log("form submitted");
+      axios
+        .post("/emp/createNewPotentialEmployee", form)
+        .then((response) => {
+          const user = response.data;
+          toast.success("Form Submitted successfully");
+          // console.log(user);
+        })
+        .catch((err) => {
+          toast.error("Something Went Wrong");
+        });
+    }
   };
   // console.log(form.dateOfJoining)
-  //   console.log(err)
 
   const [designations, setDesignations] = useState([]);
   useEffect(() => {
@@ -209,35 +157,35 @@ const ApprovalUpdateForm = (props) => {
         style={{ padding: 10 }}
         onSubmit={handleSubmit}
       >
-        <Row className="mb-4">
+        <Row className="mb-5">
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Name</Form.Label>
+            <Form.Label>First name</Form.Label>
             <Form.Control
               required
               className="firstName"
               type="text"
               controlId="firstName"
-              placeholder="Name"
+              placeholder="First name"
               // onChange={(event) => setFirstName(event.target.value)}
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={props.viewOnboard.firstName}
+              onChange={(e) => setField("firstName", e.target.value)}
               isInvalid={!!errors.firstName}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.firstName}
             </Form.Control.Feedback>
           </Form.Group>
-          {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Middle name</Form.Label>
             <Form.Control
               name="middle_name"
               type="text"
               controlId="middleName"
               placeholder="Middle name"
-              value={middleName}
-              onChange={(e) => setMiddleName(e.target.value)}
+              value={props.viewOnboard.middleName}
+              onChange={(e) => setField("middleName", e.target.value)}
             ></Form.Control>
-          </Form.Group> */}
+          </Form.Group>
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Last name</Form.Label>
             <Form.Control
@@ -246,8 +194,8 @@ const ApprovalUpdateForm = (props) => {
               type="text"
               controlId="lastName"
               placeholder="Last name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              value={props.viewOnboard.lastName}
+              onChange={(e) => setField("lastName", e.target.value)}
               isInvalid={!!errors.lastName}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
@@ -264,8 +212,8 @@ const ApprovalUpdateForm = (props) => {
                 type="text"
                 placeholder="Phone Number"
                 controlId="phoneNumber"
-                value={phoneNumber}
-                onChange={(e) => setPhonenNumber(e.target.value)}
+                value={props.viewOnboard.phoneNumber}
+                onChange={(e) => setField("phoneNumber", e.target.value)}
                 isInvalid={!!errors.phoneNumber}
               ></Form.Control>
               <Form.Control.Feedback type="invalid">
@@ -275,51 +223,14 @@ const ApprovalUpdateForm = (props) => {
             </InputGroup>
           </Form.Group>
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              required
-              type="email"
-              placeholder="Email"
-              controlId="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              isInvalid={!!errors.email}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.email}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Type Of Employeement</Form.Label>
-            <Form.Select
-              required
-              type="text"
-              placeholder="Type Of Employment"
-              controlId="employmentType"
-              value={employmentType}
-              onChange={(e) => setEmployementType(e.target.value)}
-              isInvalid={!!errors.employmentType}
-            >
-              <option>Select</option>
-              <option value="Intern">Intern</option>
-              <option value="Contract">Contract</option>
-              <option value="FTE">
-                FTE 
-              </option>
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.employmentType}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Designation</Form.Label>
             <Form.Select
               required
               type="text"
               placeholder="Designation"
               controlId="designation"
-              value={designation}
-              onChange={(e) => setDesignation(e.target.value)}
+              value={props.viewOnboard.designation}
+              onChange={(e) => setField("designation", e.target.value)}
               isInvalid={!!errors.designation}
             >
               <option>Select </option>
@@ -336,8 +247,8 @@ const ApprovalUpdateForm = (props) => {
               type="text"
               placeholder="Department"
               controlId="department"
-              value={department}
-              onChange={(e) => setDepartment(e.target.value)}
+              value={props.viewOnboard.department}
+              onChange={(e) => setField("department", e.target.value)}
               isInvalid={!!errors.department}
             >
               <option>Select </option>
@@ -355,10 +266,10 @@ const ApprovalUpdateForm = (props) => {
             <Form.Control
               required
               type="date"
-              placeholder="Joining date"
+              placeholder="joining date"
               controlId="dateOfJoining"
-              value={dateOfJoining}
-              onChange={(e) => setDateOfJoining(e.target.value)}
+              value={props.viewOnboard.dateOfJoining}
+              onChange={(e) => setField("dateOfJoining", e.target.value)}
               isInvalid={!!errors.dateOfJoining}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
@@ -374,16 +285,40 @@ const ApprovalUpdateForm = (props) => {
               type="text"
               placeholder="Experience "
               controlId="yearsOfExperience"
-              value={yearsOfExperience}
-              onChange={(e) => setYearsOfExperience(e.target.value)}
+              value={props.viewOnboard.yearsOfExperience}
+              onChange={(e) => setField("yearsOfExperience", e.target.value)}
               isInvalid={!!errors.yearsOfExperience}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.yearsOfExperience}
             </Form.Control.Feedback>
           </Form.Group>
-          
-          
+          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              required
+              type="email"
+              placeholder="Email"
+              controlId="email"
+              value={props.viewOnboard.email}
+              onChange={(e) => setField("email", e.target.value)}
+              isInvalid={!!errors.email}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors.email}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            <Form.Label>Job Title</Form.Label>
+            <Form.Control
+              name="jobTitle"
+              type="text"
+              controlId="jobTitle"
+              placeholder="Job Title "
+              value={props.viewOnboard.jobTitle}
+              onChange={(e) => setField("jobTitle", e.target.value)}
+            ></Form.Control>
+          </Form.Group>
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Primary Skills*</Form.Label>
             <Form.Control
@@ -392,8 +327,8 @@ const ApprovalUpdateForm = (props) => {
               name="primarySkills"
               placeholder="Primary Skills"
               controlId="primarySkills"
-              value={primarySkills}
-              onChange={(e) => setPrimarySkills(e.target.value)}
+              value={props.viewOnboard.primarySkills}
+              onChange={(e) => setField("primarySkills", e.target.value)}
               // onChange={changeHandler}
             />
           </Form.Group>
@@ -405,64 +340,39 @@ const ApprovalUpdateForm = (props) => {
               name="secondarySkills"
               placeholder="SecondarySkills"
               controlId="secondarySkills"
-              value={secondarySkills}
-              onChange={(e) => setSecondrySkills(e.target.value)}
+              value={props.viewOnboard.secondarySkills}
+              onChange={(e) => setField("secondarySkills", e.target.value)}
 
               // onChange={changeHandler}
             />
           </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Job Title</Form.Label>
-            <Form.Control
-              name="jobTitle"
-              type="text"
-              controlId="jobTitle"
-              placeholder="Job Title "
-              value={jobTitle}
-              onChange={(e) => setJobTitle(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
 
-          
+          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            <Form.Label>Type Of Employeement</Form.Label>
+            <Form.Select
+              required
+              type="text"
+              placeholder="Type Of Employment"
+              controlId="employmentType"
+              value={props.viewOnboard.employmentType}
+              onChange={(e) => setField("employmentType", e.target.value)}
+              isInvalid={!!errors.employmentType}
+            >
+              <option>Select</option>
+              <option value="Intern">Intern</option>
+              <option value="Contract">Contract</option>
+              <option value="FTE">
+                FTE 
+              </option>
+            </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              {errors.employmentType}
+            </Form.Control.Feedback>
+          </Form.Group>
         </Row>
-        <Row>
-              <Col>
-                <Button
-                  style={{
-                    backgroundColor: "#ff9b44",
-                    borderColor: "#ff9b44",
-                    // float: "right",
-                    marginLeft: "200px",
-                    width: "40%",
-                    height: "120%",
-                    borderRadius: "25px",
-                  }}
-                  type="submit"
-                  onClick={handleSubmit}
-                >
-                  Submit
-                </Button>
-              </Col>
-              {/* <Col>
-                <Button
-                  style={{
-                    backgroundColor: "#B6B6B4",
-                    borderColor: "#B6B6B4",
-                    alignItems: "center",
-                    width: "40%",
-                    height: "120%",
-                    borderRadius: "25px",
-                  }}
-                  type="cancel"
-                  onClick={handleClose}
-                >
-                  Close
-                </Button>
-              </Col> */}
-            </Row>
       </Form>
     </>
   );
 };
 
-export default ApprovalUpdateForm;
+export default ApprovalView;
