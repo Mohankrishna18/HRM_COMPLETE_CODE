@@ -105,6 +105,7 @@ function AddOnboard(props) {
         .then((response) => {
           const user = response.data;
           toast.success("Employee Onboarded Successfully");
+          console.log(user);
           // console.log(user);
           setTimeout(5000);
           handleClose();
