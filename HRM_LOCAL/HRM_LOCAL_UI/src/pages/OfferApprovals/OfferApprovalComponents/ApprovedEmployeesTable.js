@@ -24,7 +24,7 @@ const ApprovedEmployeesTable = () => {
   //Formate Date
   function formatDate(date) {
     var datePart = date.match(/\d+/g),
-      year = datePart[0].subsing(2), // get only two digits
+      year = datePart[0], // get only two digits
       month = datePart[1],
       day = datePart[2];
     return day + "-" + month + "-" + year;
@@ -84,7 +84,7 @@ const ApprovedEmployeesTable = () => {
                   <TableCell style={{ textAlign: 'center' }}>{user.phoneNumber}</TableCell>
                   <TableCell style={{ textAlign: 'center' }}>{user.jobTitle}</TableCell>
                   <TableCell style={{ textAlign: 'center' }}>{user.yearsOfExperience}</TableCell>
-                  <TableCell style={{ textAlign: 'center' }}>{user.dateOfJoining}</TableCell>
+                  <TableCell style={{ textAlign: 'center' }}>{formatDate(user.dateOfJoining)}</TableCell>
 
                 </TableRow>
               ))}
