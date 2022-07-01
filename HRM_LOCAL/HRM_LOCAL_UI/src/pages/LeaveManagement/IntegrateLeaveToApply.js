@@ -1,6 +1,6 @@
 import React from 'react';
-import { useState, useEffect } from "react";
-import { Card, Modal } from "react-bootstrap";
+import { useState, useEffect, useRef } from "react";
+import { Card, FormControl, Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import axios from "../../Uri";
@@ -19,6 +19,37 @@ import Grid from '@mui/material/Grid'
 import "react-toastify/dist/ReactToastify.css";
 import LoadingOverlay from "react-loading-overlay";
 function IntegrateLeaveToApply() {
+
+    const [form, setForm] = useState({});
+    const [errors, setErrors] = useState({});
+
+    const forms = useRef(null);
+
+    function setField(field, value) {
+        setForm({
+            ...form,
+            [field]: value,
+
+        });
+        if (!!errors[field])
+            setErrors({
+                ...errors,
+                [field]: null,
+            });
+    }
+
+    const validateForm = () => {
+        const {
+            leaveReason
+        } = form;
+        const newErrors = {};
+
+        if (!leaveReason || leaveReason === "" || !leaveReason.match(/^[aA-zZ\s]+$/))
+            newErrors.leaveReason = "Please Enter Leave Reason";
+        return newErrors;
+    };
+
+
 
     const [show, setShow] = useState(false);
     //const [fromDate, setFromDate] = useState(null);
@@ -45,6 +76,8 @@ function IntegrateLeaveToApply() {
     const [remainingdata, setRemainingData] = useState([]);
     const [count, setCount] = useState();
     const [data, setData] = useState([]);
+    const [appliedleaves, setTotalAppliedleaves] = useState([]);
+    const [earnedData, setTotalEarnedData] = useState([]);
     //const userData1 = JSON.parse(userData);
     const userData = sessionStorage.getItem("userdata");
     var array = [];
@@ -150,6 +183,40 @@ function IntegrateLeaveToApply() {
         setData(res.data);
         console.log(res.data);
     };
+
+    useEffect(() => {
+
+        axios.get(`emp/leavespermonth/${employeeid}`).then((res) => {
+
+            console.log(res.data);
+
+            setTotalEarnedData(res.data);
+
+        });
+
+    }, []);
+
+    useEffect(() => {
+
+        axios.get(`leave/getcountofApplyingLeaves/${employeeid}`).then((res) => {
+
+            console.log(res.data);
+
+            setTotalAppliedleaves(res.data);
+
+        });
+
+    }, []);
+
+    const LossOfPay = (appliedleaves - earnedData);
+
+    console.log(LossOfPay);
+
+    const LeaveBalanace = (earnedData - appliedleaves);
+
+    console.log(LeaveBalanace);
+
+
     const [columns, setColumns] = useState([
         { title: 'Leave Type', field: 'leaveType' },
         { title: 'From', field: 'fromDate', type: 'date', dateSetting: { locale: "en-GB" } },
@@ -203,7 +270,7 @@ function IntegrateLeaveToApply() {
             notifyError("Leave Already Applied")
         }
 
-
+        handleClose();
 
 
 
@@ -348,7 +415,7 @@ function IntegrateLeaveToApply() {
                                         {" "}
                                         <Card.Title>Total EarnedLeaves</Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted">
-                                            {entitle}
+                                            {earnedData}
                                         </Card.Subtitle>
                                         {/* <Card.Text>12</Card.Text> */}
                                     </h5>
@@ -358,60 +425,80 @@ function IntegrateLeaveToApply() {
                     </Col>
                     <Col>
                         <Card>
+
                             <Card border="warning">
                                 <Card.Body>
                                     <h5>
                                         {" "}
                                         <Card.Title>Leave Balance</Card.Title>
-                                        <Card.Subtitle className="mb-2 text-muted">
-                                            {remainingdata}
-                                        </Card.Subtitle>
-                                        {/* <Card.Text>8 Today</Card.Text> */}
+                                        {LeaveBalanace > 0 ? (<Card.Subtitle className="mb-2 text-muted">{LeaveBalanace}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                                        {/* */}
+                                        {/* <Card.Text>12/60</Card.Text> */}
                                     </h5>
                                 </Card.Body>
                             </Card>
+
+
                         </Card>
                     </Col>
 
 
 
-                    {/* <Col> */}
-                        {/* <Card> */}
-                            {/* <Card border="warning"> */}
-                                {/* {count == undefined ? (<Card.Body> */}
-                                    {/* <h5> */}
-                                        {/* {" "} */}
-                                        {/* <Card.Title>Leaves Applied</Card.Title>
-                                        <Card.Subtitle className="mb-2 text-muted">
-                                            0
-                                        </Card.Subtitle> */}
-                                        {/* <Card.Text></Card.Text> */}
-                                    {/* </h5> */}
-                                {/* </Card.Body>) : (<Card.Body> */}
-                                    {/* <h5> */}
-                                        {/* {" "} */}
-                                        {/* <Card.Title>Leaves Applied</Card.Title>
-                                        <Card.Subtitle className="mb-2 text-muted">
-                                            {count}
-                                        </Card.Subtitle> */}
-                                        {/* <Card.Text></Card.Text> */}
-                                    {/* </h5> */}
-                                {/* </Card.Body>)} */}
 
-                            {/* </Card> */}
-                        {/* </Card> */}
-                    {/* </Col> */}
+                    <Card border="warning">
+                        <Card.Body>
+                            <h5>
+                                {" "}
+                                <Card.Title>Loss of Pay</Card.Title>
+                                {LossOfPay > 0 ? (<Card.Subtitle className="mb-2 text-muted">{LossOfPay}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                                {/* */}
+                                {/* <Card.Text>12/60</Card.Text> */}
+                            </h5>
+                        </Card.Body>
+                    </Card>
+
+
                     <Col>
                         <Card>
                             <Card border="warning">
-                                <Card.Body>
+
+                                {count == undefined ? (<Card.Body>
+
                                     <h5>
+
                                         {" "}
-                                        <Card.Title>Loss Of Pay</Card.Title>
-                                        <Card.Subtitle className="mb-2 text-muted">3</Card.Subtitle>
-                                        {/* <Card.Text>12/60</Card.Text> */}
+
+                                        <Card.Title>Leaves Applied</Card.Title>
+
+                                        <Card.Subtitle className="mb-2 text-muted">
+
+                                            0
+
+                                        </Card.Subtitle>
+
+                                        {/* <Card.Text></Card.Text> */}
+
                                     </h5>
-                                </Card.Body>
+
+                                </Card.Body>) : (<Card.Body>
+
+                                    <h5>
+
+                                        {" "}
+
+                                        <Card.Title>Leaves Applied</Card.Title>
+
+                                        <Card.Subtitle className="mb-2 text-muted">
+
+                                            {appliedleaves}
+
+                                        </Card.Subtitle>
+
+                                        {/* <Card.Text></Card.Text> */}
+
+                                    </h5>
+
+                                </Card.Body>)}
                             </Card>
                         </Card>
                     </Col>
@@ -432,9 +519,7 @@ function IntegrateLeaveToApply() {
 
 
                 <Modal.Body>
-                    <Form
-                        noValidate
-                        validated={validated}
+                    <Form ref={forms} className="formone"
                         style={{ padding: 10 }}
                         onSubmit={handleButtonClick}
                     >
@@ -501,15 +586,15 @@ function IntegrateLeaveToApply() {
                                         setToDate(event.target.value);
                                         console.log(event.target.value);
                                         axios.get(`/holiday/${fromDate}/${event.target.value}`).then((res) => {
-                                            if(res.data>30){
+                                            if (res.data > 30) {
                                                 alert("Limit exceeded")
                                                 const err = "Limit exceeded"
                                             }
-                                            else{
+                                            else {
                                                 setDay(res.data);
                                             }
-                                           
-                                            
+
+
                                         })
                                     }}
                                 />
@@ -544,12 +629,16 @@ function IntegrateLeaveToApply() {
                                 <Form.Label>Leave Reason</Form.Label>
                                 <Form.Control
                                     required
+                                    className="leaveReason"
                                     as="textarea"
                                     type="text"
                                     rows={2}
-                                    placeholder=""
+                                    controlId="leaveReason"
+                                    placeholder="Leave Reason"
                                     onChange={(event) => setReasonForLeaves(event.target.value)}
-                                />
+                                    isInvalid={!!errors.leaveReason}
+                                ></Form.Control>
+                                <Form.Control.Feedback type="invalid">{errors.leaveReason}</Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                                 <Form.Group controlId="formFileMultiple" className="mb-3">
@@ -559,17 +648,24 @@ function IntegrateLeaveToApply() {
                                     <Form.Control type="file" multiple />
                                 </Form.Group>
                                 <div class="col-md-12 text-center">
-                                <Button
+                                    <Button
+                                        style={{ backgroundColor: "#FF9B44", borderRadius: "15px" }}
+                                        type="submit"
+                                    // onClick={handleClose}
+                                    >
+                                        Submit
+                                    </Button>
+                                    {/* <Button
                             style={{ backgroundColor: "#FF9B44",borderRadius: "15px" }}
                             type="submit"
                             onClick={handleClose}
                         >
-                            Submit
-                        </Button>
-                        </div>
+                            Close
+                        </Button> */}
+                                </div>
                             </Form.Group>
                         </Row>
-                        
+
                     </Form>
                 </Modal.Body>
             </Modal>
