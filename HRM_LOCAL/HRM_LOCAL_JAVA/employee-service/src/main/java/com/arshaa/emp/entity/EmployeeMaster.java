@@ -38,7 +38,7 @@ public class EmployeeMaster {
 	private String designationName;
 //@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
 	@Column
-	private Date dateOfJoining;
+	private String dateOfJoining;
 	@Column
 	private String firstName;
 	@Column
@@ -193,11 +193,11 @@ public class EmployeeMaster {
 		this.designationName = designationName;
 	}
 
-	public Date getDateOfJoining() {
+	public String getDateOfJoining() {
 		return dateOfJoining;
 	}
 
-	public void setDateOfJoining(Date dateOfJoining) {
+	public void setDateOfJoining(String dateOfJoining) {
 		this.dateOfJoining = dateOfJoining;
 	}
 
