@@ -152,7 +152,7 @@
 //         color: "white",
 //       },
 //     },
-    
+
 //     {
 //       title: "Primary Skills",
 //       field: "primarySkills",
@@ -303,8 +303,6 @@
 // //   const handleClose = () => setShow(false);
 // //   const handleShow = () => setShow(true);
 // //   const [updateOnboard, setUpdateOnboard] = useState({});
-  
-
 
 // //   const [data, setData] = useState([]);
 // //   const [status, setStatus] = useState(false);
@@ -408,7 +406,7 @@
 // //     {
 // //       title: "Job Title",
 // //       field: "jobTitle",
-      
+
 // //       // validate: (rowData) => {
 // //       // if (
 // //       // rowData.subscriptionEndDate === undefined ||
@@ -594,7 +592,6 @@
 // //               //       resolve();
 // //               //     });
 // //               //   }),
-                
 
 // //               // Delete Data
 
@@ -608,7 +605,7 @@
 // //               //       const index = oldData.clientId;
 
 // //               //       dataDelete.splice(index, 1);
-  
+
 // //               //       const res = axios
 // //               //         .delete(`/client/deleteclient/${index}`)
 // //               //         .then((res) => {
@@ -639,22 +636,22 @@
 // //             actions={[
 // //               {
 // //                 icon:"button",
-                
+
 // //                 tooltip: "Save User",
 // //                 onClick: (event, rowData) =>
 // //                   alert("You want to delete " + rowData.firstName),
-               
+
 // //               },
 // //             ]}
 // //             components={{
 // //               Action: (props) => (
 // //                 // <Button
 // //                 //   onClick={(event) => props.action.onClick(event, props.data)}
-                  
+
 // //                 // >
 // //                 //   Delete
 // //                 // </Button>
-// //                 <Button 
+// //                 <Button
 // //                 onClick={(event)=>{
 // //                   setShow(true);
 // //                   console.log(props);
@@ -674,16 +671,15 @@
 // // }
 // // export default OnboardedEmployeesTable;
 
-
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
 import Card from "react-bootstrap/Card";
 import Grid from "@mui/material/Grid";
 import axios from "../../../Uri";
-import {FiEdit} from "react-icons/fi";
-import {BsFillEyeFill} from "react-icons/bs";
+import { FiEdit } from "react-icons/fi";
+import { BsFillEyeFill } from "react-icons/bs";
 
-import { Button, Modal, Stack } from "react-bootstrap";
+import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
 import ApprovalUpdateForm from "./ApprovalUpdateForm";
 import AddOnboard from "./AddOnboard";
 import ApprovalView from "./ApprovalView";
@@ -702,17 +698,22 @@ function OnboardedEmployeesTable() {
   const [viewOnboard, setViewOnboard] = useState({});
 
   const [data, setData] = useState([]);
-  const [status, setStatus] = useState(false);
+  const [addStatus, setAddStatus] = useState(false);
+  const [updateStatus, setUpdateStatus] = useState(false);
   const [viewStatus, setViewStatus] = useState(false);
 
-  const pull_data = () => {
-    setStatus(true);
-    setViewStatus(true);
+  const pull_dataAdd = () => {
+    setAddStatus(!addStatus);
+  };
+
+  const pull_dataUpdate = () => {
+    setUpdateStatus(!updateStatus);
+    
   };
 
   useEffect(() => {
     loadData();
-  }, [status]);
+  }, [addStatus,updateStatus]);
   // useEffect(() => {
   //   loadData();
   // }, [viewStatus]);
@@ -771,12 +772,12 @@ function OnboardedEmployeesTable() {
     <div>
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-        <Modal.Title>Onboarding Form</Modal.Title>
+          <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ApprovalUpdateForm
             updateOnboard={updateOnboard}
-            func={pull_data}
+            func={pull_dataUpdate}
             handleClose={handleClose}
           />
         </Modal.Body>
@@ -791,12 +792,12 @@ function OnboardedEmployeesTable() {
       </Modal>
       <Modal show={viewShow} onHide={viewHandleClose} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-        <Modal.Title>Onboarding Form</Modal.Title>
+          <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ApprovalView
             viewOnboard={viewOnboard}
-            func={pull_data}
+            // func={pull_data}
             viewHandleClose={viewHandleClose}
           />
         </Modal.Body>
@@ -818,10 +819,29 @@ function OnboardedEmployeesTable() {
           paddingBottom: "10px",
         }}
       >
-        {/* <h3 align="center" style={{ color: "orange" }}>
-          Onboarded Employees Table
-        </h3> */}
+        {/* <Row>
+          <Col>
+        <h3>
+        Onboarded Shortlisted Candidates
+        </h3>
+        </Col>
+        <Col>
         <AddOnboard func={pull_data} />
+        </Col>
+        </Row> */}
+        <Card.Body>
+          <Row>
+            <Col>
+              <Card.Title>Onboardings</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
+                Jobs / Shortlisted Candidates{" "}
+              </Card.Subtitle>
+            </Col>
+            <Col>
+              <AddOnboard func={pull_dataAdd} />
+            </Col>
+          </Row>
+        </Card.Body>
 
         <Grid style={{ borderBlockEndWidth: "2px" }}>
           <MaterialTable
@@ -863,7 +883,7 @@ function OnboardedEmployeesTable() {
                       }}
                     >
                       {/* Edit */}
-                      <FiEdit/>
+                      <FiEdit />
                     </Button>{" "}
                     {/* <Button
                       variant="secondary"
@@ -897,4 +917,3 @@ function OnboardedEmployeesTable() {
   );
 }
 export default OnboardedEmployeesTable;
-

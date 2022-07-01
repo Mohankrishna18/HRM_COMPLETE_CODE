@@ -47,7 +47,7 @@ public class AttendanceServiceImpl implements AttendanceService{
 		
 			EmployeeName al=template.getForObject("http://empService/emp/getEmployeeNameByEmployeeId/" + attendance.getEmployeeId(),EmployeeName.class);
 			attendance.setEmployeeFirstName(al.getEmployeeName());
-			if(aRepo.existsByEmployeeIdAndPunchin(attendance.getEmployeeId(),attendance.getPunchIn())==true)
+			if(aRepo.existsByEmployeeIdAndPunchinDate(attendance.getEmployeeId(),attendance.getPunchinDate())==true)
 			{
 				response.setStatus(true);
 				response.setMessage("PunchIn was already done today");

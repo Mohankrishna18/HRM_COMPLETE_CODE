@@ -36,7 +36,6 @@ import DepartmentMain from "../pages/Departments/DepartmentMain";
 import DesignationMain from "../pages/Designation/DesignationMain";
 import LeaveToApply from "../pages/LeaveManagement/LeaveToApply";
 import LeaveToApprove from "../pages/LeaveManagement/LeaveToApprove";
-import ApprovalMain from "../pages/Approvals/ApprovalMain";
 import Employee from "../pages/AllEmployees/AllEmployeesMain";
 
 import AdminAttendanceMain from "../pages/AdminAttendance/AdminAttendanceMain";
@@ -56,6 +55,7 @@ import createleaveTypeMain from "../pages/Createleave/CreateleaveMain";
 import BandsMain from "../pages/Bands/BandsMain";
 import EmploymentTypeMain from "../pages/EmploymentType/EmploymentTypeMain";
 import IntegrateLeaveToApply from "../pages/LeaveManagement/IntegrateLeaveToApply";
+import OnboardedEmployeesTable from "../pages/Approvals/ApprovalComponents/OnboardedEmployeesTable";
 
 export default [
   {
@@ -236,7 +236,8 @@ export default [
     permission: [Roles.manager],
   },
   {
-    component: ApprovalMain,
+
+  component: OnboardedEmployeesTable,
     path: "/Approvals",
     icon: <FcApprove />,
     title: "Onboardings",
