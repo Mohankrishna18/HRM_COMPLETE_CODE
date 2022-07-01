@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import MaterialTable from 'material-table'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Grid from '@mui/material/Grid'
 import axios from "../../../Uri";
 
@@ -56,7 +58,9 @@ console.log(newData)
 const res = axios.post("/employmentType/addEmploymentType",
 newData,
 );
-setData([...data, newData]);
+ console.log(res.data)
+// setData([...data, newData]);
+toast.success("Employment Type is added")
 loadData();
 
 
@@ -96,7 +100,7 @@ console.log("not updated")
 
 setData(updatedRows);
 console.log("updated")
-// toast.success(" Updated Successfully");
+toast.success("Employment Type is Updated")
 console.log(updatedRows);
 resolve();
 });
@@ -120,7 +124,7 @@ loadData()
 })
 console.log(dataDelete)
 //setData(dataDelete);
-
+toast.success("Employment Type is deleted successfully")
 
 
 resolve()
