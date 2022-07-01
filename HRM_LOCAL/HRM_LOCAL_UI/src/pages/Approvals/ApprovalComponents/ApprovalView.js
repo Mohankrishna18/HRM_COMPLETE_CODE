@@ -271,6 +271,7 @@ const ApprovalView = (props) => {
                         <Col md={{ offset: 1 }}>
                           <Card.Text style={{ paddingBottom: 0 }}>
                             {dob}
+
                           </Card.Text>
                         </Col>
                         </Row>

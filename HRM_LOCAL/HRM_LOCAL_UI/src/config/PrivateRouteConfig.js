@@ -238,6 +238,7 @@ export default [
   },
   {
     component: OnboardedEmployeesTable,
+
     path: "/Approvals",
     icon: <FcApprove />,
     title: "Onboardings",
