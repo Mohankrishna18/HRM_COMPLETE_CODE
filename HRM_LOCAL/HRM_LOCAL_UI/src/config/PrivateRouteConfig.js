@@ -36,6 +36,7 @@ import DepartmentMain from "../pages/Departments/DepartmentMain";
 import DesignationMain from "../pages/Designation/DesignationMain";
 import LeaveToApply from "../pages/LeaveManagement/LeaveToApply";
 import LeaveToApprove from "../pages/LeaveManagement/LeaveToApprove";
+
 import Employee from "../pages/AllEmployees/AllEmployeesMain";
 
 import AdminAttendanceMain from "../pages/AdminAttendance/AdminAttendanceMain";
@@ -236,8 +237,8 @@ export default [
     permission: [Roles.manager],
   },
   {
+    component: OnboardedEmployeesTable,
 
-  component: OnboardedEmployeesTable,
     path: "/Approvals",
     icon: <FcApprove />,
     title: "Onboardings",

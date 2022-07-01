@@ -206,7 +206,7 @@ public class Onboarding {
 	public void setUpdatedOn(java.util.Date updatedOn) {
 		this.updatedOn = updatedOn;
 	}
-	
+
 	public String getDateOfJoining() {
 		return dateOfJoining;
 	}
@@ -246,7 +246,8 @@ public class Onboarding {
 			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
 			String department, String reportingManager, String email, Date onboardDate, Date approvedDate,
 			Date rejectDate, Date updatedOn, String dateOfJoining, String updatedBy, String employmentType,
-			String primarySkills, String secondarySkills) {
+			String primarySkills, String secondarySkills, String projectName, String band) {
+
 		super();
 		this.onboardingId = onboardingId;
 		this.designation = designation;

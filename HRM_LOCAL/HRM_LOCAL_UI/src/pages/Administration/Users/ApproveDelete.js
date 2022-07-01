@@ -5,32 +5,37 @@ import axios from "../../../Uri";
 const ApproveDelete = (props) => {
     console.log(props.deleteOnboard)
 
-
     const deleteuser = async () => {
         try {
             const res = await axios.delete(`/user/deleteUserById/${props.deleteOnboard.employeeId}`)
-            console.log(res)
-            if (res.data.status) {
-                props.func();
-            }
+            .then((deletedResponse)=>{
+                const user = deletedResponse.data
+                console.log(deletedResponse);
+                if (deletedResponse.data.status) {
+                    props.func();
+                  }
+                  else {
+                    console.log("Props not Send")
+                  }
+                  toast.success("User deleted successfully!!!");
+                  // console.log(user);
+            })
+            // console.log(res)
+            // if (res.data.status) {
+            //     props.func();
+            // }
+            // else{
+            //     console.log("Props Not Send");
+            //   }
+            //   toast.success("User deleted successfully!!!");
+             
+            //   setTimeout(5000);
+            //   handleClose();
+            //   toast.error("Something Went Wrong");
         }
         catch (error) {
             console.log(error)
         }
-
-        // .then((res)=>{
-        //     console.log(res)
-
-        //     if (res.data.status) {
-        //         props.func();
-
-        //       } else {
-        //         console.log("Props not send");
-        //       }
-        // }).catch((err)=>{
-        //     console.log(err)
-        //     console.log("Not deleted")
-        // })
         props.deleteHandleClose()
     }
     return (
@@ -43,8 +48,6 @@ const ApproveDelete = (props) => {
                     </Row>
                 </Col>
             </Row>
-
-
         </div>
     )
 }

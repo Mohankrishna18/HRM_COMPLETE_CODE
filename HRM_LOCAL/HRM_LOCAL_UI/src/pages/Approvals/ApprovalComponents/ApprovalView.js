@@ -147,6 +147,11 @@ const ApprovalView = (props) => {
     // console.log(departments)
   }, []);
 
+  
+  var tempDate = new Date(props.viewOnboard.dateOfJoining);
+  var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(dob)
+
   return (
     <div>
       
@@ -265,7 +270,8 @@ const ApprovalView = (props) => {
                         </Col>
                         <Col md={{ offset: 1 }}>
                           <Card.Text style={{ paddingBottom: 0 }}>
-                            {props.viewOnboard.dateOfJoining}
+                            {dob}
+
                           </Card.Text>
                         </Col>
                         </Row>

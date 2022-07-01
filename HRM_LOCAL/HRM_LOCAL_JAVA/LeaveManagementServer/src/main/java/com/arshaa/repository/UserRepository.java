@@ -22,7 +22,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      @Query(value ="select(select no_of_days from leaveentitlement where leave_type = 'Annual')-IFNULL(sum(number_of_days),0) as remainig_total from employeeleaves h where h.employee_id =:employeeId and leave_status = 'Approved'",nativeQuery=true)
      int findNumberOfRemainingLeavesByEmployeeId(@Param("employeeId") String employeeId);
 
-
+     @Query ( value= "select sum(h.`number_of_days`) as total from employeeleaves h WHERE h.`leave_status` IN ('Approved','Pending') and h.`employee_id`=:employeeId GROUP BY MONTH(curdate())",nativeQuery=true)
+     int findapplyingleavescount(@Param("employeeId")String employeeId);
 
 
 

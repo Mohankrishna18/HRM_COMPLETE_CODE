@@ -93,23 +93,25 @@ public class MainServiceImpl implements MainService {
 				onboarding.forEach(on -> {
 					WaitingForApproval wa = new WaitingForApproval();
 
-//					wa.setOnboardingId(on.getOnboardingId());
-//					wa.setFirstName(on.getFirstName()+" "+on.getLastName());
-//					//wa.setLastName(on.getLastName());
-//					
-//					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-//					String strDate= formatter.format(on.getDateOfJoining());
-//					wa.setDepartment(on.getDepartment());
-//					wa.setDateOfJoining(strDate);
-//					wa.setDesignation(on.getDesignation());
-//					wa.setEmail(on.getEmail());
-//					wa.setJobTitle(on.getJobTitle());
-//					wa.setPhoneNumber(on.getPhoneNumber());
-//					wa.setEmploymentType(on.getEmploymentType());
-//					wa.setYearsOfExperience(on.getYearsOfExperience());
-//					wa.setPrimarySkills(on.getPrimarySkills());
-//					wa.setSecondarySkills(on.getSecondarySkills());
-//					waList.add(wa);
+ 
+// 					wa.setOnboardingId(on.getOnboardingId());
+// 					wa.setFirstName(on.getFirstName()+" "+on.getLastName());
+// //					wa.setLastName(on.getLastName());
+					
+// 					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+// 					String strDate= formatter.format(on.getDateOfJoining());
+// 					wa.setDepartment(on.getDepartment());
+// 					wa.setDateOfJoining(strDate);
+// 					wa.setDesignation(on.getDesignation());
+// 					wa.setEmail(on.getEmail());
+// 					wa.setJobTitle(on.getJobTitle());
+// 					wa.setPhoneNumber(on.getPhoneNumber());
+// 					wa.setEmploymentType(on.getEmploymentType());
+// 					wa.setYearsOfExperience(on.getYearsOfExperience());
+// 					wa.setPrimarySkills(on.getPrimarySkills());
+// 					wa.setSecondarySkills(on.getSecondarySkills());
+// 					waList.add(wa);
+
 				});
 
 				r.setStatus(true);

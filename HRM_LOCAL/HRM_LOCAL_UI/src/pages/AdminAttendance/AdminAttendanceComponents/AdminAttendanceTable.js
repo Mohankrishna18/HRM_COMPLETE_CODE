@@ -9,8 +9,6 @@ import { Grid } from "@mui/material";
 import axios from "../../../Uri";
 
 
-
-
 //import inputdata from './Inputdata';
 const EmpTable = () => {
     // employeeFirstName: null
@@ -20,8 +18,6 @@ const EmpTable = () => {
     // employeeattendanceId: 1
     // punchIn: "06-06-2022 16:22:21"
     // punchOut: null
-
-
 
     const columns = [
         {
@@ -43,8 +39,8 @@ const EmpTable = () => {
             },
         },
         {
-            title: "punch In Date",
-            field: "punchIn",
+            title: "Date",
+            field: "punchinDate",
             type: "date",
             headerStyle: {
                 //backgroundColor: "#1E90FF",
@@ -52,8 +48,8 @@ const EmpTable = () => {
             },
         },
         {
-            title: "punch In ",
-            field: "punchIn",
+            title: "Punch In Time",
+            field: "punchin",
             type: "time",
             headerStyle: {
                 // backgroundColor: "#1E90FF",
@@ -61,8 +57,8 @@ const EmpTable = () => {
             },
         },
         {
-            title: "punch out",
-            field: "punchOut",
+            title: "Punch out Time",
+            field: "punchout",
             type: "time",
             headerStyle: {
                 //backgroundColor: "#1E90FF",
@@ -73,15 +69,11 @@ const EmpTable = () => {
 
     ];
 
-
-
     const [data, setData] = useState([]);
     useEffect(() => {
         axios
-            .get(`/attendance/getAttendanceLogByMonth/6`)
+            .get(`/attendance/getAttendanceLogByMonth/7`)
             .then((res) => {
-
-
 
                 setData(res.data.data);
                 console.log(res.data);
@@ -92,16 +84,10 @@ const EmpTable = () => {
             });
     }, []);
 
-
-
     // const obje = { createdBy: userId };
-
-
 
     return (
         <div className='scroll' style={{ paddingBottom: '30px' }}>
-
-
 
             <Grid >
                 <MaterialTable
@@ -128,13 +114,9 @@ const EmpTable = () => {
                 />
             </Grid>
 
-
-
         </div>
     )
 }
-
-
 
 
 export default EmpTable;

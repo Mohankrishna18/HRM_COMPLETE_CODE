@@ -36,19 +36,19 @@ function AddUser(props) {
 
   const validateForm = () => {
     const {
-     
+
       employeeId,
       roleName,
 
     } = form;
     const newErrors = {};
 
- 
+
     if (!employeeId || employeeId === "")
       newErrors.employeeId = "Please Enter Employee ID";
     if (!roleName || roleName === "")
       newErrors.roleName = "Please Enter a Role";
-    
+
 
     return newErrors;
   };
@@ -61,21 +61,20 @@ function AddUser(props) {
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
     } else {
-      // console.log(form);
-      // console.log("form submitted");
+
       axios
         .post("/user/addUser", form)
         .then((response) => {
           const user = response.data;
-          if(response.data.status){
+          if (response.data.status) {
             props.func();
-          
+            toast.success("User added successfully!!!");
           }
-          else{
+          else {
             console.log("Props Not Send");
           }
-          toast.success("User added Successfully");
-          // console.log(user);
+          
+
           setTimeout(5000);
           handleClose();
         })
@@ -94,6 +93,7 @@ function AddUser(props) {
         setEmpID(response.data.data);
         console.log(response.data.data);
       })
+      
       .catch(() => {
         toast.error("data is not getting");
       });
@@ -123,23 +123,25 @@ function AddUser(props) {
           color: "#F4F8F6",
           float: "right",
           borderRadius: "25px",
-          paddingBottom: "11.5px",
-          marginTop: "10px",
+          paddingBottom: "7px",
+          marginBottom: "20px",
+          fontWeight: "bold"
         }}
       >
         {" "}
         <BsPlusLg />
-        Add User
+        &nbsp;Add User
       </Button>
       <Modal
-        size="lg"
+        size="md"
         show={show}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
+        centered
       >
-        <Modal.Header closeButton>
-          <Modal.Title>OnBoarding Form</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
+          <Modal.Title style={{ backgroundColor: "#FF9E14", color : "white" }}>Add User</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -148,12 +150,11 @@ function AddUser(props) {
             className="formone"
             // noValidate
             // validated={validated}
-            style={{ padding: 10 }}
+            style={{ paddingLeft: 25, paddingRight: 25, paddingBottom:10 }}
             onSubmit={handleSubmit}
           >
-            <Row className="mb-5">
-              
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            <Row className="mb-3">
+              <Form.Group className="mb-3">
                 <Form.Label>Employee ID *</Form.Label>
                 <Form.Select
                   required
@@ -164,7 +165,7 @@ function AddUser(props) {
                   onChange={(e) => setField("employeeId", e.target.value)}
                   isInvalid={!!errors.employeeId}
                 >
-                  <option>Select </option>
+                  <option>Select</option>
                   {empID.map((empID1) => (
                     <option>{empID1.employeeId}</option>
                   ))}
@@ -175,7 +176,7 @@ function AddUser(props) {
 
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              <Form.Group className="mb-3">
                 <Form.Label>Role *</Form.Label>
                 <Form.Select
                   required
@@ -196,22 +197,44 @@ function AddUser(props) {
                 </Form.Control.Feedback>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
-              
+
             </Row>
-            <Button
-              style={{ backgroundColor: "#FF0000", float: "right" }}
-              type="cancel"
-              onClick={handleClose}
-            >
-              Close
-            </Button>
-            <Button
-              style={{ backgroundColor: "#4CBB17", float: "right" }}
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Submit
-            </Button>
+            <Row>
+              <Col>
+                <Button
+                  style={{
+                    backgroundColor: "#ff9b44",
+                    borderColor: "#ff9b44",
+                    float: "right",
+                    width: "40%",
+                    height: "120%",
+                    borderRadius: "25px",
+                  }}
+                  type="submit"
+                  onClick={handleSubmit}
+                >
+                  Submit
+                  
+                </Button>
+              </Col>
+              <Col>
+              <Button
+                  style={{
+                    backgroundColor: "#B6B6B4",
+                    borderColor: "#B6B6B4",
+                    alignItems: "center",
+                    width: "40%",
+                    height: "120%",
+                    borderRadius: "25px",
+                  }}
+                  
+                  type="close"
+                  onClick={handleClose}
+                >
+                  Close
+                </Button>
+              </Col>
+            </Row>
           </Form>
         </Modal.Body>
       </Modal>

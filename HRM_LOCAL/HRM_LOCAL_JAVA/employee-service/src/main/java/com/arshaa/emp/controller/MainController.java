@@ -221,5 +221,10 @@ public class MainController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
 				.body(fileDB.getData());
 	}
+	@GetMapping("/leavespermonth/{employeeId}")
+    int Lossofpayservice( @PathVariable String employeeId ) {
 
+      return   epServ.Lossofpayservice(employeeId);
+
+    }
 }
