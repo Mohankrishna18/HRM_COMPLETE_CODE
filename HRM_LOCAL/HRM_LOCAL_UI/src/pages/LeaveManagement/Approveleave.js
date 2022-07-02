@@ -37,16 +37,16 @@ const Approve = (props) => {
     <div>
       <Row>
         <Col>
-          <Button
+        <Button
             variant="white "
             className="rounded-pill"
             onClick={handleShow}
           >
             {" "}
-            <FcApproval /> Approve
+            <FcApproval/>Approve
           </Button>
 
-          <Modal show={onhold} onHide={handleClose} centered>
+          <Modal show={onhold} onHide={handleClose} size="sm" centered>
             <Modal.Header closeButton>
               <Modal.Title>Approve Leave</Modal.Title>
             </Modal.Header>
@@ -65,6 +65,7 @@ const Approve = (props) => {
                     isInvalid={!!errors.rejectReason}
                   ></Form.Control>
                 </Form.Group> */}
+                <div class="col-md-12 text-center">
                 <Button
                   variant="warning"
                   type="submit"
@@ -76,8 +77,9 @@ const Approve = (props) => {
                   onClick={ApproveHandler}
                   // onChange={(e) => setField()}
                 >
-                  &nbsp; Save
+                  &nbsp; Approve
                 </Button>
+                </div>
               </Form>
             </Modal.Body>
           </Modal>

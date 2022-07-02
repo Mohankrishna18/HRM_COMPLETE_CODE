@@ -26,8 +26,8 @@ export default function RejectedEmployees() {
         { title: 'Employee ID', field: 'employeeId' },
         { title: 'Leave Reason', field: 'leaveReason', type:'date'},
     { title: 'No.Of Days', field: 'numberOfDays', type:'date'},
-    { title: 'From Date', field: 'fromDate', type:'date'},
-    { title: 'To Date', field: 'toDate', type:'date'},
+    { title: 'From Date', field: 'fromDate', type:'date',dateSetting: { locale: "en-GB" }},
+    { title: 'To Date', field: 'toDate', type:'date',dateSetting: { locale: "en-GB" }},
     { title: 'Leave Status', field: 'leaveStatus', type:'date'},
     // { title: 'Leave Type', field: 'leaveType', type:'date'}
     

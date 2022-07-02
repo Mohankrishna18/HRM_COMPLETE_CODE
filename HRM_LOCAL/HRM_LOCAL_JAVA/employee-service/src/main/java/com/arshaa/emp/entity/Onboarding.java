@@ -78,7 +78,7 @@ public class Onboarding {
 //	@Temporal(TemporalType.TIMESTAMP)
 	//@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
 	//@JsonFormat(pattern = "dd-mm-yyyy")
-    private Date dateOfJoining;
+    private String dateOfJoining;
     //private Date approvedDate;
     //private Date rejectDate;
 	@Column
@@ -206,10 +206,11 @@ public class Onboarding {
 	public void setUpdatedOn(java.util.Date updatedOn) {
 		this.updatedOn = updatedOn;
 	}
-	public Date getDateOfJoining() {
+
+	public String getDateOfJoining() {
 		return dateOfJoining;
 	}
-	public void setDateOfJoining(Date dateOfJoining) {
+	public void setDateOfJoining(String dateOfJoining) {
 		this.dateOfJoining = dateOfJoining;
 	}
 	public String getUpdatedBy() {
@@ -239,12 +240,14 @@ public class Onboarding {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
 			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
 			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
 			String department, String reportingManager, String email, Date onboardDate, Date approvedDate,
-			Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy, String employmentType,
-			String primarySkills, String secondarySkills) {
+			Date rejectDate, Date updatedOn, String dateOfJoining, String updatedBy, String employmentType,
+			String primarySkills, String secondarySkills, String projectName, String band) {
+
 		super();
 		this.onboardingId = onboardingId;
 		this.designation = designation;

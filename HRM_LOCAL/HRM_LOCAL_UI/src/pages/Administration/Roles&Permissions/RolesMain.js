@@ -11,8 +11,10 @@ const RolesMain = () => {
       <Card responsive className="scroll">
         <Card.Header>
           <Card.Body>
-            <Card.Title>Module</Card.Title>
-            
+            <Card.Title>Roles & App Permissions</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              Roles & App Permissions{" "}
+            </Card.Subtitle>
             <Container>
               <Row>
                 <Col xs={12}>

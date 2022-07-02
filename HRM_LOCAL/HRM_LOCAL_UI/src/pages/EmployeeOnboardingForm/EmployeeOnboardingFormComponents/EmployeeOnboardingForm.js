@@ -84,6 +84,7 @@ const EmployeeOnboardingForm = () => {
     };
     //testing for commit
 const[user,setUser]=useState("")
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // e.target.reset();

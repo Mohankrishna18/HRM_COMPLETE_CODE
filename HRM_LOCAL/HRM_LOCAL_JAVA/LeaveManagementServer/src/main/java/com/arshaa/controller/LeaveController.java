@@ -31,13 +31,12 @@ import com.arshaa.service.UserService;
 public class LeaveController {
 	@Autowired
 	private UserService service;
-	
+
 	@Autowired
 	private UserRepository repo;
-	
+
 	@Autowired
 	private leaveEntitlementRepository re; // @CrossOrigin(origins = "http://localhost:3000")
-	
 
 	@GetMapping("/getLeaveHistoryByEmpid/{employeeleaveId}")
 	private Optional<User> getUsers(@PathVariable Integer employeeleaveId) {
@@ -64,7 +63,6 @@ public class LeaveController {
 		return service.UpdateUsers(user, employeeleaveId);
 	}
 
-
 //To update the Leave status
 	@PutMapping("/managerupdateLeave/{employeeleaveId}")
 	private User UpdateManagerUsers(@RequestBody User user, @PathVariable Integer employeeleaveId) {
@@ -90,25 +88,24 @@ public class LeaveController {
 		return service.save(entitledleaves);
 	}
 
-
 	@GetMapping("/getAllleavetypes")
-	public List <EntitledLeaves> findAllLeaveTypes() {
-	return re.findAll();
+	public List<EntitledLeaves> findAllLeaveTypes() {
+		return re.findAll();
 	}
+
 	@PutMapping("put/{leaveId}")
-	public EntitledLeaves UpdateLeaveType(@RequestBody EntitledLeaves entitledleaves, @PathVariable Integer leaveId) { 
+	public EntitledLeaves UpdateLeaveType(@RequestBody EntitledLeaves entitledleaves, @PathVariable Integer leaveId) {
 		return service.UpdateLeaveType(entitledleaves, leaveId);
 	}
+
 	@DeleteMapping("/delete/{leaveId}")
 	public String deleteByLeaveId(@PathVariable EntitledLeaves leaveId) {
-	re.delete(leaveId);
-	return "Deleted Successfully";
+		re.delete(leaveId);
+		return "Deleted Successfully";
 	}
 
-
-
 // Written by Sri Divya 
-  @GetMapping("/getAllApprovedLeaves/{leaveStatus}")
+	@GetMapping("/getAllApprovedLeaves/{leaveStatus}")
 
 	public List<User> getAllApprovedLeaves(@PathVariable String leaveStatus) {
 		return service.findByLeaveStatus(leaveStatus);
@@ -138,5 +135,12 @@ public class LeaveController {
 		int a = repo.findNumberOfRemainingLeavesByEmployeeId(employeeId);
 		return a;
 	}
-	
+
+	@GetMapping("/getcountofApplyingLeaves/{employeeId}")
+	public int findcountofApplyingLeaves(@PathVariable String employeeId) {
+		// repo.findNumberOfRemainingLeavesByEmployeeId(employeeId);
+		int b = repo.findapplyingleavescount(employeeId);
+		return b;
+	}
+
 }

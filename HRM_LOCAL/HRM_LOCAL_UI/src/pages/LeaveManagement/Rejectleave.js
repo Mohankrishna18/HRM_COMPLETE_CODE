@@ -44,16 +44,18 @@ const Reject = (props) => {
             <FcCancel /> Reject
           </Button>
 
-          <Modal show={onhold} onHide={handleClose} centered>
+          <Modal show={onhold} onHide={handleClose}  size="md"centered>
             <Modal.Header closeButton>
               <Modal.Title>Reject</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <Form role="form">
-                <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                   <Form.Label>Comment</Form.Label>
                   <Form.Control
                     required
+                    as="textarea"
+                    rows={2}
                     className="rejectReason"
                     type="text"
                     controlId="rejectReason"
@@ -63,6 +65,7 @@ const Reject = (props) => {
                     isInvalid={!!errors.rejectReason}
                   ></Form.Control>
                 </Form.Group>
+                <div class="col-md-12 text-center">
                 <Button
                   variant="warning"
                   type="submit"
@@ -75,6 +78,7 @@ const Reject = (props) => {
                 >
                    Reject
                 </Button>
+                </div>
               </Form>
             </Modal.Body>
           </Modal>

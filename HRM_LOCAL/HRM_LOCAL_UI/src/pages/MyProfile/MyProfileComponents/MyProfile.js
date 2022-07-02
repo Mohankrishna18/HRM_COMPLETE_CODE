@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
-
 import { Card, Container, Row, Col, Table } from "react-bootstrap";
 import { matches } from "lodash";
-
 import { Image } from "react-bootstrap";
-
 import axios from "../../../Uri";
 import { split } from "lodash";
-
 import Avatar from '@mui/material/Avatar';
 
 
-
+///////
 
 const MyProfile = () => {
 
@@ -89,7 +85,7 @@ const MyProfile = () => {
   // var mm = dob.getMonth()+1;
   // var yyyy = dob.getFullYear();
   // var dob1 = dd + '-' + mm + '-' + yyyy;
-  //  console.log(dob1); 
+  //  console.log(dob1);
 
   // console.log(getEmployeeDetails.passportExpiryDate)
   var passportDate = new Date(getEmployeeDetails.passportExpiryDate);
@@ -189,7 +185,7 @@ const MyProfile = () => {
     <>
       <Row>
         <Col>
-          <Card responsive className='scroll' style={{ marginTop: 10 }}>
+          <Card responsive className='scroll' style={{ marginTop: 0 }}>
             <Card.Header>
               <Card.Body>
                 <Card.Title> My Profile</Card.Title>
@@ -278,6 +274,18 @@ const MyProfile = () => {
                                 <Col md={{ offset: 1 }}>
                                   <Card.Text style={{}}>
                                     {getEmployeeDetails.designationName}
+                                  </Card.Text>
+                                </Col>
+                              </Row>
+                              <Row style={{ paddingBottom: 15 }}>
+                                <Col>
+                                  <Card.Title style={{}}>
+                                    <h6>Department:</h6>
+                                  </Card.Title>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                  <Card.Text style={{}}>
+                                    {getEmployeeDetails.departmentName}
                                   </Card.Text>
                                 </Col>
                               </Row>
@@ -775,7 +783,7 @@ const MyProfile = () => {
                             <th>Course</th>
                             <th>Grade</th>
                             <th>Joining Date</th>
-                            <th>Passed-Out Date</th>
+                            <th>Year of Passing</th>
 
                           </tr>
                         </thead>
@@ -854,7 +862,7 @@ const MyProfile = () => {
                       <Table>
                         <thead>
                           <tr>
-                            {/* 
+                            {/*
                             <th>Sr.No.</th> */}
                             <th>Company Name</th>
                             <th>Employee ID</th>

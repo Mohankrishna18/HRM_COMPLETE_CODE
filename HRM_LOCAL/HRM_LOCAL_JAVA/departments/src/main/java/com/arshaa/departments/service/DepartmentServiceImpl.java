@@ -28,6 +28,13 @@ public class DepartmentServiceImpl  implements DepartmentService{
 		d.setMessage("Successfully added");
 		return new ResponseEntity(d,HttpStatus.OK);
 	}
+
+	@Override
+	public int getDepartmentIdByDepartmentName(String departmentName) {
+
+				Departmentmaster getDep=repository.getByDepartmentName(departmentName);
+			return (getDep.getDepartmentId());
+	}
 	
 
 	

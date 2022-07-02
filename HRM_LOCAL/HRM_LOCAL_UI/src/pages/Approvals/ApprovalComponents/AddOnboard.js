@@ -11,10 +11,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
-function AddOnboard() {
+function AddOnboard(props) {
+  
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  const [thirderrors, setThirdErrors] = useState("");
 
   const handleClose = () => setShow();
   const handleShow = () => setShow(true);
@@ -67,11 +69,11 @@ function AddOnboard() {
     if (!dateOfJoining || dateOfJoining === "")
       newErrors.dateOfJoining = "Please Enter Date of Joining";
     // if (
-    //   !yearsOfExperience ||
-    //   yearsOfExperience === "" ||
-    //   yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)
+    // !yearsOfExperience ||
+    // yearsOfExperience === "" ||
+    // yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)
     // )
-    //   newErrors.yearsOfExperience = "Please Enter Years of Experience";
+    // newErrors.yearsOfExperience = "Please Enter Years of Experience";
     if (!designation || designation === "")
       newErrors.designation = "Please Enter Designation";
     if (!department || department === "")
@@ -91,6 +93,7 @@ function AddOnboard() {
   const [user, setUser] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     // e.target.reset();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
@@ -102,7 +105,15 @@ function AddOnboard() {
         .post("/emp/createNewPotentialEmployee", form)
         .then((response) => {
           const user = response.data;
+          if(user.status){
+            props.func();
+          
+          }
+          else{
+            console.log("Props Not Send");
+          }
           toast.success("Employee Onboarded Successfully");
+          console.log(user);
           // console.log(user);
           setTimeout(5000);
           handleClose();
@@ -119,6 +130,7 @@ function AddOnboard() {
     axios
       .get("/designation/getAllDesignations")
       .then((response) => {
+        console.log(response.data);
         setDesignations(response.data);
       })
       .catch(() => {
@@ -142,10 +154,10 @@ function AddOnboard() {
   return (
     <div>
       {/* <Button
-        onClick={handleShow}
-        style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRadius:'29px',paddingTop:"9px" }}
-      >
-        <h4 style={{color: 'black'}}>Add Leave</h4>   </Button> */}
+onClick={handleShow}
+style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRadius:'29px',paddingTop:"9px" }}
+>
+<h4 style={{color: 'black'}}>Add Leave</h4> </Button> */}
 
       <Button
         variant="warning"
@@ -170,7 +182,7 @@ function AddOnboard() {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
 
@@ -183,7 +195,7 @@ function AddOnboard() {
             style={{ padding: 10 }}
             onSubmit={handleSubmit}
           >
-            <Row className="mb-5">
+            <Row className="mb-4">
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>First name *</Form.Label>
                 <Form.Control
@@ -194,6 +206,7 @@ function AddOnboard() {
                   placeholder="First name"
                   // onChange={(event) => setFirstName(event.target.value)}
                   value={form.firstName}
+                  maxLength={30}
                   onChange={(e) => setField("firstName", e.target.value)}
                   isInvalid={!!errors.firstName}
                 ></Form.Control>
@@ -209,6 +222,7 @@ function AddOnboard() {
                   controlId="middleName"
                   placeholder="Middle name"
                   value={form.middleName}
+                  maxLength={30}
                   onChange={(e) => setField("middleName", e.target.value)}
                 ></Form.Control>
               </Form.Group>
@@ -221,6 +235,7 @@ function AddOnboard() {
                   controlId="lastName"
                   placeholder="Last name"
                   value={form.lastName}
+                  maxLength={30}
                   onChange={(e) => setField("lastName", e.target.value)}
                   isInvalid={!!errors.lastName}
                 ></Form.Control>
@@ -235,15 +250,23 @@ function AddOnboard() {
                   <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
                   <Form.Control
                     required
-                    type="text"
+                    type="number"
                     placeholder="Phone Number"
                     controlId="phoneNumber"
                     value={form.phoneNumber}
-                    onChange={(e) => setField("phoneNumber", e.target.value)}
-                    isInvalid={!!errors.phoneNumber}
+                    maxLength={10}
+                    onChange={(e) => {
+                      setField("phoneNumber", e.target.value);
+                      if (e.target.value.length > 10) {
+                        setThirdErrors(
+                          " Phone Number length should be 10 characters"
+                        );
+                      }
+                    }}
+                    isInvalid={thirderrors}
                   ></Form.Control>
                   <Form.Control.Feedback type="invalid">
-                    {errors.phoneNumber}
+                    {thirderrors}
                   </Form.Control.Feedback>
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </InputGroup>
@@ -256,7 +279,15 @@ function AddOnboard() {
                   placeholder="Email"
                   controlId="email"
                   value={form.email}
-                  onChange={(e) => setField("email", e.target.value)}
+                  // maxLength={60}
+                  onChange={(e) => {
+                    setField("email", e.target.value);
+                    if (form.phoneNumber === "") {
+                      setThirdErrors(" Phone Number is Required");
+                    } else {
+                      setThirdErrors("");
+                    }
+                  }}
                   isInvalid={!!errors.email}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
@@ -277,9 +308,7 @@ function AddOnboard() {
                   <option>Select</option>
                   <option value="Intern">Intern</option>
                   <option value="Contract">Contract</option>
-                  <option value="FTE">
-                    FTE 
-                  </option>
+                  <option value="FTE">FTE</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.employmentType}
@@ -293,12 +322,25 @@ function AddOnboard() {
                   placeholder="Department"
                   controlId="department"
                   value={form.department}
-                  onChange={(e) => setField("department", e.target.value)}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    axios
+                      .get(
+                        `/designation/getDesignationByDepartment/${e.target.value}`
+                      )
+                      .then((response) => {
+                        console.log(response.data);
+                        setDesignations(response.data);
+                      });
+                    setField("department", e.target.value);
+                  }}
                   isInvalid={!!errors.department}
                 >
                   <option>Select </option>
                   {departments.map((departmentss) => (
-                    <option>{departmentss.departmentName}</option>
+                    <option value={departmentss.departmentId}>
+                      {departmentss.departmentName}
+                    </option>
                   ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
@@ -317,7 +359,7 @@ function AddOnboard() {
                   onChange={(e) => setField("designation", e.target.value)}
                   isInvalid={!!errors.designation}
                 >
-                  <option>Select </option>
+                  <option>Select</option>
                   {designations.map((designation) => (
                     <option>{designation.designationName}</option>
                   ))}
@@ -328,7 +370,7 @@ function AddOnboard() {
 
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
-              
+
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Date of Joining *</Form.Label>
                 <Form.Control
@@ -357,25 +399,21 @@ function AddOnboard() {
                   placeholder="Experience "
                   controlId="yearsOfExperience"
                   value={form.yearsOfExperience}
-                  onChange={(e) =>{
-                     setField("yearsOfExperience", e.target.value)
+                  onChange={(e) => {
+                    setField("yearsOfExperience", e.target.value);
                     //const yearsOfExperience = e.target.value;
 
-    // if (!yearsOfExperience || yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)) {
-    //   setField(() => ({ yearsOfExperience }));
-    // }
-  }
-}
-
-
+                    // if (!yearsOfExperience || yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)) {
+                    // setField(() => ({ yearsOfExperience }));
+                    // }
+                  }}
                   isInvalid={!!errors.yearsOfExperience}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {errors.yearsOfExperience}
                 </Form.Control.Feedback>
               </Form.Group>
-              
-              
+
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Primary Skills *</Form.Label>
                 <Form.Control
@@ -385,6 +423,7 @@ function AddOnboard() {
                   placeholder="Primary Skills"
                   controlId="primarySkills"
                   value={form.primarySkills}
+                  maxLength={30}
                   onChange={(e) => setField("primarySkills", e.target.value)}
                   // onChange={changeHandler}
                   isInvalid={!!errors.primarySkills}
@@ -402,6 +441,7 @@ function AddOnboard() {
                   placeholder="SecondarySkills"
                   controlId="secondarySkills"
                   value={form.secondarySkills}
+                  maxLength={30}
                   onChange={(e) => setField("secondarySkills", e.target.value)}
                   // onChange={changeHandler}
                   isInvalid={!!errors.secondarySkills}
@@ -418,6 +458,7 @@ function AddOnboard() {
                   controlId="jobTitle"
                   placeholder="Job Title "
                   value={form.jobTitle}
+                  maxLength={30}
                   onChange={(e) => setField("jobTitle", e.target.value)}
                   isInvalid={!!errors.jobTitle}
                 ></Form.Control>
@@ -425,25 +466,41 @@ function AddOnboard() {
                   {errors.jobTitle}
                 </Form.Control.Feedback>
               </Form.Group>
-              
-
-              
             </Row>
-            <Button
-              style={{ backgroundColor: "#FF0000", float: "right",marginLeft:"5px" }}
-              type="cancel"
-              onClick={handleClose}
-            >
-              Close
-            </Button>
-            
-            <Button
-              style={{ backgroundColor: "#4CBB17", float: "right" }}
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Submit
-            </Button>
+            <Row>
+              <Col>
+                <Button
+                  style={{
+                    backgroundColor: "#ff9b44",
+                    borderColor: "#ff9b44",
+                    float: "right",
+                    width: "40%",
+                    height: "120%",
+                    borderRadius: "25px",
+                  }}
+                  type="submit"
+                  onClick={handleSubmit}
+                >
+                  Submit
+                </Button>
+              </Col>
+              <Col>
+                <Button
+                  style={{
+                    backgroundColor: "#B6B6B4",
+                    borderColor: "#B6B6B4",
+                    alignItems: "center",
+                    width: "40%",
+                    height: "120%",
+                    borderRadius: "25px",
+                  }}
+                  type="cancel"
+                  onClick={handleClose}
+                >
+                  Close
+                </Button>
+              </Col>
+            </Row>
           </Form>
         </Modal.Body>
       </Modal>

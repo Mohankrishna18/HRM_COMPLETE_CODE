@@ -19,7 +19,6 @@ const EmpTable = () => {
     // punchIn: "06-06-2022 16:22:21"
     // punchOut: null
 
-
     const columns = [
         {
             title: "Employee Id",
@@ -40,253 +39,42 @@ const EmpTable = () => {
             },
         },
         {
-            title: "punch In ",
-            field: "punchIn",
-            type: "text",
+            title: "Date",
+            field: "punchinDate",
+            type: "date",
+            headerStyle: {
+                //backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+        {
+            title: "Punch In Time",
+            field: "punchin",
+            type: "time",
             headerStyle: {
                 // backgroundColor: "#1E90FF",
                 color: "white",
             },
         },
-        // {
-        //     title: "2",
-        //     field: "price",
-        //     headerStyle: {
-        //         //backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "3",
-        //     field: "checkInDate",
-        //     headerStyle: {
-        //         //backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "4",
-        //     field: "checkOutDate",
-        //     headerStyle: {
-        //         //backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "5",
-        //     field: "bedId",
-        //     headerStyle: {
-        //        // backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "6",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "7",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "8",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "9",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "10",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "11",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "12",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "13",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "14",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "15",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "16",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "17",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "18",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "19",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "20",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "21",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "22",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "23",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "24",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "25",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "26",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "27",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "28",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "29",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
-        // {
-        //     title: "30",
-        //     field: "dueAmount",
-        //     headerStyle: {
-        //       //  backgroundColor: "#1E90FF",
-        //         color: "white",
-        //     },
-        // },
+        {
+            title: "Punch out Time",
+            field: "punchout",
+            type: "time",
+            headerStyle: {
+                //backgroundColor: "#1E90FF",
+                color: "white",
+            },
+        },
+
+
     ];
 
     const [data, setData] = useState([]);
     useEffect(() => {
         axios
-            .get(`/attendance/getAttendanceLogByMonth/6`)
+            .get(`/attendance/getAttendanceLogByMonth/7`)
             .then((res) => {
+
                 setData(res.data.data);
                 console.log(res.data);
             })
@@ -298,11 +86,10 @@ const EmpTable = () => {
 
     // const obje = { createdBy: userId };
 
-
     return (
         <div className='scroll' style={{ paddingBottom: '30px' }}>
 
-            <Grid xs={12}>
+            <Grid >
                 <MaterialTable
                     title="All Employees Attendance"
                     // data={data}
@@ -330,8 +117,6 @@ const EmpTable = () => {
         </div>
     )
 }
-
-
 
 
 export default EmpTable;

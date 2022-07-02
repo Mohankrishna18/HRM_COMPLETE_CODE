@@ -13,7 +13,7 @@ const ManagerLeavesToApproveMain = () => {
            <Card.Subtitle className="mb-2 text-muted">
            EmployeeLeaves
            </Card.Subtitle>{" "}
-           <Container>
+           {/* <Container> */}
              <Row>
                <Col xs={12}>
                <ApproveLeaveTable/>
@@ -24,7 +24,7 @@ const ManagerLeavesToApproveMain = () => {
               
 
              </Row>
-           </Container>
+           {/* </Container> */}
          </Card.Body>
        </Card.Header>
      </Card>
@@ -35,7 +35,7 @@ const ManagerLeavesToApproveMain = () => {
            <Card.Subtitle className="mb-2 text-muted">
            Manager Teams Leaves History
            </Card.Subtitle>{" "}
-           <Container>
+           {/* <Container> */}
              <Row>
               <Col xs={12}>
                <EmployeeLeaveHistory/>
@@ -45,7 +45,7 @@ const ManagerLeavesToApproveMain = () => {
              <Row>
               
              </Row>
-           </Container>
+           {/* </Container> */}
          </Card.Body>
        </Card.Header>
      </Card>

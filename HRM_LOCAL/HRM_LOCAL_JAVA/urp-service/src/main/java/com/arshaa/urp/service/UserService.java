@@ -4,16 +4,19 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 //import com.arshaa.entity.Permissions;
 import com.arshaa.urp.entity.Modulemaster;
 import com.arshaa.urp.entity.RoleModuleMap;
 import com.arshaa.urp.entity.Rolesmaster;
 import com.arshaa.urp.entity.Users;
+import com.arshaa.urp.model.EmployeeName;
 import com.arshaa.urp.model.Response;
 import com.arshaa.urp.repository.ModuleMasterRepo;
 //import com.arshaa.urp.repository.PermissionRepo;
@@ -30,6 +33,10 @@ public class UserService {
 	ModuleMasterRepo mRepo;
 	@Autowired
 	UserRepository uRepo;
+	
+	@Autowired
+	@Lazy
+	private RestTemplate template;
 //@Autowired
 //PermissionRepo pRepo;
 	@Autowired
@@ -257,15 +264,30 @@ public class UserService {
 	}
 
 	public ResponseEntity addUser(Users newuser) {
-		Response r = new Response<>();
-		try {
+        String url="http://empService/emp/getEmployeeNameByEmployeeId/";
 
-			Users newData = uRepo.save(newuser);
-			r.setStatus(true);
-			r.setMessage("Data added successfully");
-			r.setData(newData);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
+        Response r = new Response<>();
+        try {
+            EmployeeName name=template.getForObject(url+newuser.getEmployeeId(), EmployeeName.class);
+            newuser.setUserName(name.getEmployeeName());
+            if(uRepo.existsByEmployeeId(newuser.getEmployeeId())==true)
+            {
+                r.setStatus(true);
+                r.setMessage("EmployeeId is already exist");
+                return new ResponseEntity(r,HttpStatus.OK);
+            }
+
+            else {
+
+                Users newUser1=uRepo.save(newuser);
+                r.setStatus(true);
+                r.setMessage("User added Successfull");
+                r.setData(newUser1);
+
+                return new ResponseEntity(r,HttpStatus.OK);
+            }
+
+        } catch (Exception e) {
 // TODO: handle exception
 
 			r.setStatus(false);
@@ -292,14 +314,15 @@ public class UserService {
 		}
 	}
 
-	public ResponseEntity updateUserById(int uId, Users updateUser) {
+	public ResponseEntity updateUserById(String employeeId, Users updateUser) {
 		Response r = new Response<>();
 
 		try {
 
-			Users u = uRepo.getById(uId);
+			Users u = uRepo.getByEmployeeId(employeeId);
 			u.setEmployeeId(updateUser.getEmployeeId());
 			u.setUpdatedBy(updateUser.getUpdatedBy());
+			u.setRoleName(updateUser.getRoleName());
 			u.setUserName(updateUser.getUserName());
 			Users upUsers = uRepo.save(u);
 			r.setStatus(true);
@@ -316,10 +339,10 @@ public class UserService {
 
 	}
 
-	public ResponseEntity deleteById(int uId) {
+	public ResponseEntity deleteById(String employeeId) {
 		Response r = new Response<>();
 		try {
-			Users user = uRepo.getById(uId);
+			Users user = uRepo.getByEmployeeId(employeeId);
 			uRepo.delete(user);
 			r.setStatus(true);
 			r.setMessage("Deleted Successfully");

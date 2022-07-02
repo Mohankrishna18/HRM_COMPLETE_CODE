@@ -100,14 +100,14 @@ public class Controller {
 		return serv.getUsersData();
 	}
 
-	@PutMapping("/updateUserById/{uId}")
-	public ResponseEntity updateUserById(@PathVariable int uId, @RequestBody Users updateUser) {
-		return serv.updateUserById(uId, updateUser);
+	@PutMapping("/updateUserById/{employeeId}")
+	public ResponseEntity updateUserById(@PathVariable String employeeId, @RequestBody Users updateUser) {
+		return serv.updateUserById(employeeId, updateUser);
 	}
 
-	@DeleteMapping("deleteUserById/{uId}")
-	public ResponseEntity deleteById(@PathVariable int uId) {
-		return serv.deleteById(uId);
+	@DeleteMapping("/deleteUserById/{employeeId}")
+	public ResponseEntity deleteById(@PathVariable String employeeId) {
+		return serv.deleteById(employeeId);
 	}
 
 	/*

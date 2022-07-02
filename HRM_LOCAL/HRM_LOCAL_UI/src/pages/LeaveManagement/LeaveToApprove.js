@@ -22,8 +22,8 @@ function LeaveAdmin() {
   return (
 
     <div>
-      <Container>
-        <Row>
+      {/* <Container>
+        <Row> */}
           {/* <Col xs={6} md={8}>
             <Card.Body>
               <Card.Title>Leaves</Card.Title>
@@ -178,22 +178,22 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
            <Card.Subtitle className="mb-2 text-muted">
            EmployeeLeaves
            </Card.Subtitle>{" "}
-           <Container>
+           {/* <Container> */}
              <Row>
                <Col xs={12}>
                <ApproveLeaveTable />
                </Col>
 
              </Row>
-           </Container>
+           {/* </Container> */}
          </Card.Body>
        </Card.Header>
      </Card>
    </div>
 
           
-        </Row>
-      </Container>
+        {/* </Row>
+      </Container> */}
     </div>
   );
 }
