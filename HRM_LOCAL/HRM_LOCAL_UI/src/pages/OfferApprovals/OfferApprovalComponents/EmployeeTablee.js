@@ -12,10 +12,17 @@ import Paper from "@mui/material/Paper";
 
 const EmployeeTablee = () => {
   const [users, setUsers] = useState([]);
+  const [status, setStatus] = useState(false);
+  const [viewStatus, setViewStatus] = useState(false);
+
+  const pull_data = () => {
+    setStatus(true);
+    setViewStatus(true);
+  };
 
   useEffect(() => {
     approvedData();
-  }, []); // console.log(users.reportingManager)
+  }, [status]); // console.log(users.reportingManager)
 
   const approvedData = async () => {
   const approvedEmployeesResponse = await axios.get("/emp/waitingForApprovelStatus");
