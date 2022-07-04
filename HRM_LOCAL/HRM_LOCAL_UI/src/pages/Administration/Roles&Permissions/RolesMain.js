@@ -1,22 +1,24 @@
 import React from "react";
-import { Row, Col, Card, Container } from "react-bootstrap";
+import { Col, Row, Card, Container } from "react-bootstrap";
+import RoleEditableTable from "./RoleEditableTable";
+
+
 
 // Testing purpose
-
-import RolesCard from "./RolesCard";
-
 const RolesMain = () => {
   return (
     <div style={{ paddingTop: "20px" }}>
       <Card responsive className="scroll">
         <Card.Header>
           <Card.Body>
-            <Card.Title>Roles</Card.Title>
-
+            <Card.Title>Roles & App Permissions</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              Roles & App Permissions{" "}
+            </Card.Subtitle>
             <Container>
               <Row>
                 <Col xs={12}>
-                  <RolesCard />
+                  <RoleEditableTable />
                 </Col>
               </Row>
             </Container>
@@ -26,5 +28,5 @@ const RolesMain = () => {
     </div>
   );
 };
-// };
+
 export default RolesMain;

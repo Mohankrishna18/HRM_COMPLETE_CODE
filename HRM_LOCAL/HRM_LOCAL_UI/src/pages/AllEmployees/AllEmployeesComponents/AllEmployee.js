@@ -51,7 +51,7 @@ function AllEmployee() {
 
 
           <Row md={12} >
-            <Table >
+            <Table className='Scroll'>
               <thead>
                 <tr>
                   <th>#</th>

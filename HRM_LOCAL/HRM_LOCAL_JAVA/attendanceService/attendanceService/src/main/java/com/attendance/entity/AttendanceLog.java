@@ -1,5 +1,6 @@
 package com.attendance.entity;
 
+import java.sql.Time;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -33,12 +34,39 @@ public class AttendanceLog {
 	private String employeeFirstName;
 	private String employeeMiddleName;
 	private String employeeLastName;
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "IST")
-	@Temporal(TemporalType.TIMESTAMP)
-	private java.util.Date punchIn = new java.util.Date(System.currentTimeMillis());
+	@Column(name="punch_in")
+	@JsonFormat(pattern = "HH:mm:ss", timezone = "IST")
+	@Temporal(TemporalType.TIME)
+	private java.util.Date punchin = new java.util.Date(System.currentTimeMillis());
 	// @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
 	// @Temporal(TemporalType.TIMESTAMP)
-	private java.util.Date punchOut;
+	
+	@Column(name="date")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "IST")
+	@Temporal(TemporalType.DATE)
+	private java.util.Date punchinDate = new java.util.Date(System.currentTimeMillis());	
+	@Column(name="punch_out")
+	private String punchout;
+
+	private boolean status;
+	
+	private Time duration;
+	
+	public java.util.Date getPunchinDate() {
+		return punchinDate;
+	}
+
+	public void setPunchinDate(java.util.Date punchinDate) {
+		this.punchinDate = punchinDate;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 
 	public int getEmployeeattendanceId() {
 		return employeeattendanceId;
@@ -81,35 +109,63 @@ public class AttendanceLog {
 	}
 
 	public java.util.Date getPunchIn() {
-		return punchIn;
+		return punchin;
 	}
 
 	public void setPunchIn(java.util.Date punchIn) {
-		this.punchIn = punchIn;
+		this.punchin = punchIn;
 	}
 
-	public java.util.Date getPunchOut() {
-		return punchOut;
+	
+
+	public java.util.Date getPunchin() {
+		return punchin;
 	}
 
-	public void setPunchOut(java.util.Date punchOut) {
-		this.punchOut = punchOut;
+	public void setPunchin(java.util.Date punchin) {
+		this.punchin = punchin;
 	}
+
+	
+	public String getPunchout() {
+		return punchout;
+	}
+
+	public void setPunchout(String punchout) {
+		this.punchout = punchout;
+	
+	}
+	
+	
 
 	public AttendanceLog(int employeeattendanceId, String employeeId, String employeeFirstName,
-			String employeeMiddleName, String employeeLastName, Date punchIn, Date punchOut) {
+			String employeeMiddleName, String employeeLastName, Date punchin, Date punchinDate, String punchout,
+			boolean status, Time duration) {
 		super();
 		this.employeeattendanceId = employeeattendanceId;
 		this.employeeId = employeeId;
 		this.employeeFirstName = employeeFirstName;
 		this.employeeMiddleName = employeeMiddleName;
 		this.employeeLastName = employeeLastName;
-		this.punchIn = punchIn;
-		this.punchOut = punchOut;
+		this.punchin = punchin;
+		this.punchinDate = punchinDate;
+		this.punchout = punchout;
+		this.status = status;
+		this.duration = duration;
 	}
 
 	public AttendanceLog() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
+
+	public Time getDuration() {
+		return duration;
+	}
+
+	public void setDuration(Time tim) {
+		this.duration = tim;
+	}
+
+	
 }

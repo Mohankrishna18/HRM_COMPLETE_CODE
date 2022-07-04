@@ -6,7 +6,6 @@ import { Form } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
 
 const EmployeeOnboardingForm = () => {
@@ -85,6 +84,7 @@ const EmployeeOnboardingForm = () => {
     };
     //testing for commit
 const[user,setUser]=useState("")
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // e.target.reset();
@@ -248,6 +248,7 @@ const[user,setUser]=useState("")
                                             <option>{departmentss.departmentName}</option>
                                         ))
                                     }
+                                    
                                 </Form.Select>
                                 <Form.Control.Feedback type="invalid">
                                     {errors.department}

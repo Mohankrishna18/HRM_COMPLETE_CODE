@@ -20,17 +20,27 @@ public class Designationmaster {
 	@Column
 	private boolean designationStatus;
 	private String departmentName;
+	private int departmentId;
+	@Column
+	private String updatedBy;
+	@Temporal(TemporalType.DATE)
+	private java.util.Date updatedOn = new java.util.Date(System.currentTimeMillis());
 	
+	
+	
+	public int getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
 	public String getDepartmentName() {
 		return departmentName;
 	}
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
-	@Column
-	private String updatedBy;
-	@Temporal(TemporalType.DATE)
-	private java.util.Date updatedOn = new java.util.Date(System.currentTimeMillis());
+	
 	public int getDesignationId() {
 		return designationId;
 	}
@@ -68,15 +78,16 @@ public class Designationmaster {
 		this.updatedOn = updatedOn;
 	}
 	public Designationmaster(int designationId, String designationName, boolean designationStatus,
-			String departmentName, String updatedBy, Date updatedOn) {
+			String departmentName, int departmentId, String updatedBy, Date updatedOn) {
 		super();
 		this.designationId = designationId;
 		this.designationName = designationName;
 		this.designationStatus = designationStatus;
 		this.departmentName = departmentName;
+		this.departmentId = departmentId;
 		this.updatedBy = updatedBy;
 		this.updatedOn = updatedOn;
 	}
-
+	
 	
 }
