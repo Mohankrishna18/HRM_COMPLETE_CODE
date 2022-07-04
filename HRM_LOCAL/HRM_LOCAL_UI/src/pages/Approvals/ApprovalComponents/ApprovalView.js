@@ -147,9 +147,213 @@ const ApprovalView = (props) => {
     // console.log(departments)
   }, []);
 
+  
+  var tempDate = new Date(props.viewOnboard.dateOfJoining);
+  var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  console.log(dob)
+
   return (
-    <>
-      <Form
+    <div>
+      
+      <Row style={{ marginTop: 20 }}>
+                  <Col>
+                    <Card style={{ padding: 30, paddingBottom: 20 }}>
+                      
+                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            First Name:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {props.viewOnboard.firstName}
+                          </Card.Text>
+                        </Col>
+                        </Row>
+                        {/* <Row>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Middle Name:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {props.viewOnboard.middleName}
+                          </Card.Text>
+                        </Col>
+                        </Row> */}
+
+                      
+                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Last Name:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                      
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {props.viewOnboard.lastName}
+                          </Card.Text>
+                        </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Phone Number:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {props.viewOnboard.phoneNumber}
+                          </Card.Text>
+                        </Col>
+                        </Row>
+
+                      
+                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Email-ID:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {props.viewOnboard.email}
+                          </Card.Text>
+                        </Col>
+                        </Row> 
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Employment Type:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {props.viewOnboard.employmentType}
+                          </Card.Text>
+                        </Col>
+
+                      </Row>
+                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Department:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {props.viewOnboard.department}
+                          </Card.Text>
+                        </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Designation:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {props.viewOnboard.designation}
+                          </Card.Text>
+                        </Col>
+
+                      </Row>
+                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Date Of Joining:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {dob}
+
+                          </Card.Text>
+                        </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Years Of Experience:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {props.viewOnboard.yearsOfExperience}
+                          </Card.Text>
+                        </Col>
+
+                      </Row>
+                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Primary Skills:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {props.viewOnboard.primarySkills}
+                          </Card.Text>
+                        </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Secondary Skills:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {props.viewOnboard.secondarySkills}
+                          </Card.Text>
+                        </Col>
+
+                      </Row>
+                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Job Title :
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {props.viewOnboard.jobTitle}
+                          </Card.Text>
+                        </Col>
+                        
+
+                      </Row>
+                      
+                    </Card>
+                  </Col>
+                </Row>
+    </div>
+  );
+};
+
+export default ApprovalView;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* <Form
         ref={forms}
         className="formone"
         // noValidate
@@ -370,9 +574,4 @@ const ApprovalView = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
         </Row>
-      </Form>
-    </>
-  );
-};
-
-export default ApprovalView;
+      </Form> */}

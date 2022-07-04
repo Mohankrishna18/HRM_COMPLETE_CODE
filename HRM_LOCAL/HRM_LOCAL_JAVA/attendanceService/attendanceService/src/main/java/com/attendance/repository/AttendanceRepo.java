@@ -22,7 +22,7 @@ public interface AttendanceRepo extends JpaRepository<AttendanceLog, Integer>{
 
 	//boolean existsByPunchIn(Date punchIn);
 	
-	Boolean existsByEmployeeIdAndPunchin(String employeeId,Date punchIn);
+	Boolean existsByEmployeeIdAndPunchinDate(String employeeId,Date punchinDate);
 //	testing purpose
 
 
