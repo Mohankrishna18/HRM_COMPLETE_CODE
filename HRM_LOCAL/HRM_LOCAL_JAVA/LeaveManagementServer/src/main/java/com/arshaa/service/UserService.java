@@ -124,6 +124,7 @@ public User save(User user) {
 			u.setHrApproval(user.getHrApproval());
 			u.setLeaveStatus(user.getLeaveStatus());
 			u.setRejectReason(user.getRejectReason());
+			u.setManagersRejectReason(user.getManagersRejectReason());
 //u.setLeaveReason(user.getLeaveReason()); u.setRejectReason(user.getRejectReason());
 
 //u.setEmployeeId(user.getEmployeeId());
@@ -149,6 +150,8 @@ public User save(User user) {
 			u.setManagerApproval(user.getManagerApproval());
 //u.setLeaveReason(user.getLeaveReason()); 
       u.setRejectReason(user.getRejectReason());
+//      user.getManagersRejectReason();
+      u.setManagersRejectReason(user.getManagersRejectReason());
 
 //u.setEmployeeId(user.getEmployeeId());
 //u.setFromDate(user.getFromDate());

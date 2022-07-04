@@ -11,6 +11,7 @@ const Approve = (props) => {
   const [errors, setErrors] = useState({});
   const handleClose = () => setOnhold(false);
   const handleShow = () => setOnhold(true);
+  const [band, setBand] = useState({});
 
   const setField = (field, value) => {
     setForm({ ...form, [field]: value });
@@ -20,6 +21,32 @@ const Approve = (props) => {
         [field]: null,
       });
   };
+
+  const [departments, setDepartments] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/dept/getAllDepartments")
+      .then((response) => {
+        setDepartments(response.data);
+      })
+      .catch(() => {
+        toast.error("data is not getting");
+      });
+    // console.log(departments)
+  }, []);
+
+  const [reportingManager, setReportingManager] = useState([]);
+  useEffect(() => {
+    axios.get("/emp/getreportingmanager").then((response) => {
+      // console.log(response.data.data);
+      setReportingManager(response.data.data);
+      // console.log(reportingManager)
+    });
+    // .catch(() => {
+    //   toast.error("data is not getting");
+    // });
+    console.log(reportingManager);
+  }, []);
 
   let onboardingid = props.onboardingid;
   console.log(onboardingid);
@@ -31,6 +58,7 @@ const Approve = (props) => {
     // e.preventDefault();
     console.log(onboardingid);
     const form1 = Object.assign(form, obj);
+    console.log(form1);
     axios.put(`/emp/updateApprovStatus/${onboardingid}`, form1);
     handleClose();
   };
@@ -48,41 +76,87 @@ const Approve = (props) => {
             <FcApproval /> Approve
           </Button>
 
-          <Modal show={onhold} onHide={handleClose} centered>
-            <Modal.Header closeButton>
+          <Modal show={onhold} onHide={handleClose} centered >
+            <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
               <Modal.Title>Approve and Assign Reporting Manager</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <Form role="form">
-                <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                  <Form.Label>
-                    <b>Select Reporting Manager *</b>
-                  </Form.Label>
-                  <Form.Select
-                    placeholder="select Gender"
-                    value={form.reportingManager}
-                    Select
-                    onChange={(e) =>
-                      setField("reportingManager", e.target.value)
-                    }
-                  >
-                    <option>Select Reporting Manager</option>
-                    <option value="RevanthKumar">Revanth Kumar</option>
-                    <option value="RevanthKumar1">Revanth Kumar1</option>
-                  </Form.Select>
-                </Form.Group>
-                <Button
-                  variant="warning"
-                  type="submit"
-                  style={{
-                    borderRadius: "25px",
-                    backgroundColor: "#ff9b44",
-                    color: "#F4F8F6",
-                  }}
-                  onClick={ApproveHandler}
-                >
-                  &nbsp; Save
-                </Button>
+                <Row className="mb-3">
+                  <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                    <Form.Label>Select Reporting Manager *</Form.Label>
+                    <Form.Select
+                      placeholder="select Gender"
+                      value={form.reportingManager}
+                      Select
+                      onChange={(e) =>
+                        setField("reportingManager", e.target.value)
+                      }
+                    >
+                      <option>Select </option>
+                      {reportingManager.map((reportingManagerr) => (
+                        <option>{reportingManagerr.reportingmanager}</option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
+
+                  <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                    <Form.Label>Assign Project Name *</Form.Label>
+                    <Form.Select
+                      required
+                      type="text"
+                      placeholder="Project Name"
+                      controlId="projectName"
+                      value={form.projectName}
+                      onChange={(e) => setField("projectName", e.target.value)}
+                    >
+                      <option>Select</option>
+                      <option value="HRM">HRM</option>
+                      <option value="Properties">Properties</option>
+                      <option value="Digital E Learning">
+                        Digital E Learning
+                      </option>
+                    </Form.Select>
+                  </Form.Group>
+
+                  <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                    <Form.Label>Assign Band *</Form.Label>
+                    <Form.Select
+                      type="text"
+                      placeholder="Band"
+                      controlId="band"
+                      name="band"
+                      value={form.band}
+                      onChange={(e) => setField("band", e.target.value)}
+                    >
+                      <option>Select</option>
+                      <option value="Band-1">Band-1</option>
+                      <option value="Band-2">Band-2</option>
+                      <option value="Band-3">Band-3</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Row>
+                <Row style={{ paddingLeft: 180, paddingRight: 25, paddingBottom:10 }}>
+                 
+                    <Button
+                      style={{
+                        backgroundColor: "#ff9b44",
+                        borderColor: "#ff9b44",
+                        float: "right",
+                        width: "40%",
+                        height: "120%",
+                        borderRadius: "25px",
+                        
+                      }}
+                      alignItems="center"
+                      paddingLeft = ""
+                      type="submit"
+                      onClick={ApproveHandler}
+                    >
+                      Submit
+                    </Button>
+                  
+                </Row>
               </Form>
             </Modal.Body>
           </Modal>

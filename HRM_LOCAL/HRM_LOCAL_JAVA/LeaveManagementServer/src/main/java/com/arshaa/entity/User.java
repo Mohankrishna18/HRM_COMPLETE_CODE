@@ -1,4 +1,3 @@
-
 package com.arshaa.entity;
 
 import java.util.Date;
@@ -38,6 +37,44 @@ public class User {
 	private String reportingManager;
 	@Column
 	private String rejectReason;
+	@Column
+	private String managersRejectReason;
+	
+
+
+
+
+	public User(int employeeleaveId, String employeeId, String leaveType, Date fromDate, Date toDate, int numberOfDays,
+			String leaveReason, String updatedBy, Date updatedOn, String leaveStatus, String reportingManager,
+			String rejectReason, String managersRejectReason, String managerApproval, String hrApproval) {
+		super();
+		this.employeeleaveId = employeeleaveId;
+		this.employeeId = employeeId;
+		this.leaveType = leaveType;
+		this.fromDate = fromDate;
+		this.toDate = toDate;
+		this.numberOfDays = numberOfDays;
+		this.leaveReason = leaveReason;
+		this.updatedBy = updatedBy;
+		this.updatedOn = updatedOn;
+		this.leaveStatus = leaveStatus;
+		this.reportingManager = reportingManager;
+		this.rejectReason = rejectReason;
+		this.managersRejectReason = managersRejectReason;
+		this.managerApproval = managerApproval;
+		this.hrApproval = hrApproval;
+	}
+
+	public String getManagersRejectReason() {
+		return managersRejectReason;
+	}
+
+	public void setManagersRejectReason(String managersRejectReason) {
+		this.managersRejectReason = managersRejectReason;
+	}
+
+
+
 	@Column
 	private String managerApproval;
 	@Column
@@ -155,25 +192,7 @@ public class User {
 		this.hrApproval = hrApproval;
 	}
 
-	public User(int employeeleaveId, String employeeId, String leaveType, Date fromDate, Date toDate, int numberOfDays,
-			String leaveReason, String updatedBy, Date updatedOn, String leaveStatus, String reportingManager,
-			String rejectReason, String managerApproval, String hrApproval) {
-		super();
-		this.employeeleaveId = employeeleaveId;
-		this.employeeId = employeeId;
-		this.leaveType = leaveType;
-		this.fromDate = fromDate;
-		this.toDate = toDate;
-		this.numberOfDays = numberOfDays;
-		this.leaveReason = leaveReason;
-		this.updatedBy = updatedBy;
-		this.updatedOn = updatedOn;
-		this.leaveStatus = leaveStatus;
-		this.reportingManager = reportingManager;
-		this.rejectReason = rejectReason;
-		this.managerApproval = managerApproval;
-		this.hrApproval = hrApproval;
-	}
+	
 
 	public User() {
 		super();

@@ -108,7 +108,7 @@ export default function Editable() {
                                     })
                                     .catch((err) =>{
                                         // alert("Cant Delete Department")
-                                        toast.error("Cannot Delete Department");
+                                        toast.error("Cannot delete Department as it has Designations under it!");
                                     })
                                 console.log(dataDelete)
                                 //setData(dataDelete);
