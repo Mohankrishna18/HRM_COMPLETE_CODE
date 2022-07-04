@@ -42,11 +42,11 @@ function OfferApprovals() {
 
                 <Col xs={12}>
 
-                  <h6><b>Waiting For Approval</b></h6>
+                  <h5>Waiting For Approval</h5>
 
                   <EmployeeTablee /><br></br>
 
-                  <h6><b>Approved Employees</b></h6>
+                
 
                   <ApprovedEmployeesTable />
 

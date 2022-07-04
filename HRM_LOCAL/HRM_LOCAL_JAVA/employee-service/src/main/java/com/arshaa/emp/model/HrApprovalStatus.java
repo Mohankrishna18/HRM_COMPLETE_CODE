@@ -83,4 +83,14 @@ public class HrApprovalStatus {
 		this.rejectDate = rejectDate;
 	}
 
+	public String getProjectName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getBand() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
