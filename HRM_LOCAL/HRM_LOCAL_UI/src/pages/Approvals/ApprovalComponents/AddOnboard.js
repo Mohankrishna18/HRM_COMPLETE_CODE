@@ -12,6 +12,7 @@ import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
 function AddOnboard(props) {
+  
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -92,7 +93,7 @@ function AddOnboard(props) {
   const [user, setUser] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    window.location.reload(true);
+    
     // e.target.reset();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
@@ -104,6 +105,13 @@ function AddOnboard(props) {
         .post("/emp/createNewPotentialEmployee", form)
         .then((response) => {
           const user = response.data;
+          if(user.status){
+            props.func();
+          
+          }
+          else{
+            console.log("Props Not Send");
+          }
           toast.success("Employee Onboarded Successfully");
           console.log(user);
           // console.log(user);
