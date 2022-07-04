@@ -52,7 +52,7 @@ const EmployeeTablee = () => {
                 "& th": {
                   fontSize: "1rem",
                   color: "rgb(255, 255, 255)",
-                  backgroundColor: "#fe924a"
+                  backgroundColor: "#FF9E14"
                 }
               }}
             >
@@ -74,7 +74,7 @@ const EmployeeTablee = () => {
                 Phone Number
               </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                 Job Title
-              </TableCell> <TableCell scope="col" class="" style={{ textAlign: 'center' }}>
+              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }} >
                 Years Of Experience
               </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                 Date Of Joining

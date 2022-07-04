@@ -150,6 +150,9 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
 				getOnboarding.setComments(newOnboard.getComments());
+				getOnboarding.setProjectName(newOnboard.getProjectName());
+				getOnboarding.setBand(newOnboard.getBand());
+				
 				Onboarding saveList = onRepo.save(getOnboarding);
 
 				if (saveList.isApprovedStatus() == true) {

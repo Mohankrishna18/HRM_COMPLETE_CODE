@@ -55,7 +55,7 @@ const Approve = (props) => {
   console.log(obj);
 
   const ApproveHandler = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     console.log(onboardingid);
     const form1 = Object.assign(form, obj);
     console.log(form1);

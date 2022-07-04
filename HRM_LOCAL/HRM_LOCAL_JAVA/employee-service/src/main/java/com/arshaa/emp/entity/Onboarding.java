@@ -57,12 +57,8 @@ public class Onboarding {
 	private boolean waitingforapprovalStatus;
 	private String department;
 	private String reportingManager;
-	public String getReportingManager() {
-		return reportingManager;
-	}
-	public void setReportingManager(String reportingManager) {
-		this.reportingManager = reportingManager;
-	}
+	private String projectName; 
+	
 	@Column
 	private String email;
 	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
@@ -241,6 +237,25 @@ public class Onboarding {
 		return serialVersionUID;
 	}
 	
+	public String getProjectName() {
+		return projectName;
+	}
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+	public String getBand() {
+		return band;
+	}
+	public void setBand(String band) {
+		this.band = band;
+	}
+	private String band;
+	public String getReportingManager() {
+		return reportingManager;
+	}
+	public void setReportingManager(String reportingManager) {
+		this.reportingManager = reportingManager;
+	}
 	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
 			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
 			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
@@ -275,6 +290,8 @@ public class Onboarding {
 		this.employmentType = employmentType;
 		this.primarySkills = primarySkills;
 		this.secondarySkills = secondarySkills;
+		this.projectName = projectName;
+		this.band = band;
 	}
 	public Onboarding() {
 		super();
