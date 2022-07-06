@@ -2,6 +2,7 @@ import React from 'react';
 import ApproveLeaveTable from "./ManagerApproval";
 import EmployeeLeaveHistory from "../ManagerLeaveHistory/ManagerLeaveHistory";
 import { Row, Col, Card, Container } from 'react-bootstrap';
+import ManagerEmployeesLeavesWaitingForApproval from "./ManagerEmployeesLeavesWaitingForApproval";
 
 const ManagerLeavesToApproveMain = () => {
   return (
@@ -16,7 +17,7 @@ const ManagerLeavesToApproveMain = () => {
            {/* <Container> */}
              <Row>
                <Col xs={12}>
-               <ApproveLeaveTable/>
+               <ManagerEmployeesLeavesWaitingForApproval/>
                </Col>
 
              </Row>
@@ -55,4 +56,4 @@ const ManagerLeavesToApproveMain = () => {
   )
 }
 
-export default ManagerLeavesToApproveMain
+export default ManagerLeavesToApproveMain;
