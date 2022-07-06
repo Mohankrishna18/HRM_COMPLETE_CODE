@@ -7,4 +7,5 @@ export default {
     taa:'taa',
     it:'it',
     manager:'manager',
+    recruitmentmanager:'recruitmentmanager',
 };
