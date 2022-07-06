@@ -99,7 +99,7 @@ export default function ResetPassword() {
               <Form style={{ paddingTop: "10px" }}>
                 <Form.Group as={Col} md="12" controlId="validationCustom04">
                   <Form.Label style={{ marginTop: "10px", fontWeight: "bold" }}>Old Password</Form.Label>
-                  <Form.Control type="Password" placeholder="Enter your oldPassword" required
+                  <Form.Control type="Password" placeholder="Enter your Old Password" required
                     style={{ borderRadius: "15px" }}
                     size="lg"
                     value={oldPassword}
@@ -107,7 +107,7 @@ export default function ResetPassword() {
                     validate={{
                       required: {
                         value: true,
-                        errorMessage: "Please enter your oldPassword",
+                        errorMessage: "Please enter your Old Password",
                       },
                       pattern: {
                         value: "^[A-Za-z0-9]+$",
@@ -137,12 +137,12 @@ export default function ResetPassword() {
                     }
                     } />
                   <Form.Control.Feedback type="invalid" style={{ color: 'blue' }}>
-                    Please Enter Valid newPassword.
+                    Please Enter Valid New Password.
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} md="12" controlId="validationCustom04">
                   <Form.Label style={{ marginTop: "20px", fontWeight: "bold" }}>New Password</Form.Label>
-                  <Form.Control type="Password" placeholder="Enter your newPassword" required
+                  <Form.Control type="Password" placeholder="Enter your New Password" required
                     style={{ borderRadius: "15px" }}
                     size="lg"
                     value={newPassword}
@@ -150,7 +150,7 @@ export default function ResetPassword() {
                     validate={{
                       required: {
                         value: true,
-                        errorMessage: "Please enter your newPassword",
+                        errorMessage: "Please enter your New Password",
                       },
                       pattern: {
                         value: "^[A-Za-z0-9]+$",
@@ -184,7 +184,7 @@ export default function ResetPassword() {
                 </Form.Group>
                 <Form.Group as={Col} md="12" controlId="validationCustom04">
                   <Form.Label style={{ marginTop: "20px", fontWeight: "bold" }}>Confirm New Password</Form.Label>
-                  <Form.Control type="Password" placeholder="Enter your confirmNewPassword" required
+                  <Form.Control type="Password" placeholder="Enter your Confirm New Password" required
                     style={{ borderRadius: "15px" }}
                     size="lg"
                     value={confirmNewPassword}
@@ -192,7 +192,7 @@ export default function ResetPassword() {
                     validate={{
                       required: {
                         value: true,
-                        errorMessage: "Please enter your confirmNewPassword",
+                        errorMessage: "Please enter your Confirm New Password",
                       },
                       pattern: {
                         value: "^[A-Za-z0-9]+$",
@@ -214,7 +214,7 @@ export default function ResetPassword() {
                       const str = e.target.value;
                       //let length = f.length;
                       if (`${str.length}` > 12) {
-                        alert("confirmNewPassword should not be nore than 12 characters");
+                        alert("Confirm New Password should not be nore than 12 characters");
                       }
                       else {
                         setConfirmNewPassword(e.target.value)
@@ -222,7 +222,7 @@ export default function ResetPassword() {
                     }
                     } />
                   <Form.Control.Feedback type="invalid" style={{ color: 'blue' }}>
-                    Please Enter Valid confirm New Password.
+                    Please Enter Valid Confirm New Password.
                   </Form.Control.Feedback>
                 </Form.Group>
                 &nbsp;
