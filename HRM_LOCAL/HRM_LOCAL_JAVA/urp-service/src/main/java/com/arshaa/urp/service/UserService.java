@@ -264,18 +264,30 @@ public class UserService {
 	}
 
 	public ResponseEntity addUser(Users newuser) {
-		String url="http://empService/emp/getEmployeeNameByEmployeeId/";
+        String url="http://empService/emp/getEmployeeNameByEmployeeId/";
 
-		Response r = new Response<>();
-		try {
-			EmployeeName name=template.getForObject(url+newuser.getEmployeeId(), EmployeeName.class);
-			newuser.setUserName(name.getEmployeeName());
-			Users newData = uRepo.save(newuser);
-			r.setStatus(true);
-			r.setMessage("Data added successfully");
-			r.setData(newData);
-			return new ResponseEntity(r, HttpStatus.OK);
-		} catch (Exception e) {
+        Response r = new Response<>();
+        try {
+            EmployeeName name=template.getForObject(url+newuser.getEmployeeId(), EmployeeName.class);
+            newuser.setUserName(name.getEmployeeName());
+            if(uRepo.existsByEmployeeId(newuser.getEmployeeId())==true)
+            {
+                r.setStatus(true);
+                r.setMessage("EmployeeId is already exist");
+                return new ResponseEntity(r,HttpStatus.OK);
+            }
+
+            else {
+
+                Users newUser1=uRepo.save(newuser);
+                r.setStatus(true);
+                r.setMessage("User added Successfull");
+                r.setData(newUser1);
+
+                return new ResponseEntity(r,HttpStatus.OK);
+            }
+
+        } catch (Exception e) {
 // TODO: handle exception
 
 			r.setStatus(false);

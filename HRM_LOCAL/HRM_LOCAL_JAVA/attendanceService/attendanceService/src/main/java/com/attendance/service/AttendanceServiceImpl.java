@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.attendance.entity.AttendanceLog;
+import com.attendance.model.AttendanceLogScreen;
 import com.attendance.model.EmployeeName;
 import com.attendance.model.Punchout;
 import com.attendance.model.Response;
@@ -47,7 +48,7 @@ public class AttendanceServiceImpl implements AttendanceService{
 		
 			EmployeeName al=template.getForObject("http://empService/emp/getEmployeeNameByEmployeeId/" + attendance.getEmployeeId(),EmployeeName.class);
 			attendance.setEmployeeFirstName(al.getEmployeeName());
-			if(aRepo.existsByEmployeeIdAndPunchin(attendance.getEmployeeId(),attendance.getPunchIn())==true)
+			if(aRepo.existsByEmployeeIdAndPunchinDate(attendance.getEmployeeId(),attendance.getPunchinDate())==true)
 			{
 				response.setStatus(true);
 				response.setMessage("PunchIn was already done today");
@@ -143,11 +144,28 @@ public class AttendanceServiceImpl implements AttendanceService{
 		Response response=new Response();
 		try {
 			List<AttendanceLog> getLog=aRepo.findAttendanceLogWithParticularMonth(month);
+			List<AttendanceLogScreen> getData=new ArrayList<>();
 			if(!getLog.isEmpty())
 			{
+				getLog.forEach(e->{
+					AttendanceLogScreen als=new AttendanceLogScreen();
+
+					als.setEmployeeFirstName(e.getEmployeeFirstName());
+					als.setEmployeeId(e.getEmployeeId());
+					als.setEmployeeLastName(e.getEmployeeLastName());
+					als.setEmployeeMiddleName(e.getEmployeeMiddleName());
+					als.setPunchin(e.getPunchin());
+					als.setPunchout(e.getPunchout());
+//					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+//					String strDate= formatter.format(on.getDateOfJoining());
+					als.setPunchinDate(e.getPunchinDate());
+					getData.add(als);
+					
+			});
+				
 				response.setStatus(true);
 				response.setMessage("Data Fetching");
-				response.setData(getLog);
+				response.setData(getData);
 				return new ResponseEntity(response,HttpStatus.OK);
 			}
 			else {

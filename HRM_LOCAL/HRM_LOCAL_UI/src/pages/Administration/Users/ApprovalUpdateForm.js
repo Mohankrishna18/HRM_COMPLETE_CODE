@@ -21,7 +21,7 @@ const ApprovalUpdateForm = (props) => {
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-
+  const handleClose = () => setShow();
   const forms = useRef(null);
 
   function setField(field, value) {
@@ -49,7 +49,7 @@ const ApprovalUpdateForm = (props) => {
 
     if (!employeeId || employeeId === "")
       newErrors.employeeId = "Please Enter Employee ID";
-      if (!userName || userName === "")
+    if (!userName || userName === "")
       newErrors.userName = "Please Enter User Name";
     if (!roleName || roleName === "")
       newErrors.roleName = "Please Enter Role";
@@ -64,11 +64,11 @@ const ApprovalUpdateForm = (props) => {
     e.preventDefault();
     axios
       .put(`/user/updateUserById/${props.updateOnboard.employeeId}`, {
-     
+
         employeeId,
         userName,
         roleName,
-       
+
       })
       .then((response) => {
         const user = response.data;
@@ -79,14 +79,15 @@ const ApprovalUpdateForm = (props) => {
         else {
           console.log("Props not Send")
         }
-        toast.success("Form updated successfully");
+        toast.success("Role updated successfully!!!");
         // console.log(user);
       })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Something Went Wrong");
-      });
-      props.handleClose();
+      // .catch((err) => {
+      //   console.log(err);
+      //   toast.error("Something Went Wrong");
+
+      // });
+    props.handleClose();
   };
 
 
@@ -116,25 +117,15 @@ const ApprovalUpdateForm = (props) => {
   }, []);
 
   return (
-    <Card className="scroll">
-      <Card.Header>
-        <Card.Body>
-          <Card.Title>Employee Onboarding</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            Employee Onboarding Form
-          </Card.Subtitle>
-
+    <div>
           <Form
             ref={forms}
             className="formone"
-            // noValidate
-            // validated={validated}
-            style={{ padding: 10 }}
+            style={{ paddingLeft: 25, paddingRight: 25, paddingBottom:10 }}
             onSubmit={handleSubmit}
           >
-            <Row className="mb-5">
-
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            <Row className="mb-3">
+              <Form.Group className="mb-3">
                 <Form.Label>Employee ID</Form.Label>
                 <Form.Control
                   required
@@ -144,7 +135,7 @@ const ApprovalUpdateForm = (props) => {
                   value={employeeId}
                   isInvalid={!!errors.employeeId}
                 >
-                 
+
                 </Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {errors.employeeId}
@@ -152,12 +143,12 @@ const ApprovalUpdateForm = (props) => {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              <Form.Group className="mb-3">
                 <Form.Label>User Name</Form.Label>
                 <Form.Control
                   required
                   type="text"
-                  placeholder="Employee ID"
+                  placeholder="User Name"
                   controlId="userName"
                   value={userName}
                   isInvalid={!!errors.userName}
@@ -170,7 +161,7 @@ const ApprovalUpdateForm = (props) => {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              <Form.Group className="mb-3">
                 <Form.Label>Role</Form.Label>
                 <Form.Select
                   required
@@ -181,7 +172,7 @@ const ApprovalUpdateForm = (props) => {
                   onChange={(e) => setRoleName(e.target.value)}
                   isInvalid={!!errors.roleName}
                 >
-                  <option>Select </option>
+                 
                   {roles.map((roless) => (
                     <option>{roless.roleName}</option>
                   ))}
@@ -190,17 +181,30 @@ const ApprovalUpdateForm = (props) => {
               </Form.Group>
 
             </Row>
+            <Row>
+              <Col>
             <Button
-              style={{ backgroundColor: "#eb4509", float: "right" }}
+              style={{
+                backgroundColor: "#ff9b44",
+                borderColor: "#ff9b44",
+                float: "right",
+                width: "40%",
+                height: "120%",
+                borderRadius: "25px",
+              }}
               type="submit"
               onclick={handleSubmit}
             >
               Submit
             </Button>
+            <Col>
+           
+            </Col>
+            </Col>
+            </Row>
           </Form>
-        </Card.Body>
-      </Card.Header>
-    </Card>
+
+    </div>
   );
 };
 

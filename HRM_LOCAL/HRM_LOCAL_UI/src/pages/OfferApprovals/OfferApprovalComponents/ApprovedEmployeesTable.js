@@ -1,99 +1,153 @@
-import React, { useEffect, useState } from "react";
-import axios from "../../../Uri";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import React, { useState, useEffect } from "react";
+import MaterialTable from "material-table";
+import { Grid } from "@mui/material";
 
-const ApprovedEmployeesTable = () => {
-  const [users, setUsers] = useState([]);
+import axios from "../../../Uri";
+
+function ApprovedEmployeesTable() {
+  const [data, setData] = useState([]);
+
+  const columns = [
+    {
+      title: "Onboarding Id",
+      field: "onboardingId",
+      type: "text",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+        textAlign: "center",
+      },
+    },
+    {
+      title: "Designation",
+      field: "designation",
+      type: "text",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+        textAlign: "center",
+      },
+    },
+    {
+      title: "First Name",
+      field: "firstName",
+      type: "text",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+        textAlign: "center",
+      },
+    },
+    {
+      title: "Last Name",
+      field: "lastName",
+      type: "text",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+        textAlign: "center",
+      },
+    },
+    {
+      title: "Email",
+      field: "email",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+        textAlign: "center",
+      },
+    },
+    {
+      title: "PhoneNumber",
+      field: "phoneNumber",
+      type: "text",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+        textAlign: "center",
+      },
+    },
+
+    {
+      title: "Date of Joining",
+      field: "dateOfJoining",
+      type: "date",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+        // textAlign: 'center'
+      },
+    },
+    {
+      title: "Experience",
+      field: "yearsOfExperience",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+        textAlign: "center",
+      },
+    },
+    {
+      title: "Reporting Manager",
+      field: "reportingManager",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+        textAlign: "center",
+      },
+    },
+  ];
 
   useEffect(() => {
-    approvedData();
-  }, []); // console.log(users.reportingManager)
+    axios
+      .get("/emp/getApprovedData")
+      .then((res) => {
+        setData(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  const approvedData = async () => {
-  const approvedEmployeesResponse = await axios.get("/emp/getApprovedData");
-    console.log(approvedEmployeesResponse.data);
-    setUsers(approvedEmployeesResponse.data.data);
-  }
-
-  //Formate Date
-  function formatDate(date) {
-    var datePart = date.match(/\d+/g),
-      year = datePart[0].subsing(2), // get only two digits
-      month = datePart[1],
-      day = datePart[2];
-    return day + "-" + month + "-" + year;
-  }
-  
   return (
-
-    <div>
-      <TableContainer sx={{ maxWidth: 1800 }} component={Paper}>
-        <Table aria-label="customized table">
-          <TableHead>
-            <TableRow
-              sx={{
-                "& th": {
-                  fontSize: "1rem",
-                  color: "rgb(255, 255, 255)",
-                  backgroundColor: "#fe924a"
-                }
-              }}
-            >
-
-              <TableCell scope="col">No</TableCell>
-              <TableCell scope="col" class="TableCell-lg">
-                Onboarding Id
-              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
-                Designation
-              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
-                Name
-              </TableCell>
-              {/* <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
-                  Last Name
-                </TableCell>  */}
-              <TableCell scope="col" class="" style={{ textAlign: 'center' }}>
-                Email
-              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
-                Phone Number
-              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
-                Job Title
-              </TableCell> <TableCell scope="col" class="" style={{ textAlign: 'center' }}>
-                Years Of Experience
-              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
-                Date Of Joining
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {users &&
-              users.map((user, index) => (
-                <TableRow>
-                  <TableCell scope="row">{index + 1}</TableCell>
-                  <TableCell
-                    style={{ textAlign: 'center' }}>{user.onboardingId}</TableCell>
-                  <TableCell style={{ textAlign: 'center' }}>{user.designation}</TableCell>
-                  <TableCell style={{ textAlign: 'center' }}>{user.firstName}</TableCell>
-                  {/* <TableCell style={{ textAlign: 'center' }}>{user.lastName}</TableCell> */}
-                  <TableCell style={{ textAlign: 'center' }}>{user.email}</TableCell>
-                  <TableCell style={{ textAlign: 'center' }}>{user.phoneNumber}</TableCell>
-                  <TableCell style={{ textAlign: 'center' }}>{user.jobTitle}</TableCell>
-                  <TableCell style={{ textAlign: 'center' }}>{user.yearsOfExperience}</TableCell>
-                  <TableCell style={{ textAlign: 'center' }}>{user.dateOfJoining}</TableCell>
-
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
-    </div >
-
+    <Grid container>
+      <Grid xs={12}>
+        <MaterialTable
+          title="Approved Employees"
+          data={data}
+          sx={{ color: "white" }}
+          columns={columns}
+          options={{
+            exportButton: false,
+            pageSize: 40,
+            actionsColumnIndex: -1,
+            grouping: false,
+            addRowPosition: "first",
+            headerStyle: {
+              backgroundColor: "#1E90FF",
+              color: "white",
+              fontSize: "15px",
+              height: "10px",
+              //fontWeight: 'bold'
+            },
+            rowStyle: {
+              fontSize: 16,
+            },
+          }}
+        />
+      </Grid>
+    </Grid>
   );
-};
+}
+
 export default ApprovedEmployeesTable;

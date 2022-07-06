@@ -36,7 +36,7 @@ import DepartmentMain from "../pages/Departments/DepartmentMain";
 import DesignationMain from "../pages/Designation/DesignationMain";
 import LeaveToApply from "../pages/LeaveManagement/LeaveToApply";
 import LeaveToApprove from "../pages/LeaveManagement/LeaveToApprove";
-import ApprovalMain from "../pages/Approvals/ApprovalMain";
+
 import Employee from "../pages/AllEmployees/AllEmployeesMain";
 
 import AdminAttendanceMain from "../pages/AdminAttendance/AdminAttendanceMain";
@@ -56,6 +56,7 @@ import createleaveTypeMain from "../pages/Createleave/CreateleaveMain";
 import BandsMain from "../pages/Bands/BandsMain";
 import EmploymentTypeMain from "../pages/EmploymentType/EmploymentTypeMain";
 import IntegrateLeaveToApply from "../pages/LeaveManagement/IntegrateLeaveToApply";
+import OnboardedEmployeesTable from "../pages/Approvals/ApprovalComponents/OnboardedEmployeesTable";
 
 export default [
   {
@@ -71,6 +72,7 @@ export default [
       Roles.taa,
       Roles.hradmin,
       Roles.manager,
+      Roles.recruitmentmanager,
     ],
     exact: true,
   },
@@ -87,6 +89,7 @@ export default [
       Roles.taa,
       Roles.hradmin,
       Roles.manager,
+      Roles.recruitmentmanager,
     ],
   },
   {
@@ -94,14 +97,14 @@ export default [
     path: "/offerApprovalMain",
     icon: <FcApprove />,
     title: "Offer Approvals",
-    permission: [Roles.hradmin],
+    permission: [Roles.hradmin,Roles.recruitmentmanager],
   },
   {
     component: RejectedEmployeeMain,
     path: "/RejectedEmployeeMain",
     icon: <FcDisapprove />,
     title: "Rejected Onboards",
-    permission: [Roles.hradmin],
+    permission: [Roles.hradmin,Roles.recruitmentmanager],
   },
   {
     component: Employee,
@@ -123,7 +126,7 @@ export default [
     icon: <FcTodoList />,
     title: "Modules",
     permission: [Roles.hradmin],
-  },
+  },  
   {
     component: RolesMain,
     path: "/roles",
@@ -131,7 +134,7 @@ export default [
     title: "Roles",
     permission: [Roles.hradmin],
   },
-// present we are not using this componentNamed as LeaveToApply instead this we are using componentNamed as IntegrateLeaveToApply
+  // present we are not using this componentNamed as LeaveToApply instead this we are using componentNamed as IntegrateLeaveToApply
   // {
   //   component: LeaveToApply,
   //   path: "/leaveApply",
@@ -168,6 +171,7 @@ export default [
       Roles.taa,
       Roles.hradmin,
       Roles.manager,
+      Roles.recruitmentmanager,
     ],
   },
   // {
@@ -236,7 +240,8 @@ export default [
     permission: [Roles.manager],
   },
   {
-    component: ApprovalMain,
+    component: OnboardedEmployeesTable,
+
     path: "/Approvals",
     icon: <FcApprove />,
     title: "Onboardings",
