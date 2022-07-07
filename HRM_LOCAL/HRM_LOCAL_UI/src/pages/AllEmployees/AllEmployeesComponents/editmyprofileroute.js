@@ -18,8 +18,7 @@ function EmployeeMasterForms(props) {
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
     const empId = localStorage.getItem('item')
-    //const mohan1 =JSON.parse(mohan);
-    console.log(empId)
+
 
     var doj = new Date(dateOfJoining);
     var dd = String(doj.getDate()).padStart(2, '0');
@@ -300,7 +299,7 @@ function EmployeeMasterForms(props) {
     // console.log(firstName)
 
 
-    // function for handling the edit and
+    // function for handling the edit and 
     // pushing changes of editing/updating
     const changeHandler = async (e) => {
         e.preventDefault();
@@ -471,7 +470,7 @@ function EmployeeMasterForms(props) {
                                     * All fields are mandatory. Please fill the form Correctly.
                                 </Card.Text>
 
-                                <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#CCCCFF" }}>
+                                <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}>
                                     <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                         Personal Details
                                     </Card.Title>
@@ -491,6 +490,7 @@ function EmployeeMasterForms(props) {
                                         >
                                             <Form.Label>First Name *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 value={firstName}
                                                 // disabled
                                                 required
@@ -510,6 +510,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }}>
                                             <Form.Label>Middle name</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 name="middleName"
                                                 type="text"
                                                 placeholder="Middle name"
@@ -529,7 +530,7 @@ function EmployeeMasterForms(props) {
                                             <Form.Label>Last Name *</Form.Label>
                                             <Form.Control
                                                 value={lastName}
-                                                // disabled
+                                                disabled
                                                 required
                                                 maxLength={30}
                                                 onChange={(e) => {
@@ -557,6 +558,7 @@ function EmployeeMasterForms(props) {
                                                     +91
                                                 </InputGroup.Text>
                                                 <Form.Control
+                                                    disabled
                                                     required
                                                     type="number"
                                                     name="primaryPhoneNumber"
@@ -595,6 +597,7 @@ function EmployeeMasterForms(props) {
                                                     +91
                                                 </InputGroup.Text>
                                                 <Form.Control
+                                                    disabled
                                                     value={secondaryPhoneNumber}
                                                     maxLength={10}
                                                     isInvalid={fourtyseven}
@@ -616,6 +619,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Email *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="email"
                                                 placeholder="Email"
@@ -639,6 +643,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Date of Birth *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 // required
                                                 type="date"
                                                 name="dateOfBirth"
@@ -665,6 +670,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Blood Group *</Form.Label>
                                             <Form.Select
+                                                disabled
                                                 required
                                                 type="text"
                                                 name="bloodGroup"
@@ -700,6 +706,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Gender *</Form.Label>
                                             <Form.Select
+                                                disabled
                                                 required
                                                 type="text"
                                                 name="gender"
@@ -729,6 +736,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Marital Status *</Form.Label>
                                             <Form.Select
+                                                disabled
                                                 required
                                                 type="text"
                                                 name="maritalStatus"
@@ -758,99 +766,103 @@ function EmployeeMasterForms(props) {
 
 
 
+                                        <Row>
+                                            <Col>
 
+                                                <Card
+                                                    style={{ marginLeft: 0, marginRight: 0, marginTop: 20, backgroundColor: "#FAFDD0" }}
+                                                >
+                                                    <Card.Title style={{ margin: 20, textAlign: "center" }}>
+                                                        Permanent Address
+                                                    </Card.Title>
+                                                </Card>
 
-                                        <Card
-                                            style={{ marginLeft: 8, marginRight: 50, marginTop: 20, backgroundColor: "#CCCCFF" }}
-                                        >
-                                            <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                                                Permanent Address
-                                            </Card.Title>
-                                        </Card>
+                                                <Form.Group as={Col} md="12" style={{ paddingTop: 10 }}>
+                                                    <Form.Label>Address *</Form.Label>
+                                                    <Form.Control
+                                                        disabled
+                                                        required
+                                                        as="textarea"
+                                                        rows={4}
+                                                        type="text"
+                                                        name="permanentAdress"
+                                                        placeholder="Address"
+                                                        controlId="permanentAdress"
+                                                        value={permanentAdress}
+                                                        isInvalid={elevenerrors}
+                                                        maxLength={125}
+                                                        onChange={(e) => {
+                                                            setPermanentAddress(e.target.value)
+                                                            if (primarySkills === "") {
+                                                                setTenerror(" Secondary skill is Required");
+                                                            }
+                                                            else {
+                                                                setTenerror("")
+                                                            }
+                                                        }}
 
-                                        <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                                            <Form.Label>Address *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                as="textarea"
-                                                rows={4}
-                                                type="text"
-                                                name="permanentAdress"
-                                                placeholder="Address"
-                                                controlId="permanentAdress"
-                                                value={permanentAdress}
-                                                isInvalid={elevenerrors}
-                                                maxLength={125}
-                                                onChange={(e) => {
-                                                    setPermanentAddress(e.target.value)
-                                                    if (primarySkills === "") {
-                                                        setTenerror(" Secondary skill is Required");
-                                                    }
-                                                    else {
-                                                        setTenerror("")
-                                                    }
-                                                }}
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {elevenerrors}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group as={Col} md="12" style={{ paddingTop: 20 }}>
+                                                    <Form.Label>State *</Form.Label>
+                                                    <Form.Control
+                                                        disabled
+                                                        required
+                                                        type="text"
+                                                        placeholder="State"
+                                                        name="permanentState"
+                                                        controlId="permanentState"
+                                                        maxLength={50}
+                                                        isInvalid={tweleveerror}
+                                                        value={permanentState}
+                                                        onChange={(e) => {
+                                                            setPermanentState(e.target.value)
+                                                            if (permanentAdress === "") {
+                                                                setElevenErrors(" Address is Required");
+                                                            }
+                                                            else {
+                                                                setElevenErrors("")
+                                                            }
+                                                        }}
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {tweleveerror}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group as={Col} md="12" style={{ paddingTop: 20 }}>
+                                                    <Form.Label>Country *</Form.Label>
+                                                    <Form.Control
+                                                        disabled
+                                                        required
+                                                        type="text"
+                                                        placeholder="Country"
+                                                        name="permanentCountry"
+                                                        controlId="permanentCountry"
+                                                        maxLength={50}
+                                                        // options={countries}
+                                                        value={permanentCountry}
+                                                        isInvalid={thirteenerrors}
+                                                        onChange={(e) => {
+                                                            setPermanentCountry(e.target.value)
+                                                            if (permanentState === "") {
+                                                                setTweleveerror(" State is Required");
+                                                            }
+                                                            else {
+                                                                setTweleveerror("")
+                                                            }
+                                                        }}
+                                                    >
+                                                        {/* <option>Select Country</option> */}
 
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {elevenerrors}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 15 }}>
-                                            <Form.Label>State *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                placeholder="State"
-                                                name="permanentState"
-                                                controlId="permanentState"
-                                                maxLength={30}
-                                                isInvalid={tweleveerror}
-                                                value={permanentState}
-                                                onChange={(e) => {
-                                                    setPermanentState(e.target.value)
-                                                    if (permanentAdress === "") {
-                                                        setElevenErrors(" Address is Required");
-                                                    }
-                                                    else {
-                                                        setElevenErrors("")
-                                                    }
-                                                }}
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {tweleveerror}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 15 }}>
-                                            <Form.Label>Country *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                placeholder="Country"
-                                                name="permanentCountry"
-                                                controlId="permanentCountry"
-                                                maxLength={30}
-                                                // options={countries}
-                                                value={permanentCountry}
-                                                isInvalid={thirteenerrors}
-                                                onChange={(e) => {
-                                                    setPermanentCountry(e.target.value)
-                                                    if (permanentState === "") {
-                                                        setTweleveerror(" State is Required");
-                                                    }
-                                                    else {
-                                                        setTweleveerror("")
-                                                    }
-                                                }}
-                                            >
-                                                {/* <option>Select Country</option> */}
-
-                                            </Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {thirteenerrors}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        {/* <CountryDropdown  
+                                                    </Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {thirteenerrors}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                {/* <CountryDropdown  
                                             md="6"    
                                                 preferredCountries={['gb', 'us']}                                                  
                                                 required
@@ -860,153 +872,163 @@ function EmployeeMasterForms(props) {
                                                 controlId="permanentCountry"                                                
                                                 value={permanentCountry}
                                                 onChange={(e) => setPermanentCountry(e.target.value)}>
-                                   
+                                    
                                             </CountryDropdown> */}
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Pincode *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="number"
-                                                placeholder="Pincode"
-                                                controlId="permanentPincode"
-                                                name="permanentPincode"
-                                                isInvalid={fourteenerror}
-                                                value={permanentPincode}
-                                                maxLength={6}
-                                                size={6}
-                                                onChange={(event) => {
-                                                    setPermanentPincode(event.target.value)
-                                                    if (event.target.value.length > 6) {
-                                                        setFourteenerror(" Pincode length should be 6 characters");;
-                                                    }
-                                                    if (permanentCountry === "") {
-                                                        setThirteenErrors("Country is Required");
-                                                    }
-                                                    else {
-                                                        setThirteenErrors("")
-                                                    }
-                                                }}
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {fourteenerror}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 10, backgroundColor: "#CCCCFF" }}
-                                        >
-                                            <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                                                Current Address
-                                            </Card.Title>
-                                        </Card>
-                                        <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                                            <Form.Label>Address *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                as="textarea"
-                                                rows={4}
-                                                type="text"
-                                                placeholder="Address"
-                                                controlId="currentAdress"
-                                                isInvalid={fifteenerrors}
-                                                value={currentAdress}
-                                                name="currentAdress"
-                                                maxLength={125}
-                                                onChange={(e) => {
-                                                    setCurrentAddress(e.target.value)
-                                                    if (permanentPincode === "") {
-                                                        setFourteenerror(" Pincode is Required");
-                                                    }
-                                                    else {
-                                                        setFourteenerror("")
-                                                    }
-                                                }}
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {fifteenerrors}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
+                                                <Form.Group as={Col} md="12" style={{ paddingTop: 20, }}>
+                                                    <Form.Label>Pincode *</Form.Label>
+                                                    <Form.Control
+                                                        disabled
+                                                        required
+                                                        type="number"
+                                                        placeholder="Pincode"
+                                                        controlId="permanentPincode"
+                                                        name="permanentPincode"
+                                                        isInvalid={fourteenerror}
+                                                        value={permanentPincode}
+                                                        maxLength={6}
+                                                        size={6}
+                                                        onChange={(event) => {
+                                                            setPermanentPincode(event.target.value)
+                                                            if (event.target.value.length > 6) {
+                                                                setFourteenerror(" Pincode length should be 6 characters");;
+                                                            }
+                                                            if (permanentCountry === "") {
+                                                                setThirteenErrors("Country is Required");
+                                                            }
+                                                            else {
+                                                                setThirteenErrors("")
+                                                            }
+                                                        }}
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {fourteenerror}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                            </Col>
+                                            <Col>
+                                                <Card
+                                                    style={{ marginLeft: 10, marginRight: 0, marginTop: 20, backgroundColor: "#FAFDD0" }}
+                                                >
+                                                    <Card.Title style={{ margin: 20, textAlign: "center",paddingLeft:20 }}>
+                                                        Current Address
+                                                    </Card.Title>
+                                                </Card>
+                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                    <Form.Label>Address *</Form.Label>
+                                                    <Form.Control
+                                                        disabled
+                                                        required
+                                                        as="textarea"
+                                                        rows={4}
+                                                        type="text"
+                                                        placeholder="Address"
+                                                        controlId="currentAdress"
+                                                        isInvalid={fifteenerrors}
+                                                        value={currentAdress}
+                                                        name="currentAdress"
+                                                        maxLength={125}
+                                                        onChange={(e) => {
+                                                            setCurrentAddress(e.target.value)
+                                                            if (permanentPincode === "") {
+                                                                setFourteenerror(" Pincode is Required");
+                                                            }
+                                                            else {
+                                                                setFourteenerror("")
+                                                            }
+                                                        }}
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {fifteenerrors}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
 
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>State *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                placeholder="State"
-                                                name="currentState"
-                                                controlId="currentState"
-                                                maxLength={30}
-                                                isInvalid={sixteenerror}
-                                                value={currentState}
-                                                onChange={(e) => {
-                                                    setCurrentState(e.target.value)
-                                                    if (currentAdress === "") {
-                                                        setFifteenErrors(" Address is Required");
-                                                    }
-                                                    else {
-                                                        setFifteenErrors("")
-                                                    }
-                                                }}
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {sixteenerror}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Country *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                placeholder="Country"
-                                                //controlId="currentCountry"
-                                                value={currentCountry}
-                                                isInvalid={seventeenerror}
-                                                maxLength={30}
-                                                name="currentCountry"
-                                                onChange={(e) => {
-                                                    setCurrentCountry(e.target.value)
-                                                    if (currentState === "") {
-                                                        setSixteenerror(" State is Required");
-                                                    }
-                                                    else {
-                                                        setSixteenerror("")
-                                                    }
-                                                }
-                                                }
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {seventeenerror}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Pincode *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="number"
-                                                placeholder="Pincode"
-                                                controlId="currentPincode"
-                                                value={currentPincode}
-                                                isInvalid={eighteenerror}
-                                                name="currentPincode"
-                                                maxLength={6}
-                                                onChange={(e) => {
-                                                    setCurrentPincode(e.target.value)
-                                                    if (e.target.value.length > 6) {
-                                                        setEighteenerror(" Pincode length should be 6 characters");;
-                                                    }
-                                                    if (currentCountry === "") {
-                                                        setSeventeenerror(" Country is Required");
-                                                    }
-                                                    else {
-                                                        setSeventeenerror("")
-                                                    }
-                                                }}
-                                            ></Form.Control>
-                                            <Form.Control.Feedback type="invalid">
-                                                {eighteenerror}
-                                            </Form.Control.Feedback>
-                                        </Form.Group>
+                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                    <Form.Label>State *</Form.Label>
+                                                    <Form.Control
+                                                        disabled
+                                                        required
+                                                        type="text"
+                                                        placeholder="State"
+                                                        name="currentState"
+                                                        controlId="currentState"
+                                                        maxLength={50}
+                                                        isInvalid={sixteenerror}
+                                                        value={currentState}
+                                                        onChange={(e) => {
+                                                            setCurrentState(e.target.value)
+                                                            if (currentAdress === "") {
+                                                                setFifteenErrors("Address is Required");
+                                                            }
+                                                            else {
+                                                                setFifteenErrors("")
+                                                            }
+                                                        }}
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {sixteenerror}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                    <Form.Label>Country *</Form.Label>
+                                                    <Form.Control
+                                                        disabled
+                                                        required
+                                                        type="text"
+                                                        placeholder="Country"
+                                                        //controlId="currentCountry"
+                                                        value={currentCountry}
+                                                        isInvalid={seventeenerror}
+                                                        maxLength={50}
+                                                        name="currentCountry"
+                                                        onChange={(e) => {
+                                                            setCurrentCountry(e.target.value)
+                                                            if (currentState === "") {
+                                                                setSixteenerror(" State is Required");
+                                                            }
+                                                            else {
+                                                                setSixteenerror("")
+                                                            }
+                                                        }
+                                                        }
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {seventeenerror}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                                    <Form.Label>Pincode *</Form.Label>
+                                                    <Form.Control
+                                                        disabled
+                                                        required
+                                                        type="number"
+                                                        placeholder="Pincode"
+                                                        controlId="currentPincode"
+                                                        value={currentPincode}
+                                                        isInvalid={eighteenerror}
+                                                        name="currentPincode"
+                                                        maxLength={6}
+                                                        onChange={(e) => {
+                                                            setCurrentPincode(e.target.value)
+                                                            if (e.target.value.length > 6) {
+                                                                setEighteenerror(" Pincode length should be 6 characters");;
+                                                            }
+                                                            if (currentCountry === "") {
+                                                                setSeventeenerror(" Country is Required");
+                                                            }
+                                                            else {
+                                                                setSeventeenerror("")
+                                                            }
+                                                        }}
+                                                    ></Form.Control>
+                                                    <Form.Control.Feedback type="invalid">
+                                                        {eighteenerror}
+                                                    </Form.Control.Feedback>
+                                                </Form.Group>
+                                            </Col>
+                                        </Row>
+
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#CCCCFF" }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                 Employment Details
@@ -1015,6 +1037,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Primary Skills</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 type="text"
                                                 placeholder="Primary Skills"
                                                 controlId="primarySkils"
@@ -1031,6 +1054,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Secondary Skills</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 type="text"
                                                 placeholder="Secondary Skills"
                                                 controlId="secondarySkills"
@@ -1039,7 +1063,6 @@ function EmployeeMasterForms(props) {
                                                 name="secondarySkills"
                                                 onChange={(e) =>
                                                     setSecondarySkills(e.target.value)
-
 
                                                 }
                                             ></Form.Control>
@@ -1143,7 +1166,7 @@ function EmployeeMasterForms(props) {
                                             </Form.Select>
                                         </Form.Group>
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#CCCCFF" }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                 Additional Details
@@ -1154,6 +1177,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Passport Number</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 type="text"
                                                 placeholder="Passport Number"
                                                 controlId="passportNo"
@@ -1163,13 +1187,13 @@ function EmployeeMasterForms(props) {
                                                 onChange={(e) =>
                                                     setPassportNo(e.target.value)
 
-
                                                 }
                                             ></Form.Control>
                                         </Form.Group>
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Passport Expiry Date</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 type="date"
                                                 placeholder="Passport Expiry Date"
                                                 controlId="passportExpiryDate"
@@ -1185,6 +1209,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>PAN Card Number</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 type="text"
                                                 placeholder="PAN Card Number"
                                                 controlId="panNumber"
@@ -1197,6 +1222,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Aadhar Card Number *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="number"
                                                 placeholder="Aadhar Card Number"
@@ -1238,6 +1264,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Bank Name *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="Bank Name"
@@ -1263,6 +1290,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Bank Account Number *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="number"
                                                 placeholder="Account Number"
@@ -1276,7 +1304,7 @@ function EmployeeMasterForms(props) {
                                                     if (event.target.value.length > 16) {
                                                         setTwentyoneerror(" Bank Account Number should be 16 characters");;
                                                     }
-                                                    //comment  
+                                                    //comment   
                                                     if (bankName === "") {
                                                         setTwentyerror(" Bank Name is Required");
                                                     }
@@ -1292,6 +1320,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>IFSC Code *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="IFSC Code"
@@ -1317,6 +1346,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Branch Name *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="Branch Name"
@@ -1348,7 +1378,7 @@ function EmployeeMasterForms(props) {
                                                 marginLeft: 8,
                                                 marginRight: 8,
                                                 marginTop: 10,
-                                                marginBottom: 20, backgroundColor: "#CCCCFF"
+                                                marginBottom: 20, backgroundColor: "#FAFDD0"
                                             }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
@@ -1360,7 +1390,7 @@ function EmployeeMasterForms(props) {
                                                 marginLeft: 8,
                                                 marginRight: 8,
                                                 marginTop: 10,
-                                                marginBottom: 20, backgroundColor: "#CCCCFF"
+                                                marginBottom: 20, backgroundColor: "#FAFDD0"
                                             }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center", }}>
@@ -1375,6 +1405,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Type of Post Graduation *</Form.Label>
                                                             <Form.Select
+                                                                disabled
                                                                 required
                                                                 type="text"
                                                                 placeholder="Type Of Post Graduation"
@@ -1402,6 +1433,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>University Name </Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="University Name"
                                                                 controlId="postgraduationBoardOfUniversity"
@@ -1418,6 +1450,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Institute Name </Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Institute Name "
                                                                 controlId="postgraduationInstituteName"
@@ -1432,6 +1465,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Institute City/Town </Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Institute City"
                                                                 controlId="postgraduationInstituteCity"
@@ -1446,6 +1480,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Course Name </Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Course Name"
                                                                 controlId="postgraduationCourseName"
@@ -1460,6 +1495,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Joining Year </Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="date"
                                                                 placeholder="Joining Year"
                                                                 controlId="postgraduationJoiningYear"
@@ -1474,6 +1510,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Passed-out Year</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="date"
                                                                 placeholder="Passed out year"
                                                                 controlId="postgraduationPassedYear"
@@ -1490,6 +1527,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Grade</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Percentage/Grade/CGPA/GPA"
                                                                 controlId="postgraduationGrade"
@@ -1513,7 +1551,7 @@ function EmployeeMasterForms(props) {
                                         </Accordion>
 
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#CCCCFF" }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                 Graduation Details
@@ -1523,6 +1561,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Type of Graduation *</Form.Label>
                                             <Form.Select
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="Type Of Graduation"
@@ -1560,6 +1599,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>University Name *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="University Name"
@@ -1594,6 +1634,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Institute Name *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="Institute Name "
@@ -1620,6 +1661,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Institute City/Town *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="Institute City"
@@ -1647,6 +1689,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Course Name *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="Course Name"
@@ -1671,7 +1714,8 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Joining Year *</Form.Label>
                                             <Form.Control
-                                                // required
+                                                required
+                                                disabled
                                                 type="date"
                                                 placeholder="Joining Year"
                                                 name="graduationJoiningYear"
@@ -1697,7 +1741,8 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Passed-out Year *</Form.Label>
                                             <Form.Control
-                                                //required
+                                                disabled
+                                                required
                                                 type="date"
                                                 placeholder="Passed out year"
                                                 controlId="graduationPassedYear"
@@ -1723,6 +1768,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Grade *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="Percentage/Grade/GPA/CGPA"
@@ -1747,7 +1793,7 @@ function EmployeeMasterForms(props) {
                                             </Form.Control.Feedback>
                                         </Form.Group>
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#CCCCFF" }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                                 12th Grade/Intermediate Details
@@ -1757,6 +1803,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Board * </Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="Board"
@@ -1783,6 +1830,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>School/College Name *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="School/College Name "
@@ -1808,6 +1856,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>School/College City/Town *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="School/College City"
@@ -1833,6 +1882,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Course Name*</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="Course Name"
@@ -1859,7 +1909,8 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Joining Year *</Form.Label>
                                             <Form.Control
-                                                //required
+                                                disabled
+                                                required
                                                 type="date"
                                                 placeholder="Joining Year"
                                                 controlId="intermediateJoiningYear"
@@ -1884,7 +1935,8 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Passed-out Year *</Form.Label>
                                             <Form.Control
-                                                //required
+                                                disabled
+                                                required
                                                 type="date"
                                                 placeholder="Passed out year"
                                                 controlId="intermediatePassedYear"
@@ -1909,6 +1961,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Grade *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="Percentage/Grade/GPA/CGPA"
@@ -1934,16 +1987,17 @@ function EmployeeMasterForms(props) {
                                         </Form.Group>
 
                                         <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#CCCCFF" }}
+                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                                                10th Grade details
+                                                10th Grade Details
                                             </Card.Title>
                                         </Card>
 
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Board *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="Board"
@@ -1970,6 +2024,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>School Name *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="School Name "
@@ -1995,6 +2050,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>School City/Town *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="School City"
@@ -2020,6 +2076,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Course Name *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="Course Name"
@@ -2045,7 +2102,8 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Joining Year *</Form.Label>
                                             <Form.Control
-                                                //required
+                                                disabled
+                                                required
                                                 type="date"
                                                 name="sscJoiningYear"
                                                 placeholder="Joining Year"
@@ -2069,7 +2127,8 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Passed-out Year *</Form.Label>
                                             <Form.Control
-                                                //required
+                                                disabled
+                                                required
                                                 type="date"
                                                 name="sscPassedYear"
                                                 placeholder="Passed out year"
@@ -2094,6 +2153,7 @@ function EmployeeMasterForms(props) {
                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                             <Form.Label>Grade *</Form.Label>
                                             <Form.Control
+                                                disabled
                                                 required
                                                 type="text"
                                                 placeholder="Percentage/Grade/GPA/CGPA"
@@ -2121,7 +2181,7 @@ function EmployeeMasterForms(props) {
                                                 marginTop: "10px",
                                                 marginBottom: "20px",
                                                 marginLeft: 8,
-                                                marginRight: 8, backgroundColor: "#CCCCFF"
+                                                marginRight: 8, backgroundColor: "#FAFDD0"
                                             }}
                                         >
                                             <Card.Title style={{ margin: 20, textAlign: "center" }}>
@@ -2136,6 +2196,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Company Name</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Company Name"
                                                                 controlId="previousCompany1_name"
@@ -2150,6 +2211,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Designation</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Designation"
                                                                 controlId="previousCompany1_designation"
@@ -2166,6 +2228,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Joining date</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="date"
                                                                 placeholder="Date of Joining"
                                                                 controlId="previousCompany1_joiningDate"
@@ -2181,6 +2244,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Relieving Date</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="Date"
                                                                 placeholder="Date of Relieving"
                                                                 controlId="previousCompany1_relievingDate"
@@ -2197,6 +2261,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Employee ID</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Employee ID"
                                                                 controlId="previousCompany1_employeeId"
@@ -2212,6 +2277,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Employment Type</Form.Label>
                                                             <Form.Select
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Employment Type"
                                                                 controlId="previousCompany1_typeOfEmployeement"
@@ -2237,6 +2303,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Reason for Exit</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 as="textarea"
                                                                 rows={2}
                                                                 type="text"
@@ -2264,6 +2331,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Company Name</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Company Name"
                                                                 controlId="previousCompany2_name"
@@ -2278,6 +2346,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Designation</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Designation"
                                                                 controlId="previousCompany2_designation"
@@ -2294,6 +2363,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Joining date</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="date"
                                                                 placeholder="Date of Joining"
                                                                 controlId="previousCompany2_joiningDate"
@@ -2310,6 +2380,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Relieving Date</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="Date"
                                                                 placeholder="Date of Relieving"
                                                                 controlId="previousCompany2_relievingDate"
@@ -2326,6 +2397,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Employee ID</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Employee ID"
                                                                 controlId="previousCompany2_employeeId"
@@ -2340,6 +2412,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Employment Type</Form.Label>
                                                             <Form.Select
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Employment Type"
                                                                 controlId="previousCompany2_typeOfEmployment"
@@ -2364,6 +2437,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 15 }}>
                                                             <Form.Label>Reason for Exit</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 as="textarea"
                                                                 rows={2}
                                                                 type="text"
@@ -2390,6 +2464,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Company Name</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Company Name"
                                                                 controlId="previousCompany3_name"
@@ -2404,6 +2479,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Designation</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Designation"
                                                                 controlId="previousCompany3_designation"
@@ -2420,6 +2496,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Joining date</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="date"
                                                                 placeholder="Date of Joining"
                                                                 controlId="previousCompany3_joiningDate"
@@ -2435,6 +2512,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Relieving Date</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="Date"
                                                                 placeholder="Date of Relieving"
                                                                 controlId="prevoiusCompany3_relievingDate"
@@ -2451,6 +2529,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Employee ID</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Employee ID"
                                                                 controlId="previousCompany3_employeeId"
@@ -2465,6 +2544,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Employment Type</Form.Label>
                                                             <Form.Select
+                                                                disabled
                                                                 type="text"
                                                                 placeholder="Employment Type"
                                                                 controlId="previousCompany3_typeOfEmployment"
@@ -2489,6 +2569,7 @@ function EmployeeMasterForms(props) {
                                                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                                             <Form.Label>Reason for Exit</Form.Label>
                                                             <Form.Control
+                                                                disabled
                                                                 as="textarea"
                                                                 rows={2}
                                                                 type="text"
@@ -2531,6 +2612,7 @@ function EmployeeMasterForms(props) {
                                             <Form.Control
                                                 // required
                                                 //    value={imge.name}
+                                                disabled
                                                 type="file"
                                                 isInvalid={fourtysix}
                                                 onChange={handleChange}

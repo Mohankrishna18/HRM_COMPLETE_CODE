@@ -5,38 +5,39 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 @Entity(name = "employmenttype")
 public class EmploymentType {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int employmentTypeId;
-	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer employmentTypeId;
 	private String employmentTypeName;
-	public int getEmploymentTypeId() {
+
+	public Integer getEmploymentTypeId() {
 		return employmentTypeId;
 	}
-	public void setEmploymentTypeId(int employmentTypeId) {
+
+	public void setEmploymentTypeId(Integer employmentTypeId) {
 		this.employmentTypeId = employmentTypeId;
 	}
+
 	public String getEmploymentTypeName() {
 		return employmentTypeName;
 	}
+
 	public void setEmploymentTypeName(String employmentTypeName) {
 		this.employmentTypeName = employmentTypeName;
 	}
-	public EmploymentType(int employmentTypeId, String employmentTypeName) {
+
+	public EmploymentType(Integer employmentTypeId, String employmentTypeName) {
 		super();
 		this.employmentTypeId = employmentTypeId;
 		this.employmentTypeName = employmentTypeName;
 	}
+
 	public EmploymentType() {
-		super();
-		// TODO Auto-generated constructor stub
+
 	}
-	
-	
-	
-	
-	
+
 }

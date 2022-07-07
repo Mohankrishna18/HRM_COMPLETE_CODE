@@ -4,8 +4,6 @@ import image from "../Images/arshaalogo.png";
 import { NavLink, useHistory } from "react-router-dom";
 import { isLoggedIn } from "../utils";
 
-
-
 import { FaSignOutAlt } from "react-icons/fa";
 import axios from "../Uri";
 import { last } from "lodash";
@@ -30,8 +28,6 @@ const NavBar = (props) => {
   }, []);
   console.log(getEmployeeDetails)
 
-
-
   useEffect(() => {
     axios
       .get(`/emp/files/${employeeid}`)
@@ -45,8 +41,6 @@ const NavBar = (props) => {
       });
   }, []);
   console.log(imge)
-
-
 
   //Routes obtained from default router config
   const menuItems = props.routes;
@@ -114,7 +108,9 @@ const NavBar = (props) => {
                         />
                       )}
                       <div style={{ fontSize: "15px" }}>
-                        <p onClick={handleLogout}>Logout  <br /> <span>V1.0</span></p>
+                        <p onClick={handleLogout}>Logout  <br /> 
+                        {/* <span>V1.0</span> */}
+                        </p>
 
                       </div>
                     </td>
@@ -131,7 +127,5 @@ const NavBar = (props) => {
     </Row>
   );
 };
-
-
 
 export default NavBar;
