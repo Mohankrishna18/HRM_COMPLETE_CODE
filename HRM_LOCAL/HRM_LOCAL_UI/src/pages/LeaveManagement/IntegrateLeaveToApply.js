@@ -182,6 +182,7 @@ function IntegrateLeaveToApply() {
         const res = await axios.get(`leave/getLeaveHistoryByEmployeeid/${empID}`);
         setData(res.data);
         console.log(res.data);
+        LA();
     };
 
     useEffect(() => {
@@ -197,16 +198,18 @@ function IntegrateLeaveToApply() {
     }, []);
 
     useEffect(() => {
+        LA();
 
+    }, []);
+    const LA = () =>{
         axios.get(`leave/getcountofApplyingLeaves/${employeeid}`).then((res) => {
 
             console.log(res.data);
 
             setTotalAppliedleaves(res.data);
 
-        });
-
-    }, []);
+        }
+    )}
 
     const LossOfPay = (appliedleaves - earnedData);
 
@@ -414,9 +417,10 @@ function IntegrateLeaveToApply() {
                                     <h5>
                                         {" "}
                                         <Card.Title>Total EarnedLeaves</Card.Title>
-                                        <Card.Subtitle className="mb-2 text-muted">
+                                        {earnedData > 0 ? (<Card.Subtitle className="mb-2 text-muted">
                                             {earnedData}
-                                        </Card.Subtitle>
+                                        </Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+            
                                         {/* <Card.Text>12</Card.Text> */}
                                     </h5>
                                 </Card.Body>

@@ -57,6 +57,7 @@ import BandsMain from "../pages/Bands/BandsMain";
 import EmploymentTypeMain from "../pages/EmploymentType/EmploymentTypeMain";
 import IntegrateLeaveToApply from "../pages/LeaveManagement/IntegrateLeaveToApply";
 import OnboardedEmployeesTable from "../pages/Approvals/ApprovalComponents/OnboardedEmployeesTable";
+import HrLeavesToApproveMain from "../pages/HrLeavesToApprove/HrLeavesToApproveMain";
 
 export default [
   {
@@ -151,8 +152,8 @@ export default [
   //   ],
   // },
   {
-    component: LeaveToApprove,
-    path: "/LeaveToApprove",
+    component: HrLeavesToApproveMain,
+    path: "/HrLeavesToApprove",
     icon: <FcOvertime />,
     title: "Leaves Waiting For Approval",
     permission: [Roles.hradmin],
@@ -259,7 +260,7 @@ export default [
     component: RejectedEmployees,
     path: "/LeaveManagement",
     icon: <FcOvertime />,
-    title: "Rejected Employees Leaves History",
+    title: "Employees Rejected Leaves History",
     permission: [Roles.hradmin],
   },
 
