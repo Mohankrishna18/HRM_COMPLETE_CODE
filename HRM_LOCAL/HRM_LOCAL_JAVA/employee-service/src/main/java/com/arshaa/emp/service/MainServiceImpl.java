@@ -19,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.arshaa.emp.common.EmployeeLogin;
 import com.arshaa.emp.common.GetReportingManager;
+import com.arshaa.emp.common.PreMailModel;
 import com.arshaa.emp.common.UserModel;
 import com.arshaa.emp.common.Users;
 import com.arshaa.emp.entity.EmployeeMaster;
@@ -34,6 +35,7 @@ import com.arshaa.emp.model.Experience;
 import com.arshaa.emp.model.GetEmployeeIds;
 import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.PersonalDetails;
+import com.arshaa.emp.model.PreOnboarding;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.StringConstants;
 import com.arshaa.emp.model.WaitingForApproval;
@@ -56,6 +58,8 @@ public class MainServiceImpl implements MainService {
 
 	public ResponseEntity onBoardUser(Onboarding newOnboard) {
 		String dUrl="http://departments/dept/getDepartmentNameById/";
+		String preEmailURL = "http://emailService/mail/preSendMail";
+		String preOnboardUrl = "http://loginservice/login/addUsersForPreOnboard";
 		Response r = new Response<>();
 		try {
 			java.sql.Date tSqlDate = new java.sql.Date(newOnboard.getOnboardDate().getTime());
@@ -77,7 +81,27 @@ public class MainServiceImpl implements MainService {
 			r.setStatus(true);
 			r.setMessage(sConstants.POST_SUCCESS);
 			r.setData(newData);
+			
+			PreMailModel pm = new PreMailModel();
+			pm.setName(newOnboard.getFirstName());
+			pm.setEmail(newOnboard.getEmail());
+			Random rand = new Random();
+			Integer intRandom = rand.nextInt(9999);
+			int n = newOnboard.getFirstName().length();
+			char first = newOnboard.getFirstName().charAt(0);
+			char last = newOnboard.getFirstName().charAt(n - 1);
+			String password = "user" + first + last + intRandom;
+			pm.setPassword(password);
+			template.postForObject(preEmailURL, pm, PreMailModel.class);
+			
+			
+			PreOnboarding pre = new PreOnboarding();
+			pre.setEmail(newOnboard.getEmail());
+			pre.setPassword(password);
+			pre.setUserType("preonboardedemployee");
+			template.postForObject(preOnboardUrl, pre, PreOnboarding.class);
 			return new ResponseEntity(r, HttpStatus.OK);
+			
 		} catch (Exception e) {
 
 			r.setStatus(false);
