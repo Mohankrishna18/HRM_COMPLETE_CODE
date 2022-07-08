@@ -1,7 +1,7 @@
 {
   "name": "HRM",
   "version": "1.0.0",
-  "proxy":"http://localhost:3000",
+  "proxy": "http://localhost:3000",
   "description": "React login form with validation using custom hooks, redirection upon login, and prevent backwards route",
   "keywords": [
     "react",
@@ -44,6 +44,7 @@
     "react-bootstrap": "^2.2.3",
     "react-bootstrap-table-next": "^4.0.3",
     "react-bootstrap-table2-paginator": "^2.1.2",
+    "react-calendar": "^3.7.0",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.30.0",
     "react-hot-toast": "^2.2.0",
