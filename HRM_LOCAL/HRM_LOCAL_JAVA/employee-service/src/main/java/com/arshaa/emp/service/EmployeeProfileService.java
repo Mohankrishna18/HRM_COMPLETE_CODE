@@ -19,9 +19,6 @@ import com.arshaa.emp.entity.EmployeeMaster;
 import com.arshaa.emp.entity.EmployeeProfile;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
 import com.arshaa.emp.repository.EmployeeProfileRepository;
-
-
-
 @Service
 public class EmployeeProfileService {
 @Autowired
@@ -47,7 +44,7 @@ public int Lossofpayservice (String employeeId) {
 
 
 
-      int companyProvidedLeave = 0;//
+      int companyProvidedLeave = 1;//
      // int employeeLeaveTakenInThisMonth = 7;
 
      // int leaveDifference = companyProvidedLeave-employeeLeaveTakenInThisMonth;
@@ -64,12 +61,12 @@ public int Lossofpayservice (String employeeId) {
       System.out.println(monthsBetween);
       if(monthsBetween<=6)
       {
-          companyProvidedLeave = companyProvidedLeave + 1;//5+1=6
+          companyProvidedLeave = monthsBetween ;//5+1=6
       }else{
          companyProvidedLeave = monthsBetween + 2;
       }
 
-//      System.out.println(companyProvidedLeave);
+   
 //      int a=monthsBetween+companyProvidedLeave;
     return companyProvidedLeave;
 
