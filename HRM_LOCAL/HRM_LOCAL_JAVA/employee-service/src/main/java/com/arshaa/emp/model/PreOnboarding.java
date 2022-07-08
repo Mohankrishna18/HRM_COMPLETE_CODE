@@ -5,7 +5,15 @@ public class PreOnboarding
 	private String email;
 	private String password;
 	private String userType;
+	private String onboardingId;
 	
+	
+	public String getOnboardingId() {
+		return onboardingId;
+	}
+	public void setOnboardingId(String onboardingId) {
+		this.onboardingId = onboardingId;
+	}
 	public String getEmail() {
 		return email;
 	}

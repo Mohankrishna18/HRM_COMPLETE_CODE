@@ -98,6 +98,7 @@ public class MainServiceImpl implements MainService {
 			PreOnboarding pre = new PreOnboarding();
 			pre.setEmail(newOnboard.getEmail());
 			pre.setPassword(password);
+			pre.setOnboardingId(newOnboard.getOnboardingId());
 			pre.setUserType("preonboardedemployee");
 			template.postForObject(preOnboardUrl, pre, PreOnboarding.class);
 			return new ResponseEntity(r, HttpStatus.OK);
