@@ -15,7 +15,7 @@ function EmployeeMasterTabs() {
     return (
         <div>
             <Card className="scroll" >
-                <Row>
+                
                     <Card.Header>
                         <Card.Body>
                             <Card.Title>Edit My Profile</Card.Title>
@@ -28,14 +28,13 @@ function EmployeeMasterTabs() {
                             </Card.Text>
                         </Card.Body>
                     </Card.Header>
-                </Row>
                 
                     <Tabs
                         defaultActiveKey="Personal Details"
                         transition={false}
                         id="noanim-tab-example"
                         className="mb-3"
-                        style={{ justifyContent: "center", color: "white" , backgroundColor:"white", fontSize:"17px"}}
+                        style={{ justifyContent: "center", color: "white" , backgroundColor:"white", fontSize:"16px" ,padding:10}}
                     >
                         <Tab eventKey="Personal Details" title="Personal Details" style={{ backgroundColor: "white" }}>
                             <PersonalDetailsTab />
@@ -56,7 +55,7 @@ function EmployeeMasterTabs() {
                             <ExperienceTab />
                         </Tab>
                         <Tab eventKey="Project" title="Project " style={{ backgroundColor: "white" }}>
-                            {/* <ExperienceTab /> */}
+                           
                         </Tab>
                     </Tabs>
                 

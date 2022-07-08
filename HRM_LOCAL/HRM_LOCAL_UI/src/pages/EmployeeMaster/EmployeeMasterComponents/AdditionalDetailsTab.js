@@ -74,7 +74,7 @@ function AditionalDetailsTab() {
 
         <div>
             <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 20, textAlign: "center" }}>
+                <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Additional Details
                 </Card.Title>
             </Card>
@@ -288,3 +288,4 @@ function AditionalDetailsTab() {
     )
 }
 export default AditionalDetailsTab;
+
