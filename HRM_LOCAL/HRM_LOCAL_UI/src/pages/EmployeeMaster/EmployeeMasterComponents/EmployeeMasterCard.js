@@ -132,7 +132,7 @@ function EmployeeMasterCard() {
                                     </Card.Title>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                    <Card.Text style={{ paddinBottom: 0 }}>
+                                    <Card.Text style={{ paddinBottom: 0,color:"#999897" }}>
                                         {employeedetails.employeeId}
                                     </Card.Text>
                                 </Col>
@@ -144,7 +144,7 @@ function EmployeeMasterCard() {
                                     </Card.Title>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                    <Card.Text style={{}}>
+                                    <Card.Text style={{color:"#999897"}}>
                                         {employeedetails.designationName}
                                     </Card.Text>
                                 </Col>
@@ -155,7 +155,7 @@ function EmployeeMasterCard() {
                                     </Card.Title>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                    <Card.Text style={{}}>
+                                    <Card.Text style={{color:"#999897"}}>
                                         {employeedetails.departmentName}
                                     </Card.Text>
                                 </Col>
@@ -169,7 +169,7 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                    <Card.Text style={{}}>
+                                    <Card.Text style={{color:"#999897"}}>
                                         {employeedetails.projectName}
                                     </Card.Text>
                                 </Col>
@@ -181,7 +181,7 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                    <Card.Text style={{}}>
+                                    <Card.Text style={{color:"#999897"}}>
                                         {employeedetails.businessUnit}
                                     </Card.Text>
                                 </Col>
@@ -230,7 +230,7 @@ function EmployeeMasterCard() {
                                 </Card.Title>
                             </Col>{" "}
                             <Col md={{ offset: 1 }}>
-                                <Card.Text style={{}}>
+                                <Card.Text style={{color:"#999897"}}>
                                     {employeedetails.yearsOfExperience}
                                 </Card.Text>
                             </Col>
@@ -242,7 +242,7 @@ function EmployeeMasterCard() {
                                 </Card.Title>
                             </Col>{" "}
                             <Col md={{ offset: 1 }}>
-                                <Card.Text style={{}}>
+                                <Card.Text style={{color:"#999897"}}>
                                     {doj}
                                 </Card.Text>
                             </Col>
@@ -254,7 +254,7 @@ function EmployeeMasterCard() {
                                 </Card.Text>
                             </Col>{" "}
                             <Col md={{ offset: 1 }}>
-                                <Card.Text style={{}}>
+                                <Card.Text style={{color:"#999897"}}>
                                     {employeedetails.reportingManager}
                                 </Card.Text>
                             </Col>
@@ -267,7 +267,7 @@ function EmployeeMasterCard() {
                                 </Card.Text>
                             </Col>{" "}
                             <Col md={{ offset: 1 }}>
-                                <Card.Text style={{}}>
+                                <Card.Text style={{color:"#999897"}}>
                                     {employeedetails.employmentType}
                                 </Card.Text>
                             </Col>
@@ -279,7 +279,7 @@ function EmployeeMasterCard() {
                                 </Card.Text>
                             </Col>{" "}
                             <Col md={{ offset: 1 }}>
-                                <Card.Text style={{}}>
+                                <Card.Text style={{color:"#999897"}}>
                                     {employeedetails.band}
                                 </Card.Text>
                             </Col>

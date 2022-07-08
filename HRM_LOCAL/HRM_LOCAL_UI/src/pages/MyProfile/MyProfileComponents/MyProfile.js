@@ -86,7 +86,7 @@ const MyProfile = () => {
   // var yyyy = dob.getFullYear();
   // var dob1 = dd + '-' + mm + '-' + yyyy;
   //  console.log(dob1);
-
+//comment for pull req
   // console.log(getEmployeeDetails.passportExpiryDate)
   var passportDate = new Date(getEmployeeDetails.passportExpiryDate);
   var dd = String(passportDate.getDate()).padStart(2, '0');
@@ -258,7 +258,7 @@ const MyProfile = () => {
                                   </Card.Title>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{ paddinBottom: 0 }}>
+                                  <Card.Text style={{ paddinBottom: 0,color:"#999897" }}>
                                     {getEmployeeDetails.employeeId}
                                   </Card.Text>
                                 </Col>
@@ -270,7 +270,7 @@ const MyProfile = () => {
                                   </Card.Title>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{}}>
+                                  <Card.Text style={{color:"#999897"}}>
                                     {getEmployeeDetails.designationName}
                                   </Card.Text>
                                 </Col>
@@ -282,7 +282,7 @@ const MyProfile = () => {
                                   </Card.Title>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{}}>
+                                  <Card.Text style={{color:"#999897"}}>
                                     {getEmployeeDetails.departmentName}
                                   </Card.Text>
                                 </Col>
@@ -294,7 +294,7 @@ const MyProfile = () => {
                                   </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{}}>
+                                  <Card.Text style={{color:"#999897"}}>
                                     {getEmployeeDetails.projectName}
                                   </Card.Text>
                                 </Col>
@@ -306,7 +306,7 @@ const MyProfile = () => {
                                   </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{}}>
+                                  <Card.Text style={{color:"#999897"}}>
                                     {getEmployeeDetails.businessUnit}
                                   </Card.Text>
                                 </Col>
@@ -322,7 +322,7 @@ const MyProfile = () => {
                                 </Card.Title>
                               </Col>{" "}
                               <Col md={{ offset: 1 }}>
-                                <Card.Text style={{}}>
+                                <Card.Text style={{color:"#999897"}}>
                                   {getEmployeeDetails.yearsOfExperience}
                                 </Card.Text>
                               </Col>
@@ -334,7 +334,7 @@ const MyProfile = () => {
                                 </Card.Title>
                               </Col>{" "}
                               <Col md={{ offset: 1 }}>
-                                <Card.Text style={{}}>
+                                <Card.Text style={{color:"#999897"}}>
                                   {/* {getEmployeeDetails.dateOfJoining} */}
                                   {doj1}
                                 </Card.Text>
@@ -347,7 +347,7 @@ const MyProfile = () => {
                                 </Card.Text>
                               </Col>{" "}
                               <Col md={{ offset: 1 }}>
-                                <Card.Text style={{}}>
+                                <Card.Text style={{color:"#999897"}}>
                                   {getEmployeeDetails.reportingManager}
                                 </Card.Text>
                               </Col>
@@ -359,7 +359,7 @@ const MyProfile = () => {
                                 </Card.Text>
                               </Col>{" "}
                               <Col md={{ offset: 1 }}>
-                                <Card.Text style={{}}>
+                                <Card.Text style={{color:"#999897"}}>
                                   {getEmployeeDetails.employmentType}
                                 </Card.Text>
                               </Col>
@@ -371,7 +371,7 @@ const MyProfile = () => {
                                 </Card.Text>
                               </Col>{" "}
                               <Col md={{ offset: 1 }}>
-                                <Card.Text style={{}}>
+                                <Card.Text style={{color:"#999897"}}>
                                   {getEmployeeDetails.band}
                                 </Card.Text>
                               </Col>
@@ -401,7 +401,7 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                           <Col md={{ offset: 1 }}>
-                            <Card.Subtitle >
+                            <Card.Subtitle style={{color:"#999897"}}>
                               {getEmployeeDetails.email}
                             </Card.Subtitle>
                           </Col>
@@ -414,7 +414,7 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                           <Col md={{ offset: 1 }}>
-                            <Card.Subtitle >
+                            <Card.Subtitle style={{color:"#999897"}}>
                               {getEmployeeDetails.primaryPhoneNumber}
                             </Card.Subtitle>
                           </Col>
@@ -428,7 +428,7 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                           <Col md={{ offset: 1 }}>
-                            {getEmployeeDetails.dateOfBirth ? (<Card.Subtitle>
+                            {getEmployeeDetails.dateOfBirth ? (<Card.Subtitle style={{color:"#999897"}}>
                               {dob}
                             </Card.Subtitle>) : (<div></div>)}
 
@@ -442,21 +442,20 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                           <Col md={{ offset: 1 }}>
-                            <Card.Subtitle >
+                            <Card.Subtitle style={{color:"#999897"}} >
                               {getEmployeeDetails.bloodGroup}
                             </Card.Subtitle>
                           </Col>
                         </Row>
                         <Row style={{ paddingLeft: 15, paddingBottom: 40 }}>
                           <Col>
-                            <Card.Subtitle
-
+                            <Card.Subtitle style={{}}
                             >
                               Gender:
                             </Card.Subtitle>
                           </Col>
                           <Col md={{ offset: 1 }}>
-                            <Card.Subtitle>
+                            <Card.Subtitle style={{color:"#999897"}}>
                               {getEmployeeDetails.gender}
                             </Card.Subtitle>
                           </Col>
@@ -470,7 +469,7 @@ const MyProfile = () => {
                             </Card.Subtitle>
                           </Col>
                           <Col md={{ offset: 1 }}>
-                            <Card.Subtitle>
+                            <Card.Subtitle style={{color:"#999897"}}>
                               {getEmployeeDetails.maritalStatus}
                             </Card.Subtitle>
                           </Col>
@@ -497,7 +496,7 @@ const MyProfile = () => {
                               </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
-                              <Card.Text style={{ paddingBottom: 0 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
                                 {getEmployeeDetails.permanentAdress}
                               </Card.Text>
                             </Col>
@@ -509,7 +508,7 @@ const MyProfile = () => {
                               </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
-                              <Card.Text style={{ paddingBottom: 0 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
                                 {getEmployeeDetails.permanentState}
                               </Card.Text>
                             </Col>
@@ -521,7 +520,7 @@ const MyProfile = () => {
                               </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
-                              <Card.Text style={{ paddingBottom: 0 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
                                 {getEmployeeDetails.permanentCountry}
                               </Card.Text>
                             </Col>
@@ -533,7 +532,7 @@ const MyProfile = () => {
                               </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
-                              <Card.Text style={{ paddingBottom: 0 }}>
+                              <Card.Text style={{ paddingBottom: 0,color:"#999897" }}>
                                 {getEmployeeDetails.permanentPincode}
                               </Card.Text>
                             </Col>
@@ -548,7 +547,7 @@ const MyProfile = () => {
                               </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
-                              <Card.Text style={{ paddingBottom: 0 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
                                 {getEmployeeDetails.currentAdress}
                               </Card.Text>
                             </Col>
@@ -560,7 +559,7 @@ const MyProfile = () => {
                               </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
-                              <Card.Text style={{ paddingBottom: 0 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
                                 {getEmployeeDetails.currentState}
                               </Card.Text>
                             </Col>
@@ -572,7 +571,7 @@ const MyProfile = () => {
                               </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
-                              <Card.Text style={{ paddingBottom: 0 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
                                 {getEmployeeDetails.currentCountry}
                               </Card.Text>
                             </Col>
@@ -584,7 +583,7 @@ const MyProfile = () => {
                               </Card.Subtitle>{" "}
                             </Col>
                             <Col md={{ offset: 1 }}>
-                              <Card.Text style={{ paddingBottom: 0 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
                                 {getEmployeeDetails.currentPincode}
                               </Card.Text>
                             </Col>
@@ -608,7 +607,7 @@ const MyProfile = () => {
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
+                          <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
                             {getEmployeeDetails.passportNo}
                           </Card.Text>
                         </Col>
@@ -618,7 +617,7 @@ const MyProfile = () => {
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>
-                          {getEmployeeDetails.passportExpiryDate ? (<Card.Subtitle>
+                          {getEmployeeDetails.passportExpiryDate ? (<Card.Subtitle style={{color:"#999897"}}>
                             {ped}
                           </Card.Subtitle>) : (<div></div>)}
                         </Col>
@@ -630,7 +629,7 @@ const MyProfile = () => {
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
+                          <Card.Text style={{ paddingBottom: 0,color:"#999897" }}>
                             {getEmployeeDetails.panNumber}
                           </Card.Text>
                         </Col>
@@ -640,7 +639,7 @@ const MyProfile = () => {
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
+                          <Card.Text style={{ paddingBottom: 0,color:"#999897" }}>
                             {getEmployeeDetails.aadharNumber}
                           </Card.Text>
                         </Col>
@@ -653,7 +652,7 @@ const MyProfile = () => {
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
+                          <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
                             {getEmployeeDetails.uanNumber}
                           </Card.Text>
                         </Col>
@@ -663,7 +662,7 @@ const MyProfile = () => {
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
+                          <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
                             {getEmployeeDetails.band}
                           </Card.Text>
                         </Col>
@@ -676,7 +675,7 @@ const MyProfile = () => {
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
+                          <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
                             {getEmployeeDetails.bankName}
                           </Card.Text>
                         </Col>
@@ -686,7 +685,7 @@ const MyProfile = () => {
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
+                          <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
                             {getEmployeeDetails.accountNumber}
                           </Card.Text>
                         </Col>
@@ -699,7 +698,7 @@ const MyProfile = () => {
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
+                          <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
                             {getEmployeeDetails.ifscCode}
                           </Card.Text>
                         </Col>
@@ -709,7 +708,7 @@ const MyProfile = () => {
                           </Card.Subtitle>{" "}
                         </Col>
                         <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
+                          <Card.Text style={{ paddingBottom: 0,color:"#999897" }}>
                             {getEmployeeDetails.branch}
                           </Card.Text>
                         </Col>
@@ -731,7 +730,7 @@ const MyProfile = () => {
 
                         <Col md={{ offset: 1 }}>
 
-                          <Card.Text style={{ paddingBottom: 0 }}>
+                          <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
 
                             {getEmployeeDetails.exitDate}
 
