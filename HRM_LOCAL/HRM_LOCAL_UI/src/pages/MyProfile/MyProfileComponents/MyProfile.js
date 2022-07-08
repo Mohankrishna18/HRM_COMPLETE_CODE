@@ -95,12 +95,6 @@ const MyProfile = () => {
   var passportDate1 = dd + '-' + mm + '-' + yyyy;
   console.log(passportDate1);
 
-  var exitDate = new Date(getEmployeeDetails.exitDate);
-  var dd = String(exitDate.getDate()).padStart(2, '0');
-  var mm = String(exitDate.getMonth() + 1).padStart(2, '0');
-  var yyyy = exitDate.getFullYear();
-  var exitDate1 = dd + '-' + mm + '-' + yyyy;
-
   var GraduationJoiningYear = new Date(getEmployeeDetails.graduationJoiningYear);
   var dd = String(GraduationJoiningYear.getDate()).padStart(2, '0');
   var mm = String(GraduationJoiningYear.getMonth() + 1).padStart(2, '0');
@@ -194,54 +188,59 @@ const MyProfile = () => {
                 <Row>
                   <Col>
                     <Card>
-                      <Container>
+                      
                         <Row>
                           <Col>
                             <Row>
                               <Col>
                                 <Row style={{
                                   alignContent: "center",
-                                  paddingTop: 50,
+                                  paddingTop: 0,
                                   paddingLeft: 200,
                                   marginLeft: "170px"
                                 }}>
-                                  <Col>{getEmployeeDetails.profilePhoto}</Col>
+                                  {/* <Col>{getEmployeeDetails.profilePhoto}</Col> */}
                                 </Row>
                               </Col>
-                              <Row><Col>
-                                <Card.Title>
-                                  <Row>
+                              <Row>
+                                <Col>
+                                  <Card.Title>
+                                    <Row>
 
-                                    <Col>
+                                      <Col>
+                                        <Row>
+                                          <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
 
-                                      <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
+                                            height: "150px",
+                                            width: "150px",
+                                            borderRadius: "110px",
+                                            alignItems: "center",
+                                            marginTop: "50px",
+                                            marginLeft: "32%"
+                                          }} />
+                                        </Row>
+                                        <Row>
+                                          <Col style={{
+                                            fontSize: 20,
+                                            textAlign: "center",
+                                            paddingTop: 40,
+                                            paddingBottom: 40,
+                                            text: "bold",
 
-                                        // {/* <Image src={imge.url} style={{ */}
 
-                                        height: "150px",
-                                        width: "150px",
-                                        borderRadius: "110px",
-                                        alignItems: "center",
-                                        marginTop: "50px",
-                                        marginLeft: "100px"
-                                      }} />
+                                          }}>
+                                            {getEmployeeDetails.firstName} {getEmployeeDetails.lastName}
 
-                                    </Col>
-                                    <Col style={{
-                                      fontSize: 20,
-                                      textAlign: "center",
-                                      paddingTop: 40,
-                                      paddingBottom: 40,
-                                      text: "bold",
-                                      marginRight: "200px",
+                                          </Col>
 
-                                    }}>
-                                      {getEmployeeDetails.firstName} {getEmployeeDetails.lastName}
+                                        </Row>
 
-                                    </Col>
 
-                                  </Row>
-                                </Card.Title></Col></Row>
+                                      </Col>
+
+
+                                    </Row>
+                                  </Card.Title></Col></Row>
                             </Row>
                           </Col>
 
@@ -249,8 +248,8 @@ const MyProfile = () => {
                             <Card.Body style={{}}>
                               <Row
                                 style={{
-                                  paddingTop: 20,
-                                  paddingBottom: 15,
+                                  paddingTop: 50,
+                                    paddingBottom: 15,
                                 }}
                               >
                                 <Col>
@@ -288,67 +287,6 @@ const MyProfile = () => {
                                   </Card.Text>
                                 </Col>
                               </Row>
-                              <Row style={{ paddingBottom: 15 }}>
-                                <Col>
-                                  <Card.Title style={{}}>
-                                    <h6> Years of Experience:</h6>
-                                  </Card.Title>
-                                </Col>{" "}
-                                <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{}}>
-                                    {getEmployeeDetails.yearsOfExperience}
-                                  </Card.Text>
-                                </Col>
-                              </Row>
-                              <Row style={{ paddingBottom: 15 }}>
-                                <Col>
-                                  <Card.Title style={{}}>
-                                    <h6>Date of Joining: </h6>
-                                  </Card.Title>
-                                </Col>{" "}
-                                <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{}}>
-                                    {/* {getEmployeeDetails.dateOfJoining} */}
-                                    {doj1}
-                                  </Card.Text>
-                                </Col>
-                              </Row>
-                              <Row style={{ paddingBottom: 15 }}>
-                                <Col>
-                                  <Card.Text style={{}}>
-                                    <h6>Reporting Manager: </h6>
-                                  </Card.Text>
-                                </Col>{" "}
-                                <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{}}>
-                                    {getEmployeeDetails.reportingManager}
-                                  </Card.Text>
-                                </Col>
-                              </Row>
-                              <Row style={{ paddingBottom: 15 }}>
-                                <Col>
-                                  <Card.Text style={{}}>
-                                    <h6>Employment Type: </h6>
-                                  </Card.Text>
-                                </Col>{" "}
-                                <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{}}>
-                                    {getEmployeeDetails.employmentType}
-                                  </Card.Text>
-                                </Col>
-                              </Row>
-                              <Row style={{ paddingBottom: 10 }}>
-                                <Col>
-                                  <Card.Text style={{}}>
-                                    <h6>Band: </h6>
-                                  </Card.Text>
-                                </Col>{" "}
-                                <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{}}>
-                                    {getEmployeeDetails.band}
-                                  </Card.Text>
-                                </Col>
-                              </Row>
                               <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                   <Card.Text style={{}}>
@@ -373,12 +311,77 @@ const MyProfile = () => {
                                   </Card.Text>
                                 </Col>
                               </Row>
+                            </Card.Body></Col>
+                          <Col>
 
+                            <Row style={{  paddingTop: 65,
+                            paddingBottom: 15, }}>
+                              <Col>
+                                <Card.Title style={{}}>
+                                  <h6> Years of Experience:</h6>
+                                </Card.Title>
+                              </Col>{" "}
+                              <Col md={{ offset: 1 }}>
+                                <Card.Text style={{}}>
+                                  {getEmployeeDetails.yearsOfExperience}
+                                </Card.Text>
+                              </Col>
+                            </Row>
+                            <Row style={{ paddingBottom: 15 }}>
+                              <Col>
+                                <Card.Title style={{}}>
+                                  <h6>Date of Joining: </h6>
+                                </Card.Title>
+                              </Col>{" "}
+                              <Col md={{ offset: 1 }}>
+                                <Card.Text style={{}}>
+                                  {/* {getEmployeeDetails.dateOfJoining} */}
+                                  {doj1}
+                                </Card.Text>
+                              </Col>
+                            </Row>
+                            <Row style={{ paddingBottom: 15 }}>
+                              <Col>
+                                <Card.Text style={{}}>
+                                  <h6>Reporting Manager: </h6>
+                                </Card.Text>
+                              </Col>{" "}
+                              <Col md={{ offset: 1 }}>
+                                <Card.Text style={{}}>
+                                  {getEmployeeDetails.reportingManager}
+                                </Card.Text>
+                              </Col>
+                            </Row>
+                            <Row style={{ paddingBottom: 15 }}>
+                              <Col>
+                                <Card.Text style={{}}>
+                                  <h6>Employment Type: </h6>
+                                </Card.Text>
+                              </Col>{" "}
+                              <Col md={{ offset: 1 }}>
+                                <Card.Text style={{}}>
+                                  {getEmployeeDetails.employmentType}
+                                </Card.Text>
+                              </Col>
+                            </Row>
+                            <Row style={{ paddingBottom: 10 }}>
+                              <Col>
+                                <Card.Text style={{}}>
+                                  <h6>Band: </h6>
+                                </Card.Text>
+                              </Col>{" "}
+                              <Col md={{ offset: 1 }}>
+                                <Card.Text style={{}}>
+                                  {getEmployeeDetails.band}
+                                </Card.Text>
+                              </Col>
+                            </Row>
 
-                            </Card.Body>
                           </Col>
+
+
                         </Row>
-                      </Container>
+                    
                     </Card>
 
                   </Col>

@@ -145,6 +145,73 @@ function EmploymentDetailsTab() {
     const [projectName, setProjectName] = useState("");
 
     const [band, setBand] = useState("");
+
+    const [designations, setDesignations] = useState([]);
+    useEffect(() => {
+      axios
+        .get("/designation/getAllDesignations")
+        .then((response) => {
+          setDesignations(response.data);
+        })
+        .catch(() => {
+          toast.error("data is not getting");
+        });
+    }, []);
+    console.log(designations)
+  
+    const [departments, setDepartments] = useState([]);
+    useEffect(() => {
+      axios
+        .get("/dept/getAllDepartments")
+        .then((response) => {
+          setDepartments(response.data);
+        })
+        .catch(() => {
+          toast.error("data is not getting");
+        });
+  
+    }, []);
+    console.log(departments)
+
+    const [bands, setBands] = useState([]);
+    useEffect(() => {
+      axios
+        .get("/bands/getAllBands")
+        .then((response) => {
+          setBands(response.data.data);
+        })
+        .catch(() => {
+          toast.error("data is not getting");
+        });
+  
+    }, []);
+    console.log(bands)
+  
+    const [employmentTypes, setEmploymentTypes] = useState([]);
+    useEffect(() => {
+      axios
+        .get("/employmentType/getAllEmployments")
+        .then((response) => {
+            setEmploymentTypes(response.data.data);
+        })
+        .catch(() => {
+          toast.error("data is not getting");
+        });
+    }, []);
+    console.log(employmentTypes)
+
+    const [reportingManagers, setReportingMangers] = useState([]);
+    useEffect(() => {
+      axios
+        .get("/emp/getreportingmanager")
+        .then((response) => {
+            setReportingMangers(response.data.data);
+        })
+        .catch(() => {
+          toast.error("data is not getting");
+        });
+    }, []);
+    console.log(reportingManagers)
     
 
 
@@ -183,7 +250,7 @@ function EmploymentDetailsTab() {
 
         <div>
             <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 20, textAlign: "center" }}>
+                <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Employment Details
                 </Card.Title>
             </Card>
@@ -204,8 +271,6 @@ function EmploymentDetailsTab() {
                             name="primarySkills"
                             onChange={(e) =>
                                 setPrimarySkills(e.target.value)
-
-
                             }
                         ></Form.Control>
                     </Form.Group>
@@ -220,26 +285,30 @@ function EmploymentDetailsTab() {
                             name="secondarySkills"
                             onChange={(e) =>
                                 setSecondarySkills(e.target.value)
-
-
                             }
                         ></Form.Control>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Employment Type</Form.Label>
-                        <Form.Control
+                        <Form.Select
                             type="text"
-                            placeholder="Type of Employee"
+                            placeholder="Employment Type"
                             controlId="employmentType"
                             value={employmentType}
                             maxLength={15}
                             name="employmentType"
                             onChange={(e) =>
-                                setEmploymentType(e.target.value)
-
+                                setEmploymentType(e.target.value) 
 
                             }
-                        ></Form.Control>
+                        >
+                  {employmentTypes.map((em) => (
+                    <option value={em.employmentTypeName}>
+                        {em.employmentTypeName}
+                    </option>
+                  ))}
+
+                        </Form.Select>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Band</Form.Label>
@@ -252,30 +321,46 @@ function EmploymentDetailsTab() {
                             onChange={(event) => setBand(event.target.value)}
                         >
                             <option>Select</option>
-                            <option value="Band-1">Band-1</option>
-                            <option value="Band-2">Band-2</option>
-                            <option value="Band-3">Band-3</option>
+                  {bands.map((b) => (
+                    <option value={b.bandName}>
+                        {b.bandName}
+                    </option>
+                  ))}
                         </Form.Select>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Department</Form.Label>
-                        <Form.Control
+                        <Form.Select
                             type="text"
                             placeholder="Department Name"
                             controlId="departmentName"
                             value={departmentName}
                             maxLength={25}
                             name="departmentName"
-                            onChange={(e) =>
+                            onChange={(e) =>{
                                 setDepartmentName(e.target.value)
+                                axios
+                                .get(
+                                  `/designation/getDesignationByDepartment/${e.target.value}`
+                                )
+                                .then((response) => {
+                                  console.log(response.data);
+                                  setDesignations(response.data);
+                                });
 
-
-                            }
-                        ></Form.Control>
+                            }}
+                        >
+                             <option>Select </option>
+                  {departments.map((departmentss) => (
+                    <option value={departmentss.departmentName}>
+                      {departmentss.departmentName}
+                    </option>
+                  ))}
+                        </Form.Select>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Designation</Form.Label>
-                        <Form.Control
+                        <Form.Select
                             type="text"
                             placeholder="Designation Name"
                             controlId="designationName"
@@ -284,10 +369,15 @@ function EmploymentDetailsTab() {
                             name="designationName"
                             onChange={(e) =>
                                 setDesignationName(e.target.value)
-
-
                             }
-                        ></Form.Control>
+                        >
+                             <option>Select</option>
+                  {designations.map((designation) => (
+                    <option value={designation.designationName}>
+                        {designation.designationName}
+                    </option>
+                  ))}
+                        </Form.Select>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Reporting Manager *</Form.Label>
@@ -299,8 +389,12 @@ function EmploymentDetailsTab() {
                             }}
                         >
                             <option>Select </option>
-                            <option value="Revanth Kumar">Revanth Kumar</option>
-                            <option value="Revanth Kumar1">Revanth Kumar1</option>
+                            {reportingManagers.map((r) => (
+                    <option value={r.reportingmanager}>
+                        {r.reportingmanager}
+                    </option>
+                  ))}
+
                         </Form.Select>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -337,3 +431,4 @@ function EmploymentDetailsTab() {
     )
 }
 export default EmploymentDetailsTab;
+
