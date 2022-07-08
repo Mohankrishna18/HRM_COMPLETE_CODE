@@ -226,7 +226,7 @@ function EmployeeMasterCard() {
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{}}>
-                                        {employeedetails.project}
+                                        {employeedetails.projectName}
                                     </Card.Text>
                                 </Col>
                             </Row>

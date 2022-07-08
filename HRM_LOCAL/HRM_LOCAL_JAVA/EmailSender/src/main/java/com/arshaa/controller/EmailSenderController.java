@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.arshaa.common.EmployeeLogin;
+import com.arshaa.common.PreEmailModel;
 import com.arshaa.common.UserModel;
 import com.arshaa.common.Users;
 import com.arshaa.service.EmailSender;
@@ -34,8 +35,12 @@ public class EmailSenderController {
 	@PostMapping(value = "/sendmail")
 	public void send(@RequestBody UserModel model) throws AddressException, MessagingException, IOException {
 		emailSender.sendEmail(model.getName(), model.getUserName(), model.getEmail(), model.getPassword(),
-				model.getEmployeeId());
-		
+				model.getEmployeeId());		
+	}
+	
+	@PostMapping(value="/preSendMail")
+	public void send(@RequestBody PreEmailModel emailModel) throws AddressException, MessagingException, IOException{
+		emailSender.preMailSend(emailModel.getName(),emailModel.getEmail(),emailModel.getPassword());
 	}
 //	@PostMapping(value = "/sendmails")
 //	public void sent(@RequestBody UserModel model) throws AddressException, MessagingException, IOException {

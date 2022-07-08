@@ -358,7 +358,7 @@ const MyProfile = () => {
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                   <Card.Text style={{}}>
-                                    {getEmployeeDetails.project}
+                                    {getEmployeeDetails.projectName}
                                   </Card.Text>
                                 </Col>
                               </Row>

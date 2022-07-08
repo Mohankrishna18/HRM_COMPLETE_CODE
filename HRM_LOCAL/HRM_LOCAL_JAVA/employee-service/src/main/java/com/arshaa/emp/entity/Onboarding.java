@@ -78,7 +78,7 @@ public class Onboarding {
 //	@Temporal(TemporalType.TIMESTAMP)
 	//@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
 	//@JsonFormat(pattern = "dd-mm-yyyy")
-    private String dateOfJoining;
+    private Date dateOfJoining;
     //private Date approvedDate;
     //private Date rejectDate;
 	@Column
@@ -207,10 +207,10 @@ public class Onboarding {
 		this.updatedOn = updatedOn;
 	}
 
-	public String getDateOfJoining() {
+	public Date getDateOfJoining() {
 		return dateOfJoining;
 	}
-	public void setDateOfJoining(String dateOfJoining) {
+	public void setDateOfJoining(Date dateOfJoining) {
 		this.dateOfJoining = dateOfJoining;
 	}
 	public String getUpdatedBy() {
@@ -245,7 +245,7 @@ public class Onboarding {
 			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
 			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
 			String department, String reportingManager, String email, Date onboardDate, Date approvedDate,
-			Date rejectDate, Date updatedOn, String dateOfJoining, String updatedBy, String employmentType,
+			Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy, String employmentType,
 			String primarySkills, String secondarySkills, String projectName, String band) {
 
 		super();

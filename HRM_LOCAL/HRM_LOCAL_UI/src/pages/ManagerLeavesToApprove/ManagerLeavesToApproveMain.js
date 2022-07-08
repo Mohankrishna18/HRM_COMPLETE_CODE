@@ -2,11 +2,13 @@ import React from 'react';
 import ApproveLeaveTable from "./ManagerApproval";
 import EmployeeLeaveHistory from "../ManagerLeaveHistory/ManagerLeaveHistory";
 import { Row, Col, Card, Container } from 'react-bootstrap';
+import ManagerEmployeesLeavesWaitingForApproval from "./ManagerEmployeesLeavesWaitingForApproval";
 
 const ManagerLeavesToApproveMain = () => {
   return (
      <div style={{ paddingTop: '20px' }}>
-     <Card responsive className="scroll">
+    <Card className="scroll">
+     <Card>
        <Card.Header>
          <Card.Body>
            <Card.Title>Leaves Waiting For Approval</Card.Title>
@@ -16,7 +18,7 @@ const ManagerLeavesToApproveMain = () => {
            {/* <Container> */}
              <Row>
                <Col xs={12}>
-               <ApproveLeaveTable/>
+               <ManagerEmployeesLeavesWaitingForApproval/>
                </Col>
 
              </Row>
@@ -28,7 +30,7 @@ const ManagerLeavesToApproveMain = () => {
          </Card.Body>
        </Card.Header>
      </Card>
-     <Card responsive className="scroll">
+     <Card>
        <Card.Header>
          <Card.Body>
            <Card.Title>My Teams Leave History</Card.Title>
@@ -49,10 +51,11 @@ const ManagerLeavesToApproveMain = () => {
          </Card.Body>
        </Card.Header>
      </Card>
+     </Card>
 
    </div>
 
   )
 }
 
-export default ManagerLeavesToApproveMain
+export default ManagerLeavesToApproveMain;
