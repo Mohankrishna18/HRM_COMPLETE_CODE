@@ -38,7 +38,7 @@ public class EmployeeMaster {
 	private String designationName;
 //@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
 	@Column
-	private String dateOfJoining;
+	private Date dateOfJoining;
 	@Column
 	private String firstName;
 	@Column
@@ -193,11 +193,11 @@ public class EmployeeMaster {
 		this.designationName = designationName;
 	}
 
-	public String getDateOfJoining() {
+	public Date getDateOfJoining() {
 		return dateOfJoining;
 	}
 
-	public void setDateOfJoining(String dateOfJoining) {
+	public void setDateOfJoining(Date dateOfJoining) {
 		this.dateOfJoining = dateOfJoining;
 	}
 
@@ -261,8 +261,8 @@ public class EmployeeMaster {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setDateOfBirth(String string) {
+		this.dateOfBirth = string;
 	}
 
 	public String getBloodGroup() {

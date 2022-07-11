@@ -173,9 +173,9 @@ public class HolidayService {
 
 
 
-	int workDays = 1;
+	int workDays = 0;
 
-	if (startCal.getTimeInMillis() >= endCal.getTimeInMillis()) {
+	if (startCal.getTimeInMillis() > endCal.getTimeInMillis()) {
 	startCal.setTime(endDate);
 	endCal.setTime(startDate);
 	}
@@ -189,7 +189,7 @@ public class HolidayService {
 	++workDays;
 	}
 	startCal.add(Calendar.DAY_OF_MONTH, 1);
-	} while (startCal.getTimeInMillis() < endCal.getTimeInMillis()); //excluding end date
+	} while (startCal.getTimeInMillis() <= endCal.getTimeInMillis()); //excluding end date
 	//System.out.println(workDays);
 	return workDays;
 	}

@@ -8,14 +8,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.arshaa.entity.EmployeeLogin;
+import com.example.arshaa.entity.OnBoardingEmployeeLogin;
+import com.example.arshaa.model.PreOnboard;
 import com.example.arshaa.model.ResetPassword;
 import com.example.arshaa.model.Response;
 import com.example.arshaa.model.UserModel;
+import com.example.arshaa.repository.EmailRepository;
 import com.example.arshaa.repository.UserRepository;
 @Service
 public class UserService {
 	@Autowired(required=true)
 	private UserRepository repository;
+	
+	@Autowired(required=true)
+	private EmailRepository repo;
 
 	public ResponseEntity updatePasswordByUsername(ResetPassword reset) {
 		try {
@@ -109,4 +115,66 @@ public class UserService {
     	}
     	
     }
+    public void  addUsers(OnBoardingEmployeeLogin user) {
+    	try {
+    		//user.setFlag(true);
+			
+    		repo.save(user);
+    new ResponseEntity("User Added Successfully",HttpStatus.OK);
+    	}
+    	catch(Exception e)
+    	{
+    		    new ResponseEntity(e.getMessage(),HttpStatus.OK);
+    	}
+    	
+    }
+    
+    
+    public  ResponseEntity<PreOnboard> getUsersByEmailId(String email, String password) {
+		Response<PreOnboard> response=new Response<PreOnboard>();
+    	//List<User> dataUser=userRepo.findAll();
+		PreOnboard um=new PreOnboard();
+		try {
+		Optional<OnBoardingEmployeeLogin> user=repo.getByEmail(email);
+
+    	if(user.isPresent())
+    	{    	    	
+    		if(user.get().getPassword().equals(password))
+    		{
+ 
+    			response.setStatus(true);
+    			response.setMessage("Login Success");
+    		    if(response.isStatus()==true)
+        		{
+        			OnBoardingEmployeeLogin u=repo.getById(user.get().getOnboardingemployeeloginId());
+        	        um.setUserType(u.getUserType());
+        	        um.setEmail(u.getEmail());
+        	        um.setOnboardingId(u.getOnboardingId());
+        			    		}
+    		        		    response.setData(um);
+    	        return new ResponseEntity(response,HttpStatus.OK);
+    		}
+    		
+    		else {
+    			response.setStatus(false);
+    	    	response.setMessage("Invalid Mail or Password");
+    	        return new ResponseEntity(response,HttpStatus.OK);
+    		}
+    		
+    	}
+    	else {
+    		response.setStatus(false);
+    		response.setMessage("Enter valid emailId");
+	        return new ResponseEntity(response,HttpStatus.OK);
+    	}
+		}
+		catch(Exception e)
+		{
+			response.setStatus(false);
+			response.setMessage("Something went wrong please try again");
+	        return new ResponseEntity(response,HttpStatus.OK);
+		}
+    }
+
+   
 }
