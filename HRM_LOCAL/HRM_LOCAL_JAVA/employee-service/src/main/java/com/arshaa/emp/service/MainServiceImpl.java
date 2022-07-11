@@ -322,6 +322,28 @@ public class MainServiceImpl implements MainService {
 
 	}
 
+	
+	public ResponseEntity getOnboardingDataByOnboardingId(String onboardingId) {
+		Response r = new Response<>();
+		try {
+			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+			if (!getOnboarding.equals(null)) {
+				r.setStatus(true);
+				r.setMessage(sConstants.GET_RESPONSE);
+				r.setData(getOnboarding);
+				return new ResponseEntity(r, HttpStatus.OK);
+			} else {
+				r.setStatus(false);
+				r.setMessage(sConstants.INVALID_DATA + onboardingId);
+				return new ResponseEntity(r, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			r.setStatus(false);
+			r.setMessage(sConstants.FAILURE_RESPONSE);
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
+	
 	public ResponseEntity getEmployeeDataByEmployeeId(String employeeId) {
 		Response r = new Response<>();
 		try {
@@ -1393,5 +1415,3 @@ public class MainServiceImpl implements MainService {
 			}
 		}
 }
-
-

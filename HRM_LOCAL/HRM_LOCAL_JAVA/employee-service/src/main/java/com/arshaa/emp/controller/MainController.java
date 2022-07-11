@@ -78,8 +78,15 @@ public class MainController {
 // @PostMapping("/createNewPotentialEmployee")
 // public void addEmployee(@RequestBody EmployeeMaster newEmployee)
 // {
-// emRepo.save(newEmployee);
+// emRepo.save(newEmployee); 
 // }
+	
+	//getting onboarded employee details for pre onboarding
+	@GetMapping("/getEmployeeDataByOnboardingId/{onboardingId}")
+	public ResponseEntity getOnboardingDataByOnboardingId(@PathVariable String onboardingId) {
+		return serv.getOnboardingDataByOnboardingId(onboardingId);
+	}
+	
 	@GetMapping("/getEmployeeDataByEmployeeId/{employeeId}")
 	public ResponseEntity getEmployeeDataByEmployeeId(@PathVariable String employeeId) {
 		return serv.getEmployeeDataByEmployeeId(employeeId);
@@ -343,3 +350,4 @@ public class MainController {
 
 		
 }
+

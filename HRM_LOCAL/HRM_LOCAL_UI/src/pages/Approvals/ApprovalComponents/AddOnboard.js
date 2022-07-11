@@ -52,7 +52,7 @@ function AddOnboard(props) {
       reportingManager,
       client,
       projectName,
-
+      band,
     } = form;
     const newErrors = {};
 
@@ -138,11 +138,11 @@ function AddOnboard(props) {
         console.log(response.data);
         setDesignations(response.data);
       })
-      .catch(() => {
-        toast.error("data is not getting");
-      });
+      // .catch(() => {
+      //   toast.error("data is not getting");
+      // });
   }, []);
-  
+
   const [departments, setDepartments] = useState([]);
   useEffect(() => {
     axios
@@ -150,25 +150,53 @@ function AddOnboard(props) {
       .then((response) => {
         setDepartments(response.data);
       })
-      .catch(() => {
-        toast.error("Data is not getting");
-      });
+      // .catch(() => {
+      //   toast.error("Data is not getting");
+      // });
     // console.log(departments)
   }, []);
 
-
-
   const [reportingManager, setReportingManager] = useState([]);
   useEffect(() => {
-    axios.get("/emp/getreportingmanager")
-    .then((response) => {
-      console.log(response.data);
-      setReportingManager(response.data.data);
-    })
-    .catch(() => {
-      toast.error("data is not getting");
-    });
+    axios
+      .get("/emp/getreportingmanager")
+      .then((response) => {
+        console.log(response.data);
+        setReportingManager(response.data.data);
+      })
   }, []);
+
+  const [bands, setBands] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/bands/getAllBands")
+      .then((response) => {
+        console.log(response.data);
+        setBands(response.data.data);
+      })
+  }, []);
+
+  const [client, setClient] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/clientProjectMapping/getAllClients")
+      .then((response) => {
+        console.log(response.data);
+        setClient(response.data.data);
+      })
+  }, []);
+
+  const [project, setProject] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/clientProjectMapping/getAllProjects")
+      .then((response) => {
+        console.log(response.data);
+        setProject(response.data.data);
+      })
+  }, []);
+
+
 
   return (
     <div>
@@ -469,7 +497,66 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
                   {errors.secondarySkills}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+              
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select Reporting Manager *</Form.Label>
+                <Form.Select
+                  placeholder="select Gender"
+                  value={form.reportingManager}
+                  Select
+                  onChange={(e) => setField("reportingManager", e.target.value)}
+                >
+                  <option>Select </option>
+                  {reportingManager.map((reportingManagerr) => (
+                    <option>{reportingManagerr.reportingmanager}</option>
+                  ))}
+                </Form.Select>
+              </Form.Group>
+
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                    <Form.Label>Assign Band *</Form.Label>
+                    <Form.Select
+                      type="text"
+                      placeholder="Band"
+                      controlId="band"
+                      name="band"
+                      value={form.band}
+                      onChange={(e) => setField("band", e.target.value)}
+                    >
+                      {/* <option>Select</option>
+                      <option value="Band-1">Band-1</option>
+                      <option value="Band-2">Band-2</option>
+                      <option value="Band-3">Band-3</option> */}
+                       <option>Select </option>
+                  {bands.map((bandss) => (
+                    <option>{bandss.bandName}</option>
+                  ))}
+                    </Form.Select>
+                  </Form.Group>
+
+              {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select Band *</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="Band"
+                  controlId="band"
+                  value={form.band}
+                  onChange={(e) => setField("band", e.target.value)}
+                  
+                >
+                  <option>Select</option>
+                  {band.map((bandss) => (
+                    <option>{bandss.band}</option>
+                  ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.band}
+                </Form.Control.Feedback>
+
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group> */}
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Job Title *</Form.Label>
                 <Form.Control
                   name="jobTitle"
@@ -486,28 +573,6 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Reporting Manager *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="Reporting Manager"
-                  controlId="reportingManager"
-                  value={form.reportingManager}
-                  onChange={(e) => setField("reportingManager", e.target.value)}
-                  isInvalid={!!errors.reportingManager}
-                >
-                  <option>Select</option>
-                  {reportingManager.map((reportingManagerr) => (
-                    <option>{reportingManagerr.reportingManager}</option>
-                  ))}
-                </Form.Select>
-                <Form.Control.Feedback type="invalid">
-                  {errors.reportingManager}
-                </Form.Control.Feedback>
-
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Select Client *</Form.Label>
                 <Form.Select
                   required
@@ -518,10 +583,10 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
                   onChange={(e) => setField("client", e.target.value)}
                   isInvalid={!!errors.client}
                 >
-                  <option>Select</option>
-                  <option value="Chenna Reddy">Chenna Reddy</option>
-                  <option value="Raju">Raju</option>
-                  <option value="Abhi">Abhi</option>
+                  <option>Select </option>
+                  {client.map((clients) => (
+                    <option>{clients.clientName}</option>
+                  ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.client}
@@ -539,10 +604,10 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
                   onChange={(e) => setField("projectName", e.target.value)}
                   isInvalid={!!errors.projectName}
                 >
-                  <option>Select</option>
-                  <option value="HRM">HRM</option>
-                  <option value="DEP">DEP</option>
-                  <option value="MDM">MDM</option>
+                  <option>Select </option>
+                  {project.map((projects) => (
+                    <option>{projects.projectName}</option>
+                  ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.projectName}
