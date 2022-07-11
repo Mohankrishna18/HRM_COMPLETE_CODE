@@ -1,3 +1,4 @@
+
 package com.arshaa.emp.model;
 
 import javax.persistence.Column;

@@ -1119,6 +1119,279 @@ public class MainServiceImpl implements MainService {
 			return new ResponseEntity(r,HttpStatus.OK);
 		}
 	}
+	
+	//PreOnboarding Form edit my profile by an employee updating form API calls
+	
+		@Override
+		public ResponseEntity updatePersonalDetailsByOnboardId(PersonalDetails pd, String onboardingId) {
+				Response r = new Response<>();
+			try {
+				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+				
+				if(!getOnboarding.equals(null))
+				{
+					
+					getOnboarding.setBloodGroup(pd.getBloodGroup());
+					getOnboarding.setDateOfBirth(pd.getDateOfBirth());
+					getOnboarding.setEmail(pd.getEmail());
+					getOnboarding.setFirstName(pd.getFirstName());
+					getOnboarding.setGender(pd.getGender());
+					getOnboarding.setLastName(pd.getLastName());
+					getOnboarding.setMiddleName(pd.getMiddleName());
+					getOnboarding.setMaritalStatus(pd.getMaritalStatus());
+					getOnboarding.setPhoneNumber(pd.getPrimaryPhoneNumber());
+					getOnboarding.setSecondaryPhoneNumber(pd.getSecondaryPhoneNumber());
+					getOnboarding.setPrimarySkills(pd.getPrimarySkills());
+					getOnboarding.setSecondarySkills(pd.getSecondarySkills());
+					
+					onRepo.save(getOnboarding);
+					r.setStatus(true);
+					r.setMessage("Data Fetching");
+					r.setData(getOnboarding);
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+				else {
+					r.setStatus(false);
+					r.setMessage("Data Not updated");
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+			}
+			catch(Exception e)
+			{
+				r.setStatus(false);
+				r.setMessage("Something went wrong");
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+			}
+		
+		@Override
+		public ResponseEntity updateAddressByOnboardId(Address ad, String onboardingId) {
+			Response r = new Response<>();
+			try {
+				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+				if(!getOnboarding.equals(null))
+				{
+					String state = "20%";
+					getOnboarding.setStatus(state);
+					getOnboarding.setPermanentAdress(ad.getPermanentAdress());
+					getOnboarding.setPermanentCountry(ad.getPermanentCountry());
+					getOnboarding.setPermanentPincode(ad.getPermanentPincode());
+					getOnboarding.setPermanentState(ad.getPermanentState());
+					getOnboarding.setCurrentAdress(ad.getCurrentAdress());
+					getOnboarding.setCurrentCountry(ad.getCurrentCountry());
+					getOnboarding.setCurrentPincode(ad.getCurrentPincode());
+					getOnboarding.setCurrentState(ad.getCurrentState());
+					
+					onRepo.save(getOnboarding);
+					r.setStatus(true);
+					r.setMessage("Data Fetching");
+					r.setData(getOnboarding);
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+				else {
+					r.setStatus(false);
+					r.setMessage("Data Not updated");
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+			}
+			catch(Exception e)
+			{
+				r.setStatus(false);
+				r.setMessage("Something went wrong");
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+		}
+		
+		
+		@Override
+		public ResponseEntity updateAdditionalDetailsByOnboardId(AdditionalDetails add, String onboardingId) {
+			Response r = new Response<>();
+			try {
+				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+				if(!getOnboarding.equals(null))
+				{
+					String state = "40%";
+					getOnboarding.setStatus(state);
+					getOnboarding.setPassportNo(add.getPassportNo());
+					getOnboarding.setPassportExpiryDate(add.getPassportExpiryDate());
+					getOnboarding.setPanNumber(add.getPanNumber());
+					getOnboarding.setAadharNumber(add.getAadharNumber());
+					getOnboarding.setUanNumber(add.getUanNumber());
+					getOnboarding.setBankName(add.getBankName());
+					getOnboarding.setAccountNumber(add.getAccountNumber());
+					getOnboarding.setIfscCode(add.getIfscCode());
+					getOnboarding.setBranch(add.getBranch());
+					onRepo.save(getOnboarding);
+					r.setStatus(true);
+					r.setMessage("Data Fetching");
+					r.setData(getOnboarding);
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+				else {
+					r.setStatus(false);
+					r.setMessage("Data Not updated");
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+			}
+			catch(Exception e)
+			{
+				r.setStatus(false);
+				r.setMessage("Something went wrong");
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+	}
+
+	//
+//		@Override
+//		public ResponseEntity updateEmploymentDetailsByOnboardId(EmploymentDetails empd, String onboardingId) {
+//			Response r = new Response<>();
+//			try {
+//				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+//				if(!getOnboarding.equals(null))
+//				{
+//					getOnboarding.setPrimarySkills(empd.getPrimarySkills());
+//					getOnboarding.setSecondarySkills(empd.getSecondarySkills());
+//					getOnboarding.setEmploymentType(empd.getEmploymentType());
+//					getOnboarding.setBand(empd.getBand());
+//					getOnboarding.setDepartment(empd.getDepartmentName());
+//					getOnboarding.setDesignation(empd.getDesignationName());
+//					getOnboarding.setReportingManager(empd.getReportingManager());
+//					getOnboarding.setProjectName(empd.getProjectName());
+//					onRepo.save(getOnboarding);
+//					r.setStatus(true);
+//					r.setMessage("Data Fetching");
+//					r.setData(getOnboarding);
+//					return new ResponseEntity(r,HttpStatus.OK);
+//				}
+//				else {
+//					r.setStatus(false);
+//					r.setMessage("Data Not updated");
+//					return new ResponseEntity(r,HttpStatus.OK);
+//				}
+//			}
+//			catch(Exception e)
+//			{
+//				r.setStatus(false);
+//				r.setMessage("Something went wrong");
+//				return new ResponseEntity(r,HttpStatus.OK);
+//			}
+//		}
+
+		
+
+		@Override
+		public ResponseEntity updateEducationalDetailsByOnboardId(EducationalDetails education, String onboardingId) {
+			Response r = new Response<>();
+		try {
+			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+			if(!getOnboarding.equals(null))
+			{
+				String state = "80%";
+				getOnboarding.setStatus(state);
+				getOnboarding.setPostgraduationType(education.getPostgraduationType());
+				getOnboarding.setPostgraduationBoardOfUniversity(education.getPostgraduationBoardOfUniversity());
+				getOnboarding.setPostgraduationInstituteName(education.getPostgraduationInstituteName());
+				getOnboarding.setPostgraduationInstituteCity(education.getPostgraduationInstituteCity());
+				getOnboarding.setPostgraduationCourseName(education.getPostgraduationCourseName());
+				getOnboarding.setPostgraduationJoiningYear(education.getPostgraduationJoiningYear());
+				getOnboarding.setPostgraduationPassedYear(education.getPostgraduationPassedYear());
+				getOnboarding.setPostgraduationGrade(education.getPostgraduationGrade());
+				getOnboarding.setGraduationType(education.getGraduationType());
+				getOnboarding.setGraduationBoardOfUniversity(education.getGraduationBoardOfUniversity());
+				getOnboarding.setGraduationInstituteName(education.getGraduationInstituteName());
+				getOnboarding.setGraduationInstituteCity(education.getGraduationInstituteCity());
+				getOnboarding.setGraduationCourseName(education.getGraduationCourseName());
+				getOnboarding.setGraduationGrade(education.getGraduationGrade());
+				getOnboarding.setGraduationJoiningYear(education.getGraduationJoiningYear());
+				getOnboarding.setGraduationPassedYear(education.getGraduationPassedYear());
+				getOnboarding.setIntermediateBoardOfUniversity(education.getIntermediateBoardOfUniversity());
+				getOnboarding.setIntermediateCollegeName(education.getIntermediateCollegeName());
+				getOnboarding.setIntermediateCollegeCity(education.getIntermediateCollegeCity());
+				getOnboarding.setIntermediateCourseName(education.getIntermediateCourseName());
+				getOnboarding.setIntermediateJoiningYear(education.getIntermediateJoiningYear());
+				getOnboarding.setIntermediatePassedYear(education.getIntermediatePassedYear());
+				getOnboarding.setIntermediateGrade(education.getIntermediateGrade());
+				getOnboarding.setSscBoardOfUniversity(education.getSscBoardOfUniversity());
+				getOnboarding.setSscSchoolName(education.getSscSchoolName());
+				getOnboarding.setSscSchoolCity(education.getSscSchoolCity());
+				getOnboarding.setSscCourseName(education.getSscCourseName());
+				getOnboarding.setSscJoiningYear(education.getSscJoiningYear());
+				getOnboarding.setSscPassedYear(education.getSscPassedYear());
+				getOnboarding.setSscGrade(education.getSscGrade());
+				onRepo.save(getOnboarding);
+				r.setStatus(true);
+				r.setMessage("Data Fetching");
+				r.setData(getOnboarding);
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+			else {
+				r.setStatus(false);
+				r.setMessage("Data Not updated");
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+		}
+		catch(Exception e)
+		{
+			r.setStatus(false);
+			r.setMessage("Something went wrong");
+			return new ResponseEntity(r,HttpStatus.OK);
+		}
+		}
+
+		
+		@Override
+		public ResponseEntity updateExperienceByOnboardId(Experience exp, String onboardingId) {
+			Response r = new Response<>();
+			try {
+				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+				if(!getOnboarding.equals(null))
+				{
+					String state = "100%";
+					getOnboarding.setStatus(state);
+					getOnboarding.setPreviousCompany1_name(exp.getPreviousCompany1_name());
+					getOnboarding.setPreviousCompany1_designation(exp.getPreviousCompany1_designation());
+					getOnboarding.setPreviousCompany1_joiningDate(exp.getPreviousCompany1_joiningDate());
+					getOnboarding.setPreviousCompany1_relievingDate(exp.getPreviousCompany1_relievingDate());
+					getOnboarding.setPreviousCompany1_employeeId(exp.getPreviousCompany1_employeeId());
+					getOnboarding.setPreviousCompany1_grossSalary(exp.getPreviousCompany1_grossSalary());
+					getOnboarding.setPreviousCompany1_typeOfEmployment(exp.getPreviousCompany1_typeOfEmployment());
+					getOnboarding.setPreviousCompany1_reasonForRelieving(exp.getPreviousCompany1_reasonForRelieving());
+					getOnboarding.setPreviousCompany2_name(exp.getPreviousCompany2_name());
+					getOnboarding.setPreviousCompany2_designation(exp.getPreviousCompany2_designation());
+					getOnboarding.setPreviousCompany2_joiningDate(exp.getPreviousCompany2_joiningDate());
+					getOnboarding.setPreviousCompany2_relievingDate(exp.getPreviousCompany2_relievingDate());
+					getOnboarding.setPreviousCompany2_employeeId(exp.getPreviousCompany2_employeeId());
+					getOnboarding.setPreviousCompany2_grossSalary(exp.getPreviousCompany2_grossSalary());
+					getOnboarding.setPreviousCompany2_typeOfEmployment(exp.getPreviousCompany2_typeOfEmployment());
+					getOnboarding.setPreviousCompany2_reasonForRelieving(exp.getPreviousCompany2_reasonForRelieving());
+					getOnboarding.setPreviousCompany3_name(exp.getPreviousCompany3_name());
+					getOnboarding.setPreviousCompany3_designation(exp.getPreviousCompany3_designation());
+					getOnboarding.setPreviousCompany3_joiningDate(exp.getPreviousCompany3_joiningDate());
+					getOnboarding.setPreviousCompany3_relievingDate(exp.getPreviousCompany3_relievingDate());
+					getOnboarding.setPreviousCompany3_employeeId(exp.getPreviousCompany3_employeeId());
+					getOnboarding.setPreviousCompany3_grossSalary(exp.getPreviousCompany3_grossSalary());
+					getOnboarding.setPreviousCompany3_typeOfEmployment(exp.getPreviousCompany3_typeOfEmployment());
+					getOnboarding.setPreviousCompany3_reasonForRelieving(exp.getPreviousCompany3_reasonForRelieving());
+					
+					onRepo.save(getOnboarding);
+					r.setStatus(true);
+					r.setMessage("Data Fetching");
+					r.setData(getOnboarding);
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+				else {
+					r.setStatus(false);
+					r.setMessage("Data Not updated");
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+			}
+			catch(Exception e)
+			{
+				r.setStatus(false);
+				r.setMessage("Something went wrong");
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+		}
 }
 
 

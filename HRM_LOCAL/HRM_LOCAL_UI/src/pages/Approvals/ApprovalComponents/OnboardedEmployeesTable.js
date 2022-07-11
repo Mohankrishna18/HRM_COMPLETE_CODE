@@ -682,7 +682,13 @@ import { BsFillEyeFill } from "react-icons/bs";
 import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
 import ApprovalUpdateForm from "./ApprovalUpdateForm";
 import AddOnboard from "./AddOnboard";
-import ApprovalView from "./ApprovalView";
+import { Tab, Tabs } from "react-bootstrap";
+import AditionalDetailsTab from "./AdditionalDetailsTab";
+import AddressTab from "./AddressTab";
+import EducationalDetailsTab from "./EducationalDetailsTab";
+import ExperienceTab from "./ExperienceTab";
+import PersonalDetailsTab from "./PersonalDetailsTab";
+// import ApprovalView from "./ApprovalView";
 
 function OnboardedEmployeesTable() {
   const [show, setShow] = useState(false);
@@ -708,12 +714,11 @@ function OnboardedEmployeesTable() {
 
   const pull_dataUpdate = () => {
     setUpdateStatus(!updateStatus);
-    
   };
 
   useEffect(() => {
     loadData();
-  }, [addStatus,updateStatus]);
+  }, [addStatus, updateStatus]);
   // useEffect(() => {
   //   loadData();
   // }, [viewStatus]);
@@ -766,6 +771,10 @@ function OnboardedEmployeesTable() {
       title: "Experience",
       field: "yearsOfExperience",
     },
+    {
+      title: "Status",
+      field: "status",
+    },
   ]);
 
   return (
@@ -795,11 +804,69 @@ function OnboardedEmployeesTable() {
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ApprovalView
+          {/* <ApprovalView
             viewOnboard={viewOnboard}
             // func={pull_data}
             viewHandleClose={viewHandleClose}
-          />
+          /> */}
+
+          <Tabs
+            defaultActiveKey="Personal Details"
+            transition={false}
+            id="noanim-tab-example"
+            className="mb-3"
+            style={{
+              justifyContent: "center",
+              color: "white",
+              backgroundColor: "white",
+              fontSize: "16px",
+              padding: 10,
+            }}
+          >
+            <Tab
+              eventKey="Personal Details"
+              title="Personal Details"
+              style={{ backgroundColor: "white" }}
+            >
+              <PersonalDetailsTab viewOnboard={viewOnboard} viewHandleClose={viewHandleClose}/>
+            </Tab>
+            <Tab
+              eventKey="Address"
+              title="Address"
+              style={{ backgroundColor: "white" }}
+            >
+              <AddressTab viewOnboard={viewOnboard} viewHandleClose={viewHandleClose}/>
+            </Tab>
+            <Tab
+              eventKey="Additional Details"
+              title="Additional Details"
+              style={{ backgroundColor: "white" }}
+            >
+              <AditionalDetailsTab viewOnboard={viewOnboard} viewHandleClose={viewHandleClose}/>
+            </Tab>
+            {/* <Tab
+              eventKey="Employment Details"
+              title="Employment Details"
+              style={{ backgroundColor: "white" }}
+            >
+              <EmploymentDetailsTab viewOnboard={viewOnboard} viewHandleClose={viewHandleClose}/>
+            </Tab> */}
+            <Tab
+              eventKey="Education"
+              title="Education"
+              style={{ backgroundColor: "white" }}
+            >
+              <EducationalDetailsTab viewOnboard={viewOnboard} viewHandleClose={viewHandleClose}/>
+            </Tab>
+            <Tab
+              eventKey="Experience"
+              title="Experience "
+              style={{ backgroundColor: "white" }}
+            >
+              <ExperienceTab viewOnboard={viewOnboard} viewHandleClose={viewHandleClose}/>
+            </Tab>
+           
+          </Tabs>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={viewHandleClose}>
@@ -819,16 +886,7 @@ function OnboardedEmployeesTable() {
           paddingBottom: "10px",
         }}
       >
-        {/* <Row>
-          <Col>
-        <h3>
-        Onboarded Shortlisted Candidates
-        </h3>
-        </Col>
-        <Col>
-        <AddOnboard func={pull_data} />
-        </Col>
-        </Row> */}
+        
         <Card.Body>
           <Row>
             <Col>
@@ -873,7 +931,7 @@ function OnboardedEmployeesTable() {
             components={{
               Action: (props) => (
                 <div>
-                  <Stack direction="horizontal" gap={3}>
+                  {props.data.status == "80%" ? (<Stack direction="horizontal" gap={3}>
                     <Button
                       variant="info"
                       onClick={(event) => {
@@ -882,19 +940,9 @@ function OnboardedEmployeesTable() {
                         setUpdateOnboard(props.data);
                       }}
                     >
-                      {/* Edit */}
                       <FiEdit />
                     </Button>{" "}
-                    {/* <Button
-                      variant="secondary"
-                      onClick={(event) => {
-                        setViewShow(true);
-                        console.log(props);
-                        setDeleteClient(props.data);
-                      }}
-                    >
-                      Delete
-                    </Button> */}
+                    
                     <Button
                       variant="primary"
                       onClick={(event) => {
@@ -905,7 +953,18 @@ function OnboardedEmployeesTable() {
                     >
                       <BsFillEyeFill />
                     </Button>
-                  </Stack>
+                  </Stack>):
+                  ( <Button
+                    variant="primary"
+                    onClick={(event) => {
+                      setViewShow(true);
+                      console.log(props);
+                      setViewOnboard(props.data);
+                    }}
+                  >
+                    <BsFillEyeFill />
+                  </Button>)}
+                  
                 </div>
               ),
             }}

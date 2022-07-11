@@ -53,6 +53,21 @@ public interface MainService {
     
     public ResponseEntity getExperienceByEmployeeId(String employeeId);
     public ResponseEntity updateExperienceByEmployeeId(Experience exp,String employeeId);
+    
+    
+    //Onboarding Update methods
+    public ResponseEntity updatePersonalDetailsByOnboardId(PersonalDetails pd,String onboardingId);
+    
+   
+    public ResponseEntity updateAddressByOnboardId(Address ad,String onboardingId);
+   
+    public ResponseEntity updateAdditionalDetailsByOnboardId(AdditionalDetails add,String onboardingId);
+
+//    public ResponseEntity updateEmploymentDetailsByOnboardId(EmploymentDetails empd,String onboardingId);
+    
+    public ResponseEntity updateEducationalDetailsByOnboardId(EducationalDetails education,String onboardingId);
+  
+    public ResponseEntity updateExperienceByOnboardId(Experience exp,String onboardingId);
 
 
 }
