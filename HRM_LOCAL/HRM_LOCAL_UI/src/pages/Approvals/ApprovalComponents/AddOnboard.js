@@ -12,7 +12,6 @@ import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
 function AddOnboard(props) {
-  
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -50,6 +49,10 @@ function AddOnboard(props) {
       primarySkills,
       secondarySkills,
       jobTitle,
+      reportingManager,
+      client,
+      projectName,
+
     } = form;
     const newErrors = {};
 
@@ -86,14 +89,18 @@ function AddOnboard(props) {
       newErrors.secondarySkills = "Please Enter Secondary Skills";
     if (!jobTitle || jobTitle === "")
       newErrors.jobTitle = "Please Enter type of Job Title";
-
+    if (!reportingManager || reportingManager === "")
+      newErrors.designation = "Please Select ReportingManager";
+    if (!client || client === "") newErrors.client = "Please Select Client";
+    if (!projectName || projectName === "")
+      newErrors.projectName = "Please Select ProjectName";
     return newErrors;
   };
   //testing for commit
   const [user, setUser] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // e.target.reset();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
@@ -105,11 +112,9 @@ function AddOnboard(props) {
         .post("/emp/createNewPotentialEmployee", form)
         .then((response) => {
           const user = response.data;
-          if(user.status){
+          if (user.status) {
             props.func();
-          
-          }
-          else{
+          } else {
             console.log("Props Not Send");
           }
           toast.success("Employee Onboarded Successfully");
@@ -137,7 +142,7 @@ function AddOnboard(props) {
         toast.error("data is not getting");
       });
   }, []);
-
+  
   const [departments, setDepartments] = useState([]);
   useEffect(() => {
     axios
@@ -149,6 +154,20 @@ function AddOnboard(props) {
         toast.error("Data is not getting");
       });
     // console.log(departments)
+  }, []);
+
+
+
+  const [reportingManager, setReportingManager] = useState([]);
+  useEffect(() => {
+    axios.get("/emp/getreportingmanager")
+    .then((response) => {
+      console.log(response.data);
+      setReportingManager(response.data.data);
+    })
+    .catch(() => {
+      toast.error("data is not getting");
+    });
   }, []);
 
   return (
@@ -464,6 +483,69 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {errors.jobTitle}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Reporting Manager *</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="Reporting Manager"
+                  controlId="reportingManager"
+                  value={form.reportingManager}
+                  onChange={(e) => setField("reportingManager", e.target.value)}
+                  isInvalid={!!errors.reportingManager}
+                >
+                  <option>Select</option>
+                  {reportingManager.map((reportingManagerr) => (
+                    <option>{reportingManagerr.reportingManager}</option>
+                  ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.reportingManager}
+                </Form.Control.Feedback>
+
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select Client *</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="client"
+                  controlId="client"
+                  value={form.client}
+                  onChange={(e) => setField("client", e.target.value)}
+                  isInvalid={!!errors.client}
+                >
+                  <option>Select</option>
+                  <option value="Chenna Reddy">Chenna Reddy</option>
+                  <option value="Raju">Raju</option>
+                  <option value="Abhi">Abhi</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.client}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select Project *</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="projectName"
+                  controlId="projectName"
+                  value={form.projectName}
+                  onChange={(e) => setField("projectName", e.target.value)}
+                  isInvalid={!!errors.projectName}
+                >
+                  <option>Select</option>
+                  <option value="HRM">HRM</option>
+                  <option value="DEP">DEP</option>
+                  <option value="MDM">MDM</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.projectName}
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>

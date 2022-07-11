@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.arshaa.entity.EmployeeLogin;
+import com.example.arshaa.entity.OnBoardingEmployeeLogin;
+import com.example.arshaa.model.PreOnboard;
 import com.example.arshaa.model.ResetPassword;
 import com.example.arshaa.model.Response;
 import com.example.arshaa.model.UserModel;
@@ -45,10 +47,20 @@ public class LoginController
 		 service.saveUsers(user);
     }
 	
+	@PostMapping("/addUsersForPreOnboard")
+    private void addUsers(@RequestBody OnBoardingEmployeeLogin user) {
+    	    
+		 service.addUsers(user);
+    }
 	@GetMapping("/authenticateUser")
 	public ResponseEntity<UserModel> getUsersByEmailId(@RequestParam String employeeId,@RequestParam String password) {
             return service.getUsersByEmployeeId(employeeId, password);
     }
+	
+	@GetMapping("/preonboadreduserAuthenticate")
+    public  ResponseEntity<PreOnboard> getUsersByEmailIdAndPassword(@RequestParam String email,@RequestParam String password) {
+		return service.getUsersByEmailId(email, password);
+	}
 	
 	@PutMapping("/resetPassword")
 	public ResponseEntity updatePasswordByUsername(@RequestBody ResetPassword reset) {
