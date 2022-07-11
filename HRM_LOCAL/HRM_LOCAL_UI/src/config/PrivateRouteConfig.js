@@ -60,6 +60,8 @@ import OnboardedEmployeesTable from "../pages/Approvals/ApprovalComponents/Onboa
 import ClientMain from "../pages/Client/ClientMain";
 import ProjectsMain from "../pages/Projects/ProjectsMain";
 
+import HrLeavesToApproveMain from "../pages/HrLeavesToApprove/HrLeavesToApproveMain";
+
 export default [
   {
     component: MyProfileMain,
@@ -179,8 +181,8 @@ export default [
   //   ],
   // },
   {
-    component: LeaveToApprove,
-    path: "/LeaveToApprove",
+    component: HrLeavesToApproveMain,
+    path: "/HrLeavesToApprove",
     icon: <FcOvertime />,
     title: "Leaves Waiting For Approval",
     permission: [Roles.hradmin],
@@ -287,7 +289,7 @@ export default [
     component: RejectedEmployees,
     path: "/LeaveManagement",
     icon: <FcOvertime />,
-    title: "Rejected Employees Leaves History",
+    title: "Employees Rejected Leaves History",
     permission: [Roles.hradmin],
   },
 
