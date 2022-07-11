@@ -14,6 +14,7 @@ public class PreOnboard {
 		this.userType = userType;
 	}
 
+	
 	public String getEmail() {
 		return email;
 	}

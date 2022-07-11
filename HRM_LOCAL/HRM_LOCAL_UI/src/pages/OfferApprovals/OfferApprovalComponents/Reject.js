@@ -9,7 +9,6 @@ const Reject = (props) => {
   const [onhold, setOnhold] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-
   const handleClose = () => setOnhold(false);
   const handleShow = () => setOnhold(true);
 
@@ -23,15 +22,18 @@ const Reject = (props) => {
   };
 
   let onboardingid = props.onboardingid;
-
   console.log(onboardingid);
   const obj = { rejectedStatus: true };
+  console.log(form);
+  console.log(obj);
 
-  const ApproveHandler = () => {
-    handleClose;
+  const ApproveHandler = (e) => {
+    e.preventDefault();
     console.log(onboardingid);
     const form1 = Object.assign(form, obj);
+    console.log(form1);
     axios.put(`/emp/updateApprovStatus/${onboardingid}`, form1);
+    handleClose();
   };
 
   return (
@@ -49,7 +51,7 @@ const Reject = (props) => {
 
           <Modal show={onhold} onHide={handleClose} centered>
             <Modal.Header closeButton>
-              <Modal.Title>Reject</Modal.Title>
+              <Modal.Title>Approve and Assign Reporting Manager</Modal.Title>
             </Modal.Header>
             <Modal.Body>
               <Form role="form">
@@ -58,7 +60,7 @@ const Reject = (props) => {
                   <Form.Control
                     required
                     className="comments"
-                    type="text"
+                    type="textarea"
                     controlId="comments"
                     placeholder="Comment"
                     as="textarea"
@@ -76,9 +78,9 @@ const Reject = (props) => {
                     backgroundColor: "#ff9b44",
                     color: "#F4F8F6",
                   }}
-                  onSubmit={ApproveHandler}
+                  onClick={ApproveHandler}
                 >
-                  &nbsp; Reject
+                  &nbsp; Save
                 </Button>
               </Form>
             </Modal.Body>

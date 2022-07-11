@@ -300,6 +300,46 @@ public class MainController {
 				@RequestBody Experience exp) {
 			return serv.updateExperienceByEmployeeId(exp, employeeId);
 		}
+		
+		
+
+		// Onboarding updating EditMy Profile Api calls
+		@PutMapping("/updatePersonalDetailsInPreOnboarding/{onboardingId}")
+		public ResponseEntity updatePersonalDetailsByOnboardingId(@PathVariable String onboardingId,
+				@RequestBody PersonalDetails pd) {
+			return serv.updatePersonalDetailsByOnboardId(pd, onboardingId);
+		}
+		
+		@PutMapping("/updateAddressInPreOnboarding/{onboardingId}")
+		public ResponseEntity updateAddressByOnboardingId(@PathVariable String onboardingId,
+				@RequestBody Address ad) {
+			return serv.updateAddressByOnboardId(ad, onboardingId);
+		}
+		
+		@PutMapping("/updateAdditionalDetailsInPreOnboarding/{onboardingId}")
+		public ResponseEntity updateAdditionalDetailsByOnboardingId(@PathVariable String onboardingId,
+				@RequestBody AdditionalDetails add) {
+			return serv.updateAdditionalDetailsByOnboardId(add, onboardingId);
+		}
+		
+//		@PutMapping("/updateEmploymentDetails/{onboardingId}")
+//		public ResponseEntity updateEmploymentDetailsByOnboardingId(@PathVariable String onboardingId,
+//				@RequestBody EmploymentDetails empd) {
+//			return serv.updateEmploymentDetailsByOnboardId(empd, onboardingId);
+//		}
+		
+		@PutMapping("/updateEducationalDetailsInPreOnboarding/{onboardingId}")
+		public ResponseEntity updateEducationalDetailsByOnboardingId(@PathVariable String onboardingId,
+				@RequestBody EducationalDetails education) {
+			return serv.updateEducationalDetailsByOnboardId(education, onboardingId);
+		}
+		
+		@PutMapping("/updateExperienceInPreOnboarding/{onboardingId}")
+		public ResponseEntity updateExperienceByOnboardingId(@PathVariable String onboardingId,
+				@RequestBody Experience exp) {
+			return serv.updateExperienceByOnboardId(exp, onboardingId);
+		}
+
 
 		
 }
