@@ -57,6 +57,8 @@ import BandsMain from "../pages/Bands/BandsMain";
 import EmploymentTypeMain from "../pages/EmploymentType/EmploymentTypeMain";
 import IntegrateLeaveToApply from "../pages/LeaveManagement/IntegrateLeaveToApply";
 import OnboardedEmployeesTable from "../pages/Approvals/ApprovalComponents/OnboardedEmployeesTable";
+import ClientMain from "../pages/Client/ClientMain";
+import ProjectsMain from "../pages/Projects/ProjectsMain";
 
 export default [
   {
@@ -91,6 +93,32 @@ export default [
       Roles.manager,
       Roles.recruitmentmanager,
     ],
+  },
+  {
+
+    component: ClientMain,
+
+    path: "/ClientMain",
+
+    icon: <FcContacts />,
+
+    title: "Client",
+
+    permission: [Roles.hradmin, Roles.hr],
+
+  },
+  {
+
+    component: ProjectsMain,
+
+    path: "/ProjectsMain",
+
+    icon: <FcOvertime />,
+
+    title: "Projects",
+
+    permission: [Roles.hradmin],
+
   },
   {
     component: OfferApprovalMain,
