@@ -1,7 +1,6 @@
 {
   "name": "HRM",
   "version": "1.0.0",
-  "proxy":"http://localhost:3000",
   "description": "React login form with validation using custom hooks, redirection upon login, and prevent backwards route",
   "keywords": [
     "react",
