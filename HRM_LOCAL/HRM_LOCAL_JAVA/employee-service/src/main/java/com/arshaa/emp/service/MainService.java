@@ -20,6 +20,7 @@ public interface MainService {
 
 	public ResponseEntity  onBoardUser(Onboarding newOnboard);
 	public ResponseEntity<Onboarding> waitingForApprovelStatus();
+	public ResponseEntity getOnboardingDataByOnboardingId(String onboardingId);
 	public ResponseEntity updateApprovStatus(String onboardingId,HrApprovalStatus newOnboard);
 	public ResponseEntity getEmployeeDataByEmployeeId(String employeeId);
 	public ResponseEntity getEmployeeNameByEmployeeId(String employeeId);
