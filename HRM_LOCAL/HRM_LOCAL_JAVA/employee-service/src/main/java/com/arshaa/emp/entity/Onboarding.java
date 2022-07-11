@@ -82,6 +82,727 @@ public class Onboarding {
 	private String employmentType;
 	private String primarySkills;
 	private String secondarySkills;
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	@Column
+	private String secondaryPhoneNumber;
+	@Column
+	private String dateOfBirth;
+	@Column
+	private String bloodGroup;
+	@Column
+	private String gender;
+	@Column
+	private String maritalStatus;
+	private String permanentAdress;
+	@Column
+	private String permanentState;
+	@Column
+	private String permanentCountry;
+	@Column
+	private String permanentPincode;
+	@Column
+	private String currentAdress;
+	private String currentState;
+	private String currentCountry;
+	private String currentPincode;
+	@Column
+	private String postgraduationType;
+	private String postgraduationBoardOfUniversity;
+	private String postgraduationInstituteName;
+	private String postgraduationInstituteCity;
+	private String postgraduationCourseName;
+	private String postgraduationJoiningYear;
+	private String postgraduationPassedYear;
+	private String postgraduationGrade;
+	private String graduationType;
+	private String graduationBoardOfUniversity;
+	private String graduationInstituteName;
+	private String graduationInstituteCity;
+	private String graduationCourseName;
+	private String graduationJoiningYear;
+	private String graduationPassedYear;
+	private String graduationGrade;
+	private String intermediateBoardOfUniversity;
+	private String intermediateCollegeName;
+	private String intermediateCollegeCity;
+	private String intermediateCourseName;
+	private String intermediateJoiningYear;
+	private String intermediatePassedYear;
+	private String intermediateGrade;
+	private String sscBoardOfUniversity;
+	private String sscSchoolName;
+	private String sscSchoolCity;
+	private String sscCourseName;
+	private String sscJoiningYear;
+	private String sscPassedYear;
+	private String sscGrade;
+	private String previousCompany1_name;
+	private String previousCompany1_designation;
+	private String previousCompany1_joiningDate;
+	private String previousCompany1_relievingDate;
+	private String previousCompany1_employeeId;
+	private Double previousCompany1_grossSalary;
+	private String previousCompany1_typeOfEmployment;
+	private String previousCompany1_reasonForRelieving;
+	private String previousCompany2_name;
+	private String previousCompany2_designation;
+	private String previousCompany2_joiningDate;
+	private String previousCompany2_relievingDate;
+	private String previousCompany2_employeeId;
+	private Double previousCompany2_grossSalary;
+	private String previousCompany2_typeOfEmployment;
+	private String previousCompany2_reasonForRelieving;
+	private String previousCompany3_name;
+	private String previousCompany3_designation;
+	private String previousCompany3_joiningDate;
+	private String previousCompany3_relievingDate;
+	private String previousCompany3_employeeId;
+	private Double previousCompany3_grossSalary;
+	private String previousCompany3_typeOfEmployment;
+	private String previousCompany3_reasonForRelieving;
+	private boolean employeeStatus;
+	private String passportNo;
+	private String passportExpiryDate;
+
+	private String panNumber;
+	private String aadharNumber;
+	private String uanNumber;
+	private String bankName;
+	private String accountNumber;
+	private String ifscCode;
+	private String branch;
+	private String client;
+	
+	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
+			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
+			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
+			String department, String reportingManager, String projectName, String email, Date onboardDate,
+			Date approvedDate, Date rejectDate, Date updatedOn, String dateOfJoining, String updatedBy,
+			String employmentType, String primarySkills, String secondarySkills, String secondaryPhoneNumber,
+			String dateOfBirth, String bloodGroup, String gender, String maritalStatus, String permanentAdress,
+			String permanentState, String permanentCountry, String permanentPincode, String currentAdress,
+			String currentState, String currentCountry, String currentPincode, String postgraduationType,
+			String postgraduationBoardOfUniversity, String postgraduationInstituteName,
+			String postgraduationInstituteCity, String postgraduationCourseName, String postgraduationJoiningYear,
+			String postgraduationPassedYear, String postgraduationGrade, String graduationType,
+			String graduationBoardOfUniversity, String graduationInstituteName, String graduationInstituteCity,
+			String graduationCourseName, String graduationJoiningYear, String graduationPassedYear,
+			String graduationGrade, String intermediateBoardOfUniversity, String intermediateCollegeName,
+			String intermediateCollegeCity, String intermediateCourseName, String intermediateJoiningYear,
+			String intermediatePassedYear, String intermediateGrade, String sscBoardOfUniversity, String sscSchoolName,
+			String sscSchoolCity, String sscCourseName, String sscJoiningYear, String sscPassedYear, String sscGrade,
+			String previousCompany1_name, String previousCompany1_designation, String previousCompany1_joiningDate,
+			String previousCompany1_relievingDate, String previousCompany1_employeeId,
+			Double previousCompany1_grossSalary, String previousCompany1_typeOfEmployment,
+			String previousCompany1_reasonForRelieving, String previousCompany2_name,
+			String previousCompany2_designation, String previousCompany2_joiningDate,
+			String previousCompany2_relievingDate, String previousCompany2_employeeId,
+			Double previousCompany2_grossSalary, String previousCompany2_typeOfEmployment,
+			String previousCompany2_reasonForRelieving, String previousCompany3_name,
+			String previousCompany3_designation, String previousCompany3_joiningDate,
+			String previousCompany3_relievingDate, String previousCompany3_employeeId,
+			Double previousCompany3_grossSalary, String previousCompany3_typeOfEmployment,
+			String previousCompany3_reasonForRelieving, boolean employeeStatus, String passportNo,
+			String passportExpiryDate, String panNumber, String aadharNumber, String uanNumber, String bankName,
+			String accountNumber, String ifscCode, String branch, String exitDate, String band,String client) {
+		
+		super();
+		this.onboardingId = onboardingId;
+		this.designation = designation;
+		this.firstName = firstName;
+		this.middleName = middleName;
+		this.lastName = lastName;
+		this.jobTitle = jobTitle;
+		this.skillSet = skillSet;
+		this.comments = comments;
+		this.phoneNumber = phoneNumber;
+		this.yearsOfExperience = yearsOfExperience;
+		this.employeeId = employeeId;
+		this.approvedStatus = approvedStatus;
+		this.rejectedStatus = rejectedStatus;
+		this.waitingforapprovalStatus = waitingforapprovalStatus;
+		this.department = department;
+		this.reportingManager = reportingManager;
+		this.projectName = projectName;
+		this.email = email;
+		this.onboardDate = onboardDate;
+		this.approvedDate = approvedDate;
+		this.rejectDate = rejectDate;
+		this.updatedOn = updatedOn;
+		this.dateOfJoining = dateOfJoining;
+		this.updatedBy = updatedBy;
+		this.employmentType = employmentType;
+		this.primarySkills = primarySkills;
+		this.secondarySkills = secondarySkills;
+		this.secondaryPhoneNumber = secondaryPhoneNumber;
+		this.dateOfBirth = dateOfBirth;
+		this.bloodGroup = bloodGroup;
+		this.gender = gender;
+		this.maritalStatus = maritalStatus;
+		this.permanentAdress = permanentAdress;
+		this.permanentState = permanentState;
+		this.permanentCountry = permanentCountry;
+		this.permanentPincode = permanentPincode;
+		this.currentAdress = currentAdress;
+		this.currentState = currentState;
+		this.currentCountry = currentCountry;
+		this.currentPincode = currentPincode;
+		this.postgraduationType = postgraduationType;
+		this.postgraduationBoardOfUniversity = postgraduationBoardOfUniversity;
+		this.postgraduationInstituteName = postgraduationInstituteName;
+		this.postgraduationInstituteCity = postgraduationInstituteCity;
+		this.postgraduationCourseName = postgraduationCourseName;
+		this.postgraduationJoiningYear = postgraduationJoiningYear;
+		this.postgraduationPassedYear = postgraduationPassedYear;
+		this.postgraduationGrade = postgraduationGrade;
+		this.graduationType = graduationType;
+		this.graduationBoardOfUniversity = graduationBoardOfUniversity;
+		this.graduationInstituteName = graduationInstituteName;
+		this.graduationInstituteCity = graduationInstituteCity;
+		this.graduationCourseName = graduationCourseName;
+		this.graduationJoiningYear = graduationJoiningYear;
+		this.graduationPassedYear = graduationPassedYear;
+		this.graduationGrade = graduationGrade;
+		this.intermediateBoardOfUniversity = intermediateBoardOfUniversity;
+		this.intermediateCollegeName = intermediateCollegeName;
+		this.intermediateCollegeCity = intermediateCollegeCity;
+		this.intermediateCourseName = intermediateCourseName;
+		this.intermediateJoiningYear = intermediateJoiningYear;
+		this.intermediatePassedYear = intermediatePassedYear;
+		this.intermediateGrade = intermediateGrade;
+		this.sscBoardOfUniversity = sscBoardOfUniversity;
+		this.sscSchoolName = sscSchoolName;
+		this.sscSchoolCity = sscSchoolCity;
+		this.sscCourseName = sscCourseName;
+		this.sscJoiningYear = sscJoiningYear;
+		this.sscPassedYear = sscPassedYear;
+		this.sscGrade = sscGrade;
+		this.previousCompany1_name = previousCompany1_name;
+		this.previousCompany1_designation = previousCompany1_designation;
+		this.previousCompany1_joiningDate = previousCompany1_joiningDate;
+		this.previousCompany1_relievingDate = previousCompany1_relievingDate;
+		this.previousCompany1_employeeId = previousCompany1_employeeId;
+		this.previousCompany1_grossSalary = previousCompany1_grossSalary;
+		this.previousCompany1_typeOfEmployment = previousCompany1_typeOfEmployment;
+		this.previousCompany1_reasonForRelieving = previousCompany1_reasonForRelieving;
+		this.previousCompany2_name = previousCompany2_name;
+		this.previousCompany2_designation = previousCompany2_designation;
+		this.previousCompany2_joiningDate = previousCompany2_joiningDate;
+		this.previousCompany2_relievingDate = previousCompany2_relievingDate;
+		this.previousCompany2_employeeId = previousCompany2_employeeId;
+		this.previousCompany2_grossSalary = previousCompany2_grossSalary;
+		this.previousCompany2_typeOfEmployment = previousCompany2_typeOfEmployment;
+		this.previousCompany2_reasonForRelieving = previousCompany2_reasonForRelieving;
+		this.previousCompany3_name = previousCompany3_name;
+		this.previousCompany3_designation = previousCompany3_designation;
+		this.previousCompany3_joiningDate = previousCompany3_joiningDate;
+		this.previousCompany3_relievingDate = previousCompany3_relievingDate;
+		this.previousCompany3_employeeId = previousCompany3_employeeId;
+		this.previousCompany3_grossSalary = previousCompany3_grossSalary;
+		this.previousCompany3_typeOfEmployment = previousCompany3_typeOfEmployment;
+		this.previousCompany3_reasonForRelieving = previousCompany3_reasonForRelieving;
+		this.employeeStatus = employeeStatus;
+		this.passportNo = passportNo;
+		this.passportExpiryDate = passportExpiryDate;
+		this.panNumber = panNumber;
+		this.aadharNumber = aadharNumber;
+		this.uanNumber = uanNumber;
+		this.bankName = bankName;
+		this.accountNumber = accountNumber;
+		this.ifscCode = ifscCode;
+		this.branch = branch;
+		this.exitDate = exitDate;
+		this.band = band;
+		this.client = client;
+		
+	}
+	public String getSecondaryPhoneNumber() {
+		return secondaryPhoneNumber;
+	}
+	public void setSecondaryPhoneNumber(String secondaryPhoneNumber) {
+		this.secondaryPhoneNumber = secondaryPhoneNumber;
+	}
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	public String getBloodGroup() {
+		return bloodGroup;
+	}
+	public void setBloodGroup(String bloodGroup) {
+		this.bloodGroup = bloodGroup;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getMaritalStatus() {
+		return maritalStatus;
+	}
+	public void setMaritalStatus(String maritalStatus) {
+		this.maritalStatus = maritalStatus;
+	}
+	public String getPermanentAdress() {
+		return permanentAdress;
+	}
+	public void setPermanentAdress(String permanentAdress) {
+		this.permanentAdress = permanentAdress;
+	}
+	public String getPermanentState() {
+		return permanentState;
+	}
+	public void setPermanentState(String permanentState) {
+		this.permanentState = permanentState;
+	}
+	public String getPermanentCountry() {
+		return permanentCountry;
+	}
+	public void setPermanentCountry(String permanentCountry) {
+		this.permanentCountry = permanentCountry;
+	}
+	public String getPermanentPincode() {
+		return permanentPincode;
+	}
+	public void setPermanentPincode(String permanentPincode) {
+		this.permanentPincode = permanentPincode;
+	}
+	public String getCurrentAdress() {
+		return currentAdress;
+	}
+	public void setCurrentAdress(String currentAdress) {
+		this.currentAdress = currentAdress;
+	}
+	public String getCurrentState() {
+		return currentState;
+	}
+	public void setCurrentState(String currentState) {
+		this.currentState = currentState;
+	}
+	public String getCurrentCountry() {
+		return currentCountry;
+	}
+	public void setCurrentCountry(String currentCountry) {
+		this.currentCountry = currentCountry;
+	}
+	public String getCurrentPincode() {
+		return currentPincode;
+	}
+	public void setCurrentPincode(String currentPincode) {
+		this.currentPincode = currentPincode;
+	}
+	public String getPostgraduationType() {
+		return postgraduationType;
+	}
+	public void setPostgraduationType(String postgraduationType) {
+		this.postgraduationType = postgraduationType;
+	}
+	public String getPostgraduationBoardOfUniversity() {
+		return postgraduationBoardOfUniversity;
+	}
+	public void setPostgraduationBoardOfUniversity(String postgraduationBoardOfUniversity) {
+		this.postgraduationBoardOfUniversity = postgraduationBoardOfUniversity;
+	}
+	public String getPostgraduationInstituteName() {
+		return postgraduationInstituteName;
+	}
+	public void setPostgraduationInstituteName(String postgraduationInstituteName) {
+		this.postgraduationInstituteName = postgraduationInstituteName;
+	}
+	public String getPostgraduationInstituteCity() {
+		return postgraduationInstituteCity;
+	}
+	public void setPostgraduationInstituteCity(String postgraduationInstituteCity) {
+		this.postgraduationInstituteCity = postgraduationInstituteCity;
+	}
+	public String getPostgraduationCourseName() {
+		return postgraduationCourseName;
+	}
+	public void setPostgraduationCourseName(String postgraduationCourseName) {
+		this.postgraduationCourseName = postgraduationCourseName;
+	}
+	public String getPostgraduationJoiningYear() {
+		return postgraduationJoiningYear;
+	}
+	public void setPostgraduationJoiningYear(String postgraduationJoiningYear) {
+		this.postgraduationJoiningYear = postgraduationJoiningYear;
+	}
+	public String getPostgraduationPassedYear() {
+		return postgraduationPassedYear;
+	}
+	public void setPostgraduationPassedYear(String postgraduationPassedYear) {
+		this.postgraduationPassedYear = postgraduationPassedYear;
+	}
+	public String getPostgraduationGrade() {
+		return postgraduationGrade;
+	}
+	public void setPostgraduationGrade(String postgraduationGrade) {
+		this.postgraduationGrade = postgraduationGrade;
+	}
+	public String getGraduationType() {
+		return graduationType;
+	}
+	public void setGraduationType(String graduationType) {
+		this.graduationType = graduationType;
+	}
+	public String getGraduationBoardOfUniversity() {
+		return graduationBoardOfUniversity;
+	}
+	public void setGraduationBoardOfUniversity(String graduationBoardOfUniversity) {
+		this.graduationBoardOfUniversity = graduationBoardOfUniversity;
+	}
+	public String getGraduationInstituteName() {
+		return graduationInstituteName;
+	}
+	public void setGraduationInstituteName(String graduationInstituteName) {
+		this.graduationInstituteName = graduationInstituteName;
+	}
+	public String getGraduationInstituteCity() {
+		return graduationInstituteCity;
+	}
+	public void setGraduationInstituteCity(String graduationInstituteCity) {
+		this.graduationInstituteCity = graduationInstituteCity;
+	}
+	public String getGraduationCourseName() {
+		return graduationCourseName;
+	}
+	public void setGraduationCourseName(String graduationCourseName) {
+		this.graduationCourseName = graduationCourseName;
+	}
+	public String getGraduationJoiningYear() {
+		return graduationJoiningYear;
+	}
+	public void setGraduationJoiningYear(String graduationJoiningYear) {
+		this.graduationJoiningYear = graduationJoiningYear;
+	}
+	public String getGraduationPassedYear() {
+		return graduationPassedYear;
+	}
+	public void setGraduationPassedYear(String graduationPassedYear) {
+		this.graduationPassedYear = graduationPassedYear;
+	}
+	public String getGraduationGrade() {
+		return graduationGrade;
+	}
+	public void setGraduationGrade(String graduationGrade) {
+		this.graduationGrade = graduationGrade;
+	}
+	public String getIntermediateBoardOfUniversity() {
+		return intermediateBoardOfUniversity;
+	}
+	public void setIntermediateBoardOfUniversity(String intermediateBoardOfUniversity) {
+		this.intermediateBoardOfUniversity = intermediateBoardOfUniversity;
+	}
+	public String getIntermediateCollegeName() {
+		return intermediateCollegeName;
+	}
+	public void setIntermediateCollegeName(String intermediateCollegeName) {
+		this.intermediateCollegeName = intermediateCollegeName;
+	}
+	public String getIntermediateCollegeCity() {
+		return intermediateCollegeCity;
+	}
+	public void setIntermediateCollegeCity(String intermediateCollegeCity) {
+		this.intermediateCollegeCity = intermediateCollegeCity;
+	}
+	public String getIntermediateCourseName() {
+		return intermediateCourseName;
+	}
+	public void setIntermediateCourseName(String intermediateCourseName) {
+		this.intermediateCourseName = intermediateCourseName;
+	}
+	public String getIntermediateJoiningYear() {
+		return intermediateJoiningYear;
+	}
+	public void setIntermediateJoiningYear(String intermediateJoiningYear) {
+		this.intermediateJoiningYear = intermediateJoiningYear;
+	}
+	public String getIntermediatePassedYear() {
+		return intermediatePassedYear;
+	}
+	public void setIntermediatePassedYear(String intermediatePassedYear) {
+		this.intermediatePassedYear = intermediatePassedYear;
+	}
+	public String getIntermediateGrade() {
+		return intermediateGrade;
+	}
+	public void setIntermediateGrade(String intermediateGrade) {
+		this.intermediateGrade = intermediateGrade;
+	}
+	public String getSscBoardOfUniversity() {
+		return sscBoardOfUniversity;
+	}
+	public void setSscBoardOfUniversity(String sscBoardOfUniversity) {
+		this.sscBoardOfUniversity = sscBoardOfUniversity;
+	}
+	public String getSscSchoolName() {
+		return sscSchoolName;
+	}
+	public void setSscSchoolName(String sscSchoolName) {
+		this.sscSchoolName = sscSchoolName;
+	}
+	public String getSscSchoolCity() {
+		return sscSchoolCity;
+	}
+	public void setSscSchoolCity(String sscSchoolCity) {
+		this.sscSchoolCity = sscSchoolCity;
+	}
+	public String getSscCourseName() {
+		return sscCourseName;
+	}
+	public void setSscCourseName(String sscCourseName) {
+		this.sscCourseName = sscCourseName;
+	}
+	public String getSscJoiningYear() {
+		return sscJoiningYear;
+	}
+	public void setSscJoiningYear(String sscJoiningYear) {
+		this.sscJoiningYear = sscJoiningYear;
+	}
+	public String getSscPassedYear() {
+		return sscPassedYear;
+	}
+	public void setSscPassedYear(String sscPassedYear) {
+		this.sscPassedYear = sscPassedYear;
+	}
+	public String getSscGrade() {
+		return sscGrade;
+	}
+	public void setSscGrade(String sscGrade) {
+		this.sscGrade = sscGrade;
+	}
+	public String getPreviousCompany1_name() {
+		return previousCompany1_name;
+	}
+	public void setPreviousCompany1_name(String previousCompany1_name) {
+		this.previousCompany1_name = previousCompany1_name;
+	}
+	public String getPreviousCompany1_designation() {
+		return previousCompany1_designation;
+	}
+	public void setPreviousCompany1_designation(String previousCompany1_designation) {
+		this.previousCompany1_designation = previousCompany1_designation;
+	}
+	public String getPreviousCompany1_joiningDate() {
+		return previousCompany1_joiningDate;
+	}
+	public void setPreviousCompany1_joiningDate(String previousCompany1_joiningDate) {
+		this.previousCompany1_joiningDate = previousCompany1_joiningDate;
+	}
+	public String getPreviousCompany1_relievingDate() {
+		return previousCompany1_relievingDate;
+	}
+	public void setPreviousCompany1_relievingDate(String previousCompany1_relievingDate) {
+		this.previousCompany1_relievingDate = previousCompany1_relievingDate;
+	}
+	public String getPreviousCompany1_employeeId() {
+		return previousCompany1_employeeId;
+	}
+	public void setPreviousCompany1_employeeId(String previousCompany1_employeeId) {
+		this.previousCompany1_employeeId = previousCompany1_employeeId;
+	}
+	public Double getPreviousCompany1_grossSalary() {
+		return previousCompany1_grossSalary;
+	}
+	public void setPreviousCompany1_grossSalary(Double previousCompany1_grossSalary) {
+		this.previousCompany1_grossSalary = previousCompany1_grossSalary;
+	}
+	public String getPreviousCompany1_typeOfEmployment() {
+		return previousCompany1_typeOfEmployment;
+	}
+	public void setPreviousCompany1_typeOfEmployment(String previousCompany1_typeOfEmployment) {
+		this.previousCompany1_typeOfEmployment = previousCompany1_typeOfEmployment;
+	}
+	public String getPreviousCompany1_reasonForRelieving() {
+		return previousCompany1_reasonForRelieving;
+	}
+	public void setPreviousCompany1_reasonForRelieving(String previousCompany1_reasonForRelieving) {
+		this.previousCompany1_reasonForRelieving = previousCompany1_reasonForRelieving;
+	}
+	public String getPreviousCompany2_name() {
+		return previousCompany2_name;
+	}
+	public void setPreviousCompany2_name(String previousCompany2_name) {
+		this.previousCompany2_name = previousCompany2_name;
+	}
+	public String getPreviousCompany2_designation() {
+		return previousCompany2_designation;
+	}
+	public void setPreviousCompany2_designation(String previousCompany2_designation) {
+		this.previousCompany2_designation = previousCompany2_designation;
+	}
+	public String getPreviousCompany2_joiningDate() {
+		return previousCompany2_joiningDate;
+	}
+	public void setPreviousCompany2_joiningDate(String previousCompany2_joiningDate) {
+		this.previousCompany2_joiningDate = previousCompany2_joiningDate;
+	}
+	public String getPreviousCompany2_relievingDate() {
+		return previousCompany2_relievingDate;
+	}
+	public void setPreviousCompany2_relievingDate(String previousCompany2_relievingDate) {
+		this.previousCompany2_relievingDate = previousCompany2_relievingDate;
+	}
+	public String getClient() {
+		return client;
+	}
+	public void setClient(String client) {
+		this.client = client;
+	}
+	public String getPreviousCompany2_employeeId() {
+		return previousCompany2_employeeId;
+	}
+	public void setPreviousCompany2_employeeId(String previousCompany2_employeeId) {
+		this.previousCompany2_employeeId = previousCompany2_employeeId;
+	}
+	public Double getPreviousCompany2_grossSalary() {
+		return previousCompany2_grossSalary;
+	}
+	public void setPreviousCompany2_grossSalary(Double previousCompany2_grossSalary) {
+		this.previousCompany2_grossSalary = previousCompany2_grossSalary;
+	}
+	public String getPreviousCompany2_typeOfEmployment() {
+		return previousCompany2_typeOfEmployment;
+	}
+	public void setPreviousCompany2_typeOfEmployment(String previousCompany2_typeOfEmployment) {
+		this.previousCompany2_typeOfEmployment = previousCompany2_typeOfEmployment;
+	}
+	public String getPreviousCompany2_reasonForRelieving() {
+		return previousCompany2_reasonForRelieving;
+	}
+	public void setPreviousCompany2_reasonForRelieving(String previousCompany2_reasonForRelieving) {
+		this.previousCompany2_reasonForRelieving = previousCompany2_reasonForRelieving;
+	}
+	public String getPreviousCompany3_name() {
+		return previousCompany3_name;
+	}
+	public void setPreviousCompany3_name(String previousCompany3_name) {
+		this.previousCompany3_name = previousCompany3_name;
+	}
+	public String getPreviousCompany3_designation() {
+		return previousCompany3_designation;
+	}
+	public void setPreviousCompany3_designation(String previousCompany3_designation) {
+		this.previousCompany3_designation = previousCompany3_designation;
+	}
+	public String getPreviousCompany3_joiningDate() {
+		return previousCompany3_joiningDate;
+	}
+	public void setPreviousCompany3_joiningDate(String previousCompany3_joiningDate) {
+		this.previousCompany3_joiningDate = previousCompany3_joiningDate;
+	}
+	public String getPreviousCompany3_relievingDate() {
+		return previousCompany3_relievingDate;
+	}
+	public void setPreviousCompany3_relievingDate(String previousCompany3_relievingDate) {
+		this.previousCompany3_relievingDate = previousCompany3_relievingDate;
+	}
+	public String getPreviousCompany3_employeeId() {
+		return previousCompany3_employeeId;
+	}
+	public void setPreviousCompany3_employeeId(String previousCompany3_employeeId) {
+		this.previousCompany3_employeeId = previousCompany3_employeeId;
+	}
+	public Double getPreviousCompany3_grossSalary() {
+		return previousCompany3_grossSalary;
+	}
+	public void setPreviousCompany3_grossSalary(Double previousCompany3_grossSalary) {
+		this.previousCompany3_grossSalary = previousCompany3_grossSalary;
+	}
+	public String getPreviousCompany3_typeOfEmployment() {
+		return previousCompany3_typeOfEmployment;
+	}
+	public void setPreviousCompany3_typeOfEmployment(String previousCompany3_typeOfEmployment) {
+		this.previousCompany3_typeOfEmployment = previousCompany3_typeOfEmployment;
+	}
+	public String getPreviousCompany3_reasonForRelieving() {
+		return previousCompany3_reasonForRelieving;
+	}
+	public void setPreviousCompany3_reasonForRelieving(String previousCompany3_reasonForRelieving) {
+		this.previousCompany3_reasonForRelieving = previousCompany3_reasonForRelieving;
+	}
+	public boolean isEmployeeStatus() {
+		return employeeStatus;
+	}
+	public void setEmployeeStatus(boolean employeeStatus) {
+		this.employeeStatus = employeeStatus;
+	}
+	public String getPassportNo() {
+		return passportNo;
+	}
+	public void setPassportNo(String passportNo) {
+		this.passportNo = passportNo;
+	}
+	public String getPassportExpiryDate() {
+		return passportExpiryDate;
+	}
+	public void setPassportExpiryDate(String passportExpiryDate) {
+		this.passportExpiryDate = passportExpiryDate;
+	}
+	public String getPanNumber() {
+		return panNumber;
+	}
+	public void setPanNumber(String panNumber) {
+		this.panNumber = panNumber;
+	}
+	public String getAadharNumber() {
+		return aadharNumber;
+	}
+	public void setAadharNumber(String aadharNumber) {
+		this.aadharNumber = aadharNumber;
+	}
+	public String getUanNumber() {
+		return uanNumber;
+	}
+	public void setUanNumber(String uanNumber) {
+		this.uanNumber = uanNumber;
+	}
+	public String getBankName() {
+		return bankName;
+	}
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+	public String getAccountNumber() {
+		return accountNumber;
+	}
+	public void setAccountNumber(String accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+	public String getIfscCode() {
+		return ifscCode;
+	}
+	public void setIfscCode(String ifscCode) {
+		this.ifscCode = ifscCode;
+	}
+	public String getBranch() {
+		return branch;
+	}
+	public void setBranch(String branch) {
+		this.branch = branch;
+	}
+	public String getExitDate() {
+		return exitDate;
+	}
+	public void setExitDate(String exitDate) {
+		this.exitDate = exitDate;
+	}
+	private String exitDate;
+
+	
+	
+	
+	
 	public String getOnboardingId() {
 		return onboardingId;
 	}
@@ -256,47 +977,48 @@ public class Onboarding {
 	public void setReportingManager(String reportingManager) {
 		this.reportingManager = reportingManager;
 	}
-	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
-			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
-			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
-			String department, String reportingManager, String email, Date onboardDate, Date approvedDate,
-			Date rejectDate, Date updatedOn, String dateOfJoining, String updatedBy, String employmentType,
-			String primarySkills, String secondarySkills, String projectName, String band) {
-
-		super();
-		this.onboardingId = onboardingId;
-		this.designation = designation;
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-		this.jobTitle = jobTitle;
-		this.skillSet = skillSet;
-		this.comments = comments;
-		this.phoneNumber = phoneNumber;
-		this.yearsOfExperience = yearsOfExperience;
-		this.employeeId = employeeId;
-		this.approvedStatus = approvedStatus;
-		this.rejectedStatus = rejectedStatus;
-		this.waitingforapprovalStatus = waitingforapprovalStatus;
-		this.department = department;
-		this.reportingManager = reportingManager;
-		this.email = email;
-		this.onboardDate = onboardDate;
-		this.approvedDate = approvedDate;
-		this.rejectDate = rejectDate;
-		this.updatedOn = updatedOn;
-		this.dateOfJoining = dateOfJoining;
-		this.updatedBy = updatedBy;
-		this.employmentType = employmentType;
-		this.primarySkills = primarySkills;
-		this.secondarySkills = secondarySkills;
-		this.projectName = projectName;
-		this.band = band;
-	}
+//	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
+//			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
+//			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
+//			String department, String reportingManager, String email, Date onboardDate, Date approvedDate,
+//			Date rejectDate, Date updatedOn, String dateOfJoining, String updatedBy, String employmentType,
+//			String primarySkills, String secondarySkills, String projectName, String band) {
+//
+//		super();
+//		this.onboardingId = onboardingId;
+//		this.designation = designation;
+//		this.firstName = firstName;
+//		this.middleName = middleName;
+//		this.lastName = lastName;
+//		this.jobTitle = jobTitle;
+//		this.skillSet = skillSet;
+//		this.comments = comments;
+//		this.phoneNumber = phoneNumber;
+//		this.yearsOfExperience = yearsOfExperience;
+//		this.employeeId = employeeId;
+//		this.approvedStatus = approvedStatus;
+//		this.rejectedStatus = rejectedStatus;
+//		this.waitingforapprovalStatus = waitingforapprovalStatus;
+//		this.department = department;
+//		this.reportingManager = reportingManager;
+//		this.email = email;
+//		this.onboardDate = onboardDate;
+//		this.approvedDate = approvedDate;
+//		this.rejectDate = rejectDate;
+//		this.updatedOn = updatedOn;
+//		this.dateOfJoining = dateOfJoining;
+//		this.updatedBy = updatedBy;
+//		this.employmentType = employmentType;
+//		this.primarySkills = primarySkills;
+//		this.secondarySkills = secondarySkills;
+//		this.projectName = projectName;
+//		this.band = band;
+//	}
 	public Onboarding() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+//	
 	
 	
 	

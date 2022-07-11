@@ -197,8 +197,8 @@ public class EmployeeMaster {
 		return dateOfJoining;
 	}
 
-	public void setDateOfJoining(String dateOfJoining) {
-		this.dateOfJoining = dateOfJoining;
+	public void setDateOfJoining(String string) {
+		this.dateOfJoining = string;
 	}
 
 	public String getFirstName() {
