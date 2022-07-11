@@ -13,6 +13,10 @@ import { toast } from "react-toastify";
 import LeaveEmployee from "./LeaveToApply";
 import MaterialTable from 'material-table'
 import Grid from '@mui/material/Grid'
+import "./calender.css";
+import Calendar from "react-calendar";
+import moment from "moment";
+import 'react-calendar/dist/Calendar.css';
 
 
 
@@ -22,6 +26,7 @@ function IntegrateLeaveToApply() {
 
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
+    const [dates, setDates] = useState([]);
 
     const forms = useRef(null);
 
@@ -48,7 +53,33 @@ function IntegrateLeaveToApply() {
             newErrors.leaveReason = "Please Enter Leave Reason";
         return newErrors;
     };
+    let mark = []
 
+    useEffect(() => {
+
+        axios.get(`/holiday/getAllHolidays`).then((res) => {
+
+            console.log(res.data.data);
+
+
+
+            res.data.data.map((item) => {
+
+                const da = moment.utc(item.holidayDate).format('YYYY-MM-DD')
+
+                mark.push(da)
+
+                setDates(mark)
+
+
+
+
+
+
+
+            });
+        })
+    }, []);
 
 
     const [show, setShow] = useState(false);
@@ -201,7 +232,7 @@ function IntegrateLeaveToApply() {
         LA();
 
     }, []);
-    const LA = () =>{
+    const LA = () => {
         axios.get(`leave/getcountofApplyingLeaves/${employeeid}`).then((res) => {
 
             console.log(res.data);
@@ -209,7 +240,8 @@ function IntegrateLeaveToApply() {
             setTotalAppliedleaves(res.data);
 
         }
-    )}
+        )
+    }
 
     const LossOfPay = (appliedleaves - earnedData);
 
@@ -420,7 +452,7 @@ function IntegrateLeaveToApply() {
                                         {earnedData > 0 ? (<Card.Subtitle className="mb-2 text-muted">
                                             {earnedData}
                                         </Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
-            
+
                                         {/* <Card.Text>12</Card.Text> */}
                                     </h5>
                                 </Card.Body>
@@ -562,7 +594,7 @@ function IntegrateLeaveToApply() {
                                     {/* <option value="Earned Leave">Earned Leave</option> */}
                                 </Form.Select>
                             </Form.Group>
-                            <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                            {/* <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                 <Form.Label>From</Form.Label>
                                 <Form.Control
                                     required
@@ -604,9 +636,98 @@ function IntegrateLeaveToApply() {
                                 />
                             </Form.Group>
 
+ */}
+                          
+                            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                <Form.Label>From</Form.Label>
+                                <Calendar
+                                    onChange={(e) => {
+                                        console.log(e)
+                                        const da = moment.utc(e + 1).format('YYYY-MM-DD')
+                                        console.log(da)
+                                        setFromDate(da)
+
+                                    }} tileClassName={({ date, view }) => {
+                                        if (dates.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                            return 'highlight'
+                                        }
+                                    }}
+                                // tileDisabled={({ date }) => date.getDay() === 0}
+                                /*maxDate={new Date(2020, 1, 0)}</div>*/
+                                //  minDate={
+                                //   new Date()
+                                // } 
+                                //  value={datevalue}
+                                />
+                            </Form.Group>
+                            <Form.Group
+                                as={Col}
+                                md="6"
+                                style={{ padding: 10 }}
+                                controlId="validationCustom02"
+                            >
+                                <Form.Label>To</Form.Label>
+                                {/* <Form.Control
+                  required
+                  type="date"
+                  placeholder="To Date"
+                  min={fromDate}
+                  onChange={(event) => {
+                    setToDate(event.target.value);
+                    console.log(event.target.value);
+                    axios
+                      .get(`/holiday/${fromDate}/${event.target.value}`)
+                      .then((res) => {
+                        if (res.data > 30) {
+                          alert("Limit exceeded");
+                          const err = "Limit exceeded";
+                        } else {
+                          setDay(res.data);
+                        }
+                      });
+                  }}
+                /> */}
+
+                                <Calendar
+                                    onChange={(e) => {
+                                        console.log(e);
+                                        setToDate(e);
+                                        console.log(e);
+                                        const da = moment.utc(e + 1).format('YYYY-MM-DD')
+                                        axios
+                                            .get(`/holiday/${fromDate}/${da}`)
+                                            .then((res) => {
+                                                if (res.data > 30) {
+                                                    alert("Limit exceeded");
+                                                    const err = "Limit exceeded";
+                                                } else {
+                                                    setDay(res.data);
+                                                }
+                                            });
+                                        console.log(e)
+                                        //const da = moment.utc(e).format('YYYY-MM-DD')
+                                        console.log(da)
+                                        setToDate(da)
 
 
-                            <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                    }} tileClassName={({ date, view }) => {
+                                        if (dates.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                            return 'highlight'
+                                        }
+                                    }}
+                                    minDate={
+                                        new Date(fromDate)
+                                    }
+                                // tileDisabled={({ date }) => date.getDay() === 0}
+                                /*maxDate={new Date(2020, 1, 0)}</div>*/
+
+                                //  value={datevalue}
+                                />
+                            </Form.Group>
+
+
+
+                            <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                                 <Form.Label>No of Days</Form.Label>
                                 <Form.Control
                                     required

@@ -1,3 +1,4 @@
+
 package com.arshaa.emp.model;
 
 import javax.persistence.Column;
@@ -81,6 +82,16 @@ public class HrApprovalStatus {
 
 	public void setRejectDate(java.util.Date rejectDate) {
 		this.rejectDate = rejectDate;
+	}
+
+	public String getProjectName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getBand() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

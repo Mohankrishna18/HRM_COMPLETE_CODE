@@ -7,7 +7,8 @@ import ManagerEmployeesLeavesWaitingForApproval from "./ManagerEmployeesLeavesWa
 const ManagerLeavesToApproveMain = () => {
   return (
      <div style={{ paddingTop: '20px' }}>
-     <Card responsive className="scroll">
+    <Card className="scroll">
+     <Card>
        <Card.Header>
          <Card.Body>
            <Card.Title>Leaves Waiting For Approval</Card.Title>
@@ -29,7 +30,7 @@ const ManagerLeavesToApproveMain = () => {
          </Card.Body>
        </Card.Header>
      </Card>
-     <Card responsive className="scroll">
+     <Card>
        <Card.Header>
          <Card.Body>
            <Card.Title>My Teams Leave History</Card.Title>
@@ -49,6 +50,7 @@ const ManagerLeavesToApproveMain = () => {
            {/* </Container> */}
          </Card.Body>
        </Card.Header>
+     </Card>
      </Card>
 
    </div>

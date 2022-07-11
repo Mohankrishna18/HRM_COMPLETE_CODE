@@ -58,6 +58,7 @@ public class EmailSender {
 				
 			}
 
+
 	
 //	public void sentEmail(String Name,  String email) {
 //		// TODO Auto-generated method stub
@@ -75,4 +76,19 @@ public class EmailSender {
 //				mailSender.send(msg);
 //				
 //			}
+
+// jhvjv
+public void preMailSend(String name, String email, String password)
+{
+	SimpleMailMessage msg = new SimpleMailMessage();
+	msg.setTo(email);
+	msg.setSubject("Congratulations");
+	
+	msg.setText("Hello " + name + "," + "\n"+ "Welcome to Arshaa Technologies." + "\n" + "\n"
+			+ "Please login with your Email-ID and Password as we mentioned here, These are your credentials Email-ID : " +email+  " Password: " +password + "\n" + "\n" 
+			+ "\n" + "Link to login: http://10.10.10.40:4000"+ "\n"+
+			"Kindly fill your details in Edit My Profile, It doesn't take much time to fill the details please complete it by End of the Day" +"\n"+"\n" +"\n"+"\n"+"Regards,"+"\n"+"Team Recruiter"+"\n"+"Arshaa Technologies Pvt.Ltd");
+	
+	mailSender.send(msg);
+}
 }

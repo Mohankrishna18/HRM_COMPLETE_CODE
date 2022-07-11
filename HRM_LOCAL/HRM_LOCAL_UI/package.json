@@ -1,6 +1,9 @@
 {
   "name": "HRM",
   "version": "1.0.0",
+
+  "proxy": "http://localhost:3000",
+
   "description": "React login form with validation using custom hooks, redirection upon login, and prevent backwards route",
   "keywords": [
     "react",
@@ -27,7 +30,6 @@
     "@testing-library/user-event": "12.1.10",
     "ag-grid-community": "^23.2.0",
     "ag-grid-enterprise": "^23.2.0",
-    "ag-grid-react": "^23.2.0",
     "axios": "^0.27.2",
     "bootstrap": "^5.1.3",
     "country-dropdown-with-flags-for-react": "^1.1.4",
@@ -43,6 +45,7 @@
     "react-bootstrap": "^2.2.3",
     "react-bootstrap-table-next": "^4.0.3",
     "react-bootstrap-table2-paginator": "^2.1.2",
+    "react-calendar": "^3.7.0",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.30.0",
     "react-hot-toast": "^2.2.0",
