@@ -81,6 +81,7 @@ function PersonalDetailsTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
+        try{
         await axios.put(`/emp/updatePersonalDetails/${employeeid}`, {
             employeeId,
             firstName,
@@ -97,7 +98,10 @@ function PersonalDetailsTab() {
             maritalStatus
         });
         toast.success("Form Submitted Successfully");
-
+    }
+        catch (error) {
+            toast.error("Somethingwent Wrong");
+    }
     };
 
     return (

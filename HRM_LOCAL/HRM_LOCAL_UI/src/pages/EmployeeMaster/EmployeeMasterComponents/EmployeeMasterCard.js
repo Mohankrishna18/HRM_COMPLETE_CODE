@@ -161,7 +161,6 @@ function EmployeeMasterCard() {
                                 </Col>
                             </Row>
 
-
                             <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Text style={{}}>
@@ -295,3 +294,4 @@ function EmployeeMasterCard() {
     )
 }
 export default EmployeeMasterCard;
+
