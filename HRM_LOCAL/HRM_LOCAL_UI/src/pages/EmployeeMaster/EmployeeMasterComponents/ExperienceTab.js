@@ -185,6 +185,7 @@ function ExperienceTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
+        try{
         await axios.put(`/emp/updateExperience/${employeeid}`, {
             previousCompany1_name,
             previousCompany1_designation,
@@ -210,7 +211,10 @@ function ExperienceTab() {
 
         });
         toast.success("Form Submitted Successfully");
-
+    }
+    catch(error){
+        toast.error("Somethingwent Wrong");
+  }
     };
 
     return (
@@ -634,4 +638,3 @@ function ExperienceTab() {
     )
 }
 export default ExperienceTab;
-
