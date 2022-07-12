@@ -176,6 +176,26 @@ function AddOnboard(props) {
       })
   }, []);
 
+  const [client, setClient] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/clientProjectMapping/getAllClients")
+      .then((response) => {
+        console.log(response.data);
+        setClient(response.data.data);
+      })
+  }, []);
+
+  const [project, setProject] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/clientProjectMapping/getAllProjects")
+      .then((response) => {
+        console.log(response.data);
+        setProject(response.data.data);
+      })
+  }, []);
+
 
 
   return (
@@ -563,10 +583,10 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
                   onChange={(e) => setField("client", e.target.value)}
                   isInvalid={!!errors.client}
                 >
-                  <option>Select</option>
-                  <option value="Chenna Reddy">Chenna Reddy</option>
-                  <option value="Raju">Raju</option>
-                  <option value="Abhi">Abhi</option>
+                  <option>Select </option>
+                  {client.map((clients) => (
+                    <option>{clients.clientName}</option>
+                  ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.client}
@@ -584,10 +604,10 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
                   onChange={(e) => setField("projectName", e.target.value)}
                   isInvalid={!!errors.projectName}
                 >
-                  <option>Select</option>
-                  <option value="HRM">HRM</option>
-                  <option value="DEP">DEP</option>
-                  <option value="MDM">MDM</option>
+                  <option>Select </option>
+                  {project.map((projects) => (
+                    <option>{projects.projectName}</option>
+                  ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.projectName}

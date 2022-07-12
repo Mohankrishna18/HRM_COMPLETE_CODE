@@ -1,5 +1,7 @@
 package com.arshaa.emp.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 
 public class PersonalDetails {

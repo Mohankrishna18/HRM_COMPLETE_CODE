@@ -212,6 +212,19 @@ function EmploymentDetailsTab() {
         });
     }, []);
     console.log(reportingManagers)
+
+    const [project, setProject] = useState([]);
+    useEffect(() => {
+        axios
+          .get("/clientProjectMapping/getAllProjects")
+          .then((response) => {
+            setProject(response.data.data);
+          })
+          .catch(() => {
+            toast.error("data is not getting");
+          });
+      }, []);
+      console.log(project)
     
 
 
@@ -232,6 +245,7 @@ function EmploymentDetailsTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
+        try{
         await axios.put(`/emp/updateEmploymentDetails/${employeeid}`, {
            primarySkills,
            secondarySkills,
@@ -243,7 +257,10 @@ function EmploymentDetailsTab() {
            projectName
         });
         toast.success("Form Submitted Successfully");
-
+    }
+    catch(error){
+        toast.error("Somethingwent Wrong");
+  } 
     };
 
     return (
@@ -291,6 +308,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Employment Type</Form.Label>
                         <Form.Select
+                        disabled
                             type="text"
                             placeholder="Employment Type"
                             controlId="employmentType"
@@ -313,6 +331,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Band</Form.Label>
                         <Form.Select
+                        disabled
                             type="text"
                             placeholder="Band"
                             controlId="band"
@@ -331,6 +350,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Department</Form.Label>
                         <Form.Select
+                        disabled
                             type="text"
                             placeholder="Department Name"
                             controlId="departmentName"
@@ -361,6 +381,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Designation</Form.Label>
                         <Form.Select
+                        disabled
                             type="text"
                             placeholder="Designation Name"
                             controlId="designationName"
@@ -382,6 +403,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Reporting Manager *</Form.Label>
                         <Form.Select
+                        disabled
                             placeholder="select Gender"
                             value={reportingManager}
                             onChange={(e) => {
@@ -400,6 +422,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Project</Form.Label>
                         <Form.Select
+                        disabled
                             type="text"
                             placeholder="Project"
                             controlId="project"
@@ -411,9 +434,11 @@ function EmploymentDetailsTab() {
                             }
                         >
                             <option>Select</option>
-                            <option value="HRM">HRM</option>
-                            <option value="DEP">DEP</option>
-                            <option value="PropertEase">PropertEase</option>
+                            {project.map((p) => (
+                    <option value={p.projectName}>
+                        {p.projectName}
+                    </option>
+                  ))}                           
                         </Form.Select>
                     </Form.Group>
                 </Row>
@@ -431,4 +456,3 @@ function EmploymentDetailsTab() {
     )
 }
 export default EmploymentDetailsTab;
-
