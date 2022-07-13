@@ -194,6 +194,7 @@ function EducationalDetailsTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
+        try{
         await axios.put(`/emp/updateEducationalDetails/${employeeid}`, {
             postgraduationType,
             postgraduationBoardOfUniversity,
@@ -228,7 +229,10 @@ function EducationalDetailsTab() {
 
         });
         toast.success("Form Submitted Successfully");
-
+    }
+    catch(error){
+        toast.error("Somethingwent Wrong");
+  }
     };
 
     return (

@@ -47,6 +47,7 @@ function AddressTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
+        try{
         await axios.put(`/emp/updateAddress/${employeeid}`, {
             permanentAdress,
             permanentState,
@@ -58,7 +59,10 @@ function AddressTab() {
             currentPincode,
         });
         toast.success("Form Submitted Successfully");
-
+    }
+    catch(error){
+        toast.error("Somethingwent Wrong");
+  }
     };
 
     return (
