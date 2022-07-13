@@ -52,7 +52,7 @@ function ClientMain() {
   };
 
   const [columns, setColumns] = useState([
-    
+   
 
     {
       title: "Client Name",
@@ -78,8 +78,8 @@ function ClientMain() {
     },
 
     {
-      title: "Location",
-      field: "location",
+      title: "Country",
+      field: "country",
     },
 
     {
@@ -165,7 +165,7 @@ function ClientMain() {
 
         <Grid style={{ borderBlockEndWidth: "2px" }}>
           <MaterialTable
-            title="Clients list"
+            title="Clients"
             columns={columns}
             style={{ color: "black", fontSize: "1rem" }}
             data={data}

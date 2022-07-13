@@ -260,7 +260,7 @@ function EducationalDetailsTab() {
                             <Accordion.Body>
                                 <Row>
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                        <Form.Label>Type of Post Graduation *</Form.Label>
+                                        <Form.Label>Type of Post Graduation </Form.Label>
                                         <Form.Select
                                             required
                                             type="text"
@@ -1012,3 +1012,5 @@ function EducationalDetailsTab() {
     )
 }
 export default EducationalDetailsTab;
+
+

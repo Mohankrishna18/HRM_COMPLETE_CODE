@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Card, Container, Row, Col, Table } from "react-bootstrap";
+import { Card, Container, Row, Col, Table, Tabs, Tab } from "react-bootstrap";
 import { matches } from "lodash";
 import { Image } from "react-bootstrap";
 import axios from "../../../Uri";
 import { split } from "lodash";
 import Avatar from '@mui/material/Avatar';
+import PersonalDetails from "./PersonalDetails";
 
 
-//Commit
 
 const MyProfile = () => {
 
@@ -28,8 +28,6 @@ const MyProfile = () => {
       });
   }, []);
   console.log(getEmployeeDetails)
-
-
 
   useEffect(() => {
     axios
@@ -74,19 +72,16 @@ const MyProfile = () => {
   //    return oldDate.toString().split("/").reverse().join("/");
   // }
 
-
-
   // console.log(dob)
   //  var dob12 = dob.split("-").reverse().join("-");
   //  console.log(dob12)
-
 
   // var dd = dob.getDate();
   // var mm = dob.getMonth()+1;
   // var yyyy = dob.getFullYear();
   // var dob1 = dd + '-' + mm + '-' + yyyy;
   //  console.log(dob1);
-//comment for pull req
+  //comment for pull req
   // console.log(getEmployeeDetails.passportExpiryDate)
   var passportDate = new Date(getEmployeeDetails.passportExpiryDate);
   var dd = String(passportDate.getDate()).padStart(2, '0');
@@ -170,10 +165,7 @@ const MyProfile = () => {
   var previousCompany3_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
   console.log(previousCompany3_relievingDate1)
 
-
-
   var dob11 = getEmployeeDetails.dateOfBirth
-
 
   return (
     <>
@@ -189,207 +181,877 @@ const MyProfile = () => {
                 <Row>
                   <Col>
                     <Card>
-                      
-                        <Row>
-                          <Col>
+
+                      <Row>
+                        <Col>
+                          <Row>
+                            <Col>
+                              <Row style={{
+                                alignContent: "center",
+                                paddingTop: 0,
+                                paddingLeft: 200,
+                                marginLeft: "170px"
+                              }}>
+                                {/* <Col>{getEmployeeDetails.profilePhoto}</Col> */}
+                              </Row>
+                            </Col>
                             <Row>
                               <Col>
-                                <Row style={{
-                                  alignContent: "center",
-                                  paddingTop: 0,
-                                  paddingLeft: 200,
-                                  marginLeft: "170px"
-                                }}>
-                                  {/* <Col>{getEmployeeDetails.profilePhoto}</Col> */}
-                                </Row>
-                              </Col>
-                              <Row>
-                                <Col>
-                                  <Card.Title>
-                                    <Row>
+                                <Card.Title>
+                                  <Row>
 
-                                      <Col>
-                                        <Row>
-                                          <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
-
-                                            height: "150px",
-                                            width: "150px",
-                                            borderRadius: "110px",
-                                            alignItems: "center",
-                                            marginTop: "50px",
-                                            marginLeft: "32%"
-                                          }} />
-                                        </Row>
-                                        <Row>
-                                          <Col style={{
-                                            fontSize: 20,
-                                            textAlign: "center",
-                                            paddingTop: 40,
-                                            paddingBottom: 40,
-                                            text: "bold",
+                                    <Col>
+                                      <Row>
+                                        <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
+                                          height: "130px",
+                                          width: "130px",
+                                          borderRadius: "110px",
+                                          alignItems: "center",
+                                          marginTop: "30px",
+                                          marginLeft: "34%"
+                                        }} />
+                                      </Row>
+                                      <Row>
+                                        <Col style={{
+                                          fontSize: 20,
+                                          textAlign: "center",
+                                          paddingTop: 10,
+                                          paddingBottom: 20,
+                                          text: "bold",
 
 
-                                          }}>
-                                            {getEmployeeDetails.firstName} {getEmployeeDetails.lastName}
+                                        }}>
+                                          {getEmployeeDetails.firstName} {getEmployeeDetails.lastName}
 
-                                          </Col>
+                                        </Col>
 
-                                        </Row>
-
-
-                                      </Col>
+                                      </Row>
 
 
-                                    </Row>
-                                  </Card.Title></Col></Row>
-                            </Row>
-                          </Col>
+                                    </Col>
 
-                          <Col>
-                            <Card.Body style={{}}>
-                              <Row
-                                style={{
-                                  paddingTop: 50,
-                                    paddingBottom: 15,
-                                }}
-                              >
-                                <Col>
-                                  <Card.Title style={{}}>
-                                    <h6> Employee ID:</h6>
-                                  </Card.Title>
-                                </Col>{" "}
-                                <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{ paddinBottom: 0,color:"#999897" }}>
-                                    {getEmployeeDetails.employeeId}
-                                  </Card.Text>
-                                </Col>
-                              </Row>
-                              <Row style={{ paddingBottom: 15 }}>
-                                <Col>
-                                  <Card.Title style={{}}>
-                                    <h6> Designation:</h6>
-                                  </Card.Title>
-                                </Col>{" "}
-                                <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{color:"#999897"}}>
-                                    {getEmployeeDetails.designationName}
-                                  </Card.Text>
-                                </Col>
-                              </Row>
-                              <Row style={{ paddingBottom: 15 }}>
-                                <Col>
-                                  <Card.Title style={{}}>
-                                    <h6>Department:</h6>
-                                  </Card.Title>
-                                </Col>{" "}
-                                <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{color:"#999897"}}>
-                                    {getEmployeeDetails.departmentName}
-                                  </Card.Text>
-                                </Col>
-                              </Row>
-                              <Row style={{ paddingBottom: 10 }}>
-                                <Col>
-                                  <Card.Text style={{}}>
-                                    <h6>Project: </h6>
-                                  </Card.Text>
-                                </Col>{" "}
-                                <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{color:"#999897"}}>
-                                    {getEmployeeDetails.projectName}
-                                  </Card.Text>
-                                </Col>
-                              </Row>
-                              <Row style={{ paddingBottom: 10 }}>
-                                <Col>
-                                  <Card.Text style={{}}>
-                                    <h6>Business Unit: </h6>
-                                  </Card.Text>
-                                </Col>{" "}
-                                <Col md={{ offset: 1 }}>
-                                  <Card.Text style={{color:"#999897"}}>
-                                    {getEmployeeDetails.businessUnit}
-                                  </Card.Text>
-                                </Col>
-                              </Row>
-                            </Card.Body></Col>
-                          <Col>
 
-                            <Row style={{  paddingTop: 65,
-                            paddingBottom: 15, }}>
+                                  </Row>
+                                </Card.Title></Col></Row>
+                          </Row>
+                        </Col>
+
+                        <Col>
+                          <Card.Body style={{}}>
+                            <Row
+                              style={{
+                                paddingTop: 20,
+                                paddingBottom: 10,
+                              }}
+                            >
                               <Col>
                                 <Card.Title style={{}}>
-                                  <h6> Years of Experience:</h6>
+                                  <h6> Employee ID:</h6>
                                 </Card.Title>
                               </Col>{" "}
                               <Col md={{ offset: 1 }}>
-                                <Card.Text style={{color:"#999897"}}>
-                                  {getEmployeeDetails.yearsOfExperience}
+                                <Card.Text style={{ paddinBottom: 0, color: "#999897" }}>
+                                  {getEmployeeDetails.employeeId}
                                 </Card.Text>
                               </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 15 }}>
+                            <Row style={{ paddingBottom: 10 }}>
                               <Col>
                                 <Card.Title style={{}}>
-                                  <h6>Date of Joining: </h6>
+                                  <h6> Designation:</h6>
                                 </Card.Title>
                               </Col>{" "}
                               <Col md={{ offset: 1 }}>
-                                <Card.Text style={{color:"#999897"}}>
-                                  {/* {getEmployeeDetails.dateOfJoining} */}
-                                  {doj1}
+                                <Card.Text style={{ color: "#999897" }}>
+                                  {getEmployeeDetails.designationName}
                                 </Card.Text>
                               </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 15 }}>
+                            <Row style={{ paddingBottom: 10 }}>
                               <Col>
-                                <Card.Text style={{}}>
-                                  <h6>Reporting Manager: </h6>
-                                </Card.Text>
+                                <Card.Title style={{}}>
+                                  <h6>Department:</h6>
+                                </Card.Title>
                               </Col>{" "}
                               <Col md={{ offset: 1 }}>
-                                <Card.Text style={{color:"#999897"}}>
-                                  {getEmployeeDetails.reportingManager}
-                                </Card.Text>
-                              </Col>
-                            </Row>
-                            <Row style={{ paddingBottom: 15 }}>
-                              <Col>
-                                <Card.Text style={{}}>
-                                  <h6>Employment Type: </h6>
-                                </Card.Text>
-                              </Col>{" "}
-                              <Col md={{ offset: 1 }}>
-                                <Card.Text style={{color:"#999897"}}>
-                                  {getEmployeeDetails.employmentType}
+                                <Card.Text style={{ color: "#999897" }}>
+                                  {getEmployeeDetails.departmentName}
                                 </Card.Text>
                               </Col>
                             </Row>
                             <Row style={{ paddingBottom: 10 }}>
                               <Col>
                                 <Card.Text style={{}}>
-                                  <h6>Band: </h6>
+                                  <h6>Project: </h6>
                                 </Card.Text>
                               </Col>{" "}
                               <Col md={{ offset: 1 }}>
-                                <Card.Text style={{color:"#999897"}}>
-                                  {getEmployeeDetails.band}
+                                <Card.Text style={{ color: "#999897" }}>
+                                  {getEmployeeDetails.projectName}
                                 </Card.Text>
                               </Col>
                             </Row>
+                            <Row style={{ paddingBottom: 10 }}>
+                              <Col>
+                                <Card.Text style={{}}>
+                                  <h6>Business Unit: </h6>
+                                </Card.Text>
+                              </Col>{" "}
+                              <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ color: "#999897" }}>
+                                  {getEmployeeDetails.businessUnit}
+                                </Card.Text>
+                              </Col>
+                            </Row>
+                          </Card.Body></Col>
+                        <Col>
 
-                          </Col>
-
-
-                        </Row>
-                    
+                          <Row style={{
+                            paddingTop: 35,
+                            paddingBottom: 10,
+                          }}>
+                            <Col>
+                              <Card.Title style={{}}>
+                                <h6> Years of Experience:</h6>
+                              </Card.Title>
+                            </Col>{" "}
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ color: "#999897" }}>
+                                {getEmployeeDetails.yearsOfExperience}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Row style={{ paddingBottom: 10 }}>
+                            <Col>
+                              <Card.Title style={{}}>
+                                <h6>Date of Joining: </h6>
+                              </Card.Title>
+                            </Col>{" "}
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ color: "#999897" }}>
+                                {/* {getEmployeeDetails.dateOfJoining} */}
+                                {doj1}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Row style={{ paddingBottom: 10 }}>
+                            <Col>
+                              <Card.Text style={{}}>
+                                <h6>Reporting Manager: </h6>
+                              </Card.Text>
+                            </Col>{" "}
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ color: "#999897" }}>
+                                {getEmployeeDetails.reportingManager}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Row style={{ paddingBottom: 10 }}>
+                            <Col>
+                              <Card.Text style={{}}>
+                                <h6>Employment Type: </h6>
+                              </Card.Text>
+                            </Col>{" "}
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ color: "#999897" }}>
+                                {getEmployeeDetails.employmentType}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Row style={{ paddingBottom: 10 }}>
+                            <Col>
+                              <Card.Text style={{}}>
+                                <h6>Band: </h6>
+                              </Card.Text>
+                            </Col>{" "}
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ color: "#999897" }}>
+                                {getEmployeeDetails.band}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                        </Col>
+                      </Row>
                     </Card>
-
                   </Col>
                 </Row>{" "}
-                <Row style={{ marginTop: 20 }}>
+
+                <Row>
+                  <Tabs
+                    defaultActiveKey="Personal Details"
+                    transition={false}
+                    id="noanim-tab-example"
+                    className="mb-3"
+                    style={{ justifyContent: "center", color: "white", backgroundColor: "white", fontSize: "16px", padding: 10 }}
+                  >
+                    <Tab eventKey="Personal Details" title="Personal Details" style={{ backgroundColor: "white" }}>
+
+                      <Card style={{ padding: 30, paddingBottom: 0 }}>
+                        <Card.Title>
+                          <h5>Personal Information:</h5>
+                        </Card.Title>
+                        <Card.Body >
+                          <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                            <Col>
+                              <Card.Subtitle>
+                                Email:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Subtitle style={{ color: "#999897" }}>
+                                {getEmployeeDetails.email}
+                              </Card.Subtitle>
+                            </Col>
+                          </Row>
+                          <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                            <Col>
+                              <Card.Subtitle
+                              >
+                                Phone Number:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Subtitle style={{ color: "#999897" }}>
+                                {getEmployeeDetails.primaryPhoneNumber}
+                              </Card.Subtitle>
+                            </Col>
+                          </Row>
+                          <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                            <Col>
+                              <Card.Subtitle
+
+                              >
+                                Date of Birth:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              {getEmployeeDetails.dateOfBirth ? (<Card.Subtitle style={{ color: "#999897" }}>
+                                {dob}
+                              </Card.Subtitle>) : (<div></div>)}
+
+                            </Col>
+                          </Row>
+                          <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                            <Col>
+                              <Card.Subtitle
+                              >
+                                Blood Group:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Subtitle style={{ color: "#999897" }} >
+                                {getEmployeeDetails.bloodGroup}
+                              </Card.Subtitle>
+                            </Col>
+                          </Row>
+                          <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                            <Col>
+                              <Card.Subtitle style={{}}
+                              >
+                                Gender:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Subtitle style={{ color: "#999897" }}>
+                                {getEmployeeDetails.gender}
+                              </Card.Subtitle>
+                            </Col>
+                          </Row>
+                          <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                            <Col>
+                              <Card.Subtitle>
+                                Marital Status:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Subtitle style={{ color: "#999897" }}>
+                                {getEmployeeDetails.maritalStatus}
+                              </Card.Subtitle>
+                            </Col>
+                          </Row>
+                        </Card.Body>
+                      </Card>
+                    </Tab>
+                    <Tab eventKey="Address" title="Address" style={{ backgroundColor: "white" }}>
+
+                      <Card style={{ padding: 30, paddingBottom: 50 }}>
+                        <Card.Title>
+                          <h5>Address:</h5>
+                        </Card.Title>
+
+                        <Card.Body style={{ paddingLeft: 20 }}>
+                        <Row>
+                          <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            <h5>Permanent Address:</h5>
+                          </Card.Subtitle>
+                          <Row style={{paddingLeft:50}}>
+                            <Col >
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Address:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
+                                {getEmployeeDetails.permanentAdress}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Row style={{paddingLeft:50}}>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                State:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
+                                {getEmployeeDetails.permanentState}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Row style={{paddingLeft:50}}>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Country:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
+                                {getEmployeeDetails.permanentCountry}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Row style={{paddingLeft:50}}>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Pincode:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0,color:"#999897" }}>
+                                {getEmployeeDetails.permanentPincode}
+                              </Card.Text>
+                            </Col>
+                          </Row>   
+                          
+                          </Col>
+                          <Col>
+
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            <h5>Current Address:</h5>
+                          </Card.Subtitle>
+                          <Row style={{paddingLeft:50}}>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Address:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
+                                {getEmployeeDetails.currentAdress}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Row style={{paddingLeft:50}}>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                State:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
+                                {getEmployeeDetails.currentState}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Row style={{paddingLeft:50}}>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Country:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
+                                {getEmployeeDetails.currentCountry}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Row style={{paddingLeft:50}}>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Pincode:
+                              </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
+                                {getEmployeeDetails.currentPincode}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          
+                          </Col>
+                        </Row>
+
+                        </Card.Body>
+                      </Card>
+                    </Tab>
+                    {/* <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            <h5>Permanent Address:</h5>
+                          </Card.Subtitle>
+                          
+                      </Col>
+                      <Col> 
+                        <Card.Subtitle style={{ padding: 10 }}>
+                            <h5>Current Address:</h5>
+                          </Card.Subtitle>
+                          <Row>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Address:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
+                                {getEmployeeDetails.currentAdress}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                State:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
+                                {getEmployeeDetails.currentState}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Country:
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
+                                {getEmployeeDetails.currentCountry}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Row>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Pincode:
+                              </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
+                                {getEmployeeDetails.currentPincode}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                        </Col> */}
+
+                    <Tab eventKey="Additional Details" title="Additional Details" style={{ backgroundColor: "white" }}>
+
+                      <Card style={{ padding: 30, paddingBottom: 20 }}>
+                        <Card.Title>
+                          <h5>Additional Details:</h5>
+                        </Card.Title>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Passport Number:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.passportNo}
+                            </Card.Text>
+                          </Col>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Passport Expiry Date:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            {getEmployeeDetails.passportExpiryDate ? (<Card.Subtitle style={{ color: "#999897" }}>
+                              {ped}
+                            </Card.Subtitle>) : (<div></div>)}
+                          </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              PAN Card Number:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.panNumber}
+                            </Card.Text>
+                          </Col>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Aadhar Card Number:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.aadharNumber}
+                            </Card.Text>
+                          </Col>
+                        </Row>
+
+                        <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              UAN Number:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.uanNumber}
+                            </Card.Text>
+                          </Col>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Band:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.band}
+                            </Card.Text>
+                          </Col>
+                        </Row>
+
+                        <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Bank Name:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.bankName}
+                            </Card.Text>
+                          </Col>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Account Number:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.accountNumber}
+                            </Card.Text>
+                          </Col>
+                        </Row>
+
+                        <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              IFSC Code:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.ifscCode}
+                            </Card.Text>
+                          </Col>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Branch:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.branch}
+                            </Card.Text>
+                          </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Exit Date:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.exitDate}
+                            </Card.Text>
+                          </Col>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0 }}>
+                            </Card.Text>
+                          </Col>
+                        </Row>
+                      </Card>
+
+                    </Tab>
+                    <Tab eventKey="Employment Details" title="Employment Details" style={{ backgroundColor: "white" }}>
+
+                      <Card style={{ padding: 30, paddingBottom: 20 }}>
+                        <Card.Title>
+                          <h5>Employment Details:</h5>
+                        </Card.Title>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Primary Skills:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.primarySkills}
+                            </Card.Text>
+                          </Col>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Secondary Skills:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Subtitle style={{ color: "#999897" }}>
+                              {getEmployeeDetails.secondarySkills}
+                            </Card.Subtitle>
+                          </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Employment Type:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.employmentType}
+                            </Card.Text>
+                          </Col>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Band:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.band}
+                            </Card.Text>
+                          </Col>
+                        </Row>
+
+                        <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Department:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.departmentName}
+                            </Card.Text>
+                          </Col>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Designation:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.designationName}
+                            </Card.Text>
+                          </Col>
+                        </Row>
+
+                        <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Reporting Manager:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.reportingManager}
+                            </Card.Text>
+                          </Col>
+                          <Col>
+                            <Card.Subtitle style={{ padding: 10 }}>
+                              Project Name:
+                            </Card.Subtitle>{" "}
+                          </Col>
+                          <Col md={{ offset: 1 }}>
+                            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                              {getEmployeeDetails.projectName}
+                            </Card.Text>
+                          </Col>
+                        </Row>
+
+
+                      </Card>
+
+                    </Tab>
+                    <Tab eventKey="Educational Details" title="Educational Details" style={{ backgroundColor: "white" }}>
+
+                      <Card style={{ padding: 30, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
+                        <Card.Title>
+                          <h5>Educational Information:</h5>
+                        </Card.Title>
+                        <Card.Body style={{ paddingLeft: 20 }}>
+
+
+                          <Table>
+                            <thead>
+                              <tr>
+                                <th>Type of Graduation</th>
+                                <th>University</th>
+                                <th>Institute Name</th>
+                                <th>Course</th>
+                                <th>Grade</th>
+                                <th>Joining Date</th>
+                                <th>Year of Passing</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{getEmployeeDetails.postgraduationType}</td>
+                                <td>{getEmployeeDetails.postgraduationBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.postgraduationInstituteName}</td>
+                                <td>{getEmployeeDetails.postgraduationCourseName}</td>
+                                <td>{getEmployeeDetails.postgraduationGrade}</td>
+                                <td> {getEmployeeDetails.postgraduationJoiningYear ? (<td>
+                                  {postgraduationJoiningYear1}
+                                </td>) : (<div></div>)}</td>
+                                <td>{getEmployeeDetails.postgraduationPassedYear ? (<td>
+                                  {postgraduationPassedYear1}
+                                </td>) : (<div></div>)}</td>
+
+                              </tr>
+                              <tr>
+                                <td>{getEmployeeDetails.graduationType}</td>
+                                <td>{getEmployeeDetails.graduationBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.graduationInstituteName}</td>
+                                <td>{getEmployeeDetails.graduationCourseName}</td>
+                                <td>{getEmployeeDetails.graduationGrade}</td>
+                                <td> {getEmployeeDetails.graduationJoiningYear ? (<td>
+                                  {graduationJoiningYear1}
+                                </td>) : (<div></div>)}</td>
+                                <td>{getEmployeeDetails.graduationPassedYear ? (<td>
+                                  {graduationPassedYear1}
+                                </td>) : (<div></div>)}</td>
+
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td>{getEmployeeDetails.intermediateBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.intermediateCollegeName}</td>
+                                <td>{getEmployeeDetails.intermediateCourseName}</td>
+                                <td>{getEmployeeDetails.intermediateGrade}</td>
+                                <td> {getEmployeeDetails.intermediateJoiningYear ? (<td>
+                                  {intermediateJoiningYear1}
+                                </td>) : (<div></div>)}</td>
+                                <td> {getEmployeeDetails.intermediatePassedYear ? (<td>
+                                  {intermediatePassedYear1}
+                                </td>) : (<div></div>)}</td>
+
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td>{getEmployeeDetails.sscBoardOfUniversity}</td>
+                                <td>{getEmployeeDetails.sscSchoolName}</td>
+                                <td>{getEmployeeDetails.sscCourseName}</td>
+                                <td>{getEmployeeDetails.sscGrade}</td>
+                                <td> {getEmployeeDetails.sscJoiningYear ? (<td>
+                                  {sscJoiningYear1}
+                                </td>) : (<div></div>)}</td>
+                                <td>{getEmployeeDetails.sscPassedYear ? (<td>
+                                  {sscPassedYear1}
+                                </td>) : (<div></div>)}</td>
+                              </tr>
+
+
+                            </tbody>
+                          </Table>
+
+                        </Card.Body>
+                      </Card>
+
+                    </Tab>
+                    <Tab eventKey="Experience" title="Experience " style={{ backgroundColor: "white" }}>
+
+                      <Card style={{ padding: 30, marginTop: 20, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
+                        <Card.Title>
+                          <h5>Experience:</h5>
+                        </Card.Title>
+                        <Card.Body style={{ paddingLeft: 20, paddingRight: 20 }}>
+                          <Table>
+                            <thead>
+                              <tr>
+
+                                <th>Company Name</th>
+                                <th>Employee ID</th>
+                                <th>Designation</th>
+                                <th>Joining Date</th>
+                                <th>Relieving Date</th>
+
+
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{getEmployeeDetails.previousCompany1_name}</td>
+                                <td>{getEmployeeDetails.previousCompany1_employeeId}</td>
+                                <td>{getEmployeeDetails.previousCompany1_designation}</td>
+                                <td> {getEmployeeDetails.previousCompany1_joiningDate ? (<td>
+                                  {previousCompany1_joiningDate1}
+                                </td>) : (<div></div>)}</td>
+                                <td>{getEmployeeDetails.previousCompany1_relievingDate ? (<td>
+                                  {previousCompany1_relievingDate1}
+                                </td>) : (<div></div>)}</td>
+                              </tr>
+                              <tr>
+                                <td>{getEmployeeDetails.previousCompany2_name}</td>
+                                <td>{getEmployeeDetails.previousCompany2_employeeId}</td>
+                                <td>{getEmployeeDetails.previousCompany2_designation}</td>
+                                <td> {getEmployeeDetails.previousCompany2_joiningDate ? (<td>
+                                  {previousCompany2_joiningDate1}
+                                </td>) : (<div></div>)}</td>
+                                <td>{getEmployeeDetails.previousCompany2_relievingDate ? (<td>
+                                  {previousCompany2_relievingDate1}
+                                </td>) : (<div></div>)}</td>
+                              </tr>
+                              <tr>
+                                <td>{getEmployeeDetails.previousCompany3_name}</td>
+                                <td>{getEmployeeDetails.previousCompany3_employeeId}</td>
+                                <td>{getEmployeeDetails.previousCompany3_designation}</td>
+                                <td> {getEmployeeDetails.previousCompany3_joiningDate ? (<td>
+                                  {previousCompany3_joiningDate1}
+                                </td>) : (<div></div>)}</td>
+                                <td>{getEmployeeDetails.previousCompany3_relievingDate ? (<td>
+                                  {previousCompany3_relievingDate1}
+                                </td>) : (<div></div>)}</td>
+                              </tr>
+
+                            </tbody>
+                          </Table>
+                        </Card.Body>
+                      </Card>
+
+                    </Tab>
+
+                  </Tabs>
+                </Row>
+                {/* <Row style={{ marginTop: 20 }}>
                   <Col>
-                    <Card style={{ padding: 30, paddingBottom: 45 }}>
+                    <Card style={{ padding: 30, paddingBottom: 95 }}>
                       <Card.Title>
                         <h5>Personal Information:</h5>
                       </Card.Title>
@@ -481,7 +1143,7 @@ const MyProfile = () => {
                     </Card>
                   </Col>
                   <Col>
-                    <Card style={{ padding: 30, paddingBottom: 0 }}>
+                    <Card style={{ padding: 30, paddingBottom: 50 }}>
                       <Card.Title>
                         <h5>Address:</h5>
                       </Card.Title>
@@ -714,59 +1376,31 @@ const MyProfile = () => {
                           </Card.Text>
                         </Col>
                       </Row>
-
                       <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
-
-
-
                         <Col>
-
                           <Card.Subtitle style={{ padding: 10 }}>
-
                             Exit Date:
-
                           </Card.Subtitle>{" "}
-
                         </Col>
-
                         <Col md={{ offset: 1 }}>
-
                           <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
-
                             {getEmployeeDetails.exitDate}
-
                           </Card.Text>
-
                         </Col>
-
                         <Col>
-
                           <Card.Subtitle style={{ padding: 10 }}>
-
-                            {/* BAND: */}
-
                           </Card.Subtitle>{" "}
-
                         </Col>
-
                         <Col md={{ offset: 1 }}>
-
                           <Card.Text style={{ paddingBottom: 0 }}>
-
-                            {/* {getEmployeeDetails.band} */}
-
                           </Card.Text>
-
                         </Col>
-
                       </Row>
-
-
                     </Card>
                   </Col>
-                </Row>
+                </Row> */}
 
-                <Row style={{ marginTop: 20, marginRight: 10 }}>
+                {/* <Row style={{ marginTop: 20, marginRight: 10 }}>
 
                   <Card style={{ padding: 30, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
                     <Card.Title>
@@ -778,8 +1412,6 @@ const MyProfile = () => {
                       <Table>
                         <thead>
                           <tr>
-
-                            {/* <th>Sr.No.</th> */}
                             <th>University</th>
                             <th>Institute Name</th>
                             <th>Course</th>
@@ -853,9 +1485,9 @@ const MyProfile = () => {
 
                     </Card.Body>
                   </Card>
-                </Row>
+                </Row> */}
 
-                <Row style={{ marginRight: 10 }}>
+                {/* <Row style={{ marginRight: 10 }}>
                   <Card style={{ padding: 30, marginTop: 20, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
                     <Card.Title>
                       <h5>Experience:</h5>
@@ -864,8 +1496,7 @@ const MyProfile = () => {
                       <Table>
                         <thead>
                           <tr>
-                            {/*
-                            <th>Sr.No.</th> */}
+                          
                             <th>Company Name</th>
                             <th>Employee ID</th>
                             <th>Designation</th>
@@ -914,10 +1545,7 @@ const MyProfile = () => {
                       </Table>
                     </Card.Body>
                   </Card>
-                </Row>
-
-
-
+                </Row> */}
 
               </Card.Body>
             </Card.Header>

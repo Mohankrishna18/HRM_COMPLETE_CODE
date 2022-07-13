@@ -52,7 +52,12 @@ spring:
         - id: ClientsProjectsMapping
           uri: lb://clientProjectMapping
           predicates:
-            - Path=/clientProjectMapping/**              
+            - Path=/clientProjectMapping/**
+            
+        - id: timesheetService
+          uri: lb://timesheetService
+          predicates:
+            - Path=/timesheet/**                  
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
