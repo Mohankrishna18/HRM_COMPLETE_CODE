@@ -5,9 +5,14 @@ import { toast } from "react-toastify";
 
 function EducationalDetailsTab() {
 
+    // const userData = sessionStorage.getItem("userdata");
+    // const userData1 = JSON.parse(userData);
+    // const employeeid = userData1.data.employeeId;
+
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
 
     const [ferrors, setFErrors] = useState("");
     const [serror, setSerror] = useState("");
@@ -157,7 +162,7 @@ function EducationalDetailsTab() {
 
     useEffect(() => {
         axios
-            .get(`/emp/getEducationDetails/${employeeid}`)
+            .get(`/emp/getEducationDetails/${empId}`)
             .then((response) => {
                 setTypeOfPostGraduation(response.data.data.postgraduationType)
                 setPostgraduationBoardOfUniversity(response.data.data.postgraduationBoardOfUniversity);
@@ -195,7 +200,7 @@ function EducationalDetailsTab() {
     const changeHandler = async (e) => {
         e.preventDefault();
         try{
-        await axios.put(`/emp/updateEducationalDetails/${employeeid}`, {
+        await axios.put(`/emp/updateEducationalDetails/${empId}`, {
             postgraduationType,
             postgraduationBoardOfUniversity,
             postgraduationInstituteName,
@@ -262,7 +267,7 @@ function EducationalDetailsTab() {
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                         <Form.Label>Type of Post Graduation </Form.Label>
                                         <Form.Select
-                                            required
+                                            disabled
                                             type="text"
                                             placeholder="Type Of Post Graduation"
                                             controlId="postgraduationType"
@@ -289,6 +294,7 @@ function EducationalDetailsTab() {
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                         <Form.Label>University Name </Form.Label>
                                         <Form.Control
+                                        disabled
                                             type="text"
                                             placeholder="University Name"
                                             controlId="postgraduationBoardOfUniversity"
@@ -305,6 +311,7 @@ function EducationalDetailsTab() {
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                         <Form.Label>Institute Name </Form.Label>
                                         <Form.Control
+                                        disabled
                                             type="text"
                                             placeholder="Institute Name "
                                             controlId="postgraduationInstituteName"
@@ -319,6 +326,7 @@ function EducationalDetailsTab() {
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                         <Form.Label>Institute City/Town </Form.Label>
                                         <Form.Control
+                                        disabled
                                             type="text"
                                             placeholder="Institute City"
                                             controlId="postgraduationInstituteCity"
@@ -333,6 +341,7 @@ function EducationalDetailsTab() {
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                         <Form.Label>Course Name </Form.Label>
                                         <Form.Control
+                                        disabled
                                             type="text"
                                             placeholder="Course Name"
                                             controlId="postgraduationCourseName"
@@ -347,6 +356,7 @@ function EducationalDetailsTab() {
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                         <Form.Label>Joining Year </Form.Label>
                                         <Form.Control
+                                        disabled
                                             type="date"
                                             placeholder="Joining Year"
                                             controlId="postgraduationJoiningYear"
@@ -361,6 +371,7 @@ function EducationalDetailsTab() {
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                         <Form.Label>Passed-out Year</Form.Label>
                                         <Form.Control
+                                        disabled
                                             type="date"
                                             placeholder="Passed out year"
                                             controlId="postgraduationPassedYear"
@@ -377,6 +388,7 @@ function EducationalDetailsTab() {
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                         <Form.Label>Grade</Form.Label>
                                         <Form.Control
+                                        disabled
                                             type="text"
                                             placeholder="Percentage/Grade/CGPA/GPA"
                                             controlId="postgraduationGrade"
@@ -411,6 +423,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Type of Graduation *</Form.Label>
                         <Form.Select
                             required
+                            disabled
                             type="text"
                             placeholder="Type Of Graduation"
                             controlId="graduationType"
@@ -448,6 +461,7 @@ function EducationalDetailsTab() {
                         <Form.Label>University Name *</Form.Label>
                         <Form.Control
                             required
+                            disabled
                             type="text"
                             placeholder="University Name"
                             controlId="graduationBoardOfUniversity"
@@ -476,6 +490,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Institute Name *</Form.Label>
                         <Form.Control
                             required
+                            disabled
                             type="text"
                             placeholder="Institute Name "
                             controlId="graduationInstituteName"
@@ -502,6 +517,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Institute City/Town *</Form.Label>
                         <Form.Control
                             required
+                            disabled
                             type="text"
                             placeholder="Institute City"
                             controlId="graduationInstituteCity"
@@ -529,6 +545,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Course Name *</Form.Label>
                         <Form.Control
                             required
+                            disabled
                             type="text"
                             placeholder="Course Name"
                             name="graduationCourseName"
@@ -553,6 +570,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Joining Year *</Form.Label>
                         <Form.Control
                             // required
+                            disabled
                             type="date"
                             placeholder="Joining Year"
                             name="graduationJoiningYear"
@@ -579,6 +597,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Passed-out Year *</Form.Label>
                         <Form.Control
                             //required
+                            disabled
                             type="date"
                             placeholder="Passed out year"
                             controlId="graduationPassedYear"
@@ -605,6 +624,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Grade *</Form.Label>
                         <Form.Control
                             required
+                            disabled
                             type="text"
                             placeholder="Percentage/Grade/GPA/CGPA"
                             controlId="graduationGrade"
@@ -639,6 +659,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Board * </Form.Label>
                         <Form.Control
                             required
+                            disabled
                             type="text"
                             placeholder="Board"
                             controlId="intermediateBoardOfUniversity"
@@ -664,6 +685,7 @@ function EducationalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>School/College Name *</Form.Label>
                         <Form.Control
+                        disabled
                             required
                             type="text"
                             placeholder="School/College Name "
@@ -690,6 +712,7 @@ function EducationalDetailsTab() {
                         <Form.Label>School/College City/Town *</Form.Label>
                         <Form.Control
                             required
+                            disabled
                             type="text"
                             placeholder="School/College City"
                             controlId="intermediateCollegeCity"
@@ -715,6 +738,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Course Name*</Form.Label>
                         <Form.Control
                             required
+                            disabled
                             type="text"
                             placeholder="Course Name"
                             name="intermediateCourseName"
@@ -741,6 +765,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Joining Year *</Form.Label>
                         <Form.Control
                             //required
+                            disabled
                             type="date"
                             placeholder="Joining Year"
                             controlId="intermediateJoiningYear"
@@ -766,6 +791,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Passed-out Year *</Form.Label>
                         <Form.Control
                             //required
+                            disabled
                             type="date"
                             placeholder="Passed out year"
                             controlId="intermediatePassedYear"
@@ -791,6 +817,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Grade *</Form.Label>
                         <Form.Control
                             required
+                            disabled
                             type="text"
                             placeholder="Percentage/Grade/GPA/CGPA"
                             controlId="intermediateGrade"
@@ -826,6 +853,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Board *</Form.Label>
                         <Form.Control
                             required
+                            disabled
                             type="text"
                             placeholder="Board"
                             controlId="sscBoardOfUniversity"
@@ -852,6 +880,7 @@ function EducationalDetailsTab() {
                         <Form.Label>School Name *</Form.Label>
                         <Form.Control
                             required
+                            disabled
                             type="text"
                             placeholder="School Name "
                             controlId="sscSchoolName"
@@ -877,6 +906,7 @@ function EducationalDetailsTab() {
                         <Form.Label>School City/Town *</Form.Label>
                         <Form.Control
                             required
+                            disabled
                             type="text"
                             placeholder="School City"
                             controlId="sscSchoolCity"
@@ -902,6 +932,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Course Name *</Form.Label>
                         <Form.Control
                             required
+                            disabled
                             type="text"
                             placeholder="Course Name"
                             controlId="sscCourseName"
@@ -927,6 +958,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Joining Year *</Form.Label>
                         <Form.Control
                             //required
+                            disabled
                             type="date"
                             name="sscJoiningYear"
                             placeholder="Joining Year"
@@ -951,6 +983,7 @@ function EducationalDetailsTab() {
                         <Form.Label>Passed-out Year *</Form.Label>
                         <Form.Control
                             //required
+                            disabled
                             type="date"
                             name="sscPassedYear"
                             placeholder="Passed out year"
@@ -975,6 +1008,7 @@ function EducationalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Grade *</Form.Label>
                         <Form.Control
+                        disabled
                             required
                             type="text"
                             placeholder="Percentage/Grade/GPA/CGPA"
