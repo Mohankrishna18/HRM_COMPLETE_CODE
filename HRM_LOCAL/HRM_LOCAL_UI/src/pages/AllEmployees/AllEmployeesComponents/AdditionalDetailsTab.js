@@ -5,9 +5,14 @@ import { toast } from "react-toastify";
 
 function AditionalDetailsTab() {
 
+    // const userData = sessionStorage.getItem("userdata");
+    // const userData1 = JSON.parse(userData);
+    // const employeeid = userData1.data.employeeId;
+
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
 
     const [eighteenerror, setEighteenerror] = useState("");
     const [nineteenerror, setNineteenerror] = useState("");
@@ -32,7 +37,7 @@ function AditionalDetailsTab() {
 
     useEffect(() => {
         axios
-            .get(`/emp/getAdditionalDetails/${employeeid}`)
+            .get(`/emp/getAdditionalDetails/${empId}`)
             .then((response) => {
                 setPanNumber(response.data.data.panNumber);
                 setAadharNumber(response.data.data.aadharNumber);
@@ -50,7 +55,7 @@ function AditionalDetailsTab() {
     const changeHandler = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`/emp/updateAdditionalDetails/${employeeid}`, {
+            await axios.put(`/emp/updateAdditionalDetails/${empId}`, {
                 panNumber,
                 aadharNumber,
                 uanNumber,
@@ -61,7 +66,6 @@ function AditionalDetailsTab() {
                 band,
                 passportNo,
                 passportExpiryDate,
-
             });
             toast.success("Form Submitted Successfully");
         }
@@ -87,6 +91,7 @@ function AditionalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Passport Number</Form.Label>
                         <Form.Control
+                        disabled
                             type="text"
                             placeholder="Passport Number"
                             controlId="passportNo"
@@ -103,6 +108,7 @@ function AditionalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Passport Expiry Date</Form.Label>
                         <Form.Control
+                        disabled
                             type="date"
                             placeholder="Passport Expiry Date"
                             controlId="passportExpiryDate"
@@ -118,6 +124,7 @@ function AditionalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>PAN Card Number</Form.Label>
                         <Form.Control
+                        disabled
                             type="text"
                             placeholder="PAN Card Number"
                             controlId="panNumber"
@@ -130,6 +137,7 @@ function AditionalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Aadhar Card Number *</Form.Label>
                         <Form.Control
+                        disabled
                             required
                             type="number"
                             placeholder="Aadhar Card Number"
@@ -159,6 +167,7 @@ function AditionalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>UAN Number</Form.Label>
                         <Form.Control
+                        disabled
                             type="text"
                             placeholder="UAN Number"
                             controlId="uanNumber"
@@ -171,6 +180,7 @@ function AditionalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Bank Name *</Form.Label>
                         <Form.Control
+                        disabled
                             required
                             type="text"
                             placeholder="Bank Name"
@@ -196,6 +206,7 @@ function AditionalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Branch Name *</Form.Label>
                         <Form.Control
+                        disabled
                             required
                             type="text"
                             placeholder="Branch Name"
@@ -222,6 +233,7 @@ function AditionalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Bank Account Number *</Form.Label>
                         <Form.Control
+                        disabled
                             required
                             type="number"
                             placeholder="Account Number"
@@ -250,6 +262,7 @@ function AditionalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>IFSC Code *</Form.Label>
                         <Form.Control
+                        disabled
                             required
                             type="text"
                             placeholder="IFSC Code"
@@ -259,6 +272,7 @@ function AditionalDetailsTab() {
                             value={ifscCode}
                             isInvalid={twentytwoerror}
                             onChange={(event) => {
+                                
                                 setIfscCode(event.target.value)
                                 if (accountNumber === "") {
                                     setTwentyoneerror(" Account Number is Required");

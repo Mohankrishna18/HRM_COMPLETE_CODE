@@ -5,9 +5,14 @@ import { toast } from "react-toastify";
 
 function EmploymentDetailsTab() {
 
+    // const userData = sessionStorage.getItem("userdata");
+    // const userData1 = JSON.parse(userData);
+    // const employeeid = userData1.data.employeeId;
+
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
 
     const [ferrors, setFErrors] = useState("");
     const [serror, setSerror] = useState("");
@@ -230,7 +235,7 @@ function EmploymentDetailsTab() {
 
     useEffect(() => {
         axios
-            .get(`/emp/getEmploymentDetails/${employeeid}`)
+            .get(`/emp/getEmploymentDetails/${empId}`)
             .then((response) => {
                 setPrimarySkills(response.data.data.primarySkills);
                 setSecondarySkills(response.data.data.secondarySkills);
@@ -246,7 +251,7 @@ function EmploymentDetailsTab() {
     const changeHandler = async (e) => {
         e.preventDefault();
         try{
-        await axios.put(`/emp/updateEmploymentDetails/${employeeid}`, {
+        await axios.put(`/emp/updateEmploymentDetails/${empId}`, {
            primarySkills,
            secondarySkills,
            employmentType,
@@ -280,6 +285,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Primary Skills</Form.Label>
                         <Form.Control
+                            disabled
                             type="text"
                             placeholder="Primary Skills"
                             controlId="primarySkils"
@@ -294,6 +300,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Secondary Skills</Form.Label>
                         <Form.Control
+                            disabled
                             type="text"
                             placeholder="Secondary Skills"
                             controlId="secondarySkills"
@@ -308,7 +315,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Employment Type</Form.Label>
                         <Form.Select
-                        disabled
+                        
                             type="text"
                             placeholder="Employment Type"
                             controlId="employmentType"
@@ -331,7 +338,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Band</Form.Label>
                         <Form.Select
-                        disabled
+                        
                             type="text"
                             placeholder="Band"
                             controlId="band"
@@ -350,7 +357,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Department</Form.Label>
                         <Form.Select
-                        disabled
+                        
                             type="text"
                             placeholder="Department Name"
                             controlId="departmentName"
@@ -381,7 +388,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Designation</Form.Label>
                         <Form.Select
-                        disabled
+                       
                             type="text"
                             placeholder="Designation Name"
                             controlId="designationName"
@@ -403,7 +410,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Reporting Manager *</Form.Label>
                         <Form.Select
-                        disabled
+                        
                             placeholder="select Gender"
                             value={reportingManager}
                             onChange={(e) => {
@@ -422,7 +429,7 @@ function EmploymentDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Project</Form.Label>
                         <Form.Select
-                        disabled
+                       
                             type="text"
                             placeholder="Project"
                             controlId="project"
@@ -456,3 +463,6 @@ function EmploymentDetailsTab() {
     )
 }
 export default EmploymentDetailsTab;
+
+
+

@@ -5,9 +5,14 @@ import { toast } from "react-toastify";
 
 function ExperienceTab() {
 
+    // const userData = sessionStorage.getItem("userdata");
+    // const userData1 = JSON.parse(userData);
+    // const employeeid = userData1.data.employeeId;
+
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
 
     const [ferrors, setFErrors] = useState("");
     const [serror, setSerror] = useState("");
@@ -157,7 +162,7 @@ function ExperienceTab() {
 
     useEffect(() => {
         axios
-            .get(`/emp/getExperienceDetails/${employeeid}`)
+            .get(`/emp/getExperienceDetails/${empId}`)
             .then((response) => {
                 setPreviousCompany1_name(response.data.data.previousCompany1_name);
                 setPreviousCompany1_designation(response.data.data.previousCompany1_designation);
@@ -185,36 +190,36 @@ function ExperienceTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
-        try{
-        await axios.put(`/emp/updateExperience/${employeeid}`, {
-            previousCompany1_name,
-            previousCompany1_designation,
-            previousCompany1_joiningDate,
-            previousCompany1_relievingDate,
-            previousCompany1_employeeId,
-            previousCompany1_typeOfEmployment,
-            previousCompany1_reasonForRelieving,
-            previousCompany2_name,
-            previousCompany2_designation,
-            previousCompany2_joiningDate,
-            previousCompany2_relievingDate,
-            previousCompany2_employeeId,
-            previousCompany2_typeOfEmployment,
-            previousCompany2_reasonForRelieving,
-            previousCompany3_name,
-            previousCompany3_designation,
-            previousCompany3_joiningDate,
-            previousCompany3_relievingDate,
-            previousCompany3_employeeId,
-            previousCompany3_typeOfEmployment,
-            previousCompany3_reasonForRelieving,
+        try {
+            await axios.put(`/emp/updateExperience/${empId}`, {
+                previousCompany1_name,
+                previousCompany1_designation,
+                previousCompany1_joiningDate,
+                previousCompany1_relievingDate,
+                previousCompany1_employeeId,
+                previousCompany1_typeOfEmployment,
+                previousCompany1_reasonForRelieving,
+                previousCompany2_name,
+                previousCompany2_designation,
+                previousCompany2_joiningDate,
+                previousCompany2_relievingDate,
+                previousCompany2_employeeId,
+                previousCompany2_typeOfEmployment,
+                previousCompany2_reasonForRelieving,
+                previousCompany3_name,
+                previousCompany3_designation,
+                previousCompany3_joiningDate,
+                previousCompany3_relievingDate,
+                previousCompany3_employeeId,
+                previousCompany3_typeOfEmployment,
+                previousCompany3_reasonForRelieving,
 
-        });
-        toast.success("Form Submitted Successfully");
-    }
-    catch(error){
-        toast.error("Somethingwent Wrong");
-  }
+            });
+            toast.success("Form Submitted Successfully");
+        }
+        catch (error) {
+            toast.error("Somethingwent Wrong");
+        }
     };
 
     return (
@@ -240,6 +245,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Company Name</Form.Label>
                         <Form.Control
+                            disabled
                             type="text"
                             placeholder="Company Name"
                             controlId="previousCompany1_name"
@@ -254,6 +260,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Designation</Form.Label>
                         <Form.Control
+                            disabled
                             type="text"
                             placeholder="Designation"
                             controlId="previousCompany1_designation"
@@ -270,6 +277,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Joining date</Form.Label>
                         <Form.Control
+                            disabled
                             type="date"
                             placeholder="Date of Joining"
                             controlId="previousCompany1_joiningDate"
@@ -285,6 +293,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Relieving Date</Form.Label>
                         <Form.Control
+                            disabled
                             type="Date"
                             placeholder="Date of Relieving"
                             controlId="previousCompany1_relievingDate"
@@ -301,6 +310,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Employee ID</Form.Label>
                         <Form.Control
+                            disabled
                             type="text"
                             placeholder="Employee ID"
                             controlId="previousCompany1_employeeId"
@@ -316,6 +326,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Employment Type</Form.Label>
                         <Form.Select
+                            disabled
                             type="text"
                             placeholder="Employment Type"
                             controlId="previousCompany1_typeOfEmployeement"
@@ -341,6 +352,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Reason for Exit</Form.Label>
                         <Form.Control
+                            disabled
                             as="textarea"
                             rows={2}
                             type="text"
@@ -365,6 +377,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Company Name</Form.Label>
                         <Form.Control
+                            disabled
                             type="text"
                             placeholder="Company Name"
                             controlId="previousCompany2_name"
@@ -379,6 +392,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Designation</Form.Label>
                         <Form.Control
+                            disabled
                             type="text"
                             placeholder="Designation"
                             controlId="previousCompany2_designation"
@@ -395,6 +409,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Joining date</Form.Label>
                         <Form.Control
+                            disabled
                             type="date"
                             placeholder="Date of Joining"
                             controlId="previousCompany2_joiningDate"
@@ -411,6 +426,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Relieving Date</Form.Label>
                         <Form.Control
+                            disabled
                             type="Date"
                             placeholder="Date of Relieving"
                             controlId="previousCompany2_relievingDate"
@@ -427,6 +443,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Employee ID</Form.Label>
                         <Form.Control
+                            disabled
                             type="text"
                             placeholder="Employee ID"
                             controlId="previousCompany2_employeeId"
@@ -441,6 +458,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Employment Type</Form.Label>
                         <Form.Select
+                            disabled
                             type="text"
                             placeholder="Employment Type"
                             controlId="previousCompany2_typeOfEmployment"
@@ -465,6 +483,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 15 }}>
                         <Form.Label>Reason for Exit</Form.Label>
                         <Form.Control
+                            disabled
                             as="textarea"
                             rows={2}
                             type="text"
@@ -489,6 +508,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Company Name</Form.Label>
                         <Form.Control
+                            disabled
                             type="text"
                             placeholder="Company Name"
                             controlId="previousCompany3_name"
@@ -503,6 +523,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Designation</Form.Label>
                         <Form.Control
+                            disabled
                             type="text"
                             placeholder="Designation"
                             controlId="previousCompany3_designation"
@@ -519,6 +540,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Joining date</Form.Label>
                         <Form.Control
+                            disabled
                             type="date"
                             placeholder="Date of Joining"
                             controlId="previousCompany3_joiningDate"
@@ -534,6 +556,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Relieving Date</Form.Label>
                         <Form.Control
+                            disabled
                             type="Date"
                             placeholder="Date of Relieving"
                             controlId="prevoiusCompany3_relievingDate"
@@ -550,6 +573,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Employee ID</Form.Label>
                         <Form.Control
+                            disabled
                             type="text"
                             placeholder="Employee ID"
                             controlId="previousCompany3_employeeId"
@@ -564,6 +588,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Employment Type</Form.Label>
                         <Form.Select
+                            disabled
                             type="text"
                             placeholder="Employment Type"
                             controlId="previousCompany3_typeOfEmployment"
@@ -588,6 +613,7 @@ function ExperienceTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Reason for Exit</Form.Label>
                         <Form.Control
+                            disabled
                             as="textarea"
                             rows={2}
                             type="text"
@@ -612,6 +638,7 @@ function ExperienceTab() {
                                         >
                                             <Form.Label>Exit Date</Form.Label>
                                             <Form.Control
+                            disabled
                                                 type="date"
                                                 placeholder="Exit Date"
                                                 controlId="exitDate"
@@ -638,3 +665,4 @@ function ExperienceTab() {
     )
 }
 export default ExperienceTab;
+

@@ -7,9 +7,14 @@ import { toast } from "react-toastify";
 
 function PersonalDetailsTab() {
 
+    // const userData = sessionStorage.getItem("userdata");
+    // const userData1 = JSON.parse(userData);
+    // const employeeid = userData1.data.employeeId;
+
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
 
     const payload = {
         employeeId,
@@ -58,7 +63,7 @@ function PersonalDetailsTab() {
 
     useEffect(() => {
         axios
-            .get(`/emp/getPersonalDetails/${employeeid}`)
+            .get(`/emp/getPersonalDetails/${empId}`)
             .then((response) => {
                 setEmployeeId(response.data.data.employeeId);
                 setFirstName(response.data.data.firstName);
@@ -82,7 +87,7 @@ function PersonalDetailsTab() {
     const changeHandler = async (e) => {
         e.preventDefault();
         try{
-        await axios.put(`/emp/updatePersonalDetails/${employeeid}`, {
+        await axios.put(`/emp/updatePersonalDetails/${empId}`, {
             employeeId,
             firstName,
             lastName,
@@ -127,7 +132,7 @@ function PersonalDetailsTab() {
                         <Form.Label>First Name *</Form.Label>
                         <Form.Control
                             value={firstName}
-                            // disabled
+                            disabled
                             required
                             maxLength={50}
                             onChange={(e) => {
@@ -146,6 +151,7 @@ function PersonalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }}>
                         <Form.Label>Middle name</Form.Label>
                         <Form.Control
+                        disabled
                             name="middleName"
                             type="text"
                             placeholder="Middle name"
@@ -166,7 +172,7 @@ function PersonalDetailsTab() {
                         <Form.Label>Last Name *</Form.Label>
                         <Form.Control
                             value={lastName}
-                            // disabled
+                            disabled
                             required
                             maxLength={50}
                             onChange={(e) => {
@@ -194,6 +200,7 @@ function PersonalDetailsTab() {
                                 +91
                             </InputGroup.Text>
                             <Form.Control
+                            disabled
                                 required
                                 type="number"
                                 name="primaryPhoneNumber"
@@ -232,6 +239,7 @@ function PersonalDetailsTab() {
                                 +91
                             </InputGroup.Text>
                             <Form.Control
+                            disabled
                                 value={secondaryPhoneNumber}
                                 maxLength={10}
                                 isInvalid={nineerrors}
@@ -253,6 +261,7 @@ function PersonalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Email *</Form.Label>
                         <Form.Control
+                        disabled
                             required
                             type="email"
                             placeholder="Email"
@@ -276,7 +285,8 @@ function PersonalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Date of Birth *</Form.Label>
                         <Form.Control
-                            // required
+                        disabled
+                            required
                             type="date"
                             name="dateOfBirth"
                             placeholder="DOB"
@@ -302,6 +312,7 @@ function PersonalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Blood Group *</Form.Label>
                         <Form.Select
+                        disabled
                             required
                             type="text"
                             name="bloodGroup"
@@ -337,6 +348,7 @@ function PersonalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Gender *</Form.Label>
                         <Form.Select
+                        disabled
                             required
                             type="text"
                             name="gender"
@@ -366,6 +378,7 @@ function PersonalDetailsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Marital Status *</Form.Label>
                         <Form.Select
+                        disabled
                             required
                             type="text"
                             name="maritalStatus"
@@ -412,3 +425,4 @@ function PersonalDetailsTab() {
     )
 }
 export default PersonalDetailsTab;
+

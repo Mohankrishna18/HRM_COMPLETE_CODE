@@ -7,6 +7,7 @@ import EmployeeMasterCard from './EmployeeMasterCard';
 import EmploymentDetailsTab from './EmploymentDetailsTab';
 import ExperienceTab from './ExperienceTab';
 import PersonalDetailsTab from './PersonalDetailsTab';
+import ProjectsTab from './ProjectsTab';
 
 
 function EmployeeMasterTabs() {
@@ -48,17 +49,16 @@ function EmployeeMasterTabs() {
                         <Tab eventKey="Employment Details" title="Employment Details" style={{ backgroundColor: "white" }}>
                             <EmploymentDetailsTab />
                         </Tab>
-                        <Tab eventKey="Education" title="Education" style={{ backgroundColor: "white" }}>
+                        <Tab eventKey="Educational Details" title="Educational Details" style={{ backgroundColor: "white" }}>
                             <EducationalDetailsTab />
                         </Tab>
                         <Tab eventKey="Experience" title="Experience " style={{ backgroundColor: "white" }}>
                             <ExperienceTab />
                         </Tab>
-                        <Tab eventKey="Project" title="Project " style={{ backgroundColor: "white" }}>
-                           
-                        </Tab>
-                    </Tabs>
-                
+                        {/* <Tab eventKey="Project" title="Project " style={{ backgroundColor: "white" }}>
+                             <ProjectsTab/>
+                        </Tab> */}
+                    </Tabs> 
             </Card>
 
         </div>
@@ -66,3 +66,4 @@ function EmployeeMasterTabs() {
     )
 }
 export default EmployeeMasterTabs;
+
