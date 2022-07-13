@@ -1,4 +1,3 @@
-
 package com.arshaa.emp.service;
 
 //import java.text.SimpleDateFormat;
@@ -25,6 +24,7 @@ import com.arshaa.emp.common.Users;
 import com.arshaa.emp.entity.EmployeeMaster;
 import com.arshaa.emp.entity.Intern;
 import com.arshaa.emp.entity.Onboarding;
+import com.arshaa.emp.entity.UserClientProjectManagement;
 import com.arshaa.emp.model.AdditionalDetails;
 import com.arshaa.emp.model.Address;
 import com.arshaa.emp.model.DesignationName;
@@ -41,6 +41,7 @@ import com.arshaa.emp.model.StringConstants;
 import com.arshaa.emp.model.WaitingForApproval;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
 import com.arshaa.emp.repository.OnboardRepository;
+import com.arshaa.emp.repository.UserClientProjectManagementRepositorty;
 import com.thoughtworks.xstream.mapper.Mapper.Null;
 
 @Service
@@ -50,6 +51,8 @@ public class MainServiceImpl implements MainService {
 	OnboardRepository onRepo;
 	@Autowired
 	EmployeeMasterRepository emRepo;
+	@Autowired
+	UserClientProjectManagementRepositorty userClientRepo;
 	@Autowired
 	@Lazy
 	private RestTemplate template;
@@ -77,10 +80,14 @@ public class MainServiceImpl implements MainService {
 			newOnboard.setWaitingforapprovalStatus(true);
 			newOnboard.setRejectedStatus(false);
 			newOnboard.setApprovedStatus(false);
+			newOnboard.setOnboardingStasus(false);
 			Onboarding newData = onRepo.save(newOnboard);
 			r.setStatus(true);
 			r.setMessage(sConstants.POST_SUCCESS);
 			r.setData(newData);
+			
+			
+			
 			
 			PreMailModel pm = new PreMailModel();
 			pm.setName(newOnboard.getFirstName());
@@ -94,7 +101,19 @@ public class MainServiceImpl implements MainService {
 			pm.setPassword(password);
 			template.postForObject(preEmailURL, pm, PreMailModel.class);
 			
-			
+			String status = "Active";
+			UserClientProjectManagement userclient = new UserClientProjectManagement();
+			userclient.setOnboardingId(newOnboard.getOnboardingId());
+			userclient.setReportingManager(newOnboard.getReportingManager());
+			userclient.setClientName(newOnboard.getClient());
+			userclient.setProjectName(newOnboard.getProjectName());
+//			userclient.setProjectId();
+//			userclient.getClientId();
+			userclient.setStartDate(newOnboard.getDateOfJoining());
+			userclient.setStatus(status);
+			userclient.setSkills(newOnboard.getPrimarySkills());
+			userClientRepo.save(userclient);
+		
 			PreOnboarding pre = new PreOnboarding();
 			pre.setEmail(newOnboard.getEmail());
 			pre.setPassword(password);
@@ -111,6 +130,7 @@ public class MainServiceImpl implements MainService {
 		}
 	}
 
+	
 	public ResponseEntity<Onboarding> waitingForApprovelStatus() {
 		Response r = new Response<WaitingForApproval>();
 		
@@ -123,12 +143,9 @@ public class MainServiceImpl implements MainService {
 
 				onboarding.forEach(on -> {
 					WaitingForApproval wa = new WaitingForApproval();
-
- 
-// 					wa.setOnboardingId(on.getOnboardingId());
+//					wa.setOnboardingId(on.getOnboardingId());
 // 					wa.setFirstName(on.getFirstName()+" "+on.getLastName());
 // //					wa.setLastName(on.getLastName());
-					
 // 					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 // 					String strDate= formatter.format(on.getDateOfJoining());
 // 					wa.setDepartment(on.getDepartment());
@@ -142,7 +159,6 @@ public class MainServiceImpl implements MainService {
 // 					wa.setPrimarySkills(on.getPrimarySkills());
 // 					wa.setSecondarySkills(on.getSecondarySkills());
 // 					waList.add(wa);
-
 				});
 
 				r.setStatus(true);
@@ -177,6 +193,7 @@ public class MainServiceImpl implements MainService {
 			if (!getOnboarding.equals(null)) {
 				getOnboarding.setApprovedStatus(newOnboard.isApprovedStatus());
 				getOnboarding.setRejectedStatus(newOnboard.isRejectedStatus());
+				getOnboarding.setOnboardingStasus(newOnboard.isOnboardingStasus());
 				getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
@@ -191,6 +208,7 @@ public class MainServiceImpl implements MainService {
 					newOnboard.setApprovedDate(tSqlDate);
 					getOnboarding.setRejectedStatus(false);
 					getOnboarding.setWaitingforapprovalStatus(false);
+					getOnboarding.setOnboardingStasus(false);
 
 					onRepo.save(getOnboarding);
 
@@ -272,6 +290,20 @@ public class MainServiceImpl implements MainService {
 		}
 	}
 
+//	
+//	public ResponseEntity addData(@RequestBody UserClientProjectManagement userClient ) {
+//		String clientURL ="http://clientProjectMapping/getAllProjects";
+//		
+//	
+//		try {
+//			java.sql.Date tSqlDate = new java.sql.Date(userClient.getUpdatedOn().getTime());
+//			userClient.setUpdatedOn(tSqlDate);
+//			userClientRepo.save(userClient);
+//			
+//			
+//		}
+//		
+//	}
 	public ResponseEntity addEmployee(@RequestBody EmployeeMaster newEmployee) {
 		String userURL = "http://urpService/user/addUser";
 		String loginURL = "http://loginservice/login/addUsers";
@@ -559,6 +591,22 @@ public class MainServiceImpl implements MainService {
 		try {
 
 			List<Onboarding> onboarding = onRepo.findByRejectedStatus(true);
+			r.setStatus(true);
+			r.setMessage(sConstants.GET_RESPONSE);
+			r.setData(onboarding);
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+
+		}
+	}
+	
+	// getting taa approved employees list
+	public ResponseEntity getOnboardedApprovedData() {
+		Response r = new Response<>();
+		try {
+
+			List<Onboarding> onboarding = onRepo.findByOnboardingStasus(true);
 			r.setStatus(true);
 			r.setMessage(sConstants.GET_RESPONSE);
 			r.setData(onboarding);
@@ -1152,7 +1200,8 @@ public class MainServiceImpl implements MainService {
 				
 				if(!getOnboarding.equals(null))
 				{
-					
+					String state = "20%";
+					getOnboarding.setStatus(state);
 					getOnboarding.setBloodGroup(pd.getBloodGroup());
 					getOnboarding.setDateOfBirth(pd.getDateOfBirth());
 					getOnboarding.setEmail(pd.getEmail());
@@ -1193,7 +1242,7 @@ public class MainServiceImpl implements MainService {
 				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 				if(!getOnboarding.equals(null))
 				{
-					String state = "20%";
+					String state = "40%";
 					getOnboarding.setStatus(state);
 					getOnboarding.setPermanentAdress(ad.getPermanentAdress());
 					getOnboarding.setPermanentCountry(ad.getPermanentCountry());
@@ -1232,7 +1281,7 @@ public class MainServiceImpl implements MainService {
 				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 				if(!getOnboarding.equals(null))
 				{
-					String state = "40%";
+					String state = "60%";
 					getOnboarding.setStatus(state);
 					getOnboarding.setPassportNo(add.getPassportNo());
 					getOnboarding.setPassportExpiryDate(add.getPassportExpiryDate());
