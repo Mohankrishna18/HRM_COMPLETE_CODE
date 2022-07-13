@@ -99,19 +99,19 @@ function EmployeeMasterCard() {
 
                             <Col>
                                 <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
-                                    height: "150px",
-                                    width: "150px",
+                                    height: "130px",
+                                    width: "130px",
                                     borderRadius: "110px",
                                     alignItems: "center",
-                                    marginTop: "50px",
-                                    marginLeft: "32%"
+                                    marginTop: "30px",
+                                    marginLeft: "34%"
                                 }} />
                             </Col>
                             <Col style={{
                                 fontSize: 20,
                                 textAlign: "center",
-                                paddingTop: 40,
-                                paddingBottom: 40,
+                                paddingTop: 10,
+                                paddingBottom: 20,
                                 text: "bold",
                             }}>
                                 {employeedetails.firstName} {employeedetails.lastName}
@@ -122,8 +122,8 @@ function EmployeeMasterCard() {
                         <Card.Body style={{}}>
                             <Row
                                 style={{
-                                    paddingTop: 50,
-                                    paddingBottom: 15,
+                                    paddingTop: 20,
+                                    paddingBottom: 10,
                                 }}
                             >
                                 <Col>
@@ -137,7 +137,7 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 15 }}>
+                            <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Title style={{}}>
                                         <h6> Designation:</h6>
@@ -148,7 +148,7 @@ function EmployeeMasterCard() {
                                         {employeedetails.designationName}
                                     </Card.Text>
                                 </Col>
-                            </Row><Row style={{ paddingBottom: 15 }}>
+                            </Row><Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Title style={{}}>
                                         <h6>Department:</h6>
@@ -193,7 +193,6 @@ function EmployeeMasterCard() {
                 <Timeline theme={customTheme} style={{marginTop:50}}>
                    <BodyContent>
                     
-
                     <Section >
                        <Description  />
                      </Section>
@@ -220,8 +219,8 @@ function EmployeeMasterCard() {
 
                     <Col>
                         <Row style={{
-                            paddingTop: 65,
-                            paddingBottom: 15,
+                            paddingTop: 35,
+                            paddingBottom: 10,
                         }}>
                             <Col>
                                 <Card.Title style={{}}>
@@ -234,7 +233,7 @@ function EmployeeMasterCard() {
                                 </Card.Text>
                             </Col>
                         </Row>
-                        <Row style={{ paddingBottom: 15 }}>
+                        <Row style={{ paddingBottom: 10 }}>
                             <Col>
                                 <Card.Title style={{}}>
                                     <h6>Date of Joining: </h6>
@@ -246,7 +245,7 @@ function EmployeeMasterCard() {
                                 </Card.Text>
                             </Col>
                         </Row>
-                        <Row style={{ paddingBottom: 15 }}>
+                        <Row style={{ paddingBottom: 10 }}>
                             <Col>
                                 <Card.Text style={{}}>
                                     <h6>Reporting Manager: </h6>
@@ -294,4 +293,3 @@ function EmployeeMasterCard() {
     )
 }
 export default EmployeeMasterCard;
-
