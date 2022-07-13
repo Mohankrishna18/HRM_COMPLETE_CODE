@@ -8,4 +8,5 @@ import com.arshaa.clientandprojects.entity.Clients;
 @Repository
 public interface ClientRepository extends JpaRepository<Clients, Integer> {
 
+	Clients findByClientId(Integer id);
 }

@@ -1,19 +1,17 @@
 import React from 'react'
-import Navbar from '../../NavBar/NavBar'
-import Sidebar from '../../NavBar/Sidebar'
-import TimeSheet from './TimeSheetComponents/TimeSheet'
-//alignments
-const TimeSheetMain = () => {
+import { Col, Row } from 'react-bootstrap';
+import TaskMain from './EmployeeTimesheet/TaskMain';
+
+const EmployeeTimeSheetMain = () => {
   return (
     <div>
-    
-      <Sidebar>
-      <TimeSheet />
-      </Sidebar>
-    
+      <Row>
+        <Col>
+            <TaskMain/>
+        </Col>
+      </Row>
     </div>
   )
 }
 
-export default TimeSheetMain
- 
+export default EmployeeTimeSheetMain

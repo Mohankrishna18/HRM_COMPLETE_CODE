@@ -15,6 +15,18 @@ public class HrApprovalStatus {
 	private boolean rejectedStatus;
 	@Column
 	private boolean waitingforapprovalStatus;
+	
+	@Column
+	private boolean onboardingStasus;
+	
+	public boolean isOnboardingStasus() {
+		return onboardingStasus;
+	}
+
+	public void setOnboardingStasus(boolean onboardingStasus) {
+		this.onboardingStasus = onboardingStasus;
+	}
+
 	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
 	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date approvedDate = new java.util.Date(System.currentTimeMillis());
