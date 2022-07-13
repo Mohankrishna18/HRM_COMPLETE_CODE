@@ -21,6 +21,7 @@ public interface OnboardRepository extends JpaRepository<Onboarding, String>  {
 //	List<Onboarding> findByWaitingforapprovalStatusOrRejectedStatus(boolean b, boolean c);
 //	
 	List<Onboarding> findByWaitingforapprovalStatus(boolean waitingforapprovalStatus);
+	List<Onboarding> findByOnboardingStasus(boolean onboardingStasus);
 
 	//List<Onboarding> findByWaitingforapprovalStatusOrRejectedStatus(boolean waitingforapprovalStatus, boolean rejectedStatus);
 	Onboarding getByOnboardingId(String onboardingId);

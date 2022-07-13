@@ -20,6 +20,7 @@ public interface MainService {
 
 	public ResponseEntity  onBoardUser(Onboarding newOnboard);
 	public ResponseEntity<Onboarding> waitingForApprovelStatus();
+	//getting data by onboarding id
 	public ResponseEntity getOnboardingDataByOnboardingId(String onboardingId);
 	public ResponseEntity updateApprovStatus(String onboardingId,HrApprovalStatus newOnboard);
 	public ResponseEntity getEmployeeDataByEmployeeId(String employeeId);
@@ -31,6 +32,7 @@ public interface MainService {
 	public ResponseEntity updateOnboradEmployeeBydOnboardId(String onboardingId, Onboarding newOnboard );
 	public ResponseEntity getApprovedData();
 	public ResponseEntity getRejectedData();
+	public ResponseEntity getOnboardedApprovedData();
 	public ResponseEntity updateDesignationName(String employeeId, DesignationName name);
 
     public ResponseEntity getReportingManagerByEmployeeId(String employeeId);
