@@ -16,18 +16,29 @@ function AddProject(props) {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [thirderrors, setThirdErrors] = useState("");
+  const [clients, setClients] = useState([]);
+  const [manager,setManager] = useState([]);
 
+// Get API's for Clients Dropdown
   useEffect(() => {
          loadData();
        }, []);
-    
+   
        const loadData = async () => {
         const res = await axios.get("/clientProjectMapping/getAllClients");
-        
+        setClients(res.data.data);
         console.log(res.data);
-        
-        
+       
+       
       };
+
+      // Get API's for Project Manager Dropdown
+      // useEffect(() => {
+      //   axios.get(`/emp/getEmployeesDataForReportingManager/${employeeid}`).then((res) => {
+      //     console.log(res.data);
+      //     setManager(res.data);
+      //   });
+      // }, []);
 
   const handleClose = () => setShow();
   const handleShow = () => setShow(true);
@@ -50,20 +61,21 @@ function AddProject(props) {
 
   const validateForm = () => {
     const {
-      clientName,
+      clientId,
       projectName,
       startDate,
       endDate,
       rate,
-      location,
+      status,
       priority,
       projectManager,
+      description,
     } = form;
 
     const newErrors = {};
 
-    if (!clientName || clientName === "" || !clientName.match(/^[aA-zZ\s]+$/))
-      newErrors.clientName = "Please Enter Client Id";
+     if (!clientId || clientId === "")
+      newErrors.clientId = "Please Enter Client Name";
 
     if (
       !projectName ||
@@ -77,10 +89,14 @@ function AddProject(props) {
 
     if (!endDate || endDate === "") newErrors.endDate = "Please Enter End Date";
 
-    if (!location || location === "")
-      newErrors.location = "Please Enter Location";
+    if (!description || description === "")
+      newErrors.description = "Please Enter Location";
 
-    if (!rate || rate === "") newErrors.rate = "Please Enter Rate";
+     
+    if (!status || status === "")
+    newErrors.status = "Please Enter Status";
+
+    // if (!rate || rate === "") newErrors.rate = "Please Enter Rate";
 
     if (!priority || priority === "")
       newErrors.priority = "Please Enter Priority";
@@ -150,7 +166,7 @@ function AddProject(props) {
         keyboard={false}
       >
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Project Form</Modal.Title>
+          <Modal.Title>Project</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -163,22 +179,28 @@ function AddProject(props) {
             onSubmit={handleSubmit}
           >
             <Row className="mb-4">
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                  <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Client Name *</Form.Label>
-                <Form.Control
+                <Form.Select
                   required
                   className="clientName"
                   type="text"
                   controlId="clientName"
                   placeholder="Client Name"
                   // onChange={(event) => setclientName(event.target.value)}
-                  value={form.clientName}
+                  value={form.clientId}
                   maxLength={30}
-                  onChange={(e) => setField("clientName", e.target.value)}
-                  isInvalid={!!errors.clientName}
-                ></Form.Control>
+                  onChange={(e) => setField("clientId", e.target.value)}
+                  isInvalid={!!errors.clientId}
+                ><option>Select Client</option>
+
+                {clients.map((client)=>(
+
+                   <option value={client.clientId}>{client.clientName}</option>
+
+                ))}</Form.Select>
                 <Form.Control.Feedback type="invalid">
-                  {errors.clientName}
+                  {errors.clientId}
                 </Form.Control.Feedback>
               </Form.Group>
 
@@ -225,6 +247,7 @@ function AddProject(props) {
                   placeholder="End Date"
                   controlId="endDate"
                   value={form.endDate}
+                  min={form.startDate}
                   onChange={(e) => setField("endDate", e.target.value)}
                   isInvalid={!!errors.endDate}
                 ></Form.Control>
@@ -235,24 +258,27 @@ function AddProject(props) {
               </Form.Group>
 
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Location *</Form.Label>
-                <Form.Control
+                <Form.Label>Status *</Form.Label>
+                <Form.Select
                   required
                   type="text"
-                  placeholder="Location"
-                  controlId="location"
-                  value={form.location}
-                  onChange={(e) => setField("location", e.target.value)}
-                  isInvalid={!!errors.location}
-                ></Form.Control>
+                  placeholder="Status"
+                  controlId="status"
+                  value={form.status}
+                  onChange={(e) => setField("status", e.target.value)}
+                  isInvalid={!!errors.status}
+                >
+                  <option> Select Status</option>
+                  <option value="Active">Active</option>
+                  <option value="InActive">InActive</option>
+                </Form.Select>
                 <Form.Control.Feedback type="invalid">
-                  {errors.location}
+                  {errors.status}
                 </Form.Control.Feedback>
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Rate *</Form.Label>
+                <Form.Label>Rate</Form.Label>
                 <Form.Control
                   required
                   type="text"
@@ -268,24 +294,28 @@ function AddProject(props) {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
+
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Priority *</Form.Label>
-                <Form.Control
+                <Form.Select
                   required
-                  className="priority"
                   type="text"
+                  placeholder="priority"
                   controlId="priority"
-                  placeholder="Priority"
-                  // onChange={(event) => setclientName(event.target.value)}
                   value={form.priority}
-                  maxLength={30}
                   onChange={(e) => setField("priority", e.target.value)}
                   isInvalid={!!errors.priority}
-                ></Form.Control>
+                >
+                  <option> Select Priority</option>
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                </Form.Select>
                 <Form.Control.Feedback type="invalid">
-                  {errors.priority}
+                  {errors.status}
                 </Form.Control.Feedback>
               </Form.Group>
+           
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Project Manager *</Form.Label>
                 <Form.Control
@@ -295,7 +325,7 @@ function AddProject(props) {
                   controlId="projectManager"
                   placeholder="Project Manager"
                   // onChange={(event) => setclientName(event.target.value)}
-                  value={form.address}
+                  value={form.projectManager}
                   maxLength={30}
                   onChange={(e) => setField("projectManager", e.target.value)}
                   isInvalid={!!errors.projectManager}
@@ -304,6 +334,26 @@ function AddProject(props) {
                   {errors.projectManager}
                 </Form.Control.Feedback>
               </Form.Group>
+
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Description *</Form.Label>
+                <Form.Control
+                  required
+                  as="textarea"
+                  className="mb-3"
+                  type="text"
+                  placeholder="Description"
+                  controlId="description"
+                  value={form.description}
+                  onChange={(e) => setField("description", e.target.value)}
+                  isInvalid={!!errors.description}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.description}
+                </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+
             </Row>
             <Row>
               <Col>

@@ -10,6 +10,7 @@ import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
 //import ApprovalUpdateForm from "./ApprovalUpdateForm";
 import AddProject from "./ProjectsComponents/AddProject";
 import ProjectsView from "./ProjectsComponents/ProjectsView";
+//import ProjectsEdit from "./ProjectsComponents/ProjectsEdit";
 
 function ProjectsMain() {
   const [show, setShow] = useState(false);
@@ -77,8 +78,8 @@ function ProjectsMain() {
       dateSetting: { locale: "en-GB" },
     },
     {
-      title: "Location",
-      field: "location",
+      title: "Description",
+      field: "description",
     },
     {
       title: "Rate",
@@ -98,7 +99,7 @@ function ProjectsMain() {
     <div>
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Onboarding Form</Modal.Title>
+          <Modal.Title>Projects Edit</Modal.Title>
         </Modal.Header>
         {/* <Modal.Body>
           <ApprovalUpdateForm

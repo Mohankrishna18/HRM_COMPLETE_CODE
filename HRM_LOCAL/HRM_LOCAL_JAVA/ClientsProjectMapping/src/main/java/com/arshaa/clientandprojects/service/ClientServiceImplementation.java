@@ -17,6 +17,10 @@ public class ClientServiceImplementation implements ClientServiceInterface {
 	@Autowired(required = true)
 	private ClientRepository clientRepo;
 	
+//	public Clients findByClientId(Integer id) {
+//		return clientRepo.findByClientId(id);
+//	}
+//	
 
 	
 	// To Add Clients
@@ -70,7 +74,7 @@ public class ClientServiceImplementation implements ClientServiceInterface {
 				updateClient.setClientName(newClientUpdate.getClientName());
 				updateClient.setStartDate(newClientUpdate.getStartDate());
 				updateClient.setEndDate(newClientUpdate.getEndDate());
-				updateClient.setLocation(newClientUpdate.getLocation());
+				updateClient.setCountry(newClientUpdate.getCountry());
 				updateClient.setAddress(newClientUpdate.getAddress());
 
 				Clients latestClient = clientRepo.save(updateClient);
