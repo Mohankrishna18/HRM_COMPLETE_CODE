@@ -78,6 +78,7 @@ export default [
       Roles.hradmin,
       Roles.manager,
       Roles.recruitmentmanager,
+      
     ],
     exact: true,
   },
