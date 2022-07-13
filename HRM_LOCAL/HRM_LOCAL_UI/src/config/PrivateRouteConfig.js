@@ -61,6 +61,7 @@ import ClientMain from "../pages/Client/ClientMain";
 import ProjectsMain from "../pages/Projects/ProjectsMain";
 
 import HrLeavesToApproveMain from "../pages/HrLeavesToApprove/HrLeavesToApproveMain";
+import EmployeeTimeSheetMain from "../pages/TimeSheet/TimeSheetMain";
 
 export default [
   {
@@ -217,6 +218,13 @@ export default [
     icon: <FcPlanner />,
     title: "Holiday Management",
     permission: [Roles.hradmin],
+  },
+  {
+    component: EmployeeTimeSheetMain,
+    path: "/timeSheet",
+    icon: <FcPlanner />,
+    title: "Timesheet",
+    permission: [Roles.employee],
   },
   {
     component: DepartmentMain,
