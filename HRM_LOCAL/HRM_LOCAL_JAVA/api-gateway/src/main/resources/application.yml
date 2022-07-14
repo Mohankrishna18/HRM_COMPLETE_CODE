@@ -57,7 +57,12 @@ spring:
         - id: timesheetService
           uri: lb://timesheetService
           predicates:
-            - Path=/timesheet/**                  
+            - Path=/timesheet/**           
+            
+        - id: taskService
+          uri: lb://taskService
+          predicates:
+            - Path=/task/**        
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
