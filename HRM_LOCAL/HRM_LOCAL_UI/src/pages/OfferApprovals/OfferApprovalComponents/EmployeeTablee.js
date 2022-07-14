@@ -25,7 +25,7 @@ const EmployeeTablee = () => {
   }, [status]); // console.log(users.reportingManager)
 
   const approvedData = async () => {
-  const approvedEmployeesResponse = await axios.get("/emp/waitingForApprovelStatus");
+  const approvedEmployeesResponse = await axios.get("/emp/getApprovedOnboardedData");
     console.log(approvedEmployeesResponse.data);
     setUsers(approvedEmployeesResponse.data.data);
   }

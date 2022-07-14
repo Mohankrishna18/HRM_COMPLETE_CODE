@@ -73,4 +73,9 @@ public interface MainService {
     public ResponseEntity updateExperienceByOnboardId(Experience exp,String onboardingId);
 
 
+    // user client project  management services methods
+    public ResponseEntity getUserProjectDataByOnboardingId(String onboardingId);
+    public ResponseEntity getUserProjectDataByEmployeeId(String employeeId);
+    
+    
 }

@@ -17,14 +17,14 @@ public class HrApprovalStatus {
 	private boolean waitingforapprovalStatus;
 	
 	@Column
-	private boolean onboardingStasus;
+	private boolean onboardingStatus;
 	
-	public boolean isOnboardingStasus() {
-		return onboardingStasus;
+	public boolean isOnboardingStatus() {
+		return onboardingStatus;
 	}
 
-	public void setOnboardingStasus(boolean onboardingStasus) {
-		this.onboardingStasus = onboardingStasus;
+	public void setOnboardingStatus(boolean onboardingStatus) {
+		this.onboardingStatus = onboardingStatus;
 	}
 
 	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
