@@ -130,7 +130,7 @@ const ClientUpdatedForm = (props) => {
                   type="text"
                   placeholder="Status"
                   controlId="status"
-                  value={form.status}
+                  value={status}
                   onChange={(e) => setStatus("status", e.target.value)}
                   isInvalid={!!errors.status}
                 >
@@ -162,13 +162,14 @@ const ClientUpdatedForm = (props) => {
           </Form.Group>
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>endDate</Form.Label>
+            <Form.Label>End Date</Form.Label>
             <Form.Control
               required
               type="date"
               placeholder="endDate"
               controlId="endDate"
               value={endDate}
+              min={startDate}
               onChange={(e) => setendDate(e.target.value)}
               isInvalid={!!errors.endDate}
             ></Form.Control>
