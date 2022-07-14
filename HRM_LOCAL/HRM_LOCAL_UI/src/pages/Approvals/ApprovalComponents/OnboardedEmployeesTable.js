@@ -134,11 +134,11 @@ function OnboardedEmployeesTable() {
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ApprovalView
+          {/* <ApprovalView
             viewOnboard={viewOnboard}
             // func={pull_data}
             viewHandleClose={viewHandleClose}
-          />
+          /> */}
 
           <Tabs
             defaultActiveKey="Personal Details"
