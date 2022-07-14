@@ -1032,7 +1032,7 @@ function EducationalDetailsTab() {
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Row>
-
+                {/* comment */}
                 <Button
                     className="rounded-pill" md="3"
                     style={{ backgroundColor: "#eb4509", float: "right" }}

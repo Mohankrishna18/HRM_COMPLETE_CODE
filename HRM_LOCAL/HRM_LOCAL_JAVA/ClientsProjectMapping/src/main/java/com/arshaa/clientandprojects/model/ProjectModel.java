@@ -6,8 +6,18 @@ public class ProjectModel {
 
 	private String clientName;
 	private String projectName;
+	private Integer projectId;
+	public Integer getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(Integer projectId) {
+		this.projectId = projectId;
+	}
+
 	private Date startDate;
 	private Date endDate;
+	private String status;
 	private String description;
 	private double rate;
 	private String priority;
@@ -17,16 +27,13 @@ public class ProjectModel {
 		super();
 	}
 
-	
 	public String getClientName() {
 		return clientName;
 	}
 
-
 	public void setClientName(String clientName) {
 		this.clientName = clientName;
 	}
-
 
 	public String getProjectName() {
 		return projectName;
@@ -82,6 +89,14 @@ public class ProjectModel {
 
 	public void setprojectManager(String projectManager) {
 		this.projectManager = projectManager;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

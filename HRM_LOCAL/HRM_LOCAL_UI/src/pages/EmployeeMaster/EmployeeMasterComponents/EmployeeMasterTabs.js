@@ -24,20 +24,22 @@ function EmployeeMasterTabs() {
                                 Edit My Profile
                             </Card.Subtitle>
                             <EmployeeMasterCard />
-                            <Card.Text style={{ marginTop: 20, color: "red" }}>
+                            {/* <Card.Text style={{ marginTop: 20, color: "red" }}>
                                 * All fields are mandatory. Please fill the form Correctly.
-                            </Card.Text>
+                            </Card.Text> */}
                         </Card.Body>
                     </Card.Header>
                 
                     <Tabs
                         defaultActiveKey="Personal Details"
-                        transition={false}
+                        transition={true}
                         id="noanim-tab-example"
-                        className="mb-3"
-                        style={{ justifyContent: "center", color: "white" , backgroundColor:"white", fontSize:"16px" ,padding:10}}
+                        className="mb-3"  
+                        color="Black"
+                          fontColour="white"
+                        style={{ justifyContent: "center", color: "white" , backgroundColor:"#f99159",opacity:0.95, fontSize:"20px" ,padding:0,}}
                     >
-                        <Tab eventKey="Personal Details" title="Personal Details" style={{ backgroundColor: "white" }}>
+                        <Tab eventKey="Personal Details" title="Personal Details" color='white' style={{ backgroundColor: "white" ,height:30}}>
                             <PersonalDetailsTab />
                         </Tab>
                         <Tab eventKey="Address" title="Address" style={{ backgroundColor: "white" }}>
@@ -66,4 +68,3 @@ function EmployeeMasterTabs() {
     )
 }
 export default EmployeeMasterTabs;
-

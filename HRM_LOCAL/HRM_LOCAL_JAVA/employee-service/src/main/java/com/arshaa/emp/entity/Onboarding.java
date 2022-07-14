@@ -56,13 +56,13 @@ public class Onboarding {
 	@Column
 	private boolean waitingforapprovalStatus;
 	@Column
-	private boolean onboardingStasus;
+	private boolean onboardingStatus;
 	
-	public boolean isOnboardingStasus() {
-		return onboardingStasus;
+	public boolean isOnboardingStatus() {
+		return onboardingStatus;
 	}
-	public void setOnboardingStasus(boolean onboardingStasus) {
-		this.onboardingStasus = onboardingStasus;
+	public void setOnboardingStatus(boolean onboardingStatus) {
+		this.onboardingStatus = onboardingStatus;
 	}
 	private String department;
 	private String reportingManager;
@@ -191,7 +191,7 @@ public class Onboarding {
 	
 	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
 			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
-			String employeeId, boolean approvedStatus,boolean onboardingStasus, boolean rejectedStatus, boolean waitingforapprovalStatus,
+			String employeeId, boolean approvedStatus,boolean onboardingStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
 			String department, String reportingManager, String projectName, String email, Date onboardDate,
 			Date approvedDate, Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy,
 			String employmentType, String primarySkills, String secondarySkills, String secondaryPhoneNumber,
@@ -254,7 +254,7 @@ public class Onboarding {
 		this.dateOfBirth = dateOfBirth;
 		this.bloodGroup = bloodGroup;
 		this.gender = gender;
-		this.onboardingStasus = onboardingStasus;
+		this.onboardingStatus = onboardingStatus;
 		this.maritalStatus = maritalStatus;
 		this.permanentAdress = permanentAdress;
 		this.permanentState = permanentState;

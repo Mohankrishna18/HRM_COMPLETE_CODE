@@ -10,7 +10,8 @@ import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
 //import ApprovalUpdateForm from "./ApprovalUpdateForm";
 import AddProject from "./ProjectsComponents/AddProject";
 import ProjectsView from "./ProjectsComponents/ProjectsView";
-//import ProjectsEdit from "./ProjectsComponents/ProjectsEdit";
+import ProjectUpdate from "./ProjectsComponents/ProjectUpdate";
+
 
 function ProjectsMain() {
   const [show, setShow] = useState(false);
@@ -78,6 +79,10 @@ function ProjectsMain() {
       dateSetting: { locale: "en-GB" },
     },
     {
+      title: "Status",
+      field: "status",
+    },
+    {
       title: "Description",
       field: "description",
     },
@@ -99,15 +104,15 @@ function ProjectsMain() {
     <div>
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Projects Edit</Modal.Title>
+          <Modal.Title>Edit Project</Modal.Title>
         </Modal.Header>
-        {/* <Modal.Body>
-          <ApprovalUpdateForm
+        <Modal.Body>
+          <ProjectUpdate
             updateOnboard={updateOnboard}
             func={pull_dataUpdate}
             handleClose={handleClose}
           />
-        </Modal.Body> */}
+        </Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -239,7 +244,6 @@ function ProjectsMain() {
           />
         </Grid>
       </Card>
-      {/* <Example /> */}
     </div>
   );
 }

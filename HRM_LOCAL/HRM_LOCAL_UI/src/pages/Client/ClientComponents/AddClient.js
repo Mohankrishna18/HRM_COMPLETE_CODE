@@ -219,7 +219,7 @@ function AddClient(props) {
                   placeholder="End Date"
                   controlId="endDate"
                   value={form.endDate}
-               min={form.startDate}
+                   min={form.startDate}
                   onChange={(e) => setField("endDate", e.target.value)}
                   isInvalid={!!errors.endDate}
                 ></Form.Control>
