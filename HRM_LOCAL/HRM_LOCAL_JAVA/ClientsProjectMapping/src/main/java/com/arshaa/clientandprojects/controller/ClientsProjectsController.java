@@ -70,7 +70,7 @@ public class ClientsProjectsController {
 	}
 	
 	@DeleteMapping("/deleteProject/{projectId}")
-	public ResponseEntity deleteProject(@PathVariable int projectId) {
+	public ResponseEntity deleteProject(@PathVariable Integer projectId) {
 		return projectServ.deleteProject(projectId);
 	}
 	

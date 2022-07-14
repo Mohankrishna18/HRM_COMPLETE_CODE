@@ -7,7 +7,7 @@ import { FiEdit } from "react-icons/fi";
 import { BsFillEyeFill } from "react-icons/bs";
 
 import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
-//import ApprovalUpdateForm from "./ApprovalUpdateForm";
+import ClientUpdatedForm from "../Client/ClientComponents/ClientUpdatedForm";
 import AddClient from "./ClientComponents/AddClient";
 import ClientView from "./ClientComponents/ClientView";
 
@@ -52,7 +52,7 @@ function ClientMain() {
   };
 
   const [columns, setColumns] = useState([
-    
+   
 
     {
       title: "Client Name",
@@ -78,8 +78,8 @@ function ClientMain() {
     },
 
     {
-      title: "Location",
-      field: "location",
+      title: "Country",
+      field: "country",
     },
 
     {
@@ -92,15 +92,15 @@ function ClientMain() {
     <div>
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Onboarding Form</Modal.Title>
+          <Modal.Title>Client Form</Modal.Title>
         </Modal.Header>
-        {/* <Modal.Body>
-          <ApprovalUpdateForm
+        <Modal.Body>
+          <ClientUpdatedForm
             updateOnboard={updateOnboard}
             func={pull_dataUpdate}
             handleClose={handleClose}
           />
-        </Modal.Body> */}
+        </Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -165,7 +165,7 @@ function ClientMain() {
 
         <Grid style={{ borderBlockEndWidth: "2px" }}>
           <MaterialTable
-            title="Clients list"
+            title="Clients"
             columns={columns}
             style={{ color: "black", fontSize: "1rem" }}
             data={data}

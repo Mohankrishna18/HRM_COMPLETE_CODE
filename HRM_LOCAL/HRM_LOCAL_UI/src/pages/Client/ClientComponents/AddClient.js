@@ -42,7 +42,7 @@ function AddClient(props) {
       startDate,
       endDate,
       status,
-      location,
+      country,
       address,
      
      
@@ -54,7 +54,7 @@ function AddClient(props) {
    
     const newErrors = {};
 
-    if (!clientName || clientName === "" || !clientName.match(/^[aA-zZ\s]+$/))
+   if (!clientName || clientName === "" || !clientName.match(/^[aA-zZ\s]+$/))
       newErrors.clientName = "Please Enter Client Name";
  
     if (!startDate || startDate === "")
@@ -65,8 +65,8 @@ function AddClient(props) {
     if (!status || status === "")
       newErrors.status = "Please Enter Status";
 
-    if (!location || location === "")
-      newErrors.location = "Please Enter Location";
+    if (!country || country === "")
+      newErrors.country = "Please Enter Location";
 
     if (!address || address === "")
       newErrors.address = "Please Enter Address";
@@ -142,7 +142,7 @@ function AddClient(props) {
         keyboard={false}
       >
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Client Form</Modal.Title>
+          <Modal.Title>Add Client</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -174,6 +174,27 @@ function AddClient(props) {
                 </Form.Control.Feedback>
               </Form.Group>
              
+
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Status *</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="Status"
+                  controlId="status"
+                  value={form.status}
+                  onChange={(e) => setField("status", e.target.value)}
+                  isInvalid={!!errors.status}
+                >
+                  <option> Select Status</option>
+                  <option value="Active">Active</option>
+                  <option value="InActive">InActive</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.status}
+                </Form.Control.Feedback>
+              </Form.Group>
+             
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Start Date *</Form.Label>
                 <Form.Control
@@ -198,6 +219,7 @@ function AddClient(props) {
                   placeholder="End Date"
                   controlId="endDate"
                   value={form.endDate}
+                   min={form.startDate}
                   onChange={(e) => setField("endDate", e.target.value)}
                   isInvalid={!!errors.endDate}
                 ></Form.Control>
@@ -207,38 +229,20 @@ function AddClient(props) {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
-
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Status *</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="Status"
-                  controlId="status"
-                  value={form.status}
-                  onChange={(e) => setField("status", e.target.value)}
-                  isInvalid={!!errors.status}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.status}
-                </Form.Control.Feedback>
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
-
              
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Location *</Form.Label>
+                <Form.Label>Country *</Form.Label>
                 <Form.Control
                   required
                   type="text"
-                  placeholder="Location"
-                  controlId="location"
-                  value={form.location}
-                  onChange={(e) => setField("location", e.target.value)}
-                  isInvalid={!!errors.location}
+                  placeholder="Country"
+                  controlId="country"
+                  value={form.country}
+                  onChange={(e) => setField("country", e.target.value)}
+                  isInvalid={!!errors.country}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
-                  {errors.location}
+                  {errors.country}
                 </Form.Control.Feedback>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
@@ -248,6 +252,7 @@ function AddClient(props) {
                 <Form.Label>Address *</Form.Label>
                 <Form.Control
                   required
+                  as="textarea"
                   className="address"
                   type="text"
                   controlId="address"

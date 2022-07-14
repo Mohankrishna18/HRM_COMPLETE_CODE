@@ -47,7 +47,12 @@ spring:
         - id: bands
           uri: lb://bands
           predicates:
-            - Path=/bands/**           
+            - Path=/bands/** 
+            
+        - id: ClientsProjectsMapping
+          uri: lb://clientProjectMapping
+          predicates:
+            - Path=/clientProjectMapping/**              
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
