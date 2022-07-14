@@ -6,10 +6,30 @@ import axios from "../../../Uri";
 import { split } from "lodash";
 import Avatar from '@mui/material/Avatar';
 import PersonalDetails from "./PersonalDetails";
+import {
+  Button,
+  ProgressBar,
 
+} from "react-bootstrap";
+import {
+  Timeline,
+  BodyContent,
+  Section,
+  Description,
+} from "vertical-timeline-component-react";
 
+const customTheme = {
+  yearColor: "#405b73",
+  lineColor: "#d0cdc4",
+  dotColor: "#fd7e14",
+  borderDotColor: "#ced4da",
+  titleColor: "#000000",
+  subtitleColor: "#bf9765",
+  textColor: "#262626",
+};
 
 const MyProfile = () => {
+
 
   const userData = sessionStorage.getItem("userdata");
   // console.log(userData);
@@ -42,6 +62,17 @@ const MyProfile = () => {
       });
   }, []);
   console.log(imge)
+
+  const[projects,setProjects]=useState([])
+
+  useEffect(() => {
+    axios
+      .get(`/emp/getUserClientDetailsbyEmployeeId/${employeeid}`)
+      .then((response) => {
+        setProjects(response.data);
+      });
+  }, []);
+  console.log(projects)
 
 
 
@@ -180,7 +211,6 @@ const MyProfile = () => {
                 <Row>
                   <Col>
                     <Card>
-
                       <Row>
                         <Col>
                           <Row>
@@ -198,7 +228,6 @@ const MyProfile = () => {
                               <Col>
                                 <Card.Title>
                                   <Row>
-
                                     <Col>
                                       <Row>
                                         <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
@@ -217,24 +246,15 @@ const MyProfile = () => {
                                           paddingTop: 10,
                                           paddingBottom: 20,
                                           text: "bold",
-
-
                                         }}>
                                           {getEmployeeDetails.firstName} {getEmployeeDetails.lastName}
-
                                         </Col>
-
                                       </Row>
-
-
                                     </Col>
-
-
                                   </Row>
                                 </Card.Title></Col></Row>
                           </Row>
                         </Col>
-
                         <Col>
                           <Card.Body style={{}}>
                             <Row
@@ -376,12 +396,13 @@ const MyProfile = () => {
                 </Row>{" "}
 
                 <Row>
+                  <Card style={{marginTop:20}}>
                   <Tabs
                     defaultActiveKey="Personal Details"
                     transition={false}
                     id="noanim-tab-example"
                     className="mb-3"
-                    style={{ justifyContent: "center", color: "white", backgroundColor: "white", fontSize: "16px", padding: 10 }}
+                    style={{ justifyContent: "center", color: "white" , backgroundColor:"#f99159",opacity:0.95,  fontSize:"20px" ,padding:0,}}
                   >
                     <Tab eventKey="Personal Details" title="Personal Details" style={{ backgroundColor: "white" }}>
 
@@ -594,65 +615,6 @@ const MyProfile = () => {
                         </Card.Body>
                       </Card>
                     </Tab>
-                    {/* <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
-                            <h5>Permanent Address:</h5>
-                          </Card.Subtitle>
-                          
-                      </Col>
-                      <Col> 
-                        <Card.Subtitle style={{ padding: 10 }}>
-                            <h5>Current Address:</h5>
-                          </Card.Subtitle>
-                          <Row>
-                            <Col>
-                              <Card.Subtitle style={{ padding: 10 }}>
-                                Address:
-                              </Card.Subtitle>
-                            </Col>
-                            <Col md={{ offset: 1 }}>
-                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
-                                {getEmployeeDetails.currentAdress}
-                              </Card.Text>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col>
-                              <Card.Subtitle style={{ padding: 10 }}>
-                                State:
-                              </Card.Subtitle>
-                            </Col>
-                            <Col md={{ offset: 1 }}>
-                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
-                                {getEmployeeDetails.currentState}
-                              </Card.Text>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col>
-                              <Card.Subtitle style={{ padding: 10 }}>
-                                Country:
-                              </Card.Subtitle>
-                            </Col>
-                            <Col md={{ offset: 1 }}>
-                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
-                                {getEmployeeDetails.currentCountry}
-                              </Card.Text>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col>
-                              <Card.Subtitle style={{ padding: 10 }}>
-                                Pincode:
-                              </Card.Subtitle>{" "}
-                            </Col>
-                            <Col md={{ offset: 1 }}>
-                              <Card.Text style={{ paddingBottom: 0 ,color:"#999897"}}>
-                                {getEmployeeDetails.currentPincode}
-                              </Card.Text>
-                            </Col>
-                          </Row>
-                        </Col> */}
 
                     <Tab eventKey="Additional Details" title="Additional Details" style={{ backgroundColor: "white" }}>
 
@@ -1045,8 +1007,91 @@ const MyProfile = () => {
                       </Card>
 
                     </Tab>
+                    <Tab eventKey="Project Details" title="Project Details" style={{ backgroundColor: "white" }}>
+
+                      <Card style={{ padding: 30, paddingBottom: 0 }}>
+                        <Card.Title>
+                          <h5>Projects History:</h5>
+                        </Card.Title>
+                        <Card.Body >
+
+                        {/* <Timeline theme={customTheme}>
+                  <BodyContent>
+                     <Section title="Punch In at">
+                       <Description text="10.00AM" />
+                     </Section>
+
+                     <Section title="Punch Out at">
+                       <Description text="11.00AM" />
+                     </Section>
+
+                     <Section title="Punch In at">
+                       <Description text="11.15AM" />
+                     </Section>
+
+                    <Section title="Punch Out at">
+                       <Description text="01.30PM" />
+                     </Section>
+
+                     <Section title="Punch In at">
+                       <Description text="02.00PM" />
+                     </Section>
+
+                     <Section title="Punch Out at">
+                       <Description text="07.30PM" />
+                     </Section>
+                   </BodyContent>
+                 </Timeline> */}
+                          <Row>
+          <Col md={12}>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">S.No</th>
+                  <th scope="col">Project Name</th>
+                  <th scope="col">Client Name</th>
+                  <th scope="col">Reporting Manager</th>
+                  <th scope="col">Skills</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">End Date</th>
+                  
+                </tr>
+              </thead>
+
+              <tbody>
+                {/* {projects &&
+                  projects.map((h, index) => ( */}
+                    <tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+                      {/* <th scope="row">{index + 1}</th> */}
+
+                      {/* <td>{h.}</td> */}
+                      {/* <td>{h.clientName}</td> */}
+                      {/* <td>{h.}</td>
+                      <td>{h.}</td> */}
+                    </tr>
+                  {/* ))} */}
+
+
+              </tbody>
+            </table>
+          </Col>
+        </Row>
+
+
+
+                        </Card.Body>
+                      </Card>
+                    </Tab>
 
                   </Tabs>
+                  </Card>
                 </Row>
                 {/* <Row style={{ marginTop: 20 }}>
                   <Col>
