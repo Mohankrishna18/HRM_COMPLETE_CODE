@@ -80,13 +80,24 @@ public class MainServiceImpl implements MainService {
 			newOnboard.setWaitingforapprovalStatus(true);
 			newOnboard.setRejectedStatus(false);
 			newOnboard.setApprovedStatus(false);
-			newOnboard.setOnboardingStasus(false);
+			newOnboard.setOnboardingStatus(false);
 			Onboarding newData = onRepo.save(newOnboard);
 			r.setStatus(true);
 			r.setMessage(sConstants.POST_SUCCESS);
 			r.setData(newData);
 			
-			
+			String status = "Active";
+			UserClientProjectManagement userclient = new UserClientProjectManagement();
+			userclient.setOnboardingId(newData.getOnboardingId());
+			userclient.setReportingManager(newData.getReportingManager());
+			userclient.setClientName(newData.getClient());
+			userclient.setProjectName(newData.getProjectName());
+//			userclient.setProjectId();
+//			userclient.getClientId();
+			userclient.setStartDate(newData.getDateOfJoining());
+			userclient.setStatus(status);
+			userclient.setSkills(newData.getPrimarySkills());
+			userClientRepo.save(userclient);
 			
 			
 			PreMailModel pm = new PreMailModel();
@@ -101,18 +112,7 @@ public class MainServiceImpl implements MainService {
 			pm.setPassword(password);
 			template.postForObject(preEmailURL, pm, PreMailModel.class);
 			
-			String status = "Active";
-			UserClientProjectManagement userclient = new UserClientProjectManagement();
-			userclient.setOnboardingId(newOnboard.getOnboardingId());
-			userclient.setReportingManager(newOnboard.getReportingManager());
-			userclient.setClientName(newOnboard.getClient());
-			userclient.setProjectName(newOnboard.getProjectName());
-//			userclient.setProjectId();
-//			userclient.getClientId();
-			userclient.setStartDate(newOnboard.getDateOfJoining());
-			userclient.setStatus(status);
-			userclient.setSkills(newOnboard.getPrimarySkills());
-			userClientRepo.save(userclient);
+			
 		
 			PreOnboarding pre = new PreOnboarding();
 			pre.setEmail(newOnboard.getEmail());
@@ -193,7 +193,7 @@ public class MainServiceImpl implements MainService {
 			if (!getOnboarding.equals(null)) {
 				getOnboarding.setApprovedStatus(newOnboard.isApprovedStatus());
 				getOnboarding.setRejectedStatus(newOnboard.isRejectedStatus());
-				getOnboarding.setOnboardingStasus(newOnboard.isOnboardingStasus());
+				getOnboarding.setOnboardingStatus(newOnboard.isOnboardingStatus());
 				getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
@@ -208,7 +208,7 @@ public class MainServiceImpl implements MainService {
 					newOnboard.setApprovedDate(tSqlDate);
 					getOnboarding.setRejectedStatus(false);
 					getOnboarding.setWaitingforapprovalStatus(false);
-					getOnboarding.setOnboardingStasus(false);
+					getOnboarding.setOnboardingStatus(false);
 
 					onRepo.save(getOnboarding);
 
@@ -230,8 +230,13 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setJobTitle(getOnboarding.getJobTitle());
 					employeeMaster.setEmploymentType(getOnboarding.getEmploymentType());
 					employeeMaster.setReportingManager(newOnboard.getReportingManager());
-					emRepo.save(employeeMaster);
+					EmployeeMaster em=emRepo.save(employeeMaster);
 
+					//posting 	EmployeeId in Userproject Table
+					UserClientProjectManagement userclient = userClientRepo.getByOnboardingId(onboardingId);
+					userclient.setEmployeeId(em.getEmployeeId());
+					userClientRepo.save(userclient);
+					
 					// Generating Random userId and Password
 					Random rand = new Random();
 					Integer intRandom = rand.nextInt(9999);
@@ -354,6 +359,53 @@ public class MainServiceImpl implements MainService {
 
 	}
 
+	//Getting userClient Project management data by onboarding id
+	public ResponseEntity getUserProjectDataByOnboardingId(String onboardingId) {
+		Response r = new Response<>();
+		try {
+			UserClientProjectManagement userclients = userClientRepo.getByOnboardingId(onboardingId);
+			
+			if (!userclients.equals(null)) {
+				r.setStatus(true);
+				r.setMessage(sConstants.GET_RESPONSE);
+				r.setData(userclients);
+				return new ResponseEntity(r, HttpStatus.OK);
+			} else {
+				r.setStatus(false);
+				r.setMessage(sConstants.INVALID_DATA + onboardingId);
+				return new ResponseEntity(r, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+		}
+	}
+	
+	
+	//Getting userClient Project management data by Employee Id
+		public ResponseEntity getUserProjectDataByEmployeeId(String employeeId) {
+			Response r = new Response<>();
+			try {
+				UserClientProjectManagement userclientss = userClientRepo. getByEmployeeId(employeeId);
+				
+				if (!userclientss.equals(null)) {
+					r.setStatus(true);
+					r.setMessage(sConstants.GET_RESPONSE);
+					r.setData(userclientss);
+					return new ResponseEntity(r, HttpStatus.OK);
+				} else {
+					r.setStatus(false);
+					r.setMessage(sConstants.INVALID_DATA + employeeId);
+					return new ResponseEntity(r, HttpStatus.OK);
+				}
+			} catch (Exception e) {
+				r.setStatus(false);
+				r.setMessage(e.getMessage());
+				return new ResponseEntity(r, HttpStatus.OK);
+			}
+		}
+	
 	
 	public ResponseEntity getOnboardingDataByOnboardingId(String onboardingId) {
 		Response r = new Response<>();
@@ -606,7 +658,7 @@ public class MainServiceImpl implements MainService {
 		Response r = new Response<>();
 		try {
 
-			List<Onboarding> onboarding = onRepo.findByOnboardingStasus(true);
+			List<Onboarding> onboarding = onRepo.findByOnboardingStatus(true);
 			r.setStatus(true);
 			r.setMessage(sConstants.GET_RESPONSE);
 			r.setData(onboarding);
