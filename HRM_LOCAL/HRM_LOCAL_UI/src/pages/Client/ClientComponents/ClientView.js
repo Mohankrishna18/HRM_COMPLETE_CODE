@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-const ClientView = (props) => {
+const ApprovalView = (props) => {
   console.log(props.viewOnboard);
   // console.log(props.firstName)
 
@@ -147,18 +147,18 @@ const ClientView = (props) => {
     // console.log(departments)
   }, []);
 
- 
+  
   var tempDate = new Date(props.viewOnboard.dateOfJoining);
   var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
   console.log(dob)
 
   return (
     <div>
-     
+      
       <Row style={{ marginTop: 20 }}>
                   <Col>
                     <Card style={{ padding: 30, paddingBottom: 20 }}>
-                     
+                      
                       <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                         <Col>
                           <Card.Subtitle style={{ padding: 10 }}>
@@ -171,14 +171,27 @@ const ClientView = (props) => {
                           </Card.Text>
                         </Col>
                         </Row>
-                                           
+                        {/* <Row>
+                        <Col>
+                          <Card.Subtitle style={{ padding: 10 }}>
+                            Middle Name:
+                          </Card.Subtitle>{" "}
+                        </Col>
+                        <Col md={{ offset: 1 }}>
+                          <Card.Text style={{ paddingBottom: 0 }}>
+                            {props.viewOnboard.middleName}
+                          </Card.Text>
+                        </Col>
+                        </Row> */}
+
+                      
                       <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                         <Col>
                           <Card.Subtitle style={{ padding: 10 }}>
                             Last Name:
                           </Card.Subtitle>{" "}
                         </Col>
-                     
+                      
                         <Col md={{ offset: 1 }}>
                           <Card.Text style={{ paddingBottom: 0 }}>
                             {props.viewOnboard.lastName}
@@ -198,7 +211,7 @@ const ClientView = (props) => {
                         </Col>
                         </Row>
 
-                     
+                      
                       <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                         <Col>
                           <Card.Subtitle style={{ padding: 10 }}>
@@ -311,10 +324,10 @@ const ClientView = (props) => {
                             {props.viewOnboard.jobTitle}
                           </Card.Text>
                         </Col>
-                       
+                        
 
                       </Row>
-                     
+                      
                     </Card>
                   </Col>
                 </Row>
@@ -322,4 +335,14 @@ const ClientView = (props) => {
   );
 };
 
-export default ClientView;
+export default ApprovalView;
+
+
+
+
+
+
+
+
+
+
