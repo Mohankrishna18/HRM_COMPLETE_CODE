@@ -70,7 +70,9 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 	private ProjectModel returnModel(String name, Projects project) {
 		ProjectModel model = new ProjectModel();
 		model.setClientName(name);
+		model.setProjectId(project.getProjectId());
 		model.setProjectName(project.getProjectName());
+		model.setStatus(project.getStatus());
 		model.setStartDate(project.getStartDate());
 		model.setEndDate(project.getEndDate());
 		model.setDescription(project.getDescription());
@@ -86,8 +88,9 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 	public ResponseEntity updateProjectById(int projectId, Projects newProjectUpdate) {
 		ProjectResponse pr = new ProjectResponse<>();
 		try {
-			Projects updateProject = projectRepo.getById(projectId);
+			Projects updateProject = projectRepo.findByProjectId(projectId);
 			updateProject.setProjectName(newProjectUpdate.getProjectName());
+			updateProject.setStatus(newProjectUpdate.getStatus());
 			updateProject.setStartDate(newProjectUpdate.getStartDate());
 			updateProject.setEndDate(newProjectUpdate.getEndDate());
 			updateProject.setDescription(newProjectUpdate.getDescription());
@@ -116,11 +119,11 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 	// To delete Project
 
 	@Override
-	public ResponseEntity deleteProject(int projectId) {
+	public ResponseEntity deleteProject(Integer projectId) {
 		ProjectResponse pr = new ProjectResponse<>();
 		try {
-			Projects deleteProject = projectRepo.getById(projectId);
-			projectRepo.delete(deleteProject);
+			Projects deleteProject = projectRepo.findByProjectId(projectId);
+			projectRepo.deleteById(deleteProject.getProjectId());
 			pr.setStatus(true);
 			pr.setMessage("Deleted successfully");
 			return new ResponseEntity(pr, HttpStatus.OK);

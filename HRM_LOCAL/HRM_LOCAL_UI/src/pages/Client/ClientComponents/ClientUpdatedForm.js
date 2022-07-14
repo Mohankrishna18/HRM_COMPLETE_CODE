@@ -72,7 +72,7 @@ const ClientUpdatedForm = (props) => {
           startDate,
           endDate,
           status,
-
+          address,
           country,
         }
       )
