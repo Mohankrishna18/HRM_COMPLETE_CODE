@@ -24,6 +24,8 @@ public class Projects {
 	@Column
 	private Date endDate;
 	@Column
+	private String status;
+	@Column
 	private String description;
 	@Column
 	private double rate;
@@ -75,7 +77,13 @@ public class Projects {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+	public String getStatus() {
+		return status;
+	}
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getDescription() {
 		return description;
 	}

@@ -7,4 +7,6 @@ import com.arshaa.emp.entity.UserClientProjectManagement;
 
 public interface UserClientProjectManagementRepositorty extends JpaRepository<UserClientProjectManagement,Integer>{
 
+	UserClientProjectManagement getByOnboardingId(String onboardingId);
+	UserClientProjectManagement getByEmployeeId(String employeeId);
 }

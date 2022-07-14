@@ -125,6 +125,12 @@ public class MainController {
 	public ResponseEntity getRejectedData() {
 		return serv.getRejectedData();
 	}
+	
+	@GetMapping("/getApprovedOnboardedData")
+	public ResponseEntity getOnboardedApprovedData() {
+		return serv.getOnboardedApprovedData();
+	}
+	
 
 	@PutMapping("/updateDesignationName/{employeeId}")
 	public ResponseEntity updateDesignationName(@PathVariable String employeeId, @RequestBody DesignationName name) {
@@ -346,8 +352,16 @@ public class MainController {
 				@RequestBody Experience exp) {
 			return serv.updateExperienceByOnboardId(exp, onboardingId);
 		}
-
-
+// User Client Project Management get api calls
 		
+		@GetMapping("/getUserClientDetailsbyEmployeeId/{employeeId}")
+		public ResponseEntity getUserProjectDataByEmployeeId(@PathVariable String employeeId) {
+			return serv.getPersonalDetailsByEmployeeId(employeeId);
+		}
+		
+		@GetMapping("/getUserClientDetailsbyOnboardingId/{onboardingId}")
+		public ResponseEntity getUserProjectDataByOnboardingId(@PathVariable String onboardingId) {
+			return serv.getUserProjectDataByOnboardingId(onboardingId);
+		}
 }
 
