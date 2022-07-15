@@ -6,12 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import com.arshaa.task.entity.TaskEntity;
 import com.arshaa.task.modal.TaskResponse;
 import com.arshaa.task.repository.TaskRepository;
-
-
 
 
 @Service
@@ -20,11 +17,28 @@ public class TaskServiceImpl implements TaskService {
 	@Autowired
  	private TaskRepository taskRepo;
 
+//	@Override
+//	public ResponseEntity addTask(TaskEntity t) {
+//		return new ResponseEntity(taskRepo.save(t),HttpStatus.OK);
+//	}
+
 	@Override
 	public ResponseEntity addTask(TaskEntity t) {
-		return new ResponseEntity(taskRepo.save(t),HttpStatus.OK);
-	}
+		TaskResponse r = new TaskResponse<>();
+		try {
+			TaskEntity addTaskData = taskRepo.save(t);
+			r.setStatus(true);
+			r.setMessage("Data added successfully");
+			r.setData(addTaskData);
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
 
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
+	
 	@Override
 	public ResponseEntity getAllTasks() {
 		TaskResponse r = new TaskResponse();
@@ -61,6 +75,7 @@ public class TaskServiceImpl implements TaskService {
 			taskEntity.setFromDate(taskUpdate.getFromDate());
 			taskEntity.setToDate(taskUpdate.getToDate());
 			taskEntity.setStatus(taskUpdate.getStatus());
+			taskEntity.setPriority(taskUpdate.getPriority());
 			
 			TaskEntity task1= taskRepo.save(taskEntity);
 			System.out.println(task1);
@@ -93,6 +108,8 @@ public class TaskServiceImpl implements TaskService {
 		}
 		 
 	}
+
+
 
 
 
