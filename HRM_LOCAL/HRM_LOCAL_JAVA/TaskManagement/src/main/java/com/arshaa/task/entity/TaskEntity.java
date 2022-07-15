@@ -21,7 +21,16 @@ public class TaskEntity {
 	private String description;
 	private String status;
 	private String duration;
+	private String priority;
 	
+	
+	
+	public String getPriority() {
+		return priority;
+	}
+	public void setPriority(String priority) {
+		this.priority = priority;
+	}
 	public int getTaskId() {
 		return taskId;
 	}
@@ -77,7 +86,7 @@ public class TaskEntity {
 		this.duration = duration;
 	}
 	public TaskEntity(int taskId, String taskName, String taskType, int project, Date fromDate, Date toDate,
-			String description, String status, String duration) {
+			String description, String status, String duration, String priority) {
 		super();
 		this.taskId = taskId;
 		this.taskName = taskName;
@@ -88,6 +97,7 @@ public class TaskEntity {
 		this.description = description;
 		this.status = status;
 		this.duration = duration;
+		this.priority = priority;
 	}
 	public TaskEntity() {
 		super();
