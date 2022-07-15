@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: localhost    Database: updated28
+-- Host: localhost    Database: hrm_do_not_work
 -- ------------------------------------------------------
 -- Server version	8.0.28
 
@@ -74,8 +74,7 @@ CREATE TABLE `clientmaster` (
   `client_name` varchar(30) NOT NULL,
   `start_date` datetime DEFAULT NULL,
   `end_date` datetime DEFAULT NULL,
-  `status` int DEFAULT NULL,
-  `location` varchar(55) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
   `address` varchar(45) DEFAULT NULL,
   `updated_on` datetime DEFAULT NULL,
   `updated_by` varchar(10) DEFAULT NULL,
@@ -83,7 +82,7 @@ CREATE TABLE `clientmaster` (
   PRIMARY KEY (`client_id`),
   KEY `fk_updated_by__clientmaster_idx` (`updated_by`),
   CONSTRAINT `fk_updated_by__clientmaster` FOREIGN KEY (`updated_by`) REFERENCES `employeemaster` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +91,7 @@ CREATE TABLE `clientmaster` (
 
 LOCK TABLES `clientmaster` WRITE;
 /*!40000 ALTER TABLE `clientmaster` DISABLE KEYS */;
-INSERT INTO `clientmaster` VALUES (1,'ChennaReddy','2022-06-29 05:30:00','2022-07-21 05:30:00',1,'Hyderabad','Madhapur','2022-07-11 00:00:00',NULL,NULL),(2,'CVBN','2022-07-01 05:30:00','2022-07-30 05:30:00',0,'Hyderabad','KPHB','2022-07-12 00:00:00',NULL,NULL);
+INSERT INTO `clientmaster` VALUES (1,'ChennaReddy','2022-06-29 05:30:00','2022-07-21 05:30:00','1','Madhapur','2022-07-11 00:00:00',NULL,NULL),(2,'CVBN','2022-07-01 05:30:00','2022-07-30 05:30:00','0','KPHB','2022-07-12 00:00:00',NULL,NULL),(3,'MK','2022-07-02 05:30:00','2022-07-31 05:30:00','Active','sf','2022-07-15 00:00:00',NULL,'zxc');
 /*!40000 ALTER TABLE `clientmaster` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -895,21 +894,20 @@ CREATE TABLE `projectmaster` (
   `project_name` varchar(255) DEFAULT NULL,
   `start_date` datetime DEFAULT NULL,
   `end_date` datetime DEFAULT NULL,
-  `location` varchar(55) DEFAULT NULL,
   `rate` double DEFAULT NULL,
   `priority` varchar(25) DEFAULT NULL,
-  `teammembers` int DEFAULT NULL,
   `updated_by` varchar(10) DEFAULT NULL,
   `updated_on` datetime DEFAULT NULL,
   `project_manger` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `project_manager` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`project_id`),
   KEY `fk_client_id__projectmaster_idx` (`client_id`),
   KEY `fk_updated_by__projectmaster_idx` (`updated_by`),
   CONSTRAINT `fk_client_id__projectmaster` FOREIGN KEY (`client_id`) REFERENCES `clientmaster` (`client_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_updated_by__projectmaster` FOREIGN KEY (`updated_by`) REFERENCES `employeemaster` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -918,7 +916,7 @@ CREATE TABLE `projectmaster` (
 
 LOCK TABLES `projectmaster` WRITE;
 /*!40000 ALTER TABLE `projectmaster` DISABLE KEYS */;
-INSERT INTO `projectmaster` VALUES (1,NULL,'Propertease','2022-06-29 05:30:00','2022-07-21 05:30:00','Hyderabad',1,'high',NULL,NULL,'2022-07-11 00:00:00',NULL,NULL,NULL),(2,1,'Checking','2022-07-05 05:30:00','2022-07-08 05:30:00',NULL,1,'Medium',NULL,NULL,'2022-07-13 00:00:00',NULL,'sdfghn','revanth');
+INSERT INTO `projectmaster` VALUES (1,2,'Propertease','2022-06-29 05:30:00','2022-07-21 05:30:00',1,'high',NULL,'2022-07-11 00:00:00',NULL,NULL,NULL,NULL),(2,1,'Checking','2022-07-05 05:30:00','2022-07-08 05:30:00',1,'Medium',NULL,'2022-07-13 00:00:00',NULL,'sdfghn',NULL,NULL),(3,1,'sdf','2022-07-08 05:30:00','2022-07-28 05:30:00',5,'Low',NULL,'2022-07-15 00:00:00',NULL,'sdfghjkjhgfds','werfb','Active');
 /*!40000 ALTER TABLE `projectmaster` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1152,4 +1150,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-14 16:08:25
+-- Dump completed on 2022-07-15 11:12:20
