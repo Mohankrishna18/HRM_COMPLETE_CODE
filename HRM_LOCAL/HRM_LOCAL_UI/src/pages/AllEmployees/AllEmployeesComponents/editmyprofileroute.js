@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Accordion, Button, Card, Form, InputGroup, Tab, Tabs } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,6 +19,7 @@ import AditionalDetailsTab from "./AdditionalDetailsTab";
 import EmploymentDetailsTab from "./EmploymentDetailsTab";
 import EducationalDetailsTab from "./EducationalDetailsTab";
 import ExperienceTab from "./ExperienceDetailsTab";
+import ProjectsTab from "./ProjectsTab";
 
 function EmployeeMasterForms(props) {
     const userData = sessionStorage.getItem("userdata");
@@ -485,7 +487,7 @@ function EmployeeMasterForms(props) {
                         transition={true}
                         id="noanim-tab-example"
                         className="mb-3"
-                        style={{ justifyContent: "center", color: "white" , backgroundColor:"white", fontSize:"16px" ,padding:0}}
+                        style={{ justifyContent: "center", color: "white" , backgroundColor:"white", fontSize:"18px" ,padding:0}}
                     >
                         <Tab eventKey="Personal Details" title="Personal Details" style={{ backgroundColor: "white" }}>
                             <PersonalDetailsTab/>
@@ -504,6 +506,9 @@ function EmployeeMasterForms(props) {
                         </Tab>
                         <Tab eventKey="Experience" title="Experience " style={{ backgroundColor: "white" }}>
                             <ExperienceTab/>
+                        </Tab>
+                        <Tab eventKey="Project" title="Project " style={{ backgroundColor: "white" }}>
+                            <ProjectsTab/>
                         </Tab>
                        
                     </Tabs> 
