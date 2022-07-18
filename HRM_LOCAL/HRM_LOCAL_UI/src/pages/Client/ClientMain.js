@@ -92,7 +92,7 @@ function ClientMain() {
     <div>
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Client Form</Modal.Title>
+          <Modal.Title>Edit Client</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ClientUpdatedForm
