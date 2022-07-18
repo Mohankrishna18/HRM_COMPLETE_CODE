@@ -93,7 +93,7 @@ function TaskMain() {
     },
     
     {
-      title: "Start Date",
+      title: "From Date",
       field: "fromDate",
        type:"date",
        dateSetting: { locale: "en-GB" }
@@ -102,7 +102,7 @@ function TaskMain() {
       // type: { name: "date", options: { format: "DD/MM/YYYY" } },
     },
     {
-      title: "End Date",
+      title: "To Date",
       field: "toDate",
       type: "date",
       dateSetting: { locale: "en-GB" }
