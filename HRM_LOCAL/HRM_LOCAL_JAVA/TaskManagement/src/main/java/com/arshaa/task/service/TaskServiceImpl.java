@@ -95,15 +95,17 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public void deleteTask(int taskId) {
+	public ResponseEntity deleteTask(int taskId) {
 		TaskResponse r = new TaskResponse<>();
 		try {
 			taskRepo.deleteById(taskId);
 			r.setMessage("deleted succesfully");
 			r.setStatus(true);
+			return new ResponseEntity(r,HttpStatus.OK);
 		}catch(Exception e) {
 			r.setMessage("cant delete");
 			r.setStatus(false);
+			return new ResponseEntity(r,HttpStatus.OK);
 			
 		}
 		 

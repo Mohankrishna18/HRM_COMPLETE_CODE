@@ -42,7 +42,7 @@ public class TaskController {
 	}
 	
 	@DeleteMapping("/deleteTask/{taskId}")
-	public void DeleteTask(@PathVariable int taskId) {
-		serv.deleteTask(taskId);
+	public ResponseEntity DeleteTask(@PathVariable int taskId) {
+		return serv.deleteTask(taskId);
 	}
 }
