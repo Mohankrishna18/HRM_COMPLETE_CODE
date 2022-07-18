@@ -157,6 +157,7 @@ const MyProfile = () => {
   var sscJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
   var tempDate = new Date(getEmployeeDetails.sscPassedYear);
+ 
   var sscPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
   var tempDate = new Date(getEmployeeDetails.previousCompany1_joiningDate);
