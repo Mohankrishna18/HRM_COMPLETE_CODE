@@ -1,23 +1,25 @@
 import React from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 import axios from "../../../Uri";
-
+//vipul
 const ApproveDelete = (props) => {
     console.log(props.deleteOnboard)
 
     const deleteuser = async () => {
         try {
-            const res = await axios.delete(`/user/deleteUserById/${props.deleteOnboard.employeeId}`)
+            const res = await axios.delete(`/task/deleteTask/${props.deleteOnboard.taskId}`)
             .then((deletedResponse)=>{
                 const user = deletedResponse.data
                 console.log(deletedResponse);
                 if (deletedResponse.data.status) {
                     props.func();
+                    toast.success("Task deleted successfully!!!");
                   }
                   else {
                     console.log("Props not Send")
                   }
-                  toast.success("User deleted successfully!!!");
+                  
                   // console.log(user);
             })
             // console.log(res)
