@@ -14,15 +14,16 @@ const UpdateTask = (props) => {
 
    //console.log(props.updateOnboard);
 
-  // const [description, setDescription] = useState(props.updateOnboard.description);
-  // const [taskName, setTaskName] = useState(props.updateOnboard.taskName);
-  // const [fromDate, setfromDate] = useState(props.updateOnboard.fromDate);
-  // const [status, setStatus] = useState(props.updateOnboard.status);
-  // const [project, setProject] = useState(props.updateOnboard.project);
-  // const [duration, setDuration] = useState(props.updateOnboard.duration);
-  // const [taskType, setTaskType] = useState(
-  //   props.updateOnboard.taskType
-  // );
+  const [description, setDescription] = useState(props.updateOnboard.description);
+  const [taskName, setTaskName] = useState(props.updateOnboard.taskName);
+  const [fromDate, setFromDate] = useState(props.updateOnboard.fromDate);
+  const [status, setStatus] = useState(props.updateOnboard.status);
+  const [project, setProject] = useState(props.updateOnboard.project);
+  const [duration, setDuration] = useState(props.updateOnboard.duration);
+  const [taskType, setTaskType] = useState( props.updateOnboard.taskType);
+  const [toDate, setToDate] = useState(props.updateOnboard.toDate);
+  const [priority, setPriority] = useState(props.updateOnboard.priority);
+
 
   // const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
@@ -49,17 +50,17 @@ const UpdateTask = (props) => {
   }
 
   const validateForm = () => {
-    const {
-      // description,
-      // duration,
-      // toDate,
-      project,
-      fromDate,
-      status,
-      taskName,
-      taskType,
-      // timesheet
-    } = form;
+    // const {
+    //   // description,
+    //   // duration,
+    //   // toDate,
+    //   project,
+    //   fromDate,
+    //   status,
+    //   taskName,
+    //   taskType,
+    //   // timesheet
+    // } = form;
     const newErrors = {};
 
 
@@ -108,7 +109,18 @@ const UpdateTask = (props) => {
       console.log(form);
       
       axios
-      .put(`/task/updateTask/${props.updateOnboard.taskId}`,form )
+      .put(`/task/updateTask/${props.updateOnboard.taskId}`,
+        {
+          description: description,
+          duration: duration,
+          fromDate: fromDate,
+          project: project,
+          status: status,
+          taskName: taskName,
+          taskType: taskType,
+          toDate: toDate,
+          priority: priority,
+          })
       .then((response) => {
         const user = response.data;
         console.log(response);
@@ -196,8 +208,8 @@ console.log(task);
                   required
                   controlId="project"
                   defaultValue={props.updateOnboard.project}
-                  value={form.project}
-                  onChange={(e) => setField("project", e.target.value)}
+                  value={project}
+                  onChange={(e) => setProject(e.target.value)}
                   isInvalid={!!errors.project}
 
                 >
@@ -230,8 +242,8 @@ console.log(task);
                   placeholder="Task Name"
                   controlId="taskName"
                   defaultValue={props.updateOnboard.taskName} 
-                  value={form.taskName}
-                  onChange={(e) => setField("taskName", e.target.value)}
+                  value={taskName}
+                  onChange={(e) => setTaskName(e.target.value)}
                   isInvalid={!!errors.taskName}
 
                 >
@@ -246,15 +258,15 @@ console.log(task);
               
               
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>Start date*</Form.Label>
+                <Form.Label>From date*</Form.Label>
                 <Form.Control
                   required
                   type="date"
                   placeholder="fromDate"
                   controlId="fromDate"
                   defaultValue={props.updateOnboard.fromDate.split("T")[0]}
-                  value={form.fromDate}
-                  onChange={(e) => setField("fromDate", e.target.value)}
+                  value={fromDate.split("T")[0]}
+                  onChange={(e) => setFromDate(e.target.value)}
                   isInvalid={!!errors.fromDate}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -263,12 +275,12 @@ console.log(task);
               </Form.Group>
 
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>End Date*</Form.Label>
+                <Form.Label>To Date*</Form.Label>
                 <Form.Control type="date" placeholder="Enter "
                   controlId="toDate"
                   defaultValue={props.updateOnboard.toDate.split("T")[0]}
-                  value={form.toDate}
-                  onChange={(e) => setField("toDate", e.target.value)}
+                  value={toDate.split("T")[0]}
+                  onChange={(e) => setToDate(e.target.value)}
                   // isInvalid={!!errors.toDate}
                 />
 
@@ -285,8 +297,8 @@ console.log(task);
                   placeholder="Task Type"
                   controlId="taskType"
                   defaultValue={props.updateOnboard.taskType}
-                  value={form.taskType}
-                  onChange={(e) => setField("taskType", e.target.value)}
+                  value={taskType}
+                  onChange={(e) => setTaskType(e.target.value)}
                   isInvalid={!!errors.taskType}
 
                 >
@@ -345,9 +357,9 @@ console.log(task);
                 <Form.Label>Duration</Form.Label>
                 <Form.Control type="time" placeholder="Enter "
                   controlId="duration"
-                  value={form.duration}
+                  value={duration}
                   defaultValue={props.updateOnboard.duration}
-                  onChange={(e) => setField("duration", e.target.value)}
+                  onChange={(e) => setDuration(e.target.value)}
                   // isInvalid={!!errors.duration}
                 />
 
@@ -364,8 +376,8 @@ console.log(task);
                   placeholder="status"
                   controlId="status"
                   defaultValue={props.updateOnboard.status}
-                  value={form.status}
-                  onChange={(e) => setField("status", e.target.value)}
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
                   // isInvalid={!!errors.status}
 
                 >
@@ -389,8 +401,8 @@ console.log(task);
                   placeholder="priority"
                   controlId="priority"
                   defaultValue={props.updateOnboard.priority}
-                  value={form.priority}
-                  onChange={(e) => setField("priority", e.target.value)}
+                  value={priority}
+                  onChange={(e) => setPriority(e.target.value)}
                 // isInvalid={!!errors.status}
 
                 >
@@ -409,9 +421,9 @@ console.log(task);
                 <Form.Control type="text" placeholder="Enter the Description "
                   controlId="description"
                   as="textarea"
-                  value={form.description}
+                  value={description}
                   defaultValue={props.updateOnboard.description}
-                  onChange={(e) => setField("description", e.target.value)}
+                  onChange={(e) => setDescription(e.target.value)}
                   // isInvalid={!!errors.description}
                   
                   maxlength="100"
