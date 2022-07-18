@@ -39,7 +39,7 @@ const MyProfile = () => {
   //var dateTime = getEmployeeDetails.dateOfJoining;
 
   const [imge, setImge] = useState([]);
-
+//commit
   useEffect(() => {
     axios
       .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
