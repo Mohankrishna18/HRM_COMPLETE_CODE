@@ -243,11 +243,11 @@ function EducationalDetailsTab() {
     return (
 
         <div>
-            <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+            {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
                 <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Educational Details
                 </Card.Title>
-            </Card>
+            </Card> */}
 
             <Form
                 onSubmit={(e) => changeHandler(e)}
@@ -1046,5 +1046,3 @@ function EducationalDetailsTab() {
     )
 }
 export default EducationalDetailsTab;
-
-
