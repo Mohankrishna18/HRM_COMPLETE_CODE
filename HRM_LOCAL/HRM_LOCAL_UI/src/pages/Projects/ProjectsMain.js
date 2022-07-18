@@ -126,13 +126,13 @@ function ProjectsMain() {
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        {/* <Modal.Body>
           <ProjectsView
             viewOnboard={viewOnboard}
             // func={pull_data}
             viewHandleClose={viewHandleClose}
           />
-        </Modal.Body>
+        </Modal.Body> */}
         <Modal.Footer>
           <Button variant="secondary" onClick={viewHandleClose}>
             Close
@@ -227,7 +227,7 @@ function ProjectsMain() {
                     >
                       Delete
                     </Button> */}
-                    <Button
+                    {/* <Button
                       variant="primary"
                       onClick={(event) => {
                         setViewShow(true);
@@ -236,7 +236,7 @@ function ProjectsMain() {
                       }}
                     >
                       <BsFillEyeFill />
-                    </Button>
+                    </Button> */}
                   </Stack>
                 </div>
               ),
