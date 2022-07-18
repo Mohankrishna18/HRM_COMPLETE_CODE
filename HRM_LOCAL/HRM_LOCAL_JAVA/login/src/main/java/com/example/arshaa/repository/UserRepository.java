@@ -19,4 +19,5 @@ public interface UserRepository extends JpaRepository<EmployeeLogin,Integer>
 	Optional<EmployeeLogin> getByEmployeeId(String employeeId);
 	EmployeeLogin findByEmployeeId(String employeeId);
 
+	
 }

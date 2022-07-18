@@ -1,3 +1,4 @@
+
 package com.arshaa.emp.model;
 
 import javax.persistence.Column;
@@ -14,6 +15,18 @@ public class HrApprovalStatus {
 	private boolean rejectedStatus;
 	@Column
 	private boolean waitingforapprovalStatus;
+	
+	@Column
+	private boolean onboardingStatus;
+	
+	public boolean isOnboardingStatus() {
+		return onboardingStatus;
+	}
+
+	public void setOnboardingStatus(boolean onboardingStatus) {
+		this.onboardingStatus = onboardingStatus;
+	}
+
 	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
 	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date approvedDate = new java.util.Date(System.currentTimeMillis());
@@ -81,6 +94,16 @@ public class HrApprovalStatus {
 
 	public void setRejectDate(java.util.Date rejectDate) {
 		this.rejectDate = rejectDate;
+	}
+
+	public String getProjectName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getBand() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

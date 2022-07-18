@@ -12,13 +12,20 @@ import Paper from "@mui/material/Paper";
 
 const EmployeeTablee = () => {
   const [users, setUsers] = useState([]);
+  const [status, setStatus] = useState(false);
+  const [viewStatus, setViewStatus] = useState(false);
+
+  const pull_data = () => {
+    setStatus(true);
+    setViewStatus(true);
+  };
 
   useEffect(() => {
     approvedData();
-  }, []); // console.log(users.reportingManager)
+  }, [status]); // console.log(users.reportingManager)
 
   const approvedData = async () => {
-  const approvedEmployeesResponse = await axios.get("/emp/waitingForApprovelStatus");
+  const approvedEmployeesResponse = await axios.get("/emp/getApprovedOnboardedData");
     console.log(approvedEmployeesResponse.data);
     setUsers(approvedEmployeesResponse.data.data);
   }
@@ -45,7 +52,7 @@ const EmployeeTablee = () => {
                 "& th": {
                   fontSize: "1rem",
                   color: "rgb(255, 255, 255)",
-                  backgroundColor: "#fe924a"
+                  backgroundColor: "#FF9E14"
                 }
               }}
             >
@@ -67,7 +74,7 @@ const EmployeeTablee = () => {
                 Phone Number
               </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                 Job Title
-              </TableCell> <TableCell scope="col" class="" style={{ textAlign: 'center' }}>
+              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }} >
                 Years Of Experience
               </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
                 Date Of Joining

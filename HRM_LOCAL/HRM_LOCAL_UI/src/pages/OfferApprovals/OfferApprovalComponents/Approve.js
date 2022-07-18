@@ -55,11 +55,11 @@ const Approve = (props) => {
   console.log(obj);
 
   const ApproveHandler = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     console.log(onboardingid);
     const form1 = Object.assign(form, obj);
     console.log(form1);
-    axios.put(`/emp/updateApprovStatus/${onboardingid}`, form1);
+    axios.put(`/emp/updateApprovStatus/${onboardingid}`, obj);
     handleClose();
   };
 
@@ -81,61 +81,7 @@ const Approve = (props) => {
               <Modal.Title>Approve and Assign Reporting Manager</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Form role="form">
-                <Row className="mb-3">
-                  <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                    <Form.Label>Select Reporting Manager *</Form.Label>
-                    <Form.Select
-                      placeholder="select Gender"
-                      value={form.reportingManager}
-                      Select
-                      onChange={(e) =>
-                        setField("reportingManager", e.target.value)
-                      }
-                    >
-                      <option>Select </option>
-                      {reportingManager.map((reportingManagerr) => (
-                        <option>{reportingManagerr.reportingmanager}</option>
-                      ))}
-                    </Form.Select>
-                  </Form.Group>
-
-                  <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                    <Form.Label>Assign Project Name *</Form.Label>
-                    <Form.Select
-                      required
-                      type="text"
-                      placeholder="Project Name"
-                      controlId="projectName"
-                      value={form.projectName}
-                      onChange={(e) => setField("projectName", e.target.value)}
-                    >
-                      <option>Select</option>
-                      <option value="HRM">HRM</option>
-                      <option value="Properties">Properties</option>
-                      <option value="Digital E Learning">
-                        Digital E Learning
-                      </option>
-                    </Form.Select>
-                  </Form.Group>
-
-                  <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                    <Form.Label>Assign Band *</Form.Label>
-                    <Form.Select
-                      type="text"
-                      placeholder="Band"
-                      controlId="band"
-                      name="band"
-                      value={form.band}
-                      onChange={(e) => setField("band", e.target.value)}
-                    >
-                      <option>Select</option>
-                      <option value="Band-1">Band-1</option>
-                      <option value="Band-2">Band-2</option>
-                      <option value="Band-3">Band-3</option>
-                    </Form.Select>
-                  </Form.Group>
-                </Row>
+              
                 <Row style={{ paddingLeft: 180, paddingRight: 25, paddingBottom:10 }}>
                  
                     <Button
@@ -157,7 +103,7 @@ const Approve = (props) => {
                     </Button>
                   
                 </Row>
-              </Form>
+              
             </Modal.Body>
           </Modal>
         </Col>
