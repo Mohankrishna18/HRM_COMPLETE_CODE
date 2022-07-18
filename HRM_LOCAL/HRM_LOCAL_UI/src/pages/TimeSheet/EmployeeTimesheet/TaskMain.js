@@ -9,8 +9,11 @@ import { Button, Modal, Stack } from "react-bootstrap";
 import UpdateTask from "./UpdateTask";
 import AddTask from "./AddTask";
 import DeleteTask from "./DeleteTask";
+import { date } from "yup/lib/locale";
+//vipul
 
 function TaskMain() {
+ 
 
   const [show, setShow] = useState(false);
   const [deleteUser, setDeleteUser] = useState(false);
@@ -56,55 +59,63 @@ function TaskMain() {
 
 
   const loadRoles = async (e) => {
-    const response = await axios.get("/user/getUsersData");
+    const response = await axios.get("/task/getTasks");
     setData(response.data.data);
-    console.log(response.data.data);
+    console.log(response);
   };
 
   const [columns, setColumns] = useState([
-    {
-      title: "Project",
-      field: "employeeId",
-      type: "text",
-    },
+    // {
+    //   title: "Timesheet Date",
+    //   field: "timesheet",
+    //   type: "date",
+    // }
+    // ,
     {
       title: "Task Name",
-      field: "userName",
+      field: "taskName",
       type: "text",
     },
     {
       title: "Task Type",
-      field: "roleName",
+      field: "taskType",
       type: "text",
     },
     {
       title: "Status",
-      field: "roleName",
+      field: "status",
       type: "text",
     },
     {
-      title: "Timesheet Date",
-      field: "roleName",
+      title: "Project",
+      field: "project",
       type: "text",
     },
+    
     {
       title: "Start Date",
-      field: "roleName",
-      type: "text",
+      field: "fromDate",
+       type:"date",
+       dateSetting: { locale: "en-GB" }
+
+      
+      // type: { name: "date", options: { format: "DD/MM/YYYY" } },
     },
     {
       title: "End Date",
-      field: "roleName",
-      type: "text",
+      field: "toDate",
+      type: "date",
+      dateSetting: { locale: "en-GB" }
+      // type: { name: "date", options: { format: "DD/MM/YYYY" } },
     },
     {
       title: "Priority",
-      field: "roleName",
+      field: "priority",
       type: "text",
     },
     {
-      title: "Hours",
-      field: "roleName",
+      title: "Duration",
+      field: "duration",
       type: "text",
     },
   ]);
@@ -118,17 +129,17 @@ function TaskMain() {
         keyboard={false}
         centered>
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
-          <Modal.Title>Update User Role</Modal.Title>
+          <Modal.Title>Edit Task</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <UpdateTask updateOnboard={updateOnboard} func={pull_dataUpdate} handleClose={handleClose} />
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
           
-        </Modal.Footer>
+        </Modal.Footer> */}
 
       </Modal>
       <Modal show={deleteUser} onHide={deleteHandleClose}
@@ -149,7 +160,7 @@ function TaskMain() {
         
             <Container>
               <Row>
-                <Col md={4}>
+                <Col >
                   <Card.Title>Timesheet</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
                     Timesheet Management / TImesheet{" "}
@@ -159,11 +170,11 @@ function TaskMain() {
                 <Col md={{ span: 4, offset: 4 }}><AddTask func={pull_dataAdd} /></Col>
               </Row>
             </Container>
-            <Container>
+            {/* <Container>
               <Row>
                 <Col xs={12}>
 
-                  <Grid style={{ borderBlockEndWidth: "2px" }}>
+                  <Grid style={{ borderBlockEndWidth: "2px" }}> */}
                     <MaterialTable
                       title="Timesheet Details"
                       columns={columns}
@@ -224,10 +235,10 @@ function TaskMain() {
                         ),
                       }}
                     />
-                  </Grid>
+                  {/* </Grid>
                 </Col>
               </Row>
-            </Container>
+            </Container> */}
           
       </div>
       {/* <Example /> */}

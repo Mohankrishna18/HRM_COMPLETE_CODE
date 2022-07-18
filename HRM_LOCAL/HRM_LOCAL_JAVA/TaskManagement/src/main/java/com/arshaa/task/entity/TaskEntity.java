@@ -15,7 +15,7 @@ public class TaskEntity {
 	private int taskId;
 	private String taskName;
 	private String taskType;
-	private int project;
+	private String project;
 	private Date fromDate;
 	private Date toDate;
 	private String description;
@@ -49,10 +49,10 @@ public class TaskEntity {
 	public void setTaskType(String taskType) {
 		this.taskType = taskType;
 	}
-	public int getProject() {
+	public String getProject() {
 		return project;
 	}
-	public void setProject(int project) {
+	public void setProject(String project) {
 		this.project = project;
 	}
 	public Date getFromDate() {
@@ -85,7 +85,7 @@ public class TaskEntity {
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
-	public TaskEntity(int taskId, String taskName, String taskType, int project, Date fromDate, Date toDate,
+	public TaskEntity(int taskId, String taskName, String taskType, String project, Date fromDate, Date toDate,
 			String description, String status, String duration, String priority) {
 		super();
 		this.taskId = taskId;
