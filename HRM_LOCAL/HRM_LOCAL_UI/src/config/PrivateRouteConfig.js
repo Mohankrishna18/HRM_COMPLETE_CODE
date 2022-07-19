@@ -176,7 +176,7 @@ export default [
 
     icon: <FcContacts />,
 
-    title: "Client",
+    title: "Clients",
 
     permission: [Roles.hradmin, Roles.hr],
 
