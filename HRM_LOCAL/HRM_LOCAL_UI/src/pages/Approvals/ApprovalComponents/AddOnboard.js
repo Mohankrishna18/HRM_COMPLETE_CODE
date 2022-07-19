@@ -523,14 +523,14 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
                       value={form.band}
                       onChange={(e) => setField("band", e.target.value)}
                     >
-                      <option>Select</option>
+                      {/* <option>Select</option>
                       <option value="Band-1">Band-1</option>
                       <option value="Band-2">Band-2</option>
-                      <option value="Band-3">Band-3</option>
-                       {/* <option>Select </option>
+                      <option value="Band-3">Band-3</option> */}
+                       <option>Select </option>
                   {bands.map((bandss) => (
                     <option>{bandss.bandName}</option>
-                  ))} */}
+                  ))}
                     </Form.Select>
                   </Form.Group>
 
@@ -602,18 +602,14 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
                   controlId="projectName"
                   value={form.projectName}
                   onChange={(e) => setField("projectName", e.target.value)}
-                  // isInvalid={!!errors.projectName}
                 >
                   <option>Select</option>
-                  <option value="HRM">HRM</option>
-                  <option value="MDM">MDM</option>
-                  {/* {project.map((projects) => (
+                  {/* <option value="HRM">HRM</option>
+                  <option value="MDM">MDM</option> */}
+                  {project.map((projects) => (
                     <option>{projects.projectName}</option>
-                  ))} */}
+                  ))}
                 </Form.Select>
-                {/* <Form.Control.Feedback type="invalid">
-                  {errors.projectName}
-                </Form.Control.Feedback> */}
               </Form.Group>
             </Row>
             <Row>

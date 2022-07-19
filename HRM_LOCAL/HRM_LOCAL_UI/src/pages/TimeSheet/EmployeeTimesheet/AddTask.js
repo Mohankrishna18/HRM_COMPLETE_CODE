@@ -260,7 +260,7 @@ function AddUser(props) {
               </Form.Group>
 
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>Start date*</Form.Label>
+                <Form.Label>From date*</Form.Label>
                 <Form.Control
                   required
                   type="date"
@@ -276,7 +276,7 @@ function AddUser(props) {
               </Form.Group>
 
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>End Date*</Form.Label>
+                <Form.Label>To Date*</Form.Label>
                 <Form.Control type="date" placeholder="Enter "
                   controlId="toDate"
                   value={form.toDate}

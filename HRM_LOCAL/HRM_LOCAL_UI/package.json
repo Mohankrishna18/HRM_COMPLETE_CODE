@@ -1,9 +1,7 @@
 {
   "name": "HRM",
   "version": "1.0.0",
-
   "proxy": "http://localhost:3000",
-
   "description": "React login form with validation using custom hooks, redirection upon login, and prevent backwards route",
   "keywords": [
     "react",
@@ -18,6 +16,7 @@
     "@emotion/styled": "^11.8.1",
     "@fontsource/poppins": "^4.5.8",
     "@hookform/resolvers": "^2.8.8",
+    "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "5.2.0",
     "@mui/material": "5.2.8",
     "@mui/styled-engine": "5.2.0",
