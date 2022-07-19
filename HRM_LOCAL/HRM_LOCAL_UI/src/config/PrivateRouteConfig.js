@@ -125,7 +125,10 @@ export default [
     component: ClientMain,
     path: "/ClientMain",
     icon: <FcContacts />,
+
+
     title: "Clients",
+
     permission: [Roles.hradmin, Roles.hr],
   },
   {
