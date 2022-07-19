@@ -45,7 +45,7 @@ function AddUser(props) {
       status,
       taskName,
       taskType,
-      // timesheet
+      priority
     } = form;
     const newErrors = {};
 
@@ -60,14 +60,16 @@ function AddUser(props) {
     }
     if (!taskType || taskType === "")
       newErrors.taskType = "Please Enter Task name";
-    // if (!status || status === "")
-    //   newErrors.status = "Please Enter Status";
+    if (!status || status === "")
+      newErrors.status = "Please Enter Status";
     if (!fromDate || fromDate === "")
       newErrors.fromDate = "Please Enter Start date";
-    // if (!toDate || toDate === "")
-    //   newErrors.toDate = "Please Enter End date";
+    if (!toDate || toDate === "")
+      newErrors.toDate = "Please Enter End date";
     if (!duration || duration === "")
       newErrors.duration = "Please Enter End time";
+    if (!priority || priority === "")
+      newErrors.priority = "Please Enter Priority";
     // if (!description || description === "") {
     //   newErrors.description = "Please Enter Description";
     // }
@@ -111,6 +113,7 @@ function AddUser(props) {
 
           setTimeout(5000);
           setForm({});
+          setErrors({});
           handleClose();
         })
         .catch((err) => {
@@ -212,7 +215,7 @@ function AddUser(props) {
                 <Form.Label>Project *</Form.Label>
                 <Form.Select
                   type="text"
-                  placeholder="project"
+                  
                   required
                   controlId="project"
                   value={form.project}
@@ -228,7 +231,7 @@ function AddUser(props) {
                       {item.projectName}
                     </option>
                   ))} */}
-                  <option>Select </option>
+                  <option>Select any project...</option>
                   {task.map((item) => (
                     <option>{item.projectName}</option>
                   ))}
@@ -281,12 +284,12 @@ function AddUser(props) {
                   controlId="toDate"
                   value={form.toDate}
                   onChange={(e) => setField("toDate", e.target.value)}
-                // isInvalid={!!errors.toDate}
+                isInvalid={!!errors.toDate}
                 />
 
-                {/* <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type="invalid">
                   {errors.toDate}
-                </Form.Control.Feedback> */}
+                </Form.Control.Feedback>
 
               </Form.Group>
 
@@ -303,7 +306,6 @@ function AddUser(props) {
 
                 >
                   <option>Select Task Type</option>
-                  <option>Analysis</option>
                   <option>Development</option>
                   <option>Code Review</option>
                   <option>Unit Testing</option>
@@ -381,7 +383,7 @@ function AddUser(props) {
                   controlId="status"
                   value={form.status}
                   onChange={(e) => setField("status", e.target.value)}
-                // isInvalid={!!errors.status}
+                isInvalid={!!errors.status}
 
                 >
                   <option>Select status</option>
@@ -390,11 +392,12 @@ function AddUser(props) {
                   <option>In progress</option>
 
                 </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.status}
+                </Form.Control.Feedback>
               </Form.Group>
 
-              {/* <Form.Control.Feedback type="invalid">
-                  {errors.status}
-                </Form.Control.Feedback> */}
+              
 
 
               <Form.Group className="mb-3" as={Col} md="6">
@@ -406,7 +409,7 @@ function AddUser(props) {
                   controlId="priority"
                   value={form.priority}
                   onChange={(e) => setField("priority", e.target.value)}
-                // isInvalid={!!errors.status}
+                  isInvalid={!!errors.priority}
 
                 >
                   <option>Select priority</option>
@@ -416,6 +419,9 @@ function AddUser(props) {
                   <option>P4</option>
 
                 </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.priority}
+                </Form.Control.Feedback>
               </Form.Group>
 
 
