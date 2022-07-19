@@ -64,13 +64,16 @@ import HrLeavesToApproveMain from "../pages/HrLeavesToApprove/HrLeavesToApproveM
 import EmployeeTimeSheetMain from "../pages/TimeSheet/TimeSheetMain";
 
 import * as RiIcons from "react-icons/ri"
+import { Accordion } from "react-bootstrap";
 
 export default [
+
   {
     component: MyProfileMain,
     path: "/",
     icon: <FcBusinessman />,
     title: "My Profile",
+    type: "Employee",
     permission: [
       Roles.employee,
       Roles.hr,
@@ -80,71 +83,21 @@ export default [
       Roles.hradmin,
       Roles.manager,
       Roles.recruitmentmanager,
-
     ],
     exact: true,
   },
-  // {
-  //   // path: "/Employee",
-  //   icon: <FcContacts />,
-  //   title: "Employees",
-  //   iconClosed:<RiIcons.RiArrowDownSFill/>,
-  //   iconOpened:<RiIcons.RiArrowUpSFill/>,
-  //   permission: [
-  //     Roles.employee,
-  //     Roles.hr,
-  //     Roles.ceo,
-  //     Roles.it,
-  //     Roles.taa,
-  //     Roles.hradmin,
-  //     Roles.manager,
-  //     Roles.recruitmentmanager,
-  //   ],
-  //   subNav:[
-  //     {
-  //       // component: EmployeeMaster,
-  //   path: "/employee/employeeProfile",
-  //   icon: <FcFile />,
-  //   title: "Edit My Profile",
-  //   permission: [
-  //     Roles.employee,
-  //     Roles.hr,
-  //     Roles.ceo,
-  //     Roles.it,
-  //     Roles.taa,
-  //     Roles.hradmin,
-  //     Roles.manager,
-  //     Roles.recruitmentmanager,
-  //   ],
-  //   },
-  //   {
-  //     // component: EmpAttendanceMain,
-  //     path: "/employee/empAttendance",
-  //     icon: <FcVoicePresentation />,
-  //     title: "Employee Attendance",
-  //     permission: [
-  //       Roles.employee,
-  //       Roles.hr,
-  //       Roles.ceo,
-  //       Roles.it,
-  //       Roles.taa,
-  //       Roles.hradmin,
-  //       Roles.manager,
-  //     ],
-  //   },
-  //   ]
-  // },
+
   {
     component: EmployeeMaster,
     path: "/employeeProfile",
     icon: <FcFile />,
     title: "Edit My Profile",
+    type: "Employee",
     permission: [
       Roles.employee,
       Roles.hr,
       Roles.ceo,
       Roles.it,
-
       Roles.taa,
       Roles.hradmin,
       Roles.manager,
@@ -169,30 +122,21 @@ export default [
       // ],  
   },
   {
-
     component: ClientMain,
-
     path: "/ClientMain",
-
     icon: <FcContacts />,
+
 
     title: "Clients",
 
     permission: [Roles.hradmin, Roles.hr],
-
   },
   {
-
     component: ProjectsMain,
-
     path: "/ProjectsMain",
-
     icon: <FcOvertime />,
-
     title: "Projects",
-
     permission: [Roles.hradmin],
-
   },
   {
     component: OfferApprovalMain,
@@ -254,6 +198,7 @@ export default [
   // },
   {
     component: HrLeavesToApproveMain,
+    type: "Leaves",
     path: "/HrLeavesToApprove",
     icon: <FcOvertime />,
     title: "Leaves Waiting For Approval",
@@ -262,6 +207,7 @@ export default [
 
   {
     component: IntegrateLeaveToApply,
+    type: "Leaves",
     path: "/IntegrateLeaveToApply",
     icon: <FcLeave />,
     title: "Leaves To Apply",
@@ -319,29 +265,29 @@ export default [
   //   permission: [Roles.taa],
   // },
 
-  {
-    component: AdminAttendanceMain,
-    path: "/AdminAttendanceMain",
-    type:"employeeDetails",
-    icon: <FcContacts />,
-    title: "Attendance Log",
-    permission: [Roles.hradmin, Roles.hr],
-  },
-  {
-    component: EmpAttendanceMain,
-    path: "/empAttendance",
-    icon: <FcVoicePresentation />,
-    title: "Employee Attendance",
-    permission: [
-      Roles.employee,
-      Roles.hr,
-      Roles.ceo,
-      Roles.it,
-      Roles.taa,
-      Roles.hradmin,
-      Roles.manager,
-    ],
-  },
+  // {
+  //   component: AdminAttendanceMain,
+  //   path: "/AdminAttendanceMain",
+  //   type:"employeeDetails",
+  //   icon: <FcContacts />,
+  //   title: "Attendance Log",
+  //   permission: [Roles.hradmin, Roles.hr],
+  // },
+  // {
+  //   component: EmpAttendanceMain,
+  //   path: "/empAttendance",
+  //   icon: <FcVoicePresentation />,
+  //   title: "Employee Attendance",
+  //   permission: [
+  //     Roles.employee,
+  //     Roles.hr,
+  //     Roles.ceo,
+  //     Roles.it,
+  //     Roles.taa,
+  //     Roles.hradmin,
+  //     Roles.manager,
+  //   ],
+  // },
   {
     component: TaggedEmployeesMain,
     path: "/employeeTagged",
@@ -384,6 +330,7 @@ export default [
 
   {
     component: HrLeaveHistorymain,
+    type: "Leaves",
     path: "/HrLeaveHistory",
     icon: <FcAnswers />,
     title: "My Leave History ",
@@ -391,6 +338,7 @@ export default [
   },
   {
     component: LeaveHistoryMain,
+    type: "Leaves",
     path: "/LeaveHistory",
     icon: <FcDatabase />,
     title: "Leave History",
@@ -452,5 +400,4 @@ export default [
 ];
 
 // testing purpose
-
 

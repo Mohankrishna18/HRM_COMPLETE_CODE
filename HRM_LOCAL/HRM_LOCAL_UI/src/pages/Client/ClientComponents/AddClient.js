@@ -39,6 +39,7 @@ function AddClient(props) {
   const validateForm = () => {
     const { clientName, startDate, endDate, status, country, address } = form;
 
+
     // console.log(clientName);
     // console.log(startDate);
     // console.log(endDate);

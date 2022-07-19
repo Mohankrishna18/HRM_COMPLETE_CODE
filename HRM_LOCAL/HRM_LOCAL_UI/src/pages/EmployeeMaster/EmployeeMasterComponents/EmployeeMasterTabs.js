@@ -29,7 +29,7 @@ function EmployeeMasterTabs() {
                             </Card.Text> */}
                         </Card.Body>
                     </Card.Header>
-                
+                    {/* #f99159 */}
                     <Tabs
                         defaultActiveKey="Personal Details"
                         transition={true}
@@ -37,7 +37,7 @@ function EmployeeMasterTabs() {
                         className="mb-3"  
                         color="Black"
                           fontColour="white"
-                        style={{ justifyContent: "center", color: "white" , backgroundColor:"#f99159",opacity:0.95, fontSize:"20px" ,padding:0,}}
+                        style={{ justifyContent: "center", color: "white" , backgroundColor:"white",opacity:0.95, fontSize:"18px" ,padding:0,}}
                     >
                         <Tab eventKey="Personal Details" title="Personal Details" color='white' style={{ backgroundColor: "white" ,height:30}}>
                             <PersonalDetailsTab />
@@ -57,9 +57,9 @@ function EmployeeMasterTabs() {
                         <Tab eventKey="Experience" title="Experience " style={{ backgroundColor: "white" }}>
                             <ExperienceTab />
                         </Tab>
-                        {/* <Tab eventKey="Project" title="Project " style={{ backgroundColor: "white" }}>
+                        <Tab eventKey="Project" title="Project" style={{ backgroundColor: "white" }}>
                              <ProjectsTab/>
-                        </Tab> */}
+                        </Tab>
                     </Tabs> 
             </Card>
 

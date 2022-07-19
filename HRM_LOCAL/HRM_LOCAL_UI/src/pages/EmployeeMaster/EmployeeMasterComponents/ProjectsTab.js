@@ -53,8 +53,63 @@ function ProjectsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Project Name</Form.Label>
                         <Form.Control
+                        disabled 
                             type="text"
                             placeholder="Project Name"
+                            controlId="projectName"
+                            value={projectName}
+                            maxLength={25}
+                            name="projectName"
+                            onChange={(e) =>
+                                setProjectName(e.target.value)
+                            }
+                        ></Form.Control>
+                        <Form.Control.Feedback type="invalid">
+                            {twentytwoerror}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Client Name</Form.Label>
+                        <Form.Control
+                        disabled
+                            type="text"
+                            placeholder="Client Name"
+                            controlId="projectName"
+                            value={projectName}
+                            maxLength={25}
+                            name="projectName"
+                            onChange={(e) =>
+                                setProjectName(e.target.value)
+                            }
+                        ></Form.Control>
+                        <Form.Control.Feedback type="invalid">
+                            {twentytwoerror}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Reporting Managrer</Form.Label>
+                        <Form.Control
+                        disabled
+                            type="text"
+                            placeholder="Reporting Managrer"
+                            controlId="projectName"
+                            value={projectName}
+                            maxLength={25}
+                            name="projectName"
+                            onChange={(e) =>
+                                setProjectName(e.target.value)
+                            }
+                        ></Form.Control>
+                        <Form.Control.Feedback type="invalid">
+                            {twentytwoerror}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Skills</Form.Label>
+                        <Form.Control
+                        disabled
+                            type="text"
+                            placeholder="Skills"
                             controlId="projectName"
                             value={projectName}
                             maxLength={25}
