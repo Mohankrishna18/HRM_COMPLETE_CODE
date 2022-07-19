@@ -125,10 +125,7 @@ export default [
     component: ClientMain,
     path: "/ClientMain",
     icon: <FcContacts />,
-
-
-    title: "Clients",
-
+    title: "Client",
     permission: [Roles.hradmin, Roles.hr],
   },
   {
@@ -238,9 +235,9 @@ export default [
   },
   {
     component: EmployeeTimeSheetMain,
-    path: "/timeSheet",
+    path: "/taskManagement",
     icon: <FcPlanner />,
-    title: "Timesheet",
+    title: "Task Management",
     permission: [Roles.employee],
   },
   {
