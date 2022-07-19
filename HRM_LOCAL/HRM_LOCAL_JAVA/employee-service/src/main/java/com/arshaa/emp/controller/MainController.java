@@ -78,8 +78,15 @@ public class MainController {
 // @PostMapping("/createNewPotentialEmployee")
 // public void addEmployee(@RequestBody EmployeeMaster newEmployee)
 // {
-// emRepo.save(newEmployee);
+// emRepo.save(newEmployee); 
 // }
+	
+	//getting onboarded employee details for pre onboarding
+	@GetMapping("/getEmployeeDataByOnboardingId/{onboardingId}")
+	public ResponseEntity getOnboardingDataByOnboardingId(@PathVariable String onboardingId) {
+		return serv.getOnboardingDataByOnboardingId(onboardingId);
+	}
+	
 	@GetMapping("/getEmployeeDataByEmployeeId/{employeeId}")
 	public ResponseEntity getEmployeeDataByEmployeeId(@PathVariable String employeeId) {
 		return serv.getEmployeeDataByEmployeeId(employeeId);
@@ -118,6 +125,12 @@ public class MainController {
 	public ResponseEntity getRejectedData() {
 		return serv.getRejectedData();
 	}
+	
+	@GetMapping("/getApprovedOnboardedData")
+	public ResponseEntity getOnboardedApprovedData() {
+		return serv.getOnboardedApprovedData();
+	}
+	
 
 	@PutMapping("/updateDesignationName/{employeeId}")
 	public ResponseEntity updateDesignationName(@PathVariable String employeeId, @RequestBody DesignationName name) {
@@ -300,6 +313,55 @@ public class MainController {
 				@RequestBody Experience exp) {
 			return serv.updateExperienceByEmployeeId(exp, employeeId);
 		}
-
 		
+		
+
+		// Onboarding updating EditMy Profile Api calls
+		@PutMapping("/updatePersonalDetailsInPreOnboarding/{onboardingId}")
+		public ResponseEntity updatePersonalDetailsByOnboardingId(@PathVariable String onboardingId,
+				@RequestBody PersonalDetails pd) {
+			return serv.updatePersonalDetailsByOnboardId(pd, onboardingId);
+		}
+		
+		@PutMapping("/updateAddressInPreOnboarding/{onboardingId}")
+		public ResponseEntity updateAddressByOnboardingId(@PathVariable String onboardingId,
+				@RequestBody Address ad) {
+			return serv.updateAddressByOnboardId(ad, onboardingId);
+		}
+		
+		@PutMapping("/updateAdditionalDetailsInPreOnboarding/{onboardingId}")
+		public ResponseEntity updateAdditionalDetailsByOnboardingId(@PathVariable String onboardingId,
+				@RequestBody AdditionalDetails add) {
+			return serv.updateAdditionalDetailsByOnboardId(add, onboardingId);
+		}
+		
+//		@PutMapping("/updateEmploymentDetails/{onboardingId}")
+//		public ResponseEntity updateEmploymentDetailsByOnboardingId(@PathVariable String onboardingId,
+//				@RequestBody EmploymentDetails empd) {
+//			return serv.updateEmploymentDetailsByOnboardId(empd, onboardingId);
+//		}
+		
+		@PutMapping("/updateEducationalDetailsInPreOnboarding/{onboardingId}")
+		public ResponseEntity updateEducationalDetailsByOnboardingId(@PathVariable String onboardingId,
+				@RequestBody EducationalDetails education) {
+			return serv.updateEducationalDetailsByOnboardId(education, onboardingId);
+		}
+		
+		@PutMapping("/updateExperienceInPreOnboarding/{onboardingId}")
+		public ResponseEntity updateExperienceByOnboardingId(@PathVariable String onboardingId,
+				@RequestBody Experience exp) {
+			return serv.updateExperienceByOnboardId(exp, onboardingId);
+		}
+// User Client Project Management get api calls
+		
+		@GetMapping("/getUserClientDetailsbyEmployeeId/{employeeId}")
+		public ResponseEntity getUserProjectDataByEmployeeId(@PathVariable String employeeId) {
+			return serv.getPersonalDetailsByEmployeeId(employeeId);
+		}
+		
+		@GetMapping("/getUserClientDetailsbyOnboardingId/{onboardingId}")
+		public ResponseEntity getUserProjectDataByOnboardingId(@PathVariable String onboardingId) {
+			return serv.getUserProjectDataByOnboardingId(onboardingId);
+		}
 }
+

@@ -47,6 +47,7 @@ function AddressTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
+        try{
         await axios.put(`/emp/updateAddress/${employeeid}`, {
             permanentAdress,
             permanentState,
@@ -58,14 +59,17 @@ function AddressTab() {
             currentPincode,
         });
         toast.success("Form Submitted Successfully");
-
+    }
+    catch(error){
+        toast.error("Somethingwent Wrong");
+  }
     };
 
     return (
 
         <div>
             <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 20, textAlign: "center" }}>
+                <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Permanent Address
                 </Card.Title>
             </Card>
@@ -186,7 +190,7 @@ function AddressTab() {
                         <Card
                             style={{ marginLeft: 10, marginRight: 0, marginTop: 20, backgroundColor: "#FAFDD0" }}
                         >
-                            <Card.Title style={{ margin: 20, textAlign: "center" }}>
+                            <Card.Title style={{ margin: 12, textAlign: "center" }}>
                                 Current Address
                             </Card.Title>
                         </Card>
@@ -309,6 +313,8 @@ function AddressTab() {
                 </Button>
             </Form>
         </div>
+
+
     )
 }
 export default AddressTab;

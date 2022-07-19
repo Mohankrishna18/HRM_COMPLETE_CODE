@@ -11,7 +11,7 @@ function PersonalDetailsTab() {
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
 
-    const payload={
+    const payload = {
         employeeId,
         firstName,
         lastName,
@@ -19,13 +19,13 @@ function PersonalDetailsTab() {
         dateOfBirth,
         primaryPhoneNumber,
         secondaryPhoneNumber,
-        email,      
+        email,
         primarySkills,
         secondarySkills,
         bloodGroup,
         gender,
         maritalStatus,
-}
+    }
 
 
     const [ferrors, setFErrors] = useState("");
@@ -53,7 +53,7 @@ function PersonalDetailsTab() {
     const [gender, setGender] = useState("");
     const [maritalStatus, setMaritalStatus] = useState("");
     const [dateOfJoining, setDateOfJoining] = useState("");
- 
+
 
 
     useEffect(() => {
@@ -81,7 +81,8 @@ function PersonalDetailsTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
-        await axios.put(`/emp/updatePersonalDetails/${employeeid}`,{
+        try{
+        await axios.put(`/emp/updatePersonalDetails/${employeeid}`, {
             employeeId,
             firstName,
             lastName,
@@ -89,7 +90,7 @@ function PersonalDetailsTab() {
             dateOfBirth,
             primaryPhoneNumber,
             secondaryPhoneNumber,
-            email,      
+            email,
             primarySkills,
             secondarySkills,
             bloodGroup,
@@ -97,17 +98,20 @@ function PersonalDetailsTab() {
             maritalStatus
         });
         toast.success("Form Submitted Successfully");
-
+    }
+        catch (error) {
+            toast.error("Somethingwent Wrong");
+    }
     };
 
     return (
 
         <div>
-            <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 20, textAlign: "center" }}>
+            {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+                <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Personal Details
                 </Card.Title>
-            </Card>
+            </Card> */}
 
             <Form
                 onSubmit={(e) => changeHandler(e)}
@@ -393,16 +397,16 @@ function PersonalDetailsTab() {
                     <Row>
 
                     </Row>
-                    
+
                 </Row>
                 <Button
-                        className="rounded-pill" md="3"
-                        style={{ backgroundColor: "#eb4509", float: "right" }}
-                        type="submit"
-                        size="lg"
-                    >
-                        Submit
-                    </Button>
+                    className="rounded-pill" md="3"
+                    style={{ backgroundColor: "#eb4509", float: "right" }}
+                    type="submit"
+                    size="lg"
+                >
+                    Submit
+                </Button>
             </Form>
         </div>
     )

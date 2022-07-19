@@ -11,6 +11,7 @@ public class OnBoardingEmployeeLogin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int onboardingemployeeloginId;
+	private String onboardingId;
 	private String email;
 	private String password;
 	private Boolean updatedBy;
@@ -51,6 +52,12 @@ public class OnBoardingEmployeeLogin {
 	}
 	public void setStatus(Boolean status) {
 		Status = status;
+	}
+	public String getOnboardingId() {
+		return onboardingId;
+	}
+	public void setOnboardingId(String onboardingId) {
+		this.onboardingId = onboardingId;
 	}
 	
 	

@@ -119,10 +119,10 @@ function RejectedEmployeeArchieve() {
           sx={{ color: "white" }}
           columns={columns}
           options={{
-            exportButton: true,
+            exportButton: false,
             pageSize: 5,
             actionsColumnIndex: -1,
-            grouping: true,
+            grouping: false,
             addRowPosition: "first",
             headerStyle: {
               backgroundColor: "#1E90FF",

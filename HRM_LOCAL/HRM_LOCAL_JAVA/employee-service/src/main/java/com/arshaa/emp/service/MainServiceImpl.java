@@ -1,4 +1,3 @@
-
 package com.arshaa.emp.service;
 
 //import java.text.SimpleDateFormat;
@@ -25,6 +24,7 @@ import com.arshaa.emp.common.Users;
 import com.arshaa.emp.entity.EmployeeMaster;
 import com.arshaa.emp.entity.Intern;
 import com.arshaa.emp.entity.Onboarding;
+import com.arshaa.emp.entity.UserClientProjectManagement;
 import com.arshaa.emp.model.AdditionalDetails;
 import com.arshaa.emp.model.Address;
 import com.arshaa.emp.model.DesignationName;
@@ -41,6 +41,7 @@ import com.arshaa.emp.model.StringConstants;
 import com.arshaa.emp.model.WaitingForApproval;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
 import com.arshaa.emp.repository.OnboardRepository;
+import com.arshaa.emp.repository.UserClientProjectManagementRepositorty;
 import com.thoughtworks.xstream.mapper.Mapper.Null;
 
 @Service
@@ -50,6 +51,8 @@ public class MainServiceImpl implements MainService {
 	OnboardRepository onRepo;
 	@Autowired
 	EmployeeMasterRepository emRepo;
+	@Autowired
+	UserClientProjectManagementRepositorty userClientRepo;
 	@Autowired
 	@Lazy
 	private RestTemplate template;
@@ -77,10 +80,25 @@ public class MainServiceImpl implements MainService {
 			newOnboard.setWaitingforapprovalStatus(true);
 			newOnboard.setRejectedStatus(false);
 			newOnboard.setApprovedStatus(false);
+			newOnboard.setOnboardingStatus(false);
 			Onboarding newData = onRepo.save(newOnboard);
 			r.setStatus(true);
 			r.setMessage(sConstants.POST_SUCCESS);
 			r.setData(newData);
+			
+			String status = "Active";
+			UserClientProjectManagement userclient = new UserClientProjectManagement();
+			userclient.setOnboardingId(newData.getOnboardingId());
+			userclient.setReportingManager(newData.getReportingManager());
+			userclient.setClientName(newData.getClient());
+			userclient.setProjectName(newData.getProjectName());
+//			userclient.setProjectId();
+//			userclient.getClientId();
+			userclient.setStartDate(newData.getDateOfJoining());
+			userclient.setStatus(status);
+			userclient.setSkills(newData.getPrimarySkills());
+			userClientRepo.save(userclient);
+			
 			
 			PreMailModel pm = new PreMailModel();
 			pm.setName(newOnboard.getFirstName());
@@ -95,9 +113,11 @@ public class MainServiceImpl implements MainService {
 			template.postForObject(preEmailURL, pm, PreMailModel.class);
 			
 			
+		
 			PreOnboarding pre = new PreOnboarding();
 			pre.setEmail(newOnboard.getEmail());
 			pre.setPassword(password);
+			pre.setOnboardingId(newOnboard.getOnboardingId());
 			pre.setUserType("preonboardedemployee");
 			template.postForObject(preOnboardUrl, pre, PreOnboarding.class);
 			return new ResponseEntity(r, HttpStatus.OK);
@@ -110,6 +130,7 @@ public class MainServiceImpl implements MainService {
 		}
 	}
 
+	
 	public ResponseEntity<Onboarding> waitingForApprovelStatus() {
 		Response r = new Response<WaitingForApproval>();
 		
@@ -122,12 +143,9 @@ public class MainServiceImpl implements MainService {
 
 				onboarding.forEach(on -> {
 					WaitingForApproval wa = new WaitingForApproval();
-
- 
-// 					wa.setOnboardingId(on.getOnboardingId());
+//					wa.setOnboardingId(on.getOnboardingId());
 // 					wa.setFirstName(on.getFirstName()+" "+on.getLastName());
 // //					wa.setLastName(on.getLastName());
-					
 // 					SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 // 					String strDate= formatter.format(on.getDateOfJoining());
 // 					wa.setDepartment(on.getDepartment());
@@ -141,7 +159,6 @@ public class MainServiceImpl implements MainService {
 // 					wa.setPrimarySkills(on.getPrimarySkills());
 // 					wa.setSecondarySkills(on.getSecondarySkills());
 // 					waList.add(wa);
-
 				});
 
 				r.setStatus(true);
@@ -176,10 +193,14 @@ public class MainServiceImpl implements MainService {
 			if (!getOnboarding.equals(null)) {
 				getOnboarding.setApprovedStatus(newOnboard.isApprovedStatus());
 				getOnboarding.setRejectedStatus(newOnboard.isRejectedStatus());
+				getOnboarding.setOnboardingStatus(newOnboard.isOnboardingStatus());
 				getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
 				getOnboarding.setComments(newOnboard.getComments());
+				getOnboarding.setProjectName(newOnboard.getProjectName());
+				getOnboarding.setBand(newOnboard.getBand());
+				
 				Onboarding saveList = onRepo.save(getOnboarding);
 
 				if (saveList.isApprovedStatus() == true) {
@@ -187,6 +208,7 @@ public class MainServiceImpl implements MainService {
 					newOnboard.setApprovedDate(tSqlDate);
 					getOnboarding.setRejectedStatus(false);
 					getOnboarding.setWaitingforapprovalStatus(false);
+					getOnboarding.setOnboardingStatus(false);
 
 					onRepo.save(getOnboarding);
 
@@ -208,8 +230,13 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setJobTitle(getOnboarding.getJobTitle());
 					employeeMaster.setEmploymentType(getOnboarding.getEmploymentType());
 					employeeMaster.setReportingManager(newOnboard.getReportingManager());
-					emRepo.save(employeeMaster);
+					EmployeeMaster em=emRepo.save(employeeMaster);
 
+					//posting 	EmployeeId in Userproject Table
+					UserClientProjectManagement userclient = userClientRepo.getByOnboardingId(onboardingId);
+					userclient.setEmployeeId(em.getEmployeeId());
+					userClientRepo.save(userclient);
+					
 					// Generating Random userId and Password
 					Random rand = new Random();
 					Integer intRandom = rand.nextInt(9999);
@@ -268,6 +295,20 @@ public class MainServiceImpl implements MainService {
 		}
 	}
 
+//	
+//	public ResponseEntity addData(@RequestBody UserClientProjectManagement userClient ) {
+//		String clientURL ="http://clientProjectMapping/getAllProjects";
+//		
+//	
+//		try {
+//			java.sql.Date tSqlDate = new java.sql.Date(userClient.getUpdatedOn().getTime());
+//			userClient.setUpdatedOn(tSqlDate);
+//			userClientRepo.save(userClient);
+//			
+//			
+//		}
+//		
+//	}
 	public ResponseEntity addEmployee(@RequestBody EmployeeMaster newEmployee) {
 		String userURL = "http://urpService/user/addUser";
 		String loginURL = "http://loginservice/login/addUsers";
@@ -318,6 +359,75 @@ public class MainServiceImpl implements MainService {
 
 	}
 
+	//Getting userClient Project management data by onboarding id
+	public ResponseEntity getUserProjectDataByOnboardingId(String onboardingId) {
+		Response r = new Response<>();
+		try {
+			UserClientProjectManagement userclients = userClientRepo.getByOnboardingId(onboardingId);
+			
+			if (!userclients.equals(null)) {
+				r.setStatus(true);
+				r.setMessage(sConstants.GET_RESPONSE);
+				r.setData(userclients);
+				return new ResponseEntity(r, HttpStatus.OK);
+			} else {
+				r.setStatus(false);
+				r.setMessage(sConstants.INVALID_DATA + onboardingId);
+				return new ResponseEntity(r, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+		}
+	}
+	
+	
+	//Getting userClient Project management data by Employee Id
+		public ResponseEntity getUserProjectDataByEmployeeId(String employeeId) {
+			Response r = new Response<>();
+			try {
+				UserClientProjectManagement userclientss = userClientRepo. getByEmployeeId(employeeId);
+				
+				if (!userclientss.equals(null)) {
+					r.setStatus(true);
+					r.setMessage(sConstants.GET_RESPONSE);
+					r.setData(userclientss);
+					return new ResponseEntity(r, HttpStatus.OK);
+				} else {
+					r.setStatus(false);
+					r.setMessage(sConstants.INVALID_DATA + employeeId);
+					return new ResponseEntity(r, HttpStatus.OK);
+				}
+			} catch (Exception e) {
+				r.setStatus(false);
+				r.setMessage(e.getMessage());
+				return new ResponseEntity(r, HttpStatus.OK);
+			}
+		}
+	
+	
+	public ResponseEntity getOnboardingDataByOnboardingId(String onboardingId) {
+		Response r = new Response<>();
+		try {
+			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+			if (!getOnboarding.equals(null)) {
+				r.setStatus(true);
+				r.setMessage(sConstants.GET_RESPONSE);
+				r.setData(getOnboarding);
+				return new ResponseEntity(r, HttpStatus.OK);
+			} else {
+				r.setStatus(false);
+				r.setMessage(sConstants.INVALID_DATA + onboardingId);
+				return new ResponseEntity(r, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			r.setStatus(false);
+			r.setMessage(sConstants.FAILURE_RESPONSE);
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
+	
 	public ResponseEntity getEmployeeDataByEmployeeId(String employeeId) {
 		Response r = new Response<>();
 		try {
@@ -533,6 +643,22 @@ public class MainServiceImpl implements MainService {
 		try {
 
 			List<Onboarding> onboarding = onRepo.findByRejectedStatus(true);
+			r.setStatus(true);
+			r.setMessage(sConstants.GET_RESPONSE);
+			r.setData(onboarding);
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+
+		}
+	}
+	
+	// getting taa approved employees list
+	public ResponseEntity getOnboardedApprovedData() {
+		Response r = new Response<>();
+		try {
+
+			List<Onboarding> onboarding = onRepo.findByOnboardingStatus(true);
 			r.setStatus(true);
 			r.setMessage(sConstants.GET_RESPONSE);
 			r.setData(onboarding);
@@ -1115,6 +1241,278 @@ public class MainServiceImpl implements MainService {
 			return new ResponseEntity(r,HttpStatus.OK);
 		}
 	}
+	
+	//PreOnboarding Form edit my profile by an employee updating form API calls
+	
+		@Override
+		public ResponseEntity updatePersonalDetailsByOnboardId(PersonalDetails pd, String onboardingId) {
+				Response r = new Response<>();
+			try {
+				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+				
+				if(!getOnboarding.equals(null))
+				{
+					String state = "20%";
+					getOnboarding.setStatus(state);
+					getOnboarding.setBloodGroup(pd.getBloodGroup());
+					getOnboarding.setDateOfBirth(pd.getDateOfBirth());
+					getOnboarding.setEmail(pd.getEmail());
+					getOnboarding.setFirstName(pd.getFirstName());
+					getOnboarding.setGender(pd.getGender());
+					getOnboarding.setLastName(pd.getLastName());
+					getOnboarding.setMiddleName(pd.getMiddleName());
+					getOnboarding.setMaritalStatus(pd.getMaritalStatus());
+					getOnboarding.setPhoneNumber(pd.getPrimaryPhoneNumber());
+					getOnboarding.setSecondaryPhoneNumber(pd.getSecondaryPhoneNumber());
+					getOnboarding.setPrimarySkills(pd.getPrimarySkills());
+					getOnboarding.setSecondarySkills(pd.getSecondarySkills());
+					
+					onRepo.save(getOnboarding);
+					r.setStatus(true);
+					r.setMessage("Data Fetching");
+					r.setData(getOnboarding);
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+				else {
+					r.setStatus(false);
+					r.setMessage("Data Not updated");
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+			}
+			catch(Exception e)
+			{
+				r.setStatus(false);
+				r.setMessage("Something went wrong");
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+			}
+		
+		@Override
+		public ResponseEntity updateAddressByOnboardId(Address ad, String onboardingId) {
+			Response r = new Response<>();
+			try {
+				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+				if(!getOnboarding.equals(null))
+				{
+					String state = "40%";
+					getOnboarding.setStatus(state);
+					getOnboarding.setPermanentAdress(ad.getPermanentAdress());
+					getOnboarding.setPermanentCountry(ad.getPermanentCountry());
+					getOnboarding.setPermanentPincode(ad.getPermanentPincode());
+					getOnboarding.setPermanentState(ad.getPermanentState());
+					getOnboarding.setCurrentAdress(ad.getCurrentAdress());
+					getOnboarding.setCurrentCountry(ad.getCurrentCountry());
+					getOnboarding.setCurrentPincode(ad.getCurrentPincode());
+					getOnboarding.setCurrentState(ad.getCurrentState());
+					
+					onRepo.save(getOnboarding);
+					r.setStatus(true);
+					r.setMessage("Data Fetching");
+					r.setData(getOnboarding);
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+				else {
+					r.setStatus(false);
+					r.setMessage("Data Not updated");
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+			}
+			catch(Exception e)
+			{
+				r.setStatus(false);
+				r.setMessage("Something went wrong");
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+		}
+		
+		
+		@Override
+		public ResponseEntity updateAdditionalDetailsByOnboardId(AdditionalDetails add, String onboardingId) {
+			Response r = new Response<>();
+			try {
+				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+				if(!getOnboarding.equals(null))
+				{
+					String state = "60%";
+					getOnboarding.setStatus(state);
+					getOnboarding.setPassportNo(add.getPassportNo());
+					getOnboarding.setPassportExpiryDate(add.getPassportExpiryDate());
+					getOnboarding.setPanNumber(add.getPanNumber());
+					getOnboarding.setAadharNumber(add.getAadharNumber());
+					getOnboarding.setUanNumber(add.getUanNumber());
+					getOnboarding.setBankName(add.getBankName());
+					getOnboarding.setAccountNumber(add.getAccountNumber());
+					getOnboarding.setIfscCode(add.getIfscCode());
+					getOnboarding.setBranch(add.getBranch());
+					onRepo.save(getOnboarding);
+					r.setStatus(true);
+					r.setMessage("Data Fetching");
+					r.setData(getOnboarding);
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+				else {
+					r.setStatus(false);
+					r.setMessage("Data Not updated");
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+			}
+			catch(Exception e)
+			{
+				r.setStatus(false);
+				r.setMessage("Something went wrong");
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+	}
+
+	//
+//		@Override
+//		public ResponseEntity updateEmploymentDetailsByOnboardId(EmploymentDetails empd, String onboardingId) {
+//			Response r = new Response<>();
+//			try {
+//				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+//				if(!getOnboarding.equals(null))
+//				{
+//					getOnboarding.setPrimarySkills(empd.getPrimarySkills());
+//					getOnboarding.setSecondarySkills(empd.getSecondarySkills());
+//					getOnboarding.setEmploymentType(empd.getEmploymentType());
+//					getOnboarding.setBand(empd.getBand());
+//					getOnboarding.setDepartment(empd.getDepartmentName());
+//					getOnboarding.setDesignation(empd.getDesignationName());
+//					getOnboarding.setReportingManager(empd.getReportingManager());
+//					getOnboarding.setProjectName(empd.getProjectName());
+//					onRepo.save(getOnboarding);
+//					r.setStatus(true);
+//					r.setMessage("Data Fetching");
+//					r.setData(getOnboarding);
+//					return new ResponseEntity(r,HttpStatus.OK);
+//				}
+//				else {
+//					r.setStatus(false);
+//					r.setMessage("Data Not updated");
+//					return new ResponseEntity(r,HttpStatus.OK);
+//				}
+//			}
+//			catch(Exception e)
+//			{
+//				r.setStatus(false);
+//				r.setMessage("Something went wrong");
+//				return new ResponseEntity(r,HttpStatus.OK);
+//			}
+//		}
+
+		
+
+		@Override
+		public ResponseEntity updateEducationalDetailsByOnboardId(EducationalDetails education, String onboardingId) {
+			Response r = new Response<>();
+		try {
+			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+			if(!getOnboarding.equals(null))
+			{
+				String state = "80%";
+				getOnboarding.setStatus(state);
+				getOnboarding.setPostgraduationType(education.getPostgraduationType());
+				getOnboarding.setPostgraduationBoardOfUniversity(education.getPostgraduationBoardOfUniversity());
+				getOnboarding.setPostgraduationInstituteName(education.getPostgraduationInstituteName());
+				getOnboarding.setPostgraduationInstituteCity(education.getPostgraduationInstituteCity());
+				getOnboarding.setPostgraduationCourseName(education.getPostgraduationCourseName());
+				getOnboarding.setPostgraduationJoiningYear(education.getPostgraduationJoiningYear());
+				getOnboarding.setPostgraduationPassedYear(education.getPostgraduationPassedYear());
+				getOnboarding.setPostgraduationGrade(education.getPostgraduationGrade());
+				getOnboarding.setGraduationType(education.getGraduationType());
+				getOnboarding.setGraduationBoardOfUniversity(education.getGraduationBoardOfUniversity());
+				getOnboarding.setGraduationInstituteName(education.getGraduationInstituteName());
+				getOnboarding.setGraduationInstituteCity(education.getGraduationInstituteCity());
+				getOnboarding.setGraduationCourseName(education.getGraduationCourseName());
+				getOnboarding.setGraduationGrade(education.getGraduationGrade());
+				getOnboarding.setGraduationJoiningYear(education.getGraduationJoiningYear());
+				getOnboarding.setGraduationPassedYear(education.getGraduationPassedYear());
+				getOnboarding.setIntermediateBoardOfUniversity(education.getIntermediateBoardOfUniversity());
+				getOnboarding.setIntermediateCollegeName(education.getIntermediateCollegeName());
+				getOnboarding.setIntermediateCollegeCity(education.getIntermediateCollegeCity());
+				getOnboarding.setIntermediateCourseName(education.getIntermediateCourseName());
+				getOnboarding.setIntermediateJoiningYear(education.getIntermediateJoiningYear());
+				getOnboarding.setIntermediatePassedYear(education.getIntermediatePassedYear());
+				getOnboarding.setIntermediateGrade(education.getIntermediateGrade());
+				getOnboarding.setSscBoardOfUniversity(education.getSscBoardOfUniversity());
+				getOnboarding.setSscSchoolName(education.getSscSchoolName());
+				getOnboarding.setSscSchoolCity(education.getSscSchoolCity());
+				getOnboarding.setSscCourseName(education.getSscCourseName());
+				getOnboarding.setSscJoiningYear(education.getSscJoiningYear());
+				getOnboarding.setSscPassedYear(education.getSscPassedYear());
+				getOnboarding.setSscGrade(education.getSscGrade());
+				onRepo.save(getOnboarding);
+				r.setStatus(true);
+				r.setMessage("Data Fetching");
+				r.setData(getOnboarding);
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+			else {
+				r.setStatus(false);
+				r.setMessage("Data Not updated");
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+		}
+		catch(Exception e)
+		{
+			r.setStatus(false);
+			r.setMessage("Something went wrong");
+			return new ResponseEntity(r,HttpStatus.OK);
+		}
+		}
+
+		
+		@Override
+		public ResponseEntity updateExperienceByOnboardId(Experience exp, String onboardingId) {
+			Response r = new Response<>();
+			try {
+				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+				if(!getOnboarding.equals(null))
+				{
+					String state = "100%";
+					getOnboarding.setStatus(state);
+					getOnboarding.setPreviousCompany1_name(exp.getPreviousCompany1_name());
+					getOnboarding.setPreviousCompany1_designation(exp.getPreviousCompany1_designation());
+					getOnboarding.setPreviousCompany1_joiningDate(exp.getPreviousCompany1_joiningDate());
+					getOnboarding.setPreviousCompany1_relievingDate(exp.getPreviousCompany1_relievingDate());
+					getOnboarding.setPreviousCompany1_employeeId(exp.getPreviousCompany1_employeeId());
+					getOnboarding.setPreviousCompany1_grossSalary(exp.getPreviousCompany1_grossSalary());
+					getOnboarding.setPreviousCompany1_typeOfEmployment(exp.getPreviousCompany1_typeOfEmployment());
+					getOnboarding.setPreviousCompany1_reasonForRelieving(exp.getPreviousCompany1_reasonForRelieving());
+					getOnboarding.setPreviousCompany2_name(exp.getPreviousCompany2_name());
+					getOnboarding.setPreviousCompany2_designation(exp.getPreviousCompany2_designation());
+					getOnboarding.setPreviousCompany2_joiningDate(exp.getPreviousCompany2_joiningDate());
+					getOnboarding.setPreviousCompany2_relievingDate(exp.getPreviousCompany2_relievingDate());
+					getOnboarding.setPreviousCompany2_employeeId(exp.getPreviousCompany2_employeeId());
+					getOnboarding.setPreviousCompany2_grossSalary(exp.getPreviousCompany2_grossSalary());
+					getOnboarding.setPreviousCompany2_typeOfEmployment(exp.getPreviousCompany2_typeOfEmployment());
+					getOnboarding.setPreviousCompany2_reasonForRelieving(exp.getPreviousCompany2_reasonForRelieving());
+					getOnboarding.setPreviousCompany3_name(exp.getPreviousCompany3_name());
+					getOnboarding.setPreviousCompany3_designation(exp.getPreviousCompany3_designation());
+					getOnboarding.setPreviousCompany3_joiningDate(exp.getPreviousCompany3_joiningDate());
+					getOnboarding.setPreviousCompany3_relievingDate(exp.getPreviousCompany3_relievingDate());
+					getOnboarding.setPreviousCompany3_employeeId(exp.getPreviousCompany3_employeeId());
+					getOnboarding.setPreviousCompany3_grossSalary(exp.getPreviousCompany3_grossSalary());
+					getOnboarding.setPreviousCompany3_typeOfEmployment(exp.getPreviousCompany3_typeOfEmployment());
+					getOnboarding.setPreviousCompany3_reasonForRelieving(exp.getPreviousCompany3_reasonForRelieving());
+					
+					onRepo.save(getOnboarding);
+					r.setStatus(true);
+					r.setMessage("Data Fetching");
+					r.setData(getOnboarding);
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+				else {
+					r.setStatus(false);
+					r.setMessage("Data Not updated");
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+			}
+			catch(Exception e)
+			{
+				r.setStatus(false);
+				r.setMessage("Something went wrong");
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+		}
 }
-
-

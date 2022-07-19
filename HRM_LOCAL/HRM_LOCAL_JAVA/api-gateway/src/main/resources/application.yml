@@ -47,7 +47,27 @@ spring:
         - id: bands
           uri: lb://bands
           predicates:
-            - Path=/bands/**           
+            - Path=/bands/** 
+            
+        - id: ClientsProjectsMapping
+          uri: lb://clientProjectMapping
+          predicates:
+            - Path=/clientProjectMapping/**
+            
+        - id: timesheetService
+          uri: lb://timesheetService
+          predicates:
+            - Path=/timesheet/**           
+            
+        - id: taskService
+          uri: lb://taskService
+          predicates:
+            - Path=/task/**  
+
+        - id: documentUploadService
+          uri: lb://documentUploadService
+          predicates:
+            - Path=/documentUpload/**       
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin

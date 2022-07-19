@@ -185,6 +185,7 @@ function ExperienceTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
+        try{
         await axios.put(`/emp/updateExperience/${employeeid}`, {
             previousCompany1_name,
             previousCompany1_designation,
@@ -210,17 +211,20 @@ function ExperienceTab() {
 
         });
         toast.success("Form Submitted Successfully");
-
+    }
+    catch(error){
+        toast.error("Somethingwent Wrong");
+  }
     };
 
     return (
 
         <div>
-            <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 20, textAlign: "center" }}>
+            {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+                <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Work Experience
                 </Card.Title>
-            </Card>
+            </Card> */}
 
             <Form
                 onSubmit={(e) => changeHandler(e)}
@@ -228,7 +232,7 @@ function ExperienceTab() {
             >
 
                 <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}>
-                    <Card.Title style={{ margin: 20, textAlign: "center" }}>
+                    <Card.Title style={{ margin: 12, textAlign: "center" }}>
                         Experience-1
                     </Card.Title>
                 </Card>
@@ -352,7 +356,7 @@ function ExperienceTab() {
                         />
                     </Form.Group></Row>
                 <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}>
-                    <Card.Title style={{ margin: 20, textAlign: "center" }}>
+                    <Card.Title style={{ margin: 12, textAlign: "center" }}>
                         Experience-2
                     </Card.Title>
                 </Card>
@@ -477,7 +481,7 @@ function ExperienceTab() {
                     </Form.Group>
                 </Row>
                 <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}>
-                    <Card.Title style={{ margin: 20, textAlign: "center" }}>
+                    <Card.Title style={{ margin: 12, textAlign: "center" }}>
                         Experience-3
                     </Card.Title>
                 </Card>
