@@ -156,7 +156,7 @@ function AddProject(props) {
       >
         {" "}
         <BsPlusLg />
-        Add New Project
+        Add Project
       </Button>
       <Modal
         size="lg"
@@ -166,7 +166,7 @@ function AddProject(props) {
         keyboard={false}
       >
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Project</Modal.Title>
+          <Modal.Title>Add Project</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
