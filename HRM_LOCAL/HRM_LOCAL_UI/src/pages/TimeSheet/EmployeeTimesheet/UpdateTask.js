@@ -80,8 +80,8 @@ const UpdateTask = (props) => {
       newErrors.fromDate = "Please Enter Start date";
     if (!toDate || toDate === "")
       newErrors.toDate = "Please Enter End date";
-    if (!duration || duration === "")
-      newErrors.duration = "Please Enter End time";
+    // if (!duration || duration === "")
+    //   newErrors.duration = "Please Enter End time";
     // if (!description || description === "") {
     //   newErrors.description = "Please Enter Description";
     // }
@@ -360,12 +360,12 @@ console.log(task);
                   value={duration}
                   defaultValue={props.updateOnboard.duration}
                   onChange={(e) => setDuration(e.target.value)}
-                  isInvalid={!!errors.duration}
+                  // isInvalid={!!errors.duration}
                 />
 
-                <Form.Control.Feedback type="invalid">
+                {/* <Form.Control.Feedback type="invalid">
                   {errors.duration}
-                </Form.Control.Feedback>
+                </Form.Control.Feedback> */}
 
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="6">
