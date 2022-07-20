@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: localhost    Database: hrm_do_not_work
+-- Host: localhost    Database: hrm_new
 -- ------------------------------------------------------
 -- Server version	8.0.28
 
@@ -60,6 +60,31 @@ LOCK TABLES `bands` WRITE;
 /*!40000 ALTER TABLE `bands` DISABLE KEYS */;
 INSERT INTO `bands` VALUES (1,'Band-1');
 /*!40000 ALTER TABLE `bands` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `between_dates`
+--
+
+DROP TABLE IF EXISTS `between_dates`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `between_dates` (
+  `ids` int NOT NULL,
+  `applied_date` varchar(50) NOT NULL,
+  `employee_id` varchar(50) NOT NULL,
+  PRIMARY KEY (`applied_date`,`employee_id`),
+  UNIQUE KEY `ids_UNIQUE` (`ids`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `between_dates`
+--
+
+LOCK TABLES `between_dates` WRITE;
+/*!40000 ALTER TABLE `between_dates` DISABLE KEYS */;
+/*!40000 ALTER TABLE `between_dates` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -309,6 +334,7 @@ CREATE TABLE `employeeleaves` (
   `leave_status` varchar(8) DEFAULT NULL,
   `reject_reason` varchar(100) DEFAULT NULL,
   `reporting_manager` varchar(255) DEFAULT NULL,
+  `managers_reject_reason` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`employeeleave_id`),
   KEY `fk_employee_id__employeeleaves_idx` (`employee_id`),
   KEY `fk_updated_by__employeeleaves_idx` (`updated_by`),
@@ -1150,4 +1176,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-15 11:12:20
+-- Dump completed on 2022-07-20 12:29:36

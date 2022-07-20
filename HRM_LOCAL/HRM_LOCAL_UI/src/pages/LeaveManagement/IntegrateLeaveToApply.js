@@ -27,6 +27,9 @@ function IntegrateLeaveToApply() {
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
     const [dates, setDates] = useState([]);
+    const [marks, setMarks] = useState([]);
+    const [btwnDates, setBtwnDates] = useState([]);
+    const [bdates, setBDates] = useState([]);
 
     const forms = useRef(null);
 
@@ -54,6 +57,7 @@ function IntegrateLeaveToApply() {
         return newErrors;
     };
     let mark = []
+    let btwn = []
 
     useEffect(() => {
 
@@ -71,6 +75,75 @@ function IntegrateLeaveToApply() {
 
                 setDates(mark)
 
+            });
+        })
+    }, []);
+
+    useEffect(() => {
+        colorDates();
+       
+
+    }, []);
+    const colorDates =() =>{ axios.get(`/leave/getAllbetweenDates/${empID}`).then((resp) => {
+
+        console.log(resp.data)
+        resp.data.map((m)=>{
+            btwn.push(m.appliedDate)
+            
+        })
+        console.log(btwn)
+        setBtwnDates(btwn);
+        // btwnDates.resp.data.map((item) => {
+
+        //     var dd = item.appliedDate;
+
+
+        //     btwn.push(dd)
+
+        //     setBDates(btwn)
+        // });
+        
+       
+    })
+}
+
+    console.log(btwnDates);
+    // console.log(btwn);
+
+    let applied = []
+   
+
+    // useEffect(() =>{
+    // console.log(betweenDates);
+    // const btwnd = moment.utc.format('YYYY-MM-DD')
+
+    // setBtwnDates(btwn)
+    // },[]);
+
+
+    useEffect(() => {
+
+        axios.get(`leave/getLeaveHistoryByEmployeeid/${empID}`).then((response) => {
+
+            console.log(response.data);
+
+            // const bb = moment.utc(betweenDates).format('YYYY-MM-DD')
+            // console.log(bb);
+            // btwn.push(bb);
+            // setBtwnDates(btwn);
+
+
+
+            response.data.map((item) => {
+
+                const daa = moment.utc(item.fromDate).format('YYYY-MM-DD')
+                const daaa = moment.utc(item.toDate).format('YYYY-MM-DD')
+                // const sta = item.leaveStatus;
+                //    console.log(btwn);
+                applied.push(daa, daaa);
+
+                setMarks(applied)
+
 
 
 
@@ -78,6 +151,8 @@ function IntegrateLeaveToApply() {
 
 
             });
+
+
         })
     }, []);
 
@@ -124,7 +199,10 @@ function IntegrateLeaveToApply() {
 
     const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
 
-
+    const disabledDates = [
+        new Date(2022, 7, 8),
+        new Date(2022, 7, 9),
+    ];
 
 
 
@@ -278,8 +356,8 @@ function IntegrateLeaveToApply() {
         setDays,
     };
 
-
-
+    const [betweenDates, setBetweenDates] = useState([]);
+    console.log(betweenDates)
     const handleButtonClick = async (e) => {
         console.log("button clicked 123");
         e.preventDefault();
@@ -287,14 +365,18 @@ function IntegrateLeaveToApply() {
         const data = Object.assign(initialValues, obj);
         const data1 = Object.assign(data, obj1);
         const data2 = Object.assign(data1, obj2);
+
         console.log(data2);
         console.log(data);
         try {
             const res = await axios.post("/leave/applyLeave", data)
+            console.log("response", res.data)
+            setBetweenDates(res.data);
             if (res.status === 200) {
                 console.log("success")
                 notifySuccess("Leave Applied Successfully")
                 loadTable();
+                colorDates();
             }
 
 
@@ -637,7 +719,7 @@ function IntegrateLeaveToApply() {
                             </Form.Group>
 
  */}
-                          
+
                             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                 <Form.Label>From</Form.Label>
                                 <Calendar
@@ -651,13 +733,31 @@ function IntegrateLeaveToApply() {
                                         if (dates.find(x => x === moment(date).format("YYYY-MM-DD"))) {
                                             return 'highlight'
                                         }
+                                        // if (marks.sta == 'Rejected') {
+                                        // if (marks.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                        //     return 'applied'
+                                        // }
+                                        if(btwnDates.find(x => x === moment(date).format("YYYY-MM-DD"))){
+                                            return 'applied'
+                                        }
+                                        // }
+
                                     }}
-                                // tileDisabled={({ date }) => date.getDay() === 0}
-                                /*maxDate={new Date(2020, 1, 0)}</div>*/
-                                //  minDate={
-                                //   new Date()
-                                // } 
-                                //  value={datevalue}
+                                    // tileDisabled={({ date }) => date.getDay() === 0}
+                                    /*maxDate={new Date(2020, 1, 0)}</div>*/
+                                    //  minDate={
+                                    //   new Date()
+                                    // } 
+                                    //  value={datevalue}
+                                    tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6}
+                                //|| date.getDate()===8 && date.getMonth()===7 && date.getFullYear()===2022
+                                //             tileDisabled={({date, view}) =>
+                                // (view === 'month') && // Block day tiles only
+                                // disabledDates.some(disabledDate =>
+                                //   date.getFullYear() === disabledDate.getFullYear() &&
+                                //   date.getMonth() === disabledDate.getMonth()-1 &&
+                                //   date.getDate() === disabledDate.getDate()
+                                // )}
                                 />
                             </Form.Group>
                             <Form.Group
@@ -714,14 +814,21 @@ function IntegrateLeaveToApply() {
                                         if (dates.find(x => x === moment(date).format("YYYY-MM-DD"))) {
                                             return 'highlight'
                                         }
+                                        // if (marks.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                        //     return 'applied'
+                                        // }
+                                        if(btwnDates.find(x => x === moment(date).format("YYYY-MM-DD"))){
+                                            return 'applied'
+                                        }
                                     }}
                                     minDate={
                                         new Date(fromDate)
                                     }
-                                // tileDisabled={({ date }) => date.getDay() === 0}
-                                /*maxDate={new Date(2020, 1, 0)}</div>*/
+                                    // tileDisabled={({ date }) => date.getDay() === 0}
+                                    /*maxDate={new Date(2020, 1, 0)}</div>*/
 
-                                //  value={datevalue}
+                                    //  value={datevalue}
+                                    tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6}
                                 />
                             </Form.Group>
 
