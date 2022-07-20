@@ -38,7 +38,7 @@ function AddUser(props) {
   const validateForm = () => {
     const {
       description,
-      duration,
+      // duration,
       toDate,
       project,
       fromDate,
@@ -66,8 +66,8 @@ function AddUser(props) {
       newErrors.fromDate = "Please Enter Start date";
     if (!toDate || toDate === "")
       newErrors.toDate = "Please Enter End date";
-    if (!duration || duration === "")
-      newErrors.duration = "Please Enter End time";
+    // if (!duration || duration === "")
+    //   newErrors.duration = "Please Enter End time";
     if (!priority || priority === "")
       newErrors.priority = "Please Enter Priority";
     // if (!description || description === "") {
@@ -306,12 +306,12 @@ function AddUser(props) {
 
                 >
                   <option>Select Task Type</option>
+                  <option>Analysis</option>
                   <option>Development</option>
                   <option>Code Review</option>
                   <option>Unit Testing</option>
                   <option>Code Integration</option>
                   <option>Integration Testing</option>
-                  <option>Analysis</option>
                   <option>Design Review</option>
                   <option>TestCase Creation</option>
                   <option>Testcase Review</option>
@@ -366,12 +366,12 @@ function AddUser(props) {
                   controlId="duration"
                   value={form.duration}
                   onChange={(e) => setField("duration", e.target.value)}
-                  isInvalid={!!errors.duration}
+                  // isInvalid={!!errors.duration}
                 />
 
-                <Form.Control.Feedback type="invalid">
+                {/* <Form.Control.Feedback type="invalid">
                   {errors.duration}
-                </Form.Control.Feedback>
+                </Form.Control.Feedback> */}
 
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="6">
