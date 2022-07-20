@@ -17,11 +17,7 @@ function PrivateRoutes() {
     return <Redirect to="/" />;
   }
 
-
-const emp = "Employee"
-const [a,setA]=useState("");
-
-console.log(a)
+const[a,setA]=useState([])
 
   return (
     <>
@@ -32,7 +28,7 @@ console.log(a)
       </Row>
       <Row>
         <Row>
-          <Col xs={2} xxl={2} xl={2} lg={2} md={2} sm={2}>
+          <Col xs={2} xxl={2} xl={2} lg={2} md={3} sm={2}>
             <Row>
               <Sidebar
                     routes={allowedRoutes}
@@ -40,7 +36,7 @@ console.log(a)
                     className="reports"
                   />
             </Row>
-            <Row>
+            <Row>       
             {/* {allowedRoutes.map((item, index) => {
                   (item.type === emp) ? (
                       setA(item)
