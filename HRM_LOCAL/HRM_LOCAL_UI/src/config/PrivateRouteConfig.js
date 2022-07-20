@@ -235,9 +235,9 @@ export default [
   },
   {
     component: EmployeeTimeSheetMain,
-    path: "/timeSheet",
+    path: "/taskManagement",
     icon: <FcPlanner />,
-    title: "Timesheet",
+    title: "Task Management",
     permission: [Roles.employee],
   },
   {

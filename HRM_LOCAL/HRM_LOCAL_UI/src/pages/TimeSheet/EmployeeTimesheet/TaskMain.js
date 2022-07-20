@@ -9,14 +9,19 @@ import { Button, Modal, Stack } from "react-bootstrap";
 import UpdateTask from "./UpdateTask";
 import AddTask from "./AddTask";
 import DeleteTask from "./DeleteTask";
+import { date } from "yup/lib/locale";
+//vipul
 
 function TaskMain() {
+ 
 
   const [show, setShow] = useState(false);
   const [deleteUser, setDeleteUser] = useState(false);
 
   const handleClose = () => setShow(false);
   const deleteHandleClose = () => setDeleteUser(false);
+
+ 
 
 
   const handleShow = () => setShow(false);
@@ -30,7 +35,7 @@ function TaskMain() {
   const [data, setData] = useState([]);
   // const [empdata, setEmpdata] = useState([]);
   const [addStatus, setAddStatus] = useState(false);
-  const [deleteStatus, setDeleteStatus] = useState(false);
+  const [deleteStatus, setDeleteStatus] = useState(true);
   const [updateStatus, setUpdateStatus] = useState(false);
   // const [status1, setStatus1] = useState(false);
   // const [viewStatus1, setViewStatus1] = useState(false);
@@ -41,7 +46,9 @@ function TaskMain() {
   };
 
   const pull_dataDelete = () => {
+    
     setDeleteStatus(!deleteStatus);
+    // console.log("Delete");
 
   };
 
@@ -56,79 +63,83 @@ function TaskMain() {
 
 
   const loadRoles = async (e) => {
-    const response = await axios.get("/user/getUsersData");
+    const response = await axios.get("/task/getTasks");
     setData(response.data.data);
-    console.log(response.data.data);
+    console.log(response);
+    console.log("dataupdated");
   };
 
   const [columns, setColumns] = useState([
-    {
-      title: "Project",
-      field: "employeeId",
-      type: "text",
-    },
+   
     {
       title: "Task Name",
-      field: "userName",
+      field: "taskName",
       type: "text",
     },
     {
       title: "Task Type",
-      field: "roleName",
+      field: "taskType",
       type: "text",
     },
     {
       title: "Status",
-      field: "roleName",
+      field: "status",
       type: "text",
     },
     {
-      title: "Timesheet Date",
-      field: "roleName",
+      title: "Project",
+      field: "project",
       type: "text",
     },
+    
     {
-      title: "Start Date",
-      field: "roleName",
-      type: "text",
+      title: "From Date",
+      field: "fromDate",
+       type:"date",
+       dateSetting: { locale: "en-GB" }
+
+      
+      // type: { name: "date", options: { format: "DD/MM/YYYY" } },
     },
     {
-      title: "End Date",
-      field: "roleName",
-      type: "text",
+      title: "To Date",
+      field: "toDate",
+      type: "date",
+      dateSetting: { locale: "en-GB" }
+      // type: { name: "date", options: { format: "DD/MM/YYYY" } },
     },
     {
       title: "Priority",
-      field: "roleName",
+      field: "priority",
       type: "text",
     },
     {
-      title: "Hours",
-      field: "roleName",
+      title: "Duration",
+      field: "duration",
       type: "text",
     },
   ]);
 
   return (
-    <div style={{ paddingTop: "20px" }}>
+    <Card style={{ paddingTop: "20px" }}>
 
-      <Modal show={show}  size="md"
+      <Modal show={show}  size="lg"
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
         centered>
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
-          <Modal.Title>Update User Role</Modal.Title>
+          <Modal.Title>Edit Task</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <UpdateTask updateOnboard={updateOnboard} func={pull_dataUpdate} handleClose={handleClose} />
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
           
-        </Modal.Footer>
+        </Modal.Footer> */}
 
       </Modal>
       <Modal show={deleteUser} onHide={deleteHandleClose}
@@ -147,28 +158,30 @@ function TaskMain() {
       <div responsive >
 
         
-            <Container>
+            {/* <Container> */}
               <Row>
-                <Col md={4}>
-                  <Card.Title>Timesheet</Card.Title>
+                <Col >
+                  <Card.Title>Task Management</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
-                    Timesheet Management / TImesheet{" "}
+                  Task Management
                   </Card.Subtitle>
+                </Col>
+                <Col>
                 </Col>
 
                 <Col md={{ span: 4, offset: 4 }}><AddTask func={pull_dataAdd} /></Col>
               </Row>
-            </Container>
-            <Container>
+            {/* </Container> */}
+            {/* <Container>
               <Row>
                 <Col xs={12}>
 
-                  <Grid style={{ borderBlockEndWidth: "2px" }}>
+                  <Grid style={{ borderBlockEndWidth: "2px" }}> */}
                     <MaterialTable
-                      title="Timesheet Details"
+                      title="Task Details"
                       columns={columns}
                       style={{ color: "black", fontSize: "1rem" }}
-                      data={data}
+                      data={data ? data : []}
                       editable={{
 
                       }}
@@ -186,11 +199,6 @@ function TaskMain() {
                       actions={[
                         {
                           icon: "button",
-
-                          // tooltip: "Save User",
-                          // onClick: (event, rowData) =>
-                          //   alert("You want to delete " + rowData.firstName),
-
                         },
                       ]}
                       components={{
@@ -224,14 +232,14 @@ function TaskMain() {
                         ),
                       }}
                     />
-                  </Grid>
+                  {/* </Grid>
                 </Col>
               </Row>
-            </Container>
+            </Container> */}
           
       </div>
       {/* <Example /> */}
-    </div>
+    </Card>
   );
 }
 export default TaskMain;

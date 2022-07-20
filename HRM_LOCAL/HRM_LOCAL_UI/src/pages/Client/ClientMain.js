@@ -92,7 +92,7 @@ function ClientMain() {
     <div>
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Client Form</Modal.Title>
+          <Modal.Title>Edit Client</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ClientUpdatedForm
@@ -114,13 +114,13 @@ function ClientMain() {
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        {/* <Modal.Body>
           <ClientView
             viewOnboard={viewOnboard}
             // func={pull_data}
             viewHandleClose={viewHandleClose}
           />
-        </Modal.Body>
+        </Modal.Body> */}
         <Modal.Footer>
           <Button variant="secondary" onClick={viewHandleClose}>
             Close
@@ -215,7 +215,7 @@ function ClientMain() {
                     >
                       Delete
                     </Button> */}
-                    <Button
+                    {/* <Button
                       variant="primary"
                       onClick={(event) => {
                         setViewShow(true);
@@ -224,7 +224,7 @@ function ClientMain() {
                       }}
                     >
                       <BsFillEyeFill />
-                    </Button>
+                    </Button> */}
                   </Stack>
                 </div>
               ),
