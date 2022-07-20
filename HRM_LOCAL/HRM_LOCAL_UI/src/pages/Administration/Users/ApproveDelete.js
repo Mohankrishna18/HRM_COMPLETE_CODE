@@ -11,14 +11,14 @@ const ApproveDelete = (props) => {
             .then((deletedResponse)=>{
                 const user = deletedResponse.data
                 console.log(deletedResponse);
-                if (deletedResponse.data.status) {
+                if (true) {
                     props.func();
                   }
                   else {
                     console.log("Props not Send")
                   }
                   toast.success("User deleted successfully!!!");
-                  // console.log(user);
+                  // 
             })
             // console.log(res)
             // if (res.data.status) {

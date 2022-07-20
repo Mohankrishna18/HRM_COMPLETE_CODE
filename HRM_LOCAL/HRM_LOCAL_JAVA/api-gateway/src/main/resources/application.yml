@@ -62,7 +62,12 @@ spring:
         - id: taskService
           uri: lb://taskService
           predicates:
-            - Path=/task/**        
+            - Path=/task/**  
+
+        - id: documentUploadService
+          uri: lb://documentUploadService
+          predicates:
+            - Path=/documentUpload/**       
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
