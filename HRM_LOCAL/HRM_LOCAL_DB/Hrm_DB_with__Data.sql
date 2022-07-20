@@ -340,7 +340,7 @@ CREATE TABLE `employeeleaves` (
   KEY `fk_updated_by__employeeleaves_idx` (`updated_by`),
   CONSTRAINT `fk_employee_id__employeeleaves` FOREIGN KEY (`employee_id`) REFERENCES `employeemaster` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_updated_by__employeeleaves` FOREIGN KEY (`updated_by`) REFERENCES `employeemaster` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -630,7 +630,7 @@ CREATE TABLE `hibernate_sequence` (
 
 LOCK TABLES `hibernate_sequence` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` VALUES (29);
+INSERT INTO `hibernate_sequence` VALUES (40);
 /*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -643,14 +643,12 @@ DROP TABLE IF EXISTS `holidaymaster`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `holidaymaster` (
   `holiday_id` int NOT NULL AUTO_INCREMENT,
-  `holiday_title` varchar(45) NOT NULL,
-  `holiday_date` datetime NOT NULL,
-  `updated_on` date NOT NULL,
-  `updated_by` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`holiday_id`),
-  KEY `fk_updated_by__holidaymaster_idx` (`updated_by`),
-  CONSTRAINT `fk_updated_by__holidaymaster` FOREIGN KEY (`updated_by`) REFERENCES `employeemaster` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `holiday_date` datetime DEFAULT NULL,
+  `holiday_title` varchar(255) DEFAULT NULL,
+  `updated_by` varchar(255) DEFAULT NULL,
+  `updated_on` date DEFAULT NULL,
+  PRIMARY KEY (`holiday_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -659,7 +657,7 @@ CREATE TABLE `holidaymaster` (
 
 LOCK TABLES `holidaymaster` WRITE;
 /*!40000 ALTER TABLE `holidaymaster` DISABLE KEYS */;
-INSERT INTO `holidaymaster` VALUES (1,'sankranthi','2023-01-13 00:00:00','2022-05-27',NULL),(2,'dasara','2022-10-05 00:00:00','2022-05-28',NULL),(3,'deepavali','2022-10-24 00:00:00','2022-05-31',NULL),(4,'Diwali','2022-06-01 05:30:00','2022-06-02',NULL),(5,'qlwnd','2022-06-16 05:30:00','2022-06-02',NULL),(6,'gandhi jayanthi','2022-10-02 05:30:00','2022-06-02',NULL),(8,'Good Friday','2022-06-03 05:30:00','2022-06-04',NULL),(9,'qlwnd','2022-06-09 05:30:00','2022-06-06',NULL);
+INSERT INTO `holidaymaster` VALUES (1,'2022-01-12 13:17:00','Bhogi','ATPL00089','2022-07-20'),(2,'2022-01-13 13:18:00','Sankranthi','ATPL00089','2022-07-20'),(3,'2022-01-14 13:18:00','Kanuma','ATPL00089','2022-07-20'),(4,'2022-03-13 13:18:00','Ugadhi','ATPL00089','2022-07-20'),(5,'2022-04-22 13:19:00','Sri RamaNavami','ATPL00089','2022-07-20'),(6,'2022-05-01 13:19:00','MayDay','ATPL00089','2022-07-20'),(7,'2022-08-15 13:20:00','IndependenceDay','ATPL00089','2022-07-20');
 /*!40000 ALTER TABLE `holidaymaster` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1176,4 +1174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-20 12:29:36
+-- Dump completed on 2022-07-20 13:27:44
