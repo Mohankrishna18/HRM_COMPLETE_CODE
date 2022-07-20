@@ -1,6 +1,11 @@
 package com.arshaa.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,12 +18,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.client.RestTemplate;
 
+import com.arshaa.entity.BetweenDates;
 import com.arshaa.entity.EntitledLeaves;
 import com.arshaa.entity.User;
 import com.arshaa.model.AllEmployeesForHr;
 import com.arshaa.model.EmployeeName;
 import com.arshaa.model.GetReportingManager;
+import com.arshaa.model.StoreDatesList;
 import com.arshaa.model.UsersByReportingManager;
+import com.arshaa.repository.BetweenDatesRepo;
 import com.arshaa.repository.UserRepository;
 import com.arshaa.repository.leaveEntitlementRepository;
 
@@ -31,6 +39,9 @@ public class UserService {
 	@Autowired
 	@Lazy
 	private RestTemplate template;
+	
+	@Autowired
+	private BetweenDatesRepo bro ;
 
 	public Optional<User> findById(int employeeleaveId) {
 
@@ -48,22 +59,53 @@ return findById(employeeleaveId);
 // return repository.getAllUserByemployeeId(employeeId);
 //
 // } 
-public User save(User user) {
+public List<BetweenDates> save(User user) {
 	try
 
 	{
+		List<BetweenDates>bdatesList=new ArrayList<>();
 		GetReportingManager al = template.getForObject(
 				"http://empService/emp/getReportingManagerByEmployeeId/" + user.getEmployeeId(),
 				GetReportingManager.class);
+		
+		
 		user.setReportingManager(al.getReportingmanager());
 		user.setLeaveStatus("pending");
 		user.setManagerApproval("pending");
-		return repository.save(user);
+		
+		 User savedUser= repository.save(user);
+		
+		 List<StoreDatesList> u = getDaysBetweenDates(user.getFromDate(), user.getToDate());
+//		 bro.saveAll(u);
+		 u.forEach(e->{
+			 BetweenDates d = new BetweenDates();
+			 d.setEmployeeId(savedUser.getEmployeeId());
+			 d.setAppliedDate(e.getBetWeenDates());
+			 BetweenDates bd= bro.save(d);
+			 bdatesList.add(bd);
+		 
+//			 Date date1;
+//			try {
+//				date1 = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+//				 d.setAppliedDate(date1);
+//				 BetweenDates bd= bro.save(d);
+//				 bdatesList.add(bd);
+//			} catch (ParseException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//			
+		 });
+		 
+		return bdatesList;
+		
+		 
+
 	}catch(
 	Exception e)
 	{
 		e.getMessage();
-	}return user;
+	}return null;
 }
 
 	public ResponseEntity findAll() {
@@ -252,6 +294,34 @@ public User save(User user) {
 		}
 		return repository.findByLeaveStatus(leaveStatus);
 	}
-	
+	public List<StoreDatesList> getDaysBetweenDates(Date startDate, Date endDate){
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+           ArrayList<Date> dates = new ArrayList<Date>();
+           List<StoreDatesList> getBTDates=new ArrayList<>();
+           Calendar cal1 = Calendar.getInstance();
+           System.out.println(cal1);
+            cal1.setTime(startDate);
+//            cal1.add(Calendar.DATE,1);
+           Calendar cal2 = Calendar.getInstance();
+           cal2.setTime(endDate);
+//           cal2.add(Calendar.DATE, 1);
+
+           while(cal1.before(cal2) || cal1.equals(cal2))
+           {
+        	   StoreDatesList sd=new StoreDatesList();
+        	   Date d=cal1.getTime();
+        	   System.out.println(d);
+        	   DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        	   String strDate = dateFormat.format(d);
+        	   sd.setBetWeenDates(strDate);
+        	   getBTDates.add(sd);
+               dates.add(cal1.getTime());
+               System.out.println(strDate);
+          cal1.add(Calendar.DATE,1);
+           }
+           return getBTDates;
+       }
 	
 }
+
+

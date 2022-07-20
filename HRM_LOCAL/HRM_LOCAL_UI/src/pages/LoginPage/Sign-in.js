@@ -89,6 +89,7 @@ const Sign = () => {
                 <Form.Control type="text" placeholder="Enter your Employee Id " required style={{ borderRadius: "15px" }}
                   size="lg"
                   value={employeeId}
+                  id="employeeId"
                   maxLength={14}
                   onChange={(e) => {
                     const str = e.target.value;
@@ -111,6 +112,7 @@ const Sign = () => {
                   style={{ borderRadius: "15px" }}
                   size="lg"
                   value={password}
+                  id="password"
                   maxLength={14}
                   validate={{
                     required: {
@@ -165,6 +167,7 @@ const Sign = () => {
                 <Button
                   size="lg"
                   type="submit"
+                  value="Sign in"
                   style={{
                     width: "100%",
                     background: "#19fa0a",
