@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ import com.arshaa.emp.model.EmployeeName;
 import com.arshaa.emp.model.EmploymentDetails;
 import com.arshaa.emp.model.Experience;
 import com.arshaa.emp.model.GetEmployeeIds;
+import com.arshaa.emp.model.GetListByBandForManager;
 import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.PersonalDetails;
 import com.arshaa.emp.model.PreOnboarding;
@@ -1514,5 +1516,32 @@ public class MainServiceImpl implements MainService {
 				r.setMessage("Something went wrong");
 				return new ResponseEntity(r,HttpStatus.OK);
 			}
+		}
+
+
+		@Override
+		public ResponseEntity getUsersNamesByBand() {
+             try {
+            	 List<String> list = Arrays.asList("E5","E6","E4");
+            	  
+            	List<EmployeeMaster> getList=emRepo.findByBand(list);
+            	List<GetListByBandForManager>getbandList=new ArrayList<>();
+            	if(!getList.isEmpty())
+            	{
+            		getList.forEach(e->{
+            		    	GetListByBandForManager gbm=new GetListByBandForManager();
+            		    	gbm.setOnboardingId(e.getOnboardingId());
+            		    	gbm.setName(e.getFirstName()+e.getMiddleName()+e.getLastName());
+            		    	gbm.setEmployeeId(e.getEmployeeId());
+            		    	getbandList.add(gbm);
+            		});
+            	}
+            	return new ResponseEntity(getbandList,HttpStatus.OK);
+             }
+             catch(Exception e)
+             {
+             	return new ResponseEntity(e.getMessage(),HttpStatus.OK);
+
+             }
 		}
 }

@@ -29,6 +29,9 @@ public interface OnboardRepository extends JpaRepository<Onboarding, String>  {
 	List<Onboarding> findByApprovedStatus(boolean approvedStatus);
 
 	List<Onboarding> findByRejectedStatus(boolean rejectedStatus);
+	
+	List<Onboarding> findByBand(String band);
+	List<Onboarding> findByBandAndBand(String string, String string2);
 
 
 }
