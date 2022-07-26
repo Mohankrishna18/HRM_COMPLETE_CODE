@@ -1,6 +1,7 @@
 package com.arshaa.designation.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -14,4 +15,7 @@ public interface DesignationInterface extends JpaRepository<Designationmaster,In
 
 	List<Designationmaster> getAllByDepartmentId(int departmentId);
 	
+	 // Added recently by Sri Divya
+		Optional<Designationmaster> findByDepartmentNameAndDesignationName(String departmentName, String designationName);
+		
 }
