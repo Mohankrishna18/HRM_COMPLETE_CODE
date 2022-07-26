@@ -103,7 +103,7 @@ function EmployeeMasterCard() {
                                     width: "130px",
                                     borderRadius: "110px",
                                     alignItems: "center",
-                                    marginTop: "30px",
+                                    marginTop: "15px",
                                     marginLeft: "34%"
                                 }} />
                             </Col>
@@ -111,7 +111,7 @@ function EmployeeMasterCard() {
                                 fontSize: 20,
                                 textAlign: "center",
                                 paddingTop: 10,
-                                paddingBottom: 20,
+                                paddingBottom: 0,
                                 text: "bold",
                             }}>
                                 {employeedetails.firstName} {employeedetails.lastName}
@@ -122,7 +122,7 @@ function EmployeeMasterCard() {
                         <Card.Body style={{}}>
                             <Row
                                 style={{
-                                    paddingTop: 20,
+                                    paddingTop: 0,
                                     paddingBottom: 10,
                                 }}
                             >
@@ -173,7 +173,7 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 10 }}>
+                            <Row style={{ paddingBottom: 0 }}>
                                 <Col>
                                     <Card.Text style={{}}>
                                         <h6>Business Unit: </h6>
@@ -219,7 +219,7 @@ function EmployeeMasterCard() {
 
                     <Col>
                         <Row style={{
-                            paddingTop: 35,
+                            paddingTop: 15,
                             paddingBottom: 10,
                         }}>
                             <Col>
@@ -270,7 +270,7 @@ function EmployeeMasterCard() {
                                 </Card.Text>
                             </Col>
                         </Row>
-                        <Row style={{ paddingBottom: 10 }}>
+                        <Row style={{ paddingBottom: 0 }}>
                             <Col>
                                 <Card.Text style={{}}>
                                     <h6>Band: </h6>

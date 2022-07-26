@@ -14,114 +14,8 @@ function ExperienceTab() {
     const employeeid = userData1.data.employeeId;
     const empId = localStorage.getItem('item')
 
-    const [ferrors, setFErrors] = useState("");
-    const [serror, setSerror] = useState("");
-    const [thirderrors, setThirdErrors] = useState("");
-    const [fourerror, setFourerror] = useState("");
-    const [fiveerrors, setFiveErrors] = useState("");
-    const [sixerror, setSixerror] = useState("");
-    const [sevenerrors, setSevenErrors] = useState("");
-    const [eighterror, setEighterror] = useState("");
-    const [nineerrors, setNineErrors] = useState("");
-    const [tenerror, setTenerror] = useState("");
-    const [elevenerrors, setElevenErrors] = useState("");
-    const [tweleveerror, setTweleveerror] = useState("");
-    const [thirteenerrors, setThirteenErrors] = useState("");
-    const [fourteenerror, setFourteenerror] = useState("");
-    const [fifteenerrors, setFifteenErrors] = useState("");
-    const [sixteenerror, setSixteenerror] = useState("");
-    const [seventeenerror, setSeventeenerror] = useState("");
-    const [eighteenerror, setEighteenerror] = useState("");
-    const [nineteenerror, setNineteenerror] = useState("");
-    const [twentyerror, setTwentyerror] = useState("");
-    const [twentyoneerror, setTwentyoneerror] = useState("");
-    const [twentytwoerror, setTwentytwoerror] = useState("");
-    const [twentythreerror, setTwentythreerror] = useState("");
-    const [twentyfourerror, setTwentyfourerror] = useState("");
-    const [twentyfiveerror, setTwentyfiveerror] = useState("");
-    const [twentysixerror, setTwentysixerror] = useState("");
-    const [twentysevenerror, setTwentysevenerror] = useState("");
-    const [twentyeighterror, setTwentyeighterror] = useState("");
-    const [twentynineerror, setTwentynineerror] = useState("");
-    const [thirtyerror, setThirtyerror] = useState("");
-    const [thirtyoneerror, setThirtyoneerror] = useState("");
-    const [thirtytwoerror, setThirtytwoerror] = useState("");
-    const [thirtythreeerror, setThirtythreeerror] = useState("");
-    const [thirtyfourerror, setThirtyfourerror] = useState("");
-    const [thirtyfiveerror, setThirtyfiveerror] = useState("");
-    const [thirtysixerror, setThirtysixerror] = useState("");
-    const [thirtysevenerror, setThirtysevenerror] = useState("");
-    const [thirtyeighterror, setThirtyeighterror] = useState("");
-    const [thirtynineerror, setThirtynineerror] = useState("");
-    const [fourty, setFourty] = useState("");
-    const [fourtyone, setFourtyone] = useState("");
-    const [fourtytwo, setFourtytwo] = useState("");
-    const [fourtythree, setFourtythree] = useState("");
-    const [fourtyfour, setFourtyfour] = useState("");
-    const [fourtyfive, setFourtyfive] = useState("");
-    const [fourtysix, setFourtysix] = useState("");
-    const [fourtyseven, setFourtyseven] = useState("");
-    const [fourtyeight, setFourtyeight] = useState("");
-    const [fourtynine, setFourtynine] = useState("");
 
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [middleName, setMiddleName] = useState(" ");
-    const [primaryPhoneNumber, setPrimaryPhoneNumber] = useState(" ");
-    const [secondaryPhoneNumber, setSecondaryPhone] = useState("");
-    const [yearsOfExperience, setYearsOfExperience] = useState(" ");
-    const [dateOfBirth, setDateOfBirth] = useState("");
-    const [passportExpiryDate, setPassportExpiryDate] = useState("");
-    const [passportNo, setPassportNo] = useState("");
-    const [employeeId, setEmployeeId] = useState("");
-    const [primarySkills, setPrimarySkills] = useState("");
-    const [secondarySkills, setSecondarySkills] = useState("");
-    const [email, setEmail] = useState("");
-    const [bloodGroup, setBloodGroup] = useState("");
-    const [gender, setGender] = useState("");
-    const [maritalStatus, setMaritalStatus] = useState("");
-    const [designationName, setDesignationName] = useState("");
-    const [dateOfJoining, setDateOfJoining] = useState("");
-    const [reportingManager, setReportingManager] = useState("");
-    const [permanentAdress, setPermanentAddress] = useState("");
-    const [permanentState, setPermanentState] = useState("");
-    const [permanentCountry, setPermanentCountry] = useState("");
-    const [permanentPincode, setPermanentPincode] = useState("");
-    const [currentAdress, setCurrentAddress] = useState("");
-    const [currentState, setCurrentState] = useState("");
-    const [currentCountry, setCurrentCountry] = useState("");
-    const [currentPincode, setCurrentPincode] = useState("");
-    const [postgraduationType, setTypeOfPostGraduation] = useState("");
-    const [postgraduationBoardOfUniversity, setPostgraduationBoardOfUniversity] = useState("");
-    const [postgraduationInstituteName, setPostgraduationInstituteName] = useState("");
-    const [postgraduationInstituteCity, setPostgraduationInstituteCity] = useState("");
-    const [postgraduationCourseName, setPostgraduationCourseName] = useState("");
-    const [postgraduationJoiningYear, setPostgraduationJoiningYear] = useState("");
-    const [postgraduationPassedYear, setPostgraduationPassedYear] = useState("");
-    const [postgraduationGrade, setPostgraduationGrade] = useState("");
-    const [graduationType, setTypeOfGraduation] = useState("");
-    const [graduationBoardOfUniversity, setGraduationBoardOfUniversity] = useState("");
-    const [graduationInstituteName, setGraduationInstituteName] = useState("");
-    const [graduationInstituteCity, setGraduationInstituteCity] = useState("");
-    const [graduationCourseName, setGraduationCourseName] = useState("");
-    const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
-    const [graduationPassedYear, setGraduationPassedYear] = useState("");
-    // const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
-    // const [graduationPassedYear, setGraduationPassedYear] = useState("");
-    const [graduationGrade, setGraduationGrade] = useState("");
-    const [intermediateBoardOfUniversity, setIntermediateBoardOfUniversity] = useState("");
-    const [intermediateCollegeName, setIntermediateCollegeName] = useState("");
-    const [intermediateCollegeCity, setIntermediateCollegeCity] = useState("");
-    const [intermediateCourseName, setIntermediateCourseName] = useState("");
-    const [intermediateJoiningYear, setIntermediateJoiningYear] = useState("");
-    const [intermediatePassedYear, setIntermediatePassedYear] = useState("");
-    const [intermediateGrade, setIntermediateGrade] = useState("");
-    const [sscBoardOfUniversity, setSscBoardOfUniversity] = useState("");
-    const [sscSchoolName, setSscSchoolName] = useState("");
-    const [sscSchoolCity, setSscSchoolCity] = useState("");
-    const [sscCourseName, setSscCourseName] = useState("");
-    const [sscJoiningYear, setSscJoiningYear] = useState("");
     const [sscPassedYear, setSscPassedYear] = useState("");
     const [sscGrade, setSscGrade] = useState("");
     const [previousCompany1_name, setPreviousCompany1_name] = useState("");
@@ -149,15 +43,7 @@ function ExperienceTab() {
     const [departmentName, setDepartmentName] = useState("");
     const [projectName, setProjectName] = useState("");
 
-    const [panNumber, setPanNumber] = useState("");
-    const [aadharNumber, setAadharNumber] = useState("");
-    const [uanNumber, setUanNumber] = useState("");
-    const [bankName, setBankName] = useState("");
-    const [accountNumber, setAccountNumber] = useState("");
-    const [ifscCode, setIfscCode] = useState("");
-    const [branch, setBranch] = useState("");
-    const [band, setBand] = useState("");
-    const [exitDate, setExitDate] = useState("");
+
 
 
     useEffect(() => {
@@ -237,7 +123,7 @@ function ExperienceTab() {
             >
 
                 <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}>
-                    <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                    <Card.Title style={{ margin: 7, textAlign: "center" }}>
                         Experience-1
                     </Card.Title>
                 </Card>
@@ -368,7 +254,7 @@ function ExperienceTab() {
                         />
                     </Form.Group></Row>
                 <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}>
-                    <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                    <Card.Title style={{ margin: 7, textAlign: "center" }}>
                         Experience-2
                     </Card.Title>
                 </Card>
@@ -500,7 +386,7 @@ function ExperienceTab() {
                     </Form.Group>
                 </Row>
                 <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}>
-                    <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                    <Card.Title style={{ margin: 7, textAlign: "center" }}>
                         Experience-3
                     </Card.Title>
                 </Card>
@@ -665,6 +551,4 @@ function ExperienceTab() {
     )
 }
 export default ExperienceTab;
-
-
 

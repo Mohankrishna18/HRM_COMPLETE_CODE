@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 
 import com.arshaa.emp.entity.EmployeeMaster;
@@ -13,4 +15,7 @@ public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster,S
 	//public ResponseEntity updateDesignationName(String employeeId,DesignationName name);
 
 	Optional<List<EmployeeMaster>> getEmployeeMasterByReportingManager(String reportingManager);
+		
+	@Query(nativeQuery=true,value = "SELECT * FROM employeemaster as e WHERE e.band IN (:names)")   // 3. Spring JPA In cause using native query
+    List<EmployeeMaster> findByBand(@Param("names") List<String> names);
 }
