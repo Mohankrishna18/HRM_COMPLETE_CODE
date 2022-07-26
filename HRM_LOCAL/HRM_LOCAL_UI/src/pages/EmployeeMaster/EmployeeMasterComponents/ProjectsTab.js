@@ -39,11 +39,11 @@ function ProjectsTab() {
     return (
 
         <div>
-            <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+            {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
                 <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Projects Details
                 </Card.Title>
-            </Card>
+            </Card> */}
 
             <Form
                 onSubmit={(e) => changeHandler(e)}
@@ -87,11 +87,11 @@ function ProjectsTab() {
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Reporting Managrer</Form.Label>
+                        <Form.Label>Reporting Manager</Form.Label>
                         <Form.Control
                         disabled
                             type="text"
-                            placeholder="Reporting Managrer"
+                            placeholder="Reporting Manager"
                             controlId="projectName"
                             value={projectName}
                             maxLength={25}
@@ -137,3 +137,4 @@ function ProjectsTab() {
     )
 }
 export default ProjectsTab;
+
