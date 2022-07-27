@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Accordion, Button, Card, Form, InputGroup, Tab, Tabs } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -474,9 +473,9 @@ function EmployeeMasterForms(props) {
                                     Edit My Profile
                                 </Card.Subtitle>
                                 {/* <EmployeeMasterCard /> */}
-                                <Card.Text style={{ margin: 20, color: "red" }}>
+                                {/* <Card.Text style={{ margin: 20, color: "red" }}>
                                     * All fields are mandatory. Please fill the form Correctly.
-                                </Card.Text>
+                                </Card.Text> */}
 
 
 <Card>
@@ -2677,3 +2676,4 @@ function EmployeeMasterForms(props) {
 }
 
 export default EmployeeMasterForms;
+

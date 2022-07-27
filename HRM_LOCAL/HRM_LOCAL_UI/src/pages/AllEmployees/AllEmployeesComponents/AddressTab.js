@@ -74,7 +74,7 @@ function AddressTab() {
 
         <div>
             <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                <Card.Title style={{ margin: 7, textAlign: "center" }}>
                     Permanent Address
                 </Card.Title>
             </Card>
@@ -199,7 +199,7 @@ function AddressTab() {
                         <Card
                             style={{ marginLeft: 10, marginRight: 0, marginTop: 20, backgroundColor: "#FAFDD0" }}
                         >
-                            <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                            <Card.Title style={{ margin: 7, textAlign: "center" }}>
                                 Current Address
                             </Card.Title>
                         </Card>
@@ -329,4 +329,3 @@ function AddressTab() {
     )
 }
 export default AddressTab;
-
