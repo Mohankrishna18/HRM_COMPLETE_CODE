@@ -87,11 +87,11 @@ function ProjectsTab() {
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Reporting Managrer</Form.Label>
+                        <Form.Label>Reporting Manager</Form.Label>
                         <Form.Control
                         disabled
                             type="text"
-                            placeholder="Reporting Managrer"
+                            placeholder="Reporting Manager"
                             controlId="projectName"
                             value={projectName}
                             maxLength={25}
@@ -137,5 +137,3 @@ function ProjectsTab() {
     )
 }
 export default ProjectsTab;
-
-
