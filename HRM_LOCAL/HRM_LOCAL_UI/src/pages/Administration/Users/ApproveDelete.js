@@ -7,7 +7,7 @@ const ApproveDelete = (props) => {
 
     const deleteuser = async () => {
         try {
-            const res = await axios.delete(`/user/deleteUserById/${props.deleteOnboard.employeeId}`)
+            const res = await axios.delete(`/user/deleteUserById/${props.data.deleteOnboard.moduleName}`)
             .then((deletedResponse)=>{
                 const user = deletedResponse.data
                 console.log(deletedResponse);
@@ -42,7 +42,7 @@ const ApproveDelete = (props) => {
         <div>
             <Row>
                 <Col>
-                    <Row><Col style={{ paddingLeft:"10px" }}> Are you sure that you want to delete {props.deleteOnboard.userName}?</Col></Row>
+                    <Row><Col style={{ paddingLeft:"10px" }}> Are you sure that you want to delete {props.data.deleteOnboard.moduleName}?</Col></Row>
                     <Row>
                         <Col><Button onClick={deleteuser}>Yes</Button></Col>
                     </Row>

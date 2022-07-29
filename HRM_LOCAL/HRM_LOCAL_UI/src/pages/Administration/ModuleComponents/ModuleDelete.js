@@ -1,3 +1,73 @@
+import React from "react";
+import { Row, Col, Button } from "react-bootstrap";
+import axios from "../../../Uri";
+
+const ModuleDelete = (props) => {
+  console.log(props.deleteOnboard);
+
+  const deleteuser = async () => {
+    try {
+      const res = await axios
+        .delete(
+          `/user/DeleteModuleDataByModuleID/${props.deleteOnboard.moduleId}`
+        )
+        .then((deletedResponse) => {
+          const user = deletedResponse.data;
+          console.log(deletedResponse);
+          if (true) {
+            props.func();
+          } else {
+            console.log("Props not Send");
+          }
+          toast.success("Module deleted successfully!!!");
+          //
+        });
+      // console.log(res)
+      // if (res.data.status) {
+      //     props.func();
+      // }
+      // else{
+      //     console.log("Props Not Send");
+      //   }
+      //   toast.success("User deleted successfully!!!");
+
+      //   setTimeout(5000);
+      //   handleClose();
+      //   toast.error("Something Went Wrong");
+    } catch (error) {
+      console.log(error);
+    }
+    props.deleteHandleClose();
+  };
+  return (
+    <div>
+      <Row>
+        <Col>
+          <Row>
+            <Col style={{ paddingLeft: "10px" }}>
+              {" "}
+              Are you sure that you want to delete{" "}
+              {props.deleteOnboard.moduleName}?
+            </Col>
+          </Row>
+          <Row style={{ paddingLeft: "40%", marginTop: "5%" }}>
+            <Col>
+              <Button
+                onClick={deleteuser}
+                style={{ width: "40%", height: "120%" }}
+              >
+                Yes
+              </Button>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </div>
+  );
+};
+
+export default ModuleDelete;
+
 // import { React, useState, useEffect } from "react";
 // import { Button, Form, Modal } from "react-bootstrap";
 // import { BsPlusLg } from "react-icons/bs";
@@ -132,7 +202,7 @@
 //                       </Row>
 //                     </Stack>
 //                   </div>
-                  
+
 //                   <div class="d-flex justify-content-around">
 //                     {/* <Modal.Footer> */}
 //                     {/* <div className="form-group"> */}
@@ -169,7 +239,7 @@
 //                 <tr>
 //                   <th scope="col">SNo</th>
 //                   <th scope="col">Module Name</th>
-                  
+
 //                 </tr>
 //               </thead>
 
