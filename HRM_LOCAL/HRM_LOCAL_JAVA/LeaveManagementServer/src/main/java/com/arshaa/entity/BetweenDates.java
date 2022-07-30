@@ -17,6 +17,14 @@ public class BetweenDates {
 	private int ids ;
 	private String  employeeId ;
 	private String  appliedDate ;
+	private int employeeleaveId;
+
+	public int getEmployeeleaveId() {
+		return employeeleaveId;
+	}
+	public void setEmployeeleaveId(int employeeleaveId) {
+		this.employeeleaveId = employeeleaveId;
+	}
 	public int getIds() {
 		return ids;
 	}
@@ -35,11 +43,13 @@ public class BetweenDates {
 	public void setAppliedDate(String string) {
 		this.appliedDate = string;
 	}
-	public BetweenDates(int ids, String employeeId, String appliedDate) {
+	
+	public BetweenDates(int ids, String employeeId, String appliedDate, int employeeleaveId) {
 		super();
 		this.ids = ids;
 		this.employeeId = employeeId;
 		this.appliedDate = appliedDate;
+		this.employeeleaveId = employeeleaveId;
 	}
 	public BetweenDates() {
 		super();
