@@ -82,7 +82,7 @@ public class MainServiceImpl implements MainService {
 			newOnboard.setWaitingforapprovalStatus(true);
 			newOnboard.setRejectedStatus(false);
 			newOnboard.setApprovedStatus(false);
-			newOnboard.setOnboardingStatus(false);
+			newOnboard.setOnboardingStatus("Pending");
 			Onboarding newData = onRepo.save(newOnboard);
 			r.setStatus(true);
 			r.setMessage(sConstants.POST_SUCCESS);
@@ -195,7 +195,7 @@ public class MainServiceImpl implements MainService {
 			if (!getOnboarding.equals(null)) {
 				getOnboarding.setApprovedStatus(newOnboard.isApprovedStatus());
 				getOnboarding.setRejectedStatus(newOnboard.isRejectedStatus());
-				getOnboarding.setOnboardingStatus(newOnboard.isOnboardingStatus());
+				getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
 				getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
@@ -205,12 +205,13 @@ public class MainServiceImpl implements MainService {
 				
 				Onboarding saveList = onRepo.save(getOnboarding);
 
-				if (saveList.isApprovedStatus() == true) {
+				//if (saveList.isApprovedStatus() == true) {
+				if(getOnboarding.getOnboardingStatus().equalsIgnoreCase("CEOApproved")) {
 					java.sql.Date tSqlDate = new java.sql.Date(newOnboard.getApprovedDate().getTime());
 					newOnboard.setApprovedDate(tSqlDate);
 					getOnboarding.setRejectedStatus(false);
 					getOnboarding.setWaitingforapprovalStatus(false);
-					getOnboarding.setOnboardingStatus(false);
+				//	getOnboarding.setOnboardingStatus("Pending");
 
 					onRepo.save(getOnboarding);
 
@@ -218,19 +219,108 @@ public class MainServiceImpl implements MainService {
 					// System.out.println(ir.getEmployeeId());
 					// getOnboarding.getOnboardingId().getChars(0, 0, null, 0);; }
 					EmployeeMaster employeeMaster = new EmployeeMaster();
+					
 					employeeMaster.setFirstName(getOnboarding.getFirstName());
-					employeeMaster.setEmail(getOnboarding.getEmail());
-					employeeMaster.setDepartmentName(getOnboarding.getDepartment());
-					employeeMaster.setDesignationName(getOnboarding.getDesignation());
-					employeeMaster.setLastName(getOnboarding.getLastName());
 					employeeMaster.setMiddleName(getOnboarding.getMiddleName());
+					employeeMaster.setLastName(getOnboarding.getLastName());
 					employeeMaster.setPrimaryPhoneNumber(getOnboarding.getPhoneNumber());
+					employeeMaster.setSecondaryPhoneNumber(getOnboarding.getPhoneNumber());
+					employeeMaster.setDesignationName(getOnboarding.getDesignation());
+					employeeMaster.setDepartmentName(getOnboarding.getDepartment());
 					employeeMaster.setDateOfJoining(getOnboarding.getDateOfJoining());
+					employeeMaster.setEmail(getOnboarding.getEmail());
 					employeeMaster.setYearsOfExperience(getOnboarding.getYearsOfExperience());
+					employeeMaster.setEmployeeId(getOnboarding.getEmployeeId());
+				
+					employeeMaster.setReportingManager(getOnboarding.getReportingManager());
+					employeeMaster.setEmploymentType(getOnboarding.getEmploymentType());
+					employeeMaster.setJobTitle(getOnboarding.getJobTitle());
 					employeeMaster.setPrimarySkills(getOnboarding.getPrimarySkills());
 					employeeMaster.setSecondarySkills(getOnboarding.getSecondarySkills());
-					employeeMaster.setJobTitle(getOnboarding.getJobTitle());
-					employeeMaster.setEmploymentType(getOnboarding.getEmploymentType());
+					employeeMaster.setProjectName(getOnboarding.getProjectName());
+					employeeMaster.setBand(getOnboarding.getBand());
+					employeeMaster.setAadharNumber(getOnboarding.getAadharNumber());
+					employeeMaster.setAccountNumber(getOnboarding.getAccountNumber());
+					employeeMaster.setBankName(getOnboarding.getBankName());
+					employeeMaster.setBloodGroup(getOnboarding.getBloodGroup());
+					employeeMaster.setBranch(getOnboarding.getBranch());
+					employeeMaster.setCurrentAdress(getOnboarding.getCurrentAdress());
+					employeeMaster.setCurrentCountry(getOnboarding.getCurrentCountry());
+					employeeMaster.setCurrentPincode(getOnboarding.getCurrentPincode());
+					employeeMaster.setCurrentState(getOnboarding.getCurrentState());
+					employeeMaster.setDateOfBirth(getOnboarding.getDateOfBirth());
+					employeeMaster.setExitDate(getOnboarding.getExitDate());
+					employeeMaster.setGender(getOnboarding.getGender());
+					employeeMaster.setGraduationBoardOfUniversity(getOnboarding.getGraduationBoardOfUniversity());
+					employeeMaster.setGraduationType(getOnboarding.getGraduationType());
+					employeeMaster.setGraduationInstituteName(getOnboarding.getGraduationInstituteName());
+					employeeMaster.setGraduationInstituteCity(getOnboarding.getGraduationInstituteCity());
+					employeeMaster.setGraduationCourseName(getOnboarding.getGraduationCourseName());
+					employeeMaster.setGraduationJoiningYear(getOnboarding.getGraduationJoiningYear());
+					employeeMaster.setGraduationPassedYear(getOnboarding.getGraduationPassedYear());
+					employeeMaster.setGraduationGrade(getOnboarding.getGraduationGrade());
+					employeeMaster.setIfscCode(getOnboarding.getIfscCode());
+					
+					employeeMaster.setSscBoardOfUniversity(getOnboarding.getSscBoardOfUniversity());
+					employeeMaster.setSscSchoolName(getOnboarding.getSscSchoolName());
+					employeeMaster.setSscSchoolCity(getOnboarding.getSscSchoolCity());
+					employeeMaster.setSscCourseName(getOnboarding.getSscCourseName());
+					employeeMaster.setSscJoiningYear(getOnboarding.getSscJoiningYear());
+					employeeMaster.setSscPassedYear(getOnboarding.getSscPassedYear());
+					employeeMaster.setSscGrade(getOnboarding.getSscGrade());
+					
+					employeeMaster.setIntermediateBoardOfUniversity(getOnboarding.getIntermediateBoardOfUniversity());
+					employeeMaster.setIntermediateCollegeCity(getOnboarding.getIntermediateCollegeCity());
+					employeeMaster.setIntermediateCollegeName(getOnboarding.getIntermediateCollegeName());
+					employeeMaster.setIntermediateCourseName(getOnboarding.getIntermediateCourseName());
+					employeeMaster.setIntermediateGrade(getOnboarding.getIntermediateGrade());
+					employeeMaster.setIntermediateJoiningYear(getOnboarding.getIntermediateJoiningYear());
+					employeeMaster.setIntermediatePassedYear(getOnboarding.getIntermediatePassedYear());
+					
+					employeeMaster.setMaritalStatus(getOnboarding.getMaritalStatus());
+					employeeMaster.setPanNumber(getOnboarding.getPanNumber());
+					employeeMaster.setPassportExpiryDate(getOnboarding.getPassportExpiryDate());
+					employeeMaster.setPassportNo(getOnboarding.getPassportNo());
+					employeeMaster.setPermanentAdress(getOnboarding.getPermanentAdress());
+					employeeMaster.setPermanentCountry(getOnboarding.getPermanentCountry());
+					employeeMaster.setPermanentPincode(getOnboarding.getPermanentPincode());
+					employeeMaster.setPermanentState(getOnboarding.getPermanentState());
+					
+					employeeMaster.setPostgraduationBoardOfUniversity(getOnboarding.getPostgraduationBoardOfUniversity());
+					employeeMaster.setPostgraduationCourseName(getOnboarding.getPostgraduationCourseName());
+					employeeMaster.setPostgraduationGrade(getOnboarding.getPostgraduationGrade());
+					employeeMaster.setPostgraduationInstituteCity(getOnboarding.getPostgraduationInstituteCity());
+					employeeMaster.setPostgraduationInstituteName(getOnboarding.getPostgraduationInstituteName());
+					employeeMaster.setPostgraduationJoiningYear(getOnboarding.getPostgraduationJoiningYear());
+					employeeMaster.setPostgraduationPassedYear(getOnboarding.getPostgraduationPassedYear());
+					employeeMaster.setPostgraduationType(getOnboarding.getPostgraduationType());
+					
+					employeeMaster.setPreviousCompany1_designation(getOnboarding.getPreviousCompany1_designation());
+					employeeMaster.setPreviousCompany1_employeeId(getOnboarding.getPreviousCompany1_employeeId());
+//					employeeMaster.previousCompany1_grossSalary(getOnboarding.getpreviousCompany1_grossSalary());
+					employeeMaster.setPreviousCompany1_joiningDate(getOnboarding.getPreviousCompany1_joiningDate());
+					employeeMaster.setPreviousCompany1_name(getOnboarding.getPreviousCompany1_name());
+					employeeMaster.setPreviousCompany1_reasonForRelieving(getOnboarding.getPreviousCompany1_reasonForRelieving());
+					employeeMaster.setPreviousCompany1_relievingDate(getOnboarding.getPreviousCompany1_relievingDate());
+					employeeMaster.setPreviousCompany1_typeOfEmployment(getOnboarding.getPreviousCompany1_typeOfEmployment());
+					
+					employeeMaster.setPreviousCompany2_designation(getOnboarding.getPreviousCompany2_designation());
+					employeeMaster.setPreviousCompany2_employeeId(getOnboarding.getPreviousCompany2_employeeId());
+//					employeeMaster.previousCompany2_grossSalary(getOnboarding.getpreviousCompany2_grossSalary());
+					employeeMaster.setPreviousCompany2_joiningDate(getOnboarding.getPreviousCompany2_joiningDate());
+					employeeMaster.setPreviousCompany2_name(getOnboarding.getPreviousCompany2_name());
+					employeeMaster.setPreviousCompany2_reasonForRelieving(getOnboarding.getPreviousCompany2_reasonForRelieving());
+					employeeMaster.setPreviousCompany2_relievingDate(getOnboarding.getPreviousCompany2_relievingDate());
+					employeeMaster.setPreviousCompany2_typeOfEmployment(getOnboarding.getPreviousCompany2_typeOfEmployment());
+					
+					employeeMaster.setPreviousCompany3_designation(getOnboarding.getPreviousCompany3_designation());
+					employeeMaster.setPreviousCompany3_employeeId(getOnboarding.getPreviousCompany3_employeeId());
+//					employeeMaster.previousCompany3_grossSalary(getOnboarding.getpreviousCompany3_grossSalary());
+					employeeMaster.setPreviousCompany3_joiningDate(getOnboarding.getPreviousCompany3_joiningDate());
+					employeeMaster.setPreviousCompany3_name(getOnboarding.getPreviousCompany3_name());
+					employeeMaster.setPreviousCompany3_reasonForRelieving(getOnboarding.getPreviousCompany3_reasonForRelieving());
+					employeeMaster.setPreviousCompany3_relievingDate(getOnboarding.getPreviousCompany3_relievingDate());
+					employeeMaster.setPreviousCompany3_typeOfEmployment(getOnboarding.getPreviousCompany3_typeOfEmployment());
 					employeeMaster.setReportingManager(newOnboard.getReportingManager());
 					EmployeeMaster em=emRepo.save(employeeMaster);
 
@@ -660,7 +750,7 @@ public class MainServiceImpl implements MainService {
 		Response r = new Response<>();
 		try {
 
-			List<Onboarding> onboarding = onRepo.findByOnboardingStatus(true);
+			List<Onboarding> onboarding = onRepo.findByOnboardingStatus("TAAApproved");
 			r.setStatus(true);
 			r.setMessage(sConstants.GET_RESPONSE);
 			r.setData(onboarding);
@@ -1544,4 +1634,27 @@ public class MainServiceImpl implements MainService {
 
              }
 		}
+
+
+		@Override
+		public ResponseEntity getDetailsforPMOByonboardingStatus(String onboardingStatus) {
+			 Response r=new Response();
+	            try {
+
+
+	                List<Onboarding> newDataOnboarding=onRepo.findByOnboardingStatus(onboardingStatus);
+	                   r.setStatus(true);
+	                   r.setMessage("Data Fetching");
+	                   r.setData(newDataOnboarding);
+	                   return new ResponseEntity(r,HttpStatus.OK);              
+	            }
+	            catch (Exception e) {
+	                // TODO: handle exception
+
+	                r.setStatus(false);
+	                r.setMessage(e.getMessage());
+	                return new ResponseEntity(r,HttpStatus.OK);
+	            }
+		}
+		
 }

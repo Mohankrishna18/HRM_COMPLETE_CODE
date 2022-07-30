@@ -17,13 +17,15 @@ public class HrApprovalStatus {
 	private boolean waitingforapprovalStatus;
 	
 	@Column
-	private boolean onboardingStatus;
+	private String onboardingStatus;
 	
-	public boolean isOnboardingStatus() {
+	
+
+	public String getOnboardingStatus() {
 		return onboardingStatus;
 	}
 
-	public void setOnboardingStatus(boolean onboardingStatus) {
+	public void setOnboardingStatus(String onboardingStatus) {
 		this.onboardingStatus = onboardingStatus;
 	}
 

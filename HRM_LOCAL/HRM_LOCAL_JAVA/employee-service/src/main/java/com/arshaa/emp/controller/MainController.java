@@ -369,4 +369,8 @@ public class MainController {
 		public ResponseEntity getUsersNamesByBand() {
          return serv.getUsersNamesByBand();
 		}
+		@GetMapping("/getDetailsforPMOApprovalByOnboardingStatus/{onboardingStatus}")
+		public ResponseEntity getDetailsforPMOByonboardingStatus(@PathVariable String onboardingStatus) {
+			return serv.getDetailsforPMOByonboardingStatus(onboardingStatus);
+		}
 }

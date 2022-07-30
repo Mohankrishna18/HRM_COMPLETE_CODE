@@ -81,6 +81,7 @@ public List<BetweenDates> save(User user) {
 			 BetweenDates d = new BetweenDates();
 			 d.setEmployeeId(savedUser.getEmployeeId());
 			 d.setAppliedDate(e.getBetWeenDates());
+			 d.setEmployeeleaveId(savedUser.getEmployeeleaveId());
 			 BetweenDates bd= bro.save(d);
 			 bdatesList.add(bd);
 		 
