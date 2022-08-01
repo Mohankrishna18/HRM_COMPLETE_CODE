@@ -1,3 +1,4 @@
+
 //Default component imports
 import React, { memo, useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
@@ -7,6 +8,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { isLoggedIn } from "../utils";
 import './Sidebar.css'
 import styled from "styled-components";
+import { FcApproval, FcConferenceCall, FcCopyright, FcLeave, FcOvertime } from "react-icons/fc";
 
 //Sidebar component is here
 const Sidebar = (props) => {
@@ -25,11 +27,11 @@ const Sidebar = (props) => {
   const showSubnav = () => setSubnav(!subnav);
 
   //sidebar menu types
-  const profile="myprofile";
+  const profile = "myprofile";
   const emp = "Employee";
   const leave = "Leaves";
-  const config="configuration";
-  const nul="null";
+  const config = "configuration";
+  const nul = "null";
 
   return (
 
@@ -38,37 +40,40 @@ const Sidebar = (props) => {
         <Col xs={12} xxl={12} xl={12} lg={12} md={12} sm={12}>
           <div style={{ boxShadow: "10px black" }}>
 
-          <ListGroup>
-                    {menuItems.map((item, index) => (
-                      (item.type === profile) ? (<>
-                        <Row>
-                          <ListGroup.Item>
-                            <NavLink
-                              key={item.path}
-                              className="nav-text"
-                              to={`${props.prefix}${item.path}`} >
-                              <Row>
-                                <Col md={2}>{item.icon}</Col>
-                                <Col md={8}>{item.title}</Col>
-                              </Row>
-                            </NavLink>
-                          </ListGroup.Item>
-                        </Row></>
-                      ) : (<></>)
-                    ))}
-                    {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
+            <ListGroup style={{ border: "none", paddingTop: 0 }}>
+              {menuItems.map((item, index) => (
+                (item.type === profile) ? (<>
+                  <Row>
+                    <ListGroup.Item style={{ border: "none", paddingTop: 25 }}>
+                      <NavLink
+                        key={item.path}
+                        className="nav-text"
+                        to={`${props.prefix}${item.path}`} >
+                        <Row style={{ paddingLeft: "7%" }}>
+                          <Col md={2} >{item.icon}</Col>
+                          <Col md={8}>{item.title}</Col>
+                        </Row>
+                      </NavLink>
+                    </ListGroup.Item>
+                  </Row></>
+                ) : (<></>)
+              ))}
+              {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
                 <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
-                  </ListGroup>
+            </ListGroup>
 
-            <Accordion >
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>Employees</Accordion.Header>
+            <Accordion style={{ paddingLeft: "0%", width: "105%", border: "none" }}>
+              <Accordion.Item eventKey="0" style={{ border: "none", paddingBottom: "10%" }}>
+                <Accordion.Header>
+                  <Col md={2}><FcConferenceCall /></Col>
+                  <Col md={8}>Employees</Col>
+                </Accordion.Header>
                 <Accordion.Body>
-                  <ListGroup>
+                  <ListGroup >
                     {menuItems.map((item, index) => (
                       (item.type === emp) ? (<>
                         <Row>
-                          <ListGroup.Item>
+                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%" }}>
                             <NavLink
                               key={item.path}
                               className="nav-text"
@@ -86,12 +91,13 @@ const Sidebar = (props) => {
                 <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
                   </ListGroup>
                 </Accordion.Body></Accordion.Item>
-
-            
-              <Accordion.Item eventKey="1">
-                <Accordion.Header>Leaves</Accordion.Header>
+              <Accordion.Item eventKey="3" style={{ border: "none", paddingBottom: "10%" }}>
+                <Accordion.Header>
+                  <Col md={2}><FcApproval /></Col>
+                  <Col md={8}> Approvals</Col>
+                </Accordion.Header>
                 <Accordion.Body>
-                  <ListGroup>
+                  {/* <ListGroup>
                     {menuItems.map((item, index) => (
                       (item.type === leave) ? (<>
                         <Row>
@@ -110,20 +116,23 @@ const Sidebar = (props) => {
                       ) : (<>
                       </>)
                     ))}
-                    {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
-                <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
-                  </ListGroup>
+                     {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
+                <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p> 
+                  </ListGroup> */}
                 </Accordion.Body></Accordion.Item>
 
-               
-              <Accordion.Item eventKey="2">
-                <Accordion.Header>Configuration</Accordion.Header>
+
+              <Accordion.Item eventKey="1" style={{ border: "none", paddingBottom: "10%" }}>
+                <Accordion.Header>
+                  <Col md={2}><FcLeave /></Col>
+                  <Col md={8}>Leaves</Col>
+                </Accordion.Header>
                 <Accordion.Body>
                   <ListGroup>
                     {menuItems.map((item, index) => (
-                      (item.type === config) ? (<>
+                      (item.type === leave) ? (<>
                         <Row>
-                          <ListGroup.Item>
+                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%" }}>
                             <NavLink
                               key={item.path}
                               className="nav-text"
@@ -141,13 +150,21 @@ const Sidebar = (props) => {
                     {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
                 <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
                   </ListGroup>
-                </Accordion.Body></Accordion.Item></Accordion>
+                </Accordion.Body></Accordion.Item>
+              {/* {menuItems.map((item, index) => (
+                  (item.type === config)?( */}
+              <Accordion.Item eventKey="2" style={{ border: "none", paddingBottom: "10%" }}>
+                <Accordion.Header>
+                  <Col md={2}><FcCopyright /></Col>
+                  <Col md={8}>Configuration</Col>
 
-                <ListGroup>
+                </Accordion.Header>
+                <Accordion.Body>
+                  <ListGroup>
                     {menuItems.map((item, index) => (
-                      (item.type === nul) ? (<>
+                      (item.type === config) ? (<>
                         <Row>
-                          <ListGroup.Item>
+                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%" }}>
                             <NavLink
                               key={item.path}
                               className="nav-text"
@@ -159,16 +176,42 @@ const Sidebar = (props) => {
                             </NavLink>
                           </ListGroup.Item>
                         </Row></>
-                      ) : (<></>)
+                      ) : (<>
+                      </>)
                     ))}
                     {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
                 <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
                   </ListGroup>
-                
+                </Accordion.Body></Accordion.Item>
+              {/* ):(<></>)))} */}
+
+            </Accordion>
+            <ListGroup style={{ border: "none" }}>
+              {menuItems.map((item, index) => (
+                (item.type === nul) ? (<>
+                  <Row>
+                    <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%" }}>
+                      <NavLink
+                        key={item.path}
+                        className="nav-text"
+                        to={`${props.prefix}${item.path}`} >
+                        <Row style={{ paddingLeft: "7%" }}>
+                          <Col md={2}>{item.icon}</Col>
+                          <Col md={8}>{item.title}</Col>
+                        </Row>
+                      </NavLink>
+                    </ListGroup.Item>
+                  </Row></>
+                ) : (<></>)
+              ))}
+              {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
+                <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
+            </ListGroup>
+
           </div>
         </Col>
       </Tab.Container>
-      
+
       {/* <Tab.Container id="list-group-tabs-example">
         <Col xs={12} xxl={12} xl={12} lg={12} md={12} sm={12}>
           <div style={{ boxShadow: "10px black" }}>
@@ -202,3 +245,6 @@ const Sidebar = (props) => {
 };
 
 export default memo(Sidebar);
+
+
+

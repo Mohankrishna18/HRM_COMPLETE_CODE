@@ -63,6 +63,13 @@ import ProjectsMain from "../pages/Projects/ProjectsMain";
 import HrLeavesToApproveMain from "../pages/HrLeavesToApprove/HrLeavesToApproveMain";
 import EmployeeTimeSheetMain from "../pages/TimeSheet/TimeSheetMain";
 
+import TAAHeadMain from "../pages/TAAHead/TAAHeadMain";
+import BUHMain from "../pages/BUHead/BUHMain";
+
+import PMOMain from "../pages/PMO/PMOMain";
+
+import CEOMain from "../pages/CEO/CEOMain";
+
 import * as RiIcons from "react-icons/ri"
 import { Accordion } from "react-bootstrap";
 
@@ -411,6 +418,67 @@ export default [
     title: "Bands ",
 
     permission: [Roles.hradmin],
+  },
+  {
+    component: TAAHeadMain,
+    
+      type:"null",
+  
+      path: "/TAAHead",
+  
+      icon: <FcManager />,
+  
+      title: "Approvals",
+  
+      permission: [Roles.taahead],
+  
+    
+  },
+  {
+    component: BUHMain,
+    
+      type:"null",
+  
+      path: "/BUHead",
+  
+      icon: <FcManager />,
+  
+      title: "Approvals",
+  
+      permission: [Roles.buhead],
+  
+    
+  },
+  {
+
+    component: PMOMain,
+
+    type:"null",
+
+    path: "/PMO",
+
+    icon: <FcManager />,
+
+    title: "Approvals",
+
+    permission: [Roles.pmo],
+
+  },
+
+  {
+
+    component: CEOMain,
+
+    type:"null",
+
+    path: "/CEO",
+
+    icon: <FcManager />,
+
+    title: "Approvals",
+
+    permission: [Roles.ceo]
+
   },
 ];
 
