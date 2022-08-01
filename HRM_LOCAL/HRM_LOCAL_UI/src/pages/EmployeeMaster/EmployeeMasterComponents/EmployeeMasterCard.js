@@ -103,7 +103,7 @@ function EmployeeMasterCard() {
                                     width: "130px",
                                     borderRadius: "110px",
                                     alignItems: "center",
-                                    marginTop: "15px",
+                                    marginTop: "30px",
                                     marginLeft: "34%"
                                 }} />
                             </Col>
@@ -173,10 +173,10 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 0 }}>
+                            <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Text style={{}}>
-                                        <h6>Business Unit: </h6>
+                                        <h6>Business Unit Head: </h6>
                                     </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
@@ -186,6 +186,18 @@ function EmployeeMasterCard() {
                                 </Col>
 
                             </Row>
+                            <Row style={{ paddingBottom: 0 }}>
+                            <Col>
+                                <Card.Text style={{}}>
+                                    <h6>SRM: </h6>
+                                </Card.Text>
+                            </Col>{" "}
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{color:"#999897"}}>
+                                    {employeedetails.srm}
+                                </Card.Text>
+                            </Col>
+                        </Row>
                         </Card.Body>
                     </Col>
 
@@ -270,7 +282,7 @@ function EmployeeMasterCard() {
                                 </Card.Text>
                             </Col>
                         </Row>
-                        <Row style={{ paddingBottom: 0 }}>
+                        <Row style={{ paddingBottom: 10 }}>
                             <Col>
                                 <Card.Text style={{}}>
                                     <h6>Band: </h6>
@@ -279,6 +291,18 @@ function EmployeeMasterCard() {
                             <Col md={{ offset: 1 }}>
                                 <Card.Text style={{color:"#999897"}}>
                                     {employeedetails.band}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 0 }}>
+                            <Col>
+                                <Card.Text style={{}}>
+                                    <h6>IRM: </h6>
+                                </Card.Text>
+                            </Col>{" "}
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{color:"#999897"}}>
+                                    {employeedetails.irm}
                                 </Card.Text>
                             </Col>
                         </Row>
@@ -293,3 +317,4 @@ function EmployeeMasterCard() {
     )
 }
 export default EmployeeMasterCard;
+

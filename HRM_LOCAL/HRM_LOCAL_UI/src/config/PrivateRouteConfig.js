@@ -21,6 +21,7 @@ import {
   FcFinePrint,
   FcReading,
   FcBookmark,
+  FcApproval,
 } from "react-icons/fc";
 
 //Data Imports
@@ -102,9 +103,9 @@ export default [
   {
     component: ApprovesMain,
     path: "/approve",
-    icon: <FcConferenceCall />,
+    icon: <FcApproval />,
     title: "Approvals",
-    type:"Approves",
+    type:"approvals",
     permission: [Roles.ceo, Roles.pmo,Roles.buhead,Roles.irm,Roles.srm],
   },
 
