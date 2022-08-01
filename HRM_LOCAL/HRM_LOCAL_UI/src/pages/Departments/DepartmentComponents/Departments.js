@@ -9,6 +9,8 @@ import { Button, Modal, Stack } from "react-bootstrap";
 import AddDepartment from "./AddDepartment";
 import DeleteDepartment from "./DeleteDepartment";
 import UpdateDepartment from "./UpdateDepartment";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { FiEdit } from "react-icons/fi";
 
 
 
@@ -127,7 +129,7 @@ function Departments() {
                 <Col md={{ span: 4, offset: 4 }}><AddDepartment func={pull_dataAdd} /></Col>
               </Row>
             
-            <Container>
+            
               <Row>
                 <Col xs={12}>
 
@@ -142,11 +144,14 @@ function Departments() {
 
                       }}
                       options={{
+                        pageSize: 10,
+                        pageSizeOptions: [10, 15,20, 30 ,50, 75, 100 ],
+                        maxBodyHeight: 450,
                         headerStyle: {
                           backgroundColor: "#FF9E14",
                           color: "white",
                           fontSize: "20px",
-                        },
+                        },                               
                         addRowPosition:"first",
                         actionsColumnIndex: -1,
                         //grouping: true,
@@ -175,18 +180,18 @@ function Departments() {
                                   setUpdateOnboard(props.data);
                                 }}
                               >
-                                Edit
+                                 <FiEdit />
                               </Button>{" "}
                              
                               <Button
-                                variant="primary"
+                                variant="danger"
                                 onClick={(event) => {
                                   setDeleteUser(true);
                                   console.log(props);
                                   setDeleteOnboard(props.data);
                                 }}
                               >
-                                Delete
+                                <RiDeleteBin6Line/>
                               </Button>
                             </Stack>
                           </div>
@@ -196,7 +201,7 @@ function Departments() {
                   </Grid>
                 </Col>
               </Row>
-            </Container>
+           
           
       </div>
       {/* <Example /> */}
@@ -204,4 +209,3 @@ function Departments() {
   );
 }
 export default Departments;
-

@@ -68,13 +68,13 @@ function AddDepartment(props) {
             toast.success("Department added successfully!!!");
           }
           else {
-            console.log("Props Not Send");
+            toast.error("Department already exists");
           }
           setTimeout(5000);
           handleClose();
         })
         .catch((err) => {
-          toast.error("Something Went Wrong");
+          toast.error("Department already exists");
         });
     }
   };
