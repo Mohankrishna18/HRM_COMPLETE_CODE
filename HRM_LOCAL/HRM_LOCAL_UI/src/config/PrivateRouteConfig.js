@@ -63,6 +63,13 @@ import ProjectsMain from "../pages/Projects/ProjectsMain";
 import HrLeavesToApproveMain from "../pages/HrLeavesToApprove/HrLeavesToApproveMain";
 import EmployeeTimeSheetMain from "../pages/TimeSheet/TimeSheetMain";
 
+import TAAHeadMain from "../pages/TAAHead/TAAHeadMain";
+import BUHMain from "../pages/BUHead/BUHMain";
+
+import PMOMain from "../pages/PMO/PMOMain";
+
+import CEOMain from "../pages/CEO/CEOMain";
+
 import * as RiIcons from "react-icons/ri"
 import { Accordion } from "react-bootstrap";
 
@@ -71,9 +78,9 @@ export default [
   {
     component: MyProfileMain,
     path: "/",
+    type:"myprofile",
     icon: <FcBusinessman />,
     title: "My Profile",
-    type: "Employee",
     permission: [
       Roles.employee,
       Roles.hr,
@@ -122,15 +129,25 @@ export default [
       // ],  
   },
   {
+    component: Employee,
+    path: "/allEmployees",
+    icon: <FcConferenceCall />,
+    title: "All Employees",
+    type:"Employee",
+    permission: [Roles.hradmin],
+  },
+  {
     component: ClientMain,
     path: "/ClientMain",
+    type:"configuration",
     icon: <FcContacts />,
-    title: "Client",
+    title: "Clients",
     permission: [Roles.hradmin, Roles.hr],
   },
   {
     component: ProjectsMain,
     path: "/ProjectsMain",
+    type:"configuration",
     icon: <FcOvertime />,
     title: "Projects",
     permission: [Roles.hradmin],
@@ -138,6 +155,7 @@ export default [
   {
     component: OfferApprovalMain,
     path: "/offerApprovalMain",
+    type: "Employee",
     icon: <FcApprove />,
     title: "Offer Approvals",
     permission: [Roles.hradmin,Roles.recruitmentmanager],
@@ -145,20 +163,16 @@ export default [
   {
     component: RejectedEmployeeMain,
     path: "/RejectedEmployeeMain",
+    type: "Employee",
     icon: <FcDisapprove />,
     title: "Rejected Onboards",
     permission: [Roles.hradmin,Roles.recruitmentmanager],
   },
-  {
-    component: Employee,
-    path: "/allEmployees",
-    icon: <FcConferenceCall />,
-    title: "All Employees",
-    permission: [Roles.hradmin],
-  },
+  
   {
     component: UserName,
     path: "/users",
+    type:"configuration",
     icon: <FcPodiumWithSpeaker />,
     title: "Users",
     permission: [Roles.hradmin],
@@ -166,6 +180,7 @@ export default [
   {
     component: ModuleMain,
     path: "/modules",
+    type:"configuration",
     icon: <FcTodoList />,
     title: "Modules",
     permission: [Roles.hradmin],
@@ -173,6 +188,7 @@ export default [
   {
     component: RolesMain,
     path: "/roles",
+    type:"configuration",
     icon: <FcFlowChart />,
     title: "Roles",
     permission: [Roles.hradmin],
@@ -229,20 +245,23 @@ export default [
   {
     component: HolidayManagementMain,
     path: "/holidayManagenent",
+    type:"configuration",
     icon: <FcPlanner />,
     title: "Holiday Management",
     permission: [Roles.hradmin],
   },
   {
     component: EmployeeTimeSheetMain,
-    path: "/taskManagement",
+    path: "/timeSheet",
+    type:"null",
     icon: <FcPlanner />,
-    title: "Task Management",
+    title: "Timesheet",
     permission: [Roles.employee],
   },
   {
     component: DepartmentMain,
     path: "/departmentMain",
+    type:"configuration",
     icon: <FcDepartment />,
     title: "Departments",
     permission: [Roles.hradmin],
@@ -250,6 +269,7 @@ export default [
   {
     component: DesignationMain,
     path: "/designationMain",
+    type:"configuration",
     icon: <FcTimeline />,
     title: "Designations",
     permission: [Roles.hradmin],
@@ -288,13 +308,14 @@ export default [
   {
     component: TaggedEmployeesMain,
     path: "/employeeTagged",
+    type:"null",
     icon: <FcCustomerSupport />,
     title: "Reportee's List",
     permission: [Roles.manager],
   },
   {
     component: OnboardedEmployeesTable,
-
+    type:"null",
     path: "/Approvals",
     icon: <FcApprove />,
     title: "Onboardings",
@@ -303,6 +324,7 @@ export default [
 
   {
     component: ManagerLeavesToApproveMain,
+    type:"null",
     path: "/managerLeavesToApprove",
     icon: <FcManager />,
     title: "Leaves Waiting For Approval",
@@ -311,8 +333,9 @@ export default [
   {
     component: RejectedEmployees,
     path: "/LeaveManagement",
+    type: "Employee",
     icon: <FcOvertime />,
-    title: "Employees Rejected Leaves History",
+    title: "Leaves Rejected History",
     permission: [Roles.hradmin],
   },
 
@@ -351,7 +374,7 @@ export default [
   },
   {
     component: EmployeeMasterForms,
-
+    type:"null",
     path: "/editmyprofileroute",
 
     permission: [Roles.hradmin, Roles.taa],
@@ -360,7 +383,7 @@ export default [
     component: createleaveTypeMain,
 
     path: "/CreateLeaves",
-
+    type: "Leaves",
     icon: <FcManager />,
 
     title: "Leave Type",
@@ -373,6 +396,7 @@ export default [
     component: EmploymentTypeMain,
 
     path: "/EmploymentType",
+    type:"configuration",
 
     icon: <FcFinePrint />,
 
@@ -387,6 +411,7 @@ export default [
     component: BandsMain,
 
     path: "/Bands",
+    type:"configuration",
 
     icon: <FcBookmark />,
 
@@ -394,7 +419,69 @@ export default [
 
     permission: [Roles.hradmin],
   },
+  {
+    component: TAAHeadMain,
+    
+      type:"null",
+  
+      path: "/TAAHead",
+  
+      icon: <FcManager />,
+  
+      title: "Approvals",
+  
+      permission: [Roles.taahead],
+  
+    
+  },
+  {
+    component: BUHMain,
+    
+      type:"null",
+  
+      path: "/BUHead",
+  
+      icon: <FcManager />,
+  
+      title: "Approvals",
+  
+      permission: [Roles.buhead],
+  
+    
+  },
+  {
+
+    component: PMOMain,
+
+    type:"null",
+
+    path: "/PMO",
+
+    icon: <FcManager />,
+
+    title: "Approvals",
+
+    permission: [Roles.pmo],
+
+  },
+
+  {
+
+    component: CEOMain,
+
+    type:"null",
+
+    path: "/CEO",
+
+    icon: <FcManager />,
+
+    title: "Approvals",
+
+    permission: [Roles.ceo]
+
+  },
 ];
 
 // testing purpose
+
 

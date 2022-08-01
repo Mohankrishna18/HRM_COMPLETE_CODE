@@ -73,7 +73,7 @@ function PersonalDetailsTab(props) {
 
   const changeHandler = async (e) => {
     e.preventDefault();
-    await axios.put(`/emp/updatePersonalDetails/${employeeid}`, {
+    await axios.put(`/emp/updatePersonalDetails/${employeeid}`, { 
       employeeId,
       firstName,
       lastName,
