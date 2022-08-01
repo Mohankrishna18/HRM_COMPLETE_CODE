@@ -152,6 +152,10 @@ public class EmployeeMaster {
 	private String branch;
 	private String band;
 	private String exitDate;
+	
+	private String srm;
+	private String irm;
+	private String buh;
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
@@ -261,8 +265,8 @@ public class EmployeeMaster {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(String string) {
-		this.dateOfBirth = string;
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public String getBloodGroup() {
@@ -945,6 +949,30 @@ public class EmployeeMaster {
 		this.exitDate = exitDate;
 	}
 
+	public String getSrm() {
+		return srm;
+	}
+
+	public void setSrm(String srm) {
+		this.srm = srm;
+	}
+
+	public String getIrm() {
+		return irm;
+	}
+
+	public void setIrm(String irm) {
+		this.irm = irm;
+	}
+
+	public String getBuh() {
+		return buh;
+	}
+
+	public void setBuh(String buh) {
+		this.buh = buh;
+	}
+	
 	
 
-}
+	}

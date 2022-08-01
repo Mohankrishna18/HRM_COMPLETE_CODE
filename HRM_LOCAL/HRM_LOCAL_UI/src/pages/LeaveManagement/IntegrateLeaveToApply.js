@@ -30,6 +30,7 @@ function IntegrateLeaveToApply() {
     const [marks, setMarks] = useState([]);
     const [btwnDates, setBtwnDates] = useState([]);
     const [bdates, setBDates] = useState([]);
+    const [color, setColor] = useState([]);
 
     const forms = useRef(null);
 
@@ -57,7 +58,9 @@ function IntegrateLeaveToApply() {
         return newErrors;
     };
     let mark = []
+    let hclr = []
     let btwn = []
+    let clr = []
 
     useEffect(() => {
 
@@ -69,11 +72,19 @@ function IntegrateLeaveToApply() {
 
             res.data.data.map((item) => {
 
+                
+                const harr = item.holidayDate.replace(/[-,]/g, ",");
+                const hstr = harr.replace(/\b0/g, '').split('T0')[0];
+                console.log(hstr);
                 const da = moment.utc(item.holidayDate).format('YYYY-MM-DD')
+                console.log(da);
 
-                mark.push(da)
+                mark.push(da);
+                hclr.push(new Date(hstr));
 
-                setDates(mark)
+                setDates(mark);
+                setBDates(hclr);
+                console.log(hclr);
 
             });
         })
@@ -88,11 +99,19 @@ function IntegrateLeaveToApply() {
 
         console.log(resp.data)
         resp.data.map((m)=>{
-            btwn.push(m.appliedDate)
+            const arr = m.appliedDate.replace(/[-,]/g, ",");
+            const str = arr.replace(/\b0/g, '');
+            console.log(str);
+            const bb = moment.utc(m.appliedDate).format('YYYY-MM-DD')
+            console.log(bb);
+            // btwn.push(m.appliedDate)
+            btwn.push(new Date(str));
+            clr.push(bb);
             
         })
         console.log(btwn)
         setBtwnDates(btwn);
+        setColor(clr);
         // btwnDates.resp.data.map((item) => {
 
         //     var dd = item.appliedDate;
@@ -106,8 +125,8 @@ function IntegrateLeaveToApply() {
        
     })
 }
-
-    console.log(btwnDates);
+const obje = Object.assign({}, btwnDates);
+    console.log(obje);
     // console.log(btwn);
 
     let applied = []
@@ -737,10 +756,11 @@ function IntegrateLeaveToApply() {
                                         // if (marks.find(x => x === moment(date).format("YYYY-MM-DD"))) {
                                         //     return 'applied'
                                         // }
-                                        if(btwnDates.find(x => x === moment(date).format("YYYY-MM-DD"))){
+                                        if(color.find(x => x === moment(date).format("YYYY-MM-DD"))){
                                             return 'applied'
                                         }
                                         // }
+                                        
 
                                     }}
                                     // tileDisabled={({ date }) => date.getDay() === 0}
@@ -749,15 +769,26 @@ function IntegrateLeaveToApply() {
                                     //   new Date()
                                     // } 
                                     //  value={datevalue}
-                                    tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6}
-                                //|| date.getDate()===8 && date.getMonth()===7 && date.getFullYear()===2022
-                                //             tileDisabled={({date, view}) =>
-                                // (view === 'month') && // Block day tiles only
-                                // disabledDates.some(disabledDate =>
-                                //   date.getFullYear() === disabledDate.getFullYear() &&
-                                //   date.getMonth() === disabledDate.getMonth()-1 &&
-                                //   date.getDate() === disabledDate.getDate()
-                                // )}
+                                //     tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6}
+                                // //|| date.getDate()===8 && date.getMonth()===7 && date.getFullYear()===2022
+                                // //             tileDisabled={({date, view}) =>
+                                // // (view === 'month') && // Block day tiles only
+                                // // disabledDates.some(disabledDate =>
+                                // //   date.getFullYear() === disabledDate.getFullYear() &&
+                                // //   date.getMonth() === disabledDate.getMonth()-1 &&
+                                // //   date.getDate() === disabledDate.getDate()
+                                // // )}
+                                tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6 || 
+                                btwnDates.some(disabledDate =>
+                                        date.getFullYear() === disabledDate.getFullYear() &&
+                                        date.getMonth() === disabledDate.getMonth() &&
+                                        date.getDate() === disabledDate.getDate()
+                                        )||
+                                        bdates.some(disabledDate =>
+                                            date.getFullYear() === disabledDate.getFullYear() &&
+                                            date.getMonth() === disabledDate.getMonth() &&
+                                            date.getDate() === disabledDate.getDate()
+                                            ) }
                                 />
                             </Form.Group>
                             <Form.Group
@@ -817,18 +848,24 @@ function IntegrateLeaveToApply() {
                                         // if (marks.find(x => x === moment(date).format("YYYY-MM-DD"))) {
                                         //     return 'applied'
                                         // }
-                                        if(btwnDates.find(x => x === moment(date).format("YYYY-MM-DD"))){
+                                        if(color.find(x => x === moment(date).format("YYYY-MM-DD"))){
                                             return 'applied'
                                         }
                                     }}
                                     minDate={
                                         new Date(fromDate)
                                     }
-                                    // tileDisabled={({ date }) => date.getDay() === 0}
-                                    /*maxDate={new Date(2020, 1, 0)}</div>*/
-
-                                    //  value={datevalue}
-                                    tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6}
+                                    tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6 || 
+                                btwnDates.some(disabledDate =>
+                                        date.getFullYear() === disabledDate.getFullYear() &&
+                                        date.getMonth() === disabledDate.getMonth() &&
+                                        date.getDate() === disabledDate.getDate()
+                                        ) ||
+                                        bdates.some(disabledDate =>
+                                            date.getFullYear() === disabledDate.getFullYear() &&
+                                            date.getMonth() === disabledDate.getMonth() &&
+                                            date.getDate() === disabledDate.getDate()
+                                            ) }
                                 />
                             </Form.Group>
 
