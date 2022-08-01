@@ -1,5 +1,4 @@
 
-//Default component imports
 import React, { memo, useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { Row, Col, Button, Accordion } from "react-bootstrap";
@@ -31,6 +30,7 @@ const Sidebar = (props) => {
   const emp = "Employee";
   const leave = "Leaves";
   const config = "configuration";
+  const approvals="approvals";
   const nul = "null";
 
   return (
@@ -45,6 +45,28 @@ const Sidebar = (props) => {
                 (item.type === profile) ? (<>
                   <Row>
                     <ListGroup.Item style={{ border: "none", paddingTop: 25 }}>
+                      <NavLink
+                        key={item.path}
+                        className="nav-text"
+                        to={`${props.prefix}${item.path}`} >
+                        <Row style={{ paddingLeft: "7%" }}>
+                          <Col md={2} >{item.icon}</Col>
+                          <Col md={8}>{item.title}</Col>
+                        </Row>
+                      </NavLink>
+                    </ListGroup.Item>
+                  </Row></>
+                ) : (<></>)
+              ))}
+              {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
+                <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
+            </ListGroup>
+
+            <ListGroup style={{ border: "none", paddingTop: 0 }}>
+              {menuItems.map((item, index) => (
+                (item.type === approvals) ? (<>
+                  <Row>
+                    <ListGroup.Item style={{ border: "none", paddingTop: 10,paddingBottom:10 }}>
                       <NavLink
                         key={item.path}
                         className="nav-text"
@@ -87,39 +109,16 @@ const Sidebar = (props) => {
                         </Row></>
                       ) : (<></>)
                     ))}
-                    {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
-                <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
                   </ListGroup>
                 </Accordion.Body></Accordion.Item>
-              <Accordion.Item eventKey="3" style={{ border: "none", paddingBottom: "10%" }}>
+              {/* <Accordion.Item eventKey="3" style={{ border: "none", paddingBottom: "10%" }}>
                 <Accordion.Header>
                   <Col md={2}><FcApproval /></Col>
                   <Col md={8}> Approvals</Col>
                 </Accordion.Header>
                 <Accordion.Body>
-                  {/* <ListGroup>
-                    {menuItems.map((item, index) => (
-                      (item.type === leave) ? (<>
-                        <Row>
-                          <ListGroup.Item>
-                            <NavLink
-                              key={item.path}
-                              className="nav-text"
-                              to={`${props.prefix}${item.path}`} >
-                              <Row>
-                                <Col md={2}>{item.icon}</Col>
-                                <Col md={8}>{item.title}</Col>
-                              </Row>
-                            </NavLink>
-                          </ListGroup.Item>
-                        </Row></>
-                      ) : (<>
-                      </>)
-                    ))}
-                     {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
-                <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p> 
-                  </ListGroup> */}
-                </Accordion.Body></Accordion.Item>
+            
+                </Accordion.Body></Accordion.Item> */}
 
 
               <Accordion.Item eventKey="1" style={{ border: "none", paddingBottom: "10%" }}>
@@ -245,6 +244,3 @@ const Sidebar = (props) => {
 };
 
 export default memo(Sidebar);
-
-
-
