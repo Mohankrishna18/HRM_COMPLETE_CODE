@@ -3,7 +3,7 @@ import { Card, Form, Row, Col } from "react-bootstrap";
 
 function ExperienceTab(props) {
   return (
-    <div>
+    <div className= "scroll">
       {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
                 <Card.Title style={{ margin: 20, textAlign: "center" }}>
                     Work Experience
@@ -11,7 +11,7 @@ function ExperienceTab(props) {
             </Card> */}
 
       <Form style={{ padding: 10 }}>
-        <Card
+        {/* <Card
           style={{
             marginLeft: 8,
             marginRight: 8,
@@ -19,10 +19,11 @@ function ExperienceTab(props) {
             backgroundColor: "#FAFDD0",
           }}
         >
-          <Card.Title style={{ margin: 20, textAlign: "center" }}>
+          <Card.Title style={{ margin: 8, textAlign: "center" }}>
             Experience-1
           </Card.Title>
-        </Card>
+        </Card> */}
+        <h5><b>Experience 1 : </b></h5>
         <Row>
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Company Name</Form.Label>
@@ -95,7 +96,7 @@ function ExperienceTab(props) {
             />
           </Form.Group>
         </Row>
-        <Card
+        {/* <Card
           style={{
             marginLeft: 8,
             marginRight: 8,
@@ -106,7 +107,9 @@ function ExperienceTab(props) {
           <Card.Title style={{ margin: 20, textAlign: "center" }}>
             Experience-2
           </Card.Title>
-        </Card>
+        </Card> */}
+        <br></br>
+        <h5><b>Experience 2 : </b></h5>
         <Row>
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Company Name</Form.Label>
@@ -177,7 +180,7 @@ function ExperienceTab(props) {
             />
           </Form.Group>
         </Row>
-        <Card
+        {/* <Card
           style={{
             marginLeft: 8,
             marginRight: 8,
@@ -188,7 +191,8 @@ function ExperienceTab(props) {
           <Card.Title style={{ margin: 20, textAlign: "center" }}>
             Experience-3
           </Card.Title>
-        </Card>
+        </Card> */}
+         <h5><b>Experience 3 : </b></h5>
         <Row>
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Company Name</Form.Label>
