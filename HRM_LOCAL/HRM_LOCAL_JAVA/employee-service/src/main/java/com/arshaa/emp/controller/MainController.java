@@ -363,5 +363,14 @@ public class MainController {
 		public ResponseEntity getUserProjectDataByOnboardingId(@PathVariable String onboardingId) {
 			return serv.getUserProjectDataByOnboardingId(onboardingId);
 		}
+		
+		
+		@GetMapping("/getUsersNamesByBand")
+		public ResponseEntity getUsersNamesByBand() {
+         return serv.getUsersNamesByBand();
+		}
+		@GetMapping("/getDetailsforPMOApprovalByOnboardingStatus/{onboardingStatus}")
+		public ResponseEntity getDetailsforPMOByonboardingStatus(@PathVariable String onboardingStatus) {
+			return serv.getDetailsforPMOByonboardingStatus(onboardingStatus);
+		}
 }
-

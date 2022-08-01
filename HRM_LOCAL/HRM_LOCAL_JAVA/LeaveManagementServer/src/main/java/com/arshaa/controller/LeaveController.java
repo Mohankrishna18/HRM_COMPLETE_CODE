@@ -1,6 +1,8 @@
-
 package com.arshaa.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.apache.catalina.startup.ClassLoaderFactory.Repository;
@@ -18,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.arshaa.entity.BetweenDates;
 import com.arshaa.entity.EntitledLeaves;
 import com.arshaa.entity.User;
 import com.arshaa.model.ApproveCount;
+import com.arshaa.repository.BetweenDatesRepo;
 import com.arshaa.repository.UserRepository;
 import com.arshaa.repository.leaveEntitlementRepository;
 import com.arshaa.service.UserService;
@@ -34,6 +38,9 @@ public class LeaveController {
 
 	@Autowired
 	private UserRepository repo;
+	
+	@Autowired
+	private BetweenDatesRepo br ;
 
 	@Autowired
 	private leaveEntitlementRepository re; // @CrossOrigin(origins = "http://localhost:3000")
@@ -52,9 +59,19 @@ public class LeaveController {
 	public ResponseEntity getAllUsers() {
 		return service.findAll();
 	}
+	
+//	@PostMapping("/applyLeave")
+//	private List<Date> saveUser(@RequestBody User user) {	
+//				service.save(user);	
+//		List<Date> u = service.getDaysBetweenDates(user.getFromDate(), user.getToDate());
+//		
+//		return u;
+//	}
 
 	@PostMapping("/applyLeave")
-	private User saveUser(@RequestBody User user) {
+	private List<BetweenDates> saveUser(@RequestBody User user) {	
+			
+			//List<BetweenDatesRepo> betwee = (List<BetweenDatesRepo>) new BetweenDatesRepo();		
 		return service.save(user);
 	}
 
@@ -141,6 +158,16 @@ public class LeaveController {
 		// repo.findNumberOfRemainingLeavesByEmployeeId(employeeId);
 		int b = repo.findapplyingleavescount(employeeId);
 		return b;
+	}
+	@GetMapping("/{startDate}/{endDate}")
+
+    ResponseEntity <List> getDaysBetweenDates(@PathVariable String startDate,@PathVariable String endDate) throws ParseException, Exception
+    {
+    return ResponseEntity.ok(service.getDaysBetweenDates(new SimpleDateFormat("yyyy-MM-dd").parse(startDate), new SimpleDateFormat("yyyy-MM-dd").parse(endDate)));
+    }
+	@GetMapping("/getAllbetweenDates/{employeeId}")
+	public List<BetweenDates> findAllbetweenDates() {
+		return br.findAll();
 	}
 
 }
