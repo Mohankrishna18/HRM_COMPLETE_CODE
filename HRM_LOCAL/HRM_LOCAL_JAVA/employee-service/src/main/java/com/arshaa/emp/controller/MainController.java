@@ -373,4 +373,13 @@ public class MainController {
 		public ResponseEntity getDetailsforPMOByonboardingStatus(@PathVariable String onboardingStatus) {
 			return serv.getDetailsforPMOByonboardingStatus(onboardingStatus);
 		}
+		
+		//percentage calculation
+		@GetMapping("/getnullvaluescount/{onboardingId}")
+		public double findNullvaluescount(@PathVariable String onboardingId) {
+			
+			double count= onrepo.findcountofnullvalues(onboardingId);
+			return (count*100)/40;
+//			return count;
+		}
 }

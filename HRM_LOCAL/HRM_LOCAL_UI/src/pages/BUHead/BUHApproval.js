@@ -21,6 +21,8 @@ import ExperienceTab from "../../pages/Approvals/ApprovalComponents/ExperienceTa
 
 import PersonalDetailsTab from "../../pages/Approvals/ApprovalComponents/PersonalDetailsTab";
 
+import EmploymentDetailsTab from "../Approvals/ApprovalComponents/EmploymentDetailsTab";
+
 function BUHApproval() {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
@@ -179,6 +181,15 @@ function BUHApproval() {
               {" "}
             </Tab>
             {" "}
+            <Tab
+              eventKey="Employment Details"
+              title="Employment Details"
+              style={{ backgroundColor: "white" }}
+            >
+              <EmploymentDetailsTab 
+              viewOnboard={viewOnboard} 
+              viewHandleClose={viewHandleClose}/>
+            </Tab>
             {/* <Tab
               eventKey="Employment Details"
               title="Employment Details"
@@ -219,9 +230,9 @@ function BUHApproval() {
         {" "}
         <Modal.Footer>
           {" "}
-          <Button variant="secondary" onClick={viewHandleClose}>
+          {/* <Button variant="secondary" onClick={viewHandleClose}>
             Close          {" "}
-          </Button>
+          </Button> */}
           {" "}
           {/* <Button variant="primary" onClick={handleClose}>
             Save Changes
