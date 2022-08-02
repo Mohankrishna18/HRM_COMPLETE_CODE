@@ -1354,7 +1354,7 @@ public class MainServiceImpl implements MainService {
 					getOnboarding.setLastName(pd.getLastName());
 					getOnboarding.setMiddleName(pd.getMiddleName());
 					getOnboarding.setMaritalStatus(pd.getMaritalStatus());
-					getOnboarding.setPhoneNumber(pd.getPrimaryPhoneNumber());
+//					getOnboarding.setPhoneNumber(pd.getPrimaryPhoneNumber());
 					getOnboarding.setSecondaryPhoneNumber(pd.getSecondaryPhoneNumber());
 					getOnboarding.setPrimarySkills(pd.getPrimarySkills());
 					getOnboarding.setSecondarySkills(pd.getSecondarySkills());

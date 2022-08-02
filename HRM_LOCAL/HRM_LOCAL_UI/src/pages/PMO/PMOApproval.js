@@ -20,6 +20,7 @@ import EducationalDetailsTab from "../../pages/Approvals/ApprovalComponents/Educ
 import ExperienceTab from "../../pages/Approvals/ApprovalComponents/ExperienceTab";
 
 import PersonalDetailsTab from "../../pages/Approvals/ApprovalComponents/PersonalDetailsTab";
+import EmploymentDetailsTab from '../Approvals/ApprovalComponents/EmploymentDetailsTab';
 
 function PMOApproval(props) {
     const [data, setData] = useState([]);
@@ -157,6 +158,15 @@ function PMOApproval(props) {
                                 viewHandleClose={viewHandleClose}
                             />
                         </Tab>
+                        <Tab
+                            eventKey="Employment Details"
+                            title="Employment Details"
+                            style={{ backgroundColor: "white" }}
+                        >
+                            <EmploymentDetailsTab
+                                viewOnboard={viewOnboard}
+                                viewHandleClose={viewHandleClose} />
+                        </Tab>
                         {/* <Tab
               eventKey="Employment Details"
               title="Employment Details"
@@ -187,9 +197,9 @@ function PMOApproval(props) {
                     </Tabs>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={viewHandleClose}>
+                    {/* <Button variant="secondary" onClick={viewHandleClose}>
                         Close
-                    </Button>
+                    </Button> */}
                     {/* <Button variant="primary" onClick={handleClose}>
             Save Changes
           </Button> */}
