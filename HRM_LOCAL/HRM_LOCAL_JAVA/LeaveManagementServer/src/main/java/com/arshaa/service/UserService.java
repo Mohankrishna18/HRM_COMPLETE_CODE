@@ -80,6 +80,7 @@ public List<BetweenDates> save(User user) {
 		 u.forEach(e->{
 			 BetweenDates d = new BetweenDates();
 			 d.setEmployeeId(savedUser.getEmployeeId());
+			 d.setEmployeeleaveId(savedUser.getEmployeeleaveId());
 			 d.setAppliedDate(e.getBetWeenDates());
 			 BetweenDates bd= bro.save(d);
 			 bdatesList.add(bd);
@@ -323,5 +324,4 @@ public List<BetweenDates> save(User user) {
        }
 	
 }
-
 

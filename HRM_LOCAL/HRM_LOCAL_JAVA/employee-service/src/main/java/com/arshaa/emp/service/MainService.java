@@ -78,6 +78,7 @@ public interface MainService {
     public ResponseEntity getUserProjectDataByEmployeeId(String employeeId);
     
     public ResponseEntity getUsersNamesByBand();
+	public ResponseEntity getDetailsforPMOByonboardingStatus(String onboardingStatus);
     
     
 }

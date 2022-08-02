@@ -3,28 +3,18 @@ import {Button,Row,Col} from "react-bootstrap";
 import axios from "../../Uri";
 import { toast } from "react-toastify";
 
-
-function HrEmployeeReject(props) {
-    console.log(props.leaveID.employeeleaveId);
-    const RejectHandler = (e) => {
+function CEOApproved(props) {
+    console.log(props.onboardID.onboardingId);
+    const ApproveHandler = (e) => {
         // e.prevetDefault();
-        const notify = () => toast("Leave  is Rejected");
+        const notify = () => toast("Approved");
         // handleClose();
         // const form1 = Object.assign(form, obj);
-        let employeeleaveId = props.leaveID.employeeleaveId;
-        console.log(props.leaveID);
-        const obj = { leaveStatus: "Rejected",hrApproval:"Rejected" };
-        axios.put(`/leave/updateLeave/${employeeleaveId}`,obj)
+        let onboardingId = props.onboardID.onboardingId;
+        console.log(props.onboardID);
+        const obj = { onboardingStatus: "CEOApproved" };
+        axios.put(`/emp/updateApprovStatus/${onboardingId}`,obj)
         .then((res)=>{
-            axios.delete(`/leave/deleteBetweenDates/${employeeleaveId}`)
-                .then((resp)=>{
-                        console.log(resp)
-                        if(resp.status == 200){
-                            props.func();
-             }
-             else{
-                console.log('props not send')
-            } })
             console.log(res)
             if(res.status == 200){
                 props.func();
@@ -50,7 +40,7 @@ function HrEmployeeReject(props) {
             <Row>
             <Col>
             <Button variant="primary" 
-            onClick={RejectHandler}
+            onClick={ApproveHandler}
             >
             Yes
           </Button>
@@ -63,4 +53,4 @@ function HrEmployeeReject(props) {
   )
 }
 
-export default HrEmployeeReject;
+export default CEOApproved

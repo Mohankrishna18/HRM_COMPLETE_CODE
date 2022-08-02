@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
-function AddDepartment(props) {
+function AddModule(props) {
   
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
@@ -36,17 +36,19 @@ function AddDepartment(props) {
 
   const validateForm = () => {
     const {
-      departmentName,
-      businessUnitHead,
+
+      
+      moduleName,
 
     } = form;
     const newErrors = {};
 
 
-    if (!departmentName || departmentName === "")
-      newErrors.departmentName = "Please Enter Department Name";
-    if (!businessUnitHead || businessUnitHead === "")
-      newErrors.businessUnitHead = "Please Enter a Business Unit Head";
+    
+    if (!moduleName || moduleName === "")
+      newErrors.moduleName = "Please Enter a Module Name";
+
+
     return newErrors;
   };
   //testing for commit
@@ -58,55 +60,30 @@ function AddDepartment(props) {
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
     } else {
-      console.log(form.businessUnitHead);
+
       axios
-        .post("/dept/postDepartmentMaster", form)
+        .post("/user/addModule", form)
         .then((response) => {
           const user = response.data;
           if (response.data.status) {
             props.func();
-            toast.success("Department added successfully!!!");
+            toast.success("Module added successfully!!!");
           }
           else {
-            toast.error("Department already exists");
+            console.log("Props Not Send");
           }
+          
+
           setTimeout(5000);
           handleClose();
         })
         .catch((err) => {
-          toast.error("Department already exists");
+          toast.error("Something Went Wrong");
         });
     }
   };
-  // console.log(form.dateOfJoining)
+  
 
-//   const [empID, setEmpID] = useState([]);
-//   useEffect(() => {
-//     axios
-//       .get("/emp/getUsersNamesByBand")
-//       .then((response) => {
-//         setEmpID(response.data);
-//         console.log(response.data);
-//       })
-      
-//       .catch(() => {
-//         toast.error("data is not getting");
-//       });
-//   }, []);
-
-  const [role, setRole] = useState([]);
-  useEffect(() => {
-    axios
-      .get("/emp/getUsersNamesByBand")
-      .then((response) => {
-        setRole(response.data);
-        console.log(response.data)
-      })
-      .catch(() => {
-        toast.error("Data is not getting");
-      });
-    // console.log(departments)
-  }, []);
 
   return (
     <div>
@@ -125,7 +102,7 @@ function AddDepartment(props) {
       >
         {" "}
         <BsPlusLg />
-        &nbsp;Add Department
+        &nbsp;Add Module
       </Button>
       <Modal
         size="md"
@@ -136,7 +113,7 @@ function AddDepartment(props) {
         centered
       >
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
-          <Modal.Title style={{ backgroundColor: "#FF9E14", color : "white" }}>Add Department</Modal.Title>
+          <Modal.Title style={{ backgroundColor: "#FF9E14", color : "white" }}>Add Module</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -149,51 +126,23 @@ function AddDepartment(props) {
             onSubmit={handleSubmit}
           >
             <Row className="mb-3">
-              <Form.Group className="mb-3">
-                <Form.Label>Department *</Form.Label>
+            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Module Name *</Form.Label>
                 <Form.Control
                   required
+                  className="moduleName"
                   type="text"
-                  placeholder="Department"
-                  controlId="department_name"
-                  value={form.departmentName}
-                  onChange={(e) => setField("departmentName", e.target.value)}
-                  isInvalid={!!errors.departmentName}
-                >
-                  {/* <option>Select</option>
-                  {empID.map((empID1) => (
-                    <option>{empID1.employeeId}</option>
-                  ))} */}
-                </Form.Control>
+                  controlId="moduleName"
+                  placeholder="Module Name"
+                  // onChange={(event) => setFirstName(event.target.value)}
+                  value={form.moduleName}
+                  maxLength={30}
+                  onChange={(e) => setField("moduleName", e.target.value)}
+                  isInvalid={!!errors.moduleName}
+                ></Form.Control>
                 <Form.Control.Feedback type="invalid">
-                  {errors.departmentName}
+                  {errors.moduleName}
                 </Form.Control.Feedback>
-
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Business Unit Head *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="Business Unit Head"
-                  controlId="businessUnitHead"
-                  value={form.businessUnitHead}
-                  onChange={(e) => setField("businessUnitHead", e.target.value)}
-                  isInvalid={!!errors.businessUnitHead}
-                >
-                  <option>Select </option>
-                  {role.map((role1) => (
-                    <option value={role1.employeeId}>
-                      {role1.name}
-                    </option>
-                  ))}
-           
-                </Form.Select>
-                <Form.Control.Feedback type="invalid">
-                  {errors.businessUnitHead}
-                </Form.Control.Feedback>
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
             </Row>
@@ -239,4 +188,4 @@ function AddDepartment(props) {
     </div>
   );
 }
-export default AddDepartment;
+export default AddModule;

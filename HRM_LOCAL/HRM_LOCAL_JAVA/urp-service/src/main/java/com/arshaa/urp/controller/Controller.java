@@ -141,7 +141,7 @@ public class Controller {
 		return repo.findById(roleId);
 	}
 
-	@PutMapping("/UpdateModuleById/moduleId")
+	@PutMapping("/UpdateModuleById/{moduleId}")
 	public ResponseEntity updateModuleBymoduleID(@PathVariable int moduleId,@RequestBody Modulemaster newModulemaster) {
 
 		return serv.updateModuleBymoduleID(moduleId, newModulemaster);
