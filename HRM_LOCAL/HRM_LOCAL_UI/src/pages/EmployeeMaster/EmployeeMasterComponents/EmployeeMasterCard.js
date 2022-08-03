@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useState } from "react";
 import { Accordion, Card } from "react-bootstrap";
@@ -151,7 +152,7 @@ function EmployeeMasterCard() {
                             </Row><Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Title style={{}}>
-                                        <h6>Department:</h6>
+                                        <h6>Business Unit:</h6>
                                     </Card.Title>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
@@ -317,4 +318,3 @@ function EmployeeMasterCard() {
     )
 }
 export default EmployeeMasterCard;
-

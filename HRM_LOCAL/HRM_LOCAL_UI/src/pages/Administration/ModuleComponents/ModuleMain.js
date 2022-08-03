@@ -112,7 +112,7 @@ function ModuleMain() {
       <div responsive >
 
         
-            <Container>
+            {/* <Container> */}
               <Row>
                 <Col md={4}>
                   <Card.Title>Module</Card.Title>
@@ -123,8 +123,8 @@ function ModuleMain() {
 
                 <Col md={{ span: 4, offset: 4 }}><AddModule func={pull_dataAdd} /></Col>
               </Row>
-            </Container>
-            <Container>
+            {/* </Container> */}
+            {/* <Container> */}
               <Row>
                 <Col xs={12}>
 
@@ -192,7 +192,7 @@ function ModuleMain() {
                   </Grid>
                 </Col>
               </Row>
-            </Container>
+            {/* </Container> */}
           
       </div>
       {/* <Example /> */}
@@ -234,3 +234,4 @@ export default ModuleMain;
 // };
 
 // export default ModuleMain;
+

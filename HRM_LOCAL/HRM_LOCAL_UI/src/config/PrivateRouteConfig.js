@@ -140,22 +140,22 @@ export default [
     type:"Employee",
     permission: [Roles.pmo, Roles.ceo, Roles.buhead,Roles.irm,Roles.srm],
   },
-  {
-    component: ClientMain,
-    path: "/ClientMain",
-    type:"configuration",
-    icon: <FcContacts />,
-    title: "Clients",
-    permission: [Roles.pmo],
-  },
-  {
-    component: ProjectsMain,
-    path: "/ProjectsMain",
-    type:"configuration",
-    icon: <FcOvertime />,
-    title: "Projects",
-    permission: [Roles.pmo],
-  },
+  // {
+  //   component: ClientMain,
+  //   path: "/ClientMain",
+  //   type:"configuration",
+  //   icon: <FcContacts />,
+  //   title: "Clients",
+  //   permission: [Roles.pmo],
+  // },
+  // {
+  //   component: ProjectsMain,
+  //   path: "/ProjectsMain",
+  //   type:"configuration",
+  //   icon: <FcOvertime />,
+  //   title: "Projects",
+  //   permission: [Roles.pmo],
+  // },
   // {
   //   component: OfferApprovalMain,
   //   path: "/offerApprovalMain",
@@ -250,7 +250,7 @@ export default [
     path: "/departmentMain",
     type:"configuration",
     icon: <FcDepartment />,
-    title: "Departments",
+    title: "Business Unit",
     permission: [Roles.pmo],
   },
   {
@@ -434,5 +434,4 @@ export default [
 
 // testing purpose
 // kjh
-
 

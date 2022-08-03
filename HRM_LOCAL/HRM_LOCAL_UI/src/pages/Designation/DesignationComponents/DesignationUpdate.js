@@ -122,13 +122,13 @@ const DesignationUpdate = (props) => {
       >
         <Row className="mb-4">
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Department Name</Form.Label>
+            <Form.Label>Business Unit Name</Form.Label>
             <Form.Control
               required
               className="departmentName"
               type="text"
               controlId="departmentName"
-              placeholder="Department Name"
+              placeholder="Business Unit Name"
               // onChange={(event) => setclientName(event.target.value)}
               value={departmentName}
               maxLength={30}
@@ -201,5 +201,6 @@ const DesignationUpdate = (props) => {
     </>
   );
 };
+
 
 export default DesignationUpdate;
