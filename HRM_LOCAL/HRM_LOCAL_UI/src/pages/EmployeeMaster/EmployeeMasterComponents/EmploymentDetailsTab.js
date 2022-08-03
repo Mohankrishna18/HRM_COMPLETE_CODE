@@ -15,131 +15,11 @@ function EmploymentDetailsTab() {
     const [fourerror, setFourerror] = useState("");
     const [fiveerrors, setFiveErrors] = useState("");
     const [sixerror, setSixerror] = useState("");
-    const [sevenerrors, setSevenErrors] = useState("");
-    const [eighterror, setEighterror] = useState("");
-    const [nineerrors, setNineErrors] = useState("");
-    const [tenerror, setTenerror] = useState("");
-    const [elevenerrors, setElevenErrors] = useState("");
-    const [tweleveerror, setTweleveerror] = useState("");
-    const [thirteenerrors, setThirteenErrors] = useState("");
-    const [fourteenerror, setFourteenerror] = useState("");
-    const [fifteenerrors, setFifteenErrors] = useState("");
-    const [sixteenerror, setSixteenerror] = useState("");
-    const [seventeenerror, setSeventeenerror] = useState("");
-    const [eighteenerror, setEighteenerror] = useState("");
-    const [nineteenerror, setNineteenerror] = useState("");
-    const [twentyerror, setTwentyerror] = useState("");
-    const [twentyoneerror, setTwentyoneerror] = useState("");
-    const [twentytwoerror, setTwentytwoerror] = useState("");
-    const [twentythreerror, setTwentythreerror] = useState("");
-    const [twentyfourerror, setTwentyfourerror] = useState("");
-    const [twentyfiveerror, setTwentyfiveerror] = useState("");
-    const [twentysixerror, setTwentysixerror] = useState("");
-    const [twentysevenerror, setTwentysevenerror] = useState("");
-    const [twentyeighterror, setTwentyeighterror] = useState("");
-    const [twentynineerror, setTwentynineerror] = useState("");
-    const [thirtyerror, setThirtyerror] = useState("");
-    const [thirtyoneerror, setThirtyoneerror] = useState("");
-    const [thirtytwoerror, setThirtytwoerror] = useState("");
-    const [thirtythreeerror, setThirtythreeerror] = useState("");
-    const [thirtyfourerror, setThirtyfourerror] = useState("");
-    const [thirtyfiveerror, setThirtyfiveerror] = useState("");
-    const [thirtysixerror, setThirtysixerror] = useState("");
-    const [thirtysevenerror, setThirtysevenerror] = useState("");
-    const [thirtyeighterror, setThirtyeighterror] = useState("");
-    const [thirtynineerror, setThirtynineerror] = useState("");
-    const [fourty, setFourty] = useState("");
-    const [fourtyone, setFourtyone] = useState("");
-    const [fourtytwo, setFourtytwo] = useState("");
-    const [fourtythree, setFourtythree] = useState("");
-    const [fourtyfour, setFourtyfour] = useState("");
-    const [fourtyfive, setFourtyfive] = useState("");
-    const [fourtysix, setFourtysix] = useState("");
-    const [fourtyseven, setFourtyseven] = useState("");
-    const [fourtyeight, setFourtyeight] = useState("");
-    const [fourtynine, setFourtynine] = useState("");
 
-
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [middleName, setMiddleName] = useState(" ");
-    const [primaryPhoneNumber, setPrimaryPhoneNumber] = useState(" ");
-    const [secondaryPhoneNumber, setSecondaryPhone] = useState("");
-    const [yearsOfExperience, setYearsOfExperience] = useState(" ");
-    const [dateOfBirth, setDateOfBirth] = useState("");
-    const [passportExpiryDate, setPassportExpiryDate] = useState("");
-    const [passportNo, setPassportNo] = useState("");
-    const [employeeId, setEmployeeId] = useState("");
     const [primarySkills, setPrimarySkills] = useState("");
     const [secondarySkills, setSecondarySkills] = useState("");
-    const [email, setEmail] = useState("");
-    const [bloodGroup, setBloodGroup] = useState("");
-    const [gender, setGender] = useState("");
-    const [maritalStatus, setMaritalStatus] = useState("");
     const [designationName, setDesignationName] = useState("");
-    const [dateOfJoining, setDateOfJoining] = useState("");
     const [reportingManager, setReportingManager] = useState("");
-    const [permanentAdress, setPermanentAddress] = useState("");
-    const [permanentState, setPermanentState] = useState("");
-    const [permanentCountry, setPermanentCountry] = useState("");
-    const [permanentPincode, setPermanentPincode] = useState("");
-    const [currentAdress, setCurrentAddress] = useState("");
-    const [currentState, setCurrentState] = useState("");
-    const [currentCountry, setCurrentCountry] = useState("");
-    const [currentPincode, setCurrentPincode] = useState("");
-    const [postgraduationType, setTypeOfPostGraduation] = useState("");
-    const [postgraduationBoardOfUniversity, setPostgraduationBoardOfUniversity] = useState("");
-    const [postgraduationInstituteName, setPostgraduationInstituteName] = useState("");
-    const [postgraduationInstituteCity, setPostgraduationInstituteCity] = useState("");
-    const [postgraduationCourseName, setPostgraduationCourseName] = useState("");
-    const [postgraduationJoiningYear, setPostgraduationJoiningYear] = useState("");
-    const [postgraduationPassedYear, setPostgraduationPassedYear] = useState("");
-    const [postgraduationGrade, setPostgraduationGrade] = useState("");
-    const [graduationType, setTypeOfGraduation] = useState("");
-    const [graduationBoardOfUniversity, setGraduationBoardOfUniversity] = useState("");
-    const [graduationInstituteName, setGraduationInstituteName] = useState("");
-    const [graduationInstituteCity, setGraduationInstituteCity] = useState("");
-    const [graduationCourseName, setGraduationCourseName] = useState("");
-    const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
-    const [graduationPassedYear, setGraduationPassedYear] = useState("");
-    // const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
-    // const [graduationPassedYear, setGraduationPassedYear] = useState("");
-    const [graduationGrade, setGraduationGrade] = useState("");
-    const [intermediateBoardOfUniversity, setIntermediateBoardOfUniversity] = useState("");
-    const [intermediateCollegeName, setIntermediateCollegeName] = useState("");
-    const [intermediateCollegeCity, setIntermediateCollegeCity] = useState("");
-    const [intermediateCourseName, setIntermediateCourseName] = useState("");
-    const [intermediateJoiningYear, setIntermediateJoiningYear] = useState("");
-    const [intermediatePassedYear, setIntermediatePassedYear] = useState("");
-    const [intermediateGrade, setIntermediateGrade] = useState("");
-    const [sscBoardOfUniversity, setSscBoardOfUniversity] = useState("");
-    const [sscSchoolName, setSscSchoolName] = useState("");
-    const [sscSchoolCity, setSscSchoolCity] = useState("");
-    const [sscCourseName, setSscCourseName] = useState("");
-    const [sscJoiningYear, setSscJoiningYear] = useState("");
-    const [sscPassedYear, setSscPassedYear] = useState("");
-    const [sscGrade, setSscGrade] = useState("");
-    const [previousCompany1_name, setPreviousCompany1_name] = useState("");
-    const [previousCompany1_designation, setPreviousCompany1_designation] = useState("");
-    const [previousCompany1_joiningDate, setPreviousCompany1_joiningDate] = useState("");
-    const [previousCompany1_relievingDate, setPreviousCompany1_relievingDate] = useState("");
-    const [previousCompany1_employeeId, setPreviousCompany1_employeeId] = useState("");
-    const [previousCompany1_typeOfEmployment, setPreviousCompany1_typeOfEmployement] = useState("");
-    const [previousCompany1_reasonForRelieving, setPreviousCompany1_reasonForRelieving] = useState("");
-    const [previousCompany2_name, setPreviousCompany2_name] = useState("");
-    const [previousCompany2_designation, setPreviousCompany2_designation] = useState("");
-    const [previousCompany2_joiningDate, setPreviousCompany2_joiningDate] = useState("");
-    const [previousCompany2_relievingDate, setPreviousCompany2_relievingDate] = useState("");
-    const [previousCompany2_employeeId, setPreviousCompany2_employeeId] = useState("");
-    const [previousCompany2_typeOfEmployment, setPreviousCompany2_typeOfEmployement] = useState("");
-    const [previousCompany2_reasonForRelieving, setPreviousCompany2_reasonForRelieving] = useState("");
-    const [previousCompany3_name, setPreviousCompany3_name] = useState("");
-    const [previousCompany3_designation, setPreviousCompany3_designation] = useState("");
-    const [previousCompany3_joiningDate, setPreviousCompany3_joiningDate] = useState("");
-    const [previousCompany3_relievingDate, setPreviousCompany3_relievingDate] = useState("");
-    const [previousCompany3_employeeId, setPreviousCompany3_employeeId] = useState("");
-    const [previousCompany3_typeOfEmployment, setPreviousCompany3_typeOfEmployement] = useState("");
-    const [previousCompany3_reasonForRelieving, setPreviousCompany3_reasonForRelieving] = useState("");
     const [employmentType, setEmploymentType] = useState("");
     const [departmentName, setDepartmentName] = useState("");
     const [projectName, setProjectName] = useState("");
@@ -348,11 +228,11 @@ function EmploymentDetailsTab() {
                         </Form.Select>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Department</Form.Label>
+                        <Form.Label>Business Unit</Form.Label>
                         <Form.Select
                         disabled
                             type="text"
-                            placeholder="Department Name"
+                            placeholder="Business Unit Name"
                             controlId="departmentName"
                             value={departmentName}
                             maxLength={25}
@@ -419,7 +299,7 @@ function EmploymentDetailsTab() {
 
                         </Form.Select>
                     </Form.Group>
-                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                    {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Project</Form.Label>
                         <Form.Select
                         disabled
@@ -440,7 +320,7 @@ function EmploymentDetailsTab() {
                     </option>
                   ))}                           
                         </Form.Select>
-                    </Form.Group>
+                    </Form.Group> */}
                 </Row>
 
                 <Button

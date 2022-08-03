@@ -15,9 +15,7 @@ function EmployeeMasterTabs() {
 
     return (
         <div>
-            <Card className="scroll" >
-                
-                    <Card.Header>
+            <Card className="example" >
                         <Card.Body>
                             <Card.Title>Edit My Profile</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">
@@ -28,7 +26,6 @@ function EmployeeMasterTabs() {
                                 * All fields are mandatory. Please fill the form Correctly.
                             </Card.Text> */}
                         </Card.Body>
-                    </Card.Header>
                     {/* #f99159 */}
                     <Tabs
                         defaultActiveKey="Personal Details"

@@ -184,8 +184,8 @@ const MyProfile = () => {
     <>
       <Row>
         <Col>
-          <Card responsive className='scroll' style={{ marginTop: 0 }}>
-            <Card.Header>
+          <Card responsive className='example' style={{ marginTop: 0 }}>
+        
               <Card.Body>
                 <Card.Title> My Profile</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
@@ -200,7 +200,7 @@ const MyProfile = () => {
                             <Col>
                               <Row style={{
                                 alignContent: "center",
-                                paddingTop: 0,
+                                paddingTop: 20,
                                 paddingLeft: 200,
                                 marginLeft: "170px"
                               }}>
@@ -218,7 +218,7 @@ const MyProfile = () => {
                                           width: "130px",
                                           borderRadius: "110px",
                                           alignItems: "center",
-                                          marginTop: "30px",
+                                          marginTop: "10px",
                                           marginLeft: "34%"
                                         }} />
                                       </Row>
@@ -227,7 +227,7 @@ const MyProfile = () => {
                                           fontSize: 20,
                                           textAlign: "center",
                                           paddingTop: 10,
-                                          paddingBottom: 20,
+                                          paddingBottom: 0,
                                           text: "bold",
                                         }}>
                                           {getEmployeeDetails.firstName} {getEmployeeDetails.lastName}
@@ -242,7 +242,7 @@ const MyProfile = () => {
                           <Card.Body style={{}}>
                             <Row
                               style={{
-                                paddingTop: 20,
+                                paddingTop: 0,
                                 paddingBottom: 10,
                               }}
                             >
@@ -272,7 +272,7 @@ const MyProfile = () => {
                             <Row style={{ paddingBottom: 10 }}>
                               <Col>
                                 <Card.Title style={{}}>
-                                  <h6>Department:</h6>
+                                  <h6>Business Unit:</h6>
                                 </Card.Title>
                               </Col>{" "}
                               <Col md={{ offset: 1 }}>
@@ -296,7 +296,7 @@ const MyProfile = () => {
                             <Row style={{ paddingBottom: 10 }}>
                               <Col>
                                 <Card.Text style={{}}>
-                                  <h6>Business Unit: </h6>
+                                  <h6>Business Unit Head: </h6>
                                 </Card.Text>
                               </Col>{" "}
                               <Col md={{ offset: 1 }}>
@@ -305,11 +305,23 @@ const MyProfile = () => {
                                 </Card.Text>
                               </Col>
                             </Row>
+                            <Row style={{ paddingBottom: 0 }}>
+                              <Col>
+                                <Card.Text style={{}}>
+                                  <h6>SRM: </h6>
+                                </Card.Text>
+                              </Col>{" "}
+                              <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ color: "#999897" }}>
+                                  {getEmployeeDetails.srm}
+                                </Card.Text>
+                              </Col>
+                            </Row>
                           </Card.Body></Col>
                         <Col>
 
                           <Row style={{
-                            paddingTop: 35,
+                            paddingTop: 15,
                             paddingBottom: 10,
                           }}>
                             <Col>
@@ -372,6 +384,18 @@ const MyProfile = () => {
                               </Card.Text>
                             </Col>
                           </Row>
+                          <Row style={{ paddingBottom: 0 }}>
+                              <Col>
+                                <Card.Text style={{}}>
+                                  <h6>IRM: </h6>
+                                </Card.Text>
+                              </Col>{" "}
+                              <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ color: "#999897" }}>
+                                  {getEmployeeDetails.irm}
+                                </Card.Text>
+                              </Col>
+                            </Row>
                         </Col>
                       </Row>
                     </Card>
@@ -379,22 +403,22 @@ const MyProfile = () => {
                 </Row>{" "}
 
                 <Row>
-                  <Card style={{ marginTop: 20 }}>
+                  
                     <Tabs
                       defaultActiveKey="Personal Details"
                       transition={true}
                       id="noanim-tab-example"
                       className="mb-3"
-                      style={{ justifyContent: "center", color: "white", backgroundColor: "white", opacity: 0.95, fontSize: "18px", padding: 0, }}
+                      style={{ justifyContent: "center", color: "white", backgroundColor: "white", opacity: 0.95, fontSize: "18px", paddingTop: 10, }}
                     >
                       <Tab eventKey="Personal Details" title="Personal Details" style={{ backgroundColor: "white" }}>
 
-                        <Card style={{ padding: 30, paddingBottom: 0 }}>
+                        <div style={{ padding: 30, paddingBottom: 0 }}>
                           <Card.Title>
                             <h5>Personal Information:</h5>
                           </Card.Title>
                           <Card.Body >
-                            <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                            <Row style={{ paddingLeft: 55, paddingBottom: 30 ,paddingTop:20}}>
                               <Col>
                                 <Card.Subtitle>
                                   Email:
@@ -472,12 +496,12 @@ const MyProfile = () => {
                                 </Card.Subtitle>
                               </Col>
                             </Row>
-                          </Card.Body>
-                        </Card>
+                          </Card.Body> 
+                         </div>
                       </Tab>
                       <Tab eventKey="Address" title="Address" style={{ backgroundColor: "white" }}>
 
-                        <Card style={{ padding: 30, paddingBottom: 50 }}>
+                        <div style={{ padding: 20, paddingBottom: 50 }}>
                           <Card.Title>
                             <h5>Address:</h5>
                           </Card.Title>
@@ -596,12 +620,12 @@ const MyProfile = () => {
                             </Row>
 
                           </Card.Body>
-                        </Card>
+                        </div>
                       </Tab>
 
                       <Tab eventKey="Additional Details" title="Additional Details" style={{ backgroundColor: "white" }}>
 
-                        <Card style={{ padding: 30, paddingBottom: 20 }}>
+                        <div style={{ padding: 20, paddingBottom: 10 }}>
                           <Card.Title>
                             <h5>Additional Details:</h5>
                           </Card.Title>
@@ -738,12 +762,12 @@ const MyProfile = () => {
                               </Card.Text>
                             </Col>
                           </Row>
-                        </Card>
+                        </div>
 
                       </Tab>
                       <Tab eventKey="Employment Details" title="Employment Details" style={{ backgroundColor: "white" }}>
 
-                        <Card style={{ padding: 30, paddingBottom: 20 }}>
+                        <div style={{ padding: 20, paddingBottom: 20 }}>
                           <Card.Title>
                             <h5>Employment Details:</h5>
                           </Card.Title>
@@ -795,7 +819,7 @@ const MyProfile = () => {
                           <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                             <Col>
                               <Card.Subtitle style={{ padding: 10 }}>
-                                Department:
+                              Business Unit:
                               </Card.Subtitle>{" "}
                             </Col>
                             <Col md={{ offset: 1 }}>
@@ -839,12 +863,12 @@ const MyProfile = () => {
                           </Row>
 
 
-                        </Card>
+                        </div>
 
                       </Tab>
                       <Tab eventKey="Educational Details" title="Educational Details" style={{ backgroundColor: "white" }}>
 
-                        <Card style={{ padding: 30, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
+                        <div style={{ padding: 20, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
                           <Card.Title>
                             <h5>Educational Information:</h5>
                           </Card.Title>
@@ -926,12 +950,12 @@ const MyProfile = () => {
                             </Table>
 
                           </Card.Body>
-                        </Card>
+                        </div>
 
                       </Tab>
                       <Tab eventKey="Experience" title="Experience " style={{ backgroundColor: "white" }}>
 
-                        <Card style={{ padding: 30, marginTop: 0, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
+                        <div style={{ padding: 20, marginTop: 0, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
                           <Card.Title>
                             <h5>Experience:</h5>
                           </Card.Title>
@@ -987,12 +1011,12 @@ const MyProfile = () => {
                               </tbody>
                             </Table>
                           </Card.Body>
-                        </Card>
+                        </div>
 
                       </Tab>
                       <Tab eventKey="Project Details" title="Project Details" style={{ backgroundColor: "white" }}>
 
-                        <Card style={{ padding: 30, paddingBottom: 0 }}>
+                        <div style={{ padding: 20, paddingBottom: 0 }}>
                           <Card.Title>
                             <h5>Projects History:</h5>
                           </Card.Title>
@@ -1033,16 +1057,16 @@ const MyProfile = () => {
                               </Col>
                             </Row>
                           </Card.Body>
-                        </Card>
+                        </div>
                       </Tab>
 
                     </Tabs>
-                  </Card>
+                 
                 </Row>
 
 
               </Card.Body>
-            </Card.Header>
+
           </Card>
         </Col>
       </Row>
@@ -1470,8 +1494,8 @@ export default MyProfile;
                           </tr>
 
 
-                          <tr>
-                            <td>{getEmployeeDetails.postgraduationBoardOfUniversity}</td>
+
+                           <td>{getEmployeeDetails.postgraduationBoardOfUniversity}</td>
                             <td>{getEmployeeDetails.postgraduationInstituteName}</td>
                             <td>{getEmployeeDetails.postgraduationCourseName}</td>
                             <td>{getEmployeeDetails.postgraduationGrade}</td>

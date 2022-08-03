@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useState } from "react";
 import { Accordion, Card } from "react-bootstrap";
@@ -111,7 +112,7 @@ function EmployeeMasterCard() {
                                 fontSize: 20,
                                 textAlign: "center",
                                 paddingTop: 10,
-                                paddingBottom: 20,
+                                paddingBottom: 0,
                                 text: "bold",
                             }}>
                                 {employeedetails.firstName} {employeedetails.lastName}
@@ -122,7 +123,7 @@ function EmployeeMasterCard() {
                         <Card.Body style={{}}>
                             <Row
                                 style={{
-                                    paddingTop: 20,
+                                    paddingTop: 0,
                                     paddingBottom: 10,
                                 }}
                             >
@@ -151,7 +152,7 @@ function EmployeeMasterCard() {
                             </Row><Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Title style={{}}>
-                                        <h6>Department:</h6>
+                                        <h6>Business Unit:</h6>
                                     </Card.Title>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
@@ -176,7 +177,7 @@ function EmployeeMasterCard() {
                             <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Text style={{}}>
-                                        <h6>Business Unit: </h6>
+                                        <h6>Business Unit Head: </h6>
                                     </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
@@ -186,6 +187,18 @@ function EmployeeMasterCard() {
                                 </Col>
 
                             </Row>
+                            <Row style={{ paddingBottom: 0 }}>
+                            <Col>
+                                <Card.Text style={{}}>
+                                    <h6>SRM: </h6>
+                                </Card.Text>
+                            </Col>{" "}
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{color:"#999897"}}>
+                                    {employeedetails.srm}
+                                </Card.Text>
+                            </Col>
+                        </Row>
                         </Card.Body>
                     </Col>
 
@@ -219,7 +232,7 @@ function EmployeeMasterCard() {
 
                     <Col>
                         <Row style={{
-                            paddingTop: 35,
+                            paddingTop: 15,
                             paddingBottom: 10,
                         }}>
                             <Col>
@@ -279,6 +292,18 @@ function EmployeeMasterCard() {
                             <Col md={{ offset: 1 }}>
                                 <Card.Text style={{color:"#999897"}}>
                                     {employeedetails.band}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 0 }}>
+                            <Col>
+                                <Card.Text style={{}}>
+                                    <h6>IRM: </h6>
+                                </Card.Text>
+                            </Col>{" "}
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{color:"#999897"}}>
+                                    {employeedetails.irm}
                                 </Card.Text>
                             </Col>
                         </Row>
