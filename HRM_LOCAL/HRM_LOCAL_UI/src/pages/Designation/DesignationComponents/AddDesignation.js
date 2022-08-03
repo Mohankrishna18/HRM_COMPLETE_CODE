@@ -61,7 +61,7 @@ function AddDesignation(props) {
     const newErrors = {};
 
      if (!departmentName || departmentName === "")
-      newErrors.departmentName = "Please Select Department Name";
+      newErrors.departmentName = "Please Select Business Unit Name";
 
     if (
       !designationName ||
@@ -148,19 +148,19 @@ function AddDesignation(props) {
           >
             <Row className="mb-4">
                   <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Department Name *</Form.Label>
+                <Form.Label>Business Unit Name *</Form.Label>
                 <Form.Select
                   required
                   className="departmentName"
                   type="text"
                   controlId="departmentName"
-                  placeholder="Department Name"
+                  placeholder="Business Unit Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.departmentId}
                   maxLength={30}
                   onChange={(e) => setField("departmentName", e.target.value)}
                   isInvalid={!!errors.departmentId}
-                ><option>Select Department</option>
+                ><option>Select Business Unit</option>
 
                 {departments.map((department)=>(
 

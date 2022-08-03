@@ -228,11 +228,11 @@ function EmploymentDetailsTab() {
                         </Form.Select>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Department</Form.Label>
+                        <Form.Label>Business Unit</Form.Label>
                         <Form.Select
                         disabled
                             type="text"
-                            placeholder="Department Name"
+                            placeholder="Business Unit Name"
                             controlId="departmentName"
                             value={departmentName}
                             maxLength={25}
@@ -336,4 +336,3 @@ function EmploymentDetailsTab() {
     )
 }
 export default EmploymentDetailsTab;
-
