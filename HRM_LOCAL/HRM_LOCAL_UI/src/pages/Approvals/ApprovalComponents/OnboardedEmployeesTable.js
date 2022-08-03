@@ -17,6 +17,7 @@ import ExperienceTab from "./ExperienceTab";
 import PersonalDetailsTab from "./PersonalDetailsTab";
 import { FcApproval } from "react-icons/fc";
 import { FcWebcam } from "react-icons/fc";
+import EmploymentDetailsTab from "./EmploymentDetailsTab";
 
 // import ApprovalView from "./ApprovalView"; 
 
@@ -130,7 +131,7 @@ function OnboardedEmployeesTable() {
         </Modal.Footer> */}
       </Modal>
       <Modal show={viewShow} onHide={viewHandleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -147,8 +148,8 @@ function OnboardedEmployeesTable() {
             className="mb-3"
             style={{
               justifyContent: "center",
-              color: "white",
-              backgroundColor: "white",
+              color: "black",
+              backgroundColor: "#FAFDD0",
               fontSize: "16px",
               padding: 10,
             }}
@@ -183,13 +184,15 @@ function OnboardedEmployeesTable() {
                 viewHandleClose={viewHandleClose}
               />
             </Tab>
-            {/* <Tab
+            <Tab
               eventKey="Employment Details"
               title="Employment Details"
               style={{ backgroundColor: "white" }}
             >
-              <EmploymentDetailsTab viewOnboard={viewOnboard} viewHandleClose={viewHandleClose}/>
-            </Tab> */}
+              <EmploymentDetailsTab 
+              viewOnboard={viewOnboard} 
+              viewHandleClose={viewHandleClose}/>
+            </Tab>
             <Tab
               eventKey="Education"
               title="Education"
@@ -274,7 +277,7 @@ function OnboardedEmployeesTable() {
             components={{
               Action: (props) => (
                 <div>
-                  {props.data.status == "80%" ? (
+                  {props.data.status == "80%" || props.data.status == "100%"? (
                     <Stack direction="horizontal" gap={3}>
                       <Button
                         onClick={(event) => {
