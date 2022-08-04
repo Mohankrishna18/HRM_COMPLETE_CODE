@@ -5,7 +5,7 @@ import { Row, Col, Card, Container } from 'react-bootstrap';
 function CEOMain() {
   return (
     <div style={{ paddingTop: '20px' }}>
-    <Card className="scroll">
+    <Card className="example">
      <Card>
        <Card.Header>
          <Card.Body>
