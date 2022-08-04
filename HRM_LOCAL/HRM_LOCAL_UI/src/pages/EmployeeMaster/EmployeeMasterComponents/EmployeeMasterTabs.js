@@ -15,7 +15,7 @@ function EmployeeMasterTabs() {
 
     return (
         <div>
-            <Card className="scroll" >
+            <Card className="example" >
                         <Card.Body>
                             <Card.Title>Edit My Profile</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">

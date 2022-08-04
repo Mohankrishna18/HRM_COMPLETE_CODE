@@ -48,7 +48,7 @@ const UpdateDepartment = (props) => {
 
 
     if (!departmentName || departmentName === "")
-      newErrors.departmentName = "Please Enter Department";
+      newErrors.departmentName = "Please Enter Business Unit";
     if (!businessUnitHead || businessUnitHead === "")
       newErrors.businessUnitHead = "Please Enter Business Unit Head";
 
@@ -70,13 +70,13 @@ const UpdateDepartment = (props) => {
       .then((response) => {
         const user = response.data;
         console.log(response);
-        if (response.data.status) {
+        if (response.data) {
           props.func();
         }
         else {
           console.log("Props not Send")
         }
-        toast.success("Department updated successfully!!!");
+        toast.success("Business Unit updated successfully!!!");
         // console.log(user);
       })
       .catch((err) => {
@@ -128,11 +128,11 @@ const UpdateDepartment = (props) => {
             <Row className="mb-3">
 
             <Form.Group className="mb-3">
-                <Form.Label>Department*</Form.Label>
+                <Form.Label>Business Unit*</Form.Label>
                 <Form.Control
                   required
                   type="text"
-                  placeholder="Department"
+                  placeholder="Business Unit"
                   controlId="departmentName"
                   value={departmentName}
                   onChange={(e) => setDepartmentName(e.target.value)}
