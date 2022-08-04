@@ -11,7 +11,7 @@ const HolidayManagementMain = () => {
 
   return (
     <div style={{ paddingTop: '20px' }}>
-      <Card responsive className="scroll">
+      <Card responsive className="example">
         <Card.Header>
           <Card.Body>
             <Card.Title> Holiday Management</Card.Title>
@@ -34,4 +34,3 @@ const HolidayManagementMain = () => {
 }
 // };
 export default HolidayManagementMain;
-
