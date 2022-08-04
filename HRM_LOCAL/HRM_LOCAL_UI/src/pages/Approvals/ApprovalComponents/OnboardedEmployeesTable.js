@@ -53,9 +53,9 @@ function OnboardedEmployeesTable() {
   // useEffect(() => {
   //   loadData();
   // }, [viewStatus]);
-
+  const onboardingStatus = "Pending";
   const loadData = async (e) => {
-    const response = await axios.get("/emp/waitingForApprovelStatus");
+    const response = await axios.get(`/emp/getDetailsforPMOApprovalByOnboardingStatus/${onboardingStatus}`);// u ned to change this
     setData(response.data.data);
     console.log(response.data);
   };
