@@ -157,7 +157,7 @@ function RolesMain() {
       <div responsive >
 
         
-            <Container>
+            {/* <Container> */}
               <Row>
                 <Col md={4}>
                   <Card.Title>Roles & App Permissions</Card.Title>
@@ -168,8 +168,8 @@ function RolesMain() {
 
                 <Col md={{ span: 4, offset: 4 }}><AddRole func={pull_dataAdd} /></Col>
               </Row>
-            </Container>
-            <Container>
+            {/* </Container> */}
+            {/* <Container> */}
               <Row>
                 <Col xs={12}>
 
@@ -237,7 +237,7 @@ function RolesMain() {
                   </Grid>
                 </Col>
               </Row>
-            </Container>
+            {/* </Container> */}
           
       </div>
       {/* <Example /> */}
@@ -280,3 +280,4 @@ export default RolesMain;
 // };
 
 // export default RolesMain;
+

@@ -35,23 +35,23 @@ const Sidebar = (props) => {
 
   return (
 
-    <Row className="scroll">
-      <Tab.Container id="list-group-tabs-example">
+    <Row className="example">
+      <Tab.Container id="list-group-tabs-example" style={{backgroundColor:"black"}}>
         <Col xs={12} xxl={12} xl={12} lg={12} md={12} sm={12}>
           <div style={{ boxShadow: "10px black" }}>
 
-            <ListGroup style={{ border: "none", paddingTop: 0 }}>
+            <ListGroup style={{ border: "none", backgroundColor:"black" }}>
               {menuItems.map((item, index) => (
                 (item.type === profile) ? (<>
-                  <Row>
-                    <ListGroup.Item style={{ border: "none", paddingTop: 25 }}>
+                  <Row style={{backgroundColor:"black"}}>
+                    <ListGroup.Item style={{ border: "none", paddingTop: 25 , color:"white",backgroundColor:"black"}}>
                       <NavLink
                         key={item.path}
                         className="nav-text"
                         to={`${props.prefix}${item.path}`} >
-                        <Row style={{ paddingLeft: "7%" }}>
+                        <Row style={{ paddingLeft: "7%"}}>
                           <Col md={2} >{item.icon}</Col>
-                          <Col md={8}>{item.title}</Col>
+                          <Col md={8} style={{color:"white"}}>{item.title}</Col>
                         </Row>
                       </NavLink>
                     </ListGroup.Item>
@@ -66,14 +66,14 @@ const Sidebar = (props) => {
               {menuItems.map((item, index) => (
                 (item.type === approvals) ? (<>
                   <Row>
-                    <ListGroup.Item style={{ border: "none", paddingTop: 10,paddingBottom:10 }}>
+                    <ListGroup.Item style={{ border: "none", paddingTop: 10,paddingBottom:20 ,backgroundColor:"black"}}>
                       <NavLink
                         key={item.path}
                         className="nav-text"
                         to={`${props.prefix}${item.path}`} >
                         <Row style={{ paddingLeft: "7%" }}>
                           <Col md={2} >{item.icon}</Col>
-                          <Col md={8}>{item.title}</Col>
+                          <Col md={8} style={{color:"white"}}>{item.title}</Col>
                         </Row>
                       </NavLink>
                     </ListGroup.Item>
@@ -84,25 +84,25 @@ const Sidebar = (props) => {
                 <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
             </ListGroup>
 
-            <Accordion style={{ paddingLeft: "0%", width: "105%", border: "none" }}>
-              <Accordion.Item eventKey="0" style={{ border: "none", paddingBottom: "10%" }}>
-                <Accordion.Header>
-                  <Col md={2}><FcConferenceCall /></Col>
-                  <Col md={8}>Employees</Col>
+            <Accordion className="background" style={{ paddingLeft: "0%", width: "105%", border: "none", backgroundColor:"black" }}>
+              <Accordion.Item  eventKey="0" style={{ border: "none", paddingBottom: "10%" ,backgroundColor:"black"}}>
+                <Accordion.Header  style={{backgroundColor:"#070708"}}>
+                  <Col md={2} ><FcConferenceCall /></Col>
+                  <Col md={8} style={{color:"white"}}>Employees</Col>
                 </Accordion.Header>
-                <Accordion.Body>
+                <Accordion.Body >
                   <ListGroup >
                     {menuItems.map((item, index) => (
                       (item.type === emp) ? (<>
                         <Row>
-                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%" }}>
+                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%",backgroundColor:"black" }}>
                             <NavLink
                               key={item.path}
                               className="nav-text"
                               to={`${props.prefix}${item.path}`} >
                               <Row>
                                 <Col md={2}>{item.icon}</Col>
-                                <Col md={8}>{item.title}</Col>
+                                <Col md={8} style={{color:"white"}}>{item.title}</Col>
                               </Row>
                             </NavLink>
                           </ListGroup.Item>
@@ -121,7 +121,7 @@ const Sidebar = (props) => {
                 </Accordion.Body></Accordion.Item> */}
 
 
-              <Accordion.Item eventKey="1" style={{ border: "none", paddingBottom: "10%" }}>
+              <Accordion.Item eventKey="1" style={{ border: "none", paddingBottom: "10%" ,backgroundColor:"black"}}>
                 <Accordion.Header>
                   <Col md={2}><FcLeave /></Col>
                   <Col md={8}>Leaves</Col>
@@ -131,14 +131,14 @@ const Sidebar = (props) => {
                     {menuItems.map((item, index) => (
                       (item.type === leave) ? (<>
                         <Row>
-                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%" }}>
+                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%",backgroundColor:"black" }}>
                             <NavLink
                               key={item.path}
                               className="nav-text"
                               to={`${props.prefix}${item.path}`} >
                               <Row>
                                 <Col md={2}>{item.icon}</Col>
-                                <Col md={8}>{item.title}</Col>
+                                <Col md={8} style={{color:"white"}}>{item.title}</Col>
                               </Row>
                             </NavLink>
                           </ListGroup.Item>
@@ -152,7 +152,7 @@ const Sidebar = (props) => {
                 </Accordion.Body></Accordion.Item>
               {/* {menuItems.map((item, index) => (
                   (item.type === config)?( */}
-              <Accordion.Item eventKey="2" style={{ border: "none", paddingBottom: "10%" }}>
+              <Accordion.Item eventKey="2" style={{ border: "none", paddingBottom: "10%" ,backgroundColor:"black"}}>
                 <Accordion.Header>
                   <Col md={2}><FcCopyright /></Col>
                   <Col md={8}>Configuration</Col>
@@ -163,14 +163,14 @@ const Sidebar = (props) => {
                     {menuItems.map((item, index) => (
                       (item.type === config) ? (<>
                         <Row>
-                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%" }}>
+                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%",backgroundColor:"black" }}>
                             <NavLink
                               key={item.path}
                               className="nav-text"
                               to={`${props.prefix}${item.path}`} >
                               <Row>
                                 <Col md={2}>{item.icon}</Col>
-                                <Col md={8}>{item.title}</Col>
+                                <Col md={8} style={{color:"white"}}>{item.title}</Col>
                               </Row>
                             </NavLink>
                           </ListGroup.Item>
@@ -189,14 +189,14 @@ const Sidebar = (props) => {
               {menuItems.map((item, index) => (
                 (item.type === nul) ? (<>
                   <Row>
-                    <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%" }}>
+                    <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%",backgroundColor:"black" }}>
                       <NavLink
                         key={item.path}
                         className="nav-text"
                         to={`${props.prefix}${item.path}`} >
                         <Row style={{ paddingLeft: "7%" }}>
                           <Col md={2}>{item.icon}</Col>
-                          <Col md={8}>{item.title}</Col>
+                          <Col md={8} style={{color:"white"}}>{item.title}</Col>
                         </Row>
                       </NavLink>
                     </ListGroup.Item>
@@ -211,34 +211,7 @@ const Sidebar = (props) => {
         </Col>
       </Tab.Container>
 
-      {/* <Tab.Container id="list-group-tabs-example">
-        <Col xs={12} xxl={12} xl={12} lg={12} md={12} sm={12}>
-          <div style={{ boxShadow: "10px black" }}>
-            
-                  <ListGroup>
-                    {menuItems.map((item, index) => (
-                      
-                        <Row>
-                          <ListGroup.Item>
-                            <NavLink
-                              key={item.path}
-                              className="nav-text"
-                              to={`${props.prefix}${item.path}`} >
-                              <Row>
-                                <Col md={2}>{item.icon}</Col>
-                                <Col md={8}>{item.title}</Col>
-                              </Row>
-                            </NavLink>
-                          </ListGroup.Item>
-                        </Row>
-                     
-                    ))}
-                    {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
-                 <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>   
-                  </ListGroup>
-          </div>
-        </Col>
-      </Tab.Container> */}
+    
     </Row>
   );
 };

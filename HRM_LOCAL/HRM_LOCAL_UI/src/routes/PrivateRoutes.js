@@ -27,7 +27,7 @@ function PrivateRoutes() {
       </Row>
       <Row>
 
-        <Col xs={2} xxl={2} xl={2} lg={2} md={2} sm={2}>
+        <Col xs={2} xxl={2} xl={2} lg={2} md={2} sm={2} style={{backgroundColor:"black"}}>
           <Sidebar
             routes={allowedRoutes}
             prefix={match.path}
@@ -47,6 +47,4 @@ function PrivateRoutes() {
 }
 
 export default memo(PrivateRoutes);
-
-
 

@@ -17,7 +17,7 @@ const DeleteDepartment = (props) => {
                   else {
                     console.log("Props not Send")
                   }
-                  toast.success("Department deleted successfully!!!");
+                  toast.success("Business Unit deleted successfully!!!");
                   // 
             })
             // console.log(res)

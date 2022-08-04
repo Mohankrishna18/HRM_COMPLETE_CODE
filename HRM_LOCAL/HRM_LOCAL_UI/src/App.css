@@ -142,6 +142,7 @@ main {
 body{
   font-family: 'PT Sans', sans-serif;
   font-family: 'Roboto', sans-serif;
+  background-color: #fff;
 }
 
 *{
@@ -210,12 +211,12 @@ main{
   color: black;
 }
 
-.scroll {
+/* .scroll {
   max-height: 83vh;
  overflow: scroll;
     position: relative;
   
-}
+} */
 
 .text_size {
   
@@ -235,7 +236,3 @@ main{
   top: 0;
   
 }
-
-
-
-

@@ -160,7 +160,7 @@ function EmployeeList() {
     }, []);
     console.log(eid);
     return (
-        <div className="scroll">
+        <div className="example">
             <Grid container data1={eid}>
                 <Grid xs={12}>
                     <MaterialTable

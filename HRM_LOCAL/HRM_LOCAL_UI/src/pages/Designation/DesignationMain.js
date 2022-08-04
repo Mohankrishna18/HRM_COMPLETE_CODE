@@ -70,7 +70,7 @@ function DesignationMain() {
   const [columns, setColumns] = useState([
  
     {
-      title: "Department Name",
+      title: "Business Unit Name",
       field: "departmentName",
       type: "text",
     },
@@ -214,3 +214,4 @@ function DesignationMain() {
   );
 }
 export default DesignationMain;
+

@@ -117,7 +117,7 @@ function OnboardedEmployeesTable() {
       <div responsive >
 
         
-            <Container>
+            {/* <Container> */}
               <Row>
                 <Col md={4}>
                   <Card.Title>Users</Card.Title>
@@ -128,8 +128,8 @@ function OnboardedEmployeesTable() {
 
                 <Col md={{ span: 4, offset: 4 }}><AddUser func={pull_dataAdd} /></Col>
               </Row>
-            </Container>
-            <Container>
+            {/* </Container> */}
+            {/* <Container> */}
               <Row>
                 <Col xs={12}>
 
@@ -197,7 +197,7 @@ function OnboardedEmployeesTable() {
                   </Grid>
                 </Col>
               </Row>
-            </Container>
+            {/* </Container> */}
           
       </div>
       {/* <Example /> */}
