@@ -65,7 +65,7 @@ import HrLeavesToApproveMain from "../pages/HrLeavesToApprove/HrLeavesToApproveM
 import EmployeeTimeSheetMain from "../pages/TimeSheet/TimeSheetMain";
 
 import TAAHeadMain from "../pages/TAAHead/TAAHeadMain";
-// import BUHMain from "../pages/BUHead/BUHMain";
+import BUHMain from "../pages/BUHead/BUHMain";
 
 import PMOMain from "../pages/PMO/PMOMain";
 
@@ -94,7 +94,7 @@ export default [
       Roles.recruitmentmanager,
       Roles.irm,
       Roles.srm,
-      Roles.pmohead,
+      Roles.pmo,
       Roles.taahead,
       Roles.buhead,
     ],
@@ -107,7 +107,7 @@ export default [
     icon: <FcApproval />,
     title: "Approvals",
     type:"approvals",
-    permission: [Roles.ceo, Roles.pmohead,Roles.buhead,Roles.irm,Roles.srm],
+    permission: [Roles.ceo, Roles.pmo,Roles.buhead,Roles.irm,Roles.srm],
   },
 
   {
@@ -126,7 +126,7 @@ export default [
       Roles.recruitmentmanager,
       Roles.irm,
       Roles.srm,
-      Roles.pmohead,
+      Roles.pmo,
       Roles.taahead,
       Roles.buhead,
     ],
@@ -168,6 +168,22 @@ export default [
     permission: [Roles.buhead,Roles.irm,Roles.srm],
   },
   // {
+  //   component: ClientMain,
+  //   path: "/ClientMain",
+  //   type:"configuration",
+  //   icon: <FcContacts />,
+  //   title: "Clients",
+  //   permission: [Roles.pmo],
+  // },
+  // {
+  //   component: ProjectsMain,
+  //   path: "/ProjectsMain",
+  //   type:"configuration",
+  //   icon: <FcOvertime />,
+  //   title: "Projects",
+  //   permission: [Roles.pmo],
+  // },
+  // {
   //   component: OfferApprovalMain,
   //   path: "/offerApprovalMain",
   //   type: "Employee",
@@ -181,7 +197,7 @@ export default [
     type: "Employee",
     icon: <FcDisapprove />,
     title: "Rejected Onboards",
-    permission: [Roles.pmohead],
+    permission: [Roles.pmo],
   },
   
   {
@@ -190,7 +206,7 @@ export default [
     type:"configuration",
     icon: <FcPodiumWithSpeaker />,
     title: "Users",
-    permission: [Roles.pmohead],
+    permission: [Roles.pmo],
   },
   {
     component: ModuleMain,
@@ -198,7 +214,7 @@ export default [
     type:"configuration",
     icon: <FcTodoList />,
     title: "Modules",
-    permission: [Roles.pmohead],
+    permission: [Roles.pmo],
   },  
   {
     component: RolesMain,
@@ -206,7 +222,7 @@ export default [
     type:"configuration",
     icon: <FcFlowChart />,
     title: "Roles",
-    permission: [Roles.pmohead],
+    permission: [Roles.pmo],
   },
  
   {
@@ -234,7 +250,7 @@ export default [
       Roles.recruitmentmanager,
       Roles.irm,
       Roles.srm,
-      Roles.pmohead,
+      Roles.pmo,
       Roles.taahead,
       Roles.buhead,
     ],
@@ -246,7 +262,7 @@ export default [
     type:"configuration",
     icon: <FcPlanner />,
     title: "Holiday Management",
-    permission: [Roles.pmohead],
+    permission: [Roles.pmo],
   },
   {
     component: EmployeeTimeSheetMain,
@@ -254,15 +270,15 @@ export default [
     type:"null",
     icon: <FcPlanner />,
     title: "Timesheet",
-    permission: [Roles.pmohead,Roles.buhead,Roles.irm,Roles.srm],
+    permission: [Roles.pmo,Roles.buhead,Roles.irm,Roles.srm],
   },
   {
     component: DepartmentMain,
     path: "/departmentMain",
     type:"configuration",
     icon: <FcDepartment />,
-    title: "Departments",
-    permission: [Roles.pmohead],
+    title: "Business Unit",
+    permission: [Roles.pmo],
   },
   {
     component: DesignationMain,
@@ -270,7 +286,7 @@ export default [
     type:"configuration",
     icon: <FcTimeline />,
     title: "Designations",
-    permission: [Roles.pmohead],
+    permission: [Roles.pmo],
   },
  
   {
@@ -349,7 +365,7 @@ export default [
 
     title: "Leave Type",
 
-    permission: [Roles.pmohead],
+    permission: [Roles.pmo],
   },
   {
     // added by Sri Divya
@@ -363,7 +379,7 @@ export default [
 
     title: "Employment Types ",
 
-    permission: [Roles.pmohead],
+    permission: [Roles.pmo],
   },
 
   {
@@ -378,7 +394,7 @@ export default [
 
     title: "Bands ",
 
-    permission: [Roles.pmohead],
+    permission: [Roles.pmo],
   },
   {
     component: TAAHeadMain,
@@ -395,21 +411,21 @@ export default [
   
     
   },
-  // {
-  //   component: BUHMain,
+  {
+    component: BUHMain,
     
-  //     type:"null",
+      type:"null",
   
-  //     path: "/BUHead",
+      path: "/BUHead",
   
-  //     icon: <FcManager />,
+      icon: <FcManager />,
   
-  //     title: "Approvals",
+      title: "Approvals",
   
-  //     permission: [Roles.buhead],
+      permission: [Roles.buhead],
   
     
-  // },
+  },
   {
 
     component: PMOMain,
@@ -422,7 +438,7 @@ export default [
 
     title: "Approvals",
 
-    permission: [Roles.pmohead],
+    permission: [Roles.pmo],
 
   },
 
@@ -442,4 +458,7 @@ export default [
 
   },
 ];
+
+// testing purpose
+// kjh
 

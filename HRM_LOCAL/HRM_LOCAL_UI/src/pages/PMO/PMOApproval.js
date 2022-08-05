@@ -62,7 +62,7 @@ function PMOApproval(props) {
 
     const da = JSON.parse(sessionStorage.getItem('userdata'))
     const empID = da.data.employeeId;
-    const onboardingStatus = "TAAHeadApproved";
+    const onboardingStatus = "BUHApproved";
 
 
     const loadData = async () => {
