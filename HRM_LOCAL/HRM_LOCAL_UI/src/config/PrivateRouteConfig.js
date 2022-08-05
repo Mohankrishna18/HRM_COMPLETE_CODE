@@ -139,6 +139,24 @@ export default [
     icon: <FcConferenceCall />,
     title: "All Employees",
     type:"Employee",
+    permission: [Roles.pmohead, Roles.ceo],
+  },
+  {
+    component: ClientMain,
+    path: "/ClientMain",
+    type:"configuration",
+    icon: <FcContacts />,
+    title: "Clients",
+    permission: [Roles.pmohead],
+  },
+  {
+    component: ProjectsMain,
+    path: "/ProjectsMain",
+    type:"configuration",
+    icon: <FcOvertime />,
+    title: "Projects",
+    permission: [Roles.pmohead],
+
     permission: [Roles.pmo, Roles.ceo],
   },
   {
