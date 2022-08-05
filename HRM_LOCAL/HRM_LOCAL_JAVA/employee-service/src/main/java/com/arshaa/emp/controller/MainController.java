@@ -386,6 +386,13 @@ public class MainController {
 			return (count*100)/40;
 //			return count;
 		}
+
+		@PutMapping("/updateRejectStatus/{onboardingId}")
+		public ResponseEntity updateReject(@PathVariable String onboardingId,@RequestBody HrApprovalStatus newOnboard) {
+			return serv.updateReject(onboardingId, newOnboard);
+		}
+}
+
 		
 //		Get calls for employees under Roles
 		 
@@ -394,3 +401,4 @@ public class MainController {
 				 return roleBasedServ.getRoleBasedEmployeesByEmployeeId(employeeId);
 			}
 }
+

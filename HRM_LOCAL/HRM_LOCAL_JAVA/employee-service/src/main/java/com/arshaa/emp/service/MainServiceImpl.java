@@ -199,9 +199,10 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
-				getOnboarding.setComments(newOnboard.getComments());
+//				getOnboarding.setComments(newOnboard.getComments());
 				getOnboarding.setProjectName(newOnboard.getProjectName());
-				getOnboarding.setBand(newOnboard.getBand());
+//				getOnboarding.setSecondaryPhoneNumber(newOnboard.getSecondaryPhoneNumber());
+//				getOnboarding.setBand(newOnboard.getBand());
 				
 				Onboarding saveList = onRepo.save(getOnboarding);
 
@@ -224,7 +225,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setMiddleName(getOnboarding.getMiddleName());
 					employeeMaster.setLastName(getOnboarding.getLastName());
 					employeeMaster.setPrimaryPhoneNumber(getOnboarding.getPhoneNumber());
-					employeeMaster.setSecondaryPhoneNumber(getOnboarding.getPhoneNumber());
+					employeeMaster.setSecondaryPhoneNumber(getOnboarding.getSecondaryPhoneNumber());
 					employeeMaster.setDesignationName(getOnboarding.getDesignation());
 					employeeMaster.setDepartmentName(getOnboarding.getDepartment());
 					employeeMaster.setDateOfJoining(getOnboarding.getDateOfJoining());
@@ -1656,5 +1657,28 @@ public class MainServiceImpl implements MainService {
 	                return new ResponseEntity(r,HttpStatus.OK);
 	            }
 		}
+
+
+		@Override
+		public ResponseEntity updateReject(String onboardingStatus, HrApprovalStatus newOnboard) {
+			Response r=new Response();
+			 try {
+				 Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingStatus);
+					getOnboarding.setComments(newOnboard.getComments());
+					getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
+					Onboarding updateReject= onRepo.save(getOnboarding);
+					   r.setStatus(true);
+					   r.setMessage("Rejected Successfully");
+					   return new ResponseEntity(r,HttpStatus.OK);			   
+				}
+				catch (Exception e) {
+					// TODO: handle exception
+					
+					r.setStatus(false);
+					r.setMessage(e.getMessage());
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+		}
+
 		
 }

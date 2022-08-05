@@ -1,4 +1,3 @@
-
 package com.arshaa.emp.model;
 
 import javax.persistence.Column;
@@ -38,6 +37,20 @@ public class HrApprovalStatus {
 	
 	private String comments;
     private String reportingManager;
+	private String SecondaryPhoneNumber;
+	public HrApprovalStatus(String secondaryPhoneNumber) {
+		super();
+		SecondaryPhoneNumber = secondaryPhoneNumber;
+	}
+
+	public String getSecondaryPhoneNumber() {
+		return SecondaryPhoneNumber;
+	}
+
+	public void setSecondaryPhoneNumber(String secondaryPhoneNumber) {
+		SecondaryPhoneNumber = secondaryPhoneNumber;
+	}
+
 	public String getComments() {
 		return comments;
 	}
