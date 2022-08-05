@@ -495,7 +495,7 @@ const obje = Object.assign({}, btwnDates);
 
 
     return (
-        <div>
+        <div className='example'>
             {/* <Button
     onClick={handleShow}
     style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRadius:'29px',paddingTop:"9px" }}
