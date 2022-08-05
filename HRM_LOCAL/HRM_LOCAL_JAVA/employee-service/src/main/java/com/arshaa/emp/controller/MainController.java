@@ -391,7 +391,7 @@ public class MainController {
 		public ResponseEntity updateReject(@PathVariable String onboardingId,@RequestBody HrApprovalStatus newOnboard) {
 			return serv.updateReject(onboardingId, newOnboard);
 		}
-}
+
 
 		
 //		Get calls for employees under Roles
