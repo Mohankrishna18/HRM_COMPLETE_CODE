@@ -161,10 +161,7 @@ function TaskMain() {
             {/* <Container> */}
               <Row>
                 <Col >
-                  <Card.Title>Task Management</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                  Task Management
-                  </Card.Subtitle>
+                  
                 </Col>
                 <Col>
                 </Col>

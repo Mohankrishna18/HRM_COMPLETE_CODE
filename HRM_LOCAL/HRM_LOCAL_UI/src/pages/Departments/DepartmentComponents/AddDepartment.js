@@ -44,7 +44,7 @@ function AddDepartment(props) {
 
 
     if (!departmentName || departmentName === "")
-      newErrors.departmentName = "Please Enter Department Name";
+      newErrors.departmentName = "Please Enter Business Unit";
     if (!businessUnitHead || businessUnitHead === "")
       newErrors.businessUnitHead = "Please Enter a Business Unit Head";
     return newErrors;
@@ -65,16 +65,16 @@ function AddDepartment(props) {
           const user = response.data;
           if (response.data.status) {
             props.func();
-            toast.success("Department added successfully!!!");
+            toast.success("Business Unit added successfully!!!");
           }
           else {
-            toast.error("Department already exists");
+            toast.error("Business Unit already exists");
           }
           setTimeout(5000);
           handleClose();
         })
         .catch((err) => {
-          toast.error("Department already exists");
+          toast.error("Business Unit already exists");
         });
     }
   };
@@ -125,7 +125,7 @@ function AddDepartment(props) {
       >
         {" "}
         <BsPlusLg />
-        &nbsp;Add Department
+        &nbsp;Add Business Unit
       </Button>
       <Modal
         size="md"
@@ -136,7 +136,7 @@ function AddDepartment(props) {
         centered
       >
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
-          <Modal.Title style={{ backgroundColor: "#FF9E14", color : "white" }}>Add Department</Modal.Title>
+          <Modal.Title style={{ backgroundColor: "#FF9E14", color : "white" }}>Add Business Unit</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -150,11 +150,11 @@ function AddDepartment(props) {
           >
             <Row className="mb-3">
               <Form.Group className="mb-3">
-                <Form.Label>Department *</Form.Label>
+                <Form.Label>Business Unit *</Form.Label>
                 <Form.Control
                   required
                   type="text"
-                  placeholder="Department"
+                  placeholder="Business Unit"
                   controlId="department_name"
                   value={form.departmentName}
                   onChange={(e) => setField("departmentName", e.target.value)}
