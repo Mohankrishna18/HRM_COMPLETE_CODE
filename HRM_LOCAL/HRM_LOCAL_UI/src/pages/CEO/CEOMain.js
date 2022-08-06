@@ -1,6 +1,7 @@
 import React from 'react';
-import CEOApproval from "./CEOApproval";
+
 import { Row, Col, Card, Container } from 'react-bootstrap';
+import CEOApproval from './CEOApproval';
 
 function CEOMain() {
   return (
@@ -13,16 +14,44 @@ function CEOMain() {
            <Card.Subtitle className="mb-2 text-muted">
           CEO Approval
            </Card.Subtitle>{" "}
-           {/* <Container> */}
-             <Row>
-              <Col xs={12}>
-               <CEOApproval/>
-               </Col>
-
-             </Row>
-             <Row>
-              
-             </Row>
+           <Row>
+                <Col xs={12}>
+                  <Tabs
+                    defaultActiveKey="Onboarding Approvals"
+                    id="uncontrolled-tab-example"
+                    className="mb-3"
+                    style={{
+                      justifyContent: "center",
+                      color: "white",
+                      backgroundColor: "white",
+                      fontSize: "19px",
+                      padding: 0,
+                    }}
+                  >
+                    <Tab
+                      eventKey="Onboarding Approvals"
+                      title="Onboarding Approvals"
+                      style={{ backgroundColor: "white" }}
+                    >
+                      <CEOApproval />
+                    </Tab>
+                    <Tab
+                      eventKey="Leave Approvals"
+                      title="Leave Approvals"
+                      style={{ backgroundColor: "white" }}
+                    >
+                      {/* <HrEmployeesLeavesWaitingForApproval /> */}
+                    </Tab>
+                    <Tab
+                      eventKey="Timesheet Approvals"
+                      title="Timesheet Approvals"
+                      style={{ backgroundColor: "white" }}
+                    >
+                      {/* <TaskMain /> */}
+                    </Tab>
+                  </Tabs>
+                </Col>
+              </Row>
            {/* </Container> */}
          </Card.Body>
        </Card.Header>

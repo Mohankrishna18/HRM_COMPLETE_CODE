@@ -1657,4 +1657,25 @@ public class MainServiceImpl implements MainService {
 	            }
 		}
 		
+		@Override
+		public ResponseEntity updateReject(String onboardingStatus, HrApprovalStatus newOnboard) {
+			Response r=new Response();
+			 try {
+				 Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingStatus);
+					getOnboarding.setComments(newOnboard.getComments());
+					getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
+					Onboarding updateReject= onRepo.save(getOnboarding);
+					   r.setStatus(true);
+					   r.setMessage("Rejected Successfully");
+					   return new ResponseEntity(r,HttpStatus.OK);			   
+				}
+				catch (Exception e) {
+					// TODO: handle exception
+					
+					r.setStatus(false);
+					r.setMessage(e.getMessage());
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+		}
+		
 }
