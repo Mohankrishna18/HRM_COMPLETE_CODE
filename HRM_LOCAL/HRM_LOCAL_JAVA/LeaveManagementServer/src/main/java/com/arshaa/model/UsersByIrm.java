@@ -10,7 +10,7 @@ import javax.persistence.Column;
 
 
 
-public class UsersByReportingManager {
+public class UsersByIrm {
 
 
 

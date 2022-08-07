@@ -32,7 +32,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	List<User> findByemployeeId(String employeeId);
 
 	//changes done by chandrika
-	List<User> findUserByReportingManager(String reportingManager);
+	List<User> findUserByIrm(String irm);
 	void deleteByLeaveType(String leaveType);
 
 	User getByEmployeeleaveId(Integer employeeleaveId);
