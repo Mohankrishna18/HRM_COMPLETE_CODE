@@ -11,6 +11,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 import './custom.css';
+import {AutoCompleteComponent} from '@syncfusion/ej2-react-dropdowns';
+// import "./AddOnboard.css";
+
+
 
 function AddOnboard(props) {
   const [users, setUsers] = useState({});
@@ -219,58 +223,58 @@ function AddOnboard(props) {
     loadUsers();
   }, []);
 
-  //irm onchange and onclick calls
-  const onChangeHandler = (irm) => {
-    let matches = []
-    if (irm.length > 0) {
-      matches = users.filter(user => {
-        const regex = new RegExp(`${irm}`, "gi");
-        return user.firstName.match(regex)
-      })
-      console.log('matches', matches);
-      setSuggestions(matches);
-    }
-  }
-  const onSuggestHandler = (irm) => {
-    setField("irm",irm)
-    setSuggestions([])
-  }
+  // //irm onchange and onclick calls
+  // const onChangeHandler = (irm) => {
+  //   let matches = []
+  //   if (irm.length > 0) {
+  //     matches = users.filter(user => {
+  //       const regex = new RegExp(`${irm}`, "gi");
+  //       return user.firstName.match(regex)
+  //     })
+  //     console.log('matches', matches);
+  //     setSuggestions(matches);
+  //   }
+  // }
+  // const onSuggestHandler = (irm) => {
+  //   setField("irm",irm)
+  //   setSuggestions([])
+  // }
 
-  //srm onchange and onclick calls
-  const onChangeHandler1 = (srm) => {
-    let matches = []
-    if (srm.length > 0) {
-      matches = users.filter(user => {
-        const regex = new RegExp(`${srm}`, "gi");
-        return user.firstName.match(regex)
-      })
-      console.log('matches', matches);
-      setSuggestions1(matches);
-    }
-  }
-  const onSuggestHandler1 = (srm) => {
-    setField("srm", srm)
-    setSuggestions1([])
-  }
+  // //srm onchange and onclick calls
+  // const onChangeHandler1 = (srm) => {
+  //   let matches = []
+  //   if (srm.length > 0) {
+  //     matches = users.filter(user => {
+  //       const regex = new RegExp(`${srm}`, "gi");
+  //       return user.firstName.match(regex)
+  //     })
+  //     console.log('matches', matches);
+  //     setSuggestions1(matches);
+  //   }
+  // }
+  // const onSuggestHandler1 = (srm) => {
+  //   setField("srm", srm)
+  //   setSuggestions1([])
+  // }
 
-  //buh onchange and onclick calls
-  const onChangeHandler2 = (buh) => {
-    let matches = []
-    if (buh.length > 0) {
-      matches = users.filter(user => {
-        const regex = new RegExp(`${buh}`, "gi");
-        return user.firstName.match(regex)
-      })
-      console.log('matches', matches);
-      setSuggestions2(matches);
-    }
-  }
-  const onSuggestHandler2 = (buh) => {
-    console.log(buh)
-    setField("buh", buh)
-    // console.log(buh)
-    setSuggestions2([])
-  }
+  // //buh onchange and onclick calls
+  // const onChangeHandler2 = (buh) => {
+  //   let matches = []
+  //   if (buh.length > 0) {
+  //     matches = users.filter(user => {
+  //       const regex = new RegExp(`${buh}`, "gi");
+  //       return user.firstName.match(regex)
+  //     })
+  //     console.log('matches', matches);
+  //     setSuggestions2(matches);
+  //   }
+  // }
+  // const onSuggestHandler2 = (buh) => {
+  //   console.log(buh)
+  //   setField("buh", buh)
+  //   // console.log(buh)
+  //   setSuggestions2([])
+  // }
 
   return (
     <div>
@@ -701,84 +705,98 @@ function AddOnboard(props) {
                 </Form.Select>
               </Form.Group>
 
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Immediate Reporting Manager*</Form.Label>
-                <Form.Control
-                  required
-                  className="irm"
-                  type="text"
-                  controlId="irm"
-                  placeholder="Select Irm"
-                  onBlur={() => {
-                    setTimeout(() => {
-                      setSuggestions([])
-                    }, 100);
-                  }}
-                  onChange={e => onChangeHandler(e.target.value)}
+              {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select IRM*</Form.Label>
+                <AutoCompleteComponent
+                outlined
+                  dataSource={users}
+                  placeholder="select IRM"
+                  fields={{ value: "firstName" }}
                   value={form.irm}
-                  isInvalid={!!errors.irm}
-                />
-                {suggestions && suggestions.map((suggestion, i) =>
-                  <div key={i} className="suggestion justify-content-md-center"
-                    onClick={() => onSuggestHandler(suggestion.employeeId)}
-                  >{suggestion.firstName}</div>)}
-                <Form.Control.Feedback type="invalid">
-                  {errors.irm}
-                </Form.Control.Feedback>
+                  onChange={(e) => setField("irm", e.target.value)}
+                  // query={dataQuery}
+                ></AutoCompleteComponent>
               </Form.Group>
 
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Senior Reporting Manager*</Form.Label>
-                <Form.Control
-                  required
-                  className="srm"
-                  type="text"
-                  controlId="srm"
-                  placeholder="Select Srm"
-                  onBlur={() => {
-                    setTimeout(() => {
-                      setSuggestions1([])
-                    }, 100);
-                  }}
-                  onChange={e => onChangeHandler1(e.target.value)}
+                <Form.Label>Select SRM*</Form.Label>
+                <AutoCompleteComponent
+                outlined
+                  dataSource={users}
+                  placeholder="select SRM"
+                  fields={{ value: "firstName" }}
                   value={form.srm}
-                  isInvalid={!!errors.srm}
-                />
-                {suggestions1 && suggestions1.map((suggestion, i) =>
-                  <div key={i} className="suggestion justify-content-md-center"
-                    onClick={() => onSuggestHandler1(suggestion.employeeId)}
-                  >{suggestion.firstName}</div>)}
-                <Form.Control.Feedback type="invalid">
-                  {errors.srm}
-                </Form.Control.Feedback>
+                  onChange={(e) => setField("srm", e.target.value)}
+                  // query={dataQuery}
+                ></AutoCompleteComponent>
               </Form.Group>
 
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Business Unit Head*</Form.Label>
-                <Form.Control
-                  required
-                  className="buh"
-                  type="text"
-                  controlId="buh"
-                  placeholder="Select BUH"
-                  onBlur={() => {
-                    setTimeout(() => {
-                      setSuggestions2([])
-                    }, 100);
-                  }}
-                  onChange={e => onChangeHandler2(e.target.value)}
+                <Form.Label>Select BUH*</Form.Label>
+                <AutoCompleteComponent
+                outlined
+                 dataSource={users}
+                  placeholder="select IRM"
+                  fields={{ value: "firstName" }}
                   value={form.buh}
-                  isInvalid={!!errors.buh}
-                />
-                {suggestions2 && suggestions2.map((suggestion, i) =>
-                  <div key={i} className="suggestion justify-content-md-center"
-                    onClick={() => onSuggestHandler2(suggestion.employeeId)}
-                  >{suggestion.firstName}</div>)}
-                <Form.Control.Feedback type="invalid">
-                  {errors.buh}
-                </Form.Control.Feedback>
+                  onChange={(e) => setField("buh", e.target.value)}
+                  // query={dataQuery}
+                ></AutoCompleteComponent>
+              </Form.Group> */}
+
+             
+             
+             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select IRM *</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="irm"
+                  controlId="irm"
+                  value={form.irm}
+                  onChange={(e) => setField("irm", e.target.value)}
+                >
+                  <option>Select</option>
+                  {users.map((irms) => (
+                    <option value={irms.employeeId}>{irms.firstName}</option>
+                  ))}
+                </Form.Select>
               </Form.Group>
-            
+
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select SRM *</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="srm"
+                  controlId="srm"
+                  value={form.srm}
+                  onChange={(e) => setField("srm", e.target.value)}
+                >
+                  <option>Select</option>
+                  {users.map((srms) => (
+                    <option value={srms.employeeId}>{srms.firstName}</option>
+                  ))}
+                </Form.Select>
+              </Form.Group>
+
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select BUH *</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="buh"
+                  controlId="buh"
+                  value={form.buh}
+                  onChange={(e) => setField("buh", e.target.value)}
+                >
+                  <option>Select</option>
+                  {users.map((buhs) => (
+                    <option value={buhs.employeeId}>{buhs.firstName}</option>
+                  ))}
+                </Form.Select>
+              </Form.Group>
+
           </Row>
             </Form> 
                 <Button onClick={handleSubmit}>Submit</Button>
