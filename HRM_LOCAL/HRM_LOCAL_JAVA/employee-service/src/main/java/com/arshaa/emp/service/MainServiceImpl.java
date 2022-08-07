@@ -199,10 +199,9 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
-//				getOnboarding.setComments(newOnboard.getComments());
+				getOnboarding.setComments(newOnboard.getComments());
 				getOnboarding.setProjectName(newOnboard.getProjectName());
-//				getOnboarding.setSecondaryPhoneNumber(newOnboard.getSecondaryPhoneNumber());
-//				getOnboarding.setBand(newOnboard.getBand());
+				getOnboarding.setBand(newOnboard.getBand());
 				
 				Onboarding saveList = onRepo.save(getOnboarding);
 
@@ -225,7 +224,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setMiddleName(getOnboarding.getMiddleName());
 					employeeMaster.setLastName(getOnboarding.getLastName());
 					employeeMaster.setPrimaryPhoneNumber(getOnboarding.getPhoneNumber());
-					employeeMaster.setSecondaryPhoneNumber(getOnboarding.getSecondaryPhoneNumber());
+					employeeMaster.setSecondaryPhoneNumber(getOnboarding.getPhoneNumber());
 					employeeMaster.setDesignationName(getOnboarding.getDesignation());
 					employeeMaster.setDepartmentName(getOnboarding.getDepartment());
 					employeeMaster.setDateOfJoining(getOnboarding.getDateOfJoining());
@@ -1657,8 +1656,7 @@ public class MainServiceImpl implements MainService {
 	                return new ResponseEntity(r,HttpStatus.OK);
 	            }
 		}
-
-
+		
 		@Override
 		public ResponseEntity updateReject(String onboardingStatus, HrApprovalStatus newOnboard) {
 			Response r=new Response();
@@ -1679,6 +1677,5 @@ public class MainServiceImpl implements MainService {
 					return new ResponseEntity(r,HttpStatus.OK);
 				}
 		}
-
 		
 }

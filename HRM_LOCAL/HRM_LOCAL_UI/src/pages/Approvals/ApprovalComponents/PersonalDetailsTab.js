@@ -175,7 +175,7 @@ function PersonalDetailsTab(props) {
             <InputGroup>
               <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
               <Form.Control
-                value={props.viewOnboard.secondaryPhoneNumber}
+                value={secondaryPhoneNumber}
                 maxLength={10}
                 isInvalid={nineerrors}
                 type="number"
