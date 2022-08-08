@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Row, Col, Card, Container } from 'react-bootstrap';
+import { Row, Col, Card, Container,Tabs,Tab } from 'react-bootstrap';
 import CEOApproval from './CEOApproval';
 
 function CEOMain() {
