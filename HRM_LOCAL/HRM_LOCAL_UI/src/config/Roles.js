@@ -6,7 +6,7 @@ export default {
     taa:'taa',
     taahead:'taahead',
     buhead:'buhead',
-    pmohead:'pmohead',
+    pmo:'pmo',
     it:'it',
     manager:'manager',
     recruitmentmanager:'recruitmentmanager',

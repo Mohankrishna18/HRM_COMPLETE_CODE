@@ -74,7 +74,6 @@ import CEOMain from "../pages/CEO/CEOMain";
 import * as RiIcons from "react-icons/ri"
 import { Accordion } from "react-bootstrap";
 import ApprovesMain from "../pages/Approves/ApprovesMain";
-import RoleUnderEmployees from "../pages/RoleUnderEmployees/RoleUnderEmployeeComponents/RoleUnderEmployees";
 
 export default [
 
@@ -139,7 +138,7 @@ export default [
     icon: <FcConferenceCall />,
     title: "All Employees",
     type:"Employee",
-    permission: [Roles.pmohead, Roles.ceo],
+    permission: [Roles.pmohead, Roles.ceo, Roles.buhead,Roles.irm,Roles.srm],
   },
   {
     component: ClientMain,
@@ -156,16 +155,6 @@ export default [
     icon: <FcOvertime />,
     title: "Projects",
     permission: [Roles.pmohead],
-
-    permission: [Roles.pmo, Roles.ceo],
-  },
-  {
-    component: RoleUnderEmployees,
-    path: "/roleUnderEmployees",
-    icon: <FcConferenceCall />,
-    title: "All Employees",
-    type:"Employee",
-    permission: [Roles.buhead,Roles.irm,Roles.srm],
   },
   // {
   //   component: OfferApprovalMain,
@@ -209,14 +198,14 @@ export default [
     permission: [Roles.pmohead],
   },
  
-  {
-    component: HrLeavesToApproveMain,
-    type: "Leaves",
-    path: "/HrLeavesToApprove",
-    icon: <FcOvertime />,
-    title: "Leaves Waiting For Approval",
-    permission: [Roles.hrmanager],
-  },
+  // {
+  //   component: HrLeavesToApproveMain,
+  //   type: "Leaves",
+  //   path: "/HrLeavesToApprove",
+  //   icon: <FcOvertime />,
+  //   title: "Leaves Waiting For Approval",
+  //   permission: [Roles.hrmanager],
+  // },
 
   {
     component: IntegrateLeaveToApply,
@@ -296,7 +285,7 @@ export default [
     path: "/managerLeavesToApprove",
     icon: <FcManager />,
     title: "Leaves Waiting For Approval",
-    permission: [Roles.manager],
+    permission: [Roles.irm],
   },
   {
     component: RejectedEmployees,
@@ -315,7 +304,8 @@ export default [
     path: "/HrLeaveHistory",
     icon: <FcAnswers />,
     title: "Leave History ",
-    permission: [Roles.hrmanager,Roles.irm,Roles.srm],
+    // permission: [Roles.hrmanager,Roles.irm,Roles.srm],
+    permission: [Roles.irm,Roles.srm],
   },
   {
     component: LeaveHistoryMain,
@@ -442,4 +432,3 @@ export default [
 
   },
 ];
-

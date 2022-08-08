@@ -149,7 +149,7 @@ function OnboardedEmployeesTable() {
             style={{
               justifyContent: "center",
               color: "black",
-              backgroundColor: "#FAFDD0",
+              // backgroundColor: "#FAFDD0",
               fontSize: "16px",
               padding: 10,
             }}

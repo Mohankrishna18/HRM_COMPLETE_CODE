@@ -39,15 +39,15 @@ function EmploymentDetailsTab(props) {
                         </Form.Control>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Business Unit</Form.Label>
+                        <Form.Label>Department</Form.Label>
                         <Form.Control
                         
                             type="text"
                             placeholder="Department Name"
                             controlId="departmentName"
-                            value={props.viewOnboard.department}
+                            value={props.viewOnboard.departmentName}
                             maxLength={25}
-                            name="department"
+                            name="departmentName"
                            >
                     
                         </Form.Control>
@@ -59,9 +59,9 @@ function EmploymentDetailsTab(props) {
                             type="text"
                             placeholder="Designation Name"
                             controlId="designationName"
-                            value={props.viewOnboard.designation}
+                            value={props.viewOnboard.designationName}
                             maxLength={25}
-                            name="designation"
+                            name="designationName"
                             
                         >
                      

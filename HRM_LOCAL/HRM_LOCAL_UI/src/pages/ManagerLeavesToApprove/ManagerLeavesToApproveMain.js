@@ -7,7 +7,7 @@ import ManagerEmployeesLeavesWaitingForApproval from "./ManagerEmployeesLeavesWa
 const ManagerLeavesToApproveMain = () => {
   return (
      <div style={{ paddingTop: '20px' }}>
-    <Card className="example">
+    <Card className="scroll">
      <Card>
        <Card.Header>
          <Card.Body>

@@ -12,7 +12,7 @@ import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 import './custom.css';
 import {AutoCompleteComponent} from '@syncfusion/ej2-react-dropdowns';
-import "./AddOnboard.css";
+// import "./AddOnboard.css";
 
 
 
@@ -705,7 +705,7 @@ function AddOnboard(props) {
                 </Form.Select>
               </Form.Group>
 
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Select IRM*</Form.Label>
                 <AutoCompleteComponent
                 outlined
@@ -742,9 +742,17 @@ function AddOnboard(props) {
                   onChange={(e) => setField("buh", e.target.employeeId)}
                   // query={dataQuery}
                 ></AutoCompleteComponent>
-              </Form.Group>
+
+              </Form.Group>*/}
 {/* 
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+
+              </Form.Group> */}
+
+             
+             
+             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+
                 <Form.Label>Select IRM *</Form.Label>
                 <Form.Select
                   required
@@ -793,10 +801,8 @@ function AddOnboard(props) {
                     <option value={buhs.employeeId}>{buhs.firstName}</option>
                   ))}
                 </Form.Select>
-              </Form.Group> */}
+              </Form.Group>
 
-             
-            
           </Row>
             </Form> 
                 <Button onClick={handleSubmit}>Submit</Button>
