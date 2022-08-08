@@ -104,7 +104,7 @@ function OnboardedEmployeesTable() {
     },
     {
       title: "Status",
-      field: "status",
+      field: "percentage",
     },
   ]);
 
@@ -130,7 +130,7 @@ function OnboardedEmployeesTable() {
           </Button>
         </Modal.Footer> */}
       </Modal>
-      <Modal show={viewShow} onHide={viewHandleClose} size="lg">
+      <Modal show={viewShow} onHide={viewHandleClose} size="xl">
         <Modal.Header style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
@@ -149,7 +149,7 @@ function OnboardedEmployeesTable() {
             style={{
               justifyContent: "center",
               color: "black",
-              backgroundColor: "#FAFDD0",
+              // backgroundColor: "#FAFDD0",
               fontSize: "16px",
               padding: 10,
             }}

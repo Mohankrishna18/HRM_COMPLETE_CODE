@@ -67,7 +67,7 @@ function CEORejected(props) {
             ></Form.Control>
           </Form.Group>
           </Form>
-    <Button variant="primary" 
+    <Button variant="primary" style={{ marginTop: "5%", float: "right" }}
     onClick={RejectHandler}
     >
     Yes

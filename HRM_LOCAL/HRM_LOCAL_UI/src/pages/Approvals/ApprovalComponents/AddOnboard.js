@@ -5,14 +5,14 @@ import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import axios from "../../../Uri";
 import { Row, Col } from "react-bootstrap";
-import { BsPlusLg } from "react-icons/bs";
+import { BsDisplay, BsPlusLg } from "react-icons/bs";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 import './custom.css';
 import {AutoCompleteComponent} from '@syncfusion/ej2-react-dropdowns';
-import "./AddOnboard.css";
+// import "./AddOnboard.css";
 
 
 
@@ -705,7 +705,7 @@ function AddOnboard(props) {
                 </Form.Select>
               </Form.Group>
 
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Select IRM*</Form.Label>
                 <AutoCompleteComponent
                 outlined
@@ -736,15 +736,23 @@ function AddOnboard(props) {
                 <AutoCompleteComponent
                 outlined
                  dataSource={users}
-                  placeholder="select IRM"
-                  fields={{ value: "firstName" }}
+                  placeholder="select BUH"
+                  fields={{ value: "firstName", display:"employeeId" }}
                   value={form.buh}
-                  onChange={(e) => setField("buh", e.target.value)}
+                  onChange={(e) => setField("buh", e.target.employeeId)}
                   // query={dataQuery}
                 ></AutoCompleteComponent>
-              </Form.Group>
 
-              {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              </Form.Group>*/}
+{/* 
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+
+              </Form.Group> */}
+
+             
+             
+             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+
                 <Form.Label>Select IRM *</Form.Label>
                 <Form.Select
                   required
@@ -756,7 +764,7 @@ function AddOnboard(props) {
                 >
                   <option>Select</option>
                   {users.map((irms) => (
-                    <option>{irms.firstName}</option>
+                    <option value={irms.employeeId}>{irms.firstName}</option>
                   ))}
                 </Form.Select>
               </Form.Group>
@@ -773,7 +781,7 @@ function AddOnboard(props) {
                 >
                   <option>Select</option>
                   {users.map((srms) => (
-                    <option>{srms.firstName}</option>
+                    <option value={srms.employeeId}>{srms.firstName}</option>
                   ))}
                 </Form.Select>
               </Form.Group>
@@ -790,13 +798,11 @@ function AddOnboard(props) {
                 >
                   <option>Select</option>
                   {users.map((buhs) => (
-                    <option>{buhs.firstName}</option>
+                    <option value={buhs.employeeId}>{buhs.firstName}</option>
                   ))}
                 </Form.Select>
-              </Form.Group> */}
+              </Form.Group>
 
-             
-            
           </Row>
             </Form> 
                 <Button onClick={handleSubmit}>Submit</Button>

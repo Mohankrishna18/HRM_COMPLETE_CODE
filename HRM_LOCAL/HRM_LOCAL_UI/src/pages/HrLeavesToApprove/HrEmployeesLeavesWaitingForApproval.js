@@ -100,9 +100,9 @@ function HrEmployeesLeavesWaitingForApproval(props) {
                 <Modal.Header closeButton>
                     <Modal.Title>Are you sure you want to Reject</Modal.Title>
                 </Modal.Header>
-                <Modal.Footer>
+                <Modal.Body>
                     <HrEmployeeReject leaveID={leaveID} func={pull_dataReject} handleClose={handleCloseReject} />
-                </Modal.Footer>
+                </Modal.Body>
             </Modal>
 
             <Grid>

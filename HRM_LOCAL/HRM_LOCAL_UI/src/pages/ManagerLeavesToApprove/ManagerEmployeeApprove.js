@@ -13,7 +13,7 @@ function ManagerEmployeeApprove(props) {
         // const form1 = Object.assign(form, obj);
         let employeeleaveId = props.leaveID.employeeleaveId;
         console.log(props.leaveID);
-        const obj = { managerApproval: "Approved" };
+        const obj = { leaveStatus: "Approved" };
         axios.put(`/leave/managerupdateLeave/${employeeleaveId}`,obj)
         .then((res)=>{
             console.log(res)

@@ -39,10 +39,36 @@ public class User {
 	private String rejectReason;
 	@Column
 	private String managersRejectReason;
+	@Column
+	private String irm;
+	@Column
+	private String srm;
+	@Column
+	private String buh;
 	
+	public String getIrm() {
+		return irm;
+	}
 
+	public void setIrm(String irm) {
+		this.irm = irm;
+	}
 
+	public String getSrm() {
+		return srm;
+	}
 
+	public void setSrm(String srm) {
+		this.srm = srm;
+	}
+
+	public String getBuh() {
+		return buh;
+	}
+
+	public void setBuh(String buh) {
+		this.buh = buh;
+	}
 
 	public User(int employeeleaveId, String employeeId, String leaveType, Date fromDate, Date toDate, int numberOfDays,
 			String leaveReason, String updatedBy, Date updatedOn, String leaveStatus, String reportingManager,
