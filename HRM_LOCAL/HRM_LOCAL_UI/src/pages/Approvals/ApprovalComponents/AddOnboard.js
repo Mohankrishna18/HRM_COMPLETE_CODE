@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import axios from "../../../Uri";
 import { Row, Col } from "react-bootstrap";
-import { BsPlusLg } from "react-icons/bs";
+import { BsDisplay, BsPlusLg } from "react-icons/bs";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { InputGroup } from "react-bootstrap";
@@ -736,17 +736,23 @@ function AddOnboard(props) {
                 <AutoCompleteComponent
                 outlined
                  dataSource={users}
-                  placeholder="select IRM"
-                  fields={{ value: "firstName" }}
+                  placeholder="select BUH"
+                  fields={{ value: "firstName", display:"employeeId" }}
                   value={form.buh}
-                  onChange={(e) => setField("buh", e.target.value)}
+                  onChange={(e) => setField("buh", e.target.employeeId)}
                   // query={dataQuery}
                 ></AutoCompleteComponent>
+
+              </Form.Group>*/}
+{/* 
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+
               </Form.Group> */}
 
              
              
              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+
                 <Form.Label>Select IRM *</Form.Label>
                 <Form.Select
                   required

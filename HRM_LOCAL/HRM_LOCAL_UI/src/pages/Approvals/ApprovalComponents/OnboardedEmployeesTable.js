@@ -104,7 +104,7 @@ function OnboardedEmployeesTable() {
     },
     {
       title: "Status",
-      field: "status",
+      field: "percentage",
     },
   ]);
 
