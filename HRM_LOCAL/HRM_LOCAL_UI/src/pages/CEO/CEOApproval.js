@@ -98,7 +98,7 @@ console.log(data);
             <CEORejected onboardID={onboardID} func={pull_dataReject} handleClose={handleCloseReject} />
         </Modal.Footer>
     </Modal>
-    <Modal show={viewShow} onHide={viewHandleClose} size="lg">
+    <Modal show={viewShow} onHide={viewHandleClose} size="xl">
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>

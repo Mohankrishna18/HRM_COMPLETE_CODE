@@ -1345,8 +1345,8 @@ public class MainServiceImpl implements MainService {
 				
 				if(!getOnboarding.equals(null))
 				{
-					String state = "20%";
-					getOnboarding.setStatus(state);
+//					String state = "20%";
+//					getOnboarding.setStatus(state);
 					getOnboarding.setBloodGroup(pd.getBloodGroup());
 					getOnboarding.setDateOfBirth(pd.getDateOfBirth());
 					getOnboarding.setEmail(pd.getEmail());
@@ -1360,7 +1360,12 @@ public class MainServiceImpl implements MainService {
 					getOnboarding.setPrimarySkills(pd.getPrimarySkills());
 					getOnboarding.setSecondarySkills(pd.getSecondarySkills());
 					
-					onRepo.save(getOnboarding);
+					Onboarding ob= onRepo.save(getOnboarding);
+					double count = onRepo.findcountofnullvalues(onboardingId);
+//	                int percentage = );
+	                ob.setPercentage((int) ((count * 100) / 42));
+	                onRepo.save(ob);
+					
 					r.setStatus(true);
 					r.setMessage("Data Fetching");
 					r.setData(getOnboarding);
@@ -1387,8 +1392,8 @@ public class MainServiceImpl implements MainService {
 				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 				if(!getOnboarding.equals(null))
 				{
-					String state = "40%";
-					getOnboarding.setStatus(state);
+//					String state = "40%";
+//					getOnboarding.setStatus(state);
 					getOnboarding.setPermanentAdress(ad.getPermanentAdress());
 					getOnboarding.setPermanentCountry(ad.getPermanentCountry());
 					getOnboarding.setPermanentPincode(ad.getPermanentPincode());
@@ -1399,6 +1404,12 @@ public class MainServiceImpl implements MainService {
 					getOnboarding.setCurrentState(ad.getCurrentState());
 					
 					onRepo.save(getOnboarding);
+					Onboarding ob= onRepo.save(getOnboarding);
+					double count = onRepo.findcountofnullvalues(onboardingId);
+//	                double percentage = (count * 100) / 42;
+	                ob.setPercentage((int) ((count * 100) / 42));
+	                onRepo.save(ob);
+	                
 					r.setStatus(true);
 					r.setMessage("Data Fetching");
 					r.setData(getOnboarding);
@@ -1426,8 +1437,8 @@ public class MainServiceImpl implements MainService {
 				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 				if(!getOnboarding.equals(null))
 				{
-					String state = "60%";
-					getOnboarding.setStatus(state);
+//					String state = "60%";
+//					getOnboarding.setStatus(state);
 					getOnboarding.setPassportNo(add.getPassportNo());
 					getOnboarding.setPassportExpiryDate(add.getPassportExpiryDate());
 					getOnboarding.setPanNumber(add.getPanNumber());
@@ -1438,6 +1449,13 @@ public class MainServiceImpl implements MainService {
 					getOnboarding.setIfscCode(add.getIfscCode());
 					getOnboarding.setBranch(add.getBranch());
 					onRepo.save(getOnboarding);
+					
+					Onboarding ob= onRepo.save(getOnboarding);
+					double count = onRepo.findcountofnullvalues(onboardingId);
+//	                double percentage = (count * 100) / 42;
+					ob.setPercentage((int) ((count * 100) / 42));
+	                onRepo.save(ob);
+	                
 					r.setStatus(true);
 					r.setMessage("Data Fetching");
 					r.setData(getOnboarding);
@@ -1502,8 +1520,8 @@ public class MainServiceImpl implements MainService {
 			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 			if(!getOnboarding.equals(null))
 			{
-				String state = "80%";
-				getOnboarding.setStatus(state);
+//				String state = "80%";
+//				getOnboarding.setStatus(state);
 				getOnboarding.setPostgraduationType(education.getPostgraduationType());
 				getOnboarding.setPostgraduationBoardOfUniversity(education.getPostgraduationBoardOfUniversity());
 				getOnboarding.setPostgraduationInstituteName(education.getPostgraduationInstituteName());
@@ -1535,6 +1553,13 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setSscPassedYear(education.getSscPassedYear());
 				getOnboarding.setSscGrade(education.getSscGrade());
 				onRepo.save(getOnboarding);
+				
+				Onboarding ob= onRepo.save(getOnboarding);
+				double count = onRepo.findcountofnullvalues(onboardingId);
+//                double percentage = (count * 100) / 42;
+				ob.setPercentage((int) ((count * 100) / 42));
+                onRepo.save(ob);
+				
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
 				r.setData(getOnboarding);
@@ -1562,8 +1587,8 @@ public class MainServiceImpl implements MainService {
 				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 				if(!getOnboarding.equals(null))
 				{
-					String state = "100%";
-					getOnboarding.setStatus(state);
+//					String state = "100%";
+//					getOnboarding.setStatus(state);
 					getOnboarding.setPreviousCompany1_name(exp.getPreviousCompany1_name());
 					getOnboarding.setPreviousCompany1_designation(exp.getPreviousCompany1_designation());
 					getOnboarding.setPreviousCompany1_joiningDate(exp.getPreviousCompany1_joiningDate());
