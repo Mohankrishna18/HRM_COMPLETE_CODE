@@ -1387,6 +1387,16 @@ public class MainServiceImpl implements MainService {
 					r.setMessage("Data Not updated");
 					return new ResponseEntity(r,HttpStatus.OK);
 				}
+			
+		}		
+		catch (Exception e) {
+			r.setStatus(false);
+			r.setMessage("Something went wrong");
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+		
+
+}
 
 		
 		
@@ -1426,9 +1436,13 @@ public class MainServiceImpl implements MainService {
 					r.setMessage("Data Not updated");
 					return new ResponseEntity(r,HttpStatus.OK);
 				}
+			}		
+			catch (Exception e) {
+				r.setStatus(false);
+				r.setMessage("Something went wrong");
+				return new ResponseEntity(r, HttpStatus.OK);
 			}
-			catch(Exception e)
-			{
+			
 
 	}
 
@@ -1587,11 +1601,7 @@ public class MainServiceImpl implements MainService {
 				r.setMessage("Data Not updated");
 				return new ResponseEntity(r, HttpStatus.OK);
 			}
-		} catch (Exception e) {
-			r.setStatus(false);
-			r.setMessage("Something went wrong");
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
+		 
 	}
 
 	@Override
