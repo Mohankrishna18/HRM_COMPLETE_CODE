@@ -277,7 +277,7 @@ function OnboardedEmployeesTable() {
             components={{
               Action: (props) => (
                 <div>
-                  {props.data.status == "80%" || props.data.status == "100%"? (
+                  {props.data.percentage >= 80 ? (
                     <Stack direction="horizontal" gap={3}>
                       <Button
                         onClick={(event) => {
