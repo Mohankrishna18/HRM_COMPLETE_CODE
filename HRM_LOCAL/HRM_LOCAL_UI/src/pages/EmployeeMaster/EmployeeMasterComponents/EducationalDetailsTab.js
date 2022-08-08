@@ -180,7 +180,7 @@ function EducationalDetailsTab() {
             </Card>
                     <Accordion defaultActiveKey="1">
                         <Accordion.Item eventKey="0">
-                            <Accordion.Header>Post Graduation</Accordion.Header>
+                            <Accordion.Header >Post Graduation</Accordion.Header>
                             <Accordion.Body>
                                 <Row>
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>

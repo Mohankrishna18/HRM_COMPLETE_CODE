@@ -45,7 +45,7 @@ function EmploymentDetailsTab(props) {
                             type="text"
                             placeholder="Department Name"
                             controlId="departmentName"
-                            value={props.viewOnboard.departmentName}
+                            value={props.viewOnboard.department}
                             maxLength={25}
                             name="departmentName"
                            >
@@ -59,7 +59,7 @@ function EmploymentDetailsTab(props) {
                             type="text"
                             placeholder="Designation Name"
                             controlId="designationName"
-                            value={props.viewOnboard.designationName}
+                            value={props.viewOnboard.designation}
                             maxLength={25}
                             name="designationName"
                             
