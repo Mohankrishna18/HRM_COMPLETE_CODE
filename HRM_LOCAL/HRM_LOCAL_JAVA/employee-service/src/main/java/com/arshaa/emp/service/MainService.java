@@ -80,6 +80,10 @@ public interface MainService {
     public ResponseEntity getUsersNamesByBand();
 	public ResponseEntity getDetailsforPMOByonboardingStatus(String onboardingStatus);
 	public ResponseEntity updateReject(String onboardingId,HrApprovalStatus newOnboard);
+	public ResponseEntity getIrmByEmployeeId(String employeeId);
+
+	
+
     
     
 }
