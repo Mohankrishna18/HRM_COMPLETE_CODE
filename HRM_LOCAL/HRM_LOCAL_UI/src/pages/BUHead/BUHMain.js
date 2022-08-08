@@ -9,7 +9,7 @@ function BUHMain() {
     
     <div style={{ paddingTop: '20px' }}>
 
-    <Card className="example">
+    <Card className="scroll">
 
      <Card>
 

@@ -59,9 +59,9 @@ public class MainController {
 	ReportingManagerService eserv;
 	@Autowired
 	EmployeeProfileService epServ;
-	
 	@Autowired
-	RoleBasedEmployeesServiceImpl roleBasedServ;
+
+    RoleBasedEmployeesServiceImpl roleBasedServ;
 
 	@PostMapping("/createNewPotentialEmployee")
 	public ResponseEntity onBoardUser(@RequestBody Onboarding newOnboard) {
@@ -386,19 +386,22 @@ public class MainController {
 			return (count*100)/40;
 //			return count;
 		}
-
 		@PutMapping("/updateRejectStatus/{onboardingId}")
 		public ResponseEntity updateReject(@PathVariable String onboardingId,@RequestBody HrApprovalStatus newOnboard) {
 			return serv.updateReject(onboardingId, newOnboard);
 		}
-}
 
-		
-//		Get calls for employees under Roles
-		 
-			@GetMapping("/getRoleBasedEmployeesByEmployeeId/{employeeId}")
-			public ResponseEntity getRoleBasedEmployeesByEmployeeId( @PathVariable String employeeId) {
-				 return roleBasedServ.getRoleBasedEmployeesByEmployeeId(employeeId);
-			}
-}
+		@GetMapping("/getIrmByEmployeeId/{employeeId}")
+		public ResponseEntity getIrmByEmployeeId(@PathVariable String employeeId) {
 
+
+			return serv.getIrmByEmployeeId(employeeId);
+		}
+//      Get calls for employees under Roles
+        
+        @GetMapping("/getRoleBasedEmployeesByEmployeeId/{employeeId}")
+        public ResponseEntity getRoleBasedEmployeesByEmployeeId( @PathVariable String employeeId) {
+             return roleBasedServ.getRoleBasedEmployeesByEmployeeId(employeeId);
+        }
+
+}
