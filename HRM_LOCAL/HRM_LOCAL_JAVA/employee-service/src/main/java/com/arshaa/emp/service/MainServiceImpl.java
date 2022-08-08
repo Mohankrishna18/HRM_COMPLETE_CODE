@@ -200,7 +200,7 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
 //				getOnboarding.setIrm(newOnboard.getIrm());
 //				getOnboarding.setComments(newOnboard.getComments());
-				getOnboarding.setProjectName(newOnboard.getProjectName());
+//				getOnboarding.setProjectName(newOnboard.getProjectName());
 //				getOnboarding.setSecondaryPhoneNumber(newOnboard.getSecondaryPhoneNumber());
 //				getOnboarding.setBand(newOnboard.getBand());
 
@@ -1330,7 +1330,7 @@ public class MainServiceImpl implements MainService {
 					Onboarding ob= onRepo.save(getOnboarding);
 					double count = onRepo.findcountofnullvalues(onboardingId);
 //	                int percentage = );
-	                ob.setPercentage((int) ((count * 100) / 42));
+	                ob.setPercentage((int) ((count * 100) / 40));
 	                onRepo.save(ob);
 					
 					r.setStatus(true);
@@ -1374,7 +1374,7 @@ public class MainServiceImpl implements MainService {
 					Onboarding ob= onRepo.save(getOnboarding);
 					double count = onRepo.findcountofnullvalues(onboardingId);
 //	                double percentage = (count * 100) / 42;
-	                ob.setPercentage((int) ((count * 100) / 42));
+	                ob.setPercentage((int) ((count * 100) / 40));
 	                onRepo.save(ob);
 	                
 					r.setStatus(true);
@@ -1387,6 +1387,16 @@ public class MainServiceImpl implements MainService {
 					r.setMessage("Data Not updated");
 					return new ResponseEntity(r,HttpStatus.OK);
 				}
+			
+		}		
+		catch (Exception e) {
+			r.setStatus(false);
+			r.setMessage("Something went wrong");
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+		
+
+}
 
 		
 		
@@ -1413,7 +1423,7 @@ public class MainServiceImpl implements MainService {
 					Onboarding ob= onRepo.save(getOnboarding);
 					double count = onRepo.findcountofnullvalues(onboardingId);
 //	                double percentage = (count * 100) / 42;
-					ob.setPercentage((int) ((count * 100) / 42));
+					ob.setPercentage((int) ((count * 100) / 40));
 	                onRepo.save(ob);
 	                
 					r.setStatus(true);
@@ -1426,9 +1436,13 @@ public class MainServiceImpl implements MainService {
 					r.setMessage("Data Not updated");
 					return new ResponseEntity(r,HttpStatus.OK);
 				}
+			}		
+			catch (Exception e) {
+				r.setStatus(false);
+				r.setMessage("Something went wrong");
+				return new ResponseEntity(r, HttpStatus.OK);
 			}
-			catch(Exception e)
-			{
+			
 
 	}
 
@@ -1514,7 +1528,7 @@ public class MainServiceImpl implements MainService {
 				Onboarding ob= onRepo.save(getOnboarding);
 				double count = onRepo.findcountofnullvalues(onboardingId);
 //                double percentage = (count * 100) / 42;
-				ob.setPercentage((int) ((count * 100) / 42));
+				ob.setPercentage((int) ((count * 100) / 40));
                 onRepo.save(ob);
 				
 				r.setStatus(true);
@@ -1587,11 +1601,7 @@ public class MainServiceImpl implements MainService {
 				r.setMessage("Data Not updated");
 				return new ResponseEntity(r, HttpStatus.OK);
 			}
-		} catch (Exception e) {
-			r.setStatus(false);
-			r.setMessage("Something went wrong");
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
+		 
 	}
 
 	@Override

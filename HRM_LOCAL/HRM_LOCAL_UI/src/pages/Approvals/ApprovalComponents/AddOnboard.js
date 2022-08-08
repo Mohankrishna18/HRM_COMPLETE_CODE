@@ -12,7 +12,7 @@ import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 import './custom.css';
 import {AutoCompleteComponent} from '@syncfusion/ej2-react-dropdowns';
-// import "./AddOnboard.css";
+import "./AddOnboard.css";
 
 
 
@@ -499,11 +499,11 @@ function AddOnboard(props) {
                       </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                      <Form.Label>Department *</Form.Label>
+                      <Form.Label>Business Unit *</Form.Label>
                       <Form.Select
                         required
                         type="text"
-                        placeholder="Department"
+                        placeholder="Businees Unit"
                         controlId="department"
                         value={form.department}
                         onChange={(e) => {
@@ -705,7 +705,7 @@ function AddOnboard(props) {
                 </Form.Select>
               </Form.Group>
 
-              {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Select IRM*</Form.Label>
                 <AutoCompleteComponent
                 outlined
@@ -713,7 +713,7 @@ function AddOnboard(props) {
                   placeholder="select IRM"
                   fields={{ value: "firstName" }}
                   value={form.irm}
-                  onChange={(e) => setField("irm", e.target.value)}
+                  onChange={(e) => setField("irm", e.target.itemData.employeeId)}
                   // query={dataQuery}
                 ></AutoCompleteComponent>
               </Form.Group>
@@ -726,7 +726,7 @@ function AddOnboard(props) {
                   placeholder="select SRM"
                   fields={{ value: "firstName" }}
                   value={form.srm}
-                  onChange={(e) => setField("srm", e.target.value)}
+                  onChange={(e) => setField("srm", e.target.itemData.employeeId)}
                   // query={dataQuery}
                 ></AutoCompleteComponent>
               </Form.Group>
@@ -739,18 +739,18 @@ function AddOnboard(props) {
                   placeholder="select BUH"
                   fields={{ value: "firstName", display:"employeeId" }}
                   value={form.buh}
-                  onChange={(e) => setField("buh", e.target.employeeId)}
+                  onChange={(e) => setField("buh", e.target.itemData.employeeId)}
                   // query={dataQuery}
                 ></AutoCompleteComponent>
 
-              </Form.Group>*/}
+              </Form.Group>
 {/* 
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
 
               </Form.Group> */}
 
              
-             
+{/*              
              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
 
                 <Form.Label>Select IRM *</Form.Label>
@@ -801,7 +801,7 @@ function AddOnboard(props) {
                     <option value={buhs.employeeId}>{buhs.firstName}</option>
                   ))}
                 </Form.Select>
-              </Form.Group>
+              </Form.Group> */}
 
           </Row>
             </Form> 
