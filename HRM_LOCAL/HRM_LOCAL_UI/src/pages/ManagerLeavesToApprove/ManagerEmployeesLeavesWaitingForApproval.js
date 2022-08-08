@@ -52,7 +52,7 @@ function ManagerEmployeesLeavesWaitingForApproval(props) {
         // setData(res.data);
         // console.log(res.data);
         console.log(res.data);
-        const dat = res.data.filter((m) => m.managerApproval == 'pending')
+        const dat = res.data.filter((m) => m.leaveStatus == 'pending')
         console.log(dat)
         setData(dat);
     };
@@ -98,9 +98,9 @@ function ManagerEmployeesLeavesWaitingForApproval(props) {
                 <Modal.Header closeButton>
                     <Modal.Title>Are you sure you want to Reject</Modal.Title>
                 </Modal.Header>
-                <Modal.Footer>
+                <Modal.Body>
                     <ManagerEmployeeReject leaveID={leaveID} func={pull_dataReject} handleClose={handleCloseReject} />
-                </Modal.Footer>
+                </Modal.Body>
             </Modal>
 
             <Grid>

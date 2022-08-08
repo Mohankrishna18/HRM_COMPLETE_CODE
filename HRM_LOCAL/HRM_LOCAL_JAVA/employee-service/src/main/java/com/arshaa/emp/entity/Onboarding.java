@@ -93,13 +93,13 @@ public class Onboarding {
 	private String employmentType;
 	private String primarySkills;
 	private String secondarySkills;
-	private String status;
+	private int percentage;
 	
-	public String getStatus() {
-		return status;
+	public int getPercentage() {
+		return percentage;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPercentage(int percentage) {
+		this.percentage = percentage;
 	}
 	@Column
 	private String secondaryPhoneNumber;
@@ -215,7 +215,7 @@ public class Onboarding {
 	public void setBuh(String buh) {
 		this.buh = buh;
 	}
-	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
+	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,int percentage,
 			String jobTitle, String skillSet, String irm,String srm,String buh,String comments, String phoneNumber, String yearsOfExperience,
 			String employeeId, boolean approvedStatus,String onboardingStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
 			String department, String reportingManager, String projectName, String email, Date onboardDate,
@@ -360,6 +360,8 @@ public class Onboarding {
 		this.exitDate = exitDate;
 		this.band = band;
 		this.client = client;
+		this.percentage = percentage;
+		
 		
 	}
 	public String getSecondaryPhoneNumber() {

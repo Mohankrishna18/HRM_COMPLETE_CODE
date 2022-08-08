@@ -13,7 +13,7 @@ function TAAHeadApproved(props) {
         let onboardingId = props.onboardID.onboardingId;
         console.log(props.onboardID);
         const obj = { onboardingStatus: "TAAHeadApproved" };
-        axios.put(`http://localhost:6065/emp/updateApprovStatus/${onboardingId}`,obj)
+        axios.put(`/emp/updateApprovStatus/${onboardingId}`,obj)
         .then((res)=>{
             console.log(res)
             if(res.status == 200){
