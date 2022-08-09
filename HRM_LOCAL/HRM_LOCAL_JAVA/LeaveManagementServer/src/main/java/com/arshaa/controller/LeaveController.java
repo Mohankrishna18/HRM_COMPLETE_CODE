@@ -130,10 +130,12 @@ public class LeaveController {
 	}
 
 //Get api for get employees related to particular manager -->chandrika
-	@GetMapping("/getUserByReportingManager/{reportingManager}")
-	public ResponseEntity getUserByReportingManager(@PathVariable String reportingManager) {
-		return service.getUserByReportingManager(reportingManager);
+	@GetMapping("/getUserByReportingManager/{irm}")
+	public ResponseEntity getUserByIrm(@PathVariable String irm) {
+		return service.getUserByIrm(irm);
 	}
+	
+	
 
 //get approve count
 	@SuppressWarnings("rawtypes")

@@ -38,7 +38,7 @@ import DesignationMain from "../pages/Designation/DesignationMain";
 import LeaveToApply from "../pages/LeaveManagement/LeaveToApply";
 import LeaveToApprove from "../pages/LeaveManagement/LeaveToApprove";
 
-import Employee from "../pages/AllEmployees/AllEmployeesMain";
+
 
 import AdminAttendanceMain from "../pages/AdminAttendance/AdminAttendanceMain";
 import LeaveHistoryMain from "../pages/LeaveHistory/LeaveHistoryMain";
@@ -65,7 +65,7 @@ import HrLeavesToApproveMain from "../pages/HrLeavesToApprove/HrLeavesToApproveM
 import EmployeeTimeSheetMain from "../pages/TimeSheet/TimeSheetMain";
 
 import TAAHeadMain from "../pages/TAAHead/TAAHeadMain";
-// import BUHMain from "../pages/BUHead/BUHMain";
+import BUHMain from "../pages/BUHead/BUHMain";
 
 import PMOMain from "../pages/PMO/PMOMain";
 
@@ -74,13 +74,15 @@ import CEOMain from "../pages/CEO/CEOMain";
 import * as RiIcons from "react-icons/ri"
 import { Accordion } from "react-bootstrap";
 import ApprovesMain from "../pages/Approves/ApprovesMain";
+import EmployeeList from "../pages/AllEmployees/AllEmployeesComponents/EmployeeList";
+import Employee from "../pages/AllEmployees/AllEmployeesComponents/Employee";
 
 export default [
 
   {
     component: MyProfileMain,
     path: "/",
-    type:"myprofile",
+    type: "myprofile",
     icon: <FcBusinessman />,
     title: "My Profile",
     permission: [
@@ -100,14 +102,49 @@ export default [
     exact: true,
   },
 
+  // {
+  //   component: ApprovesMain,
+  //   path: "/approve",
+  //   icon: <FcApproval />,
+  //   title: "Approvals",
+  //   type:"approvals",
+  //   permission: [Roles.ceo, Roles.pmohead,Roles.buhead,Roles.irm,Roles.srm],
+  // },
+
+
   {
-    component: ApprovesMain,
-    path: "/approve",
+    component: TAAHeadMain,
+    type: "approvals",
+    path: "/TAAHead",
     icon: <FcApproval />,
     title: "Approvals",
-    type:"approvals",
-    permission: [Roles.ceo, Roles.pmohead,Roles.buhead,Roles.irm,Roles.srm],
+    permission: [Roles.taahead],
   },
+  {
+    component: BUHMain,
+    type: "approvals",
+    path: "/BUHead",
+    icon: <FcApproval />,
+    title: "Approvals",
+    permission: [Roles.buhead],
+  },
+  {
+    component: PMOMain,
+    type: "approvals",
+    path: "/PMO",
+    icon: <FcApproval />,
+    title: "Approvals",
+    permission: [Roles.pmohead],
+  },
+  {
+    component: CEOMain,
+    type: "approvals",
+    path: "/CEO",
+    icon: <FcApproval />,
+    title: "Approvals",
+    permission: [Roles.ceo]
+  },
+
 
   {
     component: EmployeeMaster,
@@ -129,33 +166,26 @@ export default [
       Roles.taahead,
       Roles.buhead,
     ],
-    
-     
+
+
+  },
+  {
+    component: EmployeeList,
+    path: "/allEmployees",
+    icon: <FcConferenceCall />,
+    title: "All Employees",
+    type: "Employee",
+    permission: [Roles.pmohead, Roles.ceo],
   },
   {
     component: Employee,
     path: "/allEmployees",
     icon: <FcConferenceCall />,
     title: "All Employees",
-    type:"Employee",
-    permission: [Roles.pmohead, Roles.ceo, Roles.buhead,Roles.irm,Roles.srm],
+    type: "Employee",
+    permission: [Roles.buhead, Roles.irm, Roles.srm],
   },
-  {
-    component: ClientMain,
-    path: "/ClientMain",
-    type:"configuration",
-    icon: <FcContacts />,
-    title: "Clients",
-    permission: [Roles.pmohead],
-  },
-  {
-    component: ProjectsMain,
-    path: "/ProjectsMain",
-    type:"configuration",
-    icon: <FcOvertime />,
-    title: "Projects",
-    permission: [Roles.pmohead],
-  },
+  
   // {
   //   component: OfferApprovalMain,
   //   path: "/offerApprovalMain",
@@ -164,6 +194,8 @@ export default [
   //   title: "Offer Approvals",
   //   permission: [Roles.hradmin,Roles.recruitmentmanager],
   // },
+
+
   {
     component: RejectedEmployeeMain,
     path: "/RejectedEmployeeMain",
@@ -172,11 +204,11 @@ export default [
     title: "Rejected Onboards",
     permission: [Roles.pmohead],
   },
-  
+
   {
     component: UserName,
     path: "/users",
-    type:"configuration",
+    type: "configuration",
     icon: <FcPodiumWithSpeaker />,
     title: "Users",
     permission: [Roles.pmohead],
@@ -184,28 +216,28 @@ export default [
   {
     component: ModuleMain,
     path: "/modules",
-    type:"configuration",
+    type: "configuration",
     icon: <FcTodoList />,
     title: "Modules",
     permission: [Roles.pmohead],
-  },  
+  },
   {
     component: RolesMain,
     path: "/roles",
-    type:"configuration",
+    type: "configuration",
     icon: <FcFlowChart />,
     title: "Roles",
     permission: [Roles.pmohead],
   },
- 
-  {
-    component: HrLeavesToApproveMain,
-    type: "Leaves",
-    path: "/HrLeavesToApprove",
-    icon: <FcOvertime />,
-    title: "Leaves Waiting For Approval",
-    permission: [Roles.hrmanager],
-  },
+
+  // {
+  //   component: HrLeavesToApproveMain,
+  //   type: "approvals",
+  //   path: "/HrLeavesToApprove",
+  //   icon: <FcApproval />,
+  //   title: "Approvals",
+  //   permission: [Roles.hrmanager],
+  // },
 
   {
     component: IntegrateLeaveToApply,
@@ -232,7 +264,7 @@ export default [
   {
     component: HolidayManagementMain,
     path: "/holidayManagenent",
-    type:"configuration",
+    type: "configuration",
     icon: <FcPlanner />,
     title: "Holiday Management",
     permission: [Roles.pmohead],
@@ -240,15 +272,15 @@ export default [
   {
     component: EmployeeTimeSheetMain,
     path: "/timeSheet",
-    type:"null",
+    type: "null",
     icon: <FcPlanner />,
     title: "Timesheet",
-    permission: [Roles.pmohead,Roles.buhead,Roles.irm,Roles.srm],
+    permission: [Roles.pmohead, Roles.buhead, Roles.irm, Roles.srm],
   },
   {
     component: DepartmentMain,
     path: "/departmentMain",
-    type:"configuration",
+    type: "configuration",
     icon: <FcDepartment />,
     title: "Departments",
     permission: [Roles.pmohead],
@@ -256,23 +288,23 @@ export default [
   {
     component: DesignationMain,
     path: "/designationMain",
-    type:"configuration",
+    type: "configuration",
     icon: <FcTimeline />,
     title: "Designations",
     permission: [Roles.pmohead],
   },
- 
+
   {
     component: TaggedEmployeesMain,
     path: "/employeeTagged",
-    type:"null",
+    type: "null",
     icon: <FcCustomerSupport />,
     title: "Reportee's List",
     permission: [Roles.manager],
   },
   {
     component: OnboardedEmployeesTable,
-    type:"null",
+    type: "null",
     path: "/Approvals",
     icon: <FcApprove />,
     title: "Onboardings",
@@ -281,11 +313,11 @@ export default [
 
   {
     component: ManagerLeavesToApproveMain,
-    type:"null",
+    type: "approvals",
     path: "/managerLeavesToApprove",
-    icon: <FcManager />,
-    title: "Leaves Waiting For Approval",
-    permission: [Roles.manager],
+    icon: <FcApproval />,
+    title: "Approvals",
+    permission: [Roles.irm],
   },
   {
     component: RejectedEmployees,
@@ -296,7 +328,7 @@ export default [
     permission: [Roles.hrmanager],
   },
 
-  
+
 
   {
     component: HrLeaveHistorymain,
@@ -304,7 +336,8 @@ export default [
     path: "/HrLeaveHistory",
     icon: <FcAnswers />,
     title: "Leave History ",
-    permission: [Roles.hrmanager,Roles.irm,Roles.srm],
+    // permission: [Roles.hrmanager,Roles.irm,Roles.srm],
+    permission: [Roles.irm, Roles.srm],
   },
   {
     component: LeaveHistoryMain,
@@ -324,7 +357,7 @@ export default [
   },
   {
     component: EmployeeMasterForms,
-    type:"null",
+    type: "null",
     path: "/editmyprofileroute",
 
     permission: [Roles.hrmanager, Roles.taa],
@@ -346,7 +379,7 @@ export default [
     component: EmploymentTypeMain,
 
     path: "/EmploymentType",
-    type:"configuration",
+    type: "configuration",
 
     icon: <FcFinePrint />,
 
@@ -361,7 +394,7 @@ export default [
     component: BandsMain,
 
     path: "/Bands",
-    type:"configuration",
+    type: "configuration",
 
     icon: <FcBookmark />,
 
@@ -369,66 +402,22 @@ export default [
 
     permission: [Roles.pmohead],
   },
-  {
-    component: TAAHeadMain,
-    
-      type:"null",
-  
-      path: "/TAAHead",
-  
-      icon: <FcManager />,
-  
-      title: "Approvals",
-  
-      permission: [Roles.taahead],
-  
-    
-  },
   // {
   //   component: BUHMain,
-    
+
   //     type:"null",
-  
+
   //     path: "/BUHead",
-  
+
   //     icon: <FcManager />,
-  
+
   //     title: "Approvals",
-  
+
   //     permission: [Roles.buhead],
-  
-    
+
+
   // },
-  {
 
-    component: PMOMain,
 
-    type:"null",
 
-    path: "/PMO",
-
-    icon: <FcManager />,
-
-    title: "Approvals",
-
-    permission: [Roles.pmohead],
-
-  },
-
-  {
-
-    component: CEOMain,
-
-    type:"null",
-
-    path: "/CEO",
-
-    icon: <FcManager />,
-
-    title: "Approvals",
-
-    permission: [Roles.ceo]
-
-  },
 ];
-
