@@ -74,12 +74,12 @@ const UpdateTask = (props) => {
     }
     if (!taskType || taskType === "")
       newErrors.taskType = "Please Enter Task name";
-    // if (!status || status === "")
-    //   newErrors.status = "Please Enter Status";
+    if (!status || status === "")
+      newErrors.status = "Please Enter Status";
     if (!fromDate || fromDate === "")
       newErrors.fromDate = "Please Enter Start date";
-    // if (!toDate || toDate === "")
-    //   newErrors.toDate = "Please Enter End date";
+    if (!toDate || toDate === "")
+      newErrors.toDate = "Please Enter End date";
     // if (!duration || duration === "")
     //   newErrors.duration = "Please Enter End time";
     // if (!description || description === "") {
@@ -281,12 +281,12 @@ console.log(task);
                   defaultValue={props.updateOnboard.toDate.split("T")[0]}
                   value={toDate.split("T")[0]}
                   onChange={(e) => setToDate(e.target.value)}
-                  // isInvalid={!!errors.toDate}
+                  isInvalid={!!errors.toDate}
                 />
 
-                {/* <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type="invalid">
                   {errors.toDate}
-                </Form.Control.Feedback> */}
+                </Form.Control.Feedback>
 
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="6">
@@ -378,7 +378,7 @@ console.log(task);
                   defaultValue={props.updateOnboard.status}
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
-                  // isInvalid={!!errors.status}
+                  isInvalid={!!errors.status}
 
                 >
                   {/* <option>Select status </option> */}
@@ -388,11 +388,14 @@ console.log(task);
                   <option>In progress</option>
 
                 </Form.Select>
+                
+                <Form.Control.Feedback type="invalid">
+                  {errors.status}
+                </Form.Control.Feedback>
+
                 </Form.Group>
 
-                {/* <Form.Control.Feedback type="invalid">
-                  {errors.status}
-                </Form.Control.Feedback> */}
+                
                 <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Priority *</Form.Label>
                 <Form.Select
@@ -403,7 +406,7 @@ console.log(task);
                   defaultValue={props.updateOnboard.priority}
                   value={priority}
                   onChange={(e) => setPriority(e.target.value)}
-                // isInvalid={!!errors.status}
+                isInvalid={!!errors.priority}
 
                 >
                   <option>Select priority</option>
@@ -413,6 +416,9 @@ console.log(task);
                   <option>P4</option>
 
                 </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.priority}
+                </Form.Control.Feedback>
               </Form.Group>
 
 

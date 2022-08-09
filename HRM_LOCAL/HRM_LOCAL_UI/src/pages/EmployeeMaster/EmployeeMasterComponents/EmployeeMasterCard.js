@@ -31,31 +31,12 @@ function EmployeeMasterCard() {
         textColor: "#262626",
     };
 
-    // function formatDate(fromDate){
-    //     var datePart = fromDate.match(/\d+/g),
-    //       year = datePart[0].substring(2), // get only two digits
-    //       month = datePart[1],
-    //       day = datePart[2];
-    //     return day + "-" + month + "-" + year;
-    //    }
+
 
     const userData = sessionStorage.getItem('userdata')
     //console.log(userData)
     const userData1 = JSON.parse(userData)
     const employeeid = userData1.data.employeeId
-
-
-    // function formatDate(dateOfJoining){
-    //     var datePart = employeedetails.dateOfJoining.match(/\d+/g),  
-    //       year = datePart[0].substring(4), // get only two digits
-    //       month = datePart[1],  
-    //       day = datePart[2];    
-    //     return day + "-" + month + "-" + year;  
-    //    }
-
-    // let date=employeedetails.dateOfJoining;
-    // console.log(date);
-    // let dateNew=`${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`
 
 
     const [employeedetails, setEmployeeDetails] = useState([])
@@ -111,7 +92,7 @@ function EmployeeMasterCard() {
                                 fontSize: 20,
                                 textAlign: "center",
                                 paddingTop: 10,
-                                paddingBottom: 20,
+                                paddingBottom: 0,
                                 text: "bold",
                             }}>
                                 {employeedetails.firstName} {employeedetails.lastName}
@@ -122,7 +103,7 @@ function EmployeeMasterCard() {
                         <Card.Body style={{}}>
                             <Row
                                 style={{
-                                    paddingTop: 20,
+                                    paddingTop: 0,
                                     paddingBottom: 10,
                                 }}
                             >
@@ -151,7 +132,7 @@ function EmployeeMasterCard() {
                             </Row><Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Title style={{}}>
-                                        <h6>Department:</h6>
+                                        <h6>Business Unit:</h6>
                                     </Card.Title>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
@@ -160,23 +141,10 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
-
                             <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Text style={{}}>
-                                        <h6>Project: </h6>
-                                    </Card.Text>
-                                </Col>{" "}
-                                <Col md={{ offset: 1 }}>
-                                    <Card.Text style={{color:"#999897"}}>
-                                        {employeedetails.projectName}
-                                    </Card.Text>
-                                </Col>
-                            </Row>
-                            <Row style={{ paddingBottom: 10 }}>
-                                <Col>
-                                    <Card.Text style={{}}>
-                                        <h6>Business Unit: </h6>
+                                        <h6>Business Unit Head: </h6>
                                     </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
@@ -186,6 +154,33 @@ function EmployeeMasterCard() {
                                 </Col>
 
                             </Row>
+                            <Row style={{ paddingBottom: 10 }}>
+                            <Col>
+                                <Card.Text style={{}}>
+                                    <h6>IRM: </h6>
+                                </Card.Text>
+                            </Col>{" "}
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{color:"#999897"}}>
+                                    {employeedetails.irm}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+
+
+                            
+                            <Row style={{ paddingBottom: 0 }}>
+                            <Col>
+                                <Card.Text style={{}}>
+                                    <h6>SRM: </h6>
+                                </Card.Text>
+                            </Col>{" "}
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{color:"#999897"}}>
+                                    {employeedetails.srm}
+                                </Card.Text>
+                            </Col>
+                        </Row>
                         </Card.Body>
                     </Col>
 
@@ -219,7 +214,7 @@ function EmployeeMasterCard() {
 
                     <Col>
                         <Row style={{
-                            paddingTop: 35,
+                            paddingTop: 15,
                             paddingBottom: 10,
                         }}>
                             <Col>
@@ -245,7 +240,7 @@ function EmployeeMasterCard() {
                                 </Card.Text>
                             </Col>
                         </Row>
-                        <Row style={{ paddingBottom: 10 }}>
+                        {/* <Row style={{ paddingBottom: 10 }}>
                             <Col>
                                 <Card.Text style={{}}>
                                     <h6>Reporting Manager: </h6>
@@ -256,7 +251,7 @@ function EmployeeMasterCard() {
                                     {employeedetails.reportingManager}
                                 </Card.Text>
                             </Col>
-                        </Row>
+                        </Row> */}
 
                         <Row style={{ paddingBottom: 10 }}>
                             <Col>
@@ -282,7 +277,20 @@ function EmployeeMasterCard() {
                                 </Card.Text>
                             </Col>
                         </Row>
-
+                        <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                    <Card.Text style={{}}>
+                                        <h6>Project: </h6>
+                                    </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                    <Card.Text style={{color:"#999897"}}>
+                                        {employeedetails.projectName}
+                                    </Card.Text>
+                                </Col>
+                            </Row>
+                            
+                        
 
                     </Col>
                 </Row>

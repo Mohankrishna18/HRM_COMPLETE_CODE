@@ -2,6 +2,7 @@ package com.arshaa.designation.service;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -25,6 +26,10 @@ public class DesignationServcie {
 	private RestTemplate template;
 
 	public ResponseEntity<Designationmaster> saveDesignationMaster(Designationmaster master) {
+		Optional<Designationmaster> designation = repository.findByDepartmentNameAndDesignationName(master.getDepartmentName(), master.getDesignationName());
+		if (designation.isPresent() ) {
+			return new ResponseEntity<Designationmaster>(master, HttpStatus.NOT_ACCEPTABLE);
+		}
 		String depUrl="http://departments/dept/getDepartmentIdByName/";
 		Date tupDate = new Date(master.getUpdatedOn().getTime());
 		master.setUpdatedOn(tupDate);

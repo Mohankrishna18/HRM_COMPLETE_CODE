@@ -1,115 +1,46 @@
+import React from 'react';
+import { Row, Col, Button } from 'react-bootstrap';
+import { BsWindowSidebar } from 'react-icons/bs';
+import { toast } from 'react-toastify';
+import axios from "../../../Uri";
 
-// import React, { useState } from "react";
-// import { Button, Form, Modal } from "react-bootstrap";
-// import { MdDelete } from "react-icons/md";
+const DeleteDesignation = (props) => {
+    console.log(props.deleteOnboard)
 
-// const DeleteDesignation = () => {
-//   const [deleteDesignation, setDeleteDesignation] = useState(false);
-
-//   const handleClose = () => setDeleteDesignation(false);
-//   const handleShow = () => setDeleteDesignation(true);
-
-//   return (
-//     <div>
-//       <Button className="rounded-pill" variant="white" onClick={handleShow}>
-//         {" "}
-//         <MdDelete />
-//         Delete
-//       </Button>
-//       <Modal show={deleteDesignation} onHide={handleClose} centered>
-//         <Modal.Header closeButton>
-//           <Modal.Title>Delete Designation</Modal.Title>
-//         </Modal.Header>
-//         <Modal.Body>
-//           <Form role="form">
-//             <Form.Group className="mb-3">
-//               <Form.Label>Are you sure want to delete?</Form.Label>
-//             </Form.Group>
-//             <Button
-//               variant="outline-warning"
-//               type="submit"
-//               style={{
-//                 borderRadius: "25px",
-//                 backgroundColor: "#ff9b44",
-//                 color: "#F4F8F6",
-//               }}
-//             >
-//               Delete
-//             </Button>
-//             <Button
-//               variant="outline-warning"
-//               type="submit"
-//               style={{
-//                 borderRadius: "25px",
-//                 backgroundColor: "#ff9b44",
-//                 color: "#F4F8F6",
-//               }}
-//             >
-//               Cancel
-//             </Button>
-//           </Form>
-//         </Modal.Body>
-//       </Modal>
-//     </div>
-//   );
-// };
-
-// export default DeleteDesignation;
-
-import React, { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
-import { MdDelete } from "react-icons/md";
-
-const DeleteDesignation = () => {
-  const [deleteDesignation, setDeleteDesignation] = useState(false);
-
-  const handleClose = () => setDeleteDesignation(false);
-  const handleShow = () => setDeleteDesignation(true);
-
-  return (
-    <div>
-      <Button className="rounded-pill" variant="white" onClick={handleShow}>
-        {" "}
-        <MdDelete />
-        Delete
-      </Button>
-      <Modal show={deleteDesignation} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Delete Designation</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form role="form">
-            <Form.Group className="mb-3">
-              <Form.Label>Are you sure want to delete?</Form.Label>
-            </Form.Group>
-            <Button
-              variant="outline-warning"
-              type="submit"
-              style={{
-                borderRadius: "25px",
-                backgroundColor: "#ff9b44",
-                color: "#F4F8F6",
-              }}
-            >
-              Delete
-            </Button>
-            <Button
-              variant="outline-warning"
-              type="submit"
-              style={{
-                borderRadius: "25px",
-                backgroundColor: "#ff9b44",
-                color: "#F4F8F6",
-              }}
-            >
-              Cancel
-            </Button>
-          </Form>
-        </Modal.Body>
-      </Modal>
-    </div>
-  );
-};
+    const deleteDesignations = async () => {
+        try {
+            const res = await axios.delete(`/designation/deleteDesignation/${props.deleteOnboard.designationId}`)
+            .then((deletedResponse)=>{
+                // const user = deletedResponse.data
+                // console.log(deletedResponse);
+                if (deletedResponse.data) {
+                    props.func();
+                    toast.success("Designation deleted successfully!!!");
+                  }
+                  else {
+                    console.log("Props not Send")
+                  }
+                  
+                  // console.log(user);
+            })
+        }
+        catch (error) {
+            console.log(error)
+        }
+        props.deleteHandleClose()
+    }
+    return (
+        <div>
+            <Row>
+                <Col>
+                    <Row><Col style={{ paddingLeft:"10px" }}> Are you sure that you want to delete {props.deleteOnboard.project}?</Col></Row>
+                    <Row>
+                        <Col><Button onClick={deleteDesignations}>Yes</Button></Col>
+                    </Row>
+                </Col>
+            </Row>
+        </div>
+    )
+}
 
 export default DeleteDesignation;
-

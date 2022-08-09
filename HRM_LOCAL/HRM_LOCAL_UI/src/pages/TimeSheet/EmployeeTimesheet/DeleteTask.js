@@ -16,7 +16,7 @@ const ApproveDelete = (props) => {
                 if (deletedResponse.data.status) {
                     props.func();
                     toast.success("Task deleted successfully!!!");
-                   
+                    // window.location.reload();
                   }
                   else {
                     console.log("Props not Send")

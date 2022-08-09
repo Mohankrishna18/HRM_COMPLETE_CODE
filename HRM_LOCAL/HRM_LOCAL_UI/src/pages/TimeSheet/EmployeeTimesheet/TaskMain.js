@@ -21,6 +21,8 @@ function TaskMain() {
   const handleClose = () => setShow(false);
   const deleteHandleClose = () => setDeleteUser(false);
 
+ 
+
 
   const handleShow = () => setShow(false);
   const viewHandleShow = () => setShow(false);
@@ -33,7 +35,7 @@ function TaskMain() {
   const [data, setData] = useState([]);
   // const [empdata, setEmpdata] = useState([]);
   const [addStatus, setAddStatus] = useState(false);
-  const [deleteStatus, setDeleteStatus] = useState(false);
+  const [deleteStatus, setDeleteStatus] = useState(true);
   const [updateStatus, setUpdateStatus] = useState(false);
   // const [status1, setStatus1] = useState(false);
   // const [viewStatus1, setViewStatus1] = useState(false);
@@ -44,7 +46,9 @@ function TaskMain() {
   };
 
   const pull_dataDelete = () => {
+    
     setDeleteStatus(!deleteStatus);
+    // console.log("Delete");
 
   };
 
@@ -62,15 +66,11 @@ function TaskMain() {
     const response = await axios.get("/task/getTasks");
     setData(response.data.data);
     console.log(response);
+    console.log("dataupdated");
   };
 
   const [columns, setColumns] = useState([
-    // {
-    //   title: "Timesheet Date",
-    //   field: "timesheet",
-    //   type: "date",
-    // }
-    // ,
+   
     {
       title: "Task Name",
       field: "taskName",
@@ -121,9 +121,9 @@ function TaskMain() {
   ]);
 
   return (
-    <div style={{ paddingTop: "20px" }}>
+    <Card style={{ paddingTop: "20px" }}>
 
-      <Modal show={show}  size="md"
+      <Modal show={show}  size="lg"
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
@@ -158,28 +158,27 @@ function TaskMain() {
       <div responsive >
 
         
-            <Container>
+            {/* <Container> */}
               <Row>
                 <Col >
-                  <Card.Title>Timesheet</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                    Timesheet Management / TImesheet{" "}
-                  </Card.Subtitle>
+                  
+                </Col>
+                <Col>
                 </Col>
 
                 <Col md={{ span: 4, offset: 4 }}><AddTask func={pull_dataAdd} /></Col>
               </Row>
-            </Container>
+            {/* </Container> */}
             {/* <Container>
               <Row>
                 <Col xs={12}>
 
                   <Grid style={{ borderBlockEndWidth: "2px" }}> */}
                     <MaterialTable
-                      title="Timesheet Details"
+                      title="Task Details"
                       columns={columns}
                       style={{ color: "black", fontSize: "1rem" }}
-                      data={data}
+                      data={data ? data : []}
                       editable={{
 
                       }}
@@ -197,11 +196,6 @@ function TaskMain() {
                       actions={[
                         {
                           icon: "button",
-
-                          // tooltip: "Save User",
-                          // onClick: (event, rowData) =>
-                          //   alert("You want to delete " + rowData.firstName),
-
                         },
                       ]}
                       components={{
@@ -242,7 +236,7 @@ function TaskMain() {
           
       </div>
       {/* <Example /> */}
-    </div>
+    </Card>
   );
 }
 export default TaskMain;

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { Modal } from "react-bootstrap";
@@ -39,11 +40,12 @@ function AddClient(props) {
   const validateForm = () => {
     const { clientName, startDate, endDate, status, country, address } = form;
 
-    console.log(clientName);
-    console.log(startDate);
-    console.log(endDate);
-    console.log(country);
-    console.log(address);
+
+    // console.log(clientName);
+    // console.log(startDate);
+    // console.log(endDate);
+    // console.log(country);
+    // console.log(address);
 
     const newErrors = {};
 

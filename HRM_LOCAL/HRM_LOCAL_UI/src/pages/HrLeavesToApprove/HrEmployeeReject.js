@@ -16,6 +16,15 @@ function HrEmployeeReject(props) {
         const obj = { leaveStatus: "Rejected",hrApproval:"Rejected" };
         axios.put(`/leave/updateLeave/${employeeleaveId}`,obj)
         .then((res)=>{
+            axios.delete(`/leave/deleteBetweenDates/${employeeleaveId}`)
+                .then((resp)=>{
+                        console.log(resp)
+                        if(resp.status == 200){
+                            props.func();
+             }
+             else{
+                console.log('props not send')
+            } })
             console.log(res)
             if(res.status == 200){
                 props.func();
@@ -40,7 +49,25 @@ function HrEmployeeReject(props) {
             </Col> */}
             <Row>
             <Col>
-            <Button variant="primary" 
+            <Form role="form">
+                <Form.Group md="12" style={{ padding: 0 }}>
+                    <Form.Label>Comment</Form.Label>
+                    <Form.Control
+                        required
+                        as="textarea"
+                        rows={2}
+                        className="rejectReason"
+                        type="text"
+                        controlId="rejectReason"
+                        placeholder="Reject Reason"
+                        value={form.rejectReason}
+                        onChange={(e) => setField("rejectReason", e.target.value)}
+                        isInvalid={!!errors.rejectReason}
+                    ></Form.Control>
+                </Form.Group>
+
+            </Form>
+            <Button variant="primary" style={{ marginTop: "5%", float: "right" }}
             onClick={RejectHandler}
             >
             Yes
