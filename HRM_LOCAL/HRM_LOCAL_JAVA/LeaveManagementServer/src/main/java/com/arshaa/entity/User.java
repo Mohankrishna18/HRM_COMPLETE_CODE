@@ -45,7 +45,18 @@ public class User {
 	private String srm;
 	@Column
 	private String buh;
+	@Column
+	private Date submittedDate;
 	
+
+	public Date getSubmittedDate() {
+		return submittedDate;
+	}
+
+	public void setSubmittedDate(Date submittedDate) {
+		this.submittedDate = submittedDate;
+	}
+
 	public String getIrm() {
 		return irm;
 	}
