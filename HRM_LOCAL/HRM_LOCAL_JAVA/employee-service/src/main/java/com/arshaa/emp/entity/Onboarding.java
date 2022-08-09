@@ -55,6 +55,17 @@ public class Onboarding {
 	private boolean rejectedStatus;
 	@Column
 	private boolean waitingforapprovalStatus;
+	@Column
+	private String onboardingStatus;
+	
+	
+	
+	public String getOnboardingStatus() {
+		return onboardingStatus;
+	}
+	public void setOnboardingStatus(String onboardingStatus) {
+		this.onboardingStatus = onboardingStatus;
+	}
 	private String department;
 	private String reportingManager;
 	private String projectName; 
@@ -82,13 +93,13 @@ public class Onboarding {
 	private String employmentType;
 	private String primarySkills;
 	private String secondarySkills;
-	private String status;
+	private int percentage;
 	
-	public String getStatus() {
-		return status;
+	public int getPercentage() {
+		return percentage;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPercentage(int percentage) {
+		this.percentage = percentage;
 	}
 	@Column
 	private String secondaryPhoneNumber;
@@ -180,9 +191,33 @@ public class Onboarding {
 	private String branch;
 	private String client;
 	
-	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
-			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
-			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
+    private String irm;
+    private String srm;
+    private String buh;
+    
+    
+	
+	public String getIrm() {
+		return irm;
+	}
+	public void setIrm(String irm) {
+		this.irm = irm;
+	}
+	public String getSrm() {
+		return srm;
+	}
+	public void setSrm(String srm) {
+		this.srm = srm;
+	}
+	public String getBuh() {
+		return buh;
+	}
+	public void setBuh(String buh) {
+		this.buh = buh;
+	}
+	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,int percentage,
+			String jobTitle, String skillSet, String irm,String srm,String buh,String comments, String phoneNumber, String yearsOfExperience,
+			String employeeId, boolean approvedStatus,String onboardingStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
 			String department, String reportingManager, String projectName, String email, Date onboardDate,
 			Date approvedDate, Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy,
 			String employmentType, String primarySkills, String secondarySkills, String secondaryPhoneNumber,
@@ -222,6 +257,9 @@ public class Onboarding {
 		this.jobTitle = jobTitle;
 		this.skillSet = skillSet;
 		this.comments = comments;
+		this.irm = irm;
+		this.srm = srm;
+		this.buh = buh;
 		this.phoneNumber = phoneNumber;
 		this.yearsOfExperience = yearsOfExperience;
 		this.employeeId = employeeId;
@@ -245,6 +283,7 @@ public class Onboarding {
 		this.dateOfBirth = dateOfBirth;
 		this.bloodGroup = bloodGroup;
 		this.gender = gender;
+		this.onboardingStatus = onboardingStatus;
 		this.maritalStatus = maritalStatus;
 		this.permanentAdress = permanentAdress;
 		this.permanentState = permanentState;
@@ -321,6 +360,8 @@ public class Onboarding {
 		this.exitDate = exitDate;
 		this.band = band;
 		this.client = client;
+		this.percentage = percentage;
+		
 		
 	}
 	public String getSecondaryPhoneNumber() {

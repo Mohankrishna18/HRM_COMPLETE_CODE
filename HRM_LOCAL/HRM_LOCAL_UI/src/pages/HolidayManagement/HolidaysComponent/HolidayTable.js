@@ -64,11 +64,11 @@ export default function HolidayTable() {
                         new Promise((resolve, reject) => {
                            
                           
-                            setTimeout(() => {
+                            setTimeout(async () => {
                                 console.log(newData)
                                 const newData1 = Object.assign(newData,obj)
                                 const notify = () => toast("Holiday  is Added");
-                                const res = axios.post("/holiday/addholiday",
+                                const res = await axios.post("/holiday/addholiday",
                                     newData1,
                                 );
                                 setData([...data, newData1]);

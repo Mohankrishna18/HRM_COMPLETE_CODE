@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+import countryListAllIsoData from "../../../commonComponents/Countries";
 
 function AddressTab() {
 
@@ -47,6 +48,7 @@ function AddressTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
+        try{
         await axios.put(`/emp/updateAddress/${employeeid}`, {
             permanentAdress,
             permanentState,
@@ -58,14 +60,17 @@ function AddressTab() {
             currentPincode,
         });
         toast.success("Form Submitted Successfully");
-
+    }
+    catch(error){
+        toast.error("Somethingwent Wrong");
+  }
     };
 
     return (
 
         <div>
             <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                <Card.Title style={{ margin:7, textAlign: "center" }}>
                     Permanent Address
                 </Card.Title>
             </Card>
@@ -125,7 +130,7 @@ function AddressTab() {
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Country *</Form.Label>
-                        <Form.Control
+                        <Form.Select
                             required
                             type="text"
                             placeholder="Country"
@@ -145,9 +150,12 @@ function AddressTab() {
                                 }
                             }}
                         >
-                            {/* <option>Select Country</option> */}
+                           <option>Select Country</option> 
+                  {countryListAllIsoData.map((m) => (
+                    <option >{m.name}</option>
+                  ))}
 
-                        </Form.Control>
+                        </Form.Select>
                         <Form.Control.Feedback type="invalid">
                             {thirteenerrors}
                         </Form.Control.Feedback>
@@ -186,7 +194,7 @@ function AddressTab() {
                         <Card
                             style={{ marginLeft: 10, marginRight: 0, marginTop: 20, backgroundColor: "#FAFDD0" }}
                         >
-                            <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                            <Card.Title style={{ margin: 7, textAlign: "center" }}>
                                 Current Address
                             </Card.Title>
                         </Card>
@@ -245,7 +253,7 @@ function AddressTab() {
                         </Form.Group>
                         <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                             <Form.Label>Country *</Form.Label>
-                            <Form.Control
+                            <Form.Select
                                 required
                                 type="text"
                                 placeholder="Country"
@@ -264,7 +272,15 @@ function AddressTab() {
                                     }
                                 }
                                 }
-                            ></Form.Control>
+                            >
+
+<option>Select Country</option> 
+                  {countryListAllIsoData.map((m) => (
+                    <option >{m.name}</option>
+                  ))}
+
+
+                            </Form.Select>
                             <Form.Control.Feedback type="invalid">
                                 {seventeenerror}
                             </Form.Control.Feedback>
@@ -309,6 +325,8 @@ function AddressTab() {
                 </Button>
             </Form>
         </div>
+
+
     )
 }
 export default AddressTab;

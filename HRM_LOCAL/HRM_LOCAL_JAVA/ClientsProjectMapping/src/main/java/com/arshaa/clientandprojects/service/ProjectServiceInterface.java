@@ -14,6 +14,6 @@ public interface ProjectServiceInterface {
 
 	public ResponseEntity updateProjectById(int projectId, Projects newProjectUpdate);
 
-	public ResponseEntity deleteProject(int projectId);
+	public ResponseEntity deleteProject(Integer projectId);
 	
 }

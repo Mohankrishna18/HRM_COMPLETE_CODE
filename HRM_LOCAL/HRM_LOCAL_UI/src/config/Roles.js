@@ -1,11 +1,15 @@
 //below are the roles of the employees that my application would be accessed by
 export default {
-    hradmin:'hradmin',
+    hrmanager:'hrmanager',
     employee:'employee',
     ceo:'ceo',
-    hr:'hr',
     taa:'taa',
+    taahead:'taahead',
+    buhead:'buhead',
+    pmohead:'pmohead',
     it:'it',
     manager:'manager',
     recruitmentmanager:'recruitmentmanager',
+    irm:'irm',
+    srm:'srm',
 };

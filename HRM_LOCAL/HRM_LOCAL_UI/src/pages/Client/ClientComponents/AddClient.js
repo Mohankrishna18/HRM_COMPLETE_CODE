@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { Modal } from "react-bootstrap";
@@ -11,8 +12,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
+
 function AddClient(props) {
- 
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -28,7 +29,7 @@ function AddClient(props) {
       ...form,
       [field]: value,
     });
-   
+
     if (!!errors[field])
       setErrors({
         ...errors,
@@ -37,49 +38,50 @@ function AddClient(props) {
   }
 
   const validateForm = () => {
-    const {
-      clientName,
-      startDate,
-      endDate,
-      status,
-      location,
-      address,
-     
-     
-    } = form;
+    const { clientName, startDate, endDate, status, country, address } = form;
 
-    console.log(clientName);
-    console.log(startDate);
-    console.log(endDate);
-   
+
+    // console.log(clientName);
+    // console.log(startDate);
+    // console.log(endDate);
+    // console.log(country);
+    // console.log(address);
+
     const newErrors = {};
 
     if (!clientName || clientName === "" || !clientName.match(/^[aA-zZ\s]+$/))
       newErrors.clientName = "Please Enter Client Name";
- 
+
     if (!startDate || startDate === "")
       newErrors.startDate = "Please Enter Start Date";
-      if (!endDate || endDate === "")
-      newErrors.endDate = "Please Enter End Date";
- 
-    if (!status || status === "")
-      newErrors.status = "Please Enter Status";
+    if (!endDate || endDate === "") newErrors.endDate = "Please Enter End Date";
 
-    if (!location || location === "")
-      newErrors.location = "Please Enter Location";
+    if (!status || status === "") newErrors.status = "Please Enter Status";
 
-    if (!address || address === "")
-      newErrors.address = "Please Enter Address";
+    if (!country || country === "") newErrors.country = "Please Enter Location";
 
- 
+    if (!address || address === "") newErrors.address = "Please Enter Address";
 
     return newErrors;
   };
+
+  const [countries, setCountries] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState({});
+
+  useEffect(() => {
+    const loadData = async () => {
+      const res = await axios.get("https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code");
+      setCountries(res.data.countries);
+      console.log(res.data);
+      };
+      loadData();
+  }, []);
+
   //testing for commit
   const [user, setUser] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+
     // e.target.reset();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
@@ -92,11 +94,9 @@ function AddClient(props) {
         .then((response) => {
           const user = response.data;
           console.log(user);
-          if(user.status){
+          if (user.status) {
             props.func();
-         
-          }
-          else{
+          } else {
             console.log("Props Not Send");
           }
           toast.success("Client Added Successfully");
@@ -111,13 +111,9 @@ function AddClient(props) {
     }
   };
   // console.log(form.startDate)
- 
-
 
   return (
     <div>
-   
-
       <Button
         variant="warning"
         onClick={handleShow}
@@ -132,7 +128,7 @@ function AddClient(props) {
       >
         {" "}
         <BsPlusLg />
-        Add New Client
+        Add Client
       </Button>
       <Modal
         size="lg"
@@ -142,7 +138,7 @@ function AddClient(props) {
         keyboard={false}
       >
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Client Form</Modal.Title>
+          <Modal.Title>Add Client</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -173,7 +169,27 @@ function AddClient(props) {
                   {errors.clientName}
                 </Form.Control.Feedback>
               </Form.Group>
-             
+
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Status *</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="Status"
+                  controlId="status"
+                  value={form.status}
+                  onChange={(e) => setField("status", e.target.value)}
+                  isInvalid={!!errors.status}
+                >
+                  <option> Select Status</option>
+                  <option value="Active">Active</option>
+                  <option value="InActive">InActive</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.status}
+                </Form.Control.Feedback>
+              </Form.Group>
+
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Start Date *</Form.Label>
                 <Form.Control
@@ -198,6 +214,7 @@ function AddClient(props) {
                   placeholder="End Date"
                   controlId="endDate"
                   value={form.endDate}
+                  min={form.startDate}
                   onChange={(e) => setField("endDate", e.target.value)}
                   isInvalid={!!errors.endDate}
                 ></Form.Control>
@@ -207,47 +224,54 @@ function AddClient(props) {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
-
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Status *</Form.Label>
+              {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Country *</Form.Label>
                 <Form.Control
                   required
                   type="text"
-                  placeholder="Status"
-                  controlId="status"
-                  value={form.status}
-                  onChange={(e) => setField("status", e.target.value)}
-                  isInvalid={!!errors.status}
+                  placeholder="Country"
+                  controlId="country"
+                  value={form.country}
+                  onChange={(e) => setField("country", e.target.value)}
+                  isInvalid={!!errors.country}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
-                  {errors.status}
+                  {errors.country}
                 </Form.Control.Feedback>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
+              </Form.Group> */}
+              
 
-             
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Location *</Form.Label>
-                <Form.Control
+
+  <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Country *</Form.Label>
+                <Form.Select
                   required
+                  className="countries"
                   type="text"
-                  placeholder="Location"
-                  controlId="location"
-                  value={form.location}
-                  onChange={(e) => setField("location", e.target.value)}
-                  isInvalid={!!errors.location}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.location}
-                </Form.Control.Feedback>
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
+                  controlId="countries"
+                  placeholder="Select Country"
+                  // onChange={(event) => setclientName(event.target.value)}
+                  value={form.country}
+                  maxLength={30}
+                  onChange={(e) => setField("country", e.target.value)}
+                  isInvalid={!!errors.country}
+                ><option>Select Country</option>
 
-             
+                {countries.map((country)=>(
+
+                   <option value={country.label}>{country.label}</option>
+
+                ))}</Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.country}
+                </Form.Control.Feedback>
+              </Form.Group>
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Address *</Form.Label>
                 <Form.Control
                   required
+                  as="textarea"
                   className="address"
                   type="text"
                   controlId="address"
@@ -262,9 +286,8 @@ function AddClient(props) {
                   {errors.address}
                 </Form.Control.Feedback>
               </Form.Group>
-
-           
-                                   </Row>
+              
+            </Row>
             <Row>
               <Col>
                 <Button

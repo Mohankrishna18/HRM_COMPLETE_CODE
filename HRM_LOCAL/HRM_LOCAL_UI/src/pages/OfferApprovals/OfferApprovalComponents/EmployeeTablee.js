@@ -1,125 +1,199 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../../Uri";
+import { Button, Modal, Stack } from "react-bootstrap";
+import MaterialTable from "material-table";
+import Card from "react-bootstrap/Card";
+import Grid from "@mui/material/Grid";
+import { FcApproval } from "react-icons/fc";
+import { FcCancel } from "react-icons/fc";
 import Approve from "./Approve";
 import Reject from "./Reject";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 
 const EmployeeTablee = () => {
-  const [users, setUsers] = useState([]);
-  const [status, setStatus] = useState(false);
-  const [viewStatus, setViewStatus] = useState(false);
+  
+  const [show, setShow] = useState(false);
+  const [rejectShow, setRejectShow] = useState(false);
 
-  const pull_data = () => {
-    setStatus(true);
-    setViewStatus(true);
+  const handleClose = () => setShow(false);
+  const rejectHandleClose = () => setRejectShow(false);
+
+  const [updateOnboard, setUpdateOnboard] = useState({});
+  const [reject, setReject] = useState({});
+
+  const [data, setData] = useState([]);
+  const [addStatus, setAddStatus] = useState(false);
+  const [updateStatus, setUpdateStatus] = useState(false);
+  const [rejectStatus, setRejectStatus] = useState(false);
+
+  const pull_reject = () => {
+    setRejectStatus(!rejectStatus);
+  };
+
+  const pull_dataUpdate = () => {
+    setUpdateStatus(!updateStatus);
   };
 
   useEffect(() => {
-    approvedData();
-  }, [status]); // console.log(users.reportingManager)
+    loadData();
+  }, [rejectStatus, updateStatus]);
 
-  const approvedData = async () => {
-  const approvedEmployeesResponse = await axios.get("/emp/waitingForApprovelStatus");
-    console.log(approvedEmployeesResponse.data);
-    setUsers(approvedEmployeesResponse.data.data);
-  }
+  const loadData = async (e) => {
+    const response = await axios.get("/emp/getApprovedOnboardedData");
+    setData(response.data.data);
+    console.log(response.data);
+  };
 
-  //Formate Date
-  function formatDate(date) {
-    var datePart = date.match(/\d+/g),
+  const [columns, setColumns] = useState([
+    {
+      title: "Onboarding Id",
+      field: "onboardingId",
+      editable: false,
+    },
+    {
+      title: "Full Name",
+      field: "firstName",
+      type: "text",
+    },
 
-      year = datePart[0], // get only two digits
+    {
+      title: "Email",
+      field: "email",
+    },
 
-      month = datePart[1],
-      day = datePart[2];
-    return day + "-" + month + "-" + year;
-  }
+    {
+      title: "Phone Number",
+      field: "phoneNumber",
+      type: "number",
+    },
+    {
+      title: "Date of Joining",
+      field: "dateOfJoining",
+      type: "date",
+    },
+
+    {
+      title: "Job Title",
+      field: "jobTitle",
+    },
+
+    {
+      title: "Experience",
+      field: "yearsOfExperience",
+    },
+    {
+      title: "Status",
+      field: "status",
+    },
+  ]);
 
   return (
-
     <div>
-      <TableContainer sx={{ maxWidth: 1800 }} component={Paper}>
-        <Table aria-label="customized table">
-          <TableHead>
-            <TableRow
-              sx={{
-                "& th": {
-                  fontSize: "1rem",
-                  color: "rgb(255, 255, 255)",
-                  backgroundColor: "#FF9E14"
-                }
-              }}
-            >
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+          <Modal.Title>Approve an Employee</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Approve
+            updateOnboard={updateOnboard}
+            func={pull_dataUpdate}
+            handleClose={handleClose}
+          />
+        </Modal.Body>
+      </Modal>
 
-              <TableCell scope="col">No</TableCell>
-              <TableCell scope="col" class="TableCell-lg">
-                Onboarding Id
-              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
-                Designation
-              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
-                Name
-              </TableCell>
-              {/* <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
-                  Last Name
-                </TableCell>  */}
-              <TableCell scope="col" class="" style={{ textAlign: 'center' }}>
-                Email
-              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
-                Phone Number
-              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
-                Job Title
-              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }} >
-                Years Of Experience
-              </TableCell> <TableCell scope="col" class="col-sm-2" style={{ textAlign: 'center' }}>
-                Date Of Joining
-              </TableCell> <TableCell scope="col" class="th-lg" style={{ textAlign: 'center' }}>
-                {" "}
-                Actions
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {/* {users.length == 0 ? (<h4 align="center"> Oops..! No Records Found</h4>) : ( */}
-              <>
-                {users && users.map((user, index) => (
-                  <TableRow>
-                    <TableCell scope="row">{index + 1}</TableCell>
-                    <TableCell
-                      style={{ textAlign: 'center' }}>{user.onboardingId}</TableCell>
-                    <TableCell style={{ textAlign: 'center' }}>{user.designation}</TableCell>
-                    <TableCell style={{ textAlign: 'center' }}>{user.firstName}</TableCell>
-                    {/* <TableCell style={{ textAlign: 'center' }}>{user.lastName}</TableCell> */}
-                    <TableCell style={{ textAlign: 'center' }}>{user.email}</TableCell>
-                    <TableCell style={{ textAlign: 'center' }}>{user.phoneNumber}</TableCell>
-                    <TableCell style={{ textAlign: 'center' }}>{user.jobTitle}</TableCell>
-                    <TableCell style={{ textAlign: 'center' }}>{user.yearsOfExperience}</TableCell>
-                    <TableCell style={{ textAlign: 'center' }}>{formatDate(user.dateOfJoining)}</TableCell>
-                    {console.log(user.comments)}
-                    <TableCell>
-                      <div class="hstack gap-3">
-                        <div>
-                          <Approve onboardingid={user.onboardingId} reportingManager={user.reportingManager} />
-                        </div> <div>
-                          <Reject onboardingid={user.onboardingId} comments={user.comments} />
-                        </div>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </>
-            {/* )} */}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Modal show={rejectShow} onHide={rejectHandleClose}>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+          <Modal.Title>Reject an Employee</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Reject
+            updateOnboard={reject}
+            func={pull_reject}
+            handleClose={rejectHandleClose}
+          />
+        </Modal.Body>
+        {/* <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer> */}
+      </Modal>
 
-    </div >
+      <Card
+        style={{
+          paddingTop: "20px",
+          paddingRight: "10px",
+          paddingLeft: "10px",
+          paddingBottom: "10px",
+        }}
+      >
+        <Grid style={{ borderBlockEndWidth: "2px" }}>
+          <MaterialTable
+            title="Onboarded Shortlisted Candidates"
+            columns={columns}
+            style={{ color: "black", fontSize: "1rem" }}
+            data={data}
+            editable={{}}
+            options={{
+              headerStyle: {
+                backgroundColor: "#FF9E14",
+                color: "white",
+                fontSize: "20px",
+              },
+              addRowPosition: "first",
+              actionsColumnIndex: -1,
+              // grouping: true,
+              exportButton: true,
+            }}
+            actions={[
+              {
+                icon: "button",
 
+                tooltip: "Save User",
+                onClick: (event, rowData) =>
+                  alert("You want to delete " + rowData.firstName),
+              },
+            ]}
+            components={{
+              Action: (props) => (
+                <div>
+                  <Stack direction="horizontal" gap={3}>
+                    <Button
+                      onClick={() => {
+                        setShow(true);
+                        console.log(props);
+                        setUpdateOnboard(props.data);
+                      }}
+                      variant="white "
+                      className="rounded-pill"
+                    >
+                      {" "}
+                      <FcApproval /> Approve
+                    </Button>{" "}
+                    <Button
+                      variant="white "
+                      className="rounded-pill"
+                      onClick={() => {
+                        setRejectShow(true);
+                        console.log(props);
+                        setReject(props.data);
+                      }}
+                    >
+                      {" "}
+                      <FcCancel /> Reject
+                    </Button>
+                  </Stack>
+                </div>
+              ),
+            }}
+          />
+        </Grid>
+      </Card>
+      {/* <Example /> */}
+    </div>
   );
 };
 export default EmployeeTablee;

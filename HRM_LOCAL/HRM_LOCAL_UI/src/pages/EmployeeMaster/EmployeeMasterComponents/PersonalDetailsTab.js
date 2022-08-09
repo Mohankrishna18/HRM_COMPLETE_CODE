@@ -53,7 +53,7 @@ function PersonalDetailsTab() {
     const [gender, setGender] = useState("");
     const [maritalStatus, setMaritalStatus] = useState("");
     const [dateOfJoining, setDateOfJoining] = useState("");
-
+    const [imge, setImge] = useState([]);
 
 
     useEffect(() => {
@@ -81,6 +81,7 @@ function PersonalDetailsTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
+        try{
         await axios.put(`/emp/updatePersonalDetails/${employeeid}`, {
             employeeId,
             firstName,
@@ -97,17 +98,99 @@ function PersonalDetailsTab() {
             maritalStatus
         });
         toast.success("Form Submitted Successfully");
+        const url = `/emp/upload/${employeeid}/`;
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("fileName", file.name);
+        const config = {
+            headers: {
+                "content-type": "multipart/form-data",
+            },
+        };
+        console.log(formData);
+        axios
+            .post(url, formData, config)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log("oops not uploaded!");
+            });
+            
+        }
+        catch (error) {
+            toast.error("Somethingwent Wrong");
+    }
 
+
+    const [file, setFile] = useState("");
+    const onSubmit = async (e) => {
+        // setData(" ");
+        // data.preventDefault();
+        //e.preventDefault()
+        // console.log(data)
+
+        // reset();
+        await axios.put(`/emp/updateEmployeeDataByEmployeeId/${employeeid}`, data);
+        console.log(data);
+        // notify();
+        toast.success("Form Submitted Successfully");
+        // refreshPage();
+        const url = `/emp/upload/${employeeid}/`;
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("fileName", file.name);
+        const config = {
+            headers: {
+                "content-type": "multipart/form-data",
+            },
+        };
+        console.log(formData);
+        axios
+            .post(url, formData, config)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log("oops not uploaded!");
+            });
     };
+
+    function handleChange(event) {
+        setFile(event.target.files[0]);
+        console.log(event.target.files[0]);
+    }
+    const current = new Date();
+    console.log(current)
+
+    const [imge, setImge] = useState([]);
+    useEffect(() => {
+        axios
+            .get(`/emp/files/${employeeid}`)
+            .then((response) => {
+                console.log(response.data);
+                setImge(response.data)
+            })
+            .catch((error) => {
+                console.log(error);
+
+                console.log("something wrong");
+            });
+    }, []);
+
+    console.log(imge);
+    }
+        
+    
 
     return (
 
         <div>
-            <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+            {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
                 <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Personal Details
                 </Card.Title>
-            </Card>
+            </Card> */}
 
             <Form
                 onSubmit={(e) => changeHandler(e)}
@@ -388,6 +471,21 @@ function PersonalDetailsTab() {
                             {eighterror}
                         </Form.Control.Feedback>
                     </Form.Group>
+                    <Form.Group style={{ padding: 10, paddingTop: 20 }}>
+                                             <Form.Label>
+                                                 Upload Profile Picture * (Size should be less than 1 MB)
+                                             </Form.Label>
+                                             <Form.Control
+                                               
+                                                value={imge.name}
+                                                type="file"
+                                                //isInvalid={}
+                                               // onChange={handleChange}
+                                            />
+                                            {/* <Form.Control.Feedback type="invalid">
+                                                {fourtysix}
+                                            </Form.Control.Feedback> */} 
+                                        </Form.Group>
 
 
                     <Row>

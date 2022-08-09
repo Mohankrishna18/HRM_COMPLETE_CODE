@@ -1,4 +1,3 @@
-
 package com.arshaa.emp.model;
 
 import javax.persistence.Column;
@@ -15,6 +14,48 @@ public class HrApprovalStatus {
 	private boolean rejectedStatus;
 	@Column
 	private boolean waitingforapprovalStatus;
+	
+	@Column
+	private String onboardingStatus;
+	
+	private String irm;
+	private String srm;
+	private String buh;
+	
+	
+
+	public String getIrm() {
+		return irm;
+	}
+
+	public void setIrm(String irm) {
+		this.irm = irm;
+	}
+
+	public String getSrm() {
+		return srm;
+	}
+
+	public void setSrm(String srm) {
+		this.srm = srm;
+	}
+
+	public String getBuh() {
+		return buh;
+	}
+
+	public void setBuh(String buh) {
+		this.buh = buh;
+	}
+
+	public String getOnboardingStatus() {
+		return onboardingStatus;
+	}
+
+	public void setOnboardingStatus(String onboardingStatus) {
+		this.onboardingStatus = onboardingStatus;
+	}
+
 	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
 	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date approvedDate = new java.util.Date(System.currentTimeMillis());
@@ -24,6 +65,20 @@ public class HrApprovalStatus {
 	
 	private String comments;
     private String reportingManager;
+	private String SecondaryPhoneNumber;
+	public HrApprovalStatus(String secondaryPhoneNumber) {
+		super();
+		SecondaryPhoneNumber = secondaryPhoneNumber;
+	}
+
+	public String getSecondaryPhoneNumber() {
+		return SecondaryPhoneNumber;
+	}
+
+	public void setSecondaryPhoneNumber(String secondaryPhoneNumber) {
+		SecondaryPhoneNumber = secondaryPhoneNumber;
+	}
+
 	public String getComments() {
 		return comments;
 	}

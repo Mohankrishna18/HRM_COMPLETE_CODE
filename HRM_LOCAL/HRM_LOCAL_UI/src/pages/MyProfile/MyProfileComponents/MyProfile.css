@@ -1,0 +1,7 @@
+.example {
+    
+    height: 830px;/*..very important if you want scroll bar...*/
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior:none;
+  }

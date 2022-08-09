@@ -73,7 +73,7 @@ function PersonalDetailsTab(props) {
 
   const changeHandler = async (e) => {
     e.preventDefault();
-    await axios.put(`/emp/updatePersonalDetails/${employeeid}`, {
+    await axios.put(`/emp/updatePersonalDetails/${employeeid}`, { 
       employeeId,
       firstName,
       lastName,
@@ -175,7 +175,7 @@ function PersonalDetailsTab(props) {
             <InputGroup>
               <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
               <Form.Control
-                value={secondaryPhoneNumber}
+                value={props.viewOnboard.secondaryPhoneNumber}
                 maxLength={10}
                 isInvalid={nineerrors}
                 type="number"

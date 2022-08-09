@@ -10,6 +10,8 @@ import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
 //import ApprovalUpdateForm from "./ApprovalUpdateForm";
 import AddProject from "./ProjectsComponents/AddProject";
 import ProjectsView from "./ProjectsComponents/ProjectsView";
+import ProjectUpdate from "./ProjectsComponents/ProjectUpdate";
+
 
 function ProjectsMain() {
   const [show, setShow] = useState(false);
@@ -77,8 +79,12 @@ function ProjectsMain() {
       dateSetting: { locale: "en-GB" },
     },
     {
-      title: "Location",
-      field: "location",
+      title: "Status",
+      field: "status",
+    },
+    {
+      title: "Description",
+      field: "description",
     },
     {
       title: "Rate",
@@ -98,15 +104,15 @@ function ProjectsMain() {
     <div>
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Onboarding Form</Modal.Title>
+          <Modal.Title>Edit Project</Modal.Title>
         </Modal.Header>
-        {/* <Modal.Body>
-          <ApprovalUpdateForm
+        <Modal.Body>
+          <ProjectUpdate
             updateOnboard={updateOnboard}
             func={pull_dataUpdate}
             handleClose={handleClose}
           />
-        </Modal.Body> */}
+        </Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -120,13 +126,13 @@ function ProjectsMain() {
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        {/* <Modal.Body>
           <ProjectsView
             viewOnboard={viewOnboard}
             // func={pull_data}
             viewHandleClose={viewHandleClose}
           />
-        </Modal.Body>
+        </Modal.Body> */}
         <Modal.Footer>
           <Button variant="secondary" onClick={viewHandleClose}>
             Close
@@ -221,7 +227,7 @@ function ProjectsMain() {
                     >
                       Delete
                     </Button> */}
-                    <Button
+                    {/* <Button
                       variant="primary"
                       onClick={(event) => {
                         setViewShow(true);
@@ -230,7 +236,7 @@ function ProjectsMain() {
                       }}
                     >
                       <BsFillEyeFill />
-                    </Button>
+                    </Button> */}
                   </Stack>
                 </div>
               ),
@@ -238,7 +244,6 @@ function ProjectsMain() {
           />
         </Grid>
       </Card>
-      {/* <Example /> */}
     </div>
   );
 }

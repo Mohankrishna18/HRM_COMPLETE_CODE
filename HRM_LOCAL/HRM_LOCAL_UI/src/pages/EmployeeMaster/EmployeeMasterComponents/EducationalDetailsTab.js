@@ -9,27 +9,7 @@ function EducationalDetailsTab() {
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
 
-    const [ferrors, setFErrors] = useState("");
-    const [serror, setSerror] = useState("");
-    const [thirderrors, setThirdErrors] = useState("");
-    const [fourerror, setFourerror] = useState("");
-    const [fiveerrors, setFiveErrors] = useState("");
-    const [sixerror, setSixerror] = useState("");
-    const [sevenerrors, setSevenErrors] = useState("");
-    const [eighterror, setEighterror] = useState("");
-    const [nineerrors, setNineErrors] = useState("");
-    const [tenerror, setTenerror] = useState("");
-    const [elevenerrors, setElevenErrors] = useState("");
-    const [tweleveerror, setTweleveerror] = useState("");
-    const [thirteenerrors, setThirteenErrors] = useState("");
-    const [fourteenerror, setFourteenerror] = useState("");
-    const [fifteenerrors, setFifteenErrors] = useState("");
-    const [sixteenerror, setSixteenerror] = useState("");
-    const [seventeenerror, setSeventeenerror] = useState("");
-    const [eighteenerror, setEighteenerror] = useState("");
-    const [nineteenerror, setNineteenerror] = useState("");
-    const [twentyerror, setTwentyerror] = useState("");
-    const [twentyoneerror, setTwentyoneerror] = useState("");
+
     const [twentytwoerror, setTwentytwoerror] = useState("");
     const [twentythreerror, setTwentythreerror] = useState("");
     const [twentyfourerror, setTwentyfourerror] = useState("");
@@ -60,32 +40,6 @@ function EducationalDetailsTab() {
     const [fourtynine, setFourtynine] = useState("");
 
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [middleName, setMiddleName] = useState(" ");
-    const [primaryPhoneNumber, setPrimaryPhoneNumber] = useState(" ");
-    const [secondaryPhoneNumber, setSecondaryPhone] = useState("");
-    const [yearsOfExperience, setYearsOfExperience] = useState(" ");
-    const [dateOfBirth, setDateOfBirth] = useState("");
-    const [passportExpiryDate, setPassportExpiryDate] = useState("");
-    const [passportNo, setPassportNo] = useState("");
-    const [employeeId, setEmployeeId] = useState("");
-    const [primarySkills, setPrimarySkills] = useState("");
-    const [secondarySkills, setSecondarySkills] = useState("");
-    const [email, setEmail] = useState("");
-    const [bloodGroup, setBloodGroup] = useState("");
-    const [gender, setGender] = useState("");
-    const [maritalStatus, setMaritalStatus] = useState("");
-    const [designationName, setDesignationName] = useState("");
-    const [dateOfJoining, setDateOfJoining] = useState("");
-    const [reportingManager, setReportingManager] = useState("");
-    const [permanentAdress, setPermanentAddress] = useState("");
-    const [permanentState, setPermanentState] = useState("");
-    const [permanentCountry, setPermanentCountry] = useState("");
-    const [permanentPincode, setPermanentPincode] = useState("");
-    const [currentAdress, setCurrentAddress] = useState("");
-    const [currentState, setCurrentState] = useState("");
-    const [currentCountry, setCurrentCountry] = useState("");
     const [currentPincode, setCurrentPincode] = useState("");
     const [postgraduationType, setTypeOfPostGraduation] = useState("");
     const [postgraduationBoardOfUniversity, setPostgraduationBoardOfUniversity] = useState("");
@@ -119,40 +73,10 @@ function EducationalDetailsTab() {
     const [sscJoiningYear, setSscJoiningYear] = useState("");
     const [sscPassedYear, setSscPassedYear] = useState("");
     const [sscGrade, setSscGrade] = useState("");
-    const [previousCompany1_name, setPreviousCompany1_name] = useState("");
-    const [previousCompany1_designation, setPreviousCompany1_designation] = useState("");
-    const [previousCompany1_joiningDate, setPreviousCompany1_joiningDate] = useState("");
-    const [previousCompany1_relievingDate, setPreviousCompany1_relievingDate] = useState("");
-    const [previousCompany1_employeeId, setPreviousCompany1_employeeId] = useState("");
-    const [previousCompany1_typeOfEmployment, setPreviousCompany1_typeOfEmployement] = useState("");
-    const [previousCompany1_reasonForRelieving, setPreviousCompany1_reasonForRelieving] = useState("");
-    const [previousCompany2_name, setPreviousCompany2_name] = useState("");
-    const [previousCompany2_designation, setPreviousCompany2_designation] = useState("");
-    const [previousCompany2_joiningDate, setPreviousCompany2_joiningDate] = useState("");
-    const [previousCompany2_relievingDate, setPreviousCompany2_relievingDate] = useState("");
-    const [previousCompany2_employeeId, setPreviousCompany2_employeeId] = useState("");
-    const [previousCompany2_typeOfEmployment, setPreviousCompany2_typeOfEmployement] = useState("");
-    const [previousCompany2_reasonForRelieving, setPreviousCompany2_reasonForRelieving] = useState("");
-    const [previousCompany3_name, setPreviousCompany3_name] = useState("");
-    const [previousCompany3_designation, setPreviousCompany3_designation] = useState("");
-    const [previousCompany3_joiningDate, setPreviousCompany3_joiningDate] = useState("");
-    const [previousCompany3_relievingDate, setPreviousCompany3_relievingDate] = useState("");
-    const [previousCompany3_employeeId, setPreviousCompany3_employeeId] = useState("");
-    const [previousCompany3_typeOfEmployment, setPreviousCompany3_typeOfEmployement] = useState("");
-    const [previousCompany3_reasonForRelieving, setPreviousCompany3_reasonForRelieving] = useState("");
-    const [employmentType, setEmploymentType] = useState("");
-    const [departmentName, setDepartmentName] = useState("");
-    const [projectName, setProjectName] = useState("");
-
-    const [panNumber, setPanNumber] = useState("");
-    const [aadharNumber, setAadharNumber] = useState("");
-    const [uanNumber, setUanNumber] = useState("");
-    const [bankName, setBankName] = useState("");
-    const [accountNumber, setAccountNumber] = useState("");
+   
     const [ifscCode, setIfscCode] = useState("");
     const [branch, setBranch] = useState("");
-    const [band, setBand] = useState("");
-    const [exitDate, setExitDate] = useState("");
+ 
 
 
     useEffect(() => {
@@ -194,6 +118,7 @@ function EducationalDetailsTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
+        try{
         await axios.put(`/emp/updateEducationalDetails/${employeeid}`, {
             postgraduationType,
             postgraduationBoardOfUniversity,
@@ -228,17 +153,20 @@ function EducationalDetailsTab() {
 
         });
         toast.success("Form Submitted Successfully");
-
+    }
+    catch(error){
+        toast.error("Somethingwent Wrong");
+  }
     };
 
     return (
 
         <div>
-            <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+            {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
                 <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Educational Details
                 </Card.Title>
-            </Card>
+            </Card> */}
 
             <Form
                 onSubmit={(e) => changeHandler(e)}
@@ -246,17 +174,17 @@ function EducationalDetailsTab() {
             >
                 <Row className="mb-5">
                 <Card style={{ marginLeft: 0, marginRight: 0, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                <Card.Title style={{ margin: 8, textAlign: "center" }}>
                     Postgraduation Details
                 </Card.Title>
             </Card>
                     <Accordion defaultActiveKey="1">
                         <Accordion.Item eventKey="0">
-                            <Accordion.Header>Post Graduation</Accordion.Header>
+                            <Accordion.Header >Post Graduation</Accordion.Header>
                             <Accordion.Body>
                                 <Row>
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                        <Form.Label>Type of Post Graduation *</Form.Label>
+                                        <Form.Label>Type of Post Graduation </Form.Label>
                                         <Form.Select
                                             required
                                             type="text"
@@ -398,7 +326,7 @@ function EducationalDetailsTab() {
                     <Card
                         style={{ marginLeft: 8, marginRight: 0, marginTop: 20, backgroundColor: "#FAFDD0" }}
                     >
-                        <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                        <Card.Title style={{ margin: 7, textAlign: "center" }}>
                             Graduation Details
                         </Card.Title>
                     </Card>
@@ -626,7 +554,7 @@ function EducationalDetailsTab() {
                     <Card
                         style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}
                     >
-                        <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                        <Card.Title style={{ margin: 7, textAlign: "center" }}>
                             12th Grade/Intermediate Details
                         </Card.Title>
                     </Card>
@@ -813,7 +741,7 @@ function EducationalDetailsTab() {
                     <Card
                         style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}
                     >
-                        <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                        <Card.Title style={{ margin: 7, textAlign: "center" }}>
                             10th Grade details
                         </Card.Title>
                     </Card>
