@@ -74,6 +74,7 @@ public class LeaveController {
 			//List<BetweenDatesRepo> betwee = (List<BetweenDatesRepo>) new BetweenDatesRepo();		
 		return service.save(user);
 	}
+	
 
 	@PutMapping("/updateLeave/{employeeleaveId}")
 	private User UpdateUsers(@RequestBody User user, @PathVariable Integer employeeleaveId) {
@@ -129,10 +130,12 @@ public class LeaveController {
 	}
 
 //Get api for get employees related to particular manager -->chandrika
-	@GetMapping("/getUserByReportingManager/{reportingManager}")
-	public ResponseEntity getUserByReportingManager(@PathVariable String reportingManager) {
-		return service.getUserByReportingManager(reportingManager);
+	@GetMapping("/getUserByReportingManager/{irm}")
+	public ResponseEntity getUserByIrm(@PathVariable String irm) {
+		return service.getUserByIrm(irm);
 	}
+	
+	
 
 //get approve count
 	@SuppressWarnings("rawtypes")
@@ -166,8 +169,16 @@ public class LeaveController {
     return ResponseEntity.ok(service.getDaysBetweenDates(new SimpleDateFormat("yyyy-MM-dd").parse(startDate), new SimpleDateFormat("yyyy-MM-dd").parse(endDate)));
     }
 	@GetMapping("/getAllbetweenDates/{employeeId}")
-	public List<BetweenDates> findAllbetweenDates() {
-		return br.findAll();
+	public List<BetweenDates> findAllbetweenDates(@PathVariable String employeeId) {
+		return br.findByEmployeeId(employeeId);
+	}
+	@DeleteMapping("/deleteBetweenDates/{employeeleaveId}")
+	public void  deleteByEmployeeleaveId(@PathVariable Integer employeeleaveId) {
+		try {
+			br.deleteDates(employeeleaveId);
+		}catch(Exception e) {
+	        System.out.println(e.getMessage());
+	        }
 	}
 
 }

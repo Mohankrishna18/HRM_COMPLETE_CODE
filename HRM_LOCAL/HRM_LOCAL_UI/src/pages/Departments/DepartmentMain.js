@@ -3,24 +3,24 @@ import { Col, Row, Card, Container } from "react-bootstrap";
 import Editable from "./DepartmentComponents/DepartmentWithMtable";
 import Department from "./DepartmentComponents/Department";
 import DepartmentModal from "./DepartmentComponents/DepartmentModal";
+import Departments from "./DepartmentComponents/Departments";
 // Testing purpose
 const DepartmentMain = () => {
   return (
-    <div style={{ paddingTop: "20px" }}>
+    <div style={{ paddingTop: "10px" }}>
       <Card responsive className="scroll">
         <Card.Header>
           <Card.Body>
-            <Card.Title> Departments</Card.Title>
+            {/* <Card.Title> Departments</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
               Dashboard/Departments
-            </Card.Subtitle>{" "}
-            <Container>
+            </Card.Subtitle>{" "} */}
               <Row>
                 <Col xs={12}>
-                  <Editable />
+                  {/* <Editable /> */}
+                  <Departments/>
                 </Col>
               </Row>
-            </Container>
           </Card.Body>
         </Card.Header>
       </Card>
@@ -29,3 +29,4 @@ const DepartmentMain = () => {
 };
 
 export default DepartmentMain;
+

@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 const ApprovalUpdateForm = (props) => {
   console.log(props.updateOnboard.onboardingId);
 
-  const obj = { onboardingStatus: true };
+  const obj = { onboardingStatus: "TAAApproved" };
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.put(`/emp/updateApprovStatus/${props.updateOnboard.onboardingId}`, obj);

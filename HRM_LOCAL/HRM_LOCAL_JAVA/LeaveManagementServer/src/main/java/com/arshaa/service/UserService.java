@@ -17,15 +17,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.client.RestTemplate;
-
 import com.arshaa.entity.BetweenDates;
 import com.arshaa.entity.EntitledLeaves;
 import com.arshaa.entity.User;
 import com.arshaa.model.AllEmployeesForHr;
 import com.arshaa.model.EmployeeName;
-import com.arshaa.model.GetReportingManager;
+import com.arshaa.model.GetIrm;
 import com.arshaa.model.StoreDatesList;
-import com.arshaa.model.UsersByReportingManager;
+import com.arshaa.model.UsersByIrm;
 import com.arshaa.repository.BetweenDatesRepo;
 import com.arshaa.repository.UserRepository;
 import com.arshaa.repository.leaveEntitlementRepository;
@@ -64,14 +63,14 @@ public List<BetweenDates> save(User user) {
 
 	{
 		List<BetweenDates>bdatesList=new ArrayList<>();
-		GetReportingManager al = template.getForObject(
-				"http://empService/emp/getReportingManagerByEmployeeId/" + user.getEmployeeId(),
-				GetReportingManager.class);
+		GetIrm al = template.getForObject(
+				"http://empService/emp/getIrmByEmployeeId/" + user.getEmployeeId(),
+				GetIrm.class);
 		
 		
-		user.setReportingManager(al.getReportingmanager());
+		user.setIrm(al.getIrm());
 		user.setLeaveStatus("pending");
-		user.setManagerApproval("pending");
+//		user.setManagerApproval("pending");
 		
 		 User savedUser= repository.save(user);
 		
@@ -80,6 +79,7 @@ public List<BetweenDates> save(User user) {
 		 u.forEach(e->{
 			 BetweenDates d = new BetweenDates();
 			 d.setEmployeeId(savedUser.getEmployeeId());
+			 d.setEmployeeleaveId(savedUser.getEmployeeleaveId());
 			 d.setAppliedDate(e.getBetWeenDates());
 			 BetweenDates bd= bro.save(d);
 			 bdatesList.add(bd);
@@ -187,9 +187,11 @@ public List<BetweenDates> save(User user) {
 			user.getEmployeeleaveId();
 			u.getToDate();
 			u.getLeaveReason();
-			user.getManagerApproval();
+//			user.getManagerApproval();
+			user.getLeaveStatus();
 			user.getNumberOfDays();
-			u.setManagerApproval(user.getManagerApproval());
+//			u.setManagerApproval(user.getManagerApproval());
+			u.setLeaveStatus(user.getLeaveStatus());
 //u.setLeaveReason(user.getLeaveReason()); 
       u.setRejectReason(user.getRejectReason());
 //      user.getManagersRejectReason();
@@ -208,7 +210,7 @@ public List<BetweenDates> save(User user) {
 	}
 
 // this logic will give employees related to particular manager-->Chandrika
-	public ResponseEntity getUserByReportingManager(String reportingManager) {
+	public ResponseEntity getUserByIrm(String irm) {
 //		try {
 //			List<User> u = repository.findUserByReportingManager(reportingManager);
 //			return new ResponseEntity(u, HttpStatus.OK);
@@ -216,12 +218,12 @@ public List<BetweenDates> save(User user) {
 //			return new ResponseEntity("Something went wrong", HttpStatus.OK);
 //		}
 		String url="http://empService/emp/getEmployeeNameByEmployeeId/";
-		List<UsersByReportingManager> getList=new ArrayList<>();
+		List<UsersByIrm> getList=new ArrayList<>();
 		try {
-			List<User> u = repository.findUserByReportingManager(reportingManager);
+			List<User> u = repository.findUserByIrm(irm);
 			User s=new User();
 			u.forEach(g->{
-				UsersByReportingManager usrm=new UsersByReportingManager();
+				UsersByIrm usrm=new UsersByIrm();
 				usrm.setEmployeeId(g.getEmployeeId());
 				usrm.setLeaveType(g.getLeaveType());
 				usrm.setFromDate(g.getFromDate());
@@ -231,7 +233,7 @@ public List<BetweenDates> save(User user) {
 				usrm.setManagerApproval(g.getManagerApproval());
 				usrm.setEmployeeleaveId(g.getEmployeeleaveId());
 				usrm.setLeaveStatus(g.getLeaveStatus());
-				EmployeeName al=template.getForObject("http://empService/emp/getEmployeeNameByEmployeeId/" + g.getEmployeeId(),EmployeeName.class);
+				EmployeeName al=template.getForObject(url + g.getEmployeeId(),EmployeeName.class);
                 usrm.setName(al.getEmployeeName());
                 getList.add(usrm);
 			});
@@ -322,6 +324,6 @@ public List<BetweenDates> save(User user) {
            return getBTDates;
        }
 	
+		
+	
 }
-
-

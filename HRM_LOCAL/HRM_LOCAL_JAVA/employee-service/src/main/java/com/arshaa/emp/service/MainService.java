@@ -60,7 +60,7 @@ public interface MainService {
     
     //Onboarding Update methods
     public ResponseEntity updatePersonalDetailsByOnboardId(PersonalDetails pd,String onboardingId);
-    
+  
    
     public ResponseEntity updateAddressByOnboardId(Address ad,String onboardingId);
    
@@ -76,6 +76,14 @@ public interface MainService {
     // user client project  management services methods
     public ResponseEntity getUserProjectDataByOnboardingId(String onboardingId);
     public ResponseEntity getUserProjectDataByEmployeeId(String employeeId);
+    
+    public ResponseEntity getUsersNamesByBand();
+	public ResponseEntity getDetailsforPMOByonboardingStatus(String onboardingStatus);
+	public ResponseEntity updateReject(String onboardingId,HrApprovalStatus newOnboard);
+	public ResponseEntity getIrmByEmployeeId(String employeeId);
+
+	
+
     
     
 }
