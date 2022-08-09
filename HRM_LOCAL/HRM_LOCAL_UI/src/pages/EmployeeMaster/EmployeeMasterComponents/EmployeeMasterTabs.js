@@ -19,7 +19,7 @@ function EmployeeMasterTabs() {
                         <Card.Body>
                             <Card.Title>Edit My Profile</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">
-                                Edit My Profile
+                                Employees / Edit My Profile
                             </Card.Subtitle>
                             <EmployeeMasterCard />
                             {/* <Card.Text style={{ marginTop: 20, color: "red" }}>
@@ -65,3 +65,4 @@ function EmployeeMasterTabs() {
     )
 }
 export default EmployeeMasterTabs;
+

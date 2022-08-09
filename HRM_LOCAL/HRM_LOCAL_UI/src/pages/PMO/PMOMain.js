@@ -1,6 +1,10 @@
 import React from 'react';
-import PMOApproval from "./PMOApproval";
-import { Row, Col, Card, Container } from 'react-bootstrap';
+
+import { Row, Col, Card, Container, Tabs, Tab } from 'react-bootstrap';
+import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
+import TaskMain from '../TimeSheet/EmployeeTimesheet/TaskMain';
+import PMOApproval from './PMOApproval';
+
 
 function PMOMain() {
   return (
@@ -13,16 +17,44 @@ function PMOMain() {
            <Card.Subtitle className="mb-2 text-muted">
           PMO Approval
            </Card.Subtitle>{" "}
-           {/* <Container> */}
-             <Row>
-              <Col xs={12}>
-               <PMOApproval/>
-               </Col>
-
-             </Row>
-             <Row>
-              
-             </Row>
+           <Row>
+                <Col xs={12}>
+                  <Tabs
+                    defaultActiveKey="Onboarding Approvals"
+                    id="uncontrolled-tab-example"
+                    className="mb-3"
+                    style={{
+                      justifyContent: "center",
+                      color: "white",
+                      backgroundColor: "white",
+                      fontSize: "19px",
+                      padding: 0,
+                    }}
+                  >
+                    <Tab
+                      eventKey="Onboarding Approvals"
+                      title="Onboarding Approvals"
+                      style={{ backgroundColor: "white" }}
+                    >
+                      <PMOApproval />
+                    </Tab>
+                    <Tab
+                      eventKey="Leave Approvals"
+                      title="Leave Approvals"
+                      style={{ backgroundColor: "white" }}
+                    >
+                      <HrEmployeesLeavesWaitingForApproval/>
+                    </Tab>
+                    <Tab
+                      eventKey="Timesheet Approvals"
+                      title="Timesheet Approvals"
+                      style={{ backgroundColor: "white" }}
+                    >
+                      <TaskMain />
+                    </Tab>
+                  </Tabs>
+                </Col>
+              </Row>
            {/* </Container> */}
          </Card.Body>
        </Card.Header>

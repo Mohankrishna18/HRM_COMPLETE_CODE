@@ -18,4 +18,11 @@ public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster,S
 		
 	@Query(nativeQuery=true,value = "SELECT * FROM employeemaster as e WHERE e.band IN (:names)")   // 3. Spring JPA In cause using native query
     List<EmployeeMaster> findByBand(@Param("names") List<String> names);
+
+	List<EmployeeMaster> getEmployeeMasterByEmployeeId(String employeeId);
+	List<EmployeeMaster> getEmployeeMasterBySrm(String employeeId);
+	List<EmployeeMaster> getEmployeeMasterByIrm(String employeeId);
+	List<EmployeeMaster> getEmployeeMasterByBuh(String employeeId);	
+
+
 }

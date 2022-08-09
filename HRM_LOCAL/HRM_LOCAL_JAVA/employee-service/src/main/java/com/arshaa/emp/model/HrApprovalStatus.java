@@ -1,4 +1,3 @@
-
 package com.arshaa.emp.model;
 
 import javax.persistence.Column;
@@ -19,7 +18,35 @@ public class HrApprovalStatus {
 	@Column
 	private String onboardingStatus;
 	
+	private String irm;
+	private String srm;
+	private String buh;
 	
+	
+
+	public String getIrm() {
+		return irm;
+	}
+
+	public void setIrm(String irm) {
+		this.irm = irm;
+	}
+
+	public String getSrm() {
+		return srm;
+	}
+
+	public void setSrm(String srm) {
+		this.srm = srm;
+	}
+
+	public String getBuh() {
+		return buh;
+	}
+
+	public void setBuh(String buh) {
+		this.buh = buh;
+	}
 
 	public String getOnboardingStatus() {
 		return onboardingStatus;
@@ -38,6 +65,20 @@ public class HrApprovalStatus {
 	
 	private String comments;
     private String reportingManager;
+	private String SecondaryPhoneNumber;
+	public HrApprovalStatus(String secondaryPhoneNumber) {
+		super();
+		SecondaryPhoneNumber = secondaryPhoneNumber;
+	}
+
+	public String getSecondaryPhoneNumber() {
+		return SecondaryPhoneNumber;
+	}
+
+	public void setSecondaryPhoneNumber(String secondaryPhoneNumber) {
+		SecondaryPhoneNumber = secondaryPhoneNumber;
+	}
+
 	public String getComments() {
 		return comments;
 	}
