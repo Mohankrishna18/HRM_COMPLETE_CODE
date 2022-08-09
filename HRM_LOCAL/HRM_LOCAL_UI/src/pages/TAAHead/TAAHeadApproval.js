@@ -20,6 +20,7 @@ import EducationalDetailsTab from "../../pages/Approvals/ApprovalComponents/Educ
 import ExperienceTab from "../../pages/Approvals/ApprovalComponents/ExperienceTab";
 
 import PersonalDetailsTab from "../../pages/Approvals/ApprovalComponents/PersonalDetailsTab";
+import EmploymentDetailsTab from "../Approvals/ApprovalComponents/EmploymentDetailsTab";
 
 function TAAHeadApproval() {
   const [data, setData] = useState([]);
@@ -103,29 +104,29 @@ function TAAHeadApproval() {
         <Modal.Header closeButton>
           <Modal.Title>Are you sure you want to Reject</Modal.Title>
         </Modal.Header>
-        <Modal.Footer>
+        <Modal.Body>
           <TAAHeadRejected
             onboardID={onboardID}
             func={pull_dataReject}
             handleClose={handleCloseReject}
           />
-        </Modal.Footer>
+        </Modal.Body>
       </Modal>
 
-      <Modal show={viewShow} onHide={viewHandleClose} size="lg">
-               {" "}
+      <Modal show={viewShow} onHide={viewHandleClose} size="xl">
+     
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-                    <Modal.Title>Onboarding Form</Modal.Title>       {" "}
+          <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
-               {" "}
+       
         <Modal.Body>
-                   {" "}
+         
           {/* <ApprovalView
             viewOnboard={viewOnboard}
             // func={pull_data}
             viewHandleClose={viewHandleClose}
           /> */}
-                   {" "}
+        
           <Tabs
             defaultActiveKey="Personal Details"
             transition={false}
@@ -135,50 +136,51 @@ function TAAHeadApproval() {
               justifyContent: "center",
               color: "white",
               backgroundColor: "white",
-              fontSize: "16px",
-              padding: 10,
+              fontSize: "px",
+              padding: 0,
             }}
           >
-                       {" "}
             <Tab
               eventKey="Personal Details"
               title="Personal Details"
               style={{ backgroundColor: "white" }}
             >
-                           {" "}
               <PersonalDetailsTab
                 viewOnboard={viewOnboard}
                 viewHandleClose={viewHandleClose}
               />
-                         {" "}
             </Tab>
-                       {" "}
             <Tab
               eventKey="Address"
               title="Address"
               style={{ backgroundColor: "white" }}
             >
-                           {" "}
               <AddressTab
                 viewOnboard={viewOnboard}
                 viewHandleClose={viewHandleClose}
               />
-                         {" "}
             </Tab>
-                       {" "}
+
             <Tab
               eventKey="Additional Details"
               title="Additional Details"
               style={{ backgroundColor: "white" }}
             >
-                           {" "}
               <AditionalDetailsTab
                 viewOnboard={viewOnboard}
                 viewHandleClose={viewHandleClose}
               />
-                         {" "}
             </Tab>
-                       {" "}
+            <Tab
+              eventKey="Employment Details"
+              title="Employment Details"
+              style={{ backgroundColor: "white" }}
+            >
+              <EmploymentDetailsTab 
+              viewOnboard={viewOnboard} 
+              viewHandleClose={viewHandleClose}/>
+            </Tab>
+
             {/* <Tab
               eventKey="Employment Details"
               title="Employment Details"
@@ -186,49 +188,39 @@ function TAAHeadApproval() {
             >
               <EmploymentDetailsTab viewOnboard={viewOnboard} viewHandleClose={viewHandleClose}/>
             </Tab> */}
-                       {" "}
             <Tab
               eventKey="Education"
               title="Education"
               style={{ backgroundColor: "white" }}
             >
-                           {" "}
+
               <EducationalDetailsTab
                 viewOnboard={viewOnboard}
                 viewHandleClose={viewHandleClose}
               />
-                         {" "}
             </Tab>
-                       {" "}
             <Tab
               eventKey="Experience"
               title="Experience "
               style={{ backgroundColor: "white" }}
             >
-                           {" "}
               <ExperienceTab
                 viewOnboard={viewOnboard}
                 viewHandleClose={viewHandleClose}
               />
-                         {" "}
             </Tab>
-                     {" "}
+
           </Tabs>
-                 {" "}
         </Modal.Body>
-               {" "}
         <Modal.Footer>
-                   {" "}
-          <Button variant="secondary" onClick={viewHandleClose}>
-                        Close          {" "}
-          </Button>
-                   {" "}
+ 
+          {/* <Button variant="secondary" onClick={viewHandleClose}>
+          Close 
+          </Button> */}
           {/* <Button variant="primary" onClick={handleClose}>
             Save Changes
           </Button> */}
-                 {" "}
         </Modal.Footer>
-             {" "}
       </Modal>
 
       <Grid>

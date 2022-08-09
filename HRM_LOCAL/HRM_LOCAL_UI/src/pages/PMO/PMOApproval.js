@@ -20,6 +20,7 @@ import EducationalDetailsTab from "../../pages/Approvals/ApprovalComponents/Educ
 import ExperienceTab from "../../pages/Approvals/ApprovalComponents/ExperienceTab";
 
 import PersonalDetailsTab from "../../pages/Approvals/ApprovalComponents/PersonalDetailsTab";
+import EmploymentDetailsTab from '../Approvals/ApprovalComponents/EmploymentDetailsTab';
 
 function PMOApproval(props) {
     const [data, setData] = useState([]);
@@ -61,7 +62,7 @@ function PMOApproval(props) {
 
     const da = JSON.parse(sessionStorage.getItem('userdata'))
     const empID = da.data.employeeId;
-    const onboardingStatus = "BUHApproved";
+    const onboardingStatus = "TAAHeadApproved";
 
 
     const loadData = async () => {
@@ -99,11 +100,11 @@ function PMOApproval(props) {
                 <Modal.Header closeButton>
                     <Modal.Title>Are you sure you want to Reject</Modal.Title>
                 </Modal.Header>
-                <Modal.Footer>
+                <Modal.Body>
                     <PMORejected onboardID={onboardID} func={pull_dataReject} handleClose={handleCloseReject} />
-                </Modal.Footer>
+                </Modal.Body>
             </Modal>
-            <Modal show={viewShow} onHide={viewHandleClose} size="lg">
+            <Modal show={viewShow} onHide={viewHandleClose} size="xl">
                 <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
                     <Modal.Title>Onboarding Form</Modal.Title>
                 </Modal.Header>
@@ -157,6 +158,15 @@ function PMOApproval(props) {
                                 viewHandleClose={viewHandleClose}
                             />
                         </Tab>
+                        <Tab
+                            eventKey="Employment Details"
+                            title="Employment Details"
+                            style={{ backgroundColor: "white" }}
+                        >
+                            <EmploymentDetailsTab
+                                viewOnboard={viewOnboard}
+                                viewHandleClose={viewHandleClose} />
+                        </Tab>
                         {/* <Tab
               eventKey="Employment Details"
               title="Employment Details"
@@ -187,9 +197,9 @@ function PMOApproval(props) {
                     </Tabs>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={viewHandleClose}>
+                    {/* <Button variant="secondary" onClick={viewHandleClose}>
                         Close
-                    </Button>
+                    </Button> */}
                     {/* <Button variant="primary" onClick={handleClose}>
             Save Changes
           </Button> */}

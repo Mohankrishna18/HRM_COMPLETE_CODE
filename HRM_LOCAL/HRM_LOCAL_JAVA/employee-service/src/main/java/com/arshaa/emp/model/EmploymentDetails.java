@@ -13,6 +13,27 @@ public class EmploymentDetails {
 	@Column
 	private String designationName;
 	private String reportingManager;
+	public String getIrm() {
+		return irm;
+	}
+	public void setIrm(String irm) {
+		this.irm = irm;
+	}
+	public String getSrm() {
+		return srm;
+	}
+	public void setSrm(String srm) {
+		this.srm = srm;
+	}
+	public String getBuh() {
+		return buh;
+	}
+	public void setBuh(String buh) {
+		this.buh = buh;
+	}
+	private String irm;
+	private String srm;
+	private String buh;
 	private String projectName;
 	public String getPrimarySkills() {
 		return primarySkills;

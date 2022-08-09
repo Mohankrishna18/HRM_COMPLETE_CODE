@@ -14,6 +14,7 @@ import AddressTab from "../../pages/Approvals/ApprovalComponents/AddressTab";
 import EducationalDetailsTab from "../../pages/Approvals/ApprovalComponents/EducationalDetailsTab";
 import ExperienceTab from "../../pages/Approvals/ApprovalComponents/ExperienceTab";
 import PersonalDetailsTab from "../../pages/Approvals/ApprovalComponents/PersonalDetailsTab";
+import EmploymentDetailsTab from '../Approvals/ApprovalComponents/EmploymentDetailsTab';
 
 
 
@@ -93,11 +94,11 @@ console.log(data);
         <Modal.Header closeButton>
             <Modal.Title>Are you sure you want to Reject</Modal.Title>
         </Modal.Header>
-        <Modal.Footer>
+        <Modal.Body>
             <CEORejected onboardID={onboardID} func={pull_dataReject} handleClose={handleCloseReject} />
-        </Modal.Footer>
+        </Modal.Body>
     </Modal>
-    <Modal show={viewShow} onHide={viewHandleClose} size="lg">
+    <Modal show={viewShow} onHide={viewHandleClose} size="xl">
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
@@ -178,12 +179,21 @@ console.log(data);
                 viewHandleClose={viewHandleClose}
               />
             </Tab>
+            <Tab
+              eventKey="Employment Details"
+              title="Employment Details"
+              style={{ backgroundColor: "white" }}
+            >
+              <EmploymentDetailsTab 
+              viewOnboard={viewOnboard} 
+              viewHandleClose={viewHandleClose}/>
+            </Tab>
           </Tabs>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={viewHandleClose}>
+          {/* <Button variant="secondary" onClick={viewHandleClose}>
             Close
-          </Button>
+          </Button> */}
           {/* <Button variant="primary" onClick={handleClose}>
             Save Changes
           </Button> */}

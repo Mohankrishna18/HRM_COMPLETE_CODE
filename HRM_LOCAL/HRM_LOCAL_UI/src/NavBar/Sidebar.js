@@ -1,4 +1,3 @@
-
 import React, { memo, useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { Row, Col, Button, Accordion } from "react-bootstrap";
@@ -35,74 +34,70 @@ const Sidebar = (props) => {
 
   return (
 
-    <Row className="scroll">
-      <Tab.Container id="list-group-tabs-example">
+    <Row className="example">
+      <Tab.Container id="list-group-tabs-example" style={{backgroundColor:"black"}}>
         <Col xs={12} xxl={12} xl={12} lg={12} md={12} sm={12}>
           <div style={{ boxShadow: "10px black" }}>
 
-            <ListGroup style={{ border: "none", paddingTop: 0 }}>
+            <ListGroup style={{ border: "none", backgroundColor:"black" }}>
               {menuItems.map((item, index) => (
                 (item.type === profile) ? (<>
-                  <Row>
-                    <ListGroup.Item style={{ border: "none", paddingTop: 25 }}>
+                  <Row style={{backgroundColor:"black"}}>
+                    <ListGroup.Item style={{ border: "none", paddingTop: 15 , color:"white",backgroundColor:"black"}}>
                       <NavLink
                         key={item.path}
                         className="nav-text"
                         to={`${props.prefix}${item.path}`} >
-                        <Row style={{ paddingLeft: "7%" }}>
-                          <Col md={2} >{item.icon}</Col>
-                          <Col md={8}>{item.title}</Col>
+                        <Row style={{ paddingLeft: "7%"}}>
+                          <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
+                          <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>{item.title}</Col>
                         </Row>
                       </NavLink>
                     </ListGroup.Item>
                   </Row></>
                 ) : (<></>)
               ))}
-              {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
-                <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
             </ListGroup>
 
-            <ListGroup style={{ border: "none", paddingTop: 0 }}>
+            <ListGroup style={{ border: "none", paddingBottom: 10 }}>
               {menuItems.map((item, index) => (
                 (item.type === approvals) ? (<>
                   <Row>
-                    <ListGroup.Item style={{ border: "none", paddingTop: 10,paddingBottom:10 }}>
+                    <ListGroup.Item style={{ border: "none" ,backgroundColor:"black"}}>
                       <NavLink
                         key={item.path}
                         className="nav-text"
                         to={`${props.prefix}${item.path}`} >
                         <Row style={{ paddingLeft: "7%" }}>
-                          <Col md={2} >{item.icon}</Col>
-                          <Col md={8}>{item.title}</Col>
+                          <Col md={2} style={{fontSize:"140%"}}  >{item.icon}</Col>
+                          <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>{item.title}</Col>
                         </Row>
                       </NavLink>
                     </ListGroup.Item>
                   </Row></>
                 ) : (<></>)
               ))}
-              {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
-                <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
             </ListGroup>
 
-            <Accordion style={{ paddingLeft: "0%", width: "105%", border: "none" }}>
-              <Accordion.Item eventKey="0" style={{ border: "none", paddingBottom: "10%" }}>
-                <Accordion.Header>
-                  <Col md={2}><FcConferenceCall /></Col>
-                  <Col md={8}>Employees</Col>
+            <Accordion className="background" style={{width:"105%", border: "none", backgroundColor:"black" }}>
+              <Accordion.Item className="panel-header" eventKey="0" style={{ border: "none", paddingBottom: "5%" ,backgroundColor:"black"}}>
+                <Accordion.Header  style={{backgroundColor:"#070708"}}>
+                  <Col md={2} style={{fontSize:"140%"}}><FcConferenceCall /></Col>
+                  <Col md={8} style={{color:"white", fontSize:17,paddingTop:10 }}>Employees</Col>
                 </Accordion.Header>
-                <Accordion.Body>
+                <Accordion.Body >
                   <ListGroup >
                     {menuItems.map((item, index) => (
                       (item.type === emp) ? (<>
                         <Row>
-                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%" }}>
+                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%",backgroundColor:"black" }}>
                             <NavLink
                               key={item.path}
                               className="nav-text"
                               to={`${props.prefix}${item.path}`} >
                               <Row>
-                                <Col md={2}>{item.icon}</Col>
-                                <Col md={8}>{item.title}</Col>
+                                <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
+                                <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>{item.title}</Col>
                               </Row>
                             </NavLink>
                           </ListGroup.Item>
@@ -121,24 +116,24 @@ const Sidebar = (props) => {
                 </Accordion.Body></Accordion.Item> */}
 
 
-              <Accordion.Item eventKey="1" style={{ border: "none", paddingBottom: "10%" }}>
+              <Accordion.Item eventKey="1" style={{ border: "none", paddingBottom: "5%",backgroundColor:"black"}}>
                 <Accordion.Header>
-                  <Col md={2}><FcLeave /></Col>
-                  <Col md={8}>Leaves</Col>
+                  <Col md={2} style={{fontSize:"140%"}}><FcLeave /></Col>
+                  <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>Leaves</Col>
                 </Accordion.Header>
                 <Accordion.Body>
                   <ListGroup>
                     {menuItems.map((item, index) => (
                       (item.type === leave) ? (<>
                         <Row>
-                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%" }}>
+                          <ListGroup.Item style={{ border: "none", paddingLeft: "10%",backgroundColor:"black" }}>
                             <NavLink
                               key={item.path}
                               className="nav-text"
                               to={`${props.prefix}${item.path}`} >
                               <Row>
-                                <Col md={2}>{item.icon}</Col>
-                                <Col md={8}>{item.title}</Col>
+                                <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
+                                <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>{item.title}</Col>
                               </Row>
                             </NavLink>
                           </ListGroup.Item>
@@ -146,16 +141,14 @@ const Sidebar = (props) => {
                       ) : (<>
                       </>)
                     ))}
-                    {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
-                <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
                   </ListGroup>
                 </Accordion.Body></Accordion.Item>
               {/* {menuItems.map((item, index) => (
                   (item.type === config)?( */}
-              <Accordion.Item eventKey="2" style={{ border: "none", paddingBottom: "10%" }}>
+              <Accordion.Item eventKey="2" style={{ border: "none", paddingBottom: "5%" ,backgroundColor:"black"}}>
                 <Accordion.Header>
-                  <Col md={2}><FcCopyright /></Col>
-                  <Col md={8}>Configuration</Col>
+                  <Col md={2} style={{fontSize:"140%"}} ><FcCopyright /></Col>
+                  <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>Configuration</Col>
 
                 </Accordion.Header>
                 <Accordion.Body>
@@ -163,14 +156,14 @@ const Sidebar = (props) => {
                     {menuItems.map((item, index) => (
                       (item.type === config) ? (<>
                         <Row>
-                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%" }}>
+                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%",backgroundColor:"black" }}>
                             <NavLink
                               key={item.path}
                               className="nav-text"
                               to={`${props.prefix}${item.path}`} >
                               <Row>
-                                <Col md={2}>{item.icon}</Col>
-                                <Col md={8}>{item.title}</Col>
+                                <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
+                                <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>{item.title}</Col>
                               </Row>
                             </NavLink>
                           </ListGroup.Item>
@@ -178,8 +171,6 @@ const Sidebar = (props) => {
                       ) : (<>
                       </>)
                     ))}
-                    {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
-                <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
                   </ListGroup>
                 </Accordion.Body></Accordion.Item>
               {/* ):(<></>)))} */}
@@ -189,14 +180,14 @@ const Sidebar = (props) => {
               {menuItems.map((item, index) => (
                 (item.type === nul) ? (<>
                   <Row>
-                    <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%" }}>
+                    <ListGroup.Item style={{ border: "none", paddingBottom: "10%",backgroundColor:"black" }}>
                       <NavLink
                         key={item.path}
                         className="nav-text"
                         to={`${props.prefix}${item.path}`} >
                         <Row style={{ paddingLeft: "7%" }}>
-                          <Col md={2}>{item.icon}</Col>
-                          <Col md={8}>{item.title}</Col>
+                          <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
+                          <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>{item.title}</Col>
                         </Row>
                       </NavLink>
                     </ListGroup.Item>
@@ -211,34 +202,7 @@ const Sidebar = (props) => {
         </Col>
       </Tab.Container>
 
-      {/* <Tab.Container id="list-group-tabs-example">
-        <Col xs={12} xxl={12} xl={12} lg={12} md={12} sm={12}>
-          <div style={{ boxShadow: "10px black" }}>
-            
-                  <ListGroup>
-                    {menuItems.map((item, index) => (
-                      
-                        <Row>
-                          <ListGroup.Item>
-                            <NavLink
-                              key={item.path}
-                              className="nav-text"
-                              to={`${props.prefix}${item.path}`} >
-                              <Row>
-                                <Col md={2}>{item.icon}</Col>
-                                <Col md={8}>{item.title}</Col>
-                              </Row>
-                            </NavLink>
-                          </ListGroup.Item>
-                        </Row>
-                     
-                    ))}
-                    {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
-                 <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>   
-                  </ListGroup>
-          </div>
-        </Col>
-      </Tab.Container> */}
+    
     </Row>
   );
 };

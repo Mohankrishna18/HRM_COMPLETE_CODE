@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, createContext } from "react";
 import MaterialTable from "material-table";
 
@@ -68,7 +69,7 @@ function Departments() {
 
   const [columns, setColumns] = useState([
     {
-      title: "Department",
+      title: "Business Unit",
       field: "departmentName",
       type: "text",
     },
@@ -90,7 +91,7 @@ function Departments() {
         
         centered>
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
-          <Modal.Title>Update Department</Modal.Title>
+          <Modal.Title>Update Business Unit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <UpdateDepartment updateOnboard={updateOnboard} func={pull_dataUpdate} handleClose={handleClose} />
@@ -109,7 +110,7 @@ function Departments() {
       keyboard={false}
       centered>
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white"}}>
-          <Modal.Title>Delete Department</Modal.Title>
+          <Modal.Title>Delete Business Unit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <DeleteDepartment deleteOnboard={deleteOnboard} func={pull_dataDelete} deleteHandleClose={deleteHandleClose} />
@@ -120,9 +121,9 @@ function Departments() {
 
               <Row>
                 <Col md={4}>
-                  <Card.Title>Departments</Card.Title>
+                  <Card.Title>Business Unit</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
-                    Departments{" "}
+                    Business Unit{" "}
                   </Card.Subtitle>
                 </Col>
 
@@ -135,7 +136,7 @@ function Departments() {
 
                   <Grid style={{ borderBlockEndWidth: "2px" }}>
                     <MaterialTable
-                      title="Departments"
+                      title="Business Unit"
                       columns={columns}
                       style={{ color: "black", fontSize: "1rem" }}
                       data={data}
