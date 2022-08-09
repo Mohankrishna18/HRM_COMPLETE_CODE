@@ -42,6 +42,7 @@ import com.arshaa.emp.repository.OnboardRepository;
 import com.arshaa.emp.service.EmployeeProfileService;
 import com.arshaa.emp.service.MainService;
 import com.arshaa.emp.service.ReportingManagerService;
+import com.arshaa.emp.service.RoleBasedEmployeesServiceImpl;
 import com.google.common.net.HttpHeaders;
 
 @RestController
@@ -58,6 +59,9 @@ public class MainController {
 	ReportingManagerService eserv;
 	@Autowired
 	EmployeeProfileService epServ;
+	@Autowired
+
+    RoleBasedEmployeesServiceImpl roleBasedServ;
 
 	@PostMapping("/createNewPotentialEmployee")
 	public ResponseEntity onBoardUser(@RequestBody Onboarding newOnboard) {
@@ -393,5 +397,11 @@ public class MainController {
 
 			return serv.getIrmByEmployeeId(employeeId);
 		}
+//      Get calls for employees under Roles
+        
+        @GetMapping("/getRoleBasedEmployeesByEmployeeId/{employeeId}")
+        public ResponseEntity getRoleBasedEmployeesByEmployeeId( @PathVariable String employeeId) {
+             return roleBasedServ.getRoleBasedEmployeesByEmployeeId(employeeId);
+        }
 
 }

@@ -219,7 +219,8 @@ const MyProfile = () => {
                                           borderRadius: "110px",
                                           alignItems: "center",
                                           marginTop: "10px",
-                                          marginLeft: "34%"
+                                          marginLeft: "34%",
+
                                         }} />
                                       </Row>
                                       <Row>
@@ -284,18 +285,6 @@ const MyProfile = () => {
                             <Row style={{ paddingBottom: 10 }}>
                               <Col>
                                 <Card.Text style={{}}>
-                                  <h6>Project: </h6>
-                                </Card.Text>
-                              </Col>{" "}
-                              <Col md={{ offset: 1 }}>
-                                <Card.Text style={{ color: "#999897" }}>
-                                  {getEmployeeDetails.projectName}
-                                </Card.Text>
-                              </Col>
-                            </Row>
-                            <Row style={{ paddingBottom: 10 }}>
-                              <Col>
-                                <Card.Text style={{}}>
                                   <h6>Business Unit Head: </h6>
                                 </Card.Text>
                               </Col>{" "}
@@ -305,6 +294,20 @@ const MyProfile = () => {
                                 </Card.Text>
                               </Col>
                             </Row>
+                            <Row style={{ paddingBottom: 10 }}>
+                              <Col>
+                                <Card.Text style={{}}>
+                                  <h6>IRM: </h6>
+                                </Card.Text>
+                              </Col>{" "}
+                              <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ color: "#999897" }}>
+                                  {getEmployeeDetails.irm}
+                                </Card.Text>
+                              </Col>
+                            </Row>
+                           
+                            
                             <Row style={{ paddingBottom: 0 }}>
                               <Col>
                                 <Card.Text style={{}}>
@@ -348,7 +351,7 @@ const MyProfile = () => {
                               </Card.Text>
                             </Col>
                           </Row>
-                          <Row style={{ paddingBottom: 10 }}>
+                          {/* <Row style={{ paddingBottom: 10 }}>
                             <Col>
                               <Card.Text style={{}}>
                                 <h6>Reporting Manager: </h6>
@@ -359,7 +362,7 @@ const MyProfile = () => {
                                 {getEmployeeDetails.reportingManager}
                               </Card.Text>
                             </Col>
-                          </Row>
+                          </Row> */}
                           <Row style={{ paddingBottom: 10 }}>
                             <Col>
                               <Card.Text style={{}}>
@@ -384,18 +387,19 @@ const MyProfile = () => {
                               </Card.Text>
                             </Col>
                           </Row>
-                          <Row style={{ paddingBottom: 0 }}>
+                          <Row style={{ paddingBottom: 10 }}>
                               <Col>
                                 <Card.Text style={{}}>
-                                  <h6>IRM: </h6>
+                                  <h6>Project: </h6>
                                 </Card.Text>
                               </Col>{" "}
                               <Col md={{ offset: 1 }}>
                                 <Card.Text style={{ color: "#999897" }}>
-                                  {getEmployeeDetails.irm}
+                                  {getEmployeeDetails.projectName}
                                 </Card.Text>
                               </Col>
                             </Row>
+                         
                         </Col>
                       </Row>
                     </Card>
