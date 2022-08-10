@@ -21,6 +21,12 @@ const Sidebar = (props) => {
     history.push('/');
   }
 
+  const userData = sessionStorage.getItem('userdata')
+  //console.log(userData)
+  const userData1 = JSON.parse(userData)
+  const usertype = userData1.data.userType
+  console.log(usertype);
+
   const [subnav, setSubnav] = useState(false);
   const showSubnav = () => setSubnav(!subnav);
 
@@ -31,6 +37,7 @@ const Sidebar = (props) => {
   const config = "configuration";
   const approvals="approvals";
   const nul = "null";
+  const pmohead="pmohead";
 
   return (
 
@@ -64,7 +71,7 @@ const Sidebar = (props) => {
                 (item.type === approvals) ? (<>
                   <Row>
                     <ListGroup.Item style={{ border: "none" ,backgroundColor:"black"}}>
-                      <NavLink
+                      <NavLink 
                         key={item.path}
                         className="nav-text"
                         to={`${props.prefix}${item.path}`} >
@@ -143,8 +150,8 @@ const Sidebar = (props) => {
                     ))}
                   </ListGroup>
                 </Accordion.Body></Accordion.Item>
-              {/* {menuItems.map((item, index) => (
-                  (item.type === config)?( */}
+              
+                 {( usertype === pmohead)?(
               <Accordion.Item eventKey="2" style={{ border: "none", paddingBottom: "5%" ,backgroundColor:"black"}}>
                 <Accordion.Header>
                   <Col md={2} style={{fontSize:"140%"}} ><FcCopyright /></Col>
@@ -173,7 +180,7 @@ const Sidebar = (props) => {
                     ))}
                   </ListGroup>
                 </Accordion.Body></Accordion.Item>
-              {/* ):(<></>)))} */}
+              ):(<></>)}
 
             </Accordion>
             <ListGroup style={{ border: "none" }}>

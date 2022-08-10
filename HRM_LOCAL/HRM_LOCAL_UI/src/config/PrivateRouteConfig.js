@@ -38,8 +38,6 @@ import DesignationMain from "../pages/Designation/DesignationMain";
 import LeaveToApply from "../pages/LeaveManagement/LeaveToApply";
 import LeaveToApprove from "../pages/LeaveManagement/LeaveToApprove";
 
-
-
 import AdminAttendanceMain from "../pages/AdminAttendance/AdminAttendanceMain";
 import LeaveHistoryMain from "../pages/LeaveHistory/LeaveHistoryMain";
 import RejectedEmployeeMain from "../pages/RejectedEmployee/RejectedEmployeeMain";
@@ -71,14 +69,13 @@ import PMOMain from "../pages/PMO/PMOMain";
 
 import CEOMain from "../pages/CEO/CEOMain";
 
-import * as RiIcons from "react-icons/ri"
+import * as RiIcons from "react-icons/ri";
 import { Accordion } from "react-bootstrap";
 import ApprovesMain from "../pages/Approves/ApprovesMain";
 import EmployeeList from "../pages/AllEmployees/AllEmployeesComponents/EmployeeList";
-import Employee from "../pages/AllEmployees/AllEmployeesComponents/Employee";
+import Employee from "../pages/RoleUnderEmployees/RoleUnderEmployeesMain";
 
 export default [
-
   {
     component: MyProfileMain,
     path: "/",
@@ -111,7 +108,6 @@ export default [
   //   permission: [Roles.ceo, Roles.pmohead,Roles.buhead,Roles.irm,Roles.srm],
   // },
 
-
   {
     component: TAAHeadMain,
     type: "approvals",
@@ -120,14 +116,14 @@ export default [
     title: "Approvals",
     permission: [Roles.taahead],
   },
-  {
-    component: BUHMain,
-    type: "approvals",
-    path: "/BUHead",
-    icon: <FcApproval />,
-    title: "Approvals",
-    permission: [Roles.buhead],
-  },
+  // {
+  //   component: BUHMain,
+  //   type: "approvals",
+  //   path: "/BUHead",
+  //   icon: <FcApproval />,
+  //   title: "Approvals",
+  //   permission: [Roles.buhead],
+  // },
   {
     component: PMOMain,
     type: "approvals",
@@ -142,9 +138,8 @@ export default [
     path: "/CEO",
     icon: <FcApproval />,
     title: "Approvals",
-    permission: [Roles.ceo]
+    permission: [Roles.ceo],
   },
-
 
   {
     component: EmployeeMaster,
@@ -166,8 +161,6 @@ export default [
       Roles.taahead,
       Roles.buhead,
     ],
-
-
   },
   {
     component: EmployeeList,
@@ -185,7 +178,7 @@ export default [
     type: "Employee",
     permission: [Roles.buhead, Roles.irm, Roles.srm],
   },
-  
+
   // {
   //   component: OfferApprovalMain,
   //   path: "/offerApprovalMain",
@@ -194,7 +187,6 @@ export default [
   //   title: "Offer Approvals",
   //   permission: [Roles.hradmin,Roles.recruitmentmanager],
   // },
-
 
   {
     component: RejectedEmployeeMain,
@@ -272,10 +264,16 @@ export default [
   {
     component: EmployeeTimeSheetMain,
     path: "/timeSheet",
-    type: "null",
+    type: "Employee",
     icon: <FcPlanner />,
     title: "Timesheet",
-    permission: [Roles.pmohead, Roles.buhead, Roles.irm, Roles.srm],
+    permission: [
+      Roles.pmohead,
+      Roles.buhead,
+      Roles.irm,
+      Roles.srm,
+      Roles.employee,
+    ],
   },
   {
     component: DepartmentMain,
@@ -327,8 +325,6 @@ export default [
     title: "Leaves Rejected History",
     permission: [Roles.hrmanager],
   },
-
-
 
   {
     component: HrLeaveHistorymain,
@@ -415,9 +411,5 @@ export default [
 
   //     permission: [Roles.buhead],
 
-
   // },
-
-
-
 ];
