@@ -228,7 +228,7 @@ export default [
   //   path: "/HrLeavesToApprove",
   //   icon: <FcApproval />,
   //   title: "Approvals",
-  //   permission: [Roles.hrmanager],
+  //   permission: [Roles.srm],
   // },
 
   {

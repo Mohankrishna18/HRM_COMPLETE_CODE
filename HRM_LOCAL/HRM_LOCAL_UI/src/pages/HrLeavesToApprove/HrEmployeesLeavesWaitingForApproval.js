@@ -49,14 +49,15 @@ function HrEmployeesLeavesWaitingForApproval(props) {
     const employeeid = userData1.data.employeeId;
     console.log(employeeid);
 
+
     const loadData = async () => {
-        const res = await axios.get(`/leave/getAllEmployees`);
-        // setData(res.data);
-        // console.log(res.data);
+        const res = await axios.get(`/leave/getUserSrmTeam/${employeeid}`);
+        setData(res.data);
         console.log(res.data);
-        const dat = res.data.filter((m) => m.leaveStatus == 'pending')
-        console.log(dat)
-        setData(dat);
+        // console.log(res.data);
+        // const dat = res.data.filter((m) => m.leaveStatus == 'pending')
+        // console.log(dat)
+        // setData(dat);
     };
     const [columns, setColumns] = useState([
         { title: 'Employee ID', field: 'employeeId' },
@@ -65,8 +66,7 @@ function HrEmployeesLeavesWaitingForApproval(props) {
         { title: 'From', field: 'fromDate', type: 'date', dateSetting: { locale: "en-GB" } },
         { title: 'To', field: 'toDate', type: 'date', dateSetting: { locale: "en-GB" } },
         { title: 'No Of Days', field: 'numberOfDays' },
-        { title: 'Reason', field: 'leaveReason' },
-        { title: 'Manager Approval', field: 'managerApproval' },
+        { title: 'Reason', field: 'leaveReason' }
         // { title: 'Leave Type', field: 'leaveType', type:'date'}
 
     ]);
