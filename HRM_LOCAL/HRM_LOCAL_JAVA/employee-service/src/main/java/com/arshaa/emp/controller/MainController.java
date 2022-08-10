@@ -397,6 +397,12 @@ public class MainController {
 
 			return serv.getIrmByEmployeeId(employeeId);
 		}
+		@GetMapping("/getSrmByEmployeeId/{employeeId}")
+		public ResponseEntity getSrmByEmployeeId(@PathVariable String employeeId) {
+
+
+			return serv.getSrmByEmployeeId(employeeId);
+		}
 //      Get calls for employees under Roles
         
         @GetMapping("/getRoleBasedEmployeesByEmployeeId/{employeeId}")
