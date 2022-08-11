@@ -52,12 +52,12 @@ function HrEmployeesLeavesWaitingForApproval(props) {
 
     const loadData = async () => {
         const res = await axios.get(`/leave/getUserSrmTeam/${employeeid}`);
-        setData(res.data);
-        console.log(res.data);
+        // setData(res.data);
         // console.log(res.data);
-        // const dat = res.data.filter((m) => m.leaveStatus == 'pending')
-        // console.log(dat)
-        // setData(dat);
+        console.log(res.data);
+        const dat = res.data.filter((m) => m.leaveStatus == 'pending')
+        console.log(dat)
+        setData(dat);
     };
     const [columns, setColumns] = useState([
         { title: 'Employee ID', field: 'employeeId' },
