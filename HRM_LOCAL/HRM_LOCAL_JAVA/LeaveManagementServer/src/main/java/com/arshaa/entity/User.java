@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -45,10 +48,11 @@ public class User {
 	private String srm;
 	@Column
 	private String buh;
-	@Column
-	private Date submittedDate;
 	
-
+	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
+	@Temporal(TemporalType.DATE)
+	private java.util.Date submittedDate = new java.util.Date(System.currentTimeMillis());
+	
 	public Date getSubmittedDate() {
 		return submittedDate;
 	}

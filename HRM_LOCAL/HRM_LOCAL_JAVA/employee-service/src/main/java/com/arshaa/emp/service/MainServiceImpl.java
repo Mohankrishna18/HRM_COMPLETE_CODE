@@ -20,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 import com.arshaa.emp.common.EmployeeLogin;
 import com.arshaa.emp.common.GetIrm;
 import com.arshaa.emp.common.GetReportingManager;
+import com.arshaa.emp.common.GetSrm;
 import com.arshaa.emp.common.PreMailModel;
 import com.arshaa.emp.common.UserModel;
 import com.arshaa.emp.common.Users;
@@ -1672,6 +1673,15 @@ public class MainServiceImpl implements MainService {
 
 		GetIrm rm = new GetIrm();
 		rm.setIrm(employeeMaster.getIrm());
+		return new ResponseEntity(rm, HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity getSrmByEmployeeId(String employeeId) {
+		EmployeeMaster employeeMaster = emRepo.getById(employeeId);
+
+		GetSrm rm = new GetSrm();
+		rm.setSrm(employeeMaster.getSrm());
 		return new ResponseEntity(rm, HttpStatus.OK);
 	}
 	
