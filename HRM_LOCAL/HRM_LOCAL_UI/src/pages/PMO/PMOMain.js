@@ -1,7 +1,10 @@
 import React from 'react';
 
-import { Row, Col, Card, Container } from 'react-bootstrap';
+import { Row, Col, Card, Container, Tabs, Tab } from 'react-bootstrap';
+import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
+import TaskMain from '../TimeSheet/EmployeeTimesheet/TaskMain';
 import PMOApproval from './PMOApproval';
+
 
 function PMOMain() {
   return (
@@ -40,14 +43,14 @@ function PMOMain() {
                       title="Leave Approvals"
                       style={{ backgroundColor: "white" }}
                     >
-                      {/* <HrEmployeesLeavesWaitingForApproval /> */}
+                      <HrEmployeesLeavesWaitingForApproval/>
                     </Tab>
                     <Tab
                       eventKey="Timesheet Approvals"
                       title="Timesheet Approvals"
                       style={{ backgroundColor: "white" }}
                     >
-                      {/* <TaskMain /> */}
+                      <TaskMain />
                     </Tab>
                   </Tabs>
                 </Col>
