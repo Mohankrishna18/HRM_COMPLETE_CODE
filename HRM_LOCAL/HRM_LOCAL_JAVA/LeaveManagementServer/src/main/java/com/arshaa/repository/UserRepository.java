@@ -42,4 +42,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 
 	User deleteByemployeeleaveId(Integer employeeleaveId);
+
+	List<User> findUserBySrm(String srm);
 }
