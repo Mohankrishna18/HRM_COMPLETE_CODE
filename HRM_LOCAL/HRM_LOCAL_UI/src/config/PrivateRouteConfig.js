@@ -222,14 +222,14 @@ export default [
     permission: [Roles.pmohead],
   },
 
-  // {
-  //   component: HrLeavesToApproveMain,
-  //   type: "approvals",
-  //   path: "/HrLeavesToApprove",
-  //   icon: <FcApproval />,
-  //   title: "Approvals",
-  //   permission: [Roles.hrmanager],
-  // },
+  {
+    component: HrLeavesToApproveMain,
+    type: "approvals",
+    path: "/HrLeavesToApprove",
+    icon: <FcApproval />,
+    title: "Approvals",
+    permission: [Roles.srm],
+  },
 
   {
     component: IntegrateLeaveToApply,
