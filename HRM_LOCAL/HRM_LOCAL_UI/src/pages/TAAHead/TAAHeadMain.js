@@ -19,6 +19,7 @@ function TAAHeadMain() {
               {/* <Container> */}
               <Row>
                 <Col xs={12}>
+                {/* <TAAHeadApproval /> */}
                   <Tabs
                     defaultActiveKey="Onboarding Approvals"
                     id="uncontrolled-tab-example"
@@ -38,20 +39,20 @@ function TAAHeadMain() {
                     >
                       <TAAHeadApproval />
                     </Tab>
-                    <Tab
+                    {/* <Tab
                       eventKey="Leave Approvals"
                       title="Leave Approvals"
                       style={{ backgroundColor: "white" }}
                     >
-                      {/* <HrEmployeesLeavesWaitingForApproval /> */}
+                      <HrEmployeesLeavesWaitingForApproval /> 
                     </Tab>
                     <Tab
                       eventKey="Timesheet Approvals"
                       title="Timesheet Approvals"
                       style={{ backgroundColor: "white" }}
-                    >
-                      {/* <TaskMain /> */}
-                    </Tab>
+                    > 
+                      <TaskMain />
+                    </Tab>*/}
                   </Tabs>
                 </Col>
               </Row>
