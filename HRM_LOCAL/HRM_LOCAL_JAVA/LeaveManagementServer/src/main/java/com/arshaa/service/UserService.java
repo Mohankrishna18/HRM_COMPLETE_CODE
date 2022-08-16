@@ -3,6 +3,12 @@ package com.arshaa.service;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,9 +29,10 @@ import com.arshaa.entity.EntitledLeaves;
 import com.arshaa.entity.User;
 import com.arshaa.model.AllEmployeesForHr;
 import com.arshaa.model.EmployeeName;
-import com.arshaa.model.GetReportingManager;
+import com.arshaa.model.GetIrm;
+import com.arshaa.model.GetSrm;
 import com.arshaa.model.StoreDatesList;
-import com.arshaa.model.UsersByReportingManager;
+import com.arshaa.model.UsersByIrm;
 import com.arshaa.repository.BetweenDatesRepo;
 import com.arshaa.repository.UserRepository;
 import com.arshaa.repository.leaveEntitlementRepository;
@@ -59,55 +66,116 @@ return findById(employeeleaveId);
 // return repository.getAllUserByemployeeId(employeeId);
 //
 // } 
-public List<BetweenDates> save(User user) {
-	try
+//public List<BetweenDates> save(User user) {
+//	try
+//
+//	{
+//		List<BetweenDates>bdatesList=new ArrayList<>();
+//		GetIrm al = template.getForObject(
+//				"http://empService/emp/getIrmByEmployeeId/" + user.getEmployeeId(),
+//				GetIrm.class);
+//		
+//		
+//		user.setIrm(al.getIrm());
+//		user.setLeaveStatus("pending");
+////		user.setManagerApproval("pending");
+//		
+//		 User savedUser= repository.save(user);
+//		
+//		 List<StoreDatesList> u = getDaysBetweenDates(user.getFromDate(), user.getToDate());
+////		 bro.saveAll(u);
+//		 u.forEach(e->{
+//			 BetweenDates d = new BetweenDates();
+//			 d.setEmployeeId(savedUser.getEmployeeId());
+//			 d.setEmployeeleaveId(savedUser.getEmployeeleaveId());
+//			 d.setAppliedDate(e.getBetWeenDates());
+//			 BetweenDates bd= bro.save(d);
+//			 bdatesList.add(bd);
+//		 
+////			 Date date1;
+////			try {
+////				date1 = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+////				 d.setAppliedDate(date1);
+////				 BetweenDates bd= bro.save(d);
+////				 bdatesList.add(bd);
+////			} catch (ParseException e1) {
+////				// TODO Auto-generated catch block
+////				e1.printStackTrace();
+////			}
+////			
+//		 });
+//		 
+//		return bdatesList;
+//		
+//		 
+//
+//	}catch(
+//	Exception e)
+//	{
+//		e.getMessage();
+//	}return null;
+//}
+	public List<BetweenDates> save(User user) {
+		try
 
-	{
-		List<BetweenDates>bdatesList=new ArrayList<>();
-		GetReportingManager al = template.getForObject(
-				"http://empService/emp/getReportingManagerByEmployeeId/" + user.getEmployeeId(),
-				GetReportingManager.class);
-		
-		
-		user.setReportingManager(al.getReportingmanager());
-		user.setLeaveStatus("pending");
-		user.setManagerApproval("pending");
-		
-		 User savedUser= repository.save(user);
-		
-		 List<StoreDatesList> u = getDaysBetweenDates(user.getFromDate(), user.getToDate());
-//		 bro.saveAll(u);
-		 u.forEach(e->{
-			 BetweenDates d = new BetweenDates();
-			 d.setEmployeeId(savedUser.getEmployeeId());
-			 d.setEmployeeleaveId(savedUser.getEmployeeleaveId());
-			 d.setAppliedDate(e.getBetWeenDates());
-			 BetweenDates bd= bro.save(d);
-			 bdatesList.add(bd);
-		 
-//			 Date date1;
-//			try {
-//				date1 = new SimpleDateFormat("dd/MM/yyyy").parse(date);
-//				 d.setAppliedDate(date1);
-//				 BetweenDates bd= bro.save(d);
-//				 bdatesList.add(bd);
-//			} catch (ParseException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//			
-		 });
-		 
-		return bdatesList;
-		
-		 
+		{
+			
+			
+			
+			List<BetweenDates>bdatesList=new ArrayList<>();
+			GetIrm al = template.getForObject(
+					"http://empService/emp/getIrmByEmployeeId/" + user.getEmployeeId(),
+					GetIrm.class);
+			GetSrm as = template.getForObject(
+					"http://empService/emp/getSrmByEmployeeId/" + user.getEmployeeId(),
+					GetSrm.class);
+			 java.sql.Date tSqlDate = new java.sql.Date(user.getSubmittedDate().getTime());
+			 user.setSubmittedDate(tSqlDate);
+			
+			user.setIrm(al.getIrm());
+			user.setSrm(as.getSrm());
+			user.setLeaveStatus("pending");
+//			user.setManagerApproval("pending");
+			 user.setSubmittedDate(tSqlDate);
+			
+			 User savedUser= repository.save(user);
+			
+			 
+			 List<StoreDatesList> u = getDaysBetweenDates(user.getFromDate(), user.getToDate());
+//			 bro.saveAll(u);
+			 u.forEach(e->{
+				 BetweenDates d = new BetweenDates();
+				 d.setEmployeeId(savedUser.getEmployeeId());
+				 d.setEmployeeleaveId(savedUser.getEmployeeleaveId());
+				 d.setAppliedDate(e.getBetWeenDates());
+				 BetweenDates bd= bro.save(d);
+				 bdatesList.add(bd);
+			 
+//				 Date date1;
+//				try {
+//					date1 = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+//					 d.setAppliedDate(date1);
+//					 BetweenDates bd= bro.save(d);
+//					 bdatesList.add(bd);
+//				} catch (ParseException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//				
+			 });
+			 
+			return bdatesList;
+			
+			 
 
-	}catch(
-	Exception e)
-	{
-		e.getMessage();
-	}return null;
-}
+		}catch(
+		Exception e)
+		{
+			e.getMessage();
+		}return null;
+	}
+
+
 
 	public ResponseEntity findAll() {
 		String url="http://empService/emp/getEmployeeNameByEmployeeId/";
@@ -188,9 +256,11 @@ public List<BetweenDates> save(User user) {
 			user.getEmployeeleaveId();
 			u.getToDate();
 			u.getLeaveReason();
-			user.getManagerApproval();
+//			user.getManagerApproval();
+			user.getLeaveStatus();
 			user.getNumberOfDays();
-			u.setManagerApproval(user.getManagerApproval());
+//			u.setManagerApproval(user.getManagerApproval());
+			u.setLeaveStatus(user.getLeaveStatus());
 //u.setLeaveReason(user.getLeaveReason()); 
       u.setRejectReason(user.getRejectReason());
 //      user.getManagersRejectReason();
@@ -209,7 +279,7 @@ public List<BetweenDates> save(User user) {
 	}
 
 // this logic will give employees related to particular manager-->Chandrika
-	public ResponseEntity getUserByReportingManager(String reportingManager) {
+	public ResponseEntity getUserByIrm(String irm) {
 //		try {
 //			List<User> u = repository.findUserByReportingManager(reportingManager);
 //			return new ResponseEntity(u, HttpStatus.OK);
@@ -217,12 +287,18 @@ public List<BetweenDates> save(User user) {
 //			return new ResponseEntity("Something went wrong", HttpStatus.OK);
 //		}
 		String url="http://empService/emp/getEmployeeNameByEmployeeId/";
-		List<UsersByReportingManager> getList=new ArrayList<>();
+		List<UsersByIrm> getList=new ArrayList<>();
 		try {
-			List<User> u = repository.findUserByReportingManager(reportingManager);
+			List<User> u = repository.findUserByIrm(irm);
 			User s=new User();
-			u.forEach(g->{
-				UsersByReportingManager usrm=new UsersByReportingManager();
+			 LocalDateTime now = LocalDateTime.now();  
+			 LocalDate currentDate =LocalDate.of(2022, 8, 29);
+//			 Date date=new Date(2022, 8, 12);
+			 Date date = new Date(System.currentTimeMillis());
+			u.stream().filter(user->date.before(getValidateDat(user.getSubmittedDate()))).forEach(g->{
+				 System.out.println("Current Date"+date+"5 days after"+getValidateDat(g.getSubmittedDate()));
+
+				UsersByIrm usrm=new UsersByIrm();
 				usrm.setEmployeeId(g.getEmployeeId());
 				usrm.setLeaveType(g.getLeaveType());
 				usrm.setFromDate(g.getFromDate());
@@ -232,7 +308,64 @@ public List<BetweenDates> save(User user) {
 				usrm.setManagerApproval(g.getManagerApproval());
 				usrm.setEmployeeleaveId(g.getEmployeeleaveId());
 				usrm.setLeaveStatus(g.getLeaveStatus());
-				EmployeeName al=template.getForObject("http://empService/emp/getEmployeeNameByEmployeeId/" + g.getEmployeeId(),EmployeeName.class);
+				EmployeeName al=template.getForObject(url + g.getEmployeeId(),EmployeeName.class);
+                usrm.setName(al.getEmployeeName());
+                getList.add(usrm);
+			});
+			
+//			u.forEach(g->{
+//				UsersByIrm usrm=new UsersByIrm();
+//				usrm.setEmployeeId(g.getEmployeeId());
+//				usrm.setLeaveType(g.getLeaveType());
+//				usrm.setFromDate(g.getFromDate());
+//				usrm.setToDate(g.getToDate());
+//				usrm.setNumberOfDays(g.getNumberOfDays());
+//				usrm.setLeaveReason(g.getLeaveReason()); 
+//				usrm.setManagerApproval(g.getManagerApproval());
+//				usrm.setEmployeeleaveId(g.getEmployeeleaveId());
+//				usrm.setLeaveStatus(g.getLeaveStatus());
+//				EmployeeName al=template.getForObject(url + g.getEmployeeId(),EmployeeName.class);
+//                usrm.setName(al.getEmployeeName());
+//                getList.add(usrm);
+//			});
+			return new ResponseEntity(getList, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity("Something went wrong", HttpStatus.OK);
+
+		}
+
+	}
+
+	
+	public ResponseEntity getUserBySrm(String srm) {
+//		try {
+//			List<User> u = repository.findUserByReportingManager(reportingManager);
+//			return new ResponseEntity(u, HttpStatus.OK);
+//		} catch (Exception e) {
+//			return new ResponseEntity("Something went wrong", HttpStatus.OK);
+//		}
+		String url="http://empService/emp/getEmployeeNameByEmployeeId/";
+		List<UsersByIrm> getList=new ArrayList<>();
+		try {
+			List<User> u = repository.findUserBySrm(srm);
+			User s=new User();
+//			 LocalDate currentDate =LocalDate.of(2022, 8, 29);
+//			 Date date=new Date(2022, 8, 12);
+			 Date date = new Date(System.currentTimeMillis());
+			u.stream().filter(user->date.after(getValidateDat(user.getSubmittedDate()))).forEach(g->{
+				 System.out.println("Current Date"+date+"5 days after"+getValidateDat(g.getSubmittedDate()));
+
+				UsersByIrm usrm=new UsersByIrm();
+				usrm.setEmployeeId(g.getEmployeeId());
+				usrm.setLeaveType(g.getLeaveType());
+				usrm.setFromDate(g.getFromDate());
+				usrm.setToDate(g.getToDate());
+				usrm.setNumberOfDays(g.getNumberOfDays());
+				usrm.setLeaveReason(g.getLeaveReason()); 
+				usrm.setManagerApproval(g.getManagerApproval());
+				usrm.setEmployeeleaveId(g.getEmployeeleaveId());
+				usrm.setLeaveStatus(g.getLeaveStatus());
+				EmployeeName al=template.getForObject(url + g.getEmployeeId(),EmployeeName.class);
                 usrm.setName(al.getEmployeeName());
                 getList.add(usrm);
 			});
@@ -244,6 +377,19 @@ public List<BetweenDates> save(User user) {
 
 	}
 
+	
+	
+	private Date getValidateDat(Date date) {
+
+		java.util.Date m = date;
+        java.sql.Date ms = new java.sql.Date(m.getTime());
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(m);
+        cal.add(Calendar.DATE, 6);
+        m = cal.getTime();  
+        System.out.println("PresentDate"+date +"after5days"+m);
+ 		return m;
+}
 	public EntitledLeaves save(EntitledLeaves entitledleaves) {
 // TODO Auto-generated method stub
 		return repo.save(entitledleaves);
@@ -323,5 +469,30 @@ public List<BetweenDates> save(User user) {
            return getBTDates;
        }
 	
-}
+	
+//	public UpdateLeaveStatus updateLeaveStatusByEmployeeId(UpdateLeaveStatus uls ,Integer employeeleaveId ) {
+//		try {
+//			
+//			User u = repository.findById(employeeleaveId).get();
+//			java.util.Date dt = u.getSubmittedDate();
+//		LocalDateTime lc =	LocalDateTime.from(dt.toInstant()).plusDays(4);
+//			
+//			if(u.getLeaveStatus().equalsIgnoreCase("pending") && dt.before(u.getFromDate())) {
+//				if(dt.before(u.getFromDate())) {
+//					u.setEmployeeleaveId(employeeleaveId);
+//					u.setLeaveStatus(uls.getLeaveStatus());
+//					 repository.save(u);
+//					 return uls ;
+//				}
+//			}
+//		}catch(Exception e) {
+//			e.getMessage();
+//		}
+//		return uls;
+//	}
 
+
+
+
+	
+}

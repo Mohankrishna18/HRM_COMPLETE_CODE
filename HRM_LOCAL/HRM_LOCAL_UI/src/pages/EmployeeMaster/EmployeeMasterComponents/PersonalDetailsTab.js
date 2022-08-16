@@ -29,7 +29,7 @@ function PersonalDetailsTab() {
 
 
     const [ferrors, setFErrors] = useState("");
-    const [serror, setSerror] = useState("");
+    const [serror, setSerror] = useState(""); 
     const [thirderrors, setThirdErrors] = useState("");
     const [fourerror, setFourerror] = useState("");
     const [fiveerrors, setFiveErrors] = useState("");
@@ -37,7 +37,7 @@ function PersonalDetailsTab() {
     const [sevenerrors, setSevenErrors] = useState("");
     const [eighterror, setEighterror] = useState("");
     const [nineerrors, setNineErrors] = useState("");
-    const [tenerror, setTenerror] = useState("");
+    const [tenerror, setTenerror] = useState("");  
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -53,7 +53,9 @@ function PersonalDetailsTab() {
     const [gender, setGender] = useState("");
     const [maritalStatus, setMaritalStatus] = useState("");
     const [dateOfJoining, setDateOfJoining] = useState("");
-
+    const [imge, setImge] = useState([]);
+    
+    const [file, setFile] = useState("");
 
 
     useEffect(() => {
@@ -98,11 +100,89 @@ function PersonalDetailsTab() {
             maritalStatus
         });
         toast.success("Form Submitted Successfully");
-    }
+        const url = `/emp/upload/${employeeid}/`;
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("fileName", file.name);
+        const config = {
+            headers: {
+                "content-type": "multipart/form-data",
+            },
+        };
+        console.log(formData);
+        axios
+            .post(url, formData, config)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log("oops not uploaded!");
+            });
+            
+        }
         catch (error) {
             toast.error("Somethingwent Wrong");
     }
+
+
+    const onSubmit = async (e) => {
+        // setData(" ");
+        // data.preventDefault();
+        //e.preventDefault()
+        // console.log(data)
+
+        // reset();
+        await axios.put(`/emp/updateEmployeeDataByEmployeeId/${employeeid}`, data);
+        console.log(data);
+        // notify();
+        toast.success("Form Submitted Successfully");
+        // refreshPage();
+        const url = `/emp/upload/${employeeid}/`;
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("fileName", file.name);
+        const config = {
+            headers: {
+                "content-type": "multipart/form-data",
+            },
+        };
+        console.log(formData);
+        axios
+            .post(url, formData, config)
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((error) => {
+                console.log("oops not uploaded!");
+            });
     };
+
+    function handleChange(event) {
+        setFile(event.target.files[0]);
+        console.log(event.target.files[0]);
+    }
+    const current = new Date();
+    console.log(current)
+
+    const [imge, setImge] = useState([]);
+    useEffect(() => {
+        axios
+            .get(`/emp/files/${employeeid}`)
+            .then((response) => {
+                console.log(response.data);
+                setImge(response.data)
+            })
+            .catch((error) => {
+                console.log(error);
+
+                console.log("something wrong");
+            });
+    }, []);
+
+    console.log(imge);
+    }
+        
+    
 
     return (
 
@@ -203,7 +283,7 @@ function PersonalDetailsTab() {
                                 onChange={(e) => {
                                     setPrimaryPhoneNumber(e.target.value);
                                     if (e.target.value.length > 10) {
-                                        setThirdErrors(" Phonenumber length should be 10 characters");;
+                                        setThirdErrors(" Phonenumber length should be 10 characters");
                                     }
                                     if (lastName === "") {
                                         setSerror("Last Name is Required");
@@ -392,6 +472,21 @@ function PersonalDetailsTab() {
                             {eighterror}
                         </Form.Control.Feedback>
                     </Form.Group>
+                    <Form.Group style={{ padding: 10, paddingTop: 20 }}>
+                                             <Form.Label>
+                                                 Upload Profile Picture * (Size should be less than 1 MB)
+                                             </Form.Label>
+                                             <Form.Control
+                                               
+                                                value={imge.name}
+                                                type="file"
+                                                //isInvalid={}
+                                               // onChange={handleChange}
+                                            />
+                                            {/* <Form.Control.Feedback type="invalid">
+                                                {fourtysix}
+                                            </Form.Control.Feedback> */} 
+                                        </Form.Group>
 
 
                     <Row>
