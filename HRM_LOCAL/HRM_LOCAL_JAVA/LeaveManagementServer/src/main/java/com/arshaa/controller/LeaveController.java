@@ -134,7 +134,11 @@ public class LeaveController {
 	public ResponseEntity getUserByIrm(@PathVariable String irm) {
 		return service.getUserByIrm(irm);
 	}
-	
+	@GetMapping("/getUserSrmTeam/{srm}")
+	public ResponseEntity getUserBySrm(@PathVariable String srm)
+	{
+		return service.getUserBySrm(srm);
+	}
 	
 
 //get approve count
@@ -163,7 +167,6 @@ public class LeaveController {
 		return b;
 	}
 	@GetMapping("/{startDate}/{endDate}")
-
     ResponseEntity <List> getDaysBetweenDates(@PathVariable String startDate,@PathVariable String endDate) throws ParseException, Exception
     {
     return ResponseEntity.ok(service.getDaysBetweenDates(new SimpleDateFormat("yyyy-MM-dd").parse(startDate), new SimpleDateFormat("yyyy-MM-dd").parse(endDate)));
@@ -180,5 +183,14 @@ public class LeaveController {
 	        System.out.println(e.getMessage());
 	        }
 	}
-
+//   @PutMapping("/updateBySrmByLeaveStatus/{employeeleaveId}")
+//   public ResponseEntity<User> updateLeaveStatusByEmployeeId( @RequestBody UpdateLeaveStatus uls ,@PathVariable Integer employeeleaveId) {
+//	   
+//	   User u = repo.findById(employeeleaveId).get();
+//	   
+//	   u.setLeaveStatus(uls.getLeaveStatus());
+//	
+//	  return new ResponseEntity("Updated Successfully",HttpStatus.OK);
+//   }
+  
 }

@@ -10,7 +10,7 @@ function TAAHeadMain() {
     <div style={{ paddingTop: "20px" }}>
       <Card className="scroll">
         <Card>
-          <Card.Header>
+          <Card.Header> 
             <Card.Body>
               <Card.Title>Approvals</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
@@ -19,12 +19,13 @@ function TAAHeadMain() {
               {/* <Container> */}
               <Row>
                 <Col xs={12}>
+                {/* <TAAHeadApproval /> */}
                   <Tabs
                     defaultActiveKey="Onboarding Approvals"
                     id="uncontrolled-tab-example"
                     className="mb-3"
                     style={{
-                      justifyContent: "center",
+                      justifyContent: "left",
                       color: "white",
                       backgroundColor: "white",
                       fontSize: "19px",
@@ -38,20 +39,20 @@ function TAAHeadMain() {
                     >
                       <TAAHeadApproval />
                     </Tab>
-                    <Tab
+                    {/* <Tab
                       eventKey="Leave Approvals"
                       title="Leave Approvals"
                       style={{ backgroundColor: "white" }}
                     >
-                      {/* <HrEmployeesLeavesWaitingForApproval /> */}
+                      <HrEmployeesLeavesWaitingForApproval /> 
                     </Tab>
                     <Tab
                       eventKey="Timesheet Approvals"
                       title="Timesheet Approvals"
                       style={{ backgroundColor: "white" }}
-                    >
-                      {/* <TaskMain /> */}
-                    </Tab>
+                    > 
+                      <TaskMain />
+                    </Tab>*/}
                   </Tabs>
                 </Col>
               </Row>
