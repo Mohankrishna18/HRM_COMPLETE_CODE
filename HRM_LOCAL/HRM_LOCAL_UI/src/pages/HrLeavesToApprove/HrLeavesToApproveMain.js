@@ -8,7 +8,7 @@ const HrLeavesToApproveMain = () => {
     <div style={{ paddingTop: '20px' }}>
 
       <Card responsive className="scroll" style={{ backgroundColor: "white" }}>
-        <Card.Header>
+        <Card.Header style={{ backgroundColor: "white"}}>
           <Card.Body style={{ backgroundColor: "white" }}>
             <Card.Title> Approvals </Card.Title>
             <Card.Subtitle> Approvals / Approvals</Card.Subtitle>
@@ -19,7 +19,7 @@ const HrLeavesToApproveMain = () => {
                   defaultActiveKey="Leave Approvals"
                   id="uncontrolled-tab-example"
                   className="mb-3" 
-                  style={{ justifyContent: "center", color: "white", backgroundColor: "white", fontSize: "19px", padding: 0, }}
+                  style={{ justifyContent: "left", color: "white", backgroundColor: "white", fontSize: "19px", padding: 0, }}
                 >
                   <Tab eventKey="Leave Approvals" title="Leave Approvals" style={{ backgroundColor: "white" }}>
                     <HrEmployeesLeavesWaitingForApproval />

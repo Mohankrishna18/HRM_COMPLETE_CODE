@@ -10,7 +10,7 @@ function TAAHeadMain() {
     <div style={{ paddingTop: "20px" }}>
       <Card className="scroll">
         <Card>
-          <Card.Header>
+          <Card.Header> 
             <Card.Body>
               <Card.Title>Approvals</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
@@ -25,7 +25,7 @@ function TAAHeadMain() {
                     id="uncontrolled-tab-example"
                     className="mb-3"
                     style={{
-                      justifyContent: "center",
+                      justifyContent: "left",
                       color: "white",
                       backgroundColor: "white",
                       fontSize: "19px",
