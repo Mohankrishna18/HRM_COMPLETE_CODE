@@ -9,4 +9,6 @@ import com.arshaa.clientandprojects.entity.Clients;
 public interface ClientRepository extends JpaRepository<Clients, Integer> {
 
 	Clients findByClientId(Integer id);
+	boolean existsByClientNameOrEmail(String clientName, String email);
+	
 }

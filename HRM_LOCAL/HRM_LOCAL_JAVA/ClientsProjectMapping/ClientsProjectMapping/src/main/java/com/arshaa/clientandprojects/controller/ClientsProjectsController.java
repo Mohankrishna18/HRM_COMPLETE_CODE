@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arshaa.clientandprojects.entity.Clients;
+import com.arshaa.clientandprojects.entity.ProjectRolesMaster;
+import com.arshaa.clientandprojects.entity.ProjectTeamMaster;
 import com.arshaa.clientandprojects.entity.Projects;
 import com.arshaa.clientandprojects.service.ClientServiceInterface;
+import com.arshaa.clientandprojects.service.ProjectRolesInterface;
 import com.arshaa.clientandprojects.service.ProjectServiceInterface;
+import com.arshaa.clientandprojects.service.ProjectTeamInterface;
 
 
 @RequestMapping("/clientProjectMapping")
@@ -29,6 +33,12 @@ public class ClientsProjectsController {
 	
 	@Autowired(required=true)
 	private ProjectServiceInterface projectServ;
+	
+	@Autowired(required=true)
+	private ProjectRolesInterface projectRoleserv;
+	
+	@Autowired(required=true)
+	private ProjectTeamInterface projectTeamServ;
 	
 	// Client Screen API's 
 	
@@ -74,4 +84,37 @@ public class ClientsProjectsController {
 		return projectServ.deleteProject(projectId);
 	}
 	
+	// Project Roles API's
+	
+	@PostMapping("/addProjectRoles")
+	public ResponseEntity addProjectRoles(@RequestBody ProjectRolesMaster newProjectRolesMaster) {
+		return projectRoleserv.addProjectRoles(newProjectRolesMaster);
+	}
+	
+	@GetMapping("/getAllProjectRoles")
+	public ResponseEntity getAllProjectRoles() {
+		return projectRoleserv.getAllProjectRoles();
+	}
+	
+	// Project Team API's
+	
+	@PostMapping("/addProjectTeam")
+	public ResponseEntity addProjectTeam(@RequestBody ProjectTeamMaster newTeam) {
+		return projectTeamServ.addProjectTeam(newTeam);
+	}
+	
+	@GetMapping("/getAllProjectTeams")
+	public ResponseEntity getAllProjectTeams() {
+		return projectTeamServ.getAllProjectTeams();
+	}
+	
+	@PutMapping("/updateProjectTeamById/{employeeprojectId}")
+	public ResponseEntity updateProjectTeamById(@PathVariable int employeeprojectId,@RequestBody ProjectTeamMaster newTeamUpdate) {
+		return projectTeamServ.updateProjectTeamById(employeeprojectId, newTeamUpdate);
+	}
+	
+	@DeleteMapping("/deleteProjectTeam/{employeeprojectId}")
+	public ResponseEntity deleteProjectTeam(@PathVariable Integer employeeprojectId) {
+		return projectTeamServ.deleteProjectTeam(employeeprojectId);
+	}
 }
