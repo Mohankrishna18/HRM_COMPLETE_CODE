@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.arshaa.leads.common.Client;
 import com.arshaa.leads.entity.Leads;
 import com.arshaa.leads.model.LeadResponse;
 import com.arshaa.leads.repository.LeadRepository;
@@ -16,17 +19,38 @@ public class LeadServiceImpl implements LeadService{
 	
 	@Autowired
 	private LeadRepository leadRepository;
+	@Autowired
+	private RestTemplate template;
 
 	@Override
 	public ResponseEntity addLeads(Leads newLeads) {
-		// TODO Auto-generated method stub
+
+		String clientUri="http://clientProjectMapping/clientProjectMapping/addClients";
 		LeadResponse cr = new LeadResponse<>();
 		try {
 			Leads newLeadData = leadRepository.save(newLeads);
-			cr.setStatus(true);
-			cr.setMessage("Data added successfully");
-			cr.setData(newLeadData);
-			return new ResponseEntity(cr, HttpStatus.OK);
+			Client client=new Client();
+			client.setClientName(newLeadData.getCompanyName());
+			client.setEmail(newLeadData.getCompanyEmail());
+			client.setPhoneNumber(newLeadData.getCompanyPhoneNumber());
+			client.setPocName(newLeadData.getPocName());
+			LeadResponse res=template.postForObject(clientUri, client, LeadResponse.class);
+			if(res.isStatus()==true)
+			{
+				cr.setStatus(true);
+				cr.setMessage("Data added successfully");
+				cr.setData(newLeadData);
+				return new ResponseEntity(cr, HttpStatus.OK);
+			}
+			else {
+				cr.setStatus(true);
+				cr.setMessage("Lead created but company not created because "+res.getMessage());
+				cr.setData(newLeadData);
+				return new ResponseEntity(cr, HttpStatus.OK);
+
+			}
+			
+			
 		} catch (Exception e) {
 
 			cr.setStatus(false);
@@ -66,11 +90,14 @@ public class LeadServiceImpl implements LeadService{
 			updateLead.setCompanyEmail(newLeadUpdate.getCompanyEmail());
 			updateLead.setCompanyCountry(newLeadUpdate.getCompanyCountry());
 			updateLead.setCompanyAddress(newLeadUpdate.getCompanyAddress());
-			updateLead.setStartDate(newLeadUpdate.getStartDate());
-			updateLead.setEndDate(newLeadUpdate.getEndDate());
 			updateLead.setSourceName(newLeadUpdate.getSourceName());
 			updateLead.setSourceEmail(newLeadUpdate.getSourceEmail());
 			updateLead.setSourcePhoneNumber(newLeadUpdate.getSourcePhoneNumber());
+			updateLead.setPocName(newLeadUpdate.getPocName());;
+			updateLead.setPocEmail(newLeadUpdate.getPocEmail());
+			updateLead.setPocPhoneNumber(newLeadUpdate.getPocPhoneNumber());
+			updateLead.setBusinessValue(newLeadUpdate.getBusinessValue());
+			updateLead.setLeadNotes(newLeadUpdate.getLeadNotes());
            
 			
 			Leads latestLead = leadRepository.save(updateLead);
