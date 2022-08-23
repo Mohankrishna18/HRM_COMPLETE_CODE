@@ -20,7 +20,7 @@ function PrivateRoutes() {
     return <Redirect to="/" />;
   }
 
-
+//Empty comment
   return (
     <>
       <Row>
