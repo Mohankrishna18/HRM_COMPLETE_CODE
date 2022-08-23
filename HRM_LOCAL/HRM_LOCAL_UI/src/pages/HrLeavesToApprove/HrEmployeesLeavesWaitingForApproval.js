@@ -65,7 +65,7 @@ function HrEmployeesLeavesWaitingForApproval(props) {
         { title: 'Leave Type', field: 'leaveType' },
         { title: 'From', field: 'fromDate', type: 'date', dateSetting: { locale: "en-GB" } },
         { title: 'To', field: 'toDate', type: 'date', dateSetting: { locale: "en-GB" } },
-        { title: 'No Of Days', field: 'numberOfDays' },
+        { title: 'No Of Days', field: 'numberOfDays',width:"10px" },
         { title: 'Reason', field: 'leaveReason' }
         // { title: 'Leave Type', field: 'leaveType', type:'date'}
 
