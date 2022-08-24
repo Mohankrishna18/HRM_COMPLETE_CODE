@@ -17,8 +17,10 @@ public class Projects {
 	private Integer projectId;
 	@Column
 	private Integer clientId;
-	@Column
+	@Column(unique = true)
 	private String projectName;
+    @Column
+    private String businessUnit;
 	@Column
 	private Date startDate;
 	@Column
@@ -29,6 +31,8 @@ public class Projects {
 	private String description;
 	@Column
 	private double rate;
+	@Column
+	private String employeeId;
 	@Column
 	private String priority;
 	@Column
@@ -60,6 +64,14 @@ public class Projects {
 
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
+	}
+	
+	public String getBusinessUnit() {
+		return businessUnit;
+	}
+
+	public void setBusinessUnit(String businessUnit) {
+		this.businessUnit = businessUnit;
 	}
 
 	public Date getStartDate() {
@@ -132,12 +144,13 @@ public class Projects {
 		this.updatedOn = updatedOn;
 	}
 
-	public Projects(Integer projectId, Integer clientId, String projectName, Date startDate, Date endDate,
+	public Projects(Integer projectId, Integer clientId, String projectName,String businessUnit, Date startDate, Date endDate,
 			String description, double rate, String priority, String projectManager, String updatedBy, Date updatedOn) {
 		super();
 		this.projectId = projectId;
 		this.clientId = clientId;
 		this.projectName = projectName;
+		this.businessUnit = businessUnit;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.description = description;
