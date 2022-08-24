@@ -130,7 +130,7 @@ function AditionalDetailsTab() {
                         <Form.Control
                             required
                             type="number"
-                            placeholder="Aadhar Card Number"
+                            placeholder="Aadharcard Number"
                             controlId="aadharNumber"
                             name="panNumber"
                             maxLength={12}
@@ -231,7 +231,7 @@ function AditionalDetailsTab() {
                             onChange={(event) => {
                                 setAccountNumber(event.target.value)
                                 if (event.target.value.length > 16) {
-                                    setTwentyoneerror(" Pincode length should be 16 characters");;
+                                    setTwentyoneerror("Account Number should be 16 characters");;
                                 }
                                 if (bankName === "") {
                                     setTwentyerror(" Bank Name is Required");
@@ -285,3 +285,4 @@ function AditionalDetailsTab() {
     )
 }
 export default AditionalDetailsTab;
+
