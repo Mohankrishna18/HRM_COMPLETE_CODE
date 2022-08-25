@@ -184,9 +184,9 @@ function TaskMain() {
                       }}
                       options={{
                         headerStyle: {
-                          backgroundColor: "#FF9E14",
+                          backgroundColor: "#FE924A",
                           color: "white",
-                          fontSize: "20px",
+                          // fontSize: "20px",
                         },
                         addRowPosition: "first",
                         actionsColumnIndex: -1,
