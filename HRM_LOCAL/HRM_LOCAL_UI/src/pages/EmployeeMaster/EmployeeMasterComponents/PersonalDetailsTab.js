@@ -29,7 +29,7 @@ function PersonalDetailsTab() {
 
 
     const [ferrors, setFErrors] = useState("");
-    const [serror, setSerror] = useState("");
+    const [serror, setSerror] = useState(""); 
     const [thirderrors, setThirdErrors] = useState("");
     const [fourerror, setFourerror] = useState("");
     const [fiveerrors, setFiveErrors] = useState("");
@@ -37,7 +37,7 @@ function PersonalDetailsTab() {
     const [sevenerrors, setSevenErrors] = useState("");
     const [eighterror, setEighterror] = useState("");
     const [nineerrors, setNineErrors] = useState("");
-    const [tenerror, setTenerror] = useState("");
+    const [tenerror, setTenerror] = useState("");  
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -54,6 +54,8 @@ function PersonalDetailsTab() {
     const [maritalStatus, setMaritalStatus] = useState("");
     const [dateOfJoining, setDateOfJoining] = useState("");
     const [imge, setImge] = useState([]);
+    
+    const [file, setFile] = useState("");
 
 
     useEffect(() => {
@@ -123,7 +125,6 @@ function PersonalDetailsTab() {
     }
 
 
-    const [file, setFile] = useState("");
     const onSubmit = async (e) => {
         // setData(" ");
         // data.preventDefault();
@@ -282,7 +283,7 @@ function PersonalDetailsTab() {
                                 onChange={(e) => {
                                     setPrimaryPhoneNumber(e.target.value);
                                     if (e.target.value.length > 10) {
-                                        setThirdErrors(" Phonenumber length should be 10 characters");;
+                                        setThirdErrors(" Phonenumber length should be 10 characters");
                                     }
                                     if (lastName === "") {
                                         setSerror("Last Name is Required");

@@ -2,6 +2,7 @@ package com.arshaa.clientandprojects.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,9 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 	public ResponseEntity addProject(Projects newProjects) {
 		ProjectResponse pr = new ProjectResponse<>();
 		try {
+//			Optional<Projects> existing = projectRepo.findByProjectName(newProjects.getProjectName());
+//			if (existing.isPresent())
+//				return new ResponseEntity<>("Project Name already exists", HttpStatus.NOT_ACCEPTABLE);
 			Projects newProjectData = projectRepo.save(newProjects);
 			pr.setStatus(true);
 			pr.setMessage("Data added successfully");
@@ -64,8 +68,6 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 			return new ResponseEntity(pr, HttpStatus.OK);
 		}
 	}
-	
-				
 
 	private ProjectModel returnModel(String name, Projects project) {
 		ProjectModel model = new ProjectModel();
@@ -73,6 +75,7 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 		model.setProjectId(project.getProjectId());
 		model.setProjectName(project.getProjectName());
 		model.setStatus(project.getStatus());
+		model.setBusinessUnit(project.getBusinessUnit());
 		model.setStartDate(project.getStartDate());
 		model.setEndDate(project.getEndDate());
 		model.setDescription(project.getDescription());
@@ -91,6 +94,7 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 			Projects updateProject = projectRepo.findByProjectId(projectId);
 			updateProject.setProjectName(newProjectUpdate.getProjectName());
 			updateProject.setStatus(newProjectUpdate.getStatus());
+			updateProject.setBusinessUnit(newProjectUpdate.getBusinessUnit());
 			updateProject.setStartDate(newProjectUpdate.getStartDate());
 			updateProject.setEndDate(newProjectUpdate.getEndDate());
 			updateProject.setDescription(newProjectUpdate.getDescription());

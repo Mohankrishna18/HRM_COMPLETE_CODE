@@ -59,8 +59,8 @@ const Sign = () => {
   return (
     <>
       <Container>
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <Row style={{ marginTop: "50px", marginLeft: "40px" }}>
+        <Form noValidate className="login" validated={validated} onSubmit={handleSubmit}>
+          <Row style={{ marginTop: "50px", marginLeft: "40px" ,paddingLeft:"300px"}}>
             <Col
               className="p-5 m-auto shadow-sm rounded-lg"
               style={{
@@ -69,6 +69,7 @@ const Sign = () => {
                 alignments: "center",
                 background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
                 borderRadius: "25px",
+                
               }}
               lg={5}
               md={6}
