@@ -8,7 +8,7 @@ import PMOApproval from './PMOApproval';
 
 function PMOMain() {
   return (
-    <div style={{ paddingTop: '20px' }}>
+    <div style={{ paddingTop: '0px' }}>
       <Card className="scroll" style={{ backgroundColor: "white"}}>
 
         <Card.Header style={{ backgroundColor: "white"}}>
@@ -67,3 +67,10 @@ function PMOMain() {
 }
 
 export default PMOMain;
+
+
+
+
+
+
+
