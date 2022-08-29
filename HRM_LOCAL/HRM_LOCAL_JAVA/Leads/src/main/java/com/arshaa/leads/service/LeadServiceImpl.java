@@ -1,5 +1,7 @@
 package com.arshaa.leads.service;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import com.arshaa.leads.common.Client;
 import com.arshaa.leads.entity.Leads;
 import com.arshaa.leads.model.LeadResponse;
+import com.arshaa.leads.model.StatusCountCards;
 import com.arshaa.leads.repository.LeadRepository;
 
 @Service
@@ -136,6 +139,32 @@ public class LeadServiceImpl implements LeadService{
 		}
 	}
 	
+//	lead status count for dashboard
+	public ResponseEntity getCountsByStatus()
+	{
+	    try {
+	    	ArrayList<StatusCountCards> cardsCountList=new ArrayList<>();
+			List<String> getStatus=leadRepository.findAll().stream().map(e->e.getStatus()).toList();
+			List<Leads> getLeads=leadRepository.findAll();
+			
+			LinkedHashSet<String> hashSet = new LinkedHashSet<>(getStatus);
+	         
+	        ArrayList<String> listWithoutDuplicates = new ArrayList<>(hashSet);
+	        listWithoutDuplicates.forEach(e->{
+				long count=leadRepository.getLeadsByStatus(e).size();
+				StatusCountCards cardsCount=new StatusCountCards();
+				cardsCount.setCount(count);
+				cardsCount.setStatus(e);
+				cardsCountList.add(cardsCount);
+			});
+			return new ResponseEntity(cardsCountList,HttpStatus.OK);
+	    }
+		catch(Exception e)
+	    {
+			return new ResponseEntity("Something went wrong",HttpStatus.OK);
+
+	    }
+	}
 	
 	
 
