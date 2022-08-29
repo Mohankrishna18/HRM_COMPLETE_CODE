@@ -339,11 +339,18 @@ public class MainController {
 			return serv.updateAdditionalDetailsByOnboardId(add, onboardingId);
 		}
 		
-//		@PutMapping("/updateEmploymentDetails/{onboardingId}")
-//		public ResponseEntity updateEmploymentDetailsByOnboardingId(@PathVariable String onboardingId,
-//				@RequestBody EmploymentDetails empd) {
-//			return serv.updateEmploymentDetailsByOnboardId(empd, onboardingId);
-//		}
+		@PutMapping("/updateEmploymentDetails/{onboardingId}")
+		public ResponseEntity updateEmploymentDetailsByOnboardingId(@PathVariable String onboardingId,
+				@RequestBody EmploymentDetails empd) {
+			return serv.updateEmploymentDetailsByOnboardId(empd, onboardingId);
+		}
+		
+
+		@PutMapping("/updateEmpdDetails/{onboardingId}")
+		public ResponseEntity employmentDetailsUpdate(@PathVariable String onboardingId,
+				@RequestBody EmploymentDetails emps) {
+			return serv.EmploymentDetailsByOnboardId(emps, onboardingId);
+		}
 		
 		@PutMapping("/updateEducationalDetailsInPreOnboarding/{onboardingId}")
 		public ResponseEntity updateEducationalDetailsByOnboardingId(@PathVariable String onboardingId,
