@@ -256,9 +256,9 @@ function OnboardedEmployeesTable() {
             editable={{}}
             options={{
               headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#ff9b44",
                 color: "white",
-                fontSize: "20px",
+                fontSize: "16px",
               },
               addRowPosition: "first",
               actionsColumnIndex: -1,
@@ -277,7 +277,7 @@ function OnboardedEmployeesTable() {
             components={{
               Action: (props) => (
                 <div>
-                  {props.data.percentage== 100 ? (
+                  {props.data.percentage >= 80 ? (
                     <Stack direction="horizontal" gap={3}>
                       <Button
                         onClick={(event) => {
