@@ -23,6 +23,6 @@ public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster,S
 	List<EmployeeMaster> getEmployeeMasterBySrm(String employeeId);
 	List<EmployeeMaster> getEmployeeMasterByIrm(String employeeId);
 	List<EmployeeMaster> getEmployeeMasterByBuh(String employeeId);	
-
+	EmployeeMaster getEmployeeIdByfullName(String fullName); 
 
 }

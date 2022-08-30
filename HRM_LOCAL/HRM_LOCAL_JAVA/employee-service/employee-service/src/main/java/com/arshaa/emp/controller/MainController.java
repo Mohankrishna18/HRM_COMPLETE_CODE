@@ -416,5 +416,11 @@ public class MainController {
         public ResponseEntity getRoleBasedEmployeesByEmployeeId( @PathVariable String employeeId) {
              return roleBasedServ.getRoleBasedEmployeesByEmployeeId(employeeId);
         }
+        
+        @GetMapping("/getEmployeeIdByName/{fullName}")
+    	public String getEmployeeIdByName(@PathVariable String fullName) {
+    		return serv.getEmployeeIdByName(fullName);
+
+    	}
 
 }
