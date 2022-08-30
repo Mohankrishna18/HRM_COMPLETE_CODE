@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -39,10 +42,48 @@ public class User {
 	private String rejectReason;
 	@Column
 	private String managersRejectReason;
+	@Column
+	private String irm;
+	@Column
+	private String srm;
+	@Column
+	private String buh;
 	
+	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
+	@Temporal(TemporalType.DATE)
+	private java.util.Date submittedDate = new java.util.Date(System.currentTimeMillis());
+	
+	public Date getSubmittedDate() {
+		return submittedDate;
+	}
 
+	public void setSubmittedDate(Date submittedDate) {
+		this.submittedDate = submittedDate;
+	}
 
+	public String getIrm() {
+		return irm;
+	}
 
+	public void setIrm(String irm) {
+		this.irm = irm;
+	}
+
+	public String getSrm() {
+		return srm;
+	}
+
+	public void setSrm(String srm) {
+		this.srm = srm;
+	}
+
+	public String getBuh() {
+		return buh;
+	}
+
+	public void setBuh(String buh) {
+		this.buh = buh;
+	}
 
 	public User(int employeeleaveId, String employeeId, String leaveType, Date fromDate, Date toDate, int numberOfDays,
 			String leaveReason, String updatedBy, Date updatedOn, String leaveStatus, String reportingManager,

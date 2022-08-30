@@ -1,6 +1,8 @@
-
 package com.arshaa.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.apache.catalina.startup.ClassLoaderFactory.Repository;
@@ -18,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.arshaa.entity.BetweenDates;
 import com.arshaa.entity.EntitledLeaves;
 import com.arshaa.entity.User;
 import com.arshaa.model.ApproveCount;
+import com.arshaa.repository.BetweenDatesRepo;
 import com.arshaa.repository.UserRepository;
 import com.arshaa.repository.leaveEntitlementRepository;
 import com.arshaa.service.UserService;
@@ -34,6 +38,9 @@ public class LeaveController {
 
 	@Autowired
 	private UserRepository repo;
+	
+	@Autowired
+	private BetweenDatesRepo br ;
 
 	@Autowired
 	private leaveEntitlementRepository re; // @CrossOrigin(origins = "http://localhost:3000")
@@ -52,11 +59,22 @@ public class LeaveController {
 	public ResponseEntity getAllUsers() {
 		return service.findAll();
 	}
+	
+//	@PostMapping("/applyLeave")
+//	private List<Date> saveUser(@RequestBody User user) {	
+//				service.save(user);	
+//		List<Date> u = service.getDaysBetweenDates(user.getFromDate(), user.getToDate());
+//		
+//		return u;
+//	}
 
 	@PostMapping("/applyLeave")
-	private User saveUser(@RequestBody User user) {
+	private List<BetweenDates> saveUser(@RequestBody User user) {	
+			
+			//List<BetweenDatesRepo> betwee = (List<BetweenDatesRepo>) new BetweenDatesRepo();		
 		return service.save(user);
 	}
+	
 
 	@PutMapping("/updateLeave/{employeeleaveId}")
 	private User UpdateUsers(@RequestBody User user, @PathVariable Integer employeeleaveId) {
@@ -112,10 +130,16 @@ public class LeaveController {
 	}
 
 //Get api for get employees related to particular manager -->chandrika
-	@GetMapping("/getUserByReportingManager/{reportingManager}")
-	public ResponseEntity getUserByReportingManager(@PathVariable String reportingManager) {
-		return service.getUserByReportingManager(reportingManager);
+	@GetMapping("/getUserByReportingManager/{irm}")
+	public ResponseEntity getUserByIrm(@PathVariable String irm) {
+		return service.getUserByIrm(irm);
 	}
+	@GetMapping("/getUserSrmTeam/{srm}")
+	public ResponseEntity getUserBySrm(@PathVariable String srm)
+	{
+		return service.getUserBySrm(srm);
+	}
+	
 
 //get approve count
 	@SuppressWarnings("rawtypes")
@@ -142,5 +166,31 @@ public class LeaveController {
 		int b = repo.findapplyingleavescount(employeeId);
 		return b;
 	}
-
+	@GetMapping("/{startDate}/{endDate}")
+    ResponseEntity <List> getDaysBetweenDates(@PathVariable String startDate,@PathVariable String endDate) throws ParseException, Exception
+    {
+    return ResponseEntity.ok(service.getDaysBetweenDates(new SimpleDateFormat("yyyy-MM-dd").parse(startDate), new SimpleDateFormat("yyyy-MM-dd").parse(endDate)));
+    }
+	@GetMapping("/getAllbetweenDates/{employeeId}")
+	public List<BetweenDates> findAllbetweenDates(@PathVariable String employeeId) {
+		return br.findByEmployeeId(employeeId);
+	}
+	@DeleteMapping("/deleteBetweenDates/{employeeleaveId}")
+	public void  deleteByEmployeeleaveId(@PathVariable Integer employeeleaveId) {
+		try {
+			br.deleteDates(employeeleaveId);
+		}catch(Exception e) {
+	        System.out.println(e.getMessage());
+	        }
+	}
+//   @PutMapping("/updateBySrmByLeaveStatus/{employeeleaveId}")
+//   public ResponseEntity<User> updateLeaveStatusByEmployeeId( @RequestBody UpdateLeaveStatus uls ,@PathVariable Integer employeeleaveId) {
+//	   
+//	   User u = repo.findById(employeeleaveId).get();
+//	   
+//	   u.setLeaveStatus(uls.getLeaveStatus());
+//	
+//	  return new ResponseEntity("Updated Successfully",HttpStatus.OK);
+//   }
+  
 }

@@ -15,169 +15,180 @@ import axios from "../../../Uri";
 
 
 function EmployeeList() {
-const [data, setData] = useState([]);
-const [eid, setEid] = useState("");
-const myProfile = (e) => {
-console.log(e.target.innerText);
-setEid(e.target.innerText);
-localStorage.setItem('item',e.target.innerText)
-axios
-.get(`/emp/getEmployeeDataByEmployeeId/${e.target.innerText}`)
-.then((response) => {
-console.log(response.data.data);
-});
-};
+    const [data, setData] = useState([]);
+    const [eid, setEid] = useState("");
+    const myProfile = (e) => {
+        console.log(e.target.innerText);
+        setEid(e.target.innerText);
+        localStorage.setItem('item', e.target.innerText)
+        axios
+            .get(`/emp/getEmployeeDataByEmployeeId/${e.target.innerText}`)
+            .then((response) => {
+                console.log(response.data.data);
+            });
+    };
 
 
 
-const columns = [
-{
-title: "Employee Id",
-field: "employeeId",
-render: (rowData) => (
-<Link to= "/app/editmyprofileroute" onClick={myProfile}>
-{rowData.employeeId}
-</Link>
-),
-type: "text",
+    const columns = [
+        {
+            title: "Employee Id",
+            field: "employeeId",
+            render: (rowData) => (
+                <Link to="/app/editmyprofileroute" onClick={myProfile}>
+                    {rowData.employeeId}
+                </Link>
+            ),
+            type: "text",
 
 
 
-headerStyle: {
-backgroundColor: "#FF9E14",
-color: "white",
-},
-},
-{
-title: "Employee Name",
-field: "firstName",
-type: "text",
+            headerStyle: {
+                backgroundColor: "#FF9E14",
+                color: "white",
+            },
+        },
+        {
+            title: "Employee Name",
+            field: "firstName",
+            type: "text",
 
 
 
-headerStyle: {
-backgroundColor: "#FF9E14",
-color: "white",
-},
-},
-{
-title: "Email",
-field: "email",
+            headerStyle: {
+                backgroundColor: "#FF9E14",
+                color: "white",
+            },
+        },
+        {
+            title: "Email",
+            field: "email",
 
 
 
-headerStyle: {
-backgroundColor: "#FF9E14",
-color: "white",
-},
-},
-{
-title: "Designation",
-field: "designationName",
-type: "text",
+            headerStyle: {
+                backgroundColor: "#FF9E14",
+                color: "white",
+            },
+        },
+        {
+            title: "Department",
+            field: "departmentName",
 
 
 
-headerStyle: {
-backgroundColor: "#FF9E14",
-color: "white",
-},
-},
+            headerStyle: {
+                backgroundColor: "#FF9E14",
+                color: "white",
+            },
+        },
+        {
+            title: "Designation",
+            field: "designationName",
+            type: "text",
 
 
 
-{
-title: "Date of Joining",
-field: "dateOfJoining",
-type:"date",
-dateSetting: { locale: "en-GB" },
-headerStyle: {
-backgroundColor: "#FF9E14",
-color: "white",
-},
-},
-{
-title: "Skill set",
-field: "primarySkills",
+            headerStyle: {
+                backgroundColor: "#FF9E14",
+                color: "white",
+            },
+        },
 
 
 
-headerStyle: {
-backgroundColor: "#FF9E14",
-color: "white",
-},
-},
-{
-title: "Reporting Manager",
-field: "reportingManager",
+        {
+            title: "Date of Joining",
+            field: "dateOfJoining",
+            type: "date",
+            dateSetting: { locale: "en-GB" },
+            headerStyle: {
+                backgroundColor: "#FF9E14",
+                color: "white",
+            },
+        },
+        {
+            title: "Skill set",
+            field: "primarySkills",
 
 
 
-headerStyle: {
-backgroundColor: "#FF9E14",
-color: "white",
-},
-},
-];
+            headerStyle: {
+                backgroundColor: "#FF9E14",
+                color: "white",
+            },
+        },
+        {
+            title: "Reporting Manager",
+            field: "reportingManager",
 
 
 
-useEffect(() => {
-axios
+            headerStyle: {
+                backgroundColor: "#FF9E14",
+                color: "white",
+            },
+        },
+    ];
 
 
 
-.get("/emp/getAllEmployeeMasterData")
+    useEffect(() => {
+        axios
 
 
 
-.then((res) => {
-setData(res.data.data);
+            .get("/emp/getAllEmployeeMasterData")
 
 
 
-console.log(res.data.data);
-console.log(res.data.data.employeeid);
-})
+            .then((res) => {
+                setData(res.data.data);
 
 
 
-.catch((err) => {
-console.log(err);
-// toast.error("Server Error")
-});
-}, []);
-console.log(eid);
-return (
-    <div className="scroll">
-<Grid container data1={eid}>
-<Grid xs={12}>
-<MaterialTable
-title="All Employees"
-data={data}
-sx={{ color: "white" }}
-columns={columns}
-options={{
-exportButton: true,
-pageSize: 20,
-actionsColumnIndex: -1,
-grouping: true,
-addRowPosition: "first",
-headerStyle: {
-backgroundColor: "#1E90FF",
-color: "white",
-fontSize: "15px",
-//height: "10px",
-//fontWeight: 'bold'
-},
-rowStyle: {
-fontSize: 16,
-},
-}}
-/>
-</Grid>
-</Grid></div>
-);
+                console.log(res.data.data);
+                console.log(res.data.data.employeeid);
+            })
+
+
+
+            .catch((err) => {
+                console.log(err);
+                // toast.error("Server Error")
+            });
+    }, []);
+    console.log(eid);
+    return (
+        <div className="example">
+            <Grid container data1={eid}>
+                <Grid xs={12}>
+                    <MaterialTable
+                        title="All Employees"
+                        data={data}
+                        sx={{ color: "white" }}
+                        columns={columns}
+                        options={{
+                            exportButton: true,
+                            pageSize: 20,
+                            actionsColumnIndex: -1,
+                            grouping: true,
+                            addRowPosition: "first",
+                            headerStyle: {
+                                backgroundColor: "#1E90FF",
+                                color: "white",
+                                fontSize: "15px",
+                                //height: "10px",
+                                //fontWeight: 'bold'
+                            },
+                            rowStyle: {
+                                fontSize: 16,
+                            },
+                        }}
+                    />
+                </Grid>
+            </Grid></div>
+    );
 }
 
 
@@ -284,3 +295,4 @@ export default EmployeeList;
 
 
 // export default AllEmployee;
+

@@ -6,7 +6,7 @@ import { Row, Col, Card, Container } from 'react-bootstrap';
 const ManagerLeaveHistory = () => {
   return (
           <div style={{ paddingTop: '20px' }}>
-      <Card responsive className="scroll">
+      <Card responsive className="example">
         <Card.Header>
           <Card.Body>
             <Card.Title>History of EmployeeLeaves Tagged To Manager</Card.Title>

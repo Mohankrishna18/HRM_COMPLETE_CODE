@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Accordion, Button, Card, Form, InputGroup } from "react-bootstrap";
+import { Accordion, Button, Card, Form, InputGroup, Tab, Tabs } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
@@ -12,6 +12,13 @@ import EmployeeMasterCard from "../../EmployeeMaster/EmployeeMasterComponents/Em
 import { useHistory } from "react-router-dom";
 import { set } from "lodash";
 import { Formik } from "formik";
+import PersonalDetailsTab from "./PersonalDetailsTab";
+import AddressTab from "./AddressTab";
+import AditionalDetailsTab from "./AdditionalDetailsTab";
+import EmploymentDetailsTab from "./EmploymentDetailsTab";
+import EducationalDetailsTab from "./EducationalDetailsTab";
+import ExperienceTab from "./ExperienceDetailsTab";
+import ProjectsTab from "./ProjectsTab";
 
 function EmployeeMasterForms(props) {
     const userData = sessionStorage.getItem("userdata");
@@ -466,17 +473,55 @@ function EmployeeMasterForms(props) {
                                     Edit My Profile
                                 </Card.Subtitle>
                                 {/* <EmployeeMasterCard /> */}
-                                <Card.Text style={{ margin: 20, color: "red" }}>
+                                {/* <Card.Text style={{ margin: 20, color: "red" }}>
                                     * All fields are mandatory. Please fill the form Correctly.
-                                </Card.Text>
+                                </Card.Text> */}
 
-                                <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}>
+
+<Card>
+    <Row>
+
+                    <Tabs
+                        defaultActiveKey="Personal Details"
+                        transition={true}
+                        id="noanim-tab-example"
+                        className="mb-3"
+                        style={{ justifyContent: "center", color: "white" , backgroundColor:"white", fontSize:"18px" ,padding:0}}
+                    >
+                        <Tab eventKey="Personal Details" title="Personal Details" style={{ backgroundColor: "white" }}>
+                            <PersonalDetailsTab/>
+                        </Tab>
+                        <Tab eventKey="Address" title="Address" style={{ backgroundColor: "white" }}>
+                            <AddressTab/>
+                        </Tab>
+                        <Tab eventKey="Additional Details" title="Additional Details" style={{ backgroundColor: "white" }}>
+                            <AditionalDetailsTab/>
+                        </Tab>
+                        <Tab eventKey="Employment Details" title="Employment Details" style={{ backgroundColor: "white" }}>
+                            <EmploymentDetailsTab/>
+                        </Tab>
+                        <Tab eventKey="Educational Details" title="Educational Details" style={{ backgroundColor: "white" }}>
+                            <EducationalDetailsTab/>
+                        </Tab>
+                        <Tab eventKey="Experience" title="Experience " style={{ backgroundColor: "white" }}>
+                            <ExperienceTab/>
+                        </Tab>
+                        <Tab eventKey="Project" title="Project " style={{ backgroundColor: "white" }}>
+                            <ProjectsTab/>
+                        </Tab>
+                       
+                    </Tabs> 
+               </Row>                              
+                    </Card>
+
+
+                                {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}>
                                     <Card.Title style={{ margin: 20, textAlign: "center" }}>
                                         Personal Details
                                     </Card.Title>
-                                </Card>
+                                </Card> */}
 
-
+{/* 
                                 <Form
                                     onSubmit={(e) => changeHandler(e)}
                                     style={{ padding: 10 }}
@@ -644,7 +689,7 @@ function EmployeeMasterForms(props) {
                                             <Form.Label>Date of Birth *</Form.Label>
                                             <Form.Control
                                                 disabled
-                                                // required
+                                                required
                                                 type="date"
                                                 name="dateOfBirth"
                                                 placeholder="DOB"
@@ -842,7 +887,7 @@ function EmployeeMasterForms(props) {
                                                         name="permanentCountry"
                                                         controlId="permanentCountry"
                                                         maxLength={50}
-                                                        // options={countries}
+                                                       
                                                         value={permanentCountry}
                                                         isInvalid={thirteenerrors}
                                                         onChange={(e) => {
@@ -855,25 +900,14 @@ function EmployeeMasterForms(props) {
                                                             }
                                                         }}
                                                     >
-                                                        {/* <option>Select Country</option> */}
+                                                    
 
                                                     </Form.Control>
                                                     <Form.Control.Feedback type="invalid">
                                                         {thirteenerrors}
                                                     </Form.Control.Feedback>
                                                 </Form.Group>
-                                                {/* <CountryDropdown  
-                                            md="6"    
-                                                preferredCountries={['gb', 'us']}                                                  
-                                                required
-                                                type="text"
-                                                placeholder="Country"
-                                                name="permanentCountry"
-                                                controlId="permanentCountry"                                                
-                                                value={permanentCountry}
-                                                onChange={(e) => setPermanentCountry(e.target.value)}>
-                                    
-                                            </CountryDropdown> */}
+                                               
                                                 <Form.Group as={Col} md="12" style={{ paddingTop: 20, }}>
                                                     <Form.Label>Pincode *</Form.Label>
                                                     <Form.Control
@@ -2631,7 +2665,7 @@ function EmployeeMasterForms(props) {
                                     >
                                         Submit
                                     </Button>
-                                </Form>
+                                </Form> */}
                             </Card.Body>
                         </Card.Header>
                     </Card>
@@ -2642,3 +2676,4 @@ function EmployeeMasterForms(props) {
 }
 
 export default EmployeeMasterForms;
+

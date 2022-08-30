@@ -40,7 +40,7 @@ export default function EmployeeLeaveHistory() {
     // ]);
 
     return (
-        <Grid>
+        <Grid className='example'>
             <MaterialTable
                 title=""
                 columns={columns}

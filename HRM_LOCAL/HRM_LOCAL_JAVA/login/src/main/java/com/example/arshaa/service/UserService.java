@@ -148,6 +148,8 @@ public class UserService {
         		{
         			OnBoardingEmployeeLogin u=repo.getById(user.get().getOnboardingemployeeloginId());
         	        um.setUserType(u.getUserType());
+        	        um.setEmail(u.getEmail());
+        	        um.setOnboardingId(u.getOnboardingId());
         			    		}
     		        		    response.setData(um);
     	        return new ResponseEntity(response,HttpStatus.OK);

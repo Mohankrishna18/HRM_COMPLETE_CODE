@@ -13,4 +13,6 @@ public interface DepartmentInterface extends JpaRepository<Departmentmaster,Inte
 	public Departmentmaster findByDepartmentId(Integer departmentId);
 
 	Departmentmaster getByDepartmentName(String departmentName);
+	
+	Boolean existsByDepartmentName(String departmentName);
 }

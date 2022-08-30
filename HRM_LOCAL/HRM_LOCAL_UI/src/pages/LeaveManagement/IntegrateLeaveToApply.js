@@ -17,9 +17,6 @@ import "./calender.css";
 import Calendar from "react-calendar";
 import moment from "moment";
 import 'react-calendar/dist/Calendar.css';
-
-
-
 import "react-toastify/dist/ReactToastify.css";
 import LoadingOverlay from "react-loading-overlay";
 function IntegrateLeaveToApply() {
@@ -27,7 +24,17 @@ function IntegrateLeaveToApply() {
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
     const [dates, setDates] = useState([]);
+    const [marks, setMarks] = useState([]);
+    const [btwnDates, setBtwnDates] = useState([]);
+    const [bdates, setBDates] = useState([]);
+    const [color, setColor] = useState([]);
+    const [state, setState] = useState(false);
 
+        const current = new Date();
+      const currentdate = `${current.getFullYear()},${current.getMonth()+1},${current.getDate()}`;
+      console.log(currentdate);
+    const BackDate = `${current.getFullYear()},${current.getMonth()-3},${current.getDate()}`;
+    console.log(BackDate);
     const forms = useRef(null);
 
     function setField(field, value) {
@@ -54,6 +61,9 @@ function IntegrateLeaveToApply() {
         return newErrors;
     };
     let mark = []
+    let hclr = []
+    let btwn = []
+    let clr = []
 
     useEffect(() => {
 
@@ -65,11 +75,97 @@ function IntegrateLeaveToApply() {
 
             res.data.data.map((item) => {
 
+
+                const harr = item.holidayDate.replace(/[-,]/g, ",");
+                const hstr = harr.replace(/\b0/g, '').split('T0')[0];
+                console.log(hstr);
                 const da = moment.utc(item.holidayDate).format('YYYY-MM-DD')
+                console.log(da);
 
-                mark.push(da)
+                mark.push(da);
+                hclr.push(new Date(hstr));
 
-                setDates(mark)
+                setDates(mark);
+                setBDates(hclr);
+                console.log(hclr);
+
+            });
+        })
+    }, []);
+
+    useEffect(() => {
+        colorDates();
+
+
+    }, []);
+    const colorDates = () => {
+        axios.get(`/leave/getAllbetweenDates/${empID}`).then((resp) => {
+
+            console.log(resp.data)
+            resp.data.map((m) => {
+                const arr = m.appliedDate.replace(/[-,]/g, ",");
+                const str = arr.replace(/\b0/g, '');
+                console.log(str);
+                const bb = moment.utc(m.appliedDate).format('YYYY-MM-DD')
+                console.log(bb);
+                // btwn.push(m.appliedDate)
+                btwn.push(new Date(str));
+                clr.push(bb);
+
+            })
+            console.log(btwn)
+            setBtwnDates(btwn);
+            setColor(clr);
+            // btwnDates.resp.data.map((item) => {
+
+            //     var dd = item.appliedDate;
+
+
+            //     btwn.push(dd)
+
+            //     setBDates(btwn)
+            // });
+
+
+        })
+    }
+    const obje = Object.assign({}, btwnDates);
+    console.log(obje);
+    // console.log(btwn);
+
+    let applied = []
+
+
+    // useEffect(() =>{
+    // console.log(betweenDates);
+    // const btwnd = moment.utc.format('YYYY-MM-DD')
+
+    // setBtwnDates(btwn)
+    // },[]);
+
+
+    useEffect(() => {
+
+        axios.get(`leave/getLeaveHistoryByEmployeeid/${empID}`).then((response) => {
+
+            console.log(response.data);
+
+            // const bb = moment.utc(betweenDates).format('YYYY-MM-DD')
+            // console.log(bb);
+            // btwn.push(bb);
+            // setBtwnDates(btwn);
+
+
+
+            response.data.map((item) => {
+
+                const daa = moment.utc(item.fromDate).format('YYYY-MM-DD')
+                const daaa = moment.utc(item.toDate).format('YYYY-MM-DD')
+                // const sta = item.leaveStatus;
+                //    console.log(btwn);
+                applied.push(daa, daaa);
+
+                setMarks(applied)
 
 
 
@@ -78,6 +174,8 @@ function IntegrateLeaveToApply() {
 
 
             });
+
+
         })
     }, []);
 
@@ -124,7 +222,10 @@ function IntegrateLeaveToApply() {
 
     const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
 
-
+    const disabledDates = [
+        new Date(2022, 7, 8),
+        new Date(2022, 7, 9),
+    ];
 
 
 
@@ -278,8 +379,8 @@ function IntegrateLeaveToApply() {
         setDays,
     };
 
-
-
+    const [betweenDates, setBetweenDates] = useState([]);
+    console.log(betweenDates)
     const handleButtonClick = async (e) => {
         console.log("button clicked 123");
         e.preventDefault();
@@ -287,14 +388,18 @@ function IntegrateLeaveToApply() {
         const data = Object.assign(initialValues, obj);
         const data1 = Object.assign(data, obj1);
         const data2 = Object.assign(data1, obj2);
+
         console.log(data2);
         console.log(data);
         try {
             const res = await axios.post("/leave/applyLeave", data)
+            console.log("response", res.data)
+            setBetweenDates(res.data);
             if (res.status === 200) {
                 console.log("success")
                 notifySuccess("Leave Applied Successfully")
                 loadTable();
+                colorDates();
             }
 
 
@@ -304,7 +409,9 @@ function IntegrateLeaveToApply() {
             console.log(err)
             notifyError("Leave Already Applied")
         }
-
+        setDay('')
+        setFromDate('')
+        setState('')
         handleClose();
 
 
@@ -315,6 +422,9 @@ function IntegrateLeaveToApply() {
 
     const handleClose = () => {
         setShow();
+        setDay('')
+        setFromDate('')
+        setState('')
     };
     const getLeaveType = () => {
         console.log("");
@@ -542,122 +652,79 @@ function IntegrateLeaveToApply() {
 
             </Card>
             <Modal
-                size="sl"
+                size="lg"
                 show={show}
                 onHide={handleClose}
                 backdrop="static"
-                keyboard={false}
+                keyboard={false} 
             >
-                <Modal.Header closeButton>
+                <Modal.Header closeButton style={{ backgroundColor: "#FE924A" }}>
                     <Modal.Title>Apply Leave</Modal.Title>
                 </Modal.Header>
 
 
 
-                <Modal.Body>
+                <Modal.Body >
                     <Form ref={forms} className="formone"
-                        style={{ padding: 10 }}
+                        style={{ padding: 10 ,paddingLeft:"70px",paddingRight:"70px"}}
                         onSubmit={handleButtonClick}
                     >
                         <Row className="mb-2">
-                            {/* <Form.Group
-    as={Col}
-    md="6"
-    style={{ padding: 10 }}
-    controlId="validationCustom01"
-    >
-    <Form.Label>Employee Id</Form.Label>
-    <Form.Control
-    required
-    className="employeeId"
-    type="text"
-    value={getEmployeeDetails.employeeId}
-    onChange={(event) =>
-    setEmployeeId(getEmployeeDetails.employeeId)
-    }
-    />
-    </Form.Group> */}
+
                             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                                 <Form.Label>Leave Type</Form.Label>
-
                                 <Form.Select
-                                    aria-label="Default select example"
-                                    onChange={(event) => setLeavetype(event.target.value)}
-                                >
-                                    <option> Select Leave</option>
+                                    required
+                                    type=""
+                                    placeholder="Select Leave"
+                                    value={typeofleave.leaveType}
+                                    onChange={(event) => {
+                                        setLeavetype(event.target.value)
+
+                                    }}>
+                                    <option value="" placeholder="Select Leave">Select Leave</option>
                                     {typeofleave.map((leave) => (
                                         <option>{leave.leaveType}</option>
                                     ))}
-
-                                    {/* <option value={typeofleave.leaveType}>{typeofleave.leaveType}</option> */}
-                                    {/* <option value="Compensentory">Compensentory</option> */}
-                                    {/* <option value="Earned Leave">Earned Leave</option> */}
                                 </Form.Select>
                             </Form.Group>
-                            {/* <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                <Form.Label>From</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="date"
-                                    placeholder="Date"
-                                    onChange={(event) => {
-                                        setFromDate(event.target.value);
-                                        console.log(event.target.value);
-                                    }}
-                                />
-                            </Form.Group>
-                            <Form.Group
-                                as={Col}
-                                md="4"
-                                style={{ padding: 10 }}
-                                controlId="validationCustom02"
-                            >
-                                <Form.Label>To</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="date"
-                                    placeholder="To Date"
-                                    min={fromDate}
-                                    onChange={(event) => {
-                                        setToDate(event.target.value);
-                                        console.log(event.target.value);
-                                        axios.get(`/holiday/${fromDate}/${event.target.value}`).then((res) => {
-                                            if (res.data > 30) {
-                                                alert("Limit exceeded")
-                                                const err = "Limit exceeded"
-                                            }
-                                            else {
-                                                setDay(res.data);
-                                            }
 
-
-                                        })
-                                    }}
-                                />
-                            </Form.Group>
-
- */}
-                          
                             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                 <Form.Label>From</Form.Label>
                                 <Calendar
+                                     minDate={
+                                        new Date(BackDate)
+                                    }
                                     onChange={(e) => {
                                         console.log(e)
                                         const da = moment.utc(e + 1).format('YYYY-MM-DD')
                                         console.log(da)
                                         setFromDate(da)
+                                        setState(true);
 
-                                    }} tileClassName={({ date, view }) => {
+                                    }}
+                                    tileClassName={({ date, view }) => {
                                         if (dates.find(x => x === moment(date).format("YYYY-MM-DD"))) {
                                             return 'highlight'
                                         }
+
+                                        if (color.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                            return 'applied'
+                                        }
+
                                     }}
-                                // tileDisabled={({ date }) => date.getDay() === 0}
-                                /*maxDate={new Date(2020, 1, 0)}</div>*/
-                                //  minDate={
-                                //   new Date()
-                                // } 
-                                //  value={datevalue}
+
+                                    tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6 ||
+                                        btwnDates.some(disabledDate =>
+                                            date.getFullYear() === disabledDate.getFullYear() &&
+                                            date.getMonth() === disabledDate.getMonth() &&
+                                            date.getDate() === disabledDate.getDate()
+                                        ) ||
+                                        bdates.some(disabledDate =>
+                                            date.getFullYear() === disabledDate.getFullYear() &&
+                                            date.getMonth() === disabledDate.getMonth() &&
+                                            date.getDate() === disabledDate.getDate()
+                                        )}
                                 />
                             </Form.Group>
                             <Form.Group
@@ -667,28 +734,8 @@ function IntegrateLeaveToApply() {
                                 controlId="validationCustom02"
                             >
                                 <Form.Label>To</Form.Label>
-                                {/* <Form.Control
-                  required
-                  type="date"
-                  placeholder="To Date"
-                  min={fromDate}
-                  onChange={(event) => {
-                    setToDate(event.target.value);
-                    console.log(event.target.value);
-                    axios
-                      .get(`/holiday/${fromDate}/${event.target.value}`)
-                      .then((res) => {
-                        if (res.data > 30) {
-                          alert("Limit exceeded");
-                          const err = "Limit exceeded";
-                        } else {
-                          setDay(res.data);
-                        }
-                      });
-                  }}
-                /> */}
 
-                                <Calendar
+                                {/* <Calendar
                                     onChange={(e) => {
                                         console.log(e);
                                         setToDate(e);
@@ -714,21 +761,114 @@ function IntegrateLeaveToApply() {
                                         if (dates.find(x => x === moment(date).format("YYYY-MM-DD"))) {
                                             return 'highlight'
                                         }
+                                        // if (marks.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                        //     return 'applied'
+                                        // }
+                                        if(color.find(x => x === moment(date).format("YYYY-MM-DD"))){
+                                            return 'applied'
+                                        }
                                     }}
                                     minDate={
                                         new Date(fromDate)
                                     }
-                                // tileDisabled={({ date }) => date.getDay() === 0}
-                                /*maxDate={new Date(2020, 1, 0)}</div>*/
+                                    tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6 || 
+                                btwnDates.some(disabledDate =>
+                                        date.getFullYear() === disabledDate.getFullYear() &&
+                                        date.getMonth() === disabledDate.getMonth() &&
+                                        date.getDate() === disabledDate.getDate()
+                                        ) ||
+                                        bdates.some(disabledDate =>
+                                            date.getFullYear() === disabledDate.getFullYear() &&
+                                            date.getMonth() === disabledDate.getMonth() &&
+                                            date.getDate() === disabledDate.getDate()
+                                            ) }
+                                /> */}
 
-                                //  value={datevalue}
-                                />
+                                {state ? (
+                                    <Calendar
+                                        onChange={(e) => {
+                                            console.log(e);
+                                            setToDate(e);
+                                            console.log(e);
+                                            const da = moment.utc(e + 1).format('YYYY-MM-DD')
+                                            axios
+                                                .get(`/holiday/${fromDate}/${da}`)
+                                                .then((res) => {
+                                                    if (res.data > 30) {
+                                                        alert("Limit exceeded");
+                                                        const err = "Limit exceeded";
+                                                    } else {
+                                                        setDay(res.data);
+                                                    }
+                                                });
+                                            console.log(e)
+                                            //const da = moment.utc(e).format('YYYY-MM-DD')
+                                            console.log(da)
+                                            setToDate(da)
+
+
+                                        }}
+                                    tileClassName={({ date, view }) => {
+                                        if (dates.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                            return 'highlight'
+                                        }
+                                        // if (marks.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                        //     return 'applied'
+                                        // }
+                                        if (color.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                            return 'applied'
+                                        }
+                                    }}
+                                    minDate={
+                                        new Date(fromDate)
+                                    }
+                                    tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6 ||
+                                        btwnDates.some(disabledDate =>
+                                            date.getFullYear() === disabledDate.getFullYear() &&
+                                            date.getMonth() === disabledDate.getMonth() &&
+                                            date.getDate() === disabledDate.getDate()
+                                        ) ||
+                                        bdates.some(disabledDate =>
+                                            date.getFullYear() === disabledDate.getFullYear() &&
+                                            date.getMonth() === disabledDate.getMonth() &&
+                                            date.getDate() === disabledDate.getDate()
+                                        )}
+                                    />
+                                ) : (
+                                        <Calendar
+                                        tileClassName={({ date, view }) => {
+                                            if (dates.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                                return 'highlight'
+                                            }
+                                            if (color.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                                return 'applied'
+                                            }
+                                        }}
+                                        tileDisabled={({ date }) =>
+                                        bdates.some(disabledDate =>
+                                            date.getFullYear() === disabledDate.getFullYear() &&
+                                            date.getMonth() === disabledDate.getMonth() &&
+                                            date.getDate() === disabledDate.getDate()
+                                        ) 
+                                        || currentdate
+                                    }
+                                        minDate={
+                                            new Date()
+                                        }
+                                        maxDate={
+                                            new Date()
+                                        }
+                                    />
+                                    // <h6>
+                                    //     {/* Click on FromDate */}
+                                    //     </h6>
+                                )}
                             </Form.Group>
 
 
 
-                            <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                                <Form.Label>No of Days</Form.Label>
+                            <Form.Group as={Col} md="2" style={{ padding: 10 }}>
+                                <Form.Label>No.of Days</Form.Label>
                                 <Form.Control
                                     required
                                     type=""
@@ -740,16 +880,15 @@ function IntegrateLeaveToApply() {
                                     }}
                                 />
                             </Form.Group>
-                            {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    <Form.Label>Remaining Leaves</Form.Label>
-    <Form.Control
-    required
-    type="text"
-    placeholder=""
-    value={remainLeaves}
-    onChange={(event) => setRemainingLeaves(event.target.value)}
-    />
-    </Form.Group> */}
+                            <Form.Group as={Col} md="8" style={{ padding: 10 , paddingLeft: "50px"}}>
+                                <Form.Group controlId="formFileMultiple" className="mb-3">
+                                    <Form.Label>
+                                        Upload Doctor's Certificate for Sick/Medical Leave
+                                    </Form.Label>
+                                    <Form.Control type="file" multiple />
+                                </Form.Group>
+                                </Form.Group>
+
                             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                                 <Form.Label>Leave Reason</Form.Label>
                                 <Form.Control
@@ -765,13 +904,13 @@ function IntegrateLeaveToApply() {
                                 ></Form.Control>
                                 <Form.Control.Feedback type="invalid">{errors.leaveReason}</Form.Control.Feedback>
                             </Form.Group>
-                            <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                            {/* <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                                 <Form.Group controlId="formFileMultiple" className="mb-3">
                                     <Form.Label>
                                         Upload Doctor's Certificate for Sick/Medical Leave
                                     </Form.Label>
                                     <Form.Control type="file" multiple />
-                                </Form.Group>
+                                </Form.Group> */}
                                 <div class="col-md-12 text-center">
                                     <Button
                                         style={{ backgroundColor: "#FF9B44", borderRadius: "15px" }}
@@ -780,127 +919,22 @@ function IntegrateLeaveToApply() {
                                     >
                                         Submit
                                     </Button>
-                                    {/* <Button
-                            style={{ backgroundColor: "#FF9B44",borderRadius: "15px" }}
-                            type="submit"
-                            onClick={handleClose}
-                        >
-                            Close
-                        </Button> */}
                                 </div>
-                            </Form.Group>
+                            {/* </Form.Group> */}
                         </Row>
 
                     </Form>
                 </Modal.Body>
             </Modal>
-            {/* <LeaveEmployee/> */}
-
-
-
 
             <Grid>
                 <MaterialTable
                     title=""
                     columns={columns}
                     data={data}
-                    // editable={{
-                    // onRowAdd: newData =>
-                    // new Promise((resolve, reject) => {
 
-
-
-
-                    // setTimeout(() => {
-                    // console.log(newData)
-                    // const res = axios.post("/holiday/addholiday",
-                    // newData,
-                    // );
-                    // setData([...data, newData]);
-                    // loadData();
-
-
-
-
-
-                    // resolve();
-                    // }, 1000)
-                    // }),
-                    // onRowUpdate: (updatedRow, oldRow) =>
-                    // new Promise((resolve, reject) => {
-                    // console.log(oldRow);
-                    // console.log(updatedRow);
-                    // const index = oldRow.holidayId;
-                    // console.log(index);
-                    // const updatedRows = [...data];
-                    // console.log(updatedRows);
-                    // updatedRows[oldRow.tableData.id] = updatedRow;
-                    // console.log(updatedRows);
-
-
-
-
-
-                    // setTimeout(() => {
-                    // console.log(updatedRow)
-                    // const res = axios.put(`/holiday/updateHolidayById/${index}`, updatedRow)
-                    // .then((resp) => {
-                    // console.log(resp);
-                    // loadData()
-                    // })
-
-
-
-
-
-                    // .catch((err) => {
-                    // console.log("not updated")
-                    // // toast.error("Server error");
-                    // });
-
-
-
-
-
-                    // setData(updatedRows);
-                    // console.log("updated")
-                    // // toast.success(" Updated Successfully");
-                    // console.log(updatedRows);
-                    // resolve();
-                    // });
-                    // }),
-
-
-
-
-
-
-
-                    // onRowDelete: oldData =>
-                    // new Promise((resolve, reject) => {
-                    // setTimeout(() => {
-                    // console.log(oldData)
-                    // const dataDelete = [...data];
-                    // const index = oldData.holidayId;
-                    // dataDelete.splice(index, 1);
-                    // const res = axios.delete(`/holiday/deleteHoliday/${index}`)
-                    // .then((res) => {
-                    // console.log(res)
-                    // loadData()
-                    // })
-                    // console.log(dataDelete)
-                    // //setData(dataDelete);
-
-
-
-
-
-                    // resolve()
-                    // }, 1000)
-                    // }),
-                    // }}
                     options={{
-                        paging: false,
+                        paging: true,
                         addRowPosition: 'first',
                         actionsColumnIndex: -1,
                         headerStyle: {

@@ -1,19 +1,22 @@
 import React from 'react'
-import Navbar from '../../NavBar/NavBar'
-import Sidebar from '../../NavBar/Sidebar'
-import TimeSheet from './TimeSheetComponents/TimeSheet'
-//alignments
-const TimeSheetMain = () => {
+import { Card, Col, Row } from 'react-bootstrap';
+import TaskMain from './EmployeeTimesheet/TaskMain';
+//vipul
+const EmployeeTimeSheetMain = () => {
   return (
     <div>
-    
-      <Sidebar>
-      <TimeSheet />
-      </Sidebar>
-    
+      <Row>
+        <Col>
+        <Card.Title>Task Management</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">
+                  Task Management
+                  </Card.Subtitle>
+            <TaskMain/>
+        </Col>
+      </Row>
     </div>
   )
 }
 
-export default TimeSheetMain
- 
+export default EmployeeTimeSheetMain
+

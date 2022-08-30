@@ -9,13 +9,13 @@ return (
         <Card.Header>
           <Card.Body>
             <Card.Title>Users</Card.Title>
-            <Container>
+            {/* <Container> */}
               <Row>
                 <Col xs={12}>
                   <UserMain/>
                 </Col>
               </Row>
-            </Container>
+            {/* </Container> */}
           </Card.Body>
         </Card.Header>
       </Card>
@@ -26,3 +26,5 @@ return (
 
 
 export default AdministrationMain;
+
+

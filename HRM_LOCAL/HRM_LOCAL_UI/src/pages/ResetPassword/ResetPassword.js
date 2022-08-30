@@ -103,6 +103,7 @@ export default function ResetPassword() {
                     style={{ borderRadius: "15px" }}
                     size="lg"
                     value={oldPassword}
+                    id="oldPassword"
                     maxLength={14}
                     validate={{
                       required: {
@@ -146,6 +147,7 @@ export default function ResetPassword() {
                     style={{ borderRadius: "15px" }}
                     size="lg"
                     value={newPassword}
+                    id="newPassword"
                     maxLength={14}
                     validate={{
                       required: {
@@ -188,6 +190,7 @@ export default function ResetPassword() {
                     style={{ borderRadius: "15px" }}
                     size="lg"
                     value={confirmNewPassword}
+                    id="confirmNewPassword"
                     maxLength={14}
                     validate={{
                       required: {
@@ -229,6 +232,7 @@ export default function ResetPassword() {
                 <Button
                   size="lg"
                   type="submit"
+                  value="Reset Password"
                   style={{
                     width: "100%",
                     background: "#19fa0a",

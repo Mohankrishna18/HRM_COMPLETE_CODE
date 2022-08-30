@@ -49,8 +49,9 @@ function HrEmployeesLeavesWaitingForApproval(props) {
     const employeeid = userData1.data.employeeId;
     console.log(employeeid);
 
+
     const loadData = async () => {
-        const res = await axios.get(`/leave/getAllEmployees`);
+        const res = await axios.get(`/leave/getUserSrmTeam/${employeeid}`);
         // setData(res.data);
         // console.log(res.data);
         console.log(res.data);
@@ -64,9 +65,8 @@ function HrEmployeesLeavesWaitingForApproval(props) {
         { title: 'Leave Type', field: 'leaveType' },
         { title: 'From', field: 'fromDate', type: 'date', dateSetting: { locale: "en-GB" } },
         { title: 'To', field: 'toDate', type: 'date', dateSetting: { locale: "en-GB" } },
-        { title: 'No Of Days', field: 'numberOfDays' },
-        { title: 'Reason', field: 'leaveReason' },
-        { title: 'Manager Approval', field: 'managerApproval' },
+        { title: 'No Of Days', field: 'numberOfDays',width:"10px" },
+        { title: 'Reason', field: 'leaveReason' }
         // { title: 'Leave Type', field: 'leaveType', type:'date'}
 
     ]);
@@ -100,9 +100,9 @@ function HrEmployeesLeavesWaitingForApproval(props) {
                 <Modal.Header closeButton>
                     <Modal.Title>Are you sure you want to Reject</Modal.Title>
                 </Modal.Header>
-                <Modal.Footer>
+                <Modal.Body>
                     <HrEmployeeReject leaveID={leaveID} func={pull_dataReject} handleClose={handleCloseReject} />
-                </Modal.Footer>
+                </Modal.Body>
             </Modal>
 
             <Grid>

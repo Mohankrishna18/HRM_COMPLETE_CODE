@@ -1,11 +1,22 @@
-import React from 'react';
-import {Button,Row,Col} from "react-bootstrap";
+import { React, useState } from 'react';
+import {Button,Row,Col, Form} from "react-bootstrap";
 import axios from "../../Uri";
 import { toast } from "react-toastify";
 
 
 function HrEmployeeReject(props) {
     console.log(props.leaveID.employeeleaveId);
+    const [form, setForm] = useState({});
+    const [errors, setErrors] = useState({});
+
+    const setField = (field, value) => {
+        setForm({ ...form, [field]: value });
+        if (!!errors[field])
+            setErrors({
+                ...errors,
+                [field]: null,
+            });
+    };
     const RejectHandler = (e) => {
         // e.prevetDefault();
         const notify = () => toast("Leave  is Rejected");
@@ -16,6 +27,15 @@ function HrEmployeeReject(props) {
         const obj = { leaveStatus: "Rejected",hrApproval:"Rejected" };
         axios.put(`/leave/updateLeave/${employeeleaveId}`,obj)
         .then((res)=>{
+            axios.delete(`/leave/deleteBetweenDates/${employeeleaveId}`)
+                .then((resp)=>{
+                        console.log(resp)
+                        if(resp.status == 200){
+                            props.func();
+             }
+             else{
+                console.log('props not send')
+            } })
             console.log(res)
             if(res.status == 200){
                 props.func();
@@ -40,7 +60,25 @@ function HrEmployeeReject(props) {
             </Col> */}
             <Row>
             <Col>
-            <Button variant="primary" 
+            <Form role="form">
+                <Form.Group md="12" style={{ padding: 0 }}>
+                    <Form.Label>Comment</Form.Label>
+                    <Form.Control
+                        required
+                        as="textarea"
+                        rows={2}
+                        className="rejectReason"
+                        type="text"
+                        controlId="rejectReason"
+                        placeholder="Reject Reason"
+                        value={form.rejectReason}
+                        onChange={(e) => setField("rejectReason", e.target.value)}
+                        isInvalid={!!errors.rejectReason}
+                    ></Form.Control>
+                </Form.Group>
+
+            </Form>
+            <Button variant="primary" style={{ marginTop: "5%", float: "right" }}
             onClick={RejectHandler}
             >
             Yes

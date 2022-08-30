@@ -10,6 +10,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../../Images/arshaalogo.png";
 
+
 const Sign = () => {
   var userStatus = null;
   const [employeeId, setEmployeeId] = useState("");
@@ -59,8 +60,8 @@ const Sign = () => {
   return (
     <>
       <Container>
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <Row style={{ marginTop: "50px", marginLeft: "40px" }}>
+        <Form noValidate className="login" validated={validated} onSubmit={handleSubmit}>
+          <Row style={{ marginTop: "50px", marginLeft: "40px" ,paddingLeft:"300px"}}>
             <Col
               className="p-5 m-auto shadow-sm rounded-lg"
               style={{
@@ -69,6 +70,7 @@ const Sign = () => {
                 alignments: "center",
                 background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
                 borderRadius: "25px",
+                
               }}
               lg={5}
               md={6}
@@ -89,6 +91,7 @@ const Sign = () => {
                 <Form.Control type="text" placeholder="Enter your Employee Id " required style={{ borderRadius: "15px" }}
                   size="lg"
                   value={employeeId}
+                  id="employeeId"
                   maxLength={14}
                   onChange={(e) => {
                     const str = e.target.value;
@@ -97,7 +100,7 @@ const Sign = () => {
                       alert("Employee Id Length should not be more than 12 characters");
                     }
                     else {
-                      setEmployeeId(e.target.value)
+                      setEmployeeId(e.target.value.toUpperCase())
                     }
                   }
                   } />
@@ -111,6 +114,7 @@ const Sign = () => {
                   style={{ borderRadius: "15px" }}
                   size="lg"
                   value={password}
+                  id="password"
                   maxLength={14}
                   validate={{
                     required: {
@@ -137,7 +141,7 @@ const Sign = () => {
                     const str = e.target.value;
                     //let length = f.length;
                     if (`${str.length}` > 12) {
-                      alert("Password should not be nore than 12 characters");
+                      alert("Password should not be more than 12 characters");
                     }
                     else {
                       setPassword(e.target.value)
@@ -165,6 +169,7 @@ const Sign = () => {
                 <Button
                   size="lg"
                   type="submit"
+                  value="Sign in"
                   style={{
                     width: "100%",
                     background: "#19fa0a",
