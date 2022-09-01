@@ -9,10 +9,13 @@ public class EmploymentDetails {
 	private String employmentType;
 	private String band;
 	@Column
-	private String departmentName;
+	private String department;
 	@Column
-	private String designationName;
+	private String designation;
 	private String reportingManager;
+	private String jobTitle;
+	private String client;
+	
 	public String getIrm() {
 		return irm;
 	}
@@ -34,6 +37,30 @@ public class EmploymentDetails {
 	private String irm;
 	private String srm;
 	private String buh;
+	
+	  private String irmId;
+	    private String srmId;
+	    private String buhId;
+	    
+		public String getIrmId() {
+			return irmId;
+		}
+		public void setIrmId(String irmId) {
+			this.irmId = irmId;
+		}
+		public String getSrmId() {
+			return srmId;
+		}
+		public void setSrmId(String srmId) {
+			this.srmId = srmId;
+		}
+		public String getBuhId() {
+			return buhId;
+		}
+		public void setBuhId(String buhId) {
+			this.buhId = buhId;
+		}
+	    
 	private String projectName;
 	public String getPrimarySkills() {
 		return primarySkills;
@@ -59,17 +86,18 @@ public class EmploymentDetails {
 	public void setBand(String band) {
 		this.band = band;
 	}
-	public String getDepartmentName() {
-		return departmentName;
+	
+	public String getDepartment() {
+		return department;
 	}
-	public void setDepartmentName(String departmentName) {
-		this.departmentName = departmentName;
+	public void setDepartment(String department) {
+		this.department = department;
 	}
-	public String getDesignationName() {
-		return designationName;
+	public String getDesignation() {
+		return designation;
 	}
-	public void setDesignationName(String designationName) {
-		this.designationName = designationName;
+	public void setDesignation(String designation) {
+		this.designation = designation;
 	}
 	public String getReportingManager() {
 		return reportingManager;
@@ -79,6 +107,18 @@ public class EmploymentDetails {
 	}
 	public String getProjectName() {
 		return projectName;
+	}
+	public String getJobTitle() {
+		return jobTitle;
+	}
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
+	}
+	public String getClient() {
+		return client;
+	}
+	public void setClient(String client) {
+		this.client = client;
 	}
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;

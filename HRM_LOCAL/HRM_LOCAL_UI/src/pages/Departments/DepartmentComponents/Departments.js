@@ -82,7 +82,7 @@ function Departments() {
   ]);
 
   return (
-    <div style={{ paddingTop: "0px" }}>
+    <div style={{ backgroundColor:"white"}}>
 
       <Modal show={show}  size="md"
         onHide={handleClose}
@@ -149,7 +149,7 @@ function Departments() {
                         pageSizeOptions: [10, 15,20, 30 ,50, 75, 100 ],
                         maxBodyHeight: 450,
                         headerStyle: {
-                          backgroundColor: "#FF9E14",
+                          backgroundColor: "#FE924A",
                           color: "white",
                           fontSize: "20px",
                         },                               
@@ -210,3 +210,5 @@ function Departments() {
   );
 }
 export default Departments;
+
+
