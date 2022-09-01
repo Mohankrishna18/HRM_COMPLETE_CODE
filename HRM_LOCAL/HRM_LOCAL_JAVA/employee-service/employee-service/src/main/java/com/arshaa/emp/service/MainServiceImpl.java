@@ -64,7 +64,7 @@ public class MainServiceImpl implements MainService {
 	StringConstants sConstants = new StringConstants();
 
 	public ResponseEntity onBoardUser(Onboarding newOnboard) {
-		String dUrl="http://departments/dept/getDepartmentNameById/";
+//		String dUrl="http://departments/dept/getDepartmentNameById/";
 		String preEmailURL = "http://emailService/mail/preSendMail";
 		String preOnboardUrl = "http://loginservice/login/addUsersForPreOnboard";
 		Response r = new Response<>();
@@ -78,8 +78,8 @@ public class MainServiceImpl implements MainService {
 			// SimpleDateFormat("MM-dd-yyyy").format(newOnboard.getDateOfJoining()));
 			// System.out.println(new
 			// SimpleDateFormat("yyyy-MM-dd").format(newOnboard.getDateOfJoining()));
-			String depName=template.getForObject(dUrl+newOnboard.getDepartment(), String.class);
-			newOnboard.setDepartment(depName);
+//			String depName=template.getForObject(dUrl+newOnboard.getDepartment(), String.class);
+//			newOnboard.setDepartment(depName);
 			newOnboard.setUpdatedOn(tsqDate1);
 			newOnboard.setWaitingforapprovalStatus(true);
 			newOnboard.setRejectedStatus(false);
@@ -1048,8 +1048,8 @@ public class MainServiceImpl implements MainService {
 				empd.setSecondarySkills(em.getSecondarySkills());
 				empd.setEmploymentType(em.getEmploymentType());
 				empd.setBand(em.getBand());
-				empd.setDepartmentName(em.getDepartmentName());
-				empd.setDesignationName(em.getDesignationName());
+				empd.setDepartment(em.getDepartmentName());
+				empd.setDesignation(em.getDesignationName());
 				empd.setReportingManager(em.getReportingManager());
 				empd.setProjectName(em.getProjectName());
 
@@ -1079,8 +1079,8 @@ public class MainServiceImpl implements MainService {
 				em.setSecondarySkills(empd.getSecondarySkills());
 				em.setEmploymentType(empd.getEmploymentType());
 				em.setBand(empd.getBand());
-				em.setDepartmentName(empd.getDepartmentName());
-				em.setDesignationName(empd.getDesignationName());
+				em.setDepartmentName(empd.getDepartment());
+				em.setDesignationName(empd.getDesignation());
 				em.setReportingManager(empd.getReportingManager());
 				em.setProjectName(empd.getProjectName());
 				emRepo.save(em);
@@ -1447,42 +1447,84 @@ public class MainServiceImpl implements MainService {
 
 	}
 
+		//update call for employment details in preonboarding
+		@Override
+		public ResponseEntity EmploymentDetailsByOnboardId(EmploymentDetails emps, String onboardingId) {
+			Response r = new Response<>();
+			try {
+				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+				if(!getOnboarding.equals(null))
+				{
+					getOnboarding.setEmploymentType(emps.getEmploymentType());
+					getOnboarding.setBand(emps.getBand());
+					getOnboarding.setDepartment(emps.getDepartment());
+					getOnboarding.setDesignation(emps.getDesignation());
+					getOnboarding.setIrm(emps.getIrm());
+					getOnboarding.setSrm(emps.getSrm());
+					getOnboarding.setBuh(emps.getBuh());
+					getOnboarding.setReportingManager(emps.getReportingManager());
+					getOnboarding.setProjectName(emps.getProjectName());
+					getOnboarding.setClient(emps.getClient());
+					getOnboarding.setJobTitle(emps.getJobTitle());
+					
+					onRepo.save(getOnboarding);
+					r.setStatus(true);
+					r.setMessage("Data Fetching");
+					r.setData(getOnboarding);
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+				else {
+					r.setStatus(false);
+					r.setMessage("Data Not updated");
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+			}
+			catch(Exception e)
+			{
+				r.setStatus(false);
+				r.setMessage(e.getMessage());
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+			
 
-	//
-//		@Override
-//		public ResponseEntity updateEmploymentDetailsByOnboardId(EmploymentDetails empd, String onboardingId) {
-//			Response r = new Response<>();
-//			try {
-//				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
-//				if(!getOnboarding.equals(null))
-//				{
-//					getOnboarding.setPrimarySkills(empd.getPrimarySkills());
-//					getOnboarding.setSecondarySkills(empd.getSecondarySkills());
-//					getOnboarding.setEmploymentType(empd.getEmploymentType());
-//					getOnboarding.setBand(empd.getBand());
-//					getOnboarding.setDepartment(empd.getDepartmentName());
-//					getOnboarding.setDesignation(empd.getDesignationName());
-//					getOnboarding.setReportingManager(empd.getReportingManager());
-//					getOnboarding.setProjectName(empd.getProjectName());
-//					onRepo.save(getOnboarding);
-//					r.setStatus(true);
-//					r.setMessage("Data Fetching");
-//					r.setData(getOnboarding);
-//					return new ResponseEntity(r,HttpStatus.OK);
-//				}
-//				else {
-//					r.setStatus(false);
-//					r.setMessage("Data Not updated");
-//					return new ResponseEntity(r,HttpStatus.OK);
-//				}
-//			}
-//			catch(Exception e)
-//			{
-//				r.setStatus(false);
-//				r.setMessage("Something went wrong");
-//				return new ResponseEntity(r,HttpStatus.OK);
-//			}
-//		}
+	}
+
+	
+		@Override
+		public ResponseEntity updateEmploymentDetailsByOnboardId(EmploymentDetails empd, String onboardingId) {
+			Response r = new Response<>();
+			try {
+				Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+				if(!getOnboarding.equals(null))
+				{
+					getOnboarding.setEmploymentType(empd.getEmploymentType());
+					getOnboarding.setBand(empd.getBand());
+					getOnboarding.setDepartment(empd.getDepartment());
+					getOnboarding.setDesignation(empd.getDesignation());
+					getOnboarding.setIrm(empd.getIrm());
+					getOnboarding.setSrm(empd.getSrm());
+					getOnboarding.setBuh(empd.getBuh());
+					getOnboarding.setReportingManager(empd.getReportingManager());
+					getOnboarding.setProjectName(empd.getProjectName());
+					onRepo.save(getOnboarding);
+					r.setStatus(true);
+					r.setMessage("Data Fetching");
+					r.setData(getOnboarding);
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+				else {
+					r.setStatus(false);
+					r.setMessage("Data Not updated");
+					return new ResponseEntity(r,HttpStatus.OK);
+				}
+			}
+			catch(Exception e)
+			{
+				r.setStatus(false);
+				r.setMessage("Something went wrong");
+				return new ResponseEntity(r,HttpStatus.OK);
+			}
+		}
 
 	@Override
 	public ResponseEntity updateEducationalDetailsByOnboardId(EducationalDetails education, String onboardingId) {
@@ -1684,6 +1726,12 @@ public class MainServiceImpl implements MainService {
 		rm.setSrm(employeeMaster.getSrm());
 		return new ResponseEntity(rm, HttpStatus.OK);
 	}
+
+//	@Override
+//	public ResponseEntity updateEmploymentDetailsByOnboardId(EmploymentDetails empd, String onboardingId) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
 
 }

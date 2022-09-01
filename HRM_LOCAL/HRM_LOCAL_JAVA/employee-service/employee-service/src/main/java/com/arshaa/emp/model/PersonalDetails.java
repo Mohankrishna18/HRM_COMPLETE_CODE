@@ -32,6 +32,8 @@ public class PersonalDetails {
 	private String secondarySkills;
 	
 	
+	
+	
 	public String getSecondarySkills() {
 		return secondarySkills;
 	}
