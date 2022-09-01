@@ -1,160 +1,197 @@
 package com.arshaa.documentUpload_Service.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStream;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.util.StreamUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.arshaa.documentUpload_Service.configFile.PostServiceConstants;
+import com.arshaa.documentUpload_Service.dto.PostDto;
 import com.arshaa.documentUpload_Service.message.ResponseMessage;
-import com.arshaa.documentUpload_Service.service.FilesStorageService;
+import com.arshaa.documentUpload_Service.payloads.PostResponse;
+import com.arshaa.documentUpload_Service.payloads.UserApiResponse;
+import com.arshaa.documentUpload_Service.service.FilePostService;
+import com.arshaa.documentUpload_Service.service.PostService;
 
 
 
 
 
-@Controller
-@RequestMapping("/documentUpload")
+
+@RestController
+@RequestMapping("/api")
 //@CrossOrigin("http://localhost:8081")
 public class FilesController {
 
-@Autowired
-FilesStorageService storageService;
-
-@PostMapping("/uploadFile/{onboardingId}")
-public ResponseEntity<ResponseMessage> uploadFile(@PathVariable String onboardingId, @RequestParam("file") MultipartFile file) throws IOException {
-  String message = "";
-	final Path root = Paths.get(onboardingId);
-  try {
-//  	final Path root = Paths.get(id);
-  	System.out.print(Files.exists(root));
-  	System.out.println(root);
-
-  	if(!Files.exists(root))
-  	{
-  		Files.createDirectory(root);
-    	  	 Files.copy(file.getInputStream(), root.resolve(file.getOriginalFilename()));  	  	
-  	}
-  	else {
-  		 Files.copy(file.getInputStream(), root.resolve(file.getOriginalFilename()));
-   	  	storageService.save(file,root);
-
-  	}
+	@Autowired
+	PostService pservice ;
 	
-    message = "Uploaded the file successfully: " + file.getOriginalFilename();
-    return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
-  } catch (Exception e) {
-    message = e.getMessage()+ "Could not upload the file: " + file.getOriginalFilename() + "!";
-    return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
-  }
-}
+	@Autowired
+	private FilePostService fileService ;
+	
+//	@Value("${project.image}")
+	private String path="C:\\ArshaaDocuments\\";
+	
+	
+	
+	
+	//Posting Documents By Employee Id .
+		@PostMapping("/post/image/{employeeId}")
+		public ResponseEntity<PostDto> uploadImage(
+				@RequestParam("image") MultipartFile image,@PathVariable String employeeId
+				) throws Exception{
+			PostDto postDto =new PostDto();
+String name=image.getOriginalFilename();
+if(name.substring(name.lastIndexOf(".")).equalsIgnoreCase("pdf"))
 
-//@RequestMapping(value = "/upload/local", method = RequestMethod.POST)
-//public ResponseEntity<Object> uploadFile(@RequestParam("file") MultipartFile file) {
-//    try {
-//        File path = new File("C:\\temp\\images\\" + file.getOriginalFilename());
-//        path.createNewFile();
-//        FileOutputStream output = new FileOutputStream(path);
-//        output.write(file.getBytes());
-//        output.close();
-//        return new ResponseEntity<>("File is uploaded successfully!", HttpStatus.OK);
-//    } catch (Exception e) {
-//        return new ResponseEntity<>(e.getMessage(), HttpStatus.MULTI_STATUS);
-//    }
-//}
+{	
+			String fileName = this.fileService.uploadImage(path+employeeId, image);
+			postDto.setImageName(fileName);
+			postDto.setEmployeeId(employeeId);
+			postDto.setUrl("http://localhost:6065/api/get/image/"+fileName+"/"+employeeId);
+		PostDto updatePost =	this.pservice.createPost(postDto);
+			
+			return new ResponseEntity<PostDto>(updatePost , HttpStatus.OK);
+		
+	
+		}
+		else {
+			return new ResponseEntity(Map.of("Message","Only pdf formats accepts"),HttpStatus.OK);
+
+		}
+		}
+		//Getting Documents By Image Name and EmployeeId.
+		@GetMapping(value = "/get/image/{imageName}/{employeeId}" )
+		public void downloadImage (@PathVariable("imageName") String imageName ,@PathVariable String employeeId,
+		HttpServletResponse response) throws IOException {
+			InputStream resource = this.fileService.getResource(path+employeeId, imageName);
+			response.setContentType(MediaType.ALL_VALUE);
+	         response.setHeader("Content-disposition","attachment; filename=\""+imageName+"\"");
+
+		ServletOutputStream url=response.getOutputStream();
+			StreamUtils.copy(resource, response.getOutputStream());
+		}
+		
+		//Get Post By id .
+		@GetMapping("/getPost/{postId}")
+		public ResponseEntity<PostDto> getPostById(@PathVariable Integer postId){
+		PostDto postDto =	this.pservice.getPostById(postId);
+		return new ResponseEntity<PostDto>(postDto, HttpStatus.OK);
+		}
+	
+//		@GetMapping("/downloadFile/{imageName}/{employeeId}")
+//	    public ResponseEntity<Resource> downloadFile(@PathVariable("imageName") String imageName,@PathVariable String employeeId, HttpServletRequest request) throws FileNotFoundException {
+//	        // Load file as Resource
+//			InputStream resource =  this.fileService.getResource(path+employeeId, imageName);
 //
-
-
-//@GetMapping("/files")
-//public ResponseEntity<List<FileInfo>> getListFiles() {
-//  List<FileInfo> fileInfos = storageService.loadAll().map(path -> {
-//    String filename = path.getFileName().toString();
-//    String url = MvcUriComponentsBuilder
-//        .fromMethodName(FilesController.class, "getFile", path.getFileName().toString()).build().toString();
+//	        // Try to determine file's content type
+//	        String contentType = null;
+//	        try {
 //
-//    return new FileInfo(filename, url);
-//  }).collect(Collectors.toList());
+//	            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+//	        } catch (IOException ex) {
+//	            return new ResponseEntity("Could not determine file type.",HttpStatus.OK);
+//	        }
 //
-//  return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
-//}
+//	        // Fallback to the default content type if type could not be determined
+//	        if(contentType == null) {
+//	            contentType = "application/octet-stream";
+//	        }
 //
-//@GetMapping("/files/{filename:.+}")
-//public ResponseEntity<Resource> getFile(@PathVariable String filename) {
-//  Resource file = storageService.load(filename);
-//  return ResponseEntity.ok()
-//      .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
-//}
+//	        return ResponseEntity.ok()
+//	                .contentType(MediaType.parseMediaType(contentType))
+//	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+//	                .body(resource);
+//	    }
 
-
-//Save the uploaded file to this folder
-private static String UPLOADED_FOLDER = "C:/temp//";
-
-@GetMapping("/")
-public String index() {
-    return "upload";
-}
-
-@PostMapping("/upload") // //new annotation since 4.3
-public String singleFileUpload(@RequestParam("id") String id,
-                               @RequestParam("file") MultipartFile file,
-                               RedirectAttributes redirectAttributes) {
-
-    if (file.isEmpty()) {
-        redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
-        return "redirect:uploadStatus";
-    }
-
-
-    try
-    {
-        Long userId;
-        byte[] bytes = file.getBytes();
-        String filename =file.getOriginalFilename();
-        int pos=filename.lastIndexOf(".");
-        System.out.println(pos);
-        if (pos>0)
-        {
-            filename=filename.substring(0, pos);
-        }
-        System.out.println(id);
-        File folder=new File(id);
-        System.out.println(folder);
-        folder.mkdir();
-
-
-        Path path = Paths.get("C:\temp\\"+filename+"\\"+ file.getOriginalFilename());
-        System.out.println(UPLOADED_FOLDER);
-        Files.write(path, bytes);
-
-
-
-
-        redirectAttributes.addFlashAttribute("message",
-                "You successfully uploaded '" + file.getOriginalFilename() + "'");
-    } 
-    catch (IOException e) {
-        e.printStackTrace();
-    }
-    return "redirect:/uploadStatus";
-    }
-
+		
+		
+	
+		/*       The below code was for future          */
+	
+//	
+//	//Get By Users 
+//	@GetMapping("/usersPost/{userId}")
+//	public ResponseEntity<List<PostDto>> getPostByUsers(@PathVariable Integer userId){
+//	List<PostDto> posts = this.pservice.getPostByUsers(userId)	;
+//	return new ResponseEntity<List<PostDto>>(posts, HttpStatus.OK);
+//	}
+	
+	//Get All Post .
+	//public ResponseEntity<List<PostDto>> getAllPost
+	//localhost:8095/api/getAllPost?pageNumber=1&pageSize=3.
+	//localhost:8095/api/getAllPost?pageNumber=1&pageSize=3&sortBy=postId
+	//localhost:8095/api/getAllPost?pageNumber=1&pageSize=3&sortBy=postId&sortDir=desc
+	
+	@GetMapping("/getAllPost")
+	public ResponseEntity<PostResponse> getAllPost(
+			@RequestParam(value="pageNumber",defaultValue=PostServiceConstants.PAGE_NUMBER, required=false) Integer pageNumber,
+			@RequestParam(value="pageSize",defaultValue=PostServiceConstants.PAGE_SIZE, required=false) Integer pageSize ,
+			@RequestParam(value="sortBy" , defaultValue=PostServiceConstants.SORT_BY , required= false) String sortBy,
+			@RequestParam(value = "sortDir" , defaultValue=PostServiceConstants.SORT_DIR, required= false)String sortDir
+			){
+//		List<PostDto> allPost = this.pservice.getAllPost(pageNumber , pageSize);
+//		return new ResponseEntity<List<PostDto>>(allPost,HttpStatus.OK);
+		PostResponse postResponse = this.pservice.getAllPost(pageNumber, pageSize,sortBy, sortDir);
+	return new ResponseEntity<PostResponse>(postResponse , HttpStatus.OK);
+		
+	}
+	
+	//Delete post By id ;
+	@DeleteMapping("/delete/{postId}")
+	public UserApiResponse deletePost(@PathVariable Integer postId) {
+		this.pservice.deletePost(postId);
+		
+		return new UserApiResponse("Post is successfully deleted" , true);
+		
+	}
+	
+//	//Updating Post By postId .
+//	@PutMapping("/update/{postId}")
+//	public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto ,@PathVariable Integer postId) {
+//	PostDto pdto =	this.pservice.updatePost(postDto, postId);
+//	
+//		
+//		return new ResponseEntity<PostDto>(pdto , HttpStatus.OK);
+//		
+//	}
+	
+	
+	
+	
+	
+	
+	//Getting data by keyWord .
+	@GetMapping("/post/search/{keyword}")
+	public ResponseEntity<List<PostDto>>  searchPostByTitle(
+			@PathVariable("keyword") String keyword){
+		List<PostDto> result = this.pservice.searchPosts(keyword);
+		return new ResponseEntity<List<PostDto>>(result , HttpStatus.OK);
+	}
+	
 
 }
