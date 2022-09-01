@@ -3,21 +3,21 @@ import LeaveTable from './LeaveTable'
 import { Row, Col, Card, Container } from 'react-bootstrap';
 const Leavehistoryofemployee = () => {
   return (
-    <div style={{ paddingTop: '20px' }}>
+    <div style={{ paddingTop: '0px' }}>
       <Card responsive className="scroll">
-        <Card.Header>
+        <Card.Header  style={{backgroundColor:"white"}}>
           <Card.Body>
             <Card.Title>List of Employee Leaves</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
               EmployeeLeaves
             </Card.Subtitle>{" "}
-            <Container>
+            {/* <Container> */}
               <Row>
                 <Col xs={12}>
                   <LeaveTable />
                 </Col>
               </Row>
-            </Container>
+            {/* </Container> */}
           </Card.Body>
         </Card.Header>
       </Card>
@@ -28,3 +28,5 @@ const Leavehistoryofemployee = () => {
 
 
 export default Leavehistoryofemployee;
+
+

@@ -121,7 +121,7 @@ function TaskMain() {
   ]);
 
   return (
-    <Card style={{ paddingTop: "20px" }}>
+    <Card style={{ paddingTop: "5px" }}>
 
       <Modal show={show}  size="lg"
         onHide={handleClose}
@@ -183,6 +183,7 @@ function TaskMain() {
 
                       }}
                       options={{
+                        
                         headerStyle: {
                           backgroundColor: "#FE924A",
                           color: "white",

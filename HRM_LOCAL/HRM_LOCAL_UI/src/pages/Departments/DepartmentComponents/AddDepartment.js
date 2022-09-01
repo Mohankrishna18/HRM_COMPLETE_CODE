@@ -114,7 +114,7 @@ function AddDepartment(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#ff9b44",
+          backgroundColor: "#FE924A",
           color: "#F4F8F6",
           float: "right",
           borderRadius: "25px",
@@ -123,9 +123,9 @@ function AddDepartment(props) {
           fontWeight: "bold"
         }}
       >
-        {" "}
+        
         <BsPlusLg />
-        &nbsp;Add Business Unit
+        &nbsp; Add Business Unit
       </Button>
       <Modal
         size="md"
@@ -135,8 +135,8 @@ function AddDepartment(props) {
         keyboard={false}
         centered
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
-          <Modal.Title style={{ backgroundColor: "#FF9E14", color : "white" }}>Add Business Unit</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#FE924A", color : "white" }}>
+          <Modal.Title style={{ backgroundColor: "#FE924A", color : "white" }}>Add Business Unit</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -201,7 +201,7 @@ function AddDepartment(props) {
               <Col>
                 <Button
                   style={{
-                    backgroundColor: "#ff9b44",
+                    backgroundColor: "#FE924A",
                     borderColor: "#ff9b44",
                     float: "right",
                     width: "40%",
