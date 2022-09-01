@@ -101,7 +101,7 @@ function ModuleMain() {
       backdrop="static"
       keyboard={false}
       centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white"}}>
+        <Modal.Header closeButton style={{ backgroundColor: "#FE924A", color : "white"}}>
           <Modal.Title>Delete Module</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -139,7 +139,7 @@ function ModuleMain() {
                       }}
                       options={{
                         headerStyle: {
-                          backgroundColor: "#FF9E14",
+                          backgroundColor: "#FE924A",
                           color: "white",
                           fontSize: "20px",
                         },
