@@ -37,6 +37,30 @@ public class EmploymentDetails {
 	private String irm;
 	private String srm;
 	private String buh;
+	
+	  private String irmId;
+	    private String srmId;
+	    private String buhId;
+	    
+		public String getIrmId() {
+			return irmId;
+		}
+		public void setIrmId(String irmId) {
+			this.irmId = irmId;
+		}
+		public String getSrmId() {
+			return srmId;
+		}
+		public void setSrmId(String srmId) {
+			this.srmId = srmId;
+		}
+		public String getBuhId() {
+			return buhId;
+		}
+		public void setBuhId(String buhId) {
+			this.buhId = buhId;
+		}
+	    
 	private String projectName;
 	public String getPrimarySkills() {
 		return primarySkills;
