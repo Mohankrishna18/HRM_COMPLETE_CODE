@@ -8,8 +8,8 @@ import TaskMain from '../TimeSheet/EmployeeTimesheet/TaskMain';
 const ManagerLeavesToApproveMain = () => {
   return (
     <div style={{ paddingTop: '20px' }}>
-      <Card responsive className="scroll" style={{ backgroundColor: "white" }}>
-        <Card.Header>
+      <Card responsive className="example" style={{ backgroundColor: "white" }}>
+        <Card.Header style={{ backgroundColor: "white"}}>
           <Card.Body style={{ backgroundColor: "white" }}>
             <Card.Title> Approvals </Card.Title>
             <Card.Subtitle> Approvals / Approvals</Card.Subtitle>
@@ -21,11 +21,11 @@ const ManagerLeavesToApproveMain = () => {
                   defaultActiveKey="Leave Approvals"
                   id="uncontrolled-tab-example"
                   className="mb-3"
-                  style={{ justifyContent: "center", color: "white", backgroundColor: "white", fontSize: "19px", padding: 0, }}
+                  style={{ justifyContent: "left", color: "white", backgroundColor: "white", fontSize: "19px",paddingTop:20  }}
                 >
 
-                  <Tab eventKey="Leave Approvals" title="Leave Approvals" style={{ backgroundColor: "white" }}>
-                    <Card.Header>
+                  <Tab eventKey="Leave Approvals" title="Leave Approvals" style={{ backgroundColor: "white"}}>
+                    <Card.Header style={{ backgroundColor: "white"}}>
                       <Card.Body>
                         <Card.Title>Leaves Waiting For Approval</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">
@@ -44,7 +44,7 @@ const ManagerLeavesToApproveMain = () => {
                       </Card.Body>
                     </Card.Header>
 
-                    <Card.Header>
+                    <Card.Header style={{ backgroundColor: "white"}}>
                       <Card.Body>
                         <Card.Title>My Teams Leave History</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">
@@ -124,3 +124,4 @@ const ManagerLeavesToApproveMain = () => {
 }
 
 export default ManagerLeavesToApproveMain;
+

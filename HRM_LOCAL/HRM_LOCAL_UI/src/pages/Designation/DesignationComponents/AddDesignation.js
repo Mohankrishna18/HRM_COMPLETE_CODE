@@ -114,7 +114,7 @@ function AddDesignation(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#ff9b44",
+          backgroundColor: "#FE924A",
           color: "#F4F8F6",
           float: "right",
           borderRadius: "25px",
@@ -133,7 +133,7 @@ function AddDesignation(props) {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#FE924A" }}>
           <Modal.Title>Add Designation</Modal.Title>
         </Modal.Header>
 
@@ -213,7 +213,7 @@ function AddDesignation(props) {
               <Col>
                 <Button
                   style={{
-                    backgroundColor: "#B6B6B4",
+                    backgroundColor: "#FE924A",
                     borderColor: "#B6B6B4",
                     alignItems: "center",
                     width: "40%",

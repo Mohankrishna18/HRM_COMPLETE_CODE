@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Card, Form, Row, Col, InputGroup, Button, Accordion } from "react-bootstrap";
+import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+import "./EmployeeMaster.css";
+import '../../../App.css';
+import { Typography } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+
 
 function EducationalDetailsTab() {
 
@@ -73,10 +82,10 @@ function EducationalDetailsTab() {
     const [sscJoiningYear, setSscJoiningYear] = useState("");
     const [sscPassedYear, setSscPassedYear] = useState("");
     const [sscGrade, setSscGrade] = useState("");
-   
+
     const [ifscCode, setIfscCode] = useState("");
     const [branch, setBranch] = useState("");
- 
+
 
 
     useEffect(() => {
@@ -118,46 +127,48 @@ function EducationalDetailsTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
-        try{
-        await axios.put(`/emp/updateEducationalDetails/${employeeid}`, {
-            postgraduationType,
-            postgraduationBoardOfUniversity,
-            postgraduationInstituteName,
-            postgraduationInstituteCity,
-            postgraduationCourseName,
-            postgraduationJoiningYear,
-            postgraduationPassedYear,
-            postgraduationGrade,
-            graduationType,
-            graduationBoardOfUniversity,
-            graduationInstituteName,
-            graduationInstituteCity,
-            graduationCourseName,
-            graduationJoiningYear,
-            graduationPassedYear,
-            graduationGrade,
-            intermediateBoardOfUniversity,
-            intermediateCollegeName,
-            intermediateCollegeCity,
-            intermediateCourseName,
-            intermediateJoiningYear,
-            intermediatePassedYear,
-            intermediateGrade,
-            sscBoardOfUniversity,
-            sscSchoolName,
-            sscSchoolCity,
-            sscCourseName,
-            sscJoiningYear,
-            sscPassedYear,
-            sscGrade,
+        try {
+            await axios.put(`/emp/updateEducationalDetails/${employeeid}`, {
+                postgraduationType,
+                postgraduationBoardOfUniversity,
+                postgraduationInstituteName,
+                postgraduationInstituteCity,
+                postgraduationCourseName,
+                postgraduationJoiningYear,
+                postgraduationPassedYear,
+                postgraduationGrade,
+                graduationType,
+                graduationBoardOfUniversity,
+                graduationInstituteName,
+                graduationInstituteCity,
+                graduationCourseName,
+                graduationJoiningYear,
+                graduationPassedYear,
+                graduationGrade,
+                intermediateBoardOfUniversity,
+                intermediateCollegeName,
+                intermediateCollegeCity,
+                intermediateCourseName,
+                intermediateJoiningYear,
+                intermediatePassedYear,
+                intermediateGrade,
+                sscBoardOfUniversity,
+                sscSchoolName,
+                sscSchoolCity,
+                sscCourseName,
+                sscJoiningYear,
+                sscPassedYear,
+                sscGrade,
 
-        });
-        toast.success("Form Submitted Successfully");
-    }
-    catch(error){
-        toast.error("Somethingwent Wrong");
-  }
+            });
+            toast.success("Form Submitted Successfully");
+        }
+        catch (error) {
+            toast.error("Somethingwent Wrong");
+        }
     };
+
+
 
     return (
 
@@ -173,14 +184,168 @@ function EducationalDetailsTab() {
                 style={{ padding: 10 }}
             >
                 <Row className="mb-5">
-                <Card style={{ marginLeft: 0, marginRight: 0, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 8, textAlign: "center" }}>
-                    Postgraduation Details
-                </Card.Title>
-            </Card>
-                    <Accordion defaultActiveKey="1">
-                        <Accordion.Item eventKey="0">
-                            <Accordion.Header >Post Graduation</Accordion.Header>
+                    <Card style={{ marginLeft: 0, marginRight: 0, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+                        <Card.Title style={{ margin: 8, textAlign: "center" }}>
+                            Postgraduation Details
+                        </Card.Title>
+                    </Card>
+
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header" 
+                        >
+                            <Typography >Postgraduation Details</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography>
+                                <Row>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Type of Post Graduation </Form.Label>
+                                        <Form.Select
+                                            required
+                                            type="text"
+                                            placeholder="Type Of Post Graduation"
+                                            controlId="postgraduationType"
+                                            name="postgraduationType"
+                                            value={postgraduationType}
+                                            maxLength={50}
+                                            onChange={(e) =>
+                                                setTypeOfPostGraduation(
+                                                    e.target.value
+                                                )
+                                            }
+                                        >
+                                            <option>Select</option>
+                                            <option value="Master of Arts (MA)">Master of Arts (MA) </option>
+                                            <option value="Master of Science (MS, MSc) ">Master of Science (MS, MSc) </option>
+                                            <option value="Master of Business Administration (MBA)">Master of Business Administration (MBA)</option>
+                                            <option value="Master of Research (MRes)">Master of Research (MRes) </option>
+                                            <option value="Master by Research (MPhil)">Master by Research (MPhil)</option>
+                                            <option value="Master of Studies (MSt)">Master of Studies (MSt)</option>
+                                            <option value="Master of Library Science (MLS, MLIS, MSLS)">Master of Library Science (MLS, MLIS, MSLS)</option>
+                                            <option value="Other">Other</option>
+                                        </Form.Select>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>University Name </Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="University Name"
+                                            controlId="postgraduationBoardOfUniversity"
+                                            name="postgraduationBoardOfUniversity"
+                                            maxLength={50}
+                                            value={postgraduationBoardOfUniversity}
+                                            onChange={(e) =>
+                                                setPostgraduationBoardOfUniversity(
+                                                    e.target.value
+                                                )
+                                            }
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Institute Name </Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Institute Name "
+                                            controlId="postgraduationInstituteName"
+                                            value={postgraduationInstituteName}
+                                            maxLength={50}
+                                            name="postgraduationInstituteName"
+                                            onChange={(e) =>
+                                                setPostgraduationInstituteName(e.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Institute City/Town </Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Institute City"
+                                            controlId="postgraduationInstituteCity"
+                                            value={postgraduationInstituteCity}
+                                            maxLength={50}
+                                            name="postgraduationInstituteCity"
+                                            onChange={(e) =>
+                                                setPostgraduationInstituteCity(e.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Course Name </Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Course Name"
+                                            controlId="postgraduationCourseName"
+                                            value={postgraduationCourseName}
+                                            maxLength={50}
+                                            name="postgraduationCourseName"
+                                            onChange={(e) =>
+                                                setPostgraduationCourseName(e.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Joining Year </Form.Label>
+                                        <Form.Control
+                                            type="date"
+                                            placeholder="Joining Year"
+                                            controlId="postgraduationJoiningYear"
+                                            value={postgraduationJoiningYear}
+                                            maxLength={50}
+                                            name="postgraduationJoiningYear"
+                                            onChange={(e) =>
+                                                setPostgraduationJoiningYear(e.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Passed-out Year</Form.Label>
+                                        <Form.Control
+                                            type="date"
+                                            placeholder="Passed out year"
+                                            controlId="postgraduationPassedYear"
+                                            value={postgraduationPassedYear}
+
+                                            min={postgraduationJoiningYear}
+                                            maxLength={50}
+                                            name="postgraduationPassedYear"
+                                            onChange={(e) =>
+                                                setPostgraduationPassedYear(e.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Grade</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Percentage/Grade/CGPA/GPA"
+                                            controlId="postgraduationGrade"
+                                            value={postgraduationGrade}
+
+                                            name="postgraduationGrade"
+                                            maxLength={5}
+                                            onChange={(e) => {
+                                                setPostgraduationGrade(e.target.value)
+
+                                                // if (postgraduationGrade > maxLength) {
+                                                //     setElevenErrors("Length of grade should be less then 5 characters");
+                                                // }
+                                            }}
+
+                                        />
+                                    </Form.Group>
+                                </Row>
+
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+
+
+                    {/* <Accordion defaultActiveKey="1" style={{backgroundColor:"white"}}>
+                        <Accordion.Item eventKey="0" style={{backgroundColor:"white"}}  >
+                            <Accordion.Header style={{backgroundColor:"white"}} >Post Graduation</Accordion.Header>
                             <Accordion.Body>
                                 <Row>
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -321,7 +486,7 @@ function EducationalDetailsTab() {
                                 </Row>
                             </Accordion.Body>
                         </Accordion.Item>
-                    </Accordion>
+                    </Accordion> */}
 
                     <Card
                         style={{ marginLeft: 8, marginRight: 0, marginTop: 20, backgroundColor: "#FAFDD0" }}

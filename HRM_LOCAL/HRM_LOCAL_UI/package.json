@@ -68,7 +68,8 @@
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5",
     "yup": "^0.32.11",
-    "react-select": "4.3.1"
+    "react-select": "4.3.1",
+    "@syncfusion/ej2-react-dropdowns": "^19.3.55"
   },
   "devDependencies": {
     "typescript": "3.3.3"

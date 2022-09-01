@@ -5,11 +5,11 @@ import HrEmployeesLeavesWaitingForApproval from "./HrEmployeesLeavesWaitingForAp
 
 const HrLeavesToApproveMain = () => {
   return (
-    <div style={{ paddingTop: '20px' }}>
+    <div style={{ paddingTop: '0px' }}>
 
-      <Card responsive className="scroll" style={{ backgroundColor: "white" }}>
-        <Card.Header>
-          <Card.Body style={{ backgroundColor: "white" }}>
+      <Card responsive className="scroll" >
+        <Card.Header style={{ backgroundColor: "white"}}>
+          <Card.Body >
             <Card.Title> Approvals </Card.Title>
             <Card.Subtitle> Approvals / Approvals</Card.Subtitle>
 
@@ -19,7 +19,7 @@ const HrLeavesToApproveMain = () => {
                   defaultActiveKey="Leave Approvals"
                   id="uncontrolled-tab-example"
                   className="mb-3" 
-                  style={{ justifyContent: "center", color: "white", backgroundColor: "white", fontSize: "19px", padding: 0, }}
+                  style={{ justifyContent: "left", color: "white", backgroundColor: "white", fontSize: "19px", padding: 0, }}
                 >
                   <Tab eventKey="Leave Approvals" title="Leave Approvals" style={{ backgroundColor: "white" }}>
                     <HrEmployeesLeavesWaitingForApproval />

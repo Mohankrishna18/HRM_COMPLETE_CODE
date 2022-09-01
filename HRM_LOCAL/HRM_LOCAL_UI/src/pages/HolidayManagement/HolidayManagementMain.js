@@ -10,22 +10,22 @@ import { useEffect, useState } from "react";
 const HolidayManagementMain = () => {
 
   return (
-    <div style={{ paddingTop: '20px' }}>
+    <div style={{ paddingTop: '0px' }}>
       <Card responsive className="scroll">
-        <Card.Header>
-          <Card.Body>
+        <Card.Header style={{backgroundColor:"white"}}>
+          <Card.Body style={{backgroundColor:"white"}}>
             <Card.Title> Holiday Management</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
               Holidays
             </Card.Subtitle>{" "}
-            <Container>
+            {/* <Container> */}
               <Row>
                 <Col xs={12}>
                   <HolidayTable/>
                 </Col>
 
               </Row>
-            </Container>
+            {/* </Container> */}
           </Card.Body>
         </Card.Header>
       </Card>
@@ -34,4 +34,5 @@ const HolidayManagementMain = () => {
 }
 // };
 export default HolidayManagementMain;
+
 
