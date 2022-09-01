@@ -3,10 +3,11 @@ import { Link, NavLink, useHistory } from "react-router-dom";
 import { Row, Col, Button, Accordion } from "react-bootstrap";
 import Tab from "react-bootstrap/Tab";
 import ListGroup from "react-bootstrap/ListGroup";
-import { isLoggedIn } from "../utils";
+// import { isLoggedIn } from "../../utils";
 import './Sidebar.css'
 import styled from "styled-components";
 import { FcApproval, FcConferenceCall, FcCopyright, FcLeave, FcOvertime } from "react-icons/fc";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 //Sidebar component is here
 const Sidebar = (props) => {
@@ -21,6 +22,12 @@ const Sidebar = (props) => {
     history.push('/');
   }
 
+  const userData = sessionStorage.getItem('userdata')
+  //console.log(userData)
+  const userData1 = JSON.parse(userData)
+  const usertype = userData1.data.userType
+  console.log(usertype);
+
   const [subnav, setSubnav] = useState(false);
   const showSubnav = () => setSubnav(!subnav);
 
@@ -31,6 +38,7 @@ const Sidebar = (props) => {
   const config = "configuration";
   const approvals="approvals";
   const nul = "null";
+  const pmohead="pmohead";
 
   return (
 
@@ -64,7 +72,7 @@ const Sidebar = (props) => {
                 (item.type === approvals) ? (<>
                   <Row>
                     <ListGroup.Item style={{ border: "none" ,backgroundColor:"black"}}>
-                      <NavLink
+                      <NavLink 
                         key={item.path}
                         className="nav-text"
                         to={`${props.prefix}${item.path}`} >
@@ -79,11 +87,12 @@ const Sidebar = (props) => {
               ))}
             </ListGroup>
 
-            <Accordion className="background" style={{width:"105%", border: "none", backgroundColor:"black" }}>
+            <Accordion className="background" style={{width:"105%", border: "none", backgroundColor:"black",color:"white" }}>
               <Accordion.Item className="panel-header" eventKey="0" style={{ border: "none", paddingBottom: "5%" ,backgroundColor:"black"}}>
                 <Accordion.Header  style={{backgroundColor:"#070708"}}>
                   <Col md={2} style={{fontSize:"140%"}}><FcConferenceCall /></Col>
                   <Col md={8} style={{color:"white", fontSize:17,paddingTop:10 }}>Employees</Col>
+ 
                 </Accordion.Header>
                 <Accordion.Body >
                   <ListGroup >
@@ -143,8 +152,8 @@ const Sidebar = (props) => {
                     ))}
                   </ListGroup>
                 </Accordion.Body></Accordion.Item>
-              {/* {menuItems.map((item, index) => (
-                  (item.type === config)?( */}
+              
+                 {( usertype === pmohead)?(
               <Accordion.Item eventKey="2" style={{ border: "none", paddingBottom: "5%" ,backgroundColor:"black"}}>
                 <Accordion.Header>
                   <Col md={2} style={{fontSize:"140%"}} ><FcCopyright /></Col>
@@ -173,7 +182,7 @@ const Sidebar = (props) => {
                     ))}
                   </ListGroup>
                 </Accordion.Body></Accordion.Item>
-              {/* ):(<></>)))} */}
+              ):(<></>)}
 
             </Accordion>
             <ListGroup style={{ border: "none" }}>
@@ -208,3 +217,7 @@ const Sidebar = (props) => {
 };
 
 export default memo(Sidebar);
+
+
+{/* <Col><ExpandMoreIcon style={{color:"white"}} /></Col> */}
+

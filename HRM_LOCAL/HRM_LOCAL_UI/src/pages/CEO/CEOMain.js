@@ -1,14 +1,16 @@
 import React from 'react';
 
 import { Row, Col, Card, Container,Tabs,Tab } from 'react-bootstrap';
+import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
+import TaskMain from '../TimeSheet/EmployeeTimesheet/TaskMain';
 import CEOApproval from './CEOApproval';
 
 function CEOMain() {
   return (
-    <div style={{ paddingTop: '20px' }}>
+    <div style={{ paddingTop: '0px' }}>
     <Card className="scroll">
-     <Card>
-       <Card.Header>
+    
+       <Card.Header style={{ backgroundColor: "white"}}>
          <Card.Body>
            <Card.Title>Approvals</Card.Title>
            <Card.Subtitle className="mb-2 text-muted">
@@ -21,7 +23,7 @@ function CEOMain() {
                     id="uncontrolled-tab-example"
                     className="mb-3"
                     style={{
-                      justifyContent: "center",
+                      justifyContent: "left",
                       color: "white",
                       backgroundColor: "white",
                       fontSize: "19px",
@@ -40,14 +42,14 @@ function CEOMain() {
                       title="Leave Approvals"
                       style={{ backgroundColor: "white" }}
                     >
-                      {/* <HrEmployeesLeavesWaitingForApproval /> */}
+                      <HrEmployeesLeavesWaitingForApproval/>
                     </Tab>
                     <Tab
                       eventKey="Timesheet Approvals"
                       title="Timesheet Approvals"
                       style={{ backgroundColor: "white" }}
                     >
-                      {/* <TaskMain /> */}
+                      <TaskMain/>
                     </Tab>
                   </Tabs>
                 </Col>
@@ -55,7 +57,7 @@ function CEOMain() {
            {/* </Container> */}
          </Card.Body>
        </Card.Header>
-     </Card>
+    
      </Card>
 
    </div>
