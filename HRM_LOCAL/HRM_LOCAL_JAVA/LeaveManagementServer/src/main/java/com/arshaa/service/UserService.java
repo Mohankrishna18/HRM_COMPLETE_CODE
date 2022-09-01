@@ -29,8 +29,8 @@ import com.arshaa.entity.EntitledLeaves;
 import com.arshaa.entity.User;
 import com.arshaa.model.AllEmployeesForHr;
 import com.arshaa.model.EmployeeName;
-import com.arshaa.model.GetIrm;
-import com.arshaa.model.GetSrm;
+import com.arshaa.model.GetIrmId;
+import com.arshaa.model.GetSrmId;
 import com.arshaa.model.StoreDatesList;
 import com.arshaa.model.UsersByIrm;
 import com.arshaa.repository.BetweenDatesRepo;
@@ -123,17 +123,17 @@ return findById(employeeleaveId);
 			
 			
 			List<BetweenDates>bdatesList=new ArrayList<>();
-			GetIrm al = template.getForObject(
+			GetIrmId al = template.getForObject(
 					"http://empService/emp/getIrmByEmployeeId/" + user.getEmployeeId(),
-					GetIrm.class);
-			GetSrm as = template.getForObject(
+					GetIrmId.class);
+			GetSrmId as = template.getForObject(
 					"http://empService/emp/getSrmByEmployeeId/" + user.getEmployeeId(),
-					GetSrm.class);
+					GetSrmId.class);
 			 java.sql.Date tSqlDate = new java.sql.Date(user.getSubmittedDate().getTime());
 			 user.setSubmittedDate(tSqlDate);
 			
-			user.setIrm(al.getIrm());
-			user.setSrm(as.getSrm());
+			user.setIrmId(al.getIrmId());
+			user.setSrmId(as.getSrmId());
 			user.setLeaveStatus("pending");
 //			user.setManagerApproval("pending");
 			 user.setSubmittedDate(tSqlDate);
@@ -279,7 +279,7 @@ return findById(employeeleaveId);
 	}
 
 // this logic will give employees related to particular manager-->Chandrika
-	public ResponseEntity getUserByIrm(String irm) {
+	public ResponseEntity getUserByIrm(String irmId) {
 //		try {
 //			List<User> u = repository.findUserByReportingManager(reportingManager);
 //			return new ResponseEntity(u, HttpStatus.OK);
@@ -289,7 +289,7 @@ return findById(employeeleaveId);
 		String url="http://empService/emp/getEmployeeNameByEmployeeId/";
 		List<UsersByIrm> getList=new ArrayList<>();
 		try {
-			List<User> u = repository.findUserByIrm(irm);
+			List<User> u = repository.findUserByIrmId(irmId);
 			User s=new User();
 			 LocalDateTime now = LocalDateTime.now();  
 			 LocalDate currentDate =LocalDate.of(2022, 8, 29);
@@ -337,7 +337,7 @@ return findById(employeeleaveId);
 	}
 
 	
-	public ResponseEntity getUserBySrm(String srm) {
+	public ResponseEntity getUserBySrm(String srmId) {
 //		try {
 //			List<User> u = repository.findUserByReportingManager(reportingManager);
 //			return new ResponseEntity(u, HttpStatus.OK);
@@ -347,7 +347,7 @@ return findById(employeeleaveId);
 		String url="http://empService/emp/getEmployeeNameByEmployeeId/";
 		List<UsersByIrm> getList=new ArrayList<>();
 		try {
-			List<User> u = repository.findUserBySrm(srm);
+			List<User> u = repository.findUserBySrmId(srmId);
 			User s=new User();
 //			 LocalDate currentDate =LocalDate.of(2022, 8, 29);
 //			 Date date=new Date(2022, 8, 12);

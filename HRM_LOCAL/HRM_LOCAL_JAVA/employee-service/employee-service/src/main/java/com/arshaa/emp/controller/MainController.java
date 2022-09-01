@@ -402,13 +402,13 @@ public class MainController {
 		public ResponseEntity getIrmByEmployeeId(@PathVariable String employeeId) {
 
 
-			return serv.getIrmByEmployeeId(employeeId);
+			return serv.getIrmIdByEmployeeId(employeeId);
 		}
 		@GetMapping("/getSrmByEmployeeId/{employeeId}")
 		public ResponseEntity getSrmByEmployeeId(@PathVariable String employeeId) {
 
 
-			return serv.getSrmByEmployeeId(employeeId);
+			return serv.getSrmIdByEmployeeId(employeeId);
 		}
 //      Get calls for employees under Roles
         
@@ -416,5 +416,11 @@ public class MainController {
         public ResponseEntity getRoleBasedEmployeesByEmployeeId( @PathVariable String employeeId) {
              return roleBasedServ.getRoleBasedEmployeesByEmployeeId(employeeId);
         }
+        
+        @GetMapping("/getEmployeeIdByName/{fullName}")
+    	public String getEmployeeIdByName(@PathVariable String fullName) {
+    		return serv.getEmployeeIdByName(fullName);
+
+    	}
 
 }

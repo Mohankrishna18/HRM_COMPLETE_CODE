@@ -156,8 +156,12 @@ function DesignationMain() {
             data={data}
             editable={{}}
             options={{
+              pageSize: 10,
+              pageSizeOptions: [10, 15,20, 30 ,50, 75, 100 ],
+              maxBodyHeight: 450,
+            
               headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#FE924A",
                 color: "white",
                 fontSize: "20px",
               },
@@ -214,4 +218,5 @@ function DesignationMain() {
   );
 }
 export default DesignationMain;
+
 

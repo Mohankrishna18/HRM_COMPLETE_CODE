@@ -10,6 +10,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import image from "../../Images/arshaalogo.png";
 
+
 const Sign = () => {
   var userStatus = null;
   const [employeeId, setEmployeeId] = useState("");
@@ -99,7 +100,7 @@ const Sign = () => {
                       alert("Employee Id Length should not be more than 12 characters");
                     }
                     else {
-                      setEmployeeId(e.target.value)
+                      setEmployeeId(e.target.value.toUpperCase())
                     }
                   }
                   } />
@@ -140,7 +141,7 @@ const Sign = () => {
                     const str = e.target.value;
                     //let length = f.length;
                     if (`${str.length}` > 12) {
-                      alert("Password should not be nore than 12 characters");
+                      alert("Password should not be more than 12 characters");
                     }
                     else {
                       setPassword(e.target.value)

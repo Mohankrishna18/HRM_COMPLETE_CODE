@@ -15,17 +15,7 @@ function EmployeeMasterTabs() {
 
     return (
         <div>
-            <Card className="example" >
-                        <Card.Body>
-                            <Card.Title>Edit My Profile</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">
-                                Employees / Edit My Profile
-                            </Card.Subtitle>
-                            <EmployeeMasterCard />
-                            {/* <Card.Text style={{ marginTop: 20, color: "red" }}>
-                                * All fields are mandatory. Please fill the form Correctly.
-                            </Card.Text> */}
-                        </Card.Body>
+          
                     {/* #f99159 */}
                     <Tabs
                         defaultActiveKey="Personal Details"
@@ -58,11 +48,12 @@ function EmployeeMasterTabs() {
                              <ProjectsTab/>
                         </Tab>
                     </Tabs> 
-            </Card>
+  
 
         </div>
 
     )
 }
 export default EmployeeMasterTabs;
+
 
