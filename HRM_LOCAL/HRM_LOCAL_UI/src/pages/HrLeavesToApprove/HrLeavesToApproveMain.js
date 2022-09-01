@@ -5,11 +5,11 @@ import HrEmployeesLeavesWaitingForApproval from "./HrEmployeesLeavesWaitingForAp
 
 const HrLeavesToApproveMain = () => {
   return (
-    <div style={{ paddingTop: '20px' }}>
+    <div style={{ paddingTop: '0px' }}>
 
-      <Card responsive className="scroll" style={{ backgroundColor: "white" }}>
+      <Card responsive className="scroll" >
         <Card.Header style={{ backgroundColor: "white"}}>
-          <Card.Body style={{ backgroundColor: "white" }}>
+          <Card.Body >
             <Card.Title> Approvals </Card.Title>
             <Card.Subtitle> Approvals / Approvals</Card.Subtitle>
 

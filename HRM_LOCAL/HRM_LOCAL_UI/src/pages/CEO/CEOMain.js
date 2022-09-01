@@ -7,9 +7,9 @@ import CEOApproval from './CEOApproval';
 
 function CEOMain() {
   return (
-    <div style={{ paddingTop: '20px' }}>
+    <div style={{ paddingTop: '0px' }}>
     <Card className="scroll">
-     <Card>
+    
        <Card.Header style={{ backgroundColor: "white"}}>
          <Card.Body>
            <Card.Title>Approvals</Card.Title>
@@ -57,7 +57,7 @@ function CEOMain() {
            {/* </Container> */}
          </Card.Body>
        </Card.Header>
-     </Card>
+    
      </Card>
 
    </div>

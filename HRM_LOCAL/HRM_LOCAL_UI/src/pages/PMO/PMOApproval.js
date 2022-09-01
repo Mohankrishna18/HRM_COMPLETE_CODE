@@ -219,6 +219,10 @@ function PMOApproval(props) {
                     options={{
                         paging: true,
                         addRowPosition: 'first',
+                        pageSize: 10,
+                        pageSizeOptions: [10, 15,20, 30 ,50, 75, 100 ],
+                        maxBodyHeight: 450,
+
                         actionsColumnIndex: -1,
                         headerStyle: {
 

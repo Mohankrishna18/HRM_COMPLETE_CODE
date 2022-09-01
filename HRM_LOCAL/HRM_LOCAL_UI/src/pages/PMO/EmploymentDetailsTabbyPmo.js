@@ -235,6 +235,7 @@ console.log(onboardingId1);
                     value={form.department}
                     onChange={(e) => {
                         console.log(e.target.value);
+                        //empty commit
                         axios
                             .get(
                                 `/designation/getDesignationByDepartment/${e.target.value}`
@@ -381,7 +382,7 @@ console.log(onboardingId1);
                     value={form.irm}
                     isInvalid={!!errors.irm}
 
-                    onChange={(e) => setField("irm", e.target.itemData.employeeId)}
+                    onChange={(e) => setField("irm", e.target.itemData.fullName)}
                 // query={dataQuery}
                 ></AutoCompleteComponent>
             </Form.Group>
@@ -396,7 +397,7 @@ console.log(onboardingId1);
                     value={form.srm}
                     isInvalid={!!errors.srm}
 
-                    onChange={(e) => setField("srm", e.target.itemData.employeeId)}
+                    onChange={(e) => setField("srm", e.target.itemData.fullName)}
                 // query={dataQuery}
                 ></AutoCompleteComponent>
             </Form.Group>
@@ -411,7 +412,7 @@ console.log(onboardingId1);
                     value={form.buh}
                     isInvalid={!!errors.buh}
 
-                    onChange={(e) => setField("buh", e.target.itemData.employeeId)}
+                    onChange={(e) => setField("buh", e.target.itemData.fullName)}
                 // query={dataQuery}
                 ></AutoCompleteComponent>
 
