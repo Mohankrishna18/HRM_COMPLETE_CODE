@@ -21,6 +21,7 @@ import ExperienceTab from "../../pages/Approvals/ApprovalComponents/ExperienceTa
 
 import PersonalDetailsTab from "../../pages/Approvals/ApprovalComponents/PersonalDetailsTab";
 import EmploymentDetailsTab from '../Approvals/ApprovalComponents/EmploymentDetailsTab';
+import EmploymentDetailsTabbyPmo from './EmploymentDetailsTabbyPmo';
 
 function PMOApproval(props) {
     const [data, setData] = useState([]);
@@ -31,6 +32,7 @@ function PMOApproval(props) {
     const [reject, setReject] = useState(false);
     const [viewShow, setViewShow] = useState(false);
     const [viewOnboard, setViewOnboard] = useState({});
+    const [empDetails, setEmpDetails]=useState({})
     const viewHandleClose = () => setViewShow(false);
 
 
@@ -85,7 +87,7 @@ function PMOApproval(props) {
 
     return (
         <div>
-            <Modal show={show} onHide={handleClose}>
+            <Modal  show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Are you sure you want to Approve</Modal.Title>
                 </Modal.Header>
@@ -163,9 +165,11 @@ function PMOApproval(props) {
                             title="Employment Details"
                             style={{ backgroundColor: "white" }}
                         >
-                            <EmploymentDetailsTab
+                            <EmploymentDetailsTabbyPmo
                                 viewOnboard={viewOnboard}
-                                viewHandleClose={viewHandleClose} />
+                                viewHandleClose={viewHandleClose}
+                            />
+                                   
                         </Tab>
                         {/* <Tab
               eventKey="Employment Details"
