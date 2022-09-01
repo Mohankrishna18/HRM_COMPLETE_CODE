@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.arshaa.emp.common.EmployeeLogin;
-import com.arshaa.emp.common.GetIrm;
+import com.arshaa.emp.common.GetIrmId;
 import com.arshaa.emp.common.GetReportingManager;
-import com.arshaa.emp.common.GetSrm;
+import com.arshaa.emp.common.GetSrmId;
 import com.arshaa.emp.common.PreMailModel;
 import com.arshaa.emp.common.UserModel;
 import com.arshaa.emp.common.Users;
@@ -1733,21 +1733,22 @@ public class MainServiceImpl implements MainService {
 		}
 	}
 	@Override
-	public ResponseEntity getIrmByEmployeeId(String employeeId) {
+	public ResponseEntity getIrmIdByEmployeeId(String employeeId) {
 
 		EmployeeMaster employeeMaster = emRepo.getById(employeeId);
 
-		GetIrm rm = new GetIrm();
-		rm.setIrm(employeeMaster.getIrm());
+		GetIrmId rm = new GetIrmId();
+		rm.setIrmId(employeeMaster.getIrmId());
 		return new ResponseEntity(rm, HttpStatus.OK);
+	
 	}
 
 	@Override
-	public ResponseEntity getSrmByEmployeeId(String employeeId) {
+	public ResponseEntity getSrmIdByEmployeeId(String employeeId) {
 		EmployeeMaster employeeMaster = emRepo.getById(employeeId);
 
-		GetSrm rm = new GetSrm();
-		rm.setSrm(employeeMaster.getSrm());
+		GetSrmId rm = new GetSrmId();
+		rm.setSrmId(employeeMaster.getSrmId());
 		return new ResponseEntity(rm, HttpStatus.OK);
 	}
 
