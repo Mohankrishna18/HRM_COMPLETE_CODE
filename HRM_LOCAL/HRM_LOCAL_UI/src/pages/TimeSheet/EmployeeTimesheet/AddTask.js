@@ -165,8 +165,8 @@ function AddUser(props) {
           color: "#F4F8F6",
           float: "right",
           borderRadius: "25px",
-          paddingBottom: "7px",
-          marginBottom: "20px",
+          paddingRight: "20px",
+          marginBottom: "2px",
           fontWeight: "bold"
         }}
       >
@@ -488,3 +488,4 @@ function AddUser(props) {
   );
 }
 export default AddUser;
+

@@ -82,9 +82,10 @@ public interface MainService {
 	public ResponseEntity updateReject(String onboardingId,HrApprovalStatus newOnboard);
 	public ResponseEntity getIrmByEmployeeId(String employeeId);
 	public ResponseEntity getSrmByEmployeeId(String employeeId);
-
+	public ResponseEntity updateEmploymentDetailsByOnboardId(EmploymentDetails empd, String onboardingId);
+	public ResponseEntity EmploymentDetailsByOnboardId(EmploymentDetails emps,String onboardingId);
 	
-
+	String getEmployeeIdByName(String fullName);
     
     
 }

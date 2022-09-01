@@ -7,10 +7,10 @@ import Departments from "./DepartmentComponents/Departments";
 // Testing purpose
 const DepartmentMain = () => {
   return (
-    <div style={{ paddingTop: "10px" }}>
-      <Card responsive className="scroll">
-        <Card.Header>
-          <Card.Body>
+    <div >
+      <Card responsive className="scroll" style={{backgroundColor:"white"}} >
+        <Card.Header style={{backgroundColor:"white"}}>
+          <Card.Body >
             {/* <Card.Title> Departments</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
               Dashboard/Departments
@@ -29,4 +29,3 @@ const DepartmentMain = () => {
 };
 
 export default DepartmentMain;
-

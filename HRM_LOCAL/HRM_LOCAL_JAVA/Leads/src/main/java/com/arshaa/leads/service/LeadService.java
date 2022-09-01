@@ -16,5 +16,7 @@ public interface LeadService {
 	public ResponseEntity updateLeadById(int id, Leads newLeadUpdate);
 
 	public ResponseEntity deleteLead(int id);
+	
+	public ResponseEntity getCountsByStatus();
 
 }

@@ -349,6 +349,12 @@ export default [
       Roles.taa,
       Roles.hrmanager,
       Roles.manager,
+      Roles.pmohead,
+      Roles.taahead,
+      Roles.buhead,
+      Roles.recruitmentmanager,
+      Roles.irm,
+      Roles.srm
     ],
   },
   {
@@ -413,3 +419,5 @@ export default [
 
   // },
 ];
+
+

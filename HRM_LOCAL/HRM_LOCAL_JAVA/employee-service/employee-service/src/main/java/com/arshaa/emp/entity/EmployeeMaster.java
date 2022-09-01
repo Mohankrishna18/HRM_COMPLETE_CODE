@@ -156,6 +156,40 @@ public class EmployeeMaster {
 	private String srm;
 	private String irm;
 	private String buh;
+	
+    private String fullName;
+    
+    private String irmId;
+    private String srmId;
+    private String buhId;
+    
+	public String getIrmId() {
+		return irmId;
+	}
+	public void setIrmId(String irmId) {
+		this.irmId = irmId;
+	}
+	public String getSrmId() {
+		return srmId;
+	}
+	public void setSrmId(String srmId) {
+		this.srmId = srmId;
+	}
+	public String getBuhId() {
+		return buhId;
+	}
+	public void setBuhId(String buhId) {
+		this.buhId = buhId;
+	}
+    
+    
+	
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
