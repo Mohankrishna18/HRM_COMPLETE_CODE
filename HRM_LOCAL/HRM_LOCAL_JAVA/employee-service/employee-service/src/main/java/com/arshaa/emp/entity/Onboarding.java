@@ -195,8 +195,36 @@ public class Onboarding {
     private String srm;
     private String buh;
     
+    private String fullName;
     
-	
+    private String irmId;
+    private String srmId;
+    private String buhId;
+    
+	public String getIrmId() {
+		return irmId;
+	}
+	public void setIrmId(String irmId) {
+		this.irmId = irmId;
+	}
+	public String getSrmId() {
+		return srmId;
+	}
+	public void setSrmId(String srmId) {
+		this.srmId = srmId;
+	}
+	public String getBuhId() {
+		return buhId;
+	}
+	public void setBuhId(String buhId) {
+		this.buhId = buhId;
+	}
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 	public String getIrm() {
 		return irm;
 	}
@@ -216,7 +244,7 @@ public class Onboarding {
 		this.buh = buh;
 	}
 	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,int percentage,
-			String jobTitle, String skillSet, String irm,String srm,String buh,String comments, String phoneNumber, String yearsOfExperience,
+			String jobTitle, String skillSet,String fullName, String irm,String irmId,String srmId,String buhId,String srm,String buh,String comments, String phoneNumber, String yearsOfExperience,
 			String employeeId, boolean approvedStatus,String onboardingStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
 			String department, String reportingManager, String projectName, String email, Date onboardDate,
 			Date approvedDate, Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy,
@@ -258,7 +286,11 @@ public class Onboarding {
 		this.skillSet = skillSet;
 		this.comments = comments;
 		this.irm = irm;
+		this.fullName = fullName;
 		this.srm = srm;
+		this.irmId = irmId;
+		this.srmId = srmId;
+		this.buhId = buhId;
 		this.buh = buh;
 		this.phoneNumber = phoneNumber;
 		this.yearsOfExperience = yearsOfExperience;

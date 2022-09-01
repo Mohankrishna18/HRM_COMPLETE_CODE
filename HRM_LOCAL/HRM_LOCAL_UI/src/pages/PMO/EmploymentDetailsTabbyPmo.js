@@ -44,7 +44,6 @@ console.log(onboardingId1);
         buh,
         projectName,
         client,
-        reportingManager,
         band,
         jobTitle
     
@@ -63,8 +62,6 @@ console.log(onboardingId1);
     if (!client || client === "") newErrors.client = "Please Select Client";
     if (!projectName || projectName === "")
       newErrors.projectName = "Please Select ProjectName";
-      if (!reportingManager || reportingManager === "")
-      newErrors.reportingManager = "Please Select Reporting Manager";
       if (!band || band === "")
       newErrors.band = "Please Select Band";
       if (!irm || irm === "") newErrors.irm = "Please Select irm";
@@ -380,7 +377,7 @@ console.log(onboardingId1);
                     outlined
                     dataSource={users}
                     placeholder="select IRM"
-                    fields={{ value: "firstName", display: "firstName" }}
+                    fields={{ value: "fullName", display: "fullName" }}
                     value={form.irm}
                     isInvalid={!!errors.irm}
 
@@ -395,7 +392,7 @@ console.log(onboardingId1);
                     outlined
                     dataSource={users}
                     placeholder="select SRM"
-                    fields={{ value: "firstName", display: "firstName" }}
+                    fields={{ value: "fullName", display: "fullName" }}
                     value={form.srm}
                     isInvalid={!!errors.srm}
 
@@ -410,7 +407,7 @@ console.log(onboardingId1);
                     outlined
                     dataSource={users}
                     placeholder="select BUH"
-                    fields={{ value: "firstName", display: "firstName" }}
+                    fields={{ value: "fullName", display: "fullName" }}
                     value={form.buh}
                     isInvalid={!!errors.buh}
 
@@ -419,21 +416,7 @@ console.log(onboardingId1);
                 ></AutoCompleteComponent>
 
             </Form.Group>
-            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Select Reporting Manager*</Form.Label>
-                <AutoCompleteComponent
-                    outlined
-                    dataSource={users}
-                    placeholder="select Reporting Manager"
-                    fields={{ value: "firstName", display: "firstName" }}
-                    value={form.reportingManager}
-                    isInvalid={!!errors.reportingManager}
-
-                    onChange={(e) => setField("reportingManager", e.target.itemData.employeeId)}
-                // query={dataQuery}
-                ></AutoCompleteComponent>
-
-            </Form.Group>
+           
 
 
         </Row>

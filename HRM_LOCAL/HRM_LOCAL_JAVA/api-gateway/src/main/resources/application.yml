@@ -71,7 +71,7 @@ spring:
         - id: documentUploadService
           uri: lb://documentUploadService
           predicates:
-            - Path=/documentUpload/**       
+            - Path=/api/**           
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
