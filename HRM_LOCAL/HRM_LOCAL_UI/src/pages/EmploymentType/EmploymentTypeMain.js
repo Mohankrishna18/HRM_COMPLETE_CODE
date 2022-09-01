@@ -10,17 +10,17 @@ const EmploymentTypeMain = () => {
 
   return (
 
-    <div style={{ paddingTop: "20px" }}>
+    <div style={{ paddingTop: "0px" }}>
 
     <Card responsive className="scroll">
 
-      <Card.Header>
+      <Card.Header style={{backgroundColor:"white"}}>
 
-        <Card.Body>
+        <Card.Body style={{backgroundColor:"white"}}>
 
           <Card.Title> Employment Types </Card.Title>
 
-          <Container>
+          {/* <Container> */}
 
             <Row>
 
@@ -32,7 +32,7 @@ const EmploymentTypeMain = () => {
 
             </Row>
 
-          </Container>
+          {/* </Container> */}
 
         </Card.Body>
 
