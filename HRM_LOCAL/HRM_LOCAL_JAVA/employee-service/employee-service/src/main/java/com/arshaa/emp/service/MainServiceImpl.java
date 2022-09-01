@@ -226,6 +226,7 @@ public class MainServiceImpl implements MainService {
 					// getOnboarding.getOnboardingId().getChars(0, 0, null, 0);; }
 					EmployeeMaster employeeMaster = new EmployeeMaster();
 
+					
 					employeeMaster.setFirstName(getOnboarding.getFirstName());
 					employeeMaster.setMiddleName(getOnboarding.getMiddleName());
 					employeeMaster.setLastName(getOnboarding.getLastName());
@@ -340,9 +341,9 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setIrm(getOnboarding.getIrm());
 					employeeMaster.setSrm(getOnboarding.getSrm());
 					employeeMaster.setBuh(getOnboarding.getBuh());
-//					employeeMaster.setIrm(newOnboard.getIrm());
-//					employeeMaster.setSrm(newOnboard.getSrm());
-//					employeeMaster.setBuh(newOnboard.getBuh());
+					employeeMaster.setIrmId(getOnboarding.getIrmId());
+					employeeMaster.setSrmId(getOnboarding.getSrmId());
+					employeeMaster.setBuhId(getOnboarding.getBuhId());
 					employeeMaster.setOnboardingId(getOnboarding.getOnboardingId());
 					employeeMaster.setUanNumber(getOnboarding.getUanNumber());
 					employeeMaster.setProjectName(getOnboarding.getProjectName());
@@ -1483,10 +1484,17 @@ public class MainServiceImpl implements MainService {
 //					getOnboarding.setBuhId(name2.getEmployeeId());
 //					
 //					onRepo.save(ob);
-					onRepo.save(getOnboarding);
+					Onboarding getNames = onRepo.save(getOnboarding);
+					getNames.setBuhId(this.getEmployeeIdByName(getOnboarding.getBuh()));
+					getNames.setIrmId(this.getEmployeeIdByName(getOnboarding.getIrm()));
+					getNames.setSrmId(this.getEmployeeIdByName(getOnboarding.getSrm()));
+					
+					onRepo.save(getNames);
+					
+				
 					r.setStatus(true);
 					r.setMessage("Data Fetching");
-					r.setData(getOnboarding);
+					r.setData(getNames);
 					return new ResponseEntity(r,HttpStatus.OK);
 				}
 				else {
