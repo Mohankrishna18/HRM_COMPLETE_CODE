@@ -7,10 +7,10 @@ import TAAHeadApproval from "./TAAHeadApproval";
 
 function TAAHeadMain() {
   return (
-    <div style={{ paddingTop: "20px" }}>
+    <div style={{ paddingTop: "0px" }}>
       <Card className="scroll">
-        <Card>
-          <Card.Header> 
+        
+          <Card.Header style={{backgroundColor:"white"}}> 
             <Card.Body>
               <Card.Title>Approvals</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
@@ -60,7 +60,7 @@ function TAAHeadMain() {
             </Card.Body>
           </Card.Header>
         </Card>
-      </Card>
+    
     </div>
   );
 }
