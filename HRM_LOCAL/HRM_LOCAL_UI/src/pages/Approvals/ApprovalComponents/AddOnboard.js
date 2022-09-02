@@ -55,18 +55,9 @@ function AddOnboard(props) {
       phoneNumber,
       dateOfJoining,
       yearsOfExperience,
-      designation,
-      department,
-      employmentType,
       primarySkills,
       secondarySkills,
-      jobTitle,
-      client,
-      projectName,
-      band,
-      irm,
-      srm,
-      buh,
+    
     } = form;
     const newErrors = {};
 
@@ -85,30 +76,31 @@ function AddOnboard(props) {
       newErrors.phoneNumber = "Please Enter Phone Number";
     if (!dateOfJoining || dateOfJoining === "")
       newErrors.dateOfJoining = "Please Enter Date of Joining";
-    // if (
-    // !yearsOfExperience ||
-    // yearsOfExperience === "" ||
-    // yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)
-    // )
-    // newErrors.yearsOfExperience = "Please Enter Years of Experience";
-    if (!designation || designation === "")
-      newErrors.designation = "Please Enter Designation";
-    if (!department || department === "")
-      newErrors.department = "Please Enter Department";
-    if (!employmentType || employmentType === "")
-      newErrors.employmentType = "Please Enter type of Employeement";
-    if (!primarySkills || primarySkills === "")
+      if (!primarySkills || primarySkills === "")
       newErrors.primarySkills = "Please Enter Primary Skills";
     if (!secondarySkills || secondarySkills === "")
       newErrors.secondarySkills = "Please Enter Secondary Skills";
-    if (!jobTitle || jobTitle === "")
-      newErrors.jobTitle = "Please Enter type of Job Title";
-    if (!client || client === "") newErrors.client = "Please Select Client";
-    if (!projectName || projectName === "")
-      newErrors.projectName = "Please Select ProjectName";
-      if (!irm || irm === "") newErrors.irm = "Please Select irm";
-      if (!srm || srm === "") newErrors.srm = "Please Select srm";
-      if (!buh || buh === "") newErrors.buh = "Please Select buh";
+    if (
+    !yearsOfExperience ||
+    yearsOfExperience === "" 
+    // yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)
+    )
+     newErrors.yearsOfExperience = "Please Enter Years of Experience";
+    // if (!designation || designation === "")
+    //   newErrors.designation = "Please Enter Designation";
+    // if (!department || department === "")
+    //   newErrors.department = "Please Enter Department";
+    // if (!employmentType || employmentType === "")
+    //   newErrors.employmentType = "Please Enter type of Employeement";
+    
+    // if (!jobTitle || jobTitle === "")
+    //   newErrors.jobTitle = "Please Enter type of Job Title";
+    // if (!client || client === "") newErrors.client = "Please Select Client";
+    // if (!projectName || projectName === "")
+    //   newErrors.projectName = "Please Select ProjectName";
+    //   if (!irm || irm === "") newErrors.irm = "Please Select irm";
+    //   if (!srm || srm === "") newErrors.srm = "Please Select srm";
+    //   if (!buh || buh === "") newErrors.buh = "Please Select buh";
     return newErrors;
    
   };
@@ -135,7 +127,7 @@ function AddOnboard(props) {
     // e.target.reset();
     const formErrors = validateForm();
     console.log(Object.keys(formErrors).length);
-    if (Object.keys(formErrors).length > 10) {
+    if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
       console.log("Form validation error");
     } else {
@@ -307,8 +299,8 @@ function AddOnboard(props) {
 
         <Modal.Body>
           {/* <RegistrationFormStepper/> */}
-          <div>
-            {step === 0 && (
+          {/* <div>
+            {step === 0 && ( */}
               <div>
                 <h5>Personal Details</h5>
                 <Form
@@ -434,6 +426,42 @@ function AddOnboard(props) {
                       </Form.Control.Feedback>
                       <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Primary Skills *</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  name="primarySkills"
+                  placeholder="Primary Skills"
+                  controlId="primarySkills"
+                  value={form.primarySkills}
+                  maxLength={30}
+                  onChange={(e) => setField("primarySkills", e.target.value)}
+                  // onChange={changeHandler}
+                  isInvalid={!!errors.primarySkills}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.primarySkills}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Secondary Skills *</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  name="secondarySkills"
+                  placeholder="SecondarySkills"
+                  controlId="secondarySkills"
+                  value={form.secondarySkills}
+                  maxLength={30}
+                  onChange={(e) => setField("secondarySkills", e.target.value)}
+                  // onChange={changeHandler}
+                  isInvalid={!!errors.secondarySkills}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.secondarySkills}
+                </Form.Control.Feedback>
+              </Form.Group>
 
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                       <Form.Label>Years Of Experience *</Form.Label>
@@ -463,9 +491,10 @@ function AddOnboard(props) {
 
                   </Row>
                 </Form>
-                <Button onClick={handleNext}>Next</Button>
-              </div>
-            )}
+                <Button onClick={handleSubmit}>Submit</Button>
+             
+            {/* )} */}
+{/*            
             {step === 1 && (
               <div>
                 <h5>Employment Details</h5>
@@ -554,78 +583,9 @@ function AddOnboard(props) {
 
                       <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
-                <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Primary Skills *</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  name="primarySkills"
-                  placeholder="Primary Skills"
-                  controlId="primarySkills"
-                  value={form.primarySkills}
-                  maxLength={30}
-                  onChange={(e) => setField("primarySkills", e.target.value)}
-                  // onChange={changeHandler}
-                  isInvalid={!!errors.primarySkills}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.primarySkills}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Secondary Skills *</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  name="secondarySkills"
-                  placeholder="SecondarySkills"
-                  controlId="secondarySkills"
-                  value={form.secondarySkills}
-                  maxLength={30}
-                  onChange={(e) => setField("secondarySkills", e.target.value)}
-                  // onChange={changeHandler}
-                  isInvalid={!!errors.secondarySkills}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.secondarySkills}
-                </Form.Control.Feedback>
-              </Form.Group>
+                
               
-              {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Select Reporting Manager *</Form.Label>
-                <Form.Select
-                  placeholder="select Gender"
-                  value={form.reportingManager}
-                  Select
-                  onChange={(e) => setField("reportingManager", e.target.value)}
-                >
-                  <option>Select </option>
-                  {reportingManager.map((reportingManagerr) => (
-                    <option>{reportingManagerr.reportingmanager}</option>
-                  ))}
-                </Form.Select>
-              </Form.Group> */}
-
-              {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                    <Form.Label>Assign Band *</Form.Label>
-                    <Form.Select
-                      type="text"
-                      placeholder="Band"
-                      controlId="band"
-                      name="band"
-                      value={form.band}
-                      onChange={(e) => setField("band", e.target.value)}
-                    >
-                      <option>Select</option>
-                      <option value="Band-1">Band-1</option>
-                      <option value="Band-2">Band-2</option>
-                      <option value="Band-3">Band-3</option>
-                       <option>Select </option>
-                  {bands.map((bandss) => (
-                    <option>{bandss.bandName}</option>
-                  ))}
-                    </Form.Select>
-                  </Form.Group> */}
+             
 
              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Select Band *</Form.Label>
@@ -698,7 +658,7 @@ function AddOnboard(props) {
                 >
                   <option>Select</option>
                   {/* <option value="HRM">HRM</option>
-                  <option value="MDM">MDM</option> */}
+                  <option value="MDM">MDM</option> 
                   {project.map((projects) => (
                     <option>{projects.projectName}</option>
                   ))}
@@ -744,71 +704,15 @@ function AddOnboard(props) {
                 ></AutoCompleteComponent>
 
               </Form.Group>
-{/* 
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
 
-              </Form.Group> */}
-
-             
-{/*              
-             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-
-                <Form.Label>Select IRM *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="irm"
-                  controlId="irm"
-                  value={form.irm}
-                  onChange={(e) => setField("irm", e.target.value)}
-                >
-                  <option>Select</option>
-                  {users.map((irms) => (
-                    <option value={irms.employeeId}>{irms.firstName}</option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Select SRM *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="srm"
-                  controlId="srm"
-                  value={form.srm}
-                  onChange={(e) => setField("srm", e.target.value)}
-                >
-                  <option>Select</option>
-                  {users.map((srms) => (
-                    <option value={srms.employeeId}>{srms.firstName}</option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Select BUH *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="buh"
-                  controlId="buh"
-                  value={form.buh}
-                  onChange={(e) => setField("buh", e.target.value)}
-                >
-                  <option>Select</option>
-                  {users.map((buhs) => (
-                    <option value={buhs.employeeId}>{buhs.firstName}</option>
-                  ))}
-                </Form.Select>
-              </Form.Group> */}
 
           </Row>
             </Form> 
                 <Button onClick={handleSubmit}>Submit</Button>
               </div>
             )}
-        </div>{" "}
+           */}
+        </div>
       </Modal.Body>
     </Modal>
     </div >

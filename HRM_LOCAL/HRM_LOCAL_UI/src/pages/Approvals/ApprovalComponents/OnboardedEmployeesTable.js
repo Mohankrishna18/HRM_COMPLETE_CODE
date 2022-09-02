@@ -256,9 +256,9 @@ function OnboardedEmployeesTable() {
             editable={{}}
             options={{
               headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#ff9b44",
                 color: "white",
-                fontSize: "20px",
+                fontSize: "16px",
               },
               addRowPosition: "first",
               actionsColumnIndex: -1,
