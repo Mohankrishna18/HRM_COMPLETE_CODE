@@ -289,6 +289,18 @@ function EmployeeMasterCard() {
                                     </Card.Text>
                                 </Col>
                             </Row>
+                            <Row style={{ paddingBottom: 10 }}>
+                                <Col>
+                                    <Card.Text style={{}}>
+                                        <h6>Official Mail: </h6>
+                                    </Card.Text>
+                                </Col>{" "}
+                                <Col md={{ offset: 1 }}>
+                                    <Card.Text style={{color:"#999897"}}>
+                                      
+                                    </Card.Text>
+                                </Col>
+                            </Row>
                             
                         
 
