@@ -3,10 +3,11 @@ import { Link, NavLink, useHistory } from "react-router-dom";
 import { Row, Col, Button, Accordion } from "react-bootstrap";
 import Tab from "react-bootstrap/Tab";
 import ListGroup from "react-bootstrap/ListGroup";
-import { isLoggedIn } from "../utils";
+// import { isLoggedIn } from "../../utils";
 import './Sidebar.css'
 import styled from "styled-components";
 import { FcApproval, FcConferenceCall, FcCopyright, FcLeave, FcOvertime } from "react-icons/fc";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 //Sidebar component is here
 const Sidebar = (props) => {
@@ -86,11 +87,12 @@ const Sidebar = (props) => {
               ))}
             </ListGroup>
 
-            <Accordion className="background" style={{width:"105%", border: "none", backgroundColor:"black" }}>
+            <Accordion className="background" style={{width:"105%", border: "none", backgroundColor:"black",color:"white" }}>
               <Accordion.Item className="panel-header" eventKey="0" style={{ border: "none", paddingBottom: "5%" ,backgroundColor:"black"}}>
                 <Accordion.Header  style={{backgroundColor:"#070708"}}>
                   <Col md={2} style={{fontSize:"140%"}}><FcConferenceCall /></Col>
                   <Col md={8} style={{color:"white", fontSize:17,paddingTop:10 }}>Employees</Col>
+ 
                 </Accordion.Header>
                 <Accordion.Body >
                   <ListGroup >
@@ -215,3 +217,7 @@ const Sidebar = (props) => {
 };
 
 export default memo(Sidebar);
+
+
+{/* <Col><ExpandMoreIcon style={{color:"white"}} /></Col> */}
+

@@ -41,10 +41,8 @@ function EmployeeList() {
             ),
             type: "text",
 
-
-
             headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#FE924A",
                 color: "white",
             },
         },
@@ -56,7 +54,7 @@ function EmployeeList() {
 
 
             headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#FE924A",
                 color: "white",
             },
         },
@@ -67,7 +65,7 @@ function EmployeeList() {
 
 
             headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#FE924A",
                 color: "white",
             },
         },
@@ -78,7 +76,7 @@ function EmployeeList() {
 
 
             headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#FE924A",
                 color: "white",
             },
         },
@@ -90,7 +88,7 @@ function EmployeeList() {
 
 
             headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#FE924A",
                 color: "white",
             },
         },
@@ -103,7 +101,7 @@ function EmployeeList() {
             type: "date",
             dateSetting: { locale: "en-GB" },
             headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#FE924A",
                 color: "white",
             },
         },
@@ -114,7 +112,7 @@ function EmployeeList() {
 
 
             headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#FE924A",
                 color: "white",
             },
         },
@@ -125,34 +123,20 @@ function EmployeeList() {
 
 
             headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#FE924A",
                 color: "white",
             },
         },
     ];
 
-
-
     useEffect(() => {
         axios
-
-
-
             .get("/emp/getAllEmployeeMasterData")
-
-
-
             .then((res) => {
                 setData(res.data.data);
-
-
-
                 console.log(res.data.data);
                 console.log(res.data.data.employeeid);
             })
-
-
-
             .catch((err) => {
                 console.log(err);
                 // toast.error("Server Error")
@@ -174,8 +158,9 @@ function EmployeeList() {
                             actionsColumnIndex: -1,
                             grouping: true,
                             addRowPosition: "first",
+                            backgroundColor:"#FE924A",
                             headerStyle: {
-                                backgroundColor: "#1E90FF",
+                                backgroundColor: "#FE924A",
                                 color: "white",
                                 fontSize: "15px",
                                 //height: "10px",
@@ -295,4 +280,3 @@ export default EmployeeList;
 
 
 // export default AllEmployee;
-

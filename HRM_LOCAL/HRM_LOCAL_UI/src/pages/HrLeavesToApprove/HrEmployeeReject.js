@@ -1,11 +1,22 @@
-import React from 'react';
-import {Button,Row,Col} from "react-bootstrap";
+import { React, useState } from 'react';
+import {Button,Row,Col, Form} from "react-bootstrap";
 import axios from "../../Uri";
 import { toast } from "react-toastify";
 
 
 function HrEmployeeReject(props) {
     console.log(props.leaveID.employeeleaveId);
+    const [form, setForm] = useState({});
+    const [errors, setErrors] = useState({});
+
+    const setField = (field, value) => {
+        setForm({ ...form, [field]: value });
+        if (!!errors[field])
+            setErrors({
+                ...errors,
+                [field]: null,
+            });
+    };
     const RejectHandler = (e) => {
         // e.prevetDefault();
         const notify = () => toast("Leave  is Rejected");

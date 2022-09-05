@@ -52,7 +52,7 @@ const NavBar = (props) => {
   }
 
   return (
-    <Row>
+    // <Row>
       <Col>
         <div className="ar-top-navigation-bar">
           <Navbar
@@ -114,10 +114,9 @@ const NavBar = (props) => {
           </Navbar>
         </div>
       </Col>
-    </Row>
+    // </Row>
   );
 };
 
 export default NavBar;
-
 

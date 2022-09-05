@@ -144,7 +144,7 @@ function OnboardedEmployeesTable() {
                       }}
                       options={{
                         headerStyle: {
-                          backgroundColor: "#FF9E14",
+                          backgroundColor: "#FE924A",
                           color: "white",
                           fontSize: "20px",
                         },

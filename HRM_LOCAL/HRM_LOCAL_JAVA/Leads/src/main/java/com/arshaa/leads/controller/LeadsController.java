@@ -45,7 +45,10 @@ public class LeadsController {
 	}
 	
 	
-	
+	@GetMapping("/getCountsByStatus")
+	public ResponseEntity getCountsByStatus() {
+		return leadService.getCountsByStatus();
+	}
 	
 
 }
