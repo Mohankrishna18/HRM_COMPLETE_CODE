@@ -167,18 +167,18 @@ const ProfileExperienceTab = () => {
   var previousCompany1_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
   var tempDate = new Date(getEmployeeDetails.previousCompany2_joiningDate);
-  var previousCompany2_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+    var previousCompany2_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.previousCompany2_relievingDate);
-  var previousCompany2_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+    var tempDate = new Date(getEmployeeDetails.previousCompany2_relievingDate);
+    var previousCompany2_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.previousCompany3_joiningDate);
-  var previousCompany3_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+    var tempDate = new Date(getEmployeeDetails.previousCompany3_joiningDate);
+    var previousCompany3_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.previousCompany3_relievingDate);
-  var previousCompany3_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+    var tempDate = new Date(getEmployeeDetails.previousCompany3_relievingDate);
+    var previousCompany3_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var dob11 = getEmployeeDetails.dateOfBirth
+    var dob11 = getEmployeeDetails.dateOfBirth
 
   return (
     <>
