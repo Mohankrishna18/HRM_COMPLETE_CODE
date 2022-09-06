@@ -25,7 +25,8 @@ function HrEmployeeReject(props) {
         let employeeleaveId = props.leaveID.employeeleaveId;
         console.log(props.leaveID);
         const obj = { leaveStatus: "Rejected",hrApproval:"Rejected" };
-        axios.put(`/leave/updateLeave/${employeeleaveId}`,obj)
+        const form1 = Object.assign(form, obj);
+        axios.put(`/leave/updateLeave/${employeeleaveId}`,form1)
         .then((res)=>{
             axios.delete(`/leave/deleteBetweenDates/${employeeleaveId}`)
                 .then((resp)=>{
