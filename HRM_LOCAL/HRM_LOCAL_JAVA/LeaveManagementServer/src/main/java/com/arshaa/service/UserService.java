@@ -236,6 +236,8 @@ return findById(employeeleaveId);
 			u.setLeaveStatus(user.getLeaveStatus());
 			u.setRejectReason(user.getRejectReason());
 			u.setManagersRejectReason(user.getManagersRejectReason());
+			u.setIrmApproveReason(user.getIrmApproveReason());
+		    u.setSrmApproveReason(user.getSrmApproveReason());
 //u.setLeaveReason(user.getLeaveReason()); u.setRejectReason(user.getRejectReason());
 
 //u.setEmployeeId(user.getEmployeeId());
@@ -265,6 +267,8 @@ return findById(employeeleaveId);
       u.setRejectReason(user.getRejectReason());
 //      user.getManagersRejectReason();
       u.setManagersRejectReason(user.getManagersRejectReason());
+      u.setIrmApproveReason(user.getIrmApproveReason());
+      u.setSrmApproveReason(user.getSrmApproveReason());
 
 //u.setEmployeeId(user.getEmployeeId());
 //u.setFromDate(user.getFromDate());
