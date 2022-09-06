@@ -204,7 +204,10 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
 //				getOnboarding.setIrm(newOnboard.getIrm());
-//				getOnboarding.setComments(newOnboard.getComments());
+//				getOnboarding.setTaaApprovalComment(newOnboard.getTaaApprovalComment());
+//				getOnboarding.setTaaHeadApprovalComment(newOnboard.getTaaHeadApprovalComment());
+//				getOnboarding.setPmoApprovalComment(newOnboard.getPmoApprovalComment());
+				getOnboarding.setCeoApprovalComment(newOnboard.getCeoApprovalComment());
 //				getOnboarding.setProjectName(newOnboard.getProjectName());
 //				getOnboarding.setSecondaryPhoneNumber(newOnboard.getSecondaryPhoneNumber());
 //				getOnboarding.setBand(newOnboard.getBand());
@@ -1765,4 +1768,68 @@ public class MainServiceImpl implements MainService {
             return (getId.getEmployeeId());
     }
 
+	
+	@Override
+	public ResponseEntity updateTAAHeadApproval(String onboardingId, HrApprovalStatus newOnboard) {
+		Response r = new Response();
+		try {
+			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+			getOnboarding.setTaaHeadApprovalComment(newOnboard.getTaaHeadApprovalComment());
+			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
+			Onboarding saveList = onRepo.save(getOnboarding);
+			r.setStatus(true);
+			r.setMessage("TAAHeadApproved Successfully");
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
+
+
+	@Override
+	public ResponseEntity updatePMOApproval(String onboardingId, HrApprovalStatus newOnboard) {
+		Response r = new Response();
+		try {
+			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+			getOnboarding.setPmoApprovalComment(newOnboard.getPmoApprovalComment());
+			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
+			Onboarding saveList = onRepo.save(getOnboarding);
+			r.setStatus(true);
+			r.setMessage("PMOApproved Successfully");
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
 }
+
+
+	@Override
+	public ResponseEntity updateTAAApproval(String onboardingId, HrApprovalStatus newOnboard) {
+		Response r = new Response();
+		try {
+			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+			getOnboarding.setTaaApprovalComment(newOnboard.getTaaApprovalComment());
+			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
+			Onboarding saveList = onRepo.save(getOnboarding);
+			r.setStatus(true);
+			r.setMessage("TAAApproved Successfully");
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+}
+}
+
+
