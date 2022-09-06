@@ -48,6 +48,11 @@ public class User {
 	private String srmId;
 	@Column
 	private String buhId;
+	@Column
+	private String irmApproveReason;
+	@Column
+	private String srmApproveReason;
+	
 	
 	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
 	@Temporal(TemporalType.DATE)
@@ -60,10 +65,14 @@ public class User {
 	
 	
 
+	
+
+
 	public User(int employeeleaveId, String employeeId, String leaveType, Date fromDate, Date toDate, int numberOfDays,
 			String leaveReason, String updatedBy, Date updatedOn, String leaveStatus, String reportingManager,
 			String rejectReason, String managersRejectReason, String irmId, String srmId, String buhId,
-			Date submittedDate, String managerApproval, String hrApproval) {
+			String irmApproveReason, String srmApproveReason, Date submittedDate, String managerApproval,
+			String hrApproval) {
 		super();
 		this.employeeleaveId = employeeleaveId;
 		this.employeeId = employeeId;
@@ -81,6 +90,8 @@ public class User {
 		this.irmId = irmId;
 		this.srmId = srmId;
 		this.buhId = buhId;
+		this.irmApproveReason = irmApproveReason;
+		this.srmApproveReason = srmApproveReason;
 		this.submittedDate = submittedDate;
 		this.managerApproval = managerApproval;
 		this.hrApproval = hrApproval;
@@ -312,6 +323,30 @@ public class User {
 
 	public void setHrApproval(String hrApproval) {
 		this.hrApproval = hrApproval;
+	}
+
+
+
+	public String getIrmApproveReason() {
+		return irmApproveReason;
+	}
+
+
+
+	public void setIrmApproveReason(String irmApproveReason) {
+		this.irmApproveReason = irmApproveReason;
+	}
+
+
+
+	public String getSrmApproveReason() {
+		return srmApproveReason;
+	}
+
+
+
+	public void setSrmApproveReason(String srmApproveReason) {
+		this.srmApproveReason = srmApproveReason;
 	}
 
 
