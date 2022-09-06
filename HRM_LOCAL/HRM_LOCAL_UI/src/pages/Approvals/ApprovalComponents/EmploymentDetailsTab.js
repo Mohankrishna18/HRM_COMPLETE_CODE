@@ -3,120 +3,146 @@ import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
 
+
+
+
+
 function EmploymentDetailsTab(props) {
+    
+    const userData = sessionStorage.getItem("userdata");
+    // console.log(userData);
+    const userData1 = JSON.parse(userData);
+    const employeeid = userData1.data.employeeId;
+    const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
+    //var dateTime = getEmployeeDetails.dateOfJoining;
+  
+    const [imge, setImge] = useState([]);
+  //commit
+    useEffect(() => {
+      axios
+        .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
+        .then((response) => {
+          setGetEmployeeDetails(response.data.data);
+        });
+    }, []);
+    console.log(getEmployeeDetails)
+  
+    useEffect(() => {
+      axios
+        .get(`/emp/files/${employeeid}`)
+        .then((response) => {
+          console.log(response.data);
+          setImge(response.data)
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log("something wrong");
+        });
+    }, []);
+    console.log(imge)
+    console.log(getEmployeeDetails.primarySkills)
+   
+  
 
     return (
 
-        <div>
+        <div style={{ padding: 20, paddingBottom: 20 }}>    
+                          <Card.Title>
+                            <h5>Employment Details:</h5>
+                          </Card.Title>
+                          <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Primary Skills:
+                              </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                {getEmployeeDetails.primarySkills}
+                              </Card.Text>
+                            </Col>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Secondary Skills:
+                              </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Subtitle style={{ color: "#999897" }}>
+                                {getEmployeeDetails.secondarySkills}
+                              </Card.Subtitle>
+                            </Col>
+                          </Row>
+                          <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Employment Type:
+                              </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                {getEmployeeDetails.employmentType}
+                              </Card.Text>
+                            </Col>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Band:
+                              </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                {getEmployeeDetails.band}
+                              </Card.Text>
+                            </Col>
+                          </Row>
 
-            <Form
-            >
-                <Row className="mb-5">
-                    
-                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Employment Type</Form.Label>
-                        <Form.Control
+                          <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                              Business Unit:
+                              </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                {getEmployeeDetails.departmentName}
+                              </Card.Text>
+                            </Col>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Designation:
+                              </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                {getEmployeeDetails.designationName}
+                              </Card.Text>
+                            </Col>
+                          </Row>
 
-                            type="text"
-                            value={props.viewOnboard.employmentType}                         
-                        >
-                 
+                          <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Reporting Manager:
+                              </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                {getEmployeeDetails.reportingManager}
+                              </Card.Text>
+                            </Col>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                Project Name:
+                              </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                {getEmployeeDetails.projectName}
+                              </Card.Text>
+                            </Col>
+                          </Row>
 
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Band</Form.Label>
-                        <Form.Control
-                      
-                            type="text"
-                            placeholder="Band"
-                            controlId="band"
-                            name="band"
-                            value={props.viewOnboard.band}
-                           
-                        >
-                        
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Department</Form.Label>
-                        <Form.Control
-                        
-                            type="text"
-                            placeholder="Department Name"
-                            controlId="departmentName"
-                            value={props.viewOnboard.department}
-                            maxLength={25}
-                            name="departmentName"
-                           >
-                    
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Designation</Form.Label>
-                        <Form.Control
-              
-                            type="text"
-                            placeholder="Designation Name"
-                            controlId="designationName"
-                            value={props.viewOnboard.designation}
-                            maxLength={25}
-                            name="designationName"
-                            
-                        >
-                     
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Immediate Reporting Manager *</Form.Label>
-                        <Form.Control
-                            value={props.viewOnboard.irm}
-                            
-                        >
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Senior Reporting Manager *</Form.Label>
-                        <Form.Control
-                            value={props.viewOnboard.srm}
-                            
-                        >
-                        </Form.Control>
-                    </Form.Group>
-                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Bussiness Unit Head *</Form.Label>
-                        <Form.Control
-                            value={props.viewOnboard.buh}       
-                        >
-                        </Form.Control>
-                    </Form.Group>
-                    {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Project</Form.Label>
-                        <Form.Select
-                        disabled
-                            type="text"
-                            placeholder="Project"
-                            controlId="project"
-                            value={projectName}
-                            maxLength={15}
-                            name="projectName"
-                            onChange={(e) =>
-                                setProjectName(e.target.value)
-                            }
-                        >
-                            <option>Select</option>
-                            {project.map((p) => (
-                    <option value={p.projectName}>
-                        {p.projectName}
-                    </option>
-                  ))}                           
-                        </Form.Select>
-                    </Form.Group> */}
-                </Row>
 
-               
-            </Form>
-        </div>
+                        </div>
     )
 }
 export default EmploymentDetailsTab;

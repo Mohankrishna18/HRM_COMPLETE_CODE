@@ -6,119 +6,128 @@ function AddressTab(props) {
 
   return (
     <div>
-      <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                    Permanent Address
-                </Card.Title>
-            </Card>
+    <Card.Title>
+                <Row>
+                    <Col> <h5>Address:</h5></Col>
+                </Row>
+            </Card.Title>
 
-      <Form style={{ padding: 10 }}>
-        <Row className="mb-5">
-          <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-            <Form.Label>Address *</Form.Label>
-            <Form.Control
-              required
-              as="textarea"
-              rows={4}
-              type="text"
-              controlId="permanentAdress"
-              value={props.viewOnboard.permanentAdress}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>State *</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              name="permanentState"
-              controlId="permanentState"
-              maxLength={50}
-              value={props.viewOnboard.permanentState}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Country *</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              name="permanentCountry"
-              controlId="permanentCountry"
-              maxLength={50}
-              // options={countries}
-              value={props.viewOnboard.permanentCountry}
-            ></Form.Control>
-          </Form.Group>
+            <Card.Body style={{ paddingLeft: 20 }}>
+                <Row>
+                    <Col>
+                        <Card.Subtitle style={{ padding: 10 }}>
+                            <h5>Permanent Address:</h5>
+                        </Card.Subtitle>
+                        <Row style={{ paddingLeft: 50 }}>
+                            <Col >
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Address:
+                                </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                    {props.viewOnboard.permanentAdress}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingLeft: 50 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    State:
+                                </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                    {props.viewOnboard.permanentState}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingLeft: 50 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Country:
+                                </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                    {props.viewOnboard.permanentCountry}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingLeft: 50 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Pincode:
+                                </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                    {props.viewOnboard.permanentPincode}
+                                </Card.Text>
+                            </Col>
+                        </Row>
 
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Pincode *</Form.Label>
-            <Form.Control
-              required
-              type="number"
-              controlId="permanentPincode"
-              name="permanentPincode"
-              value={props.viewOnboard.permanentPincode}
-            ></Form.Control>
-          </Form.Group>
-          <Row>
-            <Card
-              style={{
-                marginLeft: 10,
-                marginRight: 0,
-                marginTop: 20,
-                backgroundColor: "#FAFDD0",
-              }}
-            >
-              <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                Current Address
-              </Card.Title>
-            </Card>
-            <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-              <Form.Label>Address *</Form.Label>
-              <Form.Control
-                required
-                as="textarea"
-                rows={4}
-                type="text"
-                placeholder="Address"
-                controlId="currentAdress"
-                value={props.viewOnboard.currentAdress}
-                name="currentAdress"
-              ></Form.Control>
-            </Form.Group>
+                    </Col>
+                    <Col>
 
-            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label>State *</Form.Label>
-              <Form.Control
-                required
-                type="text"
-                name="currentState"
-                controlId="currentState"
-                value={props.viewOnboard.currentState}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label>Country *</Form.Label>
-              <Form.Control
-                required
-                type="text"
-                value={props.viewOnboard.currentCountry}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label>Pincode *</Form.Label>
-              <Form.Control
-                required
-                type="number"
-                controlId="currentPincode"
-                value={props.viewOnboard.currentPincode}
-                name="currentPincode"
-                maxLength={6}
-              ></Form.Control>
-            </Form.Group>
-          </Row>
-        </Row>
-      </Form>
-    </div>
+                        <Card.Subtitle style={{ padding: 10 }}>
+                            <h5>Current Address:</h5>
+                        </Card.Subtitle>
+                        <Row style={{ paddingLeft: 50 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Address:
+                                </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                    {props.viewOnboard.currentAdress}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingLeft: 50 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    State:
+                                </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                    {props.viewOnboard.currentState}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingLeft: 50 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Country:
+                                </Card.Subtitle>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                    {props.viewOnboard.currentCountry}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingLeft: 50 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Pincode:
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                    {props.viewOnboard.currentPincode}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+
+                    </Col>
+                </Row>
+
+            </Card.Body>
+           
+            </div>
   );
 }
 export default AddressTab;
