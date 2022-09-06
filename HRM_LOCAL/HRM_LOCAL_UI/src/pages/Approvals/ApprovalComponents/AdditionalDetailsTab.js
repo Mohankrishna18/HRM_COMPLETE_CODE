@@ -8,115 +8,132 @@ function AditionalDetailsTab(props) {
   const userData1 = JSON.parse(userData);
  
   return (
-    <div>
-      {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                    Additional Details
-                </Card.Title>
-            </Card> */}
-
-      <Form  style={{ padding: 10 }}>
-        <Row className="mb-5">
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Passport Number</Form.Label>
-            <Form.Control
-              type="text"
-              controlId="passportNo"
-              value={props.viewOnboard.passportNo}
-              maxLength={15}
-              name="passportNo"
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Passport Expiry Date</Form.Label>
-            <Form.Control
-              type="date"
-              controlId="passportExpiryDate"
-              name="passportExpiryDate"
-              value={props.viewOnboard.passportExpiryDate}
-              min={new Date()}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>PAN Card Number</Form.Label>
-            <Form.Control
-              type="text"
-              controlId="panNumber"
-              name="panNumber"
-              maxLength={50}
-              value={props.viewOnboard.panNumber}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Aadhar Card Number *</Form.Label>
-            <Form.Control
-              required
-              type="number"
-              controlId="aadharNumber"
-              name="panNumber"
-              maxLength={12}
-              value={props.viewOnboard.aadharNumber}
-            />
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>UAN Number</Form.Label>
-            <Form.Control
-              type="text"
-              controlId="uanNumber"
-              name="uanNumber"
-              value={props.viewOnboard.uanNumber}
-              maxLength={12}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Bank Name *</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              controlId="bankName"
-              name="bankName"
-              maxLength={50}
-              value={props.viewOnboard.bankName}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Bank Account Number *</Form.Label>
-            <Form.Control
-              required
-              type="number"
-              controlId="accountNumber"
-              name="accountNumber"
-              maxLength={50}
-              value={props.viewOnboard.accountNumber}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>IFSC Code *</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="IFSC Code"
-              controlId="ifscCode"
-              name="ifscCode"
-              maxLength={50}
-              value={props.viewOnboard.ifscCode}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Branch Name *</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              controlId="branchName"
-              name="branch"
-              maxLength={50}
-              value={props.viewOnboard.branch}
-            ></Form.Control>
-          </Form.Group>
+    <div style={{ paddingLeft: 20, paddingBottom: 10 }}>
+    <Card.Title>
+        <Row>
+            <Col> <h5>Additional Details :</h5></Col>
+            {/* <Col style={{float: "right",paddingLeft:"750px"}}><EditIcon onClick={handleShow}/></Col> */}
         </Row>
-      </Form>
-    </div>
+    </Card.Title>
+    <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+        <Col>
+            <Card.Subtitle style={{ padding: 10 }}>
+                Passport Number:
+            </Card.Subtitle>{" "}
+        </Col>
+        <Col md={{ offset: 1 }}>
+            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                {props.viewOnboard.passportNo}
+            </Card.Text>
+        </Col>
+        <Col>
+            <Card.Subtitle style={{ padding: 10 }}>
+                Passport Expiry Date:
+            </Card.Subtitle>{" "}
+        </Col>
+        <Col md={{ offset: 1 }}>
+
+            {props.viewOnboard.passportExpiryDate ? (<Card.Subtitle style={{ color: "#999897" }}>
+                {props.viewOnboard.ped}
+            </Card.Subtitle>) : (<div></div>)}
+
+        </Col>
+    </Row>
+    <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+        <Col>
+            <Card.Subtitle style={{ padding: 10 }}>
+                PAN Card Number:
+            </Card.Subtitle>{" "}
+        </Col>
+        <Col md={{ offset: 1 }}>
+            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                {props.viewOnboard.panNumber}
+            </Card.Text>
+        </Col>
+        <Col>
+            <Card.Subtitle style={{ padding: 10 }}>
+                Aadhar Card Number:
+            </Card.Subtitle>{" "}
+        </Col>
+        <Col md={{ offset: 1 }}>
+            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                {props.viewOnboard.aadharNumber}
+            </Card.Text>
+        </Col>
+    </Row>
+
+    <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+        <Col>
+            <Card.Subtitle style={{ padding: 10 }}>
+                UAN Number:
+            </Card.Subtitle>{" "}
+        </Col>
+        <Col md={{ offset: 1 }}>
+            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                {props.viewOnboard.uanNumber}
+            </Card.Text>
+        </Col>
+        <Col>
+            <Card.Subtitle style={{ padding: 10 }}>
+                Band:
+            </Card.Subtitle>{" "}
+        </Col>
+        <Col md={{ offset: 1 }}>
+            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                {props.viewOnboard.band}
+            </Card.Text>
+        </Col>
+    </Row>
+
+    <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+        <Col>
+            <Card.Subtitle style={{ padding: 10 }}>
+                Bank Name:
+            </Card.Subtitle>{" "}
+        </Col>
+        <Col md={{ offset: 1 }}>
+            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                {props.viewOnboard.bankName}
+            </Card.Text>
+        </Col>
+        <Col>
+            <Card.Subtitle style={{ padding: 10 }}>
+                Account Number:
+            </Card.Subtitle>{" "}
+        </Col>
+        <Col md={{ offset: 1 }}>
+            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                {props.viewOnboard.accountNumber}
+            </Card.Text>
+        </Col>
+    </Row>
+
+    <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+        <Col>
+            <Card.Subtitle style={{ padding: 10 }}>
+                IFSC Code:
+            </Card.Subtitle>{" "}
+        </Col>
+        <Col md={{ offset: 1 }}>
+            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                {props.viewOnboard.ifscCode}
+            </Card.Text>
+        </Col>
+        <Col>
+            <Card.Subtitle style={{ padding: 10 }}>
+                Branch:
+            </Card.Subtitle>{" "}
+        </Col>
+        <Col md={{ offset: 1 }}>
+            <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                {props.viewOnboard.branch}
+            </Card.Text>
+        </Col>
+    </Row>
+
+    
+
+</div>
   );
 }
 export default AditionalDetailsTab;
