@@ -1,9 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { Card, Form, Row, Col, Table, Tabs, Tab, InputGroup, Button, Accordion } from "react-bootstrap";
+import { Card, Container, Row, Col, Table, Tabs, Tab } from "react-bootstrap";
+import { matches } from "lodash";
+import { Image } from "react-bootstrap";
 import axios from "../../../Uri";
+import { split } from "lodash";
+import Avatar from '@mui/material/Avatar';
+import PersonalDetails from "./ProfilePersonalDetailsTab";
+import {
+  Button,
+  ProgressBar,
 
-function EducationalDetailsTab(props) {
-    
+} from "react-bootstrap";
+import {
+  Timeline,
+  BodyContent,
+  Section,
+  Description,
+} from "vertical-timeline-component-react";
+
+const customTheme = {
+  yearColor: "#405b73",
+  lineColor: "#d0cdc4",
+  dotColor: "#fd7e14",
+  borderDotColor: "#ced4da",
+  titleColor: "#000000",
+  subtitleColor: "#bf9765",
+  textColor: "#262626",
+};
+
+const ProfileEducationalDetailsTab = () => {
+
+
   const userData = sessionStorage.getItem("userdata");
   // console.log(userData);
   const userData1 = JSON.parse(userData);
@@ -84,10 +111,10 @@ function EducationalDetailsTab(props) {
   var sscPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
 
-
-    return (
-
-        <div style={{ padding: 20, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
+  return (
+    <>
+      
+                        <div style={{ padding: 20, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
                           <Card.Title>
                             <h5>Educational Information:</h5>
                           </Card.Title>
@@ -170,6 +197,11 @@ function EducationalDetailsTab(props) {
 
                           </Card.Body>
                         </div>
-    )
-}
-export default EducationalDetailsTab;
+
+                     
+
+    </>
+  );
+};
+export default ProfileEducationalDetailsTab;
+

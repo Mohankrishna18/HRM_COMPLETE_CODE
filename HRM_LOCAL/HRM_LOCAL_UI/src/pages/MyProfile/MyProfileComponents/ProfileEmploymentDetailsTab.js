@@ -1,52 +1,64 @@
 import React, { useEffect, useState } from "react";
-import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
+import { Card, Container, Row, Col, Table, Tabs, Tab } from "react-bootstrap";
+import { matches } from "lodash";
+import { Image } from "react-bootstrap";
 import axios from "../../../Uri";
-import { toast } from "react-toastify";
+import { split } from "lodash";
+import Avatar from '@mui/material/Avatar';
 
 
 
+const customTheme = {
+  yearColor: "#405b73",
+  lineColor: "#d0cdc4",
+  dotColor: "#fd7e14",
+  borderDotColor: "#ced4da",
+  titleColor: "#000000",
+  subtitleColor: "#bf9765",
+  textColor: "#262626",
+};
+
+const ProfileEmploymentDetailsTab = () => {
 
 
-function EmploymentDetailsTab(props) {
-    
-    const userData = sessionStorage.getItem("userdata");
-    // console.log(userData);
-    const userData1 = JSON.parse(userData);
-    const employeeid = userData1.data.employeeId;
-    const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
-    //var dateTime = getEmployeeDetails.dateOfJoining;
-  
-    const [imge, setImge] = useState([]);
-  //commit
-    useEffect(() => {
-      axios
-        .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
-        .then((response) => {
-          setGetEmployeeDetails(response.data.data);
-        });
-    }, []);
-    console.log(getEmployeeDetails)
-  
-    useEffect(() => {
-      axios
-        .get(`/emp/files/${employeeid}`)
-        .then((response) => {
-          console.log(response.data);
-          setImge(response.data)
-        })
-        .catch((error) => {
-          console.log(error);
-          console.log("something wrong");
-        });
-    }, []);
-    console.log(imge)
-    console.log(getEmployeeDetails.primarySkills)
-   
-  
+  const userData = sessionStorage.getItem("userdata");
+  // console.log(userData);
+  const userData1 = JSON.parse(userData);
+  const employeeid = userData1.data.employeeId;
+  const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
+  //var dateTime = getEmployeeDetails.dateOfJoining;
 
-    return (
+  const [imge, setImge] = useState([]);
+//commit
+  useEffect(() => {
+    axios
+      .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
+      .then((response) => {
+        setGetEmployeeDetails(response.data.data);
+      });
+  }, []);
+  console.log(getEmployeeDetails)
 
-        <div style={{ padding: 20, paddingBottom: 20 }}>    
+  useEffect(() => {
+    axios
+      .get(`/emp/files/${employeeid}`)
+      .then((response) => {
+        console.log(response.data);
+        setImge(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("something wrong");
+      });
+  }, []);
+  console.log(imge)
+  console.log(getEmployeeDetails.primarySkills)
+
+
+
+  return (
+ 
+                        <div style={{ padding: 20, paddingBottom: 20 }}>    
                           <Card.Title>
                             <h5>Employment Details:</h5>
                           </Card.Title>
@@ -143,6 +155,9 @@ function EmploymentDetailsTab(props) {
 
 
                         </div>
-    )
-}
-export default EmploymentDetailsTab;
+
+  );
+};
+export default ProfileEmploymentDetailsTab;
+
+
