@@ -869,7 +869,7 @@ function IntegrateLeaveToApply() {
 
 
                             <Form.Group as={Col} md="2" style={{ padding: 10 }}>
-                                <Form.Label>No.of Days</Form.Label>
+                                <Form.Label>No.of Days*</Form.Label>
                                 <Form.Control
                                     required
                                     type=""
@@ -891,7 +891,7 @@ function IntegrateLeaveToApply() {
                                 </Form.Group>
 
                             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                                <Form.Label>Leave Reason</Form.Label>
+                                <Form.Label>Leave Reason *</Form.Label>
                                 <Form.Control
                                     required
                                     className="leaveReason"

@@ -162,6 +162,30 @@ public class EmployeeMaster {
     private String irmId;
     private String srmId;
     private String buhId;
+
+    private String intermediateQualification;
+    private String sscQualification;
+    private String officialMail;
+
+
+	public String getIntermediateQualification() {
+		return intermediateQualification;
+	}
+	public void setIntermediateQualification(String intermediateQualification) {
+		this.intermediateQualification = intermediateQualification;
+	}
+	public String getSscQualification() {
+		return sscQualification;
+	}
+	public void setSscQualification(String sscQualification) {
+		this.sscQualification = sscQualification;
+	}
+	public String getOfficialMail() {
+		return officialMail;
+	}
+	public void setOfficialMail(String officialMail) {
+		this.officialMail = officialMail;
+	}
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}
@@ -798,7 +822,7 @@ public class EmployeeMaster {
 	public void setBuhId(String buhId) {
 		this.buhId = buhId;
 	}
-	public EmployeeMaster(String employeeId, String departmentName, String onboardingId, String designationName,
+		public EmployeeMaster(String employeeId, String departmentName, String onboardingId, String designationName,
 			Date dateOfJoining, String firstName, String middleName, String lastName, String email,
 			String primaryPhoneNumber, String secondaryPhoneNumber, String yearsOfExperience, String dateOfBirth,
 			String bloodGroup, String gender, String projectName, String maritalStatus, String permanentAdress,
@@ -829,7 +853,7 @@ public class EmployeeMaster {
 			String employmentType, String primarySkills, String secondarySkills, String panNumber, String aadharNumber,
 			String uanNumber, String bankName, String accountNumber, String ifscCode, String branch, String band,
 			String exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,
-			String buhId) {
+			String buhId, String intermediateQualification, String sscQualification, String officialMail) {
 		super();
 		this.employeeId = employeeId;
 		this.departmentName = departmentName;
@@ -936,8 +960,11 @@ public class EmployeeMaster {
 		this.irmId = irmId;
 		this.srmId = srmId;
 		this.buhId = buhId;
+		this.intermediateQualification = intermediateQualification;
+		this.sscQualification = sscQualification;
+		this.officialMail = officialMail;
 	}
-	public EmployeeMaster() {
+		public EmployeeMaster() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
