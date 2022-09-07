@@ -8,6 +8,8 @@ function ExperienceTab() {
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
+
 
     const [ferrors, setFErrors] = useState("");
     const [serror, setSerror] = useState("");
@@ -47,7 +49,7 @@ function ExperienceTab() {
 
     useEffect(() => {
         axios
-            .get(`/emp/getExperienceDetails/${employeeid}`)
+            .get(`/emp/getExperienceDetails/${empId}`)
             .then((response) => {
                 setPreviousCompany1_name(response.data.data.previousCompany1_name);
                 setPreviousCompany1_designation(response.data.data.previousCompany1_designation);
@@ -76,7 +78,7 @@ function ExperienceTab() {
     const changeHandler = async (e) => {
         e.preventDefault();
         try{
-        await axios.put(`/emp/updateExperience/${employeeid}`, {
+        await axios.put(`/emp/updateExperience/${empId}`, {
             previousCompany1_name,
             previousCompany1_designation,
             previousCompany1_joiningDate,

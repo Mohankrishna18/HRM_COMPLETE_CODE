@@ -8,6 +8,8 @@ function ProjectsTab() {
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
+
 
     const [eighteenerror, setEighteenerror] = useState("");
     const [nineteenerror, setNineteenerror] = useState("");
@@ -21,7 +23,7 @@ function ProjectsTab() {
 
     useEffect(() => {
         axios
-            .get(`/emp/getEmploymentDetails/${employeeid}`)
+            .get(`/emp/getEmploymentDetails/${empId}`)
             .then((response) => {
                 setProjectName(response.data.data.projectName);
                
@@ -30,7 +32,7 @@ function ProjectsTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
-        await axios.put(`/emp/updateEmploymentDetails/${employeeid}`, {
+        await axios.put(`/emp/updateEmploymentDetails/${empId}`, {
             projectName
         });
         toast.success("Form Submitted Successfully");

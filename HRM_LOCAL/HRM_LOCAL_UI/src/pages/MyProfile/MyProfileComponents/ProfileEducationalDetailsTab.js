@@ -119,13 +119,11 @@ const ProfileEducationalDetailsTab = () => {
                             <h5>Educational Information:</h5>
                           </Card.Title>
                           <Card.Body style={{ paddingLeft: 20 }}>
-
-
-                            <Table>
+                             <Table>
                               <thead>
                                 <tr>
-                                  <th>Type of Graduation</th>
-                                  <th>University</th>
+                                  <th>Qualification</th>
+                                  <th>University/Board</th>
                                   <th>Institute Name</th>
                                   <th>Course</th>
                                   <th>Grade</th>
