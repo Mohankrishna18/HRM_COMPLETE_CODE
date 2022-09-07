@@ -422,5 +422,21 @@ public class MainController {
     		return serv.getEmployeeIdByName(fullName);
 
     	}
+        @PutMapping("/updateTAAHeadApproval/{onboardingId}")
+        public ResponseEntity updateTAAHeadApproval(@PathVariable String onboardingId,
+    			@RequestBody HrApprovalStatus newOnboard) {
+    		return serv.updateTAAHeadApproval(onboardingId, newOnboard);
+    	}
+        @PutMapping("/updatePMOApproval/{onboardingId}")
+        public ResponseEntity updatePMOApproval(@PathVariable String onboardingId,
+    			@RequestBody HrApprovalStatus newOnboard) {
+    		return serv.updatePMOApproval(onboardingId, newOnboard);
+    	}
+        @PutMapping("/updateTAAApproval/{onboardingId}")
+        public ResponseEntity updateTAAApproval(@PathVariable String onboardingId,
+    			@RequestBody HrApprovalStatus newOnboard) {
+    		return serv.updateTAAApproval(onboardingId, newOnboard);
+    	}
+
 
 }

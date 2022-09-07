@@ -1,8 +1,7 @@
 import React, { useState ,useRef, useEffect} from 'react';
-import {Button,Row,Col} from "react-bootstrap";
+import {Button,Row,Col, Form} from "react-bootstrap";
 import axios from "../../Uri";
 import { toast } from "react-toastify";
-import { Form } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 import { InputGroup } from "react-bootstrap";
 import {AutoCompleteComponent} from '@syncfusion/ej2-react-dropdowns';
@@ -177,7 +176,8 @@ console.log(onboardingId);
         let onboardingId = props.onboardID.onboardingId;
         console.log(props.onboardID);
         const obj = { onboardingStatus: "PMOApproved" };
-        axios.put(`/emp/updateApprovStatus/${onboardingId}`,obj)
+        const form1 = Object.assign(form, obj);
+        axios.put(`/emp/updatePMOApproval/${onboardingId}`,form1)
         .then((res)=>{
             console.log(res)
             if(res.status == 200){
@@ -201,7 +201,25 @@ console.log(onboardingId);
       
      
             <Col>
-            <Button variant="primary" 
+            <Form role="form">
+                <Form.Group md="12" style={{ padding: 0 }}>
+                    <Form.Label>Comment</Form.Label>
+                    <Form.Control
+                        required
+                        as="textarea"
+                        rows={2}
+                        className="pmoApprovalComment"
+                        type="text"
+                        controlId="pmoApprovalComment"
+                        placeholder="Approve Reason"
+                        value={form.pmoApprovalComment}
+                        onChange={(e) => setField("pmoApprovalComment", e.target.value)}
+                        isInvalid={!!errors.pmoApprovalComment}
+                    ></Form.Control>
+                </Form.Group>
+
+            </Form>
+            <Button variant="primary" style={{ marginTop: "5%", float: "right" }}
             onClick={ApproveHandler}
             >
             Yes
