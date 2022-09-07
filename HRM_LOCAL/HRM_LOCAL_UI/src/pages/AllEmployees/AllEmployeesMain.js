@@ -7,14 +7,14 @@ import EmployeeList from './AllEmployeesComponents/EmployeeList';
 
 
 
-const Employee = () => {
+const AllEmployeesMain = () => {
 return (
 <div>
 
 <Row>
     <Col xs={12}>
     {/* <AllEmployee/> */}
-    <EmployeeList />
+    <EmployeeList/>
     </Col>
 </Row>
 
@@ -25,4 +25,4 @@ return (
 
 
 
-export default Employee;
+export default AllEmployeesMain;
