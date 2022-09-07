@@ -86,9 +86,6 @@ console.log(data);
         <Modal.Body>
             <CEOApproved onboardID={onboardID} func={pull_data} handleClose={handleClose} />
         </Modal.Body>
-        <Modal.Footer>
- 
-</Modal.Footer>
     </Modal>
     <Modal show={rejectshow} onHide={handleCloseReject}>
         <Modal.Header closeButton>
@@ -190,14 +187,6 @@ console.log(data);
             </Tab>
           </Tabs>
         </Modal.Body>
-        <Modal.Footer>
-          {/* <Button variant="secondary" onClick={viewHandleClose}>
-            Close
-          </Button> */}
-          {/* <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button> */}
-        </Modal.Footer>
       </Modal>
 
     <Grid>

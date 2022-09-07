@@ -11,24 +11,24 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ApprovalUpdateForm = (props) => {
   console.log(props.updateOnboard.onboardingId);
-  // const [form, setForm] = useState({});
-  // const [errors, setErrors] = useState({});
+  const [form, setForm] = useState({});
+  const [errors, setErrors] = useState({});
 
-  // const setField = (field, value) => {
-  //     setForm({ ...form, [field]: value });
-  //     if (!!errors[field])
-  //         setErrors({
-  //             ...errors,
-  //             [field]: null,
-  //         });
-  // };
+  const setField = (field, value) => {
+      setForm({ ...form, [field]: value });
+      if (!!errors[field])
+          setErrors({
+              ...errors,
+              [field]: null,
+          });
+  };
 
   const obj = { onboardingStatus: "TAAApproved" };
-  // const form1 = Object.assign(form, obj);
+  const form1 = Object.assign(form, obj);
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`/emp/updateApprovStatus/${props.updateOnboard.onboardingId}`, obj);
-    // axios.put(`/emp/updateTAAApproval/${props.updateOnboard.onboardingId}`, form1);
+    // axios.put(`/emp/updateApprovStatus/${props.updateOnboard.onboardingId}`, obj);
+    axios.put(`/emp/updateTAAApproval/${props.updateOnboard.onboardingId}`, form1);
     props.handleClose()
    }
   
@@ -36,8 +36,8 @@ const ApprovalUpdateForm = (props) => {
   return (
     <>
 
-      <Row style={{ paddingLeft: 180, paddingRight: 25, paddingBottom: 10 }}>
-      {/* <Form role="form">
+      <Row style={{ paddingRight: 25, paddingBottom: 10 }}>
+      <Form role="form">
                 <Form.Group md="12" style={{ padding: 0 }}>
                     <Form.Label>Comment</Form.Label>
                     <Form.Control
@@ -54,15 +54,16 @@ const ApprovalUpdateForm = (props) => {
                     ></Form.Control>
                 </Form.Group>
 
-            </Form> */}
+            </Form>
+            <Row style={{justifyContent:"center"}}>
         <Button 
           style={{
             backgroundColor: "#ff9b44",
-            // marginTop: "5%",
+            marginTop: "5%",
             borderColor: "#ff9b44",
             float: "right",
-            width: "40%",
-            height: "120%",
+            width: "30%",
+            height: "70%",
             borderRadius: "25px",
           }}
           alignItems="center"
@@ -72,6 +73,7 @@ const ApprovalUpdateForm = (props) => {
         >
           Submit
         </Button>
+        </Row>
       </Row>
     </>
   );

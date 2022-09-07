@@ -98,7 +98,6 @@ function TAAHeadApproval() {
             handleClose={handleClose}
           />
         </Modal.Body>
-        <Modal.Footer></Modal.Footer>
       </Modal>
       <Modal show={rejectshow} onHide={handleCloseReject}>
         <Modal.Header closeButton>
