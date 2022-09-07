@@ -83,7 +83,7 @@ function OnboardedEmployeesTable() {
       type: "number",
     },
     {
-      title: "Date of Joining",
+      title: "DOJ",
       field: "dateOfJoining",
       type: "date",
     },
@@ -102,10 +102,10 @@ function OnboardedEmployeesTable() {
       title: "Experience",
       field: "yearsOfExperience",
     },
-    {
-      title: "Status",
-      field: "percentage",
-    },
+    // {
+    //   title: "Status",
+    //   field: "percentage",
+    // },
   ]);
 
   return (

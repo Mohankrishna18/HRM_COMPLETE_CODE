@@ -39,7 +39,7 @@ function TAAHeadMain() {
                     >
                       <TAAHeadApproval />
                     </Tab>
-                    {/* <Tab
+                    <Tab
                       eventKey="Leave Approvals"
                       title="Leave Approvals"
                       style={{ backgroundColor: "white" }}
@@ -52,7 +52,7 @@ function TAAHeadMain() {
                       style={{ backgroundColor: "white" }}
                     > 
                       <TaskMain />
-                    </Tab>*/}
+                    </Tab>
                   </Tabs>
                 </Col>
               </Row>

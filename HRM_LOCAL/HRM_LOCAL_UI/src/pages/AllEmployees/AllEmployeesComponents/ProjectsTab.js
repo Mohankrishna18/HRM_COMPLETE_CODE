@@ -57,7 +57,7 @@ function ProjectsTab() {
                             type="text"
                             placeholder="Project Name"
                             controlId="projectName"
-                            value={projectName}
+                            //value={projectName}
                             maxLength={25}
                             name="projectName"
                             onChange={(e) =>
@@ -75,7 +75,7 @@ function ProjectsTab() {
                             type="text"
                             placeholder="Client Name"
                             controlId="projectName"
-                            value={projectName}
+                            //value={projectName}
                             maxLength={25}
                             name="projectName"
                             onChange={(e) =>
@@ -87,13 +87,13 @@ function ProjectsTab() {
                         </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Reporting Manager</Form.Label>
+                        <Form.Label>Reporting Managrer</Form.Label>
                         <Form.Control
                         disabled
                             type="text"
-                            placeholder="Reporting Manager"
+                            placeholder="Reporting Managrer"
                             controlId="projectName"
-                            value={projectName}
+                            //value={projectName}
                             maxLength={25}
                             name="projectName"
                             onChange={(e) =>
@@ -111,7 +111,7 @@ function ProjectsTab() {
                             type="text"
                             placeholder="Skills"
                             controlId="projectName"
-                            value={projectName}
+                            //value={projectName}
                             maxLength={25}
                             name="projectName"
                             onChange={(e) =>
@@ -137,3 +137,5 @@ function ProjectsTab() {
     )
 }
 export default ProjectsTab;
+
+

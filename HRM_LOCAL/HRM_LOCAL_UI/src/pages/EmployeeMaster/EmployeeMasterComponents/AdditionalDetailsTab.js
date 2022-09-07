@@ -8,6 +8,8 @@ function AditionalDetailsTab() {
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
+
 
     const [eighteenerror, setEighteenerror] = useState("");
     const [nineteenerror, setNineteenerror] = useState("");
@@ -32,7 +34,7 @@ function AditionalDetailsTab() {
 
     useEffect(() => {
         axios
-            .get(`/emp/getAdditionalDetails/${employeeid}`)
+            .get(`/emp/getAdditionalDetails/${empId}`)
             .then((response) => {
                 setPanNumber(response.data.data.panNumber);
                 setAadharNumber(response.data.data.aadharNumber);
@@ -50,7 +52,7 @@ function AditionalDetailsTab() {
     const changeHandler = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`/emp/updateAdditionalDetails/${employeeid}`, {
+            await axios.put(`/emp/updateAdditionalDetails/${empId}`, {
                 panNumber,
                 aadharNumber,
                 uanNumber,
