@@ -86,6 +86,11 @@ public interface MainService {
 	public ResponseEntity EmploymentDetailsByOnboardId(EmploymentDetails emps,String onboardingId);
 	
 	String getEmployeeIdByName(String fullName);
+	public ResponseEntity updateTAAHeadApproval(String onboardingId, HrApprovalStatus newOnboard);
+	public ResponseEntity updatePMOApproval(String onboardingId, HrApprovalStatus newOnboard);
+	public ResponseEntity updateTAAApproval(String onboardingId, HrApprovalStatus newOnboard);
+
+
     
     
 }

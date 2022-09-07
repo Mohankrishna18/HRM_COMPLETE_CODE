@@ -200,7 +200,19 @@ public class Onboarding {
     private String irmId;
     private String srmId;
     private String buhId;
+    private String taaApprovalComment;
+    private String taaHeadApprovalComment;
+    private String pmoApprovalComment;
+    private String ceoApprovalComment;
     
+    
+	
+	public String getTaaHeadApprovalComment() {
+		return taaHeadApprovalComment;
+	}
+	public void setTaaHeadApprovalComment(String taaHeadApprovalComment) {
+		this.taaHeadApprovalComment = taaHeadApprovalComment;
+	}
 	public String getIrmId() {
 		return irmId;
 	}
@@ -243,16 +255,19 @@ public class Onboarding {
 	public void setBuh(String buh) {
 		this.buh = buh;
 	}
-	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,int percentage,
-			String jobTitle, String skillSet,String fullName, String irm,String irmId,String srmId,String buhId,String srm,String buh,String comments, String phoneNumber, String yearsOfExperience,
-			String employeeId, boolean approvedStatus,String onboardingStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
-			String department, String reportingManager, String projectName, String email, Date onboardDate,
-			Date approvedDate, Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy,
-			String employmentType, String primarySkills, String secondarySkills, String secondaryPhoneNumber,
-			String dateOfBirth, String bloodGroup, String gender, String maritalStatus, String permanentAdress,
-			String permanentState, String permanentCountry, String permanentPincode, String currentAdress,
-			String currentState, String currentCountry, String currentPincode, String postgraduationType,
-			String postgraduationBoardOfUniversity, String postgraduationInstituteName,
+	
+	
+	
+	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
+			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
+			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
+			String onboardingStatus, String department, String reportingManager, String projectName, String email,
+			Date onboardDate, Date approvedDate, Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy,
+			String employmentType, String primarySkills, String secondarySkills, int percentage,
+			String secondaryPhoneNumber, String dateOfBirth, String bloodGroup, String gender, String maritalStatus,
+			String permanentAdress, String permanentState, String permanentCountry, String permanentPincode,
+			String currentAdress, String currentState, String currentCountry, String currentPincode,
+			String postgraduationType, String postgraduationBoardOfUniversity, String postgraduationInstituteName,
 			String postgraduationInstituteCity, String postgraduationCourseName, String postgraduationJoiningYear,
 			String postgraduationPassedYear, String postgraduationGrade, String graduationType,
 			String graduationBoardOfUniversity, String graduationInstituteName, String graduationInstituteCity,
@@ -274,8 +289,10 @@ public class Onboarding {
 			Double previousCompany3_grossSalary, String previousCompany3_typeOfEmployment,
 			String previousCompany3_reasonForRelieving, boolean employeeStatus, String passportNo,
 			String passportExpiryDate, String panNumber, String aadharNumber, String uanNumber, String bankName,
-			String accountNumber, String ifscCode, String branch, String exitDate, String band,String client) {
-		
+			String accountNumber, String ifscCode, String branch, String client, String irm, String srm, String buh,
+			String fullName, String irmId, String srmId, String buhId, String taaApprovalComment,
+			String taaHeadApprovalComment, String pmoApprovalComment, String ceoApprovalComment, String exitDate,
+			String band) {
 		super();
 		this.onboardingId = onboardingId;
 		this.designation = designation;
@@ -285,19 +302,13 @@ public class Onboarding {
 		this.jobTitle = jobTitle;
 		this.skillSet = skillSet;
 		this.comments = comments;
-		this.irm = irm;
-		this.fullName = fullName;
-		this.srm = srm;
-		this.irmId = irmId;
-		this.srmId = srmId;
-		this.buhId = buhId;
-		this.buh = buh;
 		this.phoneNumber = phoneNumber;
 		this.yearsOfExperience = yearsOfExperience;
 		this.employeeId = employeeId;
 		this.approvedStatus = approvedStatus;
 		this.rejectedStatus = rejectedStatus;
 		this.waitingforapprovalStatus = waitingforapprovalStatus;
+		this.onboardingStatus = onboardingStatus;
 		this.department = department;
 		this.reportingManager = reportingManager;
 		this.projectName = projectName;
@@ -311,11 +322,11 @@ public class Onboarding {
 		this.employmentType = employmentType;
 		this.primarySkills = primarySkills;
 		this.secondarySkills = secondarySkills;
+		this.percentage = percentage;
 		this.secondaryPhoneNumber = secondaryPhoneNumber;
 		this.dateOfBirth = dateOfBirth;
 		this.bloodGroup = bloodGroup;
 		this.gender = gender;
-		this.onboardingStatus = onboardingStatus;
 		this.maritalStatus = maritalStatus;
 		this.permanentAdress = permanentAdress;
 		this.permanentState = permanentState;
@@ -389,12 +400,38 @@ public class Onboarding {
 		this.accountNumber = accountNumber;
 		this.ifscCode = ifscCode;
 		this.branch = branch;
+		this.client = client;
+		this.irm = irm;
+		this.srm = srm;
+		this.buh = buh;
+		this.fullName = fullName;
+		this.irmId = irmId;
+		this.srmId = srmId;
+		this.buhId = buhId;
+		this.taaApprovalComment = taaApprovalComment;
+		this.taaHeadApprovalComment = taaHeadApprovalComment;
+		this.pmoApprovalComment = pmoApprovalComment;
+		this.ceoApprovalComment = ceoApprovalComment;
 		this.exitDate = exitDate;
 		this.band = band;
-		this.client = client;
-		this.percentage = percentage;
-		
-		
+	}
+	public String getTaaApprovalComment() {
+		return taaApprovalComment;
+	}
+	public void setTaaApprovalComment(String taaApprovalComment) {
+		this.taaApprovalComment = taaApprovalComment;
+	}
+	public String getPmoApprovalComment() {
+		return pmoApprovalComment;
+	}
+	public void setPmoApprovalComment(String pmoApprovalComment) {
+		this.pmoApprovalComment = pmoApprovalComment;
+	}
+	public String getCeoApprovalComment() {
+		return ceoApprovalComment;
+	}
+	public void setCeoApprovalComment(String ceoApprovalComment) {
+		this.ceoApprovalComment = ceoApprovalComment;
 	}
 	public String getSecondaryPhoneNumber() {
 		return secondaryPhoneNumber;

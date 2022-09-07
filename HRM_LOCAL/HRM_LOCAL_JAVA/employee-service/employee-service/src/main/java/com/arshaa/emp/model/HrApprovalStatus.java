@@ -21,8 +21,46 @@ public class HrApprovalStatus {
 	private String irm;
 	private String srm;
 	private String buh;
+	private String taaApprovalComment;
+	private String taaHeadApprovalComment;
+	private String pmoApprovalComment;
+	private String ceoApprovalComment;
 	
 	
+
+	
+
+	public String getTaaApprovalComment() {
+		return taaApprovalComment;
+	}
+
+	public void setTaaApprovalComment(String taaApprovalComment) {
+		this.taaApprovalComment = taaApprovalComment;
+	}
+
+	public String getPmoApprovalComment() {
+		return pmoApprovalComment;
+	}
+
+	public void setPmoApprovalComment(String pmoApprovalComment) {
+		this.pmoApprovalComment = pmoApprovalComment;
+	}
+
+	public String getCeoApprovalComment() {
+		return ceoApprovalComment;
+	}
+
+	public void setCeoApprovalComment(String ceoApprovalComment) {
+		this.ceoApprovalComment = ceoApprovalComment;
+	}
+
+	public String getTaaHeadApprovalComment() {
+		return taaHeadApprovalComment;
+	}
+
+	public void setTaaHeadApprovalComment(String taaHeadApprovalComment) {
+		this.taaHeadApprovalComment = taaHeadApprovalComment;
+	}
 
 	public String getIrm() {
 		return irm;

@@ -191,7 +191,7 @@ function IntegrateLeaveToApply() {
 
     //useState for form
     const [employeeId, setEmployeeId] = useState();
-    const [leaveType, setLeavetype] = useState();
+    const [leaveType, setLeavetype] = useState("Annual");
     const [fromDate, setFromDate] = useState();
     const [toDate, setToDate] = useState();
     const [leaveReason, setReasonForLeaves] = useState();
@@ -672,20 +672,21 @@ function IntegrateLeaveToApply() {
                         <Row className="mb-2">
 
                             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                                <Form.Label>Leave Type</Form.Label>
+                                <Form.Label hidden>Leave Type</Form.Label>
                                 <Form.Select
-                                    required
-                                    type=""
+                                    // required
+                                    hidden
                                     placeholder="Select Leave"
-                                    value={typeofleave.leaveType}
+                                    // value={typeofleave.leaveType}
+                                    value="Annual"
                                     onChange={(event) => {
                                         setLeavetype(event.target.value)
 
                                     }}>
-                                    <option value="" placeholder="Select Leave">Select Leave</option>
+                                    {/* <option value="" placeholder="Select Leave">Select Leave</option>
                                     {typeofleave.map((leave) => (
                                         <option>{leave.leaveType}</option>
-                                    ))}
+                                    ))} */}
                                 </Form.Select>
                             </Form.Group>
 
@@ -880,7 +881,7 @@ function IntegrateLeaveToApply() {
                                     }}
                                 />
                             </Form.Group>
-                            <Form.Group as={Col} md="8" style={{ padding: 10 , paddingLeft: "50px"}}>
+                            <Form.Group as={Col} md="10" style={{ padding: 10 , paddingLeft: "50px"}}>
                                 <Form.Group controlId="formFileMultiple" className="mb-3">
                                     <Form.Label>
                                         Upload Doctor's Certificate for Sick/Medical Leave

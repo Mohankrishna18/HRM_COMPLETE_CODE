@@ -5,7 +5,7 @@ import { Image } from "react-bootstrap";
 import axios from "../../../Uri";
 import { split } from "lodash";
 import Avatar from '@mui/material/Avatar';
-import PersonalDetails from "./ProfilePersonalDetailsTab";
+
 
 
 const customTheme = {
@@ -52,6 +52,7 @@ const ProfileEmploymentDetailsTab = () => {
       });
   }, []);
   console.log(imge)
+  console.log(getEmployeeDetails.primarySkills)
 
 
 
