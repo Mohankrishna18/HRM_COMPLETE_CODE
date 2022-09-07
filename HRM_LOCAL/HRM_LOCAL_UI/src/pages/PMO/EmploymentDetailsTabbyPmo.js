@@ -118,6 +118,7 @@ console.log(onboardingId1);
     axios.get("/dept/getAllDepartments").then((response) => {
       setDepartments(response.data);
     });
+    console.log(departments)
     // .catch(() => {
     //   toast.error("Data is not getting");
     // });
@@ -429,5 +430,3 @@ console.log(onboardingId1);
 }
 
 export default EmploymentDetailsTabbyPmo;
-
-
