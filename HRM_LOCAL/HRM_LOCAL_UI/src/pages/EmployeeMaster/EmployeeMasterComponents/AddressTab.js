@@ -9,6 +9,8 @@ function AddressTab() {
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
+
 
     const [elevenerrors, setElevenErrors] = useState("");
     const [tweleveerror, setTweleveerror] = useState("");
@@ -32,7 +34,7 @@ function AddressTab() {
 
     useEffect(() => {
         axios
-            .get(`/emp/getAddress/${employeeid}`)
+            .get(`/emp/getAddress/${empId}`)
             .then((response) => {
 
                 setPermanentAddress(response.data.data.permanentAdress);
@@ -49,7 +51,7 @@ function AddressTab() {
     const changeHandler = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`/emp/updateAddress/${employeeid}`, {
+            await axios.put(`/emp/updateAddress/${empId}`, {
                 permanentAdress,
                 permanentState,
                 permanentCountry,

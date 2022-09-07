@@ -14,7 +14,6 @@ function EducationalDetailsTab() {
     const employeeid = userData1.data.employeeId;
     const empId = localStorage.getItem('item')
 
-
     const [twentytwoerror, setTwentytwoerror] = useState("");
     const [twentythreerror, setTwentythreerror] = useState("");
     const [twentyfourerror, setTwentyfourerror] = useState("");
@@ -43,7 +42,6 @@ function EducationalDetailsTab() {
     const [fourtyseven, setFourtyseven] = useState("");
     const [fourtyeight, setFourtyeight] = useState("");
     const [fourtynine, setFourtynine] = useState("");
-
 
 
     const [postgraduationType, setTypeOfPostGraduation] = useState("");
@@ -78,7 +76,37 @@ function EducationalDetailsTab() {
     const [sscJoiningYear, setSscJoiningYear] = useState("");
     const [sscPassedYear, setSscPassedYear] = useState("");
     const [sscGrade, setSscGrade] = useState("");
-  
+    const [previousCompany1_name, setPreviousCompany1_name] = useState("");
+    const [previousCompany1_designation, setPreviousCompany1_designation] = useState("");
+    const [previousCompany1_joiningDate, setPreviousCompany1_joiningDate] = useState("");
+    const [previousCompany1_relievingDate, setPreviousCompany1_relievingDate] = useState("");
+    const [previousCompany1_employeeId, setPreviousCompany1_employeeId] = useState("");
+    const [previousCompany1_typeOfEmployment, setPreviousCompany1_typeOfEmployement] = useState("");
+    const [previousCompany1_reasonForRelieving, setPreviousCompany1_reasonForRelieving] = useState("");
+    const [previousCompany2_name, setPreviousCompany2_name] = useState("");
+    const [previousCompany2_designation, setPreviousCompany2_designation] = useState("");
+    const [previousCompany2_joiningDate, setPreviousCompany2_joiningDate] = useState("");
+    const [previousCompany2_relievingDate, setPreviousCompany2_relievingDate] = useState("");
+    const [previousCompany2_employeeId, setPreviousCompany2_employeeId] = useState("");
+    const [previousCompany2_typeOfEmployment, setPreviousCompany2_typeOfEmployement] = useState("");
+    const [previousCompany2_reasonForRelieving, setPreviousCompany2_reasonForRelieving] = useState("");
+    const [previousCompany3_name, setPreviousCompany3_name] = useState("");
+    const [previousCompany3_designation, setPreviousCompany3_designation] = useState("");
+    const [previousCompany3_joiningDate, setPreviousCompany3_joiningDate] = useState("");
+    const [previousCompany3_relievingDate, setPreviousCompany3_relievingDate] = useState("");
+    const [previousCompany3_employeeId, setPreviousCompany3_employeeId] = useState("");
+    const [previousCompany3_typeOfEmployment, setPreviousCompany3_typeOfEmployement] = useState("");
+    const [previousCompany3_reasonForRelieving, setPreviousCompany3_reasonForRelieving] = useState("");
+    const [employmentType, setEmploymentType] = useState("");
+    const [departmentName, setDepartmentName] = useState("");
+    const [projectName, setProjectName] = useState("");
+
+    const [panNumber, setPanNumber] = useState("");
+    const [aadharNumber, setAadharNumber] = useState("");
+    const [uanNumber, setUanNumber] = useState("");
+    const [bankName, setBankName] = useState("");
+    const [accountNumber, setAccountNumber] = useState("");
+    const [ifscCode, setIfscCode] = useState("");
     const [branch, setBranch] = useState("");
     const [band, setBand] = useState("");
     const [exitDate, setExitDate] = useState("");
@@ -179,7 +207,7 @@ function EducationalDetailsTab() {
             >
                 <Row className="mb-5">
                 <Card style={{ marginLeft: 0, marginRight: 0, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 8, textAlign: "center" }}>
+                <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Postgraduation Details
                 </Card.Title>
             </Card>
@@ -338,7 +366,7 @@ function EducationalDetailsTab() {
                     <Card
                         style={{ marginLeft: 8, marginRight: 0, marginTop: 20, backgroundColor: "#FAFDD0" }}
                     >
-                        <Card.Title style={{ margin: 8, textAlign: "center" }}>
+                        <Card.Title style={{ margin: 12, textAlign: "center" }}>
                             Graduation Details
                         </Card.Title>
                     </Card>
@@ -574,7 +602,7 @@ function EducationalDetailsTab() {
                     <Card
                         style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}
                     >
-                        <Card.Title style={{ margin: 8, textAlign: "center" }}>
+                        <Card.Title style={{ margin: 12, textAlign: "center" }}>
                             12th Grade/Intermediate Details
                         </Card.Title>
                     </Card>
@@ -768,7 +796,7 @@ function EducationalDetailsTab() {
                     <Card
                         style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}
                     >
-                        <Card.Title style={{ margin:8, textAlign: "center" }}>
+                        <Card.Title style={{ margin: 12, textAlign: "center" }}>
                             10th Grade details
                         </Card.Title>
                     </Card>
