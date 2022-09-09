@@ -185,19 +185,21 @@ public class MainController {
 // Employee Profile API's
 
 // EmployeeProfile API's
-	@PostMapping("/upload/{employeeId}")
-	public ResponseEntity<ResponseMessage> uploadFile(@PathVariable String employeeId,
-			@RequestParam("file") MultipartFile file) {
-		String message = "";
-		try {
-			epServ.store(file, employeeId);
-			message = "Uploaded the file successfully: " + file.getOriginalFilename();
-			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
-		} catch (Exception e) {
-			message = "Can't able to upload file" + file.getOriginalFilename();
-			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
-		}
-	}
+	@PostMapping("/upload/{onboardingId}")
+    public ResponseEntity<ResponseMessage> uploadFile(@PathVariable String onboardingId,
+            @RequestParam("file") MultipartFile file) {
+        String message = "";
+        try {
+            epServ.store(file, onboardingId);
+            message = "Uploaded the file successfully: " + file.getOriginalFilename();
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+        } catch (Exception e) {
+            message = "Can't able to upload file" + file.getOriginalFilename();
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+        }
+    }
+
+
 
 // @GetMapping("/files")
 // public ResponseEntity<List<ResponseFile>> getListFiles() {
