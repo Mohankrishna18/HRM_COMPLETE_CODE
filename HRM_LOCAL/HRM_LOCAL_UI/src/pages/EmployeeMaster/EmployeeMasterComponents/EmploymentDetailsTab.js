@@ -3,7 +3,7 @@ import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
 
-function EmploymentDetailsTab() {
+function EmploymentDetailsTab(props) {
 
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);

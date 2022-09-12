@@ -82,7 +82,23 @@ function EducationalDetailsTab(props) {
   var tempDate = new Date(getEmployeeDetails.sscPassedYear);
  
   var sscPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  const viewUploadFile = () => {
+    // window.open(`api/get/image/${imageName}/${onboardingId}`)
 
+    axios
+      .get(`api/get/imageByTitle/EducationalDetails/${props.viewOnboard.onboardingId}`, {
+        contentType: "application/pdf",
+      })
+      .then((res) => {
+        console.log(res.data.url);
+        setImageName(res.data);
+        setUrl(res.data.url);
+        saveAs(url);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
 
     return (
@@ -169,7 +185,15 @@ function EducationalDetailsTab(props) {
                             </Table>
 
                           </Card.Body>
+                          <Col md="6" style={{ padding: 0 }}>
+              <a
+                href={`http://localhost:6065/api/get/imageByTitle/EducationalDetails/${props.viewOnboard.onboardingId}`}
+              >
+                Educational Documents
+              </a>
+            </Col>
                         </div>
     )
 }
 export default EducationalDetailsTab;
+
