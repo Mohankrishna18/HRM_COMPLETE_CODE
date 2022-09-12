@@ -94,9 +94,6 @@ function PMOApproval(props) {
                 <Modal.Body>
                     <PMOApproved onboardID={onboardID} func={pull_data} handleClose={handleClose} />
                 </Modal.Body>
-                <Modal.Footer>
-
-                </Modal.Footer>
             </Modal>
             <Modal show={rejectshow} onHide={handleCloseReject}>
                 <Modal.Header closeButton>

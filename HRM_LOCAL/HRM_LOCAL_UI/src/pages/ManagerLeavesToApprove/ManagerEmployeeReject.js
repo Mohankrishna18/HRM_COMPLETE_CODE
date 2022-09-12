@@ -28,6 +28,15 @@ function ManagerEmployeeReject(props) {
         const form1 = Object.assign(form, obj);
         axios.put(`/leave/managerupdateLeave/${employeeleaveId}`, form1)
             .then((res) => {
+                axios.delete(`/leave/deleteBetweenDates/${employeeleaveId}`)
+                .then((resp)=>{
+                        console.log(resp)
+                        if(resp.status == 200){
+                            props.func();
+             }
+             else{
+                console.log('props not send')
+            } })
                 console.log(res)
                 if (res.status == 200) {
                     props.func();

@@ -86,7 +86,7 @@ public class MainServiceImpl implements MainService {
 			Onboarding newData = onRepo.save(newOnboard);
 			
 			newData.setFullName(newData.getFirstName().concat(" ")
-	                .concat(newData.getMiddleName().concat(" ").concat(newData.getLastName())));
+	                .concat(newData.getLastName()));
 			Onboarding newData1 = onRepo.save(newData);
 			
 			r.setStatus(true);
@@ -203,7 +203,7 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
-//				getOnboarding.setIrm(newOnboard.getIrm());
+///				getOnboarding.setIrm(newOnboard.getIrm());
 //				getOnboarding.setTaaApprovalComment(newOnboard.getTaaApprovalComment());
 //				getOnboarding.setTaaHeadApprovalComment(newOnboard.getTaaHeadApprovalComment());
 //				getOnboarding.setPmoApprovalComment(newOnboard.getPmoApprovalComment());
@@ -819,7 +819,7 @@ public class MainServiceImpl implements MainService {
 
 		EmployeeName en = new EmployeeName();
 		en.setEmployeeName(employeeMaster.getFirstName().concat(" ")
-				.concat(employeeMaster.getMiddleName().concat(" ").concat(employeeMaster.getLastName())));
+				.concat(employeeMaster.getLastName()));
 
 		return new ResponseEntity(en, HttpStatus.OK);
 	}
@@ -1146,6 +1146,8 @@ public class MainServiceImpl implements MainService {
 				education.setSscJoiningYear(em.getSscJoiningYear());
 				education.setSscPassedYear(em.getSscPassedYear());
 				education.setSscGrade(em.getSscGrade());
+				   education.setIntermediateQualification(em.getIntermediateQualification()); 
+				   education.setSscQualification(em.getSscQualification());
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
 				r.setData(education);
@@ -1198,6 +1200,8 @@ public class MainServiceImpl implements MainService {
 				em.setSscJoiningYear(education.getSscJoiningYear());
 				em.setSscPassedYear(education.getSscPassedYear());
 				em.setSscGrade(education.getSscGrade());
+				   em.setIntermediateQualification(education.getIntermediateQualification());
+				   em.setSscQualification(education.getSscQualification());
 				emRepo.save(em);
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
@@ -1340,7 +1344,7 @@ public class MainServiceImpl implements MainService {
 					Onboarding ob= onRepo.save(getOnboarding);
 					double count = onRepo.findcountofnullvalues(onboardingId);
 //	                int percentage = );
-	                ob.setPercentage((int) ((count * 100) / 40));
+	                ob.setPercentage((int) ((count * 100) / 41));
 	                onRepo.save(ob);
 					
 					r.setStatus(true);
@@ -1384,7 +1388,7 @@ public class MainServiceImpl implements MainService {
 					Onboarding ob= onRepo.save(getOnboarding);
 					double count = onRepo.findcountofnullvalues(onboardingId);
 //	                double percentage = (count * 100) / 42;
-	                ob.setPercentage((int) ((count * 100) / 40));
+	                ob.setPercentage((int) ((count * 100) / 41));
 	                onRepo.save(ob);
 	                
 					r.setStatus(true);
@@ -1433,7 +1437,7 @@ public class MainServiceImpl implements MainService {
 					Onboarding ob= onRepo.save(getOnboarding);
 					double count = onRepo.findcountofnullvalues(onboardingId);
 //	                double percentage = (count * 100) / 42;
-					ob.setPercentage((int) ((count * 100) / 40));
+					ob.setPercentage((int) ((count * 100) / 41));
 	                onRepo.save(ob);
 	                
 					r.setStatus(true);
@@ -1593,12 +1597,14 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setSscJoiningYear(education.getSscJoiningYear());
 				getOnboarding.setSscPassedYear(education.getSscPassedYear());
 				getOnboarding.setSscGrade(education.getSscGrade());
+				   getOnboarding.setIntermediateQualification(education.getIntermediateQualification()); 
+				   getOnboarding.setSscQualification(education.getSscQualification());
 				onRepo.save(getOnboarding);
 				
 				Onboarding ob= onRepo.save(getOnboarding);
 				double count = onRepo.findcountofnullvalues(onboardingId);
 //                double percentage = (count * 100) / 42;
-				ob.setPercentage((int) ((count * 100) / 40));
+				ob.setPercentage((int) ((count * 100) / 41));
                 onRepo.save(ob);
 				
 				r.setStatus(true);
@@ -1769,7 +1775,7 @@ public class MainServiceImpl implements MainService {
     }
 
 	
-	@Override
+@Override
 	public ResponseEntity updateTAAHeadApproval(String onboardingId, HrApprovalStatus newOnboard) {
 		Response r = new Response();
 		try {
@@ -1831,5 +1837,3 @@ public class MainServiceImpl implements MainService {
 		}
 }
 }
-
-

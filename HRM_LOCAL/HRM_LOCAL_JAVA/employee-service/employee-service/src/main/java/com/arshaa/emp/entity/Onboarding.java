@@ -204,7 +204,12 @@ public class Onboarding {
     private String taaHeadApprovalComment;
     private String pmoApprovalComment;
     private String ceoApprovalComment;
-    
+
+    private String intermediateQualification;
+    private String sscQualification;
+    private String officialMail;
+
+
     
 	
 	public String getTaaHeadApprovalComment() {
@@ -258,6 +263,7 @@ public class Onboarding {
 	
 	
 	
+	
 	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
 			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
 			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
@@ -291,7 +297,8 @@ public class Onboarding {
 			String passportExpiryDate, String panNumber, String aadharNumber, String uanNumber, String bankName,
 			String accountNumber, String ifscCode, String branch, String client, String irm, String srm, String buh,
 			String fullName, String irmId, String srmId, String buhId, String taaApprovalComment,
-			String taaHeadApprovalComment, String pmoApprovalComment, String ceoApprovalComment, String exitDate,
+			String taaHeadApprovalComment, String pmoApprovalComment, String ceoApprovalComment,
+			String intermediateQualification, String sscQualification, String officialMail, String exitDate,
 			String band) {
 		super();
 		this.onboardingId = onboardingId;
@@ -412,8 +419,29 @@ public class Onboarding {
 		this.taaHeadApprovalComment = taaHeadApprovalComment;
 		this.pmoApprovalComment = pmoApprovalComment;
 		this.ceoApprovalComment = ceoApprovalComment;
+		this.intermediateQualification = intermediateQualification;
+		this.sscQualification = sscQualification;
+		this.officialMail = officialMail;
 		this.exitDate = exitDate;
 		this.band = band;
+	}
+	public String getIntermediateQualification() {
+		return intermediateQualification;
+	}
+	public void setIntermediateQualification(String intermediateQualification) {
+		this.intermediateQualification = intermediateQualification;
+	}
+	public String getSscQualification() {
+		return sscQualification;
+	}
+	public void setSscQualification(String sscQualification) {
+		this.sscQualification = sscQualification;
+	}
+	public String getOfficialMail() {
+		return officialMail;
+	}
+	public void setOfficialMail(String officialMail) {
+		this.officialMail = officialMail;
 	}
 	public String getTaaApprovalComment() {
 		return taaApprovalComment;
