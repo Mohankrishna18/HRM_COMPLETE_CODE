@@ -34,13 +34,9 @@ import com.arshaa.documentUpload_Service.dto.PostDto;
 import com.arshaa.documentUpload_Service.message.ResponseMessage;
 import com.arshaa.documentUpload_Service.payloads.PostResponse;
 import com.arshaa.documentUpload_Service.payloads.UserApiResponse;
+import com.arshaa.documentUpload_Service.repositories.PostRepository;
 import com.arshaa.documentUpload_Service.service.FilePostService;
 import com.arshaa.documentUpload_Service.service.PostService;
-
-
-
-
-
 
 @RestController
 @RequestMapping("/api")
@@ -48,61 +44,72 @@ import com.arshaa.documentUpload_Service.service.PostService;
 public class FilesController {
 
 	@Autowired
-	PostService pservice ;
-	
+	PostService pservice;
 	@Autowired
-	private FilePostService fileService ;
-	
-//	@Value("${project.image}")
-	private String path="C:\\ArshaaDocuments\\";
-	
-	
-	
-	
-	//Posting Documents By Employee Id .
-		@PostMapping("/post/image/{employeeId}")
-		public ResponseEntity<PostDto> uploadImage(
-				@RequestParam("image") MultipartFile image,@PathVariable String employeeId
-				) throws Exception{
-			PostDto postDto =new PostDto();
-String name=image.getOriginalFilename();
-if(name.substring(name.lastIndexOf(".")).equalsIgnoreCase("pdf"))
+	private PostRepository pRepo;
+	@Autowired
+	private FilePostService fileService;
 
-{	
-			String fileName = this.fileService.uploadImage(path+employeeId, image);
+//	@Value("${project.image}")
+	private String path = "C:\\ArshaaDocuments\\";
+
+	// Posting Documents By Employee Id .
+	@PostMapping("/post/image/{employeeId}/{title}")
+	public ResponseEntity<PostDto> uploadImage(@RequestParam("image") MultipartFile image,
+			@PathVariable String employeeId, @PathVariable String title) throws Exception {
+		PostDto postDto = new PostDto();
+		String name = image.getOriginalFilename();
+		String s=name.substring(name.lastIndexOf("."));
+		System.out.println(s);
+		if ((name.substring(name.lastIndexOf(".")).equalsIgnoreCase(".pdf")))
+		{
+			String fileName = this.fileService.uploadImage(path + employeeId, image);
 			postDto.setImageName(fileName);
 			postDto.setEmployeeId(employeeId);
-			postDto.setUrl("http://localhost:6065/api/get/image/"+fileName+"/"+employeeId);
-		PostDto updatePost =	this.pservice.createPost(postDto);
-			
-			return new ResponseEntity<PostDto>(updatePost , HttpStatus.OK);
-		
-	
-		}
-		else {
-			return new ResponseEntity(Map.of("Message","Only pdf formats accepts"),HttpStatus.OK);
+			postDto.setTitle(title);
+			postDto.setUrl("/api/get/image/" + fileName + "/" + employeeId);
+			PostDto updatePost = this.pservice.createPost(postDto);
+
+			return new ResponseEntity<PostDto>(updatePost, HttpStatus.OK);
+
+		} else {
+			return new ResponseEntity(Map.of("Message", "Only pdf formats accepts"), HttpStatus.OK);
 
 		}
-		}
-		//Getting Documents By Image Name and EmployeeId.
-		@GetMapping(value = "/get/image/{imageName}/{employeeId}" )
-		public void downloadImage (@PathVariable("imageName") String imageName ,@PathVariable String employeeId,
-		HttpServletResponse response) throws IOException {
-			InputStream resource = this.fileService.getResource(path+employeeId, imageName);
+	}
+
+	// Getting Documents By Image Name and EmployeeId.
+	@GetMapping(value = "/get/image/{imageName}/{employeeId}")
+	public void downloadImage(@PathVariable("imageName") String imageName, @PathVariable String employeeId,
+			HttpServletResponse response) throws IOException {
+		InputStream resource = this.fileService.getResource(path + employeeId, imageName);
+		response.setContentType(MediaType.ALL_VALUE);
+		response.setHeader("Content-disposition", "attachment; filename=\"" + imageName + "\"");
+
+		ServletOutputStream url = response.getOutputStream();
+		StreamUtils.copy(resource, response.getOutputStream());
+	}
+
+	// Getting Documents By Image Name and EmployeeId.
+		@GetMapping(value = "/get/imageByTitle/{title}/{employeeId}")
+		public void downloadImageByTitle(@PathVariable("title") String title, @PathVariable String employeeId,
+				HttpServletResponse response) throws IOException {
+			String imageName=pRepo.getImageNameByTitleAndEmployeeId(title, employeeId).getImageName();
+			InputStream resource = this.fileService.getResource(path + employeeId, imageName);
 			response.setContentType(MediaType.ALL_VALUE);
-	         response.setHeader("Content-disposition","attachment; filename=\""+imageName+"\"");
+			response.setHeader("Content-disposition", "attachment; filename=\"" + imageName + "\"");
 
-		ServletOutputStream url=response.getOutputStream();
+			ServletOutputStream url = response.getOutputStream();
 			StreamUtils.copy(resource, response.getOutputStream());
 		}
-		
-		//Get Post By id .
-		@GetMapping("/getPost/{postId}")
-		public ResponseEntity<PostDto> getPostById(@PathVariable Integer postId){
-		PostDto postDto =	this.pservice.getPostById(postId);
+
+	// Get Post By id .
+	@GetMapping("/getPost/{postId}")
+	public ResponseEntity<PostDto> getPostById(@PathVariable Integer postId) {
+		PostDto postDto = this.pservice.getPostById(postId);
 		return new ResponseEntity<PostDto>(postDto, HttpStatus.OK);
-		}
-	
+	}
+
 //		@GetMapping("/downloadFile/{imageName}/{employeeId}")
 //	    public ResponseEntity<Resource> downloadFile(@PathVariable("imageName") String imageName,@PathVariable String employeeId, HttpServletRequest request) throws FileNotFoundException {
 //	        // Load file as Resource
@@ -128,11 +135,8 @@ if(name.substring(name.lastIndexOf(".")).equalsIgnoreCase("pdf"))
 //	                .body(resource);
 //	    }
 
-		
-		
-	
-		/*       The below code was for future          */
-	
+	/* The below code was for future */
+
 //	
 //	//Get By Users 
 //	@GetMapping("/usersPost/{userId}")
@@ -140,36 +144,35 @@ if(name.substring(name.lastIndexOf(".")).equalsIgnoreCase("pdf"))
 //	List<PostDto> posts = this.pservice.getPostByUsers(userId)	;
 //	return new ResponseEntity<List<PostDto>>(posts, HttpStatus.OK);
 //	}
-	
-	//Get All Post .
-	//public ResponseEntity<List<PostDto>> getAllPost
-	//localhost:8095/api/getAllPost?pageNumber=1&pageSize=3.
-	//localhost:8095/api/getAllPost?pageNumber=1&pageSize=3&sortBy=postId
-	//localhost:8095/api/getAllPost?pageNumber=1&pageSize=3&sortBy=postId&sortDir=desc
-	
+
+	// Get All Post .
+	// public ResponseEntity<List<PostDto>> getAllPost
+	// localhost:8095/api/getAllPost?pageNumber=1&pageSize=3.
+	// localhost:8095/api/getAllPost?pageNumber=1&pageSize=3&sortBy=postId
+	// localhost:8095/api/getAllPost?pageNumber=1&pageSize=3&sortBy=postId&sortDir=desc
+
 	@GetMapping("/getAllPost")
 	public ResponseEntity<PostResponse> getAllPost(
-			@RequestParam(value="pageNumber",defaultValue=PostServiceConstants.PAGE_NUMBER, required=false) Integer pageNumber,
-			@RequestParam(value="pageSize",defaultValue=PostServiceConstants.PAGE_SIZE, required=false) Integer pageSize ,
-			@RequestParam(value="sortBy" , defaultValue=PostServiceConstants.SORT_BY , required= false) String sortBy,
-			@RequestParam(value = "sortDir" , defaultValue=PostServiceConstants.SORT_DIR, required= false)String sortDir
-			){
+			@RequestParam(value = "pageNumber", defaultValue = PostServiceConstants.PAGE_NUMBER, required = false) Integer pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = PostServiceConstants.PAGE_SIZE, required = false) Integer pageSize,
+			@RequestParam(value = "sortBy", defaultValue = PostServiceConstants.SORT_BY, required = false) String sortBy,
+			@RequestParam(value = "sortDir", defaultValue = PostServiceConstants.SORT_DIR, required = false) String sortDir) {
 //		List<PostDto> allPost = this.pservice.getAllPost(pageNumber , pageSize);
 //		return new ResponseEntity<List<PostDto>>(allPost,HttpStatus.OK);
-		PostResponse postResponse = this.pservice.getAllPost(pageNumber, pageSize,sortBy, sortDir);
-	return new ResponseEntity<PostResponse>(postResponse , HttpStatus.OK);
-		
+		PostResponse postResponse = this.pservice.getAllPost(pageNumber, pageSize, sortBy, sortDir);
+		return new ResponseEntity<PostResponse>(postResponse, HttpStatus.OK);
+
 	}
-	
-	//Delete post By id ;
+
+	// Delete post By id ;
 	@DeleteMapping("/delete/{postId}")
 	public UserApiResponse deletePost(@PathVariable Integer postId) {
 		this.pservice.deletePost(postId);
-		
-		return new UserApiResponse("Post is successfully deleted" , true);
-		
+
+		return new UserApiResponse("Post is successfully deleted", true);
+
 	}
-	
+
 //	//Updating Post By postId .
 //	@PutMapping("/update/{postId}")
 //	public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto ,@PathVariable Integer postId) {
@@ -179,19 +182,12 @@ if(name.substring(name.lastIndexOf(".")).equalsIgnoreCase("pdf"))
 //		return new ResponseEntity<PostDto>(pdto , HttpStatus.OK);
 //		
 //	}
-	
-	
-	
-	
-	
-	
-	//Getting data by keyWord .
+
+	// Getting data by keyWord .
 	@GetMapping("/post/search/{keyword}")
-	public ResponseEntity<List<PostDto>>  searchPostByTitle(
-			@PathVariable("keyword") String keyword){
+	public ResponseEntity<List<PostDto>> searchPostByTitle(@PathVariable("keyword") String keyword) {
 		List<PostDto> result = this.pservice.searchPosts(keyword);
-		return new ResponseEntity<List<PostDto>>(result , HttpStatus.OK);
+		return new ResponseEntity<List<PostDto>>(result, HttpStatus.OK);
 	}
-	
 
 }
