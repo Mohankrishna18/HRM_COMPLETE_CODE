@@ -18,7 +18,11 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 	
 	@Query(value = "select p.* from Post p where p.title like %:key% " , nativeQuery = true)
 	List<Post>  searchByTitle(@Param("key") String title);
-	
+	Post getImageNameByTitleAndEmployeeId(String title,String employeeId);
+	Post getByTitleAndEmployeeId(String title,String employeeId);
+
+	Boolean existsByTitle(String title);
+	boolean existsByTitleAndEmployeeId(String title,String employeeId);
 	
 	//%keywords% = key 
 }
