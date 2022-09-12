@@ -8,7 +8,8 @@ function AditionalDetailsTab() {
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
-    const empId = localStorage.getItem('item')
+    const empId = localStorage.getItem('item') 
+
 
 
     const [eighteenerror, setEighteenerror] = useState("");
@@ -30,6 +31,16 @@ function AditionalDetailsTab() {
     const [branch, setBranch] = useState("");
     const [band, setBand] = useState("");
     const [exitDate, setExitDate] = useState("");
+    
+    const[getEmployeeDetails,setGetEmployeeDetails]=useState([]);
+    useEffect(() => {
+            axios
+              .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
+              .then((response) => {
+                setGetEmployeeDetails(response.data.data);
+              });
+          }, []);
+          console.log(getEmployeeDetails.onboardingId)
 
 
     useEffect(() => {
@@ -46,6 +57,7 @@ function AditionalDetailsTab() {
                 setBand(response.data.data.band);
                 setPassportExpiryDate(response.data.data.passportExpiryDate);
                 setPassportNo(response.data.data.passportNo);
+                console.log(response.data.data.onboardingId)
             });
     }, []);
 
@@ -71,6 +83,23 @@ function AditionalDetailsTab() {
             toast.error("Somethingwent Wrong");
         }
     };
+    const viewUploadFile = () => {
+        // window.open(`api/get/image/${imageName}/${onboardingId}`)
+    
+        axios
+          .get(`api/get/imageByTitle/AdditionalDetails/${onboardingId}`, {
+            contentType: "application/pdf",
+          })
+          .then((res) => {
+            console.log(res.data.url);
+            setImageName(res.data);
+            setUrl(res.data.url);
+            saveAs(url);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
 
     return (
 
@@ -274,6 +303,15 @@ function AditionalDetailsTab() {
                     </Form.Group>
 
                 </Row>
+                <Row>
+    <Col md="6" style={{ paddingTop: 0 }}>
+              <a
+                href={`http://localhost:6065/api/get/imageByTitle/AdditionalDetails/${onboardingId}`}
+              >
+                Additional Documents
+              </a>
+            </Col>
+    </Row>
                 <Button
                     className="rounded-pill" md="3"
                     style={{ backgroundColor: "#eb4509", float: "right" }}
@@ -287,4 +325,3 @@ function AditionalDetailsTab() {
     )
 }
 export default AditionalDetailsTab;
-

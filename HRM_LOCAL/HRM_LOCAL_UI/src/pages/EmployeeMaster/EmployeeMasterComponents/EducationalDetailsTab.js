@@ -85,7 +85,15 @@ function EducationalDetailsTab() {
     const [ifscCode, setIfscCode] = useState("");
     const [branch, setBranch] = useState("");
 
-
+    const[getEmployeeDetails,setGetEmployeeDetails]=useState([]);
+    useEffect(() => {
+            axios
+              .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
+              .then((response) => {
+                setGetEmployeeDetails(response.data.data);
+              });
+          }, []);
+          console.log(getEmployeeDetails.onboardingId);
 
     useEffect(() => {
         axios
@@ -170,6 +178,22 @@ function EducationalDetailsTab() {
             toast.error("Somethingwent Wrong");
         }
     };
+
+    const viewUploadFile = () => {
+    axios
+    .get(`api/get/imageByTitle/EducationalDetails/${onboardingId}`, {
+      contentType: "application/pdf",
+    })
+    .then((res) => {
+      console.log(res.data.url);
+      setImageName(res.data);
+      setUrl(res.data.url);
+      saveAs(url);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 
 
@@ -1154,6 +1178,13 @@ function EducationalDetailsTab() {
                     Submit
                 </Button>
             </Form>
+            <Col md="6" style={{ padding: 0 }}>
+              <a
+                href={`http://localhost:6065/api/get/imageByTitle/EducationalDetails/${onboardingId}`}
+              >
+                Educational Documents
+              </a>
+            </Col>
         </div>
     )
 }
