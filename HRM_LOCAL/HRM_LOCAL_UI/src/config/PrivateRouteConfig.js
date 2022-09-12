@@ -366,7 +366,7 @@ export default [
     type: "null",
     path: "/editmyprofileroute",
 
-    permission: [Roles.pmohead, Roles.taa],
+    permission: [Roles.pmohead, Roles.ceo],
   },
   {
     component: createleaveTypeMain,

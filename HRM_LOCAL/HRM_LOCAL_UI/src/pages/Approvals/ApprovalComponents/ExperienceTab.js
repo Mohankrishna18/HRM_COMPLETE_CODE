@@ -162,6 +162,24 @@ function ExperienceTab(props) {
     var previousCompany3_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
     var dob11 = getEmployeeDetails.dateOfBirth
+    const viewUploadFile = () => {
+      // window.open(`api/get/image/${imageName}/${onboardingId}`)
+  
+      axios
+        .get(`api/get/imageByTitle/ExperienceDetails/${props.viewOnboard.oboardingId}`, {
+          contentType: "application/pdf",
+        })
+        .then((res) => {
+          console.log(res.data.url);
+          setImageName(res.data);
+          setUrl(res.data.url);
+          saveAs(url);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
   return (
     // <div className= "scroll">
     //   {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
@@ -481,8 +499,16 @@ function ExperienceTab(props) {
 
         </tbody>
       </Table>
+      <Col md="6" style={{padding: 0 }}>
+              <a
+                href={`http://localhost:6065/api/get/imageByTitle/ExperienceDetails/${props.viewOnboard.onboardingId}`}
+              >
+                Experience Documents
+              </a>
+            </Col>
     </Card.Body>
   </div>
   );
 }
 export default ExperienceTab;
+
