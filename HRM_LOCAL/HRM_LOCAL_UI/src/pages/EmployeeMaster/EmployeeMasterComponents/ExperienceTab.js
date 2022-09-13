@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../../Uri";
@@ -45,6 +46,16 @@ function ExperienceTab() {
     const [previousCompany3_employeeId, setPreviousCompany3_employeeId] = useState("");
     const [previousCompany3_typeOfEmployment, setPreviousCompany3_typeOfEmployement] = useState("");
     const [previousCompany3_reasonForRelieving, setPreviousCompany3_reasonForRelieving] = useState("");
+
+        const[getEmployeeDetails,setGetEmployeeDetails]=useState([]);
+    useEffect(() => {
+            axios
+              .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
+              .then((response) => {
+                setGetEmployeeDetails(response.data.data);
+              });
+          }, []);
+          console.log(getEmployeeDetails.onboardingId);
 
 
     useEffect(() => {
@@ -108,6 +119,24 @@ function ExperienceTab() {
         toast.error("Somethingwent Wrong");
   }
     };
+    const viewUploadFile = () => {
+        // window.open(`api/get/image/${imageName}/${onboardingId}`)
+    
+        axios
+          .get(`api/get/imageByTitle/ExperienceDetails/${onboardingId}`, {
+            contentType: "application/pdf",
+          })
+          .then((res) => {
+            console.log(res.data.url);
+            setImageName(res.data);
+            setUrl(res.data.url);
+            saveAs(url);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+
 
     return (
 
@@ -495,28 +524,17 @@ function ExperienceTab() {
                         />
                     </Form.Group>
 
-
-                    {/* 
-                                        <Form.Group
-                                            as={Col}
-                                            md="6"
-                                            style={{ padding: 10, paddingTop: 20 }}
-                                        >
-                                            <Form.Label>Exit Date</Form.Label>
-                                            <Form.Control
-                                                type="date"
-                                                placeholder="Exit Date"
-                                                controlId="exitDate"
-                                                value={exitDate}
-                                                onChange={(e) => setExitDate(e.target.value)}
-                                                name="exitDate"
-                                            />
-                                        </Form.Group> */}
-
                 </Row>
-
-
-
+                <Row>
+                <Col md="6" style={{padding: 0 }}>
+              <a
+                href={`http://localhost:6065/api/get/imageByTitle/ExperienceDetails/${onboardingId}`}
+              >
+                Experience Documents
+              </a>
+            </Col>
+                </Row>
+               
                 <Button
                     className="rounded-pill" md="3"
                     style={{ backgroundColor: "#eb4509", float: "right" }}
@@ -530,4 +548,3 @@ function ExperienceTab() {
     )
 }
 export default ExperienceTab;
-

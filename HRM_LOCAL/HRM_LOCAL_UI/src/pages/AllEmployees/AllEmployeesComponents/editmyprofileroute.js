@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Accordion, Button, Card, Form, InputGroup, Tab, Tabs } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -423,10 +422,10 @@ function EmployeeMasterForms(props) {
     }
 
     return (
-        <div>
+        <div className="example">
             <Row>
                 <Col>
-                    <Card className="scroll" style={{ marginTop: 10 }}>
+                    <Card  style={{ marginTop: 10 }}>
                         <Card.Header style={{ backgroundColor: "white" }}>
                             <Card.Body>
                                 <Row>

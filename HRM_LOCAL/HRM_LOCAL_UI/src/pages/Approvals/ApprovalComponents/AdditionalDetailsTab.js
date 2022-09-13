@@ -6,6 +6,25 @@ import { toast } from "react-toastify";
 function AditionalDetailsTab(props) {
   const userData = sessionStorage.getItem("userdata");
   const userData1 = JSON.parse(userData);
+
+  
+  const viewUploadFile = () => {
+    // window.open(`api/get/image/${imageName}/${onboardingId}`)
+
+    axios
+      .get(`api/get/imageByTitle/AdditionalDetails/${props.viewOnboard.onboardingId}`, {
+        contentType: "application/pdf",
+      })
+      .then((res) => {
+        console.log(res.data.url);
+        setImageName(res.data);
+        setUrl(res.data.url);
+        saveAs(url);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
  
   return (
     <div style={{ paddingLeft: 20, paddingBottom: 10 }}>
@@ -130,10 +149,20 @@ function AditionalDetailsTab(props) {
             </Card.Text>
         </Col>
     </Row>
-
+    <Row>
+    <Col md="6" style={{ paddingTop: 0 }}>
+              <a
+                href={`http://localhost:6065/api/get/imageByTitle/AdditionalDetails/${props.viewOnboard.onboardingId}`}
+              >
+                Additional Documents
+              </a>
+            </Col>
+    </Row>
     
 
 </div>
   );
 }
 export default AditionalDetailsTab;
+
+
