@@ -18,6 +18,7 @@ public class Post {
 	private String imageName ;
 	private Date addedDate ;
 	private String employeeId;
+	private String title;
 	public int getPostId() {
 		return postId;
 	}
@@ -42,12 +43,20 @@ public class Post {
 	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
-	public Post(int postId, String imageName, Date addedDate, String employeeId) {
+	
+	public Post(int postId, String imageName, Date addedDate, String employeeId, String title) {
 		super();
 		this.postId = postId;
 		this.imageName = imageName;
 		this.addedDate = addedDate;
 		this.employeeId = employeeId;
+		this.title = title;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public Post() {
 		super();

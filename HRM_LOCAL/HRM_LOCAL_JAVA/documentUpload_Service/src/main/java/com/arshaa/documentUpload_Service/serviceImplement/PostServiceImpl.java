@@ -34,11 +34,22 @@ public class PostServiceImpl implements PostService  {
 		@Override
 		public PostDto createPost(PostDto postDto) {
 		Post post=new Post();
-		post.setAddedDate(new Date());
-		post.setImageName(postDto.getImageName());
-		post.setEmployeeId(postDto.getEmployeeId());
+		Post updatePost;
+		if(!postRepo.existsByTitleAndEmployeeId(postDto.getTitle(),postDto.getEmployeeId()))
+		{
+			post.setAddedDate(new Date());
+			post.setImageName(postDto.getImageName());
+			post.setEmployeeId(postDto.getEmployeeId());
+			post.setTitle(postDto.getTitle());
+			 updatePost = this.postRepo.save(post);
+		}
+		else {
+			Post updatedPost=postRepo.getByTitleAndEmployeeId(postDto.getTitle(), postDto.getEmployeeId());
+			updatedPost.setImageName(postDto.getImageName());
+			 updatePost = this.postRepo.save(updatedPost);
+
+		}
 		
-		Post updatePost = this.postRepo.save(post);
 		PostDto pDto=this.mMapper.map(updatePost, PostDto.class);
 		pDto.setUrl(postDto.getUrl());
 		return pDto;

@@ -10,6 +10,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import { BASE_URL } from "../../../Constant";
 
 
 function EducationalDetailsTab() {
@@ -65,7 +66,7 @@ function EducationalDetailsTab() {
     // const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
     // const [graduationPassedYear, setGraduationPassedYear] = useState("");
     const [graduationGrade, setGraduationGrade] = useState("");
-    const[intermediateQualification,setIntermediateQualification]=useState("");
+    const [intermediateQualification, setIntermediateQualification] = useState("");
     const [intermediateBoardOfUniversity, setIntermediateBoardOfUniversity] = useState("");
     const [intermediateCollegeName, setIntermediateCollegeName] = useState("");
     const [intermediateCollegeCity, setIntermediateCollegeCity] = useState("");
@@ -73,7 +74,7 @@ function EducationalDetailsTab() {
     const [intermediateJoiningYear, setIntermediateJoiningYear] = useState("");
     const [intermediatePassedYear, setIntermediatePassedYear] = useState("");
     const [intermediateGrade, setIntermediateGrade] = useState("");
-    const[sscQualification,setSscQualification]=useState("");
+    const [sscQualification, setSscQualification] = useState("");
     const [sscBoardOfUniversity, setSscBoardOfUniversity] = useState("");
     const [sscSchoolName, setSscSchoolName] = useState("");
     const [sscSchoolCity, setSscSchoolCity] = useState("");
@@ -85,15 +86,17 @@ function EducationalDetailsTab() {
     const [ifscCode, setIfscCode] = useState("");
     const [branch, setBranch] = useState("");
 
-    const[getEmployeeDetails,setGetEmployeeDetails]=useState([]);
+    const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
     useEffect(() => {
-            axios
-              .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
-              .then((response) => {
+        axios
+            .get(`/emp/getEmployeeDataByEmployeeId/${empId}`)
+            .then((response) => {
                 setGetEmployeeDetails(response.data.data);
-              });
-          }, []);
-          console.log(getEmployeeDetails.onboardingId);
+            });
+    }, []);
+    console.log(getEmployeeDetails.onboardingId);
+    const obdId = getEmployeeDetails.onboardingId;
+
 
     useEffect(() => {
         axios
@@ -180,21 +183,21 @@ function EducationalDetailsTab() {
     };
 
     const viewUploadFile = () => {
-    axios
-    .get(`api/get/imageByTitle/EducationalDetails/${onboardingId}`, {
-      contentType: "application/pdf",
-    })
-    .then((res) => {
-      console.log(res.data.url);
-      setImageName(res.data);
-      setUrl(res.data.url);
-      saveAs(url);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
+        // window.open(`api/get/image/${imageName}/${onboardingId}`)
+        axios
+            .get(`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${obdId}`, {
+                contentType: "application/pdf",
+            })
+            .then((res) => {
+                console.log(res.data.url);
+                setImageName(res.data);
+                setUrl(res.data.url);
+                saveAs(url);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
 
     return (
@@ -221,7 +224,7 @@ function EducationalDetailsTab() {
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
-                            id="panel1a-header" 
+                            id="panel1a-header"
                         >
                             <Typography >Postgraduation Details</Typography>
                         </AccordionSummary>
@@ -771,11 +774,11 @@ function EducationalDetailsTab() {
                             }}
                         >
                             <option>Select </option>
-                            <option  value="Intermediate">Intermediate </option>
-                            <option  value="12th Grade">12th Grade </option>
+                            <option value="Intermediate">Intermediate </option>
+                            <option value="12th Grade">12th Grade </option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
-                            
+
                         </Form.Control.Feedback>
                     </Form.Group>
 
@@ -988,7 +991,7 @@ function EducationalDetailsTab() {
                             <option value="SSC">SSC</option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
-                            
+
                         </Form.Control.Feedback>
                     </Form.Group>
 
@@ -1167,25 +1170,32 @@ function EducationalDetailsTab() {
                             {fourtyfive}
                         </Form.Control.Feedback>
                     </Form.Group>
-                </Row>
 
-                <Button
-                    className="rounded-pill" md="3"
-                    style={{ backgroundColor: "#eb4509", float: "right" }}
-                    type="submit"
-                    size="lg"
-                >
-                    Submit
-                </Button>
+                    <Col md="6" style={{ padding: 70 }}>
+                        <a
+                            href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${obdId}`}
+                        >
+                            Download Documents
+                        </a>
+                    </Col>
+                    <Row>
+                        <Col>
+                            <Button
+                                className="rounded-pill" md="3"
+                                style={{ backgroundColor: "#eb4509", float: "right" }}
+                                type="submit"
+                                size="lg"
+                            >
+                                Submit
+                            </Button></Col>
+
+                    </Row>
+
+                </Row>
             </Form>
-            <Col md="6" style={{ padding: 0 }}>
-              <a
-                href={`http://localhost:6065/api/get/imageByTitle/EducationalDetails/${onboardingId}`}
-              >
-                Educational Documents
-              </a>
-            </Col>
+
         </div>
     )
 }
 export default EducationalDetailsTab;
+
