@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../../../Constant";
 
 function AditionalDetailsTab(props) {
   const userData = sessionStorage.getItem("userdata");
@@ -152,9 +153,9 @@ function AditionalDetailsTab(props) {
     <Row>
     <Col md="6" style={{ paddingTop: 0 }}>
               <a
-                href={`http://localhost:6065/api/get/imageByTitle/AdditionalDetails/${props.viewOnboard.onboardingId}`}
+                href={`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${props.viewOnboard.onboardingId}`}
               >
-                Additional Documents
+                Download Documents
               </a>
             </Col>
     </Row>
@@ -164,5 +165,3 @@ function AditionalDetailsTab(props) {
   );
 }
 export default AditionalDetailsTab;
-
-

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../../Uri";
 import { Card, Container, Row, Col, Table, Tabs, Tab } from "react-bootstrap";
+import { BASE_URL } from "../../../Constant";
 
 const customTheme = {
   yearColor: "#405b73",
@@ -501,9 +502,9 @@ function ExperienceTab(props) {
       </Table>
       <Col md="6" style={{padding: 0 }}>
               <a
-                href={`http://localhost:6065/api/get/imageByTitle/ExperienceDetails/${props.viewOnboard.onboardingId}`}
+                href={`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${props.viewOnboard.onboardingId}`}
               >
-                Experience Documents
+                Download Documents
               </a>
             </Col>
     </Card.Body>

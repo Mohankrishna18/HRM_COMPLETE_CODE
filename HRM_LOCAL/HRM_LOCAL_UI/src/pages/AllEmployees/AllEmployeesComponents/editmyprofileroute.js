@@ -460,13 +460,13 @@ function EmployeeMasterForms(props) {
                                             <AddressTab />
                                         </Tab>
                                         <Tab eventKey="Additional Details" title="Additional Details" style={{ backgroundColor: "white" }}>
-                                            <AditionalDetailsTab />
+                                            <AditionalDetailsTab/>
                                         </Tab>
                                         <Tab eventKey="Employment Details" title="Employment Details" style={{ backgroundColor: "white" }}>
                                             <EmploymentDetailsTab />
                                         </Tab>
                                         <Tab eventKey="Educational Details" title="Educational Details" style={{ backgroundColor: "white" }}>
-                                            <EducationalDetailsTab />
+                                            <EducationalDetailsTab/>
                                         </Tab>
                                         <Tab eventKey="Experience" title="Experience " style={{ backgroundColor: "white" }}>
                                             <ExperienceTab />
@@ -2641,3 +2641,5 @@ function EmployeeMasterForms(props) {
 }
 
 export default EmployeeMasterForms;
+
+
