@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Form, Row, Col, Table, Tabs, Tab, InputGroup, Button, Accordion } from "react-bootstrap";
+import { BASE_URL } from "../../../Constant";
 import axios from "../../../Uri";
 
 function EducationalDetailsTab(props) {
@@ -187,13 +188,12 @@ function EducationalDetailsTab(props) {
                           </Card.Body>
                           <Col md="6" style={{ padding: 0 }}>
               <a
-                href={`http://localhost:6065/api/get/imageByTitle/EducationalDetails/${props.viewOnboard.onboardingId}`}
+                href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${props.viewOnboard.onboardingId}`}
               >
-                Educational Documents
+                Download Documents
               </a>
             </Col>
                         </div>
     )
 }
 export default EducationalDetailsTab;
-

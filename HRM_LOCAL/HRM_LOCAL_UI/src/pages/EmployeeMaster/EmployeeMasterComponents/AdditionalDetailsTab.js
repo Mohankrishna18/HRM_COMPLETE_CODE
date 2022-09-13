@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../../../Constant";
 
 function AditionalDetailsTab() {
 
@@ -31,17 +32,19 @@ function AditionalDetailsTab() {
     const [branch, setBranch] = useState("");
     const [band, setBand] = useState("");
     const [exitDate, setExitDate] = useState("");
-    
+  
+
     const[getEmployeeDetails,setGetEmployeeDetails]=useState([]);
     useEffect(() => {
             axios
-              .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
+              .get(`/emp/getEmployeeDataByEmployeeId/${empId}`)
               .then((response) => {
                 setGetEmployeeDetails(response.data.data);
               });
           }, []);
           console.log(getEmployeeDetails.onboardingId)
-
+          const obdId= getEmployeeDetails.onboardingId;
+          
 
     useEffect(() => {
         axios
@@ -87,11 +90,11 @@ function AditionalDetailsTab() {
         // window.open(`api/get/image/${imageName}/${onboardingId}`)
     
         axios
-          .get(`api/get/imageByTitle/AdditionalDetails/${onboardingId}`, {
+          .get(`api/get/imageByTitle/AdditionalDetails/${obdId}`, {
             contentType: "application/pdf",
           })
           .then((res) => {
-            console.log(res.data.url);
+            //console.log(res.data.url);
             setImageName(res.data);
             setUrl(res.data.url);
             saveAs(url);
@@ -306,9 +309,9 @@ function AditionalDetailsTab() {
                 <Row>
     <Col md="6" style={{ paddingTop: 0 }}>
               <a
-                href={`http://localhost:6065/api/get/imageByTitle/AdditionalDetails/${onboardingId}`}
+               href={`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${obdId}`}
               >
-                Additional Documents
+                Download Documents
               </a>
             </Col>
     </Row>
