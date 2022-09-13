@@ -12,6 +12,14 @@ public class PostDto {
 	private Date addedDate ;
 	private String employeeId;
 	private String url;
+	private String title;
+
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public Integer getPostId() {
 		return postId;
 	}
