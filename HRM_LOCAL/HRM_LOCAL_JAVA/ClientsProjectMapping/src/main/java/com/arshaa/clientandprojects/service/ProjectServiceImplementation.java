@@ -112,8 +112,10 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 
 	@Override
 	public ResponseEntity updateProjectById(int projectId, Projects newProjectUpdate) {
+		String rmUrl="http://empService/emp/getEmployeeIdByReportingmanager/";
 		ProjectResponse pr = new ProjectResponse<>();
 		try {
+			ReportingManagerEmployeeId empId = template.getForObject(rmUrl+newProjectUpdate.getProjectManager(), ReportingManagerEmployeeId.class);
 			Projects updateProject = projectRepo.findByProjectId(projectId);
 			updateProject.setProjectName(newProjectUpdate.getProjectName());
 			updateProject.setStatus(newProjectUpdate.getStatus());
@@ -124,6 +126,7 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 			updateProject.setRate(newProjectUpdate.getRate());
 			updateProject.setPriority(newProjectUpdate.getPriority());
 			updateProject.setProjectManager(newProjectUpdate.getProjectManager());
+			updateProject.setEmployeeId(empId.getEmployeeId());
 
 			Projects latestProject = projectRepo.save(updateProject);
 			System.out.println(latestProject);
