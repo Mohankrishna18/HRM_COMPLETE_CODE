@@ -3,11 +3,13 @@ import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
 
-function EmploymentDetailsTab() {
+function EmploymentDetailsTab(props) {
 
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
+
 
     const [ferrors, setFErrors] = useState("");
     const [serror, setSerror] = useState("");
@@ -110,7 +112,7 @@ function EmploymentDetailsTab() {
 
     useEffect(() => {
         axios
-            .get(`/emp/getEmploymentDetails/${employeeid}`)
+            .get(`/emp/getEmploymentDetails/${empId}`)
             .then((response) => {
                 setPrimarySkills(response.data.data.primarySkills);
                 setSecondarySkills(response.data.data.secondarySkills);
@@ -126,7 +128,7 @@ function EmploymentDetailsTab() {
     const changeHandler = async (e) => {
         e.preventDefault();
         try{
-        await axios.put(`/emp/updateEmploymentDetails/${employeeid}`, {
+        await axios.put(`/emp/updateEmploymentDetails/${empId}`, {
            primarySkills,
            secondarySkills,
            employmentType,

@@ -36,6 +36,28 @@ public class EducationalDetails {
 	private String sscPassedYear;
 	private String sscGrade;
 	private String status;
+	
+ private String intermediateQualification;
+ public String getIntermediateQualification() {
+	return intermediateQualification;
+}
+
+public void setIntermediateQualification(String intermediateQualification) {
+	this.intermediateQualification = intermediateQualification;
+}
+
+public String getSscQualification() {
+	return sscQualification;
+}
+
+public void setSscQualification(String sscQualification) {
+	this.sscQualification = sscQualification;
+}
+
+private String sscQualification;
+
+
+
 
 	public String getStatus() {
 		return status;

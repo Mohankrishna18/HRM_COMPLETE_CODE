@@ -74,6 +74,7 @@ import { Accordion } from "react-bootstrap";
 import ApprovesMain from "../pages/Approves/ApprovesMain";
 import EmployeeList from "../pages/AllEmployees/AllEmployeesComponents/EmployeeList";
 import Employee from "../pages/RoleUnderEmployees/RoleUnderEmployeesMain";
+import AllEmployeesMain from "../pages/AllEmployees/AllEmployeesMain";
 
 export default [
   {
@@ -141,29 +142,29 @@ export default [
     permission: [Roles.ceo],
   },
 
+  // {
+  //   component: EmployeeMaster,
+  //   path: "/employeeProfile",
+  //   icon: <FcFile />,
+  //   title: "Edit My Profile",
+  //   type: "Employee",
+  //   permission: [
+  //     Roles.employee,
+  //     Roles.ceo,
+  //     Roles.it,
+  //     Roles.taa,
+  //     Roles.hrmanager,
+  //     Roles.manager,
+  //     Roles.recruitmentmanager,
+  //     Roles.irm,
+  //     Roles.srm,
+  //     Roles.pmohead,
+  //     Roles.taahead,
+  //     Roles.buhead,
+  //   ],
+  // },
   {
-    component: EmployeeMaster,
-    path: "/employeeProfile",
-    icon: <FcFile />,
-    title: "Edit My Profile",
-    type: "Employee",
-    permission: [
-      Roles.employee,
-      Roles.ceo,
-      Roles.it,
-      Roles.taa,
-      Roles.hrmanager,
-      Roles.manager,
-      Roles.recruitmentmanager,
-      Roles.irm,
-      Roles.srm,
-      Roles.pmohead,
-      Roles.taahead,
-      Roles.buhead,
-    ],
-  },
-  {
-    component: EmployeeList,
+    component: AllEmployeesMain,
     path: "/allEmployees",
     icon: <FcConferenceCall />,
     title: "All Employees",
@@ -273,6 +274,9 @@ export default [
       Roles.irm,
       Roles.srm,
       Roles.employee,
+      Roles.ceo,
+      Roles.taa,
+      Roles.taahead
     ],
   },
   {
@@ -331,7 +335,7 @@ export default [
     type: "Leaves",
     path: "/HrLeaveHistory",
     icon: <FcAnswers />,
-    title: "Leave History ",
+    title: "Employee's Leave History ",
     // permission: [Roles.hrmanager,Roles.irm,Roles.srm],
     permission: [Roles.irm, Roles.srm],
   },
@@ -362,7 +366,7 @@ export default [
     type: "null",
     path: "/editmyprofileroute",
 
-    permission: [Roles.hrmanager, Roles.taa],
+    permission: [Roles.pmohead, Roles.ceo],
   },
   {
     component: createleaveTypeMain,

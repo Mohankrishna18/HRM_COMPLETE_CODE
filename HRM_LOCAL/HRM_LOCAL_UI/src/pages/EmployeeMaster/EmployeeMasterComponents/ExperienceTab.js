@@ -1,13 +1,18 @@
+
 import React, { useEffect, useState } from "react";
 import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../../../Constant";
 
 function ExperienceTab() {
 
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
+
+
 
     const [ferrors, setFErrors] = useState("");
     const [serror, setSerror] = useState("");
@@ -44,10 +49,20 @@ function ExperienceTab() {
     const [previousCompany3_typeOfEmployment, setPreviousCompany3_typeOfEmployement] = useState("");
     const [previousCompany3_reasonForRelieving, setPreviousCompany3_reasonForRelieving] = useState("");
 
+    const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
+    useEffect(() => {
+        axios
+            .get(`/emp/getEmployeeDataByEmployeeId/${empId}`)
+            .then((response) => {
+                setGetEmployeeDetails(response.data.data);
+            });
+    }, []);
+    console.log(getEmployeeDetails.onboardingId);
+    const obdId = getEmployeeDetails.onboardingId;
 
     useEffect(() => {
         axios
-            .get(`/emp/getExperienceDetails/${employeeid}`)
+            .get(`/emp/getExperienceDetails/${empId}`)
             .then((response) => {
                 setPreviousCompany1_name(response.data.data.previousCompany1_name);
                 setPreviousCompany1_designation(response.data.data.previousCompany1_designation);
@@ -75,37 +90,55 @@ function ExperienceTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
-        try{
-        await axios.put(`/emp/updateExperience/${employeeid}`, {
-            previousCompany1_name,
-            previousCompany1_designation,
-            previousCompany1_joiningDate,
-            previousCompany1_relievingDate,
-            previousCompany1_employeeId,
-            previousCompany1_typeOfEmployment,
-            previousCompany1_reasonForRelieving,
-            previousCompany2_name,
-            previousCompany2_designation,
-            previousCompany2_joiningDate,
-            previousCompany2_relievingDate,
-            previousCompany2_employeeId,
-            previousCompany2_typeOfEmployment,
-            previousCompany2_reasonForRelieving,
-            previousCompany3_name,
-            previousCompany3_designation,
-            previousCompany3_joiningDate,
-            previousCompany3_relievingDate,
-            previousCompany3_employeeId,
-            previousCompany3_typeOfEmployment,
-            previousCompany3_reasonForRelieving,
+        try {
+            await axios.put(`/emp/updateExperience/${empId}`, {
+                previousCompany1_name,
+                previousCompany1_designation,
+                previousCompany1_joiningDate,
+                previousCompany1_relievingDate,
+                previousCompany1_employeeId,
+                previousCompany1_typeOfEmployment,
+                previousCompany1_reasonForRelieving,
+                previousCompany2_name,
+                previousCompany2_designation,
+                previousCompany2_joiningDate,
+                previousCompany2_relievingDate,
+                previousCompany2_employeeId,
+                previousCompany2_typeOfEmployment,
+                previousCompany2_reasonForRelieving,
+                previousCompany3_name,
+                previousCompany3_designation,
+                previousCompany3_joiningDate,
+                previousCompany3_relievingDate,
+                previousCompany3_employeeId,
+                previousCompany3_typeOfEmployment,
+                previousCompany3_reasonForRelieving,
 
-        });
-        toast.success("Form Submitted Successfully");
-    }
-    catch(error){
-        toast.error("Somethingwent Wrong");
-  }
+            });
+            toast.success("Form Submitted Successfully");
+        }
+        catch (error) {
+            toast.error("Somethingwent Wrong");
+        }
     };
+    const viewUploadFile = () => {
+        // window.open(`api/get/image/${imageName}/${onboardingId}`)
+
+        axios
+            .get(`api/get/imageByTitle/ExperienceDetails/${obdId}`, {
+                contentType: "application/pdf",
+            })
+            .then((res) => {
+                console.log(res.data.url);
+                setImageName(res.data);
+                setUrl(res.data.url);
+                saveAs(url);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
 
     return (
 
@@ -493,27 +526,16 @@ function ExperienceTab() {
                         />
                     </Form.Group>
 
-
-                    {/* 
-                                        <Form.Group
-                                            as={Col}
-                                            md="6"
-                                            style={{ padding: 10, paddingTop: 20 }}
-                                        >
-                                            <Form.Label>Exit Date</Form.Label>
-                                            <Form.Control
-                                                type="date"
-                                                placeholder="Exit Date"
-                                                controlId="exitDate"
-                                                value={exitDate}
-                                                onChange={(e) => setExitDate(e.target.value)}
-                                                name="exitDate"
-                                            />
-                                        </Form.Group> */}
-
                 </Row>
-
-
+                <Row>
+                    <Col md="6" style={{ padding: 0 }}>
+                        <a
+                            href={`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${obdId}`}
+                        >
+                            Download Documents
+                        </a>
+                    </Col>
+                </Row>
 
                 <Button
                     className="rounded-pill" md="3"
@@ -528,4 +550,3 @@ function ExperienceTab() {
     )
 }
 export default ExperienceTab;
-

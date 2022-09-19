@@ -91,12 +91,9 @@ function PMOApproval(props) {
                 <Modal.Header closeButton>
                     <Modal.Title>Are you sure you want to Approve</Modal.Title>
                 </Modal.Header>
-                <Modal.Footer>
+                <Modal.Body>
                     <PMOApproved onboardID={onboardID} func={pull_data} handleClose={handleClose} />
-                </Modal.Footer>
-                <Modal.Footer>
-
-                </Modal.Footer>
+                </Modal.Body>
             </Modal>
             <Modal show={rejectshow} onHide={handleCloseReject}>
                 <Modal.Header closeButton>

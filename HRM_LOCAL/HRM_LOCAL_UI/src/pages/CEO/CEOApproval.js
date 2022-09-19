@@ -83,12 +83,9 @@ console.log(data);
         <Modal.Header closeButton>
             <Modal.Title>Are you sure you want to Approve</Modal.Title>
         </Modal.Header>
-        <Modal.Footer>
+        <Modal.Body>
             <CEOApproved onboardID={onboardID} func={pull_data} handleClose={handleClose} />
-        </Modal.Footer>
-        <Modal.Footer>
- 
-</Modal.Footer>
+        </Modal.Body>
     </Modal>
     <Modal show={rejectshow} onHide={handleCloseReject}>
         <Modal.Header closeButton>
@@ -190,14 +187,6 @@ console.log(data);
             </Tab>
           </Tabs>
         </Modal.Body>
-        <Modal.Footer>
-          {/* <Button variant="secondary" onClick={viewHandleClose}>
-            Close
-          </Button> */}
-          {/* <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button> */}
-        </Modal.Footer>
       </Modal>
 
     <Grid>
