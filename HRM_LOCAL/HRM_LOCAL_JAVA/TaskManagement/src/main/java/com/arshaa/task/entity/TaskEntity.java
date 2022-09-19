@@ -13,23 +13,51 @@ public class TaskEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int taskId;
-	private String taskName;
-	private String taskType;
-	private String project;
-	private Date fromDate;
-	private Date toDate;
+	private String actualHours;
 	private String description;
-	private String status;
-	private String duration;
+	private String estimatedHours;
+	private String projectName;
+	private Date plannedStartDate;
 	private String priority;
-	
-	
-	
-	public String getPriority() {
-		return priority;
+	private String status;
+	private String taskTitle;
+	private String taskType;
+	private Date plannedEndDate;
+	private String userId;
+	private String userStory;
+	private Date assignDate;
+	private String assignedTo;
+	public TaskEntity() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public void setPriority(String priority) {
+	public TaskEntity(int taskId, String actualHours, String description, String estimatedHours, String projectName,
+			Date plannedStartDate, String priority, String status, String taskTitle, String taskType,
+			Date plannedEndDate, String userId, String userStory, Date assignDate, String assignedTo) {
+		super();
+		this.taskId = taskId;
+		this.actualHours = actualHours;
+		this.description = description;
+		this.estimatedHours = estimatedHours;
+		this.projectName = projectName;
+		this.plannedStartDate = plannedStartDate;
 		this.priority = priority;
+		this.status = status;
+		this.taskTitle = taskTitle;
+		this.taskType = taskType;
+		this.plannedEndDate = plannedEndDate;
+		this.userId = userId;
+		this.userStory = userStory;
+		this.assignDate = assignDate;
+		this.assignedTo = assignedTo;
+	}
+	@Override
+	public String toString() {
+		return "TaskEntity [taskId=" + taskId + ", actualHours=" + actualHours + ", description=" + description
+				+ ", estimatedHours=" + estimatedHours + ", projectName=" + projectName + ", plannedStartDate="
+				+ plannedStartDate + ", priority=" + priority + ", status=" + status + ", taskTitle=" + taskTitle
+				+ ", taskType=" + taskType + ", plannedEndDate=" + plannedEndDate + ", userId=" + userId
+				+ ", userStory=" + userStory + ", assignDate=" + assignDate + ", assignedTo=" + assignedTo + "]";
 	}
 	public int getTaskId() {
 		return taskId;
@@ -37,35 +65,11 @@ public class TaskEntity {
 	public void setTaskId(int taskId) {
 		this.taskId = taskId;
 	}
-	public String getTaskName() {
-		return taskName;
+	public String getActualHours() {
+		return actualHours;
 	}
-	public void setTaskName(String taskName) {
-		this.taskName = taskName;
-	}
-	public String getTaskType() {
-		return taskType;
-	}
-	public void setTaskType(String taskType) {
-		this.taskType = taskType;
-	}
-	public String getProject() {
-		return project;
-	}
-	public void setProject(String project) {
-		this.project = project;
-	}
-	public Date getFromDate() {
-		return fromDate;
-	}
-	public void setFromDate(Date fromDate) {
-		this.fromDate = fromDate;
-	}
-	public Date getToDate() {
-		return toDate;
-	}
-	public void setToDate(Date toDate) {
-		this.toDate = toDate;
+	public void setActualHours(String actualHours) {
+		this.actualHours = actualHours;
 	}
 	public String getDescription() {
 		return description;
@@ -73,35 +77,77 @@ public class TaskEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public String getEstimatedHours() {
+		return estimatedHours;
+	}
+	public void setEstimatedHours(String estimatedHours) {
+		this.estimatedHours = estimatedHours;
+	}
+	public String getProjectName() {
+		return projectName;
+	}
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+	public Date getPlannedStartDate() {
+		return plannedStartDate;
+	}
+	public void setPlannedStartDate(Date plannedStartDate) {
+		this.plannedStartDate = plannedStartDate;
+	}
+	public String getPriority() {
+		return priority;
+	}
+	public void setPriority(String priority) {
+		this.priority = priority;
+	}
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getDuration() {
-		return duration;
+	public String getTaskTitle() {
+		return taskTitle;
 	}
-	public void setDuration(String duration) {
-		this.duration = duration;
+	public void setTaskTitle(String taskTitle) {
+		this.taskTitle = taskTitle;
 	}
-	public TaskEntity(int taskId, String taskName, String taskType, String project, Date fromDate, Date toDate,
-			String description, String status, String duration, String priority) {
-		super();
-		this.taskId = taskId;
-		this.taskName = taskName;
+	public String getTaskType() {
+		return taskType;
+	}
+	public void setTaskType(String taskType) {
 		this.taskType = taskType;
-		this.project = project;
-		this.fromDate = fromDate;
-		this.toDate = toDate;
-		this.description = description;
-		this.status = status;
-		this.duration = duration;
-		this.priority = priority;
 	}
-	public TaskEntity() {
-		super();
-		// TODO Auto-generated constructor stub
+	public Date getPlannedEndDate() {
+		return plannedEndDate;
+	}
+	public void setPlannedEndDate(Date plannedEndDate) {
+		this.plannedEndDate = plannedEndDate;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getUserStory() {
+		return userStory;
+	}
+	public void setUserStory(String userStory) {
+		this.userStory = userStory;
+	}
+	public Date getAssignDate() {
+		return assignDate;
+	}
+	public void setAssignDate(Date assignDate) {
+		this.assignDate = assignDate;
+	}
+	public String getAssignedTo() {
+		return assignedTo;
+	}
+	public void setAssignedTo(String assignedTo) {
+		this.assignedTo = assignedTo;
 	}
 	
 	

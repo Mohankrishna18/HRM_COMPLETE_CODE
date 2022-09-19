@@ -171,6 +171,11 @@ public class MainController {
 
 		return serv.getReportingManagerByEmployeeId(employeeId);
 	}
+	@GetMapping("/getEmployeeIdByReportingmanager/{projectManager}")
+    public ResponseEntity getEmployeeIdByReportingManager(@PathVariable String projectManager) {
+        
+        return eserv.getEmployeeIdByReprtingManager(projectManager);
+    }
 
 	@GetMapping("/getEmployeeIds")
 	public ResponseEntity getEmployeeId() {

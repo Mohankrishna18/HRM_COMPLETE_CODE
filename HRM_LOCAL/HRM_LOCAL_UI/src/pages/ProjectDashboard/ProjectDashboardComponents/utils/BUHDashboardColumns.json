@@ -1,0 +1,41 @@
+[
+    {
+        "title": "Project",
+        "field": "projectName",
+        "type": "text"
+    },
+   
+    
+    {
+        "title": "Client",
+        "field": "clientName",
+        "type": "text"
+    },
+    {
+        "title": "Priority",
+        "field": "priority",
+        "type": "text"
+    },
+    {
+        "title": "From Date",
+        "field": "startDate",
+        "type": "date",
+        "dateSetting": {
+            "locale": "en-GB"
+        }
+    },
+    {
+        "title": "To Date",
+        "field": "endDate",
+        "type": "date",
+        "dateSetting": {
+            "locale": "en-GB"
+        }
+    },
+    {
+        "title": "Project Manager",
+        "field": "projectManager",
+        "type": "text"
+    }
+    
+]

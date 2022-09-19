@@ -67,15 +67,33 @@ public class TaskServiceImpl implements TaskService {
 		TaskResponse r = new TaskResponse<>();
 		try {
 			TaskEntity taskEntity = taskRepo.getById(taskId);
-			taskEntity.setProject(taskUpdate.getProject());
-			taskEntity.setTaskName(taskUpdate.getTaskName());
-			taskEntity.setTaskType(taskUpdate.getTaskType());
-			taskEntity.setDuration(taskUpdate.getDuration());
+//			taskEntity.setprojectName(taskUpdate.getProjectName())
+//			taskEntity.setTaskName(taskUpdate.getTaskName());
+//			taskEntity.setTaskType(taskUpdate.getTaskType());
+//			taskEntity.setDuration(taskUpdate.getDuration());
+//			taskEntity.setDescription(taskUpdate.getDescription());
+//			taskEntity.setFromDate(taskUpdate.getFromDate());
+//			taskEntity.setToDate(taskUpdate.getToDate());
+//			taskEntity.setStatus(taskUpdate.getStatus());
+//			taskEntity.setPriority(taskUpdate.getPriority());
+			taskEntity.setActualHours(taskUpdate.getActualHours());
 			taskEntity.setDescription(taskUpdate.getDescription());
-			taskEntity.setFromDate(taskUpdate.getFromDate());
-			taskEntity.setToDate(taskUpdate.getToDate());
-			taskEntity.setStatus(taskUpdate.getStatus());
+			taskEntity.setEstimatedHours(taskUpdate.getEstimatedHours());
+			taskEntity.setPlannedStartDate(taskUpdate.getPlannedStartDate());
 			taskEntity.setPriority(taskUpdate.getPriority());
+			taskEntity.setStatus(taskUpdate.getStatus());
+			taskEntity.setTaskTitle(taskUpdate.getTaskTitle());
+			taskEntity.setTaskType(taskUpdate.getTaskType());
+			taskEntity.setPlannedEndDate(taskUpdate.getPlannedEndDate());
+			taskEntity.setUserId(taskUpdate.getUserId());
+			taskEntity.setUserStory(taskUpdate.getUserStory());
+			taskEntity.setAssignDate(taskUpdate.getAssignDate());
+			taskEntity.setAssignedTo(taskUpdate.getAssignedTo());
+			taskEntity.setProjectName(taskUpdate.getProjectName());
+			
+			
+			
+			
 			
 			TaskEntity task1= taskRepo.save(taskEntity);
 			System.out.println(task1);
@@ -108,14 +126,57 @@ public class TaskServiceImpl implements TaskService {
 			return new ResponseEntity(r,HttpStatus.OK);
 			
 		}
+		
+		
 		 
 	}
-
-
-
+	
+  @Override
+  public List<TaskEntity> getTaskByUserId(String userId)
+  {
+	  TaskResponse r = new TaskResponse<>();
+	  try
+	  {
+		  List<TaskEntity> t = taskRepo.getTaskByUserId(userId);
+		  r.setMessage("entity got");
+		  r.setStatus(true);
+		  r.setData(t);
+		  return t;
+	  }
+	  catch(Exception e) {
+			r.setMessage("cann't get");
+			r.setStatus(false);
+		
+			
+		}
+	return null;
+  }
+   
+  public List<TaskEntity> getTaskByAssignedTo(String assignedTo)
+  {
+	  TaskResponse r = new TaskResponse<>();
+	  try {
+		  List<TaskEntity> t = taskRepo.getTaskByAssignedTo(assignedTo);
+		  r.setMessage("entity got");
+		  r.setStatus(true);
+		  r.setData(t);
+		  return t;
+	  }
+	  catch(Exception e) {
+			r.setMessage("cann't get");
+			r.setStatus(false);
+		
+			
+		}
+	return null;
+  }
+  
+  
+			  
+  }
 
 
 	
 
 	
-}
+
