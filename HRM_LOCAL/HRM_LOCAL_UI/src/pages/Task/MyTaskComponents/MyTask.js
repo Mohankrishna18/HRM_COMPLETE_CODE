@@ -42,8 +42,11 @@ function MyTask() {
     console.log(employeeId);
     console.log(assignedTo);
 
-  useEffect(()=>{loadByUserID()}
-  ,[])
+  useEffect(()=>{
+    loadByUserID()
+    console.log("data added")
+  }
+  ,[addStatus])
      
     const loadByUserID =  () => {
       const response =  axios.get(`/task/getTaskByAssign/${employeeId}`)
@@ -56,15 +59,6 @@ function MyTask() {
         console.log(err)
       })
     }
-       
-    // }
-    // else if(assignedTo!=employeeId){
-    //   useEffect(() => {
-    // "Datanotfound";
-
-    // }, []);
-     
-    // }
    
   const [addStatus, setAddStatus] = useState(false);
   // const [deleteStatus, setDeleteStatus] = useState(true);
@@ -73,34 +67,29 @@ function MyTask() {
   // const [viewStatus1, setViewStatus1] = useState(false);
 
   const pull_dataAdd = () => {
+    console.log("data added")
     setAddStatus(!addStatus);
-
+    console.log(addStatus)
   };
 
-  // const pull_dataDelete = () => {
-   
-  //   setDeleteStatus(!deleteStatus);
-  //   // console.log("Delete");
-
-  // };
 
   const pull_dataUpdate = () => {
     setUpdateStatus(!updateStatus);
 
   };
 
-  useEffect(() => {
-      loadRoles();
-    }, [addStatus, updateStatus]);
+  // useEffect(() => {
+  //     loadRoles();
+  //   }, [addStatus, updateStatus]);
 
 
-   const loadRoles = async (e) => {
-     const response = await axios.get("/getTaskByAssign/{assignedTo}");
-    setData(response.data.data);
-    console.log(response);
-     console.log("dataupdated");
-   };
-   console.log(data)
+  //  const loadRoles = async (e) => {
+  //    const response = await axios.get("/getTaskByAssign/{assignedTo}");
+  //   setData(response.data.data);
+  //   console.log(response);
+  //    console.log("dataupdated");
+  //  };
+  //  console.log(data)
 
   const [columns, setColumns] = useState([
    
@@ -116,52 +105,52 @@ function MyTask() {
     //   type: "text",
     // },
     {
-      title: "projectName",
+      title: "Project Name",
       field: "projectName",
    
     },
+    // {
+    //   title: "User story",
+    //   field: "userStory",
+    //   type: "text",
+    // },
     {
-      title: "Userstory",
-      field: "userStory",
-      type: "text",
-    },
-    {
-      title: "TaskTitle",
+      title: "Task Title",
       field: "taskTitle",
       type: "text",
     },
     {
-      title: "TaskType",
+      title: "Task Type",
       field: "taskType",
       type: "text",
     },
    
     {
-      title:"EstimatedHours",
+      title:"Estimated Hours",
       field:"estimatedHours",
       type:"text"
     },
 
 
     // {
-    //   title: "ActualHours",
+    //   title: "Actual Hours",
     //   field: "actualHours",
     //   type: "text",
     // },
     {
-      title:"PlannedStartdate",
+      title:"Planned Startdate",
       field:"plannedStartDate",
       type:"date",
       dateSetting: { locale: "en-GB" }
     },
     {
-    title:"PlannedEnddate",
+    title:"Planned Enddate",
       field:"plannedEndDate",
       type:"date",
       dateSetting: { locale: "en-GB" }
     },
     {
-    title:"AssignedDate",
+    title:"Assigned Date",
     field:"assignDate",
     type:"date",
     dataSetting: { locale: "en-GB"}
@@ -249,7 +238,7 @@ function MyTask() {
                 <Col>
                 </Col>
 
-                <Col md={{ span: 4, offset: 4 }}><AddTask func={pull_dataAdd} /></Col>
+                <Col md={{ span: 4, offset: 4 }}><AddTask func={pull_dataAdd} assig={employeeId} /></Col>
               </Row>
             {/* </Container> */}
             {/* <Container>

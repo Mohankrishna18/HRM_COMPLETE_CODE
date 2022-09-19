@@ -31,6 +31,7 @@ const ProjectUpdate = (props) => {
     props.updateOnboard.description
   );
 
+  const [employeeId, setEmployeeId] = useState(props.updateOnboard.employeeId);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [clients, setClients] = useState([]);
@@ -85,6 +86,7 @@ const [reportingManager, setReportingManager] = useState([]);
       rate,
       priority,
       projectManager,
+
       description,
     } = form;
     const newErrors = {};
@@ -133,6 +135,7 @@ console.log(props.updateOnboard.businessUnit)
       priority,
       status,
       projectManager,
+      employeeId,
       description,
     })
     axios
@@ -145,6 +148,7 @@ console.log(props.updateOnboard.businessUnit)
           startDate,
           endDate,
           rate,
+          employeeId,
           priority,
           status,
           projectManager,
@@ -219,7 +223,7 @@ console.log(props.updateOnboard.businessUnit)
           </Form.Group>
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Business Unit*</Form.Label>
+            <Form.Label>Business Unit</Form.Label>
             <Form.Select
               required
               type="text"
@@ -259,7 +263,7 @@ console.log(props.updateOnboard.businessUnit)
           </Form.Group>
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Project Manager *</Form.Label>
+            <Form.Label>Project Manager </Form.Label>
             <Form.Select
               required
               className="projectManager"

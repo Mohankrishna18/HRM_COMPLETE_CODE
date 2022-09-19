@@ -192,7 +192,7 @@ const UpdateTeamMember = (props) => {
 
   return (
     <>
-    <Form.Label>{props.data.projectName}</Form.Label>
+    <Form.Label style={{ fontSize: "20px", color: "#FF9E14" }}>{props.data.projectName}</Form.Label>
       <Form
         ref={forms}
         className="formone"

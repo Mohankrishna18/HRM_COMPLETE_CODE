@@ -87,7 +87,11 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
     if (!taskType || taskType === "")
       newErrors.taskType = "Please Enter Task name";
     if (!status || status === "") newErrors.status = "Please Enter Status";
+    if (!plannedStartDate || plannedStartDate === "")
+    newErrors.plannedStartDate = "Please Enter Start date";
 
+  if (!plannedEndDate || plannedEndDate === "")
+    newErrors.plannedEndDate = "Please Enter Start date";
     // if (!toDate || toDate === "")
     //   newErrors.toDate = "Please Enter End date";
     //   if (!fromDate || fromDate === "")
@@ -174,37 +178,42 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
         <Row className="mb-3">
 
         <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>Project Name *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder=" projectName"
-                  controlId="projectName"
-                  value={form.project}
-                  onChange={(e) => setField("projectName", e.target.value)}
-                  isInvalid={!!errors.projectName}
-                >
-                  <option>Select project</option>
-                  <option>Hrm</option>
-                  <option>DEP</option>
-                  <option>ProjectManagement</option>
-                  {/* <option>Unit Testing</option>
-                  <option>Code Integration</option>
-                  <option>Integration Testing</option>
-                  <option>Design Review</option>
-                  <option>TestCase Creation</option>
-                  <option>Testcase Review</option>
-                  <option>Testcase Execution</option>
-                  <option>Deployment</option> */}
-                </Form.Select>
 
-                <Form.Control.Feedback type="invalid">
-                  {errors.projectName}
-                </Form.Control.Feedback>
-              </Form.Group>
+            <Form.Label>Project Name</Form.Label>
+
+            <Form.Control
+
+              disabled
+
+              required
+
+              type="text"
+
+              placeholder="Project Name"
+
+              controlId="projectName"
+
+              defaultValue={projectName}
+
+              value={form.projectName}
+
+              onChange={(e) => setField("projectName", e.target.value)}
+
+              isInvalid={!!errors.projectName}
+
+            ></Form.Control>
+
+            <Form.Control.Feedback type="invalid">
+
+              {errors.projectName}
+
+            </Form.Control.Feedback>
+
+          </Form.Group>
         <Form.Group className="mb-3" as={Col} md="6">
             <Form.Label>User Story *</Form.Label>
             <Form.Control
+              disabled
               required
               type="text"
               placeholder="User Story"
@@ -268,37 +277,38 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" as={Col} md="6">
-            <Form.Label>Planned start Date*</Form.Label>
+            <Form.Label>Planned Start Date*</Form.Label>
             <Form.Control
-              type="Date"
-              placeholder="plannedStartDate "
-              controlId="plannedStartDate"
+              required
+              type="date"
+              placeholder="Planned Start Date"
+              controlId="plannedStartDate "
               defaultValue={props.updateOnboard.plannedStartDate.split("T")[0]}
               value={plannedStartDate.split("T")[0]}
               onChange={(e) => setPlannedStartDate(e.target.value)}
               isInvalid={!!errors.plannedStartDate}
             />
-
             <Form.Control.Feedback type="invalid">
               {errors.plannedStartDate}
             </Form.Control.Feedback>
           </Form.Group>
+         
           <Form.Group className="mb-3" as={Col} md="6">
-            <Form.Label>Planned End Date*</Form.Label>
-            <Form.Control
-              type="Date"
-              placeholder="Enter "
-              controlId="plannedEndDate"
-              defaultValue={props.updateOnboard.plannedEndDate.split("T")[0]}
-              value={plannedEndDate.split("T")[0]}
-              onChange={(e) => setPlannedEndDate(e.target.value)}
-              isInvalid={!!errors.plannedEndDate}
-            />
+                <Form.Label>Planned End Date *</Form.Label>
+                <Form.Control
+                  type="date"
+                  placeholder="Enter "
+                  controlId="plannedEndDate"
+                  value={form.plannedEndDate}
+                  min={form.plannedStartDate}
+                  onChange={(e) => setField("plannedEndDate", e.target.value)}
+                  isInvalid={!!errors.plannedEndDate}
+                />
 
-            <Form.Control.Feedback type="invalid">
-              {errors.plannedEndDate}
-            </Form.Control.Feedback>
-          </Form.Group>
+                <Form.Control.Feedback type="invalid">
+                  {errors.plannedEndDate}
+                </Form.Control.Feedback>
+              </Form.Group>
           <Form.Group className="mb-3" as={Col} md="6">
             <Form.Label>AssignedDate*</Form.Label>
             <Form.Control
@@ -392,9 +402,9 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
             >
               {/* <option>Select status </option> */}
               {/* <option>props.updateOnboard.status</option> */}
-              <option>open</option>
-              <option>closed</option>
-              <option>In progress</option>
+              <option>To Do</option>
+              <option>In Progress</option>
+              <option>Completed</option>
             </Form.Select>
 
             <Form.Control.Feedback type="invalid">
@@ -418,7 +428,7 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
               <option>P1</option>
               <option>P2</option>
               <option>P3</option>
-              <option>P4</option>
+             
             </Form.Select>
             <Form.Control.Feedback type="invalid">
               {errors.priority}

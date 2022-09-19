@@ -1,70 +1,64 @@
-import React from 'react'
-import { useState, useEffect, useRef } from 'react'
-import { Modal } from 'react-bootstrap'
-import { Button } from 'react-bootstrap'
-import { Form } from 'react-bootstrap'
-import axios from '../../../Uri'
-import { Row, Col } from 'react-bootstrap'
-import { BsPlusLg } from 'react-icons/bs'
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import { InputGroup } from 'react-bootstrap'
-import 'react-toastify/dist/ReactToastify.css'
-import { FaPlus } from 'react-icons/fa'
+import React from "react";
+import { useState, useEffect, useRef } from "react";
+import { Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import axios from "../../../Uri";
+import { Row, Col } from "react-bootstrap";
+import { BsPlusLg } from "react-icons/bs";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { InputGroup } from "react-bootstrap";
+import "react-toastify/dist/ReactToastify.css";
 
 function AddUser(props) {
-  const [show, setShow] = useState(false)
-  const [form, setForm] = useState({})
-  const [errors, setErrors] = useState({})
-
-  const [projects, setProjects] = useState([])
+  const [show, setShow] = useState(false);
+  const [form, setForm] = useState({});
+  const [errors, setErrors] = useState({});
+ 
+ 
+  const [projects, setProjects] = useState([]);
+ 
 
   useEffect(() => {
-    loadData()
-  }, [])
+    console.log(props.assig)
+
+    setField("assignedTo",props.assig)
+    loadData();
+  }, []);
 
   const loadData = async () => {
-    const res = await axios.get('/clientProjectMapping/getAllProjects')
-    setProjects(res.data.data)
-    console.log(res.data.data)
-  }
+    const res = await axios.get("/clientProjectMapping/getAllProjects");
+    setProjects(res.data.data);
+    console.log(res.data.data);
+  };
 
   useEffect(() => {
     axios
-      .get('/emp/getAllEmployeeMasterData')
+      .get("/emp/getAllEmployeeMasterData")
       .then((response) => {
-        setEmpName(response.data.data)
-        // console.log(response.data.data);
+        setEmpName(response.data.data);
       })
       .catch(() => {
-        // toast.error("data is not getting");
-      })
-  }, [])
+      });
+  }, []);
 
-  // Get API's for Project Manager Dropdown
-  // useEffect(() => {
-  //   axios.get(`/emp/getEmployeesDataForReportingManager/${employeeid}`).then((res) => {
-  //     console.log(res.data);
-  //     setManager(res.data);
-  //   });
-  // }, []);
+  const handleClose = () => setShow();
+  const handleShow = () => setShow(true);
 
-  const handleClose = () => setShow()
-  const handleShow = () => setShow(true)
-
-  const forms = useRef(null)
+  const forms = useRef(null);
 
   function setField(field, value) {
     setForm({
       ...form,
       [field]: value,
-    })
+    });
 
     if (!!errors[field])
       setErrors({
         ...errors,
         [field]: null,
-      })
+      });
   }
 
   const validateForm = () => {
@@ -74,93 +68,96 @@ function AddUser(props) {
       taskTitle,
       taskType,
       estimatedHours,
-      //actualHours,
+      actualHours,
       description,
       plannedEndDate,
       plannedStartDate,
       status,
-      //       //assignedTo,
+      //assignedTo,
       priority,
       assignDate,
-    } = form
+     
+    } = form;
 
-    const newErrors = {}
+    const newErrors = {};
 
-    if (!projectId || projectId === '' || !projectId.match(/^[aA-zZ\s]+$/))
-      newErrors.projectId = 'Please Enter Project Name'
+    if (
+      !projectId ||
+      projectId === "" ||
+      !projectId.match(/^[aA-zZ\s]+$/)
+    )
+      newErrors.projectId = "Please Enter Project Name";
     else if (!projectId.match(/^[aA-zZ\s]+$/)) {
-      newErrors.projectId = 'Please select Project'
+      newErrors.projectId = "Please select Project";
     }
-    if (!taskTitle || taskTitle === '')
-      newErrors.taskTitle = 'Please Enter Task Title'
-    if (!taskType || taskType === '')
-      newErrors.taskType = 'Please Enter Task Type'
+    if (!taskTitle || taskTitle === "")
+      newErrors.taskTitle = "Please Enter Task Title";
+         if (!taskType || taskType === "")
+       newErrors.taskType = "Please Enter Task Type";
     //     //  if (!assignedTo || assignedTo === ""||assignedTo === "Assigned To")
     //     //    newErrors.assignedTo = "Please Enter Assigned To";
-
-    if (!estimatedHours || estimatedHours === '' || estimatedHours.length > 3) {
-      newErrors.estimatedHours = 'Please Enter Estimated Hours'
+   
+       if (!estimatedHours || estimatedHours === "" || estimatedHours.length > 3) {
+           newErrors.estimatedHours = "Please Enter Estimated Hours";
     } else if (!estimatedHours.match(/^-?\d*(\.\d+)?$/)) {
-      newErrors.estimatedHours = 'Please Enter Estimated Hours'
-    } else if (estimatedHours.length > 3) {
-      newErrors.estimatedHours = 'Please Correct Enter Estimated Hours'
-    }
-
-    //  if (!actualHours || actualHours === "" || actualHours.length > 3) {
-    //    newErrors.actualHours = "Please Enter Actual Hours";
-    //  } else if (!actualHours.match(/^-?\d*(\.\d+)?$/)) {
-    //    newErrors.actualHours = "Please Enter Actual Hours";
-    //  } else if (actualHours.length > 3) {
-    //    newErrors.actualHours = "Please Enter Correct Actual Hours";
-    // }
-
-    if (!plannedStartDate || plannedStartDate === '')
-      newErrors.plannedStartDate = 'Please Enter Start date'
-
-    if (!plannedEndDate || plannedEndDate === '')
-      newErrors.plannedEndDate = 'Please Enter End date'
-
-    if (!priority || priority === '')
-      newErrors.priority = 'Please Enter Priority'
-
-    return newErrors
-  }
+       newErrors.estimatedHours = "Please Enter Estimated Hours";
+         } else if (estimatedHours.length > 3) {
+           newErrors.estimatedHours = "Please Correct Enter Estimated Hours";
+         }
+   
+         if (!actualHours || actualHours === "" || actualHours.length > 3) {
+           newErrors.actualHours = "Please Enter Actual Hours";
+         } else if (!actualHours.match(/^-?\d*(\.\d+)?$/)) {
+           newErrors.actualHours = "Please Enter Actual Hours";
+         } else if (actualHours.length > 3) {
+           newErrors.actualHours = "Please Enter Correct Actual Hours";
+        }
+   
+   
+      if (!plannedStartDate || plannedStartDate === "")
+      newErrors.plannedStartDate = "Please Enter Start date";
+   
+      if (!plannedEndDate || plannedEndDate === "") newErrors.plannedEndDate = "Please Enter End date";
+   
+         if (!priority || priority === "")
+          newErrors.priority = "Please Enter Priority";
+   
+   
+    return newErrors;
+  };
 
   //testing for commit
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState("");
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    console.log(form)
-    const formErrors = validateForm()
-    console.log(Object.keys(formErrors).length)
+    console.log(form);
+    const formErrors = validateForm();
+    console.log(Object.keys(formErrors).length);
     if (Object.keys(formErrors).length > 2) {
-      setErrors(formErrors)
+      setErrors(formErrors);
     } else {
-      console.log(form)
-      console.log('form submitted')
+      console.log(form);
+      console.log("form submitted");
       axios
-        .post('/task/createNewTask', form)
+        .post("/task/createNewTask", form)
         .then((response) => {
-          const user = response.data
-          console.log(user)
+          const user = response.data;
+          console.log(user);
           if (user.status) {
-            props.func()
-            toast.success('New Task added Successfully')
+            props.func();
+            toast.success("New Task added Successfully");
           } else {
-            console.log('Props Not Send')
+            console.log("Props Not Send");
           }
-
-          // console.log(user);
-          // console.log(user);
-          setTimeout(5000)
-          handleClose()
+          setTimeout(5000);
+          handleClose();
         })
         .catch((err) => {
-          toast.error('Something Went Wrong')
-        })
+          toast.error("Something Went Wrong");
+        });
     }
-  }
+  };
 
   return (
     <div>
@@ -168,20 +165,17 @@ function AddUser(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: '#ff9b44',
-
-          color: '#F4F8F6',
-
-          float: 'right',
-
-          borderRadius: '25px',
-
+          backgroundColor: "#ff9b44",
+          color: "#F4F8F6",
+          float: "right",
+          borderRadius: "25px",
           // paddingBottom: "11.5px",
-
           // marginTop: "100px",
         }}
       >
-        <FaPlus /> Add Task
+        {" "}
+        <BsPlusLg />
+        &nbsp;Add Task
       </Button>
       <Modal
         size="lg"
@@ -190,15 +184,7 @@ function AddUser(props) {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header
-          closeButton
-          style={{
-            backgroundColor: '#FF9E14',
-            paddingTop: '5px',
-            paddingBottom: '5px',
-            color: 'white',
-          }}
-        >
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px",color:"white" }}>
           <Modal.Title>Add Task</Modal.Title>
         </Modal.Header>
 
@@ -212,7 +198,7 @@ function AddUser(props) {
             onSubmit={handleSubmit}
           >
             <Row className="mb-3">
-              <Form.Group className="mb-3" as={Col} md="6">
+            <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Project Name *</Form.Label>
                 <Form.Select
                   required
@@ -222,7 +208,7 @@ function AddUser(props) {
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.projectId}
                   maxLength={30}
-                  onChange={(e) => setField('projectId', e.target.value)}
+                  onChange={(e) => setField("projectId", e.target.value)}
                   isInvalid={!!errors.projectId}
                 >
                   <option>Select project</option>
@@ -240,12 +226,13 @@ function AddUser(props) {
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>UserStoryId *</Form.Label>
                 <Form.Control
+             
                   required
                   type="text"
                   placeholder="User Id"
                   controlId="userId"
                   value={form.userId}
-                  onChange={(e) => setField('userId', e.target.value)}
+                  onChange={(e) => setField("userId", e.target.value)}
                   isInvalid={!!errors.userId}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
@@ -261,7 +248,7 @@ function AddUser(props) {
                   placeholder="Task Title"
                   controlId="taskTitle"
                   value={form.taskTitle}
-                  onChange={(e) => setField('taskTitle', e.target.value)}
+                  onChange={(e) => setField("taskTitle", e.target.value)}
                   isInvalid={!!errors.taskTitle}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
@@ -276,7 +263,7 @@ function AddUser(props) {
                   placeholder="Task Type"
                   controlId="taskType"
                   value={form.taskType}
-                  onChange={(e) => setField('taskType', e.target.value)}
+                  onChange={(e) => setField("taskType", e.target.value)}
                   isInvalid={!!errors.taskType}
                 >
                   <option>Select Task Type</option>
@@ -307,14 +294,14 @@ function AddUser(props) {
                   placeholder="Estimated Hours"
                   controlId="estimatedHours"
                   value={form.estimatedHours}
-                  onChange={(e) => setField('estimatedHours', e.target.value)}
+                  onChange={(e) => setField("estimatedHours", e.target.value)}
                   isInvalid={!!errors.estimatedHours}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {errors.estimatedHours}
                 </Form.Control.Feedback>
               </Form.Group>
-              {/* <Form.Group className="mb-3" as={Col} md="3">
+              <Form.Group className="mb-3" as={Col} md="3">
                 <Form.Label>Actual Hours </Form.Label>
                 <Form.Control
                   required
@@ -329,7 +316,7 @@ function AddUser(props) {
                 <Form.Control.Feedback type="invalid">
                   {errors.actualHours}
                 </Form.Control.Feedback>
-              </Form.Group> */}
+              </Form.Group>
 
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Planned Start Date *</Form.Label>
@@ -339,7 +326,7 @@ function AddUser(props) {
                   placeholder="plannedStartDate"
                   controlId="plannedStartDate"
                   value={form.plannedStartDate}
-                  onChange={(e) => setField('plannedStartDate', e.target.value)}
+                  onChange={(e) => setField("plannedStartDate", e.target.value)}
                   isInvalid={!!errors.plannedStartDate}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -355,7 +342,7 @@ function AddUser(props) {
                   controlId="plannedEndDate"
                   value={form.plannedEndDate}
                   min={form.plannedStartDate}
-                  onChange={(e) => setField('plannedEndDate', e.target.value)}
+                  onChange={(e) => setField("plannedEndDate", e.target.value)}
                   isInvalid={!!errors.plannedEndDate}
                 />
 
@@ -372,7 +359,7 @@ function AddUser(props) {
                   placeholder="status"
                   controlId="status"
                   value={form.status}
-                  onChange={(e) => setField('status', e.target.value)}
+                  onChange={(e) => setField("status", e.target.value)}
                   isInvalid={!!errors.status}
                 >
                   <option>Select status</option>
@@ -393,18 +380,20 @@ function AddUser(props) {
                   placeholder="priority"
                   controlId="priority"
                   value={form.priority}
-                  onChange={(e) => setField('priority', e.target.value)}
+                  onChange={(e) => setField("priority", e.target.value)}
                   isInvalid={!!errors.priority}
                 >
                   <option>Select priority</option>
                   <option>P1</option>
                   <option>P2</option>
                   <option>P3</option>
+                 
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.priority}
                 </Form.Control.Feedback>
               </Form.Group>
+
 
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Assign Date *</Form.Label>
@@ -414,13 +403,14 @@ function AddUser(props) {
                   placeholder="Assign Date"
                   controlId="assignDate"
                   value={form.assignDate}
-                  onChange={(e) => setField('assignDate', e.target.value)}
+                  onChange={(e) => setField("assignDate", e.target.value)}
                   isInvalid={!!errors.assignDate}
                 />
                 {/* <Form.Control.Feedback type="invalid">
                   {errors.assignDate}
                 </Form.Control.Feedback> */}
               </Form.Group>
+
 
               {/* <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Assigned To *</Form.Label>
@@ -438,7 +428,7 @@ function AddUser(props) {
                   <option>sravya</option>
                   <option>divya</option>
                   <option>madhu</option> */}
-              {/* {
+                {/* {
                     result.map((item) => {
                       return (
                         <option value={item.employeeId}>{item.employeeName}</option>
@@ -459,7 +449,7 @@ function AddUser(props) {
                   controlId="description"
                   as="textarea"
                   value={form.description}
-                  onChange={(e) => setField('description', e.target.value)}
+                  onChange={(e) => setField("description", e.target.value)}
                   // isInvalid={!!errors.description}
 
                   maxlength="100"
@@ -470,12 +460,12 @@ function AddUser(props) {
               <Col>
                 <Button
                   style={{
-                    backgroundColor: '#ff9b44',
-                    borderColor: '#ff9b44',
-                    float: 'right',
-                    width: '40%',
-                    height: '120%',
-                    borderRadius: '25px',
+                    backgroundColor: "#ff9b44",
+                    borderColor: "#ff9b44",
+                    float: "right",
+                    width: "40%",
+                    height: "120%",
+                    borderRadius: "25px",
                   }}
                   type="submit"
                   onClick={handleSubmit}
@@ -486,12 +476,12 @@ function AddUser(props) {
               <Col>
                 <Button
                   style={{
-                    backgroundColor: '#B6B6B4',
-                    borderColor: '#B6B6B4',
-                    alignItems: 'center',
-                    width: '40%',
-                    height: '120%',
-                    borderRadius: '25px',
+                    backgroundColor: "#B6B6B4",
+                    borderColor: "#B6B6B4",
+                    alignItems: "center",
+                    width: "40%",
+                    height: "120%",
+                    borderRadius: "25px",
                   }}
                   type="close"
                   onClick={handleClose}
@@ -504,6 +494,6 @@ function AddUser(props) {
         </Modal.Body>
       </Modal>
     </div>
-  )
+  );
 }
-export default AddUser
+export default AddUser;
