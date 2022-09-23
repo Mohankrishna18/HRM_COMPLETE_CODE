@@ -206,4 +206,25 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
         model.setprojectManager(p.getProjectManager());
         return model;
     }
+    @Override
+    public ResponseEntity getTMNameByEmployeeId(String employeeId) {
+        ProjectTeamResponse ptrm = new ProjectTeamResponse<>();
+        try {
+            java.util.List<ProjectTeamMaster> getData = ptmrepo.findAllByEmployeeId(employeeId);
+            if (!getData.isEmpty()) {
+                ptrm.setStatus(true);
+                ptrm.setMessage("Data Fetching");
+                ptrm.setData(getData);
+                return new ResponseEntity(ptrm, HttpStatus.OK);
+            } else {
+                ptrm.setStatus(false);
+                ptrm.setMessage("Data Not Found");
+                return new ResponseEntity(ptrm, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            ptrm.setStatus(false);
+            ptrm.setMessage("Something went wrong");
+            return new ResponseEntity(ptrm, HttpStatus.OK);
+        }
+    }
 }

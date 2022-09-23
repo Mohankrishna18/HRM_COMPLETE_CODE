@@ -168,4 +168,9 @@ public class ClientsProjectsController {
 	public Projects getOneProjectByProjectId(@PathVariable("projectId") Integer projectId) {
 		return projectRepository.findByProjectId(projectId);
 	}
+	@GetMapping("/getTeamMemberNameByEmployeeID/{employeeId}")
+    public ResponseEntity getTeamMembersNameByEmployeeId(@PathVariable String employeeId) {
+        
+        return projectTeamServ.getTMNameByEmployeeId(employeeId);
+    }
 }
