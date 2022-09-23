@@ -86,7 +86,7 @@ import ProjectsMain from "../pages/Projects/ProjectsMain";
 export default [
   {
     component: ProjectDashboardMain,
-    path: "/",
+    path: "/ProjectDashboardMain",
     type: "null",
     icon: <FcBusinessman />,
     title: "Dashboard",
@@ -104,11 +104,11 @@ export default [
       Roles.taahead,
       Roles.buhead,
     ],
-    exact: true,
+   // exact: true,
   },
   {
     component: MyProfileMain,
-    path: "/myprofile",
+    path: "/",
     type: "myprofile",
     icon: <FcBusinessman />,
     title: "My Profile",
@@ -126,7 +126,7 @@ export default [
       Roles.taahead,
       Roles.buhead,
     ],
-    // exact: true,
+    exact: true,
   },
   
   {

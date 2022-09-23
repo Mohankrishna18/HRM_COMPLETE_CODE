@@ -37,19 +37,21 @@ public class UserStoryServiceImpl implements UserStoryServiceInterface {
 
 			uv.setStatus(false);
 			uv.setMessage(e.getMessage());
-			return new ResponseEntity(uv, HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity(uv, HttpStatus.OK);
 		}
 	}
 
 	@Override
 	public ResponseEntity getAllUserStory() {
-		String urlString = "http://clientProjectMapping/clientProjectMapping/getOneProjectByProjectId/{projectId}";
+		String urlString = "http://clientProjectMapping/clientProjectMapping/getOneProjectByProjectId/";
 		UserStoryResponce uv = new UserStoryResponce<>();
 		List<UserStoryModal> UserStoryModels = new ArrayList();
 		try {
 			List<UserStory> newProjectData = userstoryRepo.findAll();
 			newProjectData.forEach(project -> {
 				Projects projectName = restTemplate.getForObject(urlString + project.getProjectId(), Projects.class);
+				project.setProjectName(projectName.getProjectName());
+				userstoryRepo.save(project);
 				UserStoryModal returnedModel = returnModel(projectName.getProjectName(), project);
 				UserStoryModels.add(returnedModel);
 			});
@@ -76,7 +78,7 @@ public class UserStoryServiceImpl implements UserStoryServiceInterface {
 			updateUserStory.setEndDate(newUserStoryUpdate.getEndDate());
 			updateUserStory.setAssignedTo(newUserStoryUpdate.getAssignedTo());
 			updateUserStory.setAcceptanceCriteria(newUserStoryUpdate.getAcceptanceCriteria());
-			// updateUserStory.setRole(newUserStoryUpdate.getRole());
+			updateUserStory.setRole(newUserStoryUpdate.getRole());
 			updateUserStory.setGoal(newUserStoryUpdate.getGoal());
 			updateUserStory.setPriority(newUserStoryUpdate.getPriority());
 			updateUserStory.setReason(newUserStoryUpdate.getReason());
@@ -84,9 +86,8 @@ public class UserStoryServiceImpl implements UserStoryServiceInterface {
 			updateUserStory.setActualHours(newUserStoryUpdate.getActualHours());
 			updateUserStory.setRemainingHours(newUserStoryUpdate.getRemainingHours());
 			updateUserStory.setAssignedDate(newUserStoryUpdate.getAssignedDate());
-			// updateUserStory.setProjectId(newUserStoryUpdate.getProjectId());
+			updateUserStory.setProjectId(newUserStoryUpdate.getProjectId());
 			updateUserStory.setProjectName(newUserStoryUpdate.getProjectName());
-			
 			UserStory latestUserStory = userstoryRepo.save(updateUserStory);
 			
 			System.out.println(latestUserStory);

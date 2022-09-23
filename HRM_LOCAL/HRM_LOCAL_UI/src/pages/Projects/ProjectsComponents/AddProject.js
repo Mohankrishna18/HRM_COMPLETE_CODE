@@ -46,6 +46,7 @@ function AddProject(props) {
       setReportingManager(response.data.data)
     })
   }, [])
+  console.log(reportingManager);
 
   const handleClose = () => setShow()
   const handleShow = () => setShow(true)
@@ -306,7 +307,7 @@ function AddProject(props) {
                 >
                   <option>Select </option>
                   {reportingManager.map((reportingManagerr) => (
-                    <option>{reportingManagerr.projectManager}</option>
+                    <option>{reportingManagerr.reportingmanager}</option>
                   ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">

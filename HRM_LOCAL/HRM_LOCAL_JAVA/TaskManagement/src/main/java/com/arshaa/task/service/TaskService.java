@@ -16,5 +16,8 @@ public interface TaskService {
 	public ResponseEntity deleteTask(int taskId);
 	public List<TaskEntity> getTaskByUserId(String userId);
 	public List<TaskEntity> getTaskByAssignedTo(String assignedTo);
+	public List<TaskEntity> getTaskByEmployeeId(String employeeId);
+	
+
 	
 }	

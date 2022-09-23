@@ -52,35 +52,14 @@ public class UserStory {
 	@Temporal(TemporalType.DATE)
 	private java.util.Date updatedOn = new java.util.Date(System.currentTimeMillis());
 
-	public UserStory() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public UserStory(Integer storyId, String storyTitle, Integer projectId, String projectName, String acceptanceCriteria,
-			String role, String goal, String priority, String reason, String assignedTo, String estimatedHours,
-			String actualHours, String remainingHours, Date startDate, Date endDate, String status, String updatedBy,
-			Date assignedDate, Date updatedOn) {
-		super();
-		this.storyId = storyId;
-		this.storyTitle = storyTitle;
-		this.projectId = projectId;
-		this.projectName = projectName;
-		this.acceptanceCriteria = acceptanceCriteria;
-		this.role = role;
-		this.goal = goal;
-		this.priority = priority;
-		this.reason = reason;
-		this.assignedTo = assignedTo;
-		this.estimatedHours = estimatedHours;
-		this.actualHours = actualHours;
-		this.remainingHours = remainingHours;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.status = status;
-		this.updatedBy = updatedBy;
-		this.assignedDate = assignedDate;
-		this.updatedOn = updatedOn;
+	@Override
+	public String toString() {
+		return "UserStory [storyId=" + storyId + ", storyTitle=" + storyTitle + ", projectId=" + projectId
+				+ ", projecName=" + projectName + ", acceptanceCriteria=" + acceptanceCriteria + ", role=" + role
+				+ ", goal=" + goal + ", priority=" + priority + ", reason=" + reason + ", assignedTo=" + assignedTo
+				+ ", estimatedHours=" + estimatedHours + ", actualHours=" + actualHours + ", remainingHours="
+				+ remainingHours + ", startDate=" + startDate + ", endDate=" + endDate + ", status=" + status
+				+ ", updatedBy=" + updatedBy + ", assignedDate=" + assignedDate + ", updatedOn=" + updatedOn + "]";
 	}
 
 	public Integer getStoryId() {
@@ -111,8 +90,8 @@ public class UserStory {
 		return projectName;
 	}
 
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
+	public void setProjectName(String projecName) {
+		this.projectName = projecName;
 	}
 
 	public String getAcceptanceCriteria() {
@@ -235,16 +214,37 @@ public class UserStory {
 		this.updatedOn = updatedOn;
 	}
 
-	@Override
-	public String toString() {
-		return "UserStory [storyId=" + storyId + ", storyTitle=" + storyTitle + ", projectId=" + projectId
-				+ ", projectName=" + projectName + ", acceptanceCriteria=" + acceptanceCriteria + ", role=" + role
-				+ ", goal=" + goal + ", priority=" + priority + ", reason=" + reason + ", assignedTo=" + assignedTo
-				+ ", estimatedHours=" + estimatedHours + ", actualHours=" + actualHours + ", remainingHours="
-				+ remainingHours + ", startDate=" + startDate + ", endDate=" + endDate + ", status=" + status
-				+ ", updatedBy=" + updatedBy + ", assignedDate=" + assignedDate + ", updatedOn=" + updatedOn + "]";
+	public UserStory() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
+	public UserStory(Integer storyId, String storyTitle, Integer projectId, String projectName, String acceptanceCriteria,
+			String role, String goal, String priority, String reason, String assignedTo, String estimatedHours,
+			String actualHours, String remainingHours, Date startDate, Date endDate, String status, String updatedBy,
+			Date assignedDate, Date updatedOn) {
+		super();
+		this.storyId = storyId;
+		this.storyTitle = storyTitle;
+		this.projectId = projectId;
+		this.projectName = projectName;
+		this.acceptanceCriteria = acceptanceCriteria;
+		this.role = role;
+		this.goal = goal;
+		this.priority = priority;
+		this.reason = reason;
+		this.assignedTo = assignedTo;
+		this.estimatedHours = estimatedHours;
+		this.actualHours = actualHours;
+		this.remainingHours = remainingHours;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.status = status;
+		this.updatedBy = updatedBy;
+		this.assignedDate = assignedDate;
+		this.updatedOn = updatedOn;
+	}
 	
 	
+
 }

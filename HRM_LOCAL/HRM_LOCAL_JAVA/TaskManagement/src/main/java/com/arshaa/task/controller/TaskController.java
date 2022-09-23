@@ -44,11 +44,11 @@ public class TaskController {
 		return serv.getTaskByAssignedTo(assignedTo);
 	}
 	
+	
 	@PutMapping("/updateTask/{taskId}")
 	public ResponseEntity updateTasks(@PathVariable int taskId, @RequestBody TaskEntity taskUpdate) {
 		return serv.updateTasks(taskId, taskUpdate);
 	}
-	
 	
 	
 	@DeleteMapping("/deleteTask/{taskId}")
@@ -61,5 +61,15 @@ public class TaskController {
 	{
 		return serv.getTaskByUserId(userId);
 	}
+	
+	
+	@GetMapping("/getAllTasksByEmployeeId/{employeeId}")
+	public List<TaskEntity> GetByEmployeeId(@PathVariable String employeeId)
+	{
+		return serv.getTaskByEmployeeId(employeeId);
+	}
+	
+	
+	
 	
 }

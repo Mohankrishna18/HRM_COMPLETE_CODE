@@ -26,38 +26,19 @@ public class TaskEntity {
 	private String userId;
 	private String userStory;
 	private Date assignDate;
+	private int projectId;
 	private String assignedTo;
-	public TaskEntity() {
-		super();
-		// TODO Auto-generated constructor stub
+	private String employeeName;
+	private String employeeId;
+
+	
+	
+	
+	public String getEmployeeId() {
+		return employeeId;
 	}
-	public TaskEntity(int taskId, String actualHours, String description, String estimatedHours, String projectName,
-			Date plannedStartDate, String priority, String status, String taskTitle, String taskType,
-			Date plannedEndDate, String userId, String userStory, Date assignDate, String assignedTo) {
-		super();
-		this.taskId = taskId;
-		this.actualHours = actualHours;
-		this.description = description;
-		this.estimatedHours = estimatedHours;
-		this.projectName = projectName;
-		this.plannedStartDate = plannedStartDate;
-		this.priority = priority;
-		this.status = status;
-		this.taskTitle = taskTitle;
-		this.taskType = taskType;
-		this.plannedEndDate = plannedEndDate;
-		this.userId = userId;
-		this.userStory = userStory;
-		this.assignDate = assignDate;
-		this.assignedTo = assignedTo;
-	}
-	@Override
-	public String toString() {
-		return "TaskEntity [taskId=" + taskId + ", actualHours=" + actualHours + ", description=" + description
-				+ ", estimatedHours=" + estimatedHours + ", projectName=" + projectName + ", plannedStartDate="
-				+ plannedStartDate + ", priority=" + priority + ", status=" + status + ", taskTitle=" + taskTitle
-				+ ", taskType=" + taskType + ", plannedEndDate=" + plannedEndDate + ", userId=" + userId
-				+ ", userStory=" + userStory + ", assignDate=" + assignDate + ", assignedTo=" + assignedTo + "]";
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
 	public int getTaskId() {
 		return taskId;
@@ -143,11 +124,63 @@ public class TaskEntity {
 	public void setAssignDate(Date assignDate) {
 		this.assignDate = assignDate;
 	}
+	public int getProjectId() {
+		return projectId;
+	}
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
+	}
 	public String getAssignedTo() {
 		return assignedTo;
 	}
 	public void setAssignedTo(String assignedTo) {
 		this.assignedTo = assignedTo;
+	}
+	public String getEmployeeName() {
+		return employeeName;
+	}
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+	
+	
+	
+	public TaskEntity(int taskId, String actualHours, String description, String estimatedHours, String projectName,
+			Date plannedStartDate, String priority, String status, String taskTitle, String taskType,
+			Date plannedEndDate, String userId, String userStory, Date assignDate, int projectId, String assignedTo,
+			String employeeName, String employeeId) {
+		super();
+		this.taskId = taskId;
+		this.actualHours = actualHours;
+		this.description = description;
+		this.estimatedHours = estimatedHours;
+		this.projectName = projectName;
+		this.plannedStartDate = plannedStartDate;
+		this.priority = priority;
+		this.status = status;
+		this.taskTitle = taskTitle;
+		this.taskType = taskType;
+		this.plannedEndDate = plannedEndDate;
+		this.userId = userId;
+		this.userStory = userStory;
+		this.assignDate = assignDate;
+		this.projectId = projectId;
+		this.assignedTo = assignedTo;
+		this.employeeName = employeeName;
+		this.employeeId = employeeId;
+	}
+	public TaskEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "TaskEntity [taskId=" + taskId + ", actualHours=" + actualHours + ", description=" + description
+				+ ", estimatedHours=" + estimatedHours + ", projectName=" + projectName + ", plannedStartDate="
+				+ plannedStartDate + ", priority=" + priority + ", status=" + status + ", taskTitle=" + taskTitle
+				+ ", taskType=" + taskType + ", plannedEndDate=" + plannedEndDate + ", userId=" + userId
+				+ ", userStory=" + userStory + ", assignDate=" + assignDate + ", projectId=" + projectId
+				+ ", assignedTo=" + assignedTo + ", employeeName=" + employeeName + ", employeeId=" + employeeId + "]";
 	}
 	
 	

@@ -1,80 +1,96 @@
-import React, { useEffect, useRef } from "react";
-import { useState } from "react";
-import { Card, FormSelect, InputGroup } from "react-bootstrap";
-import { Button } from "react-bootstrap";
-import { Form } from "react-bootstrap";
-import { Row, Col } from "react-bootstrap";
-import axios from "../../../Uri";
-import { toast } from "react-toastify";
+import React, { useEffect, useRef } from 'react'
+import { useState } from 'react'
+import { Card, FormSelect, InputGroup } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
+import axios from '../../../Uri'
+import { toast } from 'react-toastify'
 //vipul
 
-import "react-toastify/dist/ReactToastify.css";
+import 'react-toastify/dist/ReactToastify.css'
 
 const UpdateTask = (props) => {
-  //console.log(props.updateOnboard);
+  console.log(props.projectId)
 
-  const [userId, setUserId] = useState(props.updateOnboard.userId);
-  const [userStory, setUserStory] = useState(props.updateOnboard.userStory);
-  const [taskTitle, setTaskTitle] = useState(props.updateOnboard.taskTitle);
-  const [taskType, setTaskType] = useState(props.updateOnboard.taskType);
-  const [assignedTo, setAssignedTo] = useState("");
+  const [userId, setUserId] = useState(props.updateOnboard.userId)
+  const [userStory, setUserStory] = useState(props.updateOnboard.userStory)
+  const [taskTitle, setTaskTitle] = useState(props.updateOnboard.taskTitle)
+  const [taskType, setTaskType] = useState(props.updateOnboard.taskType)
+  const [assignedTo, setAssignedTo] = useState(props.updateOnboard.assignedTo)
+ 
   const [estimatedHours, setEstimatedHours] = useState(
-    props.updateOnboard.estimatedHours
-  );
+    props.updateOnboard.estimatedHours,
+  )
   const [actualHours, setActualHours] = useState(
-    props.updateOnboard.actualHours
-  );
+    props.updateOnboard.actualHours,
+  )
   // const [toDate, setToDate] = useState(props.updateOnboard.toDate);
   // const [fromDate, setFromDate] = useState(props.updateOnboard.fromDate);
   const [plannedStartDate, setPlannedStartDate] = useState(
-    props.updateOnboard.plannedStartDate
-  );
+    props.updateOnboard.plannedStartDate,
+  )
 
   const [plannedEndDate, setPlannedEndDate] = useState(
-    props.updateOnboard.plannedEndDate
-  );
-  const [priority, setPriority] = useState(props.updateOnboard.priority);
-  const [status, setStatus] = useState(props.updateOnboard.status);
+    props.updateOnboard.plannedEndDate,
+  )
+  const [priority, setPriority] = useState(props.updateOnboard.priority)
+  const [status, setStatus] = useState(props.updateOnboard.status)
   const [description, setDescription] = useState(
-    props.updateOnboard.description
-  );
+    props.updateOnboard.description,
+  )
 
   useEffect(() => {
-    loadData();
-  }, []);
+    loadData()
+  }, [props.projectId])
 
   const loadData = async (e) => {
-    const response = await axios.get("clientProjectMapping/getAllProjectTeams");
-    setData(response.data.data);
-    console.log(response.data.data);
-  };
-  const [data, setData] = useState([]);
+    const response = await axios.get(
+      `/clientProjectMapping/getAllProjectTeams/Active/${props.projectId}`,
+    )
+    setData(response.data.data)
+    console.log(response.data.data)
+  }
+  const [data, setData] = useState([])
 
-  const result = data.filter((emp) => emp.status === "Active");
+  // const [selectedMembers,setSelectedMembers] = useState();
+  // console.log(selectedMembers)
 
-  console.log(result + "result is here bro");
+  // const loadDated =  async(e) => {
+  //   const response = await axios.get(`/clientProjectMapping/getAllProjectTeams/Active/${props.projectId}`);
+  //   console.log(response);
 
-  const [form, setForm] = useState({});
-  const [errors, setErrors] = useState({});
+  //   setSelectedMembers(response.data.data);
+  //   console.log('chudu bey')
+  //   console.log(response.data.data);
+
+   //};
+
+  const result = data.filter((emp) => emp.status === 'Active')
+
+  console.log(result + 'result is here bro')
+
+  const [form, setForm] = useState({})
+  const [errors, setErrors] = useState({})
 
   const handleClose = () => {
-    props.handleClose();
+    props.handleClose()
     // setShow()
-  };
-  const handleShow = () => setShow(true);
+  }
+  const handleShow = () => setShow(true)
 
-  const forms = useRef(null);
+  const forms = useRef(null)
 
   function setField(field, value) {
     setForm({
       ...form,
       [field]: value,
-    });
+    })
     if (!!errors[field])
       setErrors({
         ...errors,
         [field]: null,
-      });
+      })
   }
 
   const validateForm = () => {
@@ -89,48 +105,47 @@ const UpdateTask = (props) => {
     //   taskType,
     //   // timesheet
     // } = form;
-    const newErrors = {};
+    const newErrors = {}
 
-   
-    if (!userId || userId === "")
-      newErrors.userId = "Please Enter project name";
-    if (!userStory || userStory === "") {
-      newErrors.userStory = "Please Enter Task name";
+    if (!userId || userId === '') newErrors.userId = 'Please Enter project name'
+    if (!userStory || userStory === '') {
+      newErrors.userStory = 'Please Enter Task name'
     } else if (!userStory.match(/^[aA-zZ\s]+$/)) {
-      newErrors.userStory = "Please Enter valid Task name";
+      newErrors.userStory = 'Please Enter valid Task name'
     }
-    if (!taskType || taskType === "")
-      newErrors.taskType = "Please Enter Task name";
+    if (!taskType || taskType === '')
+      newErrors.taskType = 'Please Enter Task name'
 
-    if (!status || status === "") newErrors.status = "Please Enter Status";
+    if (!status || status === '') newErrors.status = 'Please Enter Status'
 
-    if (!plannedStartDate || plannedStartDate === "")
-      newErrors.plannedStartDate = "Please Enter Start date";
+    if (!plannedStartDate || plannedStartDate === '')
+      newErrors.plannedStartDate = 'Please Enter Start date'
 
-    if (!plannedEndDate || plannedEndDate === "")
-      newErrors.plannedEndDate = "Please Enter Start date";
-    if (!priority || priority === "") newErrors.priority = "Please Enter Priority";
-    if (!assignedTo || assignedTo === "")
-      newErrors.assignedTo = "Please Enter Assigned to";
-    if (!estimatedHours || estimatedHours === "")
-      newErrors.estimatedHours = "Please Enter Estimated Hours";
-    if (!actualHours || actualHours === "")
-      newErrors.actualHours = "Please Enter Actual Hours";
+    if (!plannedEndDate || plannedEndDate === '')
+      newErrors.plannedEndDate = 'Please Enter Start date'
+    if (!priority || priority === '')
+      newErrors.priority = 'Please Enter Priority'
+    if (!assignedTo || assignedTo === '')
+      newErrors.assignedTo = 'Please Enter Assigned to'
+    if (!estimatedHours || estimatedHours === '')
+      newErrors.estimatedHours = 'Please Enter Estimated Hours'
+    // if (!actualHours || actualHours === "")
+    //   newErrors.actualHours = "Please Enter Actual Hours";
 
-    return newErrors;
-  };
+    return newErrors
+  }
   //testing for commit
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState('')
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     // console.log(form);
     // handleClose();
     // e.target.reset();
-    const formErrors = validateForm();
+    const formErrors = validateForm()
     if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors);
+      setErrors(formErrors)
     } else {
-      console.log(form);
+      console.log(form)
 
       axios
         .put(`/task/updateTask/${props.updateOnboard.taskId}`, {
@@ -139,7 +154,7 @@ const UpdateTask = (props) => {
           taskTitle: taskTitle,
           taskType: taskType,
           estimatedHours: estimatedHours,
-          actualHours: actualHours,
+          // actualHours: actualHours,
           description: description,
           // toDate: toDate,
           // fromDate:fromDate,
@@ -150,27 +165,27 @@ const UpdateTask = (props) => {
           plannedEndDate: plannedEndDate,
         })
         .then((response) => {
-          const user = response.data;
-          console.log(response);
+          const user = response.data
+          console.log(response)
           if (response.data.status) {
-            props.func();
+            props.func()
           } else {
-            console.log("Props not Send");
+            console.log('Props not Send')
           }
-          toast.success("Task updated successfully!!!");
+          toast.success('Task updated successfully!!!')
           // console.log(user);
-        });
-      props.handleClose();
+        })
+      props.handleClose()
     }
-  };
-  const [task, setTask] = useState([]);
+  }
+  const [task, setTask] = useState([])
   useEffect(() => {
     axios.get(`/clientProjectMapping/getAllProjects`).then((response) => {
-      console.log(response.data.data);
-      setTask(response.data.data);
-    });
-  }, []);
-  console.log(task);
+      console.log(response.data.data)
+      setTask(response.data.data)
+    })
+  }, [])
+  console.log(task)
   // console.log(form.dateOfJoining)
 
   // const [empID, setEmpID] = useState([]);
@@ -276,31 +291,14 @@ const UpdateTask = (props) => {
           </Form.Group>
 
           <Form.Group className="mb-3" as={Col} md="6">
-            <Form.Label>Actual Hours *</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Actual Hours"
-              controlId="actualHours"
-              defaultValue={props.updateOnboard.actualHours}
-              value={actualHours}
-              onChange={(e) => setActualHours(e.target.value)}
-              isInvalid={!!errors.actualHours}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.actualHours}
-            </Form.Control.Feedback>
-          </Form.Group>
-
-          <Form.Group className="mb-3" as={Col} md="6">
             <Form.Label>Planned Start Date*</Form.Label>
             <Form.Control
               required
               type="date"
               placeholder="Planned Start Date"
               controlId="plannedStartDate "
-              defaultValue={props.updateOnboard.plannedStartDate.split("T")[0]}
-              value={plannedStartDate.split("T")[0]}
+              defaultValue={props.updateOnboard.plannedStartDate.split('T')[0]}
+              value={plannedStartDate.split('T')[0]}
               onChange={(e) => setPlannedStartDate(e.target.value)}
               isInvalid={!!errors.plannedStartDate}
             />
@@ -316,8 +314,8 @@ const UpdateTask = (props) => {
               type="date"
               placeholder="Planned End Date"
               controlId="plannedEndDate "
-              defaultValue={props.updateOnboard.plannedEndDate.split("T")[0]}
-              value={plannedEndDate.split("T")[0]}
+              defaultValue={props.updateOnboard.plannedEndDate.split('T')[0]}
+              value={plannedEndDate.split('T')[0]}
               onChange={(e) => setPlannedEndDate(e.target.value)}
               isInvalid={!!errors.plannedEndDate}
             />
@@ -326,38 +324,6 @@ const UpdateTask = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
 
-          {/* <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>From date*</Form.Label>
-                <Form.Control
-                  required
-                  type="date"
-                  placeholder="fromDate"
-                  controlId="fromDate"
-                  defaultValue={props.updateOnboard.fromDate.split("T")[0]}
-                  value={fromDate.split("T")[0]}
-                  onChange={(e) => setFromDate(e.target.value)}
-                  isInvalid={!!errors.fromDate}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.fromDate}
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>To Date*</Form.Label>
-                <Form.Control type="date" placeholder="Enter "
-                  controlId="toDate"
-                  defaultValue={props.updateOnboard.toDate.split("T")[0]}
-                  value={toDate.split("T")[0]}
-                  onChange={(e) => setToDate(e.target.value)}
-                  isInvalid={!!errors.toDate}
-                />
-
-                <Form.Control.Feedback type="invalid">
-                  {errors.toDate}
-                </Form.Control.Feedback>
-
-              </Form.Group> */}
           <Form.Group className="mb-3" as={Col} md="6">
             <Form.Label>Task Type *</Form.Label>
             <Form.Select
@@ -430,7 +396,6 @@ const UpdateTask = (props) => {
               <option>P1</option>
               <option>P2</option>
               <option>P3</option>
-              <option>P4</option>
             </Form.Select>
             <Form.Control.Feedback type="invalid">
               {errors.priority}
@@ -444,21 +409,25 @@ const UpdateTask = (props) => {
               type="text"
               placeholder="assignedTo"
               controlId="assignedTo"
-              defaultValue={props.updateOnboard.assignedTo}
-              // value={assignedTo}
+              //defaultValue={props.updateOnboard.assignedTo}
+              value={assignedTo}
               onChange={(e) => setAssignedTo(e.target.value)}
-              // isInvalid={!!errors.assignedTo}
+              isInvalid={!!errors.assignedTo}
             >
-              {/* <option>{assignedTo}</option> */}
-              {result.map((item) => {
+              <option>Assigned To</option>
+              {/* <option>mohan</option>
+                  <option>sravya</option>
+                  <option>divya</option>
+                  <option>madhu</option> */}
+              {data.map((item) => {
                 return (
                   <option value={item.employeeId}>{item.employeeName}</option>
-                );
+                )
               })}
             </Form.Select>
-            {/* <Form.Control.Feedback type="invalid">
-                  {errors.assignedTo}
-                </Form.Control.Feedback> */}
+            <Form.Control.Feedback type="invalid">
+              {errors.assignedTo}
+            </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -485,12 +454,12 @@ const UpdateTask = (props) => {
           <Col>
             <Button
               style={{
-                backgroundColor: "#ff9b44",
-                borderColor: "#ff9b44",
-                float: "right",
-                width: "40%",
-                height: "120%",
-                borderRadius: "25px",
+                backgroundColor: '#ff9b44',
+                borderColor: '#ff9b44',
+                float: 'right',
+                width: '40%',
+                height: '120%',
+                borderRadius: '25px',
               }}
               type="submit"
               onClick={handleSubmit}
@@ -501,12 +470,12 @@ const UpdateTask = (props) => {
           <Col>
             <Button
               style={{
-                backgroundColor: "#B6B6B4",
-                borderColor: "#B6B6B4",
-                alignItems: "center",
-                width: "40%",
-                height: "120%",
-                borderRadius: "25px",
+                backgroundColor: '#B6B6B4',
+                borderColor: '#B6B6B4',
+                alignItems: 'center',
+                width: '40%',
+                height: '120%',
+                borderRadius: '25px',
               }}
               type="close"
               onClick={handleClose}
@@ -517,7 +486,7 @@ const UpdateTask = (props) => {
         </Row>
       </Form>
     </div>
-  );
-};
+  )
+}
 
 export default UpdateTask;

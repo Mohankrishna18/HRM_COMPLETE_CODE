@@ -49,7 +49,8 @@ function MyTask() {
   ,[addStatus])
      
     const loadByUserID =  () => {
-      const response =  axios.get(`/task/getTaskByAssign/${employeeId}`)
+     // const response =  axios.get(`/task/getTaskByAssign/${employeeId}`)
+     const response =  axios.get(`/task/getAllTasksByEmployeeId/${employeeId}`)
       .then((res)=>{
         console.log(res.data)
         setData(res.data)

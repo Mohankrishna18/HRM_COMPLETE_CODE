@@ -10,10 +10,12 @@ import com.arshaa.task.entity.TaskEntity;
 
 
 @Repository
-public interface TaskRepository extends JpaRepository<TaskEntity, Integer>{
+public interface TaskRepository extends JpaRepository<TaskEntity, Integer>
+{
 
 	
 	 public List<TaskEntity> getTaskByUserId(String userId);
 	 public List<TaskEntity> getTaskByAssignedTo(String assignedTo);
+	public List<TaskEntity> getTaskByEmployeeId(String employeeId);
 	 
 }

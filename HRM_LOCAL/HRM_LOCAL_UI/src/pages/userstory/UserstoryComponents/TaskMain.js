@@ -178,6 +178,7 @@ function TaskMain(props){
             updateOnboard={updateOnboard}
             func={pull_dataUpdate}
             handleClose={handleClose}
+            projectId={projectId}
           />
         </Modal.Body>
         {/* <Modal.Footer>
