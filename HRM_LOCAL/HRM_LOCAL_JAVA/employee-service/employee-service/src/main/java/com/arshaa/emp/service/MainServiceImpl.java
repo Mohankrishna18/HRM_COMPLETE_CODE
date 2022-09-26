@@ -1910,9 +1910,67 @@ public class MainServiceImpl implements MainService {
 
 
 	@Override
-	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmployeeMaster empMaster) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmploymentDetails newEmp) {
+		Response r = new Response<>();
+		try {
+		EmployeeMaster master = emRepo.getById(employeeId);
+
+		master.setEmploymentType(newEmp.getEmploymentType());
+		master.setDepartmentName(newEmp.getDepartment());
+		master.setDesignationName(newEmp.getDesignation());
+		master.setBand(newEmp.getBand());
+		master.setJobTitle(newEmp.getJobTitle());
+		master.setClient(newEmp.getClient());
+		master.setProjectName(newEmp.getProjectName());
+		master.setIrm(newEmp.getIrm());
+		master.setSrm(newEmp.getSrm());
+		master.setBuh(newEmp.getBuh());
+		
+		EmployeeMaster master1 = emRepo.save(master);
+		
+		master1.setBuhId(this.getEmployeeIdByName(master.getBuh()));
+		master1.setSrmId(this.getEmployeeIdByName(master.getSrm()));
+		master1.setIrmId(this.getEmployeeIdByName(master.getIrm()));
+		
+
+		EmployeeMaster master2 = emRepo.save(master);
+		System.out.println(master2);
+		r.setStatus(true);
+		r.setMessage(sConstants.PUT_RESPONSE);
+		return new ResponseEntity(r, HttpStatus.OK);
+
+	} catch (Exception e) {
+		r.setStatus(false);
+		r.setMessage(sConstants.FAILURE_RESPONSE);
+		return new ResponseEntity(r, HttpStatus.OK);
 	}
+
+}
+
+
+//	@Override
+//	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmployeeMaster empMaster) {
+//		Response r = new Response<>();
+//		try {
+//			EmployeeMaster master = emRepo.getById(employeeId);
+//
+//			master.setEmploymentType(empMaster.getEmploymentType());
+//			master.setDepartmentName(empMaster.getDepartmentName());
+//			master
+//			
+//
+//			EmployeeMaster master1 = emRepo.save(master);
+//			System.out.println(master1);
+//			r.setStatus(true);
+//			r.setMessage(sConstants.PUT_RESPONSE);
+//			return new ResponseEntity(r, HttpStatus.OK);
+//
+//		} catch (Exception e) {
+//			r.setStatus(false);
+//			r.setMessage(sConstants.FAILURE_RESPONSE);
+//			return new ResponseEntity(r, HttpStatus.OK);
+//		}
+//
+//	}
 	
 }

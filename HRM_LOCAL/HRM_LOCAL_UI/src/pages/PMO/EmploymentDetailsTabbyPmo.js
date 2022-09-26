@@ -9,15 +9,15 @@ import {AutoCompleteComponent} from '@syncfusion/ej2-react-dropdowns';
 
 
 function EmploymentDetailsTabbyPmo(props) { 
- const onboardingId1= props.viewOnboard.employeeId;
- console.log(props)
-console.log(onboardingId1);
+ const employeeId= props.viewOnboard.employeeId;
+ console.log(props.employeeId)
+console.log(employeeId);
     const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [irm, setIrm] = useState('');
   const [step, setStep] = useState(0);
-  const handleClose = () => setShow();
+  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const forms = useRef(null);
@@ -74,6 +74,9 @@ console.log(onboardingId1);
   const handleSubmit = (e) => {     
     // let onboardingId = props.onboardID.onboardingId;
     // console.log(props.onboardID);
+    // let employeeId = props.empID.employeeId;
+    // console.log(props.employeeId);
+    // console.log(employeeId);
     e.preventDefault();
     // e.target.reset();
     const formErrors = validateForm();
@@ -83,7 +86,7 @@ console.log(onboardingId1);
       console.log("Form validation error");
     } else {
       axios    
-        .put(`/emp/updateEmploymentDetailsByEmpId/${onboardingId1}`, form)
+        .put(`/emp/updateEmploymentDetailsInPMO/${employeeId}`, form)
         .then((response) => {
         //   const user = response.data;
         //   if (user.status) {
@@ -200,10 +203,12 @@ console.log(onboardingId1);
      <Form
         ref={forms}
         className="formone"
+        size="sm"
         // noValidate
         // validated={validated}
+        handleClose={handleClose}
         style={{ padding: 10 }}
-    // onSubmit={handleSubmit}
+    onSubmit={handleSubmit}
     >
         <Row className="mb-4">
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>

@@ -152,7 +152,7 @@ const UserstoryUpdate = (props) => {
     axios
       .put(`/userStory/updateUserStoryById/${props.updateOnboard.storyId}`, {
         storyTitle: storyTitle, //
-        projectId:projectId,
+        projectId: projectId,
         projectName: projectName, //
         acceptanceCriteria: acceptanceCriteria, //
         role: role, //
@@ -231,23 +231,39 @@ const UserstoryUpdate = (props) => {
 
           </Form.Group>
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>story Title</Form.Label>
+
+            <Form.Label>storytitle</Form.Label>
+
             <Form.Control
+
               required
-              className="storyTitle"
+
               type="text"
+
               controlId="storyTitle"
-              placeholder="story Title"
-              defaultValue={props.updateOnboard.storyTitle}
+
+              placeholder="Story Title"
+
               // onChange={(event) => setclientName(event.target.value)}
-              // value={storyTitle}
+
+              // value={acceptanceCriteria}
+
+              defaultValue={props.updateOnboard.storyTitle}
+
               maxLength={30}
-              onChange={(e) => setStoryTitle("storyTitle", e.target.value)}
+
+              onChange={(e) => setStoryTitle(e.target.value)}
+
               isInvalid={!!errors.storyTitle}
+
             ></Form.Control>
+
             <Form.Control.Feedback type="invalid">
+
               {errors.storyTitle}
+
             </Form.Control.Feedback>
+
           </Form.Group>
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
