@@ -166,8 +166,19 @@ public class EmployeeMaster {
     private String intermediateQualification;
     private String sscQualification;
     private String officialMail;
+    private String onboardingStatus;
 
 
+	public EmployeeMaster(String onboardingStatus) {
+		super();
+		this.onboardingStatus = onboardingStatus;
+	}
+	public String getOnboardingStatus() {
+		return onboardingStatus;
+	}
+	public void setOnboardingStatus(String onboardingStatus) {
+		this.onboardingStatus = onboardingStatus;
+	}
 	public String getIntermediateQualification() {
 		return intermediateQualification;
 	}

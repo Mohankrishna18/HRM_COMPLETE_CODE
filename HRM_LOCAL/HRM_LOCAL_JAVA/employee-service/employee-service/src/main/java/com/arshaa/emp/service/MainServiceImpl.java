@@ -207,7 +207,15 @@ public class MainServiceImpl implements MainService {
 //				getOnboarding.setTaaApprovalComment(newOnboard.getTaaApprovalComment());
 //				getOnboarding.setTaaHeadApprovalComment(newOnboard.getTaaHeadApprovalComment());
 //				getOnboarding.setPmoApprovalComment(newOnboard.getPmoApprovalComment());
-				getOnboarding.setCeoApprovalComment(newOnboard.getCeoApprovalComment());
+//				getOnboarding.setCeoApprovalComment(newOnboard.getCeoApprovalComment());
+				getOnboarding.setOfferLetter(newOnboard.isOfferLetter());
+				getOnboarding.setSalarySlip(newOnboard.isSalarySlip());
+				getOnboarding.setHikeLetter(newOnboard.isHikeLetter());
+				getOnboarding.setForm16(newOnboard.isForm16());
+				getOnboarding.setEducationalDocuments(newOnboard.isEducationalDocuments());
+				getOnboarding.setResignation(newOnboard.isResignation());
+				getOnboarding.setIdProof(newOnboard.isIdProof());
+//				getOnboarding.setHrApprovalComment(newOnboard.);
 //				getOnboarding.setProjectName(newOnboard.getProjectName());
 //				getOnboarding.setSecondaryPhoneNumber(newOnboard.getSecondaryPhoneNumber());
 //				getOnboarding.setBand(newOnboard.getBand());
@@ -215,7 +223,7 @@ public class MainServiceImpl implements MainService {
 				Onboarding saveList = onRepo.save(getOnboarding);
 
 				// if (saveList.isApprovedStatus() == true) {
-				if (getOnboarding.getOnboardingStatus().equalsIgnoreCase("CEOApproved")) {
+				if (getOnboarding.getOnboardingStatus().equalsIgnoreCase("HRApproved")) {
 					java.sql.Date tSqlDate = new java.sql.Date(newOnboard.getApprovedDate().getTime());
 					newOnboard.setApprovedDate(tSqlDate);
 					getOnboarding.setRejectedStatus(false);
@@ -350,6 +358,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setOnboardingId(getOnboarding.getOnboardingId());
 					employeeMaster.setUanNumber(getOnboarding.getUanNumber());
 					employeeMaster.setProjectName(getOnboarding.getProjectName());
+					employeeMaster.setOnboardingStatus(getOnboarding.getOnboardingStatus());
 					EmployeeMaster em = emRepo.save(employeeMaster);
 
 					// posting EmployeeId in Userproject Table
@@ -1836,4 +1845,74 @@ public class MainServiceImpl implements MainService {
 			return new ResponseEntity(r, HttpStatus.OK);
 		}
 }
+
+
+	@Override
+	public ResponseEntity updateCEOApproval(String onboardingId, HrApprovalStatus newOnboard) {
+		Response r = new Response();
+		try {
+			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+			getOnboarding.setCeoApprovalComment(newOnboard.getCeoApprovalComment());
+			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
+			Onboarding saveList = onRepo.save(getOnboarding);
+			r.setStatus(true);
+			r.setMessage("CEOApproved Successfully");
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+		
+	}
+
+
+	@Override
+	public ResponseEntity getEmployeesByOnboardingStatus(String onboardingStatus) {
+		Response r = new Response();
+		try {
+
+			List<EmployeeMaster> newDataOnboarding = emRepo.getEmployeesByOnboardingStatus(onboardingStatus);
+			r.setStatus(true);
+			r.setMessage("Data Fetching");
+			r.setData(newDataOnboarding);
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
+
+
+	@Override
+	public ResponseEntity getByOnboardingStatus(String employeeId,  EmployeeMaster newStatus) {
+		Response r = new Response();
+		try {
+			EmployeeMaster getOnboarding = emRepo.getByEmployeeId(employeeId);
+			getOnboarding.setOnboardingStatus(newStatus.getOnboardingStatus());
+			EmployeeMaster saveList = emRepo.save(getOnboarding);
+			r.setStatus(true);
+			r.setMessage("Status updated Successfully");
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
+
+
+	@Override
+	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmployeeMaster empMaster) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

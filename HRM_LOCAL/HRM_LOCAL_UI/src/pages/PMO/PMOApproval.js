@@ -157,7 +157,7 @@ function PMOApproval(props) {
                                 viewHandleClose={viewHandleClose}
                             />
                         </Tab>
-                        <Tab
+                        {/* <Tab
                             eventKey="Employment Details"
                             title="Employment Details"
                             style={{ backgroundColor: "white" }}
@@ -167,7 +167,7 @@ function PMOApproval(props) {
                                 viewHandleClose={viewHandleClose}
                             />
                                    
-                        </Tab>
+                        </Tab> */}
                         {/* <Tab
               eventKey="Employment Details"
               title="Employment Details"

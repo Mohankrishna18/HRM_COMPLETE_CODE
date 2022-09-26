@@ -82,6 +82,7 @@ import PmTaskCreation from "../pages/PmTaskCreation/PmTaskCreationMain";
 import UserStorymain from "../pages/userstory/UserStorymain";
 import MyTask from "../pages/Task/MyTaskComponents/MyTask";
 import ProjectsMain from "../pages/Projects/ProjectsMain";
+import HRConfirmationMain from "../pages/HRApproval/HRConfirmationMain";
 
 export default [
   {
@@ -513,6 +514,14 @@ export default [
   //     permission: [Roles.buhead],
 
   // },
+  {
+    component: HRConfirmationMain,
+    type: "approvals",
+    path: "/HRApproval",
+    icon: <FcApproval />,
+    title: "Approvals",
+    permission: [Roles.hrmanager],
+  },
 ];
 
 

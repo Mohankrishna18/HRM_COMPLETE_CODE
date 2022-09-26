@@ -1,8 +1,10 @@
 import React from 'react';
 
 import { Row, Col, Card, Container, Tabs, Tab } from 'react-bootstrap';
+import AssignEmploymentDetailsMain from '../AssignEmploymentDetails/AssignEmploymentDetailsMain';
 import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
 import TaskMain from '../TimeSheet/EmployeeTimesheet/TaskMain';
+import EmploymentDetailsTabbyPmo from './EmploymentDetailsTabbyPmo';
 import PMOApproval from './PMOApproval';
 
 //Empty Commit
@@ -52,6 +54,13 @@ function PMOMain() {
                   >
                     <TaskMain />
                   </Tab>
+                  <Tab
+                    eventKey="Assign Employment Details"
+                    title="Assign Employment Details "
+                    style={{ backgroundColor: "white" }}
+                  >
+                    <AssignEmploymentDetailsMain/>
+                  </Tab>
                 </Tabs>
               </Col>
             </Row>
@@ -67,10 +76,3 @@ function PMOMain() {
 }
 
 export default PMOMain;
-
-
-
-
-
-
-
