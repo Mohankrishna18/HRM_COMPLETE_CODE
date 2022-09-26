@@ -444,6 +444,26 @@ public class MainController {
     			@RequestBody HrApprovalStatus newOnboard) {
     		return serv.updateTAAApproval(onboardingId, newOnboard);
     	}
+        @PutMapping("/updateCEOApproval/{onboardingId}")
+        public ResponseEntity updateCEOApproval(@PathVariable String onboardingId,
+    			@RequestBody HrApprovalStatus newOnboard) {
+    		return serv.updateCEOApproval(onboardingId, newOnboard);
+    	}
+        @GetMapping("/getEmployeesByOnboardingStatus/{onboardingStatus}")
+		public ResponseEntity getEmployeesByOnboardingStatus(@PathVariable String onboardingStatus) {
 
 
+			return serv.getEmployeesByOnboardingStatus(onboardingStatus);
+		}
+        @PutMapping("/updateHrStatus/{employeeId}")
+        public ResponseEntity getByOnboardingStatus(@PathVariable String employeeId,
+        		@RequestBody EmployeeMaster newStatus) {
+    		return serv.getByOnboardingStatus(employeeId,newStatus);
+    	}
+        //to update irm filds in employee master
+        @PutMapping("/updateEmploymentDetailsInPMO/{employeeId}")
+    	public ResponseEntity updateEmploymentDetailsInPMO(@PathVariable String employeeId,
+    			@RequestBody EmployeeMaster empMaster) {
+    		return serv.updateEmploymentDetailsInPMOByEmployeeId(employeeId, empMaster);
+    	}
 }

@@ -9,7 +9,7 @@ import {AutoCompleteComponent} from '@syncfusion/ej2-react-dropdowns';
 
 
 function EmploymentDetailsTabbyPmo(props) { 
- const onboardingId1= props.viewOnboard.onboardingId;
+ const onboardingId1= props.viewOnboard.employeeId;
  console.log(props)
 console.log(onboardingId1);
     const [show, setShow] = useState(false);
@@ -83,7 +83,7 @@ console.log(onboardingId1);
       console.log("Form validation error");
     } else {
       axios    
-        .put(`/emp/updateEmpdDetails/${onboardingId1}`, form)
+        .put(`/emp/updateEmploymentDetailsByEmpId/${onboardingId1}`, form)
         .then((response) => {
         //   const user = response.data;
         //   if (user.status) {
@@ -167,32 +167,32 @@ console.log(onboardingId1);
     loadUsers();
   }, []);
   
-     console.log(props.viewOnboard.onboardingId);
-    const ApproveHandler = (e) => {
-        // e.prevetDefault();
-        const notify = () => toast("Approved");
-        // handleClose();
-        // const form1 = Object.assign(form, obj);
+    //  console.log(props.viewOnboard.onboardingId);
+    // const ApproveHandler = (e) => {
+    //     // e.prevetDefault();
+    //     const notify = () => toast("Approved");
+    //     // handleClose();
+    //     // const form1 = Object.assign(form, obj);
         
-        const obj = { onboardingStatus: "PMOApproved" };
-        axios.put(`/emp/updateApprovStatus/${onboardingId1}`,obj)
-        .then((res)=>{
-            console.log(res)
-            if(res.status == 200){
-                props.func();
-            }
-            else{
-                console.log('props not send')
-            }
-        })
-        .catch((err)=>{
-            console.log(err);
-            toast.error("Something wrong");
-        });
-        props.handleClose();
+    //     const obj = { onboardingStatus: "PMOApproved" };
+    //     axios.put(`/emp/updateApprovStatus/${onboardingId1}`,obj)
+    //     .then((res)=>{
+    //         console.log(res)
+    //         if(res.status == 200){
+    //             props.func();
+    //         }
+    //         else{
+    //             console.log('props not send')
+    //         }
+    //     })
+    //     .catch((err)=>{
+    //         console.log(err);
+    //         toast.error("Something wrong");
+    //     });
+    //     props.handleClose();
        
-        notify();
-      };
+    //     notify();
+    //   };
   return (
 
 <div>
