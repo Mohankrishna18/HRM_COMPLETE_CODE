@@ -88,7 +88,7 @@ function AssignEmploymentDetailsTable(props) {
                 </Modal.Header>
                 <Modal.Body>
                   <EmploymentDetailsTabbyPmo
-                  viewOnboard={viewOnboard}
+                  viewOnboard={onboardID}
                   viewHandleClose={viewHandleClose}
                   />
                 </Modal.Body>

@@ -92,7 +92,9 @@ public interface MainService {
 	public ResponseEntity updateCEOApproval(String onboardingId, HrApprovalStatus newOnboard);
 	public ResponseEntity getEmployeesByOnboardingStatus(String onboardingStatus);
 	public ResponseEntity getByOnboardingStatus(String employeeId,  EmployeeMaster newStatus);
-	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmployeeMaster empMaster);
+//	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmployeeMaster empMaster);
+	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmploymentDetails newEmp);
+
 
 
     

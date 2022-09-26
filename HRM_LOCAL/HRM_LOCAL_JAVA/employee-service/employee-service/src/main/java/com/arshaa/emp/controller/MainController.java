@@ -460,10 +460,9 @@ public class MainController {
         		@RequestBody EmployeeMaster newStatus) {
     		return serv.getByOnboardingStatus(employeeId,newStatus);
     	}
-        //to update irm filds in employee master
+        //to update irm,srm,etc filds in employee master after hr approve
         @PutMapping("/updateEmploymentDetailsInPMO/{employeeId}")
-    	public ResponseEntity updateEmploymentDetailsInPMO(@PathVariable String employeeId,
-    			@RequestBody EmployeeMaster empMaster) {
-    		return serv.updateEmploymentDetailsInPMOByEmployeeId(employeeId, empMaster);
-    	}
+		public ResponseEntity updateEmploymentDetailsInPMO(@PathVariable String employeeId,@RequestBody EmploymentDetails newEmp) {
+			return serv.updateEmploymentDetailsInPMOByEmployeeId(employeeId, newEmp);
+		}
 }

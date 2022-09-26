@@ -167,8 +167,27 @@ public class EmployeeMaster {
     private String sscQualification;
     private String officialMail;
     private String onboardingStatus;
+    private String client;
+    private String userType;
 
 
+	public EmployeeMaster(String client, String userType) {
+		super();
+		this.client = client;
+		this.userType = userType;
+	}
+	public String getClient() {
+		return client;
+	}
+	public void setClient(String client) {
+		this.client = client;
+	}
+	public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 	public EmployeeMaster(String onboardingStatus) {
 		super();
 		this.onboardingStatus = onboardingStatus;
