@@ -67,6 +67,10 @@ spring:
           uri: lb://taskService
           predicates:
             - Path=/task/**  
+        - id: UserStoryMapping
+          uri: lb://UserStoryMapping
+          predicates:
+            - Path=/userStory/**
 
         - id: documentUploadService
           uri: lb://documentUploadService
