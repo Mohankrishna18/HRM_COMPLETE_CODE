@@ -38,6 +38,7 @@ function OnboardedEmployeesTable() {
   const [addStatus, setAddStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
   const [viewStatus, setViewStatus] = useState(false);
+ 
 
   const pull_dataAdd = () => {
     setAddStatus(!addStatus);
@@ -83,7 +84,7 @@ function OnboardedEmployeesTable() {
       type: "number",
     },
     {
-      title: "Date of Joining",
+      title: "DOJ",
       field: "dateOfJoining",
       type: "date",
     },
@@ -130,8 +131,8 @@ function OnboardedEmployeesTable() {
           </Button>
         </Modal.Footer> */}
       </Modal>
-      <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-        <Modal.Header style={{ backgroundColor: "#FF9E14" }}>
+      <Modal show={viewShow} static={true} centered onHide={handleClose} size="xl"  style={{paddingBottom :"500px"}}>
+        <Modal.Header closeButton onClick={viewHandleClose} style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -139,7 +140,7 @@ function OnboardedEmployeesTable() {
             viewOnboard={viewOnboard}
             // func={pull_data}
             viewHandleClose={viewHandleClose}
-          /> */}
+          /> */} 
 
           <Tabs
             defaultActiveKey="Personal Details"
@@ -219,9 +220,6 @@ function OnboardedEmployeesTable() {
           <Button variant="secondary" onClick={viewHandleClose}>
             Close
           </Button>
-          {/* <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button> */}
         </Modal.Footer>
       </Modal>
 

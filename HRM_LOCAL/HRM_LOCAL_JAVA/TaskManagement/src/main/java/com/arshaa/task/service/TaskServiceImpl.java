@@ -1,13 +1,20 @@
 package com.arshaa.task.service;
 
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
 import com.arshaa.task.entity.TaskEntity;
 import com.arshaa.task.modal.TaskResponse;
+import com.arshaa.task.modal.TeamMemberEmployeeName;
+//import com.arshaa.task.modal.TeamMemberEmployeeName;
 import com.arshaa.task.repository.TaskRepository;
 
 
@@ -16,17 +23,27 @@ public class TaskServiceImpl implements TaskService {
 	
 	@Autowired
  	private TaskRepository taskRepo;
+	@Autowired
+    @Lazy
+    private RestTemplate template;
 
-//	@Override
-//	public ResponseEntity addTask(TaskEntity t) {
-//		return new ResponseEntity(taskRepo.save(t),HttpStatus.OK);
-//	}
 
+	
+	// Add Task
+	
 	@Override
 	public ResponseEntity addTask(TaskEntity t) {
+		
+	String tmUrl = "http://empService/emp/getEmployeeNameByEmployeeId/";
+	
 		TaskResponse r = new TaskResponse<>();
 		try {
-			TaskEntity addTaskData = taskRepo.save(t);
+			TeamMemberEmployeeName empName = template.getForObject(tmUrl+t.getAssignedTo(), TeamMemberEmployeeName.class);
+	        t.setEmployeeName(empName.getEmployeeName());
+		    t.setEmployeeId(t.getAssignedTo());
+
+	        t.setAssignedTo(empName.getEmployeeName());
+		    TaskEntity addTaskData = taskRepo.save(t);
 			r.setStatus(true);
 			r.setMessage("Data added successfully");
 			r.setData(addTaskData);
@@ -38,6 +55,8 @@ public class TaskServiceImpl implements TaskService {
 			return new ResponseEntity(r, HttpStatus.OK);
 		}
 	}
+	
+	// Get Tasks
 	
 	@Override
 	public ResponseEntity getAllTasks() {
@@ -61,21 +80,38 @@ public class TaskServiceImpl implements TaskService {
 			return new ResponseEntity(r, HttpStatus.OK);
 		}
 	}
+	
+	//Update task
 
 	@Override
 	public ResponseEntity updateTasks(int taskId, TaskEntity taskUpdate) {
 		TaskResponse r = new TaskResponse<>();
 		try {
 			TaskEntity taskEntity = taskRepo.getById(taskId);
-			taskEntity.setProject(taskUpdate.getProject());
-			taskEntity.setTaskName(taskUpdate.getTaskName());
-			taskEntity.setTaskType(taskUpdate.getTaskType());
-			taskEntity.setDuration(taskUpdate.getDuration());
+//			taskEntity.setprojectName(taskUpdate.getProjectName())
+//			taskEntity.setTaskName(taskUpdate.getTaskName());
+//			taskEntity.setTaskType(taskUpdate.getTaskType());
+//			taskEntity.setDuration(taskUpdate.getDuration());
+//			taskEntity.setDescription(taskUpdate.getDescription());
+//			taskEntity.setFromDate(taskUpdate.getFromDate());
+//			taskEntity.setToDate(taskUpdate.getToDate());
+//			taskEntity.setStatus(taskUpdate.getStatus());
+//			taskEntity.setPriority(taskUpdate.getPriority());
+			taskEntity.setActualHours(taskUpdate.getActualHours());
 			taskEntity.setDescription(taskUpdate.getDescription());
-			taskEntity.setFromDate(taskUpdate.getFromDate());
-			taskEntity.setToDate(taskUpdate.getToDate());
-			taskEntity.setStatus(taskUpdate.getStatus());
+			taskEntity.setEstimatedHours(taskUpdate.getEstimatedHours());
+			taskEntity.setPlannedStartDate(taskUpdate.getPlannedStartDate());
 			taskEntity.setPriority(taskUpdate.getPriority());
+			taskEntity.setStatus(taskUpdate.getStatus());
+			taskEntity.setTaskTitle(taskUpdate.getTaskTitle());
+			taskEntity.setTaskType(taskUpdate.getTaskType());
+			taskEntity.setPlannedEndDate(taskUpdate.getPlannedEndDate());
+			taskEntity.setUserId(taskUpdate.getUserId());
+			taskEntity.setUserStory(taskUpdate.getUserStory());
+			taskEntity.setAssignDate(taskUpdate.getAssignDate());
+			taskEntity.setAssignedTo(taskUpdate.getAssignedTo());
+		    taskEntity.setProjectName(taskUpdate.getProjectName());
+			taskEntity.setProjectId(taskUpdate.getProjectId());
 			
 			TaskEntity task1= taskRepo.save(taskEntity);
 			System.out.println(task1);
@@ -94,6 +130,8 @@ public class TaskServiceImpl implements TaskService {
 		
 	}
 
+	// Delete Task
+	
 	@Override
 	public ResponseEntity deleteTask(int taskId) {
 		TaskResponse r = new TaskResponse<>();
@@ -108,14 +146,80 @@ public class TaskServiceImpl implements TaskService {
 			return new ResponseEntity(r,HttpStatus.OK);
 			
 		}
+		
+		
 		 
 	}
-
-
-
-
-
 	
+  @Override
+  public List<TaskEntity> getTaskByUserId(String userId)
+  {
+	  TaskResponse r = new TaskResponse<>();
+	  try
+	  {
+		  List<TaskEntity> t = taskRepo.getTaskByUserId(userId);
+		  r.setMessage("entity got");
+		  r.setStatus(true);
+		  r.setData(t);
+		  return t;
+	  }
+	  catch(Exception e) {
+			r.setMessage("cann't get");
+			r.setStatus(false);
+		
+			
+		}
+	return null;
+  }
+   
+  public List<TaskEntity> getTaskByAssignedTo(String assignedTo)
+  {
+	  TaskResponse r = new TaskResponse<>();
+	  try {
+		  List<TaskEntity> t = taskRepo.getTaskByAssignedTo(assignedTo);
+		  r.setMessage("entity got");
+		  r.setStatus(true);
+		  r.setData(t);
+		  return t;
+	  }
+	  catch(Exception e) {
+			r.setMessage("cann't get");
+			r.setStatus(false);
+		
+			
+		}
+	return null;
+  }
 
-	
+@Override
+public List<TaskEntity> getTaskByEmployeeId(String employeeId) 
+{
+	 TaskResponse r = new TaskResponse<>();
+	  try {
+		  List<TaskEntity> t = taskRepo.getTaskByEmployeeId(employeeId);
+		  r.setMessage("entity got");
+		  r.setStatus(true);
+		  r.setData(t);
+		  return t;
+	  }
+	  catch(Exception e) {
+			r.setMessage("cann't get");
+			r.setStatus(false);
+		
+			
+		}
+	return null;
 }
+
+
+
+  
+  
+			  
+  }
+
+
+	
+
+	
+

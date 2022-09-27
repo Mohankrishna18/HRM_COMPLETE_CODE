@@ -8,91 +8,235 @@ function PersonalDetailsTab(props) {
   const userData = sessionStorage.getItem("userdata");
   const userData1 = JSON.parse(userData);
   const employeeid = userData1.data.employeeId;
+  const handleClose = () => setShow();
 
-  const payload = {
-    employeeId,
-    firstName,
-    lastName,
-    middleName,
-    dateOfBirth,
-    primaryPhoneNumber,
-    secondaryPhoneNumber,
-    email,
-    primarySkills,
-    secondarySkills,
-    bloodGroup,
-    gender,
-    maritalStatus,
-  };
+  // const payload = {
+  //   employeeId,
+  //   firstName,
+  //   lastName,
+  //   middleName,
+  //   dateOfBirth,
+  //   primaryPhoneNumber,
+  //   secondaryPhoneNumber,
+  //   email,
+  //   primarySkills,
+  //   secondarySkills,
+  //   bloodGroup,
+  //   gender,
+  //   maritalStatus,
+  // };
 
-  const [ferrors, setFErrors] = useState("");
-  const [serror, setSerror] = useState("");
-  const [thirderrors, setThirdErrors] = useState("");
-  const [fourerror, setFourerror] = useState("");
-  const [fiveerrors, setFiveErrors] = useState("");
-  const [sixerror, setSixerror] = useState("");
-  const [sevenerrors, setSevenErrors] = useState("");
-  const [eighterror, setEighterror] = useState("");
-  const [nineerrors, setNineErrors] = useState("");
-  const [tenerror, setTenerror] = useState("");
+  // const [ferrors, setFErrors] = useState("");
+  // const [serror, setSerror] = useState("");
+  // const [thirderrors, setThirdErrors] = useState("");
+  // const [fourerror, setFourerror] = useState("");
+  // const [fiveerrors, setFiveErrors] = useState("");
+  // const [sixerror, setSixerror] = useState("");
+  // const [sevenerrors, setSevenErrors] = useState("");
+  // const [eighterror, setEighterror] = useState("");
+  // const [nineerrors, setNineErrors] = useState("");
+  // const [tenerror, setTenerror] = useState("");
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [middleName, setMiddleName] = useState(" ");
-  const [primaryPhoneNumber, setPrimaryPhoneNumber] = useState(" ");
-  const [secondaryPhoneNumber, setSecondaryPhone] = useState("");
-  const [dateOfBirth, setDateOfBirth] = useState("");
-  const [employeeId, setEmployeeId] = useState("");
-  const [primarySkills, setPrimarySkills] = useState("");
-  const [secondarySkills, setSecondarySkills] = useState("");
-  const [email, setEmail] = useState("");
-  const [bloodGroup, setBloodGroup] = useState("");
-  const [gender, setGender] = useState("");
-  const [maritalStatus, setMaritalStatus] = useState("");
-  const [dateOfJoining, setDateOfJoining] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [middleName, setMiddleName] = useState(" ");
+  // const [primaryPhoneNumber, setPrimaryPhoneNumber] = useState(" ");
+  // const [secondaryPhoneNumber, setSecondaryPhone] = useState("");
+  // const [dateOfBirth, setDateOfBirth] = useState("");
+  // const [employeeId, setEmployeeId] = useState("");
+  // const [primarySkills, setPrimarySkills] = useState("");
+  // const [secondarySkills, setSecondarySkills] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [bloodGroup, setBloodGroup] = useState("");
+  // const [gender, setGender] = useState("");
+  // const [maritalStatus, setMaritalStatus] = useState("");
+  // const [dateOfJoining, setDateOfJoining] = useState("");
 
-  useEffect(() => {
-    axios.get(`/emp/getPersonalDetails/${employeeid}`).then((response) => {
-      setEmployeeId(response.data.data.employeeId);
-      setFirstName(response.data.data.firstName);
-      setLastName(response.data.data.lastName);
-      setSecondaryPhone(response.data.data.secondaryPhoneNumber);
-      setEmployeeId(response.data.data.employeeId);
-      setFirstName(response.data.data.firstName);
-      setMiddleName(response.data.data.middleName);
-      setLastName(response.data.data.lastName);
-      setPrimaryPhoneNumber(response.data.data.primaryPhoneNumber);
-      setSecondaryPhone(response.data.data.secondaryPhoneNumber);
-      setEmail(response.data.data.email);
-      setDateOfBirth(response.data.data.dateOfBirth);
-      setBloodGroup(response.data.data.bloodGroup);
-      setGender(response.data.data.gender);
-      setMaritalStatus(response.data.data.maritalStatus);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get(`/emp/getPersonalDetails/${employeeid}`).then((response) => {
+  //     setEmployeeId(response.data.data.employeeId);
+  //     setFirstName(response.data.data.firstName);
+  //     setLastName(response.data.data.lastName);
+  //     setSecondaryPhone(response.data.data.secondaryPhoneNumber);
+  //     setEmployeeId(response.data.data.employeeId);
+  //     setFirstName(response.data.data.firstName);
+  //     setMiddleName(response.data.data.middleName);
+  //     setLastName(response.data.data.lastName);
+  //     setPrimaryPhoneNumber(response.data.data.primaryPhoneNumber);
+  //     setSecondaryPhone(response.data.data.secondaryPhoneNumber);
+  //     setEmail(response.data.data.email);
+  //     setDateOfBirth(response.data.data.dateOfBirth);
+  //     setBloodGroup(response.data.data.bloodGroup);
+  //     setGender(response.data.data.gender);
+  //     setMaritalStatus(response.data.data.maritalStatus);
+  //   });
+  // }, []);
 
-  const changeHandler = async (e) => {
-    e.preventDefault();
-    await axios.put(`/emp/updatePersonalDetails/${employeeid}`, { 
-      employeeId,
-      firstName,
-      lastName,
-      middleName,
-      dateOfBirth,
-      primaryPhoneNumber,
-      secondaryPhoneNumber,
-      email,
-      primarySkills,
-      secondarySkills,
-      bloodGroup,
-      gender,
-      maritalStatus,
-    });
-    toast.success("Form Submitted Successfully");
-  };
+  // const changeHandler = async (e) => {
+  //   e.preventDefault();
+  //   await axios.put(`/emp/updatePersonalDetails/${employeeid}`, { 
+  //     employeeId,
+  //     firstName,
+  //     lastName,
+  //     middleName,
+  //     dateOfBirth,
+  //     primaryPhoneNumber,
+  //     secondaryPhoneNumber,
+  //     email,
+  //     primarySkills,
+  //     secondarySkills,
+  //     bloodGroup,
+  //     gender,
+  //     maritalStatus,
+  //   });
+  //   toast.success("Form Submitted Successfully");
+  // };
 
+  var tempDate = new Date(props.viewOnboard.dateOfBirth);
+
+  var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+console.log(dob)
   return (
     <div>
+
+       <Card.Title>
+        <Row>
+          <Col> <h5>Personal Information:</h5></Col>
+          
+       </Row>
+      
+      </Card.Title>
+      <Card.Body >
+      <Row>
+        <Col>
+        <Row style={{ paddingLeft: 55, paddingBottom: 30 ,paddingTop:20}}>
+          <Col>
+            <Card.Subtitle>
+              First Name
+            </Card.Subtitle>
+          </Col>
+          <Col md={{ offset: 1 }}>
+            <Card.Subtitle style={{ color: "#999897" }}>
+              {props.viewOnboard.firstName}
+            </Card.Subtitle>
+          </Col>
+        </Row>
+        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+          <Col>
+            <Card.Subtitle>
+           Middle Name
+            </Card.Subtitle>
+          </Col>
+          <Col md={{ offset: 1 }}>
+            <Card.Subtitle style={{ color: "#999897" }}>
+              {props.viewOnboard.middleName}
+            </Card.Subtitle>
+          </Col>
+        </Row>
+        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+          <Col>
+          
+            <Card.Subtitle>
+           Last Name
+            </Card.Subtitle>
+          </Col>
+          <Col md={{ offset: 1 }}>
+            <Card.Subtitle style={{ color: "#999897" }}>
+              {props.viewOnboard.lastName}
+            </Card.Subtitle>
+          </Col>
+        </Row>
+    
+        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+          <Col>
+            <Card.Subtitle>
+             Email
+            </Card.Subtitle>
+          </Col>
+          <Col md={{ offset: 1 }}>
+            <Card.Subtitle style={{ color: "#999897" }}>
+              {props.viewOnboard.email}
+            </Card.Subtitle>
+          </Col>
+        </Row>
+        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+          <Col>
+            <Card.Subtitle
+            >
+              Phone Number:
+            </Card.Subtitle>
+          </Col>
+          <Col md={{ offset: 1 }}>
+            <Card.Subtitle style={{ color: "#999897" }}>
+              {props.viewOnboard.phoneNumber}
+              {console.log(props.viewOnboard.phoneNumber)}
+            </Card.Subtitle>
+          </Col>
+        </Row>
+        </Col>
+        <Col>
+        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+          <Col>
+            <Card.Subtitle
+
+            >
+              Date of Birth:
+            </Card.Subtitle>
+          </Col>
+          <Col md={{ offset: 1 }}>
+          {props.viewOnboard.dateOfBirth ? (<Card.Subtitle style={{ color: "#999897" }}>
+                                  {dob}
+                                </Card.Subtitle>) : (<div></div>)}
+
+          </Col>
+        </Row>
+        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+          <Col>
+            <Card.Subtitle
+            >
+              Blood Group:
+            </Card.Subtitle>
+          </Col>
+          <Col md={{ offset: 1 }}>
+            <Card.Subtitle style={{ color: "#999897" }} >
+              {props.viewOnboard.bloodGroup}
+            </Card.Subtitle>
+          </Col>
+        </Row>
+        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+          <Col>
+            <Card.Subtitle style={{}}
+            >
+              Gender:
+            </Card.Subtitle>
+          </Col>
+          <Col md={{ offset: 1 }}>
+            <Card.Subtitle style={{ color: "#999897" }}>
+              {props.viewOnboard.gender}
+            </Card.Subtitle>
+          </Col>
+        </Row>
+        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+          <Col>
+            <Card.Subtitle>
+              Marital Status:
+            </Card.Subtitle>
+          </Col>
+          <Col md={{ offset: 1 }}>
+            <Card.Subtitle style={{ color: "#999897" }}>
+              {props.viewOnboard.maritalStatus}
+            </Card.Subtitle>
+          </Col>
+          </Row>
+        </Col>
+        
+      </Row>
+        
+
+       
+        
+      </Card.Body>
+
       {/* <Card
         style={{
           marginLeft: 8,
@@ -106,7 +250,7 @@ function PersonalDetailsTab(props) {
         </Card.Title>
       </Card> */}
 
-      <Form onSubmit={(e) => changeHandler(e)} style={{ padding: 10 }}>
+      {/* <Form onSubmit={(e) => changeHandler(e)} style={{ padding: 10 }}>
         <Row className="mb-5">
           <Form.Group
             as={Col}
@@ -239,7 +383,7 @@ function PersonalDetailsTab(props) {
           <Row></Row>
         </Row>
         
-      </Form>
+      </Form> */}
     </div>
   );
 }

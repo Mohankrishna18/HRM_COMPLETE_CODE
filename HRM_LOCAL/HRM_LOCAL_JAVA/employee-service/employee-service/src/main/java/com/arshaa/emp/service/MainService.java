@@ -80,12 +80,23 @@ public interface MainService {
     public ResponseEntity getUsersNamesByBand();
 	public ResponseEntity getDetailsforPMOByonboardingStatus(String onboardingStatus);
 	public ResponseEntity updateReject(String onboardingId,HrApprovalStatus newOnboard);
-	public ResponseEntity getIrmByEmployeeId(String employeeId);
-	public ResponseEntity getSrmByEmployeeId(String employeeId);
+	public ResponseEntity getIrmIdByEmployeeId(String employeeId);
+	public ResponseEntity getSrmIdByEmployeeId(String employeeId);
 	public ResponseEntity updateEmploymentDetailsByOnboardId(EmploymentDetails empd, String onboardingId);
 	public ResponseEntity EmploymentDetailsByOnboardId(EmploymentDetails emps,String onboardingId);
 	
 	String getEmployeeIdByName(String fullName);
+	public ResponseEntity updateTAAHeadApproval(String onboardingId, HrApprovalStatus newOnboard);
+	public ResponseEntity updatePMOApproval(String onboardingId, HrApprovalStatus newOnboard);
+	public ResponseEntity updateTAAApproval(String onboardingId, HrApprovalStatus newOnboard);
+	public ResponseEntity updateCEOApproval(String onboardingId, HrApprovalStatus newOnboard);
+	public ResponseEntity getEmployeesByOnboardingStatus(String onboardingStatus);
+	public ResponseEntity getByOnboardingStatus(String employeeId,  EmployeeMaster newStatus);
+//	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmployeeMaster empMaster);
+	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmploymentDetails newEmp);
+
+
+
     
     
 }

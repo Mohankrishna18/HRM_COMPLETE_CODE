@@ -10,6 +10,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import { BASE_URL } from "../../../Constant";
 
 
 function EducationalDetailsTab() {
@@ -17,6 +18,8 @@ function EducationalDetailsTab() {
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
+
 
 
     const [twentytwoerror, setTwentytwoerror] = useState("");
@@ -44,11 +47,6 @@ function EducationalDetailsTab() {
     const [fourtyfour, setFourtyfour] = useState("");
     const [fourtyfive, setFourtyfive] = useState("");
     const [fourtysix, setFourtysix] = useState("");
-    const [fourtyseven, setFourtyseven] = useState("");
-    const [fourtyeight, setFourtyeight] = useState("");
-    const [fourtynine, setFourtynine] = useState("");
-
-
     const [currentPincode, setCurrentPincode] = useState("");
     const [postgraduationType, setTypeOfPostGraduation] = useState("");
     const [postgraduationBoardOfUniversity, setPostgraduationBoardOfUniversity] = useState("");
@@ -68,6 +66,7 @@ function EducationalDetailsTab() {
     // const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
     // const [graduationPassedYear, setGraduationPassedYear] = useState("");
     const [graduationGrade, setGraduationGrade] = useState("");
+    const [intermediateQualification, setIntermediateQualification] = useState("");
     const [intermediateBoardOfUniversity, setIntermediateBoardOfUniversity] = useState("");
     const [intermediateCollegeName, setIntermediateCollegeName] = useState("");
     const [intermediateCollegeCity, setIntermediateCollegeCity] = useState("");
@@ -75,6 +74,7 @@ function EducationalDetailsTab() {
     const [intermediateJoiningYear, setIntermediateJoiningYear] = useState("");
     const [intermediatePassedYear, setIntermediatePassedYear] = useState("");
     const [intermediateGrade, setIntermediateGrade] = useState("");
+    const [sscQualification, setSscQualification] = useState("");
     const [sscBoardOfUniversity, setSscBoardOfUniversity] = useState("");
     const [sscSchoolName, setSscSchoolName] = useState("");
     const [sscSchoolCity, setSscSchoolCity] = useState("");
@@ -86,11 +86,21 @@ function EducationalDetailsTab() {
     const [ifscCode, setIfscCode] = useState("");
     const [branch, setBranch] = useState("");
 
+    const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
+    useEffect(() => {
+        axios
+            .get(`/emp/getEmployeeDataByEmployeeId/${empId}`)
+            .then((response) => {
+                setGetEmployeeDetails(response.data.data);
+            });
+    }, []);
+    console.log(getEmployeeDetails.onboardingId);
+    const obdId = getEmployeeDetails.onboardingId;
 
 
     useEffect(() => {
         axios
-            .get(`/emp/getEducationDetails/${employeeid}`)
+            .get(`/emp/getEducationDetails/${empId}`)
             .then((response) => {
                 setTypeOfPostGraduation(response.data.data.postgraduationType)
                 setPostgraduationBoardOfUniversity(response.data.data.postgraduationBoardOfUniversity);
@@ -108,6 +118,7 @@ function EducationalDetailsTab() {
                 setGraduationJoiningYear(response.data.data.graduationJoiningYear);
                 setGraduationPassedYear(response.data.data.graduationPassedYear);
                 setGraduationGrade(response.data.data.graduationGrade);
+                setIntermediateQualification(response.data.data.intermediateQualification);
                 setIntermediateBoardOfUniversity(response.data.data.intermediateBoardOfUniversity);
                 setIntermediateCollegeName(response.data.data.intermediateCollegeName);
                 setIntermediateCollegeCity(response.data.data.intermediateCollegeCity);
@@ -115,6 +126,7 @@ function EducationalDetailsTab() {
                 setIntermediateJoiningYear(response.data.data.intermediateJoiningYear);
                 setIntermediatePassedYear(response.data.data.intermediatePassedYear);
                 setIntermediateGrade(response.data.data.intermediateGrade);
+                setSscQualification(response.data.data.sscQualification);
                 setSscBoardOfUniversity(response.data.data.sscBoardOfUniversity);
                 setSscSchoolName(response.data.data.sscSchoolName);
                 setSscSchoolCity(response.data.data.sscSchoolCity);
@@ -128,7 +140,7 @@ function EducationalDetailsTab() {
     const changeHandler = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`/emp/updateEducationalDetails/${employeeid}`, {
+            await axios.put(`/emp/updateEducationalDetails/${empId}`, {
                 postgraduationType,
                 postgraduationBoardOfUniversity,
                 postgraduationInstituteName,
@@ -145,6 +157,7 @@ function EducationalDetailsTab() {
                 graduationJoiningYear,
                 graduationPassedYear,
                 graduationGrade,
+                intermediateQualification,
                 intermediateBoardOfUniversity,
                 intermediateCollegeName,
                 intermediateCollegeCity,
@@ -152,6 +165,7 @@ function EducationalDetailsTab() {
                 intermediateJoiningYear,
                 intermediatePassedYear,
                 intermediateGrade,
+                sscQualification,
                 sscBoardOfUniversity,
                 sscSchoolName,
                 sscSchoolCity,
@@ -168,6 +182,22 @@ function EducationalDetailsTab() {
         }
     };
 
+    const viewUploadFile = () => {
+        // window.open(`api/get/image/${imageName}/${onboardingId}`)
+        axios
+            .get(`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${obdId}`, {
+                contentType: "application/pdf",
+            })
+            .then((res) => {
+                console.log(res.data.url);
+                setImageName(res.data);
+                setUrl(res.data.url);
+                saveAs(url);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
 
     return (
@@ -194,7 +224,7 @@ function EducationalDetailsTab() {
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
-                            id="panel1a-header" 
+                            id="panel1a-header"
                         >
                             <Typography >Postgraduation Details</Typography>
                         </AccordionSummary>
@@ -202,11 +232,11 @@ function EducationalDetailsTab() {
                             <Typography>
                                 <Row>
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                        <Form.Label>Type of Post Graduation </Form.Label>
+                                        <Form.Label>Qualification </Form.Label>
                                         <Form.Select
                                             required
                                             type="text"
-                                            placeholder="Type Of Post Graduation"
+                                            placeholder="Qualification"
                                             controlId="postgraduationType"
                                             name="postgraduationType"
                                             value={postgraduationType}
@@ -497,11 +527,11 @@ function EducationalDetailsTab() {
                     </Card>
 
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Type of Graduation *</Form.Label>
+                        <Form.Label>Qualification*</Form.Label>
                         <Form.Select
                             required
                             type="text"
-                            placeholder="Type Of Graduation"
+                            placeholder="Qualification"
                             controlId="graduationType"
                             maxLength={50}
                             name="graduationType"
@@ -723,6 +753,34 @@ function EducationalDetailsTab() {
                             12th Grade/Intermediate Details
                         </Card.Title>
                     </Card>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Qualification * </Form.Label>
+                        <Form.Select
+                            required
+                            type="text"
+                            placeholder="Qualification"
+                            controlId="intermediateQualification"
+                            name="intermediateQualification"
+                            value={intermediateQualification}
+                            maxLength={50}
+                            onChange={(e) => {
+                                setIntermediateQualification(e.target.value)
+                                // if (graduationGrade === "") {
+                                //     setThirtyoneerror("Grade is Required");
+                                // }
+                                // else {
+                                //     setThirtyoneerror("")
+                                // }
+                            }}
+                        >
+                            <option>Select </option>
+                            <option value="Intermediate">Intermediate </option>
+                            <option value="12th Grade">12th Grade </option>
+                        </Form.Select>
+                        <Form.Control.Feedback type="invalid">
+
+                        </Form.Control.Feedback>
+                    </Form.Group>
 
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Board * </Form.Label>
@@ -910,6 +968,32 @@ function EducationalDetailsTab() {
                             10th Grade details
                         </Card.Title>
                     </Card>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Qualification * </Form.Label>
+                        <Form.Select
+                            required
+                            type="text"
+                            placeholder="Qualification"
+                            controlId="sscQualification"
+                            maxLength={50}
+                            onChange={(e) => {
+                                setSscQualification(e.target.value)
+                                // if (intermediateGrade === "") {
+                                //     setThirtyeighterror("Grade is Required");
+                                // }
+                                // else {
+                                //     setThirtyeighterror("")
+                                // }
+                            }}
+                            name="sscQualification"
+                        >
+                            <option>Select </option>
+                            <option value="SSC">SSC</option>
+                        </Form.Select>
+                        <Form.Control.Feedback type="invalid">
+
+                        </Form.Control.Feedback>
+                    </Form.Group>
 
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Board *</Form.Label>
@@ -1086,18 +1170,32 @@ function EducationalDetailsTab() {
                             {fourtyfive}
                         </Form.Control.Feedback>
                     </Form.Group>
-                </Row>
 
-                <Button
-                    className="rounded-pill" md="3"
-                    style={{ backgroundColor: "#eb4509", float: "right" }}
-                    type="submit"
-                    size="lg"
-                >
-                    Submit
-                </Button>
+                    <Col md="6" style={{ padding: 70 }}>
+                        <a
+                            href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${obdId}`}
+                        >
+                            Download Documents
+                        </a>
+                    </Col>
+                    <Row>
+                        <Col>
+                            <Button
+                                className="rounded-pill" md="3"
+                                style={{ backgroundColor: "#eb4509", float: "right" }}
+                                type="submit"
+                                size="lg"
+                            >
+                                Submit
+                            </Button></Col>
+
+                    </Row>
+
+                </Row>
             </Form>
+
         </div>
     )
 }
 export default EducationalDetailsTab;
+

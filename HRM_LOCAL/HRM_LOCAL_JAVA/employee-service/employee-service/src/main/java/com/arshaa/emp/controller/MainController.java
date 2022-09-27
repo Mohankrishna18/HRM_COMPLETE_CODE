@@ -171,6 +171,11 @@ public class MainController {
 
 		return serv.getReportingManagerByEmployeeId(employeeId);
 	}
+	@GetMapping("/getEmployeeIdByReportingmanager/{projectManager}")
+    public ResponseEntity getEmployeeIdByReportingManager(@PathVariable String projectManager) {
+        
+        return eserv.getEmployeeIdByReprtingManager(projectManager);
+    }
 
 	@GetMapping("/getEmployeeIds")
 	public ResponseEntity getEmployeeId() {
@@ -185,19 +190,21 @@ public class MainController {
 // Employee Profile API's
 
 // EmployeeProfile API's
-	@PostMapping("/upload/{employeeId}")
-	public ResponseEntity<ResponseMessage> uploadFile(@PathVariable String employeeId,
-			@RequestParam("file") MultipartFile file) {
-		String message = "";
-		try {
-			epServ.store(file, employeeId);
-			message = "Uploaded the file successfully: " + file.getOriginalFilename();
-			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
-		} catch (Exception e) {
-			message = "Can't able to upload file" + file.getOriginalFilename();
-			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
-		}
-	}
+	@PostMapping("/upload/{onboardingId}")
+    public ResponseEntity<ResponseMessage> uploadFile(@PathVariable String onboardingId,
+            @RequestParam("file") MultipartFile file) {
+        String message = "";
+        try {
+            epServ.store(file, onboardingId);
+            message = "Uploaded the file successfully: " + file.getOriginalFilename();
+            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+        } catch (Exception e) {
+            message = "Can't able to upload file" + file.getOriginalFilename();
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+        }
+    }
+
+
 
 // @GetMapping("/files")
 // public ResponseEntity<List<ResponseFile>> getListFiles() {
@@ -402,13 +409,13 @@ public class MainController {
 		public ResponseEntity getIrmByEmployeeId(@PathVariable String employeeId) {
 
 
-			return serv.getIrmByEmployeeId(employeeId);
+			return serv.getIrmIdByEmployeeId(employeeId);
 		}
 		@GetMapping("/getSrmByEmployeeId/{employeeId}")
 		public ResponseEntity getSrmByEmployeeId(@PathVariable String employeeId) {
 
 
-			return serv.getSrmByEmployeeId(employeeId);
+			return serv.getSrmIdByEmployeeId(employeeId);
 		}
 //      Get calls for employees under Roles
         
@@ -422,5 +429,40 @@ public class MainController {
     		return serv.getEmployeeIdByName(fullName);
 
     	}
+        @PutMapping("/updateTAAHeadApproval/{onboardingId}")
+        public ResponseEntity updateTAAHeadApproval(@PathVariable String onboardingId,
+    			@RequestBody HrApprovalStatus newOnboard) {
+    		return serv.updateTAAHeadApproval(onboardingId, newOnboard);
+    	}
+        @PutMapping("/updatePMOApproval/{onboardingId}")
+        public ResponseEntity updatePMOApproval(@PathVariable String onboardingId,
+    			@RequestBody HrApprovalStatus newOnboard) {
+    		return serv.updatePMOApproval(onboardingId, newOnboard);
+    	}
+        @PutMapping("/updateTAAApproval/{onboardingId}")
+        public ResponseEntity updateTAAApproval(@PathVariable String onboardingId,
+    			@RequestBody HrApprovalStatus newOnboard) {
+    		return serv.updateTAAApproval(onboardingId, newOnboard);
+    	}
+        @PutMapping("/updateCEOApproval/{onboardingId}")
+        public ResponseEntity updateCEOApproval(@PathVariable String onboardingId,
+    			@RequestBody HrApprovalStatus newOnboard) {
+    		return serv.updateCEOApproval(onboardingId, newOnboard);
+    	}
+        @GetMapping("/getEmployeesByOnboardingStatus/{onboardingStatus}")
+		public ResponseEntity getEmployeesByOnboardingStatus(@PathVariable String onboardingStatus) {
 
+
+			return serv.getEmployeesByOnboardingStatus(onboardingStatus);
+		}
+        @PutMapping("/updateHrStatus/{employeeId}")
+        public ResponseEntity getByOnboardingStatus(@PathVariable String employeeId,
+        		@RequestBody EmployeeMaster newStatus) {
+    		return serv.getByOnboardingStatus(employeeId,newStatus);
+    	}
+        //to update irm,srm,etc filds in employee master after hr approve
+        @PutMapping("/updateEmploymentDetailsInPMO/{employeeId}")
+		public ResponseEntity updateEmploymentDetailsInPMO(@PathVariable String employeeId,@RequestBody EmploymentDetails newEmp) {
+			return serv.updateEmploymentDetailsInPMOByEmployeeId(employeeId, newEmp);
+		}
 }

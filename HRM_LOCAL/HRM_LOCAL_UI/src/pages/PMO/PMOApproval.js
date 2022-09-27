@@ -91,12 +91,9 @@ function PMOApproval(props) {
                 <Modal.Header closeButton>
                     <Modal.Title>Are you sure you want to Approve</Modal.Title>
                 </Modal.Header>
-                <Modal.Footer>
+                <Modal.Body>
                     <PMOApproved onboardID={onboardID} func={pull_data} handleClose={handleClose} />
-                </Modal.Footer>
-                <Modal.Footer>
-
-                </Modal.Footer>
+                </Modal.Body>
             </Modal>
             <Modal show={rejectshow} onHide={handleCloseReject}>
                 <Modal.Header closeButton>
@@ -160,7 +157,7 @@ function PMOApproval(props) {
                                 viewHandleClose={viewHandleClose}
                             />
                         </Tab>
-                        <Tab
+                        {/* <Tab
                             eventKey="Employment Details"
                             title="Employment Details"
                             style={{ backgroundColor: "white" }}
@@ -170,7 +167,7 @@ function PMOApproval(props) {
                                 viewHandleClose={viewHandleClose}
                             />
                                    
-                        </Tab>
+                        </Tab> */}
                         {/* <Tab
               eventKey="Employment Details"
               title="Employment Details"

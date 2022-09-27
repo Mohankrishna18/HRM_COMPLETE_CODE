@@ -1,0 +1,15 @@
+.scrl{
+    border: 1px solid rgb(219, 201, 201);
+  overflow-x: scroll;
+  max-height: 250px;
+  overflow-y:auto;
+}
+
+
+.scrltbl{
+    overflow-y:auto;
+}
+
+tbody{
+    overflow-y:auto;
+}
