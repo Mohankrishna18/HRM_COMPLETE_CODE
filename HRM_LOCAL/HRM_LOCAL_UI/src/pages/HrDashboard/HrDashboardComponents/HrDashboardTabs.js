@@ -6,6 +6,8 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { TabContext, TabList, TabPanel } from "@mui/lab";
+import HiringsTab from "./HiringsTab";
+import { FcAssistant, FcConferenceCall, FcLeave, FcPositiveDynamic } from "react-icons/fc";
 
 
 const HrDashboardTabs = () => {
@@ -32,12 +34,12 @@ const HrDashboardTabs = () => {
                                 <TabContext value={value}>
                                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                         <TabList onChange={handleChange} aria-label="lab API tabs example" >
-                                            <Tab label="Hirings" value="1" />
-                                            <Tab label="Employees" value="2" />
-                                            <Tab label="Leaves" value="3" />
+                                            <Tab label="Hirings" value="1" icon={<FcPositiveDynamic style={{fontSize:"25px"}}/>}></Tab>
+                                            <Tab label="Employees" value="2" icon={<FcConferenceCall style={{fontSize:"25px"}}/>} />
+                                            <Tab label="Leaves" value="3" icon={<FcLeave style={{fontSize:"25px"}}/>}/>
                                         </TabList>
                                     </Box>
-                                    <TabPanel value="1">Hirings</TabPanel>
+                                    <TabPanel value="1"><HiringsTab/></TabPanel>
                                     <TabPanel value="2">Employees</TabPanel>
                                     <TabPanel value="3">Leaves</TabPanel>
                                 </TabContext>
