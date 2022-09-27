@@ -1925,6 +1925,7 @@ public class MainServiceImpl implements MainService {
 		master.setIrm(newEmp.getIrm());
 		master.setSrm(newEmp.getSrm());
 		master.setBuh(newEmp.getBuh());
+		master.setOnboardingStatus(newEmp.getOnboardingStatus());
 		
 		EmployeeMaster master1 = emRepo.save(master);
 		

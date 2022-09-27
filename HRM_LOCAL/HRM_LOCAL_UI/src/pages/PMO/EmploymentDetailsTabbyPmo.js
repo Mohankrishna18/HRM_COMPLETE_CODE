@@ -71,7 +71,9 @@ console.log(employeeId);
    
   };
 
-  const handleSubmit = (e) => {     
+  const handleSubmit = (e) => {    
+    const obj = { onboardingStatus: "HRApprovedDone" };
+        const form1 = Object.assign(form, obj); 
     // let onboardingId = props.onboardID.onboardingId;
     // console.log(props.onboardID);
     // let employeeId = props.empID.employeeId;
@@ -86,7 +88,7 @@ console.log(employeeId);
       console.log("Form validation error");
     } else {
       axios    
-        .put(`/emp/updateEmploymentDetailsInPMO/${employeeId}`, form)
+        .put(`/emp/updateEmploymentDetailsInPMO/${employeeId}`, form1)
         .then((response) => {
         //   const user = response.data;
         //   if (user.status) {
