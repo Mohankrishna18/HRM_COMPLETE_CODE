@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.arshaa.emp.entity.ReportingManager;
+import com.arshaa.emp.model.ReportingManagerEmployeeId;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.repository.ReportingManagerRepository;
 
@@ -59,5 +60,18 @@ public class ReportingManagerServiceImpl implements ReportingManagerService {
 		}
 
 	}
+	@Override
+    public ResponseEntity getEmployeeIdByReprtingManager(String projectManager) {
+        ReportingManager getId = repo.getEmployeeIdByProjectManager(projectManager);    
+
+
+
+       ReportingManagerEmployeeId en = new ReportingManagerEmployeeId();
+        en.setEmployeeId(getId.getEmployeeId());
+
+
+
+       return new ResponseEntity(en, HttpStatus.OK);
+    }
 
 }

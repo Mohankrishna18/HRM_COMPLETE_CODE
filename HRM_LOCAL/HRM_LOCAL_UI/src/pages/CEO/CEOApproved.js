@@ -25,7 +25,7 @@ function CEOApproved(props) {
         console.log(props.onboardID);
         const obj = { onboardingStatus: "CEOApproved" };
         const form1 = Object.assign(form, obj);
-        axios.put(`/emp/updateApprovStatus/${onboardingId}`,form1)
+        axios.put(`/emp/updateCEOApproval/${onboardingId}`,form1)
         .then((res)=>{
             console.log(res)
             if(res.status == 200){

@@ -286,8 +286,46 @@ function EmploymentDetailsTab(props) {
                         <Form.Label>Reporting Manager *</Form.Label>
                         <Form.Select
                         disabled
-                            placeholder="select Gender"
+                            placeholder="select Manager"
                             value={reportingManager}
+                            onChange={(e) => {
+                                setReportingManager(e.target.value)
+                            }}
+                        >
+                            <option>Select </option>
+                            {reportingManagers.map((r) => (
+                    <option value={r.reportingmanager}>
+                        {r.reportingmanager}
+                    </option>
+                  ))}
+
+                        </Form.Select>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>IRM *</Form.Label>
+                        <Form.Select
+                        disabled
+                            placeholder="select IRM"
+                           // value={irm}
+                            onChange={(e) => {
+                                setReportingManager(e.target.value)
+                            }}
+                        >
+                            <option>Select </option>
+                            {reportingManagers.map((r) => (
+                    <option value={r.reportingmanager}>
+                        {r.reportingmanager}
+                    </option>
+                  ))}
+
+                        </Form.Select>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>SRM *</Form.Label>
+                        <Form.Select
+                        disabled
+                            placeholder="select SRM"
+                            //value={reportingManager}
                             onChange={(e) => {
                                 setReportingManager(e.target.value)
                             }}

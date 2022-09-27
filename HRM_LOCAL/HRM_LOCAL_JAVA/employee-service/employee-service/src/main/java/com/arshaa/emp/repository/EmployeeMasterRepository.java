@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 
 import com.arshaa.emp.entity.EmployeeMaster;
+import com.arshaa.emp.entity.Onboarding;
 import com.arshaa.emp.model.DesignationName;
 
 public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster,String>{
@@ -23,6 +24,9 @@ public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster,S
 	List<EmployeeMaster> getEmployeeMasterBySrm(String employeeId);
 	List<EmployeeMaster> getEmployeeMasterByIrm(String employeeId);
 	List<EmployeeMaster> getEmployeeMasterByBuh(String employeeId);	
-	EmployeeMaster getEmployeeIdByfullName(String fullName); 
+	EmployeeMaster getEmployeeIdByfullName(String fullName);
+
+	List<EmployeeMaster> getEmployeesByOnboardingStatus(String onboardingStatus); 
+	EmployeeMaster getByEmployeeId(String employeeId);
 
 }
