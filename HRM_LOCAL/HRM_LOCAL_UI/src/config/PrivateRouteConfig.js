@@ -83,6 +83,8 @@ import UserStorymain from "../pages/userstory/UserStorymain";
 import MyTask from "../pages/Task/MyTaskComponents/MyTask";
 import ProjectsMain from "../pages/Projects/ProjectsMain";
 import HRConfirmationMain from "../pages/HRApproval/HRConfirmationMain";
+import HrDashboard from "../pages/HrDashboard/HrDashboardMain";
+import HrDashboardMain from "../pages/HrDashboard/HrDashboardMain";
 
 export default [
   {
@@ -106,6 +108,14 @@ export default [
       Roles.buhead,
     ],
    // exact: true,
+  },
+  {
+    component: HrDashboardMain,
+    path: "/HrDashboard",
+    type: "myprofile",
+    icon: <FcDisapprove />,
+    title: "Dashboard",
+    permission: [Roles.hrmanager],
   },
   {
     component: MyProfileMain,
@@ -133,7 +143,7 @@ export default [
   {
     component: LeadsMain,
     path: "/leadsMain",
-    type: "null",
+    type: "configuration",
     icon: <FcOvertime />,
     title: "Leads",
     permission: [
@@ -147,7 +157,7 @@ export default [
   {
     component: ClientMain,
     path: "/clientMain",
-    type: "null",
+    type: "configuration",
     icon: <FcOvertime />,
     title: "Clients",
     permission: [
@@ -161,7 +171,7 @@ export default [
   {
     component: PmTaskCreation,
     path: "/TaskMain",
-    type: "null",
+    type: "configuration",
     icon: <FcPlanner />,
     title: "Task",
     permission: [Roles.pmohead,Roles.manager,Roles.irm,Roles.srm],
@@ -169,7 +179,7 @@ export default [
   {
     component: MyTask,
     path: "/MyTaskMain",
-    type: "null",
+    type: "configuration",
     icon: <FcPlanner />,
     title: "My Task",
     permission: [Roles.employee,Roles.pmohead,Roles.manager],
@@ -177,7 +187,7 @@ export default [
   {
     component: UserStorymain,
     path: "/Userstory",
-    type: "null",
+    type: "configuration",
     icon: <FcManager />,
     title: "Userstory",
 
@@ -193,7 +203,7 @@ export default [
   {
     component: ProjectsMain,
     path: "/Projects",
-    type: "null",
+    type: "configuration",
     icon: <FcApprove />,
     title: "Projects",
 
