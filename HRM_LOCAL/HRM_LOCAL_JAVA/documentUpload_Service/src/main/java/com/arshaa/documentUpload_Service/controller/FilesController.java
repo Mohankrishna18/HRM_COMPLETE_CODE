@@ -50,8 +50,8 @@ public class FilesController {
 	@Autowired
 	private FilePostService fileService;
 
-//	@Value("${project.image}")
-	private String path = "C:\\ArshaaDocuments\\";
+	@Value("${project.image}")
+	private String path;
 
 	// Posting Documents By Employee Id .
 	@PostMapping("/post/image/{employeeId}/{title}")
@@ -63,7 +63,7 @@ public class FilesController {
 		System.out.println(s);
 		if ((name.substring(name.lastIndexOf(".")).equalsIgnoreCase(".pdf")))
 		{
-			String fileName = this.fileService.uploadImage(path + employeeId, image);
+			String fileName = this.fileService.uploadImage(path +"/"+ employeeId, image);
 			postDto.setImageName(fileName);
 			postDto.setEmployeeId(employeeId);
 			postDto.setTitle(title);
@@ -78,24 +78,24 @@ public class FilesController {
 		}
 	}
 
-	// Getting Documents By Image Name and EmployeeId.
-	@GetMapping(value = "/get/image/{imageName}/{employeeId}")
-	public void downloadImage(@PathVariable("imageName") String imageName, @PathVariable String employeeId,
-			HttpServletResponse response) throws IOException {
-		InputStream resource = this.fileService.getResource(path + employeeId, imageName);
-		response.setContentType(MediaType.ALL_VALUE);
-		response.setHeader("Content-disposition", "attachment; filename=\"" + imageName + "\"");
-
-		ServletOutputStream url = response.getOutputStream();
-		StreamUtils.copy(resource, response.getOutputStream());
-	}
+//	// Getting Documents By Image Name and EmployeeId.
+//	@GetMapping(value = "/get/image/{imageName}/{employeeId}")
+//	public void downloadImage(@PathVariable("imageName") String imageName, @PathVariable String employeeId,
+//			HttpServletResponse response) throws IOException {
+//		InputStream resource = this.fileService.getResource(path +"/"+ employeeId, imageName);
+//		response.setContentType(MediaType.ALL_VALUE);
+//		response.setHeader("Content-disposition", "attachment; filename=\"" + imageName + "\"");
+//
+//		ServletOutputStream url = response.getOutputStream();
+//		StreamUtils.copy(resource, response.getOutputStream());
+//	}
 
 	// Getting Documents By Image Name and EmployeeId.
 		@GetMapping(value = "/get/imageByTitle/{title}/{employeeId}")
 		public void downloadImageByTitle(@PathVariable("title") String title, @PathVariable String employeeId,
 				HttpServletResponse response) throws IOException {
 			String imageName=pRepo.getImageNameByTitleAndEmployeeId(title, employeeId).getImageName();
-			InputStream resource = this.fileService.getResource(path + employeeId, imageName);
+			InputStream resource = this.fileService.getResource(path +"/"+ employeeId, imageName);
 			response.setContentType(MediaType.ALL_VALUE);
 			response.setHeader("Content-disposition", "attachment; filename=\"" + imageName + "\"");
 

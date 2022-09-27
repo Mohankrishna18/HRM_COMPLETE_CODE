@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react"; 
 import { useState } from "react";
 import { Card, FormSelect, InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
@@ -13,35 +13,53 @@ const ProjectUpdate = (props) => {
   console.log(props.updateOnboard);
 
   const [clientName, setclientName] = useState(props.updateOnboard.clientName);
+
+  const [projectName, setProjectName] = useState(
+    props.updateOnboard.projectName
+  );
+  const[businessUnit,setBusinessUnit]=useState(props.updateOnboard.businessUnit)
   
-  const [projectName, setProjectName] = useState(props.updateOnboard.projectName);
   const [startDate, setStartDate] = useState(props.updateOnboard.startDate);
 
+  const [projectManager,setProjectManager]=useState(props.updateOnboard.projectManager);
   const [endDate, setEndDate] = useState(props.updateOnboard.endDate);
   const [status, setStatus] = useState(props.updateOnboard.status);
   const [rate, setRate] = useState(props.updateOnboard.rate);
   const [priority, setPriority] = useState(props.updateOnboard.priority);
 
-  const [projectManager, setProjectManager] = useState(
-    props.updateOnboard.projectManager
-  );
   const [description, setDescription] = useState(
     props.updateOnboard.description
   );
 
+  const [employeeId, setEmployeeId] = useState(props.updateOnboard.employeeId);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [clients, setClients] = useState([]);
 
- 
-  // const loadData = async () => {
-  //   const res = await axios.get("/clientProjectMapping/getAllClients");
-  //   setClients(res.data.data);
-  //   console.log(res.data);
-  // };
-
   //   const handleClose = () => setShow();
   //   const handleShow = () => setShow(true);
+
+  // Get API's for Departments(Business Unit Head) Dropdown
+  const [departments, setDepartments] = useState([]);
+  useEffect(() => {
+    loadDepartmentsData();
+  }, []);
+
+  const loadDepartmentsData = async () => {
+    const res = await axios.get("/dept/getAllDepartments");
+    setDepartments(res.data);
+    console.log(res.data);
+  };
+
+  // Get API's for reportingManager(projectManger)
+const [reportingManager, setReportingManager] = useState([]);
+  useEffect(() => {
+    axios.get("/emp/getreportingmanager").then((response) => {
+      console.log(response.data);
+      setReportingManager(response.data.data);
+    });
+  }, []);
+
 
   const forms = useRef(null);
 
@@ -61,12 +79,14 @@ const ProjectUpdate = (props) => {
     const {
       clientName,
       projectName,
+      businessUnit,
       startDate,
       endDate,
       status,
       rate,
       priority,
       projectManager,
+
       description,
     } = form;
     const newErrors = {};
@@ -79,6 +99,9 @@ const ProjectUpdate = (props) => {
       !projectName.match(/^[aA-zZ\s]+$/)
     )
       newErrors.projectName = "Please Enter Project Name";
+
+    if (!businessUnit || businessUnit === "")
+      newErrors.businessUnit = "Please Enter a Business Unit";
     if (!startDate || startDate === "")
       newErrors.startDate = "Please Select startDate";
 
@@ -99,18 +122,33 @@ const ProjectUpdate = (props) => {
 
   //testing for commit
   const [user, setUser] = useState("");
-
+console.log(props.updateOnboard.businessUnit)
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log({
+      clientName,
+      projectName,
+      businessUnit,
+      startDate,
+      endDate,
+      rate,
+      priority,
+      status,
+      projectManager,
+      employeeId,
+      description,
+    })
     axios
       .put(
         `/clientProjectMapping/updateProjectById/${props.updateOnboard.projectId}`,
         {
           clientName,
           projectName,
+          businessUnit,
           startDate,
           endDate,
           rate,
+          employeeId,
           priority,
           status,
           projectManager,
@@ -119,12 +157,14 @@ const ProjectUpdate = (props) => {
       )
       .then((response) => {
         const user = response.data;
+        console.log(response.data.status);
         if (response.data.status) {
           props.func();
+          toast.success("Project Updated successfully");
         } else {
           console.log("Props not Send");
         }
-        toast.success("Form Submitted successfully");
+        
         // console.log(user);
       })
       .catch((err) => {
@@ -145,6 +185,23 @@ const ProjectUpdate = (props) => {
         onSubmit={handleSubmit}
       >
         <Row className="mb-4">
+        <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+            <Form.Label>Project Name</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              className="projectName"
+              placeholder="projectName "
+              controlId="projectName"
+              value={projectName}
+              onChange={(e) => setProjectName(e.target.value)}
+              isInvalid={!!errors.projectName}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors.projectName}
+            </Form.Control.Feedback>
+          </Form.Group>
+
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Client Name</Form.Label>
             <Form.Control
@@ -159,30 +216,34 @@ const ProjectUpdate = (props) => {
               disabled
               onChange={(e) => setclientName("clientName", e.target.value)}
               isInvalid={!!errors.clientName}
-            >
-            </Form.Control>
+            ></Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.clientName}
             </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Project Name</Form.Label>
-            <Form.Control
+            <Form.Label>Business Unit</Form.Label>
+            <Form.Select
               required
-              className="projectName"
               type="text"
-              controlId="projectName"
-              placeholder="Project Name"
-              // onChange={(event) => setclientName(event.target.value)}
-              value={projectName}
-              maxLength={30}
-              onChange={(e) => setProjectName("projectName", e.target.value)}
-              isInvalid={!!errors.projectName}
-            ></Form.Control>
+              placeholder="Business Unit Head"
+              controlId="businessUnit"
+              value={businessUnit}
+              onChange={(e) => setBusinessUnit(e.target.value)}
+              isInvalid={!!errors.businessUnit}
+            >
+            
+            {departments.map((department) => (
+                <option>
+                  {department.departmentName}
+                </option>
+              ))}
+            </Form.Select>
             <Form.Control.Feedback type="invalid">
-              {errors.projectName}
+              {errors.businessUnit}
             </Form.Control.Feedback>
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -198,6 +259,31 @@ const ProjectUpdate = (props) => {
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.startDate}
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            <Form.Label>Project Manager </Form.Label>
+            <Form.Select
+              required
+              className="projectManager"
+              type="text"
+              controlId="projectManager"
+              placeholder="Project Manager"
+              // onChange={(event) => setclientName(event.target.value)}
+              value={projectManager}
+              maxLength={30}
+              onChange={(e) => setProjectManager(e.target.value)}
+              isInvalid={!!errors.projectManager}
+            >
+              {reportingManager.map((reportingManagerr) => (
+                <option>
+                  {reportingManagerr.projectManager}
+                </option>
+              ))}
+            </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              {errors.projectManager}
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -226,12 +312,11 @@ const ProjectUpdate = (props) => {
               type="text"
               placeholder="Status"
               controlId="status"
-              value={status}
+              defaultValue={status}
               onChange={(e) => setStatus("status", e.target.value)}
               isInvalid={!!errors.status}
             >
-              <option> Select Status</option>
-
+    
               <option value="Active">Active</option>
 
               <option value="InActive">InActive</option>
@@ -258,20 +343,17 @@ const ProjectUpdate = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
 
-
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Priority</Form.Label>
-
             <Form.Select
               required
               type="text"
               placeholder="Priority"
               controlId="priority"
-              value={priority}
-              onChange={(e) => setPriority("priority", e.target.value)}
+              defaultValue={priority}
+              onChange={(e) => setPriority(e.target.value)}
               isInvalid={!!errors.priority}
             >
-               <option> Select Priority</option>
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
               <option value="High">High</option>
@@ -282,21 +364,7 @@ const ProjectUpdate = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Project Manager</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              name="projectManager"
-              placeholder="Project Manager"
-              controlId="projectManager"
-              value={projectManager}
-              onChange={(e) => setProjectManager(e.target.value)}
-              // onChange={changeHandler}
-            />
-          </Form.Group>
-
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+          <Form.Group as={Col} md="12" style={{ padding: 10 }}>
             <Form.Label>Description</Form.Label>
             <Form.Control
               required
@@ -319,15 +387,15 @@ const ProjectUpdate = (props) => {
                 backgroundColor: "#ff9b44",
                 borderColor: "#ff9b44",
                 // float: "right",
-                marginLeft: "200px",
-                width: "40%",
+                marginLeft: "450px",
+                width: "20%",
                 height: "120%",
                 borderRadius: "25px",
               }}
               type="submit"
               onClick={handleSubmit}
             >
-              Submit
+              Save
             </Button>
           </Col>
           {/* <Col>

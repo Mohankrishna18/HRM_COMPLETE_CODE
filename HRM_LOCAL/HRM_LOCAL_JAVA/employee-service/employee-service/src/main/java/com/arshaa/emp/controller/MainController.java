@@ -171,6 +171,11 @@ public class MainController {
 
 		return serv.getReportingManagerByEmployeeId(employeeId);
 	}
+	@GetMapping("/getEmployeeIdByReportingmanager/{projectManager}")
+    public ResponseEntity getEmployeeIdByReportingManager(@PathVariable String projectManager) {
+        
+        return eserv.getEmployeeIdByReprtingManager(projectManager);
+    }
 
 	@GetMapping("/getEmployeeIds")
 	public ResponseEntity getEmployeeId() {
@@ -439,6 +444,25 @@ public class MainController {
     			@RequestBody HrApprovalStatus newOnboard) {
     		return serv.updateTAAApproval(onboardingId, newOnboard);
     	}
+        @PutMapping("/updateCEOApproval/{onboardingId}")
+        public ResponseEntity updateCEOApproval(@PathVariable String onboardingId,
+    			@RequestBody HrApprovalStatus newOnboard) {
+    		return serv.updateCEOApproval(onboardingId, newOnboard);
+    	}
+        @GetMapping("/getEmployeesByOnboardingStatus/{onboardingStatus}")
+		public ResponseEntity getEmployeesByOnboardingStatus(@PathVariable String onboardingStatus) {
 
 
+			return serv.getEmployeesByOnboardingStatus(onboardingStatus);
+		}
+        @PutMapping("/updateHrStatus/{employeeId}")
+        public ResponseEntity getByOnboardingStatus(@PathVariable String employeeId,
+        		@RequestBody EmployeeMaster newStatus) {
+    		return serv.getByOnboardingStatus(employeeId,newStatus);
+    	}
+        //to update irm,srm,etc filds in employee master after hr approve
+        @PutMapping("/updateEmploymentDetailsInPMO/{employeeId}")
+		public ResponseEntity updateEmploymentDetailsInPMO(@PathVariable String employeeId,@RequestBody EmploymentDetails newEmp) {
+			return serv.updateEmploymentDetailsInPMOByEmployeeId(employeeId, newEmp);
+		}
 }

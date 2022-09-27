@@ -25,6 +25,13 @@ public class HrApprovalStatus {
 	private String taaHeadApprovalComment;
 	private String pmoApprovalComment;
 	private String ceoApprovalComment;
+	private boolean offerLetter;
+	private boolean salarySlip;
+	private boolean hikeLetter;
+	private boolean form16;
+	private boolean educationalDocuments;
+	private boolean idProof;
+	private boolean resignation;
 	
 	
 
@@ -186,5 +193,64 @@ public class HrApprovalStatus {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public boolean isOfferLetter() {
+		return offerLetter;
+	}
+
+	public void setOfferLetter(boolean offerLetter) {
+		this.offerLetter = offerLetter;
+	}
+
+	public boolean isSalarySlip() {
+		return salarySlip;
+	}
+
+	public void setSalarySlip(boolean salarySlip) {
+		this.salarySlip = salarySlip;
+	}
+
+	public boolean isHikeLetter() {
+		return hikeLetter;
+	}
+
+	public void setHikeLetter(boolean hikeLetter) {
+		this.hikeLetter = hikeLetter;
+	}
+
+	public boolean isForm16() {
+		return form16;
+	}
+
+	public void setForm16(boolean form16) {
+		this.form16 = form16;
+	}
+
+	public boolean isEducationalDocuments() {
+		return educationalDocuments;
+	}
+
+	public void setEducationalDocuments(boolean educationalDocuments) {
+		this.educationalDocuments = educationalDocuments;
+	}
+
+	public boolean isIdProof() {
+		return idProof;
+	}
+
+	public void setIdProof(boolean idProof) {
+		this.idProof = idProof;
+	}
+
+	public boolean isResignation() {
+		return resignation;
+	}
+
+	public void setResignation(boolean resignation) {
+		this.resignation = resignation;
+	}
+
+	
+	
 
 }

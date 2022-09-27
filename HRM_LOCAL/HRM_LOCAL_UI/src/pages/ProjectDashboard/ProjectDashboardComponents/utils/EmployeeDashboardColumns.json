@@ -1,0 +1,36 @@
+[
+    {
+        "title": "Project",
+        "field": "projectName",
+        "type": "text"
+    },
+    
+    {
+        "title": "Business Unit",
+        "field": "businessUnit",
+        "type": "text"
+    },
+    {
+        "title": "Client",
+        "field": "clientName",
+        "type": "text"
+    },
+    {
+        "title": "From Date",
+        "field": "startDate",
+        "type": "date",
+        "dateSetting": {
+            "locale": "en-GB"
+        }
+    },
+    {
+        "title": "To Date",
+        "field": "endDate",
+        "type": "date",
+        "dateSetting": {
+            "locale": "en-GB"
+        }
+    }
+    
+   
+]

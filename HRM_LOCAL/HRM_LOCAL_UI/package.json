@@ -18,12 +18,14 @@
     "@hookform/resolvers": "^2.8.8",
     "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "5.2.0",
+    "@mui/lab": "^5.0.0-alpha.99",
     "@mui/material": "5.2.8",
     "@mui/styled-engine": "5.2.0",
     "@mui/styles": "^5.5.1",
     "@mui/x-data-grid": "5.4.0",
     "@react-icons/all-files": "^4.1.0",
     "@reduxjs/toolkit": "^1.8.1",
+    "@syncfusion/ej2-react-dropdowns": "^19.3.55",
     "@testing-library/jest-dom": "5.11.4",
     "@testing-library/react": "11.1.0",
     "@testing-library/user-event": "12.1.10",
@@ -56,6 +58,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-scroll": "^1.8.7",
+    "react-select": "4.3.1",
     "react-swipeable-views": "^0.14.0",
     "react-table": "7.7.0",
     "react-tabs": "^4.1.0",
@@ -67,9 +70,7 @@
     "vertical-timeline-component-react": "^2.1.1",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5",
-    "yup": "^0.32.11",
-    "react-select": "4.3.1",
-    "@syncfusion/ej2-react-dropdowns": "^19.3.55"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "typescript": "3.3.3"
