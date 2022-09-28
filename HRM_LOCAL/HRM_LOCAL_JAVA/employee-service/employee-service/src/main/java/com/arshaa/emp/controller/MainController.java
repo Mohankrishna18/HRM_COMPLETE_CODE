@@ -465,4 +465,11 @@ public class MainController {
 		public ResponseEntity updateEmploymentDetailsInPMO(@PathVariable String employeeId,@RequestBody EmploymentDetails newEmp) {
 			return serv.updateEmploymentDetailsInPMOByEmployeeId(employeeId, newEmp);
 		}
+        
+        @GetMapping("/getData")
+        public List<EmployeeMaster> getData()
+        {
+        	System.out.println(emRepo.findEmployeeMasterCountWithParticularMonth());
+        return emRepo.findEmployeeMasterCountWithParticularMonth();
+        }
 }
