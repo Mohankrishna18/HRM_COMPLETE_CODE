@@ -26,6 +26,8 @@ public class EmployeeProfileService {
 	@Autowired
 	EmployeeMasterRepository ee;
 
+	private String onboardingId;
+
 	public int Lossofpayservice(String employeeId) {
 
 		EmployeeMaster e1 = new EmployeeMaster();
@@ -86,8 +88,8 @@ public class EmployeeProfileService {
 		return epRepo.findByEmployeeId(id);
 	}
 
-	public EmployeeProfile getFileByOnboardingID(String id) {
-		return epRepo.findByOnboardingId(id);
+	public EmployeeProfile getFileByOnboardingID(String onboardingId) {
+		return epRepo.findByOnboardingId(onboardingId);
 	}
 
 	public Stream<EmployeeProfile> getAllFiles() {
