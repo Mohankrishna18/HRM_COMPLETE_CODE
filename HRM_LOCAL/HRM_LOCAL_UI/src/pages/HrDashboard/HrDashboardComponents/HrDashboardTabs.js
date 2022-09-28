@@ -29,11 +29,11 @@ const HrDashboardTabs = () => {
                             <Card.Subtitle className="mb-2 text-muted">
                                 HR Dashboard
                             </Card.Subtitle>
-                            <h2 style={{ paddingTop: "2%", paddingLeft: "1%" }}>HR Manager</h2>
+                            <h2 style={{ paddingTop: "1%", paddingLeft: "1%" }}>HR Manager</h2>
                             <Box sx={{ width: '100%', typography: 'body1' }}>
                                 <TabContext value={value}>
                                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                                        <TabList onChange={handleChange} aria-label="lab API tabs example" >
+                                        <TabList onChange={handleChange} aria-label="lab API tabs example" style={{backgroundColor:"#c7c6c5",borderRadius:"10px"}}>
                                             <Tab label="Hirings" value="1" icon={<FcPositiveDynamic style={{fontSize:"25px"}}/>}></Tab>
                                             <Tab label="Employees" value="2" icon={<FcConferenceCall style={{fontSize:"25px"}}/>} />
                                             <Tab label="Leaves" value="3" icon={<FcLeave style={{fontSize:"25px"}}/>}/>

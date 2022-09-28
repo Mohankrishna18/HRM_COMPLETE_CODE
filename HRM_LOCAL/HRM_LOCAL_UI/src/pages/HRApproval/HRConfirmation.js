@@ -23,7 +23,7 @@ import ExperienceTab from "../../pages/Approvals/ApprovalComponents/ExperienceTa
 import PersonalDetailsTab from "../../pages/Approvals/ApprovalComponents/PersonalDetailsTab";
 import EmploymentDetailsTab from "../Approvals/ApprovalComponents/EmploymentDetailsTab";
 
-function HRConfirmation() {
+function HRConfirmation(props) {
     const [data, setData] = useState([]);
     const [show, setShow] = useState(false);
     const [rejectshow, setRejectShow] = useState(false);
@@ -69,13 +69,14 @@ function HRConfirmation() {
       setData(res.data.data);
       console.log(res.data);
     };
+    console.log(data.length);
     const [columns, setColumns] = useState([
       { title: "OnboardingId", field: "onboardingId" },
       { title: "FullName", field: "firstName" },
       { title: "Email", field: "email" },
       { title: "PhoneNumber", field: "phoneNumber" },
       {
-        title: "Date of Joining",
+        title: "DOJ",
         field: "dateOfJoining",
         type: "date",
         dateSetting: { locale: "en-GB" },
