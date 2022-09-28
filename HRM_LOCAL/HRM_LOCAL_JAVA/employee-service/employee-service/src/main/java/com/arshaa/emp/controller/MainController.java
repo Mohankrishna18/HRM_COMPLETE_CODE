@@ -472,4 +472,12 @@ public class MainController {
         	System.out.println(emRepo.findEmployeeMasterCountWithParticularMonth());
         return emRepo.findEmployeeMasterCountWithParticularMonth();
         }
+        
+        @GetMapping("/getDataByDATE")
+        public List<EmployeeMaster> getDataByDate()
+        {
+        	System.out.println(emRepo.findEmployeeMasterCountWithParticularMonth());
+        return emRepo.findEmployeeMasterCountWithParticularDate();
+        }
+        
 }
