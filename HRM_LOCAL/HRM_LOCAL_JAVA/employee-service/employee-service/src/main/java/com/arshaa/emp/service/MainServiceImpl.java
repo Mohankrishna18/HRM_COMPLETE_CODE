@@ -27,6 +27,7 @@ import com.arshaa.emp.common.PreMailModel;
 import com.arshaa.emp.common.UserModel;
 import com.arshaa.emp.common.Users;
 import com.arshaa.emp.entity.EmployeeMaster;
+import com.arshaa.emp.entity.EmployeeProfile;
 import com.arshaa.emp.entity.Intern;
 import com.arshaa.emp.entity.Onboarding;
 import com.arshaa.emp.entity.UserClientProjectManagement;
@@ -47,6 +48,7 @@ import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.StringConstants;
 import com.arshaa.emp.model.WaitingForApproval;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
+import com.arshaa.emp.repository.EmployeeProfileRepository;
 import com.arshaa.emp.repository.OnboardRepository;
 import com.arshaa.emp.repository.UserClientProjectManagementRepositorty;
 import com.thoughtworks.xstream.mapper.Mapper.Null;
@@ -58,6 +60,8 @@ public class MainServiceImpl implements MainService {
 	OnboardRepository onRepo;
 	@Autowired
 	EmployeeMasterRepository emRepo;
+	@Autowired
+	EmployeeProfileRepository empProfileRepo;
 	@Autowired
 	UserClientProjectManagementRepositorty userClientRepo;
 	@Autowired
@@ -203,6 +207,7 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
+				getOnboarding.setTermsAndConditions(newOnboard.isTermsAndConditions());
 ///				getOnboarding.setIrm(newOnboard.getIrm());
 //				getOnboarding.setTaaApprovalComment(newOnboard.getTaaApprovalComment());
 //				getOnboarding.setTaaHeadApprovalComment(newOnboard.getTaaHeadApprovalComment());
@@ -366,6 +371,11 @@ public class MainServiceImpl implements MainService {
 					userclient.setEmployeeId(em.getEmployeeId());
 					userClientRepo.save(userclient);
 
+					//posting employeeId to employee profile table 
+					EmployeeProfile eprofile = new EmployeeProfile();
+					eprofile.setEmployeeId(employeeMaster.getEmployeeId());
+					empProfileRepo.save(eprofile);
+					
 					// Generating Random userId and Password
 					Random rand = new Random();
 					Integer intRandom = rand.nextInt(9999);
