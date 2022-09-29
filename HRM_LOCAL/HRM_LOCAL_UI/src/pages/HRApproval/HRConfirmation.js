@@ -23,7 +23,7 @@ import ExperienceTab from "../../pages/Approvals/ApprovalComponents/ExperienceTa
 import PersonalDetailsTab from "../../pages/Approvals/ApprovalComponents/PersonalDetailsTab";
 import EmploymentDetailsTab from "../Approvals/ApprovalComponents/EmploymentDetailsTab";
 
-function HRConfirmation(props) {
+function HRConfirmation() {
     const [data, setData] = useState([]);
     const [show, setShow] = useState(false);
     const [rejectshow, setRejectShow] = useState(false);
@@ -69,14 +69,13 @@ function HRConfirmation(props) {
       setData(res.data.data);
       console.log(res.data);
     };
-    console.log(data.length);
     const [columns, setColumns] = useState([
       { title: "OnboardingId", field: "onboardingId" },
       { title: "FullName", field: "firstName" },
       { title: "Email", field: "email" },
       { title: "PhoneNumber", field: "phoneNumber" },
       {
-        title: "DOJ",
+        title: "Date of Joining",
         field: "dateOfJoining",
         type: "date",
         dateSetting: { locale: "en-GB" },
@@ -90,8 +89,8 @@ function HRConfirmation(props) {
   
   return (
     <div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+      <Modal show={show} onHide={handleClose} >
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Documents to be Submitted</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -104,119 +103,11 @@ function HRConfirmation(props) {
       </Modal>
 
 
-      <Modal show={viewShow} onHide={viewHandleClose} size="xl">
      
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Onboarding Form</Modal.Title>
-        </Modal.Header>
-       
-        <Modal.Body>
-         
-          {/* <ApprovalView
-            viewOnboard={viewOnboard}
-            // func={pull_data}
-            viewHandleClose={viewHandleClose}
-          /> */}
-        
-          <Tabs
-            defaultActiveKey="Personal Details"
-            transition={false}
-            id="noanim-tab-example"
-            className="mb-3"
-            style={{
-              justifyContent: "center",
-              color: "white",
-              backgroundColor: "white",
-              fontSize: "px",
-              padding: 0,
-            }}
-          >
-            <Tab
-              eventKey="Personal Details"
-              title="Personal Details"
-              style={{ backgroundColor: "white" }}
-            >
-              <PersonalDetailsTab
-                viewOnboard={viewOnboard}
-                viewHandleClose={viewHandleClose}
-              />
-            </Tab>
-            <Tab
-              eventKey="Address"
-              title="Address"
-              style={{ backgroundColor: "white" }}
-            >
-              <AddressTab
-                viewOnboard={viewOnboard}
-                viewHandleClose={viewHandleClose}
-              />
-            </Tab>
-
-            <Tab
-              eventKey="Additional Details"
-              title="Additional Details"
-              style={{ backgroundColor: "white" }}
-            >
-              <AditionalDetailsTab
-                viewOnboard={viewOnboard}
-                viewHandleClose={viewHandleClose}
-              />
-            </Tab>
-            <Tab
-              eventKey="Employment Details"
-              title="Employment Details"
-              style={{ backgroundColor: "white" }}
-            >
-              <EmploymentDetailsTab 
-              viewOnboard={viewOnboard} 
-              viewHandleClose={viewHandleClose}/>
-            </Tab>
-
-            {/* <Tab
-              eventKey="Employment Details"
-              title="Employment Details"
-              style={{ backgroundColor: "white" }}
-            >
-              <EmploymentDetailsTab viewOnboard={viewOnboard} viewHandleClose={viewHandleClose}/>
-            </Tab> */}
-            <Tab
-              eventKey="Education"
-              title="Education"
-              style={{ backgroundColor: "white" }}
-            >
-
-              <EducationalDetailsTab
-                viewOnboard={viewOnboard}
-                viewHandleClose={viewHandleClose}
-              />
-            </Tab>
-            <Tab
-              eventKey="Experience"
-              title="Experience "
-              style={{ backgroundColor: "white" }}
-            >
-              <ExperienceTab
-                viewOnboard={viewOnboard}
-                viewHandleClose={viewHandleClose}
-              />
-            </Tab>
-
-          </Tabs>
-        </Modal.Body>
-        <Modal.Footer>
- 
-          {/* <Button variant="secondary" onClick={viewHandleClose}>
-          Close 
-          </Button> */}
-          {/* <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button> */}
-        </Modal.Footer>
-      </Modal>
 
       <Grid>
         <MaterialTable
-          title=""
+          title="HR Confirmation"
           columns={columns}
           data={data}
           options={{
