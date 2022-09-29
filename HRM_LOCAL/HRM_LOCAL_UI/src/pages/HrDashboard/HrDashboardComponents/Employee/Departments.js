@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal, Tab, Table, Tabs, Row, Col } from "react-bootstrap";
+import { Button, Modal, Tab, Table, Tabs, Row, Col, Card } from "react-bootstrap";
 import axios from "../../../../Uri";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { AiFillDelete } from "react-icons/ai";
@@ -19,7 +19,93 @@ function Departments(props) {
         setValue(newValue);
     };
 
- console.log(getDepartmentName);
+
+    const [taa, setTaa] = useState([]);
+    axios
+        .get("/emp/getEmployeesByDepartment/TAA")
+        .then((res) => {
+            setTaa(res.data.data);
+            console.log(res.data.data);
+        })
+        .catch((err) => {
+            console.log(err);
+            // toast.error("Server Error")
+        });
+
+    const [hr, setHr] = useState([]);
+    axios
+        .get("/emp/getEmployeesByDepartment/Human Resource(HR)")
+        .then((res) => {
+            setHr(res.data.data);
+            console.log(res.data.data);
+        })
+        .catch((err) => {
+            console.log(err);
+            // toast.error("Server Error")
+        });
+
+
+    const [tag, setTag] = useState([]);
+    axios
+        .get("/emp/getEmployeesByDepartment/TAG")
+        .then((res) => {
+            setTag(res.data.data);
+            console.log(res.data.data);
+        })
+        .catch((err) => {
+            console.log(err);
+            // toast.error("Server Error")
+        });
+
+    const [pmo, setPmo] = useState([]);
+    axios
+        .get("/emp/getEmployeesByDepartment/PMO")
+        .then((res) => {
+            setPmo(res.data.data);
+            console.log(res.data.data);
+        })
+        .catch((err) => {
+            console.log(err);
+            // toast.error("Server Error")
+        });
+
+    const [oracle, setOracle] = useState([]);
+    axios
+        .get("/emp/getEmployeesByDepartment/Oracle")
+        .then((res) => {
+            setOracle(res.data.data);
+            console.log(res.data.data);
+        })
+        .catch((err) => {
+            console.log(err);
+            // toast.error("Server Error")
+        });
+        
+    const [digital, setDigital] = useState([]);
+    axios
+        .get("/emp/getEmployeesByDepartment/Digital")
+        .then((res) => {
+            setDigital(res.data.data);
+            console.log(res.data.data);
+        })
+        .catch((err) => {
+            console.log(err);
+            // toast.error("Server Error")
+        });
+
+    const [it, setIt] = useState([]);
+    axios
+        .get("/emp/getEmployeesByDepartment/IT")
+        .then((res) => {
+            setIt(res.data.data);
+            console.log(res.data.data);
+        })
+        .catch((err) => {
+            console.log(err);
+            // toast.error("Server Error")
+        });
+
+    console.log(getDepartmentName);
 
     useEffect(() => {
         axios
@@ -46,50 +132,24 @@ function Departments(props) {
     };
 
     // to get employee data by departments
-    const getEmpData = () =>{
+    const getEmpData = () => {
         axios
-        .get(`/emp/getEmployeesByDepartment/${getDepartmentName}`)
-        .then((res) => {
-            setEmpData(res.data.data);
-            console.log(res.data.data);
-        })
-        .catch((err) => {
-            console.log(err);
-            // toast.error("Server Error")
-        });
+            .get(`/emp/getEmployeesByDepartment/${getDepartmentName}`)
+            .then((res) => {
+                setEmpData(res.data.data);
+                console.log(res.data.data);
+            })
+            .catch((err) => {
+                console.log(err);
+                // toast.error("Server Error")
+            });
     }
-   
+
 
 
 
     return (
-        <><Row>
-            <div>
-                <form>
-                    <div class="form-group">
-                        <Row>
-                            <Col>
-                                <input type="text" class="form-control" placeholder="Employee ID" />
-                            </Col><Col>
-                                <input type="text" class="form-control" placeholder="Employee Name" />
-                            </Col><Col>
-
-                                <select class="form-control" placeholder="Select Department"
-                                    onChange={(e) => setGetDepartmentName(e.target.value)}>
-                                    
-                                    {departmentName.map((departmentName) => (
-                                        <option value={departmentName.departmentName}>{departmentName.departmentName}</option>
-                                    ))}
-                                </select>
-                            </Col>
-                            <Col>
-                                <button type="button" class="btn btn-success" style={{ width: 300 }} onClick={getEmpData} >Search</button>
-                            </Col>
-                        </Row>
-                    </div>
-                </form>
-            </div>
-        </Row>
+        <>
             <Row>
                 <div className="responsive" style={{ paddingTop: "5%" }}>
                     <Modal show={viewShow} onHide={viewHandleClose} size="xl">
@@ -119,9 +179,38 @@ function Departments(props) {
                                 <th>Actions</th>
                             </tr>
                         </thead>
+                        {getDepartmentName == "" ? (
 
-                        <tbody>
-                            {empData.map((data) => (
+                            <tbody>
+                                {empData.map((data) => (
+                                    <tr>
+                                        <td>{data.firstName}</td>
+                                        <td>{data.employeeId}</td>
+                                        <td>{data.email}</td>
+                                        <td>{data.primaryPhoneNumber}</td>
+                                        <td>{data.dateOfJoining}</td>
+                                        <td>{data.designationName}</td>
+                                        <td>
+                                            <Row>
+                                                <Button
+                                                    variant="white "
+                                                    className="rounded-pill"
+                                                    onClick={(event) => {
+                                                        setViewShow(true);
+                                                        console.log(props);
+                                                        setViewOnboard(props.data);
+                                                    }}
+                                                >{" "}
+                                                    <AiTwotoneEdit /> Edit
+                                                </Button>
+
+                                            </Row>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        ) : <tbody>
+                            {data.map((data) => (
                                 <tr>
                                     <td>{data.firstName}</td>
                                     <td>{data.employeeId}</td>
@@ -147,7 +236,8 @@ function Departments(props) {
                                     </td>
                                 </tr>
                             ))}
-                        </tbody>
+                        </tbody>}
+
                     </Table>
                 </div>
             </Row>
