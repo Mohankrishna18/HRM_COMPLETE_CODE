@@ -111,6 +111,18 @@ public class HrApprovalStatus {
 	private String comments;
     private String reportingManager;
 	private String SecondaryPhoneNumber;
+	
+private boolean termsAndConditions;
+	
+
+	public boolean isTermsAndConditions() {
+		return termsAndConditions;
+	}
+
+	public void setTermsAndConditions(boolean termsAndConditions) {
+		this.termsAndConditions = termsAndConditions;
+	}
+
 	public HrApprovalStatus(String secondaryPhoneNumber) {
 		super();
 		SecondaryPhoneNumber = secondaryPhoneNumber;

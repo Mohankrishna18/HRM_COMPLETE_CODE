@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import HiringsTab from "./HiringsTab";
 import { FcAssistant, FcConferenceCall, FcLeave, FcPositiveDynamic } from "react-icons/fc";
+import EmployeeMain from "./Employee/EmployeeeMain";
+import AllEmployees from "./Employee/AllEmployees";
 
 
 const HrDashboardTabs = () => {
@@ -40,7 +42,7 @@ const HrDashboardTabs = () => {
                                         </TabList>
                                     </Box>
                                     <TabPanel value="1"><HiringsTab/></TabPanel>
-                                    <TabPanel value="2">Employees</TabPanel>
+                                    <TabPanel value="2"><AllEmployees /></TabPanel>
                                     <TabPanel value="3">Leaves</TabPanel>
                                 </TabContext>
                             </Box>

@@ -180,13 +180,8 @@ function ProfilePersonalDetailsTab() {
             });
     }, []);
 
-
-
     var tempDate = new Date(dateOfBirth);
     var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-
-
 
     return (
         <div style={{ paddingLeft: 30, paddingBottom: 0 }}>
@@ -452,6 +447,14 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             else {
                                                 setThirdErrors("")
                                             }
+                                            if(email === "" ||
+                                                !email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)){
+                                                        setFourerror("Invalid Email")
+                                                        console.log(e.target.value);
+                                                    }
+                                                    else{
+                                                        setFourerror("It's Valid Mail")
+                                                    }
                                             setEmail(e.target.value);
                                         }}
                                     />

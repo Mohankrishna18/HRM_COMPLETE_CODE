@@ -58,7 +58,13 @@ public class Onboarding {
 	@Column
 	private String onboardingStatus;
 	
-	
+	private boolean termsAndConditions;
+	public boolean isTermsAndConditions() {
+			return termsAndConditions;
+		}
+		public void setTermsAndConditions(boolean termsAndConditions) {
+			this.termsAndConditions = termsAndConditions;
+		}
 	
 	public String getOnboardingStatus() {
 		return onboardingStatus;
