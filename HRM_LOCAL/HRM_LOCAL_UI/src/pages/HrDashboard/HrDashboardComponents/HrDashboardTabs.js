@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import HiringsTab from "./HiringsTab";
 import { FcAssistant, FcConferenceCall, FcLeave, FcPositiveDynamic } from "react-icons/fc";
+import EmployeeMain from "./Employee/EmployeeeMain";
+import AllEmployees from "./Employee/AllEmployees";
 
 
 const HrDashboardTabs = () => {
@@ -29,18 +31,18 @@ const HrDashboardTabs = () => {
                             <Card.Subtitle className="mb-2 text-muted">
                                 HR Dashboard
                             </Card.Subtitle>
-                            <h2 style={{ paddingTop: "2%", paddingLeft: "1%" }}>HR Manager</h2>
-                            <Box sx={{ width: '100%', typography: 'body1' }}>
+                            {/* <h2 style={{ paddingTop: "1%", paddingLeft: "1%" }}>HR Manager</h2> */}
+                            <Box sx={{ width: '100%', typography: 'body1',paddingTop:"15px" }}>
                                 <TabContext value={value}>
                                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                                        <TabList onChange={handleChange} aria-label="lab API tabs example" >
-                                            <Tab label="Hirings" value="1" icon={<FcPositiveDynamic style={{fontSize:"25px"}}/>}></Tab>
-                                            <Tab label="Employees" value="2" icon={<FcConferenceCall style={{fontSize:"25px"}}/>} />
-                                            <Tab label="Leaves" value="3" icon={<FcLeave style={{fontSize:"25px"}}/>}/>
+                                        <TabList onChange={handleChange} aria-label="lab API tabs example" style={{backgroundColor:"#c7c6c5",borderRadius:"5px"}}>
+                                            <Tab label="Hirings" value="1" style={{paddingRight:"2%",paddingLeft:"2%"}} icon={<FcPositiveDynamic style={{fontSize:"25px"}}/>}></Tab>
+                                            <Tab label="Employees" value="2" style={{paddingRight:"2%",paddingLeft:"2%"}} icon={<FcConferenceCall style={{fontSize:"25px"}}/>} />
+                                            <Tab label="Leaves" value="3" style={{paddingRight:"2%",paddingLeft:"2%"}} icon={<FcLeave style={{fontSize:"25px"}}/>}/>
                                         </TabList>
                                     </Box>
                                     <TabPanel value="1"><HiringsTab/></TabPanel>
-                                    <TabPanel value="2">Employees</TabPanel>
+                                    <TabPanel value="2"><AllEmployees /></TabPanel>
                                     <TabPanel value="3">Leaves</TabPanel>
                                 </TabContext>
                             </Box>

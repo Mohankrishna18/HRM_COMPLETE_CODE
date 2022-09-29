@@ -27,6 +27,13 @@ public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster,S
 	EmployeeMaster getEmployeeIdByfullName(String fullName);
 
 	List<EmployeeMaster> getEmployeesByOnboardingStatus(String onboardingStatus); 
+	List<EmployeeMaster> getEmployeesByDepartmentName(String departmentName); 
+	
 	EmployeeMaster getByEmployeeId(String employeeId);
-
+	
+	@Query(value="select * from employeemaster where month(date_of_joining) = EXTRACT(MONTH FROM CURRENT_DATE) and year(date_of_joining) = EXTRACT(YEAR FROM CURRENT_DATE)", nativeQuery=true)
+	List<EmployeeMaster> findEmployeeMasterCountWithParticularMonth();
+	
+	@Query(value="select * from employeemaster where date_of_joining = CURRENT_DATE ", nativeQuery=true)
+	List<EmployeeMaster> findEmployeeMasterCountWithParticularDate();
 }

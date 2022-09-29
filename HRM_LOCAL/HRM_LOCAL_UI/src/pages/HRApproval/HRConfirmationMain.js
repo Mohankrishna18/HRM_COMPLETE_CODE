@@ -4,7 +4,7 @@ import HRConfirmation from "./HRConfirmation";
 function HRConfirmationMain() {
   return (
     <div>
-        HRConfirmationMain
+        {/* HRConfirmationMain */}
 <HRConfirmation/>
     </div>
   )
