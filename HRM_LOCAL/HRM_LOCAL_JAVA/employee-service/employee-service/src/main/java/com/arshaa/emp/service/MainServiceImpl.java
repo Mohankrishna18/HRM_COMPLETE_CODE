@@ -1958,6 +1958,7 @@ public class MainServiceImpl implements MainService {
 
 }
 
+	
 
 //	@Override
 //	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmployeeMaster empMaster) {
@@ -1983,5 +1984,25 @@ public class MainServiceImpl implements MainService {
 //		}
 //
 //	}
+	
+	// getting data based on departments
+	@Override
+	public ResponseEntity getByDepartment(String departmentName) {
+		Response r = new Response();
+		try {
+
+			List<EmployeeMaster> newData = emRepo.getEmployeesByDepartmentName(departmentName);
+			r.setStatus(true);
+			r.setMessage("Data Fetching");
+			r.setData(newData);
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
 	
 }

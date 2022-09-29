@@ -467,7 +467,7 @@ public class MainController {
         @GetMapping("/getEmployeesByOnboardingStatus/{onboardingStatus}")
 		public ResponseEntity getEmployeesByOnboardingStatus(@PathVariable String onboardingStatus) {
 
-
+        	
 			return serv.getEmployeesByOnboardingStatus(onboardingStatus);
 		}
         @PutMapping("/updateHrStatus/{employeeId}")
@@ -494,5 +494,10 @@ public class MainController {
         	System.out.println(emRepo.findEmployeeMasterCountWithParticularMonth());
         return emRepo.findEmployeeMasterCountWithParticularDate();
         }
+        
+        @GetMapping("/getEmployeesByDepartment/{departmentName}")
+		public ResponseEntity getByDepartment(@PathVariable String departmentName) {
+			return serv.getByDepartment(departmentName);
+		}
         
 }
