@@ -36,7 +36,7 @@ const HrDashboardTabs = () => {
                             <Box sx={{ width: '100%', typography: 'body1',paddingTop:"15px" }}>
                                 <TabContext value={value}>
                                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                                        <TabList onChange={handleChange} aria-label="lab API tabs example" style={{backgroundColor:"#c7c6c5",borderRadius:"5px"}}>
+                                        <TabList onChange={handleChange} sx={{"& button.Mui-selected":{background: "linear-gradient(#e8e8e8,#e8e8e8,white)"}}} aria-label="lab API tabs example"style={{background: "linear-gradient(#FFCE83,#ffdc89,white)",borderRadius:"5px"}}>
                                             <Tab label="Hirings" value="1" style={{paddingRight:"2%",paddingLeft:"2%"}} icon={<FcPositiveDynamic style={{fontSize:"25px"}}/>}></Tab>
                                             <Tab label="Employees" value="2" style={{paddingRight:"2%",paddingLeft:"2%"}} icon={<FcConferenceCall style={{fontSize:"25px"}}/>} />
                                             <Tab label="Leaves" value="3" style={{paddingRight:"2%",paddingLeft:"2%"}} icon={<FcLeave style={{fontSize:"25px"}}/>}/>

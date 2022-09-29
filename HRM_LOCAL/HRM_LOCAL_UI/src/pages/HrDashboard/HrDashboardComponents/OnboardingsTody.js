@@ -60,7 +60,7 @@ console.log(data)
       { title: "Onboarding Id", field: "onboardingId",color:"black" },
       { title: "FullName", field: "firstName" },
       { title: "Email", field: "email" },
-      { title: "PhoneNumber", field: "primaryPhoneNumber" },
+      { title: "PhoneNumber", field: "phoneNumber" },
       {
         title: "DOJ",
         field: "dateOfJoining",
@@ -173,7 +173,8 @@ console.log(data)
               addRowPosition: "first",
               actionsColumnIndex: -1,
               headerStyle: {
-                backgroundColor: "#FED3B6",
+               // backgroundColor: "#FFCE83",
+               background: "linear-gradient(#dbdcdc,white,#dbdcdc)",
   
                 color: "black",
               },
