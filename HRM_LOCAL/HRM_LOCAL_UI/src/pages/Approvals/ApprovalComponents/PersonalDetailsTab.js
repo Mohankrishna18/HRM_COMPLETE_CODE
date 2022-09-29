@@ -97,7 +97,7 @@ function PersonalDetailsTab(props) {
   var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 console.log(dob)
   return (
-    <div>
+    <div style={{paddingBottom:"20px"}}>
 
        <Card.Title>
         <Row>

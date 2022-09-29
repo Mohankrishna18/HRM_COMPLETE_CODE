@@ -28,7 +28,7 @@ function AditionalDetailsTab(props) {
   };
  
   return (
-    <div style={{ paddingLeft: 20, paddingBottom: 10 }}>
+    <div style={{ paddingLeft: 20, paddingBottom:"50px"}}>
     <Card.Title>
         <Row>
             <Col> <h5>Additional Details :</h5></Col>
