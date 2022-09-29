@@ -10,6 +10,7 @@ import HiringsTab from "./HiringsTab";
 import { FcAssistant, FcConferenceCall, FcLeave, FcPositiveDynamic } from "react-icons/fc";
 import EmployeeMain from "./Employee/EmployeeeMain";
 import AllEmployees from "./Employee/AllEmployees";
+import Leaves from "./Leaves";
 
 
 const HrDashboardTabs = () => {
@@ -43,7 +44,7 @@ const HrDashboardTabs = () => {
                                     </Box>
                                     <TabPanel value="1"><HiringsTab/></TabPanel>
                                     <TabPanel value="2"><AllEmployees /></TabPanel>
-                                    <TabPanel value="3">Leaves</TabPanel>
+                                    <TabPanel value="3"><Leaves/></TabPanel>
                                 </TabContext>
                             </Box>
                         </Card.Body>

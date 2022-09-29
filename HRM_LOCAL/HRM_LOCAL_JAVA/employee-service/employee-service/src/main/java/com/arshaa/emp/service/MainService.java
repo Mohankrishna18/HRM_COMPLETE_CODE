@@ -95,6 +95,7 @@ public interface MainService {
 //	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmployeeMaster empMaster);
 	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmploymentDetails newEmp);
 	public ResponseEntity getByDepartment(String departmentName);
+	ResponseEntity getEmployeeNameDepDesByEmployeeId(String employeeId);
 
 
 
