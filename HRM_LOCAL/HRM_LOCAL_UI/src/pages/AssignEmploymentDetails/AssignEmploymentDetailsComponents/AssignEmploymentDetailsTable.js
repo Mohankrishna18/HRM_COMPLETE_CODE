@@ -57,7 +57,7 @@ function AssignEmploymentDetailsTable(props) {
         { title: 'Employee_ID', field: 'employeeId' },
         { title: 'FullName', field: 'firstName' },
         { title: 'Email', field: 'email' },
-        { title: 'PhoneNumber', field: 'phoneNumber' },
+        { title: 'PhoneNumber', field: 'primaryPhoneNumber' },
         { title: 'Date of Joining', field: 'dateOfJoining', type: 'date', dateSetting: { locale: "en-GB" } },
         { title: 'Job Title', field: 'jobTitle' },
         { title: 'Experience', field: 'yearsOfExperience' },
