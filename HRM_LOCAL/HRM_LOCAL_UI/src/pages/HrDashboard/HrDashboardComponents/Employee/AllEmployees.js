@@ -336,7 +336,7 @@ function AllEmployees(props) {
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody  className="scroll">
                 {data.map((data) => (
                   <tr>
                     <td><AvtarComponent data={data} /></td>
@@ -392,7 +392,7 @@ function AllEmployees(props) {
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody  className="scroll">
                 {empData.map((data) => (
                   <tr>
                     <td><AvtarComponent data={data} /></td>
