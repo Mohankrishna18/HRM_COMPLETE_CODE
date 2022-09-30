@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.arshaa.departments.entity.Departmentmaster;
+import com.arshaa.departments.model.BusinessUnitResponse;
 import com.arshaa.departments.model.DepartmentResponse;
 import com.arshaa.departments.model.EmployeeName;
 import com.arshaa.departments.repository.DepartmentInterface;
@@ -48,7 +49,31 @@ public class DepartmentServiceImpl  implements DepartmentService{
 			return (getDep.getDepartmentId());
 	}
 	
-
+	@Override
+    public ResponseEntity getBUHIDfromDepartmentName(String departmentName) {
+        BusinessUnitResponse res= new BusinessUnitResponse<>();
+        try {
+            Departmentmaster departmentsData = repository.getByDepartmentName(departmentName);
+            if(!departmentsData.equals(null))
+            {
+                res.setStatus(true);
+                res.setMessage("Data Fetching");
+                res.setData(departmentsData.getBusinessUnitHead());
+                return new ResponseEntity(res,HttpStatus.OK);
+            }
+            else {
+                res.setStatus(false);
+                res.setMessage("Data Not Found");
+                return new ResponseEntity(res,HttpStatus.OK);
+            }
+        }
+        catch(Exception e){
+            res.setStatus(false);
+            res.setMessage("Something went wrong");
+            return new ResponseEntity(res,HttpStatus.OK);
+        }
+        
+    }
 	
 
 }

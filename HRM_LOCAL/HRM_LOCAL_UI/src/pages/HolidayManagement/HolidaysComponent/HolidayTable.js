@@ -137,10 +137,10 @@ export default function HolidayTable() {
                         }),
                 }}
                 options={{
-                    paging: false,
+                    paging: true,
                     addRowPosition:'first',
                     actionsColumnIndex: -1,
-                    filtering: true,
+                    // filtering: true,
                     headerStyle: {
 
                         backgroundColor: "#FE924A",

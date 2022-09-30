@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.apache.catalina.startup.ClassLoaderFactory.Repository;
+import com.arshaa.model.LeavesDataForHr;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -192,5 +193,22 @@ public class LeaveController {
 //	
 //	  return new ResponseEntity("Updated Successfully",HttpStatus.OK);
 //   }
+
+	//To get Count of Pending Approved, Rejected Information from EmployeeLeaves Table
+	@GetMapping("/getEmployeePendingLeavesCountByStatus/{leaveStatus}")
+
+	public int getEmployeePendingLeavesCountByStatus(@PathVariable String leaveStatus) {
+
+		return service.findEmployeePendingLeavesCountByLeaveStatus(leaveStatus);
+
+	}
+
+	@GetMapping("/getEmployeeLeavesPendingLeavesByStatus/{leaveStatus}")
+
+	public List<LeavesDataForHr> getEmployeePendingLeavesByStatus(@PathVariable String leaveStatus) {
+
+		return service.findEmployeeLeavesLeaveStatusByLeaveStatus(leaveStatus);
+
+	}
   
 }

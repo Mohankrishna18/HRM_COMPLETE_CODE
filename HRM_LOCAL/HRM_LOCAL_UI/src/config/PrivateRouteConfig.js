@@ -56,8 +56,8 @@ import BandsMain from "../pages/Bands/BandsMain";
 import EmploymentTypeMain from "../pages/EmploymentType/EmploymentTypeMain";
 import IntegrateLeaveToApply from "../pages/LeaveManagement/IntegrateLeaveToApply";
 import OnboardedEmployeesTable from "../pages/Approvals/ApprovalComponents/OnboardedEmployeesTable";
-import ClientMain from "../pages/Client/ClientMain";
-import ProjectsMain from "../pages/Projects/ProjectsMain";
+
+
 
 import HrLeavesToApproveMain from "../pages/HrLeavesToApprove/HrLeavesToApproveMain";
 import EmployeeTimeSheetMain from "../pages/TimeSheet/TimeSheetMain";
@@ -75,8 +75,48 @@ import ApprovesMain from "../pages/Approves/ApprovesMain";
 import EmployeeList from "../pages/AllEmployees/AllEmployeesComponents/EmployeeList";
 import Employee from "../pages/RoleUnderEmployees/RoleUnderEmployeesMain";
 import AllEmployeesMain from "../pages/AllEmployees/AllEmployeesMain";
+import ProjectDashboardMain from "../pages/ProjectDashboard/ProjectDashboardMain";
+import LeadsMain from "../pages/Leads/LeadsMain";
+import ClientMain from "../pages/Client/ClientMain";
+import PmTaskCreation from "../pages/PmTaskCreation/PmTaskCreationMain";
+import UserStorymain from "../pages/userstory/UserStorymain";
+import MyTask from "../pages/Task/MyTaskComponents/MyTask";
+import ProjectsMain from "../pages/Projects/ProjectsMain";
+import HRConfirmationMain from "../pages/HRApproval/HRConfirmationMain";
+import HrDashboard from "../pages/HrDashboard/HrDashboardMain";
+import HrDashboardMain from "../pages/HrDashboard/HrDashboardMain";
 
 export default [
+  {
+    component: ProjectDashboardMain,
+    path: "/ProjectDashboardMain",
+    type: "null",
+    icon: <FcBusinessman />,
+    title: "Dashboard",
+    permission: [
+      Roles.employee,
+      Roles.ceo,
+      Roles.it,
+      Roles.taa,
+      Roles.hrmanager,
+      Roles.manager,
+      Roles.recruitmentmanager,
+      Roles.irm,
+      Roles.srm,
+      Roles.pmohead,
+      Roles.taahead,
+      Roles.buhead,
+    ],
+   // exact: true,
+  },
+  {
+    component: HrDashboardMain,
+    path: "/HrDashboard",
+    type: "myprofile",
+    icon: <FcDisapprove />,
+    title: "Dashboard",
+    permission: [Roles.hrmanager],
+  },
   {
     component: MyProfileMain,
     path: "/",
@@ -99,15 +139,77 @@ export default [
     ],
     exact: true,
   },
+  
+  {
+    component: LeadsMain,
+    path: "/leadsMain",
+    type: "configuration",
+    icon: <FcOvertime />,
+    title: "Leads",
+    permission: [
+      Roles.pmohead,
+      Roles.ceo,
+      Roles.employee,
+      Roles.buhead,
+      Roles.manager,
+    ],
+  },
+  {
+    component: ClientMain,
+    path: "/clientMain",
+    type: "configuration",
+    icon: <FcOvertime />,
+    title: "Clients",
+    permission: [
+      Roles.pmohead,
+      Roles.ceo,
+      Roles.employee,
+      Roles.buhead,
+      Roles.manager,
+    ],
+  },
+  {
+    component: PmTaskCreation,
+    path: "/TaskMain",
+    type: "configuration",
+    icon: <FcPlanner />,
+    title: "Task",
+    permission: [Roles.pmohead,Roles.manager,Roles.irm,Roles.srm],
+  },
+  {
+    component: MyTask,
+    path: "/MyTaskMain",
+    type: "configuration",
+    icon: <FcPlanner />,
+    title: "My Task",
+    permission: [Roles.employee,Roles.pmohead,Roles.manager],
+  },
+  {
+    component: UserStorymain,
+    path: "/Userstory",
+    type: "configuration",
+    icon: <FcManager />,
+    title: "Userstory",
 
-  // {
-  //   component: ApprovesMain,
-  //   path: "/approve",
-  //   icon: <FcApproval />,
-  //   title: "Approvals",
-  //   type:"approvals",
-  //   permission: [Roles.ceo, Roles.pmohead,Roles.buhead,Roles.irm,Roles.srm],
-  // },
+    permission: [
+      Roles.pmohead,
+      Roles.ceo,
+      Roles.employee,
+      Roles.buhead,
+      Roles.manager,
+    ],
+  },
+ 
+  {
+    component: ProjectsMain,
+    path: "/Projects",
+    type: "configuration",
+    icon: <FcApprove />,
+    title: "Projects",
+
+    permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager],
+  },
+
 
   {
     component: TAAHeadMain,
@@ -422,6 +524,14 @@ export default [
   //     permission: [Roles.buhead],
 
   // },
+  {
+    component: HRConfirmationMain,
+    type: "approvals",
+    path: "/HRApproval",
+    icon: <FcApproval />,
+    title: "Approvals",
+    permission: [Roles.hrmanager],
+  },
 ];
 
 

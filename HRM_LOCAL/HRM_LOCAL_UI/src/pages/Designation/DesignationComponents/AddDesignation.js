@@ -162,9 +162,9 @@ function AddDesignation(props) {
                   isInvalid={!!errors.departmentId}
                 ><option>Select Business Unit</option>
 
-                {departments.map((department)=>(
+                {departments.map((departmentName)=>(
 
-                   <option value={department.departmentName}>{department.departmentName}</option>
+                   <option value={departmentName.departmentName}>{departmentName.departmentName}</option>
 
                 ))}</Form.Select>
                 <Form.Control.Feedback type="invalid">

@@ -76,4 +76,12 @@ public class DepartmentController {
 		Departmentmaster dm = repo.findByDepartmentId(departmentId);
 		return dm.getDepartmentName();
 	}
+	
+	@GetMapping("/getDepartmentIdByBusinessUnitName/{departmentName}")
+    public ResponseEntity getDepartmentIdByBusinessUnitName(@PathVariable String departmentName) {
+     return serv.getBUHIDfromDepartmentName(departmentName);
+
+
+
+   }
 }
