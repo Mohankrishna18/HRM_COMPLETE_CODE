@@ -1928,8 +1928,8 @@ public class MainServiceImpl implements MainService {
 		EmployeeMaster master = emRepo.getById(employeeId);
 
 		master.setEmploymentType(newEmp.getEmploymentType());
-		master.setDepartmentName(newEmp.getDepartment());
-		master.setDesignationName(newEmp.getDesignation());
+//		master.setDepartmentName(newEmp.getDepartment());
+//		master.setDesignationName(newEmp.getDesignation());
 		master.setBand(newEmp.getBand());
 		master.setJobTitle(newEmp.getJobTitle());
 		master.setClient(newEmp.getClient());
