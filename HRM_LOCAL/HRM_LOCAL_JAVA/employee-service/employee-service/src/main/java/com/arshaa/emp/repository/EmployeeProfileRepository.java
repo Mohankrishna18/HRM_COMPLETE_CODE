@@ -8,6 +8,6 @@ public interface EmployeeProfileRepository extends JpaRepository<EmployeeProfile
 
 	EmployeeProfile findByEmployeeId(String id);
 
-	EmployeeProfile findByOnboardingId(String id);
+	EmployeeProfile findByOnboardingId(String onboardingId);
 
 }

@@ -27,6 +27,7 @@ import com.arshaa.emp.common.PreMailModel;
 import com.arshaa.emp.common.UserModel;
 import com.arshaa.emp.common.Users;
 import com.arshaa.emp.entity.EmployeeMaster;
+import com.arshaa.emp.entity.EmployeeProfile;
 import com.arshaa.emp.entity.Intern;
 import com.arshaa.emp.entity.Onboarding;
 import com.arshaa.emp.entity.UserClientProjectManagement;
@@ -47,6 +48,7 @@ import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.StringConstants;
 import com.arshaa.emp.model.WaitingForApproval;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
+import com.arshaa.emp.repository.EmployeeProfileRepository;
 import com.arshaa.emp.repository.OnboardRepository;
 import com.arshaa.emp.repository.UserClientProjectManagementRepositorty;
 import com.thoughtworks.xstream.mapper.Mapper.Null;
@@ -58,6 +60,8 @@ public class MainServiceImpl implements MainService {
 	OnboardRepository onRepo;
 	@Autowired
 	EmployeeMasterRepository emRepo;
+	@Autowired
+	EmployeeProfileRepository empProfileRepo;
 	@Autowired
 	UserClientProjectManagementRepositorty userClientRepo;
 	@Autowired
@@ -203,11 +207,22 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
+				getOnboarding.setTermsAndConditions(newOnboard.isTermsAndConditions());
 ///				getOnboarding.setIrm(newOnboard.getIrm());
 //				getOnboarding.setTaaApprovalComment(newOnboard.getTaaApprovalComment());
 //				getOnboarding.setTaaHeadApprovalComment(newOnboard.getTaaHeadApprovalComment());
 //				getOnboarding.setPmoApprovalComment(newOnboard.getPmoApprovalComment());
-				getOnboarding.setCeoApprovalComment(newOnboard.getCeoApprovalComment());
+//				getOnboarding.setCeoApprovalComment(newOnboard.getCeoApprovalComment());
+				getOnboarding.setOfferLetter(newOnboard.isOfferLetter());
+				getOnboarding.setSalarySlip(newOnboard.isSalarySlip());
+				getOnboarding.setHikeLetter(newOnboard.isHikeLetter());
+				getOnboarding.setForm16(newOnboard.isForm16());
+				getOnboarding.setEducationalDocuments(newOnboard.isEducationalDocuments());
+				getOnboarding.setResignation(newOnboard.isResignation());
+				getOnboarding.setIdProof(newOnboard.isIdProof());
+				getOnboarding.setDepartment(newOnboard.getDepartment());
+                getOnboarding.setDesignation(newOnboard.getDesignation());
+//				getOnboarding.setHrApprovalComment(newOnboard.);
 //				getOnboarding.setProjectName(newOnboard.getProjectName());
 //				getOnboarding.setSecondaryPhoneNumber(newOnboard.getSecondaryPhoneNumber());
 //				getOnboarding.setBand(newOnboard.getBand());
@@ -215,7 +230,7 @@ public class MainServiceImpl implements MainService {
 				Onboarding saveList = onRepo.save(getOnboarding);
 
 				// if (saveList.isApprovedStatus() == true) {
-				if (getOnboarding.getOnboardingStatus().equalsIgnoreCase("CEOApproved")) {
+				if (getOnboarding.getOnboardingStatus().equalsIgnoreCase("HRApproved")) {
 					java.sql.Date tSqlDate = new java.sql.Date(newOnboard.getApprovedDate().getTime());
 					newOnboard.setApprovedDate(tSqlDate);
 					getOnboarding.setRejectedStatus(false);
@@ -350,6 +365,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setOnboardingId(getOnboarding.getOnboardingId());
 					employeeMaster.setUanNumber(getOnboarding.getUanNumber());
 					employeeMaster.setProjectName(getOnboarding.getProjectName());
+					employeeMaster.setOnboardingStatus(getOnboarding.getOnboardingStatus());
 					EmployeeMaster em = emRepo.save(employeeMaster);
 
 					// posting EmployeeId in Userproject Table
@@ -357,6 +373,11 @@ public class MainServiceImpl implements MainService {
 					userclient.setEmployeeId(em.getEmployeeId());
 					userClientRepo.save(userclient);
 
+					//posting employeeId to employee profile table 
+					EmployeeProfile eprofile = new EmployeeProfile();
+					eprofile.setEmployeeId(employeeMaster.getEmployeeId());
+					empProfileRepo.save(eprofile);
+					
 					// Generating Random userId and Password
 					Random rand = new Random();
 					Integer intRandom = rand.nextInt(9999);
@@ -1836,4 +1857,177 @@ public class MainServiceImpl implements MainService {
 			return new ResponseEntity(r, HttpStatus.OK);
 		}
 }
+
+
+	@Override
+	public ResponseEntity updateCEOApproval(String onboardingId, HrApprovalStatus newOnboard) {
+		Response r = new Response();
+		try {
+			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+			getOnboarding.setCeoApprovalComment(newOnboard.getCeoApprovalComment());
+			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
+			Onboarding saveList = onRepo.save(getOnboarding);
+			r.setStatus(true);
+			r.setMessage("CEOApproved Successfully");
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+		
+	}
+
+
+	@Override
+	public ResponseEntity getEmployeesByOnboardingStatus(String onboardingStatus) {
+		Response r = new Response();
+		try {
+
+			List<EmployeeMaster> newDataOnboarding = emRepo.getEmployeesByOnboardingStatus(onboardingStatus);
+			r.setStatus(true);
+			r.setMessage("Data Fetching");
+			r.setData(newDataOnboarding);
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
+
+
+	@Override
+	public ResponseEntity getByOnboardingStatus(String employeeId,  EmployeeMaster newStatus) {
+		Response r = new Response();
+		try {
+			EmployeeMaster getOnboarding = emRepo.getByEmployeeId(employeeId);
+			getOnboarding.setOnboardingStatus(newStatus.getOnboardingStatus());
+			EmployeeMaster saveList = emRepo.save(getOnboarding);
+			r.setStatus(true);
+			r.setMessage("Status updated Successfully");
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
+
+
+	@Override
+	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmploymentDetails newEmp) {
+		Response r = new Response<>();
+		try {
+		EmployeeMaster master = emRepo.getById(employeeId);
+
+		master.setEmploymentType(newEmp.getEmploymentType());
+		master.setDepartmentName(newEmp.getDepartment());
+		master.setDesignationName(newEmp.getDesignation());
+		master.setBand(newEmp.getBand());
+		master.setJobTitle(newEmp.getJobTitle());
+		master.setClient(newEmp.getClient());
+		master.setProjectName(newEmp.getProjectName());
+		master.setIrm(newEmp.getIrm());
+		master.setSrm(newEmp.getSrm());
+		master.setBuh(newEmp.getBuh());
+		master.setOnboardingStatus(newEmp.getOnboardingStatus());
+		
+		EmployeeMaster master1 = emRepo.save(master);
+		
+		master1.setBuhId(this.getEmployeeIdByName(master.getBuh()));
+		master1.setSrmId(this.getEmployeeIdByName(master.getSrm()));
+		master1.setIrmId(this.getEmployeeIdByName(master.getIrm()));
+		
+
+		EmployeeMaster master2 = emRepo.save(master);
+		System.out.println(master2);
+		r.setStatus(true);
+		r.setMessage(sConstants.PUT_RESPONSE);
+		return new ResponseEntity(r, HttpStatus.OK);
+
+	} catch (Exception e) {
+		r.setStatus(false);
+		r.setMessage(sConstants.FAILURE_RESPONSE);
+		return new ResponseEntity(r, HttpStatus.OK);
+	}
+
+}
+
+	
+
+//	@Override
+//	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmployeeMaster empMaster) {
+//		Response r = new Response<>();
+//		try {
+//			EmployeeMaster master = emRepo.getById(employeeId);
+//
+//			master.setEmploymentType(empMaster.getEmploymentType());
+//			master.setDepartmentName(empMaster.getDepartmentName());
+//			master
+//			
+//
+//			EmployeeMaster master1 = emRepo.save(master);
+//			System.out.println(master1);
+//			r.setStatus(true);
+//			r.setMessage(sConstants.PUT_RESPONSE);
+//			return new ResponseEntity(r, HttpStatus.OK);
+//
+//		} catch (Exception e) {
+//			r.setStatus(false);
+//			r.setMessage(sConstants.FAILURE_RESPONSE);
+//			return new ResponseEntity(r, HttpStatus.OK);
+//		}
+//
+//	}
+	
+	// getting data based on departments
+	@Override
+	public ResponseEntity getByDepartment(String departmentName) {
+		Response r = new Response();
+		try {
+
+			List<EmployeeMaster> newData = emRepo.getEmployeesByDepartmentName(departmentName);
+			r.setStatus(true);
+			r.setMessage("Data Fetching");
+			r.setData(newData);
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
+	@Override
+
+    public ResponseEntity getEmployeeNameDepDesByEmployeeId(String employeeId) {
+
+
+
+        EmployeeMaster employeeMaster = emRepo.getById(employeeId);
+
+
+
+        EmployeeMaster en = new EmployeeMaster();
+
+        en.setFirstName(employeeMaster.getFirstName());
+
+        en.setDepartmentName(employeeMaster.getDepartmentName());
+
+        en.setDesignationName(employeeMaster.getDesignationName());
+
+
+
+        return new ResponseEntity(en, HttpStatus.OK);
+
+    }
+	
 }

@@ -60,6 +60,7 @@ public class MainController {
 	@Autowired
 	EmployeeProfileService epServ;
 	@Autowired
+	
 
     RoleBasedEmployeesServiceImpl roleBasedServ;
 
@@ -171,6 +172,11 @@ public class MainController {
 
 		return serv.getReportingManagerByEmployeeId(employeeId);
 	}
+	@GetMapping("/getEmployeeIdByReportingmanager/{projectManager}")
+    public ResponseEntity getEmployeeIdByReportingManager(@PathVariable String projectManager) {
+        
+        return eserv.getEmployeeIdByReprtingManager(projectManager);
+    }
 
 	@GetMapping("/getEmployeeIds")
 	public ResponseEntity getEmployeeId() {
@@ -221,13 +227,13 @@ public class MainController {
 // fileDB.getName() + "\"")
 // .body(fileDB.getData);
 // }
+	
+
+
 	@GetMapping("/files/{employeeId}")
 	public ResponseEntity<ResponseFile> getFilebyID(@PathVariable String employeeId) {
 		try {
 			EmployeeProfile fileDB = epServ.getFileByID(employeeId);
-// String fileDownloadUri =
-// ServletUriComponentsBuilder.fromCurrentContextPath().path("/emp/")
-// .path("/getImage/").path(fileDB.getEmployeeId()).toUriString();
 			ResponseFile file = new ResponseFile();
 			file.setUrl(fileDB.getData());
 			file.setName(fileDB.getName());
@@ -238,7 +244,21 @@ public class MainController {
 			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
 		}
 	}
-
+	
+	@GetMapping("/file/{onboardingId}")
+	public ResponseEntity<ResponseFile> getFileByOnboardingID(@PathVariable String onboardingId) {
+		try {
+			EmployeeProfile profile = epServ.getFileByOnboardingID(onboardingId);
+			ResponseFile file = new ResponseFile();
+			file.setUrl(profile.getData());
+			file.setName(profile.getName());
+			file.setType(profile.getType());
+			file.setSize(profile.getData().length);
+			return new ResponseEntity<ResponseFile>(file, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+		}
+	}
 	@GetMapping("/getImage/{id}")
 	public ResponseEntity<byte[]> getFile(@PathVariable String id) {
 		EmployeeProfile fileDB = epServ.getFileByID(id);
@@ -439,6 +459,54 @@ public class MainController {
     			@RequestBody HrApprovalStatus newOnboard) {
     		return serv.updateTAAApproval(onboardingId, newOnboard);
     	}
+        @PutMapping("/updateCEOApproval/{onboardingId}")
+        public ResponseEntity updateCEOApproval(@PathVariable String onboardingId,
+    			@RequestBody HrApprovalStatus newOnboard) {
+    		return serv.updateCEOApproval(onboardingId, newOnboard);
+    	}
+        @GetMapping("/getEmployeesByOnboardingStatus/{onboardingStatus}")
+		public ResponseEntity getEmployeesByOnboardingStatus(@PathVariable String onboardingStatus) {
+
+        	
+			return serv.getEmployeesByOnboardingStatus(onboardingStatus);
+		}
+        @PutMapping("/updateHrStatus/{employeeId}")
+        public ResponseEntity getByOnboardingStatus(@PathVariable String employeeId,
+        		@RequestBody EmployeeMaster newStatus) {
+    		return serv.getByOnboardingStatus(employeeId,newStatus);
+    	}
+        //to update irm,srm,etc filds in employee master after hr approve
+        @PutMapping("/updateEmploymentDetailsInPMO/{employeeId}")
+		public ResponseEntity updateEmploymentDetailsInPMO(@PathVariable String employeeId,@RequestBody EmploymentDetails newEmp) {
+			return serv.updateEmploymentDetailsInPMOByEmployeeId(employeeId, newEmp);
+		}
+        
+        @GetMapping("/getData")
+        public List<Onboarding> getData()
+        {
+            System.out.println(onrepo.findOnboardingCountWithParticularMonth());
+        return onrepo.findOnboardingCountWithParticularMonth();
+        }
+        
+        @GetMapping("/getDataByDATE")
+        public List<Onboarding> getDataByDate()
+        {
+            System.out.println(onrepo.findOnboardingCountWithParticularDate());
+        return onrepo.findOnboardingCountWithParticularDate();
+        }
+        
+        @GetMapping("/getEmployeesByDepartment/{departmentName}")
+		public ResponseEntity getByDepartment(@PathVariable String departmentName) {
+			return serv.getByDepartment(departmentName);
+		}
+        @GetMapping("/getEmployeeNameDepDesByEmployeeId/{employeeId}")
+
+        public ResponseEntity getEmployeeNameDepDesByEmployeeId(@PathVariable String employeeId) {
+
+            return serv.getEmployeeNameDepDesByEmployeeId(employeeId);
 
 
+
+        }
+        
 }

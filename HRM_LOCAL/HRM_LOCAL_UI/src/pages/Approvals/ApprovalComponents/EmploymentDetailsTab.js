@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
-
-
-
+import ProfilePersonalDetailsTab from "../../MyProfile/MyProfileComponents/ProfilePersonalDetailsTab";
 
 
 function EmploymentDetailsTab(props) {
@@ -17,7 +15,7 @@ function EmploymentDetailsTab(props) {
     //var dateTime = getEmployeeDetails.dateOfJoining;
   
     const [imge, setImge] = useState([]);
-  //commit
+ 
     useEffect(() => {
       axios
         .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
@@ -46,7 +44,7 @@ function EmploymentDetailsTab(props) {
 
     return (
 
-        <div style={{ padding: 20, paddingBottom: 20 }}>    
+        <div style={{ padding: 20, paddingBottom: 40 }}>    
                           <Card.Title>
                             <h5>Employment Details:</h5>
                           </Card.Title>
@@ -58,7 +56,7 @@ function EmploymentDetailsTab(props) {
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                                {getEmployeeDetails.primarySkills}
+                                {props.viewOnboard.primarySkills}
                               </Card.Text>
                             </Col>
                             <Col>
@@ -68,7 +66,7 @@ function EmploymentDetailsTab(props) {
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Subtitle style={{ color: "#999897" }}>
-                                {getEmployeeDetails.secondarySkills}
+                                {props.viewOnboard.secondarySkills}
                               </Card.Subtitle>
                             </Col>
                           </Row>
@@ -80,7 +78,7 @@ function EmploymentDetailsTab(props) {
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                                {getEmployeeDetails.employmentType}
+                                {props.viewOnboard.employmentType}
                               </Card.Text>
                             </Col>
                             <Col>
@@ -90,7 +88,7 @@ function EmploymentDetailsTab(props) {
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                                {getEmployeeDetails.band}
+                                {props.viewOnboard.band}
                               </Card.Text>
                             </Col>
                           </Row>
@@ -103,7 +101,7 @@ function EmploymentDetailsTab(props) {
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                                {getEmployeeDetails.departmentName}
+                                {props.viewOnboard.department}
                               </Card.Text>
                             </Col>
                             <Col>
@@ -113,7 +111,7 @@ function EmploymentDetailsTab(props) {
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                                {getEmployeeDetails.designationName}
+                                {props.viewOnboard.designation}
                               </Card.Text>
                             </Col>
                           </Row>
@@ -121,25 +119,49 @@ function EmploymentDetailsTab(props) {
                           <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                             <Col>
                               <Card.Subtitle style={{ padding: 10 }}>
-                                Reporting Manager:
+                                 IRM:
                               </Card.Subtitle>{" "}
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                                {getEmployeeDetails.reportingManager}
+                                {props.viewOnboard.irm}
                               </Card.Text>
                             </Col>
                             <Col>
                               <Card.Subtitle style={{ padding: 10 }}>
-                                Project Name:
+                                SRM:
                               </Card.Subtitle>{" "}
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                                {getEmployeeDetails.projectName}
+                                {props.viewOnboard.srm}
                               </Card.Text>
                             </Col>
                           </Row>
+
+                          <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                                 BUH:
+                              </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                {props.viewOnboard.buh}
+                              </Card.Text>
+                            </Col>
+                            <Col>
+                              <Card.Subtitle style={{ padding: 10 }}>
+                               
+                              </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                              <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
+                                
+                              </Card.Text>
+                            </Col>
+                          </Row>
+
 
 
                         </div>
