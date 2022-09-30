@@ -5,7 +5,7 @@ import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 function AddressTab(props) {
 
   return (
-    <div>
+    <div style={{paddingBottom:"77px"}}>
     <Card.Title>
                 <Row>
                     <Col> <h5>Address:</h5></Col>

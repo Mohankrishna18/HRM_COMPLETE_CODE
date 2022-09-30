@@ -60,7 +60,7 @@ console.log(data)
       { title: "Onboarding Id", field: "onboardingId",color:"black" },
       { title: "FullName", field: "firstName" },
       { title: "Email", field: "email" },
-      { title: "PhoneNumber", field: "primaryPhoneNumber" },
+      { title: "PhoneNumber", field: "phoneNumber" },
       {
         title: "DOJ",
         field: "dateOfJoining",
@@ -165,15 +165,21 @@ console.log(data)
   
         <Grid>
           <MaterialTable
-            title=""
+            title="Onboarding's For Today"
             columns={columns}
             data={data}
             options={{
               paging: true,
               addRowPosition: "first",
               actionsColumnIndex: -1,
+              pageSize: 5,
+
+              pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
+
+              maxBodyHeight: 350,
               headerStyle: {
-                backgroundColor: "#FED3B6",
+               // backgroundColor: "#FFCE83",
+               background: "linear-gradient(#dbdcdc,white,#dbdcdc)",
   
                 color: "black",
               },

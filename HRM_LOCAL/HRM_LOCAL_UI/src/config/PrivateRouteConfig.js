@@ -22,6 +22,7 @@ import {
   FcReading,
   FcBookmark,
   FcApproval,
+  FcTemplate,
 } from "react-icons/fc";
 
 //Data Imports
@@ -111,11 +112,18 @@ export default [
   },
   {
     component: HrDashboardMain,
-    path: "/HrDashboard",
+
+    path: "/Dashboard",
+
     type: "myprofile",
-    icon: <FcDisapprove />,
+
+    icon: <FcTemplate/>,
+
     title: "Dashboard",
-    permission: [Roles.hrmanager],
+
+    permission: [Roles.hrmanager,Roles.pmohead,Roles.ceo],
+
+    exact: true
   },
   {
     component: MyProfileMain,
@@ -386,7 +394,9 @@ export default [
     path: "/departmentMain",
     type: "configuration",
     icon: <FcDepartment />,
-    title: "Departments",
+     title: "Business Units",
+    
+    
     permission: [Roles.pmohead],
   },
   {

@@ -59,28 +59,28 @@ function EducationalDetailsTab(props) {
 
 
 
-  var tempDate = new Date(getEmployeeDetails.postgraduationJoiningYear);
+  var tempDate = new Date(props.viewOnboard.postgraduationJoiningYear);
   var postgraduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.postgraduationPassedYear);
+  var tempDate = new Date(props.viewOnboard.postgraduationPassedYear);
   var postgraduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.graduationJoiningYear);
+  var tempDate = new Date(props.viewOnboard.graduationJoiningYear);
   var graduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.graduationPassedYear);
+  var tempDate = new Date(props.viewOnboard.graduationPassedYear);
   var graduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.intermediateJoiningYear);
+  var tempDate = new Date(props.viewOnboard.intermediateJoiningYear);
   var intermediateJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.intermediatePassedYear);
+  var tempDate = new Date(props.viewOnboard.intermediatePassedYear);
   var intermediatePassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.sscJoiningYear);
+  var tempDate = new Date(props.viewOnboard.sscJoiningYear);
   var sscJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.sscPassedYear);
+  var tempDate = new Date(props.viewOnboard.sscPassedYear);
  
   var sscPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
   const viewUploadFile = () => {
@@ -104,7 +104,7 @@ function EducationalDetailsTab(props) {
 
     return (
 
-        <div style={{ padding: 20, height:320, marginLeft: 10, marginRight: 20 }}>
+        <div style={{ padding: 20, height:320, marginLeft: 10, marginRight: 20,paddingBottom:"24px" }}>
                           <Card.Title>
                             <h5>Educational Information:</h5>
                           </Card.Title>
@@ -154,10 +154,10 @@ function EducationalDetailsTab(props) {
 
                                 </tr>
                                 <tr>
-                                  <td></td>
+                                  <td>{props.viewOnboard.intermediateQualification}</td>
                                   <td>{props.viewOnboard.intermediateBoardOfUniversity}</td>
                                   <td>{props.viewOnboard.intermediateCollegeName}</td>
-                                  <td>{getEmployeeDetails.intermediateCourseName}</td>
+                                  <td>{props.viewOnboard.intermediateCourseName}</td>
                                   <td>{props.viewOnboard.intermediateGrade}</td>
                                   <td> {props.viewOnboard.intermediateJoiningYear ? (<td>
                                     {intermediateJoiningYear1}
@@ -168,7 +168,7 @@ function EducationalDetailsTab(props) {
 
                                 </tr>
                                 <tr>
-                                  <td></td>
+                                  <td>{props.viewOnboard.sscQualification}</td>
                                   <td>{props.viewOnboard.sscBoardOfUniversity}</td>
                                   <td>{props.viewOnboard.sscSchoolName}</td>
                                   <td>{props.viewOnboard.sscCourseName}</td>

@@ -220,6 +220,8 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setEducationalDocuments(newOnboard.isEducationalDocuments());
 				getOnboarding.setResignation(newOnboard.isResignation());
 				getOnboarding.setIdProof(newOnboard.isIdProof());
+				getOnboarding.setDepartment(newOnboard.getDepartment());
+                getOnboarding.setDesignation(newOnboard.getDesignation());
 //				getOnboarding.setHrApprovalComment(newOnboard.);
 //				getOnboarding.setProjectName(newOnboard.getProjectName());
 //				getOnboarding.setSecondaryPhoneNumber(newOnboard.getSecondaryPhoneNumber());
@@ -293,6 +295,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setSscJoiningYear(getOnboarding.getSscJoiningYear());
 					employeeMaster.setSscPassedYear(getOnboarding.getSscPassedYear());
 					employeeMaster.setSscGrade(getOnboarding.getSscGrade());
+					employeeMaster.setSscQualification(getOnboarding.getSscQualification());
 
 					employeeMaster.setIntermediateBoardOfUniversity(getOnboarding.getIntermediateBoardOfUniversity());
 					employeeMaster.setIntermediateCollegeCity(getOnboarding.getIntermediateCollegeCity());
@@ -301,6 +304,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setIntermediateGrade(getOnboarding.getIntermediateGrade());
 					employeeMaster.setIntermediateJoiningYear(getOnboarding.getIntermediateJoiningYear());
 					employeeMaster.setIntermediatePassedYear(getOnboarding.getIntermediatePassedYear());
+					employeeMaster.setIntermediateQualification(getOnboarding.getIntermediateQualification());
 
 					employeeMaster.setMaritalStatus(getOnboarding.getMaritalStatus());
 					employeeMaster.setPanNumber(getOnboarding.getPanNumber());
@@ -1926,8 +1930,8 @@ public class MainServiceImpl implements MainService {
 		EmployeeMaster master = emRepo.getById(employeeId);
 
 		master.setEmploymentType(newEmp.getEmploymentType());
-		master.setDepartmentName(newEmp.getDepartment());
-		master.setDesignationName(newEmp.getDesignation());
+//		master.setDepartmentName(newEmp.getDepartment());
+//		master.setDesignationName(newEmp.getDesignation());
 		master.setBand(newEmp.getBand());
 		master.setJobTitle(newEmp.getJobTitle());
 		master.setClient(newEmp.getClient());
@@ -2004,5 +2008,28 @@ public class MainServiceImpl implements MainService {
 			return new ResponseEntity(r, HttpStatus.OK);
 		}
 	}
+	@Override
+
+    public ResponseEntity getEmployeeNameDepDesByEmployeeId(String employeeId) {
+
+
+
+        EmployeeMaster employeeMaster = emRepo.getById(employeeId);
+
+
+
+        EmployeeMaster en = new EmployeeMaster();
+
+        en.setFirstName(employeeMaster.getFirstName());
+
+        en.setDepartmentName(employeeMaster.getDepartmentName());
+
+        en.setDesignationName(employeeMaster.getDesignationName());
+
+
+
+        return new ResponseEntity(en, HttpStatus.OK);
+
+    }
 	
 }
