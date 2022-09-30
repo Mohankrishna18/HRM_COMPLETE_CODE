@@ -144,13 +144,18 @@ return(
   
         <Grid>
           <MaterialTable
-            title=""
+            title="Onboarding's For This Month"
             columns={columns}
             data={data}
             options={{
               paging: true,
               addRowPosition: "first",
               actionsColumnIndex: -1,
+              pageSize: 5,
+
+              pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
+
+              maxBodyHeight: 350,
               headerStyle: {
                // backgroundColor: "#FFCE83",
                background: "linear-gradient(#dbdcdc,white,#dbdcdc)",

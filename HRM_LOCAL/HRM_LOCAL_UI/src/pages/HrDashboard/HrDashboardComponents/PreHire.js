@@ -158,13 +158,18 @@ function PreHire(props) {
   
         <Grid>
           <MaterialTable
-            title=""
+            title="All the Offer Released Candidates"
             columns={columns}
             data={data}
             options={{
               paging: true,
               addRowPosition: "first",
               actionsColumnIndex: -1,
+              pageSize: 5,
+
+              pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
+
+              maxBodyHeight: 350,
               headerStyle: {
                 // backgroundColor: "#FFC47A",
                 background: "linear-gradient(#dbdcdc,white,#dbdcdc)",
