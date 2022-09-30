@@ -7,9 +7,12 @@ import Tab from '@mui/material/Tab';
 import axios from "../../../Uri";
 import Box from '@mui/material/Box';
 import { FcAssistant, FcConferenceCall, FcLeave, FcPositiveDynamic } from "react-icons/fc";
-import LeavesForApprovalTable from "../HrDashboardComponents/LeavesForApprovalTable";
-import ApprovedLeavesTable from "../HrDashboardComponents/ApprovedLeavesTable";
-import RejectedLeavesTable from "../HrDashboardComponents/RejectedLeavesTable";
+// import LeavesForApprovalTable from "../HrDashboardComponents/LeavesForApprovalTable";
+// import ApprovedLeavesTable from "../HrDashboardComponents/ApprovedLeavesTable";
+// import RejectedLeavesTable from "../HrDashboardComponents/RejectedLeavesTable";
+import PendingLeaves from "../HrDashboardComponents/PendingLeaves";
+import ApprovedLeaves from "../HrDashboardComponents/ApprovedLeaves";
+import RejectedLeaves from "../HrDashboardComponents/RejectedLeaves";
 
 
 
@@ -65,7 +68,7 @@ function Leaves() {
                                 <Card.Body>
                                     <h6>
                                         {" "}
-                                        <Card.Title>For Approval</Card.Title>
+                                        <Card.Title>Pending Leaves</Card.Title>
                         
                                         {/* <Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle> */}
                                 
@@ -116,9 +119,9 @@ function Leaves() {
                                             <Tab label="Rejected Leaves" value="3" style={{paddingRight:"2%"}}/>
                                         </TabList>
                                     </Box>
-                                    <TabPanel value="1"><LeavesForApprovalTable/></TabPanel>
-                                    <TabPanel value="2"><ApprovedLeavesTable/></TabPanel>
-                                    <TabPanel value="3"><RejectedLeavesTable/></TabPanel>
+                                    <TabPanel value="1"><PendingLeaves/></TabPanel>
+                                    <TabPanel value="2"><ApprovedLeaves/></TabPanel>
+                                    <TabPanel value="3"><RejectedLeaves/></TabPanel>
                                 </TabContext>
                             </Box>
     </div>
