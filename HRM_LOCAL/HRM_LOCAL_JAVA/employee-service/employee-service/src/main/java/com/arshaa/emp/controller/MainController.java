@@ -482,22 +482,31 @@ public class MainController {
 		}
         
         @GetMapping("/getData")
-        public List<EmployeeMaster> getData()
+        public List<Onboarding> getData()
         {
-        	System.out.println(emRepo.findEmployeeMasterCountWithParticularMonth());
-        return emRepo.findEmployeeMasterCountWithParticularMonth();
+            System.out.println(onrepo.findOnboardingCountWithParticularMonth());
+        return onrepo.findOnboardingCountWithParticularMonth();
         }
         
         @GetMapping("/getDataByDATE")
-        public List<EmployeeMaster> getDataByDate()
+        public List<Onboarding> getDataByDate()
         {
-        	System.out.println(emRepo.findEmployeeMasterCountWithParticularMonth());
-        return emRepo.findEmployeeMasterCountWithParticularDate();
+            System.out.println(onrepo.findOnboardingCountWithParticularDate());
+        return onrepo.findOnboardingCountWithParticularDate();
         }
         
         @GetMapping("/getEmployeesByDepartment/{departmentName}")
 		public ResponseEntity getByDepartment(@PathVariable String departmentName) {
 			return serv.getByDepartment(departmentName);
 		}
+        @GetMapping("/getEmployeeNameDepDesByEmployeeId/{employeeId}")
+
+        public ResponseEntity getEmployeeNameDepDesByEmployeeId(@PathVariable String employeeId) {
+
+            return serv.getEmployeeNameDepDesByEmployeeId(employeeId);
+
+
+
+        }
         
 }

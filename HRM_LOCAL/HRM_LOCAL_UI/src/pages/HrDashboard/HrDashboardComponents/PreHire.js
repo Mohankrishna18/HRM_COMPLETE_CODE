@@ -28,7 +28,10 @@ function PreHire(props) {
     const [viewOnboard, setViewOnboard] = useState({});
     const viewHandleClose = () => setViewShow(false);
   
+
     // const handleShow = () => {
+  
+
   
     useEffect(() => {
       loadData();
@@ -163,7 +166,8 @@ function PreHire(props) {
               addRowPosition: "first",
               actionsColumnIndex: -1,
               headerStyle: {
-                backgroundColor: "#FED3B6",
+                // backgroundColor: "#FFC47A",
+                background: "linear-gradient(#dbdcdc,white,#dbdcdc)",
   
                 color: "black",
               },
@@ -361,11 +365,3 @@ export default PreHire;
 //     </Table>
 
 //         </div>
-
-
-
-
-
-
-
-

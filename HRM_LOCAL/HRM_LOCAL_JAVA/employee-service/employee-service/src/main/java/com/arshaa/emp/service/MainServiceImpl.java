@@ -220,6 +220,8 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setEducationalDocuments(newOnboard.isEducationalDocuments());
 				getOnboarding.setResignation(newOnboard.isResignation());
 				getOnboarding.setIdProof(newOnboard.isIdProof());
+				getOnboarding.setDepartment(newOnboard.getDepartment());
+                getOnboarding.setDesignation(newOnboard.getDesignation());
 //				getOnboarding.setHrApprovalComment(newOnboard.);
 //				getOnboarding.setProjectName(newOnboard.getProjectName());
 //				getOnboarding.setSecondaryPhoneNumber(newOnboard.getSecondaryPhoneNumber());
@@ -2004,5 +2006,28 @@ public class MainServiceImpl implements MainService {
 			return new ResponseEntity(r, HttpStatus.OK);
 		}
 	}
+	@Override
+
+    public ResponseEntity getEmployeeNameDepDesByEmployeeId(String employeeId) {
+
+
+
+        EmployeeMaster employeeMaster = emRepo.getById(employeeId);
+
+
+
+        EmployeeMaster en = new EmployeeMaster();
+
+        en.setFirstName(employeeMaster.getFirstName());
+
+        en.setDepartmentName(employeeMaster.getDepartmentName());
+
+        en.setDesignationName(employeeMaster.getDesignationName());
+
+
+
+        return new ResponseEntity(en, HttpStatus.OK);
+
+    }
 	
 }
