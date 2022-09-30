@@ -1,8 +1,8 @@
 import React from 'react'
 import { Card, Col, Row } from 'react-bootstrap';
-import TaskMain from './EmployeeTimesheet/TaskMain';
+import ApprovalTable from './ApprovalTable';
 
-const EmployeeTimeSheetMain = () => {
+const ApprovalsMain = () => {
   return (
     <div className='example'>
       <Row>
@@ -11,12 +11,12 @@ const EmployeeTimeSheetMain = () => {
                   <Card.Subtitle className="mb-2 text-muted">
                   TimeSheet Management
                   </Card.Subtitle>
-            <TaskMain/>
+            <ApprovalTable/>
         </Col>
       </Row>
     </div>
   )
 }
 
-export default EmployeeTimeSheetMain
+export default ApprovalsMain
 

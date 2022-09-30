@@ -4,6 +4,8 @@ import HrEmployeesLeavesWaitingForApproval from '../../HrLeavesToApprove/HrEmplo
 import PMOApproval from '../../PMO/PMOApproval';
 import PMOMain from '../../PMO/PMOMain';
 import TaskMain from '../../TimeSheet/EmployeeTimesheet/TaskMain';
+import ApprovalsMain from '../../TimeSheet/irmApproval/ApprovalsMain';
+
 
 
 const Approve = () => {
@@ -25,7 +27,7 @@ const Approve = () => {
                             <HrEmployeesLeavesWaitingForApproval/>
                         </Tab>
                         <Tab eventKey="Timesheet Approvals" title="Timesheet Approvals" style={{ backgroundColor: "white" }} >
-                            <TaskMain/>
+                            <ApprovalsMain/>
                         </Tab>
                     </Tabs>
                 </Col>
