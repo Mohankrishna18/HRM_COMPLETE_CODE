@@ -179,7 +179,6 @@ function Departments(props) {
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        {getDepartmentName == "" ? (
 
                             <tbody>
                                 {empData.map((data) => (
@@ -209,35 +208,6 @@ function Departments(props) {
                                     </tr>
                                 ))}
                             </tbody>
-                        ) : <tbody>
-                            {data.map((data) => (
-                                <tr>
-                                    <td>{data.firstName}</td>
-                                    <td>{data.employeeId}</td>
-                                    <td>{data.email}</td>
-                                    <td>{data.primaryPhoneNumber}</td>
-                                    <td>{data.dateOfJoining}</td>
-                                    <td>{data.designationName}</td>
-                                    <td>
-                                        <Row>
-                                            <Button
-                                                variant="white "
-                                                className="rounded-pill"
-                                                onClick={(event) => {
-                                                    setViewShow(true);
-                                                    console.log(props);
-                                                    setViewOnboard(props.data);
-                                                }}
-                                            >{" "}
-                                                <AiTwotoneEdit /> Edit
-                                            </Button>
-
-                                        </Row>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>}
-
                     </Table>
                 </div>
             </Row>

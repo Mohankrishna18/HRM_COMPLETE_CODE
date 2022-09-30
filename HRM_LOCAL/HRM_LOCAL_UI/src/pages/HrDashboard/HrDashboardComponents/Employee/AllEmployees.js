@@ -3,6 +3,8 @@ import { Button, Modal, Tab, Table, Tabs, Row, Col, Card } from "react-bootstrap
 import axios from "../../../../Uri";
 import { AiTwotoneEdit } from "react-icons/ai";
 import { AiFillDelete } from "react-icons/ai";
+import AvtarComponent from "../../../../commonComponents/AvtarComponent";
+import Moment from 'react-moment';
 
 
 function AllEmployees(props) {
@@ -17,8 +19,9 @@ function AllEmployees(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-
+  const [renderTable, setRenderTable] = useState(false);
+  const [changingStatus, setChangingStatus] = useState(false);
+  console.log(departmentName)
 
   useEffect(() => {
     axios
@@ -26,14 +29,13 @@ function AllEmployees(props) {
       .then((res) => {
         setData(res.data.data);
         console.log(res.data.data);
-        console.log(res.data.data.employeeid);
       })
       .catch((err) => {
         console.log(err);
         // toast.error("Server Error")
       });
   }, []);
-  console.log(data);
+
 
   useEffect(() => {
     loadData();
@@ -48,104 +50,130 @@ function AllEmployees(props) {
 
 
   const [taa, setTaa] = useState([]);
-  axios
-    .get("/emp/getEmployeesByDepartment/TAA")
-    .then((res) => {
-      setTaa(res.data.data);
-      console.log(res.data.data);
-    })
-    .catch((err) => {
-      console.log(err);
-      // toast.error("Server Error")
-    });
+  useEffect(() => {
+    axios
+      .get("/emp/getEmployeesByDepartment/TAA")
+      .then((res) => {
+        setTaa(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        // toast.error("Server Error")
+      });
+  }, []);
 
   const [hr, setHr] = useState([]);
-  axios
-    .get("/emp/getEmployeesByDepartment/Human Resource(HR)")
-    .then((res) => {
-      setHr(res.data.data);
-      console.log(res.data.data);
-    })
-    .catch((err) => {
-      console.log(err);
-      // toast.error("Server Error")
-    });
-
+  useEffect(() => {
+    axios
+      .get("/emp/getEmployeesByDepartment/Human Resource(HR)")
+      .then((res) => {
+        setHr(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        // toast.error("Server Error")
+      });
+  }, []);
 
   const [tag, setTag] = useState([]);
-  axios
-    .get("/emp/getEmployeesByDepartment/TAG")
-    .then((res) => {
-      setTag(res.data.data);
-      console.log(res.data.data);
-    })
-    .catch((err) => {
-      console.log(err);
-      // toast.error("Server Error")
-    });
+  useEffect(() => {
+    axios
+      .get("/emp/getEmployeesByDepartment/TAG")
+      .then((res) => {
+        setTag(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        // toast.error("Server Error")
+      });
+  }, []);
 
   const [pmo, setPmo] = useState([]);
-  axios
-    .get("/emp/getEmployeesByDepartment/PMO")
-    .then((res) => {
-      setPmo(res.data.data);
-      console.log(res.data.data);
-    })
-    .catch((err) => {
-      console.log(err);
-      // toast.error("Server Error")
-    });
+  useEffect(() => {
+    axios
+      .get("/emp/getEmployeesByDepartment/PMO")
+      .then((res) => {
+        setPmo(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        // toast.error("Server Error")
+      });
+  }, []);
 
   const [oracle, setOracle] = useState([]);
-  axios
-    .get("/emp/getEmployeesByDepartment/Oracle")
-    .then((res) => {
-      setOracle(res.data.data);
-      console.log(res.data.data);
-    })
-    .catch((err) => {
-      console.log(err);
-      // toast.error("Server Error")
-    });
+  useEffect(() => {
+    axios
+      .get("/emp/getEmployeesByDepartment/Oracle")
+      .then((res) => {
+        setOracle(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        // toast.error("Server Error")
+      });
+  }, []);
 
   const [digital, setDigital] = useState([]);
-  axios
-    .get("/emp/getEmployeesByDepartment/Digital")
-    .then((res) => {
-      setDigital(res.data.data);
-      console.log(res.data.data);
-    })
-    .catch((err) => {
-      console.log(err);
-      // toast.error("Server Error")
-    });
+  useEffect(() => {
+    axios
+      .get("/emp/getEmployeesByDepartment/Digital")
+      .then((res) => {
+        setDigital(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        // toast.error("Server Error")
+      });
+  }, []);
 
   const [it, setIt] = useState([]);
-  axios
-    .get("/emp/getEmployeesByDepartment/IT")
-    .then((res) => {
-      setIt(res.data.data);
-      console.log(res.data.data);
-    })
-    .catch((err) => {
-      console.log(err);
-      // toast.error("Server Error")
-    });
+  useEffect(() => {
+    axios
+      .get("/emp/getEmployeesByDepartment/IT")
+      .then((res) => {
+        setIt(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        // toast.error("Server Error")
+      });
+  }, []);
 
-    
-    // to get employee data by departments
-    const getEmpData = () => {
+  // to get employee data by departments
+  const getEmpData = () => {
+    if (changingStatus === true) {
+      setRenderTable(false);
+    }
+    else {
       axios
-          .get(`/emp/getEmployeesByDepartment/${getDepartmentName}`)
-          .then((res) => {
-              setEmpData(res.data.data);
-              console.log(res.data.data);
-          })
-          .catch((err) => {
-              console.log(err);
-              // toast.error("Server Error")
-          });
+        .get(`/emp/getEmployeesByDepartment/${getDepartmentName}`)
+        .then((res) => {
+          setEmpData(res.data.data);
+          console.log(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+          // toast.error("Server Error")
+        });
+      setRenderTable(true);
+    }
   }
+
+  var today = new Date(data.dateOfJoining);
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+
+  var doj = dd + '-' + mm + '-' + yyyy;
+  console.log(doj);
 
 
 
@@ -153,90 +181,90 @@ function AllEmployees(props) {
     <><div className="responsive" >
       <Row >
         <Col md="2">
-            <Card >
-              <Card.Body>
-                <h6>
-                  {" "}
-                  <Card.Title>All Employees</Card.Title>
+          <Card border="warning">
+            <Card.Body>
+              <h6>
+                {" "}
+                <Card.Title>All Employees</Card.Title>
 
-                  {/* <Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle> */}
+                {/* <Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle> */}
 
-                  {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
 
+              </h6>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md="2">
+          <Card border="warning">
+            <Card.Body>
+              <Row>
+                <Col>
+                  <h6>TAA {""} : </h6>
+                </Col>
+                <Col><h6 style={{ paddingTop: "6%" }}>
+                  {taa > 0 ? (<Card.Subtitle className="mb-2 text-muted">{taa}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
                 </h6>
-              </Card.Body>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <h6>PMO{""} : </h6>
+                </Col>
+                <Col><h6 style={{ paddingTop: "6%" }}>
+                  {pmo > 0 ? (<Card.Subtitle className="mb-2 text-muted">{pmo}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                </h6>
+                </Col>
+              </Row>
+            </Card.Body>
           </Card>
         </Col>
         <Col md="2">
-            <Card >
-              <Card.Body>
-                <Row>
-                  <Col>
-                    <h6>TAA {""} : </h6>
-                  </Col>
-                  <Col><h6 style={{ paddingTop: "6%" }}>
-                    {taa > 0 ? (<Card.Subtitle className="mb-2 text-muted">{taa}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
-                  </h6>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <h6>PMO{""} : </h6>
-                  </Col>
-                  <Col><h6 style={{ paddingTop: "6%" }}>
-                    {pmo > 0 ? (<Card.Subtitle className="mb-2 text-muted">{pmo}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
-                  </h6>
-                  </Col>
-                </Row>
-              </Card.Body>
-          </Card>
-        </Col>
-        <Col md="2">
-            <Card >
-              <Card.Body>
-                <Row>
-                  <Col>
-                    <h6>HR : </h6>
-                  </Col>
-                  <Col><h6 style={{ paddingTop: "6%" }}>
-                    {hr > 0 ? (<Card.Subtitle className="mb-2 text-muted">{hr}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
-                  </h6>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <h6>IT {""}: </h6>
-                  </Col>
-                  <Col><h6 style={{ paddingTop: "6%" }}>
-                    {it > 0 ? (<Card.Subtitle className="mb-2 text-muted">{it}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
-                  </h6>
-                  </Col>
-                </Row>
-              </Card.Body>
+          <Card border="warning">
+            <Card.Body>
+              <Row>
+                <Col>
+                  <h6>HR : </h6>
+                </Col>
+                <Col><h6 style={{ paddingTop: "6%" }}>
+                  {hr > 0 ? (<Card.Subtitle className="mb-2 text-muted">{hr}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                </h6>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <h6>IT {""}: </h6>
+                </Col>
+                <Col><h6 style={{ paddingTop: "6%" }}>
+                  {it > 0 ? (<Card.Subtitle className="mb-2 text-muted">{it}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                </h6>
+                </Col>
+              </Row>
+            </Card.Body>
           </Card>
         </Col>
         <Col md="3">
-          <Card>
-              <Card.Body>
-                <Row>
-                  <Col>
-                    <h6>ORACLE : </h6>
-                  </Col>
-                  <Col><h6 style={{ paddingTop: "6%" }}>
-                    {oracle > 0 ? (<Card.Subtitle className="mb-2 text-muted">{oracle}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
-                  </h6>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <h6>DIGITAL : </h6>
-                  </Col>
-                  <Col><h6 style={{ paddingTop: "6%" }}>
-                    {digital > 0 ? (<Card.Subtitle className="mb-2 text-muted">{digital}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
-                  </h6>
-                  </Col>
-                </Row>
-              </Card.Body>   
+          <Card border="warning">
+            <Card.Body>
+              <Row>
+                <Col>
+                  <h6>ORACLE : </h6>
+                </Col>
+                <Col><h6 style={{ paddingTop: "6%" }}>
+                  {oracle > 0 ? (<Card.Subtitle className="mb-2 text-muted">{oracle}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                </h6>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <h6>DIGITAL : </h6>
+                </Col>
+                <Col><h6 style={{ paddingTop: "6%" }}>
+                  {digital > 0 ? (<Card.Subtitle className="mb-2 text-muted">{digital}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                </h6>
+                </Col>
+              </Row>
+            </Card.Body>
           </Card>
         </Col>
       </Row>
@@ -253,8 +281,15 @@ function AllEmployees(props) {
                 </Col><Col>
 
                   <select class="form-control" placeholder="Select Department"
-                    onChange={(e) => setGetDepartmentName(e.target.value)}>
-                    <option >select department</option>
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      if (e.target.value === "ALL") {
+                        setChangingStatus(true)
+                      }
+                      setGetDepartmentName(e.target.value);
+                      console.log(getDepartmentName);
+                    }}>
+                    <option value={"ALL"}>All</option>
                     {departmentName.map((departmentName) => (
                       <option value={departmentName.departmentName}>{departmentName.departmentName}</option>
                     ))}
@@ -287,44 +322,46 @@ function AllEmployees(props) {
           </Modal>
 
           {/* <HRConfirmation /> */}
-          <Table striped bordered hover responsive>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Employee ID</th>
-                <th>Email</th>
-                <th>Mobile</th>
-                <th>Join Date</th>
-                <th>Role</th>
-
-                <th>Actions</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {data.map((data) => (
+          {renderTable == false ? (
+            <Table striped bordered hover responsive>
+              <thead>
                 <tr>
-                  <td>{data.fullName}</td>
-                  <td>{data.employeeId}</td>
-                  <td>{data.email}</td>
-                  <td>{data.primaryPhoneNumber}</td>
-                  <td>{data.dateOfJoining}</td>
-                  <td>{data.designationName}</td>
-                  {/* <Profilebadge imageUrl={data.url} /> */}
-                  <td>
-                    <Row>
-                      <Button
-                        variant="white "
-                        className="rounded-pill"
-                        onClick={(event) => {
-                          setViewShow(true);
-                          console.log(props);
-                          setViewOnboard(props.data);
-                        }}
-                      >{" "}
-                        <AiTwotoneEdit /> Edit
-                      </Button>
-                      {/* <Button
+                  <th>Name</th>
+                  <th>Employee ID</th>
+                  <th>Email</th>
+                  <th>Mobile</th>
+                  <th>DOJ</th>
+                  <th>Role</th>
+
+                </tr>
+              </thead>
+
+              <tbody>
+                {data.map((data) => (
+                  <tr>
+                    <td><AvtarComponent data={data} /></td>
+                    <td>{data.employeeId}</td>
+                    <td>{data.email}</td>
+                    <td>{data.primaryPhoneNumber}</td>
+                    <td><Moment format="DD/MM/YYYY">
+                      {data.dateOfJoining}
+                    </Moment></td>
+                    <td>{data.designationName}</td>
+                    {/* <Profilebadge imageUrl={data.url} /> */}
+                    {/* <td>
+                      <Row>
+                        <Button
+                          variant="white "
+                          className="rounded-pill"
+                          onClick={(event) => {
+                            setViewShow(true);
+                            console.log(props);
+                            setViewOnboard(props.data);
+                          }}
+                        >{" "}
+                          <AiTwotoneEdit /> Edit
+                        </Button> */}
+                    {/* <Button
                     variant="white "
                     className="rounded-pill"
                     onClick={(event) => {
@@ -335,12 +372,44 @@ function AllEmployees(props) {
                   > {" "}
                     <AiFillDelete/>Delete
                   </Button> */}
-                    </Row>
-                  </td>
+                    {/* </Row>
+                    </td> */}
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          ) : (
+            <Table striped bordered hover responsive>
+              <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Employee ID</th>
+                  <th>Email</th>
+                  <th>Mobile</th>
+                  <th>DOJ</th>
+                  <th>Role</th>
+
                 </tr>
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+
+              <tbody>
+                {empData.map((data) => (
+                  <tr>
+                    <td><AvtarComponent data={data} /></td>
+                    <td>{data.employeeId}</td>
+                    <td>{data.email}</td>
+                    <td>{data.primaryPhoneNumber}</td>
+                    <td><Moment format="DD/MM/YYYY">
+                      {data.dateOfJoining}
+                    </Moment></td>
+                    <td>{data.designationName}</td>
+                    
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          )}
+
         </div>
       </Row>
     </div>
