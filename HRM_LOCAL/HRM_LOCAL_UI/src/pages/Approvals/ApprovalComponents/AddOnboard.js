@@ -499,7 +499,7 @@ function AddOnboard(props) {
 
                   </Row>
                 </Form>
-                <Button onclick={handleSubmit}>Submit</Button>
+                <Button onClick={handleSubmit}>Submit</Button>
              
             {/* )} */}
 {/*            
