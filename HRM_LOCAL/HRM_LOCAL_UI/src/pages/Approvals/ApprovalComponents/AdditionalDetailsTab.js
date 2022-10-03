@@ -26,6 +26,9 @@ function AditionalDetailsTab(props) {
         console.log(err);
       });
   };
+
+  var tempDate = new Date(props.viewOnboard.passportExpiryDate);
+  var ped = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
  
   return (
     <div style={{ paddingLeft: 20, paddingBottom:"50px"}}>
@@ -52,9 +55,9 @@ function AditionalDetailsTab(props) {
             </Card.Subtitle>{" "}
         </Col>
         <Col md={{ offset: 1 }}>
-
-            {props.viewOnboard.passportExpiryDate ? (<Card.Subtitle style={{ color: "#999897" }}>
-                {props.viewOnboard.ped}
+       
+           {props.viewOnboard.passportExpiryDate ? (<Card.Subtitle style={{ padding: 10,color: "#999897" }}>
+                {ped} 
             </Card.Subtitle>) : (<div></div>)}
 
         </Col>
@@ -95,12 +98,12 @@ function AditionalDetailsTab(props) {
         </Col>
         <Col>
             <Card.Subtitle style={{ padding: 10 }}>
-                Band:
+            Bank Name:
             </Card.Subtitle>{" "}
         </Col>
         <Col md={{ offset: 1 }}>
             <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                {props.viewOnboard.band}
+            {props.viewOnboard.bankName}
             </Card.Text>
         </Col>
     </Row>
@@ -108,22 +111,22 @@ function AditionalDetailsTab(props) {
     <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
         <Col>
             <Card.Subtitle style={{ padding: 10 }}>
-                Bank Name:
+            Account Number:
             </Card.Subtitle>{" "}
         </Col>
         <Col md={{ offset: 1 }}>
             <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                {props.viewOnboard.bankName}
+            {props.viewOnboard.accountNumber}
             </Card.Text>
         </Col>
         <Col>
             <Card.Subtitle style={{ padding: 10 }}>
-                Account Number:
+            IFSC Code:
             </Card.Subtitle>{" "}
         </Col>
         <Col md={{ offset: 1 }}>
             <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                {props.viewOnboard.accountNumber}
+            {props.viewOnboard.ifscCode}
             </Card.Text>
         </Col>
     </Row>
@@ -131,22 +134,22 @@ function AditionalDetailsTab(props) {
     <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
         <Col>
             <Card.Subtitle style={{ padding: 10 }}>
-                IFSC Code:
+            Branch:
             </Card.Subtitle>{" "}
         </Col>
         <Col md={{ offset: 1 }}>
             <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                {props.viewOnboard.ifscCode}
+            {props.viewOnboard.branch}
             </Card.Text>
         </Col>
         <Col>
             <Card.Subtitle style={{ padding: 10 }}>
-                Branch:
+                
             </Card.Subtitle>{" "}
         </Col>
         <Col md={{ offset: 1 }}>
             <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                {props.viewOnboard.branch}
+               
             </Card.Text>
         </Col>
     </Row>

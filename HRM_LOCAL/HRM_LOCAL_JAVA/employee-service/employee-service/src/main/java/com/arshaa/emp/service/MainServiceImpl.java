@@ -295,6 +295,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setSscJoiningYear(getOnboarding.getSscJoiningYear());
 					employeeMaster.setSscPassedYear(getOnboarding.getSscPassedYear());
 					employeeMaster.setSscGrade(getOnboarding.getSscGrade());
+					employeeMaster.setSscQualification(getOnboarding.getSscQualification());
 
 					employeeMaster.setIntermediateBoardOfUniversity(getOnboarding.getIntermediateBoardOfUniversity());
 					employeeMaster.setIntermediateCollegeCity(getOnboarding.getIntermediateCollegeCity());
@@ -303,6 +304,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setIntermediateGrade(getOnboarding.getIntermediateGrade());
 					employeeMaster.setIntermediateJoiningYear(getOnboarding.getIntermediateJoiningYear());
 					employeeMaster.setIntermediatePassedYear(getOnboarding.getIntermediatePassedYear());
+					employeeMaster.setIntermediateQualification(getOnboarding.getIntermediateQualification());
 
 					employeeMaster.setMaritalStatus(getOnboarding.getMaritalStatus());
 					employeeMaster.setPanNumber(getOnboarding.getPanNumber());
@@ -1928,8 +1930,8 @@ public class MainServiceImpl implements MainService {
 		EmployeeMaster master = emRepo.getById(employeeId);
 
 		master.setEmploymentType(newEmp.getEmploymentType());
-		master.setDepartmentName(newEmp.getDepartment());
-		master.setDesignationName(newEmp.getDesignation());
+//		master.setDepartmentName(newEmp.getDepartment());
+//		master.setDesignationName(newEmp.getDesignation());
 		master.setBand(newEmp.getBand());
 		master.setJobTitle(newEmp.getJobTitle());
 		master.setClient(newEmp.getClient());

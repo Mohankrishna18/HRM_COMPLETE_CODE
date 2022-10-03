@@ -113,56 +113,25 @@ function ExperienceTab(props) {
   console.log(GraduationJoiningYear1);
 
 
-  var tempDate = new Date(getEmployeeDetails.dateOfBirth);
-  var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.passportExpiryDate);
-  var ped = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.postgraduationJoiningYear);
-  var postgraduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.postgraduationPassedYear);
-  var postgraduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.graduationJoiningYear);
-  var graduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.graduationPassedYear);
-  var graduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.intermediateJoiningYear);
-  var intermediateJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.intermediatePassedYear);
-  var intermediatePassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.sscJoiningYear);
-  var sscJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.sscPassedYear);
- 
-  var sscPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.previousCompany1_joiningDate);
+  var tempDate = new Date(props.viewOnboard.previousCompany1_joiningDate);
   var previousCompany1_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.previousCompany1_relievingDate);
+  var tempDate = new Date(props.viewOnboard.previousCompany1_relievingDate);
   var previousCompany1_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.previousCompany2_joiningDate);
+  var tempDate = new Date(props.viewOnboard.previousCompany2_joiningDate);
     var previousCompany2_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-    var tempDate = new Date(getEmployeeDetails.previousCompany2_relievingDate);
+    var tempDate = new Date(props.viewOnboard.previousCompany2_relievingDate);
     var previousCompany2_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-    var tempDate = new Date(getEmployeeDetails.previousCompany3_joiningDate);
+    var tempDate = new Date(props.viewOnboard.previousCompany3_joiningDate);
     var previousCompany3_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-    var tempDate = new Date(getEmployeeDetails.previousCompany3_relievingDate);
+    var tempDate = new Date(props.viewOnboard.previousCompany3_relievingDate);
     var previousCompany3_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-    var dob11 = getEmployeeDetails.dateOfBirth
     const viewUploadFile = () => {
       // window.open(`api/get/image/${imageName}/${onboardingId}`)
   
@@ -465,35 +434,35 @@ function ExperienceTab(props) {
         </thead>
         <tbody>
           <tr>
-            <td>{getEmployeeDetails.previousCompany1_name}</td>
-            <td>{getEmployeeDetails.previousCompany1_employeeId}</td>
-            <td>{getEmployeeDetails.previousCompany1_designation}</td>
-            <td> {getEmployeeDetails.previousCompany1_joiningDate ? (<td>
+            <td>{props.viewOnboard.previousCompany1_name}</td>
+            <td>{props.viewOnboard.previousCompany1_employeeId}</td>
+            <td>{props.viewOnboard.previousCompany1_designation}</td>
+            <td> {props.viewOnboard.previousCompany1_joiningDate ? (<td>
               {previousCompany1_joiningDate1}
             </td>) : (<div></div>)}</td>
-            <td>{getEmployeeDetails.previousCompany1_relievingDate ? (<td>
+            <td>{props.viewOnboard.previousCompany1_relievingDate ? (<td>
               {previousCompany1_relievingDate1}
             </td>) : (<div></div>)}</td>
           </tr>
           <tr>
-            <td>{getEmployeeDetails.previousCompany2_name}</td>
-            <td>{getEmployeeDetails.previousCompany2_employeeId}</td>
-            <td>{getEmployeeDetails.previousCompany2_designation}</td>
-            <td> {getEmployeeDetails.previousCompany2_joiningDate ? (<td>
+            <td>{props.viewOnboard.previousCompany2_name}</td>
+            <td>{props.viewOnboard.previousCompany2_employeeId}</td>
+            <td>{props.viewOnboard.previousCompany2_designation}</td>
+            <td> {props.viewOnboard.previousCompany2_joiningDate ? (<td>
               {previousCompany2_joiningDate1}
             </td>) : (<div></div>)}</td>
-            <td>{getEmployeeDetails.previousCompany2_relievingDate ? (<td>
+            <td>{props.viewOnboard.previousCompany2_relievingDate ? (<td>
               {previousCompany2_relievingDate1}
             </td>) : (<div></div>)}</td>
           </tr>
           <tr>
-            <td>{getEmployeeDetails.previousCompany3_name}</td>
-            <td>{getEmployeeDetails.previousCompany3_employeeId}</td>
-            <td>{getEmployeeDetails.previousCompany3_designation}</td>
-            <td> {getEmployeeDetails.previousCompany3_joiningDate ? (<td>
+            <td>{props.viewOnboard.previousCompany3_name}</td>
+            <td>{props.viewOnboard.previousCompany3_employeeId}</td>
+            <td>{props.viewOnboard.previousCompany3_designation}</td>
+            <td> {props.viewOnboard.previousCompany3_joiningDate ? (<td>
               {previousCompany3_joiningDate1}
             </td>) : (<div></div>)}</td>
-            <td>{getEmployeeDetails.previousCompany3_relievingDate ? (<td>
+            <td>{props.viewOnboard.previousCompany3_relievingDate ? (<td>
               {previousCompany3_relievingDate1}
             </td>) : (<div></div>)}</td>
           </tr>

@@ -37,8 +37,8 @@ console.log(employeeId);
   const validateForm = () => {
     const {
         employmentType,
-        department,
-        designation,
+        // department,
+        // designation,
         irm,
         srm,
         buh,
@@ -50,10 +50,10 @@ console.log(employeeId);
     } = form;
     const newErrors = {};
 
-    if (!designation || designation === "")
-      newErrors.designation = "Please Enter Business Unit";
-    if (!department || department === "")
-      newErrors.department = "Please Enter Department";
+    // if (!designation || designation === "")
+    //   newErrors.designation = "Please Enter Business Unit";
+    // if (!department || department === "")
+    //   newErrors.department = "Please Enter Department";
     if (!employmentType || employmentType === "")
       newErrors.employmentType = "Please Enter type of Employeement";
     
@@ -233,7 +233,7 @@ console.log(employeeId);
                     {errors.employmentType}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Business Unit *</Form.Label>
                 <Form.Select
                     required
@@ -289,7 +289,7 @@ console.log(employeeId);
                 </Form.Control.Feedback>
 
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
+            </Form.Group> */}
 
 
 
@@ -430,7 +430,7 @@ console.log(employeeId);
 
         </Row>
     </Form>
-    <Button onClick={handleSubmit}>Submit</Button> 
+    <Button onClick={handleSubmit}  handleClose={handleClose}>Submit</Button> 
      
 </div>
 )
