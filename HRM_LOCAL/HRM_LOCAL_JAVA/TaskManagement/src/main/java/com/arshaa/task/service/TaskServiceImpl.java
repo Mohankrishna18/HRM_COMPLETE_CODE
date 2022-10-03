@@ -255,7 +255,7 @@ public double calculateRemainingHours(int taskId, double actualHours) {
 
 
 
-       taskentitity.setActualHours(0);
+       taskentitity.setActualHours(actualHours);
         taskentitity.setSumOfActual(actualHours + taskentitity.getSumOfActual());
 
 

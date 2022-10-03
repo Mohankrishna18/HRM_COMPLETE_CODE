@@ -51,6 +51,7 @@ function TaskMain(props) {
   const [irm, setIrm] = useState();
   const [approval, setApproval] = useState();
   const [taskData, setTaskData] = useState([]);
+  const [date, setDate] = useState();
   console.log(irm);
   console.log(props.data);
   const da = JSON.parse(sessionStorage.getItem("userdata"));
@@ -166,15 +167,19 @@ function TaskMain(props) {
     currentt.getMonth() + 1
   },${currentt.getDate()}`;
   console.log(currenttdate);
-  const BackkDate = `${currentt.getFullYear()},${currentt.getMonth() + 1},${
-    currentt.getDate() - 7
-  }`;
+  const BackkDate = `${currentt.getFullYear()},${currentt.getMonth()+1 },${
+    currentt.getDate()-7}`;
 
   console.log(BackkDate);
 
+  var bdate = new Date();
+  bdate.setDate(bdate.getDate() -7);
+  console.log(bdate);
+  const bd = moment.utc(bdate).format("YYYY,MM,DD");
+  console.log(bd);
+
   const frontDate = `${currentt.getFullYear()},${currentt.getMonth() + 1},${
-    currentt.getDate() + 7
-  }`;
+    currentt.getDate() }`;
   console.log(frontDate);
 
   const time = [];
@@ -192,7 +197,7 @@ function TaskMain(props) {
 
     {
       title: "Task Name",
-      field: "taskName",
+      field: "taskTitle",
       type: "text",
       editable: "never",
     },
@@ -319,7 +324,7 @@ function TaskMain(props) {
             <tbody>
               {taskData.map((item) => (
                 <tr>
-                  <td>{item.taskName}</td>
+                  <td>{item.taskTitle}</td>
                   <td>{item.estimatedHours}</td>
                   <td>{item.actualHours}</td>
                   <td>{item.remainingHours}</td>
@@ -343,9 +348,9 @@ function TaskMain(props) {
             <Col md="4" style={{ paddingLeft: "4%", paddingTop: "5%",fontSize:"20px" }}>
               <Form.Label>Select Date</Form.Label>
                <Calendar
-                // minDate={new Date(BackDate)}
-                minDate={new Date(BackkDate)}
-                maxDate={new Date()}
+              // minDate={new Date(BackDate)}
+               minDate={new Date(bd)}
+                maxDate={new Date(frontDate)}
                 onChange={(e) => {
                   console.log(e);
                   const da = moment.utc(e + 1).format("YYYY-MM-DD");
@@ -373,6 +378,7 @@ function TaskMain(props) {
                 //         date.getDate() === disabledDate.getDate()
                 //     )}
                 // tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6 || frontDate}
+                
               />
             </Col>
             <Col md="8">
