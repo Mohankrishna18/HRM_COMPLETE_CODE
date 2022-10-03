@@ -4,6 +4,7 @@ import EmployeeLeaveHistory from "../ManagerLeaveHistory/ManagerLeaveHistory";
 import { Row, Col, Card, Container, Tabs, Tab } from 'react-bootstrap';
 import ManagerEmployeesLeavesWaitingForApproval from "./ManagerEmployeesLeavesWaitingForApproval";
 import TaskMain from '../TimeSheet/EmployeeTimesheet/TaskMain';
+import ApprovalsMain from '../TimeSheet/irmApproval/ApprovalsMain';
 
 const ManagerLeavesToApproveMain = () => {
   return (
@@ -64,7 +65,7 @@ const ManagerLeavesToApproveMain = () => {
                     </Card.Header>
                   </Tab>
                   <Tab eventKey="Timesheet Approvals" title="Timesheet Approvals" style={{ backgroundColor: "white" }} >
-                    <TaskMain />
+                    <ApprovalsMain />
                   </Tab>
                 </Tabs>
 

@@ -210,7 +210,68 @@ public List<TaskEntity> getTaskByEmployeeId(String employeeId)
 		}
 	return null;
 }
+@Override
+public List<TaskEntity> findByAssignedToAndStatus(String assignedTo, String status) {
+    // TODO Auto-generated method stub
+    return findByAssignedToAndStatus(assignedTo, status);
+}
 
+
+
+@Override
+public double findtotalOfActualHours(int taskId) {
+
+
+
+   return findtotalOfActualHours(taskId);
+}
+
+
+
+@Override
+public double calculateRemainingHours(int taskId, double actualHours) {
+    // TODO Auto-generated method stub
+    {
+
+
+
+       TaskEntity taskentitity = taskRepo.getById(taskId);
+
+
+
+//        double sumOfAH = taskRepo.findtotalOfActualHours(taskentitity.getTaskId());
+//
+//        System.out.println("sumOfAH"+sumOfAH);
+        double estimatedHrs = taskentitity.getEstimatedHours();
+
+
+
+       double getRemaining = (estimatedHrs - (actualHours + taskentitity.getSumOfActual()));
+
+
+
+//        System.out.print(getRemaining);
+        double sumofactual = taskentitity.getSumOfActual();
+
+
+
+       taskentitity.setActualHours(0);
+        taskentitity.setSumOfActual(actualHours + taskentitity.getSumOfActual());
+
+
+
+       // taskentitity.setActualHours(actualHours);
+
+
+
+       taskentitity.setRemainingHours(getRemaining);
+        taskRepo.save(taskentitity);
+        return getRemaining;
+    }
+
+
+
+}
 
 
   
