@@ -86,6 +86,7 @@ import ProjectsMain from "../pages/Projects/ProjectsMain";
 import HRConfirmationMain from "../pages/HRApproval/HRConfirmationMain";
 import HrDashboard from "../pages/HrDashboard/HrDashboardMain";
 import HrDashboardMain from "../pages/HrDashboard/HrDashboardMain";
+import AddResignation from "../pages/Resignation/AddResignation";
 
 export default [
   {
@@ -541,6 +542,29 @@ export default [
     icon: <FcApproval />,
     title: "Approvals",
     permission: [Roles.hrmanager],
+  },
+
+  {
+    component: AddResignation,
+    path: "/resignation",
+    type: "myprofile",
+    icon: <FcExpired />,
+    title: "Resignation",
+    permission: [
+      Roles.employee,
+      Roles.ceo,
+      Roles.it,
+      Roles.taa,
+      Roles.hrmanager,
+      Roles.manager,
+      Roles.recruitmentmanager,
+      Roles.irm,
+      Roles.srm,
+      Roles.pmohead,
+      Roles.taahead,
+      Roles.buhead,
+    ],
+    
   },
 ];
 
