@@ -24,7 +24,7 @@ function PMOResignationReject(props) {
     };
     const RejectHandler = (e) => {
         // e.prevetDefault();
-        const notify = () => toast("Leave  is Rejected");
+        const notify = () => toast("Resignation is Rejected");
         // handleClose();
         // const form1 = Object.assign(form, obj);
         let employeeId = props.leaveID.employeeId;
