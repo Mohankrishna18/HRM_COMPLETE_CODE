@@ -20,6 +20,12 @@ import "react-toastify/dist/ReactToastify.css";
 import Calendar from "react-calendar";
 import moment from "moment";
 import { FcWebcam } from "react-icons/fc";
+
+
+
+
+
+
 import "../../LeaveManagement/calender.css";
 
 const TotalPage = ({ totalHours }) => {
@@ -217,7 +223,8 @@ function TaskMain(props) {
     {
       title: "Actual Hours",
       field: "actualHours",
-      type: "text",
+      type: "numeric",
+      validate: rowData => rowData.actualHours <= 16
     },
     {
       title: "Remaining  Hours",
@@ -276,6 +283,8 @@ function TaskMain(props) {
     const res = await axios.post("/timesheet/addTimehseetApproval", objectData);
     console.log(res.data);
     setMerged(res.data);
+    setTotalHours(0);
+    notifySuccess("TimeSheet Submitted Successfully");
 
     setTimeout(1000);
     const responce = await axios.post("/timesheet/createNewTimesheet", ott);
@@ -563,6 +572,7 @@ function TaskMain(props) {
                   className="rounded-pill"
                   onClick={(event) => {
                     setViewShow(true);
+                    
                     // console.log(props);
                     // setViewOnboard(props.data);
                   }}
