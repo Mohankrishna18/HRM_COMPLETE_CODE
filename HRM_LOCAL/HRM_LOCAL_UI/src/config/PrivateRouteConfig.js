@@ -89,6 +89,8 @@ import HrDashboard from "../pages/HrDashboard/HrDashboardMain";
 import HrDashboardMain from "../pages/HrDashboard/HrDashboardMain";
 import AddResignation from "../pages/Resignation/AddResignation";
 import ResignationMain from "../pages/Resignation/ResignationMain";
+import UserAccessMain from "../pages/UserAccess/UserAccessMain";
+
 
 export default [
   {
@@ -127,6 +129,14 @@ export default [
     permission: [Roles.hrmanager,Roles.pmohead,Roles.ceo],
 
     exact: true
+  },
+  {
+    component: UserAccessMain,
+    path: "/UserAccess",
+    type: "null",
+    icon: <FcOvertime/>,
+    title: "User Access",
+    permission: [Roles.pmohead],
   },
   {
     component: MyProfileMain,
