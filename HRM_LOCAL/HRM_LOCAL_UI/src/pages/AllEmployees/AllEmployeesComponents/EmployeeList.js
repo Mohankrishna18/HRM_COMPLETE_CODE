@@ -143,30 +143,19 @@ function EmployeeList() {
 
     useEffect(() => {
         axios
-
-
-
-            .get("/emp/getAllEmployeeMasterData")
-
-
-
+     .get("/emp/getAllEmployeeMasterData")
             .then((res) => {
                 setData(res.data.data);
-
-
-
                 console.log(res.data.data);
                 console.log(res.data.data.employeeid);
             })
-
-
-
-            .catch((err) => {
+       .catch((err) => {
                 console.log(err);
                 // toast.error("Server Error")
             });
     }, []);
     console.log(eid);
+    
     return (
         <div className="example">
             <Grid container data1={eid}>

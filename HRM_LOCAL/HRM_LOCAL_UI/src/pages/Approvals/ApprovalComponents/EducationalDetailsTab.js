@@ -59,28 +59,28 @@ function EducationalDetailsTab(props) {
 
 
 
-  var tempDate = new Date(getEmployeeDetails.postgraduationJoiningYear);
+  var tempDate = new Date(props.viewOnboard.postgraduationJoiningYear);
   var postgraduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.postgraduationPassedYear);
+  var tempDate = new Date(props.viewOnboard.postgraduationPassedYear);
   var postgraduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.graduationJoiningYear);
+  var tempDate = new Date(props.viewOnboard.graduationJoiningYear);
   var graduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.graduationPassedYear);
+  var tempDate = new Date(props.viewOnboard.graduationPassedYear);
   var graduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.intermediateJoiningYear);
+  var tempDate = new Date(props.viewOnboard.intermediateJoiningYear);
   var intermediateJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.intermediatePassedYear);
+  var tempDate = new Date(props.viewOnboard.intermediatePassedYear);
   var intermediatePassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.sscJoiningYear);
+  var tempDate = new Date(props.viewOnboard.sscJoiningYear);
   var sscJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-  var tempDate = new Date(getEmployeeDetails.sscPassedYear);
+  var tempDate = new Date(props.viewOnboard.sscPassedYear);
  
   var sscPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
   const viewUploadFile = () => {
@@ -104,7 +104,7 @@ function EducationalDetailsTab(props) {
 
     return (
 
-        <div style={{ padding: 20, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
+        <div style={{ padding: 20, height:320, marginLeft: 10, marginRight: 20,paddingBottom:"24px" }}>
                           <Card.Title>
                             <h5>Educational Information:</h5>
                           </Card.Title>
@@ -126,57 +126,57 @@ function EducationalDetailsTab(props) {
                               </thead>
                               <tbody>
                                 <tr>
-                                  <td>{getEmployeeDetails.postgraduationType}</td>
-                                  <td>{getEmployeeDetails.postgraduationBoardOfUniversity}</td>
-                                  <td>{getEmployeeDetails.postgraduationInstituteName}</td>
-                                  <td>{getEmployeeDetails.postgraduationCourseName}</td>
-                                  <td>{getEmployeeDetails.postgraduationGrade}</td>
-                                  <td> {getEmployeeDetails.postgraduationJoiningYear ? (<td>
+                                  <td>{props.viewOnboard.postgraduationType}</td>
+                                  <td>{props.viewOnboard.postgraduationBoardOfUniversity}</td>
+                                  <td>{props.viewOnboard.postgraduationInstituteName}</td>
+                                  <td>{props.viewOnboard.postgraduationCourseName}</td>
+                                  <td>{props.viewOnboard.postgraduationGrade}</td>
+                                  <td> {props.viewOnboard.postgraduationJoiningYear ? (<td>
                                     {postgraduationJoiningYear1}
                                   </td>) : (<div></div>)}</td>
-                                  <td>{getEmployeeDetails.postgraduationPassedYear ? (<td>
+                                  <td>{props.viewOnboard.postgraduationPassedYear ? (<td>
                                     {postgraduationPassedYear1}
                                   </td>) : (<div></div>)}</td>
 
                                 </tr>
                                 <tr>
-                                  <td>{getEmployeeDetails.graduationType}</td>
-                                  <td>{getEmployeeDetails.graduationBoardOfUniversity}</td>
-                                  <td>{getEmployeeDetails.graduationInstituteName}</td>
-                                  <td>{getEmployeeDetails.graduationCourseName}</td>
-                                  <td>{getEmployeeDetails.graduationGrade}</td>
-                                  <td> {getEmployeeDetails.graduationJoiningYear ? (<td>
+                                  <td>{props.viewOnboard.graduationType}</td>
+                                  <td>{props.viewOnboard.graduationBoardOfUniversity}</td>
+                                  <td>{props.viewOnboard.graduationInstituteName}</td>
+                                  <td>{props.viewOnboard.graduationCourseName}</td>
+                                  <td>{props.viewOnboard.graduationGrade}</td>
+                                  <td> {props.viewOnboard.graduationJoiningYear ? (<td>
                                     {graduationJoiningYear1}
                                   </td>) : (<div></div>)}</td>
-                                  <td>{getEmployeeDetails.graduationPassedYear ? (<td>
+                                  <td>{props.viewOnboard.graduationPassedYear ? (<td>
                                     {graduationPassedYear1}
                                   </td>) : (<div></div>)}</td>
 
                                 </tr>
                                 <tr>
-                                  <td></td>
-                                  <td>{getEmployeeDetails.intermediateBoardOfUniversity}</td>
-                                  <td>{getEmployeeDetails.intermediateCollegeName}</td>
-                                  <td>{getEmployeeDetails.intermediateCourseName}</td>
-                                  <td>{getEmployeeDetails.intermediateGrade}</td>
-                                  <td> {getEmployeeDetails.intermediateJoiningYear ? (<td>
+                                  <td>{props.viewOnboard.intermediateQualification}</td>
+                                  <td>{props.viewOnboard.intermediateBoardOfUniversity}</td>
+                                  <td>{props.viewOnboard.intermediateCollegeName}</td>
+                                  <td>{props.viewOnboard.intermediateCourseName}</td>
+                                  <td>{props.viewOnboard.intermediateGrade}</td>
+                                  <td> {props.viewOnboard.intermediateJoiningYear ? (<td>
                                     {intermediateJoiningYear1}
                                   </td>) : (<div></div>)}</td>
-                                  <td> {getEmployeeDetails.intermediatePassedYear ? (<td>
+                                  <td> {props.viewOnboard.intermediatePassedYear ? (<td>
                                     {intermediatePassedYear1}
                                   </td>) : (<div></div>)}</td>
 
                                 </tr>
                                 <tr>
-                                  <td></td>
-                                  <td>{getEmployeeDetails.sscBoardOfUniversity}</td>
-                                  <td>{getEmployeeDetails.sscSchoolName}</td>
-                                  <td>{getEmployeeDetails.sscCourseName}</td>
-                                  <td>{getEmployeeDetails.sscGrade}</td>
-                                  <td> {getEmployeeDetails.sscJoiningYear ? (<td>
+                                  <td>{props.viewOnboard.sscQualification}</td>
+                                  <td>{props.viewOnboard.sscBoardOfUniversity}</td>
+                                  <td>{props.viewOnboard.sscSchoolName}</td>
+                                  <td>{props.viewOnboard.sscCourseName}</td>
+                                  <td>{props.viewOnboard.sscGrade}</td>
+                                  <td> {props.viewOnboard.sscJoiningYear ? (<td>
                                     {sscJoiningYear1}
                                   </td>) : (<div></div>)}</td>
-                                  <td>{getEmployeeDetails.sscPassedYear ? (<td>
+                                  <td>{props.viewOnboard.sscPassedYear ? (<td>
                                     {sscPassedYear1}
                                   </td>) : (<div></div>)}</td>
                                 </tr>
@@ -197,3 +197,12 @@ function EducationalDetailsTab(props) {
     )
 }
 export default EducationalDetailsTab;
+
+
+
+
+
+
+
+
+

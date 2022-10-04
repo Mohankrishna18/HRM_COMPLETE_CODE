@@ -65,7 +65,7 @@ function AddOnboard(props) {
       newErrors.firstName = "Please Enter First Name";
     if (!lastName || lastName === "" || !lastName.match(/^[aA-zZ\s]+$/))
       newErrors.lastName = "Please Enter Last Name";
-    if (!email || email === "") newErrors.email = "Please Enter Email";
+    if (!email || email === "") newErrors.email = "Please Enter Valid Email";
     if (
       !phoneNumber ||
       phoneNumber === "" ||
@@ -397,13 +397,21 @@ function AddOnboard(props) {
                         value={form.email}
                         // maxLength={60}
                         onChange={(e) => {
-                          setField("email", e.target.value);
+                           setField("email", e.target.value) ;
+                        // if(e.target.value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)){
+                        //    setField("email", e.target.value);
+                        // }
+                        // else{
+                        //   email
+                        // }
+
+                       
                           if (form.phoneNumber === "") {
                             setThirdErrors(" Phone Number is Required");
                           } else {
                             setThirdErrors("");
                           }
-                        }}
+                         }}
                         isInvalid={!!errors.email}
                       ></Form.Control>
                       <Form.Control.Feedback type="invalid">

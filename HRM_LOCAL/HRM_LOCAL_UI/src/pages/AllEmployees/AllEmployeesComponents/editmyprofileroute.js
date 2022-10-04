@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Accordion, Button, Card, Form, InputGroup, Tab, Tabs } from "react-bootstrap";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import { Accordion, Button, Card, Form, InputGroup, Tabs } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
@@ -26,8 +29,9 @@ function EmployeeMasterForms(props) {
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
     const empId = localStorage.getItem('item')
-
     let history = useHistory();
+
+    
     // const navigate = useNavigate();
   
     function handleClick() {
@@ -37,6 +41,10 @@ function EmployeeMasterForms(props) {
       history.goBack();
     }
 
+    const [value, setValue] = React.useState('1');
+    const handleChange1 = (event, newValue) => {
+        setValue(newValue);
+    };
 
     var doj = new Date(dateOfJoining);
     var dd = String(doj.getDate()).padStart(2, '0');
@@ -445,8 +453,29 @@ function EmployeeMasterForms(props) {
                                 </Card.Subtitle>
 
                                 <Row>
+                                <TabContext value={value}>
+  <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{justifyContent:"center"}}>
+    <TabList onChange={handleChange1} aria-label="lab API tabs example" style={{justifyContent:"center",backgroundColor:"#FFFFB4"}}>
+      <Tab label="Personal Details" value="1" />
+      <Tab label="Address Details" value="2" />
+      <Tab label="Additional Details" value="3" />
+      <Tab label="Employment Details" value="4" />
+      <Tab label="Educational Details" value="5" />
+      <Tab label="Experience Details" value="6" />
+      <Tab label="Project Details" value="7" />
 
-                                    <Tabs
+    </TabList>
+  </Box>
+  <TabPanel value="1"><PersonalDetailsTab /></TabPanel>
+  <TabPanel value="2">  <AddressTab /></TabPanel>
+  <TabPanel value="3"> <AditionalDetailsTab/></TabPanel>
+  <TabPanel value="4"> <EmploymentDetailsTab /></TabPanel>
+  <TabPanel value="5"><EducationalDetailsTab/></TabPanel>
+  <TabPanel value="6"><ExperienceTab /></TabPanel>
+  <TabPanel value="7"><ProjectsTab /></TabPanel>
+</TabContext>
+
+                                    {/* <Tabs
                                         defaultActiveKey="Personal Details"
                                         transition={true}
                                         id="noanim-tab-example"
@@ -475,7 +504,7 @@ function EmployeeMasterForms(props) {
                                             <ProjectsTab />
                                         </Tab>
 
-                                    </Tabs>
+                                    </Tabs> */}
                                 </Row>
 
 

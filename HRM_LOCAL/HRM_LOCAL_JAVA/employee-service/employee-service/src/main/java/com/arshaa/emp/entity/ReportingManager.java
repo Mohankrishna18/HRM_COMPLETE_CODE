@@ -9,6 +9,8 @@ import javax.persistence.Id;
 public class ReportingManager { 
 @Column
 private String reportingmanager;
+@Column
+private String projectManager;
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
 private int reportingmanagerid;
@@ -34,10 +36,11 @@ this.employeeId = employeeId;
 } public ReportingManager() {
 // TODO Auto-generated constructor stub
 } 
-public ReportingManager(String reportingmanager, int reportingmanagerid, String employeeId) {
+public ReportingManager(String reportingmanager,String projectManager, int reportingmanagerid, String employeeId) {
 super();
 this.reportingmanager = reportingmanager;
 this.reportingmanagerid = reportingmanagerid;
+this.projectManager = projectManager;
 this.employeeId = employeeId;
 }
 }

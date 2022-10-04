@@ -26,7 +26,7 @@ public class UserService {
 	public ResponseEntity updatePasswordByUsername(ResetPassword reset) {
 		try {
 			System.out.println(reset.getOldPassword());
-			EmployeeLogin returnedUser = repository.findByPassword(reset.getOldPassword());
+			EmployeeLogin returnedUser = repository.findByEmployeeIdAndPassword(reset.getEmployeeId(), reset.getOldPassword());
 
 			if (!returnedUser.equals(null)) {
 				

@@ -30,6 +30,65 @@ public class EmployeeMaster {
 
 	private String employeeId;
 
+	@Override
+	public String toString() {
+		return "EmployeeMaster [employeeId=" + employeeId + ", departmentName=" + departmentName + ", onboardingId="
+				+ onboardingId + ", designationName=" + designationName + ", dateOfJoining=" + dateOfJoining
+				+ ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", email="
+				+ email + ", primaryPhoneNumber=" + primaryPhoneNumber + ", secondaryPhoneNumber="
+				+ secondaryPhoneNumber + ", yearsOfExperience=" + yearsOfExperience + ", dateOfBirth=" + dateOfBirth
+				+ ", bloodGroup=" + bloodGroup + ", gender=" + gender + ", projectName=" + projectName
+				+ ", maritalStatus=" + maritalStatus + ", permanentAdress=" + permanentAdress + ", permanentState="
+				+ permanentState + ", permanentCountry=" + permanentCountry + ", permanentPincode=" + permanentPincode
+				+ ", currentAdress=" + currentAdress + ", currentState=" + currentState + ", currentCountry="
+				+ currentCountry + ", currentPincode=" + currentPincode + ", postgraduationType=" + postgraduationType
+				+ ", postgraduationBoardOfUniversity=" + postgraduationBoardOfUniversity
+				+ ", postgraduationInstituteName=" + postgraduationInstituteName + ", postgraduationInstituteCity="
+				+ postgraduationInstituteCity + ", postgraduationCourseName=" + postgraduationCourseName
+				+ ", postgraduationJoiningYear=" + postgraduationJoiningYear + ", postgraduationPassedYear="
+				+ postgraduationPassedYear + ", postgraduationGrade=" + postgraduationGrade + ", graduationType="
+				+ graduationType + ", graduationBoardOfUniversity=" + graduationBoardOfUniversity
+				+ ", graduationInstituteName=" + graduationInstituteName + ", graduationInstituteCity="
+				+ graduationInstituteCity + ", graduationCourseName=" + graduationCourseName
+				+ ", graduationJoiningYear=" + graduationJoiningYear + ", graduationPassedYear=" + graduationPassedYear
+				+ ", graduationGrade=" + graduationGrade + ", intermediateBoardOfUniversity="
+				+ intermediateBoardOfUniversity + ", intermediateCollegeName=" + intermediateCollegeName
+				+ ", intermediateCollegeCity=" + intermediateCollegeCity + ", intermediateCourseName="
+				+ intermediateCourseName + ", intermediateJoiningYear=" + intermediateJoiningYear
+				+ ", intermediatePassedYear=" + intermediatePassedYear + ", intermediateGrade=" + intermediateGrade
+				+ ", sscBoardOfUniversity=" + sscBoardOfUniversity + ", sscSchoolName=" + sscSchoolName
+				+ ", sscSchoolCity=" + sscSchoolCity + ", sscCourseName=" + sscCourseName + ", sscJoiningYear="
+				+ sscJoiningYear + ", sscPassedYear=" + sscPassedYear + ", sscGrade=" + sscGrade
+				+ ", previousCompany1_name=" + previousCompany1_name + ", previousCompany1_designation="
+				+ previousCompany1_designation + ", previousCompany1_joiningDate=" + previousCompany1_joiningDate
+				+ ", previousCompany1_relievingDate=" + previousCompany1_relievingDate
+				+ ", previousCompany1_employeeId=" + previousCompany1_employeeId + ", previousCompany1_grossSalary="
+				+ previousCompany1_grossSalary + ", previousCompany1_typeOfEmployment="
+				+ previousCompany1_typeOfEmployment + ", previousCompany1_reasonForRelieving="
+				+ previousCompany1_reasonForRelieving + ", previousCompany2_name=" + previousCompany2_name
+				+ ", previousCompany2_designation=" + previousCompany2_designation + ", previousCompany2_joiningDate="
+				+ previousCompany2_joiningDate + ", previousCompany2_relievingDate=" + previousCompany2_relievingDate
+				+ ", previousCompany2_employeeId=" + previousCompany2_employeeId + ", previousCompany2_grossSalary="
+				+ previousCompany2_grossSalary + ", previousCompany2_typeOfEmployment="
+				+ previousCompany2_typeOfEmployment + ", previousCompany2_reasonForRelieving="
+				+ previousCompany2_reasonForRelieving + ", previousCompany3_name=" + previousCompany3_name
+				+ ", previousCompany3_designation=" + previousCompany3_designation + ", previousCompany3_joiningDate="
+				+ previousCompany3_joiningDate + ", previousCompany3_relievingDate=" + previousCompany3_relievingDate
+				+ ", previousCompany3_employeeId=" + previousCompany3_employeeId + ", previousCompany3_grossSalary="
+				+ previousCompany3_grossSalary + ", previousCompany3_typeOfEmployment="
+				+ previousCompany3_typeOfEmployment + ", previousCompany3_reasonForRelieving="
+				+ previousCompany3_reasonForRelieving + ", updatedBy=" + updatedBy + ", updatedOn=" + updatedOn
+				+ ", employeeStatus=" + employeeStatus + ", reportingManager=" + reportingManager + ", passportNo="
+				+ passportNo + ", passportExpiryDate=" + passportExpiryDate + ", jobTitle=" + jobTitle
+				+ ", employmentType=" + employmentType + ", primarySkills=" + primarySkills + ", secondarySkills="
+				+ secondarySkills + ", panNumber=" + panNumber + ", aadharNumber=" + aadharNumber + ", uanNumber="
+				+ uanNumber + ", bankName=" + bankName + ", accountNumber=" + accountNumber + ", ifscCode=" + ifscCode
+				+ ", branch=" + branch + ", band=" + band + ", exitDate=" + exitDate + ", srm=" + srm + ", irm=" + irm
+				+ ", buh=" + buh + ", fullName=" + fullName + ", irmId=" + irmId + ", srmId=" + srmId + ", buhId="
+				+ buhId + ", intermediateQualification=" + intermediateQualification + ", sscQualification="
+				+ sscQualification + ", officialMail=" + officialMail + ", onboardingStatus=" + onboardingStatus
+				+ ", client=" + client + ", userType=" + userType + "]";
+	}
 	@Column
 	private String departmentName;
 	@Column
@@ -166,8 +225,38 @@ public class EmployeeMaster {
     private String intermediateQualification;
     private String sscQualification;
     private String officialMail;
+    private String onboardingStatus;
+    private String client;
+    private String userType;
 
 
+	public EmployeeMaster(String client, String userType) {
+		super();
+		this.client = client;
+		this.userType = userType;
+	}
+	public String getClient() {
+		return client;
+	}
+	public void setClient(String client) {
+		this.client = client;
+	}
+	public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+	public EmployeeMaster(String onboardingStatus) {
+		super();
+		this.onboardingStatus = onboardingStatus;
+	}
+	public String getOnboardingStatus() {
+		return onboardingStatus;
+	}
+	public void setOnboardingStatus(String onboardingStatus) {
+		this.onboardingStatus = onboardingStatus;
+	}
 	public String getIntermediateQualification() {
 		return intermediateQualification;
 	}

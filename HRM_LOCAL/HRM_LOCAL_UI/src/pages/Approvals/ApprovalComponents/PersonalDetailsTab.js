@@ -8,6 +8,7 @@ function PersonalDetailsTab(props) {
   const userData = sessionStorage.getItem("userdata");
   const userData1 = JSON.parse(userData);
   const employeeid = userData1.data.employeeId;
+  const handleClose = () => setShow();
 
   // const payload = {
   //   employeeId,
@@ -91,10 +92,14 @@ function PersonalDetailsTab(props) {
   //   toast.success("Form Submitted Successfully");
   // };
 
-  return (
-    <div>
+  var tempDate = new Date(props.viewOnboard.dateOfBirth);
 
-<Card.Title>
+  var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+console.log(dob)
+  return (
+    <div style={{paddingBottom:"20px"}}>
+
+       <Card.Title>
         <Row>
           <Col> <h5>Personal Information:</h5></Col>
           
@@ -102,7 +107,8 @@ function PersonalDetailsTab(props) {
       
       </Card.Title>
       <Card.Body >
-    
+      <Row>
+        <Col>
         <Row style={{ paddingLeft: 55, paddingBottom: 30 ,paddingTop:20}}>
           <Col>
             <Card.Subtitle>
@@ -167,6 +173,8 @@ function PersonalDetailsTab(props) {
             </Card.Subtitle>
           </Col>
         </Row>
+        </Col>
+        <Col>
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
             <Card.Subtitle
@@ -177,7 +185,7 @@ function PersonalDetailsTab(props) {
           </Col>
           <Col md={{ offset: 1 }}>
           {props.viewOnboard.dateOfBirth ? (<Card.Subtitle style={{ color: "#999897" }}>
-                                  {/* {dob} */}{props.viewOnboard.dateOfBirth}
+                                  {dob}
                                 </Card.Subtitle>) : (<div></div>)}
 
           </Col>
@@ -219,7 +227,14 @@ function PersonalDetailsTab(props) {
               {props.viewOnboard.maritalStatus}
             </Card.Subtitle>
           </Col>
-        </Row>
+          </Row>
+        </Col>
+        
+      </Row>
+        
+
+       
+        
       </Card.Body>
 
       {/* <Card

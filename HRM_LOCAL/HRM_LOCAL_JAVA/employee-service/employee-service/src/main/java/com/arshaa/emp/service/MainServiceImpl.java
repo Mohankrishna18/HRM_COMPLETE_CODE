@@ -2,12 +2,14 @@ package com.arshaa.emp.service;
 
 //import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -26,7 +28,10 @@ import com.arshaa.emp.common.GetSrmId;
 import com.arshaa.emp.common.PreMailModel;
 import com.arshaa.emp.common.UserModel;
 import com.arshaa.emp.common.Users;
+import com.arshaa.emp.emailModel.MainEmailTemplate;
+import com.arshaa.emp.emailModel.RegistrationConfirmation;
 import com.arshaa.emp.entity.EmployeeMaster;
+import com.arshaa.emp.entity.EmployeeProfile;
 import com.arshaa.emp.entity.Intern;
 import com.arshaa.emp.entity.Onboarding;
 import com.arshaa.emp.entity.UserClientProjectManagement;
@@ -47,6 +52,7 @@ import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.StringConstants;
 import com.arshaa.emp.model.WaitingForApproval;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
+import com.arshaa.emp.repository.EmployeeProfileRepository;
 import com.arshaa.emp.repository.OnboardRepository;
 import com.arshaa.emp.repository.UserClientProjectManagementRepositorty;
 import com.thoughtworks.xstream.mapper.Mapper.Null;
@@ -59,17 +65,20 @@ public class MainServiceImpl implements MainService {
 	@Autowired
 	EmployeeMasterRepository emRepo;
 	@Autowired
+	EmployeeProfileRepository empProfileRepo;
+	@Autowired
 	UserClientProjectManagementRepositorty userClientRepo;
 	@Autowired
 	@Lazy
     @LoadBalanced
 	private RestTemplate template;
+	public static final String preEmailURL = "http://emailService/mail/sendmail";
 
 	StringConstants sConstants = new StringConstants();
 
 	public ResponseEntity onBoardUser(Onboarding newOnboard) {
 		
-		String preEmailURL = "http://emailService/mail/preSendMail";
+//		String preEmailURL = "http://emailService/mail/preSendMail";
 		String preOnboardUrl = "http://loginservice/login/addUsersForPreOnboard";
 		Response r = new Response<>();
 		try {
@@ -117,7 +126,15 @@ public class MainServiceImpl implements MainService {
 			char last = newOnboard.getFirstName().charAt(n - 1);
 			String password = "user" + first + last + intRandom;
 			pm.setPassword(password);
-			template.postForObject(preEmailURL, pm, PreMailModel.class);
+			
+			MainEmailTemplate mailTemp=new MainEmailTemplate();
+			Map<String,String> map=new HashMap<>();
+			map.put("email",newOnboard.getEmail());
+			map.put("employeeName",newOnboard.getFirstName());
+			map.put("password",password);
+			mailTemp.setEmailType("ONBOARDAPPROVE");
+			mailTemp.setMap(map);
+			template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
 			
 			
 		
@@ -189,7 +206,7 @@ public class MainServiceImpl implements MainService {
 		Response response = new Response();
 		String userURL = "http://urpService/user/addUser";
 		String loginURL = "http://loginservice/login/addUsers";
-		String emailURL = "http://emailService/mail/sendmail";
+//		String emailURL = "http://emailService/mail/sendmail";
 		// String employee="ATPL";
 		// String intern="TRP";
 
@@ -203,11 +220,22 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
+				getOnboarding.setTermsAndConditions(newOnboard.isTermsAndConditions());
 ///				getOnboarding.setIrm(newOnboard.getIrm());
 //				getOnboarding.setTaaApprovalComment(newOnboard.getTaaApprovalComment());
 //				getOnboarding.setTaaHeadApprovalComment(newOnboard.getTaaHeadApprovalComment());
 //				getOnboarding.setPmoApprovalComment(newOnboard.getPmoApprovalComment());
-				getOnboarding.setCeoApprovalComment(newOnboard.getCeoApprovalComment());
+//				getOnboarding.setCeoApprovalComment(newOnboard.getCeoApprovalComment());
+				getOnboarding.setOfferLetter(newOnboard.isOfferLetter());
+				getOnboarding.setSalarySlip(newOnboard.isSalarySlip());
+				getOnboarding.setHikeLetter(newOnboard.isHikeLetter());
+				getOnboarding.setForm16(newOnboard.isForm16());
+				getOnboarding.setEducationalDocuments(newOnboard.isEducationalDocuments());
+				getOnboarding.setResignation(newOnboard.isResignation());
+				getOnboarding.setIdProof(newOnboard.isIdProof());
+				getOnboarding.setDepartment(newOnboard.getDepartment());
+                getOnboarding.setDesignation(newOnboard.getDesignation());
+//				getOnboarding.setHrApprovalComment(newOnboard.);
 //				getOnboarding.setProjectName(newOnboard.getProjectName());
 //				getOnboarding.setSecondaryPhoneNumber(newOnboard.getSecondaryPhoneNumber());
 //				getOnboarding.setBand(newOnboard.getBand());
@@ -215,7 +243,7 @@ public class MainServiceImpl implements MainService {
 				Onboarding saveList = onRepo.save(getOnboarding);
 
 				// if (saveList.isApprovedStatus() == true) {
-				if (getOnboarding.getOnboardingStatus().equalsIgnoreCase("CEOApproved")) {
+				if (getOnboarding.getOnboardingStatus().equalsIgnoreCase("HRApproved")) {
 					java.sql.Date tSqlDate = new java.sql.Date(newOnboard.getApprovedDate().getTime());
 					newOnboard.setApprovedDate(tSqlDate);
 					getOnboarding.setRejectedStatus(false);
@@ -280,6 +308,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setSscJoiningYear(getOnboarding.getSscJoiningYear());
 					employeeMaster.setSscPassedYear(getOnboarding.getSscPassedYear());
 					employeeMaster.setSscGrade(getOnboarding.getSscGrade());
+					employeeMaster.setSscQualification(getOnboarding.getSscQualification());
 
 					employeeMaster.setIntermediateBoardOfUniversity(getOnboarding.getIntermediateBoardOfUniversity());
 					employeeMaster.setIntermediateCollegeCity(getOnboarding.getIntermediateCollegeCity());
@@ -288,6 +317,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setIntermediateGrade(getOnboarding.getIntermediateGrade());
 					employeeMaster.setIntermediateJoiningYear(getOnboarding.getIntermediateJoiningYear());
 					employeeMaster.setIntermediatePassedYear(getOnboarding.getIntermediatePassedYear());
+					employeeMaster.setIntermediateQualification(getOnboarding.getIntermediateQualification());
 
 					employeeMaster.setMaritalStatus(getOnboarding.getMaritalStatus());
 					employeeMaster.setPanNumber(getOnboarding.getPanNumber());
@@ -350,6 +380,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setOnboardingId(getOnboarding.getOnboardingId());
 					employeeMaster.setUanNumber(getOnboarding.getUanNumber());
 					employeeMaster.setProjectName(getOnboarding.getProjectName());
+					employeeMaster.setOnboardingStatus(getOnboarding.getOnboardingStatus());
 					EmployeeMaster em = emRepo.save(employeeMaster);
 
 					// posting EmployeeId in Userproject Table
@@ -357,6 +388,11 @@ public class MainServiceImpl implements MainService {
 					userclient.setEmployeeId(em.getEmployeeId());
 					userClientRepo.save(userclient);
 
+					//posting employeeId to employee profile table 
+					EmployeeProfile eprofile = new EmployeeProfile();
+					eprofile.setEmployeeId(employeeMaster.getEmployeeId());
+					empProfileRepo.save(eprofile);
+					
 					// Generating Random userId and Password
 					Random rand = new Random();
 					Integer intRandom = rand.nextInt(9999);
@@ -382,13 +418,22 @@ public class MainServiceImpl implements MainService {
 					login.setUserType("employee");
 					template.postForObject(loginURL, login, EmployeeLogin.class);
 					// send mail
-					UserModel model = new UserModel();
-					model.setName(employeeMaster.getFirstName());
-					model.setEmail(employeeMaster.getEmail());
-					model.setUserName(userId);
-					model.setPassword(password);
-					model.setEmployeeId(employeeMaster.getEmployeeId());
-					template.postForObject(emailURL, model, UserModel.class);
+//					UserModel model = new UserModel();
+//					model.setName(employeeMaster.getFirstName());
+//					model.setEmail(employeeMaster.getEmail());
+//					model.setUserName(userId);
+//					model.setPassword(password);
+//					model.setEmployeeId(employeeMaster.getEmployeeId());
+//					template.postForObject(emailURL, model, UserModel.class);
+					
+					MainEmailTemplate mailTemp=new MainEmailTemplate();
+					Map<String,String> map=new HashMap();
+
+					mailTemp.setEmailType("CEO_APPROVAL");
+					map.put("employeeName","Sanjay");
+					map.put("email","muralikrishna.miriyala@arshaa.com");
+					mailTemp.setMap(map);
+		            template.postForObject(preEmailURL,mailTemp,MainEmailTemplate.class); 
 
 					response.setStatus(true);
 					response.setMessage("Hr Approved successfully");
@@ -1660,6 +1705,20 @@ public class MainServiceImpl implements MainService {
 					getOnboarding.setPreviousCompany3_reasonForRelieving(exp.getPreviousCompany3_reasonForRelieving());
 					
 					onRepo.save(getOnboarding);
+					RegistrationConfirmation rConfirm=new RegistrationConfirmation();
+					MainEmailTemplate mailTemp=new MainEmailTemplate();
+					Map<String,String> map=new HashMap();
+			
+					map.put("employeeName",getOnboarding.getFirstName()+getOnboarding.getLastName());
+					map.put("email","muralikrishna.miriyala@arshaa.com");
+					map.put("LOGIN_LINK", rConfirm.getLoginLink());
+					mailTemp.setMap(map);
+					mailTemp.setEmailType("REGISTRATION_CONFIRMATION");
+
+//					rConfirm.setEmployeeName(getOnboarding.getFirstName()+getOnboarding.getLastName());
+//					rConfirm.setEmail("muralikrishna.miriyala@arshaa.com");
+					
+					template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
 					r.setStatus(true);
 					r.setMessage("Data Fetching");
 					r.setData(getOnboarding);
@@ -1783,6 +1842,14 @@ public class MainServiceImpl implements MainService {
 			getOnboarding.setTaaHeadApprovalComment(newOnboard.getTaaHeadApprovalComment());
 			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
 			Onboarding saveList = onRepo.save(getOnboarding);
+			MainEmailTemplate mailTemp=new MainEmailTemplate();
+			Map<String,String> map=new HashMap();
+
+			mailTemp.setEmailType("TAG_APPROVAL");
+			map.put("employeeName","Vikas");
+			map.put("email","nikhil.mudheraj@arshaa.com");
+			mailTemp.setMap(map);
+            template.postForObject(preEmailURL,mailTemp,MainEmailTemplate.class); 
 			r.setStatus(true);
 			r.setMessage("TAAHeadApproved Successfully");
 			return new ResponseEntity(r, HttpStatus.OK);
@@ -1804,6 +1871,14 @@ public class MainServiceImpl implements MainService {
 			getOnboarding.setPmoApprovalComment(newOnboard.getPmoApprovalComment());
 			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
 			Onboarding saveList = onRepo.save(getOnboarding);
+			MainEmailTemplate mailTemp=new MainEmailTemplate();
+			Map<String,String> map=new HashMap();
+
+			mailTemp.setEmailType("PMO_APPROVAL");
+			map.put("employeeName","Raj");
+			map.put("email","madhuri.allapureddy@arshaa.com");
+			mailTemp.setMap(map);
+            template.postForObject(preEmailURL,mailTemp,MainEmailTemplate.class); 
 			r.setStatus(true);
 			r.setMessage("PMOApproved Successfully");
 			return new ResponseEntity(r, HttpStatus.OK);
@@ -1825,6 +1900,14 @@ public class MainServiceImpl implements MainService {
 			getOnboarding.setTaaApprovalComment(newOnboard.getTaaApprovalComment());
 			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
 			Onboarding saveList = onRepo.save(getOnboarding);
+			MainEmailTemplate mailTemp=new MainEmailTemplate();
+			Map<String,String> map=new HashMap();
+
+			mailTemp.setEmailType("TAA_APPROVAL");
+			map.put("employeeName","Vinod");
+			map.put("email","sandhya.bandaru@arshaa.com");
+			mailTemp.setMap(map);
+            template.postForObject(preEmailURL,mailTemp,MainEmailTemplate.class); 
 			r.setStatus(true);
 			r.setMessage("TAAApproved Successfully");
 			return new ResponseEntity(r, HttpStatus.OK);
@@ -1836,4 +1919,177 @@ public class MainServiceImpl implements MainService {
 			return new ResponseEntity(r, HttpStatus.OK);
 		}
 }
+
+
+	@Override
+	public ResponseEntity updateCEOApproval(String onboardingId, HrApprovalStatus newOnboard) {
+		Response r = new Response();
+		try {
+			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
+			getOnboarding.setCeoApprovalComment(newOnboard.getCeoApprovalComment());
+			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
+			Onboarding saveList = onRepo.save(getOnboarding);
+			r.setStatus(true);
+			r.setMessage("CEOApproved Successfully");
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+		
+	}
+
+
+	@Override
+	public ResponseEntity getEmployeesByOnboardingStatus(String onboardingStatus) {
+		Response r = new Response();
+		try {
+
+			List<EmployeeMaster> newDataOnboarding = emRepo.getEmployeesByOnboardingStatus(onboardingStatus);
+			r.setStatus(true);
+			r.setMessage("Data Fetching");
+			r.setData(newDataOnboarding);
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
+
+
+	@Override
+	public ResponseEntity getByOnboardingStatus(String employeeId,  EmployeeMaster newStatus) {
+		Response r = new Response();
+		try {
+			EmployeeMaster getOnboarding = emRepo.getByEmployeeId(employeeId);
+			getOnboarding.setOnboardingStatus(newStatus.getOnboardingStatus());
+			EmployeeMaster saveList = emRepo.save(getOnboarding);
+			r.setStatus(true);
+			r.setMessage("Status updated Successfully");
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
+
+
+	@Override
+	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmploymentDetails newEmp) {
+		Response r = new Response<>();
+		try {
+		EmployeeMaster master = emRepo.getById(employeeId);
+
+		master.setEmploymentType(newEmp.getEmploymentType());
+//		master.setDepartmentName(newEmp.getDepartment());
+//		master.setDesignationName(newEmp.getDesignation());
+		master.setBand(newEmp.getBand());
+		master.setJobTitle(newEmp.getJobTitle());
+		master.setClient(newEmp.getClient());
+		master.setProjectName(newEmp.getProjectName());
+		master.setIrm(newEmp.getIrm());
+		master.setSrm(newEmp.getSrm());
+		master.setBuh(newEmp.getBuh());
+		master.setOnboardingStatus(newEmp.getOnboardingStatus());
+		
+		EmployeeMaster master1 = emRepo.save(master);
+		
+		master1.setBuhId(this.getEmployeeIdByName(master.getBuh()));
+		master1.setSrmId(this.getEmployeeIdByName(master.getSrm()));
+		master1.setIrmId(this.getEmployeeIdByName(master.getIrm()));
+		
+
+		EmployeeMaster master2 = emRepo.save(master);
+		System.out.println(master2);
+		r.setStatus(true);
+		r.setMessage(sConstants.PUT_RESPONSE);
+		return new ResponseEntity(r, HttpStatus.OK);
+
+	} catch (Exception e) {
+		r.setStatus(false);
+		r.setMessage(sConstants.FAILURE_RESPONSE);
+		return new ResponseEntity(r, HttpStatus.OK);
+	}
+
+}
+
+	
+
+//	@Override
+//	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmployeeMaster empMaster) {
+//		Response r = new Response<>();
+//		try {
+//			EmployeeMaster master = emRepo.getById(employeeId);
+//
+//			master.setEmploymentType(empMaster.getEmploymentType());
+//			master.setDepartmentName(empMaster.getDepartmentName());
+//			master
+//			
+//
+//			EmployeeMaster master1 = emRepo.save(master);
+//			System.out.println(master1);
+//			r.setStatus(true);
+//			r.setMessage(sConstants.PUT_RESPONSE);
+//			return new ResponseEntity(r, HttpStatus.OK);
+//
+//		} catch (Exception e) {
+//			r.setStatus(false);
+//			r.setMessage(sConstants.FAILURE_RESPONSE);
+//			return new ResponseEntity(r, HttpStatus.OK);
+//		}
+//
+//	}
+	
+	// getting data based on departments
+	@Override
+	public ResponseEntity getByDepartment(String departmentName) {
+		Response r = new Response();
+		try {
+
+			List<EmployeeMaster> newData = emRepo.getEmployeesByDepartmentName(departmentName);
+			r.setStatus(true);
+			r.setMessage("Data Fetching");
+			r.setData(newData);
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
+	@Override
+
+    public ResponseEntity getEmployeeNameDepDesByEmployeeId(String employeeId) {
+
+
+
+        EmployeeMaster employeeMaster = emRepo.getById(employeeId);
+
+
+
+        EmployeeMaster en = new EmployeeMaster();
+
+        en.setFirstName(employeeMaster.getFirstName());
+
+        en.setDepartmentName(employeeMaster.getDepartmentName());
+
+        en.setDesignationName(employeeMaster.getDesignationName());
+
+
+
+        return new ResponseEntity(en, HttpStatus.OK);
+
+    }
+	
 }
