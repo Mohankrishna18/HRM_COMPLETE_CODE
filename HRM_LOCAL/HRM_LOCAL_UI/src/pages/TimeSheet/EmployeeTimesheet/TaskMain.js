@@ -58,6 +58,7 @@ function TaskMain(props) {
   const [approval, setApproval] = useState();
   const [taskData, setTaskData] = useState([]);
   const [date, setDate] = useState();
+  const notifySuccess = (message) => toast.success(message);
   console.log(irm);
   console.log(props.data);
   const da = JSON.parse(sessionStorage.getItem("userdata"));
@@ -290,6 +291,9 @@ function TaskMain(props) {
     const responce = await axios.post("/timesheet/createNewTimesheet", ott);
     console.log(responce.data);
     // setMerged(res.data);
+    const updatee = await axios.put("/task/updateActualHoursToZero");
+    console.log(updatee.data);
+    loadRoles();
   };
 
   //   const submit = (e) => {
