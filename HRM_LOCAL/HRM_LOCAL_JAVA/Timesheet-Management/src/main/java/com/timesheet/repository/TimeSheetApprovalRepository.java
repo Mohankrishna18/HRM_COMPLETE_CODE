@@ -15,6 +15,7 @@ public interface TimeSheetApprovalRepository extends JpaRepository<TimesheetAppr
 public List getTimesheetApprovalByEmployeeId(String employeeId);
 
 	public List<TimesheetApproval> getTaskDetailsByirm(String irm);
+	public List<TimesheetApproval> getTimesheetApprovalByIrmAndStatus(String irm,String status);
 	public TimesheetApproval	getTimesheetDataByEmployeeId(String employeeId);
 	//public ResponseEntity updateApprovalStatusByEmployeeId(String employeeId,TimesheetApproval timesheetUpdate);
 

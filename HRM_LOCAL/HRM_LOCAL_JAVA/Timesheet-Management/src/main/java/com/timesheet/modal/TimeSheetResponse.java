@@ -1,6 +1,6 @@
 package com.timesheet.modal;
 
-public class TimesheetResponse<T> {
+public class TimeSheetResponse<T> {
 
 	private boolean status;
 	private String message;
@@ -24,7 +24,7 @@ public class TimesheetResponse<T> {
 		this.data = data;
 	}
 	
-	public TimesheetResponse(boolean status, String message,T data) {
+	public TimeSheetResponse(boolean status, String message,T data) {
 		super();
 		this.status = status;
 		this.message = message;
@@ -32,7 +32,7 @@ public class TimesheetResponse<T> {
 	}
 	
 
-	public TimesheetResponse() {
+	public TimeSheetResponse() {
 		// TODO Auto-generated constructor stub
 	}
 	

@@ -36,6 +36,8 @@ const ProfileProjectTab = () => {
   const userData1 = JSON.parse(userData);
   const employeeid = userData1.data.employeeId;
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
+  const [project, setProject] = useState([]);
+
   //var dateTime = getEmployeeDetails.dateOfJoining;
 
   const [imge, setImge] = useState([]);
@@ -74,6 +76,15 @@ const ProfileProjectTab = () => {
   }, []);
   console.log(projects)
 
+  useEffect(() => {
+    axios
+      .get(`/clientProjectMapping/getActiveProjectsByEmpIdForEmployee/Active/${employeeid}`)
+      .then((response) => {
+        setProject(response.data);
+      });
+  }, []);
+  console.log(project)
+
 
 
   return (
@@ -100,8 +111,8 @@ const ProfileProjectTab = () => {
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    {/* {projects &&
-                                      projects.map((h, index) => ( */}
+                                    {/* {project &&
+                                      project.map((h, index) => ( */}
                                         <tr>
                                           {/* <th scope="row">{index + 1}</th> */}
                                           {/* <td>{h.clientName}</td> */}
@@ -113,7 +124,7 @@ const ProfileProjectTab = () => {
                                           <td></td>
                                           <td></td>
                                         </tr>
-                                      {/* ))} */}
+                                      {/* ))}  */}
                                   </tbody>
                                 </table>
                               </Col>
