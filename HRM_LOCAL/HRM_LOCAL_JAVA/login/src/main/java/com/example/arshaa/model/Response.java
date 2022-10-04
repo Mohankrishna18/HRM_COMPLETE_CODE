@@ -28,7 +28,7 @@ public class Response<T> {
 
 		}
 		
-		public Response(boolean status, String message,T data) {
+		public Response(T data, String message,boolean status) {
 			super();
 			this.status = status;
 			this.message = message;
