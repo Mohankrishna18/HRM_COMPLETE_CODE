@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 
 
 @Entity(name = "TimesheetApproval")
@@ -101,7 +102,10 @@ public class TimesheetApproval {
 			// TODO Auto-generated constructor stub
 		}
 	    
-		
+		@PrePersist
+		public void setStatus() {
+			this.status = new String("Pending");
+		}
 
 	    }
 		
