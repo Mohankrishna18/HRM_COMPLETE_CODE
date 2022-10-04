@@ -88,6 +88,7 @@ import HRConfirmationMain from "../pages/HRApproval/HRConfirmationMain";
 import HrDashboard from "../pages/HrDashboard/HrDashboardMain";
 import HrDashboardMain from "../pages/HrDashboard/HrDashboardMain";
 import AddResignation from "../pages/Resignation/AddResignation";
+import ResignationMain from "../pages/Resignation/ResignationMain";
 
 export default [
   {
@@ -546,7 +547,7 @@ export default [
   },
 
   {
-    component: AddResignation,
+    component: ResignationMain,
     path: "/resignation",
     type: "myprofile",
     icon: <FcExpired />,
