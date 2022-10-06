@@ -9,6 +9,7 @@ import com.arshaa.task.entity.TaskEntity;
 
 
 
+
 public interface TaskService {
  
 	public ResponseEntity addTask(TaskEntity t);
@@ -23,7 +24,7 @@ public List<TaskEntity>findByAssignedToAndStatus(String assignedTo, String statu
     // public Object calculateRemainingHours(int taskId, double actualHours);
     double findtotalOfActualHours(@Param("taskId") int taskId);
 
-
+public String updateActualHours();
 
       public double calculateRemainingHours(int taskId,double actualHours);
 
@@ -31,4 +32,4 @@ public List<TaskEntity>findByAssignedToAndStatus(String assignedTo, String statu
 	
 
 	
-}	
+}
