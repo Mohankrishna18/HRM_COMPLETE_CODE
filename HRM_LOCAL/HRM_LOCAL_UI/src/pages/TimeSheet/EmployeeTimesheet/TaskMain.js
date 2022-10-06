@@ -136,7 +136,7 @@ function TaskMain(props) {
 
   const loadRoles = async (e) => {
     const response = await axios.get(
-      `/task/getByStatus/${employeeId}/Progress`
+      `/task/getByStatus/${employeeId}/In Progress`
     );
     setData(response.data);
     console.log(response);
