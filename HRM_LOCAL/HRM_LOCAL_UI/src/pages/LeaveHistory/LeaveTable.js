@@ -140,7 +140,7 @@ const LeaveTable = () => {
         // </Container-fluid>
         // </div>
         options={{
-          paging: false,
+          paging: true,
           addRowPosition: 'first',
           actionsColumnIndex: -1,
           headerStyle: {

@@ -503,27 +503,36 @@ function ProfileAddressTab() {
                                                     maxLength={6}
                                                     onChange={(e) => {
                                                         setCurrentPincode(e.target.value)
-                                                        if (!e.target.value.length === 6) {
-                                                            setEighteenerror("Pincode length should be 6 characters");
-                                                        }
+                                                        if(e.target.value.length > 6 || e.target.value.length < 6 ){
+                                                            setEighteenerror("Length should be 6 characters")
+                                                          }
+                                                          else{
+                                                            setEighteenerror("");
+                                                          }
+                                                        // if (!e.target.value.length === 6) {
+                                                        //     setEighteenerror("Pincode length should be 6 characters");
+                                                        // }
+                                                        // else{
+                                                        //     setEighteenerror("");
+                                                        // }
                                                         // else if(e.target.value.length < 6 ){
                                                         //     setEighteenerror(" Pincode length should be 6 characters");
                                                         // }
                                                         // else if(e.target.value.length === 6 ){
                                                         //     setEighteenerror("Its Valid Pincode");
                                                         // }
-                                                        else if (currentCountry === "") {
-                                                            setSeventeenerror("Country is Required");
-                                                        }
-                                                        else {
-                                                            setSeventeenerror(" ")
-                                                        }
-                                                        if (currentAdress === "") {
-                                                            setFifteenErrors(" Address is Required");
-                                                        }
-                                                        else {
-                                                            setFifteenErrors("")
-                                                        }
+                                                        // if(currentCountry === "") {
+                                                        //     setSeventeenerror("Country is Required");
+                                                        // }
+                                                        // else {
+                                                        //     setSeventeenerror(" ")
+                                                        // }
+                                                        // if (currentAdress === "") {
+                                                        //     setFifteenErrors(" Address is Required");
+                                                        // }
+                                                        // else {
+                                                        //     setFifteenErrors("")
+                                                        // }
                                                     }}
                                                 ></Form.Control>
                                                 <Form.Control.Feedback type="invalid">

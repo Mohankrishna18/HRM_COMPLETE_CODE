@@ -360,7 +360,8 @@ function IntegrateLeaveToApply() {
         { title: 'Number of Days', field: 'numberOfDays' },
         { title: 'Leave Reason', field: 'leaveReason' },
         { title: 'Leave Status', field: 'leaveStatus' },
-        { title: 'Reject Reason', field: 'rejectReason' },
+        { title: 'SRM Reject Reason', field: 'rejectReason' },
+        { title: 'IRM Reject Reason', field: 'managersRejectReason' },
         // { title: 'Leave Type', field: 'leaveType', type:'date'}
 
 
