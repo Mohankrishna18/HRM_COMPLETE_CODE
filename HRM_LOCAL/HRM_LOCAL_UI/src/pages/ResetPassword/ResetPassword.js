@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import image from "../../Images/arshaalogo.png";
 import { useFormik } from "formik";
+import BlockImage from 'react-block-image'
 
 const ResetPassword = () => {
   const history = useHistory();
@@ -152,7 +153,7 @@ const ResetPassword = () => {
         >
           <Row>
             <Col xs={5}>
-              <img
+              <BlockImage
                 src={image}
                 style={{ paddingTop: "100px", height: "450px", width: "300px" }}
               />

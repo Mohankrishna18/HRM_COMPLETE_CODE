@@ -232,6 +232,7 @@ import { toast } from "react-toastify";
 // import background from "../../images/login screen.jpg";
 import image from "../../Images/arshaalogo.png";
 import "react-toastify/dist/ReactToastify.css";
+import BlockImage from 'react-block-image'
 
 const Sign = () => {
   var userStatus = null;
@@ -307,7 +308,7 @@ const Sign = () => {
         >
           <Row>
             <Col xs={5}>
-              <img className="arshaalogo"
+              <BlockImage className="arshaalogo"
                 src={image}
                 style={{ paddingTop: "100px", height: "450px", width: "300px" }}
               />
