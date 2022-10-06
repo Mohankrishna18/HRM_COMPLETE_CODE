@@ -192,15 +192,15 @@ export default [
   {
     component: PmTaskCreation,
     path: "/TaskMain",
-    type: "configuration",
+    type: "null",
     icon: <FcPlanner />,
     title: "Task",
-    permission: [Roles.pmohead,Roles.manager,Roles.irm,Roles.srm],
+    permission: [Roles.employee,Roles.pmohead,Roles.manager,Roles.irm,Roles.srm],
   },
   {
     component: MyTask,
     path: "/MyTaskMain",
-    type: "configuration",
+    type: "null",
     icon: <FcPlanner />,
     title: "My Task",
     permission: [Roles.employee,Roles.pmohead,Roles.manager],
@@ -208,15 +208,15 @@ export default [
   {
     component: UserStorymain,
     path: "/Userstory",
-    type: "configuration",
+    type: "null",
     icon: <FcManager />,
     title: "Userstory",
 
     permission: [
       Roles.pmohead,
-      Roles.ceo,
-      Roles.employee,
-      Roles.buhead,
+      // Roles.ceo,
+      // Roles.employee,
+      // Roles.buhead,
       Roles.manager,
     ],
   },
