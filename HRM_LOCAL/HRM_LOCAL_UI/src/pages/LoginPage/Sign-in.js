@@ -350,7 +350,7 @@ const Sign = () => {
                     isInvalid={fourtytwo}
                     value={employeeId}
                     onChange={(e) => {
-                      setEmployeeId(e.target.value);
+                      setEmployeeId(e.target.value.toUpperCase());
                       if (e.target.value > 12) {
                         setFourtytwo(
                           "Employee ID Length should not be more than 12 characters"

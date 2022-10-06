@@ -31,7 +31,7 @@ function AditionalDetailsTab(props) {
   var ped = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
  
   return (
-    <div style={{ paddingLeft: 20, paddingBottom:"50px"}}>
+    <div style={{ paddingLeft: 20, paddingBottom:"48px"}}>
     <Card.Title>
         <Row>
             <Col> <h5>Additional Details :</h5></Col>
