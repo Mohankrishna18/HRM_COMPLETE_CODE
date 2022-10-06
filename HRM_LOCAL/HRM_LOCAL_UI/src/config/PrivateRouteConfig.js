@@ -208,15 +208,15 @@ export default [
   {
     component: UserStorymain,
     path: "/Userstory",
-    type: "configuration",
+    type: "null",
     icon: <FcManager />,
     title: "Userstory",
 
     permission: [
       Roles.pmohead,
-      Roles.ceo,
-      Roles.employee,
-      Roles.buhead,
+      // Roles.ceo,
+      // Roles.employee,
+      // Roles.buhead,
       Roles.manager,
     ],
   },
