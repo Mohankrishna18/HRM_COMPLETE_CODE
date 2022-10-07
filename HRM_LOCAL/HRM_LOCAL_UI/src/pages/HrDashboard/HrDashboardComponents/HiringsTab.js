@@ -146,9 +146,9 @@ console.log(data)
                                       value="1"  style={{paddingRight:"2%",paddingLeft:"2%"}}  icon={<FcAcceptDatabase  style={{ fontSize: "25px" }} />} />
  <Divider orientation="vertical" flexItem />
 
-                            <Tab label={<TabWithCount count={(today.length === 0 )?(<> 0 </>):(<>{today.length}</>)}>Onboardings For Today</TabWithCount>}
+                            <Tab wrapped label={<TabWithCount count={(today.length === 0 )?(<> 0 </>):(<>{today.length}</>)}>Onboardings For Today</TabWithCount>}
                                         {...a11yProps(0)} value="2" style={{paddingRight:"2%",paddingLeft:"2%"}} icon={<FcAssistant style={{ fontSize: "25px" }} />} />
-                            <Tab label={<TabWithCount count={(month.length === 0 )?(<> 0 </>):(<>{month.length}</>)}>Onboardings For This Month</TabWithCount>}
+                            <Tab wrapped label={<TabWithCount count={(month.length === 0 )?(<> 0 </>):(<>{month.length}</>)}>Onboardings For This Month</TabWithCount>}
                                         {...a11yProps(0)} value="3" style={{paddingRight:"2%",paddingLeft:"2%"}} icon={<FcFlowChart style={{ fontSize: "25px" }} />} />
                         </TabList>
                     </Box>

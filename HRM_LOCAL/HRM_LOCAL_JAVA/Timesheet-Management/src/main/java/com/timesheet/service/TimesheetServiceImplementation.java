@@ -17,7 +17,7 @@ import com.timesheet.entity.TimesheetApproval;
 import com.timesheet.entity.TimesheetEmployee;
 
 import com.timesheet.modal.RemainingHours;
-import com.timesheet.modal.TimesheetResponse;
+import com.timesheet.modal.TimeSheetResponse;
 import com.timesheet.repository.TimeSheetApprovalRepository;
 import com.timesheet.repository.TimesheetRepository;
 
@@ -185,7 +185,7 @@ public List<TimesheetEmployee> addTimesheetData(List<TimesheetEmployee> t) {
 	
 				@Override
 				public ResponseEntity addTimeSheetApprovalData(TimesheetApproval ta) {
-					TimesheetResponse r = new TimesheetResponse <>();
+					TimeSheetResponse r = new TimeSheetResponse <>();
 					try {
 						TimesheetApproval addTimesheetData = tRepo.save(ta);
 						r.setStatus(true);
@@ -262,7 +262,7 @@ public List<TimesheetEmployee> addTimesheetData(List<TimesheetEmployee> t) {
 					
 					@SuppressWarnings("deprecation")
 					TimesheetApproval timesheetApproval = tRepo.getById(timesheetId);
-					TimesheetResponse r = new TimesheetResponse<>();
+					TimeSheetResponse r = new TimeSheetResponse<>();
 					try {
 						
 						timesheetApproval.setEmployeeId(employeeId);

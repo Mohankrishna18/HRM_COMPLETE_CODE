@@ -387,6 +387,9 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                                 if (e.target.value.length > 10 || e.target.value.length < 10) {
                                                     setThirdErrors(" Phonenumber length should be 10 characters");;
                                                 }
+                                                else{
+                                                    setThirdErrors("");
+                                                }
                                                 if (lastName === "") {
                                                     setSerror("Last Name is Required");
                                                 }
@@ -449,11 +452,11 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                             }
                                             if(email === "" ||
                                                 !email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)){
-                                                        setFourerror("Invalid Email")
+                                                        setFourerror("Enter valid Email")
                                                         console.log(e.target.value);
                                                     }
                                                     else{
-                                                        setFourerror("It's Valid Mail")
+                                                        setFourerror("")
                                                     }
                                             setEmail(e.target.value);
                                         }}

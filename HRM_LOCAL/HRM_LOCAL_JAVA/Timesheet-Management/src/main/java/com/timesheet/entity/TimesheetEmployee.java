@@ -17,7 +17,7 @@ public class TimesheetEmployee {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id; 
 	private Date timeSheetDate;
-	private String taskName;
+	private String taskTitle;
 
 	private String employeeId;
 	private int taskId;
@@ -36,12 +36,7 @@ public class TimesheetEmployee {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getTaskName() {
-		return taskName;
-	}
-	public void setTaskName(String taskName) {
-		this.taskName = taskName;
-	}
+	
 	public String getEmployeeId() {
 		return employeeId;
 	}
@@ -88,11 +83,11 @@ public class TimesheetEmployee {
 		this.timeSheetDate = timeSheetDate;
 	}
 	public TimesheetEmployee(int id, Date timeSheetDate, String taskName, String employeeId, int taskId,
-			double actualHours, double remainingHours, String status, double estimatedHours, String irm) {
+			double actualHours, double remainingHours, String status, double estimatedHours, String irm, String taskTitle) {
 		super();
 		this.id = id;
 		this.timeSheetDate = timeSheetDate;
-		this.taskName = taskName;
+		this.taskTitle = taskTitle;
 		this.employeeId = employeeId;
 		this.taskId = taskId;
 		this.actualHours = actualHours;
@@ -100,6 +95,12 @@ public class TimesheetEmployee {
 		this.status = status;
 		this.estimatedHours = estimatedHours;
 		this.irm = irm;
+	}
+	public String getTaskTitle() {
+		return taskTitle;
+	}
+	public void setTaskTitle(String taskTitle) {
+		this.taskTitle = taskTitle;
 	}
 	public TimesheetEmployee() {
 		super();
