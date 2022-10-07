@@ -1,0 +1,213 @@
+@import '../_mixins.scss';
+
+.item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.2rem;
+	background: var(--white);
+	margin-bottom: 0.7rem;
+	border-radius: 3px;
+	// margin-right:0;
+	cursor: pointer;
+	&:last-child {
+		margin-bottom: 5px;
+	}
+}
+
+
+.itemModule {
+	width: 100%;
+// display: flex;
+	justify-content: space-between;
+	padding:0.2rem;
+	background: var(--white);
+	margin-bottom: 0.7rem;
+	border-radius: 3px;
+	cursor: pointer;
+	&:last-child {
+		margin-bottom: 5px;
+	}
+}
+.todoDetails {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 1rem;
+}
+
+.todoToggle {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 1rem;
+}
+
+.svgBox {
+	flex-basis: 25px;
+	flex-shrink: 0;
+	height: 25px;
+	border-radius: 2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border :solid black 1px;
+	padding: 5px;
+	cursor: pointer;
+	transition: 0.3s ease background-color;
+	&:hover {
+		background-color: var(--grey-2);
+	}
+	svg {
+		width: 100%;
+		height: 100%;
+		stroke: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+.texts {
+	display: flex;
+	flex-direction: column;
+	padding-top: 8px;
+	overflow: hidden;
+	font-weight: 500;
+	font-size: 0.8rem;
+
+}
+.todoText {
+	word-break: break-all;
+	font-weight: 800;
+	font-size: 3rem;
+	color: var(--black-2);
+
+	&--completed {
+		text-decoration: line-through;
+		opacity: 0.7;
+	}
+}
+.time {
+	display: block;
+	font-size: 1.2rem;
+	font-weight: 300;
+	margin-top: -0.2rem;
+	color: var(--black-2);
+}
+.todoActions {
+	display: flex;
+	 align-items: center;
+	// justify-content: center;
+	gap: 1rem;
+}
+.icon {
+	font-size: 1.3rem;
+	padding: 0.2rem;
+	border-radius: 1px;
+	background-color: var(--gray-1);
+	color: var(--black-2);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: 0.3s ease background-color;
+	&:hover {
+		background-color: var(--gray-2);
+	}
+}
+
+// .menuItem{
+// 	display: flex;
+//     align-items: center;
+//     gap: 1rem;
+//     height:2.5rem;
+//      margin-left: 2rem;
+//     position:relative;
+//     transition: all 300ms ease;
+//     font-size: 14px;
+//     border-radius: 0.7rem;
+// }
+.activeItem{
+    display: flex;
+	// align-items: center;
+	justify-content: space-between;
+	padding:5px 0.2rem ;
+	// color:white;
+	background: #fcdeb1;
+	border-left: 2px solid var(--orange);
+	// margin-bottom: 0.7rem;
+	border-radius: 3px;
+	// margin-right:0;
+	cursor: pointer;
+	&:last-child {
+		margin-bottom: 5px;
+	}
+}
+
+// display: flex;
+// 	align-items: center;
+// 	justify-content: space-between;
+// 	padding: 0.2rem;
+// 	background: var(--white);
+// 	margin-bottom: 0.7rem;
+// 	border-radius: 3px;
+// 	// margin-right:0;
+// 	cursor: pointer;
+// 	&:last-child {
+// 		margin-bottom: 5px;
+// 	}
+.activeItem::before{
+    content: '';
+    // width: 8px;
+    // height: 100%;
+	background: var(--white);
+	border-left: 2px solid var(--orange);
+    // margin-right:calc(1rem-8px);
+}
+// .item::before{
+// 	content: '';
+//     width: 8px;
+//     height: 100%;
+//     background: var(--orange);
+//     margin-right:calc(1rem-8px);
+// }
+
+
+@import '../_mixins.scss';
+
+.app__wrapper {
+	max-width: 750px;
+	max-height: 1850px;
+	width: 100%;
+	height :100% !important;
+	margin: 0 auto;
+}
+.appHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 30px;
+}
+.content__wrapper {
+	background-color: var(--bg-2);
+	padding: 0.5rem;
+	border-radius: 5px;
+	height: 100%;
+	@include smallDeviceSize {
+		padding: 1.5rem;
+	}
+}
+.emptyText {
+	// display: inline-block;
+	font-size: 1.6rem;
+	font-weight: 500;
+	color: var(--black-2);
+	text-align: center;
+	margin: 0 auto;
+	padding: 0.5rem 1rem;
+	border-radius: 8px;
+	background-color: var(--gray-2);
+	width: max-content;
+	height: auto;
+}
+

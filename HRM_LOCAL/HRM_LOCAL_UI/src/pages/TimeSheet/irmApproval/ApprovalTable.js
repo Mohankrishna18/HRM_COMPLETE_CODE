@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
 import { Card, Container, Row, Col, Table, Tabs, Tab, Button, Modal, Stack, Form } from "react-bootstrap";
@@ -33,7 +32,7 @@ function ApprovalTable() {
     getEmployeeDataApproval();
   }, []);
   const getEmployeeDataApproval = async (e) => {
-    const response = await axios.get(`timesheet/getEmployeesTask/${employeeId}`);
+    const response = await axios.get(`timesheet/getEmployeesTask/${employeeId}/Pending`);
     setApproval(response.data);
     console.log(response);
     console.log("dataupdated");
@@ -125,7 +124,7 @@ console.log(emp)
 
               {taskData.map((item) => (
                 <tr>
-                  <td>{item.taskName}</td>
+                  <td>{item.taskTitle}</td>
                   <td>{item.estimatedHours}</td>
                   <td>{item.actualHours}</td>
                   <td>{item.remainingHours}</td>

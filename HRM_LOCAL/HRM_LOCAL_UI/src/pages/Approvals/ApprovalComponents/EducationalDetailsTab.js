@@ -104,7 +104,7 @@ function EducationalDetailsTab(props) {
 
     return (
 
-        <div style={{ padding: 20, height:320, marginLeft: 10, marginRight: 20,paddingBottom:"24px" }}>
+        <div style={{ padding: 20, height:320, marginLeft: 10, marginRight: 20,paddingBottom:"318px" }}>
                           <Card.Title>
                             <h5>Educational Information:</h5>
                           </Card.Title>
@@ -197,12 +197,3 @@ function EducationalDetailsTab(props) {
     )
 }
 export default EducationalDetailsTab;
-
-
-
-
-
-
-
-
-

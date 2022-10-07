@@ -23,6 +23,7 @@ import {
   FcBookmark,
   FcApproval,
   FcTemplate,
+  FcExpired,
 } from "react-icons/fc";
 
 //Data Imports
@@ -86,6 +87,10 @@ import ProjectsMain from "../pages/Projects/ProjectsMain";
 import HRConfirmationMain from "../pages/HRApproval/HRConfirmationMain";
 import HrDashboard from "../pages/HrDashboard/HrDashboardMain";
 import HrDashboardMain from "../pages/HrDashboard/HrDashboardMain";
+import AddResignation from "../pages/Resignation/AddResignation";
+import ResignationMain from "../pages/Resignation/ResignationMain";
+import UserAccessMain from "../pages/UserAccess/UserAccessMain";
+
 
 export default [
   {
@@ -124,6 +129,14 @@ export default [
     permission: [Roles.hrmanager,Roles.pmohead,Roles.ceo],
 
     exact: true
+  },
+  {
+    component: UserAccessMain,
+    path: "/UserAccess",
+    type: "null",
+    icon: <FcOvertime/>,
+    title: "User Access",
+    permission: [Roles.pmohead],
   },
   {
     component: MyProfileMain,
@@ -179,15 +192,15 @@ export default [
   {
     component: PmTaskCreation,
     path: "/TaskMain",
-    type: "configuration",
+    type: "null",
     icon: <FcPlanner />,
     title: "Task",
-    permission: [Roles.pmohead,Roles.manager,Roles.irm,Roles.srm],
+    permission: [Roles.employee,Roles.pmohead,Roles.manager,Roles.irm,Roles.srm],
   },
   {
     component: MyTask,
     path: "/MyTaskMain",
-    type: "configuration",
+    type: "null",
     icon: <FcPlanner />,
     title: "My Task",
     permission: [Roles.employee,Roles.pmohead,Roles.manager],
@@ -195,15 +208,15 @@ export default [
   {
     component: UserStorymain,
     path: "/Userstory",
-    type: "configuration",
+    type: "null",
     icon: <FcManager />,
     title: "Userstory",
 
     permission: [
       Roles.pmohead,
-      Roles.ceo,
-      Roles.employee,
-      Roles.buhead,
+      // Roles.ceo,
+      // Roles.employee,
+      // Roles.buhead,
       Roles.manager,
     ],
   },
@@ -541,6 +554,29 @@ export default [
     icon: <FcApproval />,
     title: "Approvals",
     permission: [Roles.hrmanager],
+  },
+
+  {
+    component: ResignationMain,
+    path: "/resignation",
+    type: "myprofile",
+    icon: <FcExpired />,
+    title: "Resignation",
+    permission: [
+      Roles.employee,
+      Roles.ceo,
+      Roles.it,
+      Roles.taa,
+      Roles.hrmanager,
+      Roles.manager,
+      Roles.recruitmentmanager,
+      Roles.irm,
+      Roles.srm,
+      Roles.pmohead,
+      Roles.taahead,
+      Roles.buhead,
+    ],
+    
   },
 ];
 

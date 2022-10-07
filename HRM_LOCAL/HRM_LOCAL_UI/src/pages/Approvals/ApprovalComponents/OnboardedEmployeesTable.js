@@ -89,24 +89,24 @@ function OnboardedEmployeesTable() {
       type: "date",
     },
 
-    {
-      title: "Job Title",
-      field: "jobTitle",
-    },
+    // {
+    //   title: "Job Title",
+    //   field: "jobTitle",
+    // },
 
-    {
-      title: "Employment Type",
-      field: "employmentType",
-    },
+    // {
+    //   title: "Employment Type",
+    //   field: "employmentType",
+    // },
 
     {
       title: "Experience",
       field: "yearsOfExperience",
     },
-    {
-      title: "Status",
-      field: "percentage",
-    },
+    // {
+    //   title: "Status",
+    //   field: "percentage",
+    // },
   ]);
 
   return (
@@ -253,6 +253,11 @@ function OnboardedEmployeesTable() {
             data={data}
             editable={{}}
             options={{
+              pageSize: 5,
+
+              pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
+
+              maxBodyHeight: 500,
               headerStyle: {
                 backgroundColor: "#ff9b44",
                 color: "white",

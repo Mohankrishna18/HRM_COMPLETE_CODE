@@ -44,7 +44,7 @@ function EmploymentDetailsTab(props) {
 
     return (
 
-        <div style={{ padding: 20, paddingBottom: 40 }}>    
+        <div style={{ padding: 20, paddingBottom: "60px" }}>    
                           <Card.Title>
                             <h5>Employment Details:</h5>
                           </Card.Title>
