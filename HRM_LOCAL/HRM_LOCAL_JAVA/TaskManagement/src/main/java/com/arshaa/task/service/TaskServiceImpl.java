@@ -241,7 +241,7 @@ public class TaskServiceImpl implements TaskService {
 		List<TaskEntity> returnedAllTasks = taskRepo.findAll();
 
 		returnedAllTasks.forEach(task -> {
-			task.setActualHours(0);
+			task.setActualHours(0.0);
 			
 			taskRepo.save(task);
 		});
