@@ -204,7 +204,7 @@ public class MainServiceImpl implements MainService {
 
 	public ResponseEntity updateApprovStatus(String onboardingId, HrApprovalStatus newOnboard) {
 		Response response = new Response();
-		String userURL = "http://urpService/user/addUser";
+//		String userURL = "http://urpService/user/addUser";
 		String loginURL = "http://loginservice/login/addUsers";
 //		String emailURL = "http://emailService/mail/sendmail";
 		// String employee="ATPL";
@@ -403,11 +403,11 @@ public class MainServiceImpl implements MainService {
 					String password = "user" + first + last + intRandom;
 					// System.out.println("Username :" + userId + "Password" + password);
 
-					// Posting data to UserMaster table
-					Users users = new Users();
-					users.setEmployeeId(employeeMaster.getEmployeeId());
-					users.setUserName(userId);
-					template.postForObject(userURL, users, Users.class);
+//					// Posting data to UserMaster table
+//					Users users = new Users();
+//					users.setEmployeeId(employeeMaster.getEmployeeId());
+//					users.setUserName(userId);
+//					template.postForObject(userURL, users, Users.class);
 
 					// Posting data to Employee login table
 					EmployeeLogin login = new EmployeeLogin();

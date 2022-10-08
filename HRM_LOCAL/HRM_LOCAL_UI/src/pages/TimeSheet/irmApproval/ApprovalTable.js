@@ -1,7 +1,18 @@
-
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
-import { Card, Container, Row, Col, Table, Tabs, Tab, Button, Modal, Stack, Form } from "react-bootstrap";
+import {
+  Card,
+  Container,
+  Row,
+  Col,
+  Table,
+  Tabs,
+  Tab,
+  Button,
+  Modal,
+  Stack,
+  Form,
+} from "react-bootstrap";
 import { FcWebcam } from "react-icons/fc";
 
 import Grid from "@mui/material/Grid";
@@ -10,13 +21,10 @@ import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 import Approve from "./Approve";
 import RejectHandler from "./Reject";
 
-
-
 function ApprovalTable() {
-
   const [viewShow, setViewShow] = useState(false);
-  const[show,setShow]=useState(false);
-  const[rejectShow,setRejectShow]=useState(false);
+  const [show, setShow] = useState(false);
+  const [rejectShow, setRejectShow] = useState(false);
   const viewHandleClose = () => setViewShow(false);
   const [approval, setApproval] = useState();
   const handleClose = () => setShow(false);
@@ -32,20 +40,21 @@ function ApprovalTable() {
     getEmployeeDataApproval();
   }, []);
   const getEmployeeDataApproval = async (e) => {
-    const response = await axios.get(`timesheet/getEmployeesTask/${employeeId}/Pending`);
+    const response = await axios.get(
+      `timesheet/getEmployeesTask/${employeeId}/Pending`
+    );
     setApproval(response.data);
     console.log(response);
     console.log("dataupdated");
   };
-  console.log(approval)
+  console.log(approval);
 
   // {approval.map((item) => (
   //  console.log(item.employeeId)
 
   // ))}
 
-
-// console.log(approval.employeeId)
+  // console.log(approval.employeeId)
   //View data
   const [taskData, setTaskData] = useState([]);
   // useEffect(() => {
@@ -56,22 +65,19 @@ function ApprovalTable() {
   //   setTaskData(response.data);
   //   console.log(response.data);
   // };
-const loadData =(id)=>{
-  console.log(id)
-  axios
-      .get(`timesheet/gettaskDetails/${id.employeeId}`)
-      .then((response) => {
-        console.log(response.data)
-        setTaskData(response.data);
-      });
-
-}
-console.log(emp)
+  const loadData = (id) => {
+    console.log(id);
+    axios.get(`timesheet/gettaskDetails/${id.employeeId}`).then((response) => {
+      console.log(response.data);
+      setTaskData(response.data);
+    });
+  };
+  console.log(emp);
 
   // useEffect(() => {
-    
+
   // }, []);
-  console.log(taskData)
+  console.log(taskData);
 
   const [columns1, setColumns1] = useState([
     {
@@ -79,35 +85,28 @@ console.log(emp)
       field: "employeeId",
       type: "text",
       editable: "never",
-
     },
-  
-  
+
     {
       title: "Timesheet Date",
       field: "timeSheetDate",
       type: "date",
       editable: "never",
-      dateSetting: { locale: "en-GB" }
+      dateSetting: { locale: "en-GB" },
     },
     {
       title: "Total Hours",
       field: "totalHours",
       type: "text",
       editable: "never",
-
     },
-
   ]);
-  
-
 
   return (
     <div>
       <Modal show={viewShow} onHide={viewHandleClose} size="xl">
         <Modal.Header style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Timesheet Details</Modal.Title>
-
         </Modal.Header>
         <Modal.Body>
           <Table>
@@ -121,7 +120,6 @@ console.log(emp)
               </tr>
             </thead>
             <tbody>
-
               {taskData.map((item) => (
                 <tr>
                   <td>{item.taskTitle}</td>
@@ -131,11 +129,8 @@ console.log(emp)
                   <td>{item.status}</td>
                 </tr>
               ))}
-
-
             </tbody>
           </Table>
-
         </Modal.Body>
       </Modal>
 
@@ -145,8 +140,8 @@ console.log(emp)
         </Modal.Header>
         <Modal.Body>
           <Approve
-           updateApproval={updateapproval}
-           // func={pull_dataUpdate}
+            updateApproval={updateapproval}
+            // func={pull_dataUpdate}
             handleClose={handleClose}
           />
         </Modal.Body>
@@ -185,10 +180,10 @@ console.log(emp)
             paddingTop: "5px",
             paddingBottom: "2px",
             paddingLeft: "20px",
+            paddingRight: "200px",
             maxWidth: 200,
-            // actionsColumnIndex: -1,
+            // actionsColumnIndex: 0,
           },
-
 
           pageSize: 5,
           pageSizeOptions: [5],
@@ -197,23 +192,20 @@ console.log(emp)
           actionsColumnIndex: -1,
           //grouping: true,
           exportButton: true,
-
         }}
-
         onSelectionChange={(rows) => {
-
           rows.map((items) => {
             console.log(items.actualHours);
             console.log(items);
 
             setOutput([{ ...objectData, ...items }]);
-            ot.push({ ...objectData, ...items })
-            console.log(output)
+            ot.push({ ...objectData, ...items });
+            console.log(output);
             rows.push(objectData);
             console.log(rows);
             time.push(parseInt(items.actualHours));
           });
-          setOtt(ot)
+          setOtt(ot);
           let s = 0;
           time.forEach(myFunction);
 
@@ -245,23 +237,21 @@ console.log(emp)
                     setViewShow(true);
                     // console.log(props);
                     setUpdateApproval(props.data);
-                    loadData(props.data)
+                    loadData(props.data);
                   }}
-                > {" "}
-                  <FcWebcam />{" "}
-                  View 
+                >
+                  {" "}
+                  <FcWebcam /> View
                 </Button>
 
                 <Button
                   variant="outline-success"
                   onClick={() => {
                     setShow(true);
-                    console.log(props)
+                    console.log(props);
                     setUpdateApproval(props.data);
                   }}
-
                 >
-
                   Approve
                 </Button>
                 {/* <Button
@@ -276,15 +266,11 @@ console.log(emp)
                                         <FcApproval /> Approve
                                     </Button> */}
 
-
-
-
-
                 <Button
                   variant="outline-danger"
                   onClick={() => {
                     setRejectShow(true);
-                    console.log(props)
+                    console.log(props);
                     setUpdateApproval(props.data);
                   }}
                 >
@@ -302,16 +288,13 @@ console.log(emp)
                                         {" "}
                                         <FcCancel /> Reject
                                     </Button> */}
-
               </Stack>
-
             </div>
           ),
         }}
       />
-
     </div>
-  )
+  );
 }
 
-export default ApprovalTable
+export default ApprovalTable;
