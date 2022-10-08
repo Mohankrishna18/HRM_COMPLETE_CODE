@@ -106,6 +106,8 @@ function IRMResignationMain(props) {
             actionsColumnIndex: -1,
             headerStyle: {
               backgroundColor: "#FE924A",
+            paddingRight: "70px",  //with Department
+            // paddingRight: "90px", //without Department
 
               color: "white",
             },
