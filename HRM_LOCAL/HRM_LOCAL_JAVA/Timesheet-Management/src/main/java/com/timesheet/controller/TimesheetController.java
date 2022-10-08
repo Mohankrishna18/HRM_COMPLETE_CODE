@@ -63,9 +63,10 @@ public List <TimesheetEmployee>get(@PathVariable String employeeId){
 	return TRepo.getTaskDetailsByemployeeId(employeeId);
 	
 }
-	@GetMapping("/getEmployeesTask/{irm}")
-	public List <TimesheetApproval>getTaskDetails(@PathVariable String irm){
-		return tRepo.getTaskDetailsByirm(irm);
+@GetMapping("/getEmployeesTask/{irm}/{status}")
+public List <TimesheetApproval>getTimesheetApprovalByIrmAndStatus(@PathVariable String irm,@PathVariable String status){
+
+	return tRepo.findTimesheetApprovalByIrmAndStatus(irm, status);
 }
 	@GetMapping("/gettimesheet/{timesheetId}")
 	public TimesheetApproval getTimesheetDataByTimesheetId(@PathVariable int  timesheetId){

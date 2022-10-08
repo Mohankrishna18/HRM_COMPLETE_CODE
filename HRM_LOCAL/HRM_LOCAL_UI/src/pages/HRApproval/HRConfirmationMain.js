@@ -5,6 +5,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
+import {FcPositiveDynamic,  FcConferenceCall} from "react-icons/fc";
 import HRResignationMain from "./HRResignationMain";
 
 function HRConfirmationMain() {
