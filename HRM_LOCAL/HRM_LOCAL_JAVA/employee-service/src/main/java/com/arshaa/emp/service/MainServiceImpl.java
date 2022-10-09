@@ -429,11 +429,40 @@ public class MainServiceImpl implements MainService {
 					MainEmailTemplate mailTemp=new MainEmailTemplate();
 					Map<String,String> map=new HashMap();
 
-					mailTemp.setEmailType("CEO_APPROVAL");
-					map.put("employeeName","Sanjay");
+					mailTemp.setEmailType("HR_APPROVAL");
+					map.put("employeeName","Dheeraj");
 					map.put("email","muralikrishna.miriyala@arshaa.com");
 					mailTemp.setMap(map);
 		            template.postForObject(preEmailURL,mailTemp,MainEmailTemplate.class); 
+		            
+		            MainEmailTemplate mailTemp1=new MainEmailTemplate();
+					Map<String,String> map1=new HashMap();
+
+					mailTemp1.setEmailType("IT_TEAM");
+					map1.put("employeeName","Raj");
+					map1.put("email","muralikrishna.miriyala@arshaa.com");
+					mailTemp1.setMap(map1);
+		            template.postForObject(preEmailURL,mailTemp1,MainEmailTemplate.class);
+		            
+		            MainEmailTemplate mailTemp2=new MainEmailTemplate();
+					Map<String,String> map2=new HashMap();
+
+					mailTemp2.setEmailType("ADMIN");
+					map2.put("employeeName","Dheeraj");
+					map2.put("email","muralikrishna.miriyala@arshaa.com");
+					mailTemp2.setMap(map2);
+		            template.postForObject(preEmailURL,mailTemp2,MainEmailTemplate.class);
+		            
+		            MainEmailTemplate mailTemp3=new MainEmailTemplate();
+					Map<String,String> map3=new HashMap();
+
+					mailTemp3.setEmailType("PMO");
+					map3.put("employeeName","Dheeraj");
+					map3.put("email","muralikrishna.miriyala@arshaa.com");
+					mailTemp3.setMap(map3);
+		            template.postForObject(preEmailURL,mailTemp3,MainEmailTemplate.class);
+
+
 
 					response.setStatus(true);
 					response.setMessage("Hr Approved successfully");
@@ -915,8 +944,10 @@ public class MainServiceImpl implements MainService {
 				pd.setMaritalStatus(em.getMaritalStatus());
 				pd.setPrimaryPhoneNumber(em.getPrimaryPhoneNumber());
 				pd.setSecondaryPhoneNumber(em.getSecondaryPhoneNumber());
+				
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
+				em.setOnboardingStatus(em.getOnboardingStatus());
 				r.setData(pd);
 				return new ResponseEntity(r, HttpStatus.OK);
 			} else {
@@ -1783,15 +1814,87 @@ public class MainServiceImpl implements MainService {
 
 	@Override
 	public ResponseEntity updateReject(String onboardingStatus, HrApprovalStatus newOnboard) {
+		
+		String OnboardUrl = "http://loginservice/login/getEmployeeDataByUserType/";
 		Response r = new Response();
 		try {
+			
+		switch(newOnboard.getUserType()) {
+		case "taahead":
+		{
+			HrApprovalStatus hrApp= template.getForObject(OnboardUrl+"taa", HrApprovalStatus.class);
+			
 			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingStatus);
 			getOnboarding.setComments(newOnboard.getComments());
 			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
 			Onboarding updateReject = onRepo.save(getOnboarding);
 			r.setStatus(true);
 			r.setMessage("Rejected Successfully");
-			return new ResponseEntity(r, HttpStatus.OK);
+			MainEmailTemplate mailTemp=new MainEmailTemplate();
+			Map<String,String> map=new HashMap();
+	
+			map.put("employeeName",getOnboarding.getFirstName()+getOnboarding.getLastName());
+//			map.put("email",hrApp.getEmail());
+			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			mailTemp.setMap(map);
+			mailTemp.setEmailType("TAG_HEAD_REJECT");
+
+//			rConfirm.setEmployeeName(getOnboarding.getFirstName()+getOnboarding.getLastName());
+//			rConfirm.setEmail("muralikrishna.miriyala@arshaa.com");
+			
+			template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
+			break;
+		}
+		case "pmohead":{
+			HrApprovalStatus hrApp= template.getForObject(OnboardUrl+"taahead", HrApprovalStatus.class);
+			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingStatus);
+			getOnboarding.setComments(newOnboard.getComments());
+			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
+			Onboarding updateReject = onRepo.save(getOnboarding);
+			r.setStatus(true);
+			r.setMessage("Rejected Successfully");
+			MainEmailTemplate mailTemp=new MainEmailTemplate();
+			Map<String,String> map=new HashMap();
+	
+			map.put("employeeName",getOnboarding.getFirstName()+getOnboarding.getLastName());
+//			map.put("email",hrApp.getEmail());
+			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			mailTemp.setMap(map);
+			mailTemp.setEmailType("PMO_REJECT");
+
+//			rConfirm.setEmployeeName(getOnboarding.getFirstName()+getOnboarding.getLastName());
+//			rConfirm.setEmail("muralikrishna.miriyala@arshaa.com");
+			
+			template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
+			break;
+		}
+		case "ceo":{
+			HrApprovalStatus hrApp= template.getForObject(OnboardUrl+"pmohead", HrApprovalStatus.class);
+			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingStatus);
+			getOnboarding.setComments(newOnboard.getComments());
+			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
+			Onboarding updateReject = onRepo.save(getOnboarding);
+			r.setStatus(true);
+			r.setMessage("Rejected Successfully");
+			MainEmailTemplate mailTemp=new MainEmailTemplate();
+			Map<String,String> map=new HashMap();
+	
+			map.put("employeeName",getOnboarding.getFirstName()+getOnboarding.getLastName());
+//			map.put("email",hrApp.getEmail());
+			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			mailTemp.setMap(map);
+			mailTemp.setEmailType("CEO_REJECT");
+
+//			rConfirm.setEmployeeName(getOnboarding.getFirstName()+getOnboarding.getLastName());
+//			rConfirm.setEmail("muralikrishna.miriyala@arshaa.com");
+			
+			template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
+			break;
+		}
+		default :
+			break;
+		}
+		return new ResponseEntity(r, HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
 
@@ -1847,7 +1950,7 @@ public class MainServiceImpl implements MainService {
 
 			mailTemp.setEmailType("TAG_APPROVAL");
 			map.put("employeeName","Vikas");
-			map.put("email","nikhil.mudheraj@arshaa.com");
+			map.put("email","muralikrishna.miriyala@arshaa.com");
 			mailTemp.setMap(map);
             template.postForObject(preEmailURL,mailTemp,MainEmailTemplate.class); 
 			r.setStatus(true);
@@ -1876,7 +1979,7 @@ public class MainServiceImpl implements MainService {
 
 			mailTemp.setEmailType("PMO_APPROVAL");
 			map.put("employeeName","Raj");
-			map.put("email","madhuri.allapureddy@arshaa.com");
+			map.put("email","muralikrishna.miriyala@arshaa.com");
 			mailTemp.setMap(map);
             template.postForObject(preEmailURL,mailTemp,MainEmailTemplate.class); 
 			r.setStatus(true);
@@ -1929,6 +2032,19 @@ public class MainServiceImpl implements MainService {
 			getOnboarding.setCeoApprovalComment(newOnboard.getCeoApprovalComment());
 			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
 			Onboarding saveList = onRepo.save(getOnboarding);
+			
+//			Email rest template call
+			MainEmailTemplate mailTemp=new MainEmailTemplate();
+			Map<String,String> map=new HashMap();
+
+			mailTemp.setEmailType("CEO_APPROVAL");
+			map.put("employeeName","Sanjay");
+			map.put("email","muralikrishna.miriyala@arshaa.com");
+			map.put("dateOfJoining", getOnboarding.getDateOfJoining().toString());
+			System.out.println(getOnboarding.getDateOfJoining().toString());
+			mailTemp.setMap(map);
+            template.postForObject(preEmailURL,mailTemp,MainEmailTemplate.class);
+            
 			r.setStatus(true);
 			r.setMessage("CEOApproved Successfully");
 			return new ResponseEntity(r, HttpStatus.OK);

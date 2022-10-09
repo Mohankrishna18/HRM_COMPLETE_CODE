@@ -134,6 +134,41 @@ public class EmailSender {
 	        	  text=ceoApprovalText(uModel);
 	        	  sendEmail(uModel,sub,text);
 	        	  break;
+	          case "HR_APPROVAL":
+	        	  sub="HR Approval Confirm";
+	        	  text=hrApprovalText(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "PMO":
+	        	  sub="PMO Assign";
+	        	  text=pmoAssignText(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "IT_TEAM":
+	        	  sub="IT Team Cofirm";
+	        	  text=itTeamText(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "ADMIN":
+	        	  sub="Admin confrim";
+	        	  text=adminText(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "TAG_HEAD_REJECT":
+	        	  sub="Tag Head Rejected";
+	        	  text=tagHeadReject(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "PMO_REJECT":
+	        	  sub="PMO Rejected";
+	        	  text=pmoReject(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "CEO_REJECT":
+	        	  sub="CEO Rejected";
+	        	  text=ceoReject(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
 
  	        	  default:
  	        		  System.out.println("default switch case");
@@ -147,6 +182,43 @@ public class EmailSender {
 
 	       }  
 	    }  
+	
+	private String pmoAssignText(MainEmailTemplate uModel) {
+		String text="PMO Assign "+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String adminText(MainEmailTemplate uModel) {
+		String text="Admin Approved "+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String itTeamText(MainEmailTemplate uModel) {
+		String text="IT Team Approve"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String hrApprovalText(MainEmailTemplate uModel) {
+		String text="HR Approve"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String ceoReject(MainEmailTemplate uModel) {
+		String text="CEO Rejected"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+
+	private String pmoReject(MainEmailTemplate uModel) {
+		String text="PMO Rejected"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+
+	private String tagHeadReject(MainEmailTemplate uModel) {
+		String text="TAG Head Rejected"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
 	
 	
 	private String ceoApprovalText(MainEmailTemplate uModel) {
@@ -191,7 +263,7 @@ public class EmailSender {
 	
 	public String OnboardApproveText(MainEmailTemplate uModel)
 	{
-		String text="Hi "+uModel.getMap().get("employeeName")+"\n"+"Welcome to Arshaa Technologies"+"\n"+"Your Onboard was Approved, Please login with your Email-ID and Password as we mentioned here, These are your credentials Email-ID:-"+uModel.getMap().get("email")+" Password:-"+uModel.getMap().get("password")+"\n"+"\n"+"Link to login : http://10.10.10.40:4000"+"\n"+"Kindly fill your details in Edit My Profile."+"\n"+"\n"+"Regards,"+"\n"+"Recuiter Team"+"\n"+"Arshaa Technology Pvt. Ltd.";
+		String text="Hi "+uModel.getMap().get("employeeName")+"\n"+"Welcome to Arshaa Technologies"+"\n"+"Your Onboard was Approved, Please login with your Email-ID and Password as we mentioned here, These are your credentials Email-ID:-"+uModel.getMap().get("email")+" Password:-"+uModel.getMap().get("password")+"\n"+"\n"+"Link to login : http://15.206.247.212:5000/"+"\n"+"Kindly fill your details in Edit My Profile."+"\n"+"\n"+"Regards,"+"\n"+"Recuiter Team"+"\n"+"Arshaa Technology Pvt. Ltd.";
 		return text;
 	}
 	
