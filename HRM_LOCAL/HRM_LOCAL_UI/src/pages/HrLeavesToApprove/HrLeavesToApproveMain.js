@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TaskMain from '../TimeSheet/EmployeeTimesheet/TaskMain';
 import HrEmployeesLeavesWaitingForApproval from "./HrEmployeesLeavesWaitingForApproval";
+import SRMResignationMain from './SRMResignationMAin';
 
 const HrLeavesToApproveMain = () => {
 
@@ -29,10 +30,12 @@ const HrLeavesToApproveMain = () => {
                     <TabList onChange={handleChange} aria-label="lab API tabs example" style={{ justifyContent: "center"}}>
                       <Tab label="Leave Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="2" />
                       <Tab label="Timesheet Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="3" />
+                      <Tab label="Resignation Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="4" />
                     </TabList>
                   </Box>
                   <TabPanel value="2"><HrEmployeesLeavesWaitingForApproval /></TabPanel>
                   <TabPanel value="3"><TaskMain /></TabPanel>
+                  <TabPanel value="4"><SRMResignationMain /></TabPanel>
                 </TabContext>  
               </Col>
             </Row>
