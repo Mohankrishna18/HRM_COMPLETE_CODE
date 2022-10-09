@@ -48,7 +48,7 @@ function SRMResignationMain(props) {
   const [columns, setColumns] = useState([
     { title: "Employee ID", field: "employeeId" },
     { title: "Resigning Employee", field: "resigningEmployee" },
-    { title: "Department", field: "department" },
+    // { title: "Department", field: "department" },
     { title: "Reason", field: "reason" },
     {
       title: "Notice Date",

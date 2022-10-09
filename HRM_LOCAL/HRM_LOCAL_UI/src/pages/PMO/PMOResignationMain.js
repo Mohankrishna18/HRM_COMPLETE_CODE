@@ -3,7 +3,7 @@ import MaterialTable from "material-table";
 import Grid from "@mui/material/Grid";
 import axios from "../../Uri";
 import { Button, Stack, Modal } from "react-bootstrap";
-import SRMResignationApprove from "./SRMResignationApprove";
+
 import PMOResignationApprove from "./PMOResignationApprove";
 import PMOResignationReject from "./PMOResignationReject";
 
@@ -49,7 +49,7 @@ function PMOResignationMain(props) {
   const [columns, setColumns] = useState([
     { title: "Employee ID", field: "employeeId" },
     { title: "Resigning Employee", field: "resigningEmployee" },
-    { title: "Department", field: "department" },
+    // { title: "Department", field: "department" },
     { title: "Reason", field: "reason" },
     {
       title: "Notice Date",
