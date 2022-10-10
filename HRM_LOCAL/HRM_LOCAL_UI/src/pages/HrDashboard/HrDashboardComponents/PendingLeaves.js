@@ -36,7 +36,7 @@ function PendingLeaves() {
           columns={columns}
           data={data}
           options={{
-            paging: false,
+            paging: true,
             addRowPosition: "first",
             actionsColumnIndex: -1,
             // filtering: true,
