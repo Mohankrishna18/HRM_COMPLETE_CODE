@@ -8,6 +8,7 @@ import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployee
 import TaskMain from '../TimeSheet/EmployeeTimesheet/TaskMain';
 import EmploymentDetailsTabbyPmo from './EmploymentDetailsTabbyPmo';
 import PMOApproval from './PMOApproval';
+import PMOResignationMain from './PMOResignationMain';
 
 //Empty Commit
 function PMOMain() {
@@ -37,12 +38,14 @@ function PMOMain() {
                       <Tab label="Leave Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="2" />
                       <Tab label="Timesheet Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="3" />
                       <Tab label="Assign Employment Details" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="4" />
+                      <Tab label="Resignation Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="5" />
                     </TabList>
                   </Box>
                   <TabPanel value="1"><PMOApproval /></TabPanel>
                   <TabPanel value="2"><HrEmployeesLeavesWaitingForApproval /></TabPanel>
                   <TabPanel value="3"><TaskMain /></TabPanel>
                   <TabPanel value="4"><AssignEmploymentDetailsMain /></TabPanel>
+                  <TabPanel value="5"><PMOResignationMain /></TabPanel>
                 </TabContext>
                 
               </Col>

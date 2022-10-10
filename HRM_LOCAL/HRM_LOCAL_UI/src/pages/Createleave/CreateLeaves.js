@@ -147,7 +147,7 @@ export default function CreateLeaves() {
                         }),
                 }}
                 options={{
-                    paging: false,
+                    paging: true,
                     addRowPosition: 'first',
                     actionsColumnIndex: -1,
                     headerStyle: {

@@ -2,6 +2,8 @@ package com.arshaa.task.controller;
 
 import java.util.List;
 
+import javax.ws.rs.core.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arshaa.task.entity.TaskEntity;
+
 import com.arshaa.task.repository.TaskRepository;
 import com.arshaa.task.service.TaskService;
 
@@ -67,11 +70,16 @@ public class TaskController {
 	}
 
 	/// gettasksbystatusandemployeeId
-	@GetMapping("/getByStatus/{assignedTo}/{status}")
-	public List<TaskEntity> findByAssignedToAndStatus(@PathVariable String assignedTo, @PathVariable String status) {
-		return taskRepo.findByAssignedToAndStatus(assignedTo, status);
+	@GetMapping("/getByStatus/{employeeId}/{status}")
+	public List<TaskEntity> findByEmployeeIdAndStatus(@PathVariable String employeeId, @PathVariable String status) {
+		return taskRepo.findByEmployeeIdAndStatus(employeeId, status);
 
 	}
+   @PutMapping("/updateActualHoursToZero")
+   public String  setActualHours() {
+	   return serv.updateActualHours();
+	   
+   }
 
 	@GetMapping("/getSumOfActualHours/{taskId}")
 	public double findtotalOfActualHours(@PathVariable int taskId) {

@@ -61,9 +61,9 @@ function AddOnboard(props) {
     } = form;
     const newErrors = {};
 
-    if (!firstName || firstName === "" || !firstName.match(/^[aA-zZ\s]+$/))
+    if (!firstName || firstName === "" || !firstName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
       newErrors.firstName = "Please Enter First Name";
-    if (!lastName || lastName === "" || !lastName.match(/^[aA-zZ\s]+$/))
+    if (!lastName || lastName === "" || !lastName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
       newErrors.lastName = "Please Enter Last Name";
     if (!email || email === "") newErrors.email = "Please Enter Valid Email";
     if (
@@ -142,7 +142,7 @@ function AddOnboard(props) {
           }
           toast.success("Employee Onboarded Successfully");
           console.log(user);
-          setTimeout(5000);
+          setTimeout(1000);
           handleClose();
         })
         .catch((err) => {

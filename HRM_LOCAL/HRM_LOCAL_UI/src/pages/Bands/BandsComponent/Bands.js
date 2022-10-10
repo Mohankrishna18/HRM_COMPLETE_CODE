@@ -106,7 +106,7 @@ import axios from "../../../Uri";
                         }),
                 }}
                 options={{
-                    paging: false,
+                    paging: true,
                     addRowPosition:'first',
                     actionsColumnIndex: -1,
                     headerStyle: {

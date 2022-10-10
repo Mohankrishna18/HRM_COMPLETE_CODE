@@ -20,6 +20,12 @@ import "react-toastify/dist/ReactToastify.css";
 import Calendar from "react-calendar";
 import moment from "moment";
 import { FcWebcam } from "react-icons/fc";
+
+
+
+
+
+
 import "../../LeaveManagement/calender.css";
 
 const TotalPage = ({ totalHours }) => {
@@ -51,6 +57,8 @@ function TaskMain(props) {
   const [irm, setIrm] = useState();
   const [approval, setApproval] = useState();
   const [taskData, setTaskData] = useState([]);
+  const [date, setDate] = useState();
+  const notifySuccess = (message) => toast.success(message);
   console.log(irm);
   console.log(props.data);
   const da = JSON.parse(sessionStorage.getItem("userdata"));
@@ -128,7 +136,7 @@ function TaskMain(props) {
 
   const loadRoles = async (e) => {
     const response = await axios.get(
-      `/task/getByStatus/${employeeId}/Progress`
+      `/task/getByStatus/${employeeId}/In Progress`
     );
     setData(response.data);
     console.log(response);
@@ -166,15 +174,19 @@ function TaskMain(props) {
     currentt.getMonth() + 1
   },${currentt.getDate()}`;
   console.log(currenttdate);
-  const BackkDate = `${currentt.getFullYear()},${currentt.getMonth() + 1},${
-    currentt.getDate() - 7
-  }`;
+  const BackkDate = `${currentt.getFullYear()},${currentt.getMonth()+1 },${
+    currentt.getDate()-7}`;
 
   console.log(BackkDate);
 
+  var bdate = new Date();
+  bdate.setDate(bdate.getDate() -7);
+  console.log(bdate);
+  const bd = moment.utc(bdate).format("YYYY,MM,DD");
+  console.log(bd);
+
   const frontDate = `${currentt.getFullYear()},${currentt.getMonth() + 1},${
-    currentt.getDate() + 7
-  }`;
+    currentt.getDate() }`;
   console.log(frontDate);
 
   const time = [];
@@ -192,7 +204,7 @@ function TaskMain(props) {
 
     {
       title: "Task Name",
-      field: "taskName",
+      field: "taskTitle",
       type: "text",
       editable: "never",
     },
@@ -212,7 +224,8 @@ function TaskMain(props) {
     {
       title: "Actual Hours",
       field: "actualHours",
-      type: "text",
+      type: "numeric",
+      validate: rowData => rowData.actualHours <= 16
     },
     {
       title: "Remaining  Hours",
@@ -271,11 +284,16 @@ function TaskMain(props) {
     const res = await axios.post("/timesheet/addTimehseetApproval", objectData);
     console.log(res.data);
     setMerged(res.data);
+    setTotalHours(0);
+    notifySuccess("TimeSheet Submitted Successfully");
 
     setTimeout(1000);
     const responce = await axios.post("/timesheet/createNewTimesheet", ott);
     console.log(responce.data);
     // setMerged(res.data);
+    const updatee = await axios.put("/task/updateActualHoursToZero");
+    console.log(updatee.data);
+    loadRoles();
   };
 
   //   const submit = (e) => {
@@ -319,7 +337,7 @@ function TaskMain(props) {
             <tbody>
               {taskData.map((item) => (
                 <tr>
-                  <td>{item.taskName}</td>
+                  <td>{item.taskTitle}</td>
                   <td>{item.estimatedHours}</td>
                   <td>{item.actualHours}</td>
                   <td>{item.remainingHours}</td>
@@ -343,9 +361,9 @@ function TaskMain(props) {
             <Col md="4" style={{ paddingLeft: "4%", paddingTop: "5%",fontSize:"20px" }}>
               <Form.Label>Select Date</Form.Label>
                <Calendar
-                // minDate={new Date(BackDate)}
-                minDate={new Date(BackkDate)}
-                maxDate={new Date()}
+              // minDate={new Date(BackDate)}
+               minDate={new Date(bd)}
+                maxDate={new Date(frontDate)}
                 onChange={(e) => {
                   console.log(e);
                   const da = moment.utc(e + 1).format("YYYY-MM-DD");
@@ -373,6 +391,7 @@ function TaskMain(props) {
                 //         date.getDate() === disabledDate.getDate()
                 //     )}
                 // tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6 || frontDate}
+                
               />
             </Col>
             <Col md="8">
@@ -557,6 +576,7 @@ function TaskMain(props) {
                   className="rounded-pill"
                   onClick={(event) => {
                     setViewShow(true);
+                    
                     // console.log(props);
                     // setViewOnboard(props.data);
                   }}

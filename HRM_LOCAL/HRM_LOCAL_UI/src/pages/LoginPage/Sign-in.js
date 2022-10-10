@@ -232,6 +232,7 @@ import { toast } from "react-toastify";
 // import background from "../../images/login screen.jpg";
 import image from "../../Images/arshaalogo.png";
 import "react-toastify/dist/ReactToastify.css";
+import BlockImage from 'react-block-image'
 
 const Sign = () => {
   var userStatus = null;
@@ -307,7 +308,7 @@ const Sign = () => {
         >
           <Row>
             <Col xs={5}>
-              <img className="arshaalogo"
+              <BlockImage className="arshaalogo"
                 src={image}
                 style={{ paddingTop: "100px", height: "450px", width: "300px" }}
               />
@@ -350,7 +351,7 @@ const Sign = () => {
                     isInvalid={fourtytwo}
                     value={employeeId}
                     onChange={(e) => {
-                      setEmployeeId(e.target.value);
+                      setEmployeeId(e.target.value.toUpperCase());
                       if (e.target.value > 12) {
                         setFourtytwo(
                           "Employee ID Length should not be more than 12 characters"
