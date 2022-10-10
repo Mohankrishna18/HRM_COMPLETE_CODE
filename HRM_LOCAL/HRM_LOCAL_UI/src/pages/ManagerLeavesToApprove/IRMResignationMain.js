@@ -3,8 +3,7 @@ import MaterialTable from "material-table";
 import Grid from "@mui/material/Grid";
 import axios from "../../Uri";
 import { Button, Stack, Modal } from "react-bootstrap";
-import ManagerEmployeeApprove from "./ManagerEmployeeApprove";
-import ManagerEmployeeReject from "./ManagerEmployeeReject";
+
 import IRMResignationApprove from "./IRMResignationApprove";
 import IRMResignationReject from "./IRMResignationReject";
 
@@ -52,7 +51,7 @@ function IRMResignationMain(props) {
   const [columns, setColumns] = useState([
     { title: "Employee ID", field: "employeeId" },
     { title: "Resigning Employee", field: "resigningEmployee" },
-    { title: "Department", field: "department" },
+    // { title: "Department", field: "department" },
     { title: "Reason", field: "reason" },
     {
       title: "Notice Date",

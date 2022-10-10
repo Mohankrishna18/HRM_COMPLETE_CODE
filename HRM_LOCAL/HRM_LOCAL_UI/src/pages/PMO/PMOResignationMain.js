@@ -3,7 +3,7 @@ import MaterialTable from "material-table";
 import Grid from "@mui/material/Grid";
 import axios from "../../Uri";
 import { Button, Stack, Modal } from "react-bootstrap";
-import SRMResignationApprove from "./SRMResignationApprove";
+
 import PMOResignationApprove from "./PMOResignationApprove";
 import PMOResignationReject from "./PMOResignationReject";
 
@@ -39,17 +39,18 @@ function PMOResignationMain(props) {
   const empID = da.data.employeeId;
 
   const loadData = async () => {
-    const res = await axios.get(`/leave/getUserByReportingManager/${empID}`);
+    const res = await axios.get(`/resignation/getAllResignation/${empID}`);
 
     console.log(res.data);
-    const dat = res.data.filter((m) => m.leaveStatus == "pending");
-    console.log(dat);
-    setData(dat);
+    setData(res.data);
+    // const dat = res.data.filter((m) => m.leaveStatus == "pending");
+    // console.log(dat);
+    // setData(dat);
   };
   const [columns, setColumns] = useState([
     { title: "Employee ID", field: "employeeId" },
     { title: "Resigning Employee", field: "resigningEmployee" },
-    { title: "Department", field: "department" },
+    // { title: "Department", field: "department" },
     { title: "Reason", field: "reason" },
     {
       title: "Notice Date",
