@@ -189,7 +189,7 @@ function AllEmployees(props) {
 
                 {/* <Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle> */}
 
-                {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                {data.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
 
               </h6>
             </Card.Body>
@@ -203,7 +203,7 @@ function AllEmployees(props) {
                   <h6>TAA {""} : </h6>
                 </Col>
                 <Col><h6 style={{ paddingTop: "6%" }}>
-                  {taa > 0 ? (<Card.Subtitle className="mb-2 text-muted">{taa}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                  {taa.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{taa.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
                 </h6>
                 </Col>
               </Row>
@@ -212,7 +212,7 @@ function AllEmployees(props) {
                   <h6>PMO{""} : </h6>
                 </Col>
                 <Col><h6 style={{ paddingTop: "6%" }}>
-                  {pmo > 0 ? (<Card.Subtitle className="mb-2 text-muted">{pmo}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                  {pmo.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{pmo.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
                 </h6>
                 </Col>
               </Row>
@@ -227,7 +227,7 @@ function AllEmployees(props) {
                   <h6>HR : </h6>
                 </Col>
                 <Col><h6 style={{ paddingTop: "6%" }}>
-                  {hr > 0 ? (<Card.Subtitle className="mb-2 text-muted">{hr}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                  {hr.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{hr.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
                 </h6>
                 </Col>
               </Row>
@@ -236,7 +236,7 @@ function AllEmployees(props) {
                   <h6>IT {""}: </h6>
                 </Col>
                 <Col><h6 style={{ paddingTop: "6%" }}>
-                  {it > 0 ? (<Card.Subtitle className="mb-2 text-muted">{it}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                  {it.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{it.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
                 </h6>
                 </Col>
               </Row>
@@ -251,7 +251,7 @@ function AllEmployees(props) {
                   <h6>ORACLE : </h6>
                 </Col>
                 <Col><h6 style={{ paddingTop: "6%" }}>
-                  {oracle > 0 ? (<Card.Subtitle className="mb-2 text-muted">{oracle}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                  {oracle.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{oracle.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
                 </h6>
                 </Col>
               </Row>
@@ -260,7 +260,7 @@ function AllEmployees(props) {
                   <h6>DIGITAL : </h6>
                 </Col>
                 <Col><h6 style={{ paddingTop: "6%" }}>
-                  {digital > 0 ? (<Card.Subtitle className="mb-2 text-muted">{digital}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                  {digital.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{digital.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
                 </h6>
                 </Col>
               </Row>

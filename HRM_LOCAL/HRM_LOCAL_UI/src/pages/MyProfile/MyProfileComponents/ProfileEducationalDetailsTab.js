@@ -162,7 +162,7 @@ const ProfileEducationalDetailsTab = () => {
 
                                 </tr>
                                 <tr>
-                                  <td></td>
+                                  <td>{getEmployeeDetails.intermediateQualification}</td>
                                   <td>{getEmployeeDetails.intermediateBoardOfUniversity}</td>
                                   <td>{getEmployeeDetails.intermediateCollegeName}</td>
                                   <td>{getEmployeeDetails.intermediateCourseName}</td>
@@ -176,7 +176,7 @@ const ProfileEducationalDetailsTab = () => {
 
                                 </tr>
                                 <tr>
-                                  <td></td>
+                                  <td>{getEmployeeDetails.sscQualification}</td>
                                   <td>{getEmployeeDetails.sscBoardOfUniversity}</td>
                                   <td>{getEmployeeDetails.sscSchoolName}</td>
                                   <td>{getEmployeeDetails.sscCourseName}</td>

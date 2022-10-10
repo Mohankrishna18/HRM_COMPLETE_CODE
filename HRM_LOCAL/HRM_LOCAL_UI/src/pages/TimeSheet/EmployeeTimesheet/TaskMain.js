@@ -21,11 +21,6 @@ import Calendar from "react-calendar";
 import moment from "moment";
 import { FcWebcam } from "react-icons/fc";
 
-
-
-
-
-
 import "../../LeaveManagement/calender.css";
 
 const TotalPage = ({ totalHours }) => {
@@ -58,6 +53,7 @@ function TaskMain(props) {
   const [approval, setApproval] = useState();
   const [taskData, setTaskData] = useState([]);
   const [date, setDate] = useState();
+  const [dis, setDis] = useState([]);
   const notifySuccess = (message) => toast.success(message);
   console.log(irm);
   console.log(props.data);
@@ -94,6 +90,7 @@ function TaskMain(props) {
   };
   let datess = [];
   let mark = [];
+  let disdates = [];
 
   useEffect(() => {
     getEmployeeDataApproval();
@@ -110,14 +107,20 @@ function TaskMain(props) {
       // const hstr = harr.replace(/\b0/g, "").split("T0")[0];
 
       // console.log(hstr);
-
-      const daaa = moment.utc(m.timeSheetDate).format("YYYY-MM-DD");
+      const hstr = moment.utc(m.timeSheetDate).format("YYYY-MM-DD");
+      const arr = hstr.replace(/[-,]/g, ",");
+      const str = arr.replace(/\b0/g, "");
+      console.log(str);
+      disdates.push(new Date(str));
+      console.log(disdates);
+      setDis(disdates);
+      const daaa = moment.utc(m.timeSheetDate).format("DD-MM-YYYY");
+      console.log(daaa);
 
       datess.push(m.timeSheetDate);
       mark.push(daaa);
-
-      setDates(mark);
       console.log(mark);
+      setDates(mark);
 
       console.log(daaa);
     });
@@ -174,19 +177,21 @@ function TaskMain(props) {
     currentt.getMonth() + 1
   },${currentt.getDate()}`;
   console.log(currenttdate);
-  const BackkDate = `${currentt.getFullYear()},${currentt.getMonth()+1 },${
-    currentt.getDate()-7}`;
+  const BackkDate = `${currentt.getFullYear()},${currentt.getMonth() + 1},${
+    currentt.getDate() - 7
+  }`;
 
   console.log(BackkDate);
 
   var bdate = new Date();
-  bdate.setDate(bdate.getDate() -7);
+  bdate.setDate(bdate.getDate() - 7);
   console.log(bdate);
   const bd = moment.utc(bdate).format("YYYY,MM,DD");
   console.log(bd);
 
-  const frontDate = `${currentt.getFullYear()},${currentt.getMonth() + 1},${
-    currentt.getDate() }`;
+  const frontDate = `${currentt.getFullYear()},${
+    currentt.getMonth() + 1
+  },${currentt.getDate()}`;
   console.log(frontDate);
 
   const time = [];
@@ -225,7 +230,7 @@ function TaskMain(props) {
       title: "Actual Hours",
       field: "actualHours",
       type: "numeric",
-      validate: rowData => rowData.actualHours <= 16
+      validate: (rowData) => rowData.actualHours <= 16,
     },
     {
       title: "Remaining  Hours",
@@ -358,11 +363,14 @@ function TaskMain(props) {
       >
         <Form.Group as={Col} md="12" style={{ paddingleft: 6 }}>
           <Row>
-            <Col md="4" style={{ paddingLeft: "4%", paddingTop: "5%",fontSize:"20px" }}>
+            <Col
+              md="4"
+              style={{ paddingLeft: "4%", paddingTop: "5%", fontSize: "20px" }}
+            >
               <Form.Label>Select Date</Form.Label>
-               <Calendar
-              // minDate={new Date(BackDate)}
-               minDate={new Date(bd)}
+              <Calendar
+                // minDate={new Date(BackDate)}
+                minDate={new Date(bd)}
                 maxDate={new Date(frontDate)}
                 onChange={(e) => {
                   console.log(e);
@@ -373,25 +381,20 @@ function TaskMain(props) {
                 }}
                 tileClassName={({ date, view }) => {
                   if (
-                    dates.find((x) => x === moment.utc(date).format("YYYY-MM-DD"))
+                    dates.find((x) => x === moment(date).format("DD-MM-YYYY"))
                   ) {
                     return "applied";
                   }
                 }}
-
-                // tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6 ||
-                //     btwnDates.some(disabledDate =>
-                //         date.getFullYear() === disabledDate.getFullYear() &&
-                //         date.getMonth() === disabledDate.getMonth() &&
-                //         date.getDate() === disabledDate.getDate()
-                //     ) ||
-                //     bdates.some(disabledDate =>
-                //         date.getFullYear() === disabledDate.getFullYear() &&
-                //         date.getMonth() === disabledDate.getMonth() &&
-                //         date.getDate() === disabledDate.getDate()
-                //     )}
+                tileDisabled={({ date }) =>
+                  dis.some(
+                    (disabledDate) =>
+                      date.getFullYear() === disabledDate.getFullYear() &&
+                      date.getMonth() === disabledDate.getMonth() &&
+                      date.getDate() === disabledDate.getDate()
+                  )
+                }
                 // tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6 || frontDate}
-                
               />
             </Col>
             <Col md="8">
@@ -498,18 +501,22 @@ function TaskMain(props) {
       </Row>
       <Row>
         <Col className="COLLLL" md="6"></Col>
-        
-        <Col  className="COLLLL" md="6" style={{ float: "left", paddingTop: "1%" }}>
+
+        <Col
+          className="COLLLL"
+          md="6"
+          style={{ float: "left", paddingTop: "1%" }}
+        >
           <Row>
-            <Col md="8" style={{ float: "right"  }}>
-              <TotalPage  totalHours={totalHours} ></TotalPage>
-           
+            <Col md="8" style={{ float: "right" }}>
+              <TotalPage totalHours={totalHours}></TotalPage>
             </Col>
-            <Col md="2" style={{ float: "right"}} >
-            <Button onClick={onSubmit} style={{ float: "right"}}>Submit</Button>
+            <Col md="2" style={{ float: "right" }}>
+              <Button onClick={onSubmit} style={{ float: "right" }}>
+                Submit
+              </Button>
             </Col>
           </Row>
-        
         </Col>
       </Row>
 
@@ -576,7 +583,7 @@ function TaskMain(props) {
                   className="rounded-pill"
                   onClick={(event) => {
                     setViewShow(true);
-                    
+
                     // console.log(props);
                     // setViewOnboard(props.data);
                   }}
