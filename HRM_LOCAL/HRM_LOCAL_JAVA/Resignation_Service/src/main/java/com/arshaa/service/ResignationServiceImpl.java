@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.arshaa.entity.Resignation;
@@ -102,6 +103,14 @@ public class ResignationServiceImpl  implements ResignationService
 		}
 		
 	}
+
+	@Override
+	public List<Resignation> getStatusByEmployeeId(String employeeId) {
+		List<Resignation> resignAllemp = resignationRepo.getStatusByEmployeeId(employeeId);
+		return resignAllemp;
+	}
+
 	
+
 
 }

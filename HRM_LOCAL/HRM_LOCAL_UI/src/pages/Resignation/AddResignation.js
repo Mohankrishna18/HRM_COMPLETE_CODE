@@ -20,23 +20,24 @@ import StepContent from "@mui/material/StepContent";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
-const steps = [
-  {
-    label: "IRM",
-  },
-  {
-    label: "SRM",
-  },
-  {
-    label: "PMO",
-  },
-  {
-    label: "HR",
-  },
-];
+
 
 function AddResignation(props) {
   console.log(props)
+  const steps = [
+    {
+      label: "IRM",
+    },
+    {
+      label: "SRM",
+    },
+    {
+      label: "PMO",
+    },
+    {
+      label: "HR",
+    },
+  ];
   const [users, setUsers] = useState({});
   const [suggestions, setSuggestions] = useState([]);
   const [suggestions1, setSuggestions1] = useState([]);
@@ -47,11 +48,13 @@ function AddResignation(props) {
   const [thirderrors, setThirdErrors] = useState("");
   const [irm, setIrm] = useState("");
   const [step, setStep] = useState(0);
+  const [value, setValue] = useState("");
 
 
   const da = JSON.parse(sessionStorage.getItem("userdata"));
     const empID = da.data.employeeId;
     console.log(empID);
+   
 
 
   const forms = useRef(null);
@@ -135,14 +138,45 @@ function AddResignation(props) {
     }
   };
 
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = React.useState();
   //   const status = true;
 
-  //   useEffect = () => {
-  //     if (status == true) {
-  //       handleNext();
-  //     }
-  //   };
+    useEffect(() => {
+  
+    load();
+  
+  },[])
+ 
+  const load = async () => {
+     axios.get(`/resignation/getResignationByEmployeeStatus/${empID}`)
+     .then((res)=>{
+      setValue(res.data);
+    console.log(res.data);
+    let statuss = res.data.length > 0 ? res.data[0].status :""
+    console.log(statuss)
+    if(statuss == "irm"){
+      setActiveStep(0)
+    }else if(statuss == "srm"){
+      setActiveStep(1)
+    }else if( statuss == "pmo"){
+      setActiveStep(2)
+    }else if(statuss == ""){
+    setActiveStep(0)
+
+  }
+  else {
+    setActiveStep(3)
+  }
+    // res.data.map((item) => {
+    //    statuss = item.status;
+    //   ;
+    // })
+    // console.log(res.data.status);
+  })}
+      // if (statuss == true) {
+      //   handleNext();
+      // }
+  
 
   const handleNextStep = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -257,10 +291,10 @@ function AddResignation(props) {
                 <Step key={step.label}>
                   <StepLabel>{step.label}</StepLabel>
                   <StepContent>
-                    <Typography>{step.description}</Typography>
-                    {/* <Box sx={{ mb: 2 }}>
+                    {/* <Typography>{step.description}</Typography> */}
+                    <Box sx={{ mb: 2 }}>
                       <div>
-                        <Button
+                        {/* <Button
                           variant="contained"
                           onClick={handleNextStep}
                           sx={{ mt: 1, mr: 1 }}
@@ -273,9 +307,9 @@ function AddResignation(props) {
                           sx={{ mt: 1, mr: 1 }}
                         >
                           Back
-                        </Button>
+                        </Button> */}
                       </div>
-                    </Box> */}
+                    </Box>
                   </StepContent>
                 </Step>
               ))}

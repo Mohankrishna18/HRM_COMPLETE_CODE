@@ -74,7 +74,7 @@ function SRMResignationApprove(props) {
                         type="text"
                         controlId="srmApprove"
                         placeholder="Approve Reason"
-                        value={irmApproveReason}
+                        value={srmApprove}
                         onChange={(e) => setSrmApprove(e.target.value)}
                         isInvalid={!!errors.srmApprove}
                     ></Form.Control>

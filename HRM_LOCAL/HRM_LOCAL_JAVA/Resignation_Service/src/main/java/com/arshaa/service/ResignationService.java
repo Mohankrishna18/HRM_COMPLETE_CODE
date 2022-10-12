@@ -12,4 +12,5 @@ public interface ResignationService
 	public List<Resignation> getByStatus(String status);
 	public Resignation modifyResignationStatus(Resignation resignation, String employeeId, String userType);
 	public Resignation rejectResignation(Resignation resignation, String employeeId, String userType);
+	public List<Resignation> getStatusByEmployeeId(String employeeId);
 }
