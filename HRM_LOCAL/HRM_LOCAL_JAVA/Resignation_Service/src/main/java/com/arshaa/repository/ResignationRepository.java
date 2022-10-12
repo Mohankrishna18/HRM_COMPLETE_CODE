@@ -14,7 +14,7 @@ public interface ResignationRepository extends JpaRepository<Resignation,Integer
 	List<Resignation> getByStatus(String status);
 
 	Resignation getByEmployeeId(String employeeId);
-	
+	List<Resignation> getStatusByEmployeeId(String employeeId);	
 	
 
 }
