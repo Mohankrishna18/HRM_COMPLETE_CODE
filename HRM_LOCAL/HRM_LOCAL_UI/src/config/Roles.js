@@ -12,4 +12,5 @@ export default {
     recruitmentmanager:'recruitmentmanager',
     irm:'irm',
     srm:'srm',
+    irf:'irf',
 };
