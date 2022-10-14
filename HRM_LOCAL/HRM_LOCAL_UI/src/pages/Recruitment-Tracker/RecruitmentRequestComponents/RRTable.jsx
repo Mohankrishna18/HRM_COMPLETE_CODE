@@ -65,7 +65,7 @@ function RRTable() {
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Update Job Requirements</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="scroll">
+        <Modal.Body>
           <UpdateRR
             updateOnboard={updateOnboard}
             func={pull_dataUpdate}
@@ -112,14 +112,14 @@ function RRTable() {
         </Modal.Body>
       </Modal>
 
-      <Card
+      {/* <Card
         style={{
-          paddingTop: "20px",
+          paddingTop: "2px",
           paddingRight: "10px",
           paddingLeft: "10px",
           paddingBottom: "10px",
         }}
-      >
+      > */}
 
         <Card.Body>
           <Row>
@@ -135,8 +135,8 @@ function RRTable() {
             </Col>
           </Row>
         </Card.Body>
-
-        <Grid style={{ borderBlockEndWidth: "2px" }}>
+        <Grid container>
+        <Grid xs={12}>
           <MaterialTable
             title="Requisition Request"
             columns={RRColumns}
@@ -228,7 +228,9 @@ function RRTable() {
             }}
           />
         </Grid>
-      </Card>
+        </Grid>
+       
+      {/* </Card> */}
  
     </div>
   );

@@ -79,7 +79,12 @@ spring:
         - id: ResignationService
           uri: lb://ResignationService
           predicates:
-            - Path=/resignation/**              
+            - Path=/resignation/**  
+             
+        - id: RecruitmentTracker
+          uri: lb://RecruitmentTracker
+          predicates:
+            - Path=/recruitmentTracker/**           
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
