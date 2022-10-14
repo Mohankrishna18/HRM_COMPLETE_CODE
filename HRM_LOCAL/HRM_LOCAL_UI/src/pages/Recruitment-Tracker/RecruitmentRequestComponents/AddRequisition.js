@@ -250,7 +250,7 @@ export default function AddRequisition(props) {
           <Modal.Title>Job Requirements</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body className="scroll">
+        <Modal.Body >
         <StepperForm/>
         </Modal.Body>
       </Modal>
