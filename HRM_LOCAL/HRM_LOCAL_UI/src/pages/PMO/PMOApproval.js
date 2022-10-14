@@ -80,7 +80,7 @@ function PMOApproval(props) {
         { title: 'Date of Joining', field: 'dateOfJoining', type: 'date', dateSetting: { locale: "en-GB" } },
         { title: 'Job Title', field: 'jobTitle' },
         { title: 'Experience', field: 'yearsOfExperience' },
-        { title: 'Status', field: 'status' }
+        // { title: 'Status', field: 'status' }
 
     ]);
     console.log(data);

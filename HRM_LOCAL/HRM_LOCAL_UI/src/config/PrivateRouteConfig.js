@@ -90,6 +90,7 @@ import HrDashboardMain from "../pages/HrDashboard/HrDashboardMain";
 import AddResignation from "../pages/Resignation/AddResignation";
 import ResignationMain from "../pages/Resignation/ResignationMain";
 import UserAccessMain from "../pages/UserAccess/UserAccessMain";
+import RRMain from "../pages/Recruitment-Tracker/RRMain";
 
 
 export default [
@@ -577,6 +578,14 @@ export default [
       Roles.buhead,
     ],
     
+  },
+  {
+    component: RRMain,
+    type: "null",
+    path: "/rrf",
+    icon: <FcApproval />,
+    title: "Requistion Request",
+    permission: [Roles.pmohead, Roles.irf],
   },
 ];
 

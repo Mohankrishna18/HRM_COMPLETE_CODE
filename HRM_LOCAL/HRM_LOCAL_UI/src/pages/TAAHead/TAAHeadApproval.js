@@ -81,7 +81,7 @@ function TAAHeadApproval() {
     },
     { title: "Job Title", field: "jobTitle" },
     { title: "Experience", field: "yearsOfExperience" },
-    { title: "Status", field: "status" },
+    // { title: "Status", field: "status" },
   ]);
   console.log(data);
 

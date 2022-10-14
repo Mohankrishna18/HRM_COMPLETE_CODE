@@ -35,7 +35,7 @@ function SRMResignationMain(props) {
   }, [update, leaveID, reject]);
 
   const da = JSON.parse(sessionStorage.getItem("userdata"));
-  const empID = da.data.employeeId;
+  const empID = da.data.userType ;
 
   const loadData = async () => {
     const res = await axios.get(`/resignation/getAllResignation/${empID}`);

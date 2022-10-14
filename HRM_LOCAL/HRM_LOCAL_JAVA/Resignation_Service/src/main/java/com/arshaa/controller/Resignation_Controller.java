@@ -45,5 +45,9 @@ public class Resignation_Controller {
 	{
 		return new ResponseEntity(resignationService.rejectResignation(resignation,employeeId,userType),HttpStatus.OK);
 	}
+	@GetMapping("/getResignationByEmployeeStatus/{employeeId}")
+	public ResponseEntity getStatusByEmployeeId(@PathVariable String employeeId) {
+		return new ResponseEntity(resignationService.getStatusByEmployeeId(employeeId),HttpStatus.OK);
+	}
 
 }
