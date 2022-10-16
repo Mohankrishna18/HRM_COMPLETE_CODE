@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import {FcPositiveDynamic,  FcConferenceCall} from "react-icons/fc";
 import HRResignationMain from "./HRResignationMain";
+import { Card } from "react-bootstrap";
 
 function HRConfirmationMain() {
   const [value, setValue] = React.useState("1");
@@ -16,9 +17,12 @@ function HRConfirmationMain() {
   };
 
   return (
-    <div>
+    <div >
       {/* HRConfirmationMain */}
-
+      <Card.Title> Approvals</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
+               HR Approval
+              </Card.Subtitle>
       <Box sx={{ width: "100%", typography: "body1", paddingTop: "15px" }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -31,7 +35,7 @@ function HRConfirmationMain() {
               }}
               aria-label="lab API tabs example"
               style={{
-                background: "linear-gradient(#FFD57E,#ffdc89,white)",
+               
                 borderRadius: "5px",
               }}
             >
@@ -39,13 +43,13 @@ function HRConfirmationMain() {
                 label="Onboarding Employees"
                 value="1"
                 style={{ paddingRight: "2%", paddingLeft: "2%" }}
-                icon={<FcPositiveDynamic style={{ fontSize: "25px" }} />}
+                
               ></Tab>
               <Tab
                 label="Resignation Approvals"
                 value="2"
                 style={{ paddingRight: "2%", paddingLeft: "2%" }}
-                icon={<FcConferenceCall style={{ fontSize: "25px" }} />}
+               
               />
             </TabList>
           </Box>

@@ -32,14 +32,14 @@ const ManagerLeavesToApproveMain = () => {
                 >
                   <Tab
                     eventKey="Leave Approvals"
-                    title="Leave Approvals"
+                    title="Leave/WFH Approvals"
                     style={{ backgroundColor: "white" }}
                   >
                     <Card.Header style={{ backgroundColor: "white" }}>
                       <Card.Body>
-                        <Card.Title>Leaves Waiting For Approval</Card.Title>
+                        <Card.Title>Leaves/WFH Waiting For Approval</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">
-                          EmployeeLeaves
+                          EmployeeLeaves/WFH
                         </Card.Subtitle>{" "}
                         <Row>
                           <Col xs={12}>

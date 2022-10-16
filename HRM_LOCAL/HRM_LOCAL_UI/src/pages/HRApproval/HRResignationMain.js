@@ -99,7 +99,12 @@ function HRResignationMain(props) {
           columns={columns}
           data={data}
           options={{
-            paging: false,
+            pageSize: 10,
+
+            pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
+
+            maxBodyHeight: 350,
+            paging: true,
             addRowPosition: "first",
             actionsColumnIndex: -1,
             headerStyle: {

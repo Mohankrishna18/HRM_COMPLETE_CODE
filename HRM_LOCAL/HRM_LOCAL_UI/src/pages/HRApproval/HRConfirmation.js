@@ -24,72 +24,71 @@ import PersonalDetailsTab from "../../pages/Approvals/ApprovalComponents/Persona
 import EmploymentDetailsTab from "../Approvals/ApprovalComponents/EmploymentDetailsTab";
 
 function HRConfirmation() {
-    const [data, setData] = useState([]);
-    const [show, setShow] = useState(false);
-    const [rejectshow, setRejectShow] = useState(false);
-    const [onboardID, setOnboardID] = useState({});
-    const [update, setUpdate] = useState(false);
-    const [reject, setReject] = useState(false);
-  
-    const [viewShow, setViewShow] = useState(false);
-  
-    const [viewOnboard, setViewOnboard] = useState({});
-    const viewHandleClose = () => setViewShow(false);
-  
-    const handleClose = () => setShow(false);
-    const approveHandleClose = () => setUpdate(false);
-  
-    const handleCloseReject = () => setRejectShow(false);
-    const rejectHandleClose = () => setReject(false);
-    // const handleShow = () => {
-  
-    // }
-    const pull_data = () => {
-      setUpdate(!update);
-    };
-    const pull_dataReject = () => {
-      setReject(!reject);
-    };
-    const pull_dataApprove = () => {
-      setOnboardID(!onboardID);
-    };
-  
-    useEffect(() => {
-      loadData();
-    }, [update, onboardID, reject]);
-  
-    const da = JSON.parse(sessionStorage.getItem("userdata"));
-    const empID = da.data.employeeId;
-    const onboardingStatus = "CEOApproved";
-  
-    const loadData = async () => {
-      const res = await axios.get(
-        `/emp/getDetailsforPMOApprovalByOnboardingStatus/${onboardingStatus}`
-      );
-      setData(res.data.data);
-      console.log(res.data);
-    };
-    const [columns, setColumns] = useState([
-      { title: "OnboardingId", field: "onboardingId" },
-      { title: "FullName", field: "firstName" },
-      { title: "Email", field: "email" },
-      { title: "PhoneNumber", field: "phoneNumber" },
-      {
-        title: "Date of Joining",
-        field: "dateOfJoining",
-        type: "date",
-        dateSetting: { locale: "en-GB" },
-      },
-      { title: "Job Title", field: "jobTitle" },
-      { title: "Experience", field: "yearsOfExperience" },
-      // { title: "Status", field: "status" },
-    ]);
-    console.log(data);
-  
-  
+  const [data, setData] = useState([]);
+  const [show, setShow] = useState(false);
+  const [rejectshow, setRejectShow] = useState(false);
+  const [onboardID, setOnboardID] = useState({});
+  const [update, setUpdate] = useState(false);
+  const [reject, setReject] = useState(false);
+
+  const [viewShow, setViewShow] = useState(false);
+
+  const [viewOnboard, setViewOnboard] = useState({});
+  const viewHandleClose = () => setViewShow(false);
+
+  const handleClose = () => setShow(false);
+  const approveHandleClose = () => setUpdate(false);
+
+  const handleCloseReject = () => setRejectShow(false);
+  const rejectHandleClose = () => setReject(false);
+  // const handleShow = () => {
+
+  // }
+  const pull_data = () => {
+    setUpdate(!update);
+  };
+  const pull_dataReject = () => {
+    setReject(!reject);
+  };
+  const pull_dataApprove = () => {
+    setOnboardID(!onboardID);
+  };
+
+  useEffect(() => {
+    loadData();
+  }, [update, onboardID, reject]);
+
+  const da = JSON.parse(sessionStorage.getItem("userdata"));
+  const empID = da.data.employeeId;
+  const onboardingStatus = "CEOApproved";
+
+  const loadData = async () => {
+    const res = await axios.get(
+      `/emp/getDetailsforPMOApprovalByOnboardingStatus/${onboardingStatus}`
+    );
+    setData(res.data.data);
+    console.log(res.data);
+  };
+  const [columns, setColumns] = useState([
+    { title: "OnboardingId", field: "onboardingId" },
+    { title: "FullName", field: "firstName" },
+    { title: "Email", field: "email" },
+    { title: "PhoneNumber", field: "phoneNumber" },
+    {
+      title: "Date of Joining",
+      field: "dateOfJoining",
+      type: "date",
+      dateSetting: { locale: "en-GB" },
+    },
+    { title: "Job Title", field: "jobTitle" },
+    { title: "Experience", field: "yearsOfExperience" },
+    // { title: "Status", field: "status" },
+  ]);
+  console.log(data);
+
   return (
     <div>
-      <Modal show={show} onHide={handleClose} >
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Documents to be Submitted</Modal.Title>
         </Modal.Header>
@@ -103,55 +102,55 @@ function HRConfirmation() {
       </Modal>
 
       <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-          <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-            <Modal.Title>Details</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Tabs
-              defaultActiveKey="Personal Details"
-              transition={false}
-              id="noanim-tab-example"
-              className="mb-3"
-              style={{
-                justifyContent: "center",
-                color: "white",
-                backgroundColor: "white",
-                fontSize: "px",
-                padding: 0,
-              }}
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+          <Modal.Title>Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Tabs
+            defaultActiveKey="Personal Details"
+            transition={false}
+            id="noanim-tab-example"
+            className="mb-3"
+            style={{
+              justifyContent: "center",
+              color: "white",
+              backgroundColor: "white",
+              fontSize: "px",
+              padding: 0,
+            }}
+          >
+            <Tab
+              eventKey="Personal Details"
+              title="Personal Details"
+              style={{ backgroundColor: "white" }}
             >
-              <Tab
-                eventKey="Personal Details"
-                title="Personal Details"
-                style={{ backgroundColor: "white" }}
-              >
-                <PersonalDetailsTab
-                  viewOnboard={viewOnboard}
-                  viewHandleClose={viewHandleClose}
-                />
-              </Tab>
-              <Tab
-                eventKey="Address"
-                title="Address"
-                style={{ backgroundColor: "white" }}
-              >
-                <AddressTab
-                  viewOnboard={viewOnboard}
-                  viewHandleClose={viewHandleClose}
-                />
-              </Tab>
-  
-              <Tab
-                eventKey="Additional Details"
-                title="Additional Details"
-                style={{ backgroundColor: "white" }}
-              >
-                <AditionalDetailsTab
-                  viewOnboard={viewOnboard}
-                  viewHandleClose={viewHandleClose}
-                />
-              </Tab>
-              {/* <Tab
+              <PersonalDetailsTab
+                viewOnboard={viewOnboard}
+                viewHandleClose={viewHandleClose}
+              />
+            </Tab>
+            <Tab
+              eventKey="Address"
+              title="Address"
+              style={{ backgroundColor: "white" }}
+            >
+              <AddressTab
+                viewOnboard={viewOnboard}
+                viewHandleClose={viewHandleClose}
+              />
+            </Tab>
+
+            <Tab
+              eventKey="Additional Details"
+              title="Additional Details"
+              style={{ backgroundColor: "white" }}
+            >
+              <AditionalDetailsTab
+                viewOnboard={viewOnboard}
+                viewHandleClose={viewHandleClose}
+              />
+            </Tab>
+            {/* <Tab
                 eventKey="Employment Details"
                 title="Employment Details"
                 style={{ backgroundColor: "white" }}
@@ -161,36 +160,30 @@ function HRConfirmation() {
                 viewHandleClose={viewHandleClose}/>
               </Tab> */}
 
-              <Tab
-                eventKey="Education"
-                title="Education"
-                style={{ backgroundColor: "white" }}
-              >
-  
-                <EducationalDetailsTab
-                  viewOnboard={viewOnboard}
-                  viewHandleClose={viewHandleClose}
-                />
-              </Tab>
-              <Tab
-                eventKey="Experience"
-                title="Experience "
-                style={{ backgroundColor: "white" }}
-              >
-                <ExperienceTab
-                  viewOnboard={viewOnboard}
-                  viewHandleClose={viewHandleClose}
-                />
-              </Tab>
-  
-            </Tabs>
-          </Modal.Body>
-          <Modal.Footer>
-          </Modal.Footer>
-        </Modal>
-
-
-     
+            <Tab
+              eventKey="Education"
+              title="Education"
+              style={{ backgroundColor: "white" }}
+            >
+              <EducationalDetailsTab
+                viewOnboard={viewOnboard}
+                viewHandleClose={viewHandleClose}
+              />
+            </Tab>
+            <Tab
+              eventKey="Experience"
+              title="Experience "
+              style={{ backgroundColor: "white" }}
+            >
+              <ExperienceTab
+                viewOnboard={viewOnboard}
+                viewHandleClose={viewHandleClose}
+              />
+            </Tab>
+          </Tabs>
+        </Modal.Body>
+        <Modal.Footer></Modal.Footer>
+      </Modal>
 
       <Grid>
         <MaterialTable
@@ -198,6 +191,11 @@ function HRConfirmation() {
           columns={columns}
           data={data}
           options={{
+            pageSize: 10,
+
+            pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
+
+            maxBodyHeight: 350,
             paging: true,
             addRowPosition: "first",
             actionsColumnIndex: -1,
@@ -233,7 +231,6 @@ function HRConfirmation() {
                     Confirm
                   </Button>
 
-            
                   <Button
                     variant="white "
                     className="rounded-pill"
@@ -255,7 +252,7 @@ function HRConfirmation() {
         />
       </Grid>
     </div>
-  )
+  );
 }
 
 export default HRConfirmation;

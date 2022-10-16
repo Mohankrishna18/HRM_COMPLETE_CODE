@@ -133,6 +133,7 @@ public class UserService {
 			user.setLeaveStatus("pending");
 //			user.setManagerApproval("pending");
 			user.setSubmittedDate(tSqlDate);
+			user.setLeaveOrwfh(user.getLeaveOrwfh());
 
 			User savedUser = repository.save(user);
 
@@ -143,6 +144,7 @@ public class UserService {
 				d.setEmployeeId(savedUser.getEmployeeId());
 				d.setEmployeeleaveId(savedUser.getEmployeeleaveId());
 				d.setAppliedDate(e.getBetWeenDates());
+				d.setLeaveOrwfh(savedUser.getLeaveOrwfh());
 				BetweenDates bd = bro.save(d);
 				bdatesList.add(bd);
 
@@ -492,6 +494,17 @@ public class UserService {
 			return null;
 		}
 	}
+	public int findEmployeeWFHCountByLeaveOrwfhAndEmployeeId(String leaveOrwfh, String employeeId) {
+		try {
+//			return repository.findEmployeePendingLeavesCountByLeaveStatus(leaveStatus).size();
+return repository.findByleaveOrwfhAndEmployeeId(leaveOrwfh,employeeId).size();
+
+} catch (Exception e) {
+e.getMessage();
+return 0;
+}
+
+}
 
 }
 

@@ -19,12 +19,7 @@ public class BetweenDates {
 	private String  employeeId ;
 	private String  appliedDate ;
 	private int employeeleaveId;
-	public int getEmployeeleaveId() {
-		return employeeleaveId;
-	}
-	public void setEmployeeleaveId(int employeeleaveId) {
-		this.employeeleaveId = employeeleaveId;
-	}
+	private String leaveOrwfh;
 	public int getIds() {
 		return ids;
 	}
@@ -40,22 +35,32 @@ public class BetweenDates {
 	public String getAppliedDate() {
 		return appliedDate;
 	}
-	public void setAppliedDate(String string) {
-		this.appliedDate = string;
+	public void setAppliedDate(String appliedDate) {
+		this.appliedDate = appliedDate;
 	}
-	
-	public BetweenDates(int ids, String employeeId, String appliedDate, int employeeleaveId) {
+	public int getEmployeeleaveId() {
+		return employeeleaveId;
+	}
+	public void setEmployeeleaveId(int employeeleaveId) {
+		this.employeeleaveId = employeeleaveId;
+	}
+	public String getLeaveOrwfh() {
+		return leaveOrwfh;
+	}
+	public void setLeaveOrwfh(String leaveOrwfh) {
+		this.leaveOrwfh = leaveOrwfh;
+	}
+	public BetweenDates(int ids, String employeeId, String appliedDate, int employeeleaveId, String leaveOrwfh) {
 		super();
 		this.ids = ids;
 		this.employeeId = employeeId;
 		this.appliedDate = appliedDate;
 		this.employeeleaveId = employeeleaveId;
+		this.leaveOrwfh = leaveOrwfh;
 	}
 	public BetweenDates() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 }

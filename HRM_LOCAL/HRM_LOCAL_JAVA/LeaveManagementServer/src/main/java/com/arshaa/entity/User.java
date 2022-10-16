@@ -52,27 +52,25 @@ public class User {
 	private String irmApproveReason;
 	@Column
 	private String srmApproveReason;
-	
-	
-	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss", timezone="IST")
+
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "IST")
 	@Temporal(TemporalType.DATE)
 	private java.util.Date submittedDate = new java.util.Date(System.currentTimeMillis());
-	
+
 	@Column
 	private String managerApproval;
 	@Column
 	private String hrApproval;
-	
-	
+	@Column
+	private String leaveOrwfh;
 
 	
-
 
 	public User(int employeeleaveId, String employeeId, String leaveType, Date fromDate, Date toDate, int numberOfDays,
 			String leaveReason, String updatedBy, Date updatedOn, String leaveStatus, String reportingManager,
 			String rejectReason, String managersRejectReason, String irmId, String srmId, String buhId,
 			String irmApproveReason, String srmApproveReason, Date submittedDate, String managerApproval,
-			String hrApproval) {
+			String hrApproval, String leaveOrwfh) {
 		super();
 		this.employeeleaveId = employeeleaveId;
 		this.employeeId = employeeId;
@@ -95,6 +93,7 @@ public class User {
 		this.submittedDate = submittedDate;
 		this.managerApproval = managerApproval;
 		this.hrApproval = hrApproval;
+		this.leaveOrwfh = leaveOrwfh;
 	}
 
 
@@ -291,6 +290,30 @@ public class User {
 
 
 
+	public String getIrmApproveReason() {
+		return irmApproveReason;
+	}
+
+
+
+	public void setIrmApproveReason(String irmApproveReason) {
+		this.irmApproveReason = irmApproveReason;
+	}
+
+
+
+	public String getSrmApproveReason() {
+		return srmApproveReason;
+	}
+
+
+
+	public void setSrmApproveReason(String srmApproveReason) {
+		this.srmApproveReason = srmApproveReason;
+	}
+
+
+
 	public java.util.Date getSubmittedDate() {
 		return submittedDate;
 	}
@@ -327,26 +350,14 @@ public class User {
 
 
 
-	public String getIrmApproveReason() {
-		return irmApproveReason;
+	public String getLeaveOrwfh() {
+		return leaveOrwfh;
 	}
 
 
 
-	public void setIrmApproveReason(String irmApproveReason) {
-		this.irmApproveReason = irmApproveReason;
-	}
-
-
-
-	public String getSrmApproveReason() {
-		return srmApproveReason;
-	}
-
-
-
-	public void setSrmApproveReason(String srmApproveReason) {
-		this.srmApproveReason = srmApproveReason;
+	public void setLeaveOrwfh(String leaveOrwfh) {
+		this.leaveOrwfh = leaveOrwfh;
 	}
 
 

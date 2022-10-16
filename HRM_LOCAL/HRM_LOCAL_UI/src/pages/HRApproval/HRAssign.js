@@ -1,4 +1,4 @@
-import { React, useState ,useEffect} from "react";
+import { React, useState ,useEffect,useRef} from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -13,6 +13,8 @@ function HRAssign(props) {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [state, setState] = useState(false);
+  const [buherror, setBuherrors] = useState("");
+  const [deserror, setDeserror] = useState("");
   //     const [isChecked, setIsChecked] = useState(false);
 
   //   const handleOnChange = () => {
@@ -20,6 +22,7 @@ function HRAssign(props) {
   //   };
   // const [ischecked, setIsChecked] = useState(true);
   // let array=[]
+  const forms = useRef(null);
   
   const [checked, setChecked] = useState({
     offerLetter: false,
@@ -64,8 +67,34 @@ function HRAssign(props) {
         [field]: null,
       });
   };
+  const validateForm = () =>{
+    const{
+      department,
+      designation
+    } = form;
+
+    const newErrors ={};
+      if (!department || department === "" )
+      newErrors.department = "Please Select Department";
+    if (!designation || designation === "" )
+      newErrors.designation = "Please Select Designation";
+
+      return newErrors;
+    }
+
   const ApproveHandler = (e) => {
     // e.prevetDefault();
+    const formErrors = validateForm();
+
+    console.log(Object.keys(formErrors).length);
+
+    if (Object.keys(formErrors).length > 0) {
+
+      setErrors(formErrors);
+
+      console.log("Form validation error");
+
+    } else {
     const notify = () => toast("Approved");
     // handleClose();
     // const form1 = Object.assign(form, obj);
@@ -91,7 +120,7 @@ function HRAssign(props) {
     props.handleClose();
 
     notify();
-
+    }
 
   };
 
@@ -280,7 +309,7 @@ function HRAssign(props) {
                     }}
                     isInvalid={!!errors.department}
                 >
-                    <option>Select </option>
+                    <option value="">Select </option>
                     {departments.map((departmentss) => (
                         <option value={departmentss.departmentName}>
                             {departmentss.departmentName}
@@ -303,7 +332,7 @@ function HRAssign(props) {
                     onChange={(e) => setField("designation", e.target.value)}
                     isInvalid={!!errors.designation}
                 >
-                    <option>Select</option>
+                    <option value="">Select</option>
                     {designations.map((designation) => (
                         <option>{designation.designationName}</option>
                     ))}
@@ -324,7 +353,72 @@ function HRAssign(props) {
           </Form>
         </div>
       ) : (
-        <></>
+        <Form>
+          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Business Unit *</Form.Label>
+                <Form.Select disabled
+                    required
+                    type="text"
+                    placeholder="Businees Unit"
+                    controlId="department"
+                    value={form.department}
+                    onChange={(e) => {
+                        console.log(e.target.value);
+                        //empty commit
+                        axios
+                            .get(
+                                `/designation/getDesignationByDepartment/${e.target.value}`
+                            )
+                            .then((response) => {
+                                console.log(response.data);
+                                setDesignations(response.data);
+                            });
+                        setField("department", e.target.value);
+                    }}
+                    isInvalid={!!errors.department}
+                >
+                    <option>Select </option>
+                    {departments.map((departmentss) => (
+                        <option value={departmentss.departmentName}>
+                            {departmentss.departmentName}
+                        </option>
+                    ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                    {errors.department}
+                </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Designation *</Form.Label>
+                <Form.Select disabled
+                    required
+                    type="text"
+                    placeholder="Designation"
+                    controlId="designation"
+                    value={form.designation}
+                    onChange={(e) => setField("designation", e.target.value)}
+                    isInvalid={!!errors.designation}
+                >
+                    <option>Select</option>
+                    {designations.map((designation) => (
+                        <option>{designation.designationName}</option>
+                    ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                    {errors.designation}
+                </Form.Control.Feedback>
+
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+            <Button disabled
+              variant="primary"
+              style={{ marginTop: "5%", float: "right" }}
+              onClick={ApproveHandler}
+            >
+              Submit
+            </Button>
+          </Form>
       )}
     </div>
   );

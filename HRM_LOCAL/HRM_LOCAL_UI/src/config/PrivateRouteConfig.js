@@ -361,7 +361,7 @@ export default [
     type: "Leaves",
     path: "/IntegrateLeaveToApply",
     icon: <FcLeave />,
-    title: "Leaves To Apply",
+    title: "Leaves/WFH To Apply",
     permission: [
       Roles.employee,
       Roles.ceo,
