@@ -35,7 +35,7 @@ function PMOMain() {
                   <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{ justifyContent: "center" }}>
                     <TabList onChange={handleChange} aria-label="lab API tabs example" style={{ justifyContent: "center"}}>
                       <Tab label="Onboarding Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="1" />
-                      <Tab label="Leave Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="2" />
+                      <Tab label="Leave/WFH Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="2" />
                       <Tab label="Timesheet Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="3" />
                       <Tab label="Assign Employment Details" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="4" />
                       <Tab label="Resignation Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="5" />

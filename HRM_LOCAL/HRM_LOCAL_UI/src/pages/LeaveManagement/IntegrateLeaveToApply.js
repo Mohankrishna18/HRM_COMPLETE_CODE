@@ -29,6 +29,8 @@ function IntegrateLeaveToApply() {
     const [bdates, setBDates] = useState([]);
     const [color, setColor] = useState([]);
     const [state, setState] = useState(false);
+    const [wfh, setWfh]=useState();
+    const [leaveOrwfh,setLeaveOrwfh]=useState('');
 
         const current = new Date();
       const currentdate = `${current.getFullYear()},${current.getMonth()+1},${current.getDate()}`;
@@ -179,6 +181,13 @@ function IntegrateLeaveToApply() {
         })
     }, []);
 
+    const handleChange = (event) => {
+        setLeaveOrwfh("L")
+    }
+    const handleChangee = (event) => {
+        setLeaveOrwfh("W")
+    }
+
 
     const [show, setShow] = useState(false);
     //const [fromDate, setFromDate] = useState(null);
@@ -315,6 +324,7 @@ function IntegrateLeaveToApply() {
         setData(res.data);
         console.log(res.data);
         LA();
+        WFH();
     };
 
     useEffect(() => {
@@ -331,14 +341,26 @@ function IntegrateLeaveToApply() {
 
     useEffect(() => {
         LA();
+        WFH();
 
     }, []);
     const LA = () => {
-        axios.get(`leave/getcountofApplyingLeaves/${employeeid}`).then((res) => {
+        axios.get(`leave/getEmployeeWFHCountByLeaveOrwfh/L/${empID}`).then((res) => {
 
             console.log(res.data);
 
             setTotalAppliedleaves(res.data);
+
+        }
+        )
+    }
+
+    const WFH = () => {
+        axios.get(`leave/getEmployeeWFHCountByLeaveOrwfh/W/${empID}`).then((res) => {
+
+            console.log(res.data);
+
+            setWfh(res.data);
 
         }
         )
@@ -358,10 +380,10 @@ function IntegrateLeaveToApply() {
         { title: 'From', field: 'fromDate', type: 'date', dateSetting: { locale: "en-GB" } },
         { title: 'To', field: 'toDate', type: 'date', dateSetting: { locale: "en-GB" } },
         { title: 'Number of Days', field: 'numberOfDays' },
-        { title: 'Leave Reason', field: 'leaveReason' },
+        // { title: 'Leave Reason', field: 'leaveReason' },
         { title: 'Leave Status', field: 'leaveStatus' },
-        { title: 'SRM Reject Reason', field: 'rejectReason' },
-        { title: 'IRM Reject Reason', field: 'managersRejectReason' },
+        // { title: 'SRM Reject Reason', field: 'rejectReason' },
+        // { title: 'IRM Reject Reason', field: 'managersRejectReason' },
         // { title: 'Leave Type', field: 'leaveType', type:'date'}
 
 
@@ -378,6 +400,7 @@ function IntegrateLeaveToApply() {
         remainingLeaves,
         numberOfDays,
         setDays,
+        leaveOrwfh
     };
 
     const [betweenDates, setBetweenDates] = useState([]);
@@ -515,9 +538,9 @@ function IntegrateLeaveToApply() {
                 <Row>
                     <Col xs={6} md={8}>
                         <Card.Body>
-                            <Card.Title>Leaves</Card.Title>
+                            <Card.Title>Leaves/WFH</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">
-                                Dashboard/Leaves
+                                Dashboard/Leaves/WFH
                             </Card.Subtitle>
                         </Card.Body>
                     </Col>
@@ -547,22 +570,22 @@ function IntegrateLeaveToApply() {
                             >
                                 {" "}
                                 <BsPlusLg />
-                                Apply Leave
+                                Apply Leave/WFH
                             </Button>
                         </div>
                     </Col>
                 </Row>
                 <Row md={4}>
-                    <Col>
+                    <Col style={{width:"280px"}} >
                         <Card>
                             <Card border="warning">
                                 <Card.Body>
                                     <h5>
                                         {" "}
-                                        <Card.Title>Total EarnedLeaves</Card.Title>
-                                        {earnedData > 0 ? (<Card.Subtitle className="mb-2 text-muted">
+                                        <Card.Title style={{paddingLeft:"15%"}}>Annual Leaves</Card.Title>
+                                        {earnedData > 0 ? (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>
                                             {earnedData}
-                                        </Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                                        </Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>0</Card.Subtitle>)}
 
                                         {/* <Card.Text>12</Card.Text> */}
                                     </h5>
@@ -570,15 +593,15 @@ function IntegrateLeaveToApply() {
                             </Card>
                         </Card>
                     </Col>
-                    <Col>
+                    <Col style={{width:"280px"}}>
                         <Card>
 
                             <Card border="warning">
                                 <Card.Body>
                                     <h5>
                                         {" "}
-                                        <Card.Title>Leave Balance</Card.Title>
-                                        {LeaveBalanace > 0 ? (<Card.Subtitle className="mb-2 text-muted">{LeaveBalanace}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                                        <Card.Title style={{paddingLeft:"20%"}}>Leave Balance</Card.Title>
+                                        {LeaveBalanace > 0 ? (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>{LeaveBalanace}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>0</Card.Subtitle>)}
                                         {/* */}
                                         {/* <Card.Text>12/60</Card.Text> */}
                                     </h5>
@@ -591,21 +614,21 @@ function IntegrateLeaveToApply() {
 
 
 
-
+                    <Col style={{width:"280px"}}>
                     <Card border="warning">
                         <Card.Body>
                             <h5>
                                 {" "}
-                                <Card.Title>Loss of Pay</Card.Title>
-                                {LossOfPay > 0 ? (<Card.Subtitle className="mb-2 text-muted">{LossOfPay}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                                <Card.Title style={{paddingLeft:"25%"}}>Loss of Pay</Card.Title>
+                                {LossOfPay > 0 ? (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"42%"}}>{LossOfPay}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"42%"}}>0</Card.Subtitle>)}
                                 {/* */}
                                 {/* <Card.Text>12/60</Card.Text> */}
                             </h5>
                         </Card.Body>
                     </Card>
+</Col>
 
-
-                    <Col>
+<Col style={{width:"280px"}}>
                         <Card>
                             <Card border="warning">
 
@@ -615,9 +638,9 @@ function IntegrateLeaveToApply() {
 
                                         {" "}
 
-                                        <Card.Title>Leaves Applied</Card.Title>
+                                        <Card.Title style={{paddingLeft:"15%"}}>Leaves Applied</Card.Title>
 
-                                        <Card.Subtitle className="mb-2 text-muted">
+                                        <Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>
 
                                             0
 
@@ -633,9 +656,9 @@ function IntegrateLeaveToApply() {
 
                                         {" "}
 
-                                        <Card.Title>Leaves Applied</Card.Title>
+                                        <Card.Title style={{paddingLeft:"15%"}}>Leaves Applied</Card.Title>
 
-                                        <Card.Subtitle className="mb-2 text-muted">
+                                        <Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>
 
                                             {appliedleaves}
 
@@ -649,7 +672,54 @@ function IntegrateLeaveToApply() {
                             </Card>
                         </Card>
                     </Col>
+                    <Col style={{width:"280px"}}>
+                        <Card>
+                            <Card border="warning">
+
+                                {count == undefined ? (<Card.Body>
+
+                                    <h5>
+
+                                        {" "}
+
+                                        <Card.Title style={{paddingLeft:"35%"}}>WFH</Card.Title>
+
+                                        <Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"45%"}}>
+
+                                            0
+
+                                        </Card.Subtitle>
+
+                                        {/* <Card.Text></Card.Text> */}
+
+                                    </h5>
+
+                                </Card.Body>) : (<Card.Body>
+
+                                    <h5>
+
+                                        {" "}
+
+                                        <Card.Title style={{paddingLeft:"35%"}}>WFH</Card.Title>
+
+                                        <Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"45%"}}>
+
+                                            {wfh}
+
+                                        </Card.Subtitle>
+
+                                        {/* <Card.Text></Card.Text> */}
+
+                                    </h5>
+
+                                </Card.Body>)}
+                            </Card>
+                        </Card>
+                    </Col>
+
                 </Row>
+
+
 
             </Card>
             <Modal
@@ -660,7 +730,7 @@ function IntegrateLeaveToApply() {
                 keyboard={false} 
             >
                 <Modal.Header closeButton style={{ backgroundColor: "#FE924A" }}>
-                    <Modal.Title>Apply Leave</Modal.Title>
+                    <Modal.Title>Apply Leave/WFH</Modal.Title>
                 </Modal.Header>
 
 
@@ -670,6 +740,34 @@ function IntegrateLeaveToApply() {
                         style={{ padding: 10 ,paddingLeft:"70px",paddingRight:"70px"}}
                         onSubmit={handleButtonClick}
                     >
+                        {[ 'radio'].map((type) => (
+        <div key={`inline-${type}`} className="mb-3">
+          <Form.Check
+          required
+            inline
+            label="Apply Leave"
+            name="leaveOrwfh"
+            type={type}
+            id={`inline-${type}-1`}
+            // onChange={(event) => setLeaveOrwfh(event.target.value)}
+            onChange={handleChange}
+            value={leaveOrwfh}
+          />
+          <Form.Check
+          required
+            inline
+            label="Apply Work From Home"
+            name="leaveOrwfh"
+            type={type}
+            id={`inline-${type}-2`}
+            // onChange={(event) => setLeaveOrwfh(event.target.value)}
+            onChange={handleChangee}
+            value={leaveOrwfh}
+          />
+          
+        </div>
+      ))}
+
                         <Row className="mb-2">
 
                             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
@@ -885,14 +983,14 @@ function IntegrateLeaveToApply() {
                             <Form.Group as={Col} md="10" style={{ padding: 10 , paddingLeft: "50px"}}>
                                 <Form.Group controlId="formFileMultiple" className="mb-3">
                                     <Form.Label>
-                                        Upload Doctor's Certificate for Sick/Medical Leave
+                                        Upload Doctor's Certificate for Sick/Medical Condition
                                     </Form.Label>
                                     <Form.Control type="file" multiple />
                                 </Form.Group>
                                 </Form.Group>
 
                             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                                <Form.Label>Leave Reason *</Form.Label>
+                                <Form.Label>Reason *</Form.Label>
                                 <Form.Control
                                     required
                                     className="leaveReason"
@@ -900,7 +998,7 @@ function IntegrateLeaveToApply() {
                                     type="text"
                                     rows={2}
                                     controlId="leaveReason"
-                                    placeholder="Leave Reason"
+                                    placeholder="Leave/WFH Reason"
                                     onChange={(event) => setReasonForLeaves(event.target.value)}
                                     isInvalid={!!errors.leaveReason}
                                 ></Form.Control>
