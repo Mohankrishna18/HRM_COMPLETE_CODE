@@ -18,6 +18,14 @@ import PersonalDetailsTab from "./PersonalDetailsTab";
 import { FcApproval } from "react-icons/fc";
 import { FcWebcam } from "react-icons/fc";
 import EmploymentDetailsTab from "./EmploymentDetailsTab";
+import { FiEdit } from "react-icons/fi";
+import EmployeePersonalDetails from "../../EditEmployeeDetails/EmployeePersonalDetails";
+import EmployeeAddressDetails from "../../EditEmployeeDetails/EmployeeAddressDetails";
+import EmployeeAditionalDetails from "../../EditEmployeeDetails/EmployeeAdditionalDetails";
+import EmployeeEducationalDetails from "../../EditEmployeeDetails/EmployeeEducationalDetails";
+import EmployeeExperienceDetails from "../../EditEmployeeDetails/EmployeeExperienceDetails";
+
+
 
 // import ApprovalView from "./ApprovalView"; 
 
@@ -27,6 +35,7 @@ function OnboardedEmployeesTable() {
 
   const handleClose = () => setShow(false);
   const viewHandleClose = () => setViewShow(false);
+  const viewHandleClose1 = () => setViewShow(false);
 
   const handleShow = () => setShow(false);
   const viewHandleShow = () => setShow(false);
@@ -34,11 +43,13 @@ function OnboardedEmployeesTable() {
   const [updateOnboard, setUpdateOnboard] = useState({});
   const [viewOnboard, setViewOnboard] = useState({});
 
+  const[editShow,setEditShow]=useState(false);
+  const [updateOnboard1, setUpdateOnboard1] = useState({});
+
   const [data, setData] = useState([]);
   const [addStatus, setAddStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
   const [viewStatus, setViewStatus] = useState(false);
- 
 
   const pull_dataAdd = () => {
     setAddStatus(!addStatus);
@@ -62,14 +73,14 @@ function OnboardedEmployeesTable() {
   };
 
   const [columns, setColumns] = useState([
-    // {
-    //   title: "Onboarding Id",
-    //   field: "onboardingId",
-    //   editable: false,
-    // },
+    {
+      title: "Job ID",
+      field: "rrfId",
+      
+    },
     {
       title: "Full Name",
-      field: "firstName",
+      field: "fullName",
       type: "text",
     },
 
@@ -77,16 +88,20 @@ function OnboardedEmployeesTable() {
       title: "Email",
       field: "email",
     },
-
     {
-      title: "Phone Number",
-      field: "phoneNumber",
-      type: "number",
+      title: "Experience",
+      field: "yearsOfExperience",
     },
     {
       title: "DOJ",
       field: "dateOfJoining",
       type: "date",
+    },
+    
+    {
+      title: "Contact_Number",
+      field: "phoneNumber",
+      type: "number",
     },
 
     // {
@@ -94,19 +109,8 @@ function OnboardedEmployeesTable() {
     //   field: "jobTitle",
     // },
 
-    // {
-    //   title: "Employment Type",
-    //   field: "employmentType",
-    // },
+  
 
-    {
-      title: "Experience",
-      field: "yearsOfExperience",
-    },
-    // {
-    //   title: "Status",
-    //   field: "percentage",
-    // },
   ]);
 
   return (
@@ -122,25 +126,13 @@ function OnboardedEmployeesTable() {
             handleClose={handleClose}
           />
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer> */}
+      
       </Modal>
-      <Modal show={viewShow} static={true} centered onHide={handleClose} size="xl"  style={{paddingBottom :"500px"}}>
+      <Modal show={viewShow} static={true} centered onHide={handleClose} size="xl"  style={{paddingBottom :"0px"}}>
         <Modal.Header closeButton onClick={viewHandleClose} style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* <ApprovalView
-            viewOnboard={viewOnboard}
-            // func={pull_data}
-            viewHandleClose={viewHandleClose}
-          /> */} 
 
           <Tabs
             defaultActiveKey="Personal Details"
@@ -194,7 +186,7 @@ function OnboardedEmployeesTable() {
               viewOnboard={viewOnboard} 
               viewHandleClose={viewHandleClose}/>
             </Tab>
-            <Tab
+            <Tab 
               eventKey="Education"
               title="Education"
               style={{ backgroundColor: "white" }}
@@ -221,6 +213,88 @@ function OnboardedEmployeesTable() {
             Close
           </Button>
         </Modal.Footer>
+      </Modal>
+
+      <Modal show={editShow} static={true} centered onHide={handleClose} size="lg"  style={{paddingBottom :"0px"}}>
+        <Modal.Header closeButton onClick={viewHandleClose} style={{ backgroundColor: "#FF9E14" }}>
+          <Modal.Title>Onboarding Form</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+
+          <Tabs
+            defaultActiveKey="Personal Details"
+            transition={false}
+            id="noanim-tab-example"
+            className="mb-3"
+            style={{
+              justifyContent: "center",
+              color: "black",
+              // backgroundColor: "#FAFDD0",
+              fontSize: "16px",
+              padding: 10,
+            }}
+          >
+            <Tab
+              eventKey="Personal Details"
+              title="Personal Details"
+              style={{ backgroundColor: "white" }}
+            >
+              <EmployeePersonalDetails
+                updateOnboard1={updateOnboard1}
+                viewHandleClose={viewHandleClose}
+              />
+            </Tab>
+            <Tab
+              eventKey="Address"
+              title="Address"
+              style={{ backgroundColor: "white" }}
+            >
+              <EmployeeAddressDetails
+                updateOnboard1={updateOnboard1}
+                viewHandleClose={viewHandleClose}
+              />
+            </Tab>
+            <Tab
+              eventKey="Additional Details"
+              title="Additional Details"
+              style={{ backgroundColor: "white" }}
+            >
+              <EmployeeAditionalDetails
+                updateOnboard1={updateOnboard1}
+                viewHandleClose1={viewHandleClose1}
+              />
+            </Tab>
+            {/* <Tab
+              eventKey="Employment Details"
+              title="Employment Details"
+              style={{ backgroundColor: "white" }}
+            >
+              <EmploymentDetailsTab 
+              viewOnboard={updateOnboard} 
+              viewHandleClose={viewHandleClose}/>
+            </Tab> */}
+            <Tab
+              eventKey="Education"
+              title="Education"
+              style={{ backgroundColor: "white" }}
+            >
+              <EmployeeEducationalDetails
+                updateOnboard1={updateOnboard1}
+                viewHandleClose1={viewHandleClose1}
+              />
+            </Tab>
+            <Tab
+              eventKey="Experience"
+              title="Experience "
+              style={{ backgroundColor: "white" }}
+            >
+              <EmployeeExperienceDetails
+                updateOnboard1={updateOnboard1}
+                viewHandleClose1={viewHandleClose1}
+              />
+            </Tab>
+          </Tabs>
+        </Modal.Body>
       </Modal>
 
       <Card
@@ -253,15 +327,15 @@ function OnboardedEmployeesTable() {
             data={data}
             editable={{}}
             options={{
-              pageSize: 5,
-
+              pageSize: 10,
               pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
-
-              maxBodyHeight: 500,
+              maxBodyHeight: 470,
               headerStyle: {
-                backgroundColor: "#ff9b44",
-                color: "white",
-                fontSize: "16px",
+                background: "linear-gradient(#dbdcdc,white,#dbdcdc)",
+                color: "black",
+                fontSize:"16px",
+                paddingBottom:"6px",
+                paddingTop:"12px",
               },
               addRowPosition: "first",
               actionsColumnIndex: -1,
@@ -271,7 +345,6 @@ function OnboardedEmployeesTable() {
             actions={[
               {
                 icon: "button",
-
                 tooltip: "Save User",
                 onClick: (event, rowData) =>
                   alert("You want to delete " + rowData.firstName),
@@ -291,9 +364,9 @@ function OnboardedEmployeesTable() {
                         variant="white "
                         className="rounded-pill"
                       >
-                        {" "}
+                        
                         <FcApproval /> Approve
-                      </Button>{" "}
+                      </Button>
                       <Button
                         variant="white "
                         className="rounded-pill"
@@ -302,12 +375,14 @@ function OnboardedEmployeesTable() {
                           console.log(props);
                           setViewOnboard(props.data);
                         }}
-                      > {" "}
+                      >
                         <FcWebcam />
                          View
                       </Button>
+                     
                     </Stack>
                   ) : (
+                    <Stack direction="horizontal" gap={3}>
                     <Button
                       variant="white "
                       className="rounded-pill"
@@ -320,6 +395,18 @@ function OnboardedEmployeesTable() {
                       <FcWebcam />{" "}
                        View
                     </Button>
+                    
+                     <Button style={{paddingTop:"10px"}}
+                     variant="white"
+                     onClick={(event) => {
+                      setEditShow(true);
+                       console.log(props);
+                       setUpdateOnboard1(props.data);
+                     }}
+                   >
+                      <FiEdit />Edit
+                   </Button>
+                   </Stack>
                   )}
                 </div>
               ),

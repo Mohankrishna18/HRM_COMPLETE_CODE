@@ -34,6 +34,16 @@ public class RequisitionTrackerController {
 		return serv.getAllRequisitions();
 	}
 	
+	// get data by rrf status Active
+	@GetMapping("/getAllRequisitionRequestsByStatus")
+	public ResponseEntity getRequisitionsByRrfStatus() {
+		return serv.getRequisitionsByRrfStatus();
+	}
+	@GetMapping("/getDataById/{rrfId}")
+	public ResponseEntity getRequisitionsByRrfId(@PathVariable long rrfId) {
+		return serv.getRequisitionsByRrfId(rrfId);
+	}
+	
 	@DeleteMapping("/deleteRR/{rrfId}")
 	public ResponseEntity DeleteRRequest(@PathVariable long rrfId) {
 		return serv.deleteRRequest(rrfId);

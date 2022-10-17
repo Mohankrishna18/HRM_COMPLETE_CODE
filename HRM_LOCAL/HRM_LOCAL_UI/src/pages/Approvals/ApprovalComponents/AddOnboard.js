@@ -29,6 +29,7 @@ function AddOnboard(props) {
   const [step, setStep] = useState(0);
   const handleClose = () => setShow();
   const handleShow = () => setShow(true);
+  const[jobT,setJobT]= useState("");
 
   const forms = useRef(null);
 
@@ -57,7 +58,7 @@ function AddOnboard(props) {
       yearsOfExperience,
       primarySkills,
       secondarySkills,
-    
+      rrfId,jobTitle
     } = form;
     const newErrors = {};
 
@@ -85,7 +86,12 @@ function AddOnboard(props) {
     yearsOfExperience === "" 
     // yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)
     )
-     newErrors.yearsOfExperience = "Please Enter Years of Experience";
+    newErrors.yearsOfExperience = "Please Enter Years of Experience";
+    if (!jobTitle || jobTitle === "")
+      newErrors.jobTitle = "Please Enter Job Title";
+      if (!rrfId || rrfId === "")
+      newErrors.rrfId = "Please Enter Job ID";
+    
     // if (!designation || designation === "")
     //   newErrors.designation = "Please Enter Designation";
     // if (!department || department === "")
@@ -205,6 +211,18 @@ function AddOnboard(props) {
     });
   }, []);
 
+  const [rrf, setRrf] = useState([]);
+  useEffect(() => {
+    axios.get("/recruitmentTracker/getAllRequisitionRequestsByStatus").then((response) => {
+      setRrf(response.data.data);
+    });
+  }, []);
+  console.log(rrf)
+
+  console.log(jobT);
+  const jobTitle=jobT.jobTitle;
+  console.log(jobT.jobTitle);
+
 
   useEffect(() => {
     const loadUsers = async () => {
@@ -304,6 +322,7 @@ function AddOnboard(props) {
               <div>
                 <h5>Personal Details</h5>
                 <Form
+                required
                   ref={forms}
                   className="formone"
                   // noValidate
@@ -312,6 +331,51 @@ function AddOnboard(props) {
                 // onSubmit={handleSubmit}
                 >
                   <Row className="mb-4">
+                    <Row md="12">
+                  <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select Job ID*</Form.Label>
+                <AutoCompleteComponent
+                    outlined
+                    dataSource={rrf}
+                    placeholder="select Job ID"
+                    fields={{ value: "rrfId", display:"rrfId"}}
+                  
+                    value={form.rrfId}
+                    isInvalid={!!errors.rrfId}
+                    onChange={(e) => {
+                      axios
+                    .get(
+                        `/recruitmentTracker/getDataById/${e.target.value}`
+                    )
+                    .then((response) => {
+                        console.log(response.data);
+                        setJobT(response.data.data)
+                    });
+                setField("rrfId", e.target.value);
+            }}
+              
+                // query={dataQuery}
+                ></AutoCompleteComponent>
+            </Form.Group>
+            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Job Title *</Form.Label>
+                <Form.Control
+                  //disabled
+                  name="jobTitle"
+                  type="text"
+                  controlId="jobTitle"
+                  placeholder="Job Title "
+                  value={form.jobTitle}
+                  maxLength={30}
+                  onChange={(e) => 
+                setField("jobTitle", e.target.value) }
+                  isInvalid={!!errors.jobTitle}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.jobTitle}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                       <Form.Label>First name *</Form.Label>
                       <Form.Control
