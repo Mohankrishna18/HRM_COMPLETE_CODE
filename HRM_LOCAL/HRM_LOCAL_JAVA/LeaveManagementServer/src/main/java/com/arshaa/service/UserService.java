@@ -26,7 +26,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.arshaa.entity.BetweenDates;
 import com.arshaa.entity.EntitledLeaves;
+import com.arshaa.model.UserModel;
 import com.arshaa.entity.User;
+import com.arshaa.mapper.UserMapper;
 import com.arshaa.model.AllEmployeesForHr;
 import com.arshaa.model.EmployeeName;
 import com.arshaa.model.GetIrmId;
@@ -50,16 +52,13 @@ public class UserService {
 
 	@Autowired
 	private BetweenDatesRepo bro;
+	@Autowired
+	private UserMapper userMapper;
 
-	public Optional<User> findById(int employeeleaveId) {
+	public UserModel findById(int employeeleaveId) {
 
-		try {
-			return repository.findById(employeeleaveId);
-		} catch (Exception e) {
-			e.getMessage();
-		}
-		return findById(employeeleaveId);
-
+		Optional<User> u = repository.findById(employeeleaveId);
+		return userMapper.getUserModel(u.orElse(new User()));
 	}
 
 // public Optional<User> findByemployeeId(String employeeId) {
@@ -174,7 +173,7 @@ public class UserService {
 		List<AllEmployeesForHr> getList = new ArrayList<>();
 		try {
 			List<User> u = repository.findAll();
-			User s = new User();
+			UserModel s = new UserModel();
 			u.forEach(g -> {
 				AllEmployeesForHr ae = new AllEmployeesForHr();
 				ae.setEmployeeId(g.getEmployeeId());
@@ -286,7 +285,7 @@ public class UserService {
 		List<UsersByIrm> getList = new ArrayList<>();
 		try {
 			List<User> u = repository.findUserByIrmId(irmId);
-			User s = new User();
+			UserModel s = new UserModel();
 			LocalDateTime now = LocalDateTime.now();
 			LocalDate currentDate = LocalDate.of(2022, 8, 29);
 //			 Date date=new Date(2022, 8, 12);
@@ -343,7 +342,7 @@ public class UserService {
 		List<UsersByIrm> getList = new ArrayList<>();
 		try {
 			List<User> u = repository.findUserBySrmId(srmId);
-			User s = new User();
+			UserModel s = new UserModel();
 //			 LocalDate currentDate =LocalDate.of(2022, 8, 29);
 //			 Date date=new Date(2022, 8, 12);
 			Date date = new Date(System.currentTimeMillis());
@@ -468,23 +467,23 @@ public class UserService {
 			return 0;
 		}
 	}
-	
+
 	public List<LeavesDataForHr> findEmployeeLeavesLeaveStatusByLeaveStatus(String leaveStatus) {
 		String url = "http://empService/emp/getEmployeeNameDepDesByEmployeeId/";
 		List<LeavesDataForHr> getList = new ArrayList<>();
 		try {
 //						return repository.findEmployeePendingLeavesCountByLeaveStatus(leaveStatus).size();
-			List<User> u= repository.findEmployeeLeavesLeaveStatusByLeaveStatus(leaveStatus);
-			u.stream().forEach(e->{
-				LeavesDataForHr ldh=new LeavesDataForHr();
-				LeavesDataForHr ldata=	template.getForObject(url+e.getEmployeeId(), LeavesDataForHr.class);
+			List<User> u = repository.findEmployeeLeavesLeaveStatusByLeaveStatus(leaveStatus);
+			u.stream().forEach(e -> {
+				LeavesDataForHr ldh = new LeavesDataForHr();
+				LeavesDataForHr ldata = template.getForObject(url + e.getEmployeeId(), LeavesDataForHr.class);
 				ldh.setDepartmentName(ldata.getDepartmentName());
 				ldh.setDesignationName(ldata.getDesignationName());
 				ldh.setFirstName(ldata.getFirstName());
 				ldh.setEmployeeId(e.getEmployeeId());
 				ldh.setLeaveReason(e.getLeaveReason());
 				ldh.setNumberOfDays(e.getNumberOfDays());
-				
+
 				getList.add(ldh);
 			});
 			return getList;
@@ -494,17 +493,18 @@ public class UserService {
 			return null;
 		}
 	}
+
 	public int findEmployeeWFHCountByLeaveOrwfhAndEmployeeId(String leaveOrwfh, String employeeId) {
 		try {
 //			return repository.findEmployeePendingLeavesCountByLeaveStatus(leaveStatus).size();
-return repository.findByleaveOrwfhAndEmployeeId(leaveOrwfh,employeeId).size();
+			return repository.findByleaveOrwfhAndEmployeeId(leaveOrwfh, employeeId).size();
 
-} catch (Exception e) {
-e.getMessage();
-return 0;
-}
+		} catch (Exception e) {
+			e.getMessage();
+			return 0;
+		}
 
-}
+	}
 
 }
 
