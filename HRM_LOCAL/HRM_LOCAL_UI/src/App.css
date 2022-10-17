@@ -17,7 +17,7 @@
 .products,
 .team,
 .reports {
-  display: flex;
+  /* display: flex; */
   height: 90vh;
   align-items: center;
   justify-content: center;
@@ -142,6 +142,7 @@ main {
 body{
   font-family: 'PT Sans', sans-serif;
   font-family: 'Roboto', sans-serif;
+  background-color: #fff;
 }
 
 *{
@@ -210,12 +211,12 @@ main{
   color: black;
 }
 
-.scroll {
+/* .scroll {
   max-height: 83vh;
  overflow: scroll;
     position: relative;
   
-}
+} */
 
 .text_size {
   
@@ -237,5 +238,35 @@ main{
 }
 
 
+.panel-wrap {
+  margin-bottom: 5px;
+}
 
+.panel-wrap.active-panel .panel-header {
+  background: #396ea5;
+}
+.panel-wrap.active-panel .panel-header button {
+  color: #ffffff;
+}
 
+.panel-header {
+  border: 1px solid #cccc;
+  font-weight: normal;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.panel-header button {
+  border: none;
+  background: transparent;
+}
+.panel-header button:focus {
+  outline: 0px auto -webkit-focus-ring-color;
+}
+
+.panel-body {
+  border: 1px solid #dddddd;
+  background: #efefef;
+  color: #333333;
+  padding: 5px;
+  border-top: none;
+}

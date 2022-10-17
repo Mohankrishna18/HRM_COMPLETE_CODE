@@ -14,27 +14,6 @@ function EducationalDetailsTab() {
     const employeeid = userData1.data.employeeId;
     const empId = localStorage.getItem('item')
 
-    const [ferrors, setFErrors] = useState("");
-    const [serror, setSerror] = useState("");
-    const [thirderrors, setThirdErrors] = useState("");
-    const [fourerror, setFourerror] = useState("");
-    const [fiveerrors, setFiveErrors] = useState("");
-    const [sixerror, setSixerror] = useState("");
-    const [sevenerrors, setSevenErrors] = useState("");
-    const [eighterror, setEighterror] = useState("");
-    const [nineerrors, setNineErrors] = useState("");
-    const [tenerror, setTenerror] = useState("");
-    const [elevenerrors, setElevenErrors] = useState("");
-    const [tweleveerror, setTweleveerror] = useState("");
-    const [thirteenerrors, setThirteenErrors] = useState("");
-    const [fourteenerror, setFourteenerror] = useState("");
-    const [fifteenerrors, setFifteenErrors] = useState("");
-    const [sixteenerror, setSixteenerror] = useState("");
-    const [seventeenerror, setSeventeenerror] = useState("");
-    const [eighteenerror, setEighteenerror] = useState("");
-    const [nineteenerror, setNineteenerror] = useState("");
-    const [twentyerror, setTwentyerror] = useState("");
-    const [twentyoneerror, setTwentyoneerror] = useState("");
     const [twentytwoerror, setTwentytwoerror] = useState("");
     const [twentythreerror, setTwentythreerror] = useState("");
     const [twentyfourerror, setTwentyfourerror] = useState("");
@@ -65,33 +44,6 @@ function EducationalDetailsTab() {
     const [fourtynine, setFourtynine] = useState("");
 
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [middleName, setMiddleName] = useState(" ");
-    const [primaryPhoneNumber, setPrimaryPhoneNumber] = useState(" ");
-    const [secondaryPhoneNumber, setSecondaryPhone] = useState("");
-    const [yearsOfExperience, setYearsOfExperience] = useState(" ");
-    const [dateOfBirth, setDateOfBirth] = useState("");
-    const [passportExpiryDate, setPassportExpiryDate] = useState("");
-    const [passportNo, setPassportNo] = useState("");
-    const [employeeId, setEmployeeId] = useState("");
-    const [primarySkills, setPrimarySkills] = useState("");
-    const [secondarySkills, setSecondarySkills] = useState("");
-    const [email, setEmail] = useState("");
-    const [bloodGroup, setBloodGroup] = useState("");
-    const [gender, setGender] = useState("");
-    const [maritalStatus, setMaritalStatus] = useState("");
-    const [designationName, setDesignationName] = useState("");
-    const [dateOfJoining, setDateOfJoining] = useState("");
-    const [reportingManager, setReportingManager] = useState("");
-    const [permanentAdress, setPermanentAddress] = useState("");
-    const [permanentState, setPermanentState] = useState("");
-    const [permanentCountry, setPermanentCountry] = useState("");
-    const [permanentPincode, setPermanentPincode] = useState("");
-    const [currentAdress, setCurrentAddress] = useState("");
-    const [currentState, setCurrentState] = useState("");
-    const [currentCountry, setCurrentCountry] = useState("");
-    const [currentPincode, setCurrentPincode] = useState("");
     const [postgraduationType, setTypeOfPostGraduation] = useState("");
     const [postgraduationBoardOfUniversity, setPostgraduationBoardOfUniversity] = useState("");
     const [postgraduationInstituteName, setPostgraduationInstituteName] = useState("");
@@ -243,11 +195,11 @@ function EducationalDetailsTab() {
     return (
 
         <div>
-            <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+            {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
                 <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Educational Details
                 </Card.Title>
-            </Card>
+            </Card> */}
 
             <Form
                 onSubmit={(e) => changeHandler(e)}
@@ -1032,7 +984,7 @@ function EducationalDetailsTab() {
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Row>
-
+                {/* comment */}
                 <Button
                     className="rounded-pill" md="3"
                     style={{ backgroundColor: "#eb4509", float: "right" }}
@@ -1046,5 +998,3 @@ function EducationalDetailsTab() {
     )
 }
 export default EducationalDetailsTab;
-
-

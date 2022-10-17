@@ -8,6 +8,8 @@ function ProjectsTab() {
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
+
 
     const [eighteenerror, setEighteenerror] = useState("");
     const [nineteenerror, setNineteenerror] = useState("");
@@ -21,7 +23,7 @@ function ProjectsTab() {
 
     useEffect(() => {
         axios
-            .get(`/emp/getEmploymentDetails/${employeeid}`)
+            .get(`/emp/getEmploymentDetails/${empId}`)
             .then((response) => {
                 setProjectName(response.data.data.projectName);
                
@@ -30,7 +32,7 @@ function ProjectsTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
-        await axios.put(`/emp/updateEmploymentDetails/${employeeid}`, {
+        await axios.put(`/emp/updateEmploymentDetails/${empId}`, {
             projectName
         });
         toast.success("Form Submitted Successfully");
@@ -39,11 +41,11 @@ function ProjectsTab() {
     return (
 
         <div>
-            <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+            {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
                 <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Projects Details
                 </Card.Title>
-            </Card>
+            </Card> */}
 
             <Form
                 onSubmit={(e) => changeHandler(e)}
@@ -53,8 +55,63 @@ function ProjectsTab() {
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Project Name</Form.Label>
                         <Form.Control
+                        disabled 
                             type="text"
                             placeholder="Project Name"
+                            controlId="projectName"
+                            value={projectName}
+                            maxLength={25}
+                            name="projectName"
+                            onChange={(e) =>
+                                setProjectName(e.target.value)
+                            }
+                        ></Form.Control>
+                        <Form.Control.Feedback type="invalid">
+                            {twentytwoerror}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Client Name</Form.Label>
+                        <Form.Control
+                        disabled
+                            type="text"
+                            placeholder="Client Name"
+                            controlId="projectName"
+                            value={projectName}
+                            maxLength={25}
+                            name="projectName"
+                            onChange={(e) =>
+                                setProjectName(e.target.value)
+                            }
+                        ></Form.Control>
+                        <Form.Control.Feedback type="invalid">
+                            {twentytwoerror}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Reporting Manager</Form.Label>
+                        <Form.Control
+                        disabled
+                            type="text"
+                            placeholder="Reporting Manager"
+                            controlId="projectName"
+                            value={projectName}
+                            maxLength={25}
+                            name="projectName"
+                            onChange={(e) =>
+                                setProjectName(e.target.value)
+                            }
+                        ></Form.Control>
+                        <Form.Control.Feedback type="invalid">
+                            {twentytwoerror}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Skills</Form.Label>
+                        <Form.Control
+                        disabled
+                            type="text"
+                            placeholder="Skills"
                             controlId="projectName"
                             value={projectName}
                             maxLength={25}
@@ -82,3 +139,4 @@ function ProjectsTab() {
     )
 }
 export default ProjectsTab;
+

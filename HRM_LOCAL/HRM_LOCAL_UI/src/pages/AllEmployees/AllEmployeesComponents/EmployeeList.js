@@ -32,7 +32,7 @@ function EmployeeList() {
 
     const columns = [
         {
-            title: "Employee Id",
+            title: "Employee ID",
             field: "employeeId",
             render: (rowData) => (
                 <Link to="/app/editmyprofileroute" onClick={myProfile}>
@@ -98,7 +98,7 @@ function EmployeeList() {
 
 
         {
-            title: "Date of Joining",
+            title: "DOJ",
             field: "dateOfJoining",
             type: "date",
             dateSetting: { locale: "en-GB" },
@@ -108,10 +108,8 @@ function EmployeeList() {
             },
         },
         {
-            title: "Skill set",
-            field: "primarySkills",
-
-
+            title: "IRM",
+            field: "irm",
 
             headerStyle: {
                 backgroundColor: "#FF9E14",
@@ -119,48 +117,47 @@ function EmployeeList() {
             },
         },
         {
-            title: "Reporting Manager",
-            field: "reportingManager",
-
-
+            title: "SRM",
+            field: "srm",
 
             headerStyle: {
                 backgroundColor: "#FF9E14",
                 color: "white",
             },
         },
+        
+        // {
+        //     title: "Reporting Manager",
+        //     field: "reportingManager",
+
+
+
+        //     headerStyle: {
+        //         backgroundColor: "#FF9E14",
+        //         color: "white",
+        //     },
+        // },
     ];
 
 
 
     useEffect(() => {
         axios
-
-
-
-            .get("/emp/getAllEmployeeMasterData")
-
-
-
+     .get("/emp/getAllEmployeeMasterData")
             .then((res) => {
                 setData(res.data.data);
-
-
-
                 console.log(res.data.data);
                 console.log(res.data.data.employeeid);
             })
-
-
-
-            .catch((err) => {
+       .catch((err) => {
                 console.log(err);
                 // toast.error("Server Error")
             });
     }, []);
     console.log(eid);
+    
     return (
-        <div className="scroll">
+        <div className="example">
             <Grid container data1={eid}>
                 <Grid xs={12}>
                     <MaterialTable

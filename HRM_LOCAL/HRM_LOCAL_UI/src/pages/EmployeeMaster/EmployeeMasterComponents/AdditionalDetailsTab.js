@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../../../Constant";
 
 function AditionalDetailsTab() {
 
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item') 
+
+
 
     const [eighteenerror, setEighteenerror] = useState("");
     const [nineteenerror, setNineteenerror] = useState("");
@@ -28,11 +32,23 @@ function AditionalDetailsTab() {
     const [branch, setBranch] = useState("");
     const [band, setBand] = useState("");
     const [exitDate, setExitDate] = useState("");
+  
 
+    const[getEmployeeDetails,setGetEmployeeDetails]=useState([]);
+    useEffect(() => {
+            axios
+              .get(`/emp/getEmployeeDataByEmployeeId/${empId}`)
+              .then((response) => {
+                setGetEmployeeDetails(response.data.data);
+              });
+          }, []);
+          console.log(getEmployeeDetails.onboardingId)
+          const obdId= getEmployeeDetails.onboardingId;
+          
 
     useEffect(() => {
         axios
-            .get(`/emp/getAdditionalDetails/${employeeid}`)
+            .get(`/emp/getAdditionalDetails/${empId}`)
             .then((response) => {
                 setPanNumber(response.data.data.panNumber);
                 setAadharNumber(response.data.data.aadharNumber);
@@ -44,13 +60,14 @@ function AditionalDetailsTab() {
                 setBand(response.data.data.band);
                 setPassportExpiryDate(response.data.data.passportExpiryDate);
                 setPassportNo(response.data.data.passportNo);
+                console.log(response.data.data.onboardingId)
             });
     }, []);
 
     const changeHandler = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`/emp/updateAdditionalDetails/${employeeid}`, {
+            await axios.put(`/emp/updateAdditionalDetails/${empId}`, {
                 panNumber,
                 aadharNumber,
                 uanNumber,
@@ -69,15 +86,32 @@ function AditionalDetailsTab() {
             toast.error("Somethingwent Wrong");
         }
     };
+    const viewUploadFile = () => {
+        // window.open(`api/get/image/${imageName}/${onboardingId}`)
+    
+        axios
+          .get(`api/get/imageByTitle/AdditionalDetails/${obdId}`, {
+            contentType: "application/pdf",
+          })
+          .then((res) => {
+            //console.log(res.data.url);
+            setImageName(res.data);
+            setUrl(res.data.url);
+            saveAs(url);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
 
     return (
 
         <div>
-            <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+            {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
                 <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Additional Details
                 </Card.Title>
-            </Card>
+            </Card> */}
 
             <Form
                 onSubmit={(e) => changeHandler(e)}
@@ -95,8 +129,6 @@ function AditionalDetailsTab() {
                             name="passportNo"
                             onChange={(e) =>
                                 setPassportNo(e.target.value)
-
-
                             }
                         ></Form.Control>
                     </Form.Group>
@@ -132,7 +164,7 @@ function AditionalDetailsTab() {
                         <Form.Control
                             required
                             type="number"
-                            placeholder="Aadhar Card Number"
+                            placeholder="Aadharcard Number"
                             controlId="aadharNumber"
                             name="panNumber"
                             maxLength={12}
@@ -233,7 +265,7 @@ function AditionalDetailsTab() {
                             onChange={(event) => {
                                 setAccountNumber(event.target.value)
                                 if (event.target.value.length > 16) {
-                                    setTwentyoneerror(" Pincode length should be 16 characters");;
+                                    setTwentyoneerror("Account Number should be 16 characters");;
                                 }
                                 if (bankName === "") {
                                     setTwentyerror(" Bank Name is Required");
@@ -274,6 +306,15 @@ function AditionalDetailsTab() {
                     </Form.Group>
 
                 </Row>
+                <Row>
+    <Col md="6" style={{ paddingTop: 0 }}>
+              <a
+               href={`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${obdId}`}
+              >
+                Download Documents
+              </a>
+            </Col>
+    </Row>
                 <Button
                     className="rounded-pill" md="3"
                     style={{ backgroundColor: "#eb4509", float: "right" }}

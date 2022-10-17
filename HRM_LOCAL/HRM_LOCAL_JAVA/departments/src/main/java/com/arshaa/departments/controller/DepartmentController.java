@@ -3,6 +3,7 @@ package com.arshaa.departments.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.arshaa.departments.entity.Departmentmaster;
+import com.arshaa.departments.model.EmployeeName;
 import com.arshaa.departments.repository.DepartmentInterface;
 import com.arshaa.departments.service.DepartmentService;
 
@@ -27,7 +30,10 @@ public class DepartmentController {
 	private DepartmentInterface repo;
 	@Autowired
 	private DepartmentService serv;
-
+	@Autowired
+	@Lazy
+	private RestTemplate template;
+	
 	@PostMapping("/postDepartmentMaster")
 	public ResponseEntity saveData(@RequestBody Departmentmaster newDepartmentMaster) {
 		return serv.saveData(newDepartmentMaster);
@@ -42,8 +48,12 @@ public class DepartmentController {
 	@PutMapping("/update/{departmentId}")
 	public Departmentmaster updateDepartmentById(@PathVariable Integer departmentId,
 			@RequestBody Departmentmaster newDepartmentMaster) {
+	      String mUrl="http://empService/emp/getEmployeeNameByEmployeeId/";
+		EmployeeName name=template.getForObject(mUrl+newDepartmentMaster.getBusinessUnitHead(), EmployeeName.class);
 		Departmentmaster dm = repo.findByDepartmentId(departmentId);
 		dm.setDepartmentName(newDepartmentMaster.getDepartmentName());
+		dm.setBusinessUnitHead(newDepartmentMaster.getBusinessUnitHead());
+		dm.setBusinessUnitHeadName(name.getEmployeeName());
 		return repo.save(dm);
 	}
 
@@ -64,7 +74,14 @@ public class DepartmentController {
 	public String getDepartmentNameById(@PathVariable int departmentId)
 	{
 		Departmentmaster dm = repo.findByDepartmentId(departmentId);
-
 		return dm.getDepartmentName();
 	}
+	
+	@GetMapping("/getDepartmentIdByBusinessUnitName/{departmentName}")
+    public ResponseEntity getDepartmentIdByBusinessUnitName(@PathVariable String departmentName) {
+     return serv.getBUHIDfromDepartmentName(departmentName);
+
+
+
+   }
 }

@@ -20,6 +20,7 @@ public interface MainService {
 
 	public ResponseEntity  onBoardUser(Onboarding newOnboard);
 	public ResponseEntity<Onboarding> waitingForApprovelStatus();
+	//getting data by onboarding id
 	public ResponseEntity getOnboardingDataByOnboardingId(String onboardingId);
 	public ResponseEntity updateApprovStatus(String onboardingId,HrApprovalStatus newOnboard);
 	public ResponseEntity getEmployeeDataByEmployeeId(String employeeId);
@@ -31,6 +32,7 @@ public interface MainService {
 	public ResponseEntity updateOnboradEmployeeBydOnboardId(String onboardingId, Onboarding newOnboard );
 	public ResponseEntity getApprovedData();
 	public ResponseEntity getRejectedData();
+	public ResponseEntity getOnboardedApprovedData();
 	public ResponseEntity updateDesignationName(String employeeId, DesignationName name);
 
     public ResponseEntity getReportingManagerByEmployeeId(String employeeId);
@@ -58,7 +60,7 @@ public interface MainService {
     
     //Onboarding Update methods
     public ResponseEntity updatePersonalDetailsByOnboardId(PersonalDetails pd,String onboardingId);
-    
+  
    
     public ResponseEntity updateAddressByOnboardId(Address ad,String onboardingId);
    
@@ -71,4 +73,32 @@ public interface MainService {
     public ResponseEntity updateExperienceByOnboardId(Experience exp,String onboardingId);
 
 
+    // user client project  management services methods
+    public ResponseEntity getUserProjectDataByOnboardingId(String onboardingId);
+    public ResponseEntity getUserProjectDataByEmployeeId(String employeeId);
+    
+    public ResponseEntity getUsersNamesByBand();
+	public ResponseEntity getDetailsforPMOByonboardingStatus(String onboardingStatus);
+	public ResponseEntity updateReject(String onboardingId,HrApprovalStatus newOnboard);
+	public ResponseEntity getIrmIdByEmployeeId(String employeeId);
+	public ResponseEntity getSrmIdByEmployeeId(String employeeId);
+	public ResponseEntity updateEmploymentDetailsByOnboardId(EmploymentDetails empd, String onboardingId);
+	public ResponseEntity EmploymentDetailsByOnboardId(EmploymentDetails emps,String onboardingId);
+	
+	String getEmployeeIdByName(String fullName);
+	public ResponseEntity updateTAAHeadApproval(String onboardingId, HrApprovalStatus newOnboard);
+	public ResponseEntity updatePMOApproval(String onboardingId, HrApprovalStatus newOnboard);
+	public ResponseEntity updateTAAApproval(String onboardingId, HrApprovalStatus newOnboard);
+	public ResponseEntity updateCEOApproval(String onboardingId, HrApprovalStatus newOnboard);
+	public ResponseEntity getEmployeesByOnboardingStatus(String onboardingStatus);
+	public ResponseEntity getByOnboardingStatus(String employeeId,  EmployeeMaster newStatus);
+//	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmployeeMaster empMaster);
+	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmploymentDetails newEmp);
+	public ResponseEntity getByDepartment(String departmentName);
+	ResponseEntity getEmployeeNameDepDesByEmployeeId(String employeeId);
+
+
+
+    
+    
 }

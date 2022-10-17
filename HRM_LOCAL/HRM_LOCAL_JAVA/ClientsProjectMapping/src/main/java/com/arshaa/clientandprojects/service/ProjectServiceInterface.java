@@ -1,4 +1,4 @@
-package com.arshaa.clientandprojects.service;
+	package com.arshaa.clientandprojects.service;
 
 import org.springframework.http.ResponseEntity;
 
@@ -14,6 +14,19 @@ public interface ProjectServiceInterface {
 
 	public ResponseEntity updateProjectById(int projectId, Projects newProjectUpdate);
 
-	public ResponseEntity deleteProject(int projectId);
+	public ResponseEntity deleteProject(Integer projectId);
+	
+	// Madhu Changes
+	
+		public ResponseEntity getAllActiveProjectss(String status);
+		
+		public ResponseEntity getActiveProjectsByEmployeeId(String employeeId);
+		
+		public ResponseEntity getActiveProjectsBybuhId(String buhId);
+		
+		public ResponseEntity getProjectsByUserType(String userType, String employeeId);
+		
+		public ResponseEntity getClientNameByClientID(int clientName);
+
 	
 }

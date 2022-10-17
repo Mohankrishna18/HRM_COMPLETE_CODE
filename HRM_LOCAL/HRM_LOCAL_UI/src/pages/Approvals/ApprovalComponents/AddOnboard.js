@@ -5,18 +5,28 @@ import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import axios from "../../../Uri";
 import { Row, Col } from "react-bootstrap";
-import { BsPlusLg } from "react-icons/bs";
+import { BsDisplay, BsPlusLg } from "react-icons/bs";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
+import './custom.css';
+import {AutoCompleteComponent} from '@syncfusion/ej2-react-dropdowns';
+import "./AddOnboard.css";
+
+
 
 function AddOnboard(props) {
+  const [users, setUsers] = useState({});
+  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions1, setSuggestions1] = useState([]);
+  const [suggestions2, setSuggestions2] = useState([]);
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [thirderrors, setThirdErrors] = useState("");
-
+  const [irm, setIrm] = useState('');
+  const [step, setStep] = useState(0);
   const handleClose = () => setShow();
   const handleShow = () => setShow(true);
 
@@ -34,6 +44,8 @@ function AddOnboard(props) {
       });
   }
 
+  
+
   const validateForm = () => {
     const {
       lastName,
@@ -43,24 +55,17 @@ function AddOnboard(props) {
       phoneNumber,
       dateOfJoining,
       yearsOfExperience,
-      designation,
-      department,
-      employmentType,
       primarySkills,
       secondarySkills,
-      jobTitle,
-      reportingManager,
-      client,
-      projectName,
-      band,
+    
     } = form;
     const newErrors = {};
 
-    if (!firstName || firstName === "" || !firstName.match(/^[aA-zZ\s]+$/))
+    if (!firstName || firstName === "" || !firstName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
       newErrors.firstName = "Please Enter First Name";
-    if (!lastName || lastName === "" || !lastName.match(/^[aA-zZ\s]+$/))
+    if (!lastName || lastName === "" || !lastName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
       newErrors.lastName = "Please Enter Last Name";
-    if (!email || email === "") newErrors.email = "Please Enter Email";
+    if (!email || email === "") newErrors.email = "Please Enter Valid Email";
     if (
       !phoneNumber ||
       phoneNumber === "" ||
@@ -71,43 +76,61 @@ function AddOnboard(props) {
       newErrors.phoneNumber = "Please Enter Phone Number";
     if (!dateOfJoining || dateOfJoining === "")
       newErrors.dateOfJoining = "Please Enter Date of Joining";
-    // if (
-    // !yearsOfExperience ||
-    // yearsOfExperience === "" ||
-    // yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)
-    // )
-    // newErrors.yearsOfExperience = "Please Enter Years of Experience";
-    if (!designation || designation === "")
-      newErrors.designation = "Please Enter Designation";
-    if (!department || department === "")
-      newErrors.department = "Please Enter Department";
-    if (!employmentType || employmentType === "")
-      newErrors.employmentType = "Please Enter type of Employeement";
-    if (!primarySkills || primarySkills === "")
+      if (!primarySkills || primarySkills === "")
       newErrors.primarySkills = "Please Enter Primary Skills";
     if (!secondarySkills || secondarySkills === "")
       newErrors.secondarySkills = "Please Enter Secondary Skills";
-    if (!jobTitle || jobTitle === "")
-      newErrors.jobTitle = "Please Enter type of Job Title";
-    if (!reportingManager || reportingManager === "")
-      newErrors.designation = "Please Select ReportingManager";
-    if (!client || client === "") newErrors.client = "Please Select Client";
-    if (!projectName || projectName === "")
-      newErrors.projectName = "Please Select ProjectName";
+    if (
+    !yearsOfExperience ||
+    yearsOfExperience === "" 
+    // yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)
+    )
+     newErrors.yearsOfExperience = "Please Enter Years of Experience";
+    // if (!designation || designation === "")
+    //   newErrors.designation = "Please Enter Designation";
+    // if (!department || department === "")
+    //   newErrors.department = "Please Enter Department";
+    // if (!employmentType || employmentType === "")
+    //   newErrors.employmentType = "Please Enter type of Employeement";
+    
+    // if (!jobTitle || jobTitle === "")
+    //   newErrors.jobTitle = "Please Enter type of Job Title";
+    // if (!client || client === "") newErrors.client = "Please Select Client";
+    // if (!projectName || projectName === "")
+    //   newErrors.projectName = "Please Select ProjectName";
+    //   if (!irm || irm === "") newErrors.irm = "Please Select irm";
+    //   if (!srm || srm === "") newErrors.srm = "Please Select srm";
+    //   if (!buh || buh === "") newErrors.buh = "Please Select buh";
     return newErrors;
+   
   };
-  //testing for commit
-  const [user, setUser] = useState("");
+
+
+
+  const handleNext = (e) => {
+    e.preventDefault();
+    const formErrors = validateForm();
+    console.log(Object.keys(formErrors).length);
+    if (Object.keys(formErrors).length > 13) {
+      setErrors(formErrors);
+      console.log("Form validation error");
+    } else {
+      console.log("Form validation success");
+      setStep((nextStep) => nextStep + 1);
+      console.log(form.value);
+    }
+  };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     // e.target.reset();
     const formErrors = validateForm();
+    console.log(Object.keys(formErrors).length);
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
+      console.log("Form validation error");
     } else {
-      // console.log(form);
-      // console.log("form submitted");
       axios
         .post("/emp/createNewPotentialEmployee", form)
         .then((response) => {
@@ -119,8 +142,7 @@ function AddOnboard(props) {
           }
           toast.success("Employee Onboarded Successfully");
           console.log(user);
-          // console.log(user);
-          setTimeout(5000);
+          setTimeout(1000);
           handleClose();
         })
         .catch((err) => {
@@ -128,84 +150,126 @@ function AddOnboard(props) {
         });
     }
   };
-  // console.log(form.dateOfJoining)
 
   const [designations, setDesignations] = useState([]);
   useEffect(() => {
-    axios
-      .get("/designation/getAllDesignations")
-      .then((response) => {
-        console.log(response.data);
-        setDesignations(response.data);
-      })
-      // .catch(() => {
-      //   toast.error("data is not getting");
-      // });
+    axios.get("/designation/getAllDesignations").then((response) => {
+      console.log(response.data);
+      setDesignations(response.data);
+    });
+    // .catch(() => {
+    //   toast.error("data is not getting");
+    // });
   }, []);
 
   const [departments, setDepartments] = useState([]);
   useEffect(() => {
-    axios
-      .get("/dept/getAllDepartments")
-      .then((response) => {
-        setDepartments(response.data);
-      })
-      // .catch(() => {
-      //   toast.error("Data is not getting");
-      // });
+    axios.get("/dept/getAllDepartments").then((response) => {
+      setDepartments(response.data);
+    });
+    // .catch(() => {
+    //   toast.error("Data is not getting");
+    // });
     // console.log(departments)
   }, []);
 
   const [reportingManager, setReportingManager] = useState([]);
   useEffect(() => {
-    axios
-      .get("/emp/getreportingmanager")
-      .then((response) => {
-        console.log(response.data);
-        setReportingManager(response.data.data);
-      })
+    axios.get("/emp/getreportingmanager").then((response) => {
+      console.log(response.data);
+      setReportingManager(response.data.data);
+    });
   }, []);
 
   const [bands, setBands] = useState([]);
   useEffect(() => {
-    axios
-      .get("/bands/getAllBands")
-      .then((response) => {
-        console.log(response.data);
-        setBands(response.data.data);
-      })
+    axios.get("/bands/getAllBands").then((response) => {
+      console.log(response.data);
+      setBands(response.data.data);
+    });
   }, []);
 
   const [client, setClient] = useState([]);
   useEffect(() => {
-    axios
-      .get("/clientProjectMapping/getAllClients")
-      .then((response) => {
-        console.log(response.data);
-        setClient(response.data.data);
-      })
+    axios.get("/clientProjectMapping/getAllClients").then((response) => {
+      console.log(response.data);
+      setClient(response.data.data);
+    });
   }, []);
 
   const [project, setProject] = useState([]);
   useEffect(() => {
-    axios
-      .get("/clientProjectMapping/getAllProjects")
-      .then((response) => {
-        console.log(response.data);
-        setProject(response.data.data);
-      })
+    axios.get("/clientProjectMapping/getAllProjects").then((response) => {
+      console.log(response.data);
+      setProject(response.data.data);
+    });
   }, []);
 
 
+  useEffect(() => {
+    const loadUsers = async () => {
+      const response = await axios.get("/emp/getAllEmployeeMasterData");
+      console.log(response.data.data);
+      setUsers(response.data.data);
+    };
+    loadUsers();
+  }, []);
+
+  // //irm onchange and onclick calls
+  // const onChangeHandler = (irm) => {
+  //   let matches = []
+  //   if (irm.length > 0) {
+  //     matches = users.filter(user => {
+  //       const regex = new RegExp(`${irm}`, "gi");
+  //       return user.firstName.match(regex)
+  //     })
+  //     console.log('matches', matches);
+  //     setSuggestions(matches);
+  //   }
+  // }
+  // const onSuggestHandler = (irm) => {
+  //   setField("irm",irm)
+  //   setSuggestions([])
+  // }
+
+  // //srm onchange and onclick calls
+  // const onChangeHandler1 = (srm) => {
+  //   let matches = []
+  //   if (srm.length > 0) {
+  //     matches = users.filter(user => {
+  //       const regex = new RegExp(`${srm}`, "gi");
+  //       return user.firstName.match(regex)
+  //     })
+  //     console.log('matches', matches);
+  //     setSuggestions1(matches);
+  //   }
+  // }
+  // const onSuggestHandler1 = (srm) => {
+  //   setField("srm", srm)
+  //   setSuggestions1([])
+  // }
+
+  // //buh onchange and onclick calls
+  // const onChangeHandler2 = (buh) => {
+  //   let matches = []
+  //   if (buh.length > 0) {
+  //     matches = users.filter(user => {
+  //       const regex = new RegExp(`${buh}`, "gi");
+  //       return user.firstName.match(regex)
+  //     })
+  //     console.log('matches', matches);
+  //     setSuggestions2(matches);
+  //   }
+  // }
+  // const onSuggestHandler2 = (buh) => {
+  //   console.log(buh)
+  //   setField("buh", buh)
+  //   // console.log(buh)
+  //   setSuggestions2([])
+  // }
 
   return (
     <div>
-      {/* <Button
-onClick={handleShow}
-style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRadius:'29px',paddingTop:"9px" }}
->
-<h4 style={{color: 'black'}}>Add Leave</h4> </Button> */}
-
       <Button
         variant="warning"
         onClick={handleShow}
@@ -234,234 +298,143 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
         </Modal.Header>
 
         <Modal.Body>
-          <Form
-            ref={forms}
-            className="formone"
-            // noValidate
-            // validated={validated}
-            style={{ padding: 10 }}
-            onSubmit={handleSubmit}
-          >
-            <Row className="mb-4">
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>First name *</Form.Label>
-                <Form.Control
-                  required
-                  className="firstName"
-                  type="text"
-                  controlId="firstName"
-                  placeholder="First name"
-                  // onChange={(event) => setFirstName(event.target.value)}
-                  value={form.firstName}
-                  maxLength={30}
-                  onChange={(e) => setField("firstName", e.target.value)}
-                  isInvalid={!!errors.firstName}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.firstName}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Middle name</Form.Label>
-                <Form.Control
-                  name="middle_name"
-                  type="text"
-                  controlId="middleName"
-                  placeholder="Middle name"
-                  value={form.middleName}
-                  maxLength={30}
-                  onChange={(e) => setField("middleName", e.target.value)}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Last name *</Form.Label>
-                <Form.Control
-                  required
-                  name="last_name"
-                  type="text"
-                  controlId="lastName"
-                  placeholder="Last name"
-                  value={form.lastName}
-                  maxLength={30}
-                  onChange={(e) => setField("lastName", e.target.value)}
-                  isInvalid={!!errors.lastName}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.lastName}
-                </Form.Control.Feedback>
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Phone Number *</Form.Label>
-                <InputGroup hasValidation>
-                  <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
-                  <Form.Control
-                    required
-                    type="number"
-                    placeholder="Phone Number"
-                    controlId="phoneNumber"
-                    value={form.phoneNumber}
-                    maxLength={10}
-                    onChange={(e) => {
-                      setField("phoneNumber", e.target.value);
-                      if (e.target.value.length > 10) {
-                        setThirdErrors(
-                          " Phone Number length should be 10 characters"
-                        );
-                      }
-                    }}
-                    isInvalid={thirderrors}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    {thirderrors}
-                  </Form.Control.Feedback>
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                </InputGroup>
-              </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Email *</Form.Label>
-                <Form.Control
-                  required
-                  type="email"
-                  placeholder="Email"
-                  controlId="email"
-                  value={form.email}
-                  // maxLength={60}
-                  onChange={(e) => {
-                    setField("email", e.target.value);
-                    if (form.phoneNumber === "") {
-                      setThirdErrors(" Phone Number is Required");
-                    } else {
-                      setThirdErrors("");
-                    }
-                  }}
-                  isInvalid={!!errors.email}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.email}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Type Of Employment *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="Type Of Employment"
-                  controlId="employmentType"
-                  value={form.employmentType}
-                  onChange={(e) => setField("employmentType", e.target.value)}
-                  isInvalid={!!errors.employmentType}
+          {/* <RegistrationFormStepper/> */}
+          {/* <div>
+            {step === 0 && ( */}
+              <div>
+                <h5>Personal Details</h5>
+                <Form
+                  ref={forms}
+                  className="formone"
+                  // noValidate
+                  // validated={validated}
+                  style={{ padding: 10 }}
+                // onSubmit={handleSubmit}
                 >
-                  <option>Select</option>
-                  <option value="Intern">Intern</option>
-                  <option value="Contract">Contract</option>
-                  <option value="FTE">FTE</option>
-                </Form.Select>
-                <Form.Control.Feedback type="invalid">
-                  {errors.employmentType}
-                </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Department *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="Department"
-                  controlId="department"
-                  value={form.department}
-                  onChange={(e) => {
-                    console.log(e.target.value);
-                    axios
-                      .get(
-                        `/designation/getDesignationByDepartment/${e.target.value}`
-                      )
-                      .then((response) => {
-                        console.log(response.data);
-                        setDesignations(response.data);
-                      });
-                    setField("department", e.target.value);
-                  }}
-                  isInvalid={!!errors.department}
-                >
-                  <option>Select </option>
-                  {departments.map((departmentss) => (
-                    <option value={departmentss.departmentId}>
-                      {departmentss.departmentName}
-                    </option>
-                  ))}
-                </Form.Select>
-                <Form.Control.Feedback type="invalid">
-                  {errors.department}
-                </Form.Control.Feedback>
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Designation *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="Designation"
-                  controlId="designation"
-                  value={form.designation}
-                  onChange={(e) => setField("designation", e.target.value)}
-                  isInvalid={!!errors.designation}
-                >
-                  <option>Select</option>
-                  {designations.map((designation) => (
-                    <option>{designation.designationName}</option>
-                  ))}
-                </Form.Select>
-                <Form.Control.Feedback type="invalid">
-                  {errors.designation}
-                </Form.Control.Feedback>
+                  <Row className="mb-4">
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                      <Form.Label>First name *</Form.Label>
+                      <Form.Control
+                        required
+                        className="firstName"
+                        type="text"
+                        controlId="firstName"
+                        placeholder="First name"
+                        // onChange={(event) => setFirstName(event.target.value)}
+                        value={form.firstName}
+                        maxLength={30}
+                        onChange={(e) => setField("firstName", e.target.value)}
+                        isInvalid={!!errors.firstName}
+                      ></Form.Control>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.firstName}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                      <Form.Label>Middle name</Form.Label>
+                      <Form.Control
+                        name="middle_name"
+                        type="text"
+                        controlId="middleName"
+                        placeholder="Middle name"
+                        value={form.middleName}
+                        maxLength={30}
+                        onChange={(e) => setField("middleName", e.target.value)}
+                      ></Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                      <Form.Label>Last name *</Form.Label>
+                      <Form.Control
+                        required
+                        name="last_name"
+                        type="text"
+                        controlId="lastName"
+                        placeholder="Last name"
+                        value={form.lastName}
+                        maxLength={30}
+                        onChange={(e) => setField("lastName", e.target.value)}
+                        isInvalid={!!errors.lastName}
+                      ></Form.Control>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.lastName}
+                      </Form.Control.Feedback>
+                      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                      <Form.Label>Phone Number *</Form.Label>
+                      <InputGroup hasValidation>
+                        <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
+                        <Form.Control
+                          required
+                          type="number"
+                          placeholder="Phone Number"
+                          controlId="phoneNumber"
+                          value={form.phoneNumber}
+                          maxLength={10}
+                          onChange={(e) => {
+                            setField("phoneNumber", e.target.value);
+                            if (e.target.value.length > 10) {
+                              setThirdErrors(
+                                " Phone Number length should be 10 characters"
+                              );
+                            }
+                          }}
+                          isInvalid={thirderrors}
+                        ></Form.Control>
+                        <Form.Control.Feedback type="invalid">
+                          {thirderrors}
+                        </Form.Control.Feedback>
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                      </InputGroup>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                      <Form.Label>Email *</Form.Label>
+                      <Form.Control
+                        required
+                        type="email"
+                        placeholder="Email"
+                        controlId="email"
+                        value={form.email}
+                        // maxLength={60}
+                        onChange={(e) => {
+                           setField("email", e.target.value) ;
+                        // if(e.target.value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)){
+                        //    setField("email", e.target.value);
+                        // }
+                        // else{
+                        //   email
+                        // }
 
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
-
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Date of Joining *</Form.Label>
-                <Form.Control
-                  required
-                  type="date"
-                  placeholder="Joining Date"
-                  controlId="dateOfJoining"
-                  value={form.dateOfJoining}
-                  onChange={(e) => setField("dateOfJoining", e.target.value)}
-                  isInvalid={!!errors.dateOfJoining}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.dateOfJoining}
-                </Form.Control.Feedback>
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
-
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Years Of Experience *</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  min="0.00"
-                  step="1.00"
-                  max="50.00"
-                  placeholder="Experience "
-                  controlId="yearsOfExperience"
-                  value={form.yearsOfExperience}
-                  onChange={(e) => {
-                    setField("yearsOfExperience", e.target.value);
-                    //const yearsOfExperience = e.target.value;
-
-                    // if (!yearsOfExperience || yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)) {
-                    // setField(() => ({ yearsOfExperience }));
-                    // }
-                  }}
-                  isInvalid={!!errors.yearsOfExperience}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.yearsOfExperience}
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                       
+                          if (form.phoneNumber === "") {
+                            setThirdErrors(" Phone Number is Required");
+                          } else {
+                            setThirdErrors("");
+                          }
+                         }}
+                        isInvalid={!!errors.email}
+                      ></Form.Control>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.email}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                      <Form.Label>Date of Joining *</Form.Label>
+                      <Form.Control
+                        required
+                        type="date"
+                        placeholder="Joining Date"
+                        controlId="dateOfJoining"
+                        value={form.dateOfJoining}
+                        onChange={(e) => setField("dateOfJoining", e.target.value)}
+                        isInvalid={!!errors.dateOfJoining}
+                      ></Form.Control>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.dateOfJoining}
+                      </Form.Control.Feedback>
+                      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Primary Skills *</Form.Label>
                 <Form.Control
                   required
@@ -497,44 +470,132 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
                   {errors.secondarySkills}
                 </Form.Control.Feedback>
               </Form.Group>
-              
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Select Reporting Manager *</Form.Label>
-                <Form.Select
-                  placeholder="select Gender"
-                  value={form.reportingManager}
-                  Select
-                  onChange={(e) => setField("reportingManager", e.target.value)}
+
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                      <Form.Label>Years Of Experience *</Form.Label>
+                      <Form.Control
+                        required
+                        type="text"
+                        min="0.00"
+                        step="1.00"
+                        max="50.00"
+                        placeholder="Experience "
+                        controlId="yearsOfExperience"
+                        value={form.yearsOfExperience}
+                        onChange={(e) => {
+                          setField("yearsOfExperience", e.target.value);
+                          //const yearsOfExperience = e.target.value;
+
+                          // if (!yearsOfExperience || yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)) {
+                          // setField(() => ({ yearsOfExperience }));
+                          // }
+                        }}
+                        isInvalid={!!errors.yearsOfExperience}
+                      ></Form.Control>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.yearsOfExperience}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
+                  </Row>
+                </Form>
+                <Button onClick={handleSubmit}>Submit</Button>
+             
+            {/* )} */}
+{/*            
+            {step === 1 && (
+              <div>
+                <h5>Employment Details</h5>
+                <Form
+                  ref={forms}
+                  className="formone"
+                  // noValidate
+                  // validated={validated}
+                  style={{ padding: 10 }}
+                // onSubmit={handleSubmit}
                 >
-                  <option>Select </option>
-                  {reportingManager.map((reportingManagerr) => (
-                    <option>{reportingManagerr.reportingmanager}</option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-
+              <Row className="mb-4">
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                    <Form.Label>Assign Band *</Form.Label>
-                    <Form.Select
-                      type="text"
-                      placeholder="Band"
-                      controlId="band"
-                      name="band"
-                      value={form.band}
-                      onChange={(e) => setField("band", e.target.value)}
-                    >
-                      {/* <option>Select</option>
-                      <option value="Band-1">Band-1</option>
-                      <option value="Band-2">Band-2</option>
-                      <option value="Band-3">Band-3</option> */}
-                       <option>Select </option>
-                  {bands.map((bandss) => (
-                    <option>{bandss.bandName}</option>
-                  ))}
-                    </Form.Select>
-                  </Form.Group>
+                      <Form.Label>Type Of Employment *</Form.Label>
+                      <Form.Select
+                        required
+                        type="text"
+                        placeholder="Type Of Employment"
+                        controlId="employmentType"
+                        value={form.employmentType}
+                        onChange={(e) => setField("employmentType", e.target.value)}
+                        isInvalid={!!errors.employmentType}
+                      >
+                        <option>Select</option>
+                        <option value="Intern">Intern</option>
+                        <option value="Contract">Contract</option>
+                        <option value="FTE">FTE</option>
+                      </Form.Select>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.employmentType}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                      <Form.Label>Business Unit *</Form.Label>
+                      <Form.Select
+                        required
+                        type="text"
+                        placeholder="Businees Unit"
+                        controlId="department"
+                        value={form.department}
+                        onChange={(e) => {
+                          console.log(e.target.value);
+                          axios
+                            .get(
+                              `/designation/getDesignationByDepartment/${e.target.value}`
+                            )
+                            .then((response) => {
+                              console.log(response.data);
+                              setDesignations(response.data);
+                            });
+                          setField("department", e.target.value);
+                        }}
+                        isInvalid={!!errors.department}
+                      >
+                        <option>Select </option>
+                        {departments.map((departmentss) => (
+                          <option value={departmentss.departmentId}>
+                            {departmentss.departmentName}
+                          </option>
+                        ))}
+                      </Form.Select>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.department}
+                      </Form.Control.Feedback>
+                      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                      <Form.Label>Designation *</Form.Label>
+                      <Form.Select
+                        required
+                        type="text"
+                        placeholder="Designation"
+                        controlId="designation"
+                        value={form.designation}
+                        onChange={(e) => setField("designation", e.target.value)}
+                        isInvalid={!!errors.designation}
+                      >
+                        <option>Select</option>
+                        {designations.map((designation) => (
+                          <option>{designation.designationName}</option>
+                        ))}
+                      </Form.Select>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.designation}
+                      </Form.Control.Feedback>
 
-              {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                      <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    </Form.Group>
+                
+              
+             
+
+             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Select Band *</Form.Label>
                 <Form.Select
                   required
@@ -546,8 +607,8 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
                   
                 >
                   <option>Select</option>
-                  {band.map((bandss) => (
-                    <option>{bandss.band}</option>
+                  {bands.map((bandss) => (
+                    <option>{bandss.bandName}</option>
                   ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
@@ -555,7 +616,7 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
                 </Form.Control.Feedback>
 
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group> */}
+              </Form.Group>
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Job Title *</Form.Label>
                 <Form.Control
@@ -602,56 +663,67 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
                   controlId="projectName"
                   value={form.projectName}
                   onChange={(e) => setField("projectName", e.target.value)}
-                  isInvalid={!!errors.projectName}
                 >
-                  <option>Select </option>
+                  <option>Select</option>
+                  {/* <option value="HRM">HRM</option>
+                  <option value="MDM">MDM</option> 
                   {project.map((projects) => (
                     <option>{projects.projectName}</option>
                   ))}
                 </Form.Select>
-                <Form.Control.Feedback type="invalid">
-                  {errors.projectName}
-                </Form.Control.Feedback>
               </Form.Group>
-            </Row>
-            <Row>
-              <Col>
-                <Button
-                  style={{
-                    backgroundColor: "#ff9b44",
-                    borderColor: "#ff9b44",
-                    float: "right",
-                    width: "40%",
-                    height: "120%",
-                    borderRadius: "25px",
-                  }}
-                  type="submit"
-                  onClick={handleSubmit}
-                >
-                  Submit
-                </Button>
-              </Col>
-              <Col>
-                <Button
-                  style={{
-                    backgroundColor: "#B6B6B4",
-                    borderColor: "#B6B6B4",
-                    alignItems: "center",
-                    width: "40%",
-                    height: "120%",
-                    borderRadius: "25px",
-                  }}
-                  type="cancel"
-                  onClick={handleClose}
-                >
-                  Close
-                </Button>
-              </Col>
-            </Row>
-          </Form>
-        </Modal.Body>
-      </Modal>
-    </div>
+
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select IRM*</Form.Label>
+                <AutoCompleteComponent
+                outlined
+                  dataSource={users}
+                  placeholder="select IRM"
+                  fields={{ value: "firstName" }}
+                  value={form.irm}
+                  onChange={(e) => setField("irm", e.target.itemData.employeeId)}
+                  // query={dataQuery}
+                ></AutoCompleteComponent>
+              </Form.Group>
+
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select SRM*</Form.Label>
+                <AutoCompleteComponent
+                outlined
+                  dataSource={users}
+                  placeholder="select SRM"
+                  fields={{ value: "firstName" }}
+                  value={form.srm}
+                  onChange={(e) => setField("srm", e.target.itemData.employeeId)}
+                  // query={dataQuery}
+                ></AutoCompleteComponent>
+              </Form.Group>
+
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select BUH*</Form.Label>
+                <AutoCompleteComponent
+                outlined
+                 dataSource={users}
+                  placeholder="select BUH"
+                  fields={{ value: "firstName", display:"employeeId" }}
+                  value={form.buh}
+                  onChange={(e) => setField("buh", e.target.itemData.employeeId)}
+                  // query={dataQuery}
+                ></AutoCompleteComponent>
+
+              </Form.Group>
+
+
+          </Row>
+            </Form> 
+                <Button onClick={handleSubmit}>Submit</Button>
+              </div>
+            )}
+           */}
+        </div>
+      </Modal.Body>
+    </Modal>
+    </div >
   );
 }
 export default AddOnboard;

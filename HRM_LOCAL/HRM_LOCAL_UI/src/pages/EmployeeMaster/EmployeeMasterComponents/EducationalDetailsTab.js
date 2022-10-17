@@ -1,35 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Card, Form, Row, Col, InputGroup, Button, Accordion } from "react-bootstrap";
+import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+import "./EmployeeMaster.css";
+import '../../../App.css';
+import { Typography } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import { BASE_URL } from "../../../Constant";
+
 
 function EducationalDetailsTab() {
 
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
 
-    const [ferrors, setFErrors] = useState("");
-    const [serror, setSerror] = useState("");
-    const [thirderrors, setThirdErrors] = useState("");
-    const [fourerror, setFourerror] = useState("");
-    const [fiveerrors, setFiveErrors] = useState("");
-    const [sixerror, setSixerror] = useState("");
-    const [sevenerrors, setSevenErrors] = useState("");
-    const [eighterror, setEighterror] = useState("");
-    const [nineerrors, setNineErrors] = useState("");
-    const [tenerror, setTenerror] = useState("");
-    const [elevenerrors, setElevenErrors] = useState("");
-    const [tweleveerror, setTweleveerror] = useState("");
-    const [thirteenerrors, setThirteenErrors] = useState("");
-    const [fourteenerror, setFourteenerror] = useState("");
-    const [fifteenerrors, setFifteenErrors] = useState("");
-    const [sixteenerror, setSixteenerror] = useState("");
-    const [seventeenerror, setSeventeenerror] = useState("");
-    const [eighteenerror, setEighteenerror] = useState("");
-    const [nineteenerror, setNineteenerror] = useState("");
-    const [twentyerror, setTwentyerror] = useState("");
-    const [twentyoneerror, setTwentyoneerror] = useState("");
+
+
     const [twentytwoerror, setTwentytwoerror] = useState("");
     const [twentythreerror, setTwentythreerror] = useState("");
     const [twentyfourerror, setTwentyfourerror] = useState("");
@@ -55,37 +47,6 @@ function EducationalDetailsTab() {
     const [fourtyfour, setFourtyfour] = useState("");
     const [fourtyfive, setFourtyfive] = useState("");
     const [fourtysix, setFourtysix] = useState("");
-    const [fourtyseven, setFourtyseven] = useState("");
-    const [fourtyeight, setFourtyeight] = useState("");
-    const [fourtynine, setFourtynine] = useState("");
-
-
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [middleName, setMiddleName] = useState(" ");
-    const [primaryPhoneNumber, setPrimaryPhoneNumber] = useState(" ");
-    const [secondaryPhoneNumber, setSecondaryPhone] = useState("");
-    const [yearsOfExperience, setYearsOfExperience] = useState(" ");
-    const [dateOfBirth, setDateOfBirth] = useState("");
-    const [passportExpiryDate, setPassportExpiryDate] = useState("");
-    const [passportNo, setPassportNo] = useState("");
-    const [employeeId, setEmployeeId] = useState("");
-    const [primarySkills, setPrimarySkills] = useState("");
-    const [secondarySkills, setSecondarySkills] = useState("");
-    const [email, setEmail] = useState("");
-    const [bloodGroup, setBloodGroup] = useState("");
-    const [gender, setGender] = useState("");
-    const [maritalStatus, setMaritalStatus] = useState("");
-    const [designationName, setDesignationName] = useState("");
-    const [dateOfJoining, setDateOfJoining] = useState("");
-    const [reportingManager, setReportingManager] = useState("");
-    const [permanentAdress, setPermanentAddress] = useState("");
-    const [permanentState, setPermanentState] = useState("");
-    const [permanentCountry, setPermanentCountry] = useState("");
-    const [permanentPincode, setPermanentPincode] = useState("");
-    const [currentAdress, setCurrentAddress] = useState("");
-    const [currentState, setCurrentState] = useState("");
-    const [currentCountry, setCurrentCountry] = useState("");
     const [currentPincode, setCurrentPincode] = useState("");
     const [postgraduationType, setTypeOfPostGraduation] = useState("");
     const [postgraduationBoardOfUniversity, setPostgraduationBoardOfUniversity] = useState("");
@@ -105,6 +66,7 @@ function EducationalDetailsTab() {
     // const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
     // const [graduationPassedYear, setGraduationPassedYear] = useState("");
     const [graduationGrade, setGraduationGrade] = useState("");
+    const [intermediateQualification, setIntermediateQualification] = useState("");
     const [intermediateBoardOfUniversity, setIntermediateBoardOfUniversity] = useState("");
     const [intermediateCollegeName, setIntermediateCollegeName] = useState("");
     const [intermediateCollegeCity, setIntermediateCollegeCity] = useState("");
@@ -112,6 +74,7 @@ function EducationalDetailsTab() {
     const [intermediateJoiningYear, setIntermediateJoiningYear] = useState("");
     const [intermediatePassedYear, setIntermediatePassedYear] = useState("");
     const [intermediateGrade, setIntermediateGrade] = useState("");
+    const [sscQualification, setSscQualification] = useState("");
     const [sscBoardOfUniversity, setSscBoardOfUniversity] = useState("");
     const [sscSchoolName, setSscSchoolName] = useState("");
     const [sscSchoolCity, setSscSchoolCity] = useState("");
@@ -119,45 +82,25 @@ function EducationalDetailsTab() {
     const [sscJoiningYear, setSscJoiningYear] = useState("");
     const [sscPassedYear, setSscPassedYear] = useState("");
     const [sscGrade, setSscGrade] = useState("");
-    const [previousCompany1_name, setPreviousCompany1_name] = useState("");
-    const [previousCompany1_designation, setPreviousCompany1_designation] = useState("");
-    const [previousCompany1_joiningDate, setPreviousCompany1_joiningDate] = useState("");
-    const [previousCompany1_relievingDate, setPreviousCompany1_relievingDate] = useState("");
-    const [previousCompany1_employeeId, setPreviousCompany1_employeeId] = useState("");
-    const [previousCompany1_typeOfEmployment, setPreviousCompany1_typeOfEmployement] = useState("");
-    const [previousCompany1_reasonForRelieving, setPreviousCompany1_reasonForRelieving] = useState("");
-    const [previousCompany2_name, setPreviousCompany2_name] = useState("");
-    const [previousCompany2_designation, setPreviousCompany2_designation] = useState("");
-    const [previousCompany2_joiningDate, setPreviousCompany2_joiningDate] = useState("");
-    const [previousCompany2_relievingDate, setPreviousCompany2_relievingDate] = useState("");
-    const [previousCompany2_employeeId, setPreviousCompany2_employeeId] = useState("");
-    const [previousCompany2_typeOfEmployment, setPreviousCompany2_typeOfEmployement] = useState("");
-    const [previousCompany2_reasonForRelieving, setPreviousCompany2_reasonForRelieving] = useState("");
-    const [previousCompany3_name, setPreviousCompany3_name] = useState("");
-    const [previousCompany3_designation, setPreviousCompany3_designation] = useState("");
-    const [previousCompany3_joiningDate, setPreviousCompany3_joiningDate] = useState("");
-    const [previousCompany3_relievingDate, setPreviousCompany3_relievingDate] = useState("");
-    const [previousCompany3_employeeId, setPreviousCompany3_employeeId] = useState("");
-    const [previousCompany3_typeOfEmployment, setPreviousCompany3_typeOfEmployement] = useState("");
-    const [previousCompany3_reasonForRelieving, setPreviousCompany3_reasonForRelieving] = useState("");
-    const [employmentType, setEmploymentType] = useState("");
-    const [departmentName, setDepartmentName] = useState("");
-    const [projectName, setProjectName] = useState("");
 
-    const [panNumber, setPanNumber] = useState("");
-    const [aadharNumber, setAadharNumber] = useState("");
-    const [uanNumber, setUanNumber] = useState("");
-    const [bankName, setBankName] = useState("");
-    const [accountNumber, setAccountNumber] = useState("");
     const [ifscCode, setIfscCode] = useState("");
     const [branch, setBranch] = useState("");
-    const [band, setBand] = useState("");
-    const [exitDate, setExitDate] = useState("");
+
+    const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
+    useEffect(() => {
+        axios
+            .get(`/emp/getEmployeeDataByEmployeeId/${empId}`)
+            .then((response) => {
+                setGetEmployeeDetails(response.data.data);
+            });
+    }, []);
+    console.log(getEmployeeDetails.onboardingId);
+    const obdId = getEmployeeDetails.onboardingId;
 
 
     useEffect(() => {
         axios
-            .get(`/emp/getEducationDetails/${employeeid}`)
+            .get(`/emp/getEducationDetails/${empId}`)
             .then((response) => {
                 setTypeOfPostGraduation(response.data.data.postgraduationType)
                 setPostgraduationBoardOfUniversity(response.data.data.postgraduationBoardOfUniversity);
@@ -175,6 +118,7 @@ function EducationalDetailsTab() {
                 setGraduationJoiningYear(response.data.data.graduationJoiningYear);
                 setGraduationPassedYear(response.data.data.graduationPassedYear);
                 setGraduationGrade(response.data.data.graduationGrade);
+                setIntermediateQualification(response.data.data.intermediateQualification);
                 setIntermediateBoardOfUniversity(response.data.data.intermediateBoardOfUniversity);
                 setIntermediateCollegeName(response.data.data.intermediateCollegeName);
                 setIntermediateCollegeCity(response.data.data.intermediateCollegeCity);
@@ -182,6 +126,7 @@ function EducationalDetailsTab() {
                 setIntermediateJoiningYear(response.data.data.intermediateJoiningYear);
                 setIntermediatePassedYear(response.data.data.intermediatePassedYear);
                 setIntermediateGrade(response.data.data.intermediateGrade);
+                setSscQualification(response.data.data.sscQualification);
                 setSscBoardOfUniversity(response.data.data.sscBoardOfUniversity);
                 setSscSchoolName(response.data.data.sscSchoolName);
                 setSscSchoolCity(response.data.data.sscSchoolCity);
@@ -194,69 +139,243 @@ function EducationalDetailsTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
-        try{
-        await axios.put(`/emp/updateEducationalDetails/${employeeid}`, {
-            postgraduationType,
-            postgraduationBoardOfUniversity,
-            postgraduationInstituteName,
-            postgraduationInstituteCity,
-            postgraduationCourseName,
-            postgraduationJoiningYear,
-            postgraduationPassedYear,
-            postgraduationGrade,
-            graduationType,
-            graduationBoardOfUniversity,
-            graduationInstituteName,
-            graduationInstituteCity,
-            graduationCourseName,
-            graduationJoiningYear,
-            graduationPassedYear,
-            graduationGrade,
-            intermediateBoardOfUniversity,
-            intermediateCollegeName,
-            intermediateCollegeCity,
-            intermediateCourseName,
-            intermediateJoiningYear,
-            intermediatePassedYear,
-            intermediateGrade,
-            sscBoardOfUniversity,
-            sscSchoolName,
-            sscSchoolCity,
-            sscCourseName,
-            sscJoiningYear,
-            sscPassedYear,
-            sscGrade,
+        try {
+            await axios.put(`/emp/updateEducationalDetails/${empId}`, {
+                postgraduationType,
+                postgraduationBoardOfUniversity,
+                postgraduationInstituteName,
+                postgraduationInstituteCity,
+                postgraduationCourseName,
+                postgraduationJoiningYear,
+                postgraduationPassedYear,
+                postgraduationGrade,
+                graduationType,
+                graduationBoardOfUniversity,
+                graduationInstituteName,
+                graduationInstituteCity,
+                graduationCourseName,
+                graduationJoiningYear,
+                graduationPassedYear,
+                graduationGrade,
+                intermediateQualification,
+                intermediateBoardOfUniversity,
+                intermediateCollegeName,
+                intermediateCollegeCity,
+                intermediateCourseName,
+                intermediateJoiningYear,
+                intermediatePassedYear,
+                intermediateGrade,
+                sscQualification,
+                sscBoardOfUniversity,
+                sscSchoolName,
+                sscSchoolCity,
+                sscCourseName,
+                sscJoiningYear,
+                sscPassedYear,
+                sscGrade,
 
-        });
-        toast.success("Form Submitted Successfully");
-    }
-    catch(error){
-        toast.error("Somethingwent Wrong");
-  }
+            });
+            toast.success("Form Submitted Successfully");
+        }
+        catch (error) {
+            toast.error("Somethingwent Wrong");
+        }
     };
+
+    const viewUploadFile = () => {
+        // window.open(`api/get/image/${imageName}/${onboardingId}`)
+        axios
+            .get(`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${obdId}`, {
+                contentType: "application/pdf",
+            })
+            .then((res) => {
+                console.log(res.data.url);
+                setImageName(res.data);
+                setUrl(res.data.url);
+                saveAs(url);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
 
     return (
 
         <div>
-            <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+            {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
                 <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Educational Details
                 </Card.Title>
-            </Card>
+            </Card> */}
 
             <Form
                 onSubmit={(e) => changeHandler(e)}
                 style={{ padding: 10 }}
             >
                 <Row className="mb-5">
-                <Card style={{ marginLeft: 0, marginRight: 0, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 12, textAlign: "center" }}>
-                    Postgraduation Details
-                </Card.Title>
-            </Card>
-                    <Accordion defaultActiveKey="1">
-                        <Accordion.Item eventKey="0">
-                            <Accordion.Header>Post Graduation</Accordion.Header>
+                    <Card style={{ marginLeft: 0, marginRight: 0, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+                        <Card.Title style={{ margin: 8, textAlign: "center" }}>
+                            Postgraduation Details
+                        </Card.Title>
+                    </Card>
+
+                    <Accordion>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <Typography >Postgraduation Details</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography>
+                                <Row>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Qualification </Form.Label>
+                                        <Form.Select
+                                            required
+                                            type="text"
+                                            placeholder="Qualification"
+                                            controlId="postgraduationType"
+                                            name="postgraduationType"
+                                            value={postgraduationType}
+                                            maxLength={50}
+                                            onChange={(e) =>
+                                                setTypeOfPostGraduation(
+                                                    e.target.value
+                                                )
+                                            }
+                                        >
+                                            <option>Select</option>
+                                            <option value="Master of Arts (MA)">Master of Arts (MA) </option>
+                                            <option value="Master of Science (MS, MSc) ">Master of Science (MS, MSc) </option>
+                                            <option value="Master of Business Administration (MBA)">Master of Business Administration (MBA)</option>
+                                            <option value="Master of Research (MRes)">Master of Research (MRes) </option>
+                                            <option value="Master by Research (MPhil)">Master by Research (MPhil)</option>
+                                            <option value="Master of Studies (MSt)">Master of Studies (MSt)</option>
+                                            <option value="Master of Library Science (MLS, MLIS, MSLS)">Master of Library Science (MLS, MLIS, MSLS)</option>
+                                            <option value="Other">Other</option>
+                                        </Form.Select>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>University Name </Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="University Name"
+                                            controlId="postgraduationBoardOfUniversity"
+                                            name="postgraduationBoardOfUniversity"
+                                            maxLength={50}
+                                            value={postgraduationBoardOfUniversity}
+                                            onChange={(e) =>
+                                                setPostgraduationBoardOfUniversity(
+                                                    e.target.value
+                                                )
+                                            }
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Institute Name </Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Institute Name "
+                                            controlId="postgraduationInstituteName"
+                                            value={postgraduationInstituteName}
+                                            maxLength={50}
+                                            name="postgraduationInstituteName"
+                                            onChange={(e) =>
+                                                setPostgraduationInstituteName(e.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Institute City/Town </Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Institute City"
+                                            controlId="postgraduationInstituteCity"
+                                            value={postgraduationInstituteCity}
+                                            maxLength={50}
+                                            name="postgraduationInstituteCity"
+                                            onChange={(e) =>
+                                                setPostgraduationInstituteCity(e.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Course Name </Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Course Name"
+                                            controlId="postgraduationCourseName"
+                                            value={postgraduationCourseName}
+                                            maxLength={50}
+                                            name="postgraduationCourseName"
+                                            onChange={(e) =>
+                                                setPostgraduationCourseName(e.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Joining Year </Form.Label>
+                                        <Form.Control
+                                            type="date"
+                                            placeholder="Joining Year"
+                                            controlId="postgraduationJoiningYear"
+                                            value={postgraduationJoiningYear}
+                                            maxLength={50}
+                                            name="postgraduationJoiningYear"
+                                            onChange={(e) =>
+                                                setPostgraduationJoiningYear(e.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Passed-out Year</Form.Label>
+                                        <Form.Control
+                                            type="date"
+                                            placeholder="Passed out year"
+                                            controlId="postgraduationPassedYear"
+                                            value={postgraduationPassedYear}
+
+                                            min={postgraduationJoiningYear}
+                                            maxLength={50}
+                                            name="postgraduationPassedYear"
+                                            onChange={(e) =>
+                                                setPostgraduationPassedYear(e.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                        <Form.Label>Grade</Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="Percentage/Grade/CGPA/GPA"
+                                            controlId="postgraduationGrade"
+                                            value={postgraduationGrade}
+
+                                            name="postgraduationGrade"
+                                            maxLength={5}
+                                            onChange={(e) => {
+                                                setPostgraduationGrade(e.target.value)
+
+                                                // if (postgraduationGrade > maxLength) {
+                                                //     setElevenErrors("Length of grade should be less then 5 characters");
+                                                // }
+                                            }}
+
+                                        />
+                                    </Form.Group>
+                                </Row>
+
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+
+
+                    {/* <Accordion defaultActiveKey="1" style={{backgroundColor:"white"}}>
+                        <Accordion.Item eventKey="0" style={{backgroundColor:"white"}}  >
+                            <Accordion.Header style={{backgroundColor:"white"}} >Post Graduation</Accordion.Header>
                             <Accordion.Body>
                                 <Row>
                                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -397,22 +516,22 @@ function EducationalDetailsTab() {
                                 </Row>
                             </Accordion.Body>
                         </Accordion.Item>
-                    </Accordion>
+                    </Accordion> */}
 
                     <Card
                         style={{ marginLeft: 8, marginRight: 0, marginTop: 20, backgroundColor: "#FAFDD0" }}
                     >
-                        <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                        <Card.Title style={{ margin: 7, textAlign: "center" }}>
                             Graduation Details
                         </Card.Title>
                     </Card>
 
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Type of Graduation *</Form.Label>
+                        <Form.Label>Qualification*</Form.Label>
                         <Form.Select
                             required
                             type="text"
-                            placeholder="Type Of Graduation"
+                            placeholder="Qualification"
                             controlId="graduationType"
                             maxLength={50}
                             name="graduationType"
@@ -630,10 +749,38 @@ function EducationalDetailsTab() {
                     <Card
                         style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}
                     >
-                        <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                        <Card.Title style={{ margin: 7, textAlign: "center" }}>
                             12th Grade/Intermediate Details
                         </Card.Title>
                     </Card>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Qualification * </Form.Label>
+                        <Form.Select
+                            required
+                            type="text"
+                            placeholder="Qualification"
+                            controlId="intermediateQualification"
+                            name="intermediateQualification"
+                            value={intermediateQualification}
+                            maxLength={50}
+                            onChange={(e) => {
+                                setIntermediateQualification(e.target.value)
+                                // if (graduationGrade === "") {
+                                //     setThirtyoneerror("Grade is Required");
+                                // }
+                                // else {
+                                //     setThirtyoneerror("")
+                                // }
+                            }}
+                        >
+                            <option>Select </option>
+                            <option value="Intermediate">Intermediate </option>
+                            <option value="12th Grade">12th Grade </option>
+                        </Form.Select>
+                        <Form.Control.Feedback type="invalid">
+
+                        </Form.Control.Feedback>
+                    </Form.Group>
 
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Board * </Form.Label>
@@ -817,10 +964,36 @@ function EducationalDetailsTab() {
                     <Card
                         style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}
                     >
-                        <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                        <Card.Title style={{ margin: 7, textAlign: "center" }}>
                             10th Grade details
                         </Card.Title>
                     </Card>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Qualification * </Form.Label>
+                        <Form.Select
+                            required
+                            type="text"
+                            placeholder="Qualification"
+                            controlId="sscQualification"
+                            maxLength={50}
+                            onChange={(e) => {
+                                setSscQualification(e.target.value)
+                                // if (intermediateGrade === "") {
+                                //     setThirtyeighterror("Grade is Required");
+                                // }
+                                // else {
+                                //     setThirtyeighterror("")
+                                // }
+                            }}
+                            name="sscQualification"
+                        >
+                            <option>Select </option>
+                            <option value="SSC">SSC</option>
+                        </Form.Select>
+                        <Form.Control.Feedback type="invalid">
+
+                        </Form.Control.Feedback>
+                    </Form.Group>
 
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Board *</Form.Label>
@@ -997,20 +1170,32 @@ function EducationalDetailsTab() {
                             {fourtyfive}
                         </Form.Control.Feedback>
                     </Form.Group>
-                </Row>
 
-                <Button
-                    className="rounded-pill" md="3"
-                    style={{ backgroundColor: "#eb4509", float: "right" }}
-                    type="submit"
-                    size="lg"
-                >
-                    Submit
-                </Button>
+                    <Col md="6" style={{ padding: 70 }}>
+                        <a
+                            href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${obdId}`}
+                        >
+                            Download Documents
+                        </a>
+                    </Col>
+                    <Row>
+                        <Col>
+                            <Button
+                                className="rounded-pill" md="3"
+                                style={{ backgroundColor: "#eb4509", float: "right" }}
+                                type="submit"
+                                size="lg"
+                            >
+                                Submit
+                            </Button></Col>
+
+                    </Row>
+
+                </Row>
             </Form>
+
         </div>
     )
 }
 export default EducationalDetailsTab;
-
 

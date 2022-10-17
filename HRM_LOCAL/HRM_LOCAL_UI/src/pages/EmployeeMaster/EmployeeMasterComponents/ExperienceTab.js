@@ -1,13 +1,18 @@
+
 import React, { useEffect, useState } from "react";
 import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../../../Constant";
 
 function ExperienceTab() {
 
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
+    const empId = localStorage.getItem('item')
+
+
 
     const [ferrors, setFErrors] = useState("");
     const [serror, setSerror] = useState("");
@@ -21,104 +26,7 @@ function ExperienceTab() {
     const [tenerror, setTenerror] = useState("");
     const [elevenerrors, setElevenErrors] = useState("");
     const [tweleveerror, setTweleveerror] = useState("");
-    const [thirteenerrors, setThirteenErrors] = useState("");
-    const [fourteenerror, setFourteenerror] = useState("");
-    const [fifteenerrors, setFifteenErrors] = useState("");
-    const [sixteenerror, setSixteenerror] = useState("");
-    const [seventeenerror, setSeventeenerror] = useState("");
-    const [eighteenerror, setEighteenerror] = useState("");
-    const [nineteenerror, setNineteenerror] = useState("");
-    const [twentyerror, setTwentyerror] = useState("");
-    const [twentyoneerror, setTwentyoneerror] = useState("");
-    const [twentytwoerror, setTwentytwoerror] = useState("");
-    const [twentythreerror, setTwentythreerror] = useState("");
-    const [twentyfourerror, setTwentyfourerror] = useState("");
-    const [twentyfiveerror, setTwentyfiveerror] = useState("");
-    const [twentysixerror, setTwentysixerror] = useState("");
-    const [twentysevenerror, setTwentysevenerror] = useState("");
-    const [twentyeighterror, setTwentyeighterror] = useState("");
-    const [twentynineerror, setTwentynineerror] = useState("");
-    const [thirtyerror, setThirtyerror] = useState("");
-    const [thirtyoneerror, setThirtyoneerror] = useState("");
-    const [thirtytwoerror, setThirtytwoerror] = useState("");
-    const [thirtythreeerror, setThirtythreeerror] = useState("");
-    const [thirtyfourerror, setThirtyfourerror] = useState("");
-    const [thirtyfiveerror, setThirtyfiveerror] = useState("");
-    const [thirtysixerror, setThirtysixerror] = useState("");
-    const [thirtysevenerror, setThirtysevenerror] = useState("");
-    const [thirtyeighterror, setThirtyeighterror] = useState("");
-    const [thirtynineerror, setThirtynineerror] = useState("");
-    const [fourty, setFourty] = useState("");
-    const [fourtyone, setFourtyone] = useState("");
-    const [fourtytwo, setFourtytwo] = useState("");
-    const [fourtythree, setFourtythree] = useState("");
-    const [fourtyfour, setFourtyfour] = useState("");
-    const [fourtyfive, setFourtyfive] = useState("");
-    const [fourtysix, setFourtysix] = useState("");
-    const [fourtyseven, setFourtyseven] = useState("");
-    const [fourtyeight, setFourtyeight] = useState("");
-    const [fourtynine, setFourtynine] = useState("");
 
-
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [middleName, setMiddleName] = useState(" ");
-    const [primaryPhoneNumber, setPrimaryPhoneNumber] = useState(" ");
-    const [secondaryPhoneNumber, setSecondaryPhone] = useState("");
-    const [yearsOfExperience, setYearsOfExperience] = useState(" ");
-    const [dateOfBirth, setDateOfBirth] = useState("");
-    const [passportExpiryDate, setPassportExpiryDate] = useState("");
-    const [passportNo, setPassportNo] = useState("");
-    const [employeeId, setEmployeeId] = useState("");
-    const [primarySkills, setPrimarySkills] = useState("");
-    const [secondarySkills, setSecondarySkills] = useState("");
-    const [email, setEmail] = useState("");
-    const [bloodGroup, setBloodGroup] = useState("");
-    const [gender, setGender] = useState("");
-    const [maritalStatus, setMaritalStatus] = useState("");
-    const [designationName, setDesignationName] = useState("");
-    const [dateOfJoining, setDateOfJoining] = useState("");
-    const [reportingManager, setReportingManager] = useState("");
-    const [permanentAdress, setPermanentAddress] = useState("");
-    const [permanentState, setPermanentState] = useState("");
-    const [permanentCountry, setPermanentCountry] = useState("");
-    const [permanentPincode, setPermanentPincode] = useState("");
-    const [currentAdress, setCurrentAddress] = useState("");
-    const [currentState, setCurrentState] = useState("");
-    const [currentCountry, setCurrentCountry] = useState("");
-    const [currentPincode, setCurrentPincode] = useState("");
-    const [postgraduationType, setTypeOfPostGraduation] = useState("");
-    const [postgraduationBoardOfUniversity, setPostgraduationBoardOfUniversity] = useState("");
-    const [postgraduationInstituteName, setPostgraduationInstituteName] = useState("");
-    const [postgraduationInstituteCity, setPostgraduationInstituteCity] = useState("");
-    const [postgraduationCourseName, setPostgraduationCourseName] = useState("");
-    const [postgraduationJoiningYear, setPostgraduationJoiningYear] = useState("");
-    const [postgraduationPassedYear, setPostgraduationPassedYear] = useState("");
-    const [postgraduationGrade, setPostgraduationGrade] = useState("");
-    const [graduationType, setTypeOfGraduation] = useState("");
-    const [graduationBoardOfUniversity, setGraduationBoardOfUniversity] = useState("");
-    const [graduationInstituteName, setGraduationInstituteName] = useState("");
-    const [graduationInstituteCity, setGraduationInstituteCity] = useState("");
-    const [graduationCourseName, setGraduationCourseName] = useState("");
-    const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
-    const [graduationPassedYear, setGraduationPassedYear] = useState("");
-    // const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
-    // const [graduationPassedYear, setGraduationPassedYear] = useState("");
-    const [graduationGrade, setGraduationGrade] = useState("");
-    const [intermediateBoardOfUniversity, setIntermediateBoardOfUniversity] = useState("");
-    const [intermediateCollegeName, setIntermediateCollegeName] = useState("");
-    const [intermediateCollegeCity, setIntermediateCollegeCity] = useState("");
-    const [intermediateCourseName, setIntermediateCourseName] = useState("");
-    const [intermediateJoiningYear, setIntermediateJoiningYear] = useState("");
-    const [intermediatePassedYear, setIntermediatePassedYear] = useState("");
-    const [intermediateGrade, setIntermediateGrade] = useState("");
-    const [sscBoardOfUniversity, setSscBoardOfUniversity] = useState("");
-    const [sscSchoolName, setSscSchoolName] = useState("");
-    const [sscSchoolCity, setSscSchoolCity] = useState("");
-    const [sscCourseName, setSscCourseName] = useState("");
-    const [sscJoiningYear, setSscJoiningYear] = useState("");
-    const [sscPassedYear, setSscPassedYear] = useState("");
-    const [sscGrade, setSscGrade] = useState("");
     const [previousCompany1_name, setPreviousCompany1_name] = useState("");
     const [previousCompany1_designation, setPreviousCompany1_designation] = useState("");
     const [previousCompany1_joiningDate, setPreviousCompany1_joiningDate] = useState("");
@@ -140,24 +48,21 @@ function ExperienceTab() {
     const [previousCompany3_employeeId, setPreviousCompany3_employeeId] = useState("");
     const [previousCompany3_typeOfEmployment, setPreviousCompany3_typeOfEmployement] = useState("");
     const [previousCompany3_reasonForRelieving, setPreviousCompany3_reasonForRelieving] = useState("");
-    const [employmentType, setEmploymentType] = useState("");
-    const [departmentName, setDepartmentName] = useState("");
-    const [projectName, setProjectName] = useState("");
 
-    const [panNumber, setPanNumber] = useState("");
-    const [aadharNumber, setAadharNumber] = useState("");
-    const [uanNumber, setUanNumber] = useState("");
-    const [bankName, setBankName] = useState("");
-    const [accountNumber, setAccountNumber] = useState("");
-    const [ifscCode, setIfscCode] = useState("");
-    const [branch, setBranch] = useState("");
-    const [band, setBand] = useState("");
-    const [exitDate, setExitDate] = useState("");
-
+    const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
+    useEffect(() => {
+        axios
+            .get(`/emp/getEmployeeDataByEmployeeId/${empId}`)
+            .then((response) => {
+                setGetEmployeeDetails(response.data.data);
+            });
+    }, []);
+    console.log(getEmployeeDetails.onboardingId);
+    const obdId = getEmployeeDetails.onboardingId;
 
     useEffect(() => {
         axios
-            .get(`/emp/getExperienceDetails/${employeeid}`)
+            .get(`/emp/getExperienceDetails/${empId}`)
             .then((response) => {
                 setPreviousCompany1_name(response.data.data.previousCompany1_name);
                 setPreviousCompany1_designation(response.data.data.previousCompany1_designation);
@@ -185,46 +90,64 @@ function ExperienceTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
-        try{
-        await axios.put(`/emp/updateExperience/${employeeid}`, {
-            previousCompany1_name,
-            previousCompany1_designation,
-            previousCompany1_joiningDate,
-            previousCompany1_relievingDate,
-            previousCompany1_employeeId,
-            previousCompany1_typeOfEmployment,
-            previousCompany1_reasonForRelieving,
-            previousCompany2_name,
-            previousCompany2_designation,
-            previousCompany2_joiningDate,
-            previousCompany2_relievingDate,
-            previousCompany2_employeeId,
-            previousCompany2_typeOfEmployment,
-            previousCompany2_reasonForRelieving,
-            previousCompany3_name,
-            previousCompany3_designation,
-            previousCompany3_joiningDate,
-            previousCompany3_relievingDate,
-            previousCompany3_employeeId,
-            previousCompany3_typeOfEmployment,
-            previousCompany3_reasonForRelieving,
+        try {
+            await axios.put(`/emp/updateExperience/${empId}`, {
+                previousCompany1_name,
+                previousCompany1_designation,
+                previousCompany1_joiningDate,
+                previousCompany1_relievingDate,
+                previousCompany1_employeeId,
+                previousCompany1_typeOfEmployment,
+                previousCompany1_reasonForRelieving,
+                previousCompany2_name,
+                previousCompany2_designation,
+                previousCompany2_joiningDate,
+                previousCompany2_relievingDate,
+                previousCompany2_employeeId,
+                previousCompany2_typeOfEmployment,
+                previousCompany2_reasonForRelieving,
+                previousCompany3_name,
+                previousCompany3_designation,
+                previousCompany3_joiningDate,
+                previousCompany3_relievingDate,
+                previousCompany3_employeeId,
+                previousCompany3_typeOfEmployment,
+                previousCompany3_reasonForRelieving,
 
-        });
-        toast.success("Form Submitted Successfully");
-    }
-    catch(error){
-        toast.error("Somethingwent Wrong");
-  }
+            });
+            toast.success("Form Submitted Successfully");
+        }
+        catch (error) {
+            toast.error("Somethingwent Wrong");
+        }
     };
+    const viewUploadFile = () => {
+        // window.open(`api/get/image/${imageName}/${onboardingId}`)
+
+        axios
+            .get(`api/get/imageByTitle/ExperienceDetails/${obdId}`, {
+                contentType: "application/pdf",
+            })
+            .then((res) => {
+                console.log(res.data.url);
+                setImageName(res.data);
+                setUrl(res.data.url);
+                saveAs(url);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
 
     return (
 
         <div>
-            <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+            {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
                 <Card.Title style={{ margin: 12, textAlign: "center" }}>
                     Work Experience
                 </Card.Title>
-            </Card>
+            </Card> */}
 
             <Form
                 onSubmit={(e) => changeHandler(e)}
@@ -232,7 +155,7 @@ function ExperienceTab() {
             >
 
                 <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}>
-                    <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                    <Card.Title style={{ margin: 7, textAlign: "center" }}>
                         Experience-1
                     </Card.Title>
                 </Card>
@@ -356,7 +279,7 @@ function ExperienceTab() {
                         />
                     </Form.Group></Row>
                 <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}>
-                    <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                    <Card.Title style={{ margin: 7, textAlign: "center" }}>
                         Experience-2
                     </Card.Title>
                 </Card>
@@ -481,7 +404,7 @@ function ExperienceTab() {
                     </Form.Group>
                 </Row>
                 <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}>
-                    <Card.Title style={{ margin: 12, textAlign: "center" }}>
+                    <Card.Title style={{ margin: 7, textAlign: "center" }}>
                         Experience-3
                     </Card.Title>
                 </Card>
@@ -603,27 +526,16 @@ function ExperienceTab() {
                         />
                     </Form.Group>
 
-
-                    {/* 
-                                        <Form.Group
-                                            as={Col}
-                                            md="6"
-                                            style={{ padding: 10, paddingTop: 20 }}
-                                        >
-                                            <Form.Label>Exit Date</Form.Label>
-                                            <Form.Control
-                                                type="date"
-                                                placeholder="Exit Date"
-                                                controlId="exitDate"
-                                                value={exitDate}
-                                                onChange={(e) => setExitDate(e.target.value)}
-                                                name="exitDate"
-                                            />
-                                        </Form.Group> */}
-
                 </Row>
-
-
+                <Row>
+                    <Col md="6" style={{ padding: 0 }}>
+                        <a
+                            href={`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${obdId}`}
+                        >
+                            Download Documents
+                        </a>
+                    </Col>
+                </Row>
 
                 <Button
                     className="rounded-pill" md="3"

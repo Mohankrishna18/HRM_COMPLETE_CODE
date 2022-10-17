@@ -52,8 +52,8 @@ const NavBar = (props) => {
   }
 
   return (
-    <Row>
-      <Col xs={12} md={12}>
+    // <Row>
+      <Col>
         <div className="ar-top-navigation-bar">
           <Navbar
             style={{
@@ -78,19 +78,14 @@ const NavBar = (props) => {
               </Nav>
             </Col>
             <Col style={{
-
-              paddingRight: "20px",
+              paddingRight: "0px",
             }}>
-
               <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
-
               }} /></Col>
             <Col style={{
-
-              paddingRight: "40px",
+              paddingRight: "0px",
             }}>
               {getEmployeeDetails.firstName}
-
               <br />
               {getEmployeeDetails.lastName}
             </Col>
@@ -99,33 +94,29 @@ const NavBar = (props) => {
               <Nav >
                 <Navbar>
                   <Navbar.Brand href="#">
-                    <td>
+                    <td style={{ paddingLeft: "50%" }}>
                       {isLoggedIn() && (
                         <FaSignOutAlt
                           style={{ fontSize: "34px", paddingTop: "10px" }}
                           onClick={handleLogout}
-
                         />
                       )}
                       <div style={{ fontSize: "15px" }}>
-                        <p onClick={handleLogout}>Logout  <br /> 
-                        {/* <span>V1.0</span> */}
+                        <p onClick={handleLogout}>Logout  <br />
+                          {/* <span>V1.0</span> */}
                         </p>
-
                       </div>
                     </td>
-
                   </Navbar.Brand>
                 </Navbar>
               </Nav>{" "}
             </Col>
           </Navbar>
         </div>
-
       </Col>
-
-    </Row>
+    // </Row>
   );
 };
 
 export default NavBar;
+

@@ -9,22 +9,10 @@ import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-const ClientView = (props) => {
+const ApprovalView = (props) => {
   console.log(props.viewOnboard);
   // console.log(props.firstName)
 
-  // const [firstName, setFirstName] = useState("")
-  // const [middleName, setMiddleName] = useState("")
-  // const [lastName, setLastName] = useState("")
-  // const [email, setEmial] = useState("")
-  // const [phoneNumber, setPhonenNumber] = useState("")
-  // const [dateOfJoining, setDateOfJoining] = useState("")
-  // const [yearsOfExperience, setYearsOfExperience] = useState("")
-  // const [department, setDepartment] = useState("")
-  // const [desgination, setDesignation] = useState("")
-  // const [primarySkills, setPrimarySkills] = useState("")
-  // const [secondarySkills, setSecondrySkills] = useState("")
-  // const [jobTitle, setJobTitle] = useState("")
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -45,27 +33,27 @@ const ClientView = (props) => {
 
   const validateForm = () => {
     const {
-      lastName,
-      middleName,
-      firstName,
+      clientName,
       email,
       phoneNumber,
-      dateOfJoining,
-      yearsOfExperience,
-      designation,
-      department,
-      employmentType,
-      primarySkills,
-      secondarySkills,
-      jobTitle,
+      pocName,
+      startDate,
+      endDate,
+      status,
+      country,
+      address,
+      tag,
+      note,
+
+
     } = form;
     const newErrors = {};
 
-    if (!firstName || firstName === "" || !firstName.match(/^[aA-zZ\s]+$/))
-      newErrors.firstName = "Please Enter First Name";
-    if (!lastName || lastName === "" || !lastName.match(/^[aA-zZ\s]+$/))
-      newErrors.lastName = "Please Enter Last Name";
+    if (!clientName || clientName === "" || !clientName.match(/^[aA-zZ\s]+$/))
+      newErrors.clientName = "Please Enter client Name";
+
     if (!email || email === "") newErrors.email = "Please Enter Email";
+
     if (
       !phoneNumber ||
       phoneNumber === "" ||
@@ -73,27 +61,32 @@ const ClientView = (props) => {
         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
       )
     )
-      newErrors.phoneNumber = "Please Enter Phonenumber";
-    if (!dateOfJoining || dateOfJoining === "")
-      newErrors.dateOfJoining = "Please Enter Date of Joining";
-    if (
-      !yearsOfExperience ||
-      yearsOfExperience === "" ||
-      yearsOfExperience.match(/[^0-9]/g)
-    )
-      newErrors.yearsOfExperience = "Please Enter Years of Experience";
-    if (!designation || designation === "")
-      newErrors.desgination = "Please Enter Designation";
-    if (!department || designation === "")
-      newErrors.department = "Please Enter department";
-    if (!employmentType || employmentType === "")
-      newErrors.employmentType = "Please Enter type of employement";
-    if (!primarySkills || primarySkills === "")
-      newErrors.primarySkills = "Please Enter type of primarySkills";
-    if (!secondarySkills || secondarySkills === "")
-      newErrors.secondarySkills = "Please Enter type of secondarySkills";
-    if (!jobTitle || jobTitle === "")
-      newErrors.jobTitle = "Please Enter type of jobTitle";
+      newErrors.phoneNumber = "Please Enter the correct Phonenumber";
+
+    if (!pocName || pocName === "" || !pocName.match(/^[aA-zZ\s]+$/))
+      newErrors.pocName = "Please Enter POC Name";
+
+    if (!startDate || startDate === "")
+      newErrors.startDate = "Please Enter Start Date";
+
+    if (!endDate || endDate === "")
+      newErrors.endDate = "Please Enter End Date";
+
+    if (!status || status === "")
+      newErrors.status = "Please Enter the status";
+
+    if (!country || country === "")
+      newErrors.country = "Please Enter the country";
+
+    if (!address || address === "")
+      newErrors.address = "Please Enter the address";
+
+    if (!tag || tag === "")
+      newErrors.tag = "Please Enter tag";
+
+    if (!note || note === "")
+      newErrors.note = "Please Enter Notes";
+
 
     return newErrors;
   };
@@ -116,210 +109,221 @@ const ClientView = (props) => {
           // console.log(user);
         })
         .catch((err) => {
-          toast.error("Something Went Wrong");
+          toast.error("Unable to fetch data");
         });
     }
   };
-  // console.log(form.dateOfJoining)
 
-  const [designations, setDesignations] = useState([]);
-  useEffect(() => {
-    axios
-      .get("/designation/getAllDesignations")
-      .then((response) => {
-        setDesignations(response.data);
-      })
-      .catch(() => {
-        toast.error("data is not getting");
-      });
-  }, []);
+  // const [departments, setDepartments] = useState([]);
+  // useEffect(() => {
+  //   axios
+  //     .get("/dept/getAllDepartments")
+  //     .then((response) => {
+  //       setDepartments(response.data);
+  //     })
+  //     .catch(() => {
+  //       toast.error("data is not getting");
+  //     });
+  //   // console.log(departments)
+  // }, []);
 
-  const [departments, setDepartments] = useState([]);
-  useEffect(() => {
-    axios
-      .get("/dept/getAllDepartments")
-      .then((response) => {
-        setDepartments(response.data);
-      })
-      .catch(() => {
-        toast.error("data is not getting");
-      });
-    // console.log(departments)
-  }, []);
-
- 
+  // date format dd-mm-yy
   var tempDate = new Date(props.viewOnboard.dateOfJoining);
   var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
   console.log(dob)
 
   return (
     <div>
-     
+
+      {/* Attributes / fields */}
       <Row style={{ marginTop: 20 }}>
-                  <Col>
-                    <Card style={{ padding: 30, paddingBottom: 20 }}>
-                     
-                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-                        <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
-                            First Name:
-                          </Card.Subtitle>{" "}
-                        </Col>
-                        <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {props.viewOnboard.firstName}
-                          </Card.Text>
-                        </Col>
-                        </Row>
-                                           
-                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-                        <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
-                            Last Name:
-                          </Card.Subtitle>{" "}
-                        </Col>
-                     
-                        <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {props.viewOnboard.lastName}
-                          </Card.Text>
-                        </Col>
-                        </Row>
-                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-                        <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
-                            Phone Number:
-                          </Card.Subtitle>{" "}
-                        </Col>
-                        <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {props.viewOnboard.phoneNumber}
-                          </Card.Text>
-                        </Col>
-                        </Row>
+        <Col>
+          <Card style={{ padding: 30, paddingBottom: 20 }}>
 
-                     
-                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-                        <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
-                            Email-ID:
-                          </Card.Subtitle>{" "}
-                        </Col>
-                        <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {props.viewOnboard.email}
-                          </Card.Text>
-                        </Col>
-                        </Row> 
-                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-                        <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
-                            Employment Type:
-                          </Card.Subtitle>{" "}
-                        </Col>
-                        <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {props.viewOnboard.employmentType}
-                          </Card.Text>
-                        </Col>
+            {/* client name */}
+            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+              <Col>
+                <Card.Subtitle style={{ padding: 10 }}>
+                  Client / Company Name:
+                </Card.Subtitle>{" "}
+              </Col>
+              <Col md={{ offset: 1 }}>
+                <Card.Text style={{ paddingBottom: 0 }}>
+                  {props.viewOnboard.clientName}
+                </Card.Text>
+              </Col>
+            </Row>
 
-                      </Row>
-                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-                        <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
-                            Department:
-                          </Card.Subtitle>{" "}
-                        </Col>
-                        <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {props.viewOnboard.department}
-                          </Card.Text>
-                        </Col>
-                        </Row>
-                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-                        <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
-                            Designation:
-                          </Card.Subtitle>{" "}
-                        </Col>
-                        <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {props.viewOnboard.designation}
-                          </Card.Text>
-                        </Col>
+            {/* email */}
+            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+              <Col>
+                <Card.Subtitle style={{ padding: 10 }}>
+                  Client/ Company Email:
+                </Card.Subtitle>{" "}
+              </Col>
+              <Col md={{ offset: 1 }}>
+                <Card.Text style={{ paddingBottom: 0 }}>
+                  {props.viewOnboard.email}
+                </Card.Text>
+              </Col>
+            </Row>
 
-                      </Row>
-                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-                        <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
-                            Date Of Joining:
-                          </Card.Subtitle>{" "}
-                        </Col>
-                        <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {dob}
 
-                          </Card.Text>
-                        </Col>
-                        </Row>
-                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-                        <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
-                            Years Of Experience:
-                          </Card.Subtitle>{" "}
-                        </Col>
-                        <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {props.viewOnboard.yearsOfExperience}
-                          </Card.Text>
-                        </Col>
+            {/* phone number */}
+            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+              <Col>
+                <Card.Subtitle style={{ padding: 10 }}>
+                  Phone Number:
+                </Card.Subtitle>{" "}
+              </Col>
+              <Col md={{ offset: 1 }}>
+                <Card.Text style={{ paddingBottom: 0 }}>
+                  {props.viewOnboard.phoneNumber}
+                </Card.Text>
+              </Col>
+            </Row>
 
-                      </Row>
-                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-                        <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
-                            Primary Skills:
-                          </Card.Subtitle>{" "}
-                        </Col>
-                        <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {props.viewOnboard.primarySkills}
-                          </Card.Text>
-                        </Col>
-                        </Row>
-                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-                        <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
-                            Secondary Skills:
-                          </Card.Subtitle>{" "}
-                        </Col>
-                        <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {props.viewOnboard.secondarySkills}
-                          </Card.Text>
-                        </Col>
+             {/* POC Name */}
+             <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+              <Col>
+                <Card.Subtitle style={{ padding: 10 }}>
+                  POC:
+                </Card.Subtitle>{" "}
+              </Col>
+              <Col md={{ offset: 1 }}>
+                <Card.Text style={{ paddingBottom: 0 }}>
+                  {props.viewOnboard.pocName}
+                </Card.Text>
+              </Col>
+            </Row>
 
-                      </Row>
-                      <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-                        <Col>
-                          <Card.Subtitle style={{ padding: 10 }}>
-                            Job Title :
-                          </Card.Subtitle>{" "}
-                        </Col>
-                        <Col md={{ offset: 1 }}>
-                          <Card.Text style={{ paddingBottom: 0 }}>
-                            {props.viewOnboard.jobTitle}
-                          </Card.Text>
-                        </Col>
-                       
+             {/* startDate
+             <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+              <Col>
+                <Card.Subtitle style={{ padding: 10 }}>
+                  Start Date:
+                </Card.Subtitle>{" "}
+              </Col>
+              <Col md={{ offset: 1 }}>
+                <Card.Text style={{ paddingBottom: 0 }}>
+                  {props.viewOnboard.startDate}
+                </Card.Text>
+              </Col>
+            </Row> */}
 
-                      </Row>
-                     
-                    </Card>
-                  </Col>
-                </Row>
+             {/* EndDate
+             <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+              <Col>
+                <Card.Subtitle style={{ padding: 10 }}>
+                  End Date:
+                </Card.Subtitle>{" "}
+              </Col>
+              <Col md={{ offset: 1 }}>
+                <Card.Text style={{ paddingBottom: 0 }}>
+                  {props.viewOnboard.endDate}
+                </Card.Text>
+              </Col>
+            </Row> */}
+
+            {/* status */}
+            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+              <Col>
+                <Card.Subtitle style={{ padding: 10 }}>
+                  Status:
+                </Card.Subtitle>{" "}
+              </Col>
+              <Col md={{ offset: 1 }}>
+                <Card.Text style={{ paddingBottom: 0 }}>
+                  {props.viewOnboard.status}
+                </Card.Text>
+              </Col>
+            </Row>
+
+             {/* country */}
+             <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+              <Col>
+                <Card.Subtitle style={{ padding: 10 }}>
+                  Country:
+                </Card.Subtitle>{" "}
+              </Col>
+              <Col md={{ offset: 1 }}>
+                <Card.Text style={{ paddingBottom: 0 }}>
+                  {props.viewOnboard.country}
+                </Card.Text>
+              </Col>
+            </Row>
+
+            {/* address */}
+            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+              <Col>
+                <Card.Subtitle style={{ padding: 10 }}>
+                  Address:
+                </Card.Subtitle>{" "}
+              </Col>
+              <Col md={{ offset: 1 }}>
+                <Card.Text style={{ paddingBottom: 0 }}>
+                  {props.viewOnboard.address}
+                </Card.Text>
+              </Col>
+            </Row>
+
+             {/* Tag
+             <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+              <Col>
+                <Card.Subtitle style={{ padding: 10 }}>
+                  Tag:
+                </Card.Subtitle>{" "}
+              </Col>
+              <Col md={{ offset: 1 }}>
+                <Card.Text style={{ paddingBottom: 0 }}>
+                  {props.viewOnboard.tag}
+                </Card.Text>
+              </Col>
+            </Row> */}
+
+
+            
+             {/* note */}
+             <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+              <Col>
+                <Card.Subtitle style={{ padding: 10 }}>
+                Notes/Description:
+                </Card.Subtitle>{" "}
+              </Col>
+              <Col md={{ offset: 1 }}>
+                <Card.Text style={{ paddingBottom: 0 }}>
+                  {props.viewOnboard.note}
+                </Card.Text>
+              </Col>
+            </Row>
+
+
+
+
+
+
+
+
+
+
+
+
+
+          </Card>
+        </Col>
+      </Row>
     </div>
   );
 };
 
-export default ClientView;
+export default ApprovalView;
+
+
+
+
+
+
+
+
+
+

@@ -1,22 +1,30 @@
 @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-  
-    to {
-      transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
   }
-  
-  @media all and (min-width: 480px) {
-    .Login {
-      padding: 60px 0;
-    }
-  
-    .Login form {
-      margin: 0 auto;
-  
-      max-width: 320px;
-    }
+
+  to {
+    transform: rotate(360deg);
   }
+}
+
+@media all and (min-width: 480px) {
+  .Login {
+    padding: 20px 0;
+  }
+
+  .Login form {
+    margin: 0 auto;
+
+    max-width: 120px;
+  }
+}
+.container {
+  max-width: '100%'  
+}
+.arshaalogo:hover{
+  transform: scale(1.1);
+}
+
+
   

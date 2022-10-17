@@ -1,229 +1,266 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Button, Card } from "react-bootstrap";
 import "../LoginPage/Sign-in.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "../../Uri";
-
-
-import { Col, Container, Row } from "react-bootstrap";
-import { toast } from "react-toastify";
-import image from "../../Images/arshaalogo.png";
 import { useHistory } from "react-router-dom";
+import { Container, Row, Col, NavLink } from "react-bootstrap";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import image from "../../Images/arshaalogo.png";
+import { useFormik } from "formik";
+import BlockImage from 'react-block-image'
 
-
-
-export default function ResetPassword() {
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+const ResetPassword = () => {
   const history = useHistory();
-  const intialValues = {
-    oldPassword,
-    newPassword,
-    confirmNewPassword,
-  };
 
-  function validateForm() {
-    return (
-      oldPassword.length > 0 &&
-      newPassword.length > 0 &&
-      confirmNewPassword.length > 0
-    );
-  }
-  // testing 
-  const [validated, setValidated] = useState(false);
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setValidated(true);
-    try {
-      if (oldPassword != "" && newPassword != "" && confirmNewPassword != "") {
-        if (newPassword === confirmNewPassword) {
+  const formik = useFormik({
+    initialValues: {
+      employeeId: "",
+      oldPassword: "",
+      newPassword: "",
+      confirmNewPassword: "",
+    },
+
+    onSubmit: (values) => {
+      axios
+        .put("/login/resetPassword", values)
+        .then((response) => {
+          console.log(response.data);
+          console.log({ values });
+          toast.success("Password Updated Successfully",{
+            autoClose: 1000,
+          });
           history.push("/");
-          toast.success("Password changed");
-        }
-       else {
-        toast.error("Password does'nt match");
-      }
-      }
-      else{
-        toast.error("Every Field is Mandatory");
-      }
-    }
-    catch (err) {
-      console.error(err);
-    }
-    // if (newPassword === confirmNewPassword) {
-    //   history.push("/");
-    //   toast.success("Password changed");
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+          toast.error(error.response.data, {
+            autoClose: 1000,
+          });
+        });
+    },
+    validate: (values) => {
+      let errors = {};
+      // const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+      
+      //email valiation
+      // if(!values.employeeId) {
+      //   errors.employeeId = "Employee-ID is required";
+      // } else if (!test(values.employeeId)) {
+      //   errors.employeeId = "This is not a valid Employee-ID format!";
+      // }
 
-    // } else {
+      // Employee-ID validation
+      if (!values.employeeId) {
+        errors.employeeId = "Employee-ID is required";
+      } else if (values.employeeId.length < 8) {
+        errors.employeeId = "Employee-ID must be mimimum of 7 characters";
+      } else if (values.employeeId.length > 15) {
+        errors.employeeId = "Employee-ID cannot exceed more than 15 characters";
+      }else if (!values.employeeId.match(/[A-Z]/)) {
+        errors.employeeId =
+          "Employee-ID should contain Upper case characters";
+      } else if (!values.employeeId.match(/[0-9]/)) {
+        errors.employeeId = "Employee-ID should contain a Number";
+      }
 
-    //   toast.error("Password do not match");
-    // }
-    const changePasswordCall = await axios.put(
-      "login/resetPassword",
-      intialValues
-    );
-    // changePasswordCall();
-  };
+      //old password validation
+      if (!values.oldPassword) {
+        errors.oldPassword = "Old Password is required";
+      } else if (values.oldPassword.length < 8) {
+        errors.oldPassword = "Password must be mimimum of 8 characters";
+      } else if (values.oldPassword.length > 15) {
+        errors.oldPassword = "Password cannot exceed more than 15 characters";
+      }
+      //newPassword validation
+      if (!values.newPassword) {
+        errors.newPassword = "New Password is required";
+      } else if (values.newPassword.length < 8) {
+        errors.newPassword = "Password must be mimimum of 8 characters";
+      } else if (!values.newPassword.match(/[a-z]/)) {
+        errors.newPassword =
+          "Password should contain atleast lower case character";
+      } else if (!values.newPassword.match(/[A-Z]/)) {
+        errors.newPassword =
+          "Password should contain atleast upper case character";
+      } else if (!values.newPassword.match(/[0-9]/)) {
+        errors.newPassword = "Password should contain atleast a number";
+      } else if (!values.newPassword.match(/[!@#$%^&*()_+=.,;'":`~]/)) {
+        errors.newPassword =
+          "Password should contain atleast a special character";
+      } else if(values.newPassword==values.oldPassword) {
+        errors.newPassword = "Password cannot be same as old password"
+      }
+      else if (values.newPassword.length > 15) {
+        errors.newPassword = "Password cannot exceed more than 15 characters";
+      } else if (values.newPassword != values.confirmNewPassword) {
+        errors.newPassword = "Password does not match";
+      }
+      //confirmNewPassword validation
+      if (!values.confirmNewPassword) {
+        errors.confirmNewPassword = "Confirm New Password is required";
+      } else if (values.confirmNewPassword.length < 8) {
+        errors.confirmNewPassword = "Password must be mimimum of 8 characters";
+      } else if (!values.confirmNewPassword.match(/[a-z]/)) {
+        errors.confirmNewPassword =
+          "Password should contain atleast lower case character";
+      } else if (!values.confirmNewPassword.match(/[A-Z]/)) {
+        errors.confirmNewPassword =
+          "Password should contain atleast upper case character";
+      } else if (!values.confirmNewPassword.match(/[0-9]/)) {
+        errors.confirmNewPassword = "Password should contain atleast a number";
+      } else if (!values.confirmNewPassword.match(/[!@#$%^&*()_+=.,;'":`~]/)) {
+        errors.confirmNewPassword =
+          "Password should contain atleast a special character";
+      } else if (values.confirmNewPassword.length > 15) {
+        errors.confirmNewPassword =
+          "Password cannot exceed more than 15 characters";
+      } else if (values.newPassword != values.confirmNewPassword) {
+        errors.confirmNewPassword = "Password does not match";
+      }
+      return errors;
+    },
+  });
+  
+  const setEmployeeId = (e) => {
+    if(e.which ==32)
+    {
+       e.preventDefault();
+       return false;
+    }
+  }
   return (
     <>
-      <Container>
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          <Row style={{ marginTop: "40px", marginLeft: "40px" }}>
+      <Container
+        style={{
+          backgroundColor: "#FFFFFF",
+          borderRadius: "15px",
+          paddingLeft: "190px",
+        }}
+      >
+        <Card 
+        style={{
+          paddingLeft: "50px",
+          paddingRight: "100px",
+          position: "absolute",
+          marginTop: "50px",
+          background: "linear-gradient(to right, #cbcbc5, #cbcaa5)",
+          // background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
+          borderRadius: "45px", 
+          }}
+        >
+          <Row>
+            <Col xs={5}>
+              <BlockImage
+                src={image}
+                style={{ paddingTop: "100px", height: "450px", width: "300px" }}
+              />
+            </Col>
             <Col
               className="p-5 m-auto shadow-sm rounded-lg"
               style={{
                 height: "700px",
-                width: "430px",
+
+                width: "450px",
                 alignments: "center",
-                background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
-                borderRadius: "25px",
+
+                // backgroundColor: "#FFFFFF",
+                boxShadow: "10px 10px 10px",
+                borderRadius: "45px",
+                // background: "linear-gradient(to right, #334d50, #cbcaa5)"
               }}
               lg={5}
               md={6}
               sm={12}
             >
-              <img
-                src={image}
-                style={{
-                  height: "110px",
-                  width: "200px",
-                  paddingLeft: "120px",
-                  borderRadius: "15px",
-                }}
-              ></img>
-              <h1 style={{ textAlign: "center", paddingTop: "10px" }}>
-                Reset Password
-              </h1>
-              <Form style={{ paddingTop: "10px" }}>
-                <Form.Group as={Col} md="12" controlId="validationCustom04">
-                  <Form.Label style={{ marginTop: "10px", fontWeight: "bold" }}>Old Password</Form.Label>
-                  <Form.Control type="Password" placeholder="Enter your Old Password" required
-                    style={{ borderRadius: "15px" }}
-                    size="lg"
-                    value={oldPassword}
-                    maxLength={14}
-                    validate={{
-                      required: {
-                        value: true,
-                        errorMessage: "Please enter your Old Password",
-                      },
-                      pattern: {
-                        value: "^[A-Za-z0-9]+$",
-                        errorMessage:
-                          "Your password must be composed only with letter and numbers",
-                      },
-                      minLength: {
-                        value: 6,
-                        errorMessage:
-                          "Your password must be between 6 and 16 characters",
-                      },
-                      maxLength: {
-                        value: 16,
-                        errorMessage:
-                          "Your password must be between 6 and 16 characters",
-                      },
-                    }}
-                    onChange={(e) => {
-                      const str = e.target.value;
-                      //let length = f.length;
-                      if (`${str.length}` > 12) {
-                        alert("Password should not be nore than 12 characters");
-                      }
-                      else {
-                        setOldPassword(e.target.value)
-                      }
-                    }
-                    } />
-                  <Form.Control.Feedback type="invalid" style={{ color: 'blue' }}>
-                    Please Enter Valid New Password.
-                  </Form.Control.Feedback>
+              <h4 style={{ textAlign: "center", paddingTop: "10px" }}>
+                Welcome To Arshaa
+              </h4>
+              <br />
+              <br />
+              <Form autoComplete="off" onSubmit={formik.handleSubmit}>
+                <Form.Group controlld="emailId">
+                  <Form.Label style={{ paddingLeft: "10px", fontSize: "14px",fontWeight:'bold' }}>
+                    EMPLOYEE-ID
+                  </Form.Label>
+                  <Form.Control
+                    type="employeeId"
+                    name="employeeId"
+                    id="employeeId"
+                    placeholder="Enter your Employee-ID"
+                    size="small"
+                    value={formik.values.employeeId}
+                    onChange={formik.handleChange}
+                    onKeyDown={e=>setEmployeeId(e)}
+                  />
+                  {formik.errors.employeeId ? (
+                    <div className="error" style={{ color: "red" }}>
+                      {formik.errors.employeeId}
+                    </div>
+                  ) : null}
                 </Form.Group>
-                <Form.Group as={Col} md="12" controlId="validationCustom04">
-                  <Form.Label style={{ marginTop: "20px", fontWeight: "bold" }}>New Password</Form.Label>
-                  <Form.Control type="Password" placeholder="Enter your New Password" required
-                    style={{ borderRadius: "15px" }}
-                    size="lg"
-                    value={newPassword}
-                    maxLength={14}
-                    validate={{
-                      required: {
-                        value: true,
-                        errorMessage: "Please enter your New Password",
-                      },
-                      pattern: {
-                        value: "^[A-Za-z0-9]+$",
-                        errorMessage:
-                          "Your password must be composed only with letter and numbers",
-                      },
-                      minLength: {
-                        value: 6,
-                        errorMessage:
-                          "Your password must be between 6 and 16 characters",
-                      },
-                      maxLength: {
-                        value: 16,
-                        errorMessage:
-                          "Your password must be between 6 and 16 characters",
-                      },
-                    }}
-                    onChange={(e) => {
-                      const str = e.target.value;
-                      if (`${str.length}` > 12) {
-                        alert("Password should not be nore than 12 characters");
-                      }
-                      else {
-                        setNewPassword(e.target.value)
-                      }
-                    }
-                    } />
-                  <Form.Control.Feedback type="invalid" style={{ color: 'blue' }}>
-                    Please Enter Valid New Password.
-                  </Form.Control.Feedback>
+                &nbsp;
+                <Form.Group controlld="oldPassword">
+                  <Form.Label style={{ paddingLeft: "10px", fontSize: "14px",fontWeight:"bold" }}>
+                    OLD PASSWORD
+                  </Form.Label>
+                  <Form.Control
+                    type="password"
+                    id="oldPassword"
+                    name="oldPassword"
+                    placeholder="Enter your Old password"
+                    size="small"
+                    value={formik.values.oldPassword}
+                    onChange={formik.handleChange}
+                  />
+                  {formik.errors.oldPassword ? (
+                    <div className="error" style={{ color: "red" }}>
+                      {formik.errors.oldPassword}
+                    </div>
+                  ) : null}
                 </Form.Group>
-                <Form.Group as={Col} md="12" controlId="validationCustom04">
-                  <Form.Label style={{ marginTop: "20px", fontWeight: "bold" }}>Confirm New Password</Form.Label>
-                  <Form.Control type="Password" placeholder="Enter your Confirm New Password" required
-                    style={{ borderRadius: "15px" }}
-                    size="lg"
-                    value={confirmNewPassword}
-                    maxLength={14}
-                    validate={{
-                      required: {
-                        value: true,
-                        errorMessage: "Please enter your Confirm New Password",
-                      },
-                      pattern: {
-                        value: "^[A-Za-z0-9]+$",
-                        errorMessage:
-                          "Your password must be composed only with letter and numbers",
-                      },
-                      minLength: {
-                        value: 6,
-                        errorMessage:
-                          "Your password must be between 6 and 16 characters",
-                      },
-                      maxLength: {
-                        value: 16,
-                        errorMessage:
-                          "Your password must be between 6 and 16 characters",
-                      },
-                    }}
-                    onChange={(e) => {
-                      const str = e.target.value;
-                      //let length = f.length;
-                      if (`${str.length}` > 12) {
-                        alert("Confirm New Password should not be nore than 12 characters");
-                      }
-                      else {
-                        setConfirmNewPassword(e.target.value)
-                      }
-                    }
-                    } />
-                  <Form.Control.Feedback type="invalid" style={{ color: 'blue' }}>
-                    Please Enter Valid Confirm New Password.
-                  </Form.Control.Feedback>
+                &nbsp;
+                <Form.Group controlid="fornBasicPassword">
+                  <Form.Label style={{ paddingLeft: "10px", fontSize: "14px",fontWeight:"bold" }}>
+                    NEW PASSWORD
+                  </Form.Label>
+                  <Form.Control
+                    type="password"
+                    id="new password"
+                    name="newPassword"
+                    placeholder="Enter your New Password"
+                    size="small"
+                    value={formik.values.newPassword}
+                    onChange={formik.handleChange}
+                  />
+                  {formik.errors.newPassword ? (
+                    <div className="error" style={{ color: "red" }}>
+                      {formik.errors.newPassword}
+                    </div>
+                  ) : null}
+                </Form.Group>
+                &nbsp;
+                <Form.Group controlid="fornBasicPassword">
+                  <Form.Label style={{ paddingLeft: "10px", fontSize: "14px",fontWeight:"bold" }}>
+                    CONFIRM NEW PASSWORD
+                  </Form.Label>
+                  <Form.Control
+                    type="password"
+                    id="confirm new password"
+                    name="confirmNewPassword"
+                    placeholder="Re-Enter your New Password"
+                    size="small"
+                    value={formik.values.confirmNewPassword}
+                    onChange={formik.handleChange}
+                  />
+
+                  {formik.errors.confirmNewPassword ? (
+                    <div style={{ color: "red" }}>
+                      {formik.errors.confirmNewPassword}
+                    </div>
+                  ) : null}
                 </Form.Group>
                 &nbsp;
                 <Button
@@ -231,20 +268,20 @@ export default function ResetPassword() {
                   type="submit"
                   style={{
                     width: "100%",
-                    background: "#19fa0a",
+                    background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
                     borderRadius: "15px",
                     color: "black",
                   }}
-                  // disabled={!validateForm()}
-                  onClick={handleSubmit}
                 >
-                  Reset Password
+                  Submit
                 </Button>
               </Form>
             </Col>
           </Row>
-        </Form>
+        </Card>
       </Container>
     </>
   );
-}
+};
+
+export default ResetPassword;

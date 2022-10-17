@@ -55,6 +55,23 @@ public class Onboarding {
 	private boolean rejectedStatus;
 	@Column
 	private boolean waitingforapprovalStatus;
+	@Column
+	private String onboardingStatus;
+	
+	private boolean termsAndConditions;
+	public boolean isTermsAndConditions() {
+			return termsAndConditions;
+		}
+		public void setTermsAndConditions(boolean termsAndConditions) {
+			this.termsAndConditions = termsAndConditions;
+		}
+	
+	public String getOnboardingStatus() {
+		return onboardingStatus;
+	}
+	public void setOnboardingStatus(String onboardingStatus) {
+		this.onboardingStatus = onboardingStatus;
+	}
 	private String department;
 	private String reportingManager;
 	private String projectName; 
@@ -82,13 +99,13 @@ public class Onboarding {
 	private String employmentType;
 	private String primarySkills;
 	private String secondarySkills;
-	private String status;
+	private int percentage;
 	
-	public String getStatus() {
-		return status;
+	public int getPercentage() {
+		return percentage;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setPercentage(int percentage) {
+		this.percentage = percentage;
 	}
 	@Column
 	private String secondaryPhoneNumber;
@@ -180,16 +197,147 @@ public class Onboarding {
 	private String branch;
 	private String client;
 	
+    private String irm;
+    private String srm;
+    private String buh;
+    
+    private String fullName;
+    
+    private String irmId;
+    private String srmId;
+    private String buhId;
+    private String taaApprovalComment;
+    private String taaHeadApprovalComment;
+    private String pmoApprovalComment;
+    private String ceoApprovalComment;
+    private boolean offerLetter;
+    private boolean salarySlip;
+    private boolean hikeLetter;
+    private boolean form16;
+    private boolean educationalDocuments;
+    private boolean idProof;
+    private boolean resignation;
+    private String intermediateQualification;
+    private String sscQualification;
+    private String officialMail;
+
+
+	
+	public Onboarding(boolean offerLetter, boolean salarySlip, boolean hikeLetter, boolean form16,
+			boolean educationalDocuments, boolean idProof, boolean resignation) {
+		super();
+		this.offerLetter = offerLetter;
+		this.salarySlip = salarySlip;
+		this.hikeLetter = hikeLetter;
+		this.form16 = form16;
+		this.educationalDocuments = educationalDocuments;
+		this.idProof = idProof;
+		this.resignation = resignation;
+	}
+	public boolean isOfferLetter() {
+		return offerLetter;
+	}
+	public void setOfferLetter(boolean offerLetter) {
+		this.offerLetter = offerLetter;
+	}
+	public boolean isSalarySlip() {
+		return salarySlip;
+	}
+	public void setSalarySlip(boolean salarySlip) {
+		this.salarySlip = salarySlip;
+	}
+	public boolean isHikeLetter() {
+		return hikeLetter;
+	}
+	public void setHikeLetter(boolean hikeLetter) {
+		this.hikeLetter = hikeLetter;
+	}
+	public boolean isForm16() {
+		return form16;
+	}
+	public void setForm16(boolean form16) {
+		this.form16 = form16;
+	}
+	public boolean isEducationalDocuments() {
+		return educationalDocuments;
+	}
+	public void setEducationalDocuments(boolean educationalDocuments) {
+		this.educationalDocuments = educationalDocuments;
+	}
+	public boolean isIdProof() {
+		return idProof;
+	}
+	public void setIdProof(boolean idProof) {
+		this.idProof = idProof;
+	}
+	public boolean isResignation() {
+		return resignation;
+	}
+	public void setResignation(boolean resignation) {
+		this.resignation = resignation;
+	}
+	public String getTaaHeadApprovalComment() {
+		return taaHeadApprovalComment;
+	}
+	public void setTaaHeadApprovalComment(String taaHeadApprovalComment) {
+		this.taaHeadApprovalComment = taaHeadApprovalComment;
+	}
+	public String getIrmId() {
+		return irmId;
+	}
+	public void setIrmId(String irmId) {
+		this.irmId = irmId;
+	}
+	public String getSrmId() {
+		return srmId;
+	}
+	public void setSrmId(String srmId) {
+		this.srmId = srmId;
+	}
+	public String getBuhId() {
+		return buhId;
+	}
+	public void setBuhId(String buhId) {
+		this.buhId = buhId;
+	}
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	public String getIrm() {
+		return irm;
+	}
+	public void setIrm(String irm) {
+		this.irm = irm;
+	}
+	public String getSrm() {
+		return srm;
+	}
+	public void setSrm(String srm) {
+		this.srm = srm;
+	}
+	public String getBuh() {
+		return buh;
+	}
+	public void setBuh(String buh) {
+		this.buh = buh;
+	}
+	
+	
+	
+	
 	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
 			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
 			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
-			String department, String reportingManager, String projectName, String email, Date onboardDate,
-			Date approvedDate, Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy,
-			String employmentType, String primarySkills, String secondarySkills, String secondaryPhoneNumber,
-			String dateOfBirth, String bloodGroup, String gender, String maritalStatus, String permanentAdress,
-			String permanentState, String permanentCountry, String permanentPincode, String currentAdress,
-			String currentState, String currentCountry, String currentPincode, String postgraduationType,
-			String postgraduationBoardOfUniversity, String postgraduationInstituteName,
+			String onboardingStatus, String department, String reportingManager, String projectName, String email,
+			Date onboardDate, Date approvedDate, Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy,
+			String employmentType, String primarySkills, String secondarySkills, int percentage,
+			String secondaryPhoneNumber, String dateOfBirth, String bloodGroup, String gender, String maritalStatus,
+			String permanentAdress, String permanentState, String permanentCountry, String permanentPincode,
+			String currentAdress, String currentState, String currentCountry, String currentPincode,
+			String postgraduationType, String postgraduationBoardOfUniversity, String postgraduationInstituteName,
 			String postgraduationInstituteCity, String postgraduationCourseName, String postgraduationJoiningYear,
 			String postgraduationPassedYear, String postgraduationGrade, String graduationType,
 			String graduationBoardOfUniversity, String graduationInstituteName, String graduationInstituteCity,
@@ -211,8 +359,11 @@ public class Onboarding {
 			Double previousCompany3_grossSalary, String previousCompany3_typeOfEmployment,
 			String previousCompany3_reasonForRelieving, boolean employeeStatus, String passportNo,
 			String passportExpiryDate, String panNumber, String aadharNumber, String uanNumber, String bankName,
-			String accountNumber, String ifscCode, String branch, String exitDate, String band,String client) {
-		
+			String accountNumber, String ifscCode, String branch, String client, String irm, String srm, String buh,
+			String fullName, String irmId, String srmId, String buhId, String taaApprovalComment,
+			String taaHeadApprovalComment, String pmoApprovalComment, String ceoApprovalComment,
+			String intermediateQualification, String sscQualification, String officialMail, String exitDate,
+			String band) {
 		super();
 		this.onboardingId = onboardingId;
 		this.designation = designation;
@@ -228,6 +379,7 @@ public class Onboarding {
 		this.approvedStatus = approvedStatus;
 		this.rejectedStatus = rejectedStatus;
 		this.waitingforapprovalStatus = waitingforapprovalStatus;
+		this.onboardingStatus = onboardingStatus;
 		this.department = department;
 		this.reportingManager = reportingManager;
 		this.projectName = projectName;
@@ -241,6 +393,7 @@ public class Onboarding {
 		this.employmentType = employmentType;
 		this.primarySkills = primarySkills;
 		this.secondarySkills = secondarySkills;
+		this.percentage = percentage;
 		this.secondaryPhoneNumber = secondaryPhoneNumber;
 		this.dateOfBirth = dateOfBirth;
 		this.bloodGroup = bloodGroup;
@@ -318,10 +471,59 @@ public class Onboarding {
 		this.accountNumber = accountNumber;
 		this.ifscCode = ifscCode;
 		this.branch = branch;
+		this.client = client;
+		this.irm = irm;
+		this.srm = srm;
+		this.buh = buh;
+		this.fullName = fullName;
+		this.irmId = irmId;
+		this.srmId = srmId;
+		this.buhId = buhId;
+		this.taaApprovalComment = taaApprovalComment;
+		this.taaHeadApprovalComment = taaHeadApprovalComment;
+		this.pmoApprovalComment = pmoApprovalComment;
+		this.ceoApprovalComment = ceoApprovalComment;
+		this.intermediateQualification = intermediateQualification;
+		this.sscQualification = sscQualification;
+		this.officialMail = officialMail;
 		this.exitDate = exitDate;
 		this.band = band;
-		this.client = client;
-		
+	}
+	public String getIntermediateQualification() {
+		return intermediateQualification;
+	}
+	public void setIntermediateQualification(String intermediateQualification) {
+		this.intermediateQualification = intermediateQualification;
+	}
+	public String getSscQualification() {
+		return sscQualification;
+	}
+	public void setSscQualification(String sscQualification) {
+		this.sscQualification = sscQualification;
+	}
+	public String getOfficialMail() {
+		return officialMail;
+	}
+	public void setOfficialMail(String officialMail) {
+		this.officialMail = officialMail;
+	}
+	public String getTaaApprovalComment() {
+		return taaApprovalComment;
+	}
+	public void setTaaApprovalComment(String taaApprovalComment) {
+		this.taaApprovalComment = taaApprovalComment;
+	}
+	public String getPmoApprovalComment() {
+		return pmoApprovalComment;
+	}
+	public void setPmoApprovalComment(String pmoApprovalComment) {
+		this.pmoApprovalComment = pmoApprovalComment;
+	}
+	public String getCeoApprovalComment() {
+		return ceoApprovalComment;
+	}
+	public void setCeoApprovalComment(String ceoApprovalComment) {
+		this.ceoApprovalComment = ceoApprovalComment;
 	}
 	public String getSecondaryPhoneNumber() {
 		return secondaryPhoneNumber;
@@ -1019,6 +1221,7 @@ public class Onboarding {
 		// TODO Auto-generated constructor stub
 	}
 //	
+
 	
 	
 	

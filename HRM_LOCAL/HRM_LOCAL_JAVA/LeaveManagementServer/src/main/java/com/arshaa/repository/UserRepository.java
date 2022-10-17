@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import com.arshaa.entity.BetweenDates;
 import com.arshaa.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
@@ -32,7 +33,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	List<User> findByemployeeId(String employeeId);
 
 	//changes done by chandrika
-	List<User> findUserByReportingManager(String reportingManager);
+	List<User> findUserByIrmId(String irmId);
 	void deleteByLeaveType(String leaveType);
 
 	User getByEmployeeleaveId(Integer employeeleaveId);
@@ -42,4 +43,12 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 
 	User deleteByemployeeleaveId(Integer employeeleaveId);
+
+	List<User> findUserBySrmId(String srmId);
+	List<User> findEmployeePendingLeavesCountByLeaveStatus(String leaveStatus);
+
+
+
+    List<User> findEmployeeLeavesLeaveStatusByLeaveStatus(String leaveStatus);
+    List<User> findByleaveOrwfhAndEmployeeId(String leaveOrwfh, String employeeId);
 }

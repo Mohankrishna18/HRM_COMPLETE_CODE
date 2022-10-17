@@ -1,35 +1,83 @@
 import React from 'react';
-import { Row, Col, Card, Container } from 'react-bootstrap';
+import { Row, Col, Card, Container, Tabs} from 'react-bootstrap';
+import { TabContext, TabList, TabPanel } from "@mui/lab";
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import TaskMain from '../TimeSheet/EmployeeTimesheet/TaskMain';
 import HrEmployeesLeavesWaitingForApproval from "./HrEmployeesLeavesWaitingForApproval";
+import SRMResignationMain from './SRMResignationMAin';
 
 const HrLeavesToApproveMain = () => {
+
+  const [value, setValue] = React.useState('1');
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   return (
-     <div style={{ paddingTop: '20px' }}>
-     <Card responsive className="scroll">
+    <div style={{ paddingTop: '0px' }}>
+
+      <Card responsive className="scroll" >
+        <Card.Header style={{ backgroundColor: "white"}}>
+          <Card.Body >
+            <Card.Title> Approvals </Card.Title>
+            <Card.Subtitle> Approvals / Approvals</Card.Subtitle>
+
+            <Row>
+              <Col xs={12}>
+              <TabContext value={value}>
+                  <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{ justifyContent: "center" }}>
+                    <TabList onChange={handleChange} aria-label="lab API tabs example" style={{ justifyContent: "center"}}>
+                      <Tab label="Leave Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="2" />
+                      <Tab label="Timesheet Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="3" />
+                      <Tab label="Resignation Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="4" />
+                    </TabList>
+                  </Box>
+                  <TabPanel value="2"><HrEmployeesLeavesWaitingForApproval /></TabPanel>
+                  <TabPanel value="3"><TaskMain /></TabPanel>
+                  <TabPanel value="4"><SRMResignationMain /></TabPanel>
+                </TabContext>  
+              </Col>
+            </Row>
+          </Card.Body>
+        </Card.Header>
+      </Card>
+
+      {/* <Card responsive className="scroll">
        <Card.Header>
          <Card.Body>
            <Card.Title>Leaves Waiting For Approval</Card.Title>
            <Card.Subtitle className="mb-2 text-muted">
            EmployeeLeaves
            </Card.Subtitle>{" "}
-           {/* <Container> */}
              <Row>
                <Col xs={12}>
                <HrEmployeesLeavesWaitingForApproval/>
                </Col>
-
              </Row>
-             <Row>
-              
-
+             <Row
              </Row>
-           {/* </Container> */}
          </Card.Body>
        </Card.Header>
-     </Card>
-   </div>
+     </Card> */}
+    </div>
 
   )
 }
 
 export default HrLeavesToApproveMain;
+
+
+// <Tabs
+//                   defaultActiveKey="Leave Approvals"
+//                   id="uncontrolled-tab-example"
+//                   className="mb-3" 
+//                   style={{ justifyContent: "left", color: "white", backgroundColor: "white", fontSize: "19px", padding: 0, }}
+//                 >
+//                   <Tab eventKey="Leave Approvals" title="Leave Approvals" style={{ backgroundColor: "white" }}>
+//                     <HrEmployeesLeavesWaitingForApproval />
+//                   </Tab>
+//                   <Tab eventKey="Timesheet Approvals" title="Timesheet Approvals" style={{ backgroundColor: "white" }} >
+//                     <TaskMain />
+//                   </Tab>
+//                 </Tabs>

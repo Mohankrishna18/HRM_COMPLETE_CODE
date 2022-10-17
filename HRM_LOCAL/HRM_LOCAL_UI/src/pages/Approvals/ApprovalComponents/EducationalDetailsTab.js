@@ -1,372 +1,199 @@
 import React, { useEffect, useState } from "react";
-import { Card, Form, Row, Col, InputGroup, Button, Accordion } from "react-bootstrap";;
+import { Card, Form, Row, Col, Table, Tabs, Tab, InputGroup, Button, Accordion } from "react-bootstrap";
+import { BASE_URL } from "../../../Constant";
+import axios from "../../../Uri";
 
 function EducationalDetailsTab(props) {
+    
+  const userData = sessionStorage.getItem("userdata");
+  // console.log(userData);
+  const userData1 = JSON.parse(userData);
+  const employeeid = userData1.data.employeeId;
+  const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
+  //var dateTime = getEmployeeDetails.dateOfJoining;
+
+  const [imge, setImge] = useState([]);
+//commit
+  useEffect(() => {
+    axios
+      .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
+      .then((response) => {
+        setGetEmployeeDetails(response.data.data);
+      });
+  }, []);
+  console.log(getEmployeeDetails)
+
+  useEffect(() => {
+    axios
+      .get(`/emp/files/${employeeid}`)
+      .then((response) => {
+        console.log(response.data);
+        setImge(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("something wrong");
+      });
+  }, []);
+  console.log(imge)
+
+  const [projects, setProjects] = useState(false)
+
+  useEffect(() => {
+    axios
+      .get(`/emp/getUserClientDetailsbyEmployeeId/${employeeid}`)
+      .then((response) => {
+        setProjects(response.data);
+      });
+  }, []);
+  console.log(projects)
+
+
+
+  var GraduationJoiningYear = new Date(getEmployeeDetails.graduationJoiningYear);
+  var dd = String(GraduationJoiningYear.getDate()).padStart(2, '0');
+  var mm = String(GraduationJoiningYear.getMonth() + 1).padStart(2, '0');
+  var yyyy = GraduationJoiningYear.getFullYear();
+  var GraduationJoiningYear1 = dd + '-' + mm + '-' + yyyy;
+  console.log(GraduationJoiningYear1);
+
+
+
+  var tempDate = new Date(props.viewOnboard.postgraduationJoiningYear);
+  var postgraduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+
+  var tempDate = new Date(props.viewOnboard.postgraduationPassedYear);
+  var postgraduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+
+  var tempDate = new Date(props.viewOnboard.graduationJoiningYear);
+  var graduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+
+  var tempDate = new Date(props.viewOnboard.graduationPassedYear);
+  var graduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+
+  var tempDate = new Date(props.viewOnboard.intermediateJoiningYear);
+  var intermediateJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+
+  var tempDate = new Date(props.viewOnboard.intermediatePassedYear);
+  var intermediatePassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+
+  var tempDate = new Date(props.viewOnboard.sscJoiningYear);
+  var sscJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+
+  var tempDate = new Date(props.viewOnboard.sscPassedYear);
+ 
+  var sscPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  const viewUploadFile = () => {
+    // window.open(`api/get/image/${imageName}/${onboardingId}`)
+
+    axios
+      .get(`api/get/imageByTitle/EducationalDetails/${props.viewOnboard.onboardingId}`, {
+        contentType: "application/pdf",
+      })
+      .then((res) => {
+        console.log(res.data.url);
+        setImageName(res.data);
+        setUrl(res.data.url);
+        saveAs(url);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
 
     return (
 
-        <div>
+        <div style={{ padding: 20, height:320, marginLeft: 10, marginRight: 20,paddingBottom:"318px" }}>
+                          <Card.Title>
+                            <h5>Educational Information:</h5>
+                          </Card.Title>
+                          <Card.Body style={{ paddingLeft: 20 }}>
 
-            <Form
-                style={{ padding: 10 }}
-            >
-                <Row className="mb-5">
-                <Accordion defaultActiveKey="1">
-                                            <Accordion.Item eventKey="0">
-                                                <Accordion.Header>Post Graduation</Accordion.Header>
-                                                <Accordion.Body>
-                                                    <Row>
-                                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                                            <Form.Label>Type of Post Graduation *</Form.Label>
-                                                            <Form.Control
-                                                                required
-                                                                type="text"
-                                                                controlId="postgraduationType"
-                                                                name="postgraduationType"
-                                                                value={props.viewOnboard.postgraduationType}
-                                                                maxLength={50}
-                                                            />
-                                                        </Form.Group>
-                                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                                            <Form.Label>University Name </Form.Label>
-                                                            <Form.Control
-                                                                disable
-                                                                
-                                                            //    { props.viewOnboard.postgraduationBoardOfUniversity == ""  ? 'border-red' : 'border-default'}
-                                                                // checke={props.viewOnboard.postgraduationBoardOfUniversity =="" ? 'border-red' : 'border-default'}
-                                                                value={props.viewOnboard.postgraduationBoardOfUniversity}
-                                                            />
-                                                        </Form.Group>
-                                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                                            <Form.Label>Institute Name </Form.Label>
-                                                            <Form.Control
-                                                                type="text"
-                                                                controlId="postgraduationInstituteName"
-                                                                value={props.viewOnboard.postgraduationInstituteName}
-                                                                maxLength={50}
-                                                                name="postgraduationInstituteName"
-                                                            />
-                                                        </Form.Group>
-                                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                                            <Form.Label>Institute City/Town </Form.Label>
-                                                            <Form.Control
-                                                                type="text"
-                                                                controlId="postgraduationInstituteCity"
-                                                                value={props.viewOnboard.postgraduationInstituteCity}
-                                                                maxLength={50}
-                                                                name="postgraduationInstituteCity"
-                                                            />
-                                                        </Form.Group>
-                                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                                            <Form.Label>Course Name </Form.Label>
-                                                            <Form.Control
-                                                                type="text"
-                                                                controlId="postgraduationCourseName"
-                                                                value={props.viewOnboard.postgraduationCourseName}
-                                                                maxLength={50}
-                                                                name="postgraduationCourseName"
-                                                            />
-                                                        </Form.Group>
-                                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                                            <Form.Label>Joining Year </Form.Label>
-                                                            <Form.Control
-                                                                type="date"
-                                                                controlId="postgraduationJoiningYear"
-                                                                value={props.viewOnboard.postgraduationJoiningYear}
-                                                                maxLength={50}
-                                                                name="postgraduationJoiningYear"
-                                                            />
-                                                        </Form.Group>
-                                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                                            <Form.Label>Passed-out Year</Form.Label>
-                                                            <Form.Control
-                                                                type="date"
-                                                                controlId="postgraduationPassedYear"
-                                                                value={props.viewOnboard.postgraduationPassedYear}
-                                                                maxLength={50}
-                                                                name="postgraduationPassedYear"
-                                                            />
-                                                        </Form.Group>
-                                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                                            <Form.Label>Grade</Form.Label>
-                                                            <Form.Control
-                                                                type="text"
-                                                                controlId="postgraduationGrade"
-                                                                value={props.viewOnboard.postgraduationGrade}
-                                                                name="postgraduationGrade"
 
-                                                            />
-                                                        </Form.Group>
-                                                    </Row>
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </Accordion>
+                            <Table>
+                              <thead>
+                                <tr>
+                                  <th>Type of Graduation</th>
+                                  <th>University</th>
+                                  <th>Institute Name</th>
+                                  <th>Course</th>
+                                  <th>Grade</th>
+                                  <th>Joining Date</th>
+                                  <th>Year of Passing</th>
 
-                                        <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}
-                                        >
-                                            <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                                                Graduation Details
-                                            </Card.Title>
-                                        </Card>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>{props.viewOnboard.postgraduationType}</td>
+                                  <td>{props.viewOnboard.postgraduationBoardOfUniversity}</td>
+                                  <td>{props.viewOnboard.postgraduationInstituteName}</td>
+                                  <td>{props.viewOnboard.postgraduationCourseName}</td>
+                                  <td>{props.viewOnboard.postgraduationGrade}</td>
+                                  <td> {props.viewOnboard.postgraduationJoiningYear ? (<td>
+                                    {postgraduationJoiningYear1}
+                                  </td>) : (<div></div>)}</td>
+                                  <td>{props.viewOnboard.postgraduationPassedYear ? (<td>
+                                    {postgraduationPassedYear1}
+                                  </td>) : (<div></div>)}</td>
 
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Type of Graduation *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="graduationType"
-                                                maxLength={50}
-                                                name="graduationType"
-                                                value={props.viewOnboard.graduationType}
-                                            />
-                                        </Form.Group>
+                                </tr>
+                                <tr>
+                                  <td>{props.viewOnboard.graduationType}</td>
+                                  <td>{props.viewOnboard.graduationBoardOfUniversity}</td>
+                                  <td>{props.viewOnboard.graduationInstituteName}</td>
+                                  <td>{props.viewOnboard.graduationCourseName}</td>
+                                  <td>{props.viewOnboard.graduationGrade}</td>
+                                  <td> {props.viewOnboard.graduationJoiningYear ? (<td>
+                                    {graduationJoiningYear1}
+                                  </td>) : (<div></div>)}</td>
+                                  <td>{props.viewOnboard.graduationPassedYear ? (<td>
+                                    {graduationPassedYear1}
+                                  </td>) : (<div></div>)}</td>
 
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>University Name *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="graduationBoardOfUniversity"
-                                                name="graduationBoardOfUniversity"
-                                                value={props.viewOnboard.graduationBoardOfUniversity}
-                                            >
-                                            </Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Institute Name *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="graduationInstituteName"
-                                                name="graduationInstituteName"
-                                                maxLength={50}
-                                                value={props.viewOnboard.graduationInstituteName}
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Institute City/Town *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="graduationInstituteCity"
-                                                maxLength={50}
-                                                value={props.viewOnboard.graduationInstituteCity}
-                                                name="graduationInstituteCity"
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Course Name *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                name="graduationCourseName"
-                                                maxLength={50}
-                                                value={props.viewOnboard.graduationCourseName}
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Joining Year *</Form.Label>
-                                            <Form.Control
-                                                // required
-                                                type="date"
-                                                name="graduationJoiningYear"
-                                                controlId="graduationJoiningYear"
-                                                maxLength={50}
-                                                value={props.viewOnboard.graduationJoiningYear}
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Passed-out Year *</Form.Label>
-                                            <Form.Control
-                                                //required
-                                                type="date"
-                                                controlId="graduationPassedYear"
-                                                name="graduationPassedYear"
-                                                maxLength={50}
-                                                value={props.viewOnboard.graduationPassedYear}
-                                                 ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Grade *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="graduationGrade"
-                                                value={props.viewOnboard.graduationGrade}
-                                                name="graduationGrade"
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}
-                                        >
-                                            <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                                                12th Grade/Intermediate Details
-                                            </Card.Title>
-                                        </Card>
+                                </tr>
+                                <tr>
+                                  <td>{props.viewOnboard.intermediateQualification}</td>
+                                  <td>{props.viewOnboard.intermediateBoardOfUniversity}</td>
+                                  <td>{props.viewOnboard.intermediateCollegeName}</td>
+                                  <td>{props.viewOnboard.intermediateCourseName}</td>
+                                  <td>{props.viewOnboard.intermediateGrade}</td>
+                                  <td> {props.viewOnboard.intermediateJoiningYear ? (<td>
+                                    {intermediateJoiningYear1}
+                                  </td>) : (<div></div>)}</td>
+                                  <td> {props.viewOnboard.intermediatePassedYear ? (<td>
+                                    {intermediatePassedYear1}
+                                  </td>) : (<div></div>)}</td>
 
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Board * </Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="intermediateBoardOfUniversity"
-                                                value={props.viewOnboard.intermediateBoardOfUniversity}
-                                                maxLength={50}
-                                                name="intermediateBoardOfUniversity"
+                                </tr>
+                                <tr>
+                                  <td>{props.viewOnboard.sscQualification}</td>
+                                  <td>{props.viewOnboard.sscBoardOfUniversity}</td>
+                                  <td>{props.viewOnboard.sscSchoolName}</td>
+                                  <td>{props.viewOnboard.sscCourseName}</td>
+                                  <td>{props.viewOnboard.sscGrade}</td>
+                                  <td> {props.viewOnboard.sscJoiningYear ? (<td>
+                                    {sscJoiningYear1}
+                                  </td>) : (<div></div>)}</td>
+                                  <td>{props.viewOnboard.sscPassedYear ? (<td>
+                                    {sscPassedYear1}
+                                  </td>) : (<div></div>)}</td>
+                                </tr>
 
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>School/College Name *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="intermediateCollegeName"
-                                                value={props.viewOnboard.intermediateCollegeName}
-                                                name="intermediateCollegeName"
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>School/College City/Town *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="intermediateCollegeCity"
-                                                value={props.viewOnboard.intermediateCollegeCity}
-                                                name="intermediateCollegeCity"
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Course Name*</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                name="intermediateCourseName"
-                                                controlId="intermediateCourseName"
-                                                maxLength={50}
-                                                value={props.viewOnboard.intermediateCourseName}
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Joining Year *</Form.Label>
-                                            <Form.Control
-                                                //required
-                                                type="date"
-                                                controlId="intermediateJoiningYear"
-                                                name="intermediateJoiningYear"
-                                                value={props.viewOnboard.intermediateJoiningYear}
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Passed-out Year *</Form.Label>
-                                            <Form.Control
-                                                //required
-                                                type="date"
-                                                placeholder="Passed out year"
-                                                controlId="intermediatePassedYear"
-                                                value={props.viewOnboard.intermediatePassedYear}
-                                                name="intermediatePassedYear"
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Grade *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="intermediateGrade"
-                                                maxLength={5}
-                                                value={props.viewOnboard.intermediateGrade}
-                                                name="intermediateGrade"
-                                            ></Form.Control>
-                                        </Form.Group>
 
-                                        <Card
-                                            style={{ marginLeft: 8, marginRight: 8, marginTop: 15, backgroundColor: "#FAFDD0" }}
-                                        >
-                                            <Card.Title style={{ margin: 20, textAlign: "center" }}>
-                                                10th Grade details
-                                            </Card.Title>
-                                        </Card>
+                              </tbody>
+                            </Table>
 
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Board *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="sscBoardOfUniversity"
-                                                maxLength={50}
-                                                value={props.viewOnboard.sscBoardOfUniversity}
-                                                name="sscBoardOfUniversity"
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>School Name *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="sscSchoolName"
-                                                maxLength={50}
-                                                value={props.viewOnboard.sscSchoolName}
-                                                name="sscSchoolName"
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>School City/Town *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="sscSchoolCity"
-                                                maxLength={50}
-                                                value={props.viewOnboard.sscSchoolCity}
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Course Name *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="sscCourseName"
-                                                maxLength={50}
-                                                value={props.viewOnboard.sscCourseName}
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Joining Year *</Form.Label>
-                                            <Form.Control
-                                                //required
-                                                type="date"
-                                                name="sscJoiningYear"
-                                                controlId="sscJoiningYear"
-                                                value={props.viewOnboard.sscJoiningYear}
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Passed-out Year *</Form.Label>
-                                            <Form.Control
-                                                //required
-                                                type="date"
-                                                name="sscPassedYear"
-                                                controlId="sscPassedYear"
-                                                value={props.viewOnboard.sscPassedYear}
-                                            ></Form.Control>
-                                        </Form.Group>
-                                        <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                                            <Form.Label>Grade *</Form.Label>
-                                            <Form.Control
-                                                required
-                                                type="text"
-                                                controlId="sscGrade"
-                                                value={props.viewOnboard.sscGrade}
-                                                maxLength={5}
-                                                name="sscGrade"
-                                            ></Form.Control>
-                                        </Form.Group>
-                    </Row>
-              
-            </Form>
-        </div>
+                          </Card.Body>
+                          <Col md="6" style={{ padding: 0 }}>
+              <a
+                href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${props.viewOnboard.onboardingId}`}
+              >
+                Download Documents
+              </a>
+            </Col>
+                        </div>
     )
 }
 export default EducationalDetailsTab;

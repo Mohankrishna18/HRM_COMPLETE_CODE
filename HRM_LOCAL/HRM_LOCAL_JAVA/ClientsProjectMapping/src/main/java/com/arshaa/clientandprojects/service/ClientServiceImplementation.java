@@ -17,17 +17,29 @@ public class ClientServiceImplementation implements ClientServiceInterface {
 	@Autowired(required = true)
 	private ClientRepository clientRepo;
 	
+//	public Clients findByClientId(Integer id) {
+//		return clientRepo.findByClientId(id);
+//	}
+//	
 
 	
 	// To Add Clients
 		public ResponseEntity addClient(Clients newClients) {
 			ClientResponse cr = new ClientResponse<>();
 			try {
-				Clients newClientData = clientRepo.save(newClients);
-				cr.setStatus(true);
-				cr.setMessage("Data added successfully");
-				cr.setData(newClientData);
-				return new ResponseEntity(cr, HttpStatus.OK);
+			    if(!clientRepo.existsByClientNameOrEmail(newClients.getClientName(),newClients.getEmail()))
+			    		{
+			    	Clients newClientData = clientRepo.save(newClients);
+					cr.setStatus(true);
+					cr.setMessage("Data added successfully");
+					cr.setData(newClientData);
+					return new ResponseEntity(cr, HttpStatus.OK);
+			    		}
+			    else {
+			    	cr.setStatus(false);
+					cr.setMessage("Data already exists");
+					return new ResponseEntity(cr, HttpStatus.OK);
+			    }
 			} catch (Exception e) {
 
 				cr.setStatus(false);
@@ -59,39 +71,42 @@ public class ClientServiceImplementation implements ClientServiceInterface {
 		
 		
 
-		// To Update the Client
+// To Update the Client
 
-		
-		@Override
-		public ResponseEntity updateClientById(int clientId, Clients newClientUpdate) {
-			ClientResponse cr = new ClientResponse<>();
-			try {
-				Clients updateClient = clientRepo.getById(clientId);
-				updateClient.setClientName(newClientUpdate.getClientName());
-				updateClient.setStartDate(newClientUpdate.getStartDate());
-				updateClient.setEndDate(newClientUpdate.getEndDate());
-				updateClient.setLocation(newClientUpdate.getLocation());
-				updateClient.setAddress(newClientUpdate.getAddress());
+        
+        @Override
+        public ResponseEntity updateClientById(int clientId, Clients newClientUpdate) {
+            ClientResponse cr = new ClientResponse<>();
+            try {
+                Clients updateClient = clientRepo.getById(clientId);
+                updateClient.setClientName(newClientUpdate.getClientName());
+                updateClient.setStartDate(newClientUpdate.getStartDate());
+                updateClient.setEndDate(newClientUpdate.getEndDate());
+                updateClient.setCountry(newClientUpdate.getCountry());
+                updateClient.setAddress(newClientUpdate.getAddress());
+                updateClient.setEmail(newClientUpdate.getEmail());
+                updateClient.setPhoneNumber(newClientUpdate.getPhoneNumber());
+                updateClient.setTag(newClientUpdate.getTag());
+                updateClient.setNote(newClientUpdate.getNote());
+                updateClient.setPocName(newClientUpdate.getPocName());
 
-				Clients latestClient = clientRepo.save(updateClient);
-				System.out.println(latestClient);
+                Clients latestClient = clientRepo.save(updateClient);
+                System.out.println(latestClient);
 
-				cr.setStatus(true);
-				cr.setMessage("Data added successfully");
-				cr.setData(latestClient);
+                cr.setStatus(true);
+                cr.setMessage("Data added successfully");
+                cr.setData(latestClient);
 
-				return new ResponseEntity(cr, HttpStatus.OK);
-			} catch (Exception e) {
-				// TODO: handle exception
+                return new ResponseEntity(cr, HttpStatus.OK);
+            } catch (Exception e) {
+                // TODO: handle exception
 
-				cr.setStatus(false);
-				cr.setMessage(e.getMessage());
-				return new ResponseEntity(cr, HttpStatus.OK);
-			}
+                cr.setStatus(false);
+                cr.setMessage(e.getMessage());
+                return new ResponseEntity(cr, HttpStatus.OK);
+            }
 
-		}
-
-
+        }
 
 
 		// To Delete the Client

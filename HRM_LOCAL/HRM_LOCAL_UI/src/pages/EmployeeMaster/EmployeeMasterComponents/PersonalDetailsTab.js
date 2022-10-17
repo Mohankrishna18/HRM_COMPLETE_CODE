@@ -4,20 +4,20 @@ import axios from "../../../Uri";
 import { toast } from "react-toastify";
 
 
-
 function PersonalDetailsTab() {
 
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
-    const employeeid = userData1.data.employeeId;
+    const onboardingId = userData1.data.onboardingId;
+    const empId = localStorage.getItem('item')
 
     const payload = {
-        employeeId,
+        onboardingId,
         firstName,
         lastName,
         middleName,
         dateOfBirth,
-        primaryPhoneNumber,
+        phoneNumber,
         secondaryPhoneNumber,
         email,
         primarySkills,
@@ -42,7 +42,7 @@ function PersonalDetailsTab() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [middleName, setMiddleName] = useState(" ");
-    const [primaryPhoneNumber, setPrimaryPhoneNumber] = useState(" ");
+    const [phoneNumber, setPhoneNumber] = useState(" ");
     const [secondaryPhoneNumber, setSecondaryPhone] = useState("");
     const [dateOfBirth, setDateOfBirth] = useState("");
     const [employeeId, setEmployeeId] = useState("");
@@ -52,15 +52,24 @@ function PersonalDetailsTab() {
     const [bloodGroup, setBloodGroup] = useState("");
     const [gender, setGender] = useState("");
     const [maritalStatus, setMaritalStatus] = useState("");
+    const [onboardingId1, setOnboardingId] = useState("");
     const [dateOfJoining, setDateOfJoining] = useState("");
-
-
+    const [status, setStatus] = useState("");
 
     useEffect(() => {
         axios
-            .get(`/emp/getPersonalDetails/${employeeid}`)
+            .get(`/emp/getPersonalDetails/${empId}`) 
             .then((response) => {
-                setEmployeeId(response.data.data.employeeId);
+                console.log(response.data);
+                setStatus(response.data)
+            });
+    }, []);
+
+    useEffect(() => {
+        axios
+            .get(`/emp/getPersonalDetails/${empId}`)
+            .then((response) => {
+                setOnboardingId(response.data.data.onboardingId1);
                 setFirstName(response.data.data.firstName);
                 setLastName(response.data.data.lastName);
                 setSecondaryPhone(response.data.data.secondaryPhoneNumber);
@@ -68,50 +77,49 @@ function PersonalDetailsTab() {
                 setFirstName(response.data.data.firstName);
                 setMiddleName(response.data.data.middleName);
                 setLastName(response.data.data.lastName);
-                setPrimaryPhoneNumber(response.data.data.primaryPhoneNumber);
+                setPhoneNumber(response.data.data.phoneNumber);
                 setSecondaryPhone(response.data.data.secondaryPhoneNumber);
                 setEmail(response.data.data.email);
                 setDateOfBirth(response.data.data.dateOfBirth);
                 setBloodGroup(response.data.data.bloodGroup);
                 setGender(response.data.data.gender);
                 setMaritalStatus(response.data.data.maritalStatus);
-
+                setPrimarySkills(response.data.data.primarySkills);
+                setSecondarySkills(response.data.data.secondarySkills);
             });
     }, []);
 
     const changeHandler = async (e) => {
         e.preventDefault();
-        try{
-        await axios.put(`/emp/updatePersonalDetails/${employeeid}`, {
-            employeeId,
+        await axios.put(`/emp/updatePersonalDetails/${empId}`, {
+            onboardingId,
             firstName,
             lastName,
             middleName,
             dateOfBirth,
-            primaryPhoneNumber,
+            phoneNumber,
             secondaryPhoneNumber,
             email,
             primarySkills,
             secondarySkills,
             bloodGroup,
             gender,
-            maritalStatus
+            maritalStatus,
+            status
+
         });
         toast.success("Form Submitted Successfully");
-    }
-        catch (error) {
-            toast.error("Somethingwent Wrong");
-    }
+
     };
 
     return (
 
         <div>
-            <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 12, textAlign: "center" }}>
+            {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
+                <Card.Title style={{ margin: 20, textAlign: "center" }}>
                     Personal Details
                 </Card.Title>
-            </Card>
+            </Card> */}
 
             <Form
                 onSubmit={(e) => changeHandler(e)}
@@ -197,11 +205,11 @@ function PersonalDetailsTab() {
                                 required
                                 type="number"
                                 name="primaryPhoneNumber"
-                                placeholder="phone Number"
+                                placeholder="Phone Number"
                                 maxLength={10}
-                                value={primaryPhoneNumber}
+                                value={phoneNumber}
                                 onChange={(e) => {
-                                    setPrimaryPhoneNumber(e.target.value);
+                                    setPhoneNumber(e.target.value);
                                     if (e.target.value.length > 10) {
                                         setThirdErrors(" Phonenumber length should be 10 characters");;
                                     }
@@ -393,13 +401,42 @@ function PersonalDetailsTab() {
                         </Form.Control.Feedback>
                     </Form.Group>
 
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Primary Skills</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Primary Skills"
+                            controlId="primarySkils"
+                            value={primarySkills}
+                            maxLength={15}
+                            name="primarySkills"
+                            onChange={(e) =>
+                                setPrimarySkills(e.target.value)
 
+
+                            }
+                        ></Form.Control>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Secondary Skills</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Secondary Skills"
+                            controlId="secondarySkills"
+                            value={secondarySkills}
+                            maxLength={15}
+                            name="secondarySkills"
+                            onChange={(e) =>
+                                setSecondarySkills(e.target.value)
+
+                            }
+                        ></Form.Control>
+                    </Form.Group>
                     <Row>
-
-                    </Row>
-
-                </Row>
-                <Button
+                        <Col>
+                        </Col>
+                        <Col>
+                        <Button
                     className="rounded-pill" md="3"
                     style={{ backgroundColor: "#eb4509", float: "right" }}
                     type="submit"
@@ -407,6 +444,17 @@ function PersonalDetailsTab() {
                 >
                     Submit
                 </Button>
+                        </Col>
+                    </Row>
+                   
+
+
+                    <Row>
+
+                    </Row>
+
+                </Row>
+               
             </Form>
         </div>
     )

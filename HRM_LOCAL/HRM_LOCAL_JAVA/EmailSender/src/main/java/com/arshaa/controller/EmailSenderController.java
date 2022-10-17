@@ -8,6 +8,7 @@ import javax.mail.internet.AddressException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,7 @@ import com.arshaa.common.EmployeeLogin;
 import com.arshaa.common.PreEmailModel;
 import com.arshaa.common.UserModel;
 import com.arshaa.common.Users;
+import com.arshaa.emailmodels.MainEmailTemplate;
 import com.arshaa.service.EmailSender;
 
 @RestController
@@ -33,15 +35,14 @@ public class EmailSenderController {
 	private RestTemplate template;
 
 	@PostMapping(value = "/sendmail")
-	public void send(@RequestBody UserModel model) throws AddressException, MessagingException, IOException {
-		emailSender.sendEmail(model.getName(), model.getUserName(), model.getEmail(), model.getPassword(),
-				model.getEmployeeId());		
+	public ResponseEntity send(@RequestBody MainEmailTemplate model) throws AddressException, MessagingException, IOException {
+	  return emailSender.mail(model);		
 	}
 	
-	@PostMapping(value="/preSendMail")
-	public void send(@RequestBody PreEmailModel emailModel) throws AddressException, MessagingException, IOException{
-		emailSender.preMailSend(emailModel.getName(),emailModel.getEmail(),emailModel.getPassword());
-	}
+//	@PostMapping(value="/preSendMail")
+//	public void send(@RequestBody PreEmailModel emailModel) throws AddressException, MessagingException, IOException{
+//		emailSender.preMailSend(emailModel.getName(),emailModel.getEmail(),emailModel.getPassword());
+//	}
 //	@PostMapping(value = "/sendmails")
 //	public void sent(@RequestBody UserModel model) throws AddressException, MessagingException, IOException {
 //		emailSender.sentEmail(model.getName(), model.getUserName(), model.getEmail(), model.getPassword(),
@@ -76,11 +77,9 @@ public class EmailSenderController {
 //	}
 	//String loginURL="http://loginservice/login/addUsers";
 
-	@PostMapping(value = "/postmail")
-
-	public String send() throws AddressException, MessagingException, IOException {
-		emailSender.postMail();
-
+	@PostMapping(value = "/preSendMail")
+	public String sendMail(@RequestBody MainEmailTemplate model) throws AddressException, MessagingException, IOException {
+		emailSender.mail(model);
 		return "Email Sent Successfully";
 	}
 
