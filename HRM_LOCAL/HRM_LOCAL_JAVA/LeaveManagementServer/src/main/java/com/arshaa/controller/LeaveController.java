@@ -221,5 +221,25 @@ public class LeaveController {
 		return service.findEmployeeWFHCountByLeaveOrwfhAndEmployeeId(leaveOrwfh,employeeId);
 
 	}
+	@GetMapping("/getAllbetweenDates/{employeeId}/{leaveOrwfh}")
+	public List<BetweenDates> findbetweenDatesByLeaveOrwfh(@PathVariable String employeeId, @PathVariable String leaveOrwfh) {
+		return br.findByEmployeeIdAndLeaveOrwfh(employeeId, leaveOrwfh);
+	}
+	
+	@GetMapping("/getcountLeavesofApplyingLeaves/{employeeId}")
+	public int findLeaveapplyingleavescount(@PathVariable String employeeId) {
+		// repo.findNumberOfRemainingLeavesByEmployeeId(employeeId);
+		int b = repo.findLeaveapplyingleavescount(employeeId);
+		return b;
+	}
+	
+@GetMapping("/getcountWFHofApplyingLeaves/{employeeId}")
+public int findWFHapplyingleavescount(@PathVariable String employeeId) {
+	// repo.findNumberOfRemainingLeavesByEmployeeId(employeeId);
+	int b = repo.findWFHapplyingleavescount(employeeId);
+	return b;
+}
+	
+	
   
 }

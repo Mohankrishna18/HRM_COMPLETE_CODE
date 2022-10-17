@@ -31,6 +31,9 @@ function IntegrateLeaveToApply() {
     const [state, setState] = useState(false);
     const [wfh, setWfh]=useState();
     const [leaveOrwfh,setLeaveOrwfh]=useState('');
+    const [wbtwnDates, setWBtwnDates] = useState([]);
+    const [wbdates, setWBDates] = useState([]);
+    const [wcolor, setWColor] = useState([]);
 
         const current = new Date();
       const currentdate = `${current.getFullYear()},${current.getMonth()+1},${current.getDate()}`;
@@ -65,7 +68,9 @@ function IntegrateLeaveToApply() {
     let mark = []
     let hclr = []
     let btwn = []
+    let wbtwn = []
     let clr = []
+    let wclr = []
 
     useEffect(() => {
 
@@ -97,11 +102,10 @@ function IntegrateLeaveToApply() {
 
     useEffect(() => {
         colorDates();
-
-
+        colorWFHDates();
     }, []);
     const colorDates = () => {
-        axios.get(`/leave/getAllbetweenDates/${empID}`).then((resp) => {
+        axios.get(`/leave/getAllbetweenDates/${empID}/L`).then((resp) => {
 
             console.log(resp.data)
             resp.data.map((m) => {
@@ -131,6 +135,38 @@ function IntegrateLeaveToApply() {
 
         })
     }
+    const colorWFHDates = () => {
+        axios.get(`/leave/getAllbetweenDates/${empID}/W`).then((resp) => {
+
+            console.log(resp.data)
+            resp.data.map((m) => {
+                const warr = m.appliedDate.replace(/[-,]/g, ",");
+                const wstr = warr.replace(/\b0/g, '');
+                console.log(wstr);
+                const wbb = moment.utc(m.appliedDate).format('YYYY-MM-DD')
+                console.log(wbb);
+                // btwn.push(m.appliedDate)
+                wbtwn.push(new Date(wstr));
+                wclr.push(wbb);
+
+            })
+            console.log(wbtwn)
+            setWBtwnDates(wbtwn);
+            setWColor(wclr);
+            // btwnDates.resp.data.map((item) => {
+
+            //     var dd = item.appliedDate;
+
+
+            //     btwn.push(dd)
+
+            //     setBDates(btwn)
+            // });
+
+
+        })
+    }
+
     const obje = Object.assign({}, btwnDates);
     console.log(obje);
     // console.log(btwn);
@@ -345,7 +381,7 @@ function IntegrateLeaveToApply() {
 
     }, []);
     const LA = () => {
-        axios.get(`leave/getEmployeeWFHCountByLeaveOrwfh/L/${empID}`).then((res) => {
+        axios.get(`leave/getcountLeavesofApplyingLeaves/${empID}`).then((res) => {
 
             console.log(res.data);
 
@@ -356,7 +392,7 @@ function IntegrateLeaveToApply() {
     }
 
     const WFH = () => {
-        axios.get(`leave/getEmployeeWFHCountByLeaveOrwfh/W/${empID}`).then((res) => {
+        axios.get(`leave/getcountWFHofApplyingLeaves/${empID}`).then((res) => {
 
             console.log(res.data);
 
@@ -424,6 +460,7 @@ function IntegrateLeaveToApply() {
                 notifySuccess("Leave Applied Successfully")
                 loadTable();
                 colorDates();
+                colorWFHDates();
             }
 
 
@@ -811,6 +848,9 @@ function IntegrateLeaveToApply() {
                                         if (color.find(x => x === moment(date).format("YYYY-MM-DD"))) {
                                             return 'applied'
                                         }
+                                        if (wcolor.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                            return 'wapplied'
+                                        }
 
                                     }}
 
@@ -824,7 +864,18 @@ function IntegrateLeaveToApply() {
                                             date.getFullYear() === disabledDate.getFullYear() &&
                                             date.getMonth() === disabledDate.getMonth() &&
                                             date.getDate() === disabledDate.getDate()
-                                        )}
+                                        ) ||
+                                        wbtwnDates.some(disabledDate =>
+                                            date.getFullYear() === disabledDate.getFullYear() &&
+                                            date.getMonth() === disabledDate.getMonth() &&
+                                            date.getDate() === disabledDate.getDate()
+                                        ) ||
+                                        wbdates.some(disabledDate =>
+                                            date.getFullYear() === disabledDate.getFullYear() &&
+                                            date.getMonth() === disabledDate.getMonth() &&
+                                            date.getDate() === disabledDate.getDate()
+                                        )
+                                    }
                                 />
                             </Form.Group>
                             <Form.Group
@@ -918,6 +969,9 @@ function IntegrateLeaveToApply() {
                                         if (color.find(x => x === moment(date).format("YYYY-MM-DD"))) {
                                             return 'applied'
                                         }
+                                        if (wcolor.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                            return 'wapplied'
+                                        }
                                     }}
                                     minDate={
                                         new Date(fromDate)
@@ -932,7 +986,18 @@ function IntegrateLeaveToApply() {
                                             date.getFullYear() === disabledDate.getFullYear() &&
                                             date.getMonth() === disabledDate.getMonth() &&
                                             date.getDate() === disabledDate.getDate()
-                                        )}
+                                        ) ||
+                                        wbtwnDates.some(disabledDate =>
+                                            date.getFullYear() === disabledDate.getFullYear() &&
+                                            date.getMonth() === disabledDate.getMonth() &&
+                                            date.getDate() === disabledDate.getDate()
+                                        ) ||
+                                        wbdates.some(disabledDate =>
+                                            date.getFullYear() === disabledDate.getFullYear() &&
+                                            date.getMonth() === disabledDate.getMonth() &&
+                                            date.getDate() === disabledDate.getDate()
+                                        )
+                                    }
                                     />
                                 ) : (
                                         <Calendar
@@ -942,6 +1007,9 @@ function IntegrateLeaveToApply() {
                                             }
                                             if (color.find(x => x === moment(date).format("YYYY-MM-DD"))) {
                                                 return 'applied'
+                                            }
+                                            if (wcolor.find(x => x === moment(date).format("YYYY-MM-DD"))) {
+                                                return 'wapplied'
                                             }
                                         }}
                                         tileDisabled={({ date }) =>

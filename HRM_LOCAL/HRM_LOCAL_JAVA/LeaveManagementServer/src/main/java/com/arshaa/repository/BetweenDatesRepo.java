@@ -20,11 +20,8 @@ public interface BetweenDatesRepo extends JpaRepository<BetweenDates, Integer> {
        void   deleteDates(@Param("employeeleaveId")Integer employeeleaveId);
 
 	List<BetweenDates> findByEmployeeId(String employeeId);
+//	List<BetweenDates> findAllbetweenDatesAndleaveOrwfh(String employeeId, String leaveOrwfh);
 
+	List<BetweenDates> findByEmployeeIdAndLeaveOrwfh(String employeeId, String leaveOrwfh);
 	
-
-
-
-
-
 }

@@ -505,6 +505,16 @@ public class UserService {
 		}
 
 	}
+	public List<User> findByEmployeeIdAndLeaveOrwfh(String employeeId, String leaveOrwfh) {
+		try {
+// TODO Auto-generated method stub
+			return (List<User>) repository.findByEmployeeIdAndLeaveOrwfh(employeeId,leaveOrwfh);
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return findByEmployeeIdAndLeaveOrwfh(employeeId,leaveOrwfh);
+	}
+	
 
 }
 
