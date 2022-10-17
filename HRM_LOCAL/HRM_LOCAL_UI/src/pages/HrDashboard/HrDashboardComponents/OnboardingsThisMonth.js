@@ -37,18 +37,19 @@ function OnboardingsMonth() {
 console.log(data)
 
     const [columns, setColumns] = useState([
-      { title: "Onboarding Id", field: "onboardingId",color:"black" },
-      { title: "FullName", field: "firstName" },
+      { title: "Onboarding ID", field: "onboardingId",color:"black" },
+      { title: "Job Title", field: "jobTitle" },
+      { title: "Name", field: "firstName" },
       { title: "Email", field: "email" },
-      { title: "PhoneNumber", field: "phoneNumber" },
+      { title: "Experience", field: "yearsOfExperience" },
       {
         title: "DOJ",
         field: "dateOfJoining",
         type: "date",
         dateSetting: { locale: "en-GB" },
       },
-      { title: "Job Title", field: "jobTitle" },
-      { title: "Experience", field: "yearsOfExperience" },
+      { title: "Contact_Number", field: "phoneNumber" },  
+
      
     ]);
     console.log(data);
@@ -158,6 +159,9 @@ return(
               maxBodyHeight: 350,
               headerStyle: {
                // backgroundColor: "#FFCE83",
+               fontSize:"16px",
+               paddingBottom:"6px",
+               paddingTop:"12px",
                background: "linear-gradient(#dbdcdc,white,#dbdcdc)",
                 color: "black",
               },
