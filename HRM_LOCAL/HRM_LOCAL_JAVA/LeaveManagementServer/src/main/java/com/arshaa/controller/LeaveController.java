@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.arshaa.entity.BetweenDates;
 import com.arshaa.entity.EntitledLeaves;
 import com.arshaa.entity.User;
+import com.arshaa.model.UserModel;
 import com.arshaa.model.ApproveCount;
 import com.arshaa.repository.BetweenDatesRepo;
 import com.arshaa.repository.UserRepository;
@@ -47,8 +48,9 @@ public class LeaveController {
 	private leaveEntitlementRepository re; // @CrossOrigin(origins = "http://localhost:3000")
 
 	@GetMapping("/getLeaveHistoryByEmpid/{employeeleaveId}")
-	private Optional<User> getUsers(@PathVariable Integer employeeleaveId) {
-		return service.findById(employeeleaveId);
+	public ResponseEntity<UserModel> getUsers(@PathVariable Integer employeeleaveId) {
+		return ResponseEntity.ok(service.findById(employeeleaveId));
+//	return service.findById(employeeleaveId);
 	}
 
 	@GetMapping("/getLeaveHistoryByEmployeeid/{employeeId}")
@@ -208,6 +210,15 @@ public class LeaveController {
 	public List<LeavesDataForHr> getEmployeePendingLeavesByStatus(@PathVariable String leaveStatus) {
 
 		return service.findEmployeeLeavesLeaveStatusByLeaveStatus(leaveStatus);
+
+	}
+	
+	//To get Count of WFH from EmployeeLeaves Table
+	@GetMapping("/getEmployeeWFHCountByLeaveOrwfh/{leaveOrwfh}/{employeeId}")
+
+	public int getEmployeeWFHCountByLeaveOrwfh(@PathVariable String leaveOrwfh, @PathVariable String employeeId) {
+
+		return service.findEmployeeWFHCountByLeaveOrwfhAndEmployeeId(leaveOrwfh,employeeId);
 
 	}
   
