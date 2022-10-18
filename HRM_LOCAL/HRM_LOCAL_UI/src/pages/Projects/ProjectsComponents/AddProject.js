@@ -307,7 +307,7 @@ function AddProject(props) {
                 >
                   <option>Select </option>
                   {reportingManager.map((reportingManagerr) => (
-                    <option>{reportingManagerr.reportingmanager}</option>
+                    <option>{reportingManagerr.projectManager}</option>
                   ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
