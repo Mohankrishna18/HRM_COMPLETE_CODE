@@ -90,7 +90,9 @@ import HrDashboardMain from "../pages/HrDashboard/HrDashboardMain";
 import AddResignation from "../pages/Resignation/AddResignation";
 import ResignationMain from "../pages/Resignation/ResignationMain";
 import UserAccessMain from "../pages/UserAccess/UserAccessMain";
+
 import RRMain from "../pages/Recruitment-Tracker/RRMain";
+import reduxMain from "../pages/Tasks/reduxMain";
 
 
 export default [
@@ -579,6 +581,22 @@ export default [
     ],
     
   },
+
+  {
+    component: reduxMain,
+    path: "/reduxMain",
+    type: "null",
+    icon: <FcPlanner />,
+    title: "Redux",
+    permission: [
+      Roles.employee,
+      Roles.pmohead,
+      Roles.hrmanager,
+      Roles.manager,
+      Roles.recruitmentmanager,
+    ],
+  },
+
   {
     component: RRMain,
     type: "null",
@@ -588,5 +606,6 @@ export default [
     permission: [Roles.pmohead, Roles.irf],
   },
 ];
+
 
 

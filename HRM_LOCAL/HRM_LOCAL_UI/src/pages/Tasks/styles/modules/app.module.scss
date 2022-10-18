@@ -1,0 +1,39 @@
+@import '../_mixins.scss';
+
+.app__wrapperr {
+    max-width: 750px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 2rem;
+   
+}
+.appHeaderr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 30px;
+    height: 40px;
+}
+.content__wrapperr {
+    padding: 2rem;
+    border-radius: 20px;
+    width:1300px;
+    
+    background-color: rgba(210, 143, 56, 0.621);
+    @include smallDeviceSize {
+        padding: 1.5rem;
+    }
+}
+.emptyTextt {
+    // display: inline-block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--black-2);
+    text-align: center;
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background-color: var(--gray-2);
+    width: max-content;
+    height: auto;
+}
