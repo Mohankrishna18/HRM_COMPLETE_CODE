@@ -5,10 +5,11 @@ import Tab from '@mui/material/Tab';
 import { Row, Col, Card, Container, Tabs } from 'react-bootstrap';
 import AssignEmploymentDetailsMain from '../AssignEmploymentDetails/AssignEmploymentDetailsMain';
 import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
-import TaskMain from '../TimeSheet/EmployeeTimesheet/TaskMain';
+
 import EmploymentDetailsTabbyPmo from './EmploymentDetailsTabbyPmo';
 import PMOApproval from './PMOApproval';
 import PMOResignationMain from './PMOResignationMain';
+import ApprovalsMain from '../TimeSheet/irmApproval/ApprovalsMain';
 
 //Empty Commit
 function PMOMain() {
@@ -27,7 +28,7 @@ function PMOMain() {
             <Card.Title>Approvals</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">
               PMO Approval
-            </Card.Subtitle>{" "}
+            </Card.Subtitle>
             <Row>
               <Col xs={12}>
 
@@ -43,7 +44,7 @@ function PMOMain() {
                   </Box>
                   <TabPanel value="1"><PMOApproval /></TabPanel>
                   <TabPanel value="2"><HrEmployeesLeavesWaitingForApproval /></TabPanel>
-                  <TabPanel value="3"><TaskMain /></TabPanel>
+                  <TabPanel value="3"><ApprovalsMain /></TabPanel>
                   <TabPanel value="4"><AssignEmploymentDetailsMain /></TabPanel>
                   <TabPanel value="5"><PMOResignationMain /></TabPanel>
                 </TabContext>

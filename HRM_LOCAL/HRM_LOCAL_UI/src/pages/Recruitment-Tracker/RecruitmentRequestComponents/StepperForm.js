@@ -107,7 +107,7 @@ const AddRR = (props) => {
             technology,
             role,
             // description,
-            // rrfStatus,
+            rrfStatus,
             // workflowStatus,
             // positions,
             // pSkills,

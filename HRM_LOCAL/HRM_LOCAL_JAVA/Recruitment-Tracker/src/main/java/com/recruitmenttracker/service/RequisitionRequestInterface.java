@@ -13,5 +13,8 @@ public interface RequisitionRequestInterface {
 	public ResponseEntity deleteRRequest(long rrfId);
 	
 	public ResponseEntity updateRR(long rrfId, RequisitionRequestEntity RRUpdate);
+	
+	public ResponseEntity getRequisitionsByRrfStatus();
+	public ResponseEntity getRequisitionsByRrfId(long rrfId);
 
 }

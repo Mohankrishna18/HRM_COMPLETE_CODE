@@ -1,6 +1,7 @@
 package com.recruitmenttracker.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -111,6 +112,40 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 			rrr.setStatus(true);
 			rrr.setMessage("Something went wrong");
 			return new ResponseEntity(rrr,HttpStatus.OK);
+		}
+	}
+
+	@Override
+	public ResponseEntity getRequisitionsByRrfStatus() {
+		RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+		try {
+
+			List<RequisitionRequestEntity> rfs = rrRepository.findByRrfStatus("Active");
+			rrr.setStatus(true);
+			rrr.setMessage("Geting Data Succussfully");
+			rrr.setData(rfs);
+			return new ResponseEntity(rrr, HttpStatus.OK);
+		} catch (Exception e) {
+			rrr.setStatus(true);
+			rrr.setMessage("Something went wrong");
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+		}
+	}
+	
+	@Override
+	public ResponseEntity getRequisitionsByRrfId(long rrfId) {
+		RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+		try {
+
+			Optional<RequisitionRequestEntity> rfs = rrRepository.findById(rrfId);
+			rrr.setStatus(true);
+			rrr.setMessage("Geting Data Succussfully");
+			rrr.setData(rfs);
+			return new ResponseEntity(rrr, HttpStatus.OK);
+		} catch (Exception e) {
+			rrr.setStatus(true);
+			rrr.setMessage("Something went wrong");
+			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
 		}
 	}
 

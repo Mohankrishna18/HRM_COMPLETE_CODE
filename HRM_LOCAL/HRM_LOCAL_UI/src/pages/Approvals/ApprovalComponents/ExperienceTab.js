@@ -414,7 +414,7 @@ function ExperienceTab(props) {
     //   </Form>
     // </div>
     
-    <div style={{ padding: 20, marginTop: 0, paddingBottom:"121px", marginLeft: 10, marginRight: 20 }}>
+    <div style={{ padding: 20, marginTop: 0, paddingBottom:"53px", marginLeft: 10, marginRight: 20 }}>
     <Card.Title>
       <h5>Experience:</h5>
     </Card.Title>
