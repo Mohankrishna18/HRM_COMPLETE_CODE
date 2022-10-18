@@ -179,7 +179,7 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
 
         <Form.Group className="mb-3" as={Col} md="6">
 
-            <Form.Label>Project Name</Form.Label>
+            <Form.Label>Project</Form.Label>
 
             <Form.Control
 
