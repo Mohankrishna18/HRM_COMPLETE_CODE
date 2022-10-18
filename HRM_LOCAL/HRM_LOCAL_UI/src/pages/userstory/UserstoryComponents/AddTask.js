@@ -463,29 +463,6 @@ Add Task
               </Form.Group>
 
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>Status *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="status"
-                  controlId="status"
-                  value={form.status}
-                  onChange={(e) => setField("status", e.target.value)}
-                  isInvalid={!!errors.status}
-                >
-                  <option>Select status</option>
-                  <option>Todo</option>
-                  <option>In Progress</option>
-                  <option>Completed</option>
-                </Form.Select>
-                <Form.Control.Feedback type="invalid">
-                  {errors.status}
-                </Form.Control.Feedback>
-              </Form.Group>
-
-             
-
-              <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Assigned To *</Form.Label>
                 <Form.Select
                   required
