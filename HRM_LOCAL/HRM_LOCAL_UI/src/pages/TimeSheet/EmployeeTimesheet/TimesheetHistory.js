@@ -19,6 +19,7 @@ import {
   Form,
 } from "react-bootstrap";
 import { FcWebcam } from "react-icons/fc";
+import { Box } from "@material-ui/core";
 
 const TimesheetHistory = () => {
   const handleJumpToCurrentWeek = (currenDate) => {
@@ -37,22 +38,21 @@ const TimesheetHistory = () => {
     console.log(response.data);
   };
 
-  useEffect(() => {
-    getEmployeeDataApproval();
-  }, []);
-  const getEmployeeDataApproval = async (e) => {
-    const response = await axios.get(
-      `timesheet/gettimesheetData/${employeeId}`
-    );
-    setApproval(response.data);
-    console.log(response.data);
-  };
+  // useEffect(() => {
+  //   getEmployeeDataApproval();
+  // }, []);
+
   const da = JSON.parse(sessionStorage.getItem("userdata"));
   const employeeId = da.data.employeeId;
   const [approval, setApproval] = useState();
   const [viewShow, setViewShow] = useState(false);
   const viewHandleClose = () => setViewShow(false);
   const [taskData, setTaskData] = useState([]);
+  const [selectedYear, setSelectedYear] = useState();
+  const [selectedMonth, setSelectedMonth] = useState();
+  console.log(selectedMonth);
+  console.log(selectedYear);
+
   const [columns1, setColumns1] = useState([
     {
       title: "Timesheet Date",
@@ -68,7 +68,9 @@ const TimesheetHistory = () => {
       editable: "never",
     },
   ]);
-  const [selectedDate, setSelectedDate] =useState (new Date("2014-08-18T21:11:54"));
+  const [selectedDate, setSelectedDate] = useState(
+    new Date("2014-08-18T21:11:54")
+  );
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -78,69 +80,87 @@ const TimesheetHistory = () => {
   return (
     <div>
       <div>
-      <Grid item xs={4}>
-            <Form>
-              <Form.Group>
-                <Form.Label>Select Year</Form.Label>
-                <Form.Select
-                  style={{
-                    width: '48%',
-                    height: '8%',
-                    padding: '9px',
-                    marginLeft: '10px',
-                    cursor: 'pointer',
-                    borderRadius: 10,
-                  }}
-                  onChange={(e) => setSelectedYear(e.target.value)}
-                >
-                  <option>Select</option>
-                  <option value="2026">2026</option>
-                  <option value="2025">2025</option>
-                  <option value="2024">2024</option>
-                  <option value="2023">2023</option>
-                  <option value="2022">2022</option>
-                  <option value="2021">2021</option>
-                  <option value="2020">2020</option>
-                  <option value="2019">2019</option>
-                  <option value="2018">2018</option>
-                  <option value="2017">2017</option>
-                </Form.Select>
-              </Form.Group>
-            </Form>
-          </Grid>
+        <Row>
+          <Col> <Form>
+          <Form.Group>
+            <Form.Label>Select Year</Form.Label>
+            <Form.Select
+              style={{
+                width: "48%",
+                height: "8%",
+                padding: "9px",
+                marginLeft: "10px",
+                cursor: "pointer",
+                borderRadius: 10,
+              }}
+              onChange={(e) => setSelectedYear(e.target.value)}
+            >
+              <option>Select</option>
+              <option value="2026">2027</option>
+              <option value="2026">2026</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+            </Form.Select>
+          </Form.Group>
+        </Form></Col>
+          <Col>
+        <Form>
+          <Form.Group>
+            <Form.Label>Select Month</Form.Label>
+            <Form.Select
+              style={{
+                width: "48%",
+                height: "8%",
+                padding: "9px",
+                marginLeft: "10px",
+                cursor: "pointer",
+                borderRadius: 10,
+              }}
+              onChange={(e) => {
+                console.log(e.target.value);
 
-          <Grid item xs={4}>
-            <Form>
-              <Form.Group>
-                <Form.Label>Select Month</Form.Label>
-                <Form.Select
-                  style={{
-                    width: '48%',
-                    height: '8%',
-                    padding: '9px',
-                    marginLeft: '10px',
-                    cursor: 'pointer',
-                    borderRadius: 10,
-                  }}
-                  onChange={(e) => setSelectedMonth(e.target.value)}
-                >
-                  <option>Select</option>
-                  <option value="01">January</option>
-                  <option value="02">February </option>
-                  <option value="03">March</option>
-                  <option value="04">April</option>
-                  <option value="05">May</option>
-                  <option value="06">June</option>
-                  <option value="07">July</option>
-                  <option value="08">Augest</option>
-                  <option value="09">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
-                </Form.Select>
-              </Form.Group>
-            </Form>
-          </Grid>
+                axios
+                  .get(
+                    `timesheet/gettimesheetdata/${employeeId}/${selectedYear}/${e.target.value}`
+                  )
+                  .then((res) => {
+                    console.log(res);
+                    setApproval(res.data);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+                // setApproval(response.data);
+                // console.log(response);
+
+                setSelectedMonth(e.target.value);
+              }}
+            >
+              <option>Select</option>
+              <option value="01">January</option>
+              <option value="02">February </option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">Augest</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </Form.Select>
+          </Form.Group>
+        </Form></Col>
+        </Row>
+       
 
 
         {/* <Calender/> */}

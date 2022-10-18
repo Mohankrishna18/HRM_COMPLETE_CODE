@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; 
 import MaterialTable from "material-table";
 import {
   Card,
@@ -22,6 +22,7 @@ import moment from "moment";
 import { FcWebcam } from "react-icons/fc";
 
 import "../../LeaveManagement/calender.css";
+import { style } from "@mui/system";
 
 const TotalPage = ({ totalHours }) => {
   console.log(totalHours);
@@ -29,12 +30,14 @@ const TotalPage = ({ totalHours }) => {
     <>
       <div>
         <Row>
+        <Col></Col><Col></Col><Col><h6>TotalHours:</h6></Col><Col><h6>{totalHours}</h6></Col>
+          {/* <Col></Col>
           <Col>
-            <h2>Total Hours </h2>
+            <h5 style={{ float: "right" }}>Total Hours </h5>
           </Col>
           <Col>
-            <h2>{totalHours}</h2>
-          </Col>
+            <h5>{totalHours}</h5>
+          </Col> */}
           {/* <Col>
             <Button>submit</Button>
           </Col> */}
@@ -146,13 +149,11 @@ function TaskMain(props) {
     console.log("dataupdated");
   };
   const current = new Date();
-  const currentdate = `${current.getFullYear()},${
-    current.getMonth() + 1
-  },${current.getDate()}`;
+  const currentdate = `${current.getFullYear()},${current.getMonth() + 1
+    },${current.getDate()}`;
   console.log(currentdate);
-  const BackDate = `${current.getFullYear()},${
-    current.getMonth() - 3
-  },${current.getDate()}`;
+  const BackDate = `${current.getFullYear()},${current.getMonth() - 3
+    },${current.getDate()}`;
   console.log(BackDate);
   // const [empdata, setEmpdata] = useState([]);
   const [addStatus, setAddStatus] = useState(false);
@@ -173,13 +174,11 @@ function TaskMain(props) {
   const ot = [];
   const currentt = new Date();
 
-  const currenttdate = `${currentt.getFullYear()},${
-    currentt.getMonth() + 1
-  },${currentt.getDate()}`;
+  const currenttdate = `${currentt.getFullYear()},${currentt.getMonth() + 1
+    },${currentt.getDate()}`;
   console.log(currenttdate);
-  const BackkDate = `${currentt.getFullYear()},${currentt.getMonth() + 1},${
-    currentt.getDate() - 7
-  }`;
+  const BackkDate = `${currentt.getFullYear()},${currentt.getMonth() + 1},${currentt.getDate() - 7
+    }`;
 
   console.log(BackkDate);
 
@@ -189,9 +188,8 @@ function TaskMain(props) {
   const bd = moment.utc(bdate).format("YYYY,MM,DD");
   console.log(bd);
 
-  const frontDate = `${currentt.getFullYear()},${
-    currentt.getMonth() + 1
-  },${currentt.getDate()}`;
+  const frontDate = `${currentt.getFullYear()},${currentt.getMonth() + 1
+    },${currentt.getDate()}`;
   console.log(frontDate);
 
   const time = [];
@@ -199,16 +197,19 @@ function TaskMain(props) {
   const [columns, setColumns] = useState([
     {
       selection: true,
+      width:"3%"
     },
     {
       title: "Project",
       field: "projectName",
       type: "text",
       editable: "never",
+      
+      
     },
 
     {
-      title: "Task Name",
+      title: "Task Title",
       field: "taskTitle",
       type: "text",
       editable: "never",
@@ -223,18 +224,21 @@ function TaskMain(props) {
     {
       title: "Estimated Hours",
       field: "estimatedHours",
-      type: "text",
+      type: "numeric",
       editable: "never",
+    
     },
     {
       title: "Actual Hours",
       field: "actualHours",
       type: "numeric",
       validate: (rowData) => rowData.actualHours <= 16,
+
     },
     {
       title: "Remaining  Hours",
       field: "remainingHours",
+      type: "numeric",
       editable: "never",
 
       // render:  rowData=> axios
@@ -323,7 +327,7 @@ function TaskMain(props) {
   //  };
 
   return (
-    <>
+    <div className="scroll">
       <Modal show={viewShow} onHide={viewHandleClose} size="xl">
         <Modal.Header style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Timesheet Details</Modal.Title>
@@ -339,7 +343,7 @@ function TaskMain(props) {
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody> 
               {taskData.map((item) => (
                 <tr>
                   <td>{item.taskTitle}</td>
@@ -363,12 +367,13 @@ function TaskMain(props) {
       >
         <Form.Group as={Col} md="12" style={{ paddingleft: 6 }}>
           <Row>
-            <Col
-              md="4"
-              style={{ paddingLeft: "4%", paddingTop: "5%", fontSize: "20px" }}
+            <Col md="4"></Col>
+            <Col md="4"
+              style={{ paddingLeft: "4%", fontSize: "15px"}}
             >
               <Form.Label>Select Date</Form.Label>
-              <Calendar
+              <Calendar 
+              style={{height:"15%"}}
                 // minDate={new Date(BackDate)}
                 minDate={new Date(bd)}
                 maxDate={new Date(frontDate)}
@@ -394,11 +399,11 @@ function TaskMain(props) {
                       date.getDate() === disabledDate.getDate()
                   )
                 }
-                // tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6 || frontDate}
+              // tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6 || frontDate}
               />
             </Col>
-            <Col md="8">
-              <MaterialTable
+            <Col md="12" className="my-3">
+              <MaterialTable 
                 title=""
                 columns={columns}
                 data={data}
@@ -406,9 +411,11 @@ function TaskMain(props) {
                   headerStyle: {
                     backgroundColor: "#FF9E14",
                     color: "white",
-                    fontSize: "16px",
-                    paddingTop: "5px",
-                    paddingBottom: "2px",
+                    fontSize: "12px",
+                    // paddingTop: "5px",
+                    // paddingBottom: "2px",
+                    marginRight:"10px",
+                    // textAlign:"center"
                   },
                   selection: true,
 
@@ -520,8 +527,7 @@ function TaskMain(props) {
         </Col>
       </Row>
 
-     
-    </>
+    </div>
   );
 }
 

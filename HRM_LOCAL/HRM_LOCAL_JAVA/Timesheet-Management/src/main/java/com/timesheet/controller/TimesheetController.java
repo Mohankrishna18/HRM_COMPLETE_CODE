@@ -78,9 +78,9 @@ public List <TimesheetApproval>getTimesheetApprovalByIrmAndStatus(@PathVariable 
 	public List<TimesheetApproval> getTasks() {
 		return tRepo.findAll();
 	}
-	@GetMapping("/gettimesheetdata/{employeeId}")
-	public TimesheetApproval getTimesheetDataByEmployeeId(@PathVariable String  employeeId){
-		return tRepo.getTimesheetDataByEmployeeId(employeeId);
+	@GetMapping("/gettimesheetdata/{employeeId}/{year}/{month}")
+	public List<TimesheetApproval> getTimesheetDataByEmployeeId(@PathVariable String  employeeId,@PathVariable int year,@PathVariable int month){
+		return tRepo.getTimesheetDataByEmployeeId(employeeId, year, month);
 		
 		
 	}
