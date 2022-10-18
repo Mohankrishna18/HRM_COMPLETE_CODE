@@ -198,7 +198,7 @@ export default [
     type: "null",
     icon: <FcPlanner />,
     title: "Task",
-    permission: [Roles.employee,Roles.pmohead,Roles.manager,Roles.irm,Roles.srm],
+    permission: [Roles.pmohead,Roles.manager,Roles.irm,Roles.srm],
   },
   {
     component: MyTask,
