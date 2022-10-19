@@ -21,16 +21,13 @@ const EmployeeTimeSheetMain = () => {
     <div className='example'>
       <Row>
         <Col>
-        <Card.Title>TimeSheet Management</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                  TimeSheet Management
-                  </Card.Subtitle>
+        <Card.Title className="my-4">TimeSheet Management</Card.Title>
                   <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab style={{paddingRight:"2%",paddingLeft:"2%"}} label="Timesheet Submission" value="1" />
-            <Tab style={{paddingRight:"2%",paddingLeft:"2%"}} label="Timesheet History" value="2" />
+            <Tab style={{paddingRight:"2%",paddingLeft:"2%"}} label=" Submission" value="1" />
+            <Tab style={{paddingRight:"2%",paddingLeft:"2%"}} label=" History" value="2" />
     
           </TabList>
         </Box>
