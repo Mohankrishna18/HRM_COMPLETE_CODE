@@ -264,7 +264,7 @@ Add Task
               </Form.Group> */}
 
                 <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>Project Name *</Form.Label>
+                <Form.Label>Project *</Form.Label>
                 <Form.Select
                   required
                   className="projectId"
@@ -288,8 +288,23 @@ Add Task
                   {errors.projectId}
                 </Form.Control.Feedback>
               </Form.Group>
-
               <Form.Group className="mb-3" as={Col} md="6">
+                <Form.Label>UserStory *</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="User Story"
+                  controlId="userstory"
+                  value={form.userstory}
+                  onChange={(e) => setField("userstory", e.target.value)}
+                  isInvalid={!!errors.userstory}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.userstory}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group className="mb-12" as={Col} md="12">
                 <Form.Label>Task Title *</Form.Label>
                 <Form.Control
                   required
@@ -305,6 +320,8 @@ Add Task
                   {errors.taskTitle}
                 </Form.Control.Feedback>
               </Form.Group>
+
+
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Task Type *</Form.Label>
                 <Form.Select
@@ -313,7 +330,7 @@ Add Task
                   placeholder="Task Type"
                   controlId="taskType"
                   value={form.taskType}
-                  onChange={(e) => setField('taskType', e.target.value)}
+                  onChange={(e) => setField("taskType", e.target.value)}
                   isInvalid={!!errors.taskType}
                 >
                   <option>Select Task Type</option>
@@ -328,6 +345,7 @@ Add Task
                   <option>Testcase Review</option>
                   <option>Testcase Execution</option>
                   <option>Deployment</option>
+                  <option>others</option>
                 </Form.Select>
 
                 <Form.Control.Feedback type="invalid">
@@ -339,14 +357,37 @@ Add Task
                 <Form.Control
                   required
                   type="text"
+                  maxLength={3}
                   placeholder="Estimated Hours"
                   controlId="estimatedHours"
                   value={form.estimatedHours}
-                  onChange={(e) => setField('estimatedHours', e.target.value)}
+                  onChange={(e) => setField("estimatedHours", e.target.value)}
                   isInvalid={!!errors.estimatedHours}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {errors.estimatedHours}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group className="mb-3" as={Col} md="3">
+                <Form.Label>Priority </Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="priority"
+                  controlId="priority"
+                  value={form.priority}
+                  onChange={(e) => setField("priority", e.target.value)}
+                  isInvalid={!!errors.priority}
+                >
+                  <option>Select priority</option>
+                  <option>P1</option>
+                  <option>P2</option>
+                  <option>P3</option>
+                  
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.priority}
                 </Form.Control.Feedback>
               </Form.Group>
               {/* <Form.Group className="mb-3" as={Col} md="3">
@@ -364,6 +405,27 @@ Add Task
                   {errors.actualHours}
                 </Form.Control.Feedback>
               </Form.Group> */}
+               <Form.Group className="mb-3" as={Col} md="6">
+                <Form.Label>Status *</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="status"
+                  controlId="status"
+                  value={form.status}
+                  onChange={(e) => setField('status', e.target.value)}
+                  isInvalid={!!errors.status}
+                >
+                  <option>Select status</option>
+                  <option>Open</option>
+                  <option>In Progress</option>
+                  <option>Completed</option>
+                  <option>OnHold</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.status}
+                </Form.Control.Feedback>
+              </Form.Group>
 
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Planned Start Date *</Form.Label>
@@ -398,7 +460,7 @@ Add Task
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-3" as={Col} md="6">
+              {/* <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Status *</Form.Label>
                 <Form.Select
                   required
@@ -410,39 +472,20 @@ Add Task
                   isInvalid={!!errors.status}
                 >
                   <option>Select status</option>
-                  <option>Todo</option>
+                  <option>Open</option>
                   <option>In Progress</option>
                   <option>Completed</option>
+                  <option>OnHold</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.status}
                 </Form.Control.Feedback>
-              </Form.Group>
+              </Form.Group> */}
+
+            
 
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>Priority *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="priority"
-                  controlId="priority"
-                  value={form.priority}
-                  onChange={(e) => setField('priority', e.target.value)}
-                  isInvalid={!!errors.priority}
-                >
-                  <option>Select priority</option>
-                  <option>P1</option>
-                  <option>P2</option>
-                  <option>P3</option>
-                
-                </Form.Select>
-                <Form.Control.Feedback type="invalid">
-                  {errors.priority}
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>Assign Date *</Form.Label>
+                <Form.Label>Actual Start Date *</Form.Label>
                 <Form.Control
                   required
                   type="date"

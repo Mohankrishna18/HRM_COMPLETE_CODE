@@ -483,13 +483,13 @@ function MyTask() {
     //   type: "text",
     // },
     {
-      title:"Planned Startdate",
+      title:"Planned Start Date",
       field:"plannedStartDate",
       type:"date",
       dateSetting: { locale: "en-GB" }
     },
     {
-    title:"Planned Enddate",
+    title:"Planned End Date",
       field:"plannedEndDate",
       type:"date",
       dateSetting: { locale: "en-GB" }
@@ -575,7 +575,7 @@ function MyTask() {
             {/* <Container> */}
               <Row>
                 <Col style={{textAlign:"left",paddingLeft:"35px"}}>
-                  <Card.Title >My Task</Card.Title>
+                  <Card.Title >My Tasks</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
      
                   </Card.Subtitle>
@@ -592,7 +592,7 @@ function MyTask() {
 
                   <Grid style={{ borderBlockEndWidth: "2px" }}> */}
                     <MaterialTable
-                      title="Tasks list"
+                      title=""
                       columns={columns}
                       style={{ color: "black", fontSize: "13px",paddingLeft:"-1px"}}
                       data={data?data:[]}
@@ -621,7 +621,7 @@ function MyTask() {
 
                         pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
 
-                        maxBodyHeight: 450,
+                        maxBodyHeight: 555,
 
                         addRowPosition: "first",
 

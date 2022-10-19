@@ -114,7 +114,7 @@ function ProjectsMain() {
 
   return (
     <div>
-      <Modal show={show} onHide={handleClose} size="xl">
+      <Modal show={show} onHide={handleClose} size="xl" >
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px",color:"white" }}>
           <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>
             Edit Project
@@ -224,11 +224,11 @@ function ProjectsMain() {
 
               },
 
-              pageSize: 10,
+              pageSize: 15,
 
               pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
 
-              maxBodyHeight: 450,
+              maxBodyHeight: 550,
 
               addRowPosition: "first",
 
