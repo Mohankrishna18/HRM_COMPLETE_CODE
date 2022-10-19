@@ -10,7 +10,7 @@ import HiringsTab from "./HiringsTab";
 import { FcAssistant, FcConferenceCall, FcLeave, FcPositiveDynamic } from "react-icons/fc";
 import EmployeeMain from "./Employee/EmployeeeMain";
 import AllEmployees from "./Employee/AllEmployees";
-import Leaves from "./Leaves";
+import AttendanceMain from "../../Attendance/AttendanceMain";
 
 
 const HrDashboardTabs = () => {
@@ -29,22 +29,22 @@ const HrDashboardTabs = () => {
 
                         <Card.Body>
                             <Card.Title> Dashboard</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">
+                            {/* <Card.Subtitle className="mb-2 text-muted">
                              Dashboard
-                            </Card.Subtitle>
+                            </Card.Subtitle> */}
                             {/* <h2 style={{ paddingTop: "1%", paddingLeft: "1%" }}>HR Manager</h2> */}
                             <Box sx={{ width: '100%', typography: 'body1',paddingTop:"15px" }}>
                                 <TabContext value={value}>
                                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                                        <TabList onChange={handleChange} sx={{"& button.Mui-selected":{background: "linear-gradient(#e8e8e8,#e8e8e8,white)"}}} aria-label="lab API tabs example"style={{background: "linear-gradient(#FFD57E,#ffdc89,white)",borderRadius:"5px",height:"60px"}}>
-                                            <Tab label="Hirings" value="1" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"12px"}} icon={<FcPositiveDynamic style={{fontSize:"20px"}}/>}></Tab>
-                                            <Tab label="Employees" value="2" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"12px"}} icon={<FcConferenceCall style={{fontSize:"20px"}}/>} />
-                                            <Tab label="Leaves" value="3" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"12px"}} icon={<FcLeave style={{fontSize:"20px"}}/>}/>
+                                        <TabList onChange={handleChange} sx={{"& button.Mui-selected":{background: "#a3c2e3",color:"black"}}} aria-label="lab API tabs example"style={{background: "#354e69",borderRadius:"3px",height:"60px",color:"white"}}>
+                                            <Tab label="Hirings" value="1" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"14px"}} iconPosition="start" icon={<FcPositiveDynamic style={{fontSize:"20px"}} />}></Tab>
+                                            <Tab label="Employees" value="2" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"14px"}} iconPosition="start" icon={<FcConferenceCall style={{fontSize:"20px"}}/>} />
+                                            <Tab label="Attendance" value="3" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"14px"}} iconPosition="start" icon={<FcLeave style={{fontSize:"20px"}}/>}/>
                                         </TabList>
                                     </Box>
                                     <TabPanel style={{padding:"10px"}} value="1"><HiringsTab/></TabPanel>
                                     <TabPanel style={{padding:"10px"}} value="2"><AllEmployees /></TabPanel>
-                                    <TabPanel style={{padding:"10px"}} value="3"><Leaves/></TabPanel>
+                                    <TabPanel style={{padding:"10px"}} value="3"><AttendanceMain/></TabPanel>
                                 </TabContext>
                             </Box>
                         </Card.Body>
