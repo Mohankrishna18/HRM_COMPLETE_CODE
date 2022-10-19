@@ -59,7 +59,7 @@ console.log(data)
     const [columns, setColumns] = useState([
       { title: "Onboarding ID", field: "onboardingId",color:"black" },
       { title: "Job Title", field: "jobTitle" },
-      { title: "Name", field: "firstName" },
+      { title: "Name", field: "fullName" },
       { title: "Email", field: "email" },
       { title: "Experience", field: "yearsOfExperience" },
       {
@@ -183,7 +183,7 @@ console.log(data)
                fontSize:"16px",
                paddingBottom:"6px",
                paddingTop:"12px",
-               background: "linear-gradient(#dbdcdc,white,#dbdcdc)",
+               background: "#ffa442",
   
                 color: "black",
               },
@@ -231,3 +231,4 @@ console.log(data)
 
 
 export default OnboardingsToday;
+

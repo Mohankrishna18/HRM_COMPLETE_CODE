@@ -272,7 +272,7 @@ function OnboardedEmployeesTable() {
               <EmploymentDetailsTab 
               viewOnboard={updateOnboard} 
               viewHandleClose={viewHandleClose}/>
-            </Tab> */}
+          </Tab> */}
             <Tab
               eventKey="Education"
               title="Education"
@@ -331,7 +331,7 @@ function OnboardedEmployeesTable() {
               pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
               maxBodyHeight: 470,
               headerStyle: {
-                background: "linear-gradient(#dbdcdc,white,#dbdcdc)",
+                background: "#ffa442",
                 color: "black",
                 fontSize:"16px",
                 paddingBottom:"6px",
@@ -395,8 +395,7 @@ function OnboardedEmployeesTable() {
                       <FcWebcam />{" "}
                        View
                     </Button>
-                    
-                     <Button style={{paddingTop:"10px"}}
+                    <Button style={{paddingTop:"10px"}}
                      variant="white"
                      onClick={(event) => {
                       setEditShow(true);
@@ -406,8 +405,10 @@ function OnboardedEmployeesTable() {
                    >
                       <FiEdit />Edit
                    </Button>
+                    
                    </Stack>
                   )}
+                 
                 </div>
               ),
             }}

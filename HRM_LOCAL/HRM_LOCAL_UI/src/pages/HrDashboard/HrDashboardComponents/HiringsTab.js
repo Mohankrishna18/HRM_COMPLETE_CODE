@@ -138,18 +138,18 @@ export default function HiringsTab(props) {
                 </Row> */}
 
         <TabContext value={value} style={{padingRight:"10px"}}>
-          <Box  sx={{ borderBottom: 0, borderColor: 'divider',width: '61%' }} >
-            <TabList onChange={handleChange} sx={{ "& button.Mui-selected": { background: "linear-gradient(#e8e8e8,white,#e8e8e8)" } }} aria-label="lab API tabs example" style={{ background: "linear-gradient(#FFFFB4,white,#FFFFB4)", borderRadius: "5px", fontSize: "10px",height:"60px",paddingRight:100 }} >
+          <Box  sx={{ borderBottom: 0, borderColor: 'divider',width: '48%' }} >
+            <TabList onChange={handleChange} sx={{ "& button.Mui-selected": { background: "#afcafa",color:"black" } }} aria-label="lab API tabs example" style={{ background: "#e1eafa", borderRadius: "3px", fontSize: "10px",height:"60px",paddingRight:100 }} >
 
-              <Tab style={{ paddingRight: "2%", paddingLeft: "2%" ,fontSize:"12px" }} label="Offer Released"
+              <Tab style={{ paddingRight: "3%", paddingLeft: "3%" ,fontSize:"12px" }} label="Offer Released"
                 {...a11yProps(0)} value="1"  
                 icon={(data.length === 0) ? (<div style={{paddingLeft:"6px",fontSize:"16px"}}>0</div>):(<div style={{paddingLeft:"6px",fontSize:"14px"}}>{data.length}</div>)} />
               {/* <Tab wrapped label={<TabWithCount count={(today.length === 0) ? (<div style={{paddingLeft:"6px",fontSize:"14px"}}> 0 </div>) : (<div style={{paddingLeft:"6px",fontSize:"14px"}}>{today.length}</div>)}>Onboardings For Today -</TabWithCount>}
                 {...a11yProps(0)} value="2" style={{ paddingRight: "2%", paddingLeft: "2%" }} icon={today.length}  /> */}
               <Tab wrapped label= "Onboarding's For Today"
-                {...a11yProps(0)} value="2" style={{ paddingRight: "2%", paddingLeft: "2%" }} icon={(today.length === 0) ? (<div style={{paddingLeft:"6px",fontSize:"16px"}}>0</div>):(<div style={{paddingLeft:"6px",fontSize:"14px"}}>{today.length}</div>)} />
+                {...a11yProps(0)} value="2" style={{ paddingRight: "3%", paddingLeft: "3%" }} icon={(today.length === 0) ? (<div style={{paddingLeft:"6px",fontSize:"16px"}}>0</div>):(<div style={{paddingLeft:"6px",fontSize:"14px"}}>{today.length}</div>)} />
               <Tab wrapped label="Onboardings For This Month"
-                {...a11yProps(0)} value="3" style={{ paddingRight: "2%", paddingLeft: "2%" }} icon={(month.length === 0) ? (<div style={{paddingLeft:"6px",fontSize:"16px"}}>0</div>):(<div style={{paddingLeft:"6px",fontSize:"14px"}}>{month.length}</div>)} />
+                {...a11yProps(0)} value="3" style={{ paddingRight: "3%", paddingLeft: "3%" }} icon={(month.length === 0) ? (<div style={{paddingLeft:"6px",fontSize:"16px"}}>0</div>):(<div style={{paddingLeft:"6px",fontSize:"14px"}}>{month.length}</div>)} />
             </TabList>
           </Box>
           <TabPanel style={{ padding: "10px" }} value="1"> <PreHire /></TabPanel>
@@ -161,3 +161,5 @@ export default function HiringsTab(props) {
     </div>
   )
 }
+
+
