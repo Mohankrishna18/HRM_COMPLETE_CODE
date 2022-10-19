@@ -176,7 +176,7 @@ function ApprovalTable() {
           headerStyle: {
             backgroundColor: "#FF9E14",
             color: "white",
-            fontSize: "20px",
+            fontSize: "14px",
             paddingTop: "5px",
             paddingBottom: "2px",
             paddingLeft: "20px",

@@ -8,9 +8,6 @@ const ApprovalsMain = () => {
       <Row>
         <Col>
         <Card.Title>TimeSheet Management</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                  TimeSheet Management
-                  </Card.Subtitle>
             <ApprovalTable/>
         </Col>
       </Row>

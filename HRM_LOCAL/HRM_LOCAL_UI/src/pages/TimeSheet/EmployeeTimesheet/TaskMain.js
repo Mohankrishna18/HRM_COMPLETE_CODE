@@ -30,7 +30,7 @@ const TotalPage = ({ totalHours }) => {
     <>
       <div>
         <Row>
-        <Col></Col><Col></Col><Col><h6>TotalHours:</h6></Col><Col><h6>{totalHours}</h6></Col>
+          <Col md="8"></Col><Col md="4"><h6>TotalHours: {totalHours}</h6></Col>
           {/* <Col></Col>
           <Col>
             <h5 style={{ float: "right" }}>Total Hours </h5>
@@ -197,15 +197,14 @@ function TaskMain(props) {
   const [columns, setColumns] = useState([
     {
       selection: true,
-      width:"3%"
+      width: "5%"
     },
     {
       title: "Project",
       field: "projectName",
       type: "text",
       editable: "never",
-      
-      
+
     },
 
     {
@@ -222,21 +221,19 @@ function TaskMain(props) {
     },
 
     {
-      title: "Estimated Hours",
+      title: "EstimatedHours",
       field: "estimatedHours",
       type: "numeric",
       editable: "never",
-    
     },
     {
-      title: "Actual Hours",
+      title: "ActualHours",
       field: "actualHours",
       type: "numeric",
       validate: (rowData) => rowData.actualHours <= 16,
-
     },
     {
-      title: "Remaining  Hours",
+      title: "RemainingHours",
       field: "remainingHours",
       type: "numeric",
       editable: "never",
@@ -343,7 +340,7 @@ function TaskMain(props) {
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody> 
+            <tbody>
               {taskData.map((item) => (
                 <tr>
                   <td>{item.taskTitle}</td>
@@ -367,13 +364,11 @@ function TaskMain(props) {
       >
         <Form.Group as={Col} md="12" style={{ paddingleft: 6 }}>
           <Row>
-            <Col md="4"></Col>
-            <Col md="4"
-              style={{ paddingLeft: "4%", fontSize: "15px"}}
+            <Col md="3"
+              style={{ paddingLeft: "0%", fontSize: "15px", paddingTop:"60px" }}
             >
-              <Form.Label>Select Date</Form.Label>
-              <Calendar 
-              style={{height:"15%"}}
+              <h6>Select Date</h6>
+              <Calendar
                 // minDate={new Date(BackDate)}
                 minDate={new Date(bd)}
                 maxDate={new Date(frontDate)}
@@ -402,8 +397,8 @@ function TaskMain(props) {
               // tileDisabled={({ date }) => date.getDay() === 0 || date.getDay() === 6 || frontDate}
               />
             </Col>
-            <Col md="12" className="my-3">
-              <MaterialTable 
+            <Col md="9" className="my-3">
+              <MaterialTable className="scroll"
                 title=""
                 columns={columns}
                 data={data}
@@ -411,16 +406,16 @@ function TaskMain(props) {
                   headerStyle: {
                     backgroundColor: "#FF9E14",
                     color: "white",
-                    fontSize: "12px",
+                    fontSize: "10px",
                     // paddingTop: "5px",
                     // paddingBottom: "2px",
-                    marginRight:"10px",
+                    marginRight: "10px",
                     // textAlign:"center"
                   },
                   selection: true,
 
                   pageSize: 5,
-                  pageSizeOptions: [5],
+                  pageSizeOptions: [5, 10, 15, 20, 30, 50, 75, 100],
                   // maxBodyHeight: 450,
                   addRowPosition: "first",
                   actionsColumnIndex: -1,
@@ -515,11 +510,11 @@ function TaskMain(props) {
           style={{ float: "left", paddingTop: "1%" }}
         >
           <Row>
-            <Col md="8" style={{ float: "right" }}>
+            <Col md="9" style={{ float: "right",paddingTop:"13px"}}>
               <TotalPage totalHours={totalHours}></TotalPage>
             </Col>
-            <Col md="2" style={{ float: "right" }}>
-              <Button onClick={onSubmit} style={{ float: "right" }}>
+            <Col md="3" style={{ float: "right" }}>
+              <Button onClick={onSubmit} style={{width:"120px",float: "right" }}>
                 Submit
               </Button>
             </Col>

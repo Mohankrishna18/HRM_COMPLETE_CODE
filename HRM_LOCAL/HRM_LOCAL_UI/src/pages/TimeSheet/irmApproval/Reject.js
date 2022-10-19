@@ -71,7 +71,7 @@ import axios from "../../../Uri";
               }}
               onClick={ApproveHandler}
             >
-              &nbsp; Save
+              &nbsp; Reject
             </Button>
           </Form>
         </Col>
