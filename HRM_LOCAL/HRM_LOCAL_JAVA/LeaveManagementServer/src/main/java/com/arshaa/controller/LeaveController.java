@@ -79,20 +79,20 @@ public class LeaveController {
 	}
 	
 
-	@PutMapping("/updateLeave/{employeeleaveId}")
-	private User UpdateUsers(@RequestBody User user, @PathVariable Integer employeeleaveId) {
+	@PutMapping("/updateLeave/{employeeleaveId}/{userType")
+	private User UpdateUsers(@RequestBody User user, @PathVariable Integer employeeleaveId, @PathVariable String userType) {
 		return service.UpdateUsers(user, employeeleaveId);
 	}
 
 //To update the Leave status
-	@PutMapping("/managerupdateLeave/{employeeleaveId}")
-	private User UpdateManagerUsers(@RequestBody User user, @PathVariable Integer employeeleaveId) {
-		return service.UpdateManagerUsers(user, employeeleaveId);
+	@PutMapping("/managerupdateLeave/{employeeleaveId}/{userType}")
+	private User UpdateManagerUsers(@RequestBody User user, @PathVariable Integer employeeleaveId, @PathVariable String userType) {
+		return service.UpdateManagerUsers(user, employeeleaveId, userType);
 
 	}
 
-	@DeleteMapping("/deleteLeaves/{employeeleaveId}")
-	public String deleteByEmployeeLeaveId(@PathVariable Integer employeeleaveId) {
+	@DeleteMapping("/deleteLeaves/{employeeleaveId}/{userType}")
+	public String deleteByEmployeeLeaveId(@PathVariable Integer employeeleaveId, @PathVariable String userType) {
 		repo.deleteById(employeeleaveId);
 		return "Deleted Successfully";
 

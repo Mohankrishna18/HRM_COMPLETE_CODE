@@ -36,7 +36,7 @@ function HRResignationMain(props) {
   }, [update, leaveID, reject]);
 
   const da = JSON.parse(sessionStorage.getItem("userdata"));
-  const empID = da.data.employeeId;
+  const empID = da.data.userType;
 
   const loadData = async () => {
     const res = await axios.get(`/resignation/getAllResignation/${empID}`);
@@ -69,7 +69,7 @@ function HRResignationMain(props) {
   return (
     <div className="example">
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton style={{backgroundColor: "#ff9b44"}}>
           <Modal.Title>Are you sure you want to Approve</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -81,7 +81,7 @@ function HRResignationMain(props) {
         </Modal.Body>
       </Modal>
       <Modal show={rejectshow} onHide={handleCloseReject}>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton style={{backgroundColor: "#ff9b44"}}>
           <Modal.Title>Are you sure you want to Reject</Modal.Title>
         </Modal.Header>
         <Modal.Body>

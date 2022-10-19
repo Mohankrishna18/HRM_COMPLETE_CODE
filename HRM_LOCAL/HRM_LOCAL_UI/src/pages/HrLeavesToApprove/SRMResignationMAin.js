@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import axios from "../../Uri";
 import { Button, Stack, Modal } from "react-bootstrap";
 import SRMResignationApprove from "./SRMResignationApprove";
+import SRMResignationReject from "./SRMResignationReject";
 
 
 function SRMResignationMain(props) {
@@ -68,7 +69,7 @@ function SRMResignationMain(props) {
   return (
     <div className="example">
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton style={{backgroundColor: "#ff9b44"}}>
           <Modal.Title>Are you sure you want to Approve</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -80,11 +81,11 @@ function SRMResignationMain(props) {
         </Modal.Body>
       </Modal>
       <Modal show={rejectshow} onHide={handleCloseReject}>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton style={{backgroundColor: "#ff9b44"}}>
           <Modal.Title>Are you sure you want to Reject</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <SRMResignationMain
+          <SRMResignationReject
             leaveID={leaveID}
             func={pull_dataReject}
             handleClose={handleCloseReject}
