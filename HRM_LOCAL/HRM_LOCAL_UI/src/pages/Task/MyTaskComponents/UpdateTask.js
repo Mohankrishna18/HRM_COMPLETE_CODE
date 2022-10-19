@@ -177,29 +177,17 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
         onSubmit={handleSubmit}
       >
         <Row className="mb-3">
-
         <Form.Group className="mb-3" as={Col} md="6">
-
             <Form.Label>Project</Form.Label>
-
             <Form.Control
-
               disabled
-
               required
-
               type="text"
-
               placeholder="Project Name"
-
               controlId="projectName"
-
-              defaultValue={projectName}
-
-              value={form.projectName}
-
+              defaultValue={props.updateOnboard.projectName}
+              value={projectName}
               onChange={(e) => setField("projectName", e.target.value)}
-
               isInvalid={!!errors.projectName}
 
             ></Form.Control>
@@ -212,7 +200,7 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
 
           </Form.Group>
           <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>UserStory *</Form.Label>
+                <Form.Label>UserStory </Form.Label>
                 <Form.Control
                   required
                   type="text"
@@ -324,7 +312,7 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
                 >
                  <option> Select Status</option>
                   <option value="Open">Open</option>
-                  <option value="InProgress">In Progress</option>
+                  <option value="In Progress">In Progress</option>
                   <option value="Completed">Completed</option>
                   <option value="OnHold">On Hold</option>
                 </Form.Select>

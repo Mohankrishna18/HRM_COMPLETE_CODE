@@ -206,7 +206,7 @@ function TaskMain() {
                 paddingTop: "5px",
                 paddingBottom: "2px",
                         },
-                        
+                      
                         addRowPosition: "first",
                         actionsColumnIndex: -1,
                         //grouping: true,

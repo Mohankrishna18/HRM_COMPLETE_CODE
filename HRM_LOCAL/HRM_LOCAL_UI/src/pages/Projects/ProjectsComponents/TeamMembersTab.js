@@ -80,7 +80,7 @@ function TeamMembersTab(props) {
 
   return (
     <MaterialTable
-      title= {props.rowData.projectName}
+      title= {" Project Name "+props.rowData.projectName}
       columns={columns}
       data={data}
       options={{
@@ -103,7 +103,7 @@ function TeamMembersTab(props) {
 
         pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
 
-        maxBodyHeight: 450,
+        maxBodyHeight: 650,
 
         addRowPosition: "first",
 

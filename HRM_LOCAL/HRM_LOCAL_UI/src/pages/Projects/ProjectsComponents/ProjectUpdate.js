@@ -328,11 +328,11 @@ console.log(props.updateOnboard.businessUnit)
           </Form.Group>
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Rate</Form.Label>
+            <Form.Label>Cost</Form.Label>
             <Form.Control
               required
               type="text"
-              placeholder="Rate "
+              placeholder="Cost "
               controlId="rate"
               value={rate}
               onChange={(e) => setRate(e.target.value)}

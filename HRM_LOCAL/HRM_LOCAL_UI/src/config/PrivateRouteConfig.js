@@ -197,7 +197,7 @@ export default [
     path: "/TaskMain",
     type: "null",
     icon: <FcPlanner />,
-    title: "Assigned Task",
+    title: "Assign Task",
     permission: [Roles.pmohead,Roles.manager,Roles.irm,Roles.srm],
   },
   {
@@ -562,7 +562,7 @@ export default [
   {
     component: ResignationMain,
     path: "/resignation",
-    type: "myprofile",
+    type: "Employee",
     icon: <FcExpired />,
     title: "Resignation",
     permission: [

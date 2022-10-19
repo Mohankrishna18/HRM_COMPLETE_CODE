@@ -275,9 +275,9 @@ const UserstoryUpdate = (props) => {
               isInvalid={!!errors.priority}
             >
               <option> Select Priority</option>
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
+              <option value="P1">P1</option>
+              <option value="P2">P2</option>
+              <option value="P3">P3</option>
             </Form.Select>
 
             <Form.Control.Feedback type="invalid">

@@ -341,7 +341,7 @@ function AddUser(props) {
                 >
                  <option> Select Status</option>
                   <option value="Open">Open</option>
-                  <option value="InProgress">In Progress</option>
+                  <option value="In Progress">In Progress</option>
                   <option value="Completed">Completed</option>
                   <option value="OnHold">On Hold</option>
                 </Form.Select>
