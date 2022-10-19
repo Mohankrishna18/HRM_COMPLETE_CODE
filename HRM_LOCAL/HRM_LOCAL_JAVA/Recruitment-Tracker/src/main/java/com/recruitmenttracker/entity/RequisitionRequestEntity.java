@@ -66,6 +66,18 @@ public class RequisitionRequestEntity {
 	private String textAreaDesc;
 	@Column
 	private String comments;
+	
+	// GSDR Changes
+	@Column
+	private String employeeId;
+	@Column
+	private String buheadApprove;
+	@Column
+	private String pmoheadApprove;
+	@Column
+	private String buheadReject;
+	@Column
+	private String pmoheadReject;
 	public long getRrfId() {
 		return rrfId;
 	}
@@ -84,7 +96,6 @@ public class RequisitionRequestEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 	public String getRrfStatus() {
 		return rrfStatus;
 	}
@@ -217,16 +228,46 @@ public class RequisitionRequestEntity {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	public RequisitionRequestEntity(long rrfId, String jobTitle, String description, int primaryContact,
-			String rrfStatus, String rrfCat, String technology, String pocname, String role, String workflowStatus,
-			int positions, String pSkills, String sSkills, String workLocation, float workingHours, String empType,
-			String qualification, float yoe, float rate, String projectName, String clientName, String departmentName,
-			String raisedBy, String raisedOn, String textAreaDesc, String comments) {
+	public String getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
+	}
+	public String getBuheadApprove() {
+		return buheadApprove;
+	}
+	public void setBuheadApprove(String buheadApprove) {
+		this.buheadApprove = buheadApprove;
+	}
+	public String getPmoheadApprove() {
+		return pmoheadApprove;
+	}
+	public void setPmoheadApprove(String pmoheadApprove) {
+		this.pmoheadApprove = pmoheadApprove;
+	}
+	public String getBuheadReject() {
+		return buheadReject;
+	}
+	public void setBuheadReject(String buheadReject) {
+		this.buheadReject = buheadReject;
+	}
+	public String getPmoheadReject() {
+		return pmoheadReject;
+	}
+	public void setPmoheadReject(String pmoheadReject) {
+		this.pmoheadReject = pmoheadReject;
+	}
+	public RequisitionRequestEntity(long rrfId, String jobTitle, String description, String rrfStatus, String rrfCat,
+			String technology, String pocname, String role, String workflowStatus, int positions, String pSkills,
+			String sSkills, String workLocation, float workingHours, String empType, String qualification, float yoe,
+			float rate, String projectName, String clientName, String departmentName, String raisedBy, String raisedOn,
+			String textAreaDesc, String comments, String employeeId, String buheadApprove, String pmoheadApprove,
+			String buheadReject, String pmoheadReject) {
 		super();
 		this.rrfId = rrfId;
 		this.jobTitle = jobTitle;
 		this.description = description;
-		
 		this.rrfStatus = rrfStatus;
 		this.rrfCat = rrfCat;
 		this.technology = technology;
@@ -249,11 +290,18 @@ public class RequisitionRequestEntity {
 		this.raisedOn = raisedOn;
 		this.textAreaDesc = textAreaDesc;
 		this.comments = comments;
+		this.employeeId = employeeId;
+		this.buheadApprove = buheadApprove;
+		this.pmoheadApprove = pmoheadApprove;
+		this.buheadReject = buheadReject;
+		this.pmoheadReject = pmoheadReject;
 	}
 	public RequisitionRequestEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 	
 }

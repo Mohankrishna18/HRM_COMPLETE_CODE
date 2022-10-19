@@ -42,8 +42,16 @@
         "field": "rrfStatus"
     },
     {
+        "title":"Workflow Status",
+        "field": "workflowStatus"
+    },
+    {
         "title":"Positions",
         "field": "positions"
+    },
+    {
+        "title":"Ageing"
     }
 
 ]
+

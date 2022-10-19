@@ -92,8 +92,8 @@ import ResignationMain from "../pages/Resignation/ResignationMain";
 import UserAccessMain from "../pages/UserAccess/UserAccessMain";
 
 import RRMain from "../pages/Recruitment-Tracker/RRMain";
-import reduxMain from "../pages/Tasks/reduxMain";
-
+import PMORequisitionMain from '../pages/Recruitment-Tracker/PMORequisitionApprovals/PMORequisitionMain'
+import BUHRequisitionMain from '../pages/Recruitment-Tracker/BUHeadRequisitionApprovals/BUHRequisitionMain'
 
 export default [
   {
@@ -603,7 +603,24 @@ export default [
     path: "/rrf",
     icon: <FcApproval />,
     title: "Requistion Request",
-    permission: [Roles.pmohead, Roles.irf],
+    permission: [Roles.pmohead, Roles.irf, Roles.irm],
+  },
+  {
+    component: PMORequisitionMain,
+    path: "/PMORequisitionMain",
+    type: "null",
+    icon: <FcApproval/>,
+    title: "Requisition Approvals",
+    permission: [Roles.pmohead],
+  },
+
+  {
+    component: BUHRequisitionMain,
+    path: "/BUHRequisitionMain",
+    type: "null",
+    icon: <FcApproval/>,
+    title: "Requisition Approvals",
+    permission: [Roles.buhead]
   },
 ];
 
