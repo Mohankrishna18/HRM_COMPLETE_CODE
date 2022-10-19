@@ -12,15 +12,16 @@ import DeleteTask from "./DeleteTask";
 import { date } from "yup/lib/locale";
 //vipul
 
-function TaskMain(props){
-   const projectId = props.projectId
-   console.log(props)
-   let status = props.UserStory
+function TaskMain(props) {
+
+  console.log(props);
+  console.log(props);
+  const projectId = props.projectId;
+  
+  let status = props.UserStory;
   const [show, setShow] = useState(false);
   const [deleteUser, setDeleteUser] = useState(false);
   const [userIdData, setUserIdData] = useState([]);
-
- 
 
   const handleClose = () => setShow(false);
   const deleteHandleClose = () => setDeleteUser(false);
@@ -64,9 +65,7 @@ function TaskMain(props){
     loadRoles();
     // console.log(props.props)
     loadByUserID();
-  }, [addStatus, deleteStatus, updateStatus,status]);
-
- 
+  }, [addStatus, deleteStatus, updateStatus, status]);
 
   const loadRoles = async (e) => {
     const response = await axios.get("/task/getTasks");
@@ -75,24 +74,21 @@ function TaskMain(props){
     console.log("dataupdated");
   };
 
-  const loadByUserID =  () => {
-    const response =  axios.get(`/task/getUserId/${props.UserStory}`)
-    .then((res)=>{
-      console.log(res)
-      setUserIdData(res.data);
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-   
-   
-   
+  const loadByUserID = () => {
+    const response = axios
+      .get(`/task/getUserId/${props.UserStory}`)
+      .then((res) => {
+        console.log(res);
+        setUserIdData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     // console.log("dataupdated");
   };
 
   const [columns, setColumns] = useState([
-   
- 
     {
       title: "User Story Id",
       field: "userId",
@@ -107,7 +103,6 @@ function TaskMain(props){
       title: "Task Title",
       field: "taskTitle",
       type: "text",
-     
     },
     {
       title: "Priority",
@@ -119,24 +114,23 @@ function TaskMain(props){
       field: "status",
       type: "text",
     },
-      // {
-      //   title: "Actual Hours",
-      //   field: "actualHours",
-      //   type: "text",
-      // },
+    // {
+    //   title: "Actual Hours",
+    //   field: "actualHours",
+    //   type: "text",
+    // },
     {
       title: "Estimated Hours",
       field: "estimatedHours",
       type: "text",
     },
-   
+
     {
       title: "Planned Start Date",
       field: "plannedStartDate",
-       type:"date",
-       dateSetting: { locale: "en-GB" }
+      type: "date",
+      dateSetting: { locale: "en-GB" },
 
-     
       // type: { name: "date", options: { format: "DD/MM/YYYY" } },
     },
     {
@@ -144,17 +138,16 @@ function TaskMain(props){
       field: "plannedEndDate",
       type: "date",
       width: "100px",
-      dateSetting: { locale: "en-GB" }
+      dateSetting: { locale: "en-GB" },
       // type: { name: "date", options: { format: "DD/MM/YYYY" } },
     },
     {
       title: "Assigned To",
       field: "assignedTo",
       type: "text",
-      dateSetting: { locale: "en-GB" }
+      dateSetting: { locale: "en-GB" },
       // type: { name: "date", options: { format: "DD/MM/YYYY" } },
     },
-   
   ]);
 
   return (
@@ -179,6 +172,7 @@ function TaskMain(props){
             func={pull_dataUpdate}
             handleClose={handleClose}
             projectId={projectId}
+            
           />
         </Modal.Body>
         {/* <Modal.Footer>
@@ -211,26 +205,26 @@ function TaskMain(props){
         </Modal.Body>
       </Modal>
       <div responsive>
-       
         <Row>
-          <Col style={{
-          paddingTop: "10px",
-          paddingRight: "10px",
-          paddingLeft: "30px",
-          paddingBottom: "10px",
-        }}>
+          <Col
+            style={{
+              paddingTop: "10px",
+              paddingRight: "10px",
+              paddingLeft: "30px",
+              paddingBottom: "10px",
+            }}
+          >
             <Card.Title>Task Management</Card.Title>
-           
           </Col>
-         
 
           <Col md={{ span: 4, offset: 4 }}>
             <AddTask
-             func={pull_dataAdd}
-             userId={props.UserStory}
-             projectName={props.projectName}
-             projectId={projectId}
-              />
+              func={pull_dataAdd}
+              userId={props.UserStory}
+              projectName={props.projectName}
+              projectId={projectId}
+              value1={props.value1}
+            />
           </Col>
         </Row>
         {/* </Container> */}
@@ -254,15 +248,11 @@ function TaskMain(props){
 
               fontSize: "16px",
 
-              paddingTop:"5px",
+              paddingTop: "5px",
 
-              paddingBottom:"2px",
-
-             
-
+              paddingBottom: "2px",
             },
 
-           
             addRowPosition: "first",
 
             actionsColumnIndex: -1,

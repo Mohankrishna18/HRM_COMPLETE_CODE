@@ -40,7 +40,9 @@ function UserStorymain() {
   const [deleteOnboard, setDeleteOnboard] = useState({})
   const [deleteProjects, setDeleteProjects] = useState(false)
   const [deleteStatus, setDeleteStatus] = useState(false)
+  const [value1,setValue1]=useState()
   const deleteHandleClose = () => setDeleteProjects(false)
+  
 
   const pull_dataAdd = () => {
     setAddStatus(!addStatus)
@@ -91,12 +93,16 @@ function UserStorymain() {
           name="radio"
           style={{ height: '23px', width: '23px' }}
           onChange={() => {
+            console.log(rowData)
             setUserStory(rowData.storyId)
             console.log(rowData.projectName)
             setProjectName(rowData.projectName)
             console.log(rowData.storyId)
             setProjectId(rowData.projectId)
             console.log(rowData.projectId)
+            setValue1(rowData.storyTitle)
+            console.log(rowData.storyTitle)
+            
           }}
         />
       ),
@@ -126,15 +132,15 @@ function UserStorymain() {
     //   title: "Actual Hours",
     //   field: "actualHours",
     // },
-    {
-      title: 'project Id',
-      field: 'projectId',
-    },
-    {
-      title: 'Remaining Hours',
-      field: 'remainingHours',
-      width: 100,
-    },
+    // {
+    //   title: 'project Id',
+    //   field: 'projectId',
+    // },
+    // {
+    //   title: 'Remaining Hours',
+    //   field: 'remainingHours',
+    //   width: 100,
+    // },
     {
       title: 'Start Date',
       field: 'startDate',
@@ -153,7 +159,7 @@ function UserStorymain() {
       field: 'status',
     },
     {
-      title: 'Assigned Date',
+      title: 'Actual Start Date',
       field: 'assignedDate',
       type: 'date',
       dateSetting: { locale: 'en-GB' },
@@ -173,6 +179,7 @@ function UserStorymain() {
                 console.log(rowData)
                 setProjectId(rowData.projectId)
                 console.log(rowData.projectId)
+               
               }}
             >
               {/* Edit */}
@@ -344,6 +351,7 @@ function UserStorymain() {
           UserStory={UserStory}
           projectName={projectName}
           projectId={projectId}
+          value1={value1}
         />
       </Card>
     </div>
