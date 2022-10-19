@@ -97,6 +97,18 @@ public class LoginController
 	}
 	
 	
+	@GetMapping("/getEmployeeDataByUserType/{userType}")
+	public EmployeeLogin findByUserType(@PathVariable String userType) {
+		return service.findByUserType(userType);
+	}
+	
+	@GetMapping("/getEmployeeDataByEmail/{email}")
+	public EmployeeLogin findByEmail(@PathVariable String email) {
+		return service.findByEmail(email);
+	}
+		
+		
+	
 	/* Role Module Access API's*------------------------sandhya changes*/
 	
 //Role service apis

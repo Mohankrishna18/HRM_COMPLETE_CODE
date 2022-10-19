@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.arshaa.entity.EmployeeLogin;
 import com.example.arshaa.entity.OnBoardingEmployeeLogin;
@@ -175,6 +176,18 @@ public class UserService {
 	        return new ResponseEntity(response,HttpStatus.OK);
 		}
     }
+		
+		public EmployeeLogin findByUserType(@PathVariable String userType) {
+		    EmployeeLogin empLogin = repository.findByUserType(userType);
+		    return empLogin;
+		 }
+	     public EmployeeLogin findByEmail(@PathVariable String email) {
+		    EmployeeLogin empEmail = repository.findByEmail(email);
+		    return empEmail;
+		 }
+
+
+    
 
    
 }

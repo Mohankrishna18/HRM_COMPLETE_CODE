@@ -12,7 +12,9 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,8 @@ import com.arshaa.model.UserModel;
 import com.arshaa.entity.User;
 import com.arshaa.mapper.UserMapper;
 import com.arshaa.model.AllEmployeesForHr;
+import com.arshaa.model.EmailModel;
+import com.arshaa.model.EmailTemplate;
 import com.arshaa.model.EmployeeName;
 import com.arshaa.model.GetIrmId;
 import com.arshaa.model.GetSrmId;
@@ -54,6 +58,8 @@ public class UserService {
 	private BetweenDatesRepo bro;
 	@Autowired
 	private UserMapper userMapper;
+	
+	public static final String preEmailURL = "http://emailService/mail/sendmail";
 
 	public UserModel findById(int employeeleaveId) {
 
@@ -115,9 +121,29 @@ public class UserService {
 //	}return null;
 //}
 	public List<BetweenDates> save(User user) {
+		
+		String OnboardUrl = "http://loginservice/login/getEmployeeDataByUserType/";
+		String empUrl = "http://empService/emp/getEmployeeNameByEmployeeId/";
+		
 		try
 
 		{
+			EmailModel email = template.getForObject(OnboardUrl + "irm", EmailModel.class);
+			EmailModel emp = template.getForObject(empUrl + user.getEmployeeId(), EmailModel.class);
+
+			EmailTemplate mailTemp = new EmailTemplate();
+			Map<String, String> map = new HashMap();
+
+			map.put("employeeName", emp.getEmployeeName());
+//			map.put("email",hrApp.getEmail());
+			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			mailTemp.setMap(map);
+			mailTemp.setEmailType("LEAVE_APPLY");
+
+//			rConfirm.setEmployeeName(getOnboarding.getFirstName()+getOnboarding.getLastName());
+//			rConfirm.setEmail("muralikrishna.miriyala@arshaa.com");
+
+			template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 
 			List<BetweenDates> bdatesList = new ArrayList<>();
 			GetIrmId al = template.getForObject("http://empService/emp/getIrmByEmployeeId/" + user.getEmployeeId(),
@@ -243,7 +269,7 @@ public class UserService {
 		return user;
 	}
 
-	public User UpdateManagerUsers(User user, Integer employeeleaveId) {
+	public User UpdateManagerUsers(User user, Integer employeeleaveId, String userType) {
 		try {
 			User u = repository.findById(employeeleaveId).get();
 			user.getEmployeeleaveId();
@@ -266,12 +292,66 @@ public class UserService {
 //u.setToDate(user.getToDate());
 // u.setNumberOfDays(user.getNumberOfDays());
 //u.setLeaveType(user.getLeaveType());
-			return repository.save(u);
+			User savedU = repository.save(u);
+
+			EmailTemplate mailTemp = new EmailTemplate();
+			Map<String, String> map = new HashMap();
+			EmployeeName al = template.getForObject(
+					"http://empService/emp/getEmployeeNameByEmployeeId/" + u.getEmployeeId(), EmployeeName.class);
+			switch (userType) {
+			case "irm":
+
+				map.put("employeeName", al.getEmployeeName());
+//				map.put("email",hrApp.getEmail());
+				map.put("email", "muralikrishna.miriyala@arshaa.com");
+				mailTemp.setMap(map);
+				if (user.getLeaveStatus().equalsIgnoreCase("Approved")) {
+					mailTemp.setEmailType("IRM_APPROVED");
+				} else {
+					mailTemp.setEmailType("IRM_REJECTED");
+				}
+
+				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+				break;
+			case "pmohead":
+//				EmailTemplate mailTemp = new EmailTemplate();
+				map.put("employeeName", al.getEmployeeName());
+//				map.put("email",hrApp.getEmail());
+				map.put("email", "muralikrishna.miriyala@arshaa.com");
+				mailTemp.setMap(map);
+				if (user.getLeaveStatus().equalsIgnoreCase("Approved")) {
+					mailTemp.setEmailType("SRM_APPROVED");
+				} else {
+					mailTemp.setEmailType("SRM_REJECTED");
+				}
+
+				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+				break;
+			case "srm":
+//				EmailTemplate mailTemp = new EmailTemplate();
+				map.put("employeeName", al.getEmployeeName());
+//				map.put("email",hrApp.getEmail());
+				map.put("email", "muralikrishna.miriyala@arshaa.com");
+				mailTemp.setMap(map);
+				if (user.getLeaveStatus().equalsIgnoreCase("Approved")) {
+					mailTemp.setEmailType("SRM_APPROVED");
+				} else {
+					mailTemp.setEmailType("SRM_REJECTED");
+				}
+
+				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+				break;
+			default:
+				break;
+			}
+			return savedU;
+
 		} catch (Exception e) {
 			e.getMessage();
 		}
 		return user;
 	}
+
 
 // this logic will give employees related to particular manager-->Chandrika
 	public ResponseEntity getUserByIrm(String irmId) {
@@ -338,6 +418,7 @@ public class UserService {
 //		} catch (Exception e) {
 //			return new ResponseEntity("Something went wrong", HttpStatus.OK);
 //		}
+		String OnboardUrl = "http://loginservice/login/getEmployeeDataByUserType/";
 		String url = "http://empService/emp/getEmployeeNameByEmployeeId/";
 		List<UsersByIrm> getList = new ArrayList<>();
 		try {
@@ -348,6 +429,23 @@ public class UserService {
 			Date date = new Date(System.currentTimeMillis());
 			u.stream().filter(user -> date.after(getValidateDat(user.getSubmittedDate()))).forEach(g -> {
 				System.out.println("Current Date" + date + "5 days after" + getValidateDat(g.getSubmittedDate()));
+				
+				EmailModel email = template.getForObject(OnboardUrl + "srm", EmailModel.class);
+				EmailModel emp = template.getForObject(url + g.getEmployeeId(), EmailModel.class);
+
+				EmailTemplate mailTemp = new EmailTemplate();
+				Map<String, String> map = new HashMap();
+
+				map.put("employeeName", emp.getEmployeeName());
+//				map.put("email",hrApp.getEmail());
+				map.put("email", "muralikrishna.miriyala@arshaa.com");
+				mailTemp.setMap(map);
+				mailTemp.setEmailType("LEAVE_APPLY");
+
+//				rConfirm.setEmployeeName(getOnboarding.getFirstName()+getOnboarding.getLastName());
+//				rConfirm.setEmail("muralikrishna.miriyala@arshaa.com");
+
+				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 
 				UsersByIrm usrm = new UsersByIrm();
 				usrm.setEmployeeId(g.getEmployeeId());
