@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function AddUser(props) {
   console.log(props.projectId);
+  console.log(props);
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -22,15 +23,16 @@ function AddUser(props) {
 
   useEffect(() => {
     loadData();
-
   }, [props.projectId]);
 
-  const loadData =  async(e) => {
-    const response = await axios.get(`/clientProjectMapping/getAllProjectTeams/Active/${props.projectId}`);
+  const loadData = async (e) => {
+    const response = await axios.get(
+      `/clientProjectMapping/getAllProjectTeams/Active/${props.projectId}`
+    );
 
     setData(response.data.data);
     console.log(response.data.data);
-    console.log(data)
+    console.log(data);
   };
 
   //const [filteredData, setFileteredData] = useState([]);
@@ -40,6 +42,7 @@ function AddUser(props) {
 
   console.log("testing line for storydta " + props.userId);
   console.log("testing for project Name in line number" + props.projectName);
+  
 
   const handleClose = () => setShow();
   const handleShow = () => setShow(true);
@@ -175,36 +178,24 @@ function AddUser(props) {
   return (
     <div>
       <Button
+        variant="warning"
+        onClick={handleShow}
+        style={{
+          backgroundColor: "#ff9b44",
 
-variant="warning"
+          color: "#F4F8F6",
 
-onClick={handleShow}
+          float: "right",
 
-style={{
+          borderRadius: "25px",
 
-  backgroundColor: "#ff9b44",
+          // paddingBottom: "11.5px",
 
-  color: "#F4F8F6",
-
-  float: "right",
-
-  borderRadius: "25px",
-
-  // paddingBottom: "11.5px",
-
-  // marginTop: "100px",
-
-}}
-
->
-
-<FaPlus />
-
-{" "}
-
-Add Task
-
-</Button>
+          // marginTop: "100px",
+        }}
+      >
+        <FaPlus /> Add Task
+      </Button>
       <Modal
         size="lg"
         show={show}
@@ -215,7 +206,11 @@ Add Task
       >
         <Modal.Header
           closeButton
-          style={{ backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px" }}
+          style={{
+            backgroundColor: "#FF9E14",
+            paddingTop: "5px",
+            paddingBottom: "5px",
+          }}
         >
           <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>
             Add Task
@@ -266,28 +261,26 @@ Add Task
                   {errors.projectName}
                 </Form.Control.Feedback>
               </Form.Group>
-
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>User Story</Form.Label>
-                <Form.Select
+                <Form.Control
+                  disabled
                   required
                   type="text"
-                  placeholder="UserStory"
-                  controlId="userStory"
-                  value={form.userStory}
-                  onChange={(e) => setField("userStory", e.target.value)}
-                  isInvalid={!!errors.taskType}
-                >
-                  <option>Select Task Type</option>
-                  <option>MYTASK</option>
-                  <option>TaskManagement</option>
-                  
-                </Form.Select>
-
+                  placeholder="User Story"
+                  controlId="value1"
+                  defaultValue={props.value1}
+                  value={form.value1}
+                  onChange={(e) => setField("value1", e.target.value)}
+                  isInvalid={!!errors.value1}
+                ></Form.Control>
                 <Form.Control.Feedback type="invalid">
-                  {errors.userStory}
+                  {errors.value1}
                 </Form.Control.Feedback>
               </Form.Group>
+
+
+            
 
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Task Type *</Form.Label>
@@ -334,7 +327,7 @@ Add Task
                   {errors.taskTitle}
                 </Form.Control.Feedback>
               </Form.Group>
-            
+
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Status *</Form.Label>
                 <Form.Select
@@ -346,16 +339,17 @@ Add Task
                   onChange={(e) => setField("status", e.target.value)}
                   isInvalid={!!errors.status}
                 >
-                  <option>Select status</option>
-                  <option>Todo</option>
-                  <option>In Progress</option>
-                  <option>Completed</option>
+                 <option> Select Status</option>
+                  <option value="Open">Open</option>
+                  <option value="InProgress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                  <option value="OnHold">On Hold</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.status}
                 </Form.Control.Feedback>
               </Form.Group>
-             
+
               <Form.Group className="mb-3" as={Col} md="3">
                 <Form.Label>Estimated Hours *</Form.Label>
                 <Form.Control
@@ -373,7 +367,6 @@ Add Task
                 </Form.Control.Feedback>
               </Form.Group>
 
-              
               <Form.Group className="mb-3" as={Col} md="3">
                 <Form.Label>Priority </Form.Label>
                 <Form.Select
@@ -389,14 +382,12 @@ Add Task
                   <option>P1</option>
                   <option>P2</option>
                   <option>P3</option>
-                 
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.priority}
                 </Form.Control.Feedback>
               </Form.Group>
 
-             
               {/* <Form.Group className="mb-3" as={Col} md="3">
                 <Form.Label>Actual Hours *</Form.Label>
                 <Form.Control

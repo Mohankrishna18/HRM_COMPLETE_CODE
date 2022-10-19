@@ -110,13 +110,13 @@ const [reportingManager, setReportingManager] = useState([]);
     if (!rate || rate === "" || rate.match(/[^0-9]/g))
       newErrors.rate = "Please Enter rate";
     if (!status || status === "") newErrors.status = "Please select status";
-    if (!priority || priority === "")
-      newErrors.priority = "Please Select priority";
+    // if (!priority || priority === "")
+    //   newErrors.priority = "Please Select priority";
 
     if (!projectManager || projectManager === "")
       newErrors.projectManager = "Please Enter projectManager";
-    if (!description || description === "")
-      newErrors.description = "Please Enter Description";
+    // if (!description || description === "")
+    //   newErrors.description = "Please Enter Description";
     return newErrors;
   };
 
@@ -354,9 +354,9 @@ console.log(props.updateOnboard.businessUnit)
               onChange={(e) => setPriority(e.target.value)}
               isInvalid={!!errors.priority}
             >
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
+              <option value="P1">P1</option>
+              <option value="P2">P2</option>
+              <option value="P3">P3</option>
             </Form.Select>
 
             <Form.Control.Feedback type="invalid">

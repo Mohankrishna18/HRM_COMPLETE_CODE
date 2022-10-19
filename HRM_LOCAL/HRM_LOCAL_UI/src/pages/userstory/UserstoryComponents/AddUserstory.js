@@ -161,7 +161,6 @@
 //     //   newErrors.actualHours = "Please Enter Correct Estimated Hours";
 //     // }
 
-
 //     if (!remainingHours || remainingHours === "" || remainingHours.length > 3) {
 //       newErrors.remainingHours = "Please Enter Estimated Hours";
 //     } else if (!remainingHours.match(/^-?\d*(\.\d+)?$/)) {
@@ -172,7 +171,7 @@
 //     if (!assignedDate || assignedDate === "") {
 //       newErrors.assignedDate = "Please Enter Assigned Date";
 //     }
-   
+
 //     return newErrors;
 //   };
 
@@ -247,7 +246,7 @@
 // </Button>
 //       <Modal
 //         size="lg"
-        
+
 //         show={show}
 //         onHide={handleClose}
 //         backdrop="static"
@@ -513,7 +512,7 @@
 //                   placeholder="Start Date"
 //                   controlId="startDate"
 //                   value={form.startDate}
-                  
+
 //                   onChange={(e) => setField("startDate", e.target.value)}
 //                   isInvalid={!!errors.startDate}
 //                 ></Form.Control>
@@ -615,9 +614,6 @@
 // }
 // export default AddUserstory;
 
-
-
-
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { Modal } from "react-bootstrap";
@@ -640,7 +636,7 @@ function AddUserstory(props) {
   const [clients, setClients] = useState([]);
   const [projects, setProjects] = useState([]);
   const [manager, setManager] = useState([]);
-  const [roles,setRoles] = useState([]);
+  const [roles, setRoles] = useState([]);
 
   useEffect(() => {
     loadData();
@@ -706,7 +702,7 @@ function AddUserstory(props) {
       priority,
       reason,
       estimatedHours,
-     // actualHours,
+      // actualHours,
       remainingHours,
       assignedDate,
       startDate,
@@ -716,11 +712,7 @@ function AddUserstory(props) {
 
     const newErrors = {};
 
-    if (
-      !projectId ||
-      projectId === "" ||
-      !projectId.match(/^[aA-zZ\s]+$/)
-    )
+    if (!projectId || projectId === "" || !projectId.match(/^[aA-zZ\s]+$/))
       newErrors.projectId = "Please Enter Project Name";
     else if (!projectId.match(/^[aA-zZ\s]+$/)) {
       newErrors.projectId = "Please select Project";
@@ -729,7 +721,7 @@ function AddUserstory(props) {
     if (!startDate || startDate === "")
       newErrors.startDate = "Please Enter Start Date";
 
-    if (!endDate || endDate === "") newErrors.endDate = "Please Enter End Date";
+    // if (!endDate || endDate === "") newErrors.endDate = "Please Enter End Date";
 
     if (!storyTitle || storyTitle === "")
       newErrors.storyTitle = "Please Enter storytitle";
@@ -741,8 +733,8 @@ function AddUserstory(props) {
 
     // if (!rate || rate === "") newErrors.rate = "Please Enter Rate";
 
-    if (!priority || priority === "")
-      newErrors.priority = "Please Enter Priority";
+    // if (!priority || priority === "")
+    //   newErrors.priority = "Please Enter Priority";
 
     if (!acceptanceCriteria || acceptanceCriteria === "")
       newErrors.acceptanceCriteria = "Please Enter acceptance Criteria";
@@ -750,19 +742,19 @@ function AddUserstory(props) {
       newErrors.acceptanceCriteria = "Please Enter valid acceptance Criteria";
     }
 
-    if (!role || role === "") newErrors.role = "Please Enter role";
-    else if (!role.match(/^[aA-zZ\s]+$/)) {
-      newErrors.role = "Please Enter valid role";
-    }
+    // if (!role || role === "") newErrors.role = "Please Enter role";
+    // else if (!role.match(/^[aA-zZ\s]+$/)) {
+    //   newErrors.role = "Please Enter valid role";
+    // }
     if (!goal || goal === "")
       newErrors.acceptanceCriteria = "Please Enter goal";
     else if (!goal.match(/^[aA-zZ\s]+$/)) {
       newErrors.goal = "Please Enter valid goal";
     }
-    if (!reason || reason === "") newErrors.reason = "Please Enter reason";
-    else if (!reason.match(/^[aA-zZ\s]+$/)) {
-      newErrors.reason = "Please Enter valid reason";
-    }
+    // if (!reason || reason === "") newErrors.reason = "Please Enter reason";
+    // else if (!reason.match(/^[aA-zZ\s]+$/)) {
+    //   newErrors.reason = "Please Enter valid reason";
+    // }
 
     if (!estimatedHours || estimatedHours === "" || estimatedHours.length > 3) {
       newErrors.estimatedHours = "Please Enter Estimated Hours";
@@ -780,7 +772,6 @@ function AddUserstory(props) {
     //   newErrors.actualHours = "Please Enter Correct Estimated Hours";
     // }
 
-
     if (!remainingHours || remainingHours === "" || remainingHours.length > 3) {
       newErrors.remainingHours = "Please Enter Estimated Hours";
     } else if (!remainingHours.match(/^-?\d*(\.\d+)?$/)) {
@@ -788,10 +779,10 @@ function AddUserstory(props) {
     } else if (remainingHours.length > 3) {
       newErrors.remainingHours = "Please Enter Correct Estimated Hours";
     }
-    if (!assignedDate || assignedDate === "") {
-      newErrors.assignedDate = "Please Enter Assigned Date";
-    }
-   
+    // if (!assignedDate || assignedDate === "") {
+    //   newErrors.assignedDate = "Please Enter Assigned Date";
+    // }
+
     return newErrors;
   };
 
@@ -833,47 +824,41 @@ function AddUserstory(props) {
 
   return (
     <div>
-    <Button
+      <Button
+        variant="warning"
+        onClick={handleShow}
+        style={{
+          backgroundColor: "#ff9b44",
 
-variant="warning"
+          color: "#F4F8F6",
 
-onClick={handleShow}
+          float: "right",
 
-style={{
+          borderRadius: "25px",
 
-  backgroundColor: "#ff9b44",
+          // paddingBottom: "11.5px",
 
-  color: "#F4F8F6",
-
-  float: "right",
-
-  borderRadius: "25px",
-
-  // paddingBottom: "11.5px",
-
-  // marginTop: "100px",
-
-}}
-
->
-
-<FaPlus />
-
-{" "}
-
-Add UserStory
-
-</Button>
+          // marginTop: "100px",
+        }}
+      >
+        <FaPlus /> Add UserStory
+      </Button>
       <Modal
         size="lg"
-       
         show={show}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px" }}>
-          <Modal.Title >Add Userstory</Modal.Title>
+        <Modal.Header
+          closeButton
+          style={{
+            backgroundColor: "#FF9E14",
+            paddingTop: "5px",
+            paddingBottom: "5px",
+          }}
+        >
+          <Modal.Title>Add Userstory</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -887,7 +872,7 @@ Add UserStory
           >
             <Row className="mb-4">
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Project Name *</Form.Label>
+                <Form.Label>Project *</Form.Label>
                 <Form.Select
                   required
                   className="projectId"
@@ -930,7 +915,7 @@ Add UserStory
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                 <Form.Label>Acceptance Criteria *</Form.Label>
                 <Form.Control
                   required
@@ -940,7 +925,7 @@ Add UserStory
                   placeholder="Acceptance Criteria"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.acceptanceCriteria}
-                  maxLength={30}
+                  maxLength={300}
                   onChange={(e) =>
                     setField("acceptanceCriteria", e.target.value)
                   }
@@ -950,7 +935,7 @@ Add UserStory
                   {errors.AcceptanceCriteria}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Role</Form.Label>
                 <Form.Select
                   required
@@ -971,10 +956,8 @@ Add UserStory
                     </option>
                   ))}
                 </Form.Select>
-                {/* <Form.Control.Feedback type="invalid">
-                  {errors.projectId}
-                </Form.Control.Feedback> */}
-              </Form.Group>
+               
+              </Form.Group> */}
               {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Role </Form.Label>
                 <Form.Control
@@ -994,44 +977,25 @@ Add UserStory
                 </Form.Control.Feedback>
               </Form.Group> */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Goal </Form.Label>
+                <Form.Label>Estimated Hours *</Form.Label>
                 <Form.Control
                   required
-                  className="goal"
+                  className="EstimatedHours"
                   type="text"
-                  controlId="goal"
-                  placeholder="goal"
+                  controlId="estimatedHours"
+                  placeholder="estimatedHours"
                   // onChange={(event) => setclientName(event.target.value)}
-                  value={form.goal}
+                  value={form.estimatedHours}
                   maxLength={30}
-                  onChange={(e) => setField("goal", e.target.value)}
-                  isInvalid={!!errors.goal}
+                  onChange={(e) => setField("estimatedHours", e.target.value)}
+                  isInvalid={!!errors.estimatedHours}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
-                  {errors.goal}
+                  {errors.estimatedHours}
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Reason *</Form.Label>
-                <Form.Control
-                  required
-                  className="reason"
-                  type="text"
-                  controlId="reason"
-                  placeholder="reason"
-                  // onChange={(event) => setclientName(event.target.value)}
-                  value={form.reason}
-                  maxLength={30}
-                  onChange={(e) => setField("reason", e.target.value)}
-                  isInvalid={!!errors.reason}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.reason}
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Priority *</Form.Label>
+                <Form.Label>Priority </Form.Label>
                 <Form.Select
                   required
                   type="text"
@@ -1050,24 +1014,47 @@ Add UserStory
                   {errors.status}
                 </Form.Control.Feedback>
               </Form.Group>
+
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Estimated Hours *</Form.Label>
-                <Form.Control
+                <Form.Label>Status *</Form.Label>
+                <Form.Select
                   required
-                  className="EstimatedHours"
                   type="text"
-                  controlId="estimatedHours"
-                  placeholder="estimatedHours"
-                  // onChange={(event) => setclientName(event.target.value)}
-                  value={form.estimatedHours}
-                  maxLength={30}
-                  onChange={(e) => setField("estimatedHours", e.target.value)}
-                  isInvalid={!!errors.estimatedHours}
-                ></Form.Control>
+                  placeholder="Status"
+                  controlId="status"
+                  value={form.status}
+                  onChange={(e) => setField("status", e.target.value)}
+                  isInvalid={!!errors.status}
+                >
+                  <option> Select Status</option>
+                  <option value="Open">Open</option>
+                  <option value="InProgress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                  <option value="OnHold">On Hold</option>
+                </Form.Select>
                 <Form.Control.Feedback type="invalid">
-                  {errors.estimatedHours}
+                  {errors.status}
                 </Form.Control.Feedback>
               </Form.Group>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Reason </Form.Label>
+                <Form.Control
+                  required
+                  className="reason"
+                  type="text"
+                  controlId="reason"
+                  placeholder="reason"
+                  // onChange={(event) => setclientName(event.target.value)}
+                  value={form.reason}
+                  maxLength={30}
+                  onChange={(e) => setField("reason", e.target.value)}
+                  isInvalid={!!errors.reason}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.reason}
+                </Form.Control.Feedback>
+              </Form.Group>
+
               {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Actual Hours *</Form.Label>
                 <Form.Control
@@ -1086,7 +1073,7 @@ Add UserStory
                   {errors.actualHours}
                 </Form.Control.Feedback>
               </Form.Group> */}
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Remaining Hours *</Form.Label>
                 <Form.Control
                   required
@@ -1103,27 +1090,8 @@ Add UserStory
                 <Form.Control.Feedback type="invalid">
                   {errors.remainingHours}
                 </Form.Control.Feedback>
-              </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Status *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="Status"
-                  controlId="status"
-                  value={form.status}
-                  onChange={(e) => setField("status", e.target.value)}
-                  isInvalid={!!errors.status}
-                >
-                  <option> Select Status</option>
-                  <option value="ToDo">To Do</option>
-                  <option value="InProgress">In Progress</option>
-                  <option value="Completed">Completed</option>
-                </Form.Select>
-                <Form.Control.Feedback type="invalid">
-                  {errors.status}
-                </Form.Control.Feedback>
-              </Form.Group>
+              </Form.Group> */}
+
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Start Date *</Form.Label>
                 <Form.Control
@@ -1132,7 +1100,6 @@ Add UserStory
                   placeholder="Start Date"
                   controlId="startDate"
                   value={form.startDate}
-                 
                   onChange={(e) => setField("startDate", e.target.value)}
                   isInvalid={!!errors.startDate}
                 ></Form.Control>
@@ -1142,7 +1109,7 @@ Add UserStory
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>End Date *</Form.Label>
+                <Form.Label>End Date</Form.Label>
                 <Form.Control
                   required
                   type="date"
@@ -1175,7 +1142,25 @@ Add UserStory
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group> */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Assigned Date *</Form.Label>
+                <Form.Label>Goal </Form.Label>
+                <Form.Control
+                  required
+                  className="goal"
+                  type="text"
+                  controlId="goal"
+                  placeholder="goal"
+                  // onChange={(event) => setclientName(event.target.value)}
+                  value={form.goal}
+                  maxLength={30}
+                  onChange={(e) => setField("goal", e.target.value)}
+                  isInvalid={!!errors.goal}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.goal}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Actual Start Date</Form.Label>
                 <Form.Control
                   required
                   type="date"

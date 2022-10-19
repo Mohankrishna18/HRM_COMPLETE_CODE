@@ -726,24 +726,18 @@ function AddUser(props) {
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>User Story</Form.Label>
-                <Form.Select
+                <Form.Label>UserStory *</Form.Label>
+                <Form.Control
                   required
                   type="text"
-                  placeholder="UserStory"
-                  controlId="userStory"
-                  value={form.taskType}
-                  onChange={(e) => setField("userStory", e.target.value)}
-                  isInvalid={!!errors.taskType}
-                >
-                  <option>Select Task Type</option>
-                  <option>MYTASK</option>
-                  <option>TaskManagement</option>
-                  
-                </Form.Select>
-
+                  placeholder="User Story"
+                  controlId="userstory"
+                  value={form.userstory}
+                  onChange={(e) => setField("userstory", e.target.value)}
+                  isInvalid={!!errors.userstory}
+                ></Form.Control>
                 <Form.Control.Feedback type="invalid">
-                  {errors.userStory}
+                  {errors.userstory}
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="12">
@@ -807,7 +801,29 @@ function AddUser(props) {
                   {errors.estimatedHours}
                 </Form.Control.Feedback>
               </Form.Group>
+
               <Form.Group className="mb-3" as={Col} md="3">
+                <Form.Label>Priority </Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="priority"
+                  controlId="priority"
+                  value={form.priority}
+                  onChange={(e) => setField("priority", e.target.value)}
+                  isInvalid={!!errors.priority}
+                >
+                  <option>Select priority</option>
+                  <option>P1</option>
+                  <option>P2</option>
+                  <option>P3</option>
+                  
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.priority}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Status *</Form.Label>
                 <Form.Select
                   required
@@ -818,10 +834,11 @@ function AddUser(props) {
                   onChange={(e) => setField("status", e.target.value)}
                   isInvalid={!!errors.status}
                 >
-                  <option>Select status</option>
-                  <option>Todo</option>
-                  <option>In Progress</option>
-                  <option>Completed</option>
+                 <option> Select Status</option>
+                  <option value="Open">Open</option>
+                  <option value="InProgress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                  <option value="OnHold">On Hold</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.status}
@@ -878,7 +895,7 @@ function AddUser(props) {
                 </Form.Control.Feedback> */}
               </Form.Group>
 
-              <Form.Group className="mb-3" as={Col} md="6">
+              {/* <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Priority </Form.Label>
                 <Form.Select
                   required
@@ -898,7 +915,7 @@ function AddUser(props) {
                 <Form.Control.Feedback type="invalid">
                   {errors.priority}
                 </Form.Control.Feedback>
-              </Form.Group>
+              </Form.Group> */}
 
 {/* 
               <Form.Group className="mb-3" as={Col} md="6">

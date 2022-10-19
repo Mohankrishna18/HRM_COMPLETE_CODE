@@ -104,15 +104,15 @@ function AddProject(props) {
 
     if (!endDate || endDate === '') newErrors.endDate = 'Please Enter End Date'
 
-    if (!description || description === '')
-      newErrors.description = 'Please Enter Description'
+    // if (!description || description === '')
+    //   newErrors.description = 'Please Enter Description'
 
     if (!status || status === '') newErrors.status = 'Please Select Status'
 
     // if (!rate || rate === "") newErrors.rate = "Please Enter Rate";
 
-    if (!priority || priority === '')
-      newErrors.priority = 'Please Select Priority'
+    // if (!priority || priority === '')
+    //   newErrors.priority = 'Please Select Priority'
 
     if (!projectManager || projectManager === '')
       newErrors.projectManager = 'Please Select Project Manager'
@@ -371,7 +371,7 @@ function AddProject(props) {
               </Form.Group>
 
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Priority *</Form.Label>
+                <Form.Label>Priority </Form.Label>
                 <Form.Select
                   required
                   type="text"
@@ -382,9 +382,9 @@ function AddProject(props) {
                   isInvalid={!!errors.priority}
                 >
                   <option> Select Priority</option>
-                  <option value="Low">Low</option>
-                  <option value="Medium">Medium</option>
-                  <option value="High">High</option>
+                  <option value="Low">P1</option>
+                  <option value="Medium">P2</option>
+                  <option value="High">P3</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.priority}
@@ -392,7 +392,7 @@ function AddProject(props) {
               </Form.Group>
 
               <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                <Form.Label>Description *</Form.Label>
+                <Form.Label>Description </Form.Label>
                 <Form.Control
                   required
                   as="textarea"

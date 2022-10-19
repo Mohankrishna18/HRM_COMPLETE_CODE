@@ -197,7 +197,7 @@ export default [
     path: "/TaskMain",
     type: "null",
     icon: <FcPlanner />,
-    title: "Task",
+    title: "Assigned Task",
     permission: [Roles.pmohead,Roles.manager,Roles.irm,Roles.srm],
   },
   {
@@ -582,20 +582,20 @@ export default [
     
   },
 
-  {
-    component: reduxMain,
-    path: "/reduxMain",
-    type: "null",
-    icon: <FcPlanner />,
-    title: "Redux",
-    permission: [
-      Roles.employee,
-      Roles.pmohead,
-      Roles.hrmanager,
-      Roles.manager,
-      Roles.recruitmentmanager,
-    ],
-  },
+  // {
+  //   component: reduxMain,
+  //   path: "/reduxMain",
+  //   type: "null",
+  //   icon: <FcPlanner />,
+  //   title: "Redux",
+  //   permission: [
+  //     Roles.employee,
+  //     Roles.pmohead,
+  //     Roles.hrmanager,
+  //     Roles.manager,
+  //     Roles.recruitmentmanager,
+  //   ],
+  // },
 
   {
     component: RRMain,
