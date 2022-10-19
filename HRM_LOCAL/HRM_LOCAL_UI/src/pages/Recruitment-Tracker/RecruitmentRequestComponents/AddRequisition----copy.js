@@ -235,7 +235,7 @@ export default function AddRequisition(props) {
         {" "}
         <MdOutlinePersonAddAlt />
         {/* <BsPlusLg />  */}
-        &nbsp; Raise Requisition
+        &nbsp; Raise Requirement
       </Button>
       <Modal
         style={{ maxHeight: "1350px", maxWidth: "1550px" }}
@@ -246,7 +246,7 @@ export default function AddRequisition(props) {
         keyboard={false}
       >
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Raise Requisitions</Modal.Title>
+          <Modal.Title>Raise Job Requirements</Modal.Title>
         </Modal.Header>
 
         <Modal.Body className="scroll">

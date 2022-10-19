@@ -199,16 +199,9 @@ export default function AddRequisition(props) {
       .post("http://localhost:9000/v1/addComments", form)
       .then((res) => {
         console.log(res);
-        if (res.status == 200) {
-          axios
-            .get("http://localhost:9000/v1/getAllComments/id")
-            .then((resp) => {
-              console.log(resp);
-              setComment(resp.data);
-            })
-            .catch((errr) => {
-              console.log(errr);
-            });
+        if (res.data.status) {
+        
+          props.func();
         } else {
           console.log("data not post");
         }
@@ -236,7 +229,7 @@ export default function AddRequisition(props) {
         {" "}
         <MdOutlinePersonAddAlt />
         {/* <BsPlusLg />  */}
-        &nbsp; Raise Requisition
+        &nbsp; Raise Request
       </Button>
       <Modal
         style={{ maxHeight: "1350px", maxWidth: "1550px" }}
@@ -247,13 +240,15 @@ export default function AddRequisition(props) {
         keyboard={false}
       >
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Job Requirements</Modal.Title>
+          <Modal.Title>Raise Job Requirement Request</Modal.Title>
         </Modal.Header>
 
         <Modal.Body >
-        <StepperForm/>
+        <StepperForm func={props.func} send={props.onHide}/>
+        {/* send={props.onHide} */}
         </Modal.Body>
       </Modal>
     </div>
   );
 }
+
