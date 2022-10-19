@@ -23,12 +23,14 @@ const UserstoryUpdate = (props) => {
     props.updateOnboard.estimatedHours
   );
   const [priority, setPriority] = useState(props.updateOnboard.priority);
-  console.log(priority)
+  console.log(priority);
   const [startDate, setStartDate] = useState(props.updateOnboard.startDate);
   const [status, setStatus] = useState(props.updateOnboard.status);
   const [goal, setGoal] = useState(props.updateOnboard.goal);
-  const [projectName, setProjectName] = useState(props.updateOnboard.projectName);
-  console.log(projectName)
+  const [projectName, setProjectName] = useState(
+    props.updateOnboard.projectName
+  );
+  console.log(projectName);
   const [reason, setReason] = useState(props.updateOnboard.reason);
   const [remainingHours, setRemainingHours] = useState(
     props.updateOnboard.remainingHours
@@ -38,9 +40,7 @@ const UserstoryUpdate = (props) => {
   const [assignedDate, setAssignDate] = useState(
     props.updateOnboard.assignedDate
   );
-  const [projectId, setProjectId] = useState(
-    props.updateOnboard.projectId
-  );
+  const [projectId, setProjectId] = useState(props.updateOnboard.projectId);
   console.log(projectId);
 
   const [form, setForm] = useState({});
@@ -78,7 +78,7 @@ const UserstoryUpdate = (props) => {
   }
 
   const validateForm = () => {
-    const { } = form;
+    const {} = form;
     const newErrors = {};
 
     if (
@@ -101,8 +101,8 @@ const UserstoryUpdate = (props) => {
     //   newErrors.assignedDate = "Please Select assigned Date";
 
     if (!status || status === "") newErrors.status = "Please select status";
-    if (!priority || priority === "")
-      newErrors.priority = "Please Select priority";
+    // if (!priority || priority === "")
+    //   newErrors.priority = "Please Select priority";
     if (!storyTitle || storyTitle === "")
       newErrors.storyTitle = "Please Enter storytitle";
     else if (!storyTitle.match(/^[aA-zZ\s]+$/)) {
@@ -115,10 +115,10 @@ const UserstoryUpdate = (props) => {
       newErrors.acceptanceCriteria = "Please Enter valid acceptance Criteria";
     }
 
-    if (!role || role === "") newErrors.role = "Please Enter role";
-    else if (!role.match(/^[aA-zZ\s]+$/)) {
-      newErrors.role = "Please Enter valid role";
-    }
+    // if (!role || role === "") newErrors.role = "Please Enter role";
+    // else if (!role.match(/^[aA-zZ\s]+$/)) {
+    //   newErrors.role = "Please Enter valid role";
+    //}
     if (!goal || goal === "")
       newErrors.acceptanceCriteria = "Please Enter goal";
     else if (!goal.match(/^[aA-zZ\s]+$/)) {
@@ -129,8 +129,8 @@ const UserstoryUpdate = (props) => {
       newErrors.reason = "Please Enter valid reason";
     }
 
-    if (!estimatedHours || estimatedHours === "")
-      newErrors.estimatedHours = "Please Enter estimatedHours";
+    // if (!estimatedHours || estimatedHours === "")
+    //   newErrors.estimatedHours = "Please Enter estimatedHours";
 
     if (!actualHours || actualHours === "")
       newErrors.actualHours = "Please Enter actualHours";
@@ -155,15 +155,15 @@ const UserstoryUpdate = (props) => {
         projectId: projectId,
         projectName: projectName, //
         acceptanceCriteria: acceptanceCriteria, //
-        role: role, //
-        goal: goal, //
+        // role: role, //
+       // goal: goal, //
         priority: priority, //
         reason: reason, //
         assignedDate: assignedDate, //
         assignedTo: assignedTo, //
         estimatedHours: estimatedHours, //
         actualHours: actualHours, //
-        remainingHours: remainingHours, //
+       // remainingHours: remainingHours, //
         startDate: startDate, //
         endDate: endDate, //
         status: status, //
@@ -198,72 +198,45 @@ const UserstoryUpdate = (props) => {
       >
         <Row className="mb-4">
           <Form.Group className="mb-3" as={Col} md="6">
-
             <Form.Label>Project Name</Form.Label>
 
             <Form.Control
-
               disabled
-
               required
-
               type="text"
-
               placeholder="User Id"
-
               controlId="projectName"
-
               defaultValue={projectName}
-
               value={form.projectName}
-
               onChange={(e) => setField("projectName", e.target.value)}
-
               isInvalid={!!errors.projectName}
-
             ></Form.Control>
 
             <Form.Control.Feedback type="invalid">
-
               {errors.projectName}
-
             </Form.Control.Feedback>
-
           </Form.Group>
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-
             <Form.Label>storytitle</Form.Label>
 
             <Form.Control
-
               required
-
               type="text"
-
               controlId="storyTitle"
-
               placeholder="Story Title"
-
               // onChange={(event) => setclientName(event.target.value)}
 
               // value={acceptanceCriteria}
 
               defaultValue={props.updateOnboard.storyTitle}
-
               maxLength={30}
-
               onChange={(e) => setStoryTitle(e.target.value)}
-
               isInvalid={!!errors.storyTitle}
-
             ></Form.Control>
 
             <Form.Control.Feedback type="invalid">
-
               {errors.storyTitle}
-
             </Form.Control.Feedback>
-
           </Form.Group>
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -285,7 +258,7 @@ const UserstoryUpdate = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+          {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>role</Form.Label>
             <Form.Control
               required
@@ -300,7 +273,7 @@ const UserstoryUpdate = (props) => {
             <Form.Control.Feedback type="invalid">
               {errors.role}
             </Form.Control.Feedback>
-          </Form.Group>
+          </Form.Group> */}
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Priority</Form.Label>
@@ -315,9 +288,9 @@ const UserstoryUpdate = (props) => {
               isInvalid={!!errors.priority}
             >
               <option> Select Priority</option>
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
+              <option value="P1">P1</option>
+              <option value="P2">P2</option>
+              <option value="P3">P3</option>
             </Form.Select>
 
             <Form.Control.Feedback type="invalid">
@@ -336,7 +309,7 @@ const UserstoryUpdate = (props) => {
               value={goal}
               onChange={(e) => setGoal(e.target.value)}
               isInvalid={!!errors.role}
-            // onChange={changeHandler}
+              // onChange={changeHandler}
             />
           </Form.Group>
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -370,7 +343,7 @@ const UserstoryUpdate = (props) => {
               {errors.estimatedHours}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+          {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Actual Hours</Form.Label>
             <Form.Control
               required
@@ -384,8 +357,8 @@ const UserstoryUpdate = (props) => {
             <Form.Control.Feedback type="invalid">
               {errors.actualHours}
             </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+          </Form.Group> */}
+          {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>remaining Hours</Form.Label>
             <Form.Control
               required
@@ -399,7 +372,7 @@ const UserstoryUpdate = (props) => {
             <Form.Control.Feedback type="invalid">
               {errors.remainingHours}
             </Form.Control.Feedback>
-          </Form.Group>
+          </Form.Group> */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Start Date</Form.Label>
             <Form.Control
@@ -452,9 +425,12 @@ const UserstoryUpdate = (props) => {
             >
               <option> Select Status</option>
 
-              <option value="Active">Active</option>
+              <option value="Open">Open</option>
 
-              <option value="InActive">InActive</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+
+              <option value="On Hold">On Hold</option>
             </Form.Select>
 
             <Form.Control.Feedback type="invalid">
@@ -477,7 +453,7 @@ const UserstoryUpdate = (props) => {
             </Form.Control.Feedback>
           </Form.Group> */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Assigned Date</Form.Label>
+            <Form.Label>Actual Start Date</Form.Label>
             <Form.Control
               required
               type="date"

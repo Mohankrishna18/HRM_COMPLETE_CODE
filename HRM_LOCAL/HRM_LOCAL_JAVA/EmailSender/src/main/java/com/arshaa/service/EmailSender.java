@@ -115,40 +115,45 @@ public class EmailSender {
 	              break;
 
 	          case "TAA_APPROVAL":
-	        	  sub="Taa Approval confirmation";
+	        	  sub="Need Your Approval";
 	        	  text=taaApprovalText(uModel);
  	        	  sendEmail(uModel,sub,text);
  	             break;
 	          case "TAG_APPROVAL":
-	        	  sub="Tag Approval confirmation";
+	        	  sub="Need Your Approval";
 	        	  text=tagApprovalText(uModel);
 	        	  sendEmail(uModel,sub,text);
 	        	  break;
 	          case "PMO_APPROVAL":
-	        	  sub="PMO Approval Confirmation";
+	        	  sub="Need Your Approval";
 	        	  text=pmoApprovalText(uModel);
 	        	  sendEmail(uModel,sub,text);
 	        	  break;
 	          case "CEO_APPROVAL":
-	        	  sub="CEO Approval Confirmation";
+	        	  sub="Congratulations on your offer from Arshaa Technologies";
 	        	  text=ceoApprovalText(uModel);
-	        	  sendEmail(uModel,sub,text);
-	        	  break;
-	          case "HR_APPROVAL":
-	        	  sub="HR Approval Confirm";
-	        	  text=hrApprovalText(uModel);
 	        	  sendEmail(uModel,sub,text);
 	        	  break;
 	          case "PMO":
 	        	  sub="PMO Assign";
 	        	  text=pmoAssignText(uModel);
 	        	  sendEmail(uModel,sub,text);
-	        	  break;
+	        	  break; 
 	          case "IT_TEAM":
 	        	  sub="IT Team Cofirm";
 	        	  text=itTeamText(uModel);
 	        	  sendEmail(uModel,sub,text);
 	        	  break;
+	          case "HR_APPROVAL":
+	        	  sub="Welcome Onboard";
+	        	  text=hrApprovalText(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "LEAVE_APPLY":
+	        	  sub="Leave Request";
+	        	  text=leaveApplied(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break; 	  
 	          case "ADMIN":
 	        	  sub="Admin confrim";
 	        	  text=adminText(uModel);
@@ -164,12 +169,78 @@ public class EmailSender {
 	        	  text=pmoReject(uModel);
 	        	  sendEmail(uModel,sub,text);
 	        	  break;
+	        	  
+	          case "IRM_APPROVED":
+	        	  sub="IRM Approved";
+	        	  text=irmApproved(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "IRM_REJECTED":
+	        	  sub="IRM Rejected";
+	        	  text=irmReject(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;	
+	          case "SRM_APPROVED":
+	        	  sub="SRM Approved";
+	        	  text=srmApproved(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "SRM_REJECTED":
+	        	  sub="SRM Rejected";
+	        	  text=srmReject(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;		  
 	          case "CEO_REJECT":
 	        	  sub="CEO Rejected";
 	        	  text=ceoReject(uModel);
 	        	  sendEmail(uModel,sub,text);
 	        	  break;
-
+	          case "RESIGNATION_APPLY":
+	        	  sub="Resignation Applied";
+	        	  text=applyResignation(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "IRM_RESIGN_APPROVED":
+	        	  sub="Resignation was Approved by IRM";
+	        	  text=approveResignByIRM(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "SRM_RESIGN_APPROVED":
+	        	  sub="Resignation was Approved by SRM";
+	        	  text=approveResignBySRM(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "PMO_RESIGN_APPROVED":
+	        	  sub="Resignation was Approved by PMO";
+	        	  text=approveResignByPMO(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "HR_RESIGN_APPROVED":
+	        	  sub="Resignation was Approved by HR";
+	        	  text=approveResignByHR(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "IRM_RESIGN_REJECT":
+	        	  sub="Resignation was Reject by IRM";
+	        	  text=rejectResignByIRM(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "SRM_RESIGN_REJECT":
+	        	  sub="Resignation was Reject by SRM";
+	        	  text=rejectResignBySRM(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "PMO_RESIGN_REJECT":
+	        	  sub="Resignation was Reject by PMO";
+	        	  text=rejectResignByPMO(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "HR_RESIGN_REJECT":
+	        	  sub="Resignation was Reject by HR";
+	        	  text=rejectResignByHR(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	         
  	        	  default:
  	        		  System.out.println("default switch case");
 	          }
@@ -183,6 +254,77 @@ public class EmailSender {
 	       }  
 	    }  
 	
+	private String rejectResignByHR(MainEmailTemplate uModel) {
+		String text="Resignation was Reject by HR"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String rejectResignByPMO(MainEmailTemplate uModel) {
+		String text="Resignation was Reject by PMO"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String rejectResignBySRM(MainEmailTemplate uModel) {
+		String text="Resignation was Reject by SRM"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String rejectResignByIRM(MainEmailTemplate uModel) {
+		String text="Resignation was Reject by IRM"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String approveResignByHR(MainEmailTemplate uModel) {
+		String text="Resignation was Approved by HR"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String approveResignByPMO(MainEmailTemplate uModel) {
+		String text="Resignation was Approved by PMO"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String approveResignBySRM(MainEmailTemplate uModel) {
+		String text="Resignation was Approved by SRM"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String approveResignByIRM(MainEmailTemplate uModel) {
+		String text="Resignation was Approved by IRM"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String applyResignation(MainEmailTemplate uModel) {
+		String text="Resignation was applied"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String srmReject(MainEmailTemplate uModel) {
+		String text="SRM Approved  your leave"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String srmApproved(MainEmailTemplate uModel) {
+		String text="SRM Rejected  your leave"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String irmApproved(MainEmailTemplate uModel) {
+		String text="IRM Approved  your leave"+"\n"+"\n"+"Regards,"+"\n";
+		return text;
+	}
+
+	private String irmReject(MainEmailTemplate uModel) {
+
+		String text="IRM Rejected your leave"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
+	private String leaveApplied(MainEmailTemplate uModel) {
+		String text="Leave was Applied"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		return text;
+	}
+
 	private String pmoAssignText(MainEmailTemplate uModel) {
 		String text="PMO Assign "+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
 		return text;
@@ -199,10 +341,11 @@ public class EmailSender {
 	}
 
 	private String hrApprovalText(MainEmailTemplate uModel) {
-		String text="HR Approve"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Hello "+uModel.getMap().get("employeeName")+"\n"+"\n"+"Welcome to Arshaa Technologies."+"\n"+"\n"+"Please login with your Employee-ID and password as we mentioned here, There are your credentials Employee-ID : "+uModel.getMap().get("employeeId")+" and Password :"+uModel.getMap().get("password")+"\n"+"\n"+"Link to login : http://15.206.247.212/"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
 		return text;
 	}
-
+	
+	
 	private String ceoReject(MainEmailTemplate uModel) {
 		String text="CEO Rejected"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
 		return text;
@@ -219,10 +362,10 @@ public class EmailSender {
 		String text="TAG Head Rejected"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
 		return text;
 	}
-	
-	
+
+
 	private String ceoApprovalText(MainEmailTemplate uModel) {
-		String text="CEO was Approved successfully"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Hi "+uModel.getMap().get("employeeName")+"\n"+"\n"+"\n"+"Welcome to Arshaa Technologies"+"\n"+"\n"+"\n"+"We are glad to infrom on the joining date of yours at Arshaa Technologies on "+uModel.getMap().get("dateOfJoining")+"\n"+"\n"+"\n"+"As per the discussion with me, please find the below documents to be carried on your Day of joining."+"\n"+"\n"+"\n"+"1] Offer letter."+"\n"+"2] Pan and Aadhar Copies (ID Proof)."+"\n"+"3] Educational Documents."+"\n"+"4] Hike Letter."+"\n"+"5] Form-16."+"\n"+"6] Resignation Copy"+"\n"+"\n"+"\n"+"Venue Details :-"+"\n"+"Reporting Time - 10:00 AM"+"\n"+"Reporting Address -Arshaa Technologies, SALARPURIA SATTVA KNOWLEDGE CITY, "+"\n"+"Level 1, 2A&2B Octave Block, Parcel 4, Rai Durg, "+"\n"+"Hyderabad, Telangana-500081"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
 
 	
 				return text;
@@ -230,19 +373,19 @@ public class EmailSender {
 
 
 	private String pmoApprovalText(MainEmailTemplate uModel) {
-		String text="PMO was Approved successfully"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Hai Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
 		return text;
 	}
 
 
 	private String tagApprovalText(MainEmailTemplate uModel) {
-		String text = "Tag was Approved successfully"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Hai Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
 		return text;
 	}
 
 
 	private String taaApprovalText(MainEmailTemplate uModel) {
-        String text="Tag Member approved successfully"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+        String text="Hai Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
 		return text;
 	}
 
@@ -263,10 +406,9 @@ public class EmailSender {
 	
 	public String OnboardApproveText(MainEmailTemplate uModel)
 	{
-		String text="Hi "+uModel.getMap().get("employeeName")+"\n"+"Welcome to Arshaa Technologies"+"\n"+"Your Onboard was Approved, Please login with your Email-ID and Password as we mentioned here, These are your credentials Email-ID:-"+uModel.getMap().get("email")+" Password:-"+uModel.getMap().get("password")+"\n"+"\n"+"Link to login : http://15.206.247.212:5000/"+"\n"+"Kindly fill your details in Edit My Profile."+"\n"+"\n"+"Regards,"+"\n"+"Recuiter Team"+"\n"+"Arshaa Technology Pvt. Ltd.";
+		String text="Hi "+uModel.getMap().get("employeeName")+"\n"+"Welcome to Arshaa Technologies"+"\n"+"Your Onboard was Approved, Please login with your Email-ID and Password as we mentioned here, These are your credentials Email-ID:-"+uModel.getMap().get("email")+" Password:-"+uModel.getMap().get("password")+"\n"+"\n"+"Link to login : http://10.10.10.40:4000"+"\n"+"Kindly fill your details in Edit My Profile."+"\n"+"\n"+"Regards,"+"\n"+"Recuiter Team"+"\n"+"Arshaa Technology Pvt. Ltd.";
 		return text;
 	}
-	
 
 
 

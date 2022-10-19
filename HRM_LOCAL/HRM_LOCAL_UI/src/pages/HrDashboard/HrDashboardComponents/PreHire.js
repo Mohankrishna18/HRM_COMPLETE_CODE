@@ -52,7 +52,7 @@ function PreHire(props) {
     const [columns, setColumns] = useState([
       { title: "Onboarding ID", field: "onboardingId",color:"black" },
       { title: "Job Title", field: "jobTitle" },
-      { title: "Name", field: "firstName" },
+      { title: "Name", field: "fullName" },
       { title: "Email", field: "email" },
       { title: "Experience", field: "yearsOfExperience" },
       {
@@ -158,8 +158,10 @@ function PreHire(props) {
         </Modal>
   
         <Grid>
-          <MaterialTable
+          <MaterialTable 
             title="Offer Released"
+            // {(data.length)+"  Offer Released"}
+            icons={data.length}
             columns={columns}
             data={data}
             options={{
@@ -167,15 +169,15 @@ function PreHire(props) {
               addRowPosition: "first",
               actionsColumnIndex: -1,
               pageSize: 10,
-           
+            
               pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
-              maxBodyHeight: 350,
+              maxBodyHeight: 370,
               headerStyle: {
                 // backgroundColor: "#FFC47A",
                 background: "#ffa442",
-  fontSize:"16px",
-  paddingBottom:"6px",
-  paddingTop:"12px",
+                fontSize:"16px",
+                paddingBottom:"6px",
+                paddingTop:"12px",
                 color: "black",
               },
               exportButton: true,
@@ -184,6 +186,7 @@ function PreHire(props) {
               {
                 icon: "button",
                 tooltip: "Save User",
+                fontSize:"small",
                 onClick: (event, rowData) =>
                   alert("You saved " + rowData.firstName),
               },

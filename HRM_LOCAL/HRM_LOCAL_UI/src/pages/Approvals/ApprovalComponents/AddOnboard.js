@@ -15,7 +15,6 @@ import {AutoCompleteComponent} from '@syncfusion/ej2-react-dropdowns';
 import "./AddOnboard.css";
 
 
-
 function AddOnboard(props) {
   const [users, setUsers] = useState({});
   const [suggestions, setSuggestions] = useState([]);
@@ -45,8 +44,6 @@ function AddOnboard(props) {
       });
   }
 
-  
-
   const validateForm = () => {
     const {
       lastName,
@@ -70,10 +67,8 @@ function AddOnboard(props) {
     if (
       !phoneNumber ||
       phoneNumber === "" ||
-      !phoneNumber.match(
-        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-      )
-    )
+      !phoneNumber.match(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/)
+)
       newErrors.phoneNumber = "Please Enter Phone Number";
     if (!dateOfJoining || dateOfJoining === "")
       newErrors.dateOfJoining = "Please Enter Date of Joining";
@@ -87,8 +82,8 @@ function AddOnboard(props) {
     // yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)
     )
     newErrors.yearsOfExperience = "Please Enter Years of Experience";
-    if (!jobTitle || jobTitle === "")
-      newErrors.jobTitle = "Please Enter Job Title";
+    // if (!jobTitle || jobTitle === "")
+    //   newErrors.jobTitle = "Please Enter Job Title";
       if (!rrfId || rrfId === "")
       newErrors.rrfId = "Please Enter Job ID";
     
@@ -127,7 +122,6 @@ function AddOnboard(props) {
     }
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // e.target.reset();
@@ -137,10 +131,13 @@ function AddOnboard(props) {
       setErrors(formErrors);
       console.log("Form validation error");
     } else {
+      const lastForm = Object.assign(form,{jobTitle:jobTitle})
+      console.log(lastForm)
       axios
         .post("/emp/createNewPotentialEmployee", form)
         .then((response) => {
           const user = response.data;
+          console.log(user)
           if (user.status) {
             props.func();
           } else {
@@ -148,7 +145,7 @@ function AddOnboard(props) {
           }
           toast.success("Employee Onboarded Successfully");
           console.log(user);
-          setTimeout(1000);
+          // setTimeout(1000);
           handleClose();
         })
         .catch((err) => {
@@ -339,7 +336,6 @@ function AddOnboard(props) {
                     dataSource={rrf}
                     placeholder="select Job ID"
                     fields={{ value: "rrfId", display:"rrfId"}}
-                  
                     value={form.rrfId}
                     isInvalid={!!errors.rrfId}
                     onChange={(e) => {
@@ -360,16 +356,16 @@ function AddOnboard(props) {
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Job Title *</Form.Label>
                 <Form.Control
-                  //disabled
+                  disabled
                   name="jobTitle"
                   type="text"
                   controlId="jobTitle"
                   placeholder="Job Title "
-                  value={form.jobTitle}
+                  value={jobT.jobTitle}
                   maxLength={30}
                   onChange={(e) => 
                 setField("jobTitle", e.target.value) }
-                  isInvalid={!!errors.jobTitle}
+                  //isInvalid={!!errors.jobTitle}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {errors.jobTitle}
@@ -791,3 +787,4 @@ function AddOnboard(props) {
   );
 }
 export default AddOnboard;
+

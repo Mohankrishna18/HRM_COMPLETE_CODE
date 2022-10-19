@@ -18,6 +18,8 @@ public interface UserRepository extends JpaRepository<EmployeeLogin,Integer>
 	EmployeeLogin findByPassword(String oldPassword);
 	Optional<EmployeeLogin> getByEmployeeId(String employeeId);
 	EmployeeLogin findByEmployeeId(String employeeId);
+	EmployeeLogin findByUserType(String userType);
+	EmployeeLogin findByEmail(String email);
 
 	
 }

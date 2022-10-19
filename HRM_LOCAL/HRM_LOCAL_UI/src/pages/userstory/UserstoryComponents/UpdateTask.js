@@ -19,6 +19,7 @@ const UpdateTask = (props) => {
   const [taskType, setTaskType] = useState(props.updateOnboard.taskType)
   const [assignedTo, setAssignedTo] = useState(props.updateOnboard.assignedTo)
  
+  console.log(props.updateOnboard);
   const [estimatedHours, setEstimatedHours] = useState(
     props.updateOnboard.estimatedHours,
   )
@@ -123,8 +124,8 @@ const UpdateTask = (props) => {
 
     if (!plannedEndDate || plannedEndDate === '')
       newErrors.plannedEndDate = 'Please Enter Start date'
-    if (!priority || priority === '')
-      newErrors.priority = 'Please Enter Priority'
+    // if (!priority || priority === '')
+    //   newErrors.priority = 'Please Enter Priority'
     if (!assignedTo || assignedTo === '')
       newErrors.assignedTo = 'Please Enter Assigned to'
     if (!estimatedHours || estimatedHours === '')
@@ -149,6 +150,7 @@ const UpdateTask = (props) => {
 
       axios
         .put(`/task/updateTask/${props.updateOnboard.taskId}`, {
+       
           userId: userId,
           userStory: userStory,
           taskTitle: taskTitle,
@@ -370,9 +372,11 @@ const UpdateTask = (props) => {
             >
               {/* <option>Select status </option> */}
               {/* <option>props.updateOnboard.status</option> */}
-              <option>open</option>
-              <option>closed</option>
-              <option>In progress</option>
+              <option> Select Status</option>
+                  <option value="Open">Open</option>
+                  <option value="InProgress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                  <option value="OnHold">On Hold</option>
             </Form.Select>
 
             <Form.Control.Feedback type="invalid">
@@ -381,7 +385,7 @@ const UpdateTask = (props) => {
           </Form.Group>
 
           <Form.Group className="mb-3" as={Col} md="6">
-            <Form.Label>Priority *</Form.Label>
+            <Form.Label>Priority </Form.Label>
             <Form.Select
               required
               type="text"
