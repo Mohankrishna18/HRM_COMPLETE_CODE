@@ -83,10 +83,6 @@ public class RequisitionTrackerController {
 		return new ResponseEntity(serv.rejectRequisition(requisition,rrfId,userType),HttpStatus.OK);
 	}
 	
-	// get data by rrf status Active
-    @GetMapping("/getAllRequisitionRequestsByStatus")
-    public ResponseEntity getRequisitionsByRrfStatus() {
-        return serv.getRequisitionsByRrfStatus();
-    }
+
 
 }
