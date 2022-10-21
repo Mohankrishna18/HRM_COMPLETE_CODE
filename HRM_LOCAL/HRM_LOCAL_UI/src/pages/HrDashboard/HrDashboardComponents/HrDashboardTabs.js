@@ -28,10 +28,6 @@ const HrDashboardTabs = () => {
                     <Card responsive className='example' style={{ marginTop: 0 }}>
 
                         <Card.Body>
-                            <Card.Title> Dashboard</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">
-                             Dashboard
-                            </Card.Subtitle>
                             {/* <h2 style={{ paddingTop: "1%", paddingLeft: "1%" }}>HR Manager</h2> */}
                             <Box sx={{ width: '100%', typography: 'body1',paddingTop:"15px" }}>
                                 <TabContext value={value}>

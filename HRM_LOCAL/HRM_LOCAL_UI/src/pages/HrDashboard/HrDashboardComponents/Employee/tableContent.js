@@ -3,14 +3,14 @@ import Moment from 'react-moment';
 import AvtarComponent from '../../../../commonComponents/AvtarComponent';
 
 // This is the table constant/settings which needed to render table elements
-export const tableConstants = () => {
-  return [
-    // {
-    //   title: 'Name',
-    //   render: rowData => {
-    //     return <AvtarComponent data={rowData}/>;
-    //   },
-    // },
+export const tableConstants = 
+   [
+    {
+      title: 'Name',
+      render: rowData => {
+        return <span><AvtarComponent data={rowData}/></span>;
+      },
+    },
     {
       title: 'Employee ID',
       render: rowData => {
@@ -37,5 +37,5 @@ export const tableConstants = () => {
         return <span>{rowData.designationName}</span>;
       },
     },
-  ];
-};
+  ]
+

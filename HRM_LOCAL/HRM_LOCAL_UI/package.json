@@ -74,7 +74,8 @@
     "vertical-timeline-component-react": "^2.1.1",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "@ant-design/plots": "1.2.2"
   },
   "devDependencies": {
     "typescript": "3.3.3"
