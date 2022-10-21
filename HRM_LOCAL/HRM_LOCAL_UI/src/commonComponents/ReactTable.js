@@ -25,6 +25,7 @@ const ReactTable = ({ cols, data, bordered, hoverable, striped, isDark }) => {
         </div>
     )
 }
+//commit
 ReactTable.propTypes = {
     cols: PropTypes.array.isRequired,
     data: PropTypes.array.isRequired,
