@@ -50,22 +50,22 @@ const ManagerLeavesToApproveMain = () => {
                       </Card.Body>
                     </Card.Header>
 
-                    <Card.Header style={{ backgroundColor: "white" }}>
+                    {/* <Card.Header style={{ backgroundColor: "white" }}>
                       <Card.Body>
                         <Card.Title>My Teams Leave History</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">
                           Manager Teams Leaves History
                         </Card.Subtitle>{" "}
-                        {/* <Container> */}
+                        <Container>
                         <Row>
                           <Col xs={12}>
                             <EmployeeLeaveHistory />
                           </Col>
                         </Row>
                         <Row></Row>
-                        {/* </Container> */}
+                        </Container>
                       </Card.Body>
-                    </Card.Header>
+                    </Card.Header> */}
                   </Tab>
                   <Tab
                     eventKey="Timesheet Approvals"

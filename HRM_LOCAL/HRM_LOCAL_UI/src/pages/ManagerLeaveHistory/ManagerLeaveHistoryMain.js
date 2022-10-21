@@ -13,14 +13,14 @@ const ManagerLeaveHistory = () => {
             <Card.Subtitle className="mb-2 text-muted">
             EmployeeLeaves
             </Card.Subtitle>{" "}
-            <Container>
+            {/* <Container> */}
               <Row>
                 <Col xs={12}>
                 <EmployeeLeaveHistory/>
                 </Col>
 
               </Row>
-            </Container>
+            {/* </Container> */}
           </Card.Body>
         </Card.Header>
       </Card>
