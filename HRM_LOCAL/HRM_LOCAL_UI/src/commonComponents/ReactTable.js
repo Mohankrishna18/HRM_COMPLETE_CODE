@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-const Table = ({ cols, data, bordered, hoverable, striped, isDark }) => {
+const ReactTable = ({ cols, data, bordered, hoverable, striped, isDark }) => {
     return (
         <div class="table-responsive">
             <table className={`table ${bordered ? 'table-bordered' : 'table-borderless'} ${hoverable && 'table-hover'} ${striped && 'table-striped'} ${isDark && 'table-dark'}`}>
-                <thead>
+                <thead >
                     <tr>
                         {cols.map((headerItem, index) => (
                             <th key={index}>{headerItem.title}</th>
@@ -25,8 +25,7 @@ const Table = ({ cols, data, bordered, hoverable, striped, isDark }) => {
         </div>
     )
 }
-
-Table.propTypes = {
+ReactTable.propTypes = {
     cols: PropTypes.array.isRequired,
     data: PropTypes.array.isRequired,
     bordered: PropTypes.bool,
@@ -35,11 +34,11 @@ Table.propTypes = {
     isDark: PropTypes.bool,
 }
 
-Table.defaultProps = {
+ReactTable.defaultProps = {
     bordered: true,
     hoverable: false,
     striped: false,
     isDark: false,
 }
 
-export default Table;
+export default ReactTable;

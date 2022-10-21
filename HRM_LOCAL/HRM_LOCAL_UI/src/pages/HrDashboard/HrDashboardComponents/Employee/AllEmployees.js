@@ -1,11 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal, Tab, Table, Tabs, Row, Col, Card } from "react-bootstrap";
+import { Button, Modal, Tab, Tabs, Row, Col, Card } from "react-bootstrap";
 import axios from "../../../../Uri";
-import { AiTwotoneEdit } from "react-icons/ai";
-import { AiFillDelete } from "react-icons/ai";
-import AvtarComponent from "../../../../commonComponents/AvtarComponent";
-import Moment from 'react-moment';
+import ReactTable from "../../../../commonComponents/ReactTable";
+import { tableConstants } from "./tableContent";
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Graph from "./Graph";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Avatar from "@material-ui/core/Avatar";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import { DataGrid } from '@mui/x-data-grid';
 
+
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  // textAlign: '',
+  color: theme.palette.text.secondary,
+}));
 
 function AllEmployees(props) {
   const [data, setData] = useState([]);
@@ -13,17 +30,11 @@ function AllEmployees(props) {
   const [getDepartmentName, setGetDepartmentName] = useState([]);
   const [empData, setEmpData] = useState([]);
   const [value, setValue] = React.useState("1");
-  const [viewShow, setViewShow] = useState(false);
-  const [viewOnboard, setViewOnboard] = useState({});
-  const viewHandleClose = () => setViewShow(false);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-  const [renderTable, setRenderTable] = useState(false);
-  const [changingStatus, setChangingStatus] = useState(false);
+  const [renderTable, setRenderTable] = useState("");
+  const [changingStatus, setChangingStatus] = useState("");
   console.log(departmentName)
 
-  useEffect(() => {
+  const getData = () => {
     axios
       .get("/emp/getAllEmployeeMasterData")
       .then((res) => {
@@ -34,11 +45,20 @@ function AllEmployees(props) {
         console.log(err);
         // toast.error("Server Error")
       });
-  }, []);
+  };
 
-
+  console.log(data.length)
   useEffect(() => {
     loadData();
+    getData();
+    getIT();
+    getTaa();
+    getHr();
+    getTag();
+    getPMO();
+    getOracle();
+    getDigital();
+
   }, []);
 
   const loadData = async () => {
@@ -50,7 +70,7 @@ function AllEmployees(props) {
 
 
   const [taa, setTaa] = useState([]);
-  useEffect(() => {
+  const getTaa = () => {
     axios
       .get("/emp/getEmployeesByDepartment/TAA")
       .then((res) => {
@@ -61,10 +81,10 @@ function AllEmployees(props) {
         console.log(err);
         // toast.error("Server Error")
       });
-  }, []);
+  };
 
   const [hr, setHr] = useState([]);
-  useEffect(() => {
+  const getHr = () => {
     axios
       .get("/emp/getEmployeesByDepartment/Human Resource(HR)")
       .then((res) => {
@@ -75,10 +95,10 @@ function AllEmployees(props) {
         console.log(err);
         // toast.error("Server Error")
       });
-  }, []);
+  };
 
   const [tag, setTag] = useState([]);
-  useEffect(() => {
+  const getTag = () => {
     axios
       .get("/emp/getEmployeesByDepartment/TAG")
       .then((res) => {
@@ -89,10 +109,10 @@ function AllEmployees(props) {
         console.log(err);
         // toast.error("Server Error")
       });
-  }, []);
+  };
 
   const [pmo, setPmo] = useState([]);
-  useEffect(() => {
+  const getPMO = () => {
     axios
       .get("/emp/getEmployeesByDepartment/PMO")
       .then((res) => {
@@ -103,24 +123,24 @@ function AllEmployees(props) {
         console.log(err);
         // toast.error("Server Error")
       });
-  }, []);
+  };
 
   const [oracle, setOracle] = useState([]);
-  useEffect(() => {
+  const getOracle = () => {
     axios
       .get("/emp/getEmployeesByDepartment/Oracle")
       .then((res) => {
         setOracle(res.data.data);
         console.log(res.data.data);
       })
-      .catch((err) => {
-        console.log(err);
-        // toast.error("Server Error")
-      });
-  }, []);
+    // .catch((err) => {
+    //   console.log(err);
+    // toast.error("Server Error")
+    // });
+  };
 
   const [digital, setDigital] = useState([]);
-  useEffect(() => {
+  const getDigital = () => {
     axios
       .get("/emp/getEmployeesByDepartment/Digital")
       .then((res) => {
@@ -131,10 +151,10 @@ function AllEmployees(props) {
         console.log(err);
         // toast.error("Server Error")
       });
-  }, []);
+  };
 
   const [it, setIt] = useState([]);
-  useEffect(() => {
+  const getIT = () => {
     axios
       .get("/emp/getEmployeesByDepartment/IT")
       .then((res) => {
@@ -145,149 +165,71 @@ function AllEmployees(props) {
         console.log(err);
         // toast.error("Server Error")
       });
-  }, []);
+  };
 
   // to get employee data by departments
   const getEmpData = () => {
-    if (changingStatus === true) {
-      setRenderTable(false);
-    }
-    else {
-      axios
-        .get(`/emp/getEmployeesByDepartment/${getDepartmentName}`)
-        .then((res) => {
-          setEmpData(res.data.data);
-          console.log(res.data.data);
-        })
-        .catch((err) => {
-          console.log(err);
-          // toast.error("Server Error")
-        });
-      setRenderTable(true);
-    }
+    axios
+      .get(`/emp/getEmployeesByDepartment/${getDepartmentName}`)
+      .then((res) => {
+        setEmpData(res.data.data);
+        console.log(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        // toast.error("Server Error")
+      });
+    setRenderTable(changingStatus);
+
   }
 
-  var today = new Date(data.dateOfJoining);
-  var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0');
-  var yyyy = today.getFullYear();
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
-  var doj = dd + '-' + mm + '-' + yyyy;
-  console.log(doj);
+
+  const empcount = data.length;
+  const female = data ? data.filter((item) => item.gender === "female") : 0
+  const male = data ? data.filter((item) => item.gender === "male") : 0
 
 
+ 
 
   return (
     <><div className="responsive" >
       <Row >
-        <Col md="2">
-          <Card border="warning">
-            <Card.Body>
-              <h6>
-                {" "}
-                <Card.Title>All Employees</Card.Title>
+        <Col>
+          <div className="responsive" >
 
-                {/* <Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle> */}
 
-                {data.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+            <div >
+              <Row>
+                <Col >
+                  <Grid item style={{ height: "15vh", width: "20vh" }}>
+                    <Item>
 
-              </h6>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md="2">
-          <Card border="warning">
-            <Card.Body>
-              <Row>
-                <Col>
-                  <h6>TAA {""} : </h6>
-                </Col>
-                <Col><h6 style={{ paddingTop: "6%" }}>
-                  {taa.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{taa.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
-                </h6>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <h6>PMO{""} : </h6>
-                </Col>
-                <Col><h6 style={{ paddingTop: "6%" }}>
-                  {pmo.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{pmo.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
-                </h6>
-                </Col>
-              </Row>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md="2">
-          <Card border="warning">
-            <Card.Body>
-              <Row>
-                <Col>
-                  <h6>HR : </h6>
-                </Col>
-                <Col><h6 style={{ paddingTop: "6%" }}>
-                  {hr.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{hr.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
-                </h6>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <h6>IT {""}: </h6>
-                </Col>
-                <Col><h6 style={{ paddingTop: "6%" }}>
-                  {it.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{it.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
-                </h6>
-                </Col>
-              </Row>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md="3">
-          <Card border="warning">
-            <Card.Body>
-              <Row>
-                <Col>
-                  <h6>ORACLE : </h6>
-                </Col>
-                <Col><h6 style={{ paddingTop: "6%" }}>
-                  {oracle.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{oracle.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
-                </h6>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <h6>DIGITAL : </h6>
-                </Col>
-                <Col><h6 style={{ paddingTop: "6%" }}>
-                  {digital.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{digital.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
-                </h6>
-                </Col>
-              </Row>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+                      {empcount === 0 ? (<ul>0 All Count </ul>) : (<ul>{empcount} All Count </ul>)}
+                      {male === 0 ? (<ul>0 male </ul>) : (<ul>{male} male </ul>)}
+                      {female === 0 ? (<ul>0 female </ul>) : (<ul>{female} female</ul>)}
 
-      <Row>
-        <div className="responsive" style={{ paddingTop: "1%" }}>
-          <form>
-            <div class="form-group">
-              <Row>
-                <Col>
-                  <input type="text" class="form-control" placeholder="Employee ID" />
-                </Col><Col>
+                    </Item>
+                  </Grid>
+                </Col>
+                <Col md="4" style={{ height: "15vh", position: "relative" }}>
+                  <Graph />
+                </Col>
+                <Col md="2" style={{ paddingTop: "3%" }}>
                   <input type="text" class="form-control" placeholder="Employee Name" />
-                </Col><Col>
+                </Col><Col style={{ paddingTop: "3%" }} >
 
                   <select class="form-control" placeholder="Select Department"
                     onChange={(e) => {
                       console.log(e.target.value);
-                      if (e.target.value === "ALL") {
-                        setChangingStatus(true)
-                      }
-                      setGetDepartmentName(e.target.value);
-                      console.log(getDepartmentName);
+                      setChangingStatus(e.target.value);
                     }}>
                     <option value={"ALL"}>All</option>
                     {departmentName.map((departmentName) => (
@@ -296,122 +238,42 @@ function AllEmployees(props) {
                   </select>
                 </Col>
 
-                <Col>
-                  <button type="button" class="btn btn-success" style={{ width: 300 }} onClick={getEmpData} >Search</button>
+                <Col style={{ paddingTop: "3%" }}>
+                  <button type="button" class="btn btn-success" style={{ width: 150 }} onClick={getEmpData} >Search</button>
                 </Col>
               </Row>
             </div>
-          </form>
-        </div>
+
+          </div>
+        </Col>
       </Row>
 
       <Row>
         <div className="responsive" style={{ paddingTop: "2%" }}>
-          <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-            <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-              <Modal.Title>Onboarding Form</Modal.Title>
-            </Modal.Header>
+          {(() => {
+            switch (renderTable) {
+              case 'All':
+                return <ReactTable cols={tableConstants} data={data} hoverable />
+              case 'Human Resource(HR)':
+                return <ReactTable cols={tableConstants} data={hr} hoverable />
+              case 'TAG':
+                return <ReactTable cols={tableConstants} data={tag} hoverable />
+              case 'PMO':
+                return <ReactTable cols={tableConstants} data={pmo} hoverable />
+              case 'Oracle':
+                return <ReactTable cols={tableConstants} data={oracle} hoverable />
+              case 'Digital':
+                return <ReactTable cols={tableConstants} data={digital} hoverable />
+              case 'IT':
+                return <ReactTable cols={tableConstants} data={it} hoverable />
+              default:
+                return <ReactTable cols={tableConstants} data={data} hoverable />
 
-            <Modal.Body>
-              {/* <ApprovalView
-            viewOnboard={viewOnboard}
-            // func={pull_data}
-            viewHandleClose={viewHandleClose}
-          /> */}
-            </Modal.Body>
-          </Modal>
-
-          {/* <HRConfirmation /> */}
-          {renderTable == false ? (
-            <Table striped bordered hover responsive>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Employee ID</th>
-                  <th>Email</th>
-                  <th>Mobile</th>
-                  <th>DOJ</th>
-                  <th>Role</th>
-
-                </tr>
-              </thead>
-
-              <tbody  className="scroll">
-                {data.map((data) => (
-                  <tr>
-                    <td><AvtarComponent data={data} /></td>
-                    <td>{data.employeeId}</td>
-                    <td>{data.email}</td>
-                    <td>{data.primaryPhoneNumber}</td>
-                    <td><Moment format="DD/MM/YYYY">
-                      {data.dateOfJoining}
-                    </Moment></td>
-                    <td>{data.designationName}</td>
-                    {/* <Profilebadge imageUrl={data.url} /> */}
-                    {/* <td>
-                      <Row>
-                        <Button
-                          variant="white "
-                          className="rounded-pill"
-                          onClick={(event) => {
-                            setViewShow(true);
-                            console.log(props);
-                            setViewOnboard(props.data);
-                          }}
-                        >{" "}
-                          <AiTwotoneEdit /> Edit
-                        </Button> */}
-                    {/* <Button
-                    variant="white "
-                    className="rounded-pill"
-                    onClick={(event) => {
-                      setViewShow(true);
-                      console.log(props);
-                      setViewOnboard(props.data);
-                    }}
-                  > {" "}
-                    <AiFillDelete/>Delete
-                  </Button> */}
-                    {/* </Row>
-                    </td> */}
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          ) : (
-            <Table striped bordered hover responsive>
-              <thead>
-              <tr>
-                  <th>Name</th>
-                  <th>Employee ID</th>
-                  <th>Email</th>
-                  <th>Mobile</th>
-                  <th>DOJ</th>
-                  <th>Role</th>
-
-                </tr>
-              </thead>
-
-              <tbody  className="scroll">
-                {empData.map((data) => (
-                  <tr>
-                    <td><AvtarComponent data={data} /></td>
-                    <td>{data.employeeId}</td>
-                    <td>{data.email}</td>
-                    <td>{data.primaryPhoneNumber}</td>
-                    <td><Moment format="DD/MM/YYYY">
-                      {data.dateOfJoining}
-                    </Moment></td>
-                    <td>{data.designationName}</td>
-                    
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          )}
-
+            }
+          })()}
         </div>
       </Row>
+
     </div>
     </>
   );

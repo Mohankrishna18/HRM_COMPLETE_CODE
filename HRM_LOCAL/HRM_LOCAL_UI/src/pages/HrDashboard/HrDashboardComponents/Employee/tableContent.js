@@ -5,12 +5,12 @@ import AvtarComponent from '../../../../commonComponents/AvtarComponent';
 // This is the table constant/settings which needed to render table elements
 export const tableConstants = () => {
   return [
-    // {
-    //   title: 'Name',
-    //   render: rowData => {
-    //     return <AvtarComponent data={rowData}/>;
-    //   },
-    // },
+    {
+      title: 'Name',
+      render: rowData => {
+        return <AvtarComponent data={rowData}/>;
+      },
+    },
     {
       title: 'Employee ID',
       render: rowData => {
