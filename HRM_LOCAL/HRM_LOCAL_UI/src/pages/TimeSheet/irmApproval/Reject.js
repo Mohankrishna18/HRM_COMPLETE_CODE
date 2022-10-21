@@ -24,13 +24,17 @@ import axios from "../../../Uri";
    console.log(timesheetId)
    
    const obj = { status: "Rejected"};
+
+   const da = JSON.parse(sessionStorage.getItem('userdata'))
+    const userType = da.data.userType;
+    console.log(userType);
    
   
     const ApproveHandler = (e) => {
       e.preventDefault();
       const form1 = Object.assign(form, obj);
       console.log(form1);
-      axios.put(`/timesheet/timesheetApproval/${timesheetId}/${employeeId}`, form1)
+      axios.put(`/timesheet/timesheetApproval/${timesheetId}/${employeeId}/${userType}`, form1)
       .then((res)=>{
         console.log(res)
         if(res.status ==200){

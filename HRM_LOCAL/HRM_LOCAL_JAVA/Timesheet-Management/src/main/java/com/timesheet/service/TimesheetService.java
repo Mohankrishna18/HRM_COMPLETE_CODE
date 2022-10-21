@@ -31,7 +31,7 @@ public interface TimesheetService {
 	//public ResponseEntity getTimesheetApprovalByEmployeeId(String employeeId, TimesheetApproval timesheetUpdate);
 	public List <TimesheetApproval> getTimesheetApprovalByTimesheetId(int timesheetId);
 	
-	public TimesheetApproval updateTimesheet(int timesheetId ,String employeeId, TimesheetApproval timesheetUpdate);
+	public TimesheetApproval updateTimesheet(int timesheetId ,String employeeId, TimesheetApproval timesheetUpdate, String userType);
 
 	
 //    double findtotalOfActualHours(@Param("taskId") int taskId);

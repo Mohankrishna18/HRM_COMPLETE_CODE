@@ -11,12 +11,16 @@ const Approve = (props) => {
  let timesheetId = props.updateApproval.timesheetId;
  console.log(employeeId)
  console.log(timesheetId)
+
+ const da = JSON.parse(sessionStorage.getItem('userdata'))
+    const userType = da.data.userType;
+    console.log(userType);
  
  const obj = { status: "Approved" };
 
   const ApproveHandler = (e) => {
     e.preventDefault();
-    axios.put(`/timesheet/timesheetApproval/${timesheetId}/${employeeId}`, obj)
+    axios.put(`/timesheet/timesheetApproval/${timesheetId}/${employeeId}/${userType}`, obj)
     .then((res)=>{
       console.log(res)
       if(res.status ==200){
