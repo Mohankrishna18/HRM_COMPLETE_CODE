@@ -147,7 +147,7 @@ export default [
   {
     component: UserAccessMain,
     path: "/UserAccess",
-    type: "null",
+    type: "configuration",
     icon: <FcOvertime/>,
     title: "User Access",
     permission: [Roles.pmohead],
@@ -204,7 +204,7 @@ export default [
   {
     component: PmTaskCreation,
     path: "/TaskMain",
-    type: "null",
+    type: "projects",
     icon: <FcList />,
     title: "Assign Task",
     permission: [Roles.pmohead,Roles.manager,Roles.irm],
@@ -212,7 +212,7 @@ export default [
   {
     component: MyTask,
     path: "/MyTaskMain",
-    type: "null",
+    type: "myprofile",
     icon: <FcSurvey />,
     title: "My Task",
     permission: [Roles.employee,
@@ -245,7 +245,7 @@ export default [
   {
     component: ProjectsMain,
     path: "/Projects",
-    type: "configuration",
+    type: "projects",
     icon: <FcBullish />,
     title: "Projects",
 
@@ -378,7 +378,7 @@ export default [
 
   {
     component: IntegrateLeaveToApply,
-    type: "Leaves",
+    type: "Employee",
     path: "/IntegrateLeaveToApply",
     icon: <FcLeave />,
     title: "Leaves/WFH To Apply",
@@ -482,7 +482,7 @@ export default [
 
   {
     component: ManagerLeaveHistory,
-    type: "Leaves",
+    type: "Employee",
     path: "/HrLeaveHistory",
     icon: <FcAnswers />,
     title: "My Team Leave History ",
@@ -491,7 +491,7 @@ export default [
   },
   {
     component: LeaveHistoryMain,
-    type: "Leaves",
+    type: "Employee",
     path: "/LeaveHistory",
     icon: <FcDatabase />,
     title: "Leave History",
@@ -522,7 +522,7 @@ export default [
     component: createleaveTypeMain,
 
     path: "/CreateLeaves",
-    type: "Leaves",
+    type: "configuration",
     icon: <FcAddColumn />,
 
     title: "Leave Type",
@@ -586,7 +586,7 @@ export default [
     path: "/resignation",
     type: "Employee",
     icon: <FcExpired />,
-    title: "Exit",
+    title: "Resignation",
     permission: [
       Roles.employee,
       Roles.ceo,
@@ -627,14 +627,14 @@ export default [
     title: "Requistion Request",
     permission: [Roles.manager, Roles.irm],
   },
-  {
-    component: PMORequisitionMain,
-    path: "/PMORequisitionMain",
-    type: "null",
-    icon: <FcApproval/>,
-    title: "Requisition Approvals",
-    permission: [Roles.pmohead],
-  },
+  // {
+  //   component: PMORequisitionMain,
+  //   path: "/PMORequisitionMain",
+  //   type: "null",
+  //   icon: <FcApproval/>,
+  //   title: "Requisition Approvals",
+  //   permission: [Roles.pmohead],
+  // },
 
   {
     component: BUHRequisitionMain,
