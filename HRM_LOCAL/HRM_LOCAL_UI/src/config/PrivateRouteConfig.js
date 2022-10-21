@@ -481,11 +481,11 @@ export default [
   },
 
   {
-    component: HrLeaveHistorymain,
+    component: ManagerLeaveHistory,
     type: "Leaves",
     path: "/HrLeaveHistory",
     icon: <FcAnswers />,
-    title: "Employee's Leave History ",
+    title: "My Team Leave History ",
     // permission: [Roles.hrmanager,Roles.irm,Roles.srm],
     permission: [Roles.irm, Roles.srm],
   },
