@@ -70,8 +70,10 @@ const BUHRequisitionApprove = (props) => {
     // handleClose();
 
     const da = JSON.parse(sessionStorage.getItem("userdata"));
-    const empID = da.data.userType;
-    console.log(empID);
+    const userType = da.data.userType;
+    console.log(da.data.employeeID);
+    const employeeID = da.data.employeeId;
+    console.log(userType);
     const formErrors = validateForm();
     console.log(Object.keys(formErrors).length);
     if (Object.keys(formErrors).length > 0) {
@@ -80,7 +82,8 @@ const BUHRequisitionApprove = (props) => {
     } else {
       let rrfId = props.data.rrfId;
       console.log(props.data.empID);
-      const obj = { workflowStatus: "Waiting for PMO Approval" };
+      const obj = { workflowStatus: "Waiting for PMO Approval", buheadId : employeeID };
+      console.log(obj);
       const form1 = Object.assign(form, obj);
       console.log(uploadedFiles);
       const formData = new FormData();
@@ -90,7 +93,7 @@ const BUHRequisitionApprove = (props) => {
       console.log(formData);
       axios
         .put(
-          `/recruitmentTracker/modifyRequisitionStatus/${rrfId}/${empID}`,
+          `/recruitmentTracker/modifyRequisitionStatus/${rrfId}/${userType}`,
           form1
         )
         .then((res) => {

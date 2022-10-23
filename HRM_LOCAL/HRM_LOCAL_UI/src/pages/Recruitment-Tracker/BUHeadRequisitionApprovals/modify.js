@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Button, Row, Col, Form, Container } from "react-bootstrap";
-import axios from "../../../Uri";
+import axios from "../../Uri";
 import { toast } from "react-toastify";
 
 const BUHRequisitionApprove = (props) => {

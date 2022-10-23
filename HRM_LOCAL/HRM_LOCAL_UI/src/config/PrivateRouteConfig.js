@@ -105,6 +105,8 @@ import UserAccessMain from "../pages/UserAccess/UserAccessMain";
 import RRMain from "../pages/Recruitment-Tracker/RRMain";
 import PMORequisitionMain from '../pages/Recruitment-Tracker/PMORequisitionApprovals/PMORequisitionMain'
 import BUHRequisitionMain from '../pages/Recruitment-Tracker/BUHeadRequisitionApprovals/BUHRequisitionMain'
+import StepperForm from "../pages/Recruitment-Tracker/RecruitmentRequestComponents/StepperForm";
+import PMO_Dashboard from "../pages/Recruitment-Tracker/RequisitionDashboard/PMO_Dashboard/PMO_Dashboard"
 
 export default [
   {
@@ -627,14 +629,22 @@ export default [
     title: "Requistion Request",
     permission: [Roles.manager, Roles.irm],
   },
-  // {
-  //   component: PMORequisitionMain,
-  //   path: "/PMORequisitionMain",
-  //   type: "null",
-  //   icon: <FcApproval/>,
-  //   title: "Requisition Approvals",
-  //   permission: [Roles.pmohead],
-  // },
+  {
+    component: PMO_Dashboard,
+    path: "/PMO_Dashboard",
+    type: "null",
+    icon: <FcApproval/>,
+    title: "Requisition Dashboard",
+    permission: [Roles.pmohead]
+  },
+{
+    component: PMORequisitionMain,
+    path: "/PMORequisitionMain",
+    type: "null",
+    icon: <FcApproval/>,
+    title: "Requisition Approvals",
+    permission: [Roles.pmohead],
+  },
 
   {
     component: BUHRequisitionMain,
@@ -644,6 +654,15 @@ export default [
     title: "Requisition Approvals",
     permission: [Roles.buhead]
   },
+
+  {
+    component:StepperForm,
+    path: '/StepperForm',
+    type: "AERF",
+    permission: [Roles.irm],
+
+  },
+
 ];
 
 

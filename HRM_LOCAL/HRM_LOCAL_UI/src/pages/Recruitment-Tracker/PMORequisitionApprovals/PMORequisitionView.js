@@ -133,280 +133,321 @@ const PMORequisitionView = (props) => {
 
   return (
     <div className="scroll">
-      <Row style={{ marginTop: 20 }}>
-        <Col>
-          <Card style={{ padding: 30, paddingBottom: 20 }}>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>Job ID :</Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.reqId}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  Category :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.reqId}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  Business unit :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.departmentName}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>Client :</Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.clientName}
-                </Card.Text>
-              </Col>
-            </Row>
+       <Row style={{ marginTop: 20 }}>
+                <Col>
+                    <Card style={{ padding: 30, paddingBottom: 20 }}>
 
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>Project :</Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.projectName}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  Work Location :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.workLocation}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  Technology :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.technology}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  Job Title :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.jobTitle}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>Role :</Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.role}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  Primary pSkills :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.pSkills}
-                </Card.Text>
-              </Col>
-            </Row>
-
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  Secondary Skills :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.sSkills}
-                </Card.Text>
-              </Col>
-            </Row>
-
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  No. of Positions :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.postitions}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  Years of Experience :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.yoe}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  Job Description :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.textAreaDesc}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>Rate :</Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.rate}
-                </Card.Text>
-              </Col>
-            </Row>
-
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  Employment Type :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.empType}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  Working Hours :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.workingHours}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  Educational Qualification :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.qualification}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  POC Name :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.comments}
-                </Card.Text>
-              </Col>
-            </Row>
-            <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-              <Col>
-                <Card.Subtitle style={{ padding: 10 }}>
-                  Comments :
-                </Card.Subtitle>{" "}
-              </Col>
-              <Col md={{ offset: 1 }}>
-                <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.data.comments}
-                </Card.Text>
-              </Col>
-            </Row>
-            {/* <Row>
+                    <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
-                                <Button
-                                    style={{
-                                        backgroundColor: "#ff9b44",
-                                        borderColor: "#ff9b44",
-                                        float: "right",
-                                        width: "50%",
-                                        height: "100%",
-                                        borderRadius: "25px",
-                                    }}
-                                    type="submit"
-                                    // onClick={handleSubmit}
-                                >
-                                    Send for Approval
-                                </Button>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Job ID   :
+                                </Card.Subtitle>{" "}
                             </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                {props.data.rrfId}
+                                </Card.Text>
+                            </Col>
+                        </Row><Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
-                                <Button
-                                    style={{
-                                        backgroundColor: "#B6B6B4",
-                                        borderColor: "#B6B6B4",
-                                        alignItems: "center",
-                                        width: "40%",
-                                        height: "100%",
-                                        borderRadius: "25px",
-                                    }}
-                                    type="cancel"
-                                    // onClick={handleClose}
-                                >
-                                    Cancel
-                                </Button>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Business unit   :
+                                </Card.Subtitle>{" "}
                             </Col>
-                        </Row> */}
-          </Card>
-        </Col>
-      </Row>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.departmentName}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Job Title   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.jobTitle}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Technology   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.technology}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Role   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.role}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Work Location   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.workLocation}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Client   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.clientName}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                       
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Project   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.projectName}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    No. of Positions   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.positions}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+
+
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Years of Experience   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.yoe}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Primary pSkills   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.pSkills}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Secondary Skills   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.sSkills}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Employment Type   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.empType}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    POC Name   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.pocname}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Working Hours   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.workingHours}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                       
+
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Rate   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.rate}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Educational Qualification   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.qualification}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Upload Job Requirements Document   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.uploadDoc}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Job Description   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.description}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Request Initiated Date   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {/* {props.data.description} */}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Resource Required Date   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {/* {props.data.description} */}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Requested By  :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {/* {props.data.description} */}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                  Request Raised On  :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {/* {props.data.description} */}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                               Request Closed Date :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {/* {props.data.description} */}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Comments   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.data.comments}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                    </Card>
+                </Col>
+            </Row>
     </div>
   );
 };
