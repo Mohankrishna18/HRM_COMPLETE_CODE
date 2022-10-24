@@ -14,7 +14,7 @@ import RecruitmentTimeline from './RecruitmentTimeline'
 
 const steps = ["Select master blaster campaign settings", "uggujjgh"];
 
-const AddRR = (props) => {
+const StepperForm = (props) => {
 
     // props.func('My name is Dean Winchester & this is my brother Sammie')
 
@@ -29,10 +29,10 @@ const AddRR = (props) => {
     const [departments, setDepartments] = useState([]);
     const [pocname, setPocName] = useState([]);
 
-    const steps = [
-        "Primary Information",
-        "Additional Information",
-    ];
+    // const steps = [
+    //     "Primary Information",
+    //     "Additional Information",
+    // ];
 
     const loadPocNames = async () => {
         const res = await axios.get("/emp/getAllEmployeeMasterData");
@@ -94,12 +94,12 @@ const AddRR = (props) => {
             jobTitle,
             technology,
             role,
-            // description,
+            description,
             rrfStatus,
             // workflowStatus,
-            // positions,
-            // pSkills,
-            // sSkills,
+            positions,
+            pSkills,
+            sSkills,
             pocname,
             // qualification,
             workLocation,
@@ -164,13 +164,13 @@ const AddRR = (props) => {
 
         )
             newErrors.rate = "Please enter Rate";
-        if (
-            !rrfCat ||
-            rrfCat === "" ||
-            !rrfCat.match(/^(\w+\s)*\w+$/)
-        )
-            newErrors.rrfCat =
-                "Please enter Type";
+        // if (
+        //     !rrfCat ||
+        //     rrfCat === "" ||
+        //     !rrfCat.match(/^(\w+\s)*\w+$/)
+        // )
+        //     newErrors.rrfCat =
+        //         "Please enter Type";
         if (
             !departmentName ||
             departmentName === ""
@@ -302,11 +302,12 @@ const AddRR = (props) => {
         setActiveStep((previousStep) => previousStep - 1);
     };
     return (
-        <div>
+        <div style={{ paddingTop: "25px" }}>
             {activeStep === 0 && (
                 <div>
                     {" "}
-                    <Box sx={{ width: "100%" }}>
+                    <Card.Title style={{textDecoration:'underline'}}>Arshaa Employee Requisition Form</Card.Title>
+                    {/* <Box sx={{ width: "100%" }}>
                         <Stepper activeStep={0} alternativeLabel>
                             {steps.map((label) => (
                                 <Step key={label}>
@@ -314,7 +315,7 @@ const AddRR = (props) => {
                                 </Step>
                             ))}
                         </Stepper>
-                    </Box>
+                    </Box> */}
                     <Form className="formone">
                         <Row>
                             <Col md="9">
@@ -337,13 +338,13 @@ const AddRR = (props) => {
                                             {errors.jobTitle}
                                         </Form.Control.Feedback>
                                     </Form.Group>
-                                
-                                    <Card as={Col} md="4" style={{ padding: 20 }}>
+
+                                    <Card as={Col} md="2" style={{ paddingTop: 2, paddingBottom: 2, paddingLeft: 4, paddingRight: 2 }}>
                                         {['radio'].map((type) => (
                                             <div key={`inline-${type}`} >
-                                                <Form.Check
+                                                <Form.Check style={{ fontSize: "16px" }}
                                                     required
-                                                    inline
+                                                    
                                                     label="Internal"
                                                     name="leaveOrwfh"
                                                     type={type}
@@ -352,7 +353,7 @@ const AddRR = (props) => {
                                                 //onChange={handleChange}
                                                 //value={leaveOrwfh}
                                                 />
-                                                <Form.Check
+                                                <Form.Check style={{ fontSize: "16px" }}
                                                     required
                                                     inline
                                                     label="External"
@@ -367,10 +368,10 @@ const AddRR = (props) => {
                                             </div>
                                         ))}
                                     </Card>
-                                    <Card as={Col} md="4" style={{ padding: 12 }}>
+                                    <Card as={Col} md="2" style={{ paddingTop: 2, paddingBottom: 2, paddingLeft: 4, paddingRight: 2 }}>
                                         {['radio'].map((type) => (
                                             <div key={`inline-${type}`}>
-                                                <Form.Check
+                                                <Form.Check style={{ fontSize: "16px" }}
                                                     required
                                                     inline
                                                     label="New Requirement"
@@ -381,7 +382,7 @@ const AddRR = (props) => {
                                                 //onChange={handleChange}
                                                 //value={leaveOrwfh}
                                                 />
-                                                <Form.Check
+                                                <Form.Check style={{ fontSize: "16px" }}
                                                     required
                                                     inline
                                                     label="Replacement"
@@ -406,7 +407,7 @@ const AddRR = (props) => {
                                         // placeholder="Requirement Type"
                                         // value={form.reqType}
                                         // onChange={(e) => setField("rrfCat", e.target.value)}
-                                        // isInvalid={!!errors.reqType}
+                                        // isInvalid={!!errors.reqType 
                                         >
                                             <option>Select </option>
                                             <option>Staffing</option>
@@ -417,6 +418,32 @@ const AddRR = (props) => {
                                         <Form.Control.Feedback type="invalid">
                                             {/* {errors.reqType} */}
                                         </Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                        <Form.Label>Employment Type</Form.Label>
+                                        <Form.Select
+                                            required
+
+                                            className="empType"
+                                            type="text"
+                                            controlId="empType"
+                                            placeholder="Employment Type"
+
+                                            value={form.empType}
+                                            maxLength={30}
+                                            onChange={(e) => setField("empType", e.target.value)}
+                                            isInvalid={!!errors.empType}
+                                        >
+                                            <option>Select Employment Type</option>
+                                            <option>Full Time</option>
+                                            <option>Contract</option>
+                                            <option>Intern</option>
+                                            <option>Part Time</option>
+                                        </Form.Select>
+                                        <Form.Control.Feedback type="invalid">
+                                            {errors.empType}
+                                        </Form.Control.Feedback>
+
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Business Unit *</Form.Label>
@@ -579,7 +606,7 @@ const AddRR = (props) => {
                                             {/* {errors.role} */}
                                         </Form.Control.Feedback>
                                     </Form.Group>
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                    <Form.Group as={Col} md="2" style={{ padding: 10 }}>
                                         <Form.Label>No. of Positions *</Form.Label>
                                         <Form.Control
                                             required
@@ -597,7 +624,7 @@ const AddRR = (props) => {
                                             {errors.positions}
                                         </Form.Control.Feedback>
                                     </Form.Group>
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                    <Form.Group as={Col} md="2" style={{ padding: 10 }}>
                                         <Form.Label>Years of Experience *</Form.Label>
                                         <Form.Control
                                             required
@@ -613,6 +640,30 @@ const AddRR = (props) => {
                                         ></Form.Control>
                                         <Form.Control.Feedback type="invalid">
                                             {errors.yoe}
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                        <Form.Label>Priority *</Form.Label>
+                                        <Form.Select
+                                            required
+
+                                        // className="priority"
+                                        // type="number"
+                                        // id="yoe"
+                                        // controlId="yoe"
+                                        // // onChange={(event) => setFirstName(event.target.value)}
+                                        // value={form.yoe}
+                                        // onChange={(e) => setField("yoe", e.target.value)}
+                                        // isInvalid={!!errors.yoe 
+                                        >
+                                            <option>Select</option>
+                                            <option>P1</option>
+                                            <option>P2</option>
+                                            <option>P3</option>
+                                        </Form.Select>
+
+                                        <Form.Control.Feedback type="invalid">
+                                           // {errors.yoe}
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="12" style={{ padding: 10 }}>
@@ -633,7 +684,7 @@ const AddRR = (props) => {
                                             {errors.pSkills}
                                         </Form.Control.Feedback>
                                     </Form.Group>
-                                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                                    <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                                         <Form.Label>Secondary Skills *</Form.Label>
                                         <Form.Control
                                             required
@@ -674,101 +725,223 @@ const AddRR = (props) => {
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                        <Form.Label>Rate *</Form.Label>
+                                        <Form.Control
+                                            name="rate"
+                                            type="number"
+                                            id="rate"
+                                            controlId="rate"
+                                            placeholder="Rate"
+                                            value={form.rate}
+                                            onChange={(e) => setField("rate", e.target.value)}
+                                            isInvalid={!!errors.rate}
+                                        ></Form.Control>
+                                        <Form.Control.Feedback type="invalid">
+                                            {errors.rate}
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+
+                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                        <Form.Label>Working Hours *</Form.Label>
+                                        <Form.Control
+                                            name="workingHours"
+                                            type="number"
+                                            id="workingHours"
+                                            controlId="workingHours"
+                                            placeholder="Working Hours"
+                                            value={form.workingHours}
+                                            onChange={(e) => setField("workingHours", e.target.value)}
+                                            isInvalid={!!errors.workingHours}
+                                        ></Form.Control>
+                                        <Form.Control.Feedback type="invalid">
+                                            {errors.workingHours}
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                        <Form.Label>Educational Qualification *</Form.Label>
+                                        <Form.Control
+                                            name="qualification"
+                                            type="text"
+                                            id="qualification"
+                                            controlId="qualification"
+                                            placeholder="Educational Qualification"
+                                            value={form.qualification}
+                                            onChange={(e) => setField("qualification", e.target.value)}
+                                            isInvalid={!!errors.qualification}
+                                        ></Form.Control>
+                                        <Form.Control.Feedback type="invalid">
+                                            {errors.qualification}
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+
+
+                                    {" "}
+                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                        <Form.Label>POC Name *</Form.Label>
+                                        <Form.Select
+                                            required
+                                            className="pocname"
+                                            type="text"
+                                            controlId="pocname"
+                                            placeholder="POC Name"
+                                            value={form.pocname}
+                                            maxLength={30}
+                                            onChange={(e) => setField("pocname", e.target.value)}
+                                            isInvalid={!!errors.pocname}
+                                        >
+                                            <option>Select </option>
+                                            {pocname.map((poc) => (
+                                                <option value={poc.employeeId}>
+                                                    {poc.firstName}
+                                                </option>
+                                            ))}
+                                        </Form.Select>
+                                        <Form.Control.Feedback type="invalid">
+                                            {errors.pocname}
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                        <Form.Label>Upload Document *</Form.Label>
+                                        <Form.Control
+                                            name="uploadDoc"
+                                            type="file"
+                                            id="uploadDoc"
+                                            controlId="uploadDoc"
+                                            placeholder="Educational Qualification"
+                                            value={form.uploadDoc}
+                                            onChange={(e) => setField("uploadDoc", e.target.value)}
+                                            isInvalid={!!errors.uploadDoc}
+                                        ></Form.Control>
+                                        <Form.Control.Feedback type="invalid">
+                                            {errors.uploadDoc}
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Label>Comments</Form.Label>
+                                    <Form.Control
+                                        required
+                                        type="textarea"
+                                        id="comments"
+                                        // rows="3"
+                                        style={{ height: "80px" }}
+                                        controlId="comments"
+                                        value={form.comments}
+                                        onChange={(e) => setField("comments", e.target.value)}
+                                        isInvalid={!!errors.comments}
+                                    ></Form.Control>
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.comments}
+                                    </Form.Control.Feedback>
+                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Request Initiated Date</Form.Label>
                                         <Form.Control
-                                            // required
-                                            // className="rreqDate"
-                                            type="date"
+                                            required
+                                        // className="rreqDate"
+                                        //  type="date"
                                         // controlId="rreqDate"
                                         // placeholder="Resource Required Date"
                                         // value={form.rreqDate}
                                         // onChange={(e) => setField("rreqDate", e.target.value)}
-                                        // isInvalid={!!errors.rreqDate}
+                                        // isInvalid={!!errors.rreqDate 
                                         >
 
                                         </Form.Control>
                                         <Form.Control.Feedback type="invalid">
-                                            {/* {errors.rreqDate} */}
+                                            {errors.rreqDate}
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Resource Required Date</Form.Label>
                                         <Form.Control
-                                            // required
-                                            // className="rreqDate"
+                                            required
+                                            className="rreqDate"
                                             type="date"
-                                        // controlId="rreqDate"
-                                        // placeholder="Resource Required Date"
-                                        // value={form.rreqDate}
-                                        // onChange={(e) => setField("rreqDate", e.target.value)}
-                                        // isInvalid={!!errors.rreqDate}
+                                            controlId="rreqDate"
+                                            placeholder="Resource Required Date"
+                                            value={form.rreqDate}
+                                            onChange={(e) => setField("rreqDate", e.target.value)}
+                                            isInvalid={!!errors.rreqDate}
                                         >
 
                                         </Form.Control>
                                         <Form.Control.Feedback type="invalid">
-                                            {/* {errors.rreqDate} */}
+
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Requested By</Form.Label>
                                         <Form.Control
-                                            // required
-                                            // className="rreqDate"
+
                                             type="text"
-                                            // controlId="rreqDate"
+
                                             disabled
-                                        // value={form.rreqDate}
-                                        // onChange={(e) => setField("rreqDate", e.target.value)}
-                                        // isInvalid={!!errors.rreqDate}
+
                                         >
 
                                         </Form.Control>
                                         <Form.Control.Feedback type="invalid">
-                                            {/* {errors.rreqDate} */}
+
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Request Raised On</Form.Label>
                                         <Form.Control
-                                            // required
-                                            // className="rreqDate"
+
                                             type="text"
-                                            // controlId="rreqDate"
+
                                             disabled
-                                        // value={form.rreqDate}
-                                        // onChange={(e) => setField("rreqDate", e.target.value)}
-                                        // isInvalid={!!errors.rreqDate}
+
                                         >
 
                                         </Form.Control>
                                         <Form.Control.Feedback type="invalid">
-                                            {/* {errors.rreqDate} */}
+
                                         </Form.Control.Feedback>
                                     </Form.Group>
 
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Request Closed Date</Form.Label>
                                         <Form.Control
-                                            // required
-                                            // className="rreqDate"
+
                                             type="text"
                                             disabled
-                                        // controlId="rreqDate"
-                                        // placeholder="Resource Required Date"
-                                        // value={form.rreqDate}
-                                        // onChange={(e) => setField("rreqDate", e.target.value)}
-                                        // isInvalid={!!errors.rreqDate}
+
                                         >
 
                                         </Form.Control>
                                         <Form.Control.Feedback type="invalid">
-                                            {/* {errors.rreqDate} */}
+
                                         </Form.Control.Feedback>
                                     </Form.Group>
+                                    
+
 
 
                                     {" "}
                                     <Form.Group controlId="submit">
+                                        <br />
+                                        <Button
+                                            type="submit"
+                                            onClick={handleSubmit}
+                                            className="'my-2"
+                                            id="submitButton"
+                                            style={{ width: "10rem" }}
+                                            variant="success"
+                                        >
+                                            Submit
+                                        </Button>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <Button
+                                            type="submit"
+                                            onClick={handleBack}
+                                            className="'my-2"
+                                            id="cancelButton"
+                                            style={{ width: "10rem" }}
+                                            variant="success"
+                                        >
+                                            Cancel
+                                        </Button>
+                                    </Form.Group>
+                                    {/* <Form.Group controlId="submit">
                                         <br />
                                         <Button
                                             type="submit"
@@ -784,15 +957,15 @@ const AddRR = (props) => {
                                             Next
                                         </Button>
                                         &nbsp;&nbsp;&nbsp;
-                                    </Form.Group>
+                                    </Form.Group> */}
                                 </Row>
                             </Col>
                             <Col md="1">
-                                <div className="vr" style={{ height: "98%" }}></div>
+                                <div className="vr" style={{ height: "90%" }}></div>
                             </Col>
                             <Col md="2">
                                 <div style={{ height: "15%" }}>
-                                <RecruitmentTimeline/>
+                                    <RecruitmentTimeline />
                                 </div>
                             </Col>
                         </Row>
@@ -802,7 +975,7 @@ const AddRR = (props) => {
             {activeStep === 1 && (
                 <div>
                     {" "}
-                    <Box sx={{ width: "100%" }}>
+                    {/* <Box sx={{ width: "100%" }}>
                         <Stepper activeStep={1} alternativeLabel>
                             {steps.map((label) => (
                                 <Step key={label}>
@@ -811,7 +984,7 @@ const AddRR = (props) => {
                             ))}
                         </Stepper>
                     </Box>
-                    <b />
+                    <b /> */}
                     {/* <ProgressBar now={100} label={100} /> */}
                     <Form className="formone">
                         <Row className="mb-5">
@@ -831,32 +1004,7 @@ const AddRR = (props) => {
                                     {errors.rate}
                                 </Form.Control.Feedback>
                             </Form.Group>
-                            <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                <Form.Label>Employment Type</Form.Label>
-                                <Form.Select
-                                    required
 
-                                    className="empType"
-                                    type="text"
-                                    controlId="empType"
-                                    placeholder="Employment Type"
-
-                                    value={form.empType}
-                                    maxLength={30}
-                                    onChange={(e) => setField("empType", e.target.value)}
-                                    isInvalid={!!errors.empType}
-                                >
-                                    <option>Select Employment Type</option>
-                                    <option>Full Time</option>
-                                    <option>Contract</option>
-                                    <option>Intern</option>
-                                    <option>Part Time</option>
-                                </Form.Select>
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.empType}
-                                </Form.Control.Feedback>
-
-                            </Form.Group>
                             <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                 <Form.Label>Working Hours *</Form.Label>
                                 <Form.Control
@@ -979,4 +1127,4 @@ const AddRR = (props) => {
         </div>
     );
 };
-export default AddRR;
+export default StepperForm;

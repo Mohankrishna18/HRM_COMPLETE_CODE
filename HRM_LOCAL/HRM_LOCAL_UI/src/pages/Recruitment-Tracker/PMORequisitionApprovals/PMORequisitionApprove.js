@@ -40,8 +40,11 @@ function PMORequisitionApprove(props) {
     const notify = () => toast("Approved");
     // handleClose();
     const da = JSON.parse(sessionStorage.getItem("userdata"));
-    const empID = da.data.userType;
-    console.log(empID);
+    console.log(da)
+    const userType = da.data.userType;
+    console.log(userType);
+    const employeeID = da.data.employeeId;
+    console.log(employeeID)
     const formErrors = validateForm();
     console.log(Object.keys(formErrors).length);
     if (Object.keys(formErrors).length > 0) {
@@ -49,15 +52,16 @@ function PMORequisitionApprove(props) {
       console.log("Form validation error");
     } else {
       let rrfId = props.data.rrfId;
-      console.log(props.data.empID);
-      const obj = { workflowStatus: "Waiting for PMO Approval" };
+      console.log(props.data.userType);
+      const obj = { workflowStatus: "Approved", pmoheadId  : employeeID};
       const form1 = Object.assign(form, obj);
 
       const formData = new FormData();
       console.log(formData);
+      console.log(form1);
       axios
         .put(
-          `/recruitmentTracker/modifyRequisitionStatus/${rrfId}/${empID}`,
+          `/recruitmentTracker/modifyRequisitionStatus/${rrfId}/${userType}`,
           form1
         )
         .then((res) => {

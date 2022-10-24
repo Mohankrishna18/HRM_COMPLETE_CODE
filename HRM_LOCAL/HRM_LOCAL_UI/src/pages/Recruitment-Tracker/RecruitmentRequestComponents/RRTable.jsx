@@ -75,8 +75,9 @@ function RRTable() {
     <div>
       
       <Modal show={show} onHide={handleClose} size="xl">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Update Job Requirement Request</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"7px",
+paddingBottom:"4px", }}>
+          <Modal.Title>Update Requisition</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <UpdateRR
@@ -91,8 +92,9 @@ function RRTable() {
 
       {/* view modal */}
       <Modal  show={viewShow} onHide={viewHandleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Job Requirement Request</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"7px",
+paddingBottom:"4px",  }}>
+          <Modal.Title>Arshaa Employee Requisitions</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ViewRR
@@ -117,8 +119,9 @@ function RRTable() {
         backdrop="static"
         keyboard={false}
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white" }}>
-          <Modal.Title>Delete Job Requirement Request</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white", paddingTop:"7px",
+paddingBottom:"4px"  }}>
+          <Modal.Title>Delete Requisition</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <DeleteRR deleteOnboard={deleteOnboard} func={pull_dataDelete} deleteHandleClose={deleteHandleClose} />
@@ -137,9 +140,9 @@ function RRTable() {
         <Card.Body>
           <Row>
             <Col>
-              <Card.Title>Job Requirement Requests</Card.Title>
+              <Card.Title>Arshaa Employee Requisitions</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                Dashboard / Job Requirement Requests{" "}
+                Dashboard / Employee Requisitions{" "}
               </Card.Subtitle>
             </Col>
             <Col>
@@ -151,7 +154,7 @@ function RRTable() {
         <Grid container>
         <Grid xs={12}>
           <MaterialTable  
-             title="Job Requirement Requests"
+             title="Arshaa Employee Requisitions"
             columns={RRColumns}
             style={{ color: "black", fontSize: "0.8rem" }}
             data={data}
@@ -165,6 +168,8 @@ function RRTable() {
                 backgroundColor: "#FF9E14",
                 color: "white",
                 fontSize: "13px",
+                paddingTop:"5px",
+                paddingBottom:"2px",
               },
               addRowPosition: "first",
               actionsColumnIndex: -1,
