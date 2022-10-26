@@ -6,7 +6,7 @@ import { Column } from '@ant-design/plots';
 const Graph = () => {
   const [dataa, setData] = useState([])
 
-  
+ 
   useEffect(() => {
     axios
       .get("/emp/getAllEmployeeMasterData")
@@ -183,4 +183,3 @@ const Graph = () => {
 };
 
 export default Graph;
-
