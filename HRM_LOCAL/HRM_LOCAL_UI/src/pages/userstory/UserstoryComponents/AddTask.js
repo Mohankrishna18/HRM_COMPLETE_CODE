@@ -54,6 +54,7 @@ function AddUser(props) {
       ...form,
       userId: props.userId,
       projectName: props.projectName,
+      userStory:props.value1,
       [field]: value,
     });
     if (!!errors[field])
@@ -186,9 +187,10 @@ function AddUser(props) {
           color: "#F4F8F6",
 
           float: "right",
-
+      
+    
           borderRadius: "25px",
-
+     
           // paddingBottom: "11.5px",
 
           // marginTop: "100px",

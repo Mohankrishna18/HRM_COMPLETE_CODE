@@ -198,7 +198,7 @@ const UserstoryUpdate = (props) => {
       >
         <Row className="mb-4">
           <Form.Group className="mb-3" as={Col} md="6">
-            <Form.Label>Project Name</Form.Label>
+            <Form.Label>Project Name*</Form.Label>
 
             <Form.Control
               disabled
@@ -215,9 +215,9 @@ const UserstoryUpdate = (props) => {
             <Form.Control.Feedback type="invalid">
               {errors.projectName}
             </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>storytitle</Form.Label>
+          </Form.Group><br/>
+          <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+            <Form.Label>Story Title*</Form.Label>
 
             <Form.Control
               required
@@ -239,12 +239,13 @@ const UserstoryUpdate = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+          <Form.Group as={Col} md="12" style={{ padding: 10 }}>
             <Form.Label>acceptance Criteria</Form.Label>
             <Form.Control
               required
               type="text"
               controlId="acceptanceCriteria"
+              as="textarea"
               placeholder="acceptance Criteria"
               // onChange={(event) => setclientName(event.target.value)}
               // value={acceptanceCriteria}
@@ -275,7 +276,54 @@ const UserstoryUpdate = (props) => {
             </Form.Control.Feedback>
           </Form.Group> */}
 
+          
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            <Form.Label>Reason</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="reason"
+              controlId="reason"
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              isInvalid={!!errors.reason}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors.reason}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            <Form.Label>Goal</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              name="goal"
+              placeholder="goal"
+              controlId="goal"
+              value={goal}
+              onChange={(e) => setGoal(e.target.value)}
+              isInvalid={!!errors.role}
+              // onChange={changeHandler}
+            />
+          </Form.Group>
+         
+
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+            <Form.Label>EstimatedHours*</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="estimatedHours"
+              controlId="estimatedHours"
+              value={estimatedHours}
+              onChange={(e) => setEstimatedHours(e.target.value)}
+              isInvalid={!!errors.estimatedHours}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors.estimatedHours}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
             <Form.Label>Priority</Form.Label>
 
             <Form.Select
@@ -297,50 +345,30 @@ const UserstoryUpdate = (props) => {
               {errors.priority}
             </Form.Control.Feedback>
           </Form.Group>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+            <Form.Label>Status*</Form.Label>
+            <Form.Select
+              required
+              type="text"
+              placeholder="Status"
+              controlId="status"
+              // value={status}
+              defaultValue={props.updateOnboard.status}
+              onChange={(e) => setStatus(e.target.value)}
+              isInvalid={!!errors.status}
+            >
+              <option> Select Status</option>
 
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Goal</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              name="goal"
-              placeholder="goal"
-              controlId="goal"
-              value={goal}
-              onChange={(e) => setGoal(e.target.value)}
-              isInvalid={!!errors.role}
-              // onChange={changeHandler}
-            />
-          </Form.Group>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Reason</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="reason"
-              controlId="reason"
-              value={reason}
-              onChange={(e) => setReason(e.target.value)}
-              isInvalid={!!errors.reason}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.reason}
-            </Form.Control.Feedback>
-          </Form.Group>
+              <option value="Open">Open</option>
 
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>EstimatedHours</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="estimatedHours"
-              controlId="estimatedHours"
-              value={estimatedHours}
-              onChange={(e) => setEstimatedHours(e.target.value)}
-              isInvalid={!!errors.estimatedHours}
-            ></Form.Control>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+
+              <option value="On Hold">On Hold</option>
+            </Form.Select>
+
             <Form.Control.Feedback type="invalid">
-              {errors.estimatedHours}
+              {errors.status}
             </Form.Control.Feedback>
           </Form.Group>
           {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -374,7 +402,7 @@ const UserstoryUpdate = (props) => {
             </Form.Control.Feedback>
           </Form.Group> */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Start Date</Form.Label>
+            <Form.Label>Planned Start Date</Form.Label>
             <Form.Control
               required
               type="date"
@@ -392,7 +420,7 @@ const UserstoryUpdate = (props) => {
           </Form.Group>
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>End Date</Form.Label>
+            <Form.Label>Planned End Date</Form.Label>
             <Form.Control
               required
               type="date"
@@ -411,32 +439,7 @@ const UserstoryUpdate = (props) => {
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
 
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Status</Form.Label>
-            <Form.Select
-              required
-              type="text"
-              placeholder="Status"
-              controlId="status"
-              // value={status}
-              defaultValue={props.updateOnboard.status}
-              onChange={(e) => setStatus(e.target.value)}
-              isInvalid={!!errors.status}
-            >
-              <option> Select Status</option>
-
-              <option value="Open">Open</option>
-
-              <option value="In Progress">In Progress</option>
-              <option value="Completed">Completed</option>
-
-              <option value="On Hold">On Hold</option>
-            </Form.Select>
-
-            <Form.Control.Feedback type="invalid">
-              {errors.status}
-            </Form.Control.Feedback>
-          </Form.Group>
+        
           {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>AssignedTo</Form.Label>
             <Form.Control

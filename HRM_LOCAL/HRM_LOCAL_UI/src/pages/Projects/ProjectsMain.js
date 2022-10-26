@@ -203,9 +203,9 @@ function ProjectsMain() {
 
         <Grid style={{ borderBlockEndWidth: "2px" }}>
           <MaterialTable
-            title="Projects list"
+            title=""
             columns={columns}
-            style={{ color: "black", fontSize: "13px" }}
+            style={{ color: "black", fontSize: "14px" }}
             data={data ? data : []}
             editable={{}}
             options={{

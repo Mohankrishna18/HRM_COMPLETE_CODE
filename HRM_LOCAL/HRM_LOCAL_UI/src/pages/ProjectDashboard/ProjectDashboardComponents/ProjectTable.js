@@ -93,7 +93,7 @@ const ProjectsTable = () => {
                 <MaterialTable
                     title="Active Project List"
                     columns={columns1}
-                    style={{ color: "black", fontSize: "13px" }}
+                    style={{ color: "black", fontSize: "14px" }}
                     data={data ? data : []}
                     editable={{
 

@@ -856,6 +856,7 @@ function AddUserstory(props) {
             backgroundColor: "#FF9E14",
             paddingTop: "5px",
             paddingBottom: "5px",
+            color:"white"
           }}
         >
           <Modal.Title>Add Userstory</Modal.Title>

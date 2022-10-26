@@ -4,7 +4,8 @@ import MaterialTable from "material-table";
 import Grid from "@mui/material/Grid";
 import { Row, Col, Container, Card } from "react-bootstrap";
 import axios from "../../../Uri";
-
+import { FiEdit } from 'react-icons/fi'
+import { RiDeleteBin6Line } from 'react-icons/ri'
 import { Button, Modal, Stack } from "react-bootstrap";
 import UpdateTask from "./UpdateTask";
 import AddTask from "./AddTask";
@@ -236,7 +237,7 @@ function TaskMain(props) {
         <MaterialTable
           title="Task Details"
           columns={columns}
-          style={{ color: "black", fontSize: "13px" }}
+          style={{ color: "black", fontSize: "14px" }}
           // data={userIdData? userIdData : []}
           data={userIdData}
           editable={{}}
@@ -278,17 +279,17 @@ function TaskMain(props) {
                       setUpdateOnboard(props.data);
                     }}
                   >
-                    Edit
+                      <FiEdit />
                   </Button>{" "}
                   <Button
-                    variant="primary"
+                    variant="danger"
                     onClick={(event) => {
                       setDeleteUser(true);
                       console.log(props);
                       setDeleteOnboard(props.data);
                     }}
                   >
-                    Delete
+                    <RiDeleteBin6Line />
                   </Button>
                 </Stack>
               </div>
