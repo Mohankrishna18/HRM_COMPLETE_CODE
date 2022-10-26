@@ -2,7 +2,7 @@
     {
         
         "title": "Req ID",
-        "field": "rrfId"
+        "field": "requisitionId"
     },
     {
         "title":"Business Unit",
