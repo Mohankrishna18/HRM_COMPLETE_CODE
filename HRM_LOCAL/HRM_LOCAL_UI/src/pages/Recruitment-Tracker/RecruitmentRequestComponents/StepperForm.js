@@ -16,6 +16,7 @@ const steps = ["Select master blaster campaign settings", "uggujjgh"];
 
 const StepperForm = (props) => {
 
+
     // props.func('My name is Dean Winchester & this is my brother Sammie')
 
     const navigate = useHistory();
@@ -23,11 +24,17 @@ const StepperForm = (props) => {
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
     const [courses, setCourses] = useState([]);
+    const [response, setResponse] = useState([]);
 
     const [clients, setClients] = useState([]);
     const [projects, setProjects] = useState([]);
     const [departments, setDepartments] = useState([]);
     const [pocname, setPocName] = useState([]);
+
+    const userdata = JSON.parse(sessionStorage.getItem("userdata"));
+    const userType = userdata.data.userType;
+    const employeeId = userdata.data.employeeId;
+
 
     // const steps = [
     //     "Primary Information",
@@ -57,15 +64,24 @@ const StepperForm = (props) => {
         setProjects(res.data.data);
         console.log(res.data.data);
     };
+
+    const getRequestedBy = async () => {
+        const res = await axios
+            .get(`/emp/getEmployeeDataByEmployeeId/${employeeId}`)
+        setResponse(res.data.data);
+    };
+
+
     useEffect(() => {
+        getRequestedBy();
         loadProjects();
         loadDepartmentsData();
         loadClients();
         loadPocNames();
     }, []);
 
-    const userdata = JSON.parse(sessionStorage.getItem("userdata"));
-    const userType = userdata.data.userType;
+
+
     const notify = () => toast();
 
     function setCourse(fiel, innerText) {
@@ -221,6 +237,16 @@ const StepperForm = (props) => {
     };
     const obje3 = { createdBy: userType };
     // let a = [];
+
+    //Setting raised By and RaisedOn Values from session storage and cureenet date
+    const current = new Date();
+    const raisedOn = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+    const raisedBy = response.firstName;
+
+    console.log(raisedOn, raisedBy);
+
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         //  const branch = JSON.parse(sessionStorage.getItem("branches"));
@@ -236,6 +262,8 @@ const StepperForm = (props) => {
             setErrors(formErrors);
         } else {
             console.log(form);
+            const obj = { raisedOn: raisedOn, raisedBy: raisedBy };
+            const form1 = Object.assign(form, obj);
             // const form1 = Object.assign(form, obje1);
             // const form2 = Object.assign(form1, obje2);
             // const lastForm = Object.assign(form2, obje3);
@@ -246,7 +274,7 @@ const StepperForm = (props) => {
             //console.log(len);
 
             axios
-                .post("/recruitmentTracker/createRequisitionRequest", form)
+                .post("/recruitmentTracker/createRequisitionRequest", form1)
                 .then((response) => {
                     console.log(response);
                     toast.success("Job Requirement Raised Successfully", { autoClose: 1000 });
@@ -302,12 +330,11 @@ const StepperForm = (props) => {
         setActiveStep((previousStep) => previousStep - 1);
     };
     return (
-        <div style={{ paddingTop: "25px" }}>
+        <div >
             {activeStep === 0 && (
                 <div>
                     {" "}
-                    <Card.Title style={{textDecoration:'underline'}}>Arshaa Employee Requisition Form</Card.Title>
-                    {/* <Box sx={{ width: "100%" }}>
+                    <Box sx={{ width: "100%" }}>
                         <Stepper activeStep={0} alternativeLabel>
                             {steps.map((label) => (
                                 <Step key={label}>
@@ -315,7 +342,7 @@ const StepperForm = (props) => {
                                 </Step>
                             ))}
                         </Stepper>
-                    </Box> */}
+                    </Box>
                     <Form className="formone">
                         <Row>
                             <Col md="9">
@@ -339,12 +366,12 @@ const StepperForm = (props) => {
                                         </Form.Control.Feedback>
                                     </Form.Group>
 
-                                    <Card as={Col} md="2" style={{ paddingTop: 2, paddingBottom: 2, paddingLeft: 4, paddingRight: 2 }}>
+                                    {/* <Card as={Col} md="4" style={{ padding: 20 }}>
                                         {['radio'].map((type) => (
                                             <div key={`inline-${type}`} >
-                                                <Form.Check style={{ fontSize: "16px" }}
+                                                <Form.Check
                                                     required
-                                                    
+                                                    inline
                                                     label="Internal"
                                                     name="leaveOrwfh"
                                                     type={type}
@@ -353,7 +380,7 @@ const StepperForm = (props) => {
                                                 //onChange={handleChange}
                                                 //value={leaveOrwfh}
                                                 />
-                                                <Form.Check style={{ fontSize: "16px" }}
+                                                <Form.Check
                                                     required
                                                     inline
                                                     label="External"
@@ -368,10 +395,10 @@ const StepperForm = (props) => {
                                             </div>
                                         ))}
                                     </Card>
-                                    <Card as={Col} md="2" style={{ paddingTop: 2, paddingBottom: 2, paddingLeft: 4, paddingRight: 2 }}>
+                                    <Card as={Col} md="4" style={{ padding: 12 }}>
                                         {['radio'].map((type) => (
                                             <div key={`inline-${type}`}>
-                                                <Form.Check style={{ fontSize: "16px" }}
+                                                <Form.Check
                                                     required
                                                     inline
                                                     label="New Requirement"
@@ -382,7 +409,7 @@ const StepperForm = (props) => {
                                                 //onChange={handleChange}
                                                 //value={leaveOrwfh}
                                                 />
-                                                <Form.Check style={{ fontSize: "16px" }}
+                                                <Form.Check
                                                     required
                                                     inline
                                                     label="Replacement"
@@ -396,55 +423,29 @@ const StepperForm = (props) => {
 
                                             </div>
                                         ))}
-                                    </Card>
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                    </Card> */}
+                                    {/* <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Requirement Type *</Form.Label>
                                         <Form.Select
-                                            required
-                                        // className="reqType"
+                                            required */}
+                                        {/* // className="reqType"
                                         // type="text"
                                         // controlId="reqType"
                                         // placeholder="Requirement Type"
                                         // value={form.reqType}
                                         // onChange={(e) => setField("rrfCat", e.target.value)}
-                                        // isInvalid={!!errors.reqType 
-                                        >
+                                        // isInvalid={!!errors.reqType */}
+                                        {/* >
                                             <option>Select </option>
                                             <option>Staffing</option>
                                             <option>Project(Proof of Concept)</option>
-                                            <option>Pilot</option>
+                                            <option>Pilot</option> */}
 
-                                        </Form.Select>
-                                        <Form.Control.Feedback type="invalid">
+                                        {/* </Form.Select>
+                                        <Form.Control.Feedback type="invalid"> */}
                                             {/* {errors.reqType} */}
-                                        </Form.Control.Feedback>
-                                    </Form.Group>
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Employment Type</Form.Label>
-                                        <Form.Select
-                                            required
-
-                                            className="empType"
-                                            type="text"
-                                            controlId="empType"
-                                            placeholder="Employment Type"
-
-                                            value={form.empType}
-                                            maxLength={30}
-                                            onChange={(e) => setField("empType", e.target.value)}
-                                            isInvalid={!!errors.empType}
-                                        >
-                                            <option>Select Employment Type</option>
-                                            <option>Full Time</option>
-                                            <option>Contract</option>
-                                            <option>Intern</option>
-                                            <option>Part Time</option>
-                                        </Form.Select>
-                                        <Form.Control.Feedback type="invalid">
-                                            {errors.empType}
-                                        </Form.Control.Feedback>
-
-                                    </Form.Group>
+                                        {/* </Form.Control.Feedback>
+                                    </Form.Group> */}
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Business Unit *</Form.Label>
                                         <Form.Select
@@ -585,7 +586,7 @@ const StepperForm = (props) => {
                                             {errors.role}
                                         </Form.Control.Feedback>
                                     </Form.Group>
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                    {/* <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Allocation Type</Form.Label>
                                         <Form.Select
                                             required
@@ -604,8 +605,8 @@ const StepperForm = (props) => {
                                         </Form.Select>
                                         <Form.Control.Feedback type="invalid">
                                             {/* {errors.role} */}
-                                        </Form.Control.Feedback>
-                                    </Form.Group>
+                                        {/* </Form.Control.Feedback>
+                                    </Form.Group>  */}
                                     <Form.Group as={Col} md="2" style={{ padding: 10 }}>
                                         <Form.Label>No. of Positions *</Form.Label>
                                         <Form.Control
@@ -642,20 +643,20 @@ const StepperForm = (props) => {
                                             {errors.yoe}
                                         </Form.Control.Feedback>
                                     </Form.Group>
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                    {/* <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Priority *</Form.Label>
                                         <Form.Select
-                                            required
+                                            required */}
 
-                                        // className="priority"
+                                        {/* // className="priority"
                                         // type="number"
                                         // id="yoe"
                                         // controlId="yoe"
                                         // // onChange={(event) => setFirstName(event.target.value)}
                                         // value={form.yoe}
                                         // onChange={(e) => setField("yoe", e.target.value)}
-                                        // isInvalid={!!errors.yoe 
-                                        >
+                                        // isInvalid={!!errors.yoe */}
+                                        {/* >
                                             <option>Select</option>
                                             <option>P1</option>
                                             <option>P2</option>
@@ -665,7 +666,7 @@ const StepperForm = (props) => {
                                         <Form.Control.Feedback type="invalid">
                                            // {errors.yoe}
                                         </Form.Control.Feedback>
-                                    </Form.Group>
+                                    </Form.Group> */}
                                     <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                                         <Form.Label>Primary Skills *</Form.Label>
                                         <Form.Control
@@ -725,223 +726,112 @@ const StepperForm = (props) => {
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Rate *</Form.Label>
+                                        <Form.Label>Request Raised On</Form.Label>
                                         <Form.Control
-                                            name="rate"
-                                            type="number"
-                                            id="rate"
-                                            controlId="rate"
-                                            placeholder="Rate"
-                                            value={form.rate}
-                                            onChange={(e) => setField("rate", e.target.value)}
-                                            isInvalid={!!errors.rate}
-                                        ></Form.Control>
+                                         //  type="date"
+                                           disabled
+                                           value={raisedOn}
+                                       >
+                                       </Form.Control>
                                         <Form.Control.Feedback type="invalid">
-                                            {errors.rate}
-                                        </Form.Control.Feedback>
-                                    </Form.Group>
-
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Working Hours *</Form.Label>
-                                        <Form.Control
-                                            name="workingHours"
-                                            type="number"
-                                            id="workingHours"
-                                            controlId="workingHours"
-                                            placeholder="Working Hours"
-                                            value={form.workingHours}
-                                            onChange={(e) => setField("workingHours", e.target.value)}
-                                            isInvalid={!!errors.workingHours}
-                                        ></Form.Control>
-                                        <Form.Control.Feedback type="invalid">
-                                            {errors.workingHours}
-                                        </Form.Control.Feedback>
-                                    </Form.Group>
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Educational Qualification *</Form.Label>
-                                        <Form.Control
-                                            name="qualification"
-                                            type="text"
-                                            id="qualification"
-                                            controlId="qualification"
-                                            placeholder="Educational Qualification"
-                                            value={form.qualification}
-                                            onChange={(e) => setField("qualification", e.target.value)}
-                                            isInvalid={!!errors.qualification}
-                                        ></Form.Control>
-                                        <Form.Control.Feedback type="invalid">
-                                            {errors.qualification}
-                                        </Form.Control.Feedback>
-                                    </Form.Group>
-
-
-                                    {" "}
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>POC Name *</Form.Label>
-                                        <Form.Select
-                                            required
-                                            className="pocname"
-                                            type="text"
-                                            controlId="pocname"
-                                            placeholder="POC Name"
-                                            value={form.pocname}
-                                            maxLength={30}
-                                            onChange={(e) => setField("pocname", e.target.value)}
-                                            isInvalid={!!errors.pocname}
-                                        >
-                                            <option>Select </option>
-                                            {pocname.map((poc) => (
-                                                <option value={poc.employeeId}>
-                                                    {poc.firstName}
-                                                </option>
-                                            ))}
-                                        </Form.Select>
-                                        <Form.Control.Feedback type="invalid">
-                                            {errors.pocname}
-                                        </Form.Control.Feedback>
-                                    </Form.Group>
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Upload Document *</Form.Label>
-                                        <Form.Control
-                                            name="uploadDoc"
-                                            type="file"
-                                            id="uploadDoc"
-                                            controlId="uploadDoc"
-                                            placeholder="Educational Qualification"
-                                            value={form.uploadDoc}
-                                            onChange={(e) => setField("uploadDoc", e.target.value)}
-                                            isInvalid={!!errors.uploadDoc}
-                                        ></Form.Control>
-                                        <Form.Control.Feedback type="invalid">
-                                            {errors.uploadDoc}
-                                        </Form.Control.Feedback>
-                                    </Form.Group>
-                                    <Form.Label>Comments</Form.Label>
-                                    <Form.Control
-                                        required
-                                        type="textarea"
-                                        id="comments"
-                                        // rows="3"
-                                        style={{ height: "80px" }}
-                                        controlId="comments"
-                                        value={form.comments}
-                                        onChange={(e) => setField("comments", e.target.value)}
-                                        isInvalid={!!errors.comments}
-                                    ></Form.Control>
-                                    <Form.Control.Feedback type="invalid">
-                                        {errors.comments}
-                                    </Form.Control.Feedback>
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Request Initiated Date</Form.Label>
-                                        <Form.Control
-                                            required
-                                        // className="rreqDate"
-                                        //  type="date"
-                                        // controlId="rreqDate"
-                                        // placeholder="Resource Required Date"
-                                        // value={form.rreqDate}
-                                        // onChange={(e) => setField("rreqDate", e.target.value)}
-                                        // isInvalid={!!errors.rreqDate 
-                                        >
-
-                                        </Form.Control>
-                                        <Form.Control.Feedback type="invalid">
-                                            {errors.rreqDate}
-                                        </Form.Control.Feedback>
-                                    </Form.Group>
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Resource Required Date</Form.Label>
-                                        <Form.Control
-                                            required
-                                            className="rreqDate"
-                                            type="date"
-                                            controlId="rreqDate"
-                                            placeholder="Resource Required Date"
-                                            value={form.rreqDate}
-                                            onChange={(e) => setField("rreqDate", e.target.value)}
-                                            isInvalid={!!errors.rreqDate}
-                                        >
-
-                                        </Form.Control>
-                                        <Form.Control.Feedback type="invalid">
-
-                                        </Form.Control.Feedback>
+                                       </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Requested By</Form.Label>
                                         <Form.Control
+                                         //  type="date"
+                                           disabled
+                                           value={raisedBy}
+                                       >
+                                       </Form.Control>
+                                        <Form.Control.Feedback type="invalid">
+                                       </Form.Control.Feedback>
+                                    </Form.Group>
+                                    {/* <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                        <Form.Label>Request Initiated Date</Form.Label>
+                                        <Form.Control */}
+                                            {/* // required
+                                            // className="rreqDate"
+                                          //  type="date"
+                                        // controlId="rreqDate"
+                                        // placeholder="Resource Required Date"
+                                        // value={form.rreqDate}
+                                        // onChange={(e) => setField("rreqDate", e.target.value)}
+                                        // isInvalid={!!errors.rreqDate */}
+                                        {/* >
 
-                                            type="text"
-
-                                            disabled
-
+                                        </Form.Control>
+                                        <Form.Control.Feedback type="invalid">
+                                            {/* {errors.rreqDate} */}
+                                        {/* </Form.Control.Feedback>
+                                    </Form.Group>  */}
+                                    {/* <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                        <Form.Label>Resource Required Date</Form.Label>
+                                        <Form.Control
+                                             required
+                                             className="rreqDate"
+                                            type="date"
+                                        controlId="rreqDate"
+                                        placeholder="Resource Required Date"
+                                        value={form.rreqDate}
+                                        onChange={(e) => setField("rreqDate", e.target.value)}
+                                        isInvalid={!!errors.rreqDate}
                                         >
 
                                         </Form.Control>
                                         <Form.Control.Feedback type="invalid">
-
+                                           
                                         </Form.Control.Feedback>
-                                    </Form.Group>
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                    </Form.Group> */}
+                                    {/* <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                        <Form.Label>Requested By</Form.Label>
+                                        <Form.Control
+                                           
+                                            type="text"
+                                           
+                                            disabled
+                                        
+                                        >
+
+                                        </Form.Control>
+                                        <Form.Control.Feedback type="invalid">
+                                            
+                                        </Form.Control.Feedback>
+                                    </Form.Group> */}
+                                    {/* <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Request Raised On</Form.Label>
                                         <Form.Control
-
+                                            
                                             type="text"
-
+                                            
                                             disabled
-
+                                        
                                         >
 
                                         </Form.Control>
                                         <Form.Control.Feedback type="invalid">
-
+                                            
                                         </Form.Control.Feedback>
-                                    </Form.Group>
+                                    </Form.Group> */}
 
-                                    <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                    {/* <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Request Closed Date</Form.Label>
                                         <Form.Control
-
+                                            
                                             type="text"
                                             disabled
-
+                                        
                                         >
 
                                         </Form.Control>
                                         <Form.Control.Feedback type="invalid">
-
+                                           
                                         </Form.Control.Feedback>
-                                    </Form.Group>
-                                    
-
+                                    </Form.Group> */}
 
 
                                     {" "}
                                     <Form.Group controlId="submit">
-                                        <br />
-                                        <Button
-                                            type="submit"
-                                            onClick={handleSubmit}
-                                            className="'my-2"
-                                            id="submitButton"
-                                            style={{ width: "10rem" }}
-                                            variant="success"
-                                        >
-                                            Submit
-                                        </Button>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <Button
-                                            type="submit"
-                                            onClick={handleBack}
-                                            className="'my-2"
-                                            id="cancelButton"
-                                            style={{ width: "10rem" }}
-                                            variant="success"
-                                        >
-                                            Cancel
-                                        </Button>
-                                    </Form.Group>
-                                    {/* <Form.Group controlId="submit">
                                         <br />
                                         <Button
                                             type="submit"
@@ -957,7 +847,7 @@ const StepperForm = (props) => {
                                             Next
                                         </Button>
                                         &nbsp;&nbsp;&nbsp;
-                                    </Form.Group> */}
+                                    </Form.Group>
                                 </Row>
                             </Col>
                             <Col md="1">
@@ -975,7 +865,7 @@ const StepperForm = (props) => {
             {activeStep === 1 && (
                 <div>
                     {" "}
-                    {/* <Box sx={{ width: "100%" }}>
+                    <Box sx={{ width: "100%" }}>
                         <Stepper activeStep={1} alternativeLabel>
                             {steps.map((label) => (
                                 <Step key={label}>
@@ -984,7 +874,7 @@ const StepperForm = (props) => {
                             ))}
                         </Stepper>
                     </Box>
-                    <b /> */}
+                    <b />
                     {/* <ProgressBar now={100} label={100} /> */}
                     <Form className="formone">
                         <Row className="mb-5">
@@ -1004,7 +894,32 @@ const StepperForm = (props) => {
                                     {errors.rate}
                                 </Form.Control.Feedback>
                             </Form.Group>
+                            <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                <Form.Label>Employment Type</Form.Label>
+                                <Form.Select
+                                    required
 
+                                    className="empType"
+                                    type="text"
+                                    controlId="empType"
+                                    placeholder="Employment Type"
+
+                                    value={form.empType}
+                                    maxLength={30}
+                                    onChange={(e) => setField("empType", e.target.value)}
+                                    isInvalid={!!errors.empType}
+                                >
+                                    <option>Select Employment Type</option>
+                                    <option>Full Time</option>
+                                    <option>Contract</option>
+                                    <option>Intern</option>
+                                    <option>Part Time</option>
+                                </Form.Select>
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.empType}
+                                </Form.Control.Feedback>
+
+                            </Form.Group>
                             <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                 <Form.Label>Working Hours *</Form.Label>
                                 <Form.Control
@@ -1095,7 +1010,7 @@ const StepperForm = (props) => {
                             <Form.Control.Feedback type="invalid">
                                 {errors.comments}
                             </Form.Control.Feedback>
-
+                            
                             <Form.Group controlId="submit">
                                 <br />
                                 <Button
