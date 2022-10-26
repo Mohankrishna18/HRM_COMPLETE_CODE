@@ -3,8 +3,11 @@ package com.arshaa.documentUpload_Service.controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -28,15 +31,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import com.arshaa.documentUpload_Service.configFile.PostServiceConstants;
 import com.arshaa.documentUpload_Service.dto.PostDto;
+import com.arshaa.documentUpload_Service.dto.RRDto;
 import com.arshaa.documentUpload_Service.message.ResponseMessage;
+import com.arshaa.documentUpload_Service.model.RequisitionFileInfo;
 import com.arshaa.documentUpload_Service.payloads.PostResponse;
 import com.arshaa.documentUpload_Service.payloads.UserApiResponse;
 import com.arshaa.documentUpload_Service.repositories.PostRepository;
+import com.arshaa.documentUpload_Service.repositories.RRrepository;
 import com.arshaa.documentUpload_Service.service.FilePostService;
 import com.arshaa.documentUpload_Service.service.PostService;
+import com.arshaa.documentUpload_Service.service.RRService;
+import com.arshaa.documentUpload_Service.serviceImplement.RequisitionFilesStorageService;
 
 @RestController
 @RequestMapping("/api")
@@ -48,7 +57,14 @@ public class FilesController {
 	@Autowired
 	private PostRepository pRepo;
 	@Autowired
+	private RRrepository rrRepo;
+	@Autowired
+	private RRService rrservice;
+	@Autowired
 	private FilePostService fileService;
+	@Autowired
+	private RequisitionFilesStorageService reqFileServ;
+	
 
 	@Value("${project.image}")
 	private String path;
@@ -108,6 +124,12 @@ public class FilesController {
 	public ResponseEntity<PostDto> getPostById(@PathVariable Integer postId) {
 		PostDto postDto = this.pservice.getPostById(postId);
 		return new ResponseEntity<PostDto>(postDto, HttpStatus.OK);
+	}
+	
+	@GetMapping("/getDocByRrfId/{rrfId}")
+	public ResponseEntity<RRDto> getDocByRrfId(@PathVariable Long rrfId){
+		RRDto rrDto = this.rrservice.getRRDocByRrfId(rrfId);
+		return new ResponseEntity<RRDto>(rrDto,HttpStatus.OK);
 	}
 
 //		@GetMapping("/downloadFile/{imageName}/{employeeId}")
@@ -190,4 +212,70 @@ public class FilesController {
 		return new ResponseEntity<List<PostDto>>(result, HttpStatus.OK);
 	}
 
+	//Requisition 
+	 
+		@PostMapping("/requisitionUploads/{rrfId}")
+		public ResponseEntity<ResponseMessage> uploadRequisitionFiles(@RequestParam("files") MultipartFile[] files,@PathVariable Long rrfId) {
+		    String message = "";
+		    try {
+		      List<String> reqFileNames = new ArrayList<>();
+
+		      Arrays.asList(files).stream().forEach(file -> {
+		    	  try {
+					reqFileServ.saveRequisition(String.valueOf(rrfId), file);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    	  reqFileNames.add(file.getOriginalFilename());
+		      });
+
+		      message = "Uploaded the files successfully: " + reqFileNames;
+		      return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+		    } catch (Exception e) {
+		      message = "Fail to upload files!";
+		      return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+		    }
+		  }
+		
+		
+		 @GetMapping("/requisitionFiles")
+		  public ResponseEntity<List<RequisitionFileInfo>> getListFiles() {
+		    List<RequisitionFileInfo> fileInfos = reqFileServ.loadAll().map(path -> {
+		      String filename = path.getFileName().toString();
+		      String url = MvcUriComponentsBuilder
+		          .fromMethodName(FilesController.class, "getFile", path.getFileName().toString()).build().toString();
+
+		      return new RequisitionFileInfo(filename,url);
+		    }).collect(Collectors.toList());
+
+		    return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
+		  }
+	
+	//Posting RR Document by RRID
+	@PostMapping("/postRRDoc/file/{rrfId}/{title}")
+	public ResponseEntity<RRDto> uploadFile(@RequestParam("file") MultipartFile file, 
+			@PathVariable long rrfId, @PathVariable String title) throws Exception
+	{
+		RRDto rrDto=new RRDto();
+		String name = file.getOriginalFilename();
+		String s=name.substring(name.lastIndexOf("."));
+		System.out.println(s);
+		if((name.substring(name.lastIndexOf(".")).equalsIgnoreCase(".pdf")))
+		{
+			String fileName = this.fileService.uploadImage(path+"/"+rrfId, file);
+			rrDto.setFileName(fileName);
+			rrDto.setRrfId(rrfId);
+			rrDto.setTitle(title);
+			rrDto.setUrl("/api/get/file/" +fileName+"/"+rrfId);
+			RRDto updateRR = this.rrservice.addRRDoc(rrDto);
+			
+			return new ResponseEntity<RRDto>(updateRR, HttpStatus.OK);
+		}else {
+			
+			return new ResponseEntity(Map.of("Message", "Only pdf formats aceepts"), HttpStatus.OK);
+		}
+		
+	}
+	
 }
