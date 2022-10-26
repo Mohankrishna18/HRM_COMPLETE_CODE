@@ -1,5 +1,6 @@
 package com.recruitmenttracker.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
 import com.recruitmenttracker.modal.RequisitionRequestResponse;
@@ -17,6 +19,9 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 
 	@Autowired(required=true)
 	private RequisitionRequestRepository rrRepository;
+	
+	   @Autowired
+	    private WebClient webClient;
 	
 	@Override
 	public ResponseEntity createRR(RequisitionRequestEntity newRR) {
@@ -133,8 +138,8 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 
 	// GSDR Changes
     @Override
-        public List<RequisitionRequestEntity> getByWorkflowStatus(String userType) {
-            
+        public List<RequisitionRequestEntity> getByWorkflowStatus(String userType) { 
+
             if(userType.equalsIgnoreCase("buhead")){
             List<RequisitionRequestEntity> requisitionAll = rrRepository.getByWorkflowStatus("Waiting for BUHead Approval");
             return requisitionAll;
@@ -145,28 +150,42 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
             }
         }
 
-
-
-       @Override
+        @Override
         public RequisitionRequestEntity modifyRequisitionStatus(RequisitionRequestEntity requisition, long rrfId, String userType)
         {
             
             RequisitionRequestEntity requisitionUpdate = rrRepository.findByRrfId(rrfId);
             System.out.println("userType:"+userType);
             if(userType.equalsIgnoreCase("buhead")) {
+                
                 requisitionUpdate.setBuheadApprove(requisition.getBuheadApprove());
                 requisitionUpdate.setWorkflowStatus(requisition.getWorkflowStatus());
-                RequisitionRequestEntity requisitionModify = rrRepository.save(requisitionUpdate);
-                return requisitionModify;
+                requisitionUpdate.setBuheadApprovedOn(new Date());
+                requisitionUpdate.setBuheadId(requisition.getBuheadId());
+                String bName = webClient.get().uri("/emp/getEmployeeFullNameByEmployeeId/" + requisition.getBuheadId()).retrieve().bodyToMono(String.class).block();
+                System.out.println(bName);
+                requisitionUpdate.setBuheadName(bName);
+                return rrRepository.save(requisitionUpdate);
+                
+                //rest template for buh name
+//              String bName =template.getForObject(approvalUrl,String.class,requisitionUpdate.getBuheadId());
+//              updated.setBuheadName(bName);
+//              updated.setBuheadName(approvalUrl+requisitionUpdate.getBuheadId());
+//              RequisitionRequestEntity requisitionModify = rrRepository.save(updated);
+//              return requisitionModify;
                 
             }
             
             else if(userType.equalsIgnoreCase("pmohead")) {
+                String bName = webClient.get().uri("/emp/getEmployeeFullNameByEmployeeId/" + requisition.getPmoheadId()).retrieve().bodyToMono(String.class).block();
                 requisitionUpdate.setPmoheadApprove(requisition.getPmoheadApprove());
+                requisitionUpdate.setPmoheadId(requisition.getPmoheadId());
+                requisitionUpdate.setPmoheadName(bName);
                 requisitionUpdate.setWorkflowStatus("Approved");
+                requisitionUpdate.setRrfStatus("Open");
+                requisitionUpdate.setPmoheadApprovedOn(new Date());
+                return rrRepository.save(requisitionUpdate);
                 
-                RequisitionRequestEntity requisitionModify = rrRepository.save(requisitionUpdate);
-                return requisitionModify;
             }
             
             else {
@@ -176,20 +195,18 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
         
         
 
-
-
-       @Override
+        @Override
         public RequisitionRequestEntity rejectRequisition(RequisitionRequestEntity requisition, long rrfId, String userType) {
             RequisitionRequestEntity requisitionReject = rrRepository.findByRrfId(rrfId);
             if(userType.equalsIgnoreCase("buhead")) {
                 requisitionReject.setBuheadReject(requisition.getBuheadReject());
-                requisitionReject.setWorkflowStatus("Rejected");
+                requisitionReject.setWorkflowStatus("Rejected by buhead");
                 RequisitionRequestEntity requisitionReject1 = rrRepository.save(requisitionReject);
                 return requisitionReject1;
             }
             else if(userType.equalsIgnoreCase("pmohead")) {
                 requisitionReject.setPmoheadReject(requisition.getPmoheadReject());
-                requisitionReject.setWorkflowStatus("Rejected");
+                requisitionReject.setWorkflowStatus("Rejected by pmohead");
                 RequisitionRequestEntity resignReject1 = rrRepository.save(requisitionReject);
                 return resignReject1;
             }

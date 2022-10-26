@@ -24,9 +24,9 @@ public interface RequisitionRequestInterface {
 	
 	// GSDR Changes
 
-		public List<RequisitionRequestEntity> getByWorkflowStatus(String userType);
-		public RequisitionRequestEntity modifyRequisitionStatus(RequisitionRequestEntity requisition, long rrfId, String userType);
-		public RequisitionRequestEntity rejectRequisition(RequisitionRequestEntity requisition, long rrfId, String userType);
+    public List<RequisitionRequestEntity> getByWorkflowStatus(String userType);
+    public RequisitionRequestEntity modifyRequisitionStatus(RequisitionRequestEntity requisition, long rrfId, String userType);
+    public RequisitionRequestEntity rejectRequisition(RequisitionRequestEntity requisition, long rrfId, String userType);
 		//Nikhil changes
 		 public ResponseEntity getRequisitionsByRrfStatus();
 	

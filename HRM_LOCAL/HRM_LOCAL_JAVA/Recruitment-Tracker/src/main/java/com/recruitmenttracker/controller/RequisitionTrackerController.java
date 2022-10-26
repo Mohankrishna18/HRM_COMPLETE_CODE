@@ -61,27 +61,23 @@ public class RequisitionTrackerController {
 	}
 
 	// GSDR Changes
-	
-	@GetMapping("/getAllRequisitions/{userType}")
-	public ResponseEntity getByWorkflowStatus(@PathVariable String userType) {
-		return new ResponseEntity(serv.getByWorkflowStatus(userType),HttpStatus.OK);
-	}
 
+    @GetMapping("/getAllRequisitions/{userType}")
+    public ResponseEntity getByWorkflowStatus(@PathVariable String userType) {
+        return new ResponseEntity(serv.getByWorkflowStatus(userType), HttpStatus.OK);
+    }
 
-	
-	@PutMapping("/modifyRequisitionStatus/{rrfId}/{userType}")
-	public ResponseEntity modifyRequisitionStatus(@RequestBody RequisitionRequestEntity requisition, @PathVariable long rrfId, @PathVariable String userType)
-	{
-		return new ResponseEntity(serv.modifyRequisitionStatus(requisition, rrfId, userType),HttpStatus.OK);
-	}
+    @PutMapping("/modifyRequisitionStatus/{rrfId}/{userType}")
+    public ResponseEntity modifyRequisitionStatus(@RequestBody RequisitionRequestEntity requisition,
+            @PathVariable long rrfId, @PathVariable String userType) {
+        return new ResponseEntity(serv.modifyRequisitionStatus(requisition, rrfId, userType), HttpStatus.OK);
+    }
 
-
-	
-	@PutMapping("/rejectResignation/{rrfId}/{userType}")
-	public ResponseEntity rejectRequisition(@RequestBody RequisitionRequestEntity requisition, @PathVariable long rrfId, @PathVariable String userType)
-	{
-		return new ResponseEntity(serv.rejectRequisition(requisition,rrfId,userType),HttpStatus.OK);
-	}
+    @PutMapping("/rejectResignation/{rrfId}/{userType}")
+    public ResponseEntity rejectRequisition(@RequestBody RequisitionRequestEntity requisition, @PathVariable long rrfId,
+            @PathVariable String userType) {
+        return new ResponseEntity(serv.rejectRequisition(requisition, rrfId, userType), HttpStatus.OK);
+    }
 	
 
 
