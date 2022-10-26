@@ -244,6 +244,23 @@ const UpdateTask = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" as={Col} md="6">
+                <Form.Label>Project</Form.Label>
+                <Form.Control
+                  disabled
+                  required
+                  type="text"
+                  placeholder="Project"
+                  controlId="projectName"
+                  defaultValue={props.projectName}
+                  value={form.projectName}
+                  onChange={(e) => setField("projectName", e.target.value)}
+                  isInvalid={!!errors.projectName}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.projectName}
+                </Form.Control.Feedback>
+              </Form.Group>
+          <Form.Group className="mb-3" as={Col} md="6">
             <Form.Label>User Story *</Form.Label>
             <Form.Control
               required
@@ -260,6 +277,37 @@ const UpdateTask = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" as={Col} md="6">
+            <Form.Label>Task Type *</Form.Label>
+            <Form.Select
+              required
+              type="text"
+              placeholder="Task Type"
+              controlId="taskType"
+              defaultValue={props.updateOnboard.taskType}
+              value={taskType}
+              onChange={(e) => setTaskType(e.target.value)}
+              isInvalid={!!errors.taskType}
+            >
+              <option>Select Task Type</option>
+              <option>Analysis</option>
+              <option>Development</option>
+              <option>Code Review</option>
+              <option>Unit Testing</option>
+              <option>Code Integration</option>
+              <option>Integration Testing</option>
+              <option>Analysis</option>
+              <option>Design Review</option>
+              <option>TestCase Creation</option>
+              <option>Testcase Review</option>
+              <option>Testcase Execution</option>
+              <option>Deployment</option>
+            </Form.Select>
+
+            <Form.Control.Feedback type="invalid">
+              {errors.taskType}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="mb-3" as={Col} md="12">
             <Form.Label>Task Title *</Form.Label>
             <Form.Control
               required
@@ -275,7 +323,7 @@ const UpdateTask = (props) => {
               {errors.taskTitle}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-3" as={Col} md="6">
+          <Form.Group className="mb-3" as={Col} md="4">
             <Form.Label>Estimated Hours *</Form.Label>
             <Form.Control
               required
@@ -289,6 +337,52 @@ const UpdateTask = (props) => {
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.estimatedHours}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="mb-3" as={Col} md="4">
+            <Form.Label>Status *</Form.Label>
+            <Form.Select
+              required
+              type="text"
+              placeholder="status"
+              controlId="status"
+              defaultValue={props.updateOnboard.status}
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              isInvalid={!!errors.status}
+            >
+              {/* <option>Select status </option> */}
+              {/* <option>props.updateOnboard.status</option> */}
+              <option> Select Status</option>
+                  <option value="Open">Open</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                  <option value="OnHold">On Hold</option>
+            </Form.Select>
+
+            <Form.Control.Feedback type="invalid">
+              {errors.status}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="mb-3" as={Col} md="4">
+            <Form.Label>Priority </Form.Label>
+            <Form.Select
+              required
+              type="text"
+              placeholder="priority"
+              controlId="priority"
+              defaultValue={props.updateOnboard.priority}
+              value={priority}
+              onChange={(e) => setPriority(e.target.value)}
+              isInvalid={!!errors.priority}
+            >
+              <option>Select priority</option>
+              <option>P1</option>
+              <option>P2</option>
+              <option>P3</option>
+            </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              {errors.priority}
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -325,87 +419,26 @@ const UpdateTask = (props) => {
               {errors.plannedEndDate}
             </Form.Control.Feedback>
           </Form.Group>
-
           <Form.Group className="mb-3" as={Col} md="6">
-            <Form.Label>Task Type *</Form.Label>
-            <Form.Select
-              required
-              type="text"
-              placeholder="Task Type"
-              controlId="taskType"
-              defaultValue={props.updateOnboard.taskType}
-              value={taskType}
-              onChange={(e) => setTaskType(e.target.value)}
-              isInvalid={!!errors.taskType}
-            >
-              <option>Select Task Type</option>
-              <option>Analysis</option>
-              <option>Development</option>
-              <option>Code Review</option>
-              <option>Unit Testing</option>
-              <option>Code Integration</option>
-              <option>Integration Testing</option>
-              <option>Analysis</option>
-              <option>Design Review</option>
-              <option>TestCase Creation</option>
-              <option>Testcase Review</option>
-              <option>Testcase Execution</option>
-              <option>Deployment</option>
-            </Form.Select>
+                <Form.Label>Actual Start Date </Form.Label>
+                <Form.Control
+                  required
+                  type="date"
+                  placeholder="Assign Date"
+                  controlId="assignDate"
+                  value={form.assignDate}
+                  onChange={(e) => setField("assignDate", e.target.value)}
+                  isInvalid={!!errors.assignDate}
+                />
+                {/* <Form.Control.Feedback type="invalid">
+                  {errors.assignDate}
+                </Form.Control.Feedback> */}
+              </Form.Group>
+         
 
-            <Form.Control.Feedback type="invalid">
-              {errors.taskType}
-            </Form.Control.Feedback>
-          </Form.Group>
+         
 
-          <Form.Group className="mb-3" as={Col} md="6">
-            <Form.Label>Status *</Form.Label>
-            <Form.Select
-              required
-              type="text"
-              placeholder="status"
-              controlId="status"
-              defaultValue={props.updateOnboard.status}
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-              isInvalid={!!errors.status}
-            >
-              {/* <option>Select status </option> */}
-              {/* <option>props.updateOnboard.status</option> */}
-              <option> Select Status</option>
-                  <option value="Open">Open</option>
-                  <option value="In Progress">In Progress</option>
-                  <option value="Completed">Completed</option>
-                  <option value="OnHold">On Hold</option>
-            </Form.Select>
-
-            <Form.Control.Feedback type="invalid">
-              {errors.status}
-            </Form.Control.Feedback>
-          </Form.Group>
-
-          <Form.Group className="mb-3" as={Col} md="6">
-            <Form.Label>Priority </Form.Label>
-            <Form.Select
-              required
-              type="text"
-              placeholder="priority"
-              controlId="priority"
-              defaultValue={props.updateOnboard.priority}
-              value={priority}
-              onChange={(e) => setPriority(e.target.value)}
-              isInvalid={!!errors.priority}
-            >
-              <option>Select priority</option>
-              <option>P1</option>
-              <option>P2</option>
-              <option>P3</option>
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.priority}
-            </Form.Control.Feedback>
-          </Form.Group>
-
+          
           <Form.Group className="mb-3" as={Col} md="6">
             <Form.Label>Assigned To *</Form.Label>
             <Form.Select

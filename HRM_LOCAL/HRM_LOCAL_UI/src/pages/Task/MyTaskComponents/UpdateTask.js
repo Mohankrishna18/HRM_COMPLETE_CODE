@@ -13,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 const UpdateTask = (props) => {
 
   //console.log(props.updateOnboard);
-const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
+  const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
   const [userId,setUserId] = useState(props.updateOnboard.userId);
   const [userStory, setUserStory] = useState(props.updateOnboard.userStory);
   const [taskTitle, setTaskTitle] = useState(props.updateOnboard.taskTitle);
@@ -178,43 +178,45 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
       >
         <Row className="mb-3">
         <Form.Group className="mb-3" as={Col} md="6">
-            <Form.Label>Project</Form.Label>
+            <Form.Label>Project Name</Form.Label>
+
             <Form.Control
               disabled
               required
               type="text"
               placeholder="Project Name"
               controlId="projectName"
-              defaultValue={props.updateOnboard.projectName}
+              defaultValue={projectName}
               value={projectName}
-              onChange={(e) => setField("projectName", e.target.value)}
+             onChange={(e) => setField("projectName", e.target.value)}
               isInvalid={!!errors.projectName}
-
             ></Form.Control>
 
             <Form.Control.Feedback type="invalid">
-
               {errors.projectName}
-
             </Form.Control.Feedback>
-
           </Form.Group>
           <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>UserStory </Form.Label>
-                <Form.Control
+                <Form.Label>User Story *</Form.Label>
+                <Form.Select
                   required
                   type="text"
-                  placeholder="User Story"
-                  controlId="userstory"
-                  value={form.userstory}
-                  onChange={(e) => setField("userstory", e.target.value)}
-                  isInvalid={!!errors.userstory}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.userstory}
-                </Form.Control.Feedback>
-                </Form.Group>
+                  placeholder="UserStory"
+                  controlId="userStory"
+                  value={form.userStory}
+                  onChange={(e) => setField("taskType", e.target.value)}
+                  isInvalid={!!errors.userStory}
+                >
+                  <option>Select User Story</option>
+                  <option>jhgfd</option>
+                  <option>Task</option>
+                 
+                </Form.Select>
 
+                <Form.Control.Feedback type="invalid">
+                  {errors.userStory}
+                </Form.Control.Feedback>
+              </Form.Group>
           <Form.Group className="mb-3" as={Col} md="12">
             <Form.Label>Task Title *</Form.Label>
             <Form.Control
@@ -239,6 +241,7 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
                   placeholder="Task Type"
                   controlId="taskType"
                   value={form.taskType}
+                  defaultValue={props.updateOnboard.taskType}
                   onChange={(e) => setField("taskType", e.target.value)}
                   isInvalid={!!errors.taskType}
                 >
@@ -270,6 +273,7 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
                   placeholder="Estimated Hours"
                   controlId="estimatedHours"
                   value={form.estimatedHours}
+                  defaultValue={props.updateOnboard.estimatedHours}
                   onChange={(e) => setField("estimatedHours", e.target.value)}
                   isInvalid={!!errors.estimatedHours}
                 ></Form.Control>
@@ -300,29 +304,49 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>Status *</Form.Label>
-                <Form.Select
+                <Form.Label>Planned Start Date *</Form.Label>
+                <Form.Control
                   required
-                  type="text"
-                  placeholder="status"
-                  controlId="status"
-                  value={form.status}
-                  onChange={(e) => setField("status", e.target.value)}
-                  isInvalid={!!errors.status}
-                >
-                 <option> Select Status</option>
+                  type="date"
+                  placeholder="plannedStartDate"
+                  controlId="plannedStartDate"
+                  defaultValue={props.updateOnboard.plannedEndDate.split("T")[0]}
+               value={plannedEndDate.split("T")[0]}
+                  onChange={(e) => setField("plannedStartDate", e.target.value)}
+                  isInvalid={!!errors.plannedStartDate}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.plannedStartDate}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group className="mb-3" as={Col} md="6">
+              <Form.Label>Status *</Form.Label>
+            <Form.Select
+              required
+              type="text"
+              placeholder="status"
+              controlId="status"
+              defaultValue={props.updateOnboard.status}
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              isInvalid={!!errors.status}
+            >
+              {/* <option>Select status </option> */}
+              {/* <option>props.updateOnboard.status</option> */}
+              <option> Select Status</option>
                   <option value="Open">Open</option>
                   <option value="In Progress">In Progress</option>
                   <option value="Completed">Completed</option>
                   <option value="OnHold">On Hold</option>
-                </Form.Select>
-                <Form.Control.Feedback type="invalid">
-                  {errors.status}
-                </Form.Control.Feedback>
-              </Form.Group>
+            </Form.Select>
+
+            <Form.Control.Feedback type="invalid">
+              {errors.status}
+            </Form.Control.Feedback>
+          </Form.Group>
 
 
-              <Form.Group className="mb-3" as={Col} md="6">
+              {/* <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Planned Start Date *</Form.Label>
                 <Form.Control
                   required
@@ -336,7 +360,7 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
                 <Form.Control.Feedback type="invalid">
                   {errors.plannedStartDate}
                 </Form.Control.Feedback>
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Planned End Date *</Form.Label>
@@ -344,8 +368,8 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
                   type="date"
                   placeholder="Enter "
                   controlId="plannedEndDate"
-                  value={form.plannedEndDate}
-                  min={form.plannedStartDate}
+                  defaultValue={props.updateOnboard.plannedEndDate.split("T")[0]}
+                  value={plannedEndDate.split("T")[0]}
                   onChange={(e) => setField("plannedEndDate", e.target.value)}
                   isInvalid={!!errors.plannedEndDate}
                 />
@@ -473,8 +497,21 @@ const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
             </Button>
           </Col>
           <Col>
-           
-          </Col>
+                <Button
+                  style={{
+                    backgroundColor: '#B6B6B4',
+                    borderColor: '#B6B6B4',
+                    alignItems: 'center',
+                    width: '40%',
+                    height: '120%',
+                    borderRadius: '25px',
+                  }}
+                  type="close"
+                  onClick={handleClose}
+                >
+                  Close
+                </Button>
+              </Col>
         </Row>
       </Form>
     </div>

@@ -19,13 +19,15 @@ function AddUser(props) {
  
  
   const [projects, setProjects] = useState([]);
-  
+
+  const[userStory,setUserStory] = useState([]);
 
   useEffect(() => {
     console.log(props.assig)
 
     setField("assignedTo",props.assig)
     loadData();
+    loadData1();
   }, []);
 
   const loadData = async () => {
@@ -33,7 +35,12 @@ function AddUser(props) {
     setProjects(res.data.data);
     console.log(res.data.data);
   };
-  
+  const loadData1 = async () => {
+    const res = await axios.get("/userStory/getAllUserStory");
+    setUserStory(res.data.data);
+    console.log(res.data.data);
+  };
+  console.log(userStory);
 
   useEffect(() => {
     axios
@@ -109,7 +116,8 @@ function AddUser(props) {
          }
       if (!plannedStartDate || plannedStartDate === "")
       newErrors.plannedStartDate = "Please Enter Start date";
-      // if (!plannedEndDate || plannedEndDate === "") newErrors.plannedEndDate = "Please Enter End date";
+      if (!plannedEndDate || plannedEndDate === "") 
+      newErrors.plannedEndDate = "Please Enter End date";
       //    if (!priority || priority === "")
       //     newErrors.priority = "Please Enter Priority";
    
@@ -158,13 +166,17 @@ function AddUser(props) {
           color: "#F4F8F6",
           float: "right",
           borderRadius: "25px",
+       
+    
+         
           // paddingBottom: "11.5px",
           // marginTop: "100px",
         }}
       >
         {" "}
-        <BsPlusLg />
-        &nbsp;Add Task
+        <BsPlusLg  />
+        &nbsp;Add Task 
+      
       </Button>
       <Modal
         size="lg"
@@ -213,18 +225,28 @@ function AddUser(props) {
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>UserStory *</Form.Label>
-                <Form.Control
+                <Form.Label>User Story </Form.Label>
+                <Form.Select
                   required
+                  className="userStory"
                   type="text"
                   placeholder="User Story"
-                  controlId="userstory"
-                  value={form.userstory}
-                  onChange={(e) => setField("userstory", e.target.value)}
-                  isInvalid={!!errors.userstory}
-                ></Form.Control>
+                  // onChange={(event) => setclientName(event.target.value)}
+                  value={form.userStory}
+                  maxLength={30}
+                  onChange={(e) => setField("userStory", e.target.value)}
+                  isInvalid={!!errors.userStory}
+                >
+                  <option>Select userStory</option>
+
+                  {userStory.map((userSt) => (
+                    <option value={userSt.storyTitle}>
+                      {userSt.storyTitle}
+                    </option>
+                  ))}
+                </Form.Select>
                 <Form.Control.Feedback type="invalid">
-                  {errors.userstory}
+                  {errors.userStory}
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="12">
@@ -304,10 +326,24 @@ function AddUser(props) {
                   <option>P1</option>
                   <option>P2</option>
                   <option>P3</option>
-                  
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.priority}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group className="mb-3" as={Col} md="6">
+                <Form.Label>Planned Start Date *</Form.Label>
+                <Form.Control
+                  required
+                  type="date"
+                  placeholder="plannedStartDate"
+                  controlId="plannedStartDate"
+                  value={form.plannedStartDate}
+                  onChange={(e) => setField("plannedStartDate", e.target.value)}
+                  isInvalid={!!errors.plannedStartDate}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.plannedStartDate}
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="6">
@@ -333,7 +369,7 @@ function AddUser(props) {
               </Form.Group>
 
 
-              <Form.Group className="mb-3" as={Col} md="6">
+              {/* <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Planned Start Date *</Form.Label>
                 <Form.Control
                   required
@@ -347,7 +383,7 @@ function AddUser(props) {
                 <Form.Control.Feedback type="invalid">
                   {errors.plannedStartDate}
                 </Form.Control.Feedback>
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Planned End Date *</Form.Label>

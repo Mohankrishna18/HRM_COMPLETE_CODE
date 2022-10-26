@@ -344,6 +344,7 @@ function AssignTeamMembers(props) {
           paddingRight: "10px",
           paddingLeft: "10px",
           paddingBottom: "10px",
+          
         }}
       >
         {/* <Row>
@@ -374,7 +375,7 @@ function AssignTeamMembers(props) {
                 paddingTop:"5px",
 
                 paddingBottom:"2px",
-
+               
                
 
               },
@@ -383,7 +384,7 @@ function AssignTeamMembers(props) {
 
               pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
 
-              maxBodyHeight: 450,
+              maxBodyHeight: 550,
 
               addRowPosition: "first",
 
