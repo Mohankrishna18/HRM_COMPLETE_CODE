@@ -70,6 +70,22 @@ public class RequisitionRequestEntity {
 	private String comments;
 	@Column
 	private String employeeId;
+	@Column
+	private String reqType1;
+	@Column 
+	private String reqType2;
+	@Column
+	private String reqType3;
+	@Column 
+	private String allocType;
+	@Column 
+	private Date requestInitiatedDate;
+	@Column 
+	private Date resourceRequiredDate;
+	@Column
+	private Date requestClosedDate;
+	@Column 
+	private String ageing;
 	
 	// GSDR Changes
 
@@ -327,14 +343,63 @@ public class RequisitionRequestEntity {
     public void setPmoheadApprovedBy(String pmoheadApprovedBy) {
         this.pmoheadApprovedBy = pmoheadApprovedBy;
     }
+    public String getReqType1() {
+        return reqType1;
+    }
+    public void setReqType1(String reqType1) {
+        this.reqType1 = reqType1;
+    }
+    public String getReqType2() {
+        return reqType2;
+    }
+    public void setReqType2(String reqType2) {
+        this.reqType2 = reqType2;
+    }
+    public String getReqType3() {
+        return reqType3;
+    }
+    public void setReqType3(String reqType3) {
+        this.reqType3 = reqType3;
+    }
+    public String getAllocType() {
+        return allocType;
+    }
+    public void setAllocType(String allocType) {
+        this.allocType = allocType;
+    }
+    public Date getRequestInitiatedDate() {
+        return requestInitiatedDate;
+    }
+    public void setRequestInitiatedDate(Date requestInitiatedDate) {
+        this.requestInitiatedDate = requestInitiatedDate;
+    }
+    public Date getResourceRequiredDate() {
+        return resourceRequiredDate;
+    }
+    public void setResourceRequiredDate(Date resourceRequiredDate) {
+        this.resourceRequiredDate = resourceRequiredDate;
+    }
+    public Date getRequestClosedDate() {
+        return requestClosedDate;
+    }
+    public void setRequestClosedDate(Date requestClosedDate) {
+        this.requestClosedDate = requestClosedDate;
+    }
+    public String getAgeing() {
+        return ageing;
+    }
+    public void setAgeing(String ageing) {
+        this.ageing = ageing;
+    }
     public RequisitionRequestEntity(long rrfId, String jobTitle, String description, String rrfStatus, String rrfCat,
             String technology, String pocname, String role, String workflowStatus, int positions, String pSkills,
             String sSkills, String workLocation, float workingHours, String empType, String qualification, float yoe,
             float rate, String projectName, String clientName, String departmentName, String raisedBy, String raisedOn,
-            String textAreaDesc, String comments, String employeeId, String buheadId, String buheadName,
-            String pmoheadId, String pmoheadName, String buheadApprove, String pmoheadApprove, String buheadReject,
-            String pmoheadReject, Date buheadApprovedOn, Date pmoheadApprovedOn, String buheadApprovedBy,
-            String pmoheadApprovedBy) {
+            String textAreaDesc, String comments, String employeeId, String reqType1, String reqType2, String reqType3,
+            String allocType, Date requestInitiatedDate, Date resourceRequiredDate, Date requestClosedDate,
+            String ageing, String buheadId, String buheadName, String pmoheadId, String pmoheadName,
+            String buheadApprove, String pmoheadApprove, String buheadReject, String pmoheadReject,
+            Date buheadApprovedOn, Date pmoheadApprovedOn, String buheadApprovedBy, String pmoheadApprovedBy) {
         super();
         this.rrfId = rrfId;
         this.jobTitle = jobTitle;
@@ -362,6 +427,14 @@ public class RequisitionRequestEntity {
         this.textAreaDesc = textAreaDesc;
         this.comments = comments;
         this.employeeId = employeeId;
+        this.reqType1 = reqType1;
+        this.reqType2 = reqType2;
+        this.reqType3 = reqType3;
+        this.allocType = allocType;
+        this.requestInitiatedDate = requestInitiatedDate;
+        this.resourceRequiredDate = resourceRequiredDate;
+        this.requestClosedDate = requestClosedDate;
+        this.ageing = ageing;
         this.buheadId = buheadId;
         this.buheadName = buheadName;
         this.pmoheadId = pmoheadId;
@@ -381,6 +454,4 @@ public class RequisitionRequestEntity {
     }
     
     
-	
-	
 }

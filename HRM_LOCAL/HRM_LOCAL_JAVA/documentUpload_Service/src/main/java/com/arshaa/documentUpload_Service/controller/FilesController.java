@@ -126,11 +126,7 @@ public class FilesController {
 		return new ResponseEntity<PostDto>(postDto, HttpStatus.OK);
 	}
 	
-	@GetMapping("/getDocByRrfId/{rrfId}")
-	public ResponseEntity<RRDto> getDocByRrfId(@PathVariable Long rrfId){
-		RRDto rrDto = this.rrservice.getRRDocByRrfId(rrfId);
-		return new ResponseEntity<RRDto>(rrDto,HttpStatus.OK);
-	}
+
 
 //		@GetMapping("/downloadFile/{imageName}/{employeeId}")
 //	    public ResponseEntity<Resource> downloadFile(@PathVariable("imageName") String imageName,@PathVariable String employeeId, HttpServletRequest request) throws FileNotFoundException {
@@ -276,6 +272,12 @@ public class FilesController {
 			return new ResponseEntity(Map.of("Message", "Only pdf formats aceepts"), HttpStatus.OK);
 		}
 		
+	}
+	
+	@GetMapping("/getDocByRrfId/{rrfId}")
+	public ResponseEntity<RRDto> getDocByRrfId(@PathVariable Long rrfId){
+		RRDto rrDto = this.rrservice.getRRDocByRrfId(rrfId);
+		return new ResponseEntity<RRDto>(rrDto,HttpStatus.OK);
 	}
 	
 }
