@@ -106,7 +106,7 @@ import RRMain from "../pages/Recruitment-Tracker/RRMain";
 import PMORequisitionMain from '../pages/Recruitment-Tracker/PMORequisitionApprovals/PMORequisitionMain'
 import BUHRequisitionMain from '../pages/Recruitment-Tracker/BUHeadRequisitionApprovals/BUHRequisitionMain'
 import StepperForm from "../pages/Recruitment-Tracker/RecruitmentRequestComponents/StepperForm";
-import PMO_Dashboard from "../pages/Recruitment-Tracker/RequisitionDashboard/PMO_Dashboard/PMO_Dashboard"
+import PMO_Dashboard from "../pages/Recruitment-Tracker/RequisitionDashboard/Dashboard/PMO_Dashboard/PMO_Dashboard"
 
 export default [
   {
@@ -629,6 +629,8 @@ export default [
     title: "Requistion Request",
     permission: [Roles.manager, Roles.irm],
   },
+
+  // Added by chetan
   {
     component: PMO_Dashboard,
     path: "/PMO_Dashboard",

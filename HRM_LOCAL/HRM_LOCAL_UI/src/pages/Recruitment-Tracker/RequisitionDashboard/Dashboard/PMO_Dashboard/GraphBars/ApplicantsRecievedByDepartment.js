@@ -2,43 +2,43 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Column } from '@ant-design/plots';
 
-const PositionsOpenByDepartment = () => {
+const ApplicantsRecievedByDepartment = () => {
   const data = [
     {
-        type: 'Technical',
-        value: 25,
+      type: 'Technical',
+      value: 45,
+    },
+    {
+      type: 'Hr',
+      value: 24,
+    },
+    {
+      type: 'Finance',
+      value: 29,
+    },
+    {
+      type: 'Sales',
+      value: 51,
+    },
+    {
+      type: 'Operation Mgmt',
+      value: 33,
+    },
+    {
+        type: 'Other',
+        value: 15,
       },
-      {
-        type: 'Hr',
-        value: 14,
-      },
-      {
-        type: 'Finance',
-        value: 9,
-      },
-      {
-        type: 'Sales',
-        value: 29,
-      },
-      {
-        type: 'Operation Mgmt',
-        value: 13,
-      },
-      {
-          type: 'Other',
-          value: 8,
-        },
+   
   ];
-  const paletteSemanticRed = '#F4664A';
-  const brandColor =  '#ff8814';
+  const paletteSemanticRed = '#ffa500';  
+  const brandColor = '#228B22';
   const config = {
     data,
     xField: 'type',
     yField: 'value',
     seriesField: '',
-    
     color: ({ type }) => {
-      if (type === '10-30分' || type === '30+分') {
+      if (type === 'Sales' || type === 'Finance') {
         return paletteSemanticRed;
       }
 
@@ -59,12 +59,11 @@ const PositionsOpenByDepartment = () => {
       label: {
         autoHide: true,
         autoRotate: false,
-      
       },
     },
   };
   return <Column {...config} />;
 };
 
-export default  PositionsOpenByDepartment;
-
+export default  ApplicantsRecievedByDepartment;
+//  ReactDOM.render(<DemoColumn />, document.getElementById('container'));
