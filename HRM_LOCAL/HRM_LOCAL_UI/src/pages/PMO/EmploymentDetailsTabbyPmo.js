@@ -9,15 +9,15 @@ import {AutoCompleteComponent} from '@syncfusion/ej2-react-dropdowns';
 
 
 function EmploymentDetailsTabbyPmo(props) { 
- const onboardingId1= props.viewOnboard.onboardingId;
- console.log(props)
-console.log(onboardingId1);
+ const employeeId= props.viewOnboard.employeeId;
+ console.log(props.employeeId)
+console.log(employeeId);
     const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [irm, setIrm] = useState('');
   const [step, setStep] = useState(0);
-  const handleClose = () => setShow();
+  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const forms = useRef(null);
@@ -37,8 +37,8 @@ console.log(onboardingId1);
   const validateForm = () => {
     const {
         employmentType,
-        department,
-        designation,
+        // department,
+        // designation,
         irm,
         srm,
         buh,
@@ -50,10 +50,10 @@ console.log(onboardingId1);
     } = form;
     const newErrors = {};
 
-    if (!designation || designation === "")
-      newErrors.designation = "Please Enter Business Unit";
-    if (!department || department === "")
-      newErrors.department = "Please Enter Department";
+    // if (!designation || designation === "")
+    //   newErrors.designation = "Please Enter Business Unit";
+    // if (!department || department === "")
+    //   newErrors.department = "Please Enter Department";
     if (!employmentType || employmentType === "")
       newErrors.employmentType = "Please Enter type of Employeement";
     
@@ -71,9 +71,14 @@ console.log(onboardingId1);
    
   };
 
-  const handleSubmit = (e) => {     
+  const handleSubmit = (e) => {    
+    const obj = { onboardingStatus: "HRApprovedDone" };
+        const form1 = Object.assign(form, obj); 
     // let onboardingId = props.onboardID.onboardingId;
     // console.log(props.onboardID);
+    // let employeeId = props.empID.employeeId;
+    // console.log(props.employeeId);
+    // console.log(employeeId);
     e.preventDefault();
     // e.target.reset();
     const formErrors = validateForm();
@@ -83,7 +88,7 @@ console.log(onboardingId1);
       console.log("Form validation error");
     } else {
       axios    
-        .put(`/emp/updateEmpdDetails/${onboardingId1}`, form)
+        .put(`/emp/updateEmploymentDetailsInPMO/${employeeId}`, form1)
         .then((response) => {
         //   const user = response.data;
         //   if (user.status) {
@@ -118,6 +123,7 @@ console.log(onboardingId1);
     axios.get("/dept/getAllDepartments").then((response) => {
       setDepartments(response.data);
     });
+    console.log(departments)
     // .catch(() => {
     //   toast.error("Data is not getting");
     // });
@@ -166,32 +172,32 @@ console.log(onboardingId1);
     loadUsers();
   }, []);
   
-     console.log(props.viewOnboard.onboardingId);
-    const ApproveHandler = (e) => {
-        // e.prevetDefault();
-        const notify = () => toast("Approved");
-        // handleClose();
-        // const form1 = Object.assign(form, obj);
+    //  console.log(props.viewOnboard.onboardingId);
+    // const ApproveHandler = (e) => {
+    //     // e.prevetDefault();
+    //     const notify = () => toast("Approved");
+    //     // handleClose();
+    //     // const form1 = Object.assign(form, obj);
         
-        const obj = { onboardingStatus: "PMOApproved" };
-        axios.put(`/emp/updateApprovStatus/${onboardingId1}`,obj)
-        .then((res)=>{
-            console.log(res)
-            if(res.status == 200){
-                props.func();
-            }
-            else{
-                console.log('props not send')
-            }
-        })
-        .catch((err)=>{
-            console.log(err);
-            toast.error("Something wrong");
-        });
-        props.handleClose();
+    //     const obj = { onboardingStatus: "PMOApproved" };
+    //     axios.put(`/emp/updateApprovStatus/${onboardingId1}`,obj)
+    //     .then((res)=>{
+    //         console.log(res)
+    //         if(res.status == 200){
+    //             props.func();
+    //         }
+    //         else{
+    //             console.log('props not send')
+    //         }
+    //     })
+    //     .catch((err)=>{
+    //         console.log(err);
+    //         toast.error("Something wrong");
+    //     });
+    //     props.handleClose();
        
-        notify();
-      };
+    //     notify();
+    //   };
   return (
 
 <div>
@@ -199,10 +205,12 @@ console.log(onboardingId1);
      <Form
         ref={forms}
         className="formone"
+        size="sm"
         // noValidate
         // validated={validated}
+        handleClose={handleClose}
         style={{ padding: 10 }}
-    // onSubmit={handleSubmit}
+    onSubmit={handleSubmit}
     >
         <Row className="mb-4">
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -225,7 +233,7 @@ console.log(onboardingId1);
                     {errors.employmentType}
                 </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Business Unit *</Form.Label>
                 <Form.Select
                     required
@@ -281,7 +289,7 @@ console.log(onboardingId1);
                 </Form.Control.Feedback>
 
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
+            </Form.Group> */}
 
 
 
@@ -422,12 +430,10 @@ console.log(onboardingId1);
 
         </Row>
     </Form>
-    <Button onClick={handleSubmit}>Submit</Button> 
+    <Button onClick={handleSubmit}  handleClose={handleClose}>Submit</Button> 
      
 </div>
 )
 }
 
 export default EmploymentDetailsTabbyPmo;
-
-

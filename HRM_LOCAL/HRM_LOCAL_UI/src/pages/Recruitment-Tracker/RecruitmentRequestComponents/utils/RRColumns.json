@@ -1,0 +1,57 @@
+[
+    {
+        
+        "title": "Req ID",
+        "field": "requisitionId"
+    },
+    {
+        "title":"Business Unit",
+        "field":"departmentName",
+        "defaultGroupOrder": 0
+    },
+    {
+        "title":"Client",
+        "field":"clientName"
+    },
+    {
+        "title":"Project",
+        "field":"projectName"
+    },
+    {
+        "title":"Job Title",
+        "field": "jobTitle"
+    },
+    {
+        "title":"Technology",
+        "field":"technology"
+    },
+    {
+        "title":"Role",
+        "field":"role"
+    },
+    {
+        "title":"Work Location",
+        "field": "workLocation"
+    },
+    {
+        "title":"YOE",
+        "field":"yoe"
+    },
+    {
+        "title":"Job Status",
+        "field": "rrfStatus"
+    },
+    {
+        "title":"Workflow Status",
+        "field": "workflowStatus"
+    },
+    {
+        "title":"Positions",
+        "field": "positions"
+    },
+    {
+        "title":"Ageing"
+    }
+
+]
+

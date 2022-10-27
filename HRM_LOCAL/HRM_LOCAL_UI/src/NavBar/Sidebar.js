@@ -6,7 +6,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 // import { isLoggedIn } from "../../utils";
 import './Sidebar.css'
 import styled from "styled-components";
-import { FcApproval, FcConferenceCall, FcCopyright, FcLeave, FcOvertime } from "react-icons/fc";
+import { FcApproval, FcConferenceCall, FcCopyright, FcLeave, FcList, FcOvertime } from "react-icons/fc";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 //Sidebar component is here
@@ -34,11 +34,12 @@ const Sidebar = (props) => {
   //sidebar menu types
   const profile = "myprofile";
   const emp = "Employee";
-  const leave = "Leaves";
+  // const leave = "Leaves";
   const config = "configuration";
   const approvals="approvals";
   const nul = "null";
   const pmohead="pmohead";
+  const projects = "projects";
 
   return (
 
@@ -125,7 +126,7 @@ const Sidebar = (props) => {
                 </Accordion.Body></Accordion.Item> */}
 
 
-              <Accordion.Item eventKey="1" style={{ border: "none", paddingBottom: "5%",backgroundColor:"black"}}>
+              {/* <Accordion.Item eventKey="1" style={{ border: "none", paddingBottom: "5%",backgroundColor:"black"}}>
                 <Accordion.Header>
                   <Col md={2} style={{fontSize:"140%"}}><FcLeave /></Col>
                   <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>Leaves</Col>
@@ -151,10 +152,40 @@ const Sidebar = (props) => {
                       </>)
                     ))}
                   </ListGroup>
+                </Accordion.Body></Accordion.Item> */}
+                {( usertype === pmohead)?(
+              <Accordion.Item eventKey="2" style={{ border: "none", paddingBottom: "5%" ,backgroundColor:"black"}}>
+                <Accordion.Header>
+                  <Col md={2} style={{fontSize:"140%"}} ><FcList /></Col>
+                  <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>Projects</Col>
+
+                </Accordion.Header>
+                <Accordion.Body>
+                  <ListGroup>
+                    {menuItems.map((item, index) => (
+                      (item.type === projects) ? (<>
+                        <Row>
+                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%",backgroundColor:"black" }}>
+                            <NavLink
+                              key={item.path}
+                              className="nav-text"
+                              to={`${props.prefix}${item.path}`} >
+                              <Row>
+                                <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
+                                <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>{item.title}</Col>
+                              </Row>
+                            </NavLink>
+                          </ListGroup.Item>
+                        </Row></>
+                      ) : (<>
+                      </>)
+                    ))}
+                  </ListGroup>
                 </Accordion.Body></Accordion.Item>
+              ):(<></>)}
               
                  {( usertype === pmohead)?(
-              <Accordion.Item eventKey="2" style={{ border: "none", paddingBottom: "5%" ,backgroundColor:"black"}}>
+              <Accordion.Item eventKey="3" style={{ border: "none", paddingBottom: "5%" ,backgroundColor:"black"}}>
                 <Accordion.Header>
                   <Col md={2} style={{fontSize:"140%"}} ><FcCopyright /></Col>
                   <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>Configuration</Col>
@@ -184,7 +215,15 @@ const Sidebar = (props) => {
                 </Accordion.Body></Accordion.Item>
               ):(<></>)}
 
+
+              
+
+
             </Accordion>
+
+            
+            
+
             <ListGroup style={{ border: "none" }}>
               {menuItems.map((item, index) => (
                 (item.type === nul) ? (<>

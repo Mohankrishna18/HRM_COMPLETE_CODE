@@ -67,11 +67,24 @@ spring:
           uri: lb://taskService
           predicates:
             - Path=/task/**  
+        - id: UserStoryMapping
+          uri: lb://UserStoryMapping
+          predicates:
+            - Path=/userStory/**
 
         - id: documentUploadService
           uri: lb://documentUploadService
           predicates:
-            - Path=/api/**           
+            - Path=/api/**
+        - id: ResignationService
+          uri: lb://ResignationService
+          predicates:
+            - Path=/resignation/**  
+             
+        - id: RecruitmentTracker
+          uri: lb://RecruitmentTracker
+          predicates:
+            - Path=/recruitmentTracker/**           
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin

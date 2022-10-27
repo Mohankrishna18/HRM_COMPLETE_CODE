@@ -22,6 +22,19 @@ import {
   FcReading,
   FcBookmark,
   FcApproval,
+  FcTemplate,
+  FcExpired,
+  FcCollaboration,
+  FcReadingEbook,
+  FcSurvey,
+  FcList,
+  FcOrgUnit,
+  FcBullish,
+  FcClock,
+  FcFeedIn,
+  FcOk,
+  FcAddColumn,
+  FcComboChart,
 } from "react-icons/fc";
 
 //Data Imports
@@ -56,8 +69,8 @@ import BandsMain from "../pages/Bands/BandsMain";
 import EmploymentTypeMain from "../pages/EmploymentType/EmploymentTypeMain";
 import IntegrateLeaveToApply from "../pages/LeaveManagement/IntegrateLeaveToApply";
 import OnboardedEmployeesTable from "../pages/Approvals/ApprovalComponents/OnboardedEmployeesTable";
-import ClientMain from "../pages/Client/ClientMain";
-import ProjectsMain from "../pages/Projects/ProjectsMain";
+
+
 
 import HrLeavesToApproveMain from "../pages/HrLeavesToApprove/HrLeavesToApproveMain";
 import EmployeeTimeSheetMain from "../pages/TimeSheet/TimeSheetMain";
@@ -74,11 +87,76 @@ import { Accordion } from "react-bootstrap";
 import ApprovesMain from "../pages/Approves/ApprovesMain";
 import EmployeeList from "../pages/AllEmployees/AllEmployeesComponents/EmployeeList";
 import Employee from "../pages/RoleUnderEmployees/RoleUnderEmployeesMain";
+import AllEmployeesMain from "../pages/AllEmployees/AllEmployeesMain";
+import ProjectDashboardMain from "../pages/ProjectDashboard/ProjectDashboardMain";
+import LeadsMain from "../pages/Leads/LeadsMain";
+import ClientMain from "../pages/Client/ClientMain";
+import PmTaskCreation from "../pages/PmTaskCreation/PmTaskCreationMain";
+import UserStorymain from "../pages/userstory/UserStorymain";
+import MyTask from "../pages/Task/MyTaskComponents/MyTask";
+import ProjectsMain from "../pages/Projects/ProjectsMain";
+import HRConfirmationMain from "../pages/HRApproval/HRConfirmationMain";
+import HrDashboard from "../pages/HrDashboard/HrDashboardMain";
+import HrDashboardMain from "../pages/HrDashboard/HrDashboardMain";
+import AddResignation from "../pages/Resignation/AddResignation";
+import ResignationMain from "../pages/Resignation/ResignationMain";
+import UserAccessMain from "../pages/UserAccess/UserAccessMain";
+
+import RRMain from "../pages/Recruitment-Tracker/RRMain";
+import PMORequisitionMain from '../pages/Recruitment-Tracker/PMORequisitionApprovals/PMORequisitionMain'
+import BUHRequisitionMain from '../pages/Recruitment-Tracker/BUHeadRequisitionApprovals/BUHRequisitionMain'
+import StepperForm from "../pages/Recruitment-Tracker/RecruitmentRequestComponents/StepperForm";
+import PMO_Dashboard from "../pages/Recruitment-Tracker/RequisitionDashboard/PMO_Dashboard/PMO_Dashboard"
 
 export default [
   {
-    component: MyProfileMain,
+    component: ProjectDashboardMain,
+    path: "/ProjectDashboardMain",
+    type: "null",
+    icon: <FcComboChart />,
+    title: "Projects Overview",
+    permission: [
+      Roles.employee,
+      Roles.ceo,
+      Roles.it,
+      Roles.taa,
+      Roles.hrmanager,
+      Roles.manager,
+      Roles.recruitmentmanager,
+      Roles.irm,
+      Roles.srm,
+      Roles.pmohead,
+      Roles.taahead,
+      Roles.buhead,
+    ],
+   
+  },
+  {
+    component: HrDashboardMain,
+
     path: "/",
+
+    type: "myprofile",
+
+    icon: <FcTemplate/>,
+
+    title: "Dashboard",
+
+    permission: [Roles.hrmanager,Roles.pmohead,Roles.ceo],
+
+    exact: true
+  },
+  {
+    component: UserAccessMain,
+    path: "/UserAccess",
+    type: "configuration",
+    icon: <FcOvertime/>,
+    title: "User Access",
+    permission: [Roles.pmohead],
+  },
+  {
+    component: MyProfileMain,
+    path: "/myProfile",
     type: "myprofile",
     icon: <FcBusinessman />,
     title: "My Profile",
@@ -98,15 +176,84 @@ export default [
     ],
     exact: true,
   },
+  
+  {
+    component: LeadsMain,
+    path: "/leadsMain",
+    type: "configuration",
+    icon: <FcReadingEbook />,
+    title: "Leads",
+    permission: [
+      Roles.pmohead,
+      Roles.ceo,
+      
+      Roles.hrmanager,
+    ],
+  },
+  {
+    component: ClientMain,
+    path: "/clientMain",
+    type: "configuration",
+    icon: <FcCollaboration />,
+    title: "Clients",
+    permission: [
+      Roles.pmohead,
+      Roles.irm,
+      Roles.employee,
+      
+    ],
+  },
+  {
+    component: PmTaskCreation,
+    path: "/TaskMain",
+    type: "projects",
+    icon: <FcList />,
+    title: "Assign Task",
+    permission: [Roles.pmohead,Roles.manager,Roles.irm],
+  },
+  {
+    component: MyTask,
+    path: "/MyTaskMain",
+    type: "myprofile",
+    icon: <FcSurvey />,
+    title: "My Task",
+    permission: [Roles.employee,
+      Roles.ceo,
+      Roles.it,
+      Roles.taa,
+      Roles.hrmanager,
+      Roles.manager,
+      Roles.recruitmentmanager,
+      Roles.irm,
+      Roles.srm,
+      Roles.pmohead,
+      Roles.taahead,
+      Roles.buhead,],
+  },
+  {
+    component: UserStorymain,
+    path: "/Userstory",
+    type: "null",
+    icon: <FcOrgUnit />,
+    title: "Userstory",
 
-  // {
-  //   component: ApprovesMain,
-  //   path: "/approve",
-  //   icon: <FcApproval />,
-  //   title: "Approvals",
-  //   type:"approvals",
-  //   permission: [Roles.ceo, Roles.pmohead,Roles.buhead,Roles.irm,Roles.srm],
-  // },
+    permission: [
+      Roles.irm,
+      
+      Roles.manager,
+    ],
+  },
+ 
+  {
+    component: ProjectsMain,
+    path: "/Projects",
+    type: "projects",
+    icon: <FcBullish />,
+    title: "Projects",
+
+    permission: [Roles.pmohead, Roles.irm,  Roles.manager],
+  },
+
 
   {
     component: TAAHeadMain,
@@ -141,29 +288,29 @@ export default [
     permission: [Roles.ceo],
   },
 
+  // {
+  //   component: EmployeeMaster,
+  //   path: "/employeeProfile",
+  //   icon: <FcFile />,
+  //   title: "Edit My Profile",
+  //   type: "Employee",
+  //   permission: [
+  //     Roles.employee,
+  //     Roles.ceo,
+  //     Roles.it,
+  //     Roles.taa,
+  //     Roles.hrmanager,
+  //     Roles.manager,
+  //     Roles.recruitmentmanager,
+  //     Roles.irm,
+  //     Roles.srm,
+  //     Roles.pmohead,
+  //     Roles.taahead,
+  //     Roles.buhead,
+  //   ],
+  // },
   {
-    component: EmployeeMaster,
-    path: "/employeeProfile",
-    icon: <FcFile />,
-    title: "Edit My Profile",
-    type: "Employee",
-    permission: [
-      Roles.employee,
-      Roles.ceo,
-      Roles.it,
-      Roles.taa,
-      Roles.hrmanager,
-      Roles.manager,
-      Roles.recruitmentmanager,
-      Roles.irm,
-      Roles.srm,
-      Roles.pmohead,
-      Roles.taahead,
-      Roles.buhead,
-    ],
-  },
-  {
-    component: EmployeeList,
+    component: AllEmployeesMain,
     path: "/allEmployees",
     icon: <FcConferenceCall />,
     title: "All Employees",
@@ -188,39 +335,39 @@ export default [
   //   permission: [Roles.hradmin,Roles.recruitmentmanager],
   // },
 
-  {
-    component: RejectedEmployeeMain,
-    path: "/RejectedEmployeeMain",
-    type: "Employee",
-    icon: <FcDisapprove />,
-    title: "Rejected Onboards",
-    permission: [Roles.pmohead],
-  },
+  // {
+  //   component: RejectedEmployeeMain,
+  //   path: "/RejectedEmployeeMain",
+  //   type: "Employee",
+  //   icon: <FcDisapprove />,
+  //   title: "Rejected Onboards",
+  //   permission: [Roles.pmohead],
+  // },
 
-  {
-    component: UserName,
-    path: "/users",
-    type: "configuration",
-    icon: <FcPodiumWithSpeaker />,
-    title: "Users",
-    permission: [Roles.pmohead],
-  },
-  {
-    component: ModuleMain,
-    path: "/modules",
-    type: "configuration",
-    icon: <FcTodoList />,
-    title: "Modules",
-    permission: [Roles.pmohead],
-  },
-  {
-    component: RolesMain,
-    path: "/roles",
-    type: "configuration",
-    icon: <FcFlowChart />,
-    title: "Roles",
-    permission: [Roles.pmohead],
-  },
+  // {
+  //   component: UserName,
+  //   path: "/users",
+  //   type: "configuration",
+  //   icon: <FcPodiumWithSpeaker />,
+  //   title: "Users",
+  //   permission: [Roles.pmohead],
+  // },
+  // {
+  //   component: ModuleMain,
+  //   path: "/modules",
+  //   type: "configuration",
+  //   icon: <FcTodoList />,
+  //   title: "Modules",
+  //   permission: [Roles.pmohead],
+  // },
+  // {
+  //   component: RolesMain,
+  //   path: "/roles",
+  //   type: "configuration",
+  //   icon: <FcFlowChart />,
+  //   title: "Roles",
+  //   permission: [Roles.pmohead],
+  // },
 
   {
     component: HrLeavesToApproveMain,
@@ -233,10 +380,10 @@ export default [
 
   {
     component: IntegrateLeaveToApply,
-    type: "Leaves",
+    type: "Employee",
     path: "/IntegrateLeaveToApply",
     icon: <FcLeave />,
-    title: "Leaves To Apply",
+    title: "Leaves/WFH To Apply",
     permission: [
       Roles.employee,
       Roles.ceo,
@@ -265,14 +412,21 @@ export default [
     component: EmployeeTimeSheetMain,
     path: "/timeSheet",
     type: "Employee",
-    icon: <FcPlanner />,
+    icon: <FcClock />,
     title: "Timesheet",
     permission: [
-      Roles.pmohead,
-      Roles.buhead,
+      Roles.employee,
+      Roles.ceo,
+      Roles.it,
+      Roles.taa,
+      Roles.hrmanager,
+      Roles.manager,
+      Roles.recruitmentmanager,
       Roles.irm,
       Roles.srm,
-      Roles.employee,
+      Roles.pmohead,
+      Roles.taahead,
+      Roles.buhead,
     ],
   },
   {
@@ -280,7 +434,9 @@ export default [
     path: "/departmentMain",
     type: "configuration",
     icon: <FcDepartment />,
-    title: "Departments",
+     title: "Business Units",
+    
+    
     permission: [Roles.pmohead],
   },
   {
@@ -304,7 +460,7 @@ export default [
     component: OnboardedEmployeesTable,
     type: "null",
     path: "/Approvals",
-    icon: <FcApprove />,
+    icon: <FcFeedIn />,
     title: "Onboardings",
     permission: [Roles.taa],
   },
@@ -313,7 +469,7 @@ export default [
     component: ManagerLeavesToApproveMain,
     type: "approvals",
     path: "/managerLeavesToApprove",
-    icon: <FcApproval />,
+    icon: <FcOk />,
     title: "Approvals",
     permission: [Roles.irm],
   },
@@ -321,23 +477,23 @@ export default [
     component: RejectedEmployees,
     path: "/LeaveManagement",
     type: "Employee",
-    icon: <FcOvertime />,
+    icon: <FcDisapprove />,
     title: "Leaves Rejected History",
     permission: [Roles.hrmanager],
   },
 
   {
-    component: HrLeaveHistorymain,
-    type: "Leaves",
+    component: ManagerLeaveHistory,
+    type: "Employee",
     path: "/HrLeaveHistory",
     icon: <FcAnswers />,
-    title: "Leave History ",
+    title: "My Team Leave History ",
     // permission: [Roles.hrmanager,Roles.irm,Roles.srm],
     permission: [Roles.irm, Roles.srm],
   },
   {
     component: LeaveHistoryMain,
-    type: "Leaves",
+    type: "Employee",
     path: "/LeaveHistory",
     icon: <FcDatabase />,
     title: "Leave History",
@@ -362,14 +518,14 @@ export default [
     type: "null",
     path: "/editmyprofileroute",
 
-    permission: [Roles.hrmanager, Roles.taa],
+    permission: [Roles.pmohead, Roles.ceo],
   },
   {
     component: createleaveTypeMain,
 
     path: "/CreateLeaves",
-    type: "Leaves",
-    icon: <FcManager />,
+    type: "configuration",
+    icon: <FcAddColumn />,
 
     title: "Leave Type",
 
@@ -418,6 +574,95 @@ export default [
   //     permission: [Roles.buhead],
 
   // },
+  {
+    component: HRConfirmationMain,
+    type: "approvals",
+    path: "/HRApproval",
+    icon: <FcApproval />,
+    title: "Approvals",
+    permission: [Roles.hrmanager],
+  },
+
+  {
+    component: ResignationMain,
+    path: "/resignation",
+    type: "Employee",
+    icon: <FcExpired />,
+    title: "Resignation",
+    permission: [
+      Roles.employee,
+      Roles.ceo,
+      Roles.it,
+      Roles.taa,
+      Roles.hrmanager,
+      Roles.manager,
+      Roles.recruitmentmanager,
+      Roles.irm,
+      Roles.srm,
+      Roles.pmohead,
+      Roles.taahead,
+      Roles.buhead,
+    ],
+    
+  },
+
+  // {
+  //   component: reduxMain,
+  //   path: "/reduxMain",
+  //   type: "null",
+  //   icon: <FcPlanner />,
+  //   title: "Redux",
+  //   permission: [
+  //     Roles.employee,
+  //     Roles.pmohead,
+  //     Roles.hrmanager,
+  //     Roles.manager,
+  //     Roles.recruitmentmanager,
+  //   ],
+  // },
+
+  {
+    component: RRMain,
+    type: "null",
+    path: "/rrf",
+    icon: <FcVoicePresentation />,
+    title: "Requistion Request",
+    permission: [Roles.manager, Roles.irm],
+  },
+  {
+    component: PMO_Dashboard,
+    path: "/PMO_Dashboard",
+    type: "null",
+    icon: <FcApproval/>,
+    title: "Requisition Dashboard",
+    permission: [Roles.pmohead]
+  },
+{
+    component: PMORequisitionMain,
+    path: "/PMORequisitionMain",
+    type: "null",
+    icon: <FcApproval/>,
+    title: "Requisition Approvals",
+    permission: [Roles.pmohead],
+  },
+
+  {
+    component: BUHRequisitionMain,
+    path: "/BUHRequisitionMain",
+    type: "null",
+    icon: <FcApproval/>,
+    title: "Requisition Approvals",
+    permission: [Roles.buhead]
+  },
+
+  {
+    component:StepperForm,
+    path: '/StepperForm',
+    type: "AERF",
+    permission: [Roles.irm],
+
+  },
+
 ];
 
 

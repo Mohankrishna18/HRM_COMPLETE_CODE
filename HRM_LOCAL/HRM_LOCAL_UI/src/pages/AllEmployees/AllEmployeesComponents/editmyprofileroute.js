@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Accordion, Button, Card, Form, InputGroup, Tab, Tabs } from "react-bootstrap";
+import { TabContext, TabList, TabPanel } from "@mui/lab";
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import { Accordion, Button, Card, Form, InputGroup, Tabs } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
@@ -12,20 +15,36 @@ import EmployeeMasterCard from "../../EmployeeMaster/EmployeeMasterComponents/Em
 import { useHistory } from "react-router-dom";
 import { set } from "lodash";
 import { Formik } from "formik";
-import PersonalDetailsTab from "./PersonalDetailsTab";
-import AddressTab from "./AddressTab";
-import AditionalDetailsTab from "./AdditionalDetailsTab";
-import EmploymentDetailsTab from "./EmploymentDetailsTab";
-import EducationalDetailsTab from "./EducationalDetailsTab";
-import ExperienceTab from "./ExperienceDetailsTab";
-import ProjectsTab from "./ProjectsTab";
+import PersonalDetailsTab from "../../EmployeeMaster/EmployeeMasterComponents/PersonalDetailsTab";
+import AddressTab from "../../EmployeeMaster/EmployeeMasterComponents/AddressTab";
+import AditionalDetailsTab from "../../EmployeeMaster/EmployeeMasterComponents/AdditionalDetailsTab";
+import EmploymentDetailsTab from "../../EmployeeMaster/EmployeeMasterComponents/EmploymentDetailsTab";
+import EducationalDetailsTab from "../../EmployeeMaster/EmployeeMasterComponents/EducationalDetailsTab";
+import ExperienceTab from "../../EmployeeMaster/EmployeeMasterComponents/ExperienceTab";
+import ProjectsTab from "../../EmployeeMaster/EmployeeMasterComponents/ProjectsTab";
+import { FiArrowLeftCircle } from "react-icons/fi";
 
 function EmployeeMasterForms(props) {
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
     const empId = localStorage.getItem('item')
+    let history = useHistory();
 
+    
+    // const navigate = useNavigate();
+  
+    function handleClick() {
+      history.push("/");
+    }
+    function fnGoBack() {
+      history.goBack();
+    }
+
+    const [value, setValue] = React.useState('1');
+    const handleChange1 = (event, newValue) => {
+        setValue(newValue);
+    };
 
     var doj = new Date(dateOfJoining);
     var dd = String(doj.getDate()).padStart(2, '0');
@@ -42,58 +61,7 @@ function EmployeeMasterForms(props) {
     // console.log(dob1);
 
 
-    // Here usestate has been used in order
-    // to set and get values from the jsx
-    const [ferrors, setFErrors] = useState("");
-    const [serror, setSerror] = useState("");
-    const [thirderrors, setThirdErrors] = useState("");
-    const [fourerror, setFourerror] = useState("");
-    const [fiveerrors, setFiveErrors] = useState("");
-    const [sixerror, setSixerror] = useState("");
-    const [sevenerrors, setSevenErrors] = useState("");
-    const [eighterror, setEighterror] = useState("");
-    const [nineerrors, setNineErrors] = useState("");
-    const [tenerror, setTenerror] = useState("");
-    const [elevenerrors, setElevenErrors] = useState("");
-    const [tweleveerror, setTweleveerror] = useState("");
-    const [thirteenerrors, setThirteenErrors] = useState("");
-    const [fourteenerror, setFourteenerror] = useState("");
-    const [fifteenerrors, setFifteenErrors] = useState("");
-    const [sixteenerror, setSixteenerror] = useState("");
-    const [seventeenerror, setSeventeenerror] = useState("");
-    const [eighteenerror, setEighteenerror] = useState("");
-    const [nineteenerror, setNineteenerror] = useState("");
-    const [twentyerror, setTwentyerror] = useState("");
-    const [twentyoneerror, setTwentyoneerror] = useState("");
-    const [twentytwoerror, setTwentytwoerror] = useState("");
-    const [twentythreerror, setTwentythreerror] = useState("");
-    const [twentyfourerror, setTwentyfourerror] = useState("");
-    const [twentyfiveerror, setTwentyfiveerror] = useState("");
-    const [twentysixerror, setTwentysixerror] = useState("");
-    const [twentysevenerror, setTwentysevenerror] = useState("");
-    const [twentyeighterror, setTwentyeighterror] = useState("");
-    const [twentynineerror, setTwentynineerror] = useState("");
-    const [thirtyerror, setThirtyerror] = useState("");
-    const [thirtyoneerror, setThirtyoneerror] = useState("");
-    const [thirtytwoerror, setThirtytwoerror] = useState("");
-    const [thirtythreeerror, setThirtythreeerror] = useState("");
-    const [thirtyfourerror, setThirtyfourerror] = useState("");
-    const [thirtyfiveerror, setThirtyfiveerror] = useState("");
-    const [thirtysixerror, setThirtysixerror] = useState("");
-    const [thirtysevenerror, setThirtysevenerror] = useState("");
-    const [thirtyeighterror, setThirtyeighterror] = useState("");
-    const [thirtynineerror, setThirtynineerror] = useState("");
-    const [fourty, setFourty] = useState("");
-    const [fourtyone, setFourtyone] = useState("");
-    const [fourtytwo, setFourtytwo] = useState("");
-    const [fourtythree, setFourtythree] = useState("");
-    const [fourtyfour, setFourtyfour] = useState("");
-    const [fourtyfive, setFourtyfive] = useState("");
-    const [fourtysix, setFourtysix] = useState("");
-    const [fourtyseven, setFourtyseven] = useState("");
-    const [fourtyeight, setFourtyeight] = useState("");
-    const [fourtynine, setFourtynine] = useState("");
-
+  
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState(" ");
@@ -462,57 +430,83 @@ function EmployeeMasterForms(props) {
     }
 
     return (
-        <div>
+        <div className="example">
             <Row>
                 <Col>
-                    <Card className="scroll" style={{ marginTop: 10 }}>
-                        <Card.Header>
+                    <Card  style={{ marginTop: 10 }}>
+                        <Card.Header style={{ backgroundColor: "white" }}>
                             <Card.Body>
-                                <Card.Title>Edit My Profile</Card.Title>
+                                <Row>
+                                    <Col>
+                                        <Card.Title>Edit Employee Details</Card.Title>
+                                    </Col>
+                                    <Col>
+                                    <button type="button" onClick={fnGoBack} style={{float:"right",border:"none",backgroundColor:"white"}}>
+                                         <FiArrowLeftCircle style={{ fontSize: "30px"}} />
+                                    </button>
+                                      
+                                    </Col>
+                                </Row>
+
                                 <Card.Subtitle className="mb-2 text-muted">
-                                    Edit My Profile
+                                    Employees/All Employees
                                 </Card.Subtitle>
-                                {/* <EmployeeMasterCard /> */}
-                                {/* <Card.Text style={{ margin: 20, color: "red" }}>
-                                    * All fields are mandatory. Please fill the form Correctly.
-                                </Card.Text> */}
 
+                                <Row>
+                                <TabContext value={value}>
+  <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{justifyContent:"center"}}>
+    <TabList onChange={handleChange1} aria-label="lab API tabs example" style={{justifyContent:"center",backgroundColor:"#FFFFB4"}}>
+      <Tab label="Personal Details" value="1" />
+      <Tab label="Address Details" value="2" />
+      <Tab label="Additional Details" value="3" />
+      <Tab label="Employment Details" value="4" />
+      <Tab label="Educational Details" value="5" />
+      <Tab label="Experience Details" value="6" />
+      <Tab label="Project Details" value="7" />
 
-<Card>
-    <Row>
+    </TabList>
+  </Box>
+  <TabPanel value="1"><PersonalDetailsTab /></TabPanel>
+  <TabPanel value="2">  <AddressTab /></TabPanel>
+  <TabPanel value="3"> <AditionalDetailsTab/></TabPanel>
+  <TabPanel value="4"> <EmploymentDetailsTab /></TabPanel>
+  <TabPanel value="5"><EducationalDetailsTab/></TabPanel>
+  <TabPanel value="6"><ExperienceTab /></TabPanel>
+  <TabPanel value="7"><ProjectsTab /></TabPanel>
+</TabContext>
 
-                    <Tabs
-                        defaultActiveKey="Personal Details"
-                        transition={true}
-                        id="noanim-tab-example"
-                        className="mb-3"
-                        style={{ justifyContent: "center", color: "white" , backgroundColor:"white", fontSize:"18px" ,padding:0}}
-                    >
-                        <Tab eventKey="Personal Details" title="Personal Details" style={{ backgroundColor: "white" }}>
-                            <PersonalDetailsTab/>
-                        </Tab>
-                        <Tab eventKey="Address" title="Address" style={{ backgroundColor: "white" }}>
-                            <AddressTab/>
-                        </Tab>
-                        <Tab eventKey="Additional Details" title="Additional Details" style={{ backgroundColor: "white" }}>
-                            <AditionalDetailsTab/>
-                        </Tab>
-                        <Tab eventKey="Employment Details" title="Employment Details" style={{ backgroundColor: "white" }}>
-                            <EmploymentDetailsTab/>
-                        </Tab>
-                        <Tab eventKey="Educational Details" title="Educational Details" style={{ backgroundColor: "white" }}>
-                            <EducationalDetailsTab/>
-                        </Tab>
-                        <Tab eventKey="Experience" title="Experience " style={{ backgroundColor: "white" }}>
-                            <ExperienceTab/>
-                        </Tab>
-                        <Tab eventKey="Project" title="Project " style={{ backgroundColor: "white" }}>
-                            <ProjectsTab/>
-                        </Tab>
-                       
-                    </Tabs> 
-               </Row>                              
-                    </Card>
+                                    {/* <Tabs
+                                        defaultActiveKey="Personal Details"
+                                        transition={true}
+                                        id="noanim-tab-example"
+                                        className="mb-3"
+                                        style={{ justifyContent: "center", color: "white", backgroundColor: "white", fontSize: "18px", padding: 0 }}
+                                    >
+                                        <Tab eventKey="Personal Details" title="Personal Details" style={{ backgroundColor: "white" }}>
+                                            <PersonalDetailsTab />
+                                        </Tab>
+                                        <Tab eventKey="Address" title="Address" style={{ backgroundColor: "white" }}>
+                                            <AddressTab />
+                                        </Tab>
+                                        <Tab eventKey="Additional Details" title="Additional Details" style={{ backgroundColor: "white" }}>
+                                            <AditionalDetailsTab/>
+                                        </Tab>
+                                        <Tab eventKey="Employment Details" title="Employment Details" style={{ backgroundColor: "white" }}>
+                                            <EmploymentDetailsTab />
+                                        </Tab>
+                                        <Tab eventKey="Educational Details" title="Educational Details" style={{ backgroundColor: "white" }}>
+                                            <EducationalDetailsTab/>
+                                        </Tab>
+                                        <Tab eventKey="Experience" title="Experience " style={{ backgroundColor: "white" }}>
+                                            <ExperienceTab />
+                                        </Tab>
+                                        <Tab eventKey="Project" title="Project " style={{ backgroundColor: "white" }}>
+                                            <ProjectsTab />
+                                        </Tab>
+
+                                    </Tabs> */}
+                                </Row>
+
 
 
                                 {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 20, backgroundColor: "#FAFDD0" }}>
@@ -521,7 +515,7 @@ function EmployeeMasterForms(props) {
                                     </Card.Title>
                                 </Card> */}
 
-{/* 
+                                {/* 
                                 <Form
                                     onSubmit={(e) => changeHandler(e)}
                                     style={{ padding: 10 }}
@@ -2676,4 +2670,5 @@ function EmployeeMasterForms(props) {
 }
 
 export default EmployeeMasterForms;
+
 

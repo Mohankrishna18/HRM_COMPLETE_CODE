@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.apache.catalina.startup.ClassLoaderFactory.Repository;
+import com.arshaa.model.LeavesDataForHr;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.arshaa.entity.BetweenDates;
 import com.arshaa.entity.EntitledLeaves;
 import com.arshaa.entity.User;
+import com.arshaa.model.UserModel;
 import com.arshaa.model.ApproveCount;
 import com.arshaa.repository.BetweenDatesRepo;
 import com.arshaa.repository.UserRepository;
@@ -46,8 +48,9 @@ public class LeaveController {
 	private leaveEntitlementRepository re; // @CrossOrigin(origins = "http://localhost:3000")
 
 	@GetMapping("/getLeaveHistoryByEmpid/{employeeleaveId}")
-	private Optional<User> getUsers(@PathVariable Integer employeeleaveId) {
-		return service.findById(employeeleaveId);
+	public ResponseEntity<UserModel> getUsers(@PathVariable Integer employeeleaveId) {
+		return ResponseEntity.ok(service.findById(employeeleaveId));
+//	return service.findById(employeeleaveId);
 	}
 
 	@GetMapping("/getLeaveHistoryByEmployeeid/{employeeId}")
@@ -76,20 +79,20 @@ public class LeaveController {
 	}
 	
 
-	@PutMapping("/updateLeave/{employeeleaveId}")
-	private User UpdateUsers(@RequestBody User user, @PathVariable Integer employeeleaveId) {
+	@PutMapping("/updateLeave/{employeeleaveId}/{userType}")
+	private User UpdateUsers(@RequestBody User user, @PathVariable Integer employeeleaveId, @PathVariable String userType) {
 		return service.UpdateUsers(user, employeeleaveId);
 	}
 
 //To update the Leave status
-	@PutMapping("/managerupdateLeave/{employeeleaveId}")
-	private User UpdateManagerUsers(@RequestBody User user, @PathVariable Integer employeeleaveId) {
-		return service.UpdateManagerUsers(user, employeeleaveId);
+	@PutMapping("/managerupdateLeave/{employeeleaveId}/{userType}")
+	private User UpdateManagerUsers(@RequestBody User user, @PathVariable Integer employeeleaveId, @PathVariable String userType) {
+		return service.UpdateManagerUsers(user, employeeleaveId, userType);
 
 	}
 
-	@DeleteMapping("/deleteLeaves/{employeeleaveId}")
-	public String deleteByEmployeeLeaveId(@PathVariable Integer employeeleaveId) {
+	@DeleteMapping("/deleteLeaves/{employeeleaveId}/{userType}")
+	public String deleteByEmployeeLeaveId(@PathVariable Integer employeeleaveId, @PathVariable String userType) {
 		repo.deleteById(employeeleaveId);
 		return "Deleted Successfully";
 
@@ -192,5 +195,51 @@ public class LeaveController {
 //	
 //	  return new ResponseEntity("Updated Successfully",HttpStatus.OK);
 //   }
+
+	//To get Count of Pending Approved, Rejected Information from EmployeeLeaves Table
+	@GetMapping("/getEmployeePendingLeavesCountByStatus/{leaveStatus}")
+
+	public int getEmployeePendingLeavesCountByStatus(@PathVariable String leaveStatus) {
+
+		return service.findEmployeePendingLeavesCountByLeaveStatus(leaveStatus);
+
+	}
+
+	@GetMapping("/getEmployeeLeavesPendingLeavesByStatus/{leaveStatus}")
+
+	public List<LeavesDataForHr> getEmployeePendingLeavesByStatus(@PathVariable String leaveStatus) {
+
+		return service.findEmployeeLeavesLeaveStatusByLeaveStatus(leaveStatus);
+
+	}
+	
+	//To get Count of WFH from EmployeeLeaves Table
+	@GetMapping("/getEmployeeWFHCountByLeaveOrwfh/{leaveOrwfh}/{employeeId}")
+
+	public int getEmployeeWFHCountByLeaveOrwfh(@PathVariable String leaveOrwfh, @PathVariable String employeeId) {
+
+		return service.findEmployeeWFHCountByLeaveOrwfhAndEmployeeId(leaveOrwfh,employeeId);
+
+	}
+	@GetMapping("/getAllbetweenDates/{employeeId}/{leaveOrwfh}")
+	public List<BetweenDates> findbetweenDatesByLeaveOrwfh(@PathVariable String employeeId, @PathVariable String leaveOrwfh) {
+		return br.findByEmployeeIdAndLeaveOrwfh(employeeId, leaveOrwfh);
+	}
+	
+	@GetMapping("/getcountLeavesofApplyingLeaves/{employeeId}")
+	public int findLeaveapplyingleavescount(@PathVariable String employeeId) {
+		// repo.findNumberOfRemainingLeavesByEmployeeId(employeeId);
+		int b = repo.findLeaveapplyingleavescount(employeeId);
+		return b;
+	}
+	
+@GetMapping("/getcountWFHofApplyingLeaves/{employeeId}")
+public int findWFHapplyingleavescount(@PathVariable String employeeId) {
+	// repo.findNumberOfRemainingLeavesByEmployeeId(employeeId);
+	int b = repo.findWFHapplyingleavescount(employeeId);
+	return b;
+}
+	
+	
   
 }

@@ -5,13 +5,15 @@ import Grid from "@mui/material/Grid";
 import axios from "../../Uri";
 import { FiEdit } from "react-icons/fi";
 import { BsFillEyeFill } from "react-icons/bs";
-
+import {RiTeamFill} from "react-icons/ri";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
-//import ApprovalUpdateForm from "./ApprovalUpdateForm";
-import AddProject from "./ProjectsComponents/AddProject";
 import ProjectsView from "./ProjectsComponents/ProjectsView";
 import ProjectUpdate from "./ProjectsComponents/ProjectUpdate";
-
+import AddProject from "./ProjectsComponents/AddProject";
+import ProjectUpdateTabs from "./ProjectsComponents/ProjectUpdateTabs";
+import DeleteProject from "./ProjectsComponents/DeleteProject";
+import ProjectTabs from "./ProjectsComponents/ProjectTabs";
 
 function ProjectsMain() {
   const [show, setShow] = useState(false);
@@ -30,6 +32,10 @@ function ProjectsMain() {
   const [addStatus, setAddStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
   const [viewStatus, setViewStatus] = useState(false);
+  const [deleteOnboard, setDeleteOnboard] = useState({});
+  const [deleteProjects, setDeleteProjects] = useState(false);
+
+  const deleteHandleClose = () => setDeleteProjects(false);
 
   const pull_dataAdd = () => {
     setAddStatus(!addStatus);
@@ -37,12 +43,16 @@ function ProjectsMain() {
 
   const pull_dataUpdate = () => {
     setUpdateStatus(!updateStatus);
-   
+  };
+
+  const pull_dataDelete = () => {
+    setDeleteProjects(!deleteProjects);
+    // console.log("Delete");
   };
 
   useEffect(() => {
     loadData();
-  }, [addStatus,updateStatus]);
+  }, [addStatus, updateStatus, deleteProjects]);
   // useEffect(() => {
   //   loadData();
   // }, [viewStatus]);
@@ -51,21 +61,23 @@ function ProjectsMain() {
     const response = await axios.get("/clientProjectMapping/getAllProjects");
     setData(response.data.data);
     console.log(response.data);
+
   };
 
   const [columns, setColumns] = useState([
- 
+    {
+      title: "Project Name",
+      field: "projectName",
+    },
     {
       title: "Client Name",
       field: "clientName",
       type: "text",
     },
-
-    {
-      title: "Project Name",
-      field: "projectName",
-    },
-
+    // {
+    //   title: "Business Unit",
+    //   field: "businessUnit",
+    // },
     {
       title: "Start Date",
       field: "startDate",
@@ -82,65 +94,88 @@ function ProjectsMain() {
       title: "Status",
       field: "status",
     },
-    {
-      title: "Description",
-      field: "description",
-    },
-    {
-      title: "Rate",
-      field: "rate",
-    },
+    // {
+    //   title: "Description",
+    //   field: "description",
+    // },
+    // {
+    //   title: "Rate",
+    //   field: "rate",
+    // },
     {
       title: "Priority",
       field: "priority",
     },
     {
-      title: "Project Manager",
+      title: "PM",
       field: "projectManager",
     },
   ]);
 
   return (
     <div>
-      <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Edit Project</Modal.Title>
+      <Modal show={show} onHide={handleClose} size="xl" >
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px",color:"white" }}>
+          <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>
+            Edit Project
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <ProjectUpdate
+          {/* <ProjectUpdate
             updateOnboard={updateOnboard}
             func={pull_dataUpdate}
             handleClose={handleClose}
-          />
+          /> */}
+          <ProjectUpdateTabs
+          rowData={updateOnboard}
+          func={pull_dataUpdate}
+          // data={data}
+           />
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer> */}
       </Modal>
-      <Modal show={viewShow} onHide={viewHandleClose} size="lg">
+
+      {/* <Modal show={viewShow} onHide={viewHandleClose} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
-        {/* <Modal.Body>
+        <Modal.Body>
           <ProjectsView
             viewOnboard={viewOnboard}
             // func={pull_data}
             viewHandleClose={viewHandleClose}
           />
-        </Modal.Body> */}
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={viewHandleClose}>
             Close
           </Button>
-          {/* <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleClose}>
             Save Changes
-          </Button> */}
+          </Button>
         </Modal.Footer>
+      </Modal> */}
+
+      <Modal
+        show={deleteProjects}
+        onHide={deleteHandleClose}
+        size="md"
+        backdrop="static"
+        keyboard={false}
+        centered
+      >
+        <Modal.Header
+          closeButton
+          style={{ backgroundColor: "#FF9E14", color: "white" }}
+        >
+          <Modal.Title>Delete Project</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <DeleteProject
+            deleteOnboard={deleteOnboard}
+            func={pull_dataDelete}
+            deleteHandleClose={deleteHandleClose}
+          />
+        </Modal.Body>
       </Modal>
 
       <Card
@@ -151,46 +186,56 @@ function ProjectsMain() {
           paddingBottom: "10px",
         }}
       >
-        {/* <Row>
-          <Col>
-        <h3>
-        Onboarded Shortlisted Candidates
-        </h3>
-        </Col>
-        <Col>
-        <AddOnboard func={pull_data} />
-        </Col>
-        </Row> */}
         <Card.Body>
           <Row>
             <Col>
               <Card.Title>Projects</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
+              {/* <Card.Subtitle className="mb-2 text-muted">
                 Dashboard / Projects{" "}
-              </Card.Subtitle>
+              </Card.Subtitle> */}
             </Col>
             <Col>
               <AddProject func={pull_dataAdd} />
+              {/* <ProjectTabs func={pull_dataAdd} /> */}
             </Col>
           </Row>
         </Card.Body>
 
         <Grid style={{ borderBlockEndWidth: "2px" }}>
           <MaterialTable
-            title="Projects list"
+            title=""
             columns={columns}
-            style={{ color: "black", fontSize: "1rem" }}
-            data={data}
+            style={{ color: "black", fontSize: "14px" }}
+            data={data ? data : []}
             editable={{}}
             options={{
               headerStyle: {
                 backgroundColor: "#FF9E14",
+
                 color: "white",
-                fontSize: "20px",
+
+                fontSize: "16px",
+
+                paddingTop:"5px",
+
+                paddingBottom:"2px",
+
+               
+
               },
+
+              pageSize: 15,
+
+              pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
+
+              maxBodyHeight: 550,
+
               addRowPosition: "first",
+
               actionsColumnIndex: -1,
-              // grouping: true,
+
+              //grouping: true,
+
               exportButton: true,
             }}
             actions={[
@@ -215,28 +260,22 @@ function ProjectsMain() {
                       }}
                     >
                       {/* Edit */}
-                      <FiEdit />
+                      {/* <FiEdit /> */}
+
+                      <RiTeamFill style={{ color: "white" }}/>
+
                     </Button>{" "}
-                    {/* <Button
-                      variant="secondary"
+                    <Button
+                      variant="danger"
                       onClick={(event) => {
-                        setViewShow(true);
+                        setDeleteProjects(true);
                         console.log(props);
-                        setDeleteClient(props.data);
+                        setDeleteOnboard(props.data);
                       }}
                     >
-                      Delete
-                    </Button> */}
-                    {/* <Button
-                      variant="primary"
-                      onClick={(event) => {
-                        setViewShow(true);
-                        console.log(props);
-                        setViewOnboard(props.data);
-                      }}
-                    >
-                      <BsFillEyeFill />
-                    </Button> */}
+                      {/* Delete */}
+                      <RiDeleteBin6Line/>
+                    </Button>
                   </Stack>
                 </div>
               ),

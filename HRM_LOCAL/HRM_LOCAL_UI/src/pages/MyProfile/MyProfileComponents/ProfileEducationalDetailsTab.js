@@ -119,13 +119,11 @@ const ProfileEducationalDetailsTab = () => {
                             <h5>Educational Information:</h5>
                           </Card.Title>
                           <Card.Body style={{ paddingLeft: 20 }}>
-
-
-                            <Table>
+                             <Table>
                               <thead>
                                 <tr>
-                                  <th>Type of Graduation</th>
-                                  <th>University</th>
+                                  <th>Qualification</th>
+                                  <th>University/Board</th>
                                   <th>Institute Name</th>
                                   <th>Course</th>
                                   <th>Grade</th>
@@ -164,7 +162,7 @@ const ProfileEducationalDetailsTab = () => {
 
                                 </tr>
                                 <tr>
-                                  <td></td>
+                                  <td>{getEmployeeDetails.intermediateQualification}</td>
                                   <td>{getEmployeeDetails.intermediateBoardOfUniversity}</td>
                                   <td>{getEmployeeDetails.intermediateCollegeName}</td>
                                   <td>{getEmployeeDetails.intermediateCourseName}</td>
@@ -178,7 +176,7 @@ const ProfileEducationalDetailsTab = () => {
 
                                 </tr>
                                 <tr>
-                                  <td></td>
+                                  <td>{getEmployeeDetails.sscQualification}</td>
                                   <td>{getEmployeeDetails.sscBoardOfUniversity}</td>
                                   <td>{getEmployeeDetails.sscSchoolName}</td>
                                   <td>{getEmployeeDetails.sscCourseName}</td>

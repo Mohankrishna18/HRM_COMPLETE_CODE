@@ -14,14 +14,33 @@ import "react-toastify/dist/ReactToastify.css";
 
 function AddUser(props) {
 
+
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  const [addStatus, setAddStatus] = useState(false);
+  const [deleteStatus, setDeleteStatus] = useState(true);
+  const [updateStatus, setUpdateStatus] = useState(false);
 
   const handleClose = () => setShow();
   const handleShow = () => setShow(true);
+  const da = JSON.parse(sessionStorage.getItem('userdata'))
+  const empID = da.data.employeeId;
+  console.log(empID)
+  const [data, setData] = useState([]);
 
   const forms = useRef(null);
+  useEffect(() => {
+    loadRoles();
+  }, [addStatus, deleteStatus, updateStatus]);
+
+
+  const loadRoles = async (e) => {
+    const response = await axios.get(`/task/getTaskByAssign/${empID}`);
+    setData(response.data);
+    console.log(response);
+    console.log("dataupdated");
+  };
 
   function setField(field, value) {
     setForm({
@@ -40,7 +59,7 @@ function AddUser(props) {
       description,
       // duration,
       toDate,
-      project,
+      projectName,
       fromDate,
       status,
       taskName,
@@ -52,7 +71,7 @@ function AddUser(props) {
 
     // if (!timesheet || timesheet === "")
     //   newErrors.timesheet = "Please Enter Timesheet date";
-    if (!project || project === "")
+    if (!projectName || projectName === "")
       newErrors.project = "Please Enter project name";
     if (!taskName || taskName === "") { newErrors.taskName = "Please Enter Task name"; }
     else if (!taskName.match(/^[aA-zZ\s]+$/)) {
@@ -172,7 +191,7 @@ function AddUser(props) {
       >
         {" "}
         <BsPlusLg />
-        &nbsp;Add Task
+        &nbsp;Add Timesheet
       </Button>
       <Modal
         size="lg"
@@ -183,7 +202,7 @@ function AddUser(props) {
         centered
       >
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white" }}>
-          <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>Add Task</Modal.Title>
+          <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>Add Timesheet</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -218,8 +237,9 @@ function AddUser(props) {
                   
                   required
                   controlId="project"
-                  value={form.project}
-                  onChange={(e) => setField("project", e.target.value)}
+                 // defaultValue={data.projectName}
+                  defaultValue={data.projectName}
+                // onChange={(e) => setField("projectName", e.target.value)}
                   isInvalid={!!errors.project}
                 >
                   {/* <option>Select Project</option>
@@ -231,39 +251,44 @@ function AddUser(props) {
                       {item.projectName}
                     </option>
                   ))} */}
-                  <option>Select any project...</option>
-                  {task.map((item) => (
-                    <option>{item.projectName}</option>
+                  {/* <option>Select any project...</option> */}
+                  {data.map((item) => (
+                    <option>{item.projectName }</option>
                   ))}
 
 
                 </Form.Select>
 
                 <Form.Control.Feedback type="invalid">
-                  {errors.project}
+                  {errors.projectName}
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Task *</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="Task Name"
+                {data.map((item)=>(
+                   <Form.Control
+                   required
+                   type="text"
+                   // placeholder="Task Name"
                   controlId="taskName"
-                  value={form.taskName}
-                  onChange={(e) => setField("taskName", e.target.value)}
-                  isInvalid={!!errors.taskName}
+                   defaultValue={item.taskTitle}
+                   //onChange={(e) => setField("taskName", e.target.value)}
+                   isInvalid={!!errors.taskName}
+ 
+                 >
+                   
+ 
+                 </Form.Control>
 
-                >
-
-                </Form.Control>
+                ))}
+               
                 <Form.Control.Feedback type="invalid">
                   {errors.taskName}
                 </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>From date*</Form.Label>
+                <Form.Label>Start date*</Form.Label>
                 <Form.Control
                   required
                   type="date"
@@ -279,7 +304,7 @@ function AddUser(props) {
               </Form.Group>
 
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>To Date*</Form.Label>
+                <Form.Label>End Date*</Form.Label>
                 <Form.Control type="date" placeholder="Enter "
                   controlId="toDate"
                   value={form.toDate}
@@ -360,10 +385,40 @@ function AddUser(props) {
                 </Form.Control.Feedback> */}
 
               {/* </Form.Group> */}
+              {data.map((item)=>(
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>Duration</Form.Label>
-                <Form.Control type="time" placeholder="Enter "
-                  controlId="duration"
+                <Form.Label>Estimated Hours</Form.Label>
+                <Form.Control type="number" placeholder="Enter "
+                  controlId="number"
+                  defaultValue={item.estimatedHours}
+                 // onChange={(e) => setField("duration", e.target.value)}
+                  // isInvalid={!!errors.duration}
+                />
+
+                {/* <Form.Control.Feedback type="invalid">
+                  {errors.duration}
+                </Form.Control.Feedback> */}
+
+              </Form.Group>
+               ))}
+              <Form.Group className="mb-3" as={Col} md="6">
+                <Form.Label>Actual  Hours</Form.Label>
+                <Form.Control type="number" placeholder="Enter "
+                  controlId="number"
+                  value={form.duration}
+                  onChange={(e) => setField("duration", e.target.value)}
+                  // isInvalid={!!errors.duration}
+                />
+
+                {/* <Form.Control.Feedback type="invalid">
+                  {errors.duration}
+                </Form.Control.Feedback> */}
+
+              </Form.Group>
+              <Form.Group className="mb-3" as={Col} md="6">
+                <Form.Label>Remaining  Hours</Form.Label>
+                <Form.Control type="number" placeholder="Enter "
+                  controlId="number"
                   value={form.duration}
                   onChange={(e) => setField("duration", e.target.value)}
                   // isInvalid={!!errors.duration}

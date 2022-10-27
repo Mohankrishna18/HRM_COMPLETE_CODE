@@ -17,6 +17,11 @@ function ManagerEmployeeReject(props) {
                 [field]: null,
             });
     };
+
+    const da = JSON.parse(sessionStorage.getItem('userdata'))
+    const userType = da.data.userType;
+    console.log(userType);
+
     const RejectHandler = (e) => {
         // e.prevetDefault();
         const notify = () => toast("Leave  is Rejected");
@@ -26,8 +31,17 @@ function ManagerEmployeeReject(props) {
         console.log(props.leaveID);
         const obj = { leaveStatus: "Rejected" };
         const form1 = Object.assign(form, obj);
-        axios.put(`/leave/managerupdateLeave/${employeeleaveId}`, form1)
+        axios.put(`/leave/managerupdateLeave/${employeeleaveId}/${userType}`, form1)
             .then((res) => {
+                axios.delete(`/leave/deleteBetweenDates/${employeeleaveId}`)
+                .then((resp)=>{
+                        console.log(resp)
+                        if(resp.status == 200){
+                            props.func();
+             }
+             else{
+                console.log('props not send')
+            } })
                 console.log(res)
                 if (res.status == 200) {
                     props.func();

@@ -15,7 +15,6 @@ import {AutoCompleteComponent} from '@syncfusion/ej2-react-dropdowns';
 import "./AddOnboard.css";
 
 
-
 function AddOnboard(props) {
   const [users, setUsers] = useState({});
   const [suggestions, setSuggestions] = useState([]);
@@ -29,6 +28,7 @@ function AddOnboard(props) {
   const [step, setStep] = useState(0);
   const handleClose = () => setShow();
   const handleShow = () => setShow(true);
+  const[jobT,setJobT]= useState("");
 
   const forms = useRef(null);
 
@@ -44,8 +44,6 @@ function AddOnboard(props) {
       });
   }
 
-  
-
   const validateForm = () => {
     const {
       lastName,
@@ -57,22 +55,20 @@ function AddOnboard(props) {
       yearsOfExperience,
       primarySkills,
       secondarySkills,
-    
+      rrfId,jobTitle
     } = form;
     const newErrors = {};
 
-    if (!firstName || firstName === "" || !firstName.match(/^[aA-zZ\s]+$/))
+    if (!firstName || firstName === "" || !firstName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
       newErrors.firstName = "Please Enter First Name";
-    if (!lastName || lastName === "" || !lastName.match(/^[aA-zZ\s]+$/))
+    if (!lastName || lastName === "" || !lastName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
       newErrors.lastName = "Please Enter Last Name";
-    if (!email || email === "") newErrors.email = "Please Enter Email";
+    if (!email || email === "") newErrors.email = "Please Enter Valid Email";
     if (
       !phoneNumber ||
       phoneNumber === "" ||
-      !phoneNumber.match(
-        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-      )
-    )
+      !phoneNumber.match(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/)
+)
       newErrors.phoneNumber = "Please Enter Phone Number";
     if (!dateOfJoining || dateOfJoining === "")
       newErrors.dateOfJoining = "Please Enter Date of Joining";
@@ -85,7 +81,12 @@ function AddOnboard(props) {
     yearsOfExperience === "" 
     // yearsOfExperience.match(/^\d{1,}(\.\d{0,4})?$/)
     )
-     newErrors.yearsOfExperience = "Please Enter Years of Experience";
+    newErrors.yearsOfExperience = "Please Enter Years of Experience";
+    // if (!jobTitle || jobTitle === "")
+    //   newErrors.jobTitle = "Please Enter Job Title";
+      if (!rrfId || rrfId === "")
+      newErrors.rrfId = "Please Enter Job ID";
+    
     // if (!designation || designation === "")
     //   newErrors.designation = "Please Enter Designation";
     // if (!department || department === "")
@@ -121,7 +122,6 @@ function AddOnboard(props) {
     }
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // e.target.reset();
@@ -131,10 +131,13 @@ function AddOnboard(props) {
       setErrors(formErrors);
       console.log("Form validation error");
     } else {
+      const lastForm = Object.assign(form,{jobTitle:jobTitle})
+      console.log(lastForm)
       axios
         .post("/emp/createNewPotentialEmployee", form)
         .then((response) => {
           const user = response.data;
+          console.log(user)
           if (user.status) {
             props.func();
           } else {
@@ -142,7 +145,7 @@ function AddOnboard(props) {
           }
           toast.success("Employee Onboarded Successfully");
           console.log(user);
-          setTimeout(5000);
+          // setTimeout(1000);
           handleClose();
         })
         .catch((err) => {
@@ -204,6 +207,18 @@ function AddOnboard(props) {
       setProject(response.data.data);
     });
   }, []);
+
+  const [rrf, setRrf] = useState([]);
+  useEffect(() => {
+    axios.get("/recruitmentTracker/getAllRequisitionRequestsByStatus").then((response) => {
+      setRrf(response.data.data);
+    });
+  }, []);
+  console.log(rrf)
+
+  console.log(jobT);
+  const jobTitle=jobT.jobTitle;
+  console.log(jobT.jobTitle);
 
 
   useEffect(() => {
@@ -304,6 +319,7 @@ function AddOnboard(props) {
               <div>
                 <h5>Personal Details</h5>
                 <Form
+                required
                   ref={forms}
                   className="formone"
                   // noValidate
@@ -312,6 +328,50 @@ function AddOnboard(props) {
                 // onSubmit={handleSubmit}
                 >
                   <Row className="mb-4">
+                    <Row md="12">
+                  <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select Job ID*</Form.Label>
+                <AutoCompleteComponent
+                    outlined
+                    dataSource={rrf}
+                    placeholder="select Job ID"
+                    fields={{ value: "rrfId", display:"rrfId"}}
+                    value={form.rrfId}
+                    isInvalid={!!errors.rrfId}
+                    onChange={(e) => {
+                      axios
+                    .get(
+                        `/recruitmentTracker/getDataById/${e.target.value}`
+                    )
+                    .then((response) => {
+                        console.log(response.data);
+                        setJobT(response.data.data)
+                    });
+                setField("rrfId", e.target.value);
+            }}
+              
+                // query={dataQuery}
+                ></AutoCompleteComponent>
+            </Form.Group>
+            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Job Title *</Form.Label>
+                <Form.Control
+                  disabled
+                  name="jobTitle"
+                  type="text"
+                  controlId="jobTitle"
+                  placeholder="Job Title "
+                  value={jobT.jobTitle}
+                  maxLength={30}
+                  onChange={(e) => 
+                setField("jobTitle", e.target.value) }
+                  //isInvalid={!!errors.jobTitle}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.jobTitle}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                       <Form.Label>First name *</Form.Label>
                       <Form.Control
@@ -397,13 +457,21 @@ function AddOnboard(props) {
                         value={form.email}
                         // maxLength={60}
                         onChange={(e) => {
-                          setField("email", e.target.value);
+                           setField("email", e.target.value) ;
+                        // if(e.target.value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)){
+                        //    setField("email", e.target.value);
+                        // }
+                        // else{
+                        //   email
+                        // }
+
+                       
                           if (form.phoneNumber === "") {
                             setThirdErrors(" Phone Number is Required");
                           } else {
                             setThirdErrors("");
                           }
-                        }}
+                         }}
                         isInvalid={!!errors.email}
                       ></Form.Control>
                       <Form.Control.Feedback type="invalid">
@@ -719,3 +787,4 @@ function AddOnboard(props) {
   );
 }
 export default AddOnboard;
+

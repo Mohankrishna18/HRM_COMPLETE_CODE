@@ -1,0 +1,45 @@
+[
+    {
+        "title": "Req ID",
+        "field": "reqId"
+    },
+    {
+        "title":"Job Title",
+        "field": "jobTitle"
+    },
+    {
+        "title":"Business Unit",
+        "field":"businessUnit",
+        "defaultGroupOrder": 0
+    },
+    {
+        "title":"Project",
+        "field":"projectName"
+    },
+    {
+        "title":"Status",
+        "field": "status"
+    },
+    {
+        "title":"Primary Skills",
+        "field": "pSkills"
+    },
+
+    {
+        "title":"Work Location",
+        "field": "workLocation"
+    },
+
+    {
+        "title":"Employment Type",
+        "field": "empType"
+    },
+    
+    {
+        "title":"Years Of Experiance",
+        "field": "yoe"
+    }
+    
+    
+
+]
