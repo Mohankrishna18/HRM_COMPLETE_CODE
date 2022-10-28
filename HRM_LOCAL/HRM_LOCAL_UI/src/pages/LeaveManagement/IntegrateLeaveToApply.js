@@ -417,6 +417,7 @@ function IntegrateLeaveToApply() {
         { title: 'To', field: 'toDate', type: 'date', dateSetting: { locale: "en-GB" } },
         { title: 'Number of Days', field: 'numberOfDays' },
         // { title: 'Leave Reason', field: 'leaveReason' },
+        { title: 'Leave/WFH', field: 'leaveOrwfh' },
         { title: 'Leave Status', field: 'leaveStatus' },
         // { title: 'SRM Reject Reason', field: 'rejectReason' },
         // { title: 'IRM Reject Reason', field: 'managersRejectReason' },
