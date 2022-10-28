@@ -52,6 +52,9 @@ function ManagerEmployeesLeavesWaitingForApproval(props) {
     { title: "Employee ID", field: "employeeId" },
     { title: "Name", field: "name" },
     { title: "Leave Type", field: "leaveType" },
+    { title: "Leave/WFH", field: "leaveOrwfh" },
+
+
     {
       title: "From",
       field: "fromDate",
