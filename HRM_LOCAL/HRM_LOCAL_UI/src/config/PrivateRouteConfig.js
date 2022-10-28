@@ -107,6 +107,9 @@ import PMORequisitionMain from '../pages/Recruitment-Tracker/PMORequisitionAppro
 import BUHRequisitionMain from '../pages/Recruitment-Tracker/BUHeadRequisitionApprovals/BUHRequisitionMain'
 import StepperForm from "../pages/Recruitment-Tracker/RecruitmentRequestComponents/StepperForm";
 import PMO_Dashboard from "../pages/Recruitment-Tracker/RequisitionDashboard/PMO_Dashboard/PMO_Dashboard"
+import EditEmployeeDetailsTabs from "../pages/EditEmployeeDetails/EditEmployeeDetailsTabs";
+import EmployeeDashboard from '../pages/Recruitment-Tracker/RequisitionDashboard/EmployeeDashboard/EmployeeDashboard'
+
 
 export default [
   {
@@ -129,7 +132,7 @@ export default [
       Roles.taahead,
       Roles.buhead,
     ],
-   
+
   },
   {
     component: HrDashboardMain,
@@ -138,19 +141,19 @@ export default [
 
     type: "myprofile",
 
-    icon: <FcTemplate/>,
+    icon: <FcTemplate />,
 
     title: "Dashboard",
 
-    permission: [Roles.hrmanager,Roles.pmohead,Roles.ceo],
+    permission: [Roles.hrmanager, Roles.pmohead, Roles.ceo],
 
-    exact: true
+    //exact: true
   },
   {
     component: UserAccessMain,
     path: "/UserAccess",
     type: "configuration",
-    icon: <FcOvertime/>,
+    icon: <FcOvertime />,
     title: "User Access",
     permission: [Roles.pmohead],
   },
@@ -176,7 +179,7 @@ export default [
     ],
     exact: true,
   },
-  
+
   {
     component: LeadsMain,
     path: "/leadsMain",
@@ -186,7 +189,7 @@ export default [
     permission: [
       Roles.pmohead,
       Roles.ceo,
-      
+
       Roles.hrmanager,
     ],
   },
@@ -200,7 +203,7 @@ export default [
       Roles.pmohead,
       Roles.irm,
       Roles.employee,
-      
+
     ],
   },
   {
@@ -209,7 +212,7 @@ export default [
     type: "projects",
     icon: <FcList />,
     title: "Assign Task",
-    permission: [Roles.pmohead,Roles.manager,Roles.irm],
+    permission: [Roles.pmohead, Roles.manager, Roles.irm],
   },
   {
     component: MyTask,
@@ -218,17 +221,17 @@ export default [
     icon: <FcSurvey />,
     title: "My Task",
     permission: [Roles.employee,
-      Roles.ceo,
-      Roles.it,
-      Roles.taa,
-      Roles.hrmanager,
-      Roles.manager,
-      Roles.recruitmentmanager,
-      Roles.irm,
-      Roles.srm,
-      Roles.pmohead,
-      Roles.taahead,
-      Roles.buhead,],
+    Roles.ceo,
+    Roles.it,
+    Roles.taa,
+    Roles.hrmanager,
+    Roles.manager,
+    Roles.recruitmentmanager,
+    Roles.irm,
+    Roles.srm,
+    Roles.pmohead,
+    Roles.taahead,
+    Roles.buhead,],
   },
   {
     component: UserStorymain,
@@ -239,11 +242,11 @@ export default [
 
     permission: [
       Roles.irm,
-      
+
       Roles.manager,
     ],
   },
- 
+
   {
     component: ProjectsMain,
     path: "/Projects",
@@ -251,7 +254,7 @@ export default [
     icon: <FcBullish />,
     title: "Projects",
 
-    permission: [Roles.pmohead, Roles.irm,  Roles.manager],
+    permission: [Roles.pmohead, Roles.irm, Roles.manager],
   },
 
 
@@ -409,6 +412,12 @@ export default [
     permission: [Roles.pmohead],
   },
   {
+    component: EditEmployeeDetailsTabs,
+    path: "/approvals/editDetails/:id",
+    title: "Onboardings",
+    permission: [Roles.taa],
+  },
+  {
     component: EmployeeTimeSheetMain,
     path: "/timeSheet",
     type: "Employee",
@@ -434,9 +443,9 @@ export default [
     path: "/departmentMain",
     type: "configuration",
     icon: <FcDepartment />,
-     title: "Business Units",
-    
-    
+    title: "Business Units",
+
+
     permission: [Roles.pmohead],
   },
   {
@@ -603,7 +612,7 @@ export default [
       Roles.taahead,
       Roles.buhead,
     ],
-    
+
   },
 
   // {
@@ -633,15 +642,15 @@ export default [
     component: PMO_Dashboard,
     path: "/PMO_Dashboard",
     type: "null",
-    icon: <FcApproval/>,
+    icon: <FcApproval />,
     title: "Requisition Dashboard",
     permission: [Roles.pmohead]
   },
-{
+  {
     component: PMORequisitionMain,
     path: "/PMORequisitionMain",
     type: "null",
-    icon: <FcApproval/>,
+    icon: <FcApproval />,
     title: "Requisition Approvals",
     permission: [Roles.pmohead],
   },
@@ -650,18 +659,29 @@ export default [
     component: BUHRequisitionMain,
     path: "/BUHRequisitionMain",
     type: "null",
-    icon: <FcApproval/>,
+    icon: <FcApproval />,
     title: "Requisition Approvals",
     permission: [Roles.buhead]
   },
 
   {
-    component:StepperForm,
+    component: StepperForm,
     path: '/StepperForm',
     type: "AERF",
     permission: [Roles.irm],
 
   },
+
+  {
+    component: EmployeeDashboard,
+    path: "/Employee_Dashboard",
+    type: "null",
+    icon: <FcApproval />,
+    title: "Requisition Dashboard",
+    permission: [Roles.irm]
+  },
+
+
 
 ];
 
