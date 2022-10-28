@@ -43,6 +43,7 @@ private String leaveStatus;
 private String managerApproval;
 private String Name;
 private int employeeleaveId;
+private String leaveOrwfh;
 public String getEmployeeId() {
 return employeeId;
 }
@@ -102,6 +103,12 @@ public String getLeaveStatus() {
 }
 public void setLeaveStatus(String leaveStatus) {
 	this.leaveStatus = leaveStatus;
+}
+public String getLeaveOrwfh() {
+	return leaveOrwfh;
+}
+public void setLeaveOrwfh(String leaveOrwfh) {
+	this.leaveOrwfh = leaveOrwfh;
 }
 
 
