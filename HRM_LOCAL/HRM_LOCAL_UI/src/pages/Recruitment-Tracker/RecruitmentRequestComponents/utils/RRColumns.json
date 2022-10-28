@@ -1,8 +1,8 @@
 [
     {
         
-        "title": "Job ID",
-        "field": "rrfId"
+        "title": "Req ID",
+        "field": "requisitionId"
     },
     {
         "title":"Business Unit",
@@ -42,8 +42,16 @@
         "field": "rrfStatus"
     },
     {
+        "title":"Workflow Status",
+        "field": "workflowStatus"
+    },
+    {
         "title":"Positions",
         "field": "positions"
+    },
+    {
+        "title":"Ageing"
     }
 
 ]
+

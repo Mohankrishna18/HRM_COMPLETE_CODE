@@ -348,7 +348,7 @@ import MaterialTable from "material-table";
 import Grid from "@mui/material/Grid";
 import { Row, Col, Container, Card } from "react-bootstrap";
 import axios from "../../../Uri";
-
+import { FiEdit } from 'react-icons/fi'
 import { Button, Modal, Stack } from "react-bootstrap";
 import UpdateTask from "./UpdateTask";
 import AddTask from "./AddTask";
@@ -483,13 +483,13 @@ function MyTask() {
     //   type: "text",
     // },
     {
-      title:"Planned Startdate",
+      title:"Planned Start Date",
       field:"plannedStartDate",
       type:"date",
       dateSetting: { locale: "en-GB" }
     },
     {
-    title:"Planned Enddate",
+    title:"Planned End Date",
       field:"plannedEndDate",
       type:"date",
       dateSetting: { locale: "en-GB" }
@@ -526,7 +526,7 @@ function MyTask() {
         backdrop="static"
         keyboard={false}
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px",color:"white" }}>
           <Modal.Title>Edit Task</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -575,7 +575,7 @@ function MyTask() {
             {/* <Container> */}
               <Row>
                 <Col style={{textAlign:"left",paddingLeft:"35px"}}>
-                  <Card.Title >My Task</Card.Title>
+                  <Card.Title >My Tasks</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
      
                   </Card.Subtitle>
@@ -592,9 +592,9 @@ function MyTask() {
 
                   <Grid style={{ borderBlockEndWidth: "2px" }}> */}
                     <MaterialTable
-                      title="Tasks list"
+                      title=""
                       columns={columns}
-                      style={{ color: "black", fontSize: "13px",paddingLeft:"-1px"}}
+                      style={{ color: "black", fontSize: "14px",paddingLeft:"-1px"}}
                       data={data?data:[]}
                       editable={{
 
@@ -621,7 +621,7 @@ function MyTask() {
 
                         pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
 
-                        maxBodyHeight: 450,
+                        maxBodyHeight: 585,
 
                         addRowPosition: "first",
 
@@ -649,7 +649,7 @@ function MyTask() {
                                   setUpdateOnboard(props.data);
                                 }}
                               >
-                                Edit
+                               <FiEdit />
                               </Button>{" "}
                              
                               {/* <Button

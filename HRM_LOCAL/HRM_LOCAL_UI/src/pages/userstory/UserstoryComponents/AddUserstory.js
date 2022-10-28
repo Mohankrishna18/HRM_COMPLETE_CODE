@@ -856,6 +856,7 @@ function AddUserstory(props) {
             backgroundColor: "#FF9E14",
             paddingTop: "5px",
             paddingBottom: "5px",
+            color:"white"
           }}
         >
           <Modal.Title>Add Userstory</Modal.Title>
@@ -896,7 +897,7 @@ function AddUserstory(props) {
                   {errors.projectId}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                 <Form.Label>Story Title *</Form.Label>
                 <Form.Control
                   required
@@ -921,6 +922,7 @@ function AddUserstory(props) {
                   required
                   className="acceptanceCriteria"
                   type="text"
+                  as="textarea"
                   controlId="acceptanceCriteria"
                   placeholder="Acceptance Criteria"
                   // onChange={(event) => setclientName(event.target.value)}
@@ -933,6 +935,42 @@ function AddUserstory(props) {
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {errors.AcceptanceCriteria}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Reason </Form.Label>
+                <Form.Control
+                  required
+                  className="reason"
+                  type="text"
+                  controlId="reason"
+                  placeholder="reason"
+                  // onChange={(event) => setclientName(event.target.value)}
+                  value={form.reason}
+                  maxLength={50}
+                  onChange={(e) => setField("reason", e.target.value)}
+                  isInvalid={!!errors.reason}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.reason}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Goal </Form.Label>
+                <Form.Control
+                  required
+                  className="goal"
+                  type="text"
+                  controlId="goal"
+                  placeholder="goal"
+                  // onChange={(event) => setclientName(event.target.value)}
+                  value={form.goal}
+                  maxLength={50}
+                  onChange={(e) => setField("goal", e.target.value)}
+                  isInvalid={!!errors.goal}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.goal}
                 </Form.Control.Feedback>
               </Form.Group>
               {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -976,7 +1014,7 @@ function AddUserstory(props) {
                   {errors.role}
                 </Form.Control.Feedback>
               </Form.Group> */}
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                 <Form.Label>Estimated Hours *</Form.Label>
                 <Form.Control
                   required
@@ -994,7 +1032,7 @@ function AddUserstory(props) {
                   {errors.estimatedHours}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                 <Form.Label>Priority </Form.Label>
                 <Form.Select
                   required
@@ -1015,7 +1053,7 @@ function AddUserstory(props) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                 <Form.Label>Status *</Form.Label>
                 <Form.Select
                   required
@@ -1028,7 +1066,7 @@ function AddUserstory(props) {
                 >
                   <option> Select Status</option>
                   <option value="Open">Open</option>
-                  <option value="InProgress">In Progress</option>
+                  <option value="In Progress">In Progress</option>
                   <option value="Completed">Completed</option>
                   <option value="OnHold">On Hold</option>
                 </Form.Select>
@@ -1036,24 +1074,7 @@ function AddUserstory(props) {
                   {errors.status}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Reason </Form.Label>
-                <Form.Control
-                  required
-                  className="reason"
-                  type="text"
-                  controlId="reason"
-                  placeholder="reason"
-                  // onChange={(event) => setclientName(event.target.value)}
-                  value={form.reason}
-                  maxLength={30}
-                  onChange={(e) => setField("reason", e.target.value)}
-                  isInvalid={!!errors.reason}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.reason}
-                </Form.Control.Feedback>
-              </Form.Group>
+             
 
               {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Actual Hours *</Form.Label>
@@ -1093,7 +1114,7 @@ function AddUserstory(props) {
               </Form.Group> */}
 
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Start Date *</Form.Label>
+                <Form.Label>Planned Start Date *</Form.Label>
                 <Form.Control
                   required
                   type="date"
@@ -1109,7 +1130,7 @@ function AddUserstory(props) {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>End Date</Form.Label>
+                <Form.Label>Planned End Date</Form.Label>
                 <Form.Control
                   required
                   type="date"
@@ -1141,24 +1162,7 @@ function AddUserstory(props) {
                 </Form.Control.Feedback>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group> */}
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Goal </Form.Label>
-                <Form.Control
-                  required
-                  className="goal"
-                  type="text"
-                  controlId="goal"
-                  placeholder="goal"
-                  // onChange={(event) => setclientName(event.target.value)}
-                  value={form.goal}
-                  maxLength={30}
-                  onChange={(e) => setField("goal", e.target.value)}
-                  isInvalid={!!errors.goal}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.goal}
-                </Form.Control.Feedback>
-              </Form.Group>
+              
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Actual Start Date</Form.Label>
                 <Form.Control

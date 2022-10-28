@@ -17,6 +17,11 @@ function ManagerEmployeeApprove(props) {
                 [field]: null,
             });
     };
+
+    const da = JSON.parse(sessionStorage.getItem('userdata'))
+    const userType = da.data.userType;
+    console.log(userType);
+
     const ApproveHandler = (e) => {
         // e.prevetDefault();
         const notify = () => toast("Leave  is approved");
@@ -26,7 +31,7 @@ function ManagerEmployeeApprove(props) {
         console.log(props.leaveID);
         const obj = { leaveStatus: "Approved" };
         const form1 = Object.assign(form, obj);
-        axios.put(`/leave/managerupdateLeave/${employeeleaveId}`,form1)
+        axios.put(`/leave/managerupdateLeave/${employeeleaveId}/${userType}`,form1)
         .then((res)=>{
             console.log(res)
             if(res.status == 200){

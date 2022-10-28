@@ -79,7 +79,7 @@ public class LeaveController {
 	}
 	
 
-	@PutMapping("/updateLeave/{employeeleaveId}/{userType")
+	@PutMapping("/updateLeave/{employeeleaveId}/{userType}")
 	private User UpdateUsers(@RequestBody User user, @PathVariable Integer employeeleaveId, @PathVariable String userType) {
 		return service.UpdateUsers(user, employeeleaveId);
 	}

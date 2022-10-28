@@ -9,6 +9,15 @@ import org.springframework.stereotype.Repository;
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
 @Repository
 public interface RequisitionRequestRepository extends JpaRepository<RequisitionRequestEntity, Long>{
-	List<RequisitionRequestEntity> findByRrfStatus(String rrfStatus);
+	
 
+	// GSDR Changes
+	
+		List<RequisitionRequestEntity> getByWorkflowStatus(String workflowStatus);
+
+		RequisitionRequestEntity getByEmployeeId(String employeeId);
+
+		RequisitionRequestEntity findByRrfId(Long rrfId);
+		
+	    List<RequisitionRequestEntity> findByRrfStatus(String rrfStatus);
 }

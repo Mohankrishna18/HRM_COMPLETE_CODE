@@ -23,6 +23,7 @@ function RRTable() {
   const deleteHandleClose = () => setDeleteLeads(false);
   const handleClose = () => setShow(false);
   const viewHandleClose = () => setViewShow(false);
+  const [viewStatus, setViewStatus] = useState(false);
   const addPocHandleClose = () => setAddPocShow(false);
   const [updateOnboard, setUpdateOnboard] = useState({});
   const [viewOnboard, setViewOnboard] = useState({});
@@ -41,29 +42,42 @@ function RRTable() {
 
   };
 
+  const pull_dataView = () => {
+    setViewStatus(!viewStatus);
+
+  };
+
   const pull_dataDelete = () => {
     setDeleteStatus(!deleteStatus);
-    // console.log("Delete");
 
   };
 
   useEffect(() => {
     loadData();
-  }, [addStatus, updateStatus, deleteStatus]);
+    // createStatus();
+  }, [addStatus, updateStatus, deleteStatus, viewStatus]);
 
 
-  const loadData = async (e) => {
+  const loadData = async () => {
     const response = await axios.get("/recruitmentTracker/getAllRequisitionRequests");
     setData(response.data.data);
     console.log(response.data);
   };
 
+//   const createStatus = async () => {
+//     const res = await axios.get(`/recruitmentTracker/updateWorkflowStatus/${props.viewOnboard.rrfId}`);
+//     setPocName(res.data.data);
+//     console.log(res.data.data);
+// };
+
+
   return (
     <div>
       
-      <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Update Job Requirements</Modal.Title>
+      <Modal show={show} onHide={handleClose} size="xl">
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"7px",
+paddingBottom:"4px", }}>
+          <Modal.Title>Update Requisition</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <UpdateRR
@@ -78,13 +92,14 @@ function RRTable() {
 
       {/* view modal */}
       <Modal  show={viewShow} onHide={viewHandleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Requisition Request</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"7px",
+paddingBottom:"4px",  }}>
+          <Modal.Title>Arshaa Employee Requisitions</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ViewRR
             viewOnboard={viewOnboard}
-            // func={pull_data}
+            func={pull_dataView}
             viewHandleClose={viewHandleClose}
           />
         </Modal.Body>
@@ -104,8 +119,9 @@ function RRTable() {
         backdrop="static"
         keyboard={false}
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white" }}>
-          <Modal.Title>Delete Requisition Request</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white", paddingTop:"7px",
+paddingBottom:"4px"  }}>
+          <Modal.Title>Delete Requisition</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <DeleteRR deleteOnboard={deleteOnboard} func={pull_dataDelete} deleteHandleClose={deleteHandleClose} />
@@ -124,9 +140,9 @@ function RRTable() {
         <Card.Body>
           <Row>
             <Col>
-              <Card.Title>Requisition Request</Card.Title>
+              <Card.Title>Arshaa Employee Requisitions</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                Dashboard / RR{" "}
+                Dashboard / Employee Requisitions{" "}
               </Card.Subtitle>
             </Col>
             <Col>
@@ -137,21 +153,23 @@ function RRTable() {
         </Card.Body>
         <Grid container>
         <Grid xs={12}>
-          <MaterialTable
-            title="Requisition Request"
+          <MaterialTable  
+             title="Arshaa Employee Requisitions"
             columns={RRColumns}
-            style={{ color: "black", fontSize: "1rem" }}
+            style={{ color: "black", fontSize: "0.8rem" }}
             data={data}
             editable={{}}
             options={{
-              pageSize: 8,
+              pageSize: 10,
               grouping: true,
               pageSizeOptions: [8, 10, 15, 20, 30, 50, 75, 100],
               maxBodyHeight: 450,
               headerStyle: {
                 backgroundColor: "#FF9E14",
                 color: "white",
-                fontSize: "14px",
+                fontSize: "13px",
+                paddingTop:"5px",
+                paddingBottom:"2px",
               },
               addRowPosition: "first",
               actionsColumnIndex: -1,
@@ -214,7 +232,8 @@ function RRTable() {
                         borderRadius: "20px",
                         height: "40px",
                         width: "120px",
-                        fontSize:"12px"
+                        fontSize:"12px",
+                        fontWeight:"bold"
 
                       }}
                     >

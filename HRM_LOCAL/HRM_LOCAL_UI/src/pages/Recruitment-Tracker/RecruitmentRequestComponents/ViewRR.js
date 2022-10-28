@@ -11,7 +11,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 function ViewRR(props) {
     console.log(props.viewOnboard);
+   
     
+
+
     return (
         <div className="scroll">
             <Row style={{ marginTop: 20 }}>
@@ -123,7 +126,7 @@ function ViewRR(props) {
                             </Col>
                             <Col md={{ offset: 1 }}>
                                 <Card.Text style={{ paddingBottom: 0 }}>
-                                    {props.viewOnboard.postitions}
+                                    {props.viewOnboard.positions}
                                 </Card.Text>
                             </Col>
                         </Row>
@@ -182,6 +185,18 @@ function ViewRR(props) {
                         <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
                                 <Card.Subtitle style={{ padding: 10 }}>
+                                    POC Name   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.viewOnboard.pocname}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
                                     Working Hours   :
                                 </Card.Subtitle>{" "}
                             </Col>
@@ -191,6 +206,7 @@ function ViewRR(props) {
                                 </Card.Text>
                             </Col>
                         </Row>
+                        
 
                         <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
@@ -220,12 +236,24 @@ function ViewRR(props) {
                         <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
                                 <Card.Subtitle style={{ padding: 10 }}>
+                                    Upload Job Requirements Document   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.viewOnboard.uploadDoc}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
                                     Job Description   :
                                 </Card.Subtitle>{" "}
                             </Col>
                             <Col md={{ offset: 1 }}>
                                 <Card.Text style={{ paddingBottom: 0 }}>
-                                    {props.viewOnboard.textAreaDesc}
+                                    {props.viewOnboard.description}
                                 </Card.Text>
                             </Col>
                         </Row>
@@ -253,9 +281,21 @@ function ViewRR(props) {
                                         borderRadius: "25px",
                                     }}
                                     type="submit"
-                                    // onClick={handleSubmit}
+                                    onClick={(event) => {
+                                        axios.get(`/recruitmentTracker/updateWorkflowStatus/${props.viewOnboard.rrfId}`).then((res)=>{
+                                            console.log(res)
+                                            if(res.statusText === 'OK'){
+                                                props.func()
+                                            }else{
+                                                console.log("Not Updated")
+                                            }
+                                            
+                                        })
+                                     
+                                       
+                                      }}
                                 >
-                                    Send for Approval
+                                    Send to Approval
                                 </Button>
                             </Col>
                             <Col>

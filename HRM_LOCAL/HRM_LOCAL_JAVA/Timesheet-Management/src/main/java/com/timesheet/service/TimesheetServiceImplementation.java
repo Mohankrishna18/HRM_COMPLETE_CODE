@@ -2,7 +2,9 @@ package com.timesheet.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ws.rs.core.Response;
 
@@ -11,11 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
+import org.springframework.web.client.RestTemplate;
 
 import com.timesheet.entity.TimesheetApproval;
 import com.timesheet.entity.TimesheetEmployee;
-
+import com.timesheet.modal.EmailTemplate;
 import com.timesheet.modal.RemainingHours;
 import com.timesheet.modal.TimeSheetResponse;
 import com.timesheet.repository.TimeSheetApprovalRepository;
@@ -36,6 +38,11 @@ import com.timesheet.repository.TimesheetRepository;
 	
 	@Autowired
 	private TimeSheetApprovalRepository tRepo;
+	
+	@Autowired
+    private RestTemplate template;
+	
+	public static final String preEmailURL = "http://emailService/mail/sendmail";
 	
 	
 	
@@ -188,6 +195,16 @@ public List<TimesheetEmployee> addTimesheetData(List<TimesheetEmployee> t) {
 					TimeSheetResponse r = new TimeSheetResponse <>();
 					try {
 						TimesheetApproval addTimesheetData = tRepo.save(ta);
+						
+						EmailTemplate mailTemp=new EmailTemplate();
+						Map<String,String> map=new HashMap();
+
+						mailTemp.setEmailType("TIMESHEET_APPLY");
+						map.put("employeeName","Murali");
+						map.put("email","muralikrishna.miriyala@arshaa.com");
+						mailTemp.setMap(map);
+			            template.postForObject(preEmailURL,mailTemp,EmailTemplate.class); 
+			            
 						r.setStatus(true);
 						r.setMessage("Data added successfully");
 						r.setData(addTimesheetData);
@@ -257,7 +274,7 @@ public List<TimesheetEmployee> addTimesheetData(List<TimesheetEmployee> t) {
 
 				@Override
 				public TimesheetApproval updateTimesheet(int timesheetId, String employeeId,
-						TimesheetApproval timesheetUpdate) {
+						TimesheetApproval timesheetUpdate, String userType) {
 					// TODO Auto-generated method stub
 					
 					@SuppressWarnings("deprecation")
@@ -272,6 +289,21 @@ public List<TimesheetEmployee> addTimesheetData(List<TimesheetEmployee> t) {
 				
 
 						TimesheetApproval t =	 tRepo.save(timesheetApproval);
+						
+						EmailTemplate mailTemp = new EmailTemplate();
+						Map<String, String> map = new HashMap();
+						map.put("employeeName", "Murali");
+//						map.put("email",hrApp.getEmail());
+						map.put("email", "muralikrishna.miriyala@arshaa.com");
+						mailTemp.setMap(map);
+						if (t.getStatus().equalsIgnoreCase("Approved")) {
+							mailTemp.setEmailType("TIMESHEET_APPROVED");
+						} else {
+							mailTemp.setEmailType("TIMESHEET_REJECTED");
+						}
+
+						template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+						
 						return t  ;
 	
 					} catch (Exception e) {

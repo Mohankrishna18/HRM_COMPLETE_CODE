@@ -5,6 +5,8 @@ import { AiTwotoneEdit } from "react-icons/ai";
 import { AiFillDelete } from "react-icons/ai";
 import AvtarComponent from "../../../../commonComponents/AvtarComponent";
 import Moment from 'react-moment';
+import Graph from "./Graph";
+
 
 
 function AllEmployees(props) {
@@ -35,6 +37,10 @@ function AllEmployees(props) {
         // toast.error("Server Error")
       });
   }, []);
+  console.log(data)
+  const empcount = data.length;
+  const female = data ? data.filter((item)=>item.gender === "female"):0
+  const male = data ? data.filter((item)=>item.gender === "male"):0
 
 
   useEffect(() => {
@@ -180,22 +186,34 @@ function AllEmployees(props) {
   return (
     <><div className="responsive" >
       <Row >
-        <Col md="2">
+        {/* <Col md="2">
           <Card border="warning">
             <Card.Body>
               <h6>
                 {" "}
-                <Card.Title>All Employees</Card.Title>
+                <Card.Title>All Employees</Card.Title> */}
 
                 {/* <Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle> */}
 
-                {data.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+                {/* {data.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
 
               </h6>
             </Card.Body>
           </Card>
-        </Col>
-        <Col md="2">
+        </Col> */}
+        <Col>
+                    <Card  class ="shadow p-3 bg-light" style={{height: "25vh",width:"20vh", paddingTop: "35%", fontSize:"20px"}}>
+                      <Card.Body>
+                       {empcount === 0 ? (<Card.Subtitle className="mb-2 text-muted">0 Employees</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {empcount}</Card.Subtitle>)}
+                      {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data} Male</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {male.length} </Card.Subtitle>)}
+                       {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data}  Female</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Female : {female.length} </Card.Subtitle>)}
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                  <Col md="6"  style={{height:"25vh"}}>
+                    <Graph/>
+                    </Col>
+        {/* <Col md="2">
           <Card border="warning">
             <Card.Body>
               <Row>
@@ -266,19 +284,11 @@ function AllEmployees(props) {
               </Row>
             </Card.Body>
           </Card>
-        </Col>
-      </Row>
+        </Col> */}
 
-      <Row>
-        <div className="responsive" style={{ paddingTop: "1%" }}>
-          <form>
-            <div class="form-group">
-              <Row>
-                <Col>
-                  <input type="text" class="form-control" placeholder="Employee ID" />
-                </Col><Col>
+                <Col style={{ paddingTop: "12%" }}>
                   <input type="text" class="form-control" placeholder="Employee Name" />
-                </Col><Col>
+                </Col><Col style={{ paddingTop: "12%" }}>
 
                   <select class="form-control" placeholder="Select Department"
                     onChange={(e) => {
@@ -296,13 +306,10 @@ function AllEmployees(props) {
                   </select>
                 </Col>
 
-                <Col>
-                  <button type="button" class="btn btn-success" style={{ width: 300 }} onClick={getEmpData} >Search</button>
+                <Col style={{ paddingTop: "12%" }}>
+                  <button type="button" class="btn btn-success" style={{ width: 200 }} onClick={getEmpData} >Search</button>
                 </Col>
-              </Row>
-            </div>
-          </form>
-        </div>
+           
       </Row>
 
       <Row>
@@ -314,10 +321,10 @@ function AllEmployees(props) {
 
             <Modal.Body>
               {/* <ApprovalView
-            viewOnboard={viewOnboard}
-            // func={pull_data}
-            viewHandleClose={viewHandleClose}
-          /> */}
+            viewOnboard={viewOnboard}
+            // func={pull_data}
+            viewHandleClose={viewHandleClose}
+          /> */}
             </Modal.Body>
           </Modal>
 
@@ -329,8 +336,7 @@ function AllEmployees(props) {
                   <th>Name</th>
                   <th>Employee ID</th>
                   <th>Email</th>
-                  <th>Mobile</th>
-                  <th>DOJ</th>
+                  <th>Phone</th>
                   <th>Role</th>
 
                 </tr>
@@ -343,9 +349,9 @@ function AllEmployees(props) {
                     <td>{data.employeeId}</td>
                     <td>{data.email}</td>
                     <td>{data.primaryPhoneNumber}</td>
-                    <td><Moment format="DD/MM/YYYY">
+                    {/* <td><Moment format="DD/MM/YYYY">
                       {data.dateOfJoining}
-                    </Moment></td>
+                    </Moment></td> */}
                     <td>{data.designationName}</td>
                     {/* <Profilebadge imageUrl={data.url} /> */}
                     {/* <td>
@@ -403,7 +409,7 @@ function AllEmployees(props) {
                       {data.dateOfJoining}
                     </Moment></td>
                     <td>{data.designationName}</td>
-                    
+                   
                   </tr>
                 ))}
               </tbody>

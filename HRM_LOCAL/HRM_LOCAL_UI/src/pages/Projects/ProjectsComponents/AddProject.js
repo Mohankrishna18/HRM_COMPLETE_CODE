@@ -354,11 +354,11 @@ function AddProject(props) {
               </Form.Group>
 
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Rate</Form.Label>
+                <Form.Label>Cost</Form.Label>
                 <Form.Control
                   required
                   type="text"
-                  placeholder="Rate"
+                  placeholder="Cost"
                   controlId="rate"
                   value={form.rate}
                   onChange={(e) => setField('rate', e.target.value)}

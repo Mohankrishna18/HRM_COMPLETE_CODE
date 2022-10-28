@@ -85,9 +85,9 @@ public List <TimesheetApproval>getTimesheetApprovalByIrmAndStatus(@PathVariable 
 		
 	}
 	
-	@PutMapping("/timesheetApproval/{timesheetId}/{employeeId}")
-	public TimesheetApproval updateTimesheet(@PathVariable String  employeeId,@PathVariable int  timesheetId, @RequestBody TimesheetApproval timesheetUpdate){
-		return service.updateTimesheet(timesheetId,employeeId,timesheetUpdate);
+	@PutMapping("/timesheetApproval/{timesheetId}/{employeeId}/{userType}")
+	public TimesheetApproval updateTimesheet(@PathVariable String  employeeId,@PathVariable int  timesheetId, @RequestBody TimesheetApproval timesheetUpdate, @PathVariable String userType){
+		return service.updateTimesheet(timesheetId,employeeId,timesheetUpdate, userType);
 		
 		
 	}

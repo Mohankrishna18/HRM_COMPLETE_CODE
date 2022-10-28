@@ -219,7 +219,7 @@ function UserStorymain() {
         }}
       /> */}
       <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: '#FF9E14' }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px",color:"white" }}>
           <Modal.Title>Edit Userstory</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -308,7 +308,7 @@ function UserStorymain() {
           <MaterialTable
             title=""
             columns={columns}
-            style={{ color: 'black', fontSize: '13px' }}
+            style={{ color: 'black', fontSize: '14px'}}
             data={data}
             editable={{}}
             options={{
