@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.apache.catalina.startup.ClassLoaderFactory.Repository;
 import com.arshaa.model.LeavesDataForHr;
@@ -20,12 +21,15 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.arshaa.entity.BetweenDates;
 import com.arshaa.entity.EntitledLeaves;
 import com.arshaa.entity.User;
 import com.arshaa.model.UserModel;
+import com.arshaa.mapper.LeavesCount;
 import com.arshaa.model.ApproveCount;
+
 import com.arshaa.repository.BetweenDatesRepo;
 import com.arshaa.repository.UserRepository;
 import com.arshaa.repository.leaveEntitlementRepository;
@@ -240,6 +244,44 @@ public int findWFHapplyingleavescount(@PathVariable String employeeId) {
 	return b;
 }
 	
+@GetMapping("/getLeaveDatesByEmployeeidAndLeaveStatus/{leaveStatus}/{employeeId}")
+public List<User> findLeavesByLeaveStatusAndEmployeeId(@PathVariable String leaveStatus, @PathVariable String employeeId) {
+	return service.findLeavesByLeaveStatusAndEmployeeId(leaveStatus, employeeId);
+}
+
+//     http://localhost:6065/leave/get/{departmentId}/?year=2022&month=09
+
+@GetMapping("/getLeavesData/{departmentName}/{year}/{month}")
+public List<User> getUserDataByDepartmentName(@PathVariable String  departmentName,@PathVariable int year,@PathVariable int month){
+    return repo.getUserDataByDepartmentName(departmentName, year, month);
+    
+    
+}
+
+//@GetMapping("/getcountLeavesByMonthofApplyingLeaves/{employeeId}/{month}/{year}")
+//public int findLeaveapplyingleavescountBYMonth(@PathVariable String employeeId,@PathVariable int month ,@PathVariable int year) {
+//	// repo.findNumberOfRemainingLeavesByEmployeeId(employeeId);
+//	int c = repo.findLeaveapplyingleavescountBYMonth(employeeId, month, year);
+//	return c;
+//}
+
+@GetMapping("/getcountLeavesByMonthofApplyingLeaves/{month}/{year}/{leaveOrwfh}/{departmentName}/{employeeId}")
+public ResponseEntity getAbsanceCount(@PathVariable Integer month,@PathVariable Integer year,@PathVariable String leaveOrwfh,@PathVariable String departmentName,@PathVariable String employeeId)
+{	LeavesCount cc=new LeavesCount();
+
+	try {
 	
+	int count=br.findLeaveapplyingleavescountBYMonth(month, year, leaveOrwfh, departmentName, employeeId);
+	cc.setCount(count);
+	cc.setStatus(true);
+	return new ResponseEntity(cc ,HttpStatus.OK);
+	}
+	catch(Exception e)
+	{
+		cc.setStatus(false);
+		return new ResponseEntity(cc ,HttpStatus.OK);
+
+	}
+}
   
 }

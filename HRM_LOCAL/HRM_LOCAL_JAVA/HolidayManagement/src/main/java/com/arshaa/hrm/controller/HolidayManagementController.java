@@ -112,5 +112,13 @@ public class HolidayManagementController {
 	public HolidayManagementController() {
 		// TODO Auto-generated constructor stub
 	}
+	@GetMapping("getHolidaysCountByYearAndMonth/{year}/{month}")
+	public ResponseEntity getHolidaysCount(@PathVariable int year,@PathVariable int month)
+	{
+	HolidaysCount count=new HolidaysCount();
+	int hm=repo.findHolidaymanagementCountWithParticularMonth(year,month);
+	count.setHolidayCount(hm);
+	return new ResponseEntity(count,HttpStatus.OK);
+	}
 
 }

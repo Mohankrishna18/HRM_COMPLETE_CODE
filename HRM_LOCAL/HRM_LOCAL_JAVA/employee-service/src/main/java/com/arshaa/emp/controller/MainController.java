@@ -29,6 +29,7 @@ import com.arshaa.emp.model.AdditionalDetails;
 import com.arshaa.emp.model.Address;
 import com.arshaa.emp.model.DesignationName;
 import com.arshaa.emp.model.EducationalDetails;
+import com.arshaa.emp.model.EmployeeLeavesData;
 import com.arshaa.emp.model.EmploymentDetails;
 import com.arshaa.emp.model.Experience;
 import com.arshaa.emp.model.HrApprovalStatus;
@@ -40,6 +41,7 @@ import com.arshaa.emp.model.ResponseMessage;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
 import com.arshaa.emp.repository.OnboardRepository;
 import com.arshaa.emp.service.EmployeeProfileService;
+import com.arshaa.emp.service.LeaveService;
 import com.arshaa.emp.service.MainService;
 import com.arshaa.emp.service.ReportingManagerService;
 import com.arshaa.emp.service.RoleBasedEmployeesServiceImpl;
@@ -60,7 +62,8 @@ public class MainController {
 	@Autowired
 	EmployeeProfileService epServ;
 	@Autowired
-	
+	LeaveService lServ;
+	@Autowired	
 
     RoleBasedEmployeesServiceImpl roleBasedServ;
 
@@ -508,5 +511,24 @@ public class MainController {
 
 
         }
+        @GetMapping("/getDepartmentNameByEmployeeId/{employeeId}")
+    	public ResponseEntity getDepartmentNameByEmployeeId(@PathVariable String employeeId) {
+    		return serv.getDepartmentNameByEmployeeId(employeeId);
+
+    	}
+        @GetMapping("/getEmployeeLeavesData/{month}/{year}/{dept}")
+    	public ResponseEntity getEmployeeLeavesData(@PathVariable int month,@PathVariable int year,@PathVariable String dept)
+    	{
+        	try
+        	{
+    		return new ResponseEntity<>(lServ.getEmployeeLeavesData(month, year, dept),HttpStatus.OK);
+        	}
+        	
+        	catch(Exception e)
+        	{
+        		return new ResponseEntity(e.getMessage(),HttpStatus.OK);
+
+        	}
+    	}
         
 }

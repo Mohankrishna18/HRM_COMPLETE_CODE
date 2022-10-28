@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import com.arshaa.model.DepartmentName;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -150,6 +151,10 @@ public class UserService {
 					GetIrmId.class);
 			GetSrmId as = template.getForObject("http://empService/emp/getSrmByEmployeeId/" + user.getEmployeeId(),
 					GetSrmId.class);
+			EmployeeName en = template.getForObject("http://empService/emp/getEmployeeNameByEmployeeId/" + user.getEmployeeId(),
+					EmployeeName.class);
+			DepartmentName dn = template.getForObject("http://empService/emp/getDepartmentNameByEmployeeId/" + user.getEmployeeId(),
+					DepartmentName.class);
 			java.sql.Date tSqlDate = new java.sql.Date(user.getSubmittedDate().getTime());
 			user.setSubmittedDate(tSqlDate);
 
@@ -159,6 +164,8 @@ public class UserService {
 //			user.setManagerApproval("pending");
 			user.setSubmittedDate(tSqlDate);
 			user.setLeaveOrwfh(user.getLeaveOrwfh());
+			user.setEmployeeName(en.getEmployeeName());
+			user.setDepartmentName(dn.getDepartmentName());
 
 			User savedUser = repository.save(user);
 
@@ -170,6 +177,7 @@ public class UserService {
 				d.setEmployeeleaveId(savedUser.getEmployeeleaveId());
 				d.setAppliedDate(e.getBetWeenDates());
 				d.setLeaveOrwfh(savedUser.getLeaveOrwfh());
+				d.setDepartmentName(savedUser.getDepartmentName());
 				BetweenDates bd = bro.save(d);
 				bdatesList.add(bd);
 
@@ -383,6 +391,7 @@ public class UserService {
 				usrm.setManagerApproval(g.getManagerApproval());
 				usrm.setEmployeeleaveId(g.getEmployeeleaveId());
 				usrm.setLeaveStatus(g.getLeaveStatus());
+				usrm.setLeaveOrwfh(g.getLeaveOrwfh());
 				EmployeeName al = template.getForObject(url + g.getEmployeeId(), EmployeeName.class);
 				usrm.setName(al.getEmployeeName());
 				getList.add(usrm);
@@ -457,6 +466,7 @@ public class UserService {
 				usrm.setManagerApproval(g.getManagerApproval());
 				usrm.setEmployeeleaveId(g.getEmployeeleaveId());
 				usrm.setLeaveStatus(g.getLeaveStatus());
+				usrm.setLeaveOrwfh(g.getLeaveOrwfh());
 				EmployeeName al = template.getForObject(url + g.getEmployeeId(), EmployeeName.class);
 				usrm.setName(al.getEmployeeName());
 				getList.add(usrm);
@@ -611,6 +621,18 @@ public class UserService {
 			e.getMessage();
 		}
 		return findByEmployeeIdAndLeaveOrwfh(employeeId,leaveOrwfh);
+	}
+	
+	public List<User> findLeavesByLeaveStatusAndEmployeeId(String leaveStatus, String employeeId) {
+		try {
+			// TODO Auto-generated method stub
+			return repository.findByLeaveStatusAndEmployeeId(leaveStatus, employeeId);
+		} catch (Exception e) {
+
+			e.getMessage();
+			return null;
+		}
+//					return findLeavesByLeaveStatusAndEmployeeId(leaveStatus, employeeId);
 	}
 	
 
