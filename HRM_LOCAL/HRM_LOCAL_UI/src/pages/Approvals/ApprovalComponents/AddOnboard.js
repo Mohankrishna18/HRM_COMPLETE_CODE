@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { Modal } from "react-bootstrap";
@@ -55,7 +56,7 @@ function AddOnboard(props) {
       yearsOfExperience,
       primarySkills,
       secondarySkills,
-      rrfId,jobTitle
+      requisitionId,jobTitle
     } = form;
     const newErrors = {};
 
@@ -84,8 +85,8 @@ function AddOnboard(props) {
     newErrors.yearsOfExperience = "Please Enter Years of Experience";
     // if (!jobTitle || jobTitle === "")
     //   newErrors.jobTitle = "Please Enter Job Title";
-      if (!rrfId || rrfId === "")
-      newErrors.rrfId = "Please Enter Job ID";
+      if (!requisitionId || requisitionId === "")
+      newErrors.requisitionId = "Please Enter Requisition ID";
     
     // if (!designation || designation === "")
     //   newErrors.designation = "Please Enter Designation";
@@ -330,14 +331,14 @@ function AddOnboard(props) {
                   <Row className="mb-4">
                     <Row md="12">
                   <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Select Job ID*</Form.Label>
+                <Form.Label>Select Requisition ID*</Form.Label>
                 <AutoCompleteComponent
                     outlined
                     dataSource={rrf}
-                    placeholder="select Job ID"
-                    fields={{ value: "rrfId", display:"rrfId"}}
-                    value={form.rrfId}
-                    isInvalid={!!errors.rrfId}
+                    placeholder="Select Requisition ID"
+                    fields={{ value: "requisitionId", display:"requisitionId"}}
+                    value={form.requisitionId}
+                    isInvalid={!!errors.requisitionId}
                     onChange={(e) => {
                       axios
                     .get(
@@ -347,7 +348,7 @@ function AddOnboard(props) {
                         console.log(response.data);
                         setJobT(response.data.data)
                     });
-                setField("rrfId", e.target.value);
+                setField("requisitionId", e.target.value);
             }}
               
                 // query={dataQuery}
@@ -787,4 +788,3 @@ function AddOnboard(props) {
   );
 }
 export default AddOnboard;
-

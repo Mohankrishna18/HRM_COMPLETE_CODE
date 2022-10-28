@@ -221,6 +221,19 @@ function ProfilePersonalDetailsTab() {
                 <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
                     <Col>
                         <Card.Subtitle
+                        >
+                            Emergency Phone Number:
+                        </Card.Subtitle>
+                    </Col>
+                    <Col md={{ offset: 1 }}>
+                        <Card.Subtitle style={{ color: "#999897" }}>
+                            {secondaryPhoneNumber}
+                        </Card.Subtitle>
+                    </Col>
+                </Row>
+                <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                    <Col>
+                        <Card.Subtitle
 
                         >
                             Date of Birth:
