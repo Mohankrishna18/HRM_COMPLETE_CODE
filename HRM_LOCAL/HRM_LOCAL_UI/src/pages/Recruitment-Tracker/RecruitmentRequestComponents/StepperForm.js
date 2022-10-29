@@ -30,16 +30,34 @@ const StepperForm = (props) => {
     const [projects, setProjects] = useState([]);
     const [departments, setDepartments] = useState([]);
     const [pocname, setPocName] = useState([]);
+    const [reqType1, setReqType1] = useState('');
+    const [reqType2, setReqType2] = useState('');
 
     const userdata = JSON.parse(sessionStorage.getItem("userdata"));
     const userType = userdata.data.userType;
     const employeeId = userdata.data.employeeId;
 
 
-    // const steps = [
-    //     "Primary Information",
-    //     "Additional Information",
-    // ];
+    const handleChange = (event) => {
+        console.log(event.target.value)
+
+        setField("reqType1", event.target.value)
+    }
+    console.log(reqType1);
+
+    // const handleChangee = (event) => {
+    //     console.log(event.target.value)
+    //    // setReqType1("internal")
+    //     setField("reqType1", event.target.value)
+    //     setReqType1("External")
+    // }
+
+    // const handleChange1 = (event) => {
+    //     setReqType2("New Recruitment")
+    // }
+    // const handleChangee1 = (event) => {
+    //     setReqType2("Replacement")
+    // }
 
     const loadPocNames = async () => {
         const res = await axios.get("/emp/getAllEmployeeMasterData");
@@ -111,7 +129,6 @@ const StepperForm = (props) => {
             technology,
             role,
             description,
-            rrfStatus,
             // workflowStatus,
             positions,
             pSkills,
@@ -124,11 +141,11 @@ const StepperForm = (props) => {
             empType,
             yoe,
             rate,
+
             reqType3,
             projectName,
             // uploadDoc,
             clientName,
-
             // comments,
             departmentName
         } = form;
@@ -166,25 +183,24 @@ const StepperForm = (props) => {
                 "Please enter Employment Type";
         if (
             !reqType3 ||
-            reqType3 === "" ||
-            !reqType3.match(/^(\w+\s)*\w+$/)
+            reqType3 === ""
         )
+
             newErrors.reqType3 =
                 "Please enter Requirement Type";
-                if (
-                    !priority ||
-                    priority === "" ||
-                    !priority.match(/^(\w+\s)*\w+$/)
-                )
-                    newErrors.priority =
-                        "Please enter Priority";
-                        if (
-                            !allocType ||
-                            allocType === "" ||
-                            !allocType.match(/^(\w+\s)*\w+$/)
-                        )
-                            newErrors.allocType =
-                                "Please enter Allocation Type";
+        if (
+            !priority ||
+            priority === "" ||
+            !priority.match(/^(\w+\s)*\w+$/)
+        )
+            newErrors.priority =
+                "Please enter Priority";
+        if (
+            !allocType ||
+            allocType === ""
+
+        )
+            newErrors.allocType = "Please Enter Allocation Type";
         if (
             !yoe ||
             yoe === ""
@@ -203,13 +219,7 @@ const StepperForm = (props) => {
 
         )
             newErrors.rate = "Please enter Rate";
-        // if (
-        //     !rrfCat ||
-        //     rrfCat === "" ||
-        //     !rrfCat.match(/^(\w+\s)*\w+$/)
-        // )
-        //     newErrors.rrfCat =
-        //         "Please enter Type";
+
         if (
             !departmentName ||
             departmentName === ""
@@ -234,7 +244,18 @@ const StepperForm = (props) => {
 
         )
             newErrors.projectName = "Please Enter Project Name";
+        // if (
+        //     !reqType1 ||
+        //     reqType1 === ""
 
+        // )
+        //     newErrors.reqType1 = "Please select any of above options";
+        //     if (
+        //         !reqType2 ||
+        //         reqType2 === ""
+
+        //     )
+        //         newErrors.reqType2 = "Please select any of above options";
         if (
             !workLocation ||
             workLocation === "" ||
@@ -380,64 +401,60 @@ const StepperForm = (props) => {
                                         </Form.Control.Feedback>
                                     </Form.Group>
 
-                                    <Card as={Col} md="2" style={{ padding: 5 }}>
-                                        {['radio'].map((type) => (
-                                            <div key={`inline-${type}`} >
-                                                <Form.Check
-                                                    required
-                                                    inline
-                                                    label="Internal"
-                                                    name="leaveOrwfh"
-                                                    type={type}
-                                                    id={`inline-${type}-1`}
-                                                // onChange={(event) => setLeaveOrwfh(event.target.value)}
-                                                // onChange={handleChange}
-                                                // value={leaveOrwfh}
-                                                />
-                                                <Form.Check
-                                                    required
-                                                    inline
-                                                    label="External"
-                                                    name="leaveOrwfh"
-                                                    type={type}
-                                                    id={`inline-${type}-2`}
-                                                // onChange={(event) => setLeaveOrwfh(event.target.value)}
-                                                //onChange={handleChangee}
-                                                //value={leaveOrwfh}
-                                                />
+                                    {/* <Card as={Col} md="2" style={{ padding: 5 }}> */}
 
-                                            </div>
-                                        ))}
+                                    <Card as={Col} md="2" style={{ padding: 5 }}>
+                                        <Form.Check
+                                            required
+                                            inline
+                                            label="Internal"
+                                            name="reqType1"
+                                            type='radio'
+                                            //id={`inline-${type}-1`}
+                                            //onChange={(event) => setInternalOrExternal(event.target.value)}
+                                            onChange={(e) => setField("reqType1", e.target.value)}
+                                            value="Internal"
+                                        />
+                                        <Form.Check
+                                            required
+                                            inline
+                                            label="External"
+                                            name="reqType1"
+                                            type='radio'
+                                            // id={`inline-${type}-2`}
+                                            // onChange={(event) => setLeaveOrwfh(event.target.value)}
+                                            onChange={(e) => setField("reqType1", e.target.value)}
+                                            value="External"
+
+                                        />
                                     </Card>
                                     <Card as={Col} md="2" style={{ padding: 5 }}>
-                                        {['radio'].map((type) => (
-                                            <div key={`inline-${type}`}>
-                                                <Form.Check
-                                                    required
-                                                    inline
-                                                    label="New Requirement"
-                                                    name="requirementType"
-                                                    type={type}
-                                                    id={`inline-${type}-3`}
-                                                // onChange={(event) => setLeaveOrwfh(event.target.value)}
-                                                //onChange={handleChange}
-                                                //value={leaveOrwfh}
-                                                />
-                                                <Form.Check
-                                                    required
-                                                    inline
-                                                    label="Replacement"
-                                                    name="requirementType"
-                                                    type={type}
-                                                    id={`inline-${type}-4`}
-                                                // onChange={(event) => setLeaveOrwfh(event.target.value)}
-                                                //onChange={handleChangee}
-                                                //value={leaveOrwfh}
-                                                />
+                                        <Form.Check
+                                            required
+                                            inline
+                                            label="New Recruitment"
+                                            name="reqType2"
+                                            type='radio'
+                                            //id={`inline-${type}-1`}
+                                            //onChange={(event) => setInternalOrExternal(event.target.value)}
+                                            onChange={(e) => setField("reqType2", e.target.value)}
+                                            value="New Recruitment"
+                                        />
+                                        <Form.Check
+                                            required
+                                            inline
+                                            label="Replacement"
+                                            name="reqType2"
+                                            type='radio'
+                                            // id={`inline-${type}-2`}
+                                            // onChange={(event) => setLeaveOrwfh(event.target.value)}
+                                            onChange={(e) => setField("reqType2", e.target.value)}
+                                            value="Replacement"
 
-                                            </div>
-                                        ))}
+                                        />
+
                                     </Card>
+
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Requirement Type *</Form.Label>
                                         <Form.Select
@@ -632,11 +649,11 @@ const StepperForm = (props) => {
                                             required
                                             className="allocType"
                                             type="text"
-                                        controlId="allocType"
-                                        
-                                        value={form.allocType}
-                                        onChange={(e) => setField("allocType", e.target.value)}
-                                        isInvalid={!!errors.allocType}
+                                            controlId="allocType"
+
+                                            value={form.allocType}
+                                            onChange={(e) => setField("allocType", e.target.value)}
+                                            isInvalid={!!errors.allocType}
                                         >
                                             <option>Select </option>
                                             <option>Billable</option>
@@ -688,14 +705,14 @@ const StepperForm = (props) => {
                                         <Form.Select
                                             required
 
-                                        className="priority"
-                                        type="text"
-                                        id="priority"
-                                        controlId="priority"
-                                        // onChange={(event) => setFirstName(event.target.value)}
-                                        value={form.priority}
-                                        onChange={(e) => setField("priority", e.target.value)}
-                                        isInvalid={!!errors.priority}
+                                            className="priority"
+                                            type="text"
+                                            id="priority"
+                                            controlId="priority"
+                                            // onChange={(event) => setFirstName(event.target.value)}
+                                            value={form.priority}
+                                            onChange={(e) => setField("priority", e.target.value)}
+                                            isInvalid={!!errors.priority}
                                         >
                                             <option>Select</option>
                                             <option>P1</option>
@@ -704,7 +721,7 @@ const StepperForm = (props) => {
                                         </Form.Select>
 
                                         <Form.Control.Feedback type="invalid">
-                                           {errors.priority}
+                                            {errors.priority}
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="12" style={{ padding: 10 }}>
@@ -783,7 +800,7 @@ const StepperForm = (props) => {
                                     </Form.Group>
 
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Working Hours *</Form.Label>
+                                        <Form.Label>Working Hours</Form.Label>
                                         <Form.Control
                                             name="workingHours"
                                             type="number"
@@ -992,3 +1009,4 @@ const StepperForm = (props) => {
     );
 };
 export default StepperForm;
+

@@ -37,6 +37,7 @@ import com.arshaa.emp.entity.Onboarding;
 import com.arshaa.emp.entity.UserClientProjectManagement;
 import com.arshaa.emp.model.AdditionalDetails;
 import com.arshaa.emp.model.Address;
+import com.arshaa.emp.model.DepartmentName;
 import com.arshaa.emp.model.DesignationName;
 import com.arshaa.emp.model.EducationalDetails;
 import com.arshaa.emp.model.EmployeeId;
@@ -2207,5 +2208,21 @@ public class MainServiceImpl implements MainService {
         return new ResponseEntity(en, HttpStatus.OK);
 
     }
+	@Override
+	public ResponseEntity getDepartmentNameByEmployeeId(String employeeId) {
+		EmployeeMaster employeeMaster = emRepo.getById(employeeId);
+
+		DepartmentName dn = new DepartmentName();
+		dn.setDepartmentName(employeeMaster.getDepartmentName());
+
+		return new ResponseEntity(dn, HttpStatus.OK);
+		
+	}
+	//Divya Changes
+		@Override
+		public String getEmployeeFullName(String employeedId) {
+			EmployeeMaster master = emRepo.getByEmployeeId(employeedId);
+			return master.getFullName();
+		}
 	
 }

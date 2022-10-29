@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.Optional;
+import com.arshaa.entity.User;
 
 import com.arshaa.entity.BetweenDates;
 @Repository
@@ -23,5 +25,10 @@ public interface BetweenDatesRepo extends JpaRepository<BetweenDates, Integer> {
 //	List<BetweenDates> findAllbetweenDatesAndleaveOrwfh(String employeeId, String leaveOrwfh);
 
 	List<BetweenDates> findByEmployeeIdAndLeaveOrwfh(String employeeId, String leaveOrwfh);
+	
+BetweenDates findByEmployeeleaveId(Integer employeeleaveId);
+	
+	@Query(value="select count(employee_id) AS days from between_dates where month(between_dates.applied_date)=?1 and year(between_dates.applied_date)=?2 and leave_orwfh=?3 and department_name=?4 and employee_id=?5",nativeQuery=true)
+    Integer findLeaveapplyingleavescountBYMonth(@Param("month") Integer month,@Param("year") Integer year,@Param("leave_orwfh") String leaveOrwfh,@Param("department_name") String departmentName,@Param("employee_id") String employeeId);
 	
 }

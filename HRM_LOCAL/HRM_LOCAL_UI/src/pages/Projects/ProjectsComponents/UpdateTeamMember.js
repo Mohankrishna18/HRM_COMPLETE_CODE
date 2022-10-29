@@ -283,7 +283,7 @@
 //             </Form.Control.Feedback>
 //             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
 //           </Form.Group>
-//           {/* 
+//           {/*
 //           <Form.Group as={Col} md="12" style={{ padding: 10 }}>
 //             <Form.Label>Project Name</Form.Label>
 //             <Form.Control
@@ -462,8 +462,9 @@
 
 // export default UpdateTeamMember;
 
-import React, { useEffect, useRef } from "react"; 
+import React, { useEffect, useRef, useContext } from "react";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { Card, FormSelect, InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
@@ -472,8 +473,11 @@ import axios from "../../../Uri";
 import { toast } from "react-toastify";
 //Assign team members to project
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "./ProjectUpdateTabs";
 
 const UpdateTeamMember = (props) => {
+  const params = useParams();
+  const { data } = useContext(UserContext);
   console.log(props.updateOnboard);
   console.log(props.data);
 
@@ -510,7 +514,7 @@ const UpdateTeamMember = (props) => {
   );
 
   const [projectAllocation, setProjectAllocation] = useState("");
-  const [projectId, setProjectId] = useState(props.data.projectId);
+  const [projectId, setProjectId] = useState(params.id);
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -656,7 +660,9 @@ const UpdateTeamMember = (props) => {
 
   return (
     <>
-    <Form.Label style={{ fontSize: "20px", color: "#FF9E14" }}>{props.data.projectName}</Form.Label>
+      <Form.Label style={{ fontSize: "20px", color: "#FF9E14" }}>
+        {"Project Name : " + data}
+      </Form.Label>
       <Form
         ref={forms}
         className="formone"
@@ -925,4 +931,3 @@ const UpdateTeamMember = (props) => {
 };
 
 export default UpdateTeamMember;
-

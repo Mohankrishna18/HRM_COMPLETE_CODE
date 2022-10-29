@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../Uri";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 
-function EmployeePersonalDetails(props) {
+function EmployeePersonalDetails() {
+  const params=useParams();
+    console.log(params.id);
+  
 
-  console.log(props.updateOnboard1);
+  // console.log(props.updateOnboard1);
   
   const payload = {
     firstName,
@@ -35,22 +39,22 @@ function EmployeePersonalDetails(props) {
   const [elevenerror, setElevenerror] = useState("");
   const [twelveerror, setTwelveError] = useState("");
 
-  const [firstName, setFirstName] = useState(props.updateOnboard1.firstName);
-  const [lastName, setLastName] = useState(props.updateOnboard1.lastName);
-  const [middleName, setMiddleName] = useState(props.updateOnboard1.middleName);
-  const [phoneNumber, setPhoneNumber] = useState(props.updateOnboard1.phoneNumber);
-  const [secondaryPhoneNumber, setSecondaryPhone] = useState(props.updateOnboard1.secondaryPhoneNumber);
-  const [dateOfBirth, setDateOfBirth] = useState(props.updateOnboard1.dateOfBirth);
-  const [primarySkills, setPrimarySkills] = useState(props.updateOnboard1.primarySkills);
-  const [secondarySkills, setSecondarySkills] = useState(props.updateOnboard1.secondarySkills);
-  const [email, setEmail] = useState(props.updateOnboard1.email);
-  const [bloodGroup, setBloodGroup] = useState(props.updateOnboard1.bloodGroup);
-  const [gender, setGender] = useState(props.updateOnboard1.gender);
-  const [maritalStatus, setMaritalStatus] = useState(props.updateOnboard1.maritalStatus);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [middleName, setMiddleName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [secondaryPhoneNumber, setSecondaryPhone] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [primarySkills, setPrimarySkills] = useState("");
+  const [secondarySkills, setSecondarySkills] = useState("");
+  const [email, setEmail] = useState("");
+  const [bloodGroup, setBloodGroup] = useState("");
+  const [gender, setGender] = useState("");
+  const [maritalStatus, setMaritalStatus] = useState("");
 
 
   useEffect(() => {
-    axios.get(`/emp/getnullvaluescount/${props.updateOnboard1.onboardingId}`).then((response) => {
+    axios.get(`/emp/getnullvaluescount/${params.id}`).then((response) => {
       console.log(response.data);
       setStatus(response.data);
     });
@@ -58,7 +62,7 @@ function EmployeePersonalDetails(props) {
 
   useEffect(() => {
     axios
-      .get(`/emp/getEmployeeDataByOnboardingId/${props.updateOnboard1.onboardingId}`)
+      .get(`/emp/getEmployeeDataByOnboardingId/${params.id}`)
       .then((response) => {
         setFirstName(response.data.data.firstName);
         setLastName(response.data.data.lastName);
@@ -81,7 +85,7 @@ function EmployeePersonalDetails(props) {
   const changeHandler = async (e) => {
     e.preventDefault();
     await axios.put(
-      `/emp/updatePersonalDetailsInPreOnboarding/${props.updateOnboard1.onboardingId}`,
+      `/emp/updatePersonalDetailsInPreOnboarding/${params.id}`,
       {
         firstName,
         lastName,
@@ -99,7 +103,7 @@ function EmployeePersonalDetails(props) {
     );
     
 
-    const url = `/emp/upload/${props.updateOnboard1.onboardingId}/`;
+    const url = `/emp/upload/${params.id}/`;
     const formData = new FormData();
     formData.append("file", file);
     formData.append("fileName", file.name);
@@ -135,7 +139,7 @@ console.log(event.target.files[0]);
   const [imge, setImge] = useState([]);
   useEffect(() => {
     axios
-      .get(`/emp/files/${props.updateOnboard1.onboardingId}`)
+      .get(`/emp/files/${params.id}`)
       .then((response) => {
         console.log(response.data);
         setImge(response.data);

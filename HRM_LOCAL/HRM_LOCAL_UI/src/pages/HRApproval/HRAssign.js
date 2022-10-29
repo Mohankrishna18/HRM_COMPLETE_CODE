@@ -70,7 +70,8 @@ function HRAssign(props) {
   const validateForm = () =>{
     const{
       department,
-      designation
+      designation,
+      hrcomment
     } = form;
 
     const newErrors ={};
@@ -78,6 +79,9 @@ function HRAssign(props) {
       newErrors.department = "Please Select Department";
     if (!designation || designation === "" )
       newErrors.designation = "Please Select Designation";
+      if (!hrcomment || hrcomment === "" )
+      newErrors.hrcomment = "Please Enter Comment";
+
 
       return newErrors;
     }
@@ -123,7 +127,7 @@ function HRAssign(props) {
     }
 
   };
-
+  const [hrcomment, setHrcomment] = useState([]);
   const [designations, setDesignations] = useState([]);
   useEffect(() => {
     axios.get("/designation/getAllDesignations").then((response) => {
@@ -343,6 +347,25 @@ function HRAssign(props) {
 
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
+            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Comment *</Form.Label>
+                <Form.Control 
+                    required
+                    type="text"
+                    as="textarea"
+                    placeholder="Comment"
+                    controlId="hrcomment"
+                    value={form.hrcomment}
+                    onChange={(e) => setField("hrcomment", e.target.value)}
+                    isInvalid={!!errors.hrcomment}
+                >
+                </Form.Control>
+                <Form.Control.Feedback type="invalid">
+                    {errors.hrcomment}
+                </Form.Control.Feedback>
+
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
             <Button
               variant="primary"
               style={{ marginTop: "5%", float: "right" }}
@@ -411,6 +434,28 @@ function HRAssign(props) {
 
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
+
+            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Comment *</Form.Label>
+                <Form.Control disabled
+                    required
+                    type="text"
+                    as="textarea"
+                    placeholder="Comment"
+                    controlId="hrcomment"
+                    value={form.hrcomment}
+                    onChange={(e) => setField("hrcomment", e.target.value)}
+                    isInvalid={!!errors.hrcomment}
+                >
+                </Form.Control>
+                <Form.Control.Feedback type="invalid">
+                    {errors.hrcomment}
+                </Form.Control.Feedback>
+
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+
+
             <Button disabled
               variant="primary"
               style={{ marginTop: "5%", float: "right" }}

@@ -96,8 +96,9 @@ public interface MainService {
 	public ResponseEntity updateEmploymentDetailsInPMOByEmployeeId(String employeeId, EmploymentDetails newEmp);
 	public ResponseEntity getByDepartment(String departmentName);
 	ResponseEntity getEmployeeNameDepDesByEmployeeId(String employeeId);
-
-
+	public ResponseEntity getDepartmentNameByEmployeeId(String employeeId);
+	//Divya changes
+	public String getEmployeeFullName(String employeedId);
 
     
     

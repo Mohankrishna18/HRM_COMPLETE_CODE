@@ -36,4 +36,6 @@ public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster,S
 	
 	@Query(value="select * from employeemaster where date_of_joining = CURRENT_DATE ", nativeQuery=true)
 	List<EmployeeMaster> findEmployeeMasterCountWithParticularDate();
+	
+	List<EmployeeMaster> getBydepartmentName(String departmentName);
 }
