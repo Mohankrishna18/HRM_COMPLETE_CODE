@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import MaterialTable from "material-table";
 import Card from "react-bootstrap/Card";
 import Grid from "@mui/material/Grid";
+import { useHistory } from "react-router-dom";
 import axios from "../../Uri";
 import { FiEdit } from "react-icons/fi";
 import { BsFillEyeFill } from "react-icons/bs";
-import {RiTeamFill} from "react-icons/ri";
+import { RiTeamFill } from "react-icons/ri";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
 import ProjectsView from "./ProjectsComponents/ProjectsView";
@@ -14,7 +15,7 @@ import AddProject from "./ProjectsComponents/AddProject";
 import ProjectUpdateTabs from "./ProjectsComponents/ProjectUpdateTabs";
 import DeleteProject from "./ProjectsComponents/DeleteProject";
 import ProjectTabs from "./ProjectsComponents/ProjectTabs";
-
+export const UserContext = createContext(null);
 function ProjectsMain() {
   const [show, setShow] = useState(false);
   const [viewShow, setViewShow] = useState(false);
@@ -35,6 +36,7 @@ function ProjectsMain() {
   const [deleteOnboard, setDeleteOnboard] = useState({});
   const [deleteProjects, setDeleteProjects] = useState(false);
 
+  const history = useHistory();
   const deleteHandleClose = () => setDeleteProjects(false);
 
   const pull_dataAdd = () => {
@@ -61,23 +63,24 @@ function ProjectsMain() {
     const response = await axios.get("/clientProjectMapping/getAllProjects");
     setData(response.data.data);
     console.log(response.data);
-
   };
 
   const [columns, setColumns] = useState([
     {
       title: "Project Name",
       field: "projectName",
+      // defaultGroupOrder: 1
     },
     {
       title: "Client Name",
       field: "clientName",
       type: "text",
     },
-    // {
-    //   title: "Business Unit",
-    //   field: "businessUnit",
-    // },
+    {
+      title: "Business Unit",
+      field: "businessUnit",
+      defaultGroupOrder: 0,
+    },
     {
       title: "Start Date",
       field: "startDate",
@@ -114,23 +117,26 @@ function ProjectsMain() {
 
   return (
     <div>
-      <Modal show={show} onHide={handleClose} size="xl" >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px",color:"white" }}>
+      <Modal show={show} onHide={handleClose} size="xl">
+        <Modal.Header
+          closeButton
+          style={{
+            backgroundColor: "#FF9E14",
+            paddingTop: "5px",
+            paddingBottom: "5px",
+            color: "white",
+          }}
+        >
           <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>
             Edit Project
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* <ProjectUpdate
-            updateOnboard={updateOnboard}
+          {/* <ProjectUpdateTabs
+            rowData={updateOnboard}
             func={pull_dataUpdate}
-            handleClose={handleClose}
+            // data={data}
           /> */}
-          <ProjectUpdateTabs
-          rowData={updateOnboard}
-          func={pull_dataUpdate}
-          // data={data}
-           />
         </Modal.Body>
       </Modal>
 
@@ -205,7 +211,7 @@ function ProjectsMain() {
           <MaterialTable
             title=""
             columns={columns}
-            style={{ color: "black", fontSize: "14px" }}
+            style={{ color: "black", fontSize: "13px" }}
             data={data ? data : []}
             editable={{}}
             options={{
@@ -216,12 +222,9 @@ function ProjectsMain() {
 
                 fontSize: "16px",
 
-                paddingTop:"5px",
+                paddingTop: "5px",
 
-                paddingBottom:"2px",
-
-               
-
+                paddingBottom: "2px",
               },
 
               pageSize: 15,
@@ -234,7 +237,7 @@ function ProjectsMain() {
 
               actionsColumnIndex: -1,
 
-              //grouping: true,
+              grouping: true,
 
               exportButton: true,
             }}
@@ -254,16 +257,19 @@ function ProjectsMain() {
                     <Button
                       variant="info"
                       onClick={(event) => {
-                        setShow(true);
+                        // setShow(true);
                         console.log(props);
                         setUpdateOnboard(props.data);
+                        localStorage.setItem("project", JSON.stringify(props));
+                        history.push(
+                          `/app/projectUpdateTabs/${props.data.projectId}`
+                        );
                       }}
                     >
                       {/* Edit */}
-                      {/* <FiEdit /> */}
+                      <FiEdit />
 
-                      <RiTeamFill style={{ color: "white" }}/>
-
+                      {/* <RiTeamFill style={{ color: "white" }} /> */}
                     </Button>{" "}
                     <Button
                       variant="danger"
@@ -274,7 +280,7 @@ function ProjectsMain() {
                       }}
                     >
                       {/* Delete */}
-                      <RiDeleteBin6Line/>
+                      <RiDeleteBin6Line />
                     </Button>
                   </Stack>
                 </div>

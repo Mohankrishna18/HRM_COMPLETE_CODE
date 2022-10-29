@@ -30,7 +30,7 @@ const ApplicantsRecievedByDepartment = () => {
       },
    
   ];
-  const paletteSemanticRed = '#F4664A';
+  const paletteSemanticRed = '#ffa500';  
   const brandColor = '#228B22';
   const config = {
     data,
@@ -38,7 +38,7 @@ const ApplicantsRecievedByDepartment = () => {
     yField: 'value',
     seriesField: '',
     color: ({ type }) => {
-      if (type === '10-30分' || type === '30+分') {
+      if (type === 'Sales' || type === 'Finance') {
         return paletteSemanticRed;
       }
 

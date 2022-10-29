@@ -2218,4 +2218,11 @@ public class MainServiceImpl implements MainService {
 		return new ResponseEntity(dn, HttpStatus.OK);
 		
 	}
+	//Divya Changes
+		@Override
+		public String getEmployeeFullName(String employeedId) {
+			EmployeeMaster master = emRepo.getByEmployeeId(employeedId);
+			return master.getFullName();
+		}
+	
 }

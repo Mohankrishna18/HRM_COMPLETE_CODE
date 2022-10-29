@@ -1,0 +1,52 @@
+
+/* for upper cards -- first row cards hover effect */
+.box:hover{
+    box-shadow: 0px 10px 3px 0px rgb(220, 215, 215);
+    /* transform: scale(1.1); */
+    /*  ***  translateY(-10px) means cards move upper*** */
+    transform: translateY(-10px);
+    /* transform: translateX(-10px); */
+    /* transition: all 1s ease-in-out 1s; */
+   
+
+}
+.box{
+    box-shadow: 0px 3px 8px 0px rgb(223, 218, 218);
+    /* transition: transform 250ms; */
+
+}
+
+/* for second row cards hover effects */
+.box1:hover{
+    box-shadow: 0px 10px 3px 0px rgb(220, 215, 215);
+    /* transform: scale(1.1); */
+    /*  translateY(10px) means cards move down */
+    transform: translateY(10px);
+    /* transform: translateX(-10px); */
+    /* transition: all 1s ease-in-out 1s; */
+   
+
+}
+.box1{
+    box-shadow: 0px 3px 8px 0px rgb(223, 218, 218);
+    /* transition: transform 250ms; */
+
+}
+
+
+/* for graph hover effect */
+.grph{
+    box-shadow: 0px 3px 3px 0px rgb(223, 218, 218);
+    
+   
+}
+
+.grph:hover{
+    box-shadow: 0px 2px 3px 0px rgb(220, 215, 215);
+    /* transform: translateY(-10px); */
+    transform: scale(1.1);
+}
+
+.fnt{
+    font-family: 'Montserrat', sans-serif;
+}
