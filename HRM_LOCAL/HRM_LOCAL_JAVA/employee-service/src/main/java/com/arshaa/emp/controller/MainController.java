@@ -531,4 +531,10 @@ public class MainController {
         	}
     	}
         
+      //Divya changes
+        @GetMapping("/getEmployeeFullNameByEmployeeId/{employeeId}")
+        public String getEmployeeFullNameByEmployeeId(@PathVariable("employeeId") String employeeId) {
+        	return serv.getEmployeeFullName(employeeId);   
+        	}
+        
 }

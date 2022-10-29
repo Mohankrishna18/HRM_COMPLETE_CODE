@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext} from "react";
 import MaterialTable from "material-table";
+import {useParams} from 'react-router-dom'
 import Card from "react-bootstrap/Card";
 import Grid from "@mui/material/Grid";
 import axios from "../../../Uri";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { UserContext } from "./ProjectUpdateTabs";
 
 
 function TeamMembersTab(props) {
-  console.log(props.rowData)
-  const rowData = props.rowData;
+  const {data } = useContext(UserContext)
+  console.log(props.rowData.data.projectName)
+ // const rowData = props.rowData;
   useEffect(() => {
     loadData();
   }, [props.data]);
-
+const params = useParams()
+console.log(params)
   const loadData = async (e) => {
-    const response = await axios.get(`clientProjectMapping/getAllProjectTeams/Active/${rowData.projectId}`);
+    const response = await axios.get(`clientProjectMapping/getAllProjectTeams/Active/${params.id}`);
     setData(response.data.data);
     console.log(response.data.data);
   };
@@ -46,7 +50,7 @@ function TeamMembersTab(props) {
       editable: "never",
     },
     {
-      title: "Assign Date",
+      title: "Assigned Date",
       field: "assignedDate",
       type: "date",
       editable: "never",
@@ -72,7 +76,7 @@ function TeamMembersTab(props) {
     },
   ]);
 
-  const [data, setData] = useState([]);
+  const [data1, setData] = useState([]);
   //const [filteredData, setFileteredData] = useState([]);
 
   //const result = data.filter(emp => emp.status === "Active")
@@ -80,9 +84,9 @@ function TeamMembersTab(props) {
 
   return (
     <MaterialTable
-      title= {" Project Name "+props.rowData.projectName}
+      title= {" Project Name  : " + data}
       columns={columns}
-      data={data}
+      data={data1}
       options={{
         headerStyle: {
           backgroundColor: "#FF9E14",
@@ -94,9 +98,6 @@ function TeamMembersTab(props) {
           paddingTop:"5px",
 
           paddingBottom:"2px",
-
-         
-
         },
 
         pageSize: 10,
