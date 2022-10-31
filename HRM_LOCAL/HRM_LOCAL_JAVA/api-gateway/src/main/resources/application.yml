@@ -84,7 +84,11 @@ spring:
         - id: RecruitmentTracker
           uri: lb://RecruitmentTracker
           predicates:
-            - Path=/recruitmentTracker/**           
+            - Path=/recruitmentTracker/** 
+        - id: RecruitmentTracker
+          uri: lb://RecruitmentTracker
+          predicates:
+            - Path=/candidate/**          
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin

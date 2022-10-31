@@ -69,7 +69,7 @@ import BandsMain from "../pages/Bands/BandsMain";
 import EmploymentTypeMain from "../pages/EmploymentType/EmploymentTypeMain";
 import IntegrateLeaveToApply from "../pages/LeaveManagement/IntegrateLeaveToApply";
 import OnboardedEmployeesTable from "../pages/Approvals/ApprovalComponents/OnboardedEmployeesTable";
-
+import ProjectUpdateTabs from "../pages/Projects/ProjectsComponents/ProjectUpdateTabs";
 
 
 import HrLeavesToApproveMain from "../pages/HrLeavesToApprove/HrLeavesToApproveMain";
@@ -213,6 +213,24 @@ export default [
     icon: <FcList />,
     title: "Assign Task",
     permission: [Roles.pmohead, Roles.manager, Roles.irm],
+  },
+  {
+    component: ProjectUpdateTabs,
+    path: "/projectUpdateTabs/:id",
+    // type: "null",
+  
+    // icon: <FcApprove />,
+    // //title: "Projects",
+    permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager],
+  },
+  {
+    component: ProjectUpdateTabs,
+    path: "/projectUpdateTabs/:id",
+    // type: "null",
+  
+    // icon: <FcApprove />,
+    // //title: "Projects",
+    permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager],
   },
   {
     component: MyTask,
@@ -646,7 +664,23 @@ export default [
     title: "Requisition Dashboard",
     permission: [Roles.pmohead]
   },
+  
   {
+
+    component: EmployeeDashboard,
+
+    path: "/Employee_Dashboard",
+
+    type: "null",
+
+    icon: <FcApproval/>,
+
+    title: "Requisition Dashboard",
+
+    permission: [Roles.employee]
+
+  },
+{
     component: PMORequisitionMain,
     path: "/PMORequisitionMain",
     type: "null",

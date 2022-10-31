@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Col, Row } from 'react-bootstrap'
+import PMOTable from '../PMOTable';
 import ApplicantsRecievedByDepartment from './ApplicantsRecievedByDepartment';
 import ApplicantsMonthly from './ApplicatntsMonthly';
 import PositionsOpenByDepartment from './PositionsOpenByDepartment';
@@ -14,11 +15,12 @@ const OverAllGraphs = () => {
             <Row>
 
                 {/* First Graph */}
-                <Col md={5}>
+                <Col md={6}>
 
-                    <Card>
-                        <Card.Body >
-                            <h4 align="center"> Positions Open By Department </h4>
+                    {/*  className='grph'*/}
+                    <Card >
+                        <Card.Body  >
+                            <h4 align="center">  Business Unit </h4>
                             {/* Applicant Graph */}
                             <div style={{ height: "30vh", height: "200px", }}>
 
@@ -29,7 +31,9 @@ const OverAllGraphs = () => {
 
                 </Col>
 
-                <Col></Col>
+                {/* Verticle line */}
+                <Col className='vl' style={{ paddingLeft: "0px", paddingRight: "0px", height: '235px' }} ></Col>
+
 
 
                 {/* Second Graph */}
@@ -54,15 +58,19 @@ const OverAllGraphs = () => {
 
 
             <br></br>
-            <br></br>
+            {/* <br></br> */}
 
             {/* Second Line --> Graph --> Second row */}
             <div>
 
                 <Row>
 
-                    <Col sm={5}>  </Col>
-                    <Col></Col>
+                    {/* table */}
+                    <Col sm={6}>
+                    <PMOTable/>
+
+                    </Col>
+                    {/* <Col></Col> */}
                     <Col sm={6}>
                         <Card >
                             <Card.Body>
