@@ -19,17 +19,20 @@ import { FcApproval } from "react-icons/fc";
 import { FcWebcam } from "react-icons/fc";
 import EmploymentDetailsTab from "./EmploymentDetailsTab";
 import { FiEdit } from "react-icons/fi";
+import {useHistory} from 'react-router-dom'
+
 import EmployeePersonalDetails from "../../EditEmployeeDetails/EmployeePersonalDetails";
 import EmployeeAddressDetails from "../../EditEmployeeDetails/EmployeeAddressDetails";
 import EmployeeAditionalDetails from "../../EditEmployeeDetails/EmployeeAdditionalDetails";
 import EmployeeEducationalDetails from "../../EditEmployeeDetails/EmployeeEducationalDetails";
 import EmployeeExperienceDetails from "../../EditEmployeeDetails/EmployeeExperienceDetails";
-
-
+import EditEmployeeDetailsTabs from "../../EditEmployeeDetails/EditEmployeeDetailsTabs";
 
 // import ApprovalView from "./ApprovalView"; 
 
 function OnboardedEmployeesTable() {
+
+
   const [show, setShow] = useState(false);
   const [viewShow, setViewShow] = useState(false);
 
@@ -50,6 +53,11 @@ function OnboardedEmployeesTable() {
   const [addStatus, setAddStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
   const [viewStatus, setViewStatus] = useState(false);
+  const history = useHistory();
+
+  function gotoStepperForm(){
+    history.push("/app/approvals/editDetails");
+  }
 
   const pull_dataAdd = () => {
     setAddStatus(!addStatus);
@@ -99,18 +107,10 @@ function OnboardedEmployeesTable() {
     },
     
     {
-      title: "Contact_Number",
+      title: "Contact Number",
       field: "phoneNumber",
       type: "number",
     },
-
-    // {
-    //   title: "Job Title",
-    //   field: "jobTitle",
-    // },
-
-  
-
   ]);
 
   return (
@@ -214,88 +214,8 @@ function OnboardedEmployeesTable() {
           </Button>
         </Modal.Footer>
       </Modal>
-
-      <Modal show={editShow} static={true} centered onHide={handleClose} size="lg"  style={{paddingBottom :"0px"}}>
-        <Modal.Header closeButton onClick={viewHandleClose} style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Onboarding Form</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-
-          <Tabs
-            defaultActiveKey="Personal Details"
-            transition={false}
-            id="noanim-tab-example"
-            className="mb-3"
-            style={{
-              justifyContent: "center",
-              color: "black",
-              // backgroundColor: "#FAFDD0",
-              fontSize: "16px",
-              padding: 10,
-            }}
-          >
-            <Tab
-              eventKey="Personal Details"
-              title="Personal Details"
-              style={{ backgroundColor: "white" }}
-            >
-              <EmployeePersonalDetails
-                updateOnboard1={updateOnboard1}
-                viewHandleClose={viewHandleClose}
-              />
-            </Tab>
-            <Tab
-              eventKey="Address"
-              title="Address"
-              style={{ backgroundColor: "white" }}
-            >
-              <EmployeeAddressDetails
-                updateOnboard1={updateOnboard1}
-                viewHandleClose={viewHandleClose}
-              />
-            </Tab>
-            <Tab
-              eventKey="Additional Details"
-              title="Additional Details"
-              style={{ backgroundColor: "white" }}
-            >
-              <EmployeeAditionalDetails
-                updateOnboard1={updateOnboard1}
-                viewHandleClose1={viewHandleClose1}
-              />
-            </Tab>
-            {/* <Tab
-              eventKey="Employment Details"
-              title="Employment Details"
-              style={{ backgroundColor: "white" }}
-            >
-              <EmploymentDetailsTab 
-              viewOnboard={updateOnboard} 
-              viewHandleClose={viewHandleClose}/>
-          </Tab> */}
-            <Tab
-              eventKey="Education"
-              title="Education"
-              style={{ backgroundColor: "white" }}
-            >
-              <EmployeeEducationalDetails
-                updateOnboard1={updateOnboard1}
-                viewHandleClose1={viewHandleClose1}
-              />
-            </Tab>
-            <Tab
-              eventKey="Experience"
-              title="Experience "
-              style={{ backgroundColor: "white" }}
-            >
-              <EmployeeExperienceDetails
-                updateOnboard1={updateOnboard1}
-                viewHandleClose1={viewHandleClose1}
-              />
-            </Tab>
-          </Tabs>
-        </Modal.Body>
-      </Modal>
+      
+      {/* <EditEmployeeDetailsTabs show={editShow} static={true} centered onHide={handleClose} size="lg"  style={{paddingBottom :"0px"}}/> */}
 
       <Card
         style={{
@@ -310,7 +230,7 @@ function OnboardedEmployeesTable() {
             <Col>
               <Card.Title>Onboardings</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                Jobs / Shortlisted Candidates{" "}
+                Jobs / Shortlisted Candidates
               </Card.Subtitle>
             </Col>
             <Col>
@@ -391,17 +311,22 @@ function OnboardedEmployeesTable() {
                         console.log(props);
                         setViewOnboard(props.data);
                       }}
-                    > {" "}
-                      <FcWebcam />{" "}
+                    >
+                      
+                      <FcWebcam />
                        View
                     </Button>
+                    
                     <Button style={{paddingTop:"10px"}}
                      variant="white"
+                     
                      onClick={(event) => {
-                      setEditShow(true);
-                       console.log(props);
-                       setUpdateOnboard1(props.data);
+                      history.push(`/app/approvals/editDetails/${props.data.onboardingId}`)
+                      // setEditShow(true);
+                      //  console.log(props);
+                      //  setUpdateOnboard1(props.data);
                      }}
+                   
                    >
                       <FiEdit />Edit
                    </Button>

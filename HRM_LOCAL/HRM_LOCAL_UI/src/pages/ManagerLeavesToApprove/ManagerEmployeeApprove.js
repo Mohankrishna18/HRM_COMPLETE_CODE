@@ -1,10 +1,11 @@
-import {React, useState} from 'react';
+import {React, useState,useRef} from 'react';
 import {Button,Row,Col, Form} from "react-bootstrap";
 import axios from "../../Uri";
 import { toast } from "react-toastify";
 
 
 function ManagerEmployeeApprove(props) {
+    const forms = useRef(null);
     console.log(props.leaveID.employeeleaveId);
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
@@ -17,12 +18,26 @@ function ManagerEmployeeApprove(props) {
                 [field]: null,
             });
     };
-
-    const da = JSON.parse(sessionStorage.getItem('userdata'))
-    const userType = da.data.userType;
-    console.log(userType);
-
+    const validateForm = () =>{
+        const{
+            irmApproveReason
+        } = form;
+        const newErrors ={};
+        if (!irmApproveReason || irmApproveReason === "" )
+        newErrors.irmApproveReason = "Please Enter Comment";
+        return newErrors;
+      }
     const ApproveHandler = (e) => {
+        const formErrors = validateForm();
+
+    console.log(Object.keys(formErrors).length);
+
+    if (Object.keys(formErrors).length > 0) {
+
+      setErrors(formErrors);
+
+      console.log("Form validation error");
+    }else{
         // e.prevetDefault();
         const notify = () => toast("Leave  is approved");
         // handleClose();
@@ -31,7 +46,7 @@ function ManagerEmployeeApprove(props) {
         console.log(props.leaveID);
         const obj = { leaveStatus: "Approved" };
         const form1 = Object.assign(form, obj);
-        axios.put(`/leave/managerupdateLeave/${employeeleaveId}/${userType}`,form1)
+        axios.put(`/leave/managerupdateLeave/${employeeleaveId}`,form1)
         .then((res)=>{
             console.log(res)
             if(res.status == 200){
@@ -48,6 +63,7 @@ function ManagerEmployeeApprove(props) {
         props.handleClose();
        
         notify();
+    }
       };
   return (
     <div>
@@ -71,14 +87,16 @@ function ManagerEmployeeApprove(props) {
                         onChange={(e) => setField("irmApproveReason", e.target.value)}
                         isInvalid={!!errors.irmApproveReason}
                     ></Form.Control>
+                    <Form.Control.Feedback>{errors.irmApproveReason}</Form.Control.Feedback>
                 </Form.Group>
-
-            </Form>
-            <Button variant="primary" style={{ marginTop: "5%", float: "right" }}
+                <Button variant="primary" style={{ marginTop: "5%", float: "right" }}
             onClick={ApproveHandler}
             >
             Yes
           </Button>
+
+            </Form>
+            
            
        
         
