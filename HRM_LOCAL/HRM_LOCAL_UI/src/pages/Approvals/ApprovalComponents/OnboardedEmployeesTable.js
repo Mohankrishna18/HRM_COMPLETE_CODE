@@ -82,8 +82,8 @@ function OnboardedEmployeesTable() {
 
   const [columns, setColumns] = useState([
     {
-      title: "Job ID",
-      field: "rrfId",
+      title: "Requisition ID",
+      field: "requisitionId",
       
     },
     {

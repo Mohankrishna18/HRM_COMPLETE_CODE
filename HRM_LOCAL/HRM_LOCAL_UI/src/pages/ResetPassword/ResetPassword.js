@@ -36,7 +36,8 @@ const ResetPassword = () => {
         })
         .catch((error) => {
           console.log(error.response.data);
-          toast.error(error.response.data, {
+          toast.error("Invalid EmployeeId and OldPassword", {
+
             autoClose: 1000,
           });
         });
