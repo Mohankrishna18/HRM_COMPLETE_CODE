@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ProjectUpdate = (props) => {
+  console.log(props)
   const { data, setData } = useContext(UserContext);
   const [updateOnboard, setUpdateOnboard] = useState([]);
   const [projectName, setProjectName] = useState("");
@@ -42,7 +43,7 @@ const ProjectUpdate = (props) => {
     );
     setData(response.data.projectName);
     setUpdateOnboard(response.data);
-    setProjectName(response.data.projectName);
+    setProjectName(response.data.projectName) ;
     setProjectManager(response.data.projectManager);
     setBusinessUnit(response.data.businessUnit);
     setStartDate(response.data.startDate);
@@ -97,9 +98,9 @@ const ProjectUpdate = (props) => {
   // Get API's for reportingManager(projectManger)
   const [reportingManager, setReportingManager] = useState([]);
   useEffect(() => {
-    axios.get("/emp/getreportingmanager").then((response) => {
+    axios.get("/emp/getUsersNamesByBand").then((response) => {
       console.log(response.data);
-      setReportingManager(response.data.data);
+      setReportingManager(response.data);
     });
   }, []);
 
@@ -303,10 +304,11 @@ const ProjectUpdate = (props) => {
                 onChange={(e) => setProjectManager(e.target.value)}
                 isInvalid={!!errors.projectManager}
               >
-                <option>{projectManager}</option>
-                {reportingManager.map((reportingManagerr) => (
-                  <option>{reportingManagerr.projectManager}</option>
-                ))}
+                 <option value={projectManager}>{projectManager} </option>
+                  {reportingManager.map((projectManager) => (
+                    <option value={projectManager.name}>{projectManager.name}</option>
+                  
+                  ))}
               </Form.Select>
               <Form.Control.Feedback type="invalid">
                 {errors.projectManager}

@@ -50,19 +50,20 @@ console.log(params)
       editable: "never",
     },
     {
-      title: "Assigned Date",
-      field: "assignedDate",
+      title: "Allocation Start Date",
+      field: "startDate",
       type: "date",
       editable: "never",
     },
     {
-      title: "End Date",
+      title: "Allocation End Date",
       field: "endDate",
       type: "date",
+      editable: "never",
     },
    
     {
-      title: "Project Allocation",
+      title: "Project Allocation(%)",
       field: "projectAllocation",
       type: "text",
      
