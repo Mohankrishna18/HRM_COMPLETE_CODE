@@ -197,25 +197,37 @@ const UpdateTask = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>User Story *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="UserStory"
-                  controlId="userStory"
-                  value={form.userStory}
-                  onChange={(e) => setField("taskType", e.target.value)}
-                  isInvalid={!!errors.userStory}
-                >
-                  <option>Select User Story</option>
-                  <option>jhgfd</option>
-                  <option>Task</option>
-                 
-                </Form.Select>
+          <Form.Label>User Story </Form.Label>
+<Form.Control
 
-                <Form.Control.Feedback type="invalid">
-                  {errors.userStory}
-                </Form.Control.Feedback>
+disabled
+
+  required
+
+  className="userStory"
+
+  type="text"
+
+  placeholder="User Story"
+
+  // onChange={(event) => setclientName(event.target.value)}
+
+  defaultValue={props.updateOnboard.userStory}
+
+  value={userStory}
+
+  maxLength={30}
+
+  onChange={(e) => setField("userStory", e.target.value)}
+
+  isInvalid={!!errors.userStory}
+
+>
+
+</Form.Control>
+<Form.Control.Feedback type="invalid">
+  {errors.userStory}
+</Form.Control.Feedback>
               </Form.Group>
           <Form.Group className="mb-3" as={Col} md="12">
             <Form.Label>Task Title *</Form.Label>

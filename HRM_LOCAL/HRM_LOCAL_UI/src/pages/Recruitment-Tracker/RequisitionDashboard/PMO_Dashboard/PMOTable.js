@@ -9,8 +9,8 @@ function PMOTable() {
                 <tr>
                     <th>#</th>
                     <th>Business Unit</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
+                    <th>Job Title</th>
+                    <th>No. Of Positions</th>
                 </tr>
             </thead>
             <tbody>
