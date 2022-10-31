@@ -20,4 +20,6 @@ public interface RequisitionRequestRepository extends JpaRepository<RequisitionR
 		RequisitionRequestEntity findByRrfId(Long rrfId);
 		
 	    List<RequisitionRequestEntity> findByRrfStatus(String rrfStatus);
+	    
+	    RequisitionRequestEntity findByRequisitionId(String requisitionId);
 }

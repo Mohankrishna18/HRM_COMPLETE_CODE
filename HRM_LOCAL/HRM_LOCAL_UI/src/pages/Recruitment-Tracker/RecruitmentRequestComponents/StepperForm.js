@@ -377,7 +377,7 @@ const StepperForm = (props) => {
         <div >
             {activeStep === 0 && (
                 <div>
-                    <h5 style={{ textDecoration: "underline", paddingTop: "10px" }}>Arshaa Employee Requisition Form</h5>
+                    <h5 style={{paddingTop: "10px" }}>Arshaa Employee Requisition Form</h5>
                     <Form className="formone">
                         <Row>
                             <Col md="9">
@@ -585,7 +585,7 @@ const StepperForm = (props) => {
                                             type="text"
                                             id="workLocation"
                                             controlId="workLocation"
-                                            placeholder="Work Lcoation"
+                                            placeholder="Work Location"
                                             // onChange={(event) => setFirstName(event.target.value)}
                                             value={form.workLocation}
                                             onChange={(e) => setField("workLocation", e.target.value)}

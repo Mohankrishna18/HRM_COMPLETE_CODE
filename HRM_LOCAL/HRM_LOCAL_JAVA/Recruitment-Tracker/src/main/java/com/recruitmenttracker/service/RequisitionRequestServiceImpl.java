@@ -247,11 +247,11 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
     }
 
     @Override
-    public ResponseEntity getRequisitionsByRrfId(long rrfId) {
+    public ResponseEntity getRequisitionsByRequisitionId(String requisitionId) {
         RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
         try {
 
-            Optional<RequisitionRequestEntity> rfs = rrRepository.findById(rrfId);
+            RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
             rrr.setStatus(true);
             rrr.setMessage("Geting Data Succussfully");
             rrr.setData(rfs);

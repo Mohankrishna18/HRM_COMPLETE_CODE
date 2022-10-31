@@ -40,9 +40,9 @@ public class RequisitionTrackerController {
 	public ResponseEntity getRequisitionsByRrfStatus() {
 		return serv.getRequisitionsByRrfStatus();
 	}
-	@GetMapping("/getDataById/{rrfId}")
-	public ResponseEntity getRequisitionsByRrfId(@PathVariable long rrfId) {
-		return serv.getRequisitionsByRrfId(rrfId);
+	@GetMapping("/getDataById/{requisitionId}")
+	public ResponseEntity getRequisitionsByrRequisitionId(@PathVariable String requisitionId) {
+		return serv.getRequisitionsByRequisitionId(requisitionId);
 	}
 	
 	@DeleteMapping("/deleteRR/{rrfId}")

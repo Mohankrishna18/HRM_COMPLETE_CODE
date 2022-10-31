@@ -140,7 +140,7 @@ export default [
   {
     component: HrDashboardMain,
 
-    path: "/",
+    path: "/dashboard",
 
     type: "myprofile",
 
@@ -162,7 +162,7 @@ export default [
   },
   {
     component: MyProfileMain,
-    path: "/myProfile",
+    path: "/",
     type: "myprofile",
     icon: <FcBusinessman />,
     title: "My Profile",
@@ -664,7 +664,7 @@ export default [
     type: "null",
     path: "/rrf",
     icon: <FcVoicePresentation />,
-    title: "Requistion Request",
+    title: "Requisition Request",
     permission: [Roles.manager, Roles.irm],
   },
   {

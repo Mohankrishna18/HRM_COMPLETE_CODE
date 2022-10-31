@@ -10,23 +10,23 @@ import Typography from "@mui/material/Typography";
 
 const steps = [
   {
-    label: "Request Creation Date",
+    label: "Request Creation",
     description:"11/01/2022"
   },
   {
-    label: "BU Head Approval Date",
+    label: "BU Head Approval",
     description:"12/01/2022"
   },
   {
-    label: "Send To TAG Date",
+    label: "TAG Review",
     description:"12/01/2022"
   },
   {
-    label: "Assign TAG Member Date",
+    label: "Assign TAG Member",
     description:"13/01/2022"
-  },
+  },  
   {
-    label: "Request Closed Date",
+    label: "Request Closed",
     description:"12/02/2022"
   }
 ];
