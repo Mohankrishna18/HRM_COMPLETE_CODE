@@ -156,7 +156,7 @@ paddingBottom:"4px"  }}>
           <MaterialTable  
              title="Arshaa Employee Requisitions"
             columns={RRColumns}
-            style={{ color: "black", fontSize: "0.8rem" }}
+            style={{ color: "black", fontSize: "0.9rem" }}
             data={data}
             editable={{}}
             options={{
