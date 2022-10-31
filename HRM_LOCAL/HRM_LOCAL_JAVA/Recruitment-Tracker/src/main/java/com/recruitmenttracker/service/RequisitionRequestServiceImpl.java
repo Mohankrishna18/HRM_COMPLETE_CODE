@@ -37,11 +37,11 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
             newRR.setRrfStatus("Pending Approval");
             RequisitionRequestEntity raiseRequest = rrRepository.save(newRR);
 
-            String p = StringUtils.substring(raiseRequest.getProjectName(), 0, 3);
-            String c = StringUtils.substring(raiseRequest.getClientName(), 0, 3);
+//            String p = StringUtils.substring(raiseRequest.getProjectName(), 0, 3);
+//            String c = StringUtils.substring(raiseRequest.getClientName(), 0, 3);
           
-
-            raiseRequest.setRequisitionId((p.concat(c)).toUpperCase()+0+(raiseRequest.getRrfId()));
+              String p = "REQ";
+            raiseRequest.setRequisitionId(p+0+(raiseRequest.getRrfId()));
             RequisitionRequestEntity rreq = rrRepository.save(raiseRequest);
 
             rrr.setStatus(true);
