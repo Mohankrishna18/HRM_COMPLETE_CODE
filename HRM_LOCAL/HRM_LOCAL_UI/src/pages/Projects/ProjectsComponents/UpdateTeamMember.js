@@ -642,7 +642,7 @@ const UpdateTeamMember = (props) => {
         projectId,
       })
       .then((response) => {
-        const user = response.data;
+        console.log(response)
         if (response.data.status) {
           props.func();
         } else {

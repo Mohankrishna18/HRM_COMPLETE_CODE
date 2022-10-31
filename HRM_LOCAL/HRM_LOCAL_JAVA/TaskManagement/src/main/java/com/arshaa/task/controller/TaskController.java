@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -90,5 +91,10 @@ public class TaskController {
 	public ResponseEntity calculateRemainingHours(@PathVariable int taskId, @PathVariable double actualHours) {
 		return new ResponseEntity(serv.calculateRemainingHours(taskId, actualHours), HttpStatus.OK);
 	}
+	
 
+	   @GetMapping("/getTaskByEmployeeIdAndDate/{month}/{year}/{employeeId}")
+       public ResponseEntity getTaskByEmployeeIdAndDate(@PathVariable int month,@PathVariable int year,@PathVariable String employeeId) {
+           return new ResponseEntity(taskRepo.getTaskByEmployeeIdAndDate(month, year,employeeId),HttpStatus.OK);
+       }
 }

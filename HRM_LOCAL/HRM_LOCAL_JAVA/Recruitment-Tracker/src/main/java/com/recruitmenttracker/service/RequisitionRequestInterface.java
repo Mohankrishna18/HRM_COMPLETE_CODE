@@ -31,6 +31,6 @@ public interface RequisitionRequestInterface {
 		 public ResponseEntity getRequisitionsByRrfStatus();
 	
 	
-	public ResponseEntity getRequisitionsByRrfId(long rrfId);
+	public ResponseEntity getRequisitionsByRequisitionId(String requisitionId);
 
 }

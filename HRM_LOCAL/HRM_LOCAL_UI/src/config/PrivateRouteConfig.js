@@ -37,6 +37,8 @@ import {
   FcComboChart,
 } from "react-icons/fc";
 
+import {MdReport} from "react-icons/md";
+
 //Data Imports
 import Roles from "./Roles";
 
@@ -109,6 +111,7 @@ import StepperForm from "../pages/Recruitment-Tracker/RecruitmentRequestComponen
 import PMO_Dashboard from "../pages/Recruitment-Tracker/RequisitionDashboard/PMO_Dashboard/PMO_Dashboard"
 import EditEmployeeDetailsTabs from "../pages/EditEmployeeDetails/EditEmployeeDetailsTabs";
 import EmployeeDashboard from '../pages/Recruitment-Tracker/RequisitionDashboard/EmployeeDashboard/EmployeeDashboard'
+import ReportsMain from "../pages/Reports/ReportsMain";
 
 
 export default [
@@ -137,7 +140,7 @@ export default [
   {
     component: HrDashboardMain,
 
-    path: "/",
+    path: "/dashboard",
 
     type: "myprofile",
 
@@ -159,7 +162,7 @@ export default [
   },
   {
     component: MyProfileMain,
-    path: "/myProfile",
+    path: "/",
     type: "myprofile",
     icon: <FcBusinessman />,
     title: "My Profile",
@@ -231,6 +234,14 @@ export default [
     // icon: <FcApprove />,
     // //title: "Projects",
     permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager],
+  },
+  {
+    component:ReportsMain,
+    path: "/ReportsMain",
+    type: "null",
+    icon: <MdReport />,
+    title: "Reports",
+    permission: [Roles.pmohead,Roles.buhead,Roles.ceo],
   },
   {
     component: MyTask,
@@ -653,7 +664,7 @@ export default [
     type: "null",
     path: "/rrf",
     icon: <FcVoicePresentation />,
-    title: "Requistion Request",
+    title: "Requisition Request",
     permission: [Roles.manager, Roles.irm],
   },
   {
