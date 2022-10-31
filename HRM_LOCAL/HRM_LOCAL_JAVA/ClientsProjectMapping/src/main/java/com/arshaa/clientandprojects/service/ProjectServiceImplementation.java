@@ -46,18 +46,24 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 		
 		ProjectResponse pr = new ProjectResponse<>();
 		try {
-			ReportingManagerEmployeeId empId = template.getForObject(rmUrl+newProjects.getProjectManager(), ReportingManagerEmployeeId.class);
+//			ReportingManagerEmployeeId empId = template.getForObject(rmUrl+newProjects.getProjectManager(), ReportingManagerEmployeeId.class);
             ClientResponse data=template.getForObject(bUri+newProjects.getBusinessUnit(), ClientResponse.class);
-			newProjects.setEmployeeId(empId.getEmployeeId());
+//			newProjects.setEmployeeId(empId.getEmployeeId());
 			newProjects.setBuhId(data.getData().toString());
-			newProjects.setClientName(repo.findByClientId(newProjects.getClientId()).getClientName());
+			
 			Optional<Projects> existing = projectRepo.findByProjectName(newProjects.getProjectName());
 			if (existing.isPresent())
 				return new ResponseEntity<>("Project Name already exists", HttpStatus.NOT_ACCEPTABLE);
+			
 			Projects newProjectData = projectRepo.save(newProjects);
+				
+			newProjectData.setClientName((repo.findByClientId(newProjectData.getClientId())).getClientName());
+			
+			Projects newProjectData1 =projectRepo.save(newProjectData);
+			
 			pr.setStatus(true);
 			pr.setMessage("Data added successfully");
-			pr.setData(newProjectData);
+			pr.setData(newProjectData1);
 			return new ResponseEntity(pr, HttpStatus.OK);
 		} catch (Exception e) {
 
@@ -66,6 +72,8 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 			return new ResponseEntity(pr, HttpStatus.OK);
 		}
 	}
+	
+	
 
 	// To Get the Projects
 
@@ -115,7 +123,7 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 		String rmUrl="http://empService/emp/getEmployeeIdByReportingmanager/";
 		ProjectResponse pr = new ProjectResponse<>();
 		try {
-			ReportingManagerEmployeeId empId = template.getForObject(rmUrl+newProjectUpdate.getProjectManager(), ReportingManagerEmployeeId.class);
+//			ReportingManagerEmployeeId empId = template.getForObject(rmUrl+newProjectUpdate.getProjectManager(), ReportingManagerEmployeeId.class);
 			Projects updateProject = projectRepo.findByProjectId(projectId);
 			updateProject.setProjectName(newProjectUpdate.getProjectName());
 			updateProject.setStatus(newProjectUpdate.getStatus());
@@ -126,7 +134,7 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 			updateProject.setRate(newProjectUpdate.getRate());
 			updateProject.setPriority(newProjectUpdate.getPriority());
 			updateProject.setProjectManager(newProjectUpdate.getProjectManager());
-			updateProject.setEmployeeId(empId.getEmployeeId());
+//			updateProject.setEmployeeId(empId.getEmployeeId());
 
 			Projects latestProject = projectRepo.save(updateProject);
 			System.out.println(latestProject);

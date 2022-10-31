@@ -39,14 +39,30 @@ function AddProject(props) {
   };
 
   // Get API's for reportingManager(projectManger)
+  // const [reportingManager, setReportingManager] = useState([]);
+  // useEffect(() => {
+  //   axios.get("/emp/getreportingmanager").then((response) => {
+  //     console.log(response.data);
+  //     setReportingManager(response.data.data);
+  //   });
+  // }, []);
+  // console.log(reportingManager);
+
+  // Get API's for reportingManager(projectManger)
   const [reportingManager, setReportingManager] = useState([]);
+
   useEffect(() => {
-    axios.get("/emp/getreportingmanager").then((response) => {
-      console.log(response.data);
-      setReportingManager(response.data.data);
-    });
+    axios
+      .get("/emp/getUsersNamesByBand")
+      .then((response) => {
+        setReportingManager(response.data);
+        console.log(response.data)
+      })
+      .catch(() => {
+        toast.error("Data is not getting");
+      });
+    // console.log(departments)
   }, []);
-  console.log(reportingManager);
 
   const handleClose = () => setShow();
   const handleShow = () => setShow(true);
@@ -153,6 +169,8 @@ function AddProject(props) {
           toast.error("Something went Wrong");
         });
     }
+
+    console.log(form);
   };
 
   return (
@@ -305,9 +323,10 @@ function AddProject(props) {
                   onChange={(e) => setField("projectManager", e.target.value)}
                   isInvalid={!!errors.projectManager}
                 >
-                  <option>Select </option>
-                  {reportingManager.map((reportingManagerr) => (
-                    <option>{reportingManagerr.projectManager}</option>
+                  <option value="">Select </option>
+                  {reportingManager.map((projectManager) => (
+                    <option value={projectManager.name}>{projectManager.name}</option>
+                  
                   ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
@@ -382,9 +401,9 @@ function AddProject(props) {
                   isInvalid={!!errors.priority}
                 >
                   <option> Select Priority</option>
-                  <option value="Low">P1</option>
-                  <option value="Medium">P2</option>
-                  <option value="High">P3</option>
+                  <option value="P1">P1</option>
+                  <option value="P2">P2</option>
+                  <option value="P3">P3</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.priority}
