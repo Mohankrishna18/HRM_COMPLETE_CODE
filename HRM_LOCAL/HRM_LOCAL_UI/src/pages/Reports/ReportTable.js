@@ -3,7 +3,7 @@ import axios from "../../Uri";
 import "antd/dist/antd.css";
 import { Table } from "antd";
 import "./Report.css";
-import {UserContext} from "./ReportsMain"
+import {UserContext} from "./ReportsMain";
 
 const columns = [
     {

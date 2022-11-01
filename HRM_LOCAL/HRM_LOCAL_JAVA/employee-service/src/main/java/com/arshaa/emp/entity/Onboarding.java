@@ -44,7 +44,32 @@ public class Onboarding {
 	private String skillSet;
 	private String comments;
 	@Column
+	private String clientName;
+	@Column
+	private Date requestInitiatedDate;
+	@Column
+    private String raisedBy;
+	@Column
 	private String requisitionId;
+	
+	public String getClientName() {
+		return clientName;
+	}
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+	public Date getRequestInitiatedDate() {
+		return requestInitiatedDate;
+	}
+	public void setRequestInitiatedDate(Date requestInitiatedDate) {
+		this.requestInitiatedDate = requestInitiatedDate;
+	}
+	public String getRaisedBy() {
+		return raisedBy;
+	}
+	public void setRaisedBy(String raisedBy) {
+		this.raisedBy = raisedBy;
+	}
 	@Column
 	private String phoneNumber;
 	@Column(name = "Years_of_experience")
@@ -326,11 +351,6 @@ public class Onboarding {
 	public void setBuh(String buh) {
 		this.buh = buh;
 	}
-	
-	
-	
-	
-	
 	public String getIntermediateQualification() {
 		return intermediateQualification;
 	}
@@ -843,10 +863,6 @@ public class Onboarding {
 	}
 	private String exitDate;
 
-	
-	
-	
-	
 	public String getOnboardingId() {
 		return onboardingId;
 	}
@@ -1029,17 +1045,18 @@ public String getRequisitionId() {
 		this.requisitionId = requisitionId;
 	}
 	
+	
 	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
-			String jobTitle, String skillSet, String comments, String requisitionId, String phoneNumber,
-			String yearsOfExperience, String employeeId, boolean approvedStatus, boolean rejectedStatus,
-			boolean waitingforapprovalStatus, String onboardingStatus, boolean termsAndConditions, String department,
-			String reportingManager, String projectName, String email, Date onboardDate, Date approvedDate,
-			Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy, String employmentType,
-			String primarySkills, String secondarySkills, int percentage, String secondaryPhoneNumber,
-			String dateOfBirth, String bloodGroup, String gender, String maritalStatus, String permanentAdress,
-			String permanentState, String permanentCountry, String permanentPincode, String currentAdress,
-			String currentState, String currentCountry, String currentPincode, String postgraduationType,
-			String postgraduationBoardOfUniversity, String postgraduationInstituteName,
+			String jobTitle, String skillSet, String comments, String clientName, Date requestInitiatedDate,
+			String raisedBy, String requisitionId, String phoneNumber, String yearsOfExperience, String employeeId,
+			boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus, String onboardingStatus,
+			boolean termsAndConditions, String department, String reportingManager, String projectName, String email,
+			Date onboardDate, Date approvedDate, Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy,
+			String employmentType, String primarySkills, String secondarySkills, int percentage,
+			String secondaryPhoneNumber, String dateOfBirth, String bloodGroup, String gender, String maritalStatus,
+			String permanentAdress, String permanentState, String permanentCountry, String permanentPincode,
+			String currentAdress, String currentState, String currentCountry, String currentPincode,
+			String postgraduationType, String postgraduationBoardOfUniversity, String postgraduationInstituteName,
 			String postgraduationInstituteCity, String postgraduationCourseName, String postgraduationJoiningYear,
 			String postgraduationPassedYear, String postgraduationGrade, String graduationType,
 			String graduationBoardOfUniversity, String graduationInstituteName, String graduationInstituteCity,
@@ -1076,6 +1093,9 @@ public String getRequisitionId() {
 		this.jobTitle = jobTitle;
 		this.skillSet = skillSet;
 		this.comments = comments;
+		this.clientName = clientName;
+		this.requestInitiatedDate = requestInitiatedDate;
+		this.raisedBy = raisedBy;
 		this.requisitionId = requisitionId;
 		this.phoneNumber = phoneNumber;
 		this.yearsOfExperience = yearsOfExperience;
@@ -1201,6 +1221,7 @@ public String getRequisitionId() {
 		this.exitDate = exitDate;
 		this.band = band;
 	}
+
 	//	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
 //			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
 //			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,

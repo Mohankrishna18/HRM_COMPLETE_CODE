@@ -182,7 +182,7 @@ function AddDepartment(props) {
                   onChange={(e) => setField("businessUnitHead", e.target.value)}
                   isInvalid={!!errors.businessUnitHead}
                 >
-                  <option>Select </option>
+                  <option value="">Select </option>
                   {role.map((role1) => (
                     <option value={role1.employeeId}>
                       {role1.name}

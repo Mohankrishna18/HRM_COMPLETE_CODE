@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
+import com.recruitmenttracker.modal.EmployeeReq;
 import com.recruitmenttracker.service.RequisitionRequestInterface;
 
 
@@ -44,6 +45,14 @@ public class RequisitionTrackerController {
 	public ResponseEntity getRequisitionsByrRequisitionId(@PathVariable String requisitionId) {
 		return serv.getRequisitionsByRequisitionId(requisitionId);
 	}
+	
+	//--------------------dfgh----------------
+	@GetMapping("/requiredDataById/{requisitionId}")
+	public ResponseEntity getRequisitionsData(@PathVariable String requisitionId) {
+		return serv.getRequisitionsData(requisitionId);
+	}
+	
+	
 	
 	@DeleteMapping("/deleteRR/{rrfId}")
 	public ResponseEntity DeleteRRequest(@PathVariable long rrfId) {
