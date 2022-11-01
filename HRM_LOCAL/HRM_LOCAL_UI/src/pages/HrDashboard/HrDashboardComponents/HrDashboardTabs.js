@@ -10,6 +10,7 @@ import HiringsTab from "./HiringsTab";
 import { FcAssistant, FcConferenceCall, FcLeave, FcPositiveDynamic } from "react-icons/fc";
 import AllEmployees from "./Employee/AllEmployees";
 import EmployeeAttendenceMain from "../../EmployeeAttendancee/EmployeeAttendenceMain";
+import HrProjectsTab from "./HrProjectsTab";
 
 
 
@@ -51,6 +52,8 @@ const HrDashboardTabs = () => {
                                     <TabPanel style={{padding:"10px"}} value="1"><HiringsTab/></TabPanel>
                                     <TabPanel style={{padding:"10px"}} value="2"><AllEmployees /></TabPanel>
                                     <TabPanel style={{padding:"10px"}} value="3"><EmployeeAttendenceMain/></TabPanel>
+                                    <TabPanel style={{padding:"10px"}} value="7"><HrProjectsTab/></TabPanel>
+
                                 </TabContext>
                             </Box>
                         </Card.Body>
