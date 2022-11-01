@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Modal, Stack, Tab, Table, Tabs } from 'react-bootstrap';
+import { Button, Card, Col, Modal, Row, Stack, Tab, Table, Tabs } from 'react-bootstrap';
 import HRConfirmation from '../../HRApproval/HRConfirmation';
 import axios from "../../../Uri"
-import { FcWebcam } from 'react-icons/fc';
+import { FcManager, FcWebcam } from 'react-icons/fc';
 import PersonalDetailsTab from '../../Approvals/ApprovalComponents/PersonalDetailsTab';
 import AddressTab from '../../Approvals/ApprovalComponents/AddressTab';
 import AditionalDetailsTab from '../../Approvals/ApprovalComponents/AdditionalDetailsTab';
@@ -12,10 +12,9 @@ import ExperienceTab from '../../Approvals/ApprovalComponents/ExperienceTab';
 import HRAssign from '../../HRApproval/HRAssign';
 import { Grid } from '@mui/material';
 import MaterialTable from 'material-table';
-import JobPositionDetails from '../../Approvals/ApprovalComponents/JobPositionDetails';
 
 
-function OnboardingsToday() {
+function ResignationaTab() {
 
     const [data, setData] = useState([]);
     const [show, setShow] = useState(false);
@@ -46,39 +45,59 @@ function OnboardingsToday() {
     const pull_dataApprove = () => {
       setOnboardID(!onboardID);
     };
-  
- useEffect(() => {
-    axios
-        .get(`emp/getDataByDATE`)
-        .then((res) => {
-            setData(res.data);
-            console.log(res.data);
-        });
-}, []);
-console.log(data)
+
+
+useEffect(() => {
+    loadData();
+  }, []);
+  // useEffect(() => {
+  //   loadData();
+  // }, [viewStatus]);
+  const status = "Finished";
+  const loadData = async (e) => {
+    const response = await axios.get(`resignation/getAllResignation/${status}`);// u ned to change this
+    setData(response.data);
+    console.log(response.data);
+  };
 
     const [columns, setColumns] = useState([
-      { title: "Requisition ID", field: "requisitionId",color:"black" },
-      { title: "Onboarding ID", field: "onboardingId",color:"black" },
-      { title: "Job Title", field: "jobTitle" },
-      { title: "Name", field: "fullName" },
-      { title: "Email", field: "email" },
-      { title: "Experience", field: "yearsOfExperience" },
+     // { title: "Resignation ID", field: "resignationId",color:"black" },
+      { title: "Employee ID", field: "employeeId",color:"black" },
+      { title: "Name", field: "resigningEmployee" },
+      { title: "Reason", field: "reason" },
       {
-        title: "DOJ",
-        field: "dateOfJoining",
+        title: "Notice Date",
+        field: "noticeDate",
         type: "date",
         dateSetting: { locale: "en-GB" },
       },
-      { title: "Contact_Number", field: "phoneNumber" },  
-
-     
+      {
+        title: "Resignation Date",
+        field: "resignationDate",
+        type: "date",
+        dateSetting: { locale: "en-GB" },
+      }, 
     ]);
     console.log(data);
 
 
     return (
         <div>
+            <Row><Col md="3"> 
+            <Card style={{
+                                //  background: "linear-gradient(to left,#4edbc3,#60aeeb,#fcb2a9)",
+                                background: "linear-gradient(to left,#fc7232,#ffab14,#f29c1d)",
+                            }}>
+                                <Card.Body>
+                                    <div >
+                                        <h1 className='efect' align='center' style={{ color: "black", fontWeight: "300", fontSize: '25px' }}>
+                                            {data.length}
+                                        </h1>
+                                        <h6 style={{ color: "black", fontSize: '20px' }}> < FcManager style={{ fontSize: '25px' }} /> No.of Resignations </h6>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                            </Col></Row>
         <Modal show={viewShow} onHide={viewHandleClose} size="xl">
           <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
             <Modal.Title>Details</Modal.Title>
@@ -146,7 +165,7 @@ console.log(data)
                 <EmploymentDetailsTab 
                 viewOnboard={viewOnboard} 
                 viewHandleClose={viewHandleClose}/>
-              </Tab> */}
+            </Tab> */}
 
               <Tab
                 eventKey="Education"
@@ -178,14 +197,14 @@ console.log(data)
   
         <Grid>
           <MaterialTable
-            title="Onboarding's For Today"
+            title="Resignations"
             columns={columns}
             data={data}
             options={{
               paging: true,
               addRowPosition: "first",
               actionsColumnIndex: -1,
-              pageSize: 5,
+              pageSize: 8,
 
               pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
 
@@ -202,39 +221,39 @@ console.log(data)
               exportButton: true,
             }}
             actions={[
-              {
-                icon: "button",
-  
-                tooltip: "Save User",
-  
-                onClick: (event, rowData) =>
-                  alert("You saved " + rowData.firstName),
-              },
-            ]}
-            components={{
-              Action: (props) => (
-                <div>
-                  <Stack direction="horizontal" gap={3}>
-  
-              
-                    <Button
-                      variant="white "
-                      className="rounded-pill"
-                      onClick={(event) => {
-                        setViewShow(true);
-  
-                        console.log(props);
-  
-                        setViewOnboard(props.data);
-                      }}
-                    >
-                      {" "}
-                      <FcWebcam /> View
-                    </Button>
-                  </Stack>
-                </div>
-              ),
-            }}
+                {
+                  icon: "button",
+    
+                  tooltip: "Save User",
+    
+                  onClick: (event, rowData) =>
+                    alert("You saved " + rowData.firstName),
+                },
+              ]}
+              components={{
+                Action: (props) => (
+                  <div>
+                    <Stack direction="horizontal" gap={3}>
+    
+                
+                      <Button
+                        variant="white "
+                        className="rounded-pill"
+                        onClick={(event) => {
+                          setViewShow(true);
+    
+                          console.log(props);
+    
+                          setViewOnboard(props.data);
+                        }}
+                      >
+                        {" "}
+                        <FcWebcam /> View
+                      </Button>
+                    </Stack>
+                  </div>
+                ),
+              }}
           />
         </Grid>
       </div>
@@ -242,5 +261,5 @@ console.log(data)
 }
 
 
-export default OnboardingsToday;
+export default ResignationaTab;
 

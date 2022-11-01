@@ -39,8 +39,8 @@ function AllEmployees(props) {
   }, []);
   console.log(data)
   const empcount = data.length;
-  const female = data ? data.filter((item)=>item.gender === "female"):0
-  const male = data ? data.filter((item)=>item.gender === "male"):0
+  const female = data ? data.filter((item) => item.gender === "female") : 0
+  const male = data ? data.filter((item) => item.gender === "male") : 0
 
 
   useEffect(() => {
@@ -193,26 +193,26 @@ function AllEmployees(props) {
                 {" "}
                 <Card.Title>All Employees</Card.Title> */}
 
-                {/* <Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle> */}
+        {/* <Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle> */}
 
-                {/* {data.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
+        {/* {data.length > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data.length}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">0</Card.Subtitle>)}
 
               </h6>
             </Card.Body>
           </Card>
         </Col> */}
         <Col>
-                    <Card  class ="shadow p-3 bg-light" style={{height: "25vh",width:"20vh", paddingTop: "35%", fontSize:"20px"}}>
-                      <Card.Body>
-                       {empcount === 0 ? (<Card.Subtitle className="mb-2 text-muted">0 Employees</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {empcount}</Card.Subtitle>)}
-                      {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data} Male</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {male.length} </Card.Subtitle>)}
-                       {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data}  Female</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Female : {female.length} </Card.Subtitle>)}
-                      </Card.Body>
-                    </Card>
-                  </Col>
-                  <Col md="6"  style={{height:"25vh"}}>
-                    <Graph/>
-                    </Col>
+          <Card class="shadow p-3 bg-light" style={{ height: "25vh", width: "20vh", paddingTop: "25%", fontSize: "20px" }}>
+            <Card.Body >
+              {empcount === 0 ? (<Card.Subtitle className="mb-2 text-muted">0 Employees</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {empcount}</Card.Subtitle>)}
+              {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data} Male</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {male.length} </Card.Subtitle>)}
+              {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data}  Female</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Female : {female.length} </Card.Subtitle>)}
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md="8" style={{ height: "25vh" }}>
+          <Graph />
+        </Col>
         {/* <Col md="2">
           <Card border="warning">
             <Card.Body>
@@ -285,31 +285,35 @@ function AllEmployees(props) {
             </Card.Body>
           </Card>
         </Col> */}
+        <Col>
+        <Card class="shadow p-3 bg-light" >
+          <Card.Body>
+            <Row style={{ paddingTop: "12%" }}>
+              <input type="text" class="form-control" placeholder="Employee Name" />
+            </Row><Row style={{ paddingTop: "12%" }}>
 
-                <Col style={{ paddingTop: "12%" }}>
-                  <input type="text" class="form-control" placeholder="Employee Name" />
-                </Col><Col style={{ paddingTop: "12%" }}>
+              <select class="form-control" placeholder="Select Department"
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  if (e.target.value === "ALL") {
+                    setChangingStatus(true)
+                  }
+                  setGetDepartmentName(e.target.value);
+                  console.log(getDepartmentName);
+                }}>
+                <option value={"ALL"}>All</option>
+                {departmentName.map((departmentName) => (
+                  <option value={departmentName.departmentName}>{departmentName.departmentName}</option>
+                ))}
+              </select>
+            </Row>
 
-                  <select class="form-control" placeholder="Select Department"
-                    onChange={(e) => {
-                      console.log(e.target.value);
-                      if (e.target.value === "ALL") {
-                        setChangingStatus(true)
-                      }
-                      setGetDepartmentName(e.target.value);
-                      console.log(getDepartmentName);
-                    }}>
-                    <option value={"ALL"}>All</option>
-                    {departmentName.map((departmentName) => (
-                      <option value={departmentName.departmentName}>{departmentName.departmentName}</option>
-                    ))}
-                  </select>
-                </Col>
+            <Row style={{ paddingTop: "12%" }}>
+              <button type="button" class="btn btn-success" style={{ width: 200 }} onClick={getEmpData} >Search</button>
+            </Row>
+          </Card.Body></Card>
+          </Col>
 
-                <Col style={{ paddingTop: "12%" }}>
-                  <button type="button" class="btn btn-success" style={{ width: 200 }} onClick={getEmpData} >Search</button>
-                </Col>
-           
       </Row>
 
       <Row>
@@ -342,7 +346,7 @@ function AllEmployees(props) {
                 </tr>
               </thead>
 
-              <tbody  className="scroll">
+              <tbody className="scroll">
                 {data.map((data) => (
                   <tr>
                     <td><AvtarComponent data={data} /></td>
@@ -387,7 +391,7 @@ function AllEmployees(props) {
           ) : (
             <Table striped bordered hover responsive>
               <thead>
-              <tr>
+                <tr>
                   <th>Name</th>
                   <th>Employee ID</th>
                   <th>Email</th>
@@ -398,7 +402,7 @@ function AllEmployees(props) {
                 </tr>
               </thead>
 
-              <tbody  className="scroll">
+              <tbody className="scroll">
                 {empData.map((data) => (
                   <tr>
                     <td><AvtarComponent data={data} /></td>
@@ -409,7 +413,7 @@ function AllEmployees(props) {
                       {data.dateOfJoining}
                     </Moment></td>
                     <td>{data.designationName}</td>
-                   
+
                   </tr>
                 ))}
               </tbody>

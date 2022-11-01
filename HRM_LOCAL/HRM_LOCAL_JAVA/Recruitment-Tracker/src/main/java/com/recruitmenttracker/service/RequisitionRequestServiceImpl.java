@@ -282,14 +282,12 @@ hrApp.forEach(e->{
         RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
         try {
             RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
-            rrr.setStatus(true);
-            rrr.setMessage("Geting Data Succussfully");
-            rrr.setData(rfs);
-            return new ResponseEntity(rrr, HttpStatus.OK);
+           
+            return new ResponseEntity(rfs, HttpStatus.OK);
         } catch (Exception e) {
             rrr.setStatus(true);
             rrr.setMessage("Something went wrong");
-            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+            return new ResponseEntity(rrr, HttpStatus.OK);
         }
     }
     
@@ -304,6 +302,8 @@ hrApp.forEach(e->{
             re.setClientName(rfs.getClientName());
             re.setRaisedBy(rfs.getRaisedBy());
             re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
+            re.setJobTitle(rfs.getJobTitle());
+            re.setRequisitionId(rfs.getRequisitionId());
             rrr.setStatus(true);
             rrr.setMessage("Geting Data Succussfully");
             rrr.setData(re);
