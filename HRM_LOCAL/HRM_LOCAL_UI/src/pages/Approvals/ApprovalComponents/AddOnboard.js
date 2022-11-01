@@ -56,7 +56,10 @@ function AddOnboard(props) {
       yearsOfExperience,
       primarySkills,
       secondarySkills,
-      requisitionId,jobTitle
+      requisitionId,jobTitle,
+      clientName,
+      requestInitiatedDate,
+      raisedBy
     } = form;
     const newErrors = {};
 
@@ -346,7 +349,7 @@ function AddOnboard(props) {
                     )
                     .then((response) => {
                         console.log(response.data);
-                        setJobT(response.data.data)
+                         setJobT(response.data)
                     });
                 setField("requisitionId", e.target.value);
             }}

@@ -82,7 +82,7 @@ public class MainServiceImpl implements MainService {
 		
 //		String preEmailURL = "http://emailService/mail/preSendMail";
 		//String reqUrl= "http://RecruitmentTracker/recruitmentTracker/requiredDataById/";
-		String reqUrl= "http://RecruitmentTracker/recruitmentTracker/requiredDataById/";
+		String reqUrl= "http://RecruitmentTracker/recruitmentTracker/getDataById/";
 		String preOnboardUrl = "http://loginservice/login/addUsersForPreOnboard";
 		Response r = new Response<>();
 		try {
@@ -103,7 +103,7 @@ public class MainServiceImpl implements MainService {
 	                .concat(newData.getLastName()));
 			
 			EmployeeReq empReq  = template.getForObject(reqUrl+newData.getRequisitionId(), EmployeeReq.class);
-			System.out.println(empReq);
+			System.out.println(empReq.getJobTitle());
 			newData.setJobTitle(empReq.getJobTitle());
 			newData.setClientName(empReq.getClientName());
 			newData.setRaisedBy(empReq.getRaisedBy());
