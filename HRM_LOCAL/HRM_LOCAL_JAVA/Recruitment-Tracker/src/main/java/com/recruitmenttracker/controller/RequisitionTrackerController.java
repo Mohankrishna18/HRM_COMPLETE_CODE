@@ -41,6 +41,7 @@ public class RequisitionTrackerController {
 	public ResponseEntity getRequisitionsByRrfStatus() {
 		return serv.getRequisitionsByRrfStatus();
 	}
+
 	@GetMapping("/getDataById/{requisitionId}")
 	public ResponseEntity getRequisitionsByrRequisitionId(@PathVariable String requisitionId) {
 		return serv.getRequisitionsByRequisitionId(requisitionId);

@@ -16,8 +16,25 @@ public class ProjectModel {
 	private String priority;
 	private String projectManager;
 
+	private Integer clientId;
+
 	
-	
+	public String getProjectManager() {
+		return projectManager;
+	}
+
+	public void setProjectManager(String projectManager) {
+		this.projectManager = projectManager;
+	}
+
+	public Integer getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(Integer clientId) {
+		this.clientId = clientId;
+	}
+
 	public Integer getProjectId() {
 		return projectId;
 	}
