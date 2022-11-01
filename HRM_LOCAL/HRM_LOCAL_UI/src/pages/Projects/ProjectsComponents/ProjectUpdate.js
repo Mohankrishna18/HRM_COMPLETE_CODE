@@ -6,13 +6,13 @@ import { Form } from "react-bootstrap";
 import { Row, Col, Container } from "react-bootstrap";
 import Moment from "moment";
 import axios from "../../../Uri";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { UserContext } from "./ProjectUpdateTabs";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ProjectUpdate = (props) => {
-  console.log(props)
+  console.log(props);
   const { data, setData } = useContext(UserContext);
   const [updateOnboard, setUpdateOnboard] = useState([]);
   const [projectName, setProjectName] = useState("");
@@ -32,6 +32,7 @@ const ProjectUpdate = (props) => {
   const [status1, setStatus1] = useState(false);
   const [description, setDescription] = useState();
   const params = useParams();
+  const history = useHistory();
   const pull_data = () => {
     setStatus1(!status1);
   };
@@ -43,7 +44,7 @@ const ProjectUpdate = (props) => {
     );
     setData(response.data.projectName);
     setUpdateOnboard(response.data);
-    setProjectName(response.data.projectName) ;
+    setProjectName(response.data.projectName);
     setProjectManager(response.data.projectManager);
     setBusinessUnit(response.data.businessUnit);
     setStartDate(response.data.startDate);
@@ -124,39 +125,39 @@ const ProjectUpdate = (props) => {
       employeeId,
       description,
     });
-    if(errors==""){
-    axios
-      .put(`/clientProjectMapping/updateProjectById/${params.id}`, {
-        clientName,
-        projectName,
-        businessUnit,
-        startDate,
-        endDate,
-        rate,
-        employeeId,
-        priority,
-        status,
-        projectManager,
-        description,
-      })
-      .then((response) => {
-        console.log(response);
-        if (response.data.status) {
-          pull_data();
-          // props.func();
-          toast.success("Project Updated successfully");
-        } else {
-          console.log("Props not Send");
-        }
+    if (errors == "") {
+      axios
+        .put(`/clientProjectMapping/updateProjectById/${params.id}`, {
+          clientName,
+          projectName,
+          businessUnit,
+          startDate,
+          endDate,
+          rate,
+          employeeId,
+          priority,
+          status,
+          projectManager,
+          description,
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.data.status) {
+            pull_data();
+            // props.func();
+            toast.success("Project Updated successfully");
+          } else {
+            console.log("Props not Send");
+          }
 
-        // console.log(user);
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Something Went Wrong");
-      });
-    }else{
-      toast.error("Check Field")
+          // console.log(user);
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("Something Went Wrong");
+        });
+    } else {
+      toast.error("Check Field");
     }
     props.handleClose();
   };
@@ -304,11 +305,12 @@ const ProjectUpdate = (props) => {
                 onChange={(e) => setProjectManager(e.target.value)}
                 isInvalid={!!errors.projectManager}
               >
-                 <option value={projectManager}>{projectManager} </option>
-                  {reportingManager.map((projectManager) => (
-                    <option value={projectManager.name}>{projectManager.name}</option>
-                  
-                  ))}
+                <option value={projectManager}>{projectManager} </option>
+                {reportingManager.map((projectManager) => (
+                  <option value={projectManager.name}>
+                    {projectManager.name}
+                  </option>
+                ))}
               </Form.Select>
               <Form.Control.Feedback type="invalid">
                 {errors.projectManager}
@@ -408,39 +410,38 @@ const ProjectUpdate = (props) => {
             </Form.Group>
           </Row>
           <Row>
-            <Col>
+            <Col align="center" style={{ marginTop: "10px" }}>
               <Button
                 style={{
                   backgroundColor: "#ff9b44",
                   borderColor: "#ff9b44",
-                  // float: "right",
-                  marginLeft: "450px",
-                  width: "20%",
+                  width: "15%",
                   height: "120%",
                   borderRadius: "25px",
+                  // float: "left",
                 }}
                 type="submit"
                 onClick={handleSubmit}
               >
                 Save
               </Button>
+              &nbsp;&nbsp;
+              <Button
+                variant="primary"
+                style={{
+                  backgroundColor: "#B6B6B4",
+                  borderColor: "#B6B6B4",
+                  // alignItems: "center",
+                  width: "15%",
+                  height: "120%",
+                  borderRadius: "25px",
+                }}
+                type="cancel"
+                onClick={() => history.push("/app/Projects")}
+              >
+                Back
+              </Button>
             </Col>
-            {/* <Col>
-                <Button
-                  style={{
-                    backgroundColor: "#B6B6B4",
-                    borderColor: "#B6B6B4",
-                    alignItems: "center",
-                    width: "40%",
-                    height: "120%",
-                    borderRadius: "25px",
-                  }}
-                  type="cancel"
-                  onClick={handleClose}
-                >
-                  Close
-                </Button>
-              </Col> */}
           </Row>
         </Form>
       </Container>
