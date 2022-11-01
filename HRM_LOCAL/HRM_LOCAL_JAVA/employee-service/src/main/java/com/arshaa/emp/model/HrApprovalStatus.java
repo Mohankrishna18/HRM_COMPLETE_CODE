@@ -33,6 +33,7 @@ public class HrApprovalStatus {
 	private boolean idProof;
 	private boolean resignation;
 	private String designation;
+	private String hrApprovalComment;
 
 	private String department;
 	
@@ -77,6 +78,14 @@ public class HrApprovalStatus {
 
 		this.department = department;
 
+	}
+
+	public String getHrApprovalComment() {
+		return hrApprovalComment;
+	}
+
+	public void setHrApprovalComment(String hrApprovalComment) {
+		this.hrApprovalComment = hrApprovalComment;
 	}
 
 	public String getTaaApprovalComment() {

@@ -1,5 +1,7 @@
 package com.example.arshaa.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.arshaa.entity.EmployeeLogin;
 import com.example.arshaa.entity.OnBoardingEmployeeLogin;
+import com.example.arshaa.model.GetMail;
 import com.example.arshaa.model.PreOnboard;
 import com.example.arshaa.model.ResetPassword;
 import com.example.arshaa.model.Response;
 import com.example.arshaa.model.UserModel;
+import com.example.arshaa.model.UserServiceEmail;
 import com.example.arshaa.repository.EmailRepository;
 import com.example.arshaa.repository.UserRepository;
 @Service
@@ -185,6 +189,20 @@ public class UserService {
 		    EmployeeLogin empEmail = repository.findByEmail(email);
 		    return empEmail;
 		 }
+	     
+	     public UserServiceEmail findByTypeOfUser(@PathVariable String userType){
+	    	 List<EmployeeLogin> eLogin = repository.findEmployeeLoginByUserType(userType);
+	    	 UserServiceEmail getEmail=new UserServiceEmail();
+	    	 List<GetMail> mails=new ArrayList<>();
+	    	 eLogin.forEach(e->{
+	    		 GetMail email=new GetMail();
+	    		 email.setEmail(e.getEmail());
+	    		 mails.add(email);
+	    		 getEmail.setMails(mails);
+	    	 });
+	    	 
+	    	 return getEmail;
+	     }
 
 
     

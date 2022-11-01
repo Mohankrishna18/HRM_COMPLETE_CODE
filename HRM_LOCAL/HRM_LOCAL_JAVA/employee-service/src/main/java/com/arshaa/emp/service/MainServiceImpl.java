@@ -249,7 +249,7 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setIdProof(newOnboard.isIdProof());
 				getOnboarding.setDepartment(newOnboard.getDepartment());
                 getOnboarding.setDesignation(newOnboard.getDesignation());
-//				getOnboarding.setHrApprovalComment(newOnboard.);
+				getOnboarding.setHrApprovalComment(newOnboard.getHrApprovalComment());
 //				getOnboarding.setProjectName(newOnboard.getProjectName());
 //				getOnboarding.setSecondaryPhoneNumber(newOnboard.getSecondaryPhoneNumber());
 //				getOnboarding.setBand(newOnboard.getBand());
@@ -262,7 +262,7 @@ public class MainServiceImpl implements MainService {
 					newOnboard.setApprovedDate(tSqlDate);
 					getOnboarding.setRejectedStatus(false);
 					getOnboarding.setWaitingforapprovalStatus(false);
-					// getOnboarding.setOnboardingStatus("Pending");
+//					 getOnboarding.setOnboardingStatus("Pending");
 
 					onRepo.save(getOnboarding);
 
@@ -444,8 +444,10 @@ public class MainServiceImpl implements MainService {
 					Map<String,String> map=new HashMap();
 
 					mailTemp.setEmailType("HR_APPROVAL");
-					map.put("employeeName","Dheeraj");
+					map.put("employeeName",getOnboarding.getFirstName()+getOnboarding.getLastName());
 					map.put("email","muralikrishna.miriyala@arshaa.com");
+					map.put("employeeId", employeeMaster.getEmployeeId());
+					map.put("password", password);
 					mailTemp.setMap(map);
 		            template.postForObject(preEmailURL,mailTemp,MainEmailTemplate.class); 
 		            
@@ -2022,7 +2024,7 @@ public class MainServiceImpl implements MainService {
 
 			mailTemp.setEmailType("TAA_APPROVAL");
 			map.put("employeeName","Vinod");
-			map.put("email","sandhya.bandaru@arshaa.com");
+			map.put("email","muralikrishna.miriyala@arshaa.com");
 			mailTemp.setMap(map);
             template.postForObject(preEmailURL,mailTemp,MainEmailTemplate.class); 
 			r.setStatus(true);
