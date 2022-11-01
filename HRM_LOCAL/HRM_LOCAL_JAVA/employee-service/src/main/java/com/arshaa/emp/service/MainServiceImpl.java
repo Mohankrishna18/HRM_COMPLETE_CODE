@@ -28,6 +28,7 @@ import com.arshaa.emp.common.GetSrmId;
 import com.arshaa.emp.common.PreMailModel;
 import com.arshaa.emp.common.UserModel;
 import com.arshaa.emp.common.Users;
+import com.arshaa.emp.emailModel.EmployeeReq;
 import com.arshaa.emp.emailModel.MainEmailTemplate;
 import com.arshaa.emp.emailModel.RegistrationConfirmation;
 import com.arshaa.emp.entity.EmployeeMaster;
@@ -80,6 +81,8 @@ public class MainServiceImpl implements MainService {
 	public ResponseEntity onBoardUser(Onboarding newOnboard) {
 		
 //		String preEmailURL = "http://emailService/mail/preSendMail";
+		//String reqUrl= "http://RecruitmentTracker/recruitmentTracker/requiredDataById/";
+		String reqUrl= "http://RecruitmentTracker/recruitmentTracker/requiredDataById/";
 		String preOnboardUrl = "http://loginservice/login/addUsersForPreOnboard";
 		Response r = new Response<>();
 		try {
@@ -93,10 +96,20 @@ public class MainServiceImpl implements MainService {
 			newOnboard.setRejectedStatus(false);
 			newOnboard.setApprovedStatus(false);
 			newOnboard.setOnboardingStatus("Pending");
+			
 			Onboarding newData = onRepo.save(newOnboard);
 			
 			newData.setFullName(newData.getFirstName().concat(" ")
 	                .concat(newData.getLastName()));
+			
+			EmployeeReq empReq  = template.getForObject(reqUrl+newData.getRequisitionId(), EmployeeReq.class);
+			System.out.println(empReq);
+			newData.setJobTitle(empReq.getJobTitle());
+			newData.setClientName(empReq.getClientName());
+			newData.setRaisedBy(empReq.getRaisedBy());
+			newData.setRequestInitiatedDate(empReq.getRequestInitiatedDate());
+			
+			
 			Onboarding newData1 = onRepo.save(newData);
 			
 			r.setStatus(true);
@@ -1569,7 +1582,7 @@ public class MainServiceImpl implements MainService {
 //					
 //					onRepo.save(ob);
 					Onboarding getNames = onRepo.save(getOnboarding);
-					getNames.setBuhId(this.getEmployeeIdByName(getOnboarding.getBuh()));
+					getNames.setBuhId(this.getEmployeeFullName(getOnboarding.getBuh()));
 					getNames.setIrmId(this.getEmployeeIdByName(getOnboarding.getIrm()));
 					getNames.setSrmId(this.getEmployeeIdByName(getOnboarding.getSrm()));
 					

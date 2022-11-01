@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
+import com.recruitmenttracker.modal.EmployeeReq;
 import com.recruitmenttracker.modal.RequisitionRequestResponse;
 import com.recruitmenttracker.repository.RequisitionRequestRepository;
 
@@ -250,7 +251,6 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
     public ResponseEntity getRequisitionsByRequisitionId(String requisitionId) {
         RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
         try {
-
             RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
             rrr.setStatus(true);
             rrr.setMessage("Geting Data Succussfully");
@@ -262,4 +262,29 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
             return new ResponseEntity(e.getMessage(), HttpStatus.OK);
         }
     }
+    
+    
+    @Override
+    public ResponseEntity getRequisitionsData(String requisitionId) {
+        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();  
+        try {
+        	EmployeeReq re = new EmployeeReq();
+            RequisitionRequestEntity rfs = rrRepository.getByRequisitionId(requisitionId);
+            
+            re.setClientName(rfs.getClientName());
+            re.setRaisedBy(rfs.getRaisedBy());
+            re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
+            rrr.setStatus(true);
+            rrr.setMessage("Geting Data Succussfully");
+            rrr.setData(re);
+            return new ResponseEntity(rrr, HttpStatus.OK);
+        } catch (Exception e) {
+            rrr.setStatus(true);
+            rrr.setMessage("Something went wrong");
+            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+        }
+    }
+    
+    
+    
 }

@@ -62,8 +62,8 @@ function AddOnboard(props) {
 
     if (!firstName || firstName === "" || !firstName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
       newErrors.firstName = "Please Enter First Name";
-    if (!lastName || lastName === "" || !lastName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
-      newErrors.lastName = "Please Enter Last Name";
+    // if (!lastName || lastName === "" || !lastName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
+    //   newErrors.lastName = "Please Enter Last Name";
     if (!email || email === "") newErrors.email = "Please Enter Valid Email";
     if (
       !phoneNumber ||
@@ -75,8 +75,8 @@ function AddOnboard(props) {
       newErrors.dateOfJoining = "Please Enter Date of Joining";
       if (!primarySkills || primarySkills === "")
       newErrors.primarySkills = "Please Enter Primary Skills";
-    if (!secondarySkills || secondarySkills === "")
-      newErrors.secondarySkills = "Please Enter Secondary Skills";
+    // if (!secondarySkills || secondarySkills === "")
+    //   newErrors.secondarySkills = "Please Enter Secondary Skills";
     if (
     !yearsOfExperience ||
     yearsOfExperience === "" 
@@ -146,7 +146,7 @@ function AddOnboard(props) {
           }
           toast.success("Employee Onboarded Successfully");
           console.log(user);
-          setTimeout(1000);
+          setTimeout(500);
           handleClose();
         })
         .catch((err) => {
@@ -332,6 +332,42 @@ function AddOnboard(props) {
                     <Row md="12">
                   <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Select Requisition ID*</Form.Label>
+                <Form.Select
+                    outlined
+                    dataSource={rrf}
+                    placeholder="Select Requisition ID"
+                    fields={{ value: "requisitionId", display:"requisitionId"}}
+                    value={form.requisitionId}
+                    isInvalid={!!errors.requisitionId}
+                    onChange={(e) => {
+                      axios
+                    .get(
+                        `/recruitmentTracker/getDataById/${e.target.value}`
+                    )
+                    .then((response) => {
+                        console.log(response.data);
+                        setJobT(response.data.data)
+                    });
+                setField("requisitionId", e.target.value);
+            }}
+              
+                // query={dataQuery}
+                >
+                  <option value="">Select </option>
+                  {rrf.map((requisitionId) => (
+                    <option value={requisitionId.requisitionId}>
+                      {requisitionId.requisitionId}
+                    </option>
+                  ))}
+           
+                </Form.Select>
+            </Form.Group>
+            <Form.Control.Feedback type="invalid">
+                          {errors.requisitionId}
+                        </Form.Control.Feedback>
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Select Requisition ID*</Form.Label>
                 <AutoCompleteComponent
                     outlined
                     dataSource={rrf}
@@ -353,8 +389,8 @@ function AddOnboard(props) {
               
                 // query={dataQuery}
                 ></AutoCompleteComponent>
-            </Form.Group>
-            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            </Form.Group> */}
+            <Form.Group as={Col} md="6" style={{ padding: 10 ,paddingLeft:20}}>
                 <Form.Label>Job Title *</Form.Label>
                 <Form.Control
                   disabled
@@ -404,7 +440,7 @@ function AddOnboard(props) {
                       ></Form.Control>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                      <Form.Label>Last name *</Form.Label>
+                      <Form.Label>Last name </Form.Label>
                       <Form.Control
                         required
                         name="last_name"
@@ -414,10 +450,10 @@ function AddOnboard(props) {
                         value={form.lastName}
                         maxLength={30}
                         onChange={(e) => setField("lastName", e.target.value)}
-                        isInvalid={!!errors.lastName}
+                        //isInvalid={!!errors.lastName}
                       ></Form.Control>
                       <Form.Control.Feedback type="invalid">
-                        {errors.lastName}
+                        {/* {errors.lastName} */}
                       </Form.Control.Feedback>
                       <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
@@ -514,7 +550,7 @@ function AddOnboard(props) {
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Secondary Skills *</Form.Label>
+                <Form.Label>Secondary Skills </Form.Label>
                 <Form.Control
                   required
                   type="text"
@@ -525,10 +561,10 @@ function AddOnboard(props) {
                   maxLength={30}
                   onChange={(e) => setField("secondarySkills", e.target.value)}
                   // onChange={changeHandler}
-                  isInvalid={!!errors.secondarySkills}
+                  //isInvalid={!!errors.secondarySkills}
                 />
                 <Form.Control.Feedback type="invalid">
-                  {errors.secondarySkills}
+                  {/* {errors.secondarySkills} */}
                 </Form.Control.Feedback>
               </Form.Group>
 

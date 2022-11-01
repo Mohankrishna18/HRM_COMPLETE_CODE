@@ -27,6 +27,7 @@ import EmployeeAditionalDetails from "../../EditEmployeeDetails/EmployeeAddition
 import EmployeeEducationalDetails from "../../EditEmployeeDetails/EmployeeEducationalDetails";
 import EmployeeExperienceDetails from "../../EditEmployeeDetails/EmployeeExperienceDetails";
 import EditEmployeeDetailsTabs from "../../EditEmployeeDetails/EditEmployeeDetailsTabs";
+import JobPositionDetails from "./JobPositionDetails";
 
 // import ApprovalView from "./ApprovalView"; 
 
@@ -135,7 +136,7 @@ function OnboardedEmployeesTable() {
         <Modal.Body>
 
           <Tabs
-            defaultActiveKey="Personal Details"
+            defaultActiveKey="Job Position Details"
             transition={false}
             id="noanim-tab-example"
             className="mb-3"
@@ -147,6 +148,16 @@ function OnboardedEmployeesTable() {
               padding: 10,
             }}
           >
+            <Tab
+                eventKey="Job Position Details"
+                title="Job Position Details"
+                style={{ backgroundColor: "white" }}
+              >
+                <JobPositionDetails
+                  viewOnboard={viewOnboard}
+                  viewHandleClose={viewHandleClose}
+                />
+              </Tab>
             <Tab
               eventKey="Personal Details"
               title="Personal Details"
