@@ -14,7 +14,7 @@ const columns = [
         fixed: "left",
     },
     {
-        title: "Weak 1",
+        title: "Week 1",
         children: [
             {
                 title: "ActualHours",
@@ -31,7 +31,7 @@ const columns = [
         ]
     },
     {
-        title: "Weak 2",
+        title: "Week 2",
         children: [
             {
                 title: "ActualHours",
@@ -48,7 +48,7 @@ const columns = [
         ]
     },
     {
-        title: "Weak 3",
+        title: "Week 3",
         children: [
             {
                 title: "ActualHours",
@@ -65,7 +65,7 @@ const columns = [
         ]
     },
     {
-        title: "Weak 4",
+        title: "Week 4",
         children: [
             {
                 title: "ActualHours",
@@ -82,7 +82,7 @@ const columns = [
         ]
     },
     {
-        title: "Weak 5",
+        title: "Week 5",
         children: [
             {
                 title: "ActualHours",
