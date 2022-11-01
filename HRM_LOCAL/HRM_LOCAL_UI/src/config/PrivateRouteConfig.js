@@ -241,7 +241,7 @@ export default [
     type: "null",
     icon: <MdReport />,
     title: "Reports",
-    permission: [Roles.pmohead,Roles.buhead,Roles.ceo],
+    permission: [Roles.pmohead,Roles.buhead,Roles.ceo,Roles.irm, Roles.srm],
   },
   {
     component: MyTask,
