@@ -1,9 +1,11 @@
 package com.arshaa.clientandprojects.service;
 
 import java.util.ArrayList;
-
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -103,6 +105,7 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 	private ProjectModel returnModel(String name, Projects project) {
 		ProjectModel model = new ProjectModel();
 		model.setClientName(name);
+		model.setClientId(project.getClientId());
 		model.setProjectId(project.getProjectId());
 		model.setProjectName(project.getProjectName());
 		model.setStatus(project.getStatus());
@@ -341,4 +344,76 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
     }
 		
 	}
+
+	@Override
+	public ResponseEntity getProjectNamesByClientId(int clientId) {
+		ProjectResponse pr = new ProjectResponse<>();
+		try {
+			java.util.List<Projects> getProjects = projectRepo.getProjectsByClientId(clientId);
+			if(!getProjects.isEmpty())
+			{
+				
+				
+				
+				 List<String> arr = new ArrayList<String>();
+				  
+				 getProjects.stream().forEach(e->{
+					 arr.add(e.getClientName());
+					 System.out.println(e.getClientName());
+				 });
+					
+
+			  
+			        // element at index 2
+			        String element = arr.get(0);
+			        System.out.println("List: " + element);
+
+				pr.setClientName(element);
+				pr.setStatus(true);
+                pr.setMessage("Data Fetching");
+                pr.setData(getProjects);
+
+                return new ResponseEntity(pr,HttpStatus.OK);
+			}
+            else {
+            pr.setStatus(false);
+            pr.setMessage("Data Not Found");
+            return new ResponseEntity(pr,HttpStatus.OK);
+            }
+		}catch(Exception e) {
+			pr.setStatus(false);
+            pr.setMessage("Something went wrong");
+            return new ResponseEntity(pr,HttpStatus.OK);
+		}
+	}
+
+
+		
+//		@Override
+//	    public ResponseEntity getActiveProjectsByEmployeeId(String employeeId) {
+//			ProjectResponse pr = new ProjectResponse<>();
+//	        try {
+//	            java.util.List<Projects> getData=projectRepo.getActiveProjectsByEmployeeId(employeeId);
+//	            if(!getData.isEmpty())
+//	            {
+//	                pr.setStatus(true);
+//	                pr.setMessage("Data Fetching");
+//	                pr.setData(getData);
+//	                return new ResponseEntity(pr,HttpStatus.OK);
+//	            }
+//	            else {
+//	                pr.setStatus(false);
+//	                pr.setMessage("Data Not Found");
+//	                return new ResponseEntity(pr,HttpStatus.OK);
+//	            }
+//	        }
+//	        catch(Exception e)
+//	        {
+//	            pr.setStatus(false);
+//	            pr.setMessage("Something went wrong");
+//	            return new ResponseEntity(pr,HttpStatus.OK);
+//	        }
+//
+//	    }
+	
 }
