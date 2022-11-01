@@ -283,5 +283,25 @@ public ResponseEntity getAbsanceCount(@PathVariable Integer month,@PathVariable 
 
 	}
 }
-  
+
+
+
+//@GetMapping("/getcountByMonth/{month}/{year}")
+//public ResponseEntity getWorkingDays(@PathVariable Integer month,@PathVariable Integer year)
+//{	LeavesCount cc=new LeavesCount();
+//
+//	try {
+//	
+//	int count=br.findcountBYMonth(month, year);
+//	cc.setCount(count);
+//	cc.setStatus(true);
+//	return new ResponseEntity(cc ,HttpStatus.OK);
+//	}
+//	catch(Exception e)
+//	{
+//		cc.setStatus(false);
+//		return new ResponseEntity(cc ,HttpStatus.OK);
+//
+//	}
+//}
 }
