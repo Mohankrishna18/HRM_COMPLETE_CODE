@@ -15,7 +15,7 @@ const OverAllGraphs = () => {
             <Row>
 
                 {/* First Graph */}
-                <Col md={6}>
+                  <Col md={6}>
 
                     {/*  className='grph'*/}
                     <Card >
@@ -58,35 +58,48 @@ const OverAllGraphs = () => {
 
 
             <br></br>
+
+            <Row>
+
+                {/* First Graph */}
+                <Col md={6}>
+
+                    {/*  className='grph'*/}
+                    <Card >
+                        <Card.Body  >
+                            <PMOTable  style={{height:"100%"}}/>
+                        </Card.Body>
+                    </Card>
+
+                </Col>
+
+                {/* Verticle line */}
+                <Col className='vl' style={{ paddingLeft: "0px", paddingRight: "0px", height: '249px' }} ></Col>
+
+
+
+                {/* Second Graph */}
+                <Col sm={6} >
+
+                    <Card>
+                        <Card.Body >
+
+                            <h4 align="center">Applications Recieved By Department </h4>
+                            {/* we kept the graph component inside this div , to keep this graph inside card and also to give height and width  */}
+                            <div style={{ height: "30vh", height: "200px", }}>
+                                <ApplicantsRecievedByDepartment />
+                            </div>
+                        </Card.Body>
+                    </Card>
+
+                </Col>
+
+
+            </Row>
             {/* <br></br> */}
 
             {/* Second Line --> Graph --> Second row */}
-            <div>
 
-                <Row>
-
-                    {/* table */}
-                    <Col sm={6}>
-                    <PMOTable/>
-
-                    </Col>
-                    {/* <Col></Col> */}
-                    <Col sm={6}>
-                        <Card >
-                            <Card.Body>
-                                <h4 align="center">Applications Recieved By Department</h4>
-                                <div style={{ height: "30vh", height: "200px", }}>
-                                    <ApplicantsRecievedByDepartment />
-                                </div>
-                                {/* <PositionsOpenByDepartment align="center" /> */}
-                            </Card.Body>
-                        </Card>
-                    </Col>
-
-
-                </Row>
-
-            </div>
             <br></br>
             <br></br>
         </div>
