@@ -41,6 +41,11 @@ const HrDashboardTabs = () => {
                                             <Tab label="Hirings" value="1" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"14px"}} iconPosition="start" icon={<FcPositiveDynamic style={{fontSize:"20px"}} />}></Tab>
                                             <Tab label="Employees" value="2" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"14px"}} iconPosition="start" icon={<FcConferenceCall style={{fontSize:"20px"}}/>} />
                                             <Tab label="Attendance" value="3" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"14px"}} iconPosition="start" icon={<FcLeave style={{fontSize:"20px"}}/>}/>
+                                            <Tab label="Resignations" value="4" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"14px"}} iconPosition="start" icon={<FcPositiveDynamic style={{fontSize:"20px"}} />}></Tab>
+                                            <Tab label="Clients & Leads" value="5" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"14px"}} iconPosition="start" icon={<FcConferenceCall style={{fontSize:"20px"}}/>} />
+                                            <Tab label="Jobs" value="6" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"14px"}} iconPosition="start" icon={<FcLeave style={{fontSize:"20px"}}/>}/>
+                                            <Tab label="Projects" value="7" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"14px"}} iconPosition="start" icon={<FcLeave style={{fontSize:"20px"}}/>}/>
+
                                         </TabList>
                                     </Box>
                                     <TabPanel style={{padding:"10px"}} value="1"><HiringsTab/></TabPanel>

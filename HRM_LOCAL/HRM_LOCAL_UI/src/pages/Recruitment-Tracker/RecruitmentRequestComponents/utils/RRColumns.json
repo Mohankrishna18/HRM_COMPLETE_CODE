@@ -50,6 +50,10 @@
         "field": "positions"
     },
     {
+        "title" : "Raised On",
+        "field" : "raisedOn"
+    },
+    {
         "title":"Ageing"
     }
 
