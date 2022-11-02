@@ -7,7 +7,7 @@ import { FaPlus } from "react-icons/fa";
 import { Row, Col, Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BiMap } from "react-icons/bi";
+import { IoMdPersonAdd } from "react-icons/io";
 
 function AddCandidate(props) {
   const [form, setForm] = useState({});
@@ -70,8 +70,8 @@ function AddCandidate(props) {
       requisitionId,
       candidateName,
       candidateStatus,
-      businessUnit,
-      project,
+      departmentName,
+      projectName,
       jobTitle,
       currentLocation,
       primarySkills,
@@ -84,7 +84,7 @@ function AddCandidate(props) {
 
     const newErrors = {};
 
-    if (!jobTitle || jobTitle === "") newErrors.jobTitle = "";
+    // if (!jobTitle || jobTitle === "") newErrors.jobTitle = "";
 
     if (!requisitionId || requisitionId === "")
       newErrors.requisitionId = "Please Enter Requisition ID";
@@ -96,22 +96,22 @@ function AddCandidate(props) {
     )
       newErrors.candidateName = "Please Enter Full Name";
 
-      if (
-        !candidateStatus ||
-        candidateStatus === "" ||
-        !candidateStatus.match(/^[aA-zZ\s]+$/)
-      )
-        newErrors.candidateStatus = "Please Enter Candidate Status";
-  
     if (
-      !businessUnit ||
-      businessUnit === "" ||
-      !businessUnit.match(/^[aA-zZ\s]+$/)
+      !candidateStatus ||
+      candidateStatus === "" ||
+      !candidateStatus.match(/^[aA-zZ\s]+$/)
     )
-      newErrors.businessUnit = "Please Select Business Unit";
+      newErrors.candidateStatus = "Please Enter Candidate Status";
 
-    if (!project || project === "" || !project.match(/^[aA-zZ\s]+$/))
-      newErrors.project = "Please Select project";
+    // if (
+    //   !businessUnit ||
+    //   businessUnit === "" ||
+    //   !businessUnit.match(/^[aA-zZ\s]+$/)
+    // )
+    //   newErrors.businessUnit = "Please Select Business Unit";
+
+    // if (!project || project === "" || !project.match(/^[aA-zZ\s]+$/))
+    //   newErrors.project = "Please Select project";
 
     if (!currentLocation || currentLocation === "")
       newErrors.currentLocation = "Please Enter Current Location";
@@ -153,6 +153,8 @@ function AddCandidate(props) {
     } else {
       // console.log(form);
       // console.log("form submitted");
+      const lastForm = Object.assign(form, { jobTtle: jobTitle }, { departmentName: departmentName }, { projectName: projectName })
+      console.log(lastForm)
       axios
         .post("/candidate/addCandidate", form)
         .then((response) => {
@@ -174,11 +176,26 @@ function AddCandidate(props) {
         .catch((err) => {
           toast.error("Something went Wrong");
         });
+
     }
   };
 
+  const [candidateData, setCandidateData] = useState([])
+
+  useEffect(() => {
+    const loadUsers = async () => {
+      const response = await axios.get("/recruitmentTracker/getAllRequisitionRequests");
+      console.log(response.data);
+      setCandidateData(response.data.data);
+    };
+    loadUsers();
+  }, []);
+  console.log(candidateData)
+
   return (
     <div>
+
+      {/* Add candidate button */}
       <Button
         variant="warning"
         onClick={handleShow}
@@ -191,7 +208,10 @@ function AddCandidate(props) {
           // marginTop: "100px",
         }}
       >
-        <FaPlus /> Add Candidate
+        {/* <FaPlus />  */}
+        <IoMdPersonAdd style={{ fontSize: '25px' }} />
+        &nbsp;
+        Add Candidate
       </Button>
       <Modal
         size="lg"
@@ -233,10 +253,29 @@ function AddCandidate(props) {
                   placeholder="Requisition ID"
                   controlId="requisitionId"
                   value={form.requisitionId}
-                  onChange={(e) => setField("requisitionId", e.target.value)}
+                  // onChange={(e) => setField("requisitionId", e.target.value)}
+                  onChange={(e) => {
+                    axios
+                      .get(
+                        `/recruitmentTracker/getDataById/${e.target.value}`
+                      )
+                      .then((response) => {
+                        console.log(response.data.data);
+                        setUser(response.data.data);
+
+                      });
+                    setField("requisitionId", e.target.value);
+                  }}
+
                   isInvalid={!!errors.requisitionId}
                 >
-                  <option>Select Requisition ID </option>
+                 <option value="">Select </option>
+                  {candidateData.map((requisition) => (
+                    <option value={requisition.requisitionId}>
+                      {requisition.requisitionId}
+                    </option>
+                  ))}
+           
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.requisitionId}
@@ -265,58 +304,20 @@ function AddCandidate(props) {
 
               {/* business unit */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Business Unit *</Form.Label>
-                <Form.Control
-                  required
-                  className="businessUnit"
-                  type="text"
-                  controlId="businessUnit"
-                  placeholder="Business Unit"
-                  value={form.businessUnit}
-                  maxLength={50}
-                  onChange={(e) => setField("businessUnit", e.target.value)}
-                  isInvalid={!!errors.businessUnit}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.businessUnit}
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              {/* Project */}
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Project Assigned </Form.Label>
+                <Form.Label>Department Name *</Form.Label>
                 <Form.Control
                   disabled
-                  className="project"
+                  className="departmentName"
                   type="text"
-                  controlId="project"
-                  placeholder="Project Assigned"
-                  value={form.project}
+                  controlId="departmentName"
+                  placeholder="Department Name"
+                  value={user.departmentName}
                   maxLength={50}
-                  onChange={(e) => setField("project", e.target.value)}
-                  isInvalid={!!errors.project}
+                  onChange={(e) => setField("departmentName", e.target.value)}
+                // isInvalid={!!errors.businessUnit}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
-                  {errors.project}
-                </Form.Control.Feedback>
-              </Form.Group>
-
-              {/* job title */}
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Job Title *</Form.Label>
-                <Form.Control
-                  required
-                  className="jobTitle"
-                  type="text"
-                  controlId="jobTitle"
-                  placeholder="Job Title"
-                  value={form.jobTitle}
-                  maxLength={50}
-                  onChange={(e) => setField("jobTitle", e.target.value)}
-                  isInvalid={!!errors.jobTitle}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.jobTitle}
+                  {/* {errors.businessUnit} */}
                 </Form.Control.Feedback>
               </Form.Group>
 
@@ -338,6 +339,26 @@ function AddCandidate(props) {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
+
+              {/* job title */}
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Job Title *</Form.Label>
+                <Form.Control
+                  disabled
+                  className="jobTitle"
+                  type="text"
+                  controlId="jobTitle"
+                  placeholder="Job Title"
+                  value={user.jobTitle}
+                  maxLength={50}
+                  onChange={(e) => setField("jobTitle", e.target.value)}
+                //isInvalid={!!errors.jobTitle}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {/* {errors.jobTitle} */}
+                </Form.Control.Feedback>
+              </Form.Group>
+
               {/* Phone Number */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Phone Number *</Form.Label>
@@ -356,51 +377,68 @@ function AddCandidate(props) {
               </Form.Group>
 
 
-               {/* YOE */}
-               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Years Of Experience *</Form.Label>
-                <Form.Select
-                  required
+              {/* Project */}
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Project Assigned </Form.Label>
+                <Form.Control
+                  disabled
+                  className="projectName"
                   type="text"
-                  placeholder="Years Of Experience"
+                  controlId="projectName"
+                  placeholder="Project Assigned"
+                  value={user.projectName}
+                  maxLength={50}
+                  onChange={(e) => setField("projectName", e.target.value)}
+                // isInvalid={!!errors.project}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {/* {errors.project} */}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+
+              {/* YOE */}
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Years Of Experience *</Form.Label>
+                <Form.Control
+                  required
+                  className="yearsOfExperience"
+                  type="text"
                   controlId="yearsOfExperience"
+                  placeholder="Years Of Experience"
                   value={form.yearsOfExperience}
-                  onChange={(e) =>
-                    setField("yearsOfExperience", e.target.value)
-                  }
+                  maxLength={30}
+                  onChange={(e) => setField("yearsOfExperience", e.target.value)}
                   isInvalid={!!errors.yearsOfExperience}
-                >
-                  <option> Select Experience</option>
-                </Form.Select>
+                ></Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {errors.yearsOfExperience}
                 </Form.Control.Feedback>
               </Form.Group>
 
+
               {/* Current Location */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Current Location*</Form.Label>
-                <Form.Select
+                <Form.Control
                   required
                   type="text"
                   placeholder="Current Location"
                   controlId="currentLocation"
                   value={form.currentLocation}
+                  maxLength={80}
                   onChange={(e) => setField("currentLocation", e.target.value)}
                   isInvalid={!!errors.currentLocation}
                 >
-                  <option>Select Current Location 
-                    {/* <BiMap/> */}
-                    </option>
-                </Form.Select>
+                </Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {errors.currentLocation}
                 </Form.Control.Feedback>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
-               {/* Candidate Status */}
-               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              {/* Candidate Status */}
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Candidate Status*</Form.Label>
                 <Form.Select
                   required
@@ -462,8 +500,8 @@ function AddCandidate(props) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              
-             
+
+
 
 
               {/* Upload Resume */}
