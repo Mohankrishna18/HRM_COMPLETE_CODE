@@ -1,6 +1,15 @@
 package com.arshaa.clientandprojects.model;
 
 public class ProjectResponse<T> {
+	
+	private String clientName;
+
+	public String getClientName() {
+		return clientName;
+	}
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
 	private boolean status;
 	private String message;
 	private T data;

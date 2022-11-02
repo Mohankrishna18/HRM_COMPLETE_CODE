@@ -12,6 +12,7 @@ import ExperienceTab from '../../Approvals/ApprovalComponents/ExperienceTab';
 import HRAssign from '../../HRApproval/HRAssign';
 import { Grid } from '@mui/material';
 import MaterialTable from 'material-table';
+import JobPositionDetails from '../../Approvals/ApprovalComponents/JobPositionDetails';
 
 
 function OnboardingsToday() {
@@ -57,6 +58,7 @@ function OnboardingsToday() {
 console.log(data)
 
     const [columns, setColumns] = useState([
+      { title: "Requisition ID", field: "requisitionId",color:"black" },
       { title: "Onboarding ID", field: "onboardingId",color:"black" },
       { title: "Job Title", field: "jobTitle" },
       { title: "Name", field: "fullName" },
@@ -83,7 +85,7 @@ console.log(data)
           </Modal.Header>
           <Modal.Body>
             <Tabs
-              defaultActiveKey="Personal Details"
+              defaultActiveKey="Job Position Details"
               transition={false}
               id="noanim-tab-example"
               className="mb-3"
@@ -95,6 +97,16 @@ console.log(data)
                 padding: 0,
               }}
             >
+              <Tab
+                eventKey="Job Position Details"
+                title="Job Position Details"
+                style={{ backgroundColor: "white" }}
+              >
+                <JobPositionDetails
+                  viewOnboard={viewOnboard}
+                  viewHandleClose={viewHandleClose}
+                />
+              </Tab>
               <Tab
                 eventKey="Personal Details"
                 title="Personal Details"

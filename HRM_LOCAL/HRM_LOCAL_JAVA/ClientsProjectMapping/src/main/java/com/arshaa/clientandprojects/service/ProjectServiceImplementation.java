@@ -1,9 +1,11 @@
 package com.arshaa.clientandprojects.service;
 
 import java.util.ArrayList;
-
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -46,18 +48,24 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 		
 		ProjectResponse pr = new ProjectResponse<>();
 		try {
-			ReportingManagerEmployeeId empId = template.getForObject(rmUrl+newProjects.getProjectManager(), ReportingManagerEmployeeId.class);
+//			ReportingManagerEmployeeId empId = template.getForObject(rmUrl+newProjects.getProjectManager(), ReportingManagerEmployeeId.class);
             ClientResponse data=template.getForObject(bUri+newProjects.getBusinessUnit(), ClientResponse.class);
-			newProjects.setEmployeeId(empId.getEmployeeId());
+//			newProjects.setEmployeeId(empId.getEmployeeId());
 			newProjects.setBuhId(data.getData().toString());
-			newProjects.setClientName(repo.findByClientId(newProjects.getClientId()).getClientName());
+			
 			Optional<Projects> existing = projectRepo.findByProjectName(newProjects.getProjectName());
 			if (existing.isPresent())
 				return new ResponseEntity<>("Project Name already exists", HttpStatus.NOT_ACCEPTABLE);
+			
 			Projects newProjectData = projectRepo.save(newProjects);
+				
+			newProjectData.setClientName((repo.findByClientId(newProjectData.getClientId())).getClientName());
+			
+			Projects newProjectData1 =projectRepo.save(newProjectData);
+			
 			pr.setStatus(true);
 			pr.setMessage("Data added successfully");
-			pr.setData(newProjectData);
+			pr.setData(newProjectData1);
 			return new ResponseEntity(pr, HttpStatus.OK);
 		} catch (Exception e) {
 
@@ -66,6 +74,8 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 			return new ResponseEntity(pr, HttpStatus.OK);
 		}
 	}
+	
+	
 
 	// To Get the Projects
 
@@ -95,6 +105,7 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 	private ProjectModel returnModel(String name, Projects project) {
 		ProjectModel model = new ProjectModel();
 		model.setClientName(name);
+		model.setClientId(project.getClientId());
 		model.setProjectId(project.getProjectId());
 		model.setProjectName(project.getProjectName());
 		model.setStatus(project.getStatus());
@@ -115,7 +126,7 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 		String rmUrl="http://empService/emp/getEmployeeIdByReportingmanager/";
 		ProjectResponse pr = new ProjectResponse<>();
 		try {
-			ReportingManagerEmployeeId empId = template.getForObject(rmUrl+newProjectUpdate.getProjectManager(), ReportingManagerEmployeeId.class);
+//			ReportingManagerEmployeeId empId = template.getForObject(rmUrl+newProjectUpdate.getProjectManager(), ReportingManagerEmployeeId.class);
 			Projects updateProject = projectRepo.findByProjectId(projectId);
 			updateProject.setProjectName(newProjectUpdate.getProjectName());
 			updateProject.setStatus(newProjectUpdate.getStatus());
@@ -126,7 +137,7 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 			updateProject.setRate(newProjectUpdate.getRate());
 			updateProject.setPriority(newProjectUpdate.getPriority());
 			updateProject.setProjectManager(newProjectUpdate.getProjectManager());
-			updateProject.setEmployeeId(empId.getEmployeeId());
+//			updateProject.setEmployeeId(empId.getEmployeeId());
 
 			Projects latestProject = projectRepo.save(updateProject);
 			System.out.println(latestProject);
@@ -333,4 +344,76 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
     }
 		
 	}
+
+	@Override
+	public ResponseEntity getProjectNamesByClientId(int clientId) {
+		ProjectResponse pr = new ProjectResponse<>();
+		try {
+			java.util.List<Projects> getProjects = projectRepo.getProjectsByClientId(clientId);
+			if(!getProjects.isEmpty())
+			{
+				
+				
+				
+				 List<String> arr = new ArrayList<String>();
+				  
+				 getProjects.stream().forEach(e->{
+					 arr.add(e.getClientName());
+					 System.out.println(e.getClientName());
+				 });
+					
+
+			  
+			        // element at index 2
+			        String element = arr.get(0);
+			        System.out.println("List: " + element);
+
+				pr.setClientName(element);
+				pr.setStatus(true);
+                pr.setMessage("Data Fetching");
+                pr.setData(getProjects);
+
+                return new ResponseEntity(pr,HttpStatus.OK);
+			}
+            else {
+            pr.setStatus(false);
+            pr.setMessage("Data Not Found");
+            return new ResponseEntity(pr,HttpStatus.OK);
+            }
+		}catch(Exception e) {
+			pr.setStatus(false);
+            pr.setMessage("Something went wrong");
+            return new ResponseEntity(pr,HttpStatus.OK);
+		}
+	}
+
+
+		
+//		@Override
+//	    public ResponseEntity getActiveProjectsByEmployeeId(String employeeId) {
+//			ProjectResponse pr = new ProjectResponse<>();
+//	        try {
+//	            java.util.List<Projects> getData=projectRepo.getActiveProjectsByEmployeeId(employeeId);
+//	            if(!getData.isEmpty())
+//	            {
+//	                pr.setStatus(true);
+//	                pr.setMessage("Data Fetching");
+//	                pr.setData(getData);
+//	                return new ResponseEntity(pr,HttpStatus.OK);
+//	            }
+//	            else {
+//	                pr.setStatus(false);
+//	                pr.setMessage("Data Not Found");
+//	                return new ResponseEntity(pr,HttpStatus.OK);
+//	            }
+//	        }
+//	        catch(Exception e)
+//	        {
+//	            pr.setStatus(false);
+//	            pr.setMessage("Something went wrong");
+//	            return new ResponseEntity(pr,HttpStatus.OK);
+//	        }
+//
+//	    }
+	
 }

@@ -112,6 +112,7 @@ import PMO_Dashboard from "../pages/Recruitment-Tracker/RequisitionDashboard/PMO
 import EditEmployeeDetailsTabs from "../pages/EditEmployeeDetails/EditEmployeeDetailsTabs";
 import EmployeeDashboard from '../pages/Recruitment-Tracker/RequisitionDashboard/EmployeeDashboard/EmployeeDashboard'
 import ReportsMain from "../pages/Reports/ReportsMain";
+import AdminDashBoard from "../pages/Client/Dashboard/AdminDashboard";
 
 
 export default [
@@ -241,7 +242,7 @@ export default [
     type: "null",
     icon: <MdReport />,
     title: "Reports",
-    permission: [Roles.pmohead,Roles.buhead,Roles.ceo],
+    permission: [Roles.pmohead,Roles.buhead,Roles.ceo,Roles.irm, Roles.srm],
   },
   {
     component: MyTask,
@@ -285,7 +286,15 @@ export default [
 
     permission: [Roles.pmohead, Roles.irm, Roles.manager],
   },
-
+//  {
+//     component: AdminDashBoard,
+//     path: "/AdminDashBoard",
+//     type: "null",
+//     icon: <FcOrgUnit/>,
+//     title: "Dashboard",
+//     permission: [Roles.hrmanager,Roles.pmohead,Roles.ceo,Roles.taahead,Roles.buhead],
+//    // exact: true,
+//   },
 
   {
     component: TAAHeadMain,

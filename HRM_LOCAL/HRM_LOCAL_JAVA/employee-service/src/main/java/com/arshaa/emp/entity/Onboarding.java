@@ -44,7 +44,32 @@ public class Onboarding {
 	private String skillSet;
 	private String comments;
 	@Column
+	private String clientName;
+	@Column
+	private Date requestInitiatedDate;
+	@Column
+    private String raisedBy;
+	@Column
 	private String requisitionId;
+	
+	public String getClientName() {
+		return clientName;
+	}
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+	public Date getRequestInitiatedDate() {
+		return requestInitiatedDate;
+	}
+	public void setRequestInitiatedDate(Date requestInitiatedDate) {
+		this.requestInitiatedDate = requestInitiatedDate;
+	}
+	public String getRaisedBy() {
+		return raisedBy;
+	}
+	public void setRaisedBy(String raisedBy) {
+		this.raisedBy = raisedBy;
+	}
 	@Column
 	private String phoneNumber;
 	@Column(name = "Years_of_experience")
@@ -222,6 +247,7 @@ public class Onboarding {
     private String intermediateQualification;
     private String sscQualification;
     private String officialMail;
+    private String hrApprovalComment;
 
 
 	
@@ -330,7 +356,167 @@ public class Onboarding {
 	
 	
 	
-	
+	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
+			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
+			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
+			String onboardingStatus, String department, String reportingManager, String projectName, String email,
+			Date onboardDate, Date approvedDate, Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy,
+			String employmentType, String primarySkills, String secondarySkills, int percentage,
+			String secondaryPhoneNumber, String dateOfBirth, String bloodGroup, String gender, String maritalStatus,
+			String permanentAdress, String permanentState, String permanentCountry, String permanentPincode,
+			String currentAdress, String currentState, String currentCountry, String currentPincode,
+			String postgraduationType, String postgraduationBoardOfUniversity, String postgraduationInstituteName,
+			String postgraduationInstituteCity, String postgraduationCourseName, String postgraduationJoiningYear,
+			String postgraduationPassedYear, String postgraduationGrade, String graduationType,
+			String graduationBoardOfUniversity, String graduationInstituteName, String graduationInstituteCity,
+			String graduationCourseName, String graduationJoiningYear, String graduationPassedYear,
+			String graduationGrade, String intermediateBoardOfUniversity, String intermediateCollegeName,
+			String intermediateCollegeCity, String intermediateCourseName, String intermediateJoiningYear,
+			String intermediatePassedYear, String intermediateGrade, String sscBoardOfUniversity, String sscSchoolName,
+			String sscSchoolCity, String sscCourseName, String sscJoiningYear, String sscPassedYear, String sscGrade,
+			String previousCompany1_name, String previousCompany1_designation, String previousCompany1_joiningDate,
+			String previousCompany1_relievingDate, String previousCompany1_employeeId,
+			Double previousCompany1_grossSalary, String previousCompany1_typeOfEmployment,
+			String previousCompany1_reasonForRelieving, String previousCompany2_name,
+			String previousCompany2_designation, String previousCompany2_joiningDate,
+			String previousCompany2_relievingDate, String previousCompany2_employeeId,
+			Double previousCompany2_grossSalary, String previousCompany2_typeOfEmployment,
+			String previousCompany2_reasonForRelieving, String previousCompany3_name,
+			String previousCompany3_designation, String previousCompany3_joiningDate,
+			String previousCompany3_relievingDate, String previousCompany3_employeeId,
+			Double previousCompany3_grossSalary, String previousCompany3_typeOfEmployment,
+			String previousCompany3_reasonForRelieving, boolean employeeStatus, String passportNo,
+			String passportExpiryDate, String panNumber, String aadharNumber, String uanNumber, String bankName,
+			String accountNumber, String ifscCode, String branch, String client, String irm, String srm, String buh,
+			String fullName, String irmId, String srmId, String buhId, String taaApprovalComment,
+			String taaHeadApprovalComment, String pmoApprovalComment, String ceoApprovalComment,
+			String intermediateQualification, String sscQualification, String officialMail, String exitDate,
+			String band) {
+		super();
+		this.onboardingId = onboardingId;
+		this.designation = designation;
+		this.firstName = firstName;
+		this.middleName = middleName;
+		this.lastName = lastName;
+		this.jobTitle = jobTitle;
+		this.skillSet = skillSet;
+		this.comments = comments;
+		this.phoneNumber = phoneNumber;
+		this.yearsOfExperience = yearsOfExperience;
+		this.employeeId = employeeId;
+		this.approvedStatus = approvedStatus;
+		this.rejectedStatus = rejectedStatus;
+		this.waitingforapprovalStatus = waitingforapprovalStatus;
+		this.onboardingStatus = onboardingStatus;
+		this.department = department;
+		this.reportingManager = reportingManager;
+		this.projectName = projectName;
+		this.email = email;
+		this.onboardDate = onboardDate;
+		this.approvedDate = approvedDate;
+		this.rejectDate = rejectDate;
+		this.updatedOn = updatedOn;
+		this.dateOfJoining = dateOfJoining;
+		this.updatedBy = updatedBy;
+		this.employmentType = employmentType;
+		this.primarySkills = primarySkills;
+		this.secondarySkills = secondarySkills;
+		this.percentage = percentage;
+		this.secondaryPhoneNumber = secondaryPhoneNumber;
+		this.dateOfBirth = dateOfBirth;
+		this.bloodGroup = bloodGroup;
+		this.gender = gender;
+		this.maritalStatus = maritalStatus;
+		this.permanentAdress = permanentAdress;
+		this.permanentState = permanentState;
+		this.permanentCountry = permanentCountry;
+		this.permanentPincode = permanentPincode;
+		this.currentAdress = currentAdress;
+		this.currentState = currentState;
+		this.currentCountry = currentCountry;
+		this.currentPincode = currentPincode;
+		this.postgraduationType = postgraduationType;
+		this.postgraduationBoardOfUniversity = postgraduationBoardOfUniversity;
+		this.postgraduationInstituteName = postgraduationInstituteName;
+		this.postgraduationInstituteCity = postgraduationInstituteCity;
+		this.postgraduationCourseName = postgraduationCourseName;
+		this.postgraduationJoiningYear = postgraduationJoiningYear;
+		this.postgraduationPassedYear = postgraduationPassedYear;
+		this.postgraduationGrade = postgraduationGrade;
+		this.graduationType = graduationType;
+		this.graduationBoardOfUniversity = graduationBoardOfUniversity;
+		this.graduationInstituteName = graduationInstituteName;
+		this.graduationInstituteCity = graduationInstituteCity;
+		this.graduationCourseName = graduationCourseName;
+		this.graduationJoiningYear = graduationJoiningYear;
+		this.graduationPassedYear = graduationPassedYear;
+		this.graduationGrade = graduationGrade;
+		this.intermediateBoardOfUniversity = intermediateBoardOfUniversity;
+		this.intermediateCollegeName = intermediateCollegeName;
+		this.intermediateCollegeCity = intermediateCollegeCity;
+		this.intermediateCourseName = intermediateCourseName;
+		this.intermediateJoiningYear = intermediateJoiningYear;
+		this.intermediatePassedYear = intermediatePassedYear;
+		this.intermediateGrade = intermediateGrade;
+		this.sscBoardOfUniversity = sscBoardOfUniversity;
+		this.sscSchoolName = sscSchoolName;
+		this.sscSchoolCity = sscSchoolCity;
+		this.sscCourseName = sscCourseName;
+		this.sscJoiningYear = sscJoiningYear;
+		this.sscPassedYear = sscPassedYear;
+		this.sscGrade = sscGrade;
+		this.previousCompany1_name = previousCompany1_name;
+		this.previousCompany1_designation = previousCompany1_designation;
+		this.previousCompany1_joiningDate = previousCompany1_joiningDate;
+		this.previousCompany1_relievingDate = previousCompany1_relievingDate;
+		this.previousCompany1_employeeId = previousCompany1_employeeId;
+		this.previousCompany1_grossSalary = previousCompany1_grossSalary;
+		this.previousCompany1_typeOfEmployment = previousCompany1_typeOfEmployment;
+		this.previousCompany1_reasonForRelieving = previousCompany1_reasonForRelieving;
+		this.previousCompany2_name = previousCompany2_name;
+		this.previousCompany2_designation = previousCompany2_designation;
+		this.previousCompany2_joiningDate = previousCompany2_joiningDate;
+		this.previousCompany2_relievingDate = previousCompany2_relievingDate;
+		this.previousCompany2_employeeId = previousCompany2_employeeId;
+		this.previousCompany2_grossSalary = previousCompany2_grossSalary;
+		this.previousCompany2_typeOfEmployment = previousCompany2_typeOfEmployment;
+		this.previousCompany2_reasonForRelieving = previousCompany2_reasonForRelieving;
+		this.previousCompany3_name = previousCompany3_name;
+		this.previousCompany3_designation = previousCompany3_designation;
+		this.previousCompany3_joiningDate = previousCompany3_joiningDate;
+		this.previousCompany3_relievingDate = previousCompany3_relievingDate;
+		this.previousCompany3_employeeId = previousCompany3_employeeId;
+		this.previousCompany3_grossSalary = previousCompany3_grossSalary;
+		this.previousCompany3_typeOfEmployment = previousCompany3_typeOfEmployment;
+		this.previousCompany3_reasonForRelieving = previousCompany3_reasonForRelieving;
+		this.employeeStatus = employeeStatus;
+		this.passportNo = passportNo;
+		this.passportExpiryDate = passportExpiryDate;
+		this.panNumber = panNumber;
+		this.aadharNumber = aadharNumber;
+		this.uanNumber = uanNumber;
+		this.bankName = bankName;
+		this.accountNumber = accountNumber;
+		this.ifscCode = ifscCode;
+		this.branch = branch;
+		this.client = client;
+		this.irm = irm;
+		this.srm = srm;
+		this.buh = buh;
+		this.fullName = fullName;
+		this.irmId = irmId;
+		this.srmId = srmId;
+		this.buhId = buhId;
+		this.taaApprovalComment = taaApprovalComment;
+		this.taaHeadApprovalComment = taaHeadApprovalComment;
+		this.pmoApprovalComment = pmoApprovalComment;
+		this.ceoApprovalComment = ceoApprovalComment;
+		this.intermediateQualification = intermediateQualification;
+		this.sscQualification = sscQualification;
+		this.officialMail = officialMail;
+		this.exitDate = exitDate;
+		this.band = band;
+	}
 	public String getIntermediateQualification() {
 		return intermediateQualification;
 	}
@@ -843,10 +1029,6 @@ public class Onboarding {
 	}
 	private String exitDate;
 
-	
-	
-	
-	
 	public String getOnboardingId() {
 		return onboardingId;
 	}
@@ -1029,17 +1211,18 @@ public String getRequisitionId() {
 		this.requisitionId = requisitionId;
 	}
 	
+	
 	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
-			String jobTitle, String skillSet, String comments, String requisitionId, String phoneNumber,
-			String yearsOfExperience, String employeeId, boolean approvedStatus, boolean rejectedStatus,
-			boolean waitingforapprovalStatus, String onboardingStatus, boolean termsAndConditions, String department,
-			String reportingManager, String projectName, String email, Date onboardDate, Date approvedDate,
-			Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy, String employmentType,
-			String primarySkills, String secondarySkills, int percentage, String secondaryPhoneNumber,
-			String dateOfBirth, String bloodGroup, String gender, String maritalStatus, String permanentAdress,
-			String permanentState, String permanentCountry, String permanentPincode, String currentAdress,
-			String currentState, String currentCountry, String currentPincode, String postgraduationType,
-			String postgraduationBoardOfUniversity, String postgraduationInstituteName,
+			String jobTitle, String skillSet, String comments, String clientName, Date requestInitiatedDate,
+			String raisedBy, String requisitionId, String phoneNumber, String yearsOfExperience, String employeeId,
+			boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus, String onboardingStatus,
+			boolean termsAndConditions, String department, String reportingManager, String projectName, String email,
+			Date onboardDate, Date approvedDate, Date rejectDate, Date updatedOn, Date dateOfJoining, String updatedBy,
+			String employmentType, String primarySkills, String secondarySkills, int percentage,
+			String secondaryPhoneNumber, String dateOfBirth, String bloodGroup, String gender, String maritalStatus,
+			String permanentAdress, String permanentState, String permanentCountry, String permanentPincode,
+			String currentAdress, String currentState, String currentCountry, String currentPincode,
+			String postgraduationType, String postgraduationBoardOfUniversity, String postgraduationInstituteName,
 			String postgraduationInstituteCity, String postgraduationCourseName, String postgraduationJoiningYear,
 			String postgraduationPassedYear, String postgraduationGrade, String graduationType,
 			String graduationBoardOfUniversity, String graduationInstituteName, String graduationInstituteCity,
@@ -1076,6 +1259,9 @@ public String getRequisitionId() {
 		this.jobTitle = jobTitle;
 		this.skillSet = skillSet;
 		this.comments = comments;
+		this.clientName = clientName;
+		this.requestInitiatedDate = requestInitiatedDate;
+		this.raisedBy = raisedBy;
 		this.requisitionId = requisitionId;
 		this.phoneNumber = phoneNumber;
 		this.yearsOfExperience = yearsOfExperience;
@@ -1201,6 +1387,7 @@ public String getRequisitionId() {
 		this.exitDate = exitDate;
 		this.band = band;
 	}
+
 	//	public Onboarding(String onboardingId, String designation, String firstName, String middleName, String lastName,
 //			String jobTitle, String skillSet, String comments, String phoneNumber, String yearsOfExperience,
 //			String employeeId, boolean approvedStatus, boolean rejectedStatus, boolean waitingforapprovalStatus,
@@ -1243,6 +1430,14 @@ public String getRequisitionId() {
 		// TODO Auto-generated constructor stub
 	}
 //	
+	public void setHrApprovalComment(String hrApprovalComment2) {
+		// TODO Auto-generated method stub
+		
+	}
+	public String getHrApprovalComment() {
+		return hrApprovalComment;
+	}
+	
 
 	
 	

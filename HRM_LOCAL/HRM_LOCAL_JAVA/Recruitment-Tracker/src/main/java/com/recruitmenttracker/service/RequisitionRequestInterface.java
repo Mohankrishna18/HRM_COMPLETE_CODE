@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
+import com.recruitmenttracker.modal.EmployeeReq;
 
 public interface RequisitionRequestInterface {
 
@@ -32,5 +33,6 @@ public interface RequisitionRequestInterface {
 	
 	
 	public ResponseEntity getRequisitionsByRequisitionId(String requisitionId);
+    public ResponseEntity getRequisitionsData(String requisitionId);
 
 }

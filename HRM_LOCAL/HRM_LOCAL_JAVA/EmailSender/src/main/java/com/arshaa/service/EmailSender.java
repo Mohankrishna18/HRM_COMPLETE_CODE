@@ -240,6 +240,16 @@ public class EmailSender {
 	        	  text=rejectResignByHR(uModel);
 	        	  sendEmail(uModel,sub,text);
 	        	  break;
+	          case "REQUISTION_APPLY":
+	        	  sub="Requistion was applied";
+	        	  text=applyRequistion(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
+	          case "BUH_RESIGN_APPROVED":
+	        	  sub="Requistion was approved by buhead";
+	        	  text=approveRequistionByBuhead(uModel);
+	        	  sendEmail(uModel,sub,text);
+	        	  break;
 	         
  	        	  default:
  	        		  System.out.println("default switch case");
@@ -254,6 +264,16 @@ public class EmailSender {
 	       }  
 	    }  
 	
+	private String approveRequistionByBuhead(MainEmailTemplate uModel) {
+		String text="Requistion was approved"+"\n"+"\n"+"Regards,"+"\n"+"Murali";
+		return text;
+	}
+
+	private String applyRequistion(MainEmailTemplate uModel) {
+		String text="Requistion was applied"+"\n"+"\n"+"Regards,"+"\n"+"Murali";
+		return text;
+	}
+
 	private String rejectResignByHR(MainEmailTemplate uModel) {
 		String text="Resignation was Reject by HR"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
 		return text;
