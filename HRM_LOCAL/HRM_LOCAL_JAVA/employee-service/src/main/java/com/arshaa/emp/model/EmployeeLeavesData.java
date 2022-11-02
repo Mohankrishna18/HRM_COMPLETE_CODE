@@ -3,6 +3,9 @@ package com.arshaa.emp.model;
 public class EmployeeLeavesData {
 	private String employeeId;
 	private String employeeName;
+	private int totalDays;
+	private int totalWorkingDays;
+	private int holidays;
 	private int totalDaysPresent;
 	private int totalDaysAbsent;
 	private int wfhCount;
@@ -43,6 +46,24 @@ public class EmployeeLeavesData {
 	}
 	public void setWfhCount(int wfhCount) {
 		this.wfhCount = wfhCount;
+	}
+	public int getTotalDays() {
+		return totalDays;
+	}
+	public void setTotalDays(int totalDays) {
+		this.totalDays = totalDays;
+	}
+	public int getTotalWorkingDays() {
+		return totalWorkingDays;
+	}
+	public void setTotalWorkingDays(int totalWorkingDays) {
+		this.totalWorkingDays = totalWorkingDays;
+	}
+	public int getHolidays() {
+		return holidays;
+	}
+	public void setHolidays(int holidays) {
+		this.holidays = holidays;
 	}
 	
 

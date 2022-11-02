@@ -12,6 +12,7 @@ import ExperienceTab from '../../Approvals/ApprovalComponents/ExperienceTab';
 import HRAssign from '../../HRApproval/HRAssign';
 import { Grid } from '@mui/material';
 import MaterialTable from 'material-table';
+import JobPositionDetails from '../../Approvals/ApprovalComponents/JobPositionDetails';
 
 
 function OnboardingsMonth() {

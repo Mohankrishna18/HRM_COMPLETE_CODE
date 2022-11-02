@@ -102,6 +102,13 @@ public class LoginController
 		return service.findByUserType(userType);
 	}
 	
+	@GetMapping("/getEmployeeByUserType/{userType}")
+	public ResponseEntity findByTypeOfUser(@PathVariable String userType) {
+		return new ResponseEntity(service.findByTypeOfUser(userType),HttpStatus.OK);
+	}
+	
+	
+	
 	@GetMapping("/getEmployeeDataByEmail/{email}")
 	public EmployeeLogin findByEmail(@PathVariable String email) {
 		return service.findByEmail(email);
