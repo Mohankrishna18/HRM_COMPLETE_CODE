@@ -278,8 +278,10 @@ hrApp.forEach(e->{
            }
        }
 
-    public ResponseEntity getRequisitionsByRrfId(long rrfId) {
-        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+       public ResponseEntity getRequisitionsByRrfId(String requisitionId) {
+       RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+
+
         try {
             RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
            
