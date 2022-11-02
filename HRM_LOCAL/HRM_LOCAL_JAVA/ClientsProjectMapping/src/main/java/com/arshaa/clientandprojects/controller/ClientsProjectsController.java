@@ -22,6 +22,7 @@ import com.arshaa.clientandprojects.service.ProjectRolesInterface;
 import com.arshaa.clientandprojects.service.ProjectServiceInterface;
 import com.arshaa.clientandprojects.service.ProjectTeamInterface;
 
+
 @RequestMapping("/clientProjectMapping")
 @RestController
 @CrossOrigin("*")
@@ -173,4 +174,28 @@ public class ClientsProjectsController {
         
         return projectTeamServ.getTMNameByEmployeeId(employeeId);
     }
+	@GetMapping("/getProjectsByClientId/{clientId}")
+    public ResponseEntity getProjectsByClientId(@PathVariable int clientId) {
+        
+        return projectServ.getProjectNamesByClientId(clientId);
+    }
+	
+//	@GetMapping("/getClientIdByName/{clientName}")
+//	public int getClientIdByClientName(@PathVariable String clientName) {
+//     return clientServ.getClientIdByClientName(clientName);
+//
+//	}
+	
+//	@GetMapping("/getDepartmentIdByName/{departmentName}")
+//	public int getDepartmentIdByDepartmentName(@PathVariable String departmentName) {
+//     return serv.getDepartmentIdByDepartmentName(departmentName);
+//
+//	}
+//	
+//	@GetMapping("/getDepartmentNameById/{departmentId}")
+//	public String getDepartmentNameById(@PathVariable int departmentId)
+//	{
+//		Departmentmaster dm = repo.findByDepartmentId(departmentId);
+//		return dm.getDepartmentName();
+//	}
 }

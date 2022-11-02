@@ -1,6 +1,7 @@
 package com.example.arshaa.repository;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,6 +21,7 @@ public interface UserRepository extends JpaRepository<EmployeeLogin,Integer>
 	EmployeeLogin findByEmployeeId(String employeeId);
 	EmployeeLogin findByUserType(String userType);
 	EmployeeLogin findByEmail(String email);
+	List<EmployeeLogin> findEmployeeLoginByUserType(String userType);
 
 	
 }

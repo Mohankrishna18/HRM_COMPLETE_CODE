@@ -26,6 +26,7 @@ const StepperForm = (props) => {
     const [courses, setCourses] = useState([]);
     const [response, setResponse] = useState([]);
 
+    const [clientId, setClientId] = useState([]);
     const [clients, setClients] = useState([]);
     const [projects, setProjects] = useState([]);
     const [departments, setDepartments] = useState([]);
@@ -86,6 +87,12 @@ const StepperForm = (props) => {
         console.log(res.data);
     };
 
+    // const getProjectsByClientID = async () => {
+    //     const res = await axios.get(`/clientProjectMapping/getProjectsByClientId/${clientId}`);
+    //     setDepartments(res.data);
+    //     console.log(res.data);
+    // };
+
     const loadProjects = async () => {
         const res = await axios.get("/clientProjectMapping/getAllProjects");
         setProjects(res.data.data);
@@ -106,6 +113,7 @@ const StepperForm = (props) => {
         loadClients();
         loadPocNames();
         loadHRDeptEmployees();
+        // getProjectsByClientID();
     }, []);
 
 
@@ -562,14 +570,28 @@ const StepperForm = (props) => {
                                             type="text"
                                             controlId="clientName"
                                             // placeholder="Client"
-                                            value={form.clientName}
+                                            value={form.clientId}
+                                            name={form.clientName}
                                             maxLength={30}
-                                            onChange={(e) => setField("clientName", e.target.value)}
+                                            onChange={(e) => {
+                                                console.log(e.target.name);
+
+                                                axios.get(`/clientProjectMapping/getProjectsByClientId/${e.target.value}`).then((response)=>{
+                                                    console.log(response.data.data);
+                                                    setProjects(response.data.data);
+                                                    console.log(response.data.clientName);
+
+                                                     setField("clientName",response.data.clientName)
+
+                                                });
+                                                console.log(e.target.name);
+
+                                            }}
                                             isInvalid={!!errors.clientName}
                                         >
                                             <option>Select </option>
                                             {clients.map((client) => (
-                                                <option value={client.clientName}>
+                                                <option value={client.clientId}>
                                                     {client.clientName}
                                                 </option>
                                             ))}
@@ -812,7 +834,7 @@ const StepperForm = (props) => {
                                             type="number"
                                             id="rate"
                                             controlId="rate"
-                                            placeholder="Rate"
+                                            // placeholder="Rate"
                                             value={form.rate}
                                             onChange={(e) => setField("rate", e.target.value)}
                                             isInvalid={!!errors.rate}
@@ -829,7 +851,7 @@ const StepperForm = (props) => {
                                             type="number"
                                             id="workingHours"
                                             controlId="workingHours"
-                                            placeholder="Working Hours"
+                                            // placeholder="Working Hours"
                                             value={form.workingHours}
                                             onChange={(e) => setField("workingHours", e.target.value)}
                                             isInvalid={!!errors.workingHours}
@@ -988,36 +1010,36 @@ const StepperForm = (props) => {
                                         <Form.Label>Request Initiated Date</Form.Label>
                                         <Form.Control
                                             required
-                                            // className="rreqDate"
+                                            className="requestInitiatedDate"
                                             type="date"
-                                        // controlId="rreqDate"
-                                        // placeholder="Resource Required Date"
-                                        // value={form.rreqDate}
-                                        // onChange={(e) => setField("rreqDate", e.target.value)}
-                                        // isInvalid={!!errors.rreqDate 
+                                        controlId="requestInitiatedDate"
+                                        
+                                        value={form.requestInitiatedDate}
+                                        onChange={(e) => setField("requestInitiatedDate", e.target.value)}
+                                        isInvalid={!!errors.requestInitiatedDate}
                                         >
 
                                         </Form.Control>
                                         <Form.Control.Feedback type="invalid">
-                                            {/* {errors.rreqDate} */}
+                                            {errors.requestInitiatedDate}
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Resource Required Date</Form.Label>
                                         <Form.Control
                                             required
-                                            className="rreqDate"
+                                            className="resourceRequiredDate"
                                             type="date"
-                                            controlId="rreqDate"
+                                            controlId="resourceRequiredDate"
                                             // placeholder="Resource Required Date"
-                                            value={form.rreqDate}
-                                            onChange={(e) => setField("rreqDate", e.target.value)}
-                                            isInvalid={!!errors.rreqDate}
+                                            value={form.resourceRequiredDate}
+                                            onChange={(e) => setField("resourceRequiredDate", e.target.value)}
+                                            isInvalid={!!errors.resourceRequiredDate}
                                         >
 
                                         </Form.Control>
                                         <Form.Control.Feedback type="invalid">
-
+                                        {errors.resourceRequiredDate}
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>

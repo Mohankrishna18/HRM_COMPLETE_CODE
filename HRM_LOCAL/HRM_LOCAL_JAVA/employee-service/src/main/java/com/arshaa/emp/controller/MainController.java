@@ -536,5 +536,9 @@ public class MainController {
         public String getEmployeeFullNameByEmployeeId(@PathVariable("employeeId") String employeeId) {
         	return serv.getEmployeeFullName(employeeId);   
         	}
-        
+        // //get weekends count
+        // @GetMapping("/getweekends/{year}/{month}")
+        // public int  getWeekendsByMonth(@PathVariable int year ,@PathVariable int month) {
+        // 	return lServ.weekendCount(year, month);
+        // }
 }

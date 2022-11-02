@@ -37,7 +37,7 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.firstName}
+              {props.viewOnboard.clientName}
             </Card.Subtitle>
           </Col>
         </Row>
@@ -49,7 +49,7 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.middleName}
+              {props.viewOnboard.resignationId}
             </Card.Subtitle>
           </Col>
         </Row>
@@ -62,7 +62,7 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.lastName}
+              {props.viewOnboard.jobTitle}
             </Card.Subtitle>
           </Col>
         </Row>
@@ -75,7 +75,7 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.email}
+              {props.viewOnboard.raisedBy}
             </Card.Subtitle>
           </Col>
         </Row>
@@ -89,7 +89,7 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.email}
+              {props.viewOnboard.requestInitiatedDate}
             </Card.Subtitle>
           </Col>
       </Row>
