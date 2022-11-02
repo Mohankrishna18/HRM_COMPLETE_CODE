@@ -12,6 +12,7 @@ import ExperienceTab from '../../Approvals/ApprovalComponents/ExperienceTab';
 import HRAssign from '../../HRApproval/HRAssign';
 import { Grid } from '@mui/material';
 import MaterialTable from 'material-table';
+import JobPositionDetails from '../../Approvals/ApprovalComponents/JobPositionDetails';
 
 
 function ResignationaTab() {
@@ -220,40 +221,40 @@ useEffect(() => {
               },
               exportButton: true,
             }}
-            actions={[
-                {
-                  icon: "button",
+            // actions={[
+            //     {
+            //       icon: "button",
     
-                  tooltip: "Save User",
+            //       tooltip: "Save User",
     
-                  onClick: (event, rowData) =>
-                    alert("You saved " + rowData.firstName),
-                },
-              ]}
-              components={{
-                Action: (props) => (
-                  <div>
-                    <Stack direction="horizontal" gap={3}>
+            //       onClick: (event, rowData) =>
+            //         alert("You saved " + rowData.firstName),
+            //     },
+            //   ]}
+            //   components={{
+            //     Action: (props) => (
+            //       <div>
+            //         <Stack direction="horizontal" gap={3}>
     
                 
-                      <Button
-                        variant="white "
-                        className="rounded-pill"
-                        onClick={(event) => {
-                          setViewShow(true);
+            //           <Button
+            //             variant="white "
+            //             className="rounded-pill"
+            //             onClick={(event) => {
+            //               setViewShow(true);
     
-                          console.log(props);
+            //               console.log(props);
     
-                          setViewOnboard(props.data);
-                        }}
-                      >
-                        {" "}
-                        <FcWebcam /> View
-                      </Button>
-                    </Stack>
-                  </div>
-                ),
-              }}
+            //               setViewOnboard(props.data);
+            //             }}
+            //           >
+            //             {" "}
+            //             <FcWebcam /> View
+            //           </Button>
+            //         </Stack>
+            //       </div>
+            //     ),
+            //   }}
           />
         </Grid>
       </div>
