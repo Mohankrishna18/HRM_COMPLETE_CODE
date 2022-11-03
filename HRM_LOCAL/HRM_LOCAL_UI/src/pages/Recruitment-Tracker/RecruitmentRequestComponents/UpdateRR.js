@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from "react";
-import { useState } from "react";
+import React, { useEffect, useRef, useLayoutEffect, useContext , useState} from "react";
 import { InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
@@ -7,11 +6,12 @@ import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useParams, useHistory } from "react-router-dom";
 
 function UpdateRR(props) {
 
   console.log(props.updateOnboard);
-
+  const { data, setData } = useContext(UserContext);
   const [jobTitle, setJobTitle] = useState(props.updateOnboard.jobTitle);
   const [description, setDescription] = useState(props.updateOnboard.description);
   const [rrStatus, setRrStatus] = useState(props.updateOnboard.rrStatus);
@@ -44,6 +44,11 @@ function UpdateRR(props) {
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  const [status1, setStatus1] = useState(false);
+  const pull_data = () => {
+    setStatus1(!status1);
+  };
+
   const handleClose = () => setShow();
   // useState for phone number
   const [firsterrors, setFirstErrors] = useState("");
@@ -51,7 +56,8 @@ function UpdateRR(props) {
   const [thirderrors, setThirdErrors] = useState("");
   //   const handleClose = () => setShow();
   //   const handleShow = () => setShow(true);
-
+  const params = useParams();
+  const history = useHistory();
   const forms = useRef(null);
 
   function setField(field, value) {
@@ -98,6 +104,17 @@ function UpdateRR(props) {
     loadPocNames();
   }, []);
 
+  console.log(params);
+  const loadData1 = async () => {
+    const response = await axios.get(
+      `/recruitmentTracker/getDataById/${params.id}`
+    );
+    setData(response.data.jobTitle);
+    }
+
+    useLayoutEffect(() => {
+      loadData1();
+    }, [status1]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -133,7 +150,9 @@ function UpdateRR(props) {
       .then((response) => {
         const user = response.data;
         if (response.data.status) {
-          props.func();
+          pull_data();
+          // props.func();
+          toast.success("Requisition Updated successfully");
         } else {
           console.log("Props not Send");
         }
@@ -608,7 +627,7 @@ function UpdateRR(props) {
             </Button>
           </Col>
           <Col>
-            <Button
+            {/* <Button
               style={{
                 backgroundColor: "#B6B6B4",
                 borderColor: "#B6B6B4",
@@ -621,7 +640,22 @@ function UpdateRR(props) {
               onClick={handleClose}
             >
               Close
-            </Button>
+            </Button> */}
+            <Button
+                variant="primary"
+                style={{
+                  backgroundColor: "#B6B6B4",
+                  borderColor: "#B6B6B4",
+                  // alignItems: "center",
+                  width: "15%",
+                  height: "120%",
+                  borderRadius: "25px",
+                }}
+                type="cancel"
+                onClick={() => history.push("/app/rrf")}
+              >
+                Back
+              </Button>
           </Col>
         </Row>
       </Form>

@@ -1,10 +1,23 @@
 package com.recruitmenttracker.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,16 +29,17 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
 import com.recruitmenttracker.modal.EmailTemplate;
+import com.recruitmenttracker.modal.Ageing;
 import com.recruitmenttracker.modal.EmployeeReq;
 import com.recruitmenttracker.modal.GetMail;
 import com.recruitmenttracker.modal.RequisitionRequestResponse;
 import com.recruitmenttracker.modal.UserServiceEmail;
 import com.recruitmenttracker.repository.RequisitionRequestRepository;
 
+
+
 @Service
 public class RequisitionRequestServiceImpl implements RequisitionRequestInterface {
-    
-   
 
     @Autowired(required = true)
     private RequisitionRequestRepository rrRepository;
@@ -49,9 +63,9 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 
 //            String p = StringUtils.substring(raiseRequest.getProjectName(), 0, 3);
 //            String c = StringUtils.substring(raiseRequest.getClientName(), 0, 3);
-          
-              String p = "REQ";
-            raiseRequest.setRequisitionId(p+0+(raiseRequest.getRrfId()));
+
+            String p = "REQ";
+            raiseRequest.setRequisitionId(p + 0 + (raiseRequest.getRrfId()));
             RequisitionRequestEntity rreq = rrRepository.save(raiseRequest);
 
             rrr.setStatus(true);
@@ -65,12 +79,15 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
         }
     }
 
+    
+    
 	@Override
 	public ResponseEntity getAllRequisitions() {
 		RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
 		List<RequisitionRequestEntity> requisitions = rrRepository.findAll();
 		try {
 			if(!requisitions.isEmpty()) {
+                
 				rrr.setStatus(true);
 				rrr.setMessage("Data Fetching");
 				rrr.setData(requisitions);
@@ -278,54 +295,84 @@ hrApp.forEach(e->{
            }
        }
 
-       public ResponseEntity getRequisitionsByRrfId(String requisitionId ) {
-           RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
-           try {
-               RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
-              
-               return new ResponseEntity(rfs, HttpStatus.OK);
-           } catch (Exception e) {
-               rrr.setStatus(true);
-               rrr.setMessage("Something went wrong");
-               return new ResponseEntity(rrr, HttpStatus.OK);
-           }
-       }
-       
-       
-       @Override
-       public ResponseEntity getRequisitionsData(String requisitionId) {
-           RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();  
-           try {
-           	EmployeeReq re = new EmployeeReq();
-               RequisitionRequestEntity rfs = rrRepository.getByRequisitionId(requisitionId);
-               
-               re.setClientName(rfs.getClientName());
-               re.setRaisedBy(rfs.getRaisedBy());
-               re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
-               re.setJobTitle(rfs.getJobTitle());
-               re.setRequisitionId(rfs.getRequisitionId());
-               rrr.setStatus(true);
-               rrr.setMessage("Geting Data Succussfully");
-               rrr.setData(re);
-               return new ResponseEntity(rrr, HttpStatus.OK);
-           } catch (Exception e) {
-               rrr.setStatus(true);
-               rrr.setMessage("Something went wrong");
-               return new ResponseEntity(e.getMessage(), HttpStatus.OK);
-           }
-       }
-
-   	@Override
-   	public ResponseEntity getRequisitionsByRequisitionId(String requisitionId) {
-   		RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+    @Override
+    public ResponseEntity getRequisitionsByRequisitionId(String requisitionId) {
+        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
         try {
             RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
-           
-            return new ResponseEntity(rfs, HttpStatus.OK);
+            rrr.setStatus(true);
+            rrr.setMessage("Geting Data Succussfully");
+            rrr.setData(rfs);
+            return new ResponseEntity(rrr, HttpStatus.OK);
         } catch (Exception e) {
             rrr.setStatus(true);
             rrr.setMessage("Something went wrong");
-            return new ResponseEntity(rrr, HttpStatus.OK);
+            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
         }
-   	}
-   }
+    }
+
+    @Override
+    public ResponseEntity getRequisitionsData(String requisitionId) {
+        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+        try {
+            EmployeeReq re = new EmployeeReq();
+            RequisitionRequestEntity rfs = rrRepository.getByRequisitionId(requisitionId);
+
+            re.setClientName(rfs.getClientName());
+            re.setRaisedBy(rfs.getRaisedBy());
+            re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
+            rrr.setStatus(true);
+            rrr.setMessage("Geting Data Succussfully");
+            rrr.setData(re);
+            return new ResponseEntity(rrr, HttpStatus.OK);
+        } catch (Exception e) {
+            rrr.setStatus(true);
+            rrr.setMessage("Something went wrong");
+            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+        }
+    }
+
+//    public List<StoreDatesList> getDaysBetweenDates(Date startDate, Date endDate) {
+//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+//        ArrayList<Date> dates = new ArrayList<Date>();
+//        List<StoreDatesList> getBTDates = new ArrayList<>();
+//        Calendar cal1 = Calendar.getInstance();
+//        System.out.println(cal1);
+//        cal1.setTime(startDate);
+////            cal1.add(Calendar.DATE,1);
+//        Calendar cal2 = Calendar.getInstance();
+//        cal2.setTime(endDate);
+////           cal2.add(Calendar.DATE, 1);
+//
+//        while (cal1.before(cal2) || cal1.equals(cal2)) {
+//            StoreDatesList sd = new StoreDatesList();
+//            Date d = cal1.getTime();
+//            System.out.println(d);
+//            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//            String strDate = dateFormat.format(d);
+//            sd.setBetWeenDates(strDate);
+//            getBTDates.add(sd);
+//            dates.add(cal1.getTime());
+//            System.out.println(strDate);
+//            cal1.add(Calendar.DATE, 1);
+//        }
+//        return getBTDates;
+//    }
+
+    public int getDaysBetweenDates(String requisitionId, String requestInitiatedDate) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");     
+        
+        Date convertedDate = sdf.parse(requestInitiatedDate);
+        Date currentDate = new Date();
+        
+        if (convertedDate.compareTo(currentDate)>0) {
+            return 0;
+        }
+
+        long diff = currentDate.getTime() - convertedDate.getTime();
+
+        return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+
+    }
+
+}

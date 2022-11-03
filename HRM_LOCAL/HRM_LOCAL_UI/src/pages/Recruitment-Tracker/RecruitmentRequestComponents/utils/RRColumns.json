@@ -54,7 +54,15 @@
         "field" : "raisedOn"
     },
     {
-        "title":"Ageing"
+        "title" : "Request Initiated On",
+        "field" : "requestInitiatedDate",
+        "type": "date",
+        "dateSetting": { "locale": "en-GB" }
+
+    },
+    {
+        "title":"Ageing",
+        "field":"ageing"
     }
 
 ]

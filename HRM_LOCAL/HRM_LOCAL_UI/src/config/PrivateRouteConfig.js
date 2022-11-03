@@ -72,6 +72,7 @@ import EmploymentTypeMain from "../pages/EmploymentType/EmploymentTypeMain";
 import IntegrateLeaveToApply from "../pages/LeaveManagement/IntegrateLeaveToApply";
 import OnboardedEmployeesTable from "../pages/Approvals/ApprovalComponents/OnboardedEmployeesTable";
 import ProjectUpdateTabs from "../pages/Projects/ProjectsComponents/ProjectUpdateTabs";
+import UpdateRR from '../pages/Recruitment-Tracker/RecruitmentRequestComponents/UpdateRR'
 
 
 import HrLeavesToApproveMain from "../pages/HrLeavesToApprove/HrLeavesToApproveMain";
@@ -140,17 +141,11 @@ export default [
   },
   {
     component: HrDashboardMain,
-
     path: "/dashboard",
-
     type: "myprofile",
-
     icon: <FcTemplate />,
-
     title: "Dashboard",
-
     permission: [Roles.hrmanager, Roles.pmohead, Roles.ceo],
-
     //exact: true
   },
   {
@@ -735,7 +730,11 @@ export default [
     permission: [Roles.irm]
   },
 
-
+  {
+    component: UpdateRR,
+    path: "/updateRequisition/:id",
+    permission: [Roles.irm,Roles.manager],
+  },
 
 ];
 
