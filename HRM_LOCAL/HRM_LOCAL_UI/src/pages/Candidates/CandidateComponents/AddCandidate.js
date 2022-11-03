@@ -508,12 +508,12 @@ const projectName = user.projectName;
                   controlId="uploadResume"
                   value={form.uploadResume}
                   onChange={(e) => setField("uploadResume", e.target.value)}
-                  // isInvalid={!!errors.uploadResume}
+                  isInvalid={!!errors.uploadResume}
                 ></Form.Control>
-                {/* <Form.Control.Feedback type="invalid">
+                <Form.Control.Feedback type="invalid">
                   {errors.uploadResume}
                 </Form.Control.Feedback>
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
             </Row>
             <Row>

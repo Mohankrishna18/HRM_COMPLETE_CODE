@@ -272,7 +272,7 @@ const UpdateCandidate = (props) => {
               // isInvalid={!!errors.candidateName}
               onChange ={(e) =>{
                 if(e.target.value === ""){
-                  setCandidateNameError ("Invalid JobTitle");
+                  setCandidateNameError ("Invalid Candidate Name");
                 }
                 else if(e.target.value.length>50){
                   setCandidateNameError("Too Long")
@@ -302,7 +302,7 @@ const UpdateCandidate = (props) => {
               // isInvalid={!!errors.candidateStatus}
               onChange ={(e) =>{
                 if(e.target.value === ""){
-                  setCandidateStatus ("Invalid JobTitle");
+                  setCandidateStatus ("Invalid Candidate Status");
                 }
                 else if(e.target.value.length>50){
                   setCandidateStatus("Too Long")
@@ -341,7 +341,7 @@ const UpdateCandidate = (props) => {
               // isInvalid={!!errors.currentLocation}
               onChange ={(e) =>{
                 if(e.target.value === ""){
-                  setLocationError  ("Invalid JobTitle");
+                  setLocationError  ("Invalid Location");
                 }
                 else if(e.target.value.length>50){
                   setLocationError("Too Long")
@@ -375,7 +375,7 @@ const UpdateCandidate = (props) => {
               // isInvalid={!!errors.primarySkills}
               onChange ={(e) =>{
                 if(e.target.value === ""){
-                  setSkillError ("Invalid JobTitle");
+                  setSkillError ("Invalid");
                 }
                 else if(e.target.value.length>50){
                   setSkillError("Too Long")
@@ -408,7 +408,7 @@ const UpdateCandidate = (props) => {
               // isInvalid={!!errors.secondarySkills}
               onChange ={(e) =>{
                 if(e.target.value === ""){
-                  setSecSkillError  ("Invalid JobTitle");
+                  setSecSkillError  ("Invalid");
                 }
                 else if(e.target.value.length>50){
                   setSecSkillError("Too Long")
@@ -501,7 +501,7 @@ const UpdateCandidate = (props) => {
               // isInvalid={!!errors.yearsOfExperience}
               onChange ={(e) =>{
                 if(e.target.value === ""){
-                  setExpyrError ("Invalid JobTitle");
+                  setExpyrError ("Invalid");
                 }
                 else if(e.target.value.length>50){
                   setExpyrError("Too Long")

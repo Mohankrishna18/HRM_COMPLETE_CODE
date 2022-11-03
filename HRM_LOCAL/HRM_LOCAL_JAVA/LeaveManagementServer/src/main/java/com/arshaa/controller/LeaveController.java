@@ -282,6 +282,7 @@ public ResponseEntity getAbsanceCount(@PathVariable Integer month,@PathVariable 
 		return new ResponseEntity(cc ,HttpStatus.OK);
 
 	}
+
 }
 
 
@@ -304,4 +305,8 @@ public ResponseEntity getAbsanceCount(@PathVariable Integer month,@PathVariable 
 //
 //	}
 //}
+@GetMapping("/getAllMonths/{employeeId}")
+public List<String> getAllMonths(@PathVariable("employeeId") String employeeId){
+    return service.getMonthsForEmployeeLeaves(employeeId);
+}
 }
