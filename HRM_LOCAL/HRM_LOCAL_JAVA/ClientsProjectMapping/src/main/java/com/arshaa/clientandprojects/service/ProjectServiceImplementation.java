@@ -115,7 +115,7 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 		model.setDescription(project.getDescription());
 		model.setPriority(project.getPriority());
 		model.setRate(project.getRate());
-		model.setprojectManager(project.getProjectManager());
+		model.setProjectManager(project.getProjectManager());
 		return model;
 	}
 

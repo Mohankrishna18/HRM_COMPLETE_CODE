@@ -111,13 +111,6 @@ public class ProjectModel {
 		this.priority = priority;
 	}
 
-	public String getprojectManager() {
-		return projectManager;
-	}
-
-	public void setprojectManager(String projectManager) {
-		this.projectManager = projectManager;
-	}
 
 	public String getStatus() {
 		return status;

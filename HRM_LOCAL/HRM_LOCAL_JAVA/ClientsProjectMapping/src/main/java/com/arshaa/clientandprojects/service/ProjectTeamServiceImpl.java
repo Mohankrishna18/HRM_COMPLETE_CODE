@@ -187,7 +187,7 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
         model.setDescription(project.getDescription());
         model.setPriority(project.getPriority());
         model.setRate(project.getRate());
-        model.setprojectManager(project.getProjectManager());
+        model.setProjectManager(project.getProjectManager());
         return model;
     }
    
@@ -203,7 +203,7 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
         model.setDescription(p.getDescription());
         model.setPriority(p.getPriority());
         model.setRate(p.getRate());
-        model.setprojectManager(p.getProjectManager());
+        model.setProjectManager(p.getProjectManager());
         return model;
     }
     @Override

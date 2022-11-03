@@ -278,10 +278,46 @@ hrApp.forEach(e->{
            }
        }
 
-       public ResponseEntity getRequisitionsByRrfId(String requisitionId) {
-       RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+       public ResponseEntity getRequisitionsByRrfId(String requisitionId ) {
+           RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+           try {
+               RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
+              
+               return new ResponseEntity(rfs, HttpStatus.OK);
+           } catch (Exception e) {
+               rrr.setStatus(true);
+               rrr.setMessage("Something went wrong");
+               return new ResponseEntity(rrr, HttpStatus.OK);
+           }
+       }
+       
+       
+       @Override
+       public ResponseEntity getRequisitionsData(String requisitionId) {
+           RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();  
+           try {
+           	EmployeeReq re = new EmployeeReq();
+               RequisitionRequestEntity rfs = rrRepository.getByRequisitionId(requisitionId);
+               
+               re.setClientName(rfs.getClientName());
+               re.setRaisedBy(rfs.getRaisedBy());
+               re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
+               re.setJobTitle(rfs.getJobTitle());
+               re.setRequisitionId(rfs.getRequisitionId());
+               rrr.setStatus(true);
+               rrr.setMessage("Geting Data Succussfully");
+               rrr.setData(re);
+               return new ResponseEntity(rrr, HttpStatus.OK);
+           } catch (Exception e) {
+               rrr.setStatus(true);
+               rrr.setMessage("Something went wrong");
+               return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+           }
+       }
 
-
+   	@Override
+   	public ResponseEntity getRequisitionsByRequisitionId(String requisitionId) {
+   		RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
         try {
             RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
            
@@ -291,40 +327,5 @@ hrApp.forEach(e->{
             rrr.setMessage("Something went wrong");
             return new ResponseEntity(rrr, HttpStatus.OK);
         }
-    }
-    
-    
-    @Override
-    public ResponseEntity getRequisitionsData(String requisitionId) {
-        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();  
-        try {
-        	EmployeeReq re = new EmployeeReq();
-            RequisitionRequestEntity rfs = rrRepository.getByRequisitionId(requisitionId);
-            
-            re.setClientName(rfs.getClientName());
-            re.setRaisedBy(rfs.getRaisedBy());
-            re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
-            re.setJobTitle(rfs.getJobTitle());
-            re.setRequisitionId(rfs.getRequisitionId());
-            rrr.setStatus(true);
-            rrr.setMessage("Geting Data Succussfully");
-            rrr.setData(re);
-            return new ResponseEntity(rrr, HttpStatus.OK);
-        } catch (Exception e) {
-            rrr.setStatus(true);
-            rrr.setMessage("Something went wrong");
-            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
-        }
-    }
-
-	@Override
-	public ResponseEntity getRequisitionsByRequisitionId(String requisitionId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-    
-    
-    
-
-	
-}
+   	}
+   }

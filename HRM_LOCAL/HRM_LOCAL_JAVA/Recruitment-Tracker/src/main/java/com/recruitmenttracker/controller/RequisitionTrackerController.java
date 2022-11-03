@@ -43,7 +43,7 @@ public class RequisitionTrackerController {
 	}
 
 	@GetMapping("/getDataById/{requisitionId}")
-	public ResponseEntity getRequisitionsByrRequisitionId(@PathVariable String requisitionId) {
+	public ResponseEntity getRequisitionsByRequisitionId(@PathVariable String requisitionId) {
 		return serv.getRequisitionsByRequisitionId(requisitionId);
 	}
 	
@@ -52,7 +52,6 @@ public class RequisitionTrackerController {
 	public ResponseEntity getRequisitionsData(@PathVariable String requisitionId) {
 		return serv.getRequisitionsData(requisitionId);
 	}
-	
 	
 	
 	@DeleteMapping("/deleteRR/{rrfId}")

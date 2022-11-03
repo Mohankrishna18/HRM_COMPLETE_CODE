@@ -56,7 +56,8 @@ function AddOnboard(props) {
       yearsOfExperience,
       primarySkills,
       secondarySkills,
-      requisitionId,jobTitle,
+      requisitionId,
+      jobTitle,
       clientName,
       requestInitiatedDate,
       raisedBy
