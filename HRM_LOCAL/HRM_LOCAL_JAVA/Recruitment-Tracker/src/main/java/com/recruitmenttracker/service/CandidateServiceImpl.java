@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import com.recruitmenttracker.entity.CandidateEntity;
+import com.recruitmenttracker.modal.Response;
 import com.recruitmenttracker.repository.CandidateRepository;
 
 @Service
@@ -37,12 +39,12 @@ public class CandidateServiceImpl implements CandidateService{
 	}
 
 	@Override
-	public CandidateEntity update(CandidateEntity candidate, int requisitionId) {
-		CandidateEntity cd = candidateRepo.getById(requisitionId);  
+	public CandidateEntity update(CandidateEntity candidate, int candidateId) {
+		CandidateEntity cd = candidateRepo.getById(candidateId);  
 		cd.setCandidateName(candidate.getCandidateName());
 		cd.setCandidateStatus(candidate.getCandidateStatus());
 		cd.setBusinessUnit(candidate.getBusinessUnit());
-		cd.setProject(candidate.getProject());
+		cd.setProjectName(candidate.getProjectName());
 		cd.setJobTitle(candidate.getJobTitle());
 		cd.setCurrentLocation(candidate.getCurrentLocation());
 		cd.setPrimarySkills(candidate.getPrimarySkills());
@@ -53,15 +55,35 @@ public class CandidateServiceImpl implements CandidateService{
 		return candidateRepo.save(cd);
 		
 	}
+//	@Override
+//	public String deleteCandidateEntity(int candidateId) {
+//		candidateRepo.deleteByCandidateId(candidateId);
+//		return "record is deleted with this id" +"  "+candidateId;
+//	}
+
 	@Override
-	public String deleteCandidateEntity(int requisitionId) {
-		candidateRepo.deleteById(requisitionId);
-		return "record is deleted with this id" +"  "+requisitionId;
+	public Optional<CandidateEntity> getCandidateEntityByRequisitionId(String requisitionId) {
+		return candidateRepo.findByRequisitionId(requisitionId) ;
 	}
 
 	@Override
-	public Optional<CandidateEntity> getCandidateEntityByRequisitionId(int requisitionId) {
-		return candidateRepo.findById(requisitionId) ;
-	}
+	public ResponseEntity DeleteCandidate(int candidateId) {
+		Response r=new Response<>();
+		try {
+			CandidateEntity candidate= candidateRepo.getById(candidateId);
+
+			candidateRepo.delete(candidate);
+		r.setStatus(true);
+		r.setMessage("Deleted successfully");
+		return new ResponseEntity(r,HttpStatus.OK);
+		}
+		catch (Exception e) {
+		// TODO: handle exception
+
+		r.setStatus(false);
+		r.setMessage(e.getMessage());
+		return new ResponseEntity(r,HttpStatus.OK);
+		}
 	
+	}
 }

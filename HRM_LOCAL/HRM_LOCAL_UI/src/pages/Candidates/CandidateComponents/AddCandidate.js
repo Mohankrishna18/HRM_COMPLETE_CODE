@@ -141,7 +141,6 @@ function AddCandidate(props) {
     return newErrors;
   };
 
-
   const [user, setUser] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -153,12 +152,17 @@ function AddCandidate(props) {
     } else {
       // console.log(form);
       // console.log("form submitted");
-      const lastForm = Object.assign(form, { jobTtle: jobTitle }, { departmentName: departmentName }, { projectName: projectName })
-      console.log(lastForm)
+      const lastForm = Object.assign(
+        form,
+        { jobTitle:jobTitle },
+        { departmentName: departmentName },
+        { projectName: projectName }
+      );
+      console.log(lastForm);
       axios
         .post("/candidate/addCandidate", form)
         .then((response) => {
-          const user = response.data;
+          const user = response;
           console.log(response.data);
           if (user.status) {
             props.func();
@@ -176,25 +180,28 @@ function AddCandidate(props) {
         .catch((err) => {
           toast.error("Something went Wrong");
         });
-
     }
   };
-
-  const [candidateData, setCandidateData] = useState([])
+const jobTitle=user.jobTitle;
+const departmentName = user.departmentName;
+const projectName = user.projectName;
+  const [candidateData, setCandidateData] = useState([]);
 
   useEffect(() => {
     const loadUsers = async () => {
-      const response = await axios.get("/recruitmentTracker/getAllRequisitionRequests");
+      const response = await axios.get(
+        "/recruitmentTracker/getAllRequisitionRequests"
+      );
       console.log(response.data);
       setCandidateData(response.data.data);
     };
     loadUsers();
   }, []);
-  console.log(candidateData)
+  console.log(candidateData);
+  console.log(user.jobTitle)
 
   return (
     <div>
-
       {/* Add candidate button */}
       <Button
         variant="warning"
@@ -209,9 +216,8 @@ function AddCandidate(props) {
         }}
       >
         {/* <FaPlus />  */}
-        <IoMdPersonAdd style={{ fontSize: '25px' }} />
-        &nbsp;
-        Add Candidate
+        <IoMdPersonAdd style={{ fontSize: "25px" }} />
+        &nbsp; Add Candidate
       </Button>
       <Modal
         size="lg"
@@ -243,7 +249,6 @@ function AddCandidate(props) {
             onSubmit={handleSubmit}
           >
             <Row className="mb-4">
-
               {/* requisition ID */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Requisition ID</Form.Label>
@@ -256,26 +261,22 @@ function AddCandidate(props) {
                   // onChange={(e) => setField("requisitionId", e.target.value)}
                   onChange={(e) => {
                     axios
-                      .get(
-                        `/recruitmentTracker/getDataById/${e.target.value}`
-                      )
+                      .get(`/recruitmentTracker/getDataById/${e.target.value}`)
                       .then((response) => {
                         console.log(response.data.data);
                         setUser(response.data.data);
-
+                        
                       });
                     setField("requisitionId", e.target.value);
                   }}
-
                   isInvalid={!!errors.requisitionId}
                 >
-                 <option value="">Select </option>
-                  {candidateData.map((requisition) => (
+                  <option value="">Select </option>
+                  {!candidateData ? (<></>): candidateData.map((requisition) => (
                     <option value={requisition.requisitionId}>
                       {requisition.requisitionId}
                     </option>
                   ))}
-           
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.requisitionId}
@@ -314,7 +315,7 @@ function AddCandidate(props) {
                   value={user.departmentName}
                   maxLength={50}
                   onChange={(e) => setField("departmentName", e.target.value)}
-                // isInvalid={!!errors.businessUnit}
+                  // isInvalid={!!errors.businessUnit}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {/* {errors.businessUnit} */}
@@ -339,7 +340,6 @@ function AddCandidate(props) {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
-
               {/* job title */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Job Title *</Form.Label>
@@ -352,7 +352,7 @@ function AddCandidate(props) {
                   value={user.jobTitle}
                   maxLength={50}
                   onChange={(e) => setField("jobTitle", e.target.value)}
-                //isInvalid={!!errors.jobTitle}
+                  //isInvalid={!!errors.jobTitle}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {/* {errors.jobTitle} */}
@@ -376,7 +376,6 @@ function AddCandidate(props) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-
               {/* Project */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Project Assigned </Form.Label>
@@ -389,13 +388,12 @@ function AddCandidate(props) {
                   value={user.projectName}
                   maxLength={50}
                   onChange={(e) => setField("projectName", e.target.value)}
-                // isInvalid={!!errors.project}
+                  // isInvalid={!!errors.project}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {/* {errors.project} */}
                 </Form.Control.Feedback>
               </Form.Group>
-
 
               {/* YOE */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -408,14 +406,15 @@ function AddCandidate(props) {
                   placeholder="Years Of Experience"
                   value={form.yearsOfExperience}
                   maxLength={30}
-                  onChange={(e) => setField("yearsOfExperience", e.target.value)}
+                  onChange={(e) =>
+                    setField("yearsOfExperience", e.target.value)
+                  }
                   isInvalid={!!errors.yearsOfExperience}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {errors.yearsOfExperience}
                 </Form.Control.Feedback>
               </Form.Group>
-
 
               {/* Current Location */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -429,8 +428,7 @@ function AddCandidate(props) {
                   maxLength={80}
                   onChange={(e) => setField("currentLocation", e.target.value)}
                   isInvalid={!!errors.currentLocation}
-                >
-                </Form.Control>
+                ></Form.Control>
                 <Form.Control.Feedback type="invalid">
                   {errors.currentLocation}
                 </Form.Control.Feedback>
@@ -500,10 +498,6 @@ function AddCandidate(props) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-
-
-
-
               {/* Upload Resume */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Upload Resume *</Form.Label>
@@ -514,12 +508,12 @@ function AddCandidate(props) {
                   controlId="uploadResume"
                   value={form.uploadResume}
                   onChange={(e) => setField("uploadResume", e.target.value)}
-                  isInvalid={!!errors.uploadResume}
+                  // isInvalid={!!errors.uploadResume}
                 ></Form.Control>
-                <Form.Control.Feedback type="invalid">
+                {/* <Form.Control.Feedback type="invalid">
                   {errors.uploadResume}
                 </Form.Control.Feedback>
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
               </Form.Group>
             </Row>
             <Row>
