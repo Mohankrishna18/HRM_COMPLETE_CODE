@@ -159,6 +159,7 @@ public class RequisitionTrackerController {
            r.setWorkflowStatus(o.getWorkflowStatus());
            r.setPositions(o.getPositions());
            r.setRaisedOn(o.getRaisedOn());
+           r.setRrfId(o.getRrfId());
            r.setRequestInitiatedDate(o.getRequestInitiatedDate());
            r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
            req.add(r);
