@@ -349,8 +349,8 @@ function AddOnboard(props) {
                         `/recruitmentTracker/getDataById/${e.target.value}`
                     )
                     .then((response) => {
-                        console.log(response.data);
-                         setJobT(response.data)
+                        console.log(response.data.data);
+                         setJobT(response.data.data)
                     });
                 setField("requisitionId", e.target.value);
             }}

@@ -1,3 +1,4 @@
+
 import {
   FcBusinessman,
   FcDepartment,
@@ -113,7 +114,6 @@ import PMO_Dashboard from "../pages/Recruitment-Tracker/RequisitionDashboard/PMO
 import EditEmployeeDetailsTabs from "../pages/EditEmployeeDetails/EditEmployeeDetailsTabs";
 import EmployeeDashboard from '../pages/Recruitment-Tracker/RequisitionDashboard/EmployeeDashboard/EmployeeDashboard'
 import ReportsMain from "../pages/Reports/ReportsMain";
-import AdminDashBoard from "../pages/Client/Dashboard/AdminDashboard";
 import CandidatesMain from "../pages/Candidates/CandidatesMain";
 
 
@@ -282,15 +282,7 @@ export default [
 
     permission: [Roles.pmohead, Roles.irm, Roles.manager],
   },
-//  {
-//     component: AdminDashBoard,
-//     path: "/AdminDashBoard",
-//     type: "null",
-//     icon: <FcOrgUnit/>,
-//     title: "Dashboard",
-//     permission: [Roles.hrmanager,Roles.pmohead,Roles.ceo,Roles.taahead,Roles.buhead],
-//    // exact: true,
-//   },
+
 
   {
     component: TAAHeadMain,

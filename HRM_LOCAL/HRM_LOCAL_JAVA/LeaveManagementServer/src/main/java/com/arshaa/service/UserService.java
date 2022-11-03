@@ -634,6 +634,19 @@ public class UserService {
 		}
 //					return findLeavesByLeaveStatusAndEmployeeId(leaveStatus, employeeId);
 	}
+	public List<String> getMonthsForEmployeeLeaves(String employeeId) {
+
+
+
+	       List<BetweenDates> getAllBetweenDates = bro.findByEmployeeId(employeeId);
+	        List<String> splitMonth = new ArrayList();
+	        getAllBetweenDates.forEach(date -> {
+	            String appliedDateString = date.getAppliedDate();
+	            String[] splittedDate = appliedDateString.split("-");
+	            splitMonth.add(splittedDate[1]);
+	        });
+	        return splitMonth;
+	    }
 	
 
 }
