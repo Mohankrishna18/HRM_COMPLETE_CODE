@@ -9,8 +9,8 @@ public class EmployeeReq {
     private String raisedBy;
 	private String requisitionId;
 	private String jobTitle;
-	
-	
+	private String departmentName;
+	private String projectName;
 	public String getClientName() {
 		return clientName;
 	}
@@ -41,5 +41,19 @@ public class EmployeeReq {
 	public void setJobTitle(String jobTitle) {
 		this.jobTitle = jobTitle;
 	}
+	public String getDepartmentName() {
+		return departmentName;
+	}
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+	public String getProjectName() {
+		return projectName;
+	}
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+	
+	
 	
 }

@@ -114,6 +114,7 @@ import EditEmployeeDetailsTabs from "../pages/EditEmployeeDetails/EditEmployeeDe
 import EmployeeDashboard from '../pages/Recruitment-Tracker/RequisitionDashboard/EmployeeDashboard/EmployeeDashboard'
 import ReportsMain from "../pages/Reports/ReportsMain";
 import AdminDashBoard from "../pages/Client/Dashboard/AdminDashboard";
+import CandidatesMain from "../pages/Candidates/CandidatesMain";
 
 
 export default [
@@ -728,6 +729,14 @@ export default [
     icon: <FcApproval />,
     title: "Requisition Dashboard",
     permission: [Roles.irm]
+  },
+  {
+    component: CandidatesMain,
+    path: "/Candidates",
+    type: "null",
+    icon: <FcApproval />,
+    title: "Candidates",
+    permission: [Roles.taahead]
   },
 
   {
