@@ -30,7 +30,7 @@ function ViewRR(props) {
                             <Col md={{ offset: 1 }}>
                                 <Card.Text style={{ paddingBottom: 0 }}>
                                     {props.viewOnboard.rrfId}
-                                </Card.Text>
+                                </Card.Text>,
                             </Col>
                         </Row><Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
@@ -148,7 +148,7 @@ function ViewRR(props) {
                         <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
                                 <Card.Subtitle style={{ padding: 10 }}>
-                                    Primary pSkills   :
+                                    Primary Skills   :
                                 </Card.Subtitle>{" "}
                             </Col>
                             <Col md={{ offset: 1 }}>

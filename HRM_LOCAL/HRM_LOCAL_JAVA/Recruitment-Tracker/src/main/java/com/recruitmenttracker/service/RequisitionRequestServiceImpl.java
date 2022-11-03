@@ -295,21 +295,21 @@ hrApp.forEach(e->{
            }
        }
 
-    @Override
-    public ResponseEntity getRequisitionsByRequisitionId(String requisitionId) {
-        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
-        try {
-            RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
-            rrr.setStatus(true);
-            rrr.setMessage("Geting Data Succussfully");
-            rrr.setData(rfs);
-            return new ResponseEntity(rrr, HttpStatus.OK);
-        } catch (Exception e) {
-            rrr.setStatus(true);
-            rrr.setMessage("Something went wrong");
-            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
-        }
-    }
+//    @Override
+//    public ResponseEntity getRequisitionsByRequisitionId(String requisitionId) {
+//        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+//        try {
+//            RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
+//            rrr.setStatus(true);
+//            rrr.setMessage("Geting Data Succussfully");
+//            rrr.setData(rfs);
+//            return new ResponseEntity(rrr, HttpStatus.OK);
+//        } catch (Exception e) {
+//            rrr.setStatus(true);
+//            rrr.setMessage("Something went wrong");
+//            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+//        }
+//    }
 
     @Override
     public ResponseEntity getRequisitionsData(String requisitionId) {
@@ -319,6 +319,7 @@ hrApp.forEach(e->{
             RequisitionRequestEntity rfs = rrRepository.getByRequisitionId(requisitionId);
 
             re.setClientName(rfs.getClientName());
+            re.setJobTitle(rfs.getJobTitle());
             re.setRaisedBy(rfs.getRaisedBy());
             re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
             rrr.setStatus(true);
@@ -356,10 +357,18 @@ hrApp.forEach(e->{
 	            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
 	        }
 	}
+
+
+
+    @Override
+    public int getDaysBetweenDates(String requisitionId, String requestInitiatedDate) throws ParseException {
+        // TODO Auto-generated method stub
+        return 0;
+    }
     
     
     
 
     }
 
-}
+
