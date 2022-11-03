@@ -161,7 +161,7 @@ function LeadsMain() {
 
 
       {/* view modal */}
-      <Modal style={{ maxHeight: "1200px", maxWidth: "1550px", position: "absolute", }} show={viewShow} onHide={viewHandleClose} size="lg">
+      <Modal  show={viewShow} onHide={viewHandleClose} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
           <Modal.Title>Lead Overall Details</Modal.Title>
         </Modal.Header>
