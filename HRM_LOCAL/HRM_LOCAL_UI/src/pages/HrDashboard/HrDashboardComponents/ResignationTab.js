@@ -48,6 +48,16 @@ function ResignationaTab() {
     };
 
 
+// const[candidate,setCandidate]=useEffect("")
+//     useEffect(() => {
+//         axios
+//             .get(`/emp/getPersonalDetails/${viewOnboard.employeeId}`)
+//             .then((response) => {
+//                 setCandidate(response.data)
+//                 console.log(response.data)
+//             });
+//     }, []);
+
 useEffect(() => {
     loadData();
   }, []);
@@ -60,6 +70,7 @@ useEffect(() => {
     setData(response.data);
     console.log(response.data);
   };
+  console.log(data.employeeId)
 
     const [columns, setColumns] = useState([
      // { title: "Resignation ID", field: "resignationId",color:"black" },
@@ -242,9 +253,7 @@ useEffect(() => {
             //             className="rounded-pill"
             //             onClick={(event) => {
             //               setViewShow(true);
-    
-            //               console.log(props);
-    
+            //               console.log(props.data);
             //               setViewOnboard(props.data);
             //             }}
             //           >

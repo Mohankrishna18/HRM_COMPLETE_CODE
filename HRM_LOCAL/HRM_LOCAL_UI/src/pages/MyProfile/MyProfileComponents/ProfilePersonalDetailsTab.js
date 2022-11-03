@@ -169,8 +169,6 @@ function ProfilePersonalDetailsTab() {
 
     console.log(imge);
 
-
-
     useEffect(() => {
         axios
             .get(`/emp/getPersonalDetails/${employeeid}`)

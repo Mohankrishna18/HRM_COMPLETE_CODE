@@ -20,7 +20,7 @@ function MyProfileTabs() {
     };
 
     return(
-        <>
+        <div className='example'>
         <EmployeeMasterCard/>
         <TabContext value={value}>
   <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{justifyContent:"center"}}>
@@ -44,7 +44,7 @@ function MyProfileTabs() {
   <TabPanel value="7"><ProfileProjectTab/></TabPanel>
 </TabContext>
        
-        </>
+        </div>
 
     );
 }

@@ -29,7 +29,20 @@ console.log(dob)
       <Card.Body >
       <Row>
         <Col>
-        <Row style={{ paddingLeft: 55, paddingBottom: 30 ,paddingTop:20}}>
+        <Row style={{ paddingLeft: 55, paddingBottom: 30 ,paddingTop:0}}>
+        <Col>
+            <Card.Subtitle>
+           Requisition ID
+            </Card.Subtitle>
+          </Col>
+          <Col md={{ offset: 1 }}>
+            <Card.Subtitle style={{ color: "#999897" }}>
+              {props.viewOnboard.requisitionId}
+            </Card.Subtitle>
+          </Col>
+        </Row>
+        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+         
           <Col>
             <Card.Subtitle>
               Client Name
@@ -38,18 +51,6 @@ console.log(dob)
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
               {props.viewOnboard.clientName}
-            </Card.Subtitle>
-          </Col>
-        </Row>
-        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
-          <Col>
-            <Card.Subtitle>
-           Requisition ID
-            </Card.Subtitle>
-          </Col>
-          <Col md={{ offset: 1 }}>
-            <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.resignationId}
             </Card.Subtitle>
           </Col>
         </Row>
