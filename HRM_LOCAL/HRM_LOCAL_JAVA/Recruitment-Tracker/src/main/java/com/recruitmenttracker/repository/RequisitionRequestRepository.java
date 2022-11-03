@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
-import com.recruitmenttracker.modal.Ageing;
+
 @Repository
 public interface RequisitionRequestRepository extends JpaRepository<RequisitionRequestEntity, Long>{
 	
