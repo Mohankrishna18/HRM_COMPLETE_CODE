@@ -33,12 +33,10 @@ const DeleteCandidate = (props) => {
         <div>
             <Row>
                 <Col>
-                    <Row><Col style={{ paddingLeft: "100px" }}> Are you sure that you want to delete {props.deleteOnboard.project}?</Col></Row>
+                <Row><Col style={{ paddingLeft:"80px",fontSize:"20px" }}> Are you sure that you want to delete {props.deleteOnboard.project}?</Col></Row>
+
                     <Row>
-                        <Col style={{ paddingLeft: "220px" }}><Button style={{
-                            backgroundColor: "#f5896e",
-                            borderColor: "#ff9b44",
-                        }} onClick={deleteProjects}>Yes</Button></Col>
+                    <Col style={{ paddingLeft:"430px",paddingTop:"5px " }}><Button onClick={deleteProjects}>Yes</Button></Col>
                     </Row>
                 </Col>
             </Row>
