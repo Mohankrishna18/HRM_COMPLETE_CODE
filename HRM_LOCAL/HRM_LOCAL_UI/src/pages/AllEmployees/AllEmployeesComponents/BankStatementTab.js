@@ -1,13 +1,15 @@
 import React from "react";
 
-import { Card, 
-         Container,
-         Row, 
-         Col, 
-         Form, 
-         InputGroup, 
-         FormControl, 
-         Button } from "react-bootstrap";
+import {
+    Card,
+    Container,
+    Row,
+    Col,
+    Form,
+    InputGroup,
+    FormControl,
+    Button
+} from "react-bootstrap";
 
 function BankStatementTab() {
 
@@ -70,7 +72,7 @@ function BankStatementTab() {
                                             <option value="1">Yes</option>
                                             <option value="2">No</option>
                                         </Form.Select>
-                                   </Form.Group>
+                                    </Form.Group>
                                 </Row>
                                 <Row>
                                     <Form.Group as={Col} md="4" style={{ padding: 15 }} >
@@ -157,7 +159,10 @@ function BankStatementTab() {
                                         </InputGroup>
                                     </Form.Group>
                                 </Row>
-                                <Button>save</Button>
+                                <Button style={{
+                                    backgroundColor: "#f5896e",
+                                    borderColor: "#ff9b44",
+                                }}>save</Button>
                             </Card.Body>
                         </Card>
                     </Col>

@@ -59,9 +59,9 @@ const ProfileEmploymentDetailsTab = () => {
   return (
  
                         <div style={{ padding: 20, paddingBottom: 20 }}>    
-                          <Card.Title>
+                          {/* <Card.Title>
                             <h5>Employment Details:</h5>
-                          </Card.Title>
+                          </Card.Title> */}
                           <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                             <Col>
                               <Card.Subtitle style={{ padding: 10 }}>

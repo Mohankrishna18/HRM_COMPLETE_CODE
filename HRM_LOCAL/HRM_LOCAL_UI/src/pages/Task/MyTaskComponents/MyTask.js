@@ -14,7 +14,7 @@
 // // import DeleteTask from "./DeleteTask";
 // // import { date } from "yup/lib/locale";
 // function MyTask() {
- 
+
 
 //   const [show, setShow] = useState(false);
 //   // const [deleteUser, setDeleteUser] = useState(false);
@@ -22,7 +22,7 @@
 //   const handleClose = () => setShow(false);
 //   // const deleteHandleClose = () => setDeleteUser(false);
 
- 
+
 
 
 //   const handleShow = () => setShow(false);
@@ -47,7 +47,7 @@
 //     console.log("data added")
 //   }
 //   ,[addStatus])
-     
+
 //     const loadByUserID =  () => {
 //      // const response =  axios.get(`/task/getTaskByAssign/${employeeId}`)
 //      const response =  axios.get(`/task/getAllTasksByEmployeeId/${employeeId}`)
@@ -60,7 +60,7 @@
 //         console.log(err)
 //       })
 //     }
-   
+
 //   const [addStatus, setAddStatus] = useState(false);
 //   // const [deleteStatus, setDeleteStatus] = useState(true);
 //   const [updateStatus, setUpdateStatus] = useState(false);
@@ -93,8 +93,8 @@
 //   //  console.log(data)
 
 //   const [columns, setColumns] = useState([
-   
-   
+
+
 //     // {
 //     //   title: "UserStoryId",
 //     //   field: "userId",
@@ -108,7 +108,7 @@
 //     {
 //       title: "Project Name",
 //       field: "projectName",
-   
+
 //     },
 //     // {
 //     //   title: "User story",
@@ -125,7 +125,7 @@
 //       field: "taskType",
 //       type: "text",
 //     },
-   
+
 //     {
 //       title:"Estimated Hours",
 //       field:"estimatedHours",
@@ -156,9 +156,9 @@
 //     type:"date",
 //     dataSetting: { locale: "en-GB"}
 //     },
-   
-   
-   
+
+
+
 //     {
 //       title: "Priority",
 //       field: "priority",
@@ -171,7 +171,7 @@
 //       field: "status",
 //       type: "text",
 //     },
-   
+
 //   ]);
 
 //   return (
@@ -196,7 +196,7 @@
 //           <Button variant="secondary" onClick={handleClose}>
 //             Close
 //           </Button>
-         
+
 //         </Modal.Footer> */}
 
 //       </Modal>
@@ -212,7 +212,7 @@
 //         <ViewTask viewOnboard={viewOnboard} func={pull_dataView} viewHandleClose={viewHandleClose} />
 //         </Modal.Body>
 //   </Modal>*/}
-     
+
 //       {/* <Modal show={deleteUser} onHide={deleteHandleClose}
 //        size="md"
 //       backdrop="static"
@@ -227,13 +227,13 @@
 // </Modal> */}
 //       <div responsive >
 
-       
+
 //             {/* <Container> */}
 //               <Row>
 //                 <Col style={{textAlign:"left",paddingLeft:"35px"}}>
 //                   <Card.Title >My Task</Card.Title>
 //                   <Card.Subtitle className="mb-2 text-muted">
-     
+
 //                   </Card.Subtitle>
 //                 </Col>
 //                 <Col>
@@ -269,7 +269,7 @@
 
 //                           paddingBottom:"2px",
 
-                         
+
 
 //                         },
 
@@ -297,7 +297,7 @@
 //                           <div>
 //                             <Stack direction="horizontal" gap={3}>
 //                               <Button
-                             
+
 //                                 variant="info"
 //                                 onClick={(event) => {
 //                                   setShow(true);
@@ -307,7 +307,7 @@
 //                               >
 //                                 Edit
 //                               </Button>{" "}
-                             
+
 //                               {/* <Button
 //                                 variant="primary"
 //                                 onClick={(event) => {
@@ -327,7 +327,7 @@
 //                 </Col>
 //               </Row>
 //             </Container> */}
-         
+
 //       </div>
 //       {/* <Example /> */}
 //     </Card>
@@ -358,7 +358,7 @@ import AddTask from "./AddTask";
 // import DeleteTask from "./DeleteTask";
 // import { date } from "yup/lib/locale";
 function MyTask() {
- 
+
 
   const [show, setShow] = useState(false);
   // const [deleteUser, setDeleteUser] = useState(false);
@@ -366,7 +366,7 @@ function MyTask() {
   const handleClose = () => setShow(false);
   // const deleteHandleClose = () => setDeleteUser(false);
 
- 
+
 
 
   const handleShow = () => setShow(false);
@@ -381,30 +381,30 @@ function MyTask() {
   // const [empdata, setEmpdata] = useState([]);
 
   const sessionData = JSON.parse(sessionStorage.getItem('userdata'));
-    const employeeId = sessionData.data.employeeId;
-    const assignedTo = sessionData.data.assignedTo;
-    console.log(employeeId);
-    console.log(assignedTo);
+  const employeeId = sessionData.data.employeeId;
+  const assignedTo = sessionData.data.assignedTo;
+  console.log(employeeId);
+  console.log(assignedTo);
 
-  useEffect(()=>{
+  useEffect(() => {
     loadByUserID()
     console.log("data added")
   }
-  ,[addStatus])
-     
-    const loadByUserID =  () => {
-     // const response =  axios.get(`/task/getTaskByAssign/${employeeId}`)
-     const response =  axios.get(`/task/getAllTasksByEmployeeId/${employeeId}`)
-      .then((res)=>{
+    , [addStatus])
+
+  const loadByUserID = () => {
+    // const response =  axios.get(`/task/getTaskByAssign/${employeeId}`)
+    const response = axios.get(`/task/getAllTasksByEmployeeId/${employeeId}`)
+      .then((res) => {
         console.log(res.data)
         setData(res.data)
         console.log(data)
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err)
       })
-    }
-   
+  }
+
   const [addStatus, setAddStatus] = useState(false);
   // const [deleteStatus, setDeleteStatus] = useState(true);
   const [updateStatus, setUpdateStatus] = useState(false);
@@ -437,8 +437,8 @@ function MyTask() {
   //  console.log(data)
 
   const [columns, setColumns] = useState([
-   
-   
+
+
     // {
     //   title: "UserStoryId",
     //   field: "userId",
@@ -452,7 +452,7 @@ function MyTask() {
     {
       title: "Project Name",
       field: "projectName",
-   
+
     },
     // {
     //   title: "User story",
@@ -469,11 +469,11 @@ function MyTask() {
       field: "taskType",
       type: "text",
     },
-   
+
     {
-      title:"Estimated Hours",
-      field:"estimatedHours",
-      type:"text"
+      title: "Estimated Hours",
+      field: "estimatedHours",
+      type: "text"
     },
 
 
@@ -483,26 +483,26 @@ function MyTask() {
     //   type: "text",
     // },
     {
-      title:"Planned Start Date",
-      field:"plannedStartDate",
-      type:"date",
+      title: "Planned Start Date",
+      field: "plannedStartDate",
+      type: "date",
       dateSetting: { locale: "en-GB" }
     },
     {
-    title:"Planned End Date",
-      field:"plannedEndDate",
-      type:"date",
+      title: "Planned End Date",
+      field: "plannedEndDate",
+      type: "date",
       dateSetting: { locale: "en-GB" }
     },
     {
-    title:"Actual Start Date",
-    field:"assignDate",
-    type:"date",
-    dataSetting: { locale: "en-GB"}
+      title: "Actual Start Date",
+      field: "assignDate",
+      type: "date",
+      dataSetting: { locale: "en-GB" }
     },
-   
-   
-   
+
+
+
     {
       title: "Priority",
       field: "priority",
@@ -515,26 +515,26 @@ function MyTask() {
       field: "status",
       type: "text",
     },
-   
+
   ]);
 
   return (
     <Card style={{ paddingTop: "20px" }}>
 
-      <Modal show={show}  size="lg"
+      <Modal show={show} size="lg"
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px",color:"white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", paddingTop: "5px", paddingBottom: "5px", color: "white" }}>
           <Modal.Title>Edit Task</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-         <UpdateTask 
-         updateOnboard={updateOnboard} 
-         func={pull_dataUpdate} 
-         handleClose={handleClose}
-         assignTo={employeeId} />
+          <UpdateTask
+            updateOnboard={updateOnboard}
+            func={pull_dataUpdate}
+            handleClose={handleClose}
+            assignTo={employeeId} />
         </Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -556,7 +556,7 @@ function MyTask() {
         <ViewTask viewOnboard={viewOnboard} func={pull_dataView} viewHandleClose={viewHandleClose} />
         </Modal.Body>
   </Modal>*/}
-     
+
       {/* <Modal show={deleteUser} onHide={deleteHandleClose}
        size="md"
       backdrop="static"
@@ -571,88 +571,82 @@ function MyTask() {
 </Modal> */}
       <div responsive >
 
-       
-            {/* <Container> */}
-              <Row>
-                <Col style={{textAlign:"left",paddingLeft:"35px"}}>
-                  <Card.Title >My Tasks</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-     
-                  </Card.Subtitle>
-                </Col>
-                <Col>
-                </Col>
 
-                <Col md={{ span: 4, offset: 4 }}><AddTask func={pull_dataAdd} assig={employeeId} /></Col>
-              </Row>
-            {/* </Container> */}
-            {/* <Container>
+        {/* <Container> */}
+        <Row>
+          <Col style={{ textAlign: "left", paddingLeft: "35px" }}>
+            <Card.Title >My Tasks</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+
+            </Card.Subtitle>
+          </Col>
+          <Col>
+          </Col>
+
+          <Col md={{ span: 4, offset: 4 }}><AddTask func={pull_dataAdd} assig={employeeId} /></Col>
+        </Row>
+        {/* </Container> */}
+        {/* <Container>
               <Row>
                 <Col xs={12}>
 
                   <Grid style={{ borderBlockEndWidth: "2px" }}> */}
-                    <MaterialTable
-                      title=""
-                      columns={columns}
-                      style={{ color: "black", fontSize: "14px",paddingLeft:"-1px"}}
-                      data={data?data:[]}
-                      editable={{
+        <MaterialTable
+          title=""
+          columns={columns}
+          style={{ color: "black", fontSize: "14px", paddingLeft: "-1px" }}
+          data={data ? data : []}
+          editable={{
 
-                      }}
-                      options={{
-                        headerStyle: {
-                          backgroundColor: "#FF9E14",
+          }}
+          options={{
+            headerStyle: {
+              backgroundColor: "#f5896e",
+              color: "white",
+              fontSize: "12px",
+              //height: "10px",
+              //fontWeight: 'bold'
+          },
+          rowStyle: {
+              fontSize: 14,
+          },
 
-                          color: "white",
+            pageSize: 25,
 
+            pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
 
-                          fontSize: "16px",
+            maxBodyHeight: 585,
 
+            addRowPosition: "first",
 
-                          paddingTop:"5px",
+            actionsColumnIndex: -1,
 
-                          paddingBottom:"2px",
+            //grouping: true,
 
-                         
+            exportButton: true,
+          }}
+          actions={[
+            {
+              icon: "button",
+            },
+          ]}
+          components={{
+            Action: (props) => (
+              <div>
+                <Stack direction="horizontal" gap={3}>
+                  <Button
 
-                        },
+                    variant="info"
+                    onClick={(event) => {
+                      setShow(true);
+                      console.log(props);
+                      setUpdateOnboard(props.data);
+                    }}
+                  >
+                    <FiEdit />
+                  </Button>{" "}
 
-                        pageSize: 25,
-
-                        pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
-
-                        maxBodyHeight: 585,
-
-                        addRowPosition: "first",
-
-                        actionsColumnIndex: -1,
-
-                        //grouping: true,
-
-                        exportButton: true,
-                      }}
-                      actions={[
-                        {
-                          icon: "button",
-                        },
-                      ]}
-                      components={{
-                        Action: (props) => (
-                          <div>
-                            <Stack direction="horizontal" gap={3}>
-                              <Button
-                             
-                                variant="info"
-                                onClick={(event) => {
-                                  setShow(true);
-                                  console.log(props);
-                                  setUpdateOnboard(props.data);
-                                }}
-                              >
-                               <FiEdit />
-                              </Button>{" "}
-                             
-                              {/* <Button
+                  {/* <Button
                                 variant="primary"
                                 onClick={(event) => {
                                   setDeleteUser(true);
@@ -662,16 +656,16 @@ function MyTask() {
                               >
                                 Delete
                               </Button> */}
-                            </Stack>
-                          </div>
-                        ),
-                      }}
-                    />
-                  {/* </Grid>
+                </Stack>
+              </div>
+            ),
+          }}
+        />
+        {/* </Grid>
                 </Col>
               </Row>
             </Container> */}
-         
+
       </div>
       {/* <Example /> */}
     </Card>

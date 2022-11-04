@@ -153,15 +153,15 @@ function RoleUnderEmployees() {
               grouping: true,
               addRowPosition: "first",
               headerStyle: {
-                backgroundColor: "#1E90FF",
+                backgroundColor: "#f5896e",
                 color: "white",
-                fontSize: "15px",
+                fontSize: "12px",
                 //height: "10px",
                 //fontWeight: 'bold'
-              },
-              rowStyle: {
-                fontSize: 16,
-              },
+            },
+            rowStyle: {
+                fontSize: 14,
+            },
             }}
           />
         </Grid>

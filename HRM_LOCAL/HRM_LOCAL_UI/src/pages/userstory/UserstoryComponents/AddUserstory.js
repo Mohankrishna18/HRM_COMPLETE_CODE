@@ -828,9 +828,8 @@ function AddUserstory(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#ff9b44",
-
-          color: "#F4F8F6",
+          backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",
 
           float: "right",
 
@@ -1185,8 +1184,8 @@ function AddUserstory(props) {
               <Col>
                 <Button
                   style={{
-                    backgroundColor: "#ff9b44",
-                    borderColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",
                     float: "right",
                     width: "40%",
                     height: "120%",
