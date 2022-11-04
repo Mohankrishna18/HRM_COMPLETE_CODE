@@ -220,7 +220,8 @@ function OnboardedEmployeesTable() {
           </Tabs>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={viewHandleClose}>
+          <Button style ={{backgroundColor: "#B6B6B4",
+                    borderColor: "#B6B6B4",}} onClick={viewHandleClose}>
             Close
           </Button>
         </Modal.Footer>
@@ -262,12 +263,15 @@ function OnboardedEmployeesTable() {
               pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
               maxBodyHeight: 470,
               headerStyle: {
-                background: "#ffa442",
-                color: "black",
-                fontSize:"16px",
-                paddingBottom:"6px",
-                paddingTop:"12px",
-              },
+                backgroundColor: "#f5896e",
+                color: "white",
+                fontSize: "12px",
+                //height: "10px",
+                //fontWeight: 'bold'
+            },
+            rowStyle: {
+                fontSize: 14,
+            },
               addRowPosition: "first",
               actionsColumnIndex: -1,
               // grouping: true,

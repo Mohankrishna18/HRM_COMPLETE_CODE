@@ -201,16 +201,35 @@ function AllEmployees(props) {
             </Card.Body>
           </Card>
         </Col> */}
-        <Col>
-          <Card class="shadow p-3 bg-light" style={{ height: "25vh", width: "20vh", paddingTop: "25%", fontSize: "20px" }}>
+        <Col md="2">
+            <Row style={{paddingTop:"10px",paddingLeft:"5px"}}>
+            <Card style={{padding:10}}>
+            {empcount === 0 ? (<Card.Subtitle className="mb-2 text-muted">0 Employees</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {empcount}</Card.Subtitle>)}
+            </Card>
+            </Row>
+            <Row style={{paddingTop:"10px",paddingLeft:"5px"}}>
+            <Card style={{padding:10}}>
+            {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data} Male</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {male.length} </Card.Subtitle>)}
+            </Card>
+            </Row>
+            <Row style={{paddingTop:"10px",paddingLeft:"5px"}}>
+            <Card style={{padding:10}}>
+            {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data}  Female</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Female : {female.length} </Card.Subtitle>)}
+            </Card>
+            </Row>
+        {/* {empcount === 0 ? (<Card.Subtitle className="mb-2 text-muted">0 Employees</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {empcount}</Card.Subtitle>)}
+        {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data} Male</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {male.length} </Card.Subtitle>)}
+        {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data}  Female</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Female : {female.length} </Card.Subtitle>)} */}
+
+          {/* <Card class="shadow p-3 bg-light" style={{ height: "25vh", width: "20vh", paddingTop: "25%", fontSize: "20px" }}>
             <Card.Body >
               {empcount === 0 ? (<Card.Subtitle className="mb-2 text-muted">0 Employees</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {empcount}</Card.Subtitle>)}
               {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data} Male</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {male.length} </Card.Subtitle>)}
               {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data}  Female</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Female : {female.length} </Card.Subtitle>)}
             </Card.Body>
-          </Card>
+          </Card> */}
         </Col>
-        <Col md="8" style={{ height: "25vh" }}>
+        <Col md="7" style={{ height: "25vh" }}>
           <Graph />
         </Col>
         {/* <Col md="2">
@@ -285,12 +304,12 @@ function AllEmployees(props) {
             </Card.Body>
           </Card>
         </Col> */}
-        <Col>
-        <Card class="shadow p-3 bg-light" >
+        <Col md="3" style={{ height: "15vh" }}>
+        {/* <Card class="shadow p-3 bg-light" > */}
           <Card.Body>
-            <Row style={{ paddingTop: "12%" }}>
+            <Row style={{ paddingTop: "4%" }}>
               <input type="text" class="form-control" placeholder="Employee Name" />
-            </Row><Row style={{ paddingTop: "12%" }}>
+            </Row><Row style={{ paddingTop: "10%" }}>
 
               <select class="form-control" placeholder="Select Department"
                 onChange={(e) => {
@@ -308,10 +327,11 @@ function AllEmployees(props) {
               </select>
             </Row>
 
-            <Row style={{ paddingTop: "12%" }}>
+            <Row style={{ paddingTop: "10%" }}>
               <button type="button" class="btn btn-success" style={{ width: 200 }} onClick={getEmpData} >Search</button>
             </Row>
-          </Card.Body></Card>
+          </Card.Body>
+          {/* </Card> */}
           </Col>
 
       </Row>
@@ -335,7 +355,7 @@ function AllEmployees(props) {
           {/* <HRConfirmation /> */}
           {renderTable == false ? (
             <Table striped bordered hover responsive>
-              <thead>
+              <thead style={{backgroundColor : "#f5896e",color:"white" }}>
                 <tr>
                   <th>Name</th>
                   <th>Employee ID</th>
@@ -390,14 +410,14 @@ function AllEmployees(props) {
             </Table>
           ) : (
             <Table striped bordered hover responsive>
-              <thead>
+              <thead style={{backgroundColor : "#f5896e",color:"white"}}>
                 <tr>
-                  <th>Name</th>
-                  <th>Employee ID</th>
-                  <th>Email</th>
-                  <th>Mobile</th>
-                  <th>DOJ</th>
-                  <th>Role</th>
+                  <th style={{color:"white"}}>Name</th>
+                  <th style={{color:"white"}}>Employee ID</th>
+                  <th style={{color:"white"}}>Email</th>
+                  <th style={{color:"white"}}>Mobile</th>
+                  <th style={{color:"white"}}>DOJ</th>
+                  <th style={{color:"white"}}>Role</th>
 
                 </tr>
               </thead>

@@ -207,7 +207,8 @@ const projectName = user.projectName;
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#ff9b44",
+          backgroundColor: "#B6B6B4",
+            borderColor: "#B6B6B4",
           color: "#F4F8F6",
           float: "right",
           borderRadius: "25px",

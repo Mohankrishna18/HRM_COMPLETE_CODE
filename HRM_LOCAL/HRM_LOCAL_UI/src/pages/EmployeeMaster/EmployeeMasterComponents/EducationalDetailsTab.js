@@ -1258,7 +1258,8 @@ function EducationalDetailsTab() {
                 <Button
                   className="rounded-pill"
                   md="3"
-                  style={{ backgroundColor: "#eb4509", float: "right" }}
+                  style={{ backgroundColor: "#f5896e",
+                  borderColor: "#ff9b44", float: "right" }}
                   type="submit"
                   size="lg"
                 >

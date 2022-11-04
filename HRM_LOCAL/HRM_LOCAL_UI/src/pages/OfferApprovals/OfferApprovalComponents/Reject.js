@@ -55,12 +55,12 @@ const Reject = (props) => {
               ></Form.Control>
             </Form.Group>
             <Button
-              variant="warning"
+              
               type="submit"
               style={{
                 borderRadius: "25px",
-                backgroundColor: "#ff9b44",
-                color: "#F4F8F6",
+                backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",
               }}
               onClick={ApproveHandler}
             >

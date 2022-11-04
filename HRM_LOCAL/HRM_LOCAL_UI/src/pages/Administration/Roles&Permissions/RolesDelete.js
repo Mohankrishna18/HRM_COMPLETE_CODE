@@ -50,7 +50,8 @@ const RoleDelete = (props) => {
           </Row>
           <Row style={{paddingLeft: "40%", marginTop: "5%"}}>
             <Col>
-              <Button onClick={deleteuser} style={{ width: "40%", height: "120%"}}>Yes</Button>
+              <Button onClick={deleteuser} style={{ backgroundColor: "#f5896e",
+                    borderColor: "#ff9b44",width: "40%", height: "120%"}}>Yes</Button>
             </Col>
           </Row>
         </Col>

@@ -11,20 +11,20 @@ const ApproveDelete = (props) => {
     const deleteuser = async () => {
         try {
             const res = await axios.delete(`/task/deleteTask/${props.deleteOnboard.taskId}`)
-            .then((deletedResponse)=>{
-                const user = deletedResponse.data
-                console.log(deletedResponse);
-                if (deletedResponse.data.status) {
-                    props.func();
-                    toast.success("Task deleted successfully!!!");
-                    // window.location.reload();
-                  }
-                  else {
-                    console.log("Props not Send")
-                  }
-                  
-                  // console.log(user);
-            })
+                .then((deletedResponse) => {
+                    const user = deletedResponse.data
+                    console.log(deletedResponse);
+                    if (deletedResponse.data.status) {
+                        props.func();
+                        toast.success("Task deleted successfully!!!");
+                        // window.location.reload();
+                    }
+                    else {
+                        console.log("Props not Send")
+                    }
+
+                    // console.log(user);
+                })
             // console.log(res)
             // if (res.data.status) {
             //     props.func();
@@ -33,7 +33,7 @@ const ApproveDelete = (props) => {
             //     console.log("Props Not Send");
             //   }
             //   toast.success("User deleted successfully!!!");
-             
+
             //   setTimeout(5000);
             //   handleClose();
             //   toast.error("Something Went Wrong");
@@ -47,9 +47,12 @@ const ApproveDelete = (props) => {
         <div>
             <Row>
                 <Col>
-                    <Row><Col style={{ paddingLeft:"10px" }}> Are you sure that you want to delete {props.deleteOnboard.project}?</Col></Row>
+                    <Row><Col style={{ paddingLeft: "10px" }}> Are you sure that you want to delete {props.deleteOnboard.project}?</Col></Row>
                     <Row>
-                        <Col><Button onClick={deleteuser}>Yes</Button></Col>
+                        <Col><Button style={{
+                            backgroundColor: "#f5896e",
+                            borderColor: "#ff9b44",
+                        }} onClick={deleteuser}>Yes</Button></Col>
                     </Row>
                 </Col>
             </Row>

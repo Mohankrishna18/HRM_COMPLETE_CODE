@@ -413,8 +413,8 @@ const ProjectUpdate = (props) => {
             <Col align="center" style={{ marginTop: "10px" }}>
               <Button
                 style={{
-                  backgroundColor: "#ff9b44",
-                  borderColor: "#ff9b44",
+                  backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",
                   width: "15%",
                   height: "120%",
                   borderRadius: "25px",

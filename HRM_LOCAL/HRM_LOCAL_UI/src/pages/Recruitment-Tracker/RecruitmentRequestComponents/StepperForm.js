@@ -22,6 +22,7 @@ const StepperForm = (props) => {
     const [errors, setErrors] = useState({});
     const [courses, setCourses] = useState([]);
     const [response, setResponse] = useState([]);
+   
 
     const [clientId, setClientId] = useState([]);
     const [clients, setClients] = useState([]);
@@ -38,9 +39,15 @@ const StepperForm = (props) => {
     const [initDate, setInitDate] = useState("");
     const [reqId,setReqId] = useState(""); 
 
+
+    const [initDate, setInitDate] = useState("");
+    const [reqId,setReqId] = useState(""); 
+
     const userdata = JSON.parse(sessionStorage.getItem("userdata"));
     const userType = userdata.data.userType;
     const employeeId = userdata.data.employeeId;
+
+    console.log(form);
 
     console.log(form);
 
@@ -92,6 +99,12 @@ const StepperForm = (props) => {
         console.log(res.data);
     };
 
+    // const getProjectsByClientID = async () => {
+    //     const res = await axios.get(`/clientProjectMapping/getProjectsByClientId/${clientId}`);
+    //     setDepartments(res.data);
+    //     console.log(res.data);
+    // };
+
     const loadProjects = async () => {
         const res = await axios.get("/clientProjectMapping/getAllProjects");
         setProjects(res.data.data);
@@ -103,11 +116,6 @@ const StepperForm = (props) => {
             .get(`/emp/getEmployeeDataByEmployeeId/${employeeId}`)
         setResponse(res.data.data);
     };
-    const getDaysForAgeing = async () => {
-        const res = await axios
-            .get(`/recruitmentTracker/getAgeingCount/${requisitionId}/${initDate}`);
-        setResponse(res.data.data);
-    };
 
     useEffect(() => {
         getRequestedBy();
@@ -116,7 +124,6 @@ const StepperForm = (props) => {
         loadClients();
         loadPocNames();
         loadHRDeptEmployees();
-        getDaysForAgeing();
     }, []);
 
 
@@ -1017,8 +1024,7 @@ const StepperForm = (props) => {
                                         controlId="requestInitiatedDate"
                                         
                                         value={form.requestInitiatedDate}
-                                        onChange={(e) =>{ setField("requestInitiatedDate", e.target.value),
-                                                           setInitDate(e.target.value)}}
+                                        onChange={(e) => setField("requestInitiatedDate", e.target.value) }
                                         isInvalid={!!errors.requestInitiatedDate}
                                         >
 
@@ -1089,7 +1095,8 @@ const StepperForm = (props) => {
                                             onClick={handleSubmit}
                                             className="'my-2"
                                             id="submitButton"
-                                            style={{ width: "10rem" }}
+                                            style={{ backgroundColor: "#f5896e",
+                                            borderColor: "#ff9b44",width: "10rem" }}
                                             variant="success"
                                         >
                                             Submit
@@ -1100,7 +1107,8 @@ const StepperForm = (props) => {
                                             onClick={handleBack}
                                             className="'my-2"
                                             id="cancelButton"
-                                            style={{ width: "10rem" }}
+                                            style={{ backgroundColor: "#B6B6B4",
+                                            borderColor: "#B6B6B4",width: "10rem" }}
                                             variant="success"
                                         >
                                             Cancel

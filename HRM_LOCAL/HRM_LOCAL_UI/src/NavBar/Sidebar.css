@@ -1,107 +1,161 @@
-.nav-text
-{
-    text-decoration: none;
+.nav-text {
+  text-decoration: none;
+  
 }
 .example {
-    
-    height: 735px;/*..very important if you want scroll bar...*/
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
+  height: 735px; /*..very important if you want scroll bar...*/
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: white;
+  /* border-left:4px solid gray ;
+  margin-left: -10px; */
+  
+}
 
-    .accordion-button {
-        background-color:black !important;
-        color: white;
-      /* background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;  */
-     }
-     /* .accordion-button::after{
+
+.accordion-button {
+  background-color: white !important;
+  color: white;
+  /* background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;  */
+}
+/* .accordion-button::after{
       background-image:url(https://icons8.com/icon/set/arrows/flat-round);
       color:"white"
      } */
 
-      .panel-wrap {
-        margin-bottom: 5px;
-      }
-      
-      .panel-wrap.active-panel .panel-header {
-        background: white;
-      }
-      .panel-wrap.active-panel .panel-header button {
-        color: #ffffff;
-      }
-      
-      .panel-header {
-        border: 1px solid #cccc;
-        font-weight: normal;
-        border-radius: 5px 5px 0px 0px;
-      }
-      
-      .panel-header button {
-        border: none;
-        background: transparent;
-      }
-      .panel-header button:focus {
-        outline: 0px auto -webkit-focus-ring-color;
-      }
-      
-      .panel-body {
-        border: 1px solid #dddddd;
-        background: #efefef;
-        color: #333333;
-        padding: 5px;
-        border-top: none;
-      }
+.panel-wrap {
+  margin-bottom: 5px;
+}
 
+.panel-wrap.active-panel .panel-header {
+  background: white;
+}
+.panel-wrap.active-panel .panel-header button {
+  color: #ffffff;
+}
 
-      /* toggle */
-*{
-  margin:0;
-  padding:0;
+.panel_header {
+  border: 1px solid #cccc;
+  font-weight: normal;
+  border-radius: 5px 5px 0px 0px;
+}
+.panel_header:hover {
+  background: #f9fcfe00;
+  color: rgb(54, 41, 226);
+  transition: all 0.5s;
+  width: 232px;
+}
+
+.panel-header button {
+  border: none;
+  background: transparent;
+}
+.panel-header button:focus {
+  outline: 0px auto -webkit-focus-ring-color;
+}
+
+.panel-body {
+  border: 1px solid #dddddd;
+  background: #efefef;
+  color: white;
+  /* padding: 5px; */
+  border-top: none;
+}
+
+/* toggle */
+* {
+  margin: 0;
+  padding: 0;
   text-decoration: none;
 }
-.container{
-  display:flex;
+.container {
+  display: flex;
 }
-main{
+main {
   width: 100%;
   padding: 20px;
 }
-.sidebar{
-  background: #000;
+.sidebar {
   color: #fff;
   height: 100vh;
   width: 200px;
   transition: all 0.5s;
 }
-.top_section{
+.top_section {
   display: flex;
-  align-items:center;
-  padding:20px 15px;
+  align-items: center;
+  padding: 20px 15px;
 }
-.logo{
+.logo {
   font-size: 30px;
 }
-.bars{
+.bars {
   display: flex;
   font-size: 25px;
   margin-left: 50px;
 }
-.link{
+.link {
   display: flex;
   color: #fff;
-  padding: 10px 15px;
-  gap: 15px;
+  /* padding: 10px 15px; */
+  /* gap: 15px; */
   transition: all 0.5s;
 }
-.link:hover{
-  background: linear-gradient(#FFB914,#FF6914,#F1340C);
-  color: #000;
+/* .link:hover{
+  background: #f9fcfe00;
+  color:rgb(54, 41, 226);
   transition: all 0.5s;
+  width: 232px;
 }
 .active{
   background: white;
   color: #000;
+} */
+.link:hover {
+  background: #f5896e;
+  /* background: rgb(208, 113, 17); */
+  color: white;
+  transition: all 0.5s;
+  width: 232px;
 }
-.icon, .link_text{
+
+.active {
+  background: #f5896e;
+
+  color: white;
+
+  width: 232px;
+}
+.link {
+  display: flex;
+
+  color: #fef9f9;
+
+  /* padding: 15px 15px; */
+
+  /* gap: 15px; */
+
+  transition: all 0.5s;
+
+  border-bottom: 10px;
+
+  align-items: center;
+}
+
+.link:hover {
+  background:#f5896e;
+
+  color: white;
+
+  transition: all 0.5s;
+
+  width: 232px;
+}
+
+.icon,
+.link_text {
   font-size: 20px;
+}
+.icon{
+  padding-left:35px;
 }
