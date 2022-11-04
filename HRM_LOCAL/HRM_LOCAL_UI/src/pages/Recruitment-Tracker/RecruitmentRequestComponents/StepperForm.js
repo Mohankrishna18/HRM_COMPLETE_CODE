@@ -36,8 +36,8 @@ const StepperForm = (props) => {
     const [reqType2, setReqType2] = useState('');
 
 
-    const [initDate, setInitDate] = useState("");
-    const [reqId,setReqId] = useState(""); 
+    // const [initDate, setInitDate] = useState("");
+    // const [reqId,setReqId] = useState(""); 
 
 
     const [initDate, setInitDate] = useState("");
