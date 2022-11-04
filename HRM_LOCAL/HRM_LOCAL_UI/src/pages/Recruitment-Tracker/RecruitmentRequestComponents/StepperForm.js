@@ -16,15 +16,13 @@ const steps = ["Select master blaster campaign settings", "uggujjgh"];
 
 const StepperForm = (props) => {
 
-
-    // props.func('My name is Dean Winchester & this is my brother Sammie')
-
     const navigate = useHistory();
     const [activeStep, setActiveStep] = useState(0);
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
     const [courses, setCourses] = useState([]);
     const [response, setResponse] = useState([]);
+   
 
     const [clientId, setClientId] = useState([]);
     const [clients, setClients] = useState([]);
@@ -37,9 +35,21 @@ const StepperForm = (props) => {
     const [reqType1, setReqType1] = useState('');
     const [reqType2, setReqType2] = useState('');
 
+
+    const [initDate, setInitDate] = useState("");
+    const [reqId,setReqId] = useState(""); 
+
+
+    const [initDate, setInitDate] = useState("");
+    const [reqId,setReqId] = useState(""); 
+
     const userdata = JSON.parse(sessionStorage.getItem("userdata"));
     const userType = userdata.data.userType;
     const employeeId = userdata.data.employeeId;
+
+    console.log(form);
+
+    console.log(form);
 
 
     const handleChange = (event) => {
@@ -62,6 +72,8 @@ const StepperForm = (props) => {
     // const handleChangee1 = (event) => {
     //     setReqType2("Replacement")
     // }
+  
+
 
     const loadPocNames = async () => {
         const res = await axios.get("/emp/getAllEmployeeMasterData");
@@ -105,7 +117,6 @@ const StepperForm = (props) => {
         setResponse(res.data.data);
     };
 
-
     useEffect(() => {
         getRequestedBy();
         loadProjects();
@@ -113,7 +124,6 @@ const StepperForm = (props) => {
         loadClients();
         loadPocNames();
         loadHRDeptEmployees();
-        // getProjectsByClientID();
     }, []);
 
 
@@ -360,7 +370,6 @@ const StepperForm = (props) => {
                         props.func();
                     } else {
                         console.log("Props not send");
-
                     }
                     console.log("form submitted");
                     // notify();
@@ -1015,7 +1024,7 @@ const StepperForm = (props) => {
                                         controlId="requestInitiatedDate"
                                         
                                         value={form.requestInitiatedDate}
-                                        onChange={(e) => setField("requestInitiatedDate", e.target.value)}
+                                        onChange={(e) => setField("requestInitiatedDate", e.target.value) }
                                         isInvalid={!!errors.requestInitiatedDate}
                                         >
 
@@ -1068,18 +1077,15 @@ const StepperForm = (props) => {
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Request Closed Date</Form.Label>
                                         <Form.Control
-
                                             type="text"
                                             disabled
-
                                         >
-
                                         </Form.Control>
                                         <Form.Control.Feedback type="invalid">
 
                                         </Form.Control.Feedback>
                                     </Form.Group>
-
+                                
 
                                     {" "}
                                     <Form.Group controlId="submit">
@@ -1089,7 +1095,8 @@ const StepperForm = (props) => {
                                             onClick={handleSubmit}
                                             className="'my-2"
                                             id="submitButton"
-                                            style={{ width: "10rem" }}
+                                            style={{ backgroundColor: "#f5896e",
+                                            borderColor: "#ff9b44",width: "10rem" }}
                                             variant="success"
                                         >
                                             Submit
@@ -1100,7 +1107,8 @@ const StepperForm = (props) => {
                                             onClick={handleBack}
                                             className="'my-2"
                                             id="cancelButton"
-                                            style={{ width: "10rem" }}
+                                            style={{ backgroundColor: "#B6B6B4",
+                                            borderColor: "#B6B6B4",width: "10rem" }}
                                             variant="success"
                                         >
                                             Cancel

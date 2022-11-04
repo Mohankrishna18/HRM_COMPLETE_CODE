@@ -38,7 +38,9 @@ function BUHRejected(props) {
     </Col> */}
     <Row>
     <Col>
-    <Button variant="primary" 
+    <Button 
+    style ={{backgroundColor: "#B6B6B4",
+    borderColor: "#B6B6B4",}} 
     onClick={RejectHandler}
     >
     Yes

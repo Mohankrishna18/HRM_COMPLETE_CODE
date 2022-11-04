@@ -11,19 +11,30 @@ import "react-toastify/dist/ReactToastify.css";
 const UpdateCandidate = (props) => {
   console.log(props.updateOnboard);
 
-  const [applicantId, setApplicantId] = useState();
-  const [requisitionId, setRequisitionId] = useState();
-  const [candidateName, setCandidateName] = useState();
-  const [currentLocation, setCurrentLocation] = useState();
-  const [primarySkills, setPrimarySkills] = useState();
-  const [secondarySkills, setSecondarySkills] = useState();
-  const [mailId, setMailId] = useState();
-  const [phoneNumber, setPhoneNumber] = useState();
-  const [yearsOfExperience, setYearsOfExperience] = useState();
+  const [jobTitle, setJobTitle] = useState(props.updateOnboard.jobTitle);
+  const [requisitionId, setRequisitionId] = useState(props.updateOnboard.requisitionId);
+  const [candidateName, setCandidateName] = useState(props.updateOnboard.candidateName);
+  const [currentLocation, setCurrentLocation] = useState(props.updateOnboard.currentLocation);
+  const [candidateStatus, setCandidateStatus] = useState(props.updateOnboard.candidateStatus);
+  const [primarySkills, setPrimarySkills] = useState(props.updateOnboard.primarySkills);
+  const [secondarySkills, setSecondarySkills] = useState(props.updateOnboard.secondarySkills);
+  const [email, setEmail] = useState(props.updateOnboard.email);
+  const [phoneNumber, setPhoneNumber] = useState(props.updateOnboard.phoneNumber);
+  const [yearsOfExperience, setYearsOfExperience] = useState(props.updateOnboard.yearsOfExperience);
   const [uploadResume, setUploadResume] = useState();
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  const [jobError, setJobError]=useState("");
+  const [candidateNameError, setCandidateNameError]=useState("");
+  const [candidateStatusError, setCandidateStatusError]=useState("");
+  const [locationError, setLocationError]=useState("");
+  const [skillError, setSkillError]=useState("");
+  const [secSkillError, setSecSkillError]=useState("");
+  const [mailError, setMailError]=useState("");
+  const [phnError, setPhnError]=useState("");
+  const [expyrError, setExpyrError]=useState("");
+
   const handleClose = () => setShow();
   // useState for phone number
   const [firsterrors, setFirstErrors] = useState("");
@@ -64,7 +75,7 @@ const UpdateCandidate = (props) => {
     } = form;
     const newErrors = {};
 
-    if (!applicantId || applicantId === "") newErrors.applicantId = "";
+    if (!jobTitle || jobTitle === "") newErrors.jobTitle = "";
 
     if (!requisitionId || requisitionId === "")
       newErrors.requisitionId = "Please Enter Requisition ID";
@@ -75,11 +86,11 @@ const UpdateCandidate = (props) => {
     if (!candidateStatus || candidateStatus === "" || !candidateStatus.match(/^[aA-zZ\s]+$/))
       newErrors.candidateStatus = "Please Enter Candidate Status";
 
-    if (!businessUnit || businessUnit === "" || !businessUnit.match(/^[aA-zZ\s]+$/))
-      newErrors.businessUnit = "Please Enter BU";
+    // if (!businessUnit || businessUnit === "" || !businessUnit.match(/^[aA-zZ\s]+$/))
+    //   newErrors.businessUnit = "Please Enter BU";
 
-    if (!project || project === "" || !project.match(/^[aA-zZ\s]+$/))
-      newErrors.project = "Please Enter Project";
+    // if (!project || project === "" || !project.match(/^[aA-zZ\s]+$/))
+    //   newErrors.project = "Please Enter Project";
 
     if (!jobTitle || jobTitle === "" || !jobTitle.match(/^[aA-zZ\s]+$/))
       newErrors.jobTitle = "Please Enter Job Title";
@@ -117,14 +128,16 @@ const UpdateCandidate = (props) => {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState({});
 
-  useEffect(() => {
+  
     const loadData = async () => {
       const res = await axios.get(
-        "https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code"
+        "/candidate/getCandidate"
       );
-      setCountries(res.data.countries);
       console.log(res.data);
+      // setCountries(res.data);
+      
     };
+    useEffect(() => {
     loadData();
   }, []);
 
@@ -132,14 +145,25 @@ const UpdateCandidate = (props) => {
   const [user, setUser] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+    if (
+      jobError === ""&&
+      candidateNameError === "" &&
+  candidateStatusError === "" &&
+  locationError === "" &&
+  skillError === "" &&
+  secSkillError === "" &&
+  mailError === "" &&
+  phnError === "" &&
+  expyrError === ""
+){
     axios
-      .put(`/Leads/updateLeadById/${props.updateOnboard.id}`, {
+      .put(`/candidate/updateCandidate/${props.updateOnboard.candidateId}`, {
         requisitionId,
         candidateName,
         candidateStatus,
-        businessUnit,
-        project,
+        // businessUnit,
+        // project,
         jobTitle,
         currentLocation,
         primarySkills,
@@ -150,8 +174,9 @@ const UpdateCandidate = (props) => {
         uploadResume,
       })
       .then((response) => {
-        const user = response.data;
-        if (response.data.status) {
+        const user = response;
+        console.log(user);
+        if (response.statusText) {
           props.func();
         } else {
           console.log("Props not Send");
@@ -164,6 +189,10 @@ const UpdateCandidate = (props) => {
         toast.error("Something Went Wrong");
       });
     props.handleClose();
+  } else {
+    console.log("Data Not posted");
+    toast.error("Form Not Submitted");
+  }
   };
 
   return (
@@ -183,16 +212,28 @@ const UpdateCandidate = (props) => {
             <Form.Label>Job Title</Form.Label>
             <Form.Control
               required
-              className="applicantId"
+              className="jobTitle"
               type="text"
-              controlId="applicantId"
+              controlId="jobTitle"
               placeholder="Job Title"
-              value={applicantId}
-              onChange={(e) => setApplicantId(e.target.value)}
-              isInvalid={!!errors.applicantId}
+              defaultValue={jobTitle}
+              // onChange={(e) => setJobTitle(e.target.value)}
+              onChange ={(e) =>{
+                if(e.target.value === ""){
+                  setJobError("Invalid JobTitle");
+                }
+                else if(e.target.value.length>50){
+                  setJobError("Too Long")
+                }
+                else{
+                  setJobTitle(e.target.value);
+                  setJobError("");
+                }
+              }}
+              isInvalid={jobError}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.applicantId}
+              {jobError}
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -201,11 +242,12 @@ const UpdateCandidate = (props) => {
             <Form.Label>Requisition ID</Form.Label>
             <Form.Control
               required
+              disabled
               className="requisitionId"
               type="text"
               controlId="requisitionId"
               placeholder="Requisition ID"
-              value={requisitionId}
+              defaultValue={requisitionId}
               onChange={(e) => setRequisitionId(e.target.value)}
               isInvalid={!!errors.requisitionId}
             ></Form.Control>
@@ -219,17 +261,31 @@ const UpdateCandidate = (props) => {
             <Form.Label>Candidate Name</Form.Label>
             <Form.Control
               required
+              // defaultvalue={candidateName}
               className="candidateName"
               type="text"
               controlId="candidateName"
               placeholder="Candidate Name"
-              value={candidateName}
+              defaultValue={candidateName}
               maxLength={30}
-              onChange={(e) => setCandidateName(e.target.value)}
-              isInvalid={!!errors.candidateName}
+              // onChange={(e) => setCandidateName(e.target.value)}
+              // isInvalid={!!errors.candidateName}
+              onChange ={(e) =>{
+                if(e.target.value === ""){
+                  setCandidateNameError ("Invalid Candidate Name");
+                }
+                else if(e.target.value.length>50){
+                  setCandidateNameError("Too Long")
+                }
+                else{
+                  setCandidateName(e.target.value);
+                  setCandidateNameError("");
+                }
+              }}
+              isInvalid={candidateNameError }
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.candidateName}
+              {candidateNameError }
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -240,15 +296,33 @@ const UpdateCandidate = (props) => {
               required
               type="text"
               placeholder="Candidate Status"
-              controlId="currentLocation"
-              value={currentLocation}
-              onChange={(e) => setCurrentLocation(e.target.value)}
-              isInvalid={!!errors.currentLocation}
+              controlId="candidateStatus"
+              defaultValue={candidateStatus}
+              // onChange={(e) => setCandidateStatus(e.target.value)}
+              // isInvalid={!!errors.candidateStatus}
+              onChange ={(e) =>{
+                if(e.target.value === ""){
+                  setCandidateStatus ("Invalid Candidate Status");
+                }
+                else if(e.target.value.length>50){
+                  setCandidateStatus("Too Long")
+                }
+                else{
+                  setCandidateStatus(e.target.value);
+                  setCandidateStatus("");
+                }
+              }}
             >
-              <option>Select </option>
+               <option value="">Select Status </option>
+                  <option value="Hired">Hired</option>
+                  <option value="Shortlisted">Shortlisted</option>
+                  <option value="Scheduled">Scheduled</option>
+                  <option value="Onhold">Onhold</option>
+                  <option value="Rejected">Rejected</option>
+                  <option value="Declined">Declined</option>
             </Form.Select>
             <Form.Control.Feedback type="invalid">
-              {errors.currentLocation}
+              {candidateStatus }
             </Form.Control.Feedback>
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -257,19 +331,32 @@ const UpdateCandidate = (props) => {
           {/* Current LOCation */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Current Location</Form.Label>
-            <Form.Select
+            <Form.Control
               required
               type="text"
               placeholder="Current Location"
               controlId="currentLocation"
-              value={currentLocation}
-              onChange={(e) => setCurrentLocation(e.target.value)}
-              isInvalid={!!errors.currentLocation}
+              defaultValue={currentLocation}
+              // onChange={(e) => setCurrentLocation(e.target.value)}
+              // isInvalid={!!errors.currentLocation}
+              onChange ={(e) =>{
+                if(e.target.value === ""){
+                  setLocationError  ("Invalid Location");
+                }
+                else if(e.target.value.length>50){
+                  setLocationError("Too Long")
+                }
+                else{
+                  setLocationError(e.target.value);
+                  setLocationError("");
+                }
+              }}
+              isInvalid={locationError}
             >
-              <option>Select </option>
-            </Form.Select>
+            
+            </Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.currentLocation}
+              {locationError}
             </Form.Control.Feedback>
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -283,12 +370,25 @@ const UpdateCandidate = (props) => {
               type="text"
               placeholder="Primary Skills"
               controlId="primarySkills"
-              value={primarySkills}
-              onChange={(e) => setPrimarySkills(e.target.value)}
-              isInvalid={!!errors.primarySkills}
+              defaultValue={primarySkills}
+              // onChange={(e) => setPrimarySkills(e.target.value)}
+              // isInvalid={!!errors.primarySkills}
+              onChange ={(e) =>{
+                if(e.target.value === ""){
+                  setSkillError ("Invalid");
+                }
+                else if(e.target.value.length>50){
+                  setSkillError("Too Long")
+                }
+                else{
+                  setPrimarySkills(e.target.value);
+                  setSkillError("");
+                }
+              }}
+              isInvalid={skillError }
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.primarySkills}
+              {skillError }
             </Form.Control.Feedback>
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -302,13 +402,26 @@ const UpdateCandidate = (props) => {
               type="text"
               controlId="secondarySkills"
               placeholder="Secondary Skills"
-              value={secondarySkills}
+              defaultValue={secondarySkills}
               maxLength={30}
-              onChange={(e) => setSecondarySkills(e.target.value)}
-              isInvalid={!!errors.secondarySkills}
+              // onChange={(e) => setSecondarySkills(e.target.value)}
+              // isInvalid={!!errors.secondarySkills}
+              onChange ={(e) =>{
+                if(e.target.value === ""){
+                  setSecSkillError  ("Invalid");
+                }
+                else if(e.target.value.length>50){
+                  setSecSkillError("Too Long")
+                }
+                else{
+                  setSecSkillError(e.target.value);
+                  setSecSkillError("");
+                }
+              }}
+              isInvalid={secSkillError}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.secondarySkills}
+              {secSkillError}
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -319,13 +432,26 @@ const UpdateCandidate = (props) => {
               required
               type="mail"
               placeholder="Mail ID"
-              controlId="mailId"
-              value={mailId}
-              onChange={(e) => setMailId(e.target.value)}
-              isInvalid={!!errors.mailId}
+              controlId="email"
+              defaultValue={email}
+              // onChange={(e) => setEmail(e.target.value)}
+              // isInvalid={!!errors.email}
+              onChange ={(e) =>{
+                if (
+                  !e.target.value.match(
+                    /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+                  )
+                ) {
+                  setMailError ("Invalid Email");
+                } else {
+                  setMailError("");
+                }
+                setEmail(e.target.value);
+              }}
+              isInvalid={mailError }
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.mailId}
+              {mailError}
             </Form.Control.Feedback>
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -335,39 +461,66 @@ const UpdateCandidate = (props) => {
             <Form.Label>Phone Number</Form.Label>
             <Form.Control
               required
-              type="text"
+              type="number"
+              maxLength={10}
               placeholder="Phone Number"
               controlId="phoneNumber"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              isInvalid={!!errors.phoneNumber}
+              defaultValue={phoneNumber}
+              // onChange={(e) => setPhoneNumber(e.target.value)}
+              // isInvalid={!!errors.phoneNumber}
+              onChange={(e) => {
+                setPhoneNumber(e.target.value);
+                if (
+                  e.target.value.length > 10 ||
+                  e.target.value.length < 10
+                ) {
+                  setPhnError (
+                    " Phone Number length should be 10 characters"
+                  );
+                } else {
+                  setPhnError("");
+                }
+              }}
+              isInvalid={phnError }
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.phoneNumber}
+              {phnError }
             </Form.Control.Feedback>
           </Form.Group>
 
           {/* YOE */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Years Of Experience</Form.Label>
-            <Form.Select
+            <Form.Control
               required
               type="text"
               placeholder="Years Of Experience"
               controlId="yearsOfExperience"
-              value={yearsOfExperience}
-              onChange={(e) => setYearsOfExperience(e.target.value)}
-              isInvalid={!!errors.yearsOfExperience}
+              defaultValue={yearsOfExperience}
+              // onChange={(e) => setYearsOfExperience(e.target.value)}
+              // isInvalid={!!errors.yearsOfExperience}
+              onChange ={(e) =>{
+                if(e.target.value === ""){
+                  setExpyrError ("Invalid");
+                }
+                else if(e.target.value.length>50){
+                  setExpyrError("Too Long")
+                }
+                else{
+                  setYearsOfExperience(e.target.value);
+                  setExpyrError("");
+                }
+              }}
+              isInvalid={expyrError }
             >
-              <option> Select </option>
-            </Form.Select>
+            </Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.yearsOfExperience}
+              {expyrError}
             </Form.Control.Feedback>
           </Form.Group>
 
           {/* Resume */}
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+          {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Upload Resume</Form.Label>
             <Form.Control
               required
@@ -382,13 +535,13 @@ const UpdateCandidate = (props) => {
               {errors.uploadResume}
             </Form.Control.Feedback>
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
+          </Form.Group> */}
         </Row>
         <Row>
           <Col>
             <Button
               style={{
-                backgroundColor: "#ff9b44",
+                backgroundColor: "#f5896e",
                 borderColor: "#ff9b44",
                 // float: "right",
                 marginLeft: "200px",

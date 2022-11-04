@@ -54,7 +54,8 @@ function FormToAddRole(props) {
             ref={inputRef}
             className='todo-input edit'
           />
-          <button onClick={handleSubmit} className='todo-button edit'>
+          <button style ={{backgroundColor: "#f5896e",
+                    borderColor: "#ff9b44",}} onClick={handleSubmit} className='todo-button edit'>
             Update
           </button>
         </>
@@ -68,7 +69,8 @@ function FormToAddRole(props) {
             className='todo-input'
             ref={inputRef}
           />
-          <button onClick={handleSubmit} className='todo-button'>
+          <button style ={{backgroundColor: "#f5896e",
+                    borderColor: "#ff9b44",}} onClick={handleSubmit} className='todo-button'>
             Add Role
           </button>
         </>

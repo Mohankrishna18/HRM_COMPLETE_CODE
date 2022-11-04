@@ -224,8 +224,8 @@ export default function AddRequisition(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#ff9b44",
-          color: "#F4F8F6",
+          backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",
           float: "right",
           borderRadius: "25px",
           // paddingBottom: "11.5px",
@@ -684,7 +684,7 @@ export default function AddRequisition(props) {
               <Col>
                 <Button
                   style={{
-                    backgroundColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
                     borderColor: "#ff9b44",
                     float: "right",
                     width: "40%",

@@ -56,7 +56,8 @@ function AddOnboard(props) {
       yearsOfExperience,
       primarySkills,
       secondarySkills,
-      requisitionId,jobTitle,
+      requisitionId,
+      jobTitle,
       clientName,
       requestInitiatedDate,
       raisedBy
@@ -293,8 +294,8 @@ function AddOnboard(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#ff9b44",
-          color: "#F4F8F6",
+          backgroundColor: "#f5896e",
+          borderColor: "#ff9b44",
           float: "right",
           borderRadius: "25px",
           // paddingBottom: "11.5px",
@@ -348,8 +349,8 @@ function AddOnboard(props) {
                         `/recruitmentTracker/getDataById/${e.target.value}`
                     )
                     .then((response) => {
-                        console.log(response.data);
-                         setJobT(response.data)
+                        console.log(response.data.data);
+                         setJobT(response.data.data)
                     });
                 setField("requisitionId", e.target.value);
             }}

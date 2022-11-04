@@ -96,9 +96,13 @@ public class RequisitionRequestEntity {
     @Column
     private Date requestClosedDate;
     @Column
-    private String ageing;
+    private int ageing;
 
+    
+    
     // GSDR Changes
+
+   
 
     @Column
     private String buheadId;
@@ -125,6 +129,15 @@ public class RequisitionRequestEntity {
     @Column
     private String pmoheadApprovedBy;
 
+    
+    public int getAgeing() {
+        return ageing;
+    }
+
+    public void setAgeing(int ageing) {
+        this.ageing = ageing;
+    }
+    
     public String getEmployeeId() {
         return employeeId;
     }
@@ -485,25 +498,22 @@ public class RequisitionRequestEntity {
         this.requestClosedDate = requestClosedDate;
     }
 
-    public String getAgeing() {
-        return ageing;
-    }
+  
 
-    public void setAgeing(String ageing) {
-        this.ageing = ageing;
-    }
+    
 
-    public RequisitionRequestEntity(long rrfId, String jobTitle, String description, String rrfStatus, String rrfCat,
-            String technology, String pocname, String role, String workflowStatus, int positions, String pSkills,
-            String sSkills, String workLocation, float workingHours, String empType, String qualification, float yoe,
-            float rate, String projectName, String clientName, String departmentName, String raisedBy, String raisedOn,
-            String textAreaDesc, String comments, String employeeId, String reqType1, String reqType2, String reqType3,
-            String allocType, Date requestInitiatedDate, Date resourceRequiredDate, Date requestClosedDate,
-            String ageing, String buheadId, String buheadName, String pmoheadId, String pmoheadName,
-            String buheadApprove, String pmoheadApprove, String buheadReject, String pmoheadReject,
+    public RequisitionRequestEntity(long rrfId, String requisitionId, String jobTitle, String description,
+            String rrfStatus, String rrfCat, String technology, String pocname, String role, String workflowStatus,
+            int positions, String pSkills, String sSkills, String workLocation, float workingHours, String empType,
+            String qualification, float yoe, float rate, String projectName, String clientName, String departmentName,
+            String raisedBy, String raisedOn, String textAreaDesc, String comments, String employeeId, String reqType1,
+            String reqType2, String reqType3, String allocType, Date requestInitiatedDate, Date resourceRequiredDate,
+            Date requestClosedDate, int ageing, String buheadId, String buheadName, String pmoheadId,
+            String pmoheadName, String buheadApprove, String pmoheadApprove, String buheadReject, String pmoheadReject,
             Date buheadApprovedOn, Date pmoheadApprovedOn, String buheadApprovedBy, String pmoheadApprovedBy) {
         super();
         this.rrfId = rrfId;
+        this.requisitionId = requisitionId;
         this.jobTitle = jobTitle;
         this.description = description;
         this.rrfStatus = rrfStatus;

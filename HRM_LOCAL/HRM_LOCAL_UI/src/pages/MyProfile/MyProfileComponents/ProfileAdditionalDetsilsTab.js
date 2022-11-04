@@ -109,10 +109,10 @@ const ProfileAdditionalDetailsTab = () => {
 
         <div style={{ paddingLeft: 20, paddingBottom: 10 }}>
             <Card.Title>
-                <Row>
+                {/* <Row>
                     <Col> <h5>Additional Details :</h5></Col>
-                    {/* <Col style={{float: "right",paddingLeft:"750px"}}><EditIcon onClick={handleShow}/></Col> */}
-                </Row>
+                    {/* <Col style={{float: "right",paddingLeft:"750px"}}><EditIcon onClick={handleShow}/></Col> 
+                </Row> */}
             </Card.Title>
             <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                 <Col>
@@ -437,7 +437,8 @@ const ProfileAdditionalDetailsTab = () => {
                         </Row>
                         <Button
                             className="rounded-pill" md="3"
-                            style={{ backgroundColor: "#eb4509", float: "right" }}
+                            style={{ backgroundColor: "#f5896e",
+                            borderColor: "#ff9b44", float: "right" }}
                             type="submit"
                             size="lg"
                         >

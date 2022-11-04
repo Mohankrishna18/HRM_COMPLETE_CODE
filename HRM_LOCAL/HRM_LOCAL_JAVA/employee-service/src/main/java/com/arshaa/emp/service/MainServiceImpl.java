@@ -81,7 +81,7 @@ public class MainServiceImpl implements MainService {
 	public ResponseEntity onBoardUser(Onboarding newOnboard) {
 		
 //		String preEmailURL = "http://emailService/mail/preSendMail";
-		//String reqUrl= "http://RecruitmentTracker/recruitmentTracker/requiredDataById/";
+//		String reqUrlb= "http://RecruitmentTracker/recruitmentTracker/requiredDataById/";
 		String reqUrl= "http://RecruitmentTracker/recruitmentTracker/getDataById/";
 		String preOnboardUrl = "http://loginservice/login/addUsersForPreOnboard";
 		Response r = new Response<>();
@@ -249,7 +249,7 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setIdProof(newOnboard.isIdProof());
 				getOnboarding.setDepartment(newOnboard.getDepartment());
                 getOnboarding.setDesignation(newOnboard.getDesignation());
-				getOnboarding.setHrApprovalComment(newOnboard.getHrApprovalComment());
+//				getOnboarding.setHrApprovalComment(newOnboard.getHrApprovalComment());
 //				getOnboarding.setProjectName(newOnboard.getProjectName());
 //				getOnboarding.setSecondaryPhoneNumber(newOnboard.getSecondaryPhoneNumber());
 //				getOnboarding.setBand(newOnboard.getBand());

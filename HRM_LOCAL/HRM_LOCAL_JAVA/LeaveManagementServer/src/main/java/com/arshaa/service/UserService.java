@@ -123,28 +123,28 @@ public class UserService {
 //}
 	public List<BetweenDates> save(User user) {
 		
-		String OnboardUrl = "http://loginservice/login/getEmployeeDataByUserType/";
-		String empUrl = "http://empService/emp/getEmployeeNameByEmployeeId/";
+//		String OnboardUrl = "http://loginservice/login/getEmployeeDataByUserType/";
+//		String empUrl = "http://empService/emp/getEmployeeNameByEmployeeId/";
 		
 		try
 
 		{
-			EmailModel email = template.getForObject(OnboardUrl + "irm", EmailModel.class);
-			EmailModel emp = template.getForObject(empUrl + user.getEmployeeId(), EmailModel.class);
-
-			EmailTemplate mailTemp = new EmailTemplate();
-			Map<String, String> map = new HashMap();
-
-			map.put("employeeName", emp.getEmployeeName());
-//			map.put("email",hrApp.getEmail());
-			map.put("email", "muralikrishna.miriyala@arshaa.com");
-			mailTemp.setMap(map);
-			mailTemp.setEmailType("LEAVE_APPLY");
+//			EmailModel email = template.getForObject(OnboardUrl + "irm", EmailModel.class);
+//			EmailModel emp = template.getForObject(empUrl + user.getEmployeeId(), EmailModel.class);
+//
+//			EmailTemplate mailTemp = new EmailTemplate();
+//			Map<String, String> map = new HashMap();
+//
+//			map.put("employeeName", emp.getEmployeeName());
+////			map.put("email",hrApp.getEmail());
+//			map.put("email", "muralikrishna.miriyala@arshaa.com");
+//			mailTemp.setMap(map);
+//			mailTemp.setEmailType("LEAVE_APPLY");
 
 //			rConfirm.setEmployeeName(getOnboarding.getFirstName()+getOnboarding.getLastName());
 //			rConfirm.setEmail("muralikrishna.miriyala@arshaa.com");
 
-			template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+//			template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 
 			List<BetweenDates> bdatesList = new ArrayList<>();
 			GetIrmId al = template.getForObject("http://empService/emp/getIrmByEmployeeId/" + user.getEmployeeId(),
@@ -634,6 +634,19 @@ public class UserService {
 		}
 //					return findLeavesByLeaveStatusAndEmployeeId(leaveStatus, employeeId);
 	}
+	public List<String> getMonthsForEmployeeLeaves(String employeeId) {
+
+
+
+	       List<BetweenDates> getAllBetweenDates = bro.findByEmployeeId(employeeId);
+	        List<String> splitMonth = new ArrayList();
+	        getAllBetweenDates.forEach(date -> {
+	            String appliedDateString = date.getAppliedDate();
+	            String[] splittedDate = appliedDateString.split("-");
+	            splitMonth.add(splittedDate[1]);
+	        });
+	        return splitMonth;
+	    }
 	
 
 }

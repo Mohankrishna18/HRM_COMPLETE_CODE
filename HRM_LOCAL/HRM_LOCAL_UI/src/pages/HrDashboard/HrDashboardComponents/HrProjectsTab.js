@@ -121,16 +121,15 @@ function HrProjectsTab() {
             editable={{}}
             options={{
               headerStyle: {
-                backgroundColor: "#FF9E14",
-
+                backgroundColor: "#f5896e",
                 color: "white",
-
-                fontSize: "16px",
-
-                paddingTop: "5px",
-
-                paddingBottom: "2px",
-              },
+                fontSize: "12px",
+                //height: "10px",
+                //fontWeight: 'bold'
+            },
+            rowStyle: {
+                fontSize: 14,
+            },
 
               pageSize: 15,
 

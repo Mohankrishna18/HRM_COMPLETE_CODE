@@ -79,7 +79,8 @@ function IRMResignationReject(props) {
       </Form>
       <Button
         variant="primary"
-        style={{ marginTop: "5%", float: "right" }}
+        style={{backgroundColor: "#f5896e",
+        borderColor: "#ff9b44", marginTop: "5%", float: "right" }}
         onClick={RejectHandler}
       >
         Yes

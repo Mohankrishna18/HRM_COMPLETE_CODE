@@ -12,7 +12,7 @@ import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
 function AddUser(props) {
-  
+
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -73,7 +73,7 @@ function AddUser(props) {
           else {
             console.log("Props Not Send");
           }
-          
+
 
           setTimeout(5000);
           handleClose();
@@ -93,7 +93,7 @@ function AddUser(props) {
         setEmpID(response.data.data);
         console.log(response.data.data);
       })
-      
+
       .catch(() => {
         toast.error("data is not getting");
       });
@@ -119,8 +119,8 @@ function AddUser(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#ff9b44",
-          color: "#F4F8F6",
+          backgroundColor: "#f5896e",
+          borderColor: "#ff9b44",
           float: "right",
           borderRadius: "25px",
           paddingBottom: "7px",
@@ -140,8 +140,8 @@ function AddUser(props) {
         keyboard={false}
         centered
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
-          <Modal.Title style={{ backgroundColor: "#FF9E14", color : "white" }}>Add User</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white" }}>
+          <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>Add User</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -150,7 +150,7 @@ function AddUser(props) {
             className="formone"
             // noValidate
             // validated={validated}
-            style={{ paddingLeft: 25, paddingRight: 25, paddingBottom:10 }}
+            style={{ paddingLeft: 25, paddingRight: 25, paddingBottom: 10 }}
             onSubmit={handleSubmit}
           >
             <Row className="mb-3">
@@ -203,7 +203,7 @@ function AddUser(props) {
               <Col>
                 <Button
                   style={{
-                    backgroundColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
                     borderColor: "#ff9b44",
                     float: "right",
                     width: "40%",
@@ -214,11 +214,11 @@ function AddUser(props) {
                   onClick={handleSubmit}
                 >
                   Submit
-                  
+
                 </Button>
               </Col>
               <Col>
-              <Button
+                <Button
                   style={{
                     backgroundColor: "#B6B6B4",
                     borderColor: "#B6B6B4",
@@ -227,7 +227,7 @@ function AddUser(props) {
                     height: "120%",
                     borderRadius: "25px",
                   }}
-                  
+
                   type="close"
                   onClick={handleClose}
                 >

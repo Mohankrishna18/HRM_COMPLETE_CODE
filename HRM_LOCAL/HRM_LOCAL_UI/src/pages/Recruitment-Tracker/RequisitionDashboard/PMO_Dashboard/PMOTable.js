@@ -130,13 +130,14 @@ const PMOTable = () => {
                     
 
                     headerStyle: {
-                        // background: "linear-gradient(to left,#fc7232,#ffab14,#f29c1d)",
-                        // backgroundColor: "#FF9E14",
-                        backgroundColor: "white",
+                        backgroundColor: "#f5896e",
                         color: "white",
                         fontSize: "12px",
-                        scrollbarColor:'red'
-                        
+                        //height: "10px",
+                        //fontWeight: 'bold'
+                    },
+                    rowStyle: {
+                        fontSize: 14,
                     },
                     // addRowPosition: "first",
                     // actionsColumnIndex: -1,

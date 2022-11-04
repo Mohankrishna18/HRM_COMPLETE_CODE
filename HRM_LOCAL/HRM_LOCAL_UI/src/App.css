@@ -43,8 +43,8 @@ main {
 
 .title {
   font-size: 3rem;
-  display: grid;
-  place-items: center;
+  /* display: grid;
+  place-items: center; */
 }
 
 /* Sidebar */
@@ -94,7 +94,7 @@ main {
   flex-direction: column;
   gap: 5px;
 }
-.link {
+/* .link {
   display: flex;
   color: white;
   gap: 10px;
@@ -114,7 +114,7 @@ main {
 .link_text {
   white-space: nowrap;
   font-size: -19px;
-}
+} */
 
 .menu {
   display: flex;
@@ -158,7 +158,7 @@ main{
   padding: 20px;
 }
 .sidebar_content{
-  background: #000;
+  background: grey;
   color: #fff;
   height: 100vh;
   width: 100px;
@@ -178,7 +178,7 @@ main{
   font-size: 25px;
   margin-left: 50px;
 }
-.link{
+/* .link{
   display: flex;
   color: #fff;
   padding: 3.5px 15px;
@@ -197,7 +197,7 @@ main{
 }
 .icon, .link_text{
   font-size: 20px;
-}
+} */
 .bg-myRed{
   background-color: crimson;
 }
@@ -208,7 +208,7 @@ main{
 }
 
 .coloring{
-  color: black;
+  color: grey;
 }
 
 /* .scroll {
@@ -238,35 +238,3 @@ main{
 }
 
 
-.panel-wrap {
-  margin-bottom: 5px;
-}
-
-.panel-wrap.active-panel .panel-header {
-  background: #396ea5;
-}
-.panel-wrap.active-panel .panel-header button {
-  color: #ffffff;
-}
-
-.panel-header {
-  border: 1px solid #cccc;
-  font-weight: normal;
-  border-radius: 5px 5px 0px 0px;
-}
-
-.panel-header button {
-  border: none;
-  background: transparent;
-}
-.panel-header button:focus {
-  outline: 0px auto -webkit-focus-ring-color;
-}
-
-.panel-body {
-  border: 1px solid #dddddd;
-  background: #efefef;
-  color: #333333;
-  padding: 5px;
-  border-top: none;
-}

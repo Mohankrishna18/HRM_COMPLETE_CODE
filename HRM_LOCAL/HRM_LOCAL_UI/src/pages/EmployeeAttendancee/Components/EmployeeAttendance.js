@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import MaterialTable from 'material-table'
 import Grid from '@mui/material/Grid'
-import { Form, Button, Card } from 'react-bootstrap'
+import { Form, Button, Card, Row, Col } from 'react-bootstrap'
 import { Box } from '@mui/material'
 import AudiotrackIcon from '@mui/icons-material/Audiotrack'
 import axios from '../../../Uri'
@@ -42,7 +42,7 @@ const EmployeeAttendance = () => {
         field: 'employeeId',
       },
       {
-        title: 'EmployeeName',
+        title: 'Name',
         field: 'employeeName',
       },
       // {
@@ -476,7 +476,7 @@ const EmployeeAttendance = () => {
   // console.log(days);
     return (
       <Grid spacing={2}>
-        <Grid item xs={12} style={{ height: 49 }}>
+        {/* <Grid item xs={12} style={{ height: 60 }}> */}
           <Grid container spacing={2} direction="row">
             {/* <Grid item xs={4} style={{paddingLeft:'10rem'}}>
               <Form>
@@ -562,7 +562,7 @@ const EmployeeAttendance = () => {
             <Grid item xs={3} >
               <Form>
                 <Form.Group>
-                  <Form.Label>Select Year</Form.Label>
+                  
                   <Form.Select
                     style={{
                       width: '58%',
@@ -575,17 +575,13 @@ const EmployeeAttendance = () => {
                     onChange={(e) => setYear(e.target.value)}
                     // value="2022"
                   >
+                    <option>Select Year</option>
                     <option>{currentyear}</option>
                     <option value="2026">2026</option>
                     <option value="2025">2025</option>
                     <option value="2024">2024</option>
                     <option value="2023">2023</option>
                     <option value="2022">2022</option>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-                    <option value="2017">2017</option>
                   </Form.Select>
                 </Form.Group>
               </Form>
@@ -594,7 +590,6 @@ const EmployeeAttendance = () => {
             <Grid item xs={3}>
               <Form>
                 <Form.Group>
-                  <Form.Label>Select Month</Form.Label>
                   <Form.Select
                     style={{
                       width: '48%',
@@ -607,6 +602,7 @@ const EmployeeAttendance = () => {
                     onChange={(e) => setMonth(e.target.value)}
                     // value="10"
                   >
+                    <option>Select Month</option>
                     <option>{currentmonth}</option>
                     <option value="01">January</option>
                     <option value="02">February </option>
@@ -621,13 +617,14 @@ const EmployeeAttendance = () => {
                     <option value="11">November</option>
                     <option value="12">December</option>
                   </Form.Select>
+                 
                 </Form.Group>
               </Form>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={4}>
               <Form>
                 <Form.Group>
-                  <Form.Label>Select BUH</Form.Label>
+                  {/* <Form.Label>Business Unit</Form.Label> */}
                   <Form.Select
                     style={{
                       width: '48%',
@@ -639,7 +636,7 @@ const EmployeeAttendance = () => {
                     }}
                     onChange={(e) => setSelectedBUH(e.target.value)}
                   >
-                   <option>Select </option>
+                   <option value="">Business Units</option>
                     {departments.map((departmentss) => (
                         <option value={departmentss.departmentName}>
                             {departmentss.departmentName}
@@ -649,7 +646,7 @@ const EmployeeAttendance = () => {
                 </Form.Group>
               </Form>
             </Grid>
-            <Grid item xs={3}style={{paddingTop:'3rem',paddingRight:'10rem'}}>
+            <Grid item xs={2} >
               <Box>
                 <Button
                   variant="contained"
@@ -689,26 +686,38 @@ const EmployeeAttendance = () => {
               columns={columns}
               title={"Monthly Summary - "+" "+"Days:"+ days +" - "+"Working Days:"+workingdays+" - "+"Holidays:"+holidays}
               data={rowData}
-              style={{ color: 'black', fontSize: '13px' }}
+              style={{ color: 'black', fontSize: '10px' }}
               editable={{}}
               options={{
                 paging: false,
                 addRowPosition: 'first',
                 actionsColumnIndex: -1,
+                pageSize: 10,
+                pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
+                maxBodyHeight: 570,
+                height:500,
+                // headerStyle: {
+                //   backgroundColor: '#29AB87',
+                //   paddingTop: '5px',
   
+                //   paddingBottom: '2px',
+  
+                //   color: 'white',
+                // },
                 headerStyle: {
-                  backgroundColor: '#29AB87',
-                  paddingTop: '5px',
-  
-                  paddingBottom: '2px',
-  
-                  color: 'white',
+                  // backgroundColor: "#FFC47A",
+                  background: "#f5896e",
+                fontSize:"13px",
+                paddingBottom:"4px",
+                paddingTop:"8px",
+                color: "white",
+
                 },
                 exportButton: true,
               }}
             />
           </Grid>
-        </Grid>
+        {/* </Grid> */}
         <Backdrop
           sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={open}
