@@ -79,7 +79,7 @@ function AddCandidate(props) {
       email,
       phoneNumber,
       yearsOfExperience,
-      uploadResume,
+      // uploadResume,
     } = form;
 
     const newErrors = {};
@@ -136,8 +136,8 @@ function AddCandidate(props) {
     if (!yearsOfExperience || yearsOfExperience === "")
       newErrors.yearsOfExperience = "Please Enter Years Of Experience";
 
-    if (!uploadResume || uploadResume === "")
-      newErrors.uploadResume = "Please upload uploadResume";
+    // if (!uploadResume || uploadResume === "")
+    //   newErrors.uploadResume = "Please upload uploadResume";
     return newErrors;
   };
 
@@ -501,7 +501,7 @@ const projectName = user.projectName;
 
               {/* Upload Resume */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Upload Resume *</Form.Label>
+                <Form.Label>Upload Resume </Form.Label>
                 <Form.Control
                   required
                   type="file"
