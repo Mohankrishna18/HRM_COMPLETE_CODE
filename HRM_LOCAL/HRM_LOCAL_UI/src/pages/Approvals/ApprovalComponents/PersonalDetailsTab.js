@@ -111,7 +111,7 @@ console.log(dob)
         <Col>
         <Row style={{ paddingLeft: 55, paddingBottom: 30 ,paddingTop:20}}>
           <Col>
-            <Card.Subtitle>
+            <Card.Subtitle style={{color:"black"}}>
               First Name
             </Card.Subtitle>
           </Col>
@@ -123,7 +123,7 @@ console.log(dob)
         </Row>
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
-            <Card.Subtitle>
+            <Card.Subtitle style={{color:"black"}}>
            Middle Name
             </Card.Subtitle>
           </Col>
@@ -136,7 +136,7 @@ console.log(dob)
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
           
-            <Card.Subtitle>
+            <Card.Subtitle style={{color:"black"}}>
            Last Name
             </Card.Subtitle>
           </Col>
@@ -149,7 +149,7 @@ console.log(dob)
     
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
-            <Card.Subtitle>
+            <Card.Subtitle style={{color:"black"}}>
              Email
             </Card.Subtitle>
           </Col>
@@ -161,7 +161,7 @@ console.log(dob)
         </Row>
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
-            <Card.Subtitle
+            <Card.Subtitle style={{color:"black"}}
             >
               Phone Number:
             </Card.Subtitle>
@@ -177,7 +177,7 @@ console.log(dob)
         <Col>
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
-            <Card.Subtitle
+            <Card.Subtitle style={{color:"black"}}
             >
               Date of Birth:
             </Card.Subtitle>
@@ -191,7 +191,7 @@ console.log(dob)
         </Row>
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
-            <Card.Subtitle
+            <Card.Subtitle style={{color:"black"}}
             >
               Blood Group:
             </Card.Subtitle>
@@ -204,7 +204,7 @@ console.log(dob)
         </Row>
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
-            <Card.Subtitle style={{}}
+            <Card.Subtitle style={{color:"black"}}
             >
               Gender:
             </Card.Subtitle>
@@ -217,7 +217,7 @@ console.log(dob)
         </Row>
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
-            <Card.Subtitle>
+            <Card.Subtitle style={{color:"black"}}>
               Marital Status:
             </Card.Subtitle>
           </Col>

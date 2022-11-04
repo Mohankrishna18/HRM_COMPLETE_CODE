@@ -170,8 +170,8 @@ function AddClient(props) {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Add Client/Company</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
+          <Modal.Title style={{color:"white"}}>Add Client/Company</Modal.Title>
         </Modal.Header>
 
         <Modal.Body className="scroll">

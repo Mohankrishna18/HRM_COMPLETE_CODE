@@ -159,6 +159,7 @@ function CandidatesMain() {
     {
       title: "Years Of Experiance",
       field: "yearsOfExperience",
+      align:"center",
       cellStyle: {
         minWidth: 250,
         maxWidth: 250

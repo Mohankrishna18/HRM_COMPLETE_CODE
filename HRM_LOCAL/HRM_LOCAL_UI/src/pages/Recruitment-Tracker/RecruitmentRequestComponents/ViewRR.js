@@ -29,8 +29,8 @@ function ViewRR(props) {
                             </Col>
                             <Col md={{ offset: 1 }}>
                                 <Card.Text style={{ paddingBottom: 0 }}>
-                                    {props.viewOnboard.rrfId}
-                                </Card.Text>,
+                                    {props.viewOnboard.requisitionId}
+                                </Card.Text>
                             </Col>
                         </Row><Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>

@@ -68,7 +68,7 @@ function IRMResignationMain(props) {
   ]);
 
   return (
-    <div className="example">
+    <div>
       <Modal  show={show} onHide={handleClose} >
         <Modal.Header closeButton style={{backgroundColor: "#ff9b44"}}>
           <Modal.Title >Are you sure you want to Approve</Modal.Title>
