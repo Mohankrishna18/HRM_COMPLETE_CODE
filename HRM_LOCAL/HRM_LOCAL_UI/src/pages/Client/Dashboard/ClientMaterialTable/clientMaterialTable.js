@@ -97,10 +97,14 @@ const ClientMaterial = () => {
                     pageSizeOptions: [6, 10, 15, 20, 30, 50, 75, 100],
 
                     headerStyle: {
-                        // background: "linear-gradient(to left,#fc7232,#ffab14,#f29c1d)",
-                        backgroundColor: "#FF9E14",
+                        backgroundColor: "#f5896e",
                         color: "white",
-                        fontSize: "18px",
+                        fontSize: "12px",
+                        //height: "10px",
+                        //fontWeight: 'bold'
+                    },
+                    rowStyle: {
+                        fontSize: 14,
                     },
                     addRowPosition: "first",
                     actionsColumnIndex: -1,

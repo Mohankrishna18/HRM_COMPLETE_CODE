@@ -1,10 +1,23 @@
 package com.recruitmenttracker.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,16 +29,17 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
 import com.recruitmenttracker.modal.EmailTemplate;
+
 import com.recruitmenttracker.modal.EmployeeReq;
 import com.recruitmenttracker.modal.GetMail;
 import com.recruitmenttracker.modal.RequisitionRequestResponse;
 import com.recruitmenttracker.modal.UserServiceEmail;
 import com.recruitmenttracker.repository.RequisitionRequestRepository;
 
+
+
 @Service
 public class RequisitionRequestServiceImpl implements RequisitionRequestInterface {
-    
-   
 
     @Autowired(required = true)
     private RequisitionRequestRepository rrRepository;
@@ -49,9 +63,9 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 
 //            String p = StringUtils.substring(raiseRequest.getProjectName(), 0, 3);
 //            String c = StringUtils.substring(raiseRequest.getClientName(), 0, 3);
-          
-              String p = "REQ";
-            raiseRequest.setRequisitionId(p+0+(raiseRequest.getRrfId()));
+
+            String p = "REQ";
+            raiseRequest.setRequisitionId(p + 0 + (raiseRequest.getRrfId()));
             RequisitionRequestEntity rreq = rrRepository.save(raiseRequest);
 
             rrr.setStatus(true);
@@ -65,12 +79,15 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
         }
     }
 
+    
+    
 	@Override
 	public ResponseEntity getAllRequisitions() {
 		RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
 		List<RequisitionRequestEntity> requisitions = rrRepository.findAll();
 		try {
 			if(!requisitions.isEmpty()) {
+                
 				rrr.setStatus(true);
 				rrr.setMessage("Data Fetching");
 				rrr.setData(requisitions);
@@ -278,32 +295,33 @@ hrApp.forEach(e->{
            }
        }
 
-    public ResponseEntity getRequisitionsByRrfId(long rrfId) {
-        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
-        try {
-            RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
-           
-            return new ResponseEntity(rfs, HttpStatus.OK);
-        } catch (Exception e) {
-            rrr.setStatus(true);
-            rrr.setMessage("Something went wrong");
-            return new ResponseEntity(rrr, HttpStatus.OK);
-        }
-    }
-    
-    
+//    @Override
+//    public ResponseEntity getRequisitionsByRequisitionId(String requisitionId) {
+//        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+//        try {
+//            RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
+//            rrr.setStatus(true);
+//            rrr.setMessage("Geting Data Succussfully");
+//            rrr.setData(rfs);
+//            return new ResponseEntity(rrr, HttpStatus.OK);
+//        } catch (Exception e) {
+//            rrr.setStatus(true);
+//            rrr.setMessage("Something went wrong");
+//            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+//        }
+//    }
+
     @Override
     public ResponseEntity getRequisitionsData(String requisitionId) {
-        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();  
+        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
         try {
-        	EmployeeReq re = new EmployeeReq();
+            EmployeeReq re = new EmployeeReq();
             RequisitionRequestEntity rfs = rrRepository.getByRequisitionId(requisitionId);
-            
+
             re.setClientName(rfs.getClientName());
+            re.setJobTitle(rfs.getJobTitle());
             re.setRaisedBy(rfs.getRaisedBy());
             re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
-            re.setJobTitle(rfs.getJobTitle());
-            re.setRequisitionId(rfs.getRequisitionId());
             rrr.setStatus(true);
             rrr.setMessage("Geting Data Succussfully");
             rrr.setData(re);
@@ -317,12 +335,40 @@ hrApp.forEach(e->{
 
 	@Override
 	public ResponseEntity getRequisitionsByRequisitionId(String requisitionId) {
-		// TODO Auto-generated method stub
-		return null;
+		 RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();  
+	        try {
+	        	EmployeeReq re = new EmployeeReq();
+	            RequisitionRequestEntity rfs = rrRepository.getByRequisitionId(requisitionId);
+	            
+	            re.setClientName(rfs.getClientName());
+	            re.setRaisedBy(rfs.getRaisedBy());
+	            re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
+	            re.setJobTitle(rfs.getJobTitle());
+	            re.setDepartmentName(rfs.getDepartmentName());
+	            re.setProjectName(rfs.getProjectName());
+	            re.setRequisitionId(rfs.getRequisitionId());
+	            rrr.setStatus(true);
+	            rrr.setMessage("Geting Data Succussfully");
+	            rrr.setData(re);
+	            return new ResponseEntity(rrr, HttpStatus.OK);
+	        } catch (Exception e) {
+	            rrr.setStatus(true);
+	            rrr.setMessage("Something went wrong");
+	            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+	        }
 	}
+
+
+
+    @Override
+    public int getDaysBetweenDates(String requisitionId, String requestInitiatedDate) throws ParseException {
+        // TODO Auto-generated method stub
+        return 0;
+    }
     
     
     
 
-	
-}
+    }
+
+

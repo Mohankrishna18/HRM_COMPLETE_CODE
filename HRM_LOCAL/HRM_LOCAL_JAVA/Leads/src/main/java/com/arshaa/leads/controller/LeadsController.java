@@ -39,7 +39,7 @@ public class LeadsController {
 		return leadService.updateLeadById(id,newLeadUpdate);
 	}
 	
-	@DeleteMapping("/deleteLead/{id}")
+	@DeleteMapping("	")
 	public ResponseEntity deleteLead(@PathVariable int id) {
 		return leadService.deleteLead(id);
 	}

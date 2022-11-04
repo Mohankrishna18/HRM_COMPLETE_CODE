@@ -99,11 +99,13 @@ function PMORequisitionRejected(props) {
             <br></br>
             <Row>
               <Col style={{ paddingLeft: "180px", marginTop: "10px" }}>
-                <Button variant="primary" onClick={RejectHandler}>
+                <Button style ={{backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",}} onClick={RejectHandler}>
                   Yes
                 </Button>
                 &nbsp;&nbsp;
-                <Button variant="primary" onClick={RejectHandler}>
+                <Button style ={{backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",}} onClick={RejectHandler}>
                   No
                 </Button>
               </Col>

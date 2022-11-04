@@ -58,7 +58,9 @@ const NavBar = (props) => {
           <Navbar
             style={{
               height: "80px",
-              background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
+              // background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
+              background: "linear-gradient(to right, #ff9b44 0%, #fc6075 100%)",
+             // background:"linear-gradient(to right, #faf7f9 0%,#e86a20, #de4e4e 100%)",
             }}
           >
             <Col xs={10} md={10}>
@@ -83,7 +85,7 @@ const NavBar = (props) => {
               <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
               }} /></Col>
             <Col style={{
-              paddingRight: "0px",
+              paddingRight: "10px",color:"white"
             }}>
               {getEmployeeDetails.firstName}
               <br />
@@ -101,8 +103,8 @@ const NavBar = (props) => {
                           onClick={handleLogout}
                         />
                       )}
-                      <div style={{ fontSize: "15px" }}>
-                        <p onClick={handleLogout}>Logout  <br />
+                      <div style={{ fontSize: "13px",color:"white"}}>
+                        <p onClick={handleLogout} >Logout  <br />
                           {/* <span>V1.0</span> */}
                         </p>
                       </div>

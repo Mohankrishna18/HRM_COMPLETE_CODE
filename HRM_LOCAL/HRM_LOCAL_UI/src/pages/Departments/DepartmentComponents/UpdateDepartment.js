@@ -13,10 +13,10 @@ const UpdateDepartment = (props) => {
 
   console.log(props.updateOnboard);
 
- 
 
-  const[departmentName,setDepartmentName]=useState(props.updateOnboard.departmentName);
-  const[businessUnitHead,setBusinessUnitHead]=useState(props.updateOnboard.businessUnitHead);
+
+  const [departmentName, setDepartmentName] = useState(props.updateOnboard.departmentName);
+  const [businessUnitHead, setBusinessUnitHead] = useState(props.updateOnboard.businessUnitHead);
 
 
 
@@ -119,59 +119,59 @@ const UpdateDepartment = (props) => {
 
   return (
     <div>
-          <Form
-            ref={forms}
-            className="formone"
-            style={{ paddingLeft: 25, paddingRight: 25, paddingBottom:10 }}
-            onSubmit={handleSubmit}
-          >
-            <Row className="mb-3">
+      <Form
+        ref={forms}
+        className="formone"
+        style={{ paddingLeft: 25, paddingRight: 25, paddingBottom: 10 }}
+        onSubmit={handleSubmit}
+      >
+        <Row className="mb-3">
 
-            <Form.Group className="mb-3">
-                <Form.Label>Business Unit*</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="Business Unit"
-                  controlId="departmentName"
-                  value={departmentName}
-                  onChange={(e) => setDepartmentName(e.target.value)}
-                  isInvalid={!!errors.departmentName}
-                >
-                
-                </Form.Control>
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Business Unit*</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Business Unit"
+              controlId="departmentName"
+              value={departmentName}
+              onChange={(e) => setDepartmentName(e.target.value)}
+              isInvalid={!!errors.departmentName}
+            >
+
+            </Form.Control>
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
 
 
-              <Form.Group className="mb-3">
-                <Form.Label>Business Unit Head*</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="Business Unit Head"
-                  controlId="businessUnitHead"
-                  value={businessUnitHead}
-                  onChange={(e) => setBusinessUnitHead(e.target.value)}
-                  isInvalid={!!errors.businessUnitHead}
-                >
-                 
-                 <option>Select </option>
-                  {role.map((role1) => (
-                    <option value={role1.employeeId}>
-                      {role1.name}
-                    </option>
-                  ))}
-                </Form.Select>
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Business Unit Head*</Form.Label>
+            <Form.Select
+              required
+              type="text"
+              placeholder="Business Unit Head"
+              controlId="businessUnitHead"
+              value={businessUnitHead}
+              onChange={(e) => setBusinessUnitHead(e.target.value)}
+              isInvalid={!!errors.businessUnitHead}
+            >
 
-            </Row>
-            <Row>
-              <Col>
+              <option>Select </option>
+              {role.map((role1) => (
+                <option value={role1.employeeId}>
+                  {role1.name}
+                </option>
+              ))}
+            </Form.Select>
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+
+        </Row>
+        <Row>
+          <Col>
             <Button
               style={{
-                backgroundColor: "#ff9b44",
+                backgroundColor: "#f5896e",
                 borderColor: "#ff9b44",
                 float: "right",
                 width: "40%",
@@ -187,11 +187,11 @@ const UpdateDepartment = (props) => {
             Close
           </Button> */}
             <Col>
-           
+
             </Col>
-            </Col>
-            </Row>
-          </Form>
+          </Col>
+        </Row>
+      </Form>
 
     </div>
   );

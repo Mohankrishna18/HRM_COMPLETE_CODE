@@ -146,10 +146,10 @@ function AddClient(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#ff9b44",
-          color: "#F4F8F6",
+          backgroundColor: "#f5896e",
+          borderColor: "#ff9b44",
           float: "right",
-           fontSize: "20px",
+          fontSize: "20px",
           borderRadius: "25px",
           // paddingBottom: "11.5px",
           // marginTop: "100px",
@@ -163,7 +163,7 @@ function AddClient(props) {
         &nbsp;
         Add Client
       </Button>
-      <Modal style={{maxHeight: "1350px", maxWidth: "1550px"}}
+      <Modal style={{ maxHeight: "1350px", maxWidth: "1550px" }}
         size="lg"
         show={show}
         onHide={handleClose}
@@ -174,7 +174,7 @@ function AddClient(props) {
           <Modal.Title>Add Client/Company</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body className = "scroll">
+        <Modal.Body className="scroll">
           <Form
             ref={forms}
             className="formone"
@@ -246,8 +246,8 @@ function AddClient(props) {
                 </InputGroup>
               </Form.Group>
 
-               {/* POC Name */}
-               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              {/* POC Name */}
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>POC Name *</Form.Label>
                 <Form.Control
                   required
@@ -266,7 +266,7 @@ function AddClient(props) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-             
+
               {/* Start Date 
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Start Date *</Form.Label>
@@ -322,8 +322,8 @@ function AddClient(props) {
               </Form.Group> */}
 
 
-               {/* Status */}
-               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              {/* Status */}
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Status *</Form.Label>
                 <Form.Select
                   required
@@ -440,7 +440,7 @@ function AddClient(props) {
               <Col>
                 <Button
                   style={{
-                    backgroundColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
                     borderColor: "#ff9b44",
                     float: "right",
                     width: "40%",

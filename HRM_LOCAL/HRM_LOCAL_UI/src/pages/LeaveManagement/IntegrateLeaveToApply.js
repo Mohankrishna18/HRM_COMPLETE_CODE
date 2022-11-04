@@ -598,8 +598,8 @@ function IntegrateLeaveToApply() {
                                 variant="warning"
                                 onClick={handleShow}
                                 style={{
-                                    backgroundColor: "#ff9b44",
-                                    color: "#F4F8F6",
+                                    backgroundColor: "#f5896e",
+                                    borderColor: "#ff9b44",
                                     float: "right",
                                     borderRadius: "25px",
                                     paddingBottom: "11.5px",
@@ -1082,7 +1082,8 @@ function IntegrateLeaveToApply() {
                                 </Form.Group> */}
                                 <div class="col-md-12 text-center">
                                     <Button
-                                        style={{ backgroundColor: "#FF9B44", borderRadius: "15px" }}
+                                        style={{ backgroundColor: "#f5896e",
+                                        borderColor: "#ff9b44", borderRadius: "15px" }}
                                         type="submit"
                                     // onClick={handleClose}
                                     >
@@ -1107,23 +1108,14 @@ function IntegrateLeaveToApply() {
                         addRowPosition: 'first',
                         actionsColumnIndex: -1,
                         headerStyle: {
-
-
-
-
-
-                            backgroundColor: "#FE924A",
-
-
-
-
-
+                            backgroundColor: "#f5896e",
                             color: "white",
-
-
-
-
-
+                            fontSize: "12px",
+                            //height: "10px",
+                            //fontWeight: 'bold'
+                        },
+                        rowStyle: {
+                            fontSize: 14,
                         },
                         exportButton: true
                     }}

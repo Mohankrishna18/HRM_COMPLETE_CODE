@@ -18,10 +18,13 @@ function AppHeader() {
 
   return (
     <div className={styles.appHeader}>
-      <Button variant="primary" onClick={() => setModalOpen(true)}>
+      <Button style={{
+        backgroundColor: "#f5896e",
+        borderColor: "#ff9b44",
+      }} onClick={() => setModalOpen(true)}>
         Add Module
       </Button>
-      
+
       <TodoModal type="add" modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </div>
   );

@@ -107,8 +107,8 @@ function AddRole(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#ff9b44",
-          color: "#F4F8F6",
+          backgroundColor: "#f5896e",
+                    borderColor: "#ff9b44",
           float: "right",
           borderRadius: "25px",
           paddingBottom: "7px",
@@ -406,7 +406,7 @@ function AddRole(props) {
               <Col>
                 <Button
                   style={{
-                    backgroundColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
                     borderColor: "#ff9b44",
                     float: "right",
                     width: "40%",

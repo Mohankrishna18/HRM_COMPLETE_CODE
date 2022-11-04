@@ -96,10 +96,15 @@ const TablePermission = () => {
             // selection: true,
 
             headerStyle: {
-              backgroundColor: "#FF9E14",
+              backgroundColor: "#f5896e",
               color: "white",
-              fontSize: "14px",
-            },
+              fontSize: "12px",
+              //height: "10px",
+              //fontWeight: 'bold'
+          },
+          rowStyle: {
+              fontSize: 14,
+          },
           }}
           editable={{
             // onRowAdd: (newData) =>

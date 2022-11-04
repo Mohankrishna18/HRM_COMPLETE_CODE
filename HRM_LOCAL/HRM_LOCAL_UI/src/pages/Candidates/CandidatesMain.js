@@ -57,16 +57,17 @@ function CandidatesMain() {
   // }, [viewStatus]);
 
   const loadData = async (e) => {
-    const response = await axios.get("/clientProjectMapping/getAllProjects");
-    setData(response.data.data);
+    const response = await axios.get("/candidate/getCandidate");
     console.log(response.data);
+    setData(response.data);
+    
 
   };
 
   const [columns, setColumns] = useState([
     {
       title: "Req ID",
-      field: "clientName",
+      field: "requisitionId",
       type: "text",
       cellStyle: {
         minWidth: 200,
@@ -75,47 +76,47 @@ function CandidatesMain() {
     },
     {
       title: "Candidate Name",
-      field: "clientName",
+      field: "candidateName",
       type: "text",
       cellStyle: {
         minWidth: 200,
         maxWidth: 200
       }
     },
-    {
-      title: "Business Unit",
-      field: "businessUnit",
-      defaultGroupOrder: 0,
-      cellStyle: {
-        minWidth: 200,
-        maxWidth: 200,
-      }
+    // {
+    //   title: "Business Unit",
+    //   field: "businessUnit",
+    //   defaultGroupOrder: 0,
+    //   cellStyle: {
+    //     minWidth: 200,
+    //     maxWidth: 200,
+    //   }
       
-    },
-    {
-      title: "Project",
-      field: "projectName",
-      defaultGroupOrder: 1,
-      type: "text",
-      cellStyle: {
-        minWidth: 200,
-        maxWidth: 200
-      }
-    },
-    {
-      title: "Job Title",
-      field: "projectManager",
-      defaultGroupOrder: 2,
-      type: "text",
-      dateSetting: { locale: "en-GB" },
-      cellStyle: {
-        minWidth: 200,
-        maxWidth: 200
-      }
-    },
+    // },
+    // {
+    //   title: "Project",
+    //   field: "projectName",
+    //   defaultGroupOrder: 1,
+    //   type: "text",
+    //   cellStyle: {
+    //     minWidth: 200,
+    //     maxWidth: 200
+    //   }
+    // },
+    // {
+    //   title: "Job Title",
+    //   field: "projectManager",
+    //   defaultGroupOrder: 2,
+    //   type: "text",
+    //   dateSetting: { locale: "en-GB" },
+    //   cellStyle: {
+    //     minWidth: 200,
+    //     maxWidth: 200
+    //   }
+    // },
     {
       title: "Primary Skills",
-      field: "endDate",
+      field: "primarySkills",
       type: "date",
       dateSetting: { locale: "en-GB" },
       cellStyle: {
@@ -125,7 +126,7 @@ function CandidatesMain() {
     },
     {
       title: "Secondary Skills",
-      field: "status",
+      field: "secondarySkills",
       cellStyle: {
         minWidth: 200,
         maxWidth: 200
@@ -133,7 +134,7 @@ function CandidatesMain() {
     },
     {
       title: "Current Location",
-      field: "description",
+      field: "currentLocation",
       cellStyle: {
         minWidth: 200,
         maxWidth: 200
@@ -141,7 +142,7 @@ function CandidatesMain() {
     },
     {
       title: "Phone Number",
-      field: "rate",
+      field: "phoneNumber",
       cellStyle: {
         minWidth: 200,
         maxWidth: 200
@@ -149,7 +150,7 @@ function CandidatesMain() {
     },
     {
       title: "Email",
-      field: "priority",
+      field: "email",
       cellStyle: {
         minWidth: 200,
         maxWidth: 200
@@ -157,7 +158,7 @@ function CandidatesMain() {
     },
     {
       title: "Years Of Experiance",
-      field: "projectManager",
+      field: "yearsOfExperience",
       cellStyle: {
         minWidth: 250,
         maxWidth: 250
@@ -175,9 +176,9 @@ function CandidatesMain() {
         </Modal.Header>
         <Modal.Body>
           <UpdateCandidate
-            // updateOnboard={updateOnboard}
-            // func={pull_dataUpdate}
-            // handleClose={handleClose}
+            updateOnboard={updateOnboard}
+            func={pull_dataUpdate}
+            handleClose={handleClose}
           />
         </Modal.Body>
       </Modal>
@@ -258,17 +259,15 @@ function CandidatesMain() {
             editable={{}}
             options={{
               headerStyle: {
-                backgroundColor: "#FF9E14",
-
+                backgroundColor: "#f5896e",
                 color: "white",
-
-                fontSize: "16px",
-
-                paddingTop:"5px",
-
-                paddingBottom:"2px",
-
-              },
+                fontSize: "12px",
+                //height: "10px",
+                //fontWeight: 'bold'
+            },
+            rowStyle: {
+                fontSize: 14,
+            },
 
               pageSize: 10,
 

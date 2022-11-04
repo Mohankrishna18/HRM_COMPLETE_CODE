@@ -15,6 +15,7 @@ import AddRequisitionRequests from './AddRequisitionRequests'
 import UpdateRR from './UpdateRR'
 import DeleteRR from "./DeleteRR";
 import ViewRR from "./ViewRR";
+import { useParams, useHistory } from "react-router-dom";
 
 function RRTable() {
   const [show, setShow] = useState(false);
@@ -33,6 +34,7 @@ function RRTable() {
   const [deleteOnboard, setDeleteOnboard] = useState({});
   const [deleteStatus, setDeleteStatus] = useState(true);
 
+  const history = useHistory();
   const pull_dataAdd = () => {
     setAddStatus(!addStatus);
   };
@@ -59,16 +61,10 @@ function RRTable() {
 
 
   const loadData = async () => {
-    const response = await axios.get("/recruitmentTracker/getAllRequisitionRequests");
-    setData(response.data.data);
+    const response = await axios.get("/recruitmentTracker/");
+    setData(response.data);
     console.log(response.data);
   };
-
-//   const createStatus = async () => {
-//     const res = await axios.get(`/recruitmentTracker/updateWorkflowStatus/${props.viewOnboard.rrfId}`);
-//     setPocName(res.data.data);
-//     console.log(res.data.data);
-// };
 
 
   return (
@@ -88,9 +84,6 @@ paddingBottom:"4px", }}>
         </Modal.Body>
 
       </Modal>
-
-
-      {/* view modal */}
       <Modal  show={viewShow} onHide={viewHandleClose} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"7px",
 paddingBottom:"4px",  }}>
@@ -165,12 +158,15 @@ paddingBottom:"4px"  }}>
               pageSizeOptions: [8, 10, 15, 20, 30, 50, 75, 100],
               maxBodyHeight: 450,
               headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#f5896e",
                 color: "white",
-                fontSize: "13px",
-                paddingTop:"5px",
-                paddingBottom:"2px",
-              },
+                fontSize: "12px",
+                //height: "10px",
+                //fontWeight: 'bold'
+            },
+            rowStyle: {
+                fontSize: 14,
+            },
               addRowPosition: "first",
               actionsColumnIndex: -1,
               // grouping: true,
@@ -196,6 +192,10 @@ paddingBottom:"4px"  }}>
                         setShow(true);
                         console.log(props);
                         setUpdateOnboard(props.data);
+                        localStorage.setItem("requisition", JSON.stringify(props));
+                        history.push(
+                          `/app/updateRequisition/${props.data.rrfId}`
+                        );
                       }}
                     >
                     

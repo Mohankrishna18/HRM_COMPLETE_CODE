@@ -38,20 +38,18 @@ public class CandidateController {
 	   return new ResponseEntity(cd,HttpStatus.OK);
    }
    @GetMapping("/getCandidate/{requisitionId}")
-   public ResponseEntity searchById(@PathVariable("requisitionId") int requisitionId) {
+   public ResponseEntity searchById(@PathVariable("requisitionId") String requisitionId) {
 	return new ResponseEntity (candidateser.getCandidateEntityByRequisitionId(requisitionId),HttpStatus.OK);
 	   
    }
    
-	 @PutMapping("/updateCandidate/{requisitionId}")
-	 public ResponseEntity updateCandidate(@RequestBody CandidateEntity candidate,@PathVariable("requisitionId") int requisitionId) {
-		return new ResponseEntity(candidateser.update(candidate, requisitionId),HttpStatus.OK); 
+	 @PutMapping("/updateCandidate/{candidateId}")
+	 public ResponseEntity updateCandidate(@RequestBody CandidateEntity candidate,@PathVariable("candidateId") int candidateId) {
+		return new ResponseEntity(candidateser.update(candidate, candidateId),HttpStatus.OK); 
    }
 
-	 @DeleteMapping("/deleteCandidate/{requisitionId}")
-	 public ResponseEntity deleteById(@PathVariable("requisitionId") int requisitionId) {
-		return new ResponseEntity(candidateser.deleteCandidateEntity(requisitionId),HttpStatus.OK);
-		 
-	 }
-	
+	 @DeleteMapping("/deleteCandidate/{candidateId}")
+		public ResponseEntity DeleteCandidate(@PathVariable int candidateId) {
+			return candidateser.DeleteCandidate(candidateId);
+		} 
 }

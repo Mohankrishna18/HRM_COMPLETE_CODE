@@ -101,6 +101,8 @@ public class LeadServiceImpl implements LeadService{
 			updateLead.setPocPhoneNumber(newLeadUpdate.getPocPhoneNumber());
 			updateLead.setBusinessValue(newLeadUpdate.getBusinessValue());
 			updateLead.setLeadNotes(newLeadUpdate.getLeadNotes());
+			updateLead.setStartDate(newLeadUpdate.getStartDate());
+			updateLead.setEndDate(newLeadUpdate.getEndDate());
            
 			
 			Leads latestLead = leadRepository.save(updateLead);
