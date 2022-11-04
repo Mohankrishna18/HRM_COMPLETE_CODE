@@ -93,7 +93,7 @@ function PersonalDetailsTab(props) {
   // };
 
   var tempDate = new Date(props.viewOnboard.dateOfBirth);
-
+console.log(props.viewOnboard);
   var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 console.log(dob)
   return (
@@ -178,7 +178,6 @@ console.log(dob)
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
             <Card.Subtitle
-
             >
               Date of Birth:
             </Card.Subtitle>

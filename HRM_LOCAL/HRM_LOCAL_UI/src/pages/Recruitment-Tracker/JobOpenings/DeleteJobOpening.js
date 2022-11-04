@@ -48,11 +48,13 @@ function DeleteJobOpening(props) {
                                 textAlign: "right", marginLeft: "300px"
                             }}>
                                 {/* <Button onClick={deleteLeads}>Yes</Button> */}
-                                <Button>Yes</Button>
+                                <Button style ={{backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",}}>Yes</Button>
                             </Col>
                             <Col>
                                 {/* <Button onClick={Delete}>No</Button> */}
-                                <Button>No</Button>
+                                <Button style ={{backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",}}>No</Button>
                             </Col>
                         </Modal.Footer>
                     </Row>

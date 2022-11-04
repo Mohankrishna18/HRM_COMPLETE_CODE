@@ -51,8 +51,8 @@ function PreHire(props) {
     };
     console.log(data.length);
     const [columns, setColumns] = useState([
-      { title: "Requisition ID", field: "requisitionId",color:"black" },
-      { title: "Onboarding ID", field: "onboardingId",color:"black" },
+      { title: "RRF ID", field: "requisitionId",color:"black" },
+      { title: "OBD ID", field: "onboardingId",color:"black" },
       { title: "Job Title", field: "jobTitle" },
       { title: "Name", field: "fullName" },
       { title: "Email", field: "email" },
@@ -63,7 +63,7 @@ function PreHire(props) {
         type: "date",
         dateSetting: { locale: "en-GB" },
       },
-      { title: "Contact_Number", field: "phoneNumber" },  
+      { title: "Contact", field: "phoneNumber" },  
 
 
     ]);
@@ -72,8 +72,8 @@ function PreHire(props) {
     return (
         <div>
         <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-          <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-            <Modal.Title>Details</Modal.Title>
+          <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
+            <Modal.Title style={{color:"white"}}>Details</Modal.Title>
           </Modal.Header>
          
           <Modal.Body>
@@ -171,26 +171,37 @@ function PreHire(props) {
   
         <Grid>
           <MaterialTable 
-            title="Offer Released"
+            title="OFFER RELEASED"
+            
             // {(data.length)+"  Offer Released"}
             icons={data.length}
             columns={columns}
+            style={{color:"black",fontSize:"11px"}}
             data={data}
             options={{
               paging: true,
               header: "4px",
               addRowPosition: "first",
               actionsColumnIndex: -1,
-              pageSize: 10,
+              // rowStyle: {
+              //   backgroundColor: '#EEE',
+              // },
+              pageSize: 8,
               pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
               maxBodyHeight: 370,
               headerStyle: {
                 // backgroundColor: "#FFC47A",
-                background: "#ffa442",
-                fontSize:"14px",
+                background: "#f5896e",
+                fontSize:"13px",
                 paddingBottom:"4px",
                 paddingTop:"8px",
-                color: "black",
+                color: "white",
+
+  // height: "50px",
+  // position: "absolute",
+  // left: "10%",
+  // marginLeft: "-3px",
+  // top: "0",
               },
               exportButton: true,
             }}
@@ -210,6 +221,7 @@ function PreHire(props) {
                     <Button
                       variant="white "
                       className="rounded-pill"
+                      style={{fontSize:"10px"}}
                       onClick={(event) => {
                         setViewShow(true);
   

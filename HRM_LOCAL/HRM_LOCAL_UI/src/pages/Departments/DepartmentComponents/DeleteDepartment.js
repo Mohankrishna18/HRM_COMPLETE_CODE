@@ -44,7 +44,7 @@ const DeleteDepartment = (props) => {
                 <Col>
                     <Row><Col style={{ paddingLeft:"10px" }}> Are you sure that you want to delete {props.deleteOnboard.departmentName}?</Col></Row>
                     <Row>
-                        <Col><Button onClick={deleteuser}>Yes</Button></Col>
+                        <Col><Button style ={{backgroundColor: "#f5896e",borderColor: "#ff9b44"}} onClick={deleteuser}>Yes</Button></Col>
                     </Row>
                 </Col>
             </Row>

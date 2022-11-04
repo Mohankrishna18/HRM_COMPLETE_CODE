@@ -112,8 +112,8 @@ function PMORequisitionApprove(props) {
                   variant="primary"
                   onClick={ApproveHandler}
                   style={{
-                    backgroundColor: "#ff9b44",
-                    borderColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",
                     float: "left",
                   }}
                 >

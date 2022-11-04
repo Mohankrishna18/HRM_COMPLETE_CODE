@@ -10,19 +10,19 @@ const DeleteDesignation = (props) => {
     const deleteDesignations = async () => {
         try {
             const res = await axios.delete(`/designation/deleteDesignation/${props.deleteOnboard.designationId}`)
-            .then((deletedResponse)=>{
-                // const user = deletedResponse.data
-                // console.log(deletedResponse);
-                if (deletedResponse.data) {
-                    props.func();
-                    toast.success("Designation deleted successfully!!!");
-                  }
-                  else {
-                    console.log("Props not Send")
-                  }
-                  
-                  // console.log(user);
-            })
+                .then((deletedResponse) => {
+                    // const user = deletedResponse.data
+                    // console.log(deletedResponse);
+                    if (deletedResponse.data) {
+                        props.func();
+                        toast.success("Designation deleted successfully!!!");
+                    }
+                    else {
+                        console.log("Props not Send")
+                    }
+
+                    // console.log(user);
+                })
         }
         catch (error) {
             console.log(error)
@@ -33,9 +33,12 @@ const DeleteDesignation = (props) => {
         <div>
             <Row>
                 <Col>
-                    <Row><Col style={{ paddingLeft:"10px" }}> Are you sure that you want to delete {props.deleteOnboard.project}?</Col></Row>
+                    <Row><Col style={{ paddingLeft: "10px" }}> Are you sure that you want to delete {props.deleteOnboard.project}?</Col></Row>
                     <Row>
-                        <Col><Button onClick={deleteDesignations}>Yes</Button></Col>
+                        <Col><Button style={{
+                            backgroundColor: "#B6B6B4",
+                            borderColor: "#B6B6B4",
+                        }} onClick={deleteDesignations}>Yes</Button></Col>
                     </Row>
                 </Col>
             </Row>

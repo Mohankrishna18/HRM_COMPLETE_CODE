@@ -1,5 +1,5 @@
-import {React, useState} from 'react';
-import {Button,Row,Col, Form} from "react-bootstrap";
+import { React, useState } from 'react';
+import { Button, Row, Col, Form } from "react-bootstrap";
 import axios from "../../Uri";
 import { toast } from "react-toastify";
 
@@ -25,63 +25,66 @@ function CEOApproved(props) {
         console.log(props.onboardID);
         const obj = { onboardingStatus: "CEOApproved" };
         const form1 = Object.assign(form, obj);
-        axios.put(`/emp/updateCEOApproval/${onboardingId}`,form1)
-        .then((res)=>{
-            console.log(res)
-            if(res.status == 200){
-                props.func();
-            }
-            else{
-                console.log('props not send')
-            }
-        })
-        .catch((err)=>{
-            console.log(err);
-            toast.error("Something wrong");
-        });
+        axios.put(`/emp/updateCEOApproval/${onboardingId}`, form1)
+            .then((res) => {
+                console.log(res)
+                if (res.status == 200) {
+                    props.func();
+                }
+                else {
+                    console.log('props not send')
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+                toast.error("Something wrong");
+            });
         props.handleClose();
-       
+
         notify();
-      };
-  return (
-    <div>
-        <Row>
-            {/* <Col xs={9}>
+    };
+    return (
+        <div>
+            <Row>
+                {/* <Col xs={9}>
             Are You Want to Approve This Leave
             </Col> */}
-            <Row>
-            <Col>
-            <Form role="form">
-                <Form.Group md="12" style={{ padding: 0 }}>
-                    <Form.Label>Comment</Form.Label>
-                    <Form.Control
-                        required
-                        as="textarea"
-                        rows={2}
-                        className="ceoApprovalComment"
-                        type="text"
-                        controlId="ceoApprovalComment"
-                        placeholder="Approve Reason"
-                        value={form.ceoApprovalComment}
-                        onChange={(e) => setField("ceoApprovalComment", e.target.value)}
-                        isInvalid={!!errors.ceoApprovalComment}
-                    ></Form.Control>
-                </Form.Group>
+                <Row>
+                    <Col>
+                        <Form role="form">
+                            <Form.Group md="12" style={{ padding: 0 }}>
+                                <Form.Label>Comment</Form.Label>
+                                <Form.Control
+                                    required
+                                    as="textarea"
+                                    rows={2}
+                                    className="ceoApprovalComment"
+                                    type="text"
+                                    controlId="ceoApprovalComment"
+                                    placeholder="Approve Reason"
+                                    value={form.ceoApprovalComment}
+                                    onChange={(e) => setField("ceoApprovalComment", e.target.value)}
+                                    isInvalid={!!errors.ceoApprovalComment}
+                                ></Form.Control>
+                            </Form.Group>
 
-            </Form>
-            <Button variant="primary" style={{ marginTop: "5%", float: "right" }}
+                        </Form>
+                        <Button style={{
+                            backgroundColor: "#f5896e",
+                            borderColor: "#ff9b44", marginTop: "5%", float: "right"
+                        }}
 
-            onClick={ApproveHandler}
-            >
-            Yes
-          </Button>
-            </Col>
+                            onClick={ApproveHandler}
+                        >
+                            Yes
+                        </Button>
+                    </Col>
+                </Row>
             </Row>
-        </Row>
-       
-        
-    </div>
-  )
+
+
+        </div>
+    )
 }
 
 export default CEOApproved

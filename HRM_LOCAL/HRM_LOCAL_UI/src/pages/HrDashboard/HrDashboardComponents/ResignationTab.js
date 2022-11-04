@@ -48,6 +48,16 @@ function ResignationaTab() {
     };
 
 
+// const[candidate,setCandidate]=useEffect("")
+//     useEffect(() => {
+//         axios
+//             .get(`/emp/getPersonalDetails/${viewOnboard.employeeId}`)
+//             .then((response) => {
+//                 setCandidate(response.data)
+//                 console.log(response.data)
+//             });
+//     }, []);
+
 useEffect(() => {
     loadData();
   }, []);
@@ -60,6 +70,7 @@ useEffect(() => {
     setData(response.data);
     console.log(response.data);
   };
+  console.log(data.employeeId)
 
     const [columns, setColumns] = useState([
      // { title: "Resignation ID", field: "resignationId",color:"black" },
@@ -84,18 +95,15 @@ useEffect(() => {
 
     return (
         <div>
-            <Row><Col md="3"> 
+            <Row><Col md="3" style={{paddingRight:"50px"}}> 
             <Card style={{
                                 //  background: "linear-gradient(to left,#4edbc3,#60aeeb,#fcb2a9)",
-                                background: "linear-gradient(to left,#fc7232,#ffab14,#f29c1d)",
+                                //background: "linear-gradient(to left,#fc7232,#ffab14,#f29c1d)",
+                                background: "#f5896e"
+                                , height:"50px"
                             }}>
                                 <Card.Body>
-                                    <div >
-                                        <h1 className='efect' align='center' style={{ color: "black", fontWeight: "300", fontSize: '25px' }}>
-                                            {data.length}
-                                        </h1>
-                                        <h6 style={{ color: "black", fontSize: '20px' }}> < FcManager style={{ fontSize: '25px' }} /> No.of Resignations </h6>
-                                    </div>
+                                        <h6 style={{ color: "white", fontSize: '15px' }}>  No.of Resignations - {data.length} </h6>
                                 </Card.Body>
                             </Card>
                             </Col></Row>
@@ -198,7 +206,7 @@ useEffect(() => {
   
         <Grid>
           <MaterialTable
-            title="Resignations"
+            title="RESIGNATIONS"
             columns={columns}
             data={data}
             options={{
@@ -211,13 +219,12 @@ useEffect(() => {
 
               maxBodyHeight: 350,
               headerStyle: {
-               // backgroundColor: "#FFCE83",
-               fontSize:"16px",
-               paddingBottom:"6px",
-               paddingTop:"12px",
-               background: "#ffa442",
-  
-                color: "black",
+                // backgroundColor: "#FFC47A",
+                background: "#f5896e",
+                fontSize:"13px",
+                paddingBottom:"4px",
+                paddingTop:"8px",
+                color: "white",
               },
               exportButton: true,
             }}
@@ -242,9 +249,7 @@ useEffect(() => {
             //             className="rounded-pill"
             //             onClick={(event) => {
             //               setViewShow(true);
-    
-            //               console.log(props);
-    
+            //               console.log(props.data);
             //               setViewOnboard(props.data);
             //             }}
             //           >
@@ -260,7 +265,6 @@ useEffect(() => {
       </div>
     )
 }
-
 
 export default ResignationaTab;
 

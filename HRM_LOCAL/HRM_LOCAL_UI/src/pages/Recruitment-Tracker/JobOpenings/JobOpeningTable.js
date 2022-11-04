@@ -147,10 +147,15 @@ function JobOpeningTable() {
               pageSizeOptions: [8, 10, , 15, 20, 30, 50, 75, 100],
               maxBodyHeight: 450,
               headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#f5896e",
                 color: "white",
-                fontSize: "14px",
-              },
+                fontSize: "12px",
+                //height: "10px",
+                //fontWeight: 'bold'
+            },
+            rowStyle: {
+                fontSize: 14,
+            },
               addRowPosition: "first",
               actionsColumnIndex: -1,
               grouping: true,

@@ -1,5 +1,7 @@
 package com.recruitmenttracker.service;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ public interface RequisitionRequestInterface {
 	
 	public ResponseEntity updateWorkflowStatusByJobID(long rrfId);
 
+
 	
 
 
@@ -34,5 +37,6 @@ public interface RequisitionRequestInterface {
 	
 	public ResponseEntity getRequisitionsByRequisitionId(String requisitionId);
     public ResponseEntity getRequisitionsData(String requisitionId);
+    public int getDaysBetweenDates(String requisitionId,String requestInitiatedDate) throws ParseException;
 
 }

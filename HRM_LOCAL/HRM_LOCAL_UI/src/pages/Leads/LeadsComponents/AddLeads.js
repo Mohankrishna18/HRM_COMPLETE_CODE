@@ -166,7 +166,7 @@ function AddLeads(props) {
     // e.target.reset();
     setForm("");
     const formErrors = validateForm();
-    if(Object.keys(formErrors).length > 0) {
+    if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
     } else {
       // console.log(form);
@@ -242,8 +242,8 @@ function AddLeads(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#ff9b44",
-          color: "#F4F8F6",
+          backgroundColor: "#f5896e",
+          borderColor: "#ff9b44",
           float: "right",
           borderRadius: "25px",
           // paddingBottom: "11.5px",
@@ -653,8 +653,8 @@ function AddLeads(props) {
                       {/* </Row> */}
                       <Button
                         style={{
-                          backgroundColor: "#ff9b44",
-                          color: "#F4F8F6",
+                          backgroundColor: "#f5896e",
+                          borderColor: "#ff9b44",
                           float: "right",
                           width: "40%",
                           height: "120%",
@@ -688,10 +688,10 @@ function AddLeads(props) {
             </Row>
             <Row>
               <Col>
-              <Button
+                <Button
                   style={{
-                    backgroundColor: "#ff9b44",
-                    borderColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",
                     float: "right",
                     width: "40%",
                     height: "120%",

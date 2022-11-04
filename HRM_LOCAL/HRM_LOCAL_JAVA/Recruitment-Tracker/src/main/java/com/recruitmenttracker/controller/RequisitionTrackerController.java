@@ -1,5 +1,10 @@
 package com.recruitmenttracker.controller;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,35 +20,42 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
 import com.recruitmenttracker.modal.EmployeeReq;
+import com.recruitmenttracker.repository.RequisitionRequestRepository;
 import com.recruitmenttracker.service.RequisitionRequestInterface;
-
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/recruitmentTracker")
 public class RequisitionTrackerController {
-	
-	@Autowired(required=true)
-	private RequisitionRequestInterface serv;
-	
-	@PostMapping("/createRequisitionRequest")
-	public ResponseEntity createRequisitionRequest(@RequestBody RequisitionRequestEntity newRR) {
-		return serv.createRR(newRR);
-	}
-	
-	@GetMapping("/getAllRequisitionRequests")
-	public ResponseEntity getRequisitions() {
-		return serv.getAllRequisitions();
-	}
-	
-	// get data by rrf status Active
-	@GetMapping("/getAllRequisitionRequestsByStatus")
-	public ResponseEntity getRequisitionsByRrfStatus() {
-		return serv.getRequisitionsByRrfStatus();
-	}
+
+    @Autowired(required = true)
+    private RequisitionRequestInterface serv;
+
+    @Autowired
+    RequisitionRequestRepository reqRepo;
+
+    @PostMapping("/createRequisitionRequest")
+    public ResponseEntity createRequisitionRequest(@RequestBody RequisitionRequestEntity newRR) {
+        return serv.createRR(newRR);
+    }
+
+    @GetMapping("/getAllRequisitionRequests")
+    public ResponseEntity getRequisitions() {
+        return serv.getAllRequisitions();
+    }
+
+//    @GetMapping("/getAgeing/{}")
+//    public ResponseEntity getByWorkflowStatus(@PathVariable String userType) {
+//        return new ResponseEntity(serv.getByWorkflowStatus(userType), HttpStatus.OK);
+//    }
+    // get data by rrf status Active
+    @GetMapping("/getAllRequisitionRequestsByStatus")
+    public ResponseEntity getRequisitionsByRrfStatus() {
+        return serv.getRequisitionsByRrfStatus();
+    }
 
 	@GetMapping("/getDataById/{requisitionId}")
-	public ResponseEntity getRequisitionsByrRequisitionId(@PathVariable String requisitionId) {
+	public ResponseEntity getRequisitionsByRequisitionId(@PathVariable String requisitionId) {
 		return serv.getRequisitionsByRequisitionId(requisitionId);
 	}
 	
@@ -52,7 +64,6 @@ public class RequisitionTrackerController {
 	public ResponseEntity getRequisitionsData(@PathVariable String requisitionId) {
 		return serv.getRequisitionsData(requisitionId);
 	}
-	
 	
 	
 	@DeleteMapping("/deleteRR/{rrfId}")
@@ -70,7 +81,7 @@ public class RequisitionTrackerController {
 		return serv.updateWorkflowStatusByJobID(rrfId);
 	}
 
-	// GSDR Changes
+    // GSDR Changes
 
     @GetMapping("/getAllRequisitions/{userType}")
     public ResponseEntity getByWorkflowStatus(@PathVariable String userType) {
@@ -88,7 +99,72 @@ public class RequisitionTrackerController {
             @PathVariable String userType) {
         return new ResponseEntity(serv.rejectRequisition(requisition, rrfId, userType), HttpStatus.OK);
     }
-	
 
+    @GetMapping("/getAgeingCount/{requisitionId}/{requestInitiatedDate}")
+    public int getDaysBetweenDates(@PathVariable String requisitionId, @PathVariable String requestInitiatedDate)
+            throws ParseException {
+        return serv.getDaysBetweenDates(requisitionId, requestInitiatedDate);
+    }
+
+//    @GetMapping("/getDataByDATE")
+//    public List<RequisitionRequestEntity> getDataWithAgingDays() {
+//        System.out.println(reqRepo.getDataWithAgingDays());
+//        return reqRepo.getDataWithAgingDays();
+//    }
+
+//    @GetMapping("/getOneRequisitionByRrfId/{rrfId}")
+//    public RequisitionRequestEntity getAProjectsByRrfId(@PathVariable("rrfId") long rrfId) {
+//        return reqRepo.findByRrfId(rrfId);
+
+    
+//    List<Onboarding> on = onrepo.findAll();
+//                List<Onboarding> onboard = new ArrayList<>();
+//                on.forEach(f -> {
+//                        Onboarding o = new  Onboarding(); 
+//                   o.setAadharNumber(f.getAadharNumber());
+//                    o.setAccountNumber(f.getAccountNumber()); 
+//                   o.setOnboardingId(f.getOnboardingId()); 
+//                   o.setFullName(f.getFullName()); 
+//                   o.setEmail(f.getEmail());   
+//                 o.setDateDifference(onrepo.getDateDiff(f.getOnboardingId()));
+//                    onboard.add(o);  
+//              });   
+//             return  onboard ;
+    
+    
+    @GetMapping("/{requisitionId}")
+    public Integer gets(@PathVariable String requisitionId) {
+        Integer i = reqRepo.getDateDiff(requisitionId);
+        return i ;
+    }
+    
+    
+    @GetMapping("/")
+    public List<RequisitionRequestEntity> getDataWithAgingDays() {
+       List<RequisitionRequestEntity> re = reqRepo.findAll() ;
+       List<RequisitionRequestEntity> req = new ArrayList<>();
+       re.forEach(o -> {
+           RequisitionRequestEntity r = new RequisitionRequestEntity();
+          
+           r.setRequisitionId(o.getRequisitionId());
+           r.setDepartmentName(o.getDepartmentName());
+           r.setClientName(o.getClientName());
+           r.setProjectName(o.getProjectName());
+           r.setJobTitle(o.getJobTitle());
+           r.setTechnology(o.getTechnology());
+           r.setRole(o.getRole());
+           r.setWorkLocation(o.getWorkLocation());
+           r.setYoe(o.getYoe());
+           r.setRrfStatus(o.getRrfStatus());
+           r.setWorkflowStatus(o.getWorkflowStatus());
+           r.setPositions(o.getPositions());
+           r.setRaisedOn(o.getRaisedOn());
+           r.setRrfId(o.getRrfId());
+           r.setRequestInitiatedDate(o.getRequestInitiatedDate());
+           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
+           req.add(r);
+       });   
+        return req;
+    }
 
 }

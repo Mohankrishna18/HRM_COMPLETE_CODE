@@ -32,7 +32,7 @@ function EmployeeList() {
 
     const columns = [
         {
-            title: "Employee ID",
+            title: "EmployeeID",
             field: "employeeId",
             render: (rowData) => (
                 <Link to="/app/editmyprofileroute" onClick={myProfile}>
@@ -43,89 +43,49 @@ function EmployeeList() {
 
 
 
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
+
         },
         {
-            title: "Employee Name",
+            title: "EmployeeName",
             field: "firstName",
             type: "text",
 
-
-
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
         },
         {
             title: "Email",
             field: "email",
 
-
-
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
         },
         {
             title: "Department",
             field: "departmentName",
 
-
-
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
         },
         {
             title: "Designation",
             field: "designationName",
             type: "text",
 
-
-
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
         },
-
-
 
         {
             title: "DOJ",
             field: "dateOfJoining",
             type: "date",
             dateSetting: { locale: "en-GB" },
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
+
         },
         {
             title: "IRM",
             field: "irm",
 
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
         },
         {
             title: "SRM",
             field: "srm",
 
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
         },
-        
+
         // {
         //     title: "Reporting Manager",
         //     field: "reportingManager",
@@ -138,24 +98,21 @@ function EmployeeList() {
         //     },
         // },
     ];
-
-
-
     useEffect(() => {
         axios
-     .get("/emp/getAllEmployeeMasterData")
+            .get("/emp/getAllEmployeeMasterData")
             .then((res) => {
                 setData(res.data.data);
                 console.log(res.data.data);
                 console.log(res.data.data.employeeid);
             })
-       .catch((err) => {
+            .catch((err) => {
                 console.log(err);
                 // toast.error("Server Error")
             });
     }, []);
     console.log(eid);
-    
+
     return (
         <div className="example">
             <Grid container data1={eid}>
@@ -172,14 +129,14 @@ function EmployeeList() {
                             grouping: true,
                             addRowPosition: "first",
                             headerStyle: {
-                                backgroundColor: "#1E90FF",
+                                backgroundColor: "#f5896e",
                                 color: "white",
-                                fontSize: "15px",
+                                fontSize: "12px",
                                 //height: "10px",
                                 //fontWeight: 'bold'
                             },
                             rowStyle: {
-                                fontSize: 16,
+                                fontSize: 14,
                             },
                         }}
                     />

@@ -137,24 +137,25 @@ export default function HiringsTab(props) {
                     </Col>
                 </Row> */}
 
-        <TabContext value={value} style={{padingRight:"10px"}}>
+        <TabContext value={value} style={{paddingRight:"10px"}}>
           <Box  sx={{ borderBottom: 0, borderColor: 'divider',width: '48%' }} >
-            <TabList onChange={handleChange} sx={{ "& button.Mui-selected": { background: "#afcafa",color:"black" } }} aria-label="lab API tabs example" style={{ background: "#e1eafa", borderRadius: "3px", fontSize: "10px",height:"60px",paddingRight:100 }} >
-
+            <TabList onChange={handleChange} variant="scrollable"
+                                             scrollButtons="auto" 
+                                             indicatorColor="#f5896e" sx={{ "& button.Mui-selected": { background: "white", color: "#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", height: "60px", color:"white" }} >
               <Tab style={{ paddingRight: "3%", paddingLeft: "3%" ,fontSize:"12px" }} label="Offer Released"
                 {...a11yProps(0)} value="1"  
                 icon={(data.length === 0) ? (<div style={{paddingLeft:"6px",fontSize:"16px"}}>0</div>):(<div style={{paddingLeft:"6px",fontSize:"14px"}}>{data.length}</div>)} />
               {/* <Tab wrapped label={<TabWithCount count={(today.length === 0) ? (<div style={{paddingLeft:"6px",fontSize:"14px"}}> 0 </div>) : (<div style={{paddingLeft:"6px",fontSize:"14px"}}>{today.length}</div>)}>Onboardings For Today -</TabWithCount>}
                 {...a11yProps(0)} value="2" style={{ paddingRight: "2%", paddingLeft: "2%" }} icon={today.length}  /> */}
-              <Tab wrapped label= "Onboarding's For Today"
+              <Tab wrapped label= "Todays Onboardings"
                 {...a11yProps(0)} value="2" style={{ paddingRight: "3%", paddingLeft: "3%" }} icon={(today.length === 0) ? (<div style={{paddingLeft:"6px",fontSize:"16px"}}>0</div>):(<div style={{paddingLeft:"6px",fontSize:"14px"}}>{today.length}</div>)} />
-              <Tab wrapped label="Onboardings For This Month"
+              <Tab wrapped label="Month Onboardings"
                 {...a11yProps(0)} value="3" style={{ paddingRight: "3%", paddingLeft: "3%" }} icon={(month.length === 0) ? (<div style={{paddingLeft:"6px",fontSize:"16px"}}>0</div>):(<div style={{paddingLeft:"6px",fontSize:"14px"}}>{month.length}</div>)} />
             </TabList>
           </Box>
-          <TabPanel style={{ padding: "10px" }} value="1"> <PreHire /></TabPanel>
-          <TabPanel style={{ padding: "10px" }} value="2"><OnboardingsToday /></TabPanel>
-          <TabPanel style={{ padding: "10px" }} value="3"><OnboardingsThisMonth /></TabPanel>
+          <TabPanel style={{ padding: "0px" }} value="1"> <PreHire /></TabPanel>
+          <TabPanel style={{ padding: "0px" }} value="2"><OnboardingsToday /></TabPanel>
+          <TabPanel style={{ padding: "0px" }} value="3"><OnboardingsThisMonth /></TabPanel>
         </TabContext>
       </Box>
 
