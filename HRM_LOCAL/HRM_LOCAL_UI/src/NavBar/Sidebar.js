@@ -1,6 +1,6 @@
 import React, { memo, useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import { Row, Col, Button, Accordion } from "react-bootstrap";
+import { Row, Col, Button, Accordion, Card } from "react-bootstrap";
 import Tab from "react-bootstrap/Tab";
 import ListGroup from "react-bootstrap/ListGroup";
 // import { isLoggedIn } from "../../utils";
@@ -48,7 +48,7 @@ const Sidebar = (props) => {
 
   return (
     
-
+<Card style={{padding:"20px"}}>
     <Row className="example">
       <Tab.Container id="list-group-tabs-example" style={{backgroundColor:"white"}} className="Murali_1">
         <Col xs={12} xxl={12} xl={12} lg={12} md={12} sm={12}>
@@ -334,7 +334,7 @@ const Sidebar = (props) => {
 
     
     </Row>
-  
+    </Card>
   );
 };
 

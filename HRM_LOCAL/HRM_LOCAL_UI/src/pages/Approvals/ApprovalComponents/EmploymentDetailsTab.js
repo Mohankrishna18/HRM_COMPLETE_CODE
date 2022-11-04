@@ -50,7 +50,7 @@ function EmploymentDetailsTab(props) {
                           </Card.Title>
                           <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                             <Col>
-                              <Card.Subtitle style={{ padding: 10 }}>
+                              <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                 Primary Skills:
                               </Card.Subtitle>{" "}
                             </Col>
@@ -60,7 +60,7 @@ function EmploymentDetailsTab(props) {
                               </Card.Text>
                             </Col>
                             <Col>
-                              <Card.Subtitle style={{ padding: 10 }}>
+                              <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                 Secondary Skills:
                               </Card.Subtitle>{" "}
                             </Col>
@@ -72,7 +72,7 @@ function EmploymentDetailsTab(props) {
                           </Row>
                           <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                             <Col>
-                              <Card.Subtitle style={{ padding: 10 }}>
+                              <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                 Employment Type:
                               </Card.Subtitle>{" "}
                             </Col>
@@ -82,7 +82,7 @@ function EmploymentDetailsTab(props) {
                               </Card.Text>
                             </Col>
                             <Col>
-                              <Card.Subtitle style={{ padding: 10 }}>
+                              <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                 Band:
                               </Card.Subtitle>{" "}
                             </Col>
@@ -95,7 +95,7 @@ function EmploymentDetailsTab(props) {
 
                           <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                             <Col>
-                              <Card.Subtitle style={{ padding: 10 }}>
+                              <Card.Subtitle style={{ padding: 10,color:"black" }}>
                               Business Unit:
                               </Card.Subtitle>{" "}
                             </Col>
@@ -105,7 +105,7 @@ function EmploymentDetailsTab(props) {
                               </Card.Text>
                             </Col>
                             <Col>
-                              <Card.Subtitle style={{ padding: 10 }}>
+                              <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                 Designation:
                               </Card.Subtitle>{" "}
                             </Col>
@@ -118,7 +118,7 @@ function EmploymentDetailsTab(props) {
 
                           <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                             <Col>
-                              <Card.Subtitle style={{ padding: 10 }}>
+                              <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                  IRM:
                               </Card.Subtitle>{" "}
                             </Col>
@@ -128,7 +128,7 @@ function EmploymentDetailsTab(props) {
                               </Card.Text>
                             </Col>
                             <Col>
-                              <Card.Subtitle style={{ padding: 10 }}>
+                              <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                 SRM:
                               </Card.Subtitle>{" "}
                             </Col>
@@ -141,7 +141,7 @@ function EmploymentDetailsTab(props) {
 
                           <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                             <Col>
-                              <Card.Subtitle style={{ padding: 10 }}>
+                              <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                  BUH:
                               </Card.Subtitle>{" "}
                             </Col>

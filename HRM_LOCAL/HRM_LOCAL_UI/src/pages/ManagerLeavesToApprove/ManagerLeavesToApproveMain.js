@@ -10,7 +10,7 @@ import IRMResignationMain from "./IRMResignationMain";
 const ManagerLeavesToApproveMain = () => {
   return (
     <div style={{ paddingTop: "20px" }}>
-      <Card responsive className="example" style={{ backgroundColor: "white" }}>
+      <Card responsive className="scroll" style={{ backgroundColor: "white" }}>
         <Card.Header style={{ backgroundColor: "white" }}>
           <Card.Body style={{ backgroundColor: "white" }}>
             <Card.Title> Approvals </Card.Title>

@@ -365,7 +365,7 @@ const projectName = user.projectName;
                 <Form.Label>Phone Number *</Form.Label>
                 <Form.Control
                   required
-                  type="text"
+                  type="number"
                   placeholder="Phone Number"
                   controlId="phoneNumber"
                   value={form.phoneNumber}
