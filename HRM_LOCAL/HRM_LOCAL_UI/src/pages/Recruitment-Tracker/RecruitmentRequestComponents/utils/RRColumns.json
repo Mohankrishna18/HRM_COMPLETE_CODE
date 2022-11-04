@@ -1,7 +1,7 @@
 [
     {
         
-        "title": "Req ID",
+        "title": "Job ID",
         "field": "requisitionId"
     },
     {
@@ -50,11 +50,19 @@
         "field": "positions"
     },
     {
-        "title" : "Raised On",
+        "title" : "Raised Date",
         "field" : "raisedOn"
     },
     {
-        "title":"Ageing"
+        "title" : "Initiated Date",
+        "field" : "requestInitiatedDate",
+        "type": "date",
+        "dateSetting": { "locale": "en-GB" }
+
+    },
+    {
+        "title":"Ageing",
+        "field":"ageing"
     }
 
 ]

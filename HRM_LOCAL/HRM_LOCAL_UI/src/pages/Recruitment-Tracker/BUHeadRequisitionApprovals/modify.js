@@ -124,7 +124,7 @@ const BUHRequisitionApprove = (props) => {
                 <Button
                   variant="primary"
                   style={{
-                    backgroundColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
                     borderColor: "#ff9b44",
                     float: "left",
                   }}

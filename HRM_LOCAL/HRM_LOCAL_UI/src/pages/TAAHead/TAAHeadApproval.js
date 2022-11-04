@@ -232,10 +232,15 @@ function TAAHeadApproval() {
             addRowPosition: "first",
             actionsColumnIndex: -1,
             headerStyle: {
-              backgroundColor: "#FE924A",
-
+              backgroundColor: "#f5896e",
               color: "white",
-            },
+              fontSize: "12px",
+              //height: "10px",
+              //fontWeight: 'bold'
+          },
+          rowStyle: {
+              fontSize: 14,
+          },
             exportButton: true,
           }}
           actions={[

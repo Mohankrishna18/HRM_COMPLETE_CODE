@@ -11,6 +11,13 @@ import ProfileEmploymentDetailsTab from "./ProfileEmploymentDetailsTab";
 import ProfileExperienceTab from "./ProfileExperienceTab";
 import ProfilePersonalDetailsTab from "./ProfilePersonalDetailsTab";
 import ProfileProjectTab from "./ProfileProjectTab";
+import { BsFillPersonLinesFill } from 'react-icons/bs';
+import { FaBookReader, FaBusinessTime, FaGraduationCap, FaRegAddressCard } from 'react-icons/fa';
+import { FiUserPlus } from 'react-icons/fi';
+import { TiBusinessCard } from 'react-icons/ti';
+import { GrUserExpert } from "react-icons/gr";
+import { VscProject } from "react-icons/vsc";
+import { AiOutlineProject } from 'react-icons/ai';
 
 
 function MyProfileTabs() {
@@ -20,18 +27,23 @@ function MyProfileTabs() {
     };
 
     return(
-        <>
+        <div className='example'>
         <EmployeeMasterCard/>
         <TabContext value={value}>
-  <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{justifyContent:"center"}}>
-    <TabList onChange={handleChange} aria-label="lab API tabs example" style={{justifyContent:"center",backgroundColor:"#FFFFB4"}}>
-      <Tab label="Personal Details" value="1" />
-      <Tab label="Address Details" value="2" />
-      <Tab label="Additional Details" value="3" />
-      <Tab label="Employment Details" value="4" />
-      <Tab label="Educational Details" value="5" />
-      <Tab label="Experience Details" value="6" />
-      <Tab label="Project Details" value="7" />
+  <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{justifyContent:"center"}} >
+    <TabList onChange={handleChange} value={value} sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"58px",paddingRight:0,color:"black" }}
+       // textColor="secondary"
+        indicatorColor="#f5896e"
+        //aria-label="secondary tabs example"
+         // style={{justifyContent:"center",backgroundColor:"#f5896e"}}
+         >
+      <Tab label="Personal Info." value="1" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<BsFillPersonLinesFill style={{ fontSize: "20px" }} />}/>
+      <Tab label="Address" value="2" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<FaRegAddressCard style={{ fontSize: "20px" }} />} />
+      <Tab label="Additional Details" value="3" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<FiUserPlus style={{ fontSize: "20px" }} />}/>
+      <Tab label="Employment" value="4" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<TiBusinessCard style={{ fontSize: "20px" }} />}/>
+      <Tab label="Educational" value="5" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<FaGraduationCap style={{ fontSize: "20px" }} />}/>
+      <Tab label="Experience" value="6" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<FaBusinessTime style={{ fontSize: "20px" }} />}/>
+      <Tab label="Projects" value="7" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<AiOutlineProject style={{ fontSize: "20px" }} />}/>
 
     </TabList>
   </Box>
@@ -44,7 +56,7 @@ function MyProfileTabs() {
   <TabPanel value="7"><ProfileProjectTab/></TabPanel>
 </TabContext>
        
-        </>
+        </div>
 
     );
 }

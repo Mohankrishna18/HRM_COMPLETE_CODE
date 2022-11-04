@@ -209,8 +209,8 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
 variant="warning"
 onClick={handleShow}
 style={{
-backgroundColor: "#ff9b44",
-color: "#F4F8F6",
+    backgroundColor: "#f5896e",
+    borderColor: "#ff9b44",
 float: "right",
 borderRadius: "25px",
 paddingBottom: "11.5px",
@@ -353,7 +353,8 @@ Upload Doctor's Certificate for Sick/Medical Leave
 </Form.Group>
 </Row>
 <Button
-style={{ backgroundColor: "#FF9B44", float: "right" }}
+style={{ backgroundColor: "#f5896e",
+borderColor: "#ff9b44", float: "right" }}
 type="submit"
 onClick={handleClose}
 >

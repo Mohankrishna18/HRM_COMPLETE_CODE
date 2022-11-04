@@ -149,10 +149,15 @@ function Departments() {
                         pageSizeOptions: [10, 15,20, 30 ,50, 75, 100 ],
                         maxBodyHeight: 450,
                         headerStyle: {
-                          backgroundColor: "#FE924A",
+                          backgroundColor: "#f5896e",
                           color: "white",
-                          fontSize: "20px",
-                        },                               
+                          fontSize: "12px",
+                          //height: "10px",
+                          //fontWeight: 'bold'
+                      },
+                      rowStyle: {
+                          fontSize: 14,
+                      },                               
                         addRowPosition:"first",
                         actionsColumnIndex: -1,
                         //grouping: true,

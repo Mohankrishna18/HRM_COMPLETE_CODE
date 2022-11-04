@@ -59,7 +59,7 @@ console.log(data)
 return(
     <div>
         <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-          <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+          <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
             <Modal.Title> Details</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -157,7 +157,8 @@ return(
   
         <Grid>
           <MaterialTable
-            title="Onboarding's For This Month"
+            title="MONTH ONBOARDINGS"
+            style={{fontSize:"11px"}}
             columns={columns}
             data={data}
             options={{
@@ -170,12 +171,18 @@ return(
 
               maxBodyHeight: 350,
               headerStyle: {
-               // backgroundColor: "#FFCE83",
-               fontSize:"16px",
-               paddingBottom:"6px",
-               paddingTop:"12px",
-               background: "#ffa442",
-                color: "black",
+                // backgroundColor: "#FFC47A",
+                background: "#f5896e",
+                fontSize:"13px",
+                paddingBottom:"4px",
+                paddingTop:"8px",
+                color: "white",
+
+  // height: "50px",
+  // position: "absolute",
+  // left: "10%",
+  // marginLeft: "-3px",
+  // top: "0",
               },
               exportButton: true,
             }}
@@ -192,6 +199,7 @@ return(
                 <div>
                   <Stack direction="horizontal" gap={3}>
                     <Button
+                    style={{fontSize:"10px"}}
                       variant="white "
                       className="rounded-pill"
                       onClick={(event) => {
@@ -200,7 +208,6 @@ return(
                         setViewOnboard(props.data);
                       }}
                     >
-                      {" "}
                       <FcWebcam /> View
                     </Button>
                   </Stack>

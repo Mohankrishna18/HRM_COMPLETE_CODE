@@ -6,7 +6,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 // import { isLoggedIn } from "../../utils";
 import './Sidebar.css'
 import styled from "styled-components";
-import { FcApproval, FcConferenceCall, FcCopyright, FcLeave, FcList, FcOvertime } from "react-icons/fc";
+import { FcApproval, FcConferenceCall, FcCopyright, FcLeave, FcList, FcMultipleSmartphones, FcOvertime } from "react-icons/fc";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 //Sidebar component is here
@@ -40,26 +40,34 @@ const Sidebar = (props) => {
   const nul = "null";
   const pmohead="pmohead";
   const projects = "projects";
+  const jobs = "jobs";
+  const irm="irm";
+  const hrmanager="hrmanager";
+  const srm="srm";
+  const buhead="buhead";
 
   return (
+    
 
     <Row className="example">
-      <Tab.Container id="list-group-tabs-example" style={{backgroundColor:"black"}}>
+      <Tab.Container id="list-group-tabs-example" style={{backgroundColor:"white"}} className="Murali_1">
         <Col xs={12} xxl={12} xl={12} lg={12} md={12} sm={12}>
-          <div style={{ boxShadow: "10px black" }}>
+          <div style={{ boxShadow: "10px white" }} className="Murali_2">
 
-            <ListGroup style={{ border: "none", backgroundColor:"black" }}>
+            <ListGroup style={{ border: "none", backgroundColor:"white" }} className="Murali_3">
               {menuItems.map((item, index) => (
                 (item.type === profile) ? (<>
-                  <Row style={{backgroundColor:"black"}}>
-                    <ListGroup.Item style={{ border: "none", paddingTop: 15 , color:"white",backgroundColor:"black"}}>
+                  <Row style={{backgroundColor:"white"}} className="Murali_4">
+                    <ListGroup.Item style={{ border: "none", color:"white",backgroundColor:"white"}} className="Murali_5">
                       <NavLink
+                      style={{padding:'none'}}
                         key={item.path}
-                        className="nav-text"
+                        className="link"
+                        exact activeclassName="active"
                         to={`${props.prefix}${item.path}`} >
-                        <Row style={{ paddingLeft: "7%"}}>
-                          <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
-                          <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>{item.title}</Col>
+                        <Row style={{ paddingLeft: "7%"}} className="Murali_6">
+                          <Col md={2} style={{fontSize:"140%"}} className="Murali_7">{item.icon}</Col>
+                          <Col  style={{color:"black",fontSize:17 }} className="Murali_8">{item.title}</Col>
                         </Row>
                       </NavLink>
                     </ListGroup.Item>
@@ -72,14 +80,16 @@ const Sidebar = (props) => {
               {menuItems.map((item, index) => (
                 (item.type === approvals) ? (<>
                   <Row>
-                    <ListGroup.Item style={{ border: "none" ,backgroundColor:"black"}}>
-                      <NavLink 
+                    <ListGroup.Item style={{ border: "none" ,backgroundColor:"white"}}>
+                      <NavLink
+                      style={{padding:'none'}} 
                         key={item.path}
-                        className="nav-text"
+                        className="link"
+                        exact activeclassName="active"
                         to={`${props.prefix}${item.path}`} >
                         <Row style={{ paddingLeft: "7%" }}>
                           <Col md={2} style={{fontSize:"140%"}}  >{item.icon}</Col>
-                          <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>{item.title}</Col>
+                          <Col  style={{color:"black",fontSize:17 }}>{item.title}</Col>
                         </Row>
                       </NavLink>
                     </ListGroup.Item>
@@ -88,26 +98,28 @@ const Sidebar = (props) => {
               ))}
             </ListGroup>
 
-            <Accordion className="background" style={{width:"105%", border: "none", backgroundColor:"black",color:"white" }}>
-              <Accordion.Item className="panel-header" eventKey="0" style={{ border: "none", paddingBottom: "5%" ,backgroundColor:"black"}}>
+            <Accordion  style={{width:"105%", border: "none", backgroundColor:"white",color:"white" }}>
+              <Accordion.Item className="panel_header" eventKey="0" style={{ border: "none", backgroundColor:"white"}}>
                 <Accordion.Header  style={{backgroundColor:"#070708"}}>
                   <Col md={2} style={{fontSize:"140%"}}><FcConferenceCall /></Col>
-                  <Col md={8} style={{color:"white", fontSize:17,paddingTop:10 }}>Employees</Col>
+                  <Col  style={{color:"black", fontSize:17}}>Employees</Col>
  
                 </Accordion.Header>
-                <Accordion.Body >
-                  <ListGroup >
+                <Accordion.Body className="murali">
+                  <ListGroup style={{padding:'none'}}>
                     {menuItems.map((item, index) => (
                       (item.type === emp) ? (<>
                         <Row>
-                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%",backgroundColor:"black" }}>
+                          <ListGroup.Item style={{ border: "none",backgroundColor:"white" }}>
                             <NavLink
+                            style={{padding:'none'}}
                               key={item.path}
-                              className="nav-text"
+                              className="link"
+                             exact activeclassName="active"
                               to={`${props.prefix}${item.path}`} >
                               <Row>
                                 <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
-                                <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>{item.title}</Col>
+                                <Col  style={{color:"black",fontSize:17 }}>{item.title}</Col>
                               </Row>
                             </NavLink>
                           </ListGroup.Item>
@@ -116,14 +128,14 @@ const Sidebar = (props) => {
                     ))}
                   </ListGroup>
                 </Accordion.Body></Accordion.Item>
-              {/* <Accordion.Item eventKey="3" style={{ border: "none", paddingBottom: "10%" }}>
-                <Accordion.Header>
-                  <Col md={2}><FcApproval /></Col>
-                  <Col md={8}> Approvals</Col>
-                </Accordion.Header>
-                <Accordion.Body>
+              {/* <Accordion.Item eventKey="3" style={{ border: "none", paddingBottom: "10%" }}> */}
+                {/* <Accordion.Header> */}
+                  {/* <Col md={2}><FcApproval /></Col> */}
+                  {/* <Col md={8}> Approvals</Col> */}
+                {/* </Accordion.Header> */}
+                {/* <Accordion.Body> */}
             
-                </Accordion.Body></Accordion.Item> */}
+                {/* </Accordion.Body></Accordion.Item> */}
 
 
               {/* <Accordion.Item eventKey="1" style={{ border: "none", paddingBottom: "5%",backgroundColor:"black"}}>
@@ -151,13 +163,13 @@ const Sidebar = (props) => {
                       ) : (<>
                       </>)
                     ))}
-                  </ListGroup>
-                </Accordion.Body></Accordion.Item> */}
+                  </ListGroup> */}
+                {/* </Accordion.Body></Accordion.Item> */}
                 {( usertype === pmohead)?(
-              <Accordion.Item eventKey="2" style={{ border: "none", paddingBottom: "5%" ,backgroundColor:"black"}}>
+              <Accordion.Item eventKey="2" style={{ border: "none",backgroundColor:"white"}}>
                 <Accordion.Header>
                   <Col md={2} style={{fontSize:"140%"}} ><FcList /></Col>
-                  <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>Projects</Col>
+                  <Col  style={{color:"black",fontSize:17 }}>Projects</Col>
 
                 </Accordion.Header>
                 <Accordion.Body>
@@ -165,14 +177,16 @@ const Sidebar = (props) => {
                     {menuItems.map((item, index) => (
                       (item.type === projects) ? (<>
                         <Row>
-                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%",backgroundColor:"black" }}>
+                          <ListGroup.Item style={{ border: "none",backgroundColor:"white" }}>
                             <NavLink
+                            style={{padding:'none'}}
                               key={item.path}
-                              className="nav-text"
+                              className="link"
+                              exact  activeclassName="active"
                               to={`${props.prefix}${item.path}`} >
                               <Row>
                                 <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
-                                <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>{item.title}</Col>
+                                <Col  style={{color:"black",fontSize:17 }}>{item.title}</Col>
                               </Row>
                             </NavLink>
                           </ListGroup.Item>
@@ -185,10 +199,10 @@ const Sidebar = (props) => {
               ):(<></>)}
               
                  {( usertype === pmohead)?(
-              <Accordion.Item eventKey="3" style={{ border: "none", paddingBottom: "5%" ,backgroundColor:"black"}}>
+              <Accordion.Item eventKey="3" style={{ border: "none", backgroundColor:"white"}}>
                 <Accordion.Header>
                   <Col md={2} style={{fontSize:"140%"}} ><FcCopyright /></Col>
-                  <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>Configuration</Col>
+                  <Col  style={{color:"black",fontSize:17 }}>Configuration</Col>
 
                 </Accordion.Header>
                 <Accordion.Body>
@@ -196,14 +210,16 @@ const Sidebar = (props) => {
                     {menuItems.map((item, index) => (
                       (item.type === config) ? (<>
                         <Row>
-                          <ListGroup.Item style={{ border: "none", paddingBottom: "10%", paddingLeft: "10%",backgroundColor:"black" }}>
+                          <ListGroup.Item style={{ border: "none", backgroundColor:"white" }}>
                             <NavLink
+                            style={{padding:'none'}}
                               key={item.path}
-                              className="nav-text"
+                              className="link"
+                              exact activeclassName="active"
                               to={`${props.prefix}${item.path}`} >
                               <Row>
                                 <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
-                                <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>{item.title}</Col>
+                                <Col  style={{color:"black",fontSize:17 }}>{item.title}</Col>
                               </Row>
                             </NavLink>
                           </ListGroup.Item>
@@ -213,6 +229,70 @@ const Sidebar = (props) => {
                     ))}
                   </ListGroup>
                 </Accordion.Body></Accordion.Item>
+              ):(<></>)}
+              {( usertype === pmohead || hrmanager || irm || srm)?(
+              <Accordion.Item eventKey="4" style={{ border: "none",backgroundColor:"white"}}>
+                <Accordion.Header>
+                  <Col md={2} style={{fontSize:"140%"}} ><FcMultipleSmartphones /></Col>
+                  <Col  style={{color:"black",fontSize:17 }}>Jobs</Col>
+
+                </Accordion.Header>
+                <Accordion.Body>
+                  <ListGroup>
+                    {menuItems.map((item, index) => (
+                      (item.type === jobs) ? (<>
+                        <Row>
+                          <ListGroup.Item style={{ border: "none", backgroundColor:"white" }}>
+                            <NavLink
+                            style={{padding:'none'}}
+                              key={item.path}
+                              className="link"
+                              exact activeclassName="active"
+                              to={`${props.prefix}${item.path}`} >
+                              <Row>
+                                <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
+                                <Col  style={{color:"black",fontSize:17 }}>{item.title}</Col>
+                              </Row>
+                            </NavLink>
+                          </ListGroup.Item>
+                        </Row></>
+                      ) : (<>
+                      </>)
+                    ))}
+                  </ListGroup>
+                </Accordion.Body></Accordion.Item>
+              ):(<></>)}
+              {( usertype === irm)?(
+              <Accordion.Item eventKey="2" style={{ border: "none", backgroundColor:"white"}}>
+                <Accordion.Header>
+                  <Col md={2} style={{fontSize:"140%"}} ><FcList /></Col>
+                  <Col  style={{color:"black",fontSize:17 }}>Projects</Col>
+
+                </Accordion.Header>
+                <Accordion.Body>
+                  <ListGroup>
+                    {menuItems.map((item, index) => (
+                      (item.type === projects) ? (<>
+                        <Row>
+                          <ListGroup.Item style={{ border: "none",backgroundColor:"white" }}>
+                            <NavLink
+                            style={{padding:'none'}}
+                              key={item.path}
+                              className="link"
+                              exact activeclassName="active"
+                              to={`${props.prefix}${item.path}`} >
+                              <Row>
+                                <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
+                                <Col  style={{color:"black",fontSize:17 }}>{item.title}</Col>
+                              </Row>
+                            </NavLink>
+                          </ListGroup.Item>
+                        </Row></>
+                      ) : (<>
+                      </>)
+                    ))}
+                  </ListGroup>
+                </Accordion.Body ></Accordion.Item>
               ):(<></>)}
 
 
@@ -228,20 +308,22 @@ const Sidebar = (props) => {
               {menuItems.map((item, index) => (
                 (item.type === nul) ? (<>
                   <Row>
-                    <ListGroup.Item style={{ border: "none", paddingBottom: "10%",backgroundColor:"black" }}>
+                    <ListGroup.Item style={{ border: "none",backgroundColor:"white" }}>
                       <NavLink
+                      style={{padding:'none'}}
                         key={item.path}
-                        className="nav-text"
+                        className="link"
+                        activeclassName="active"
                         to={`${props.prefix}${item.path}`} >
                         <Row style={{ paddingLeft: "7%" }}>
                           <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
-                          <Col md={8} style={{color:"white",fontSize:17,paddingTop:10 }}>{item.title}</Col>
+                          <Col  style={{color:"black",fontSize:17}}>{item.title}</Col>
                         </Row>
                       </NavLink>
                     </ListGroup.Item>
                   </Row></>
                 ) : (<></>)
-              ))}
+              ))} 
               {/* {isLoggedIn() && <Button onClick={handleLogout}>Logout</Button> }&nbsp; 
                 <p style={{paddingLeft:"30px",paddingTop:""}}>V-1.0</p>  */}
             </ListGroup>
@@ -252,11 +334,8 @@ const Sidebar = (props) => {
 
     
     </Row>
+  
   );
 };
 
 export default memo(Sidebar);
-
-
-{/* <Col><ExpandMoreIcon style={{color:"white"}} /></Col> */}
-

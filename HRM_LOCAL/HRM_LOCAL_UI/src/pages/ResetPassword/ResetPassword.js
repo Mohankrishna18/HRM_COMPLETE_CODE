@@ -269,9 +269,8 @@ const ResetPassword = () => {
                   type="submit"
                   style={{
                     width: "100%",
-                    background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
-                    borderRadius: "15px",
-                    color: "black",
+                    backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",
                   }}
                 >
                   Submit

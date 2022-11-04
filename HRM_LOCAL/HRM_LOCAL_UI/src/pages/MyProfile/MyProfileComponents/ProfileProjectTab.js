@@ -90,9 +90,9 @@ const ProfileProjectTab = () => {
   return (
 
             <div style={{ paddingLeft: 20, paddingBottom: 0 }}>
-                          <Card.Title>
+                          {/* <Card.Title>
                             <h5>Projects History:</h5>
-                          </Card.Title>
+                          </Card.Title> */}
                           <Card.Body >
 
                             

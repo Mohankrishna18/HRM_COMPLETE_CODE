@@ -23,8 +23,14 @@ const ReusableTable = ({ titlee, columnes, dataa, editablee }) => {
                         // filtering: true,
 
                         headerStyle: {
-                            backgroundColor: "#FE924A",
+                            backgroundColor: "#f5896e",
                             color: "white",
+                            fontSize: "12px",
+                            //height: "10px",
+                            //fontWeight: 'bold'
+                        },
+                        rowStyle: {
+                            fontSize: 14,
                         },
 
                         exportButton: true

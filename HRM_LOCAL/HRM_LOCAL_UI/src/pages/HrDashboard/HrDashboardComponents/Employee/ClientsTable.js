@@ -33,7 +33,7 @@ function ClientTable(props) {
       { title: "Client ID", field: "clientId",color:"black" },
       { title: "Client Name", field: "clientName",color:"black" },
       { title: "Email", field: "email" },
-      { title: "Phone Number", field: "phoneNumber" },  
+      { title: "Contact Number", field: "phoneNumber" },  
 
     ]);
     console.log(data);
@@ -56,13 +56,15 @@ function ClientTable(props) {
               pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
               maxBodyHeight: 370,
               headerStyle: {
-                // backgroundColor: "#FFC47A",
-                background: "#ffa442",
-                fontSize:"14px",
-                paddingBottom:"4px",
-                paddingTop:"8px",
-                color: "black",
-              },
+                backgroundColor: "#f5896e",
+                color: "white",
+                fontSize: "12px",
+                //height: "10px",
+                //fontWeight: 'bold'
+            },
+            rowStyle: {
+                fontSize: 14,
+            },
               exportButton: true,
             }}
           />

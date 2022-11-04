@@ -12,7 +12,7 @@ import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
 function AddModule(props) {
-  
+
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -37,14 +37,14 @@ function AddModule(props) {
   const validateForm = () => {
     const {
 
-      
+
       moduleName,
 
     } = form;
     const newErrors = {};
 
 
-    
+
     if (!moduleName || moduleName === "")
       newErrors.moduleName = "Please Enter a Module Name";
 
@@ -72,7 +72,7 @@ function AddModule(props) {
           else {
             console.log("Props Not Send");
           }
-          
+
 
           setTimeout(5000);
           handleClose();
@@ -82,7 +82,7 @@ function AddModule(props) {
         });
     }
   };
-  
+
 
 
   return (
@@ -91,8 +91,8 @@ function AddModule(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#ff9b44",
-          color: "#F4F8F6",
+          backgroundColor: "#f5896e",
+          borderColor: "#ff9b44",
           float: "right",
           borderRadius: "25px",
           paddingBottom: "7px",
@@ -112,8 +112,8 @@ function AddModule(props) {
         keyboard={false}
         centered
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
-          <Modal.Title style={{ backgroundColor: "#FF9E14", color : "white" }}>Add Module</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white" }}>
+          <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>Add Module</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -122,11 +122,11 @@ function AddModule(props) {
             className="formone"
             // noValidate
             // validated={validated}
-            style={{ paddingLeft: 25, paddingRight: 25, paddingBottom:10 }}
+            style={{ paddingLeft: 25, paddingRight: 25, paddingBottom: 10 }}
             onSubmit={handleSubmit}
           >
             <Row className="mb-3">
-            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Module Name *</Form.Label>
                 <Form.Control
                   required
@@ -150,7 +150,7 @@ function AddModule(props) {
               <Col>
                 <Button
                   style={{
-                    backgroundColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
                     borderColor: "#ff9b44",
                     float: "right",
                     width: "40%",
@@ -161,11 +161,11 @@ function AddModule(props) {
                   onClick={handleSubmit}
                 >
                   Submit
-                  
+
                 </Button>
               </Col>
               <Col>
-              <Button
+                <Button
                   style={{
                     backgroundColor: "#B6B6B4",
                     borderColor: "#B6B6B4",
@@ -174,7 +174,7 @@ function AddModule(props) {
                     height: "120%",
                     borderRadius: "25px",
                   }}
-                  
+
                   type="close"
                   onClick={handleClose}
                 >
