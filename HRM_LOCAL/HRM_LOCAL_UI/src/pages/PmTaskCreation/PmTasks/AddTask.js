@@ -42,11 +42,11 @@ function AddUser(props) {
       userId,
       projectId,
       userStory,
-      
+
       taskTitle,
       taskType,
       estimatedHours,
-     // actualHours,
+      // actualHours,
       description,
       plannedEndDate,
       plannedStartDate,
@@ -73,7 +73,7 @@ function AddUser(props) {
     // else if (!projectId.match(/^[aA-zZ\s]+$/)) {
     //   newErrors.projectId = "Please select Project";
     // }
-   
+
 
     if (!projectId || projectId === '')
       newErrors.projectId = 'Please Enter Task Title'
@@ -148,7 +148,7 @@ function AddUser(props) {
     setProjects(res.data.data)
     console.log(res.data.data)
   }
-  const [userStory,setUserStory] = useState([])
+  const [userStory, setUserStory] = useState([])
   const loadData1 = async () => {
     const res = await axios.get("/userStory/getAllUserStory");
     setUserStory(res.data.data);
@@ -156,7 +156,7 @@ function AddUser(props) {
   };
   console.log(userStory);
 
-  
+
   useEffect(() => {
     axios.get(`/clientProjectMapping/getAllProjects`).then((response) => {
       console.log(response.data.data)
@@ -165,14 +165,14 @@ function AddUser(props) {
   }, [])
 
   console.log(form.projectId)
-  
+
 
   useEffect(() => {
     loadDated();
 
   }, [form.projectId]);
 
-  const loadDated =  async(e) => {
+  const loadDated = async (e) => {
     const response = await axios.get(`/clientProjectMapping/getAllProjectTeams/Active/${form.projectId}`);
 
     setData(response.data.data);
@@ -181,37 +181,36 @@ function AddUser(props) {
   };
   return (
     <div>
-     <Button
+      <Button
 
-variant="warning"
+        variant="warning"
 
-onClick={handleShow}
+        onClick={handleShow}
 
-style={{
+        style={{
 
-  backgroundColor: "#ff9b44",
+          backgroundColor: "#f5896e",
+          borderColor: "#ff9b44",
 
-  color: "#F4F8F6",
+          float: "right",
 
-  float: "right",
+          borderRadius: "25px",
 
-  borderRadius: "25px",
+          // paddingBottom: "11.5px",
 
-  // paddingBottom: "11.5px",
+          // marginTop: "100px",
 
-  // marginTop: "100px",
+        }}
 
-}}
+      >
 
->
+        <FaPlus />
 
-<FaPlus />
+        {" "}
 
-{" "}
+        Add Task
 
-Add Task
-
-</Button>
+      </Button>
       <Modal
         size="lg"
         show={show}
@@ -222,7 +221,7 @@ Add Task
       >
         <Modal.Header
           closeButton
-          style={{ backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px",color:"white" }}
+          style={{ backgroundColor: "#FF9E14", paddingTop: "5px", paddingBottom: "5px", color: "white" }}
         >
           <Modal.Title style={{ backgroundColor: '#FF9E14', color: 'white' }}>
             Add Task
@@ -271,7 +270,7 @@ Add Task
                 </Form.Control.Feedback>
               </Form.Group> */}
 
-                <Form.Group className="mb-3" as={Col} md="6">
+              <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Project *</Form.Label>
                 <Form.Select
                   required
@@ -403,7 +402,7 @@ Add Task
                   <option>P1</option>
                   <option>P2</option>
                   <option>P3</option>
-                  
+
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.priority}
@@ -440,7 +439,7 @@ Add Task
                 </Form.Control.Feedback>
               </Form.Group>
 
-             
+
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Status *</Form.Label>
                 <Form.Select
@@ -519,7 +518,7 @@ Add Task
                 </Form.Control.Feedback>
               </Form.Group> */}
 
-            
+
 
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Actual Start Date *</Form.Label>
@@ -584,8 +583,8 @@ Add Task
               <Col>
                 <Button
                   style={{
-                    backgroundColor: '#ff9b44',
-                    borderColor: '#ff9b44',
+                    backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",
                     float: 'right',
                     width: '40%',
                     height: '120%',

@@ -104,12 +104,15 @@ function IRMResignationMain(props) {
             addRowPosition: "first",
             actionsColumnIndex: -1,
             headerStyle: {
-              backgroundColor: "#FE924A",
-            paddingRight: "70px",  //with Department
-            // paddingRight: "90px", //without Department
-
+              backgroundColor: "#f5896e",
               color: "white",
-            },
+              fontSize: "12px",
+              //height: "10px",
+              //fontWeight: 'bold'
+          },
+          rowStyle: {
+              fontSize: 14,
+          },
             exportButton: true,
           }}
           actions={[

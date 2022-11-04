@@ -277,7 +277,8 @@ function AddResignation(props) {
             <div class="d-flex justify-content-center ">
               <Row>
                 <Col md={1}>
-                  <Button onClick={handleSubmit}>Submit</Button>
+                  <Button style ={{backgroundColor: "#f5896e",
+ borderColor: "#ff9b44",}} onClick={handleSubmit}>Submit</Button>
                 </Col>
               </Row>
             </div>

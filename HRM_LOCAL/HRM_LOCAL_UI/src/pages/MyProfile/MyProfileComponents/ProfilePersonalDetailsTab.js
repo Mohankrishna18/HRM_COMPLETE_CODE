@@ -3,6 +3,7 @@ import { Card, Form, Row, Col, InputGroup, Button, Modal } from "react-bootstrap
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
 import EditIcon from '@mui/icons-material/Edit';
+import { BsFillPersonLinesFill } from "react-icons/bs";
 
 
 
@@ -185,13 +186,15 @@ function ProfilePersonalDetailsTab() {
         <div style={{ paddingLeft: 30, paddingBottom: 0 }}>
             <Card.Title>
                 <Row>
-                    <Col> <h5>Personal Information:</h5></Col>
-                    <Col style={{ float: "right", paddingLeft: "750px" }}><EditIcon onClick={handleShow} /></Col>
+                    {/* <Col> <h5>Personal Info.:</h5></Col> */}
+                    <Col style={{ float: "right", paddingLeft: "950px" }}><EditIcon onClick={handleShow} /></Col>
                 </Row>
 
             </Card.Title>
             <Card.Body >
-                <Row style={{ paddingLeft: 55, paddingBottom: 30, paddingTop: 20 }}>
+                <Row>
+                    <Col>
+                    <Row style={{ paddingLeft: 0, paddingBottom: 30, paddingTop: 0 }}>
                     <Col>
                         <Card.Subtitle>
                             Email:
@@ -202,8 +205,9 @@ function ProfilePersonalDetailsTab() {
                             {email}
                         </Card.Subtitle>
                     </Col>
-                </Row>
-                <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                    
+                    </Row>
+                <Row style={{ paddingLeft: 0, paddingBottom: 30 }}>
                     <Col>
                         <Card.Subtitle
                         >
@@ -216,7 +220,7 @@ function ProfilePersonalDetailsTab() {
                         </Card.Subtitle>
                     </Col>
                 </Row>
-                <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                <Row style={{ paddingLeft: 0, paddingBottom: 30 }}>
                     <Col>
                         <Card.Subtitle
                         >
@@ -229,7 +233,7 @@ function ProfilePersonalDetailsTab() {
                         </Card.Subtitle>
                     </Col>
                 </Row>
-                <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                <Row style={{ paddingLeft: 0, paddingBottom: 30 }}>
                     <Col>
                         <Card.Subtitle
 
@@ -244,7 +248,9 @@ function ProfilePersonalDetailsTab() {
 
                     </Col>
                 </Row>
-                <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                    </Col>
+                    <Col>
+                    <Row style={{ paddingLeft: 0, paddingBottom: 30 }}>
                     <Col>
                         <Card.Subtitle
                         >
@@ -257,7 +263,7 @@ function ProfilePersonalDetailsTab() {
                         </Card.Subtitle>
                     </Col>
                 </Row>
-                <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                <Row style={{ paddingLeft: 0, paddingBottom: 30 }}>
                     <Col>
                         <Card.Subtitle style={{}}
                         >
@@ -270,7 +276,7 @@ function ProfilePersonalDetailsTab() {
                         </Card.Subtitle>
                     </Col>
                 </Row>
-                <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+                <Row style={{ paddingLeft: 0, paddingBottom: 30 }}>
                     <Col>
                         <Card.Subtitle>
                             Marital Status:
@@ -282,6 +288,10 @@ function ProfilePersonalDetailsTab() {
                         </Card.Subtitle>
                     </Col>
                 </Row>
+                    </Col>
+                </Row>
+                
+               
             </Card.Body>
 
             <Modal
@@ -292,8 +302,8 @@ function ProfilePersonalDetailsTab() {
                 size="lg"
                 centered
             >
-                <Modal.Header closeButton style={{ backgroundColor: "#FE924A" }}>
-                    <Modal.Title>Personal Details </Modal.Title>
+                <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
+                    <Modal.Title style={{color:"white"}}><BsFillPersonLinesFill style={{ fontSize: "20px",color:"white",paddingRight:"10px" }} />Personal Details </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
@@ -322,7 +332,7 @@ function ProfilePersonalDetailsTab() {
                                         placeholder="Enter Name"
                                         isInvalid={ferrors}
                                     />
-                               _     <Form.Control.Feedback type="invalid">
+                                   <Form.Control.Feedback type="invalid">
                                         {ferrors}
                                     </Form.Control.Feedback>
                                 </Form.Group>
@@ -623,7 +633,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                     <Col>
                                         <Button md="6"
                                             className="rounded-pill"
-                                            style={{ backgroundColor: "#eb4509", float: "right" }}
+                                            style={{ backgroundColor: "#f5896e", float: "right" }}
                                             type="submit"
                                             size="lg"
                                         >

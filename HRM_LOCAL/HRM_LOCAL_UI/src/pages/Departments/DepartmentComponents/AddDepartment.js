@@ -12,7 +12,7 @@ import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
 function AddDepartment(props) {
-  
+
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -80,19 +80,19 @@ function AddDepartment(props) {
   };
   // console.log(form.dateOfJoining)
 
-//   const [empID, setEmpID] = useState([]);
-//   useEffect(() => {
-//     axios
-//       .get("/emp/getUsersNamesByBand")
-//       .then((response) => {
-//         setEmpID(response.data);
-//         console.log(response.data);
-//       })
-      
-//       .catch(() => {
-//         toast.error("data is not getting");
-//       });
-//   }, []);
+  //   const [empID, setEmpID] = useState([]);
+  //   useEffect(() => {
+  //     axios
+  //       .get("/emp/getUsersNamesByBand")
+  //       .then((response) => {
+  //         setEmpID(response.data);
+  //         console.log(response.data);
+  //       })
+
+  //       .catch(() => {
+  //         toast.error("data is not getting");
+  //       });
+  //   }, []);
 
   const [role, setRole] = useState([]);
   useEffect(() => {
@@ -114,8 +114,8 @@ function AddDepartment(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#FE924A",
-          color: "#F4F8F6",
+          backgroundColor: "#f5896e",
+          borderColor: "#ff9b44",
           float: "right",
           borderRadius: "25px",
           paddingBottom: "7px",
@@ -123,7 +123,7 @@ function AddDepartment(props) {
           fontWeight: "bold"
         }}
       >
-        
+
         <BsPlusLg />
         &nbsp; Add Business Unit
       </Button>
@@ -135,8 +135,8 @@ function AddDepartment(props) {
         keyboard={false}
         centered
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FE924A", color : "white" }}>
-          <Modal.Title style={{ backgroundColor: "#FE924A", color : "white" }}>Add Business Unit</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#FE924A", color: "white" }}>
+          <Modal.Title style={{ backgroundColor: "#FE924A", color: "white" }}>Add Business Unit</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -145,7 +145,7 @@ function AddDepartment(props) {
             className="formone"
             // noValidate
             // validated={validated}
-            style={{ paddingLeft: 25, paddingRight: 25, paddingBottom:10 }}
+            style={{ paddingLeft: 25, paddingRight: 25, paddingBottom: 10 }}
             onSubmit={handleSubmit}
           >
             <Row className="mb-3">
@@ -188,7 +188,7 @@ function AddDepartment(props) {
                       {role1.name}
                     </option>
                   ))}
-           
+
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.businessUnitHead}
@@ -201,7 +201,7 @@ function AddDepartment(props) {
               <Col>
                 <Button
                   style={{
-                    backgroundColor: "#FE924A",
+                    backgroundColor: "#f5896e",
                     borderColor: "#ff9b44",
                     float: "right",
                     width: "40%",
@@ -212,11 +212,11 @@ function AddDepartment(props) {
                   onClick={handleSubmit}
                 >
                   Submit
-                  
+
                 </Button>
               </Col>
               <Col>
-              <Button
+                <Button
                   style={{
                     backgroundColor: "#B6B6B4",
                     borderColor: "#B6B6B4",
@@ -225,7 +225,7 @@ function AddDepartment(props) {
                     height: "120%",
                     borderRadius: "25px",
                   }}
-                  
+
                   type="close"
                   onClick={handleClose}
                 >

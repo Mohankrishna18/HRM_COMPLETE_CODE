@@ -240,7 +240,8 @@ const SelectTableComponent = () => {
           </table>
           <button
             className="btn btn-primary"
-            style={{ float: "right" }}
+            style={{ backgroundColor: "#f5896e",
+            borderColor: "#ff9b44",float: "right" }}
             onClick={() => {
               getSelectedRows();
               // dispatch(createRMA(createRMList));

@@ -19,18 +19,18 @@ function AddDesignation(props) {
   const [departments, setDepartments] = useState([]);
 
 
-// Get API's for Departments Dropdown
+  // Get API's for Departments Dropdown
   useEffect(() => {
-         loadData();
-       }, []);
-   
-       const loadData = async () => {
-        const res = await axios.get("/dept/getAllDepartments");
-        setDepartments(res.data);
-        console.log(res.data);
-       
-       
-      };
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    const res = await axios.get("/dept/getAllDepartments");
+    setDepartments(res.data);
+    console.log(res.data);
+
+
+  };
 
   const handleClose = () => setShow();
   const handleShow = () => setShow(true);
@@ -55,12 +55,12 @@ function AddDesignation(props) {
     const {
       departmentName,
       designationName,
-     
+
     } = form;
 
     const newErrors = {};
 
-     if (!departmentName || departmentName === "")
+    if (!departmentName || departmentName === "")
       newErrors.departmentName = "Please Select Business Unit Name";
 
     if (
@@ -114,8 +114,8 @@ function AddDesignation(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#FE924A",
-          color: "#F4F8F6",
+          backgroundColor: "#f5896e",
+          borderColor: "#ff9b44",
           float: "right",
           borderRadius: "25px",
           // paddingBottom: "11.5px",
@@ -147,7 +147,7 @@ function AddDesignation(props) {
             onSubmit={handleSubmit}
           >
             <Row className="mb-4">
-                  <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Business Unit Name *</Form.Label>
                 <Form.Select
                   required
@@ -162,11 +162,11 @@ function AddDesignation(props) {
                   isInvalid={!!errors.departmentId}
                 ><option>Select Business Unit</option>
 
-                {departments.map((departmentName)=>(
+                  {departments.map((departmentName) => (
 
-                   <option value={departmentName.departmentName}>{departmentName.departmentName}</option>
+                    <option value={departmentName.departmentName}>{departmentName.departmentName}</option>
 
-                ))}</Form.Select>
+                  ))}</Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.departmentId}
                 </Form.Control.Feedback>
@@ -191,13 +191,13 @@ function AddDesignation(props) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-        
+
             </Row>
             <Row>
               <Col>
                 <Button
                   style={{
-                    backgroundColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
                     borderColor: "#ff9b44",
                     float: "right",
                     width: "40%",
@@ -213,7 +213,7 @@ function AddDesignation(props) {
               <Col>
                 <Button
                   style={{
-                    backgroundColor: "#FE924A",
+                    backgroundColor: "#B6B6B4",
                     borderColor: "#B6B6B4",
                     alignItems: "center",
                     width: "40%",

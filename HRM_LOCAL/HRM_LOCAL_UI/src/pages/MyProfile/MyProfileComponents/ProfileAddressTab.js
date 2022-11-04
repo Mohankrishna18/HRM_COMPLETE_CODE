@@ -4,6 +4,7 @@ import axios from "../../../Uri";
 import { toast } from "react-toastify";
 import EditIcon from '@mui/icons-material/Edit';
 import countryListAllIsoData from "../../../commonComponents/Countries";
+import { FaRegAddressCard } from "react-icons/fa";
 
 function ProfileAddressTab() {
 
@@ -75,15 +76,15 @@ function ProfileAddressTab() {
         <div style={{ paddingLeft: 20, paddingBottom: 20 }}>
             <Card.Title>
                 <Row>
-                    <Col> <h5>Address:</h5></Col>
-                    <Col style={{ float: "right", paddingLeft: "750px" }}><EditIcon onClick={handleShow} /></Col>
+                    {/* <Col> <h5>Address:</h5></Col> */}
+                    <Col style={{ float: "right", paddingLeft: "950px" }}><EditIcon onClick={handleShow} /></Col>
                 </Row>
             </Card.Title>
 
             <Card.Body style={{ paddingLeft: 20 }}>
                 <Row>
                     <Col>
-                        <Card.Subtitle style={{ padding: 10 }}>
+                        <Card.Subtitle style={{ padding: 0 }}>
                             <h5>Permanent Address:</h5>
                         </Card.Subtitle>
                         <Row style={{ paddingLeft: 50 }}>
@@ -202,8 +203,8 @@ function ProfileAddressTab() {
                 size="lg"
                 centered
             >
-                <Modal.Header closeButton style={{ backgroundColor: "#FE924A" }}>
-                    <Modal.Title>Address</Modal.Title>
+                <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
+                    <Modal.Title><FaRegAddressCard style={{paddingRight:"10px"}}/>Address</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div>
@@ -548,7 +549,7 @@ function ProfileAddressTab() {
 
                             <Button
                                 className="rounded-pill" md="3"
-                                style={{ backgroundColor: "#eb4509", float: "right" }}
+                                style={{ backgroundColor: "#f5896e", float: "right" }}
                                 type="submit"
                                 size="lg"
                             >

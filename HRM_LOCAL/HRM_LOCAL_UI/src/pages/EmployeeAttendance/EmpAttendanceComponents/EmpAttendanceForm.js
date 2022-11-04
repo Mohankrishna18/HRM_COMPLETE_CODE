@@ -25,7 +25,7 @@ const EmpAttendanceForm = () => {
 
   function formatDate(punchinDate) {
     var datePart = punchinDate.match(/\d+/g),
-    day = datePart[0], // get only two digits
+      day = datePart[0], // get only two digits
       month = datePart[1],
       year = datePart[2];
     return day + "-" + month + "-" + year;
@@ -33,11 +33,11 @@ const EmpAttendanceForm = () => {
   function reverseString(str) {
     var newString = "";
     for (var i = str.length - 1; i >= 0; i--) {
-        newString += str[i];
+      newString += str[i];
     }
     return newString;
-}
-//reverseString('hello');
+  }
+  //reverseString('hello');
 
   useEffect(() => {
     loadData();
@@ -53,7 +53,7 @@ const EmpAttendanceForm = () => {
       .get(`/attendance/getAttendance/${obje.employeeId}`)
       .then((res) => {
         setShow(res.data.data);
-      
+
         console.log(res.data.data);
       });
   };
@@ -70,29 +70,29 @@ const EmpAttendanceForm = () => {
 
   const da = JSON.parse(sessionStorage.getItem("userdata"));
   const daa = da.data.employeeId;
-  
+
   const obje = { employeeId: daa };
   // const date = show.punchinDate;
   // console.log(date);
 
   const punchOutSubmit = async () => {
     const date = new Date()
-    var datePart= date.getDate()
-    var datePart1 = date.getMonth()+1
+    var datePart = date.getDate()
+    var datePart1 = date.getMonth() + 1
     var datePart2 = date.getFullYear()
-    var datePart3= date.getTime()
+    var datePart3 = date.getTime()
     console.log(datePart3)
-    const da = datePart+"-0"+datePart1+"-"+datePart2
+    const da = datePart + "-0" + datePart1 + "-" + datePart2
     console.log(da)
-     //var da1 = reverseString(da) 
-     //console.log(da1)
-    show.map((m)=>{
+    //var da1 = reverseString(da) 
+    //console.log(da1)
+    show.map((m) => {
       console.log(m.punchinDate)
     })
     console.log(obje.employeeId);
     try {
       const punchOutResponse = await axios.put(
-        `/attendance/addPunchOut/${obje.employeeId}?date=${da}`,obje);
+        `/attendance/addPunchOut/${obje.employeeId}?date=${da}`, obje);
 
       console.log(punchOutResponse);
       loadData();
@@ -134,8 +134,8 @@ const EmpAttendanceForm = () => {
               variant="warning"
               onClick={onSubmit}
               style={{
-                backgroundColor: "#ff9b44",
-                color: "#F4F8F6",
+                backgroundColor: "#f5896e",
+                borderColor: "#ff9b44",
                 float: "right",
                 borderRadius: "25px",
               }}
@@ -152,8 +152,8 @@ const EmpAttendanceForm = () => {
               variant="warning"
               onClick={punchOutSubmit}
               style={{
-                backgroundColor: "#ff9b44",
-                color: "#F4F8F6",
+                backgroundColor: "#f5896e",
+                borderColor: "#ff9b44",
                 float: "right",
                 borderRadius: "25px",
               }}

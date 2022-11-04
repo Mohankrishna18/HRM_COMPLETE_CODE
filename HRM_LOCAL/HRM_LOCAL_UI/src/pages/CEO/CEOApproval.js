@@ -200,12 +200,15 @@ console.log(data);
                 addRowPosition: 'first',
                 actionsColumnIndex: -1,
                 headerStyle: {
-
-                    backgroundColor: "#FE924A",
-
-                    color: "white",
-
-                },
+                  backgroundColor: "#f5896e",
+                  color: "white",
+                  fontSize: "12px",
+                  //height: "10px",
+                  //fontWeight: 'bold'
+              },
+              rowStyle: {
+                  fontSize: 14,
+              },
                 exportButton: true
             }}
             actions={[
@@ -228,7 +231,8 @@ console.log(data);
                     <div>
                         <Stack direction="horizontal" gap={3}>
                             <Button
-                                variant="outline-success"
+                                style ={{backgroundColor: "#f5896e",
+                                borderColor: "#ff9b44",}}
                                 onClick={() => {
                                     setShow(true);
                                     console.log(props)

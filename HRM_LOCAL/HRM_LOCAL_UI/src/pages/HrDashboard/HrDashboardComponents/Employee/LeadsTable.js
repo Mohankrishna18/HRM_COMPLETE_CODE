@@ -54,7 +54,7 @@ function LeadTable(props) {
   return (
     <div>
         <Modal  show={viewShow} onHide={viewHandleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Lead Overall Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -65,7 +65,8 @@ function LeadTable(props) {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={viewHandleClose}>
+          <Button style ={{backgroundColor: "#B6B6B4",
+                    borderColor: "#B6B6B4",}} onClick={viewHandleClose}>
             Close
           </Button>
           {/* <Button variant="primary" onClick={handleClose}>
@@ -91,13 +92,15 @@ function LeadTable(props) {
             pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
             maxBodyHeight: 370,
             headerStyle: {
-              // backgroundColor: "#FFC47A",
-              background: "#ffa442",
-              fontSize: "14px",
-              paddingBottom: "4px",
-              paddingTop: "8px",
-              color: "black",
-            },
+              backgroundColor: "#f5896e",
+              color: "white",
+              fontSize: "12px",
+              //height: "10px",
+              //fontWeight: 'bold'
+          },
+          rowStyle: {
+              fontSize: 14,
+          },
           }}
           actions={[
             {
