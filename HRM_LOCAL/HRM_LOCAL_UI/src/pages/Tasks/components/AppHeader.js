@@ -19,7 +19,7 @@ function AppHeader() {
   return (
     <div className={styles.appHeaderr} >
       <Button onClick={() => setModalOpen(true)} style={{ backgroundColor: "#f5896e",
- borderColor: "#ff9b44"}}>
+ borderColor: "#f5896e"}}>
         Add Task
       </Button>
       <SelectButton

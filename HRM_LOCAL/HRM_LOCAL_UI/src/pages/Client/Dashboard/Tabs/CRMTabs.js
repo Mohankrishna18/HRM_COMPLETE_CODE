@@ -38,7 +38,9 @@ const CRMTabs = () => {
       <Box sx={{ width: "99%", typography: "body1" }}>
         <TabContext value={value} >
           <Box style={{paddingleft:"100px",paddingRight:'50px'}}>
-            <TabList centered onChange={handleChange} aria-label="lab API tabs example">
+            <TabList centered onChange={handleChange} sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"58px",paddingRight:0,color:"black" }}
+       // textColor="secondary"
+        indicatorColor="#f5896e">
               <Tab label="Client Details " value="1"  style={{paddingRight:'20px',fontSize:'18px'}} />
               <Tab label="Lead Details" value="2" style={{paddingRight:'20px' ,fontSize:'18px'}}  />
               {/* <Tab label="POC Details" value="3" style={{paddingRight:'20px',fontSize:'18px'}} /> */}

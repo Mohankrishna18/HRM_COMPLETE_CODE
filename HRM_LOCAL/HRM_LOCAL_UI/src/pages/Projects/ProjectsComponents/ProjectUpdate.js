@@ -414,7 +414,7 @@ const ProjectUpdate = (props) => {
               <Button
                 style={{
                   backgroundColor: "#f5896e",
- borderColor: "#ff9b44",
+ borderColor: "#f5896e",
                   width: "15%",
                   height: "120%",
                   borderRadius: "25px",

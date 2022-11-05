@@ -28,16 +28,10 @@ function HRConfirmationMain() {
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList
               onChange={handleChange}
-              sx={{
-                "& button.Mui-selected": {
-                  background: "linear-gradient(#e8e8e8,#e8e8e8,white)",
-                },
-              }}
-              aria-label="lab API tabs example"
-              style={{
-               
-                borderRadius: "5px",
-              }}
+              
+              sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"58px",paddingRight:0,color:"black" }}
+              // textColor="secondary"
+               indicatorColor="#f5896e"
             >
               <Tab
                 label="Onboarding Employees"

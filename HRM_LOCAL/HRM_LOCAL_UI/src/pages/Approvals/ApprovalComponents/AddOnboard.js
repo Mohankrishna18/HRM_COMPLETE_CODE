@@ -295,7 +295,7 @@ function AddOnboard(props) {
         onClick={handleShow}
         style={{
           backgroundColor: "#f5896e",
-          borderColor: "#ff9b44",
+          borderColor: "#f5896e",
           float: "right",
           borderRadius: "25px",
           // paddingBottom: "11.5px",

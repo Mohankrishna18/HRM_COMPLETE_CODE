@@ -146,7 +146,7 @@
 //         backdrop="static"
 //         keyboard={false}
 //       >
-//         <Modal.Header closeButton style={{ backgroundColor: "#FE924A" }}>
+//         <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
 //           <Modal.Title>Apply Resignation</Modal.Title>
 //         </Modal.Header>
 
