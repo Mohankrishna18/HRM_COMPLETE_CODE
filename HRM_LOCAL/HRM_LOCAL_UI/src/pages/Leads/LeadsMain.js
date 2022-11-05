@@ -134,7 +134,7 @@ function LeadsMain() {
     <div>
       {/* edit modal */}
       {/* <Modal show={addPocShow} onHide={addPocHandleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Add POC</Modal.Title>
         </Modal.Header>
         <Modal.Body className="scroll">
@@ -146,7 +146,7 @@ function LeadsMain() {
         </Modal.Body>
       </Modal> */}
       <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Edit Lead</Modal.Title>
         </Modal.Header>
         <Modal.Body className="scroll">
@@ -162,7 +162,7 @@ function LeadsMain() {
 
       {/* view modal */}
       <Modal  show={viewShow} onHide={viewHandleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Lead Overall Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -189,7 +189,7 @@ function LeadsMain() {
         backdrop="static"
         keyboard={false}
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
           <Modal.Title>Delete Leads</Modal.Title>
         </Modal.Header>
         <Modal.Body>

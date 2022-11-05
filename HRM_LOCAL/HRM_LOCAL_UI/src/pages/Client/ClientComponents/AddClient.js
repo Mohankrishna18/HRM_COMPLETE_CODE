@@ -147,7 +147,7 @@ function AddClient(props) {
         onClick={handleShow}
         style={{
           backgroundColor: "#f5896e",
-          borderColor: "#ff9b44",
+          borderColor: "#f5896e",
           float: "right",
           fontSize: "20px",
           borderRadius: "25px",
@@ -441,7 +441,7 @@ function AddClient(props) {
                 <Button
                   style={{
                     backgroundColor: "#f5896e",
-                    borderColor: "#ff9b44",
+                    borderColor: "#f5896e",
                     float: "right",
                     width: "40%",
                     height: "120%",

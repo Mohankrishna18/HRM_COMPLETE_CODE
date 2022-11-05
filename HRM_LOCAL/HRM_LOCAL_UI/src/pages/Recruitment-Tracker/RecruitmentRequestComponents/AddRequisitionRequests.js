@@ -226,7 +226,7 @@ function AddRequisitionRequests(props) {
           backdrop="static"
           keyboard={false}
         >
-          <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+          <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
             <Modal.Title>Raise a Requisition</Modal.Title>
           </Modal.Header>
   

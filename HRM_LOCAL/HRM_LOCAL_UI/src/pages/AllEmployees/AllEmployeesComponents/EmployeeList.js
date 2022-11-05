@@ -32,7 +32,7 @@ function EmployeeList() {
 
     const columns = [
         {
-            title: "EmployeeID",
+            title: "Employee ID",
             field: "employeeId",
             render: (rowData) => (
                 <Link to="/app/editmyprofileroute" onClick={myProfile}>
@@ -46,7 +46,7 @@ function EmployeeList() {
 
         },
         {
-            title: "EmployeeName",
+            title: "Name",
             field: "firstName",
             type: "text",
 
@@ -57,7 +57,7 @@ function EmployeeList() {
 
         },
         {
-            title: "Department",
+            title: "Business Unit",
             field: "departmentName",
 
         },

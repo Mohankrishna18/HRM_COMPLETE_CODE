@@ -616,8 +616,8 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         Upload Profile Picture * (Size should be less than 1 MB)
                                     </Form.Label>
                                     <Form.Control
-                                        required
-                                        value={imge.name}
+                                        
+                                        //value={imge.name}
                                         type="file"
                                         isInvalid={fourtysix}
                                         onChange={handleChange}
