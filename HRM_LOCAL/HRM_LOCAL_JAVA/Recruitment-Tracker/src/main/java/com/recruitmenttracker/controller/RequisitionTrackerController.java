@@ -161,6 +161,24 @@ public class RequisitionTrackerController {
            r.setRaisedOn(o.getRaisedOn());
            r.setRrfId(o.getRrfId());
            r.setRequestInitiatedDate(o.getRequestInitiatedDate());
+           r.setDescription(o.getDescription());
+           r.setRrfCat(o.getRrfCat());
+           r.setPocname(o.getPocname());
+           r.setpSkills(o.getpSkills());
+           r.setsSkills(o.getpSkills());
+           r.setEmpType(o.getEmpType());
+           r.setWorkingHours(o.getWorkingHours());
+           r.setQualification(o.getQualification());
+           r.setRate(o.getRate());
+           r.setRaisedBy(o.getRaisedBy());
+           r.setComments(o.getComments());
+           r.setReqType1(o.getReqType1());
+           r.setReqType2(o.getReqType2());
+           r.setReqType3(o.getReqType3());
+           r.setAllocType(o.getAllocType());
+           r.setResourceRequiredDate(o.getResourceRequiredDate());
+           r.setRequestClosedDate(o.getRequestClosedDate());
+           
            r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
            req.add(r);
        });   

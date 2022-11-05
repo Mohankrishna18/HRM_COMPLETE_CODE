@@ -767,7 +767,7 @@ function IntegrateLeaveToApply() {
                 backdrop="static"
                 keyboard={false} 
             >
-                <Modal.Header closeButton style={{ backgroundColor: "#FE924A" }}>
+                <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
                     <Modal.Title>Apply Leave/WFH</Modal.Title>
                 </Modal.Header>
 

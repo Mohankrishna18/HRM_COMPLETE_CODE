@@ -79,7 +79,7 @@ function ManagerEmployeesLeavesWaitingForApproval(props) {
   // ]);
 
   return (
-    <div className="example">
+    <div >
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Are you sure you want to Approve</Modal.Title>
