@@ -100,7 +100,7 @@ function BUHRequisitionRejected(props) {
             <Row>
               <Col style={{ paddingLeft: "180px", marginTop: "10px" }}>
                 <Button style ={{backgroundColor: "#f5896e",
- borderColor: "#ff9b44",}} onClick={RejectHandler}>
+ borderColor: "#f5896e",}} onClick={RejectHandler}>
                   Yes
                 </Button>
                 &nbsp;&nbsp;

@@ -274,7 +274,7 @@ function ViewRR(props) {
                                 <Button
                                     style={{
                                         backgroundColor: "#f5896e",
-                                        borderColor: "#ff9b44",
+                                        borderColor: "#f5896e",
                                         float: "right",
                                         width: "50%",
                                         height: "100%",

@@ -182,7 +182,7 @@
 //         backdrop="static"
 //         keyboard={false}
 //         centered>
-//         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
+//         <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white" }}>
 //           <Modal.Title>Edit Task</Modal.Title>
 //         </Modal.Header>
 //         <Modal.Body>
@@ -205,7 +205,7 @@
 //       backdrop="static"
 //       keyboard={false}
 //       centered>
-//         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white"}}>
+//         <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
 //           <Modal.Title>view User</Modal.Title>
 //         </Modal.Header>
 //         <Modal.Body>
@@ -218,7 +218,7 @@
 //       backdrop="static"
 //       keyboard={false}
 //       centered>
-//          <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white"}}>
+//          <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
 //           <Modal.Title>Delete User</Modal.Title>
 //         </Modal.Header>
 //         <Modal.Body>
@@ -549,7 +549,7 @@ function MyTask() {
       backdrop="static"
       keyboard={false}
       centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white"}}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
           <Modal.Title>view User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -562,7 +562,7 @@ function MyTask() {
       backdrop="static"
       keyboard={false}
       centered>
-         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white"}}>
+         <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
           <Modal.Title>Delete User</Modal.Title>
         </Modal.Header>
         <Modal.Body>

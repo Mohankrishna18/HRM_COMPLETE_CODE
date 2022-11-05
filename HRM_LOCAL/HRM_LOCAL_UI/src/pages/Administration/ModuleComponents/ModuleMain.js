@@ -82,15 +82,15 @@ function ModuleMain() {
         backdrop="static"
         keyboard={false}
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white" }}>
           <Modal.Title>Edit Module </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ModuleUpdate updateOnboard={updateOnboard} func={pull_dataUpdate} handleClose={handleClose} />
         </Modal.Body>
         <Modal.Footer>
-          <Button style={{backgroundColor: "#B6B6B4",
-                    borderColor: "#B6B6B4",}} variant="secondary" onClick={handleClose}>
+          <Button style={{backgroundColor: "#f5896e",
+                    borderColor: "#f5896e",}} variant="secondary" onClick={handleClose}>
             Close
           </Button>
           
@@ -102,7 +102,7 @@ function ModuleMain() {
       backdrop="static"
       keyboard={false}
       centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FE924A", color : "white"}}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
           <Modal.Title>Delete Module</Modal.Title>
         </Modal.Header>
         <Modal.Body>

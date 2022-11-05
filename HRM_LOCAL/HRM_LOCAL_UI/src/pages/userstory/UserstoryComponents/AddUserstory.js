@@ -252,7 +252,7 @@
 //         backdrop="static"
 //         keyboard={false}
 //       >
-//         <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px" }}>
+//         <Modal.Header closeButton style={{ backgroundColor: "#f5896e",paddingTop:"5px",paddingBottom:"5px" }}>
 //           <Modal.Title >Add Userstory</Modal.Title>
 //         </Modal.Header>
 
@@ -829,7 +829,7 @@ function AddUserstory(props) {
         onClick={handleShow}
         style={{
           backgroundColor: "#f5896e",
- borderColor: "#ff9b44",
+ borderColor: "#f5896e",
 
           float: "right",
 
@@ -1185,7 +1185,7 @@ function AddUserstory(props) {
                 <Button
                   style={{
                     backgroundColor: "#f5896e",
- borderColor: "#ff9b44",
+ borderColor: "#f5896e",
                     float: "right",
                     width: "40%",
                     height: "120%",

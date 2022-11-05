@@ -225,7 +225,7 @@ export default function AddRequisition(props) {
         onClick={handleShow}
         style={{
           backgroundColor: "#f5896e",
- borderColor: "#ff9b44",
+ borderColor: "#f5896e",
           float: "right",
           borderRadius: "25px",
           // paddingBottom: "11.5px",
@@ -245,7 +245,7 @@ export default function AddRequisition(props) {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Raise Job Requirements</Modal.Title>
         </Modal.Header>
 
@@ -685,7 +685,7 @@ export default function AddRequisition(props) {
                 <Button
                   style={{
                     backgroundColor: "#f5896e",
-                    borderColor: "#ff9b44",
+                    borderColor: "#f5896e",
                     float: "right",
                     width: "40%",
                     height: "120%",

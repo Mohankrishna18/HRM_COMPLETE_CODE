@@ -451,6 +451,7 @@ const Sign = () => {
                     // borderRadius: "10px",
                     // color: "black",
                     width: "100%",
+                    borderColor:"#f5896e",
                     // background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
                     background:"#f77659",
                     borderRadius: "15px",

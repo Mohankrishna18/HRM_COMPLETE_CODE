@@ -16,7 +16,7 @@ function RoleHeader() {
     <div className={styles.appHeader}>
       <Button variant="warning" onClick={() => setModalOpen(true)} 
           style={{ backgroundColor: "#f5896e",
-          borderColor: "#ff9b44",height:'1000', width : '1000px'}}
+          borderColor: "#f5896e",height:'1000', width : '1000px'}}
       >
         +Add Role
       </Button>

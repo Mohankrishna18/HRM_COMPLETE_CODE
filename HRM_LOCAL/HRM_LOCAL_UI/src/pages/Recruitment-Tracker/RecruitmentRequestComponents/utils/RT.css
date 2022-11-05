@@ -1,0 +1,14 @@
+.example {
+    height: 735px;/*..very important if you want scroll bar...*/
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+  }
+
+  .width-vr{
+
+    width: 4.33%;
+
+  }

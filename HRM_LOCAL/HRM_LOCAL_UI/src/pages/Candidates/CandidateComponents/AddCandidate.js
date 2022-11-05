@@ -207,8 +207,8 @@ const projectName = user.projectName;
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#B6B6B4",
-            borderColor: "#B6B6B4",
+          backgroundColor: "#f5896e",
+            borderColor: "#f5896e",
           color: "#F4F8F6",
           float: "right",
           borderRadius: "25px",
@@ -230,13 +230,13 @@ const projectName = user.projectName;
         <Modal.Header
           closeButton
           style={{
-            backgroundColor: "#FF9E14",
+            backgroundColor: "#f5896e",
             paddingTop: "5px",
             paddingBottom: "5px",
             color: "white",
           }}
         >
-          <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>
+          <Modal.Title style={{ backgroundColor: "#f5896e", color: "white" }}>
             Add Candidate
           </Modal.Title>
         </Modal.Header>
@@ -256,7 +256,7 @@ const projectName = user.projectName;
                 <Form.Select
                   required
                   type="text"
-                  placeholder="Requisition ID"
+                  // placeholder="Requisition ID"
                   controlId="requisitionId"
                   value={form.requisitionId}
                   // onChange={(e) => setField("requisitionId", e.target.value)}
@@ -293,7 +293,7 @@ const projectName = user.projectName;
                   className="candidateName"
                   type="text"
                   controlId="candidateName"
-                  placeholder="Candidate Name"
+                  // placeholder="Candidate Name"
                   value={form.candidateName}
                   maxLength={30}
                   onChange={(e) => setField("candidateName", e.target.value)}
@@ -312,7 +312,7 @@ const projectName = user.projectName;
                   className="departmentName"
                   type="text"
                   controlId="departmentName"
-                  placeholder="Department Name"
+                  // placeholder="Department Name"
                   value={user.departmentName}
                   maxLength={50}
                   onChange={(e) => setField("departmentName", e.target.value)}
@@ -329,7 +329,7 @@ const projectName = user.projectName;
                 <Form.Control
                   required
                   type="mail"
-                  placeholder="Email"
+                  // placeholder="Email"
                   controlId="email"
                   value={form.email}
                   onChange={(e) => setField("email", e.target.value)}
@@ -349,7 +349,7 @@ const projectName = user.projectName;
                   className="jobTitle"
                   type="text"
                   controlId="jobTitle"
-                  placeholder="Job Title"
+                  // placeholder="Job Title"
                   value={user.jobTitle}
                   maxLength={50}
                   onChange={(e) => setField("jobTitle", e.target.value)}
@@ -366,7 +366,7 @@ const projectName = user.projectName;
                 <Form.Control
                   required
                   type="number"
-                  placeholder="Phone Number"
+                  // placeholder="Phone Number"
                   controlId="phoneNumber"
                   value={form.phoneNumber}
                   onChange={(e) => setField("phoneNumber", e.target.value)}
@@ -385,7 +385,7 @@ const projectName = user.projectName;
                   className="projectName"
                   type="text"
                   controlId="projectName"
-                  placeholder="Project Assigned"
+                  // placeholder="Project Assigned"
                   value={user.projectName}
                   maxLength={50}
                   onChange={(e) => setField("projectName", e.target.value)}
@@ -404,7 +404,7 @@ const projectName = user.projectName;
                   className="yearsOfExperience"
                   type="text"
                   controlId="yearsOfExperience"
-                  placeholder="Years Of Experience"
+                  // placeholder="Years Of Experience"
                   value={form.yearsOfExperience}
                   maxLength={30}
                   onChange={(e) =>
@@ -423,7 +423,7 @@ const projectName = user.projectName;
                 <Form.Control
                   required
                   type="text"
-                  placeholder="Current Location"
+                  // placeholder="Current Location"
                   controlId="currentLocation"
                   value={form.currentLocation}
                   maxLength={80}
@@ -442,7 +442,7 @@ const projectName = user.projectName;
                 <Form.Select
                   required
                   type="text"
-                  placeholder="Candidate Status"
+                  // placeholder="Candidate Status"
                   controlId="candidateStatus"
                   value={form.candidateStatus}
                   onChange={(e) => setField("candidateStatus", e.target.value)}
@@ -455,6 +455,7 @@ const projectName = user.projectName;
                   <option value="Onhold">Onhold</option>
                   <option value="Rejected">Rejected</option>
                   <option value="Declined">Declined</option>
+                  <option value="In-Progress">In-Progress</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.candidateStatus}
@@ -468,7 +469,7 @@ const projectName = user.projectName;
                 <Form.Control
                   required
                   type="text"
-                  placeholder="Primary Skills"
+                  // placeholder="Primary Skills"
                   controlId="primarySkills"
                   value={form.primarySkills}
                   onChange={(e) => setField("primarySkills", e.target.value)}
@@ -488,7 +489,7 @@ const projectName = user.projectName;
                   className="secondarySkills"
                   type="text"
                   controlId="secondarySkills"
-                  placeholder="Secondary Skills"
+                  // placeholder="Secondary Skills"
                   value={form.secondarySkills}
                   maxLength={30}
                   onChange={(e) => setField("secondarySkills", e.target.value)}
@@ -521,8 +522,8 @@ const projectName = user.projectName;
               <Col>
                 <Button
                   style={{
-                    backgroundColor: "#ff9b44",
-                    borderColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
+                    borderColor: "#f5896e",
                     float: "right",
                     width: "40%",
                     height: "120%",

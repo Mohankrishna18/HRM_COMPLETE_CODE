@@ -508,7 +508,7 @@ export default [
   },
   {
     component: OnboardedEmployeesTable,
-    type: "null",
+    type: "hr",
     path: "/Approvals",
     icon: <FcFeedIn />,
     title: "Onboardings",
@@ -677,7 +677,8 @@ export default [
     path: "/rrf",
     icon: <FcVoicePresentation />,
     title: "Requisition Request",
-    permission: [Roles.manager, Roles.irm,Roles.pmohead,Roles.hrmanager,Roles.srm],
+    permission: [Roles.irm,Roles.manager,Roles.taa,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager],
+
   },
   {
     component: PMO_Dashboard,
@@ -725,8 +726,7 @@ export default [
     component: StepperForm,
     path: '/StepperForm',
     type: "AERF",
-    permission: [Roles.irm],
-
+    permission: [Roles.irm,Roles.manager,Roles.taa,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager],
   },
 
   // {

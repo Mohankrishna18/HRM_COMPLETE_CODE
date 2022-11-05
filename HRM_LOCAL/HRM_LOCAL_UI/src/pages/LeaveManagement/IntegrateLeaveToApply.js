@@ -599,7 +599,7 @@ function IntegrateLeaveToApply() {
                                 onClick={handleShow}
                                 style={{
                                     backgroundColor: "#f5896e",
-                                    borderColor: "#ff9b44",
+                                    borderColor: "#f5896e",
                                     float: "right",
                                     borderRadius: "25px",
                                     paddingBottom: "11.5px",
@@ -1083,7 +1083,7 @@ function IntegrateLeaveToApply() {
                                 <div class="col-md-12 text-center">
                                     <Button
                                         style={{ backgroundColor: "#f5896e",
-                                        borderColor: "#ff9b44", borderRadius: "15px" }}
+                                        borderColor: "#f5896e", borderRadius: "15px" }}
                                         type="submit"
                                     // onClick={handleClose}
                                     >

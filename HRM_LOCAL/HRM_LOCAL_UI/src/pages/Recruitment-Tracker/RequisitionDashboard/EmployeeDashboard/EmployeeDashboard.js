@@ -206,20 +206,20 @@ const EmployeeDashboard = () => {
     >
       {/* First top row */}
 
-      <Row>
+      {/* <Row>
         <Card style={{ paddingBlock: "20px" }}>
           <Row>
             {/* for pic */}
-            <Col md="1">
+            {/* <Col md="1">
               {" "}
               <Avatar
                 src={`data:image/jpeg;base64,${imge.url}`}
                 sx={{ width: 76, height: 76 }}
                 style={{ variant: "rounded", fontSize: "95px" }}
               />{" "}
-            </Col>
+            </Col> */}
 
-            {/* for name & details */}
+            {/* for name & details 
             <Col style={{ paddingLeft: "20px" }}>
               <h3>
                 Welcome , {getEmployeeDetails.firstName}{" "}
@@ -230,7 +230,7 @@ const EmployeeDashboard = () => {
             </Col>
           </Row>
         </Card>
-      </Row>
+      </Row> */}
 
       <br></br>
 
@@ -240,8 +240,10 @@ const EmployeeDashboard = () => {
 
         <Col sm={7}>
           <Row>
-            {" "}
-            <h5>Announcements </h5>
+            <Card style={{height:"50px",width:"100%",justifyContent:"center"}}>
+            <h5 style={{paddingTop:"5px",justifyContent:"center"}}>Announcements </h5>
+            </Card>
+           
           </Row>
 
           <br></br>
@@ -249,6 +251,56 @@ const EmployeeDashboard = () => {
 
         <Col md={6}>
           <Row>
+          <Col md={20} style={{ alignItems: "right" }}>
+            <Row>
+              {" "}
+              <h6
+                style={{
+                  color: "#4F4F4F",
+                  paddingLeft: "15px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                  paddingTop: "65px",
+                }}
+              >
+                {" "}
+                UPCOMING HOLIDAYS
+              </h6>
+            </Row>
+            <Row>
+              <Col>
+                <Card>
+                  <Table >
+                    <thead>
+                      <tr style={{backgroundColor:"#f5896e",color:"white"}}>
+                        <th>Holiday Title</th>
+                        <th>Holiday Date</th>
+                        <th> </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {holiday.map((data) => (
+                        <tr>
+                          <td>{data.holidayTitle}</td>
+                          <td>
+                            {
+                              data.holidayDate
+                                .replace(/\b0/g, "")
+                                .split("T0")[0]
+                            }
+                          </td>
+                          <td></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </Card>
+              </Col>
+            </Row>
+          </Col>
+          </Row>
+
+          {/* <Row>
             {" "}
             <h6
               style={{
@@ -262,13 +314,13 @@ const EmployeeDashboard = () => {
               {" "}
               PROJECTS{" "}
             </h6>
-          </Row>
-          <Row>
+          </Row> */}
+          {/* <Row>
             <Col>
               <Card>
                 <Table>
                   <thead>
-                    <tr>
+                    <tr style={{backgroundColor:"#f5896e",color:"white",fontWeight:"-10px"}}>
                       <th>Projects</th>
                       <th>Allocation Start Date</th>
                       <th> Allocation End Date</th>
@@ -290,23 +342,23 @@ const EmployeeDashboard = () => {
                 </Table>
               </Card>
             </Col>
-          </Row>
+          </Row> */}
+{/* 
+          <br></br> */}
 
-          <br></br>
-
-          <Row>
+          {/* <Row>
             {" "}
             <h5> TASKS</h5>
             <Col>
               <EmployeeDashboardTask />
             </Col>
-          </Row>
+          </Row> */}
 
           <br></br>
         </Col>
 
         {/* Right side content */}
-        <Col md={5}>
+        <Col style={{paddingTop:"43px"}} md={5}>
           <br></br>
 
           {/* leave row started */}
@@ -328,38 +380,42 @@ const EmployeeDashboard = () => {
             <Col>
               <Card
                 style={{
-                  height: "500px",
+                  // height: "500px",
                   overflowY: "auto",
-                  overflowX: "hidden",
+                  overflowX: "hidden",   
                 }}
               >
                 {/* 1st row */}
-                <Row>
+                <Row >
                   <Col
                     align="center"
                     style={{ padding: "10px", paddingLeft: "20px" }}
                   >
-                    <h6 align="center">REMAINING LEAVES - {remainingLeave}</h6>
+                    <Card>
+                    <h6 align="center" style={{color:"#f5896e"}}>REMAINING LEAVES   {remainingLeave}</h6>
+                    </Card>
                   </Col>
 
                   <Col align="center" style={{ padding: "10px" }}>
-                    <Button
+                    <Button variant="success"
                       onClick={(event) => {
                         history.push("/app/IntegrateLeaveToApply");
                       }}
                     >
-                      {" "}
                       Apply Leave
                     </Button>
                   </Col>
 
-                  <Col align="center" style={{ paddingBlock: "10px" }}>
-                    <h6>TOTAL LEAVES - {leaves}</h6>
+                  <Col align="center"  style={{ paddingBlock: "10px" ,height:"30px",paddingRight:"20px"}}>
+                    <Card >
+                    <h6 style={{color:"#f5896e",paddingBottom:"10px",paddingTop:"10px"}}>TOTAL LEAVES    {leaves}</h6>
+                    </Card>
+                    
                   </Col>
                 </Row>
                 <Table>
                   <thead>
-                    <tr>
+                    <tr style={{backgroundColor:"#f5896e",color:"white"}}>
                       <th></th>
                       <th>MONTH</th>
                       <th>LEAVES</th>
@@ -369,7 +425,7 @@ const EmployeeDashboard = () => {
                     <tr>
                       <td></td>
                       <td>January</td>
-                      <td>sdl090909</td>
+                      <td>0</td>
                     </tr>
                     <tr>
                       <td></td>
@@ -431,7 +487,7 @@ const EmployeeDashboard = () => {
               </Card>
             </Col>
           </Row>
-          <Col md={20} style={{ alignItems: "right" }}>
+          {/* <Col md={20} style={{ alignItems: "right" }}>
             <Row>
               {" "}
               <h6
@@ -444,15 +500,15 @@ const EmployeeDashboard = () => {
                 }}
               >
                 {" "}
-                UPCOMING HOLIDAYS{" "}
+                UPCOMING HOLIDAYS
               </h6>
             </Row>
             <Row>
               <Col>
                 <Card>
-                  <Table style={{}}>
+                  <Table >
                     <thead>
-                      <tr>
+                      <tr style={{backgroundColor:"#f5896e",color:"white"}}>
                         <th>Holiday Title</th>
                         <th>Holiday Date</th>
                         <th> </th>
@@ -477,7 +533,7 @@ const EmployeeDashboard = () => {
                 </Card>
               </Col>
             </Row>
-          </Col>
+          </Col> */}
           <br></br>
         </Col>
       </Row>

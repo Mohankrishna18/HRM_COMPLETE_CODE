@@ -455,7 +455,9 @@ function EmployeeMasterForms(props) {
                                 <Row>
                                 <TabContext value={value}>
   <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{justifyContent:"center"}}>
-    <TabList onChange={handleChange1} aria-label="lab API tabs example" style={{justifyContent:"center",backgroundColor:"#FFFFB4"}}>
+    <TabList onChange={handleChange1} aria-label="lab API tabs example" sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" }}} style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"58px",paddingRight:0,color:"black" }}
+       // textColor="secondary"
+        indicatorColor="#f5896e">
       <Tab label="Personal Details" value="1" />
       <Tab label="Address Details" value="2" />
       <Tab label="Additional Details" value="3" />
@@ -2653,7 +2655,7 @@ function EmployeeMasterForms(props) {
                                     </Row>
                                     <Button
                                         className="rounded-pill"
-                                        style={{ backgroundColor: "#eb4509", float: "right" }}
+                                        style={{ backgroundColor: "#f5896e", float: "right" }}
                                         type="submit"
                                         size="lg"
                                     >

@@ -74,7 +74,9 @@ function EmployeeMain(props) {
 
                 <TabContext value={value} style={{ paddingTop: "10px" }}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <TabList onChange={handleChange} aria-label="lab API tabs example" style={{ backgroundColor: "#ebe8e6", borderRadius: "10px" }} >
+                        <TabList onChange={handleChange} aria-label="lab API tabs example" sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"58px",paddingRight:0,color:"black" }}
+       // textColor="secondary"
+        indicatorColor="#f5896e">
                             <Tab label="All Employees" value="1" icon={data.length} />
                             <Tab label="Department" value="2" icon={<FcAssistant style={{ fontSize: "25px" }} />} />
                             {/* <Tab label="Designation" value="3" icon={<FcFlowChart style={{ fontSize: "25px" }} />} /> */}

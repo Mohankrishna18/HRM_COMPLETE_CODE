@@ -138,7 +138,7 @@ const EmployeeDashboardTask = () => {
         data={approval}
         options={{
           headerStyle: {
-            backgroundColor: "white",
+            backgroundColor: "#f5896e",
             color: "black",
             padding:"5px",
            
