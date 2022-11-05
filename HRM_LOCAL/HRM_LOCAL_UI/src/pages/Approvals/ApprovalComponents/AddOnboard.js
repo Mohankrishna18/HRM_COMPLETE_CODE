@@ -313,7 +313,7 @@ function AddOnboard(props) {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
 

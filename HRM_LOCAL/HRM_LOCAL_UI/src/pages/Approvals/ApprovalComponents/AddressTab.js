@@ -15,12 +15,12 @@ function AddressTab(props) {
             <Card.Body style={{ paddingLeft: 20 }}>
                 <Row>
                     <Col>
-                        <Card.Subtitle style={{ padding: 10 }}>
+                        <Card.Subtitle style={{ padding: 10 ,color:"black"}}>
                             <h5>Permanent Address:</h5>
                         </Card.Subtitle>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col >
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                     Address:
                                 </Card.Subtitle>
                             </Col>
@@ -32,7 +32,7 @@ function AddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                     State:
                                 </Card.Subtitle>
                             </Col>
@@ -44,7 +44,7 @@ function AddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                     Country:
                                 </Card.Subtitle>
                             </Col>
@@ -56,7 +56,7 @@ function AddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                     Pincode:
                                 </Card.Subtitle>
                             </Col>
@@ -70,12 +70,12 @@ function AddressTab(props) {
                     </Col>
                     <Col>
 
-                        <Card.Subtitle style={{ padding: 10 }}>
+                        <Card.Subtitle style={{ padding: 10,color:"black" }}>
                             <h5>Current Address:</h5>
                         </Card.Subtitle>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 10, color:"black" }}>
                                     Address:
                                 </Card.Subtitle>
                             </Col>
@@ -87,7 +87,7 @@ function AddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                     State:
                                 </Card.Subtitle>
                             </Col>
@@ -99,7 +99,7 @@ function AddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                     Country:
                                 </Card.Subtitle>
                             </Col>
@@ -111,7 +111,7 @@ function AddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 10,color:"black" }}>
                                     Pincode:
                                 </Card.Subtitle>{" "}
                             </Col>

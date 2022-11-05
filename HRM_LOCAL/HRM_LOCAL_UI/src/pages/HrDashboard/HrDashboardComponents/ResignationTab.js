@@ -208,6 +208,7 @@ useEffect(() => {
           <MaterialTable
             title="RESIGNATIONS"
             columns={columns}
+            style={{color:"black",fontSize:"11px"}}
             data={data}
             options={{
               paging: true,
@@ -225,6 +226,7 @@ useEffect(() => {
                 paddingBottom:"4px",
                 paddingTop:"8px",
                 color: "white",
+
               },
               exportButton: true,
             }}

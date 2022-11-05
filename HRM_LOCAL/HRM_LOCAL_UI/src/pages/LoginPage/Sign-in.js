@@ -290,7 +290,8 @@ const Sign = () => {
     <>
       <Container
         style={{
-          backgroundColor: "#FFFFFF",
+          backgroundColor:"#b0afac",
+          // backgroundColor: "#FFFFFF",
           borderRadius: "15px",
           paddingLeft: "190px",
         }}
@@ -301,8 +302,9 @@ const Sign = () => {
             paddingRight: "100px",
             position: "absolute",
             marginTop: "50px",
-            background: "linear-gradient(to right, #cbcbc5, #cbcaa5)",
+            // background: "linear-gradient(to right, #cbcbc5, #cbcaa5)",
             // background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
+            background:"#b0afac",
             borderRadius: "45px",
           }}
         >
@@ -310,7 +312,7 @@ const Sign = () => {
             <Col xs={5}>
               <BlockImage className="arshaalogo"
                 src={image}
-                style={{ paddingTop: "100px", height: "450px", width: "300px" }}
+                style={{ paddingTop: "200px", height: "400px", width: "300px",marginTop:"120px" }}
               />
             </Col>
             <Col
@@ -449,9 +451,10 @@ const Sign = () => {
                     // borderRadius: "10px",
                     // color: "black",
                     width: "100%",
-                    background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
+                    // background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
+                    background:"#f77659",
                     borderRadius: "15px",
-                    color: "black",
+                    color: "white",
                   }}
                   //  disabled={!validateForm()}
                   onClick={handleSubmit}

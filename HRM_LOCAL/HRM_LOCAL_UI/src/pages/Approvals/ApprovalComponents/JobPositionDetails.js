@@ -31,7 +31,7 @@ console.log(dob)
         <Col>
         <Row style={{ paddingLeft: 55, paddingBottom: 30 ,paddingTop:0}}>
         <Col>
-            <Card.Subtitle>
+            <Card.Subtitle style={{color:"black"}}>
            Requisition ID
             </Card.Subtitle>
           </Col>
@@ -44,7 +44,7 @@ console.log(dob)
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
          
           <Col>
-            <Card.Subtitle>
+            <Card.Subtitle style={{color:"black"}}>
               Client Name
             </Card.Subtitle>
           </Col>
@@ -57,7 +57,7 @@ console.log(dob)
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
           
-            <Card.Subtitle>
+            <Card.Subtitle style={{color:"black"}}>
            Job Title
             </Card.Subtitle>
           </Col>
@@ -68,9 +68,12 @@ console.log(dob)
           </Col>
         </Row>
     
-        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+        
+     </Col>
+     <Col>
+     <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
-            <Card.Subtitle>
+            <Card.Subtitle style={{color:"black"}}>
              Requisition By
             </Card.Subtitle>
           </Col>
@@ -82,7 +85,7 @@ console.log(dob)
         </Row>
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
-            <Card.Subtitle
+            <Card.Subtitle style={{color:"black"}}
             >
          Requisition Initiated On
 

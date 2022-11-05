@@ -40,7 +40,7 @@ function AditionalDetailsTab(props) {
     </Card.Title>
     <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
         <Col>
-            <Card.Subtitle style={{ padding: 10 }}>
+            <Card.Subtitle style={{ padding: 10 ,color:"black"}}>
                 Passport Number:
             </Card.Subtitle>{" "}
         </Col>
@@ -50,7 +50,7 @@ function AditionalDetailsTab(props) {
             </Card.Text>
         </Col>
         <Col>
-            <Card.Subtitle style={{ padding: 10 }}>
+            <Card.Subtitle style={{ padding: 10,color:"black" }}>
                 Passport Expiry Date:
             </Card.Subtitle>{" "}
         </Col>
@@ -62,7 +62,7 @@ function AditionalDetailsTab(props) {
 
         </Col>
     </Row>
-    <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
+    <Row style={{ paddingBottom: 10, paddingLeft: 20,color:"black" }}>
         <Col>
             <Card.Subtitle style={{ padding: 10 }}>
                 PAN Card Number:
@@ -74,7 +74,7 @@ function AditionalDetailsTab(props) {
             </Card.Text>
         </Col>
         <Col>
-            <Card.Subtitle style={{ padding: 10 }}>
+            <Card.Subtitle style={{ padding: 10,color:"black" }}>
                 Aadhar Card Number:
             </Card.Subtitle>{" "}
         </Col>
@@ -87,7 +87,7 @@ function AditionalDetailsTab(props) {
 
     <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
         <Col>
-            <Card.Subtitle style={{ padding: 10 }}>
+            <Card.Subtitle style={{ padding: 10,color:"black" }}>
                 UAN Number:
             </Card.Subtitle>{" "}
         </Col>
@@ -97,7 +97,7 @@ function AditionalDetailsTab(props) {
             </Card.Text>
         </Col>
         <Col>
-            <Card.Subtitle style={{ padding: 10 }}>
+            <Card.Subtitle style={{ padding: 10,color:"black" }}>
             Bank Name:
             </Card.Subtitle>{" "}
         </Col>
@@ -110,7 +110,7 @@ function AditionalDetailsTab(props) {
 
     <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
         <Col>
-            <Card.Subtitle style={{ padding: 10 }}>
+            <Card.Subtitle style={{ padding: 10,color:"black" }}>
             Account Number:
             </Card.Subtitle>{" "}
         </Col>
@@ -120,7 +120,7 @@ function AditionalDetailsTab(props) {
             </Card.Text>
         </Col>
         <Col>
-            <Card.Subtitle style={{ padding: 10 }}>
+            <Card.Subtitle style={{ padding: 10,color:"black" }}>
             IFSC Code:
             </Card.Subtitle>{" "}
         </Col>
@@ -133,7 +133,7 @@ function AditionalDetailsTab(props) {
 
     <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
         <Col>
-            <Card.Subtitle style={{ padding: 10 }}>
+            <Card.Subtitle style={{ padding: 10 ,color:"black"}}>
             Branch:
             </Card.Subtitle>{" "}
         </Col>
