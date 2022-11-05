@@ -59,6 +59,7 @@ function EmployeeList() {
         {
             title: "Business Unit",
             field: "departmentName",
+            defaultGroupOrder:0,
 
         },
         {
