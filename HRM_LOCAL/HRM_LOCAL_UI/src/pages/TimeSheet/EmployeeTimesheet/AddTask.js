@@ -181,7 +181,7 @@ function AddUser(props) {
         onClick={handleShow}
         style={{
           backgroundColor: "#f5896e",
- borderColor: "#ff9b44",
+ borderColor: "#f5896e",
           float: "right",
           borderRadius: "25px",
           paddingRight: "20px",
@@ -201,8 +201,8 @@ function AddUser(props) {
         keyboard={false}
         centered
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white" }}>
-          <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>Add Timesheet</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
+          <Modal.Title style={{ backgroundColor: "#f5896e", color: "white" }}>Add Timesheet</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -505,7 +505,7 @@ function AddUser(props) {
                 <Button
                   style={{
                     backgroundColor: "#f5896e",
-                    borderColor: "#ff9b44",
+                    borderColor: "#f5896e",
                     float: "right",
                     width: "40%",
                     height: "120%",

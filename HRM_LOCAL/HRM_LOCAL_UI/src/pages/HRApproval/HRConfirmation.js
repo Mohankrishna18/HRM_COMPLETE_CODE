@@ -89,7 +89,7 @@ function HRConfirmation() {
   return (
     <div>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Documents to be Submitted</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -102,7 +102,7 @@ function HRConfirmation() {
       </Modal>
 
       <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>

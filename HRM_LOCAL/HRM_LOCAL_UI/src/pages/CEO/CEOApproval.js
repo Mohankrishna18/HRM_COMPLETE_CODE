@@ -96,7 +96,7 @@ console.log(data);
         </Modal.Body>
     </Modal>
     <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -232,7 +232,7 @@ console.log(data);
                         <Stack direction="horizontal" gap={3}>
                             <Button
                                 style ={{backgroundColor: "#f5896e",
-                                borderColor: "#ff9b44",}}
+                                borderColor: "#f5896e",}}
                                 onClick={() => {
                                     setShow(true);
                                     console.log(props)

@@ -249,6 +249,7 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setIdProof(newOnboard.isIdProof());
 				getOnboarding.setDepartment(newOnboard.getDepartment());
                 getOnboarding.setDesignation(newOnboard.getDesignation());
+                getOnboarding.setHrcomment(newOnboard.getHrcomment());
 //				getOnboarding.setHrApprovalComment(newOnboard.getHrApprovalComment());
 //				getOnboarding.setProjectName(newOnboard.getProjectName());
 //				getOnboarding.setSecondaryPhoneNumber(newOnboard.getSecondaryPhoneNumber());
@@ -395,6 +396,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setUanNumber(getOnboarding.getUanNumber());
 					employeeMaster.setProjectName(getOnboarding.getProjectName());
 					employeeMaster.setOnboardingStatus(getOnboarding.getOnboardingStatus());
+					employeeMaster.setHrcomment(getOnboarding.getHrcomment());
 					EmployeeMaster em = emRepo.save(employeeMaster);
 
 					// posting EmployeeId in Userproject Table

@@ -87,7 +87,7 @@ function BUHRequisitionApprovals(props) {
         <Modal.Header
           closeButton
           style={{
-            backgroundColor: "#FF9E14",
+            backgroundColor: "#f5896e",
             paddingTop: "5px",
             paddingBottom: "5px",
             color: "white",
@@ -114,7 +114,7 @@ function BUHRequisitionApprovals(props) {
         <Modal.Header
           closeButton
           style={{
-            backgroundColor: "#FF9E14",
+            backgroundColor: "#f5896e",
             paddingTop: "5px",
             paddingBottom: "5px",
             color: "white",

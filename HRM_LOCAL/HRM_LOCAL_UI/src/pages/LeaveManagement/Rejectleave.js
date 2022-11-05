@@ -71,7 +71,7 @@ const Reject = (props) => {
                   type="submit"
                   style={{
                     borderRadius: "25px",
-                    backgroundColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
                     color: "#F4F8F6",
                   }}
                   onClick={ApproveHandler}

@@ -90,7 +90,7 @@ function ManagerEmployeeApprove(props) {
                     <Form.Control.Feedback>{errors.irmApproveReason}</Form.Control.Feedback>
                 </Form.Group>
                 <Button  style={{backgroundColor: "#f5896e",
- borderColor: "#ff9b44", marginTop: "5%", float: "right" }}
+ borderColor: "#f5896e", marginTop: "5%", float: "right" }}
             onClick={ApproveHandler}
             >
             Yes

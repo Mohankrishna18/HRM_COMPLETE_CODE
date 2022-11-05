@@ -33,7 +33,7 @@ function RoleUnderEmployees() {
 
   const columns = [
     {
-      title: "Employee Id",
+      title: "Employee ID",
       field: "employeeId",
     //   render: (rowData) => (
     //     <Link to="/app/editmyprofileroute" onClick={myProfile}>
@@ -43,17 +43,15 @@ function RoleUnderEmployees() {
       type: "text",
 
       headerStyle: {
-        backgroundColor: "#FF9E14",
         color: "white",
       },
     },
     {
-      title: "Employee Name",
+      title: "Name",
       field: "firstName",
       type: "text",
 
       headerStyle: {
-        backgroundColor: "#FF9E14",
         color: "white",
       },
     },
@@ -62,16 +60,14 @@ function RoleUnderEmployees() {
       field: "email",
 
       headerStyle: {
-        backgroundColor: "#FF9E14",
         color: "white",
       },
     },
     {
-      title: "Department",
+      title: "Business Unit",
       field: "departmentName",
 
       headerStyle: {
-        backgroundColor: "#FF9E14",
         color: "white",
       },
     },
@@ -81,18 +77,16 @@ function RoleUnderEmployees() {
       type: "text",
 
       headerStyle: {
-        backgroundColor: "#FF9E14",
         color: "white",
       },
     },
 
     {
-      title: "Date of Joining",
+      title: "DOJ",
       field: "dateOfJoining",
       type: "date",
       dateSetting: { locale: "en-GB" },
       headerStyle: {
-        backgroundColor: "#FF9E14",
         color: "white",
       },
     },
@@ -101,19 +95,31 @@ function RoleUnderEmployees() {
       field: "primarySkills",
 
       headerStyle: {
-        backgroundColor: "#FF9E14",
         color: "white",
       },
     },
     {
-      title: "Reporting Manager",
-      field: "reportingManager",
-
+      title: "IRM",
+      field: "irm",
       headerStyle: {
-        backgroundColor: "#FF9E14",
         color: "white",
       },
-    },
+  },
+  {
+      title: "SRM",
+      field: "srm",
+      headerStyle: {
+        color: "white",
+      },
+  },
+    // {
+    //   title: "Reporting Manager",
+    //   field: "reportingManager",
+
+    //   headerStyle: {
+    //     color: "white",
+    //   },
+    // },
   ];
 
 
