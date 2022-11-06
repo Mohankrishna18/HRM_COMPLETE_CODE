@@ -577,9 +577,9 @@ function IntegrateLeaveToApply() {
                     <Col xs={6} md={8}>
                         <Card.Body>
                             <Card.Title>Leaves/WFH</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">
-                                Dashboard/Leaves/WFH
-                            </Card.Subtitle>
+                            {/* <Card.Subtitle className="mb-2 text-muted">
+                                Leaves/WFH
+                            </Card.Subtitle> */}
                         </Card.Body>
                     </Col>
 

@@ -13,6 +13,7 @@ import axios from '../../../Uri';
 import RecruitmentTimeline from './RecruitmentTimeline'
 import './utils/RT.css';
 
+
 const steps = ["Select master blaster campaign settings", "uggujjgh"];
 
 const StepperForm = (props) => {
@@ -325,7 +326,12 @@ const StepperForm = (props) => {
 
     //Setting raised By and RaisedOn Values from session storage and cureenet date
     const current = new Date();
-    const raisedOn = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+    console.log(current);
+    var raisedOn = Moment()
+      .utcOffset('+05:30')
+      .format('YYYY-MM-DD hh:mm:ss');
+      console.log(raisedOn);
+    // const raisedOn = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
     const raisedBy = response.firstName;
 
     console.log(raisedOn, raisedBy);
@@ -901,7 +907,7 @@ const StepperForm = (props) => {
                                             <option>Select </option>
                                             {pocname.map((poc) => (
                                                 <option value={poc.employeeId}>
-                                                    {poc.fullName}
+                                                    {poc.firstName}
                                                 </option>
                                             ))}
                                         </Form.Select>
@@ -910,7 +916,7 @@ const StepperForm = (props) => {
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Upload Document *</Form.Label>
+                                        <Form.Label>Upload Document </Form.Label>
                                         <Form.Control
                                             name="uploadDoc"
                                             type="file"
