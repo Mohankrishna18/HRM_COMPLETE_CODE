@@ -36,33 +36,64 @@ const EmployeeDashboard = () => {
   const [leaves, setLeaves] = useState([]);
   const [leave, setLeave] = useState([]);
   const [holiday, setHoliday] = useState([]);
- // const [data, setData] = useState([]);
-  const [conDate,setConDate] = useState([]);
+  // const [data, setData] = useState([]);
+  const [conDate, setConDate] = useState([]);
 
   console.log(date1);
- 
+
   const counts = {};
 
   const sampleArray = date1;
- 
- 
+
   console.log(sampleArray);
-  sampleArray.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+  sampleArray.forEach(function (x) {
+    counts[x] = (counts[x] || 0) + 1;
+  });
   console.log(counts);
- 
- 
- 
+  const dat=(Object.values(counts))
+  console.log(dat[0]);
 
-  let mark = []
-  const daaa = new Date();
-  let month =mark[daaa.getMonth()];
-  console.log(month);
+  // var specificValuesFromArray = counts.filter(obj => obj.08 ===
+  //   92 || obj.studentMarks === 98);
+  //   console.log(specificValuesFromArray)
+  // function count() {
+  //   array_elements = date1;
 
- 
+  //   array_elements.sort();
 
-   console.log(daaa.getMonth()+1);
-// var uniq=daaa.map(s.getMonth());
-// console.log(daaa)
+  //   var current = null;
+  //   var cnt = 0;
+  //   for (var i = 0; i < array_elements.length; i++) {
+  //     if (array_elements[i] != current) {
+  //       if (cnt > 0) {
+  //         console.log(current + " comes --> " + cnt + " times<br>");
+  //       }
+  //       current = array_elements[i];
+  //       cnt = 1;
+  //     } else {
+  //       cnt++;
+  //     }
+  //   }
+  //   if (cnt > 0) {
+  //     console.log(current + " comes --> " + cnt + " times");
+  //   }
+  // }
+
+  // count();
+  //console.log(
+  // let a=3;
+  // const pr = counts.map((projectName) => projectName.a);
+  // console.log(pr);
+  //console.log(counts.map((item) =>{item}));
+
+  // let mark = [];
+  // const daaa = new Date();
+  // let month = mark[daaa.getMonth()];
+  // console.log(month);
+
+  // console.log(daaa.getMonth() + 1);
+  // var uniq=daaa.map(s.getMonth());
+  // console.log(daaa)
 
   useEffect(() => {
     axios
@@ -97,15 +128,14 @@ const EmployeeDashboard = () => {
   console.log(projects);
 
   //converted date formate
-   
- 
+
   useEffect(() => {
     axios.get(`/leave/getAllMonths/${employeeid}`).then((response) => {
       setDate(response.data);
     });
   }, []);
   console.log(conDate);
- 
+
   console.log(date1);
   useEffect(() => {
     axios.get(`emp/leavespermonth/${employeeid}`).then((response) => {
@@ -162,7 +192,7 @@ const EmployeeDashboard = () => {
   console.log(assignDate);
   const holidayTitle = holiday.map((holidayTitle) => holidayTitle.holidayTitle);
   console.log(holidayTitle);
-  const holidayDate= holiday.map((holidayDate) => holidayDate.holidayDate);
+  const holidayDate = holiday.map((holidayDate) => holidayDate.holidayDate);
   console.log(holidayDate);
   const history = useHistory();
   return (
@@ -176,20 +206,20 @@ const EmployeeDashboard = () => {
     >
       {/* First top row */}
 
-      <Row>
+      {/* <Row>
         <Card style={{ paddingBlock: "20px" }}>
           <Row>
             {/* for pic */}
-            <Col md="1">
+            {/* <Col md="1">
               {" "}
               <Avatar
                 src={`data:image/jpeg;base64,${imge.url}`}
                 sx={{ width: 76, height: 76 }}
                 style={{ variant: "rounded", fontSize: "95px" }}
               />{" "}
-            </Col>
+            </Col> */}
 
-            {/* for name & details */}
+            {/* for name & details 
             <Col style={{ paddingLeft: "20px" }}>
               <h3>
                 Welcome , {getEmployeeDetails.firstName}{" "}
@@ -200,7 +230,7 @@ const EmployeeDashboard = () => {
             </Col>
           </Row>
         </Card>
-      </Row>
+      </Row> */}
 
       <br></br>
 
@@ -210,57 +240,67 @@ const EmployeeDashboard = () => {
 
         <Col sm={7}>
           <Row>
-            {" "}
-            <h5>Announcements </h5>
-          </Row>
-
-          <br></br>
-
-          {/* 2nd card */}
-          {/* <Row>
-            {' '}
-            <h5> Tasks </h5>
-          </Row> */}
-          <Row>
-            {" "}
-            <h5> TASKS </h5>
-            <Col>
-              <br></br>
-              <Row>
-                <Col>
-                  {/* <Table style={{ width: '750px' }}>
-                  <thead>
-                    <tr>    
-                      <th>Projects</th>
-                      <th>Task Title</th>
-                      <th> Planned Start Date</th>
-                      <th> Planned End Date</th>
-                      <th> Actual Start Date</th>
-                     
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                    <td>{project}</td>
-                      <td>{taskTitle}</td>
-                      <td>{plannedStartDate}</td>
-                      <td>{plannedEndDate}</td>
-                    </tr>
-                   
-                  </tbody>
-                </Table> */}
-                  <EmployeeDashboardTask />
-                </Col>
-              </Row>
-            </Col>
+            <Card style={{height:"50px",width:"100%",justifyContent:"center"}}>
+            <h5 style={{paddingTop:"5px",justifyContent:"center"}}>Announcements </h5>
+            </Card>
+           
           </Row>
 
           <br></br>
         </Col>
 
-        {/* Right side content */}
-        <Col md={5}>
+        <Col md={6}>
           <Row>
+          <Col md={20} style={{ alignItems: "right" }}>
+            <Row>
+              {" "}
+              <h6
+                style={{
+                  color: "#4F4F4F",
+                  paddingLeft: "15px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                  paddingTop: "65px",
+                }}
+              >
+                {" "}
+                UPCOMING HOLIDAYS
+              </h6>
+            </Row>
+            <Row>
+              <Col>
+                <Card>
+                  <Table >
+                    <thead>
+                      <tr style={{backgroundColor:"#f5896e",color:"white"}}>
+                        <th>Holiday Title</th>
+                        <th>Holiday Date</th>
+                        <th> </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {holiday.map((data) => (
+                        <tr>
+                          <td>{data.holidayTitle}</td>
+                          <td>
+                            {
+                              data.holidayDate
+                                .replace(/\b0/g, "")
+                                .split("T0")[0]
+                            }
+                          </td>
+                          <td></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </Card>
+              </Col>
+            </Row>
+          </Col>
+          </Row>
+
+          {/* <Row>
             {" "}
             <h6
               style={{
@@ -274,13 +314,13 @@ const EmployeeDashboard = () => {
               {" "}
               PROJECTS{" "}
             </h6>
-          </Row>
-          <Row>
+          </Row> */}
+          {/* <Row>
             <Col>
               <Card>
                 <Table>
                   <thead>
-                    <tr>
+                    <tr style={{backgroundColor:"#f5896e",color:"white",fontWeight:"-10px"}}>
                       <th>Projects</th>
                       <th>Allocation Start Date</th>
                       <th> Allocation End Date</th>
@@ -290,16 +330,35 @@ const EmployeeDashboard = () => {
                     {projects.map((data) => (
                       <tr>
                         <td>{data.projectName}</td>
-                        <td>{data.startDate}</td>
-                        <td>{data.endDate}</td>
+                        <td>
+                          {data.startDate.replace(/\b0/g, "").split("T0")[0]}
+                        </td>
+                        <td>
+                          {data.endDate.replace(/\b0/g, "").split("T0")[0]}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
                 </Table>
               </Card>
             </Col>
-          </Row>
+          </Row> */}
+{/* 
+          <br></br> */}
 
+          {/* <Row>
+            {" "}
+            <h5> TASKS</h5>
+            <Col>
+              <EmployeeDashboardTask />
+            </Col>
+          </Row> */}
+
+          <br></br>
+        </Col>
+
+        {/* Right side content */}
+        <Col style={{paddingTop:"43px"}} md={5}>
           <br></br>
 
           {/* leave row started */}
@@ -319,34 +378,44 @@ const EmployeeDashboard = () => {
           </Row>
           <Row>
             <Col>
-              <Card>
+              <Card
+                style={{
+                  // height: "500px",
+                  overflowY: "auto",
+                  overflowX: "hidden",   
+                }}
+              >
                 {/* 1st row */}
-                <Row>
+                <Row >
                   <Col
                     align="center"
                     style={{ padding: "10px", paddingLeft: "20px" }}
                   >
-                    <h6 align="center">REMAINING LEAVES - {remainingLeave}</h6>
+                    <Card>
+                    <h6 align="center" style={{color:"#f5896e"}}>REMAINING LEAVES   {remainingLeave}</h6>
+                    </Card>
                   </Col>
 
                   <Col align="center" style={{ padding: "10px" }}>
-                    <Button
+                    <Button variant="success"
                       onClick={(event) => {
                         history.push("/app/IntegrateLeaveToApply");
                       }}
                     >
-                      {" "}
                       Apply Leave
                     </Button>
                   </Col>
 
-                  <Col align="center" style={{ paddingBlock: "10px" }}>
-                    <h6>TOTAL LEAVES - {leaves}</h6>
+                  <Col align="center"  style={{ paddingBlock: "10px" ,height:"30px",paddingRight:"20px"}}>
+                    <Card >
+                    <h6 style={{color:"#f5896e",paddingBottom:"10px",paddingTop:"10px"}}>TOTAL LEAVES    {leaves}</h6>
+                    </Card>
+                    
                   </Col>
                 </Row>
                 <Table>
                   <thead>
-                    <tr>
+                    <tr style={{backgroundColor:"#f5896e",color:"white"}}>
                       <th></th>
                       <th>MONTH</th>
                       <th>LEAVES</th>
@@ -355,112 +424,119 @@ const EmployeeDashboard = () => {
                   <tbody>
                     <tr>
                       <td></td>
-                      <td>january</td>
-                      <td>3</td>
+                      <td>January</td>
+                      <td>0</td>
                     </tr>
                     <tr>
                       <td></td>
-                      <td>Feb</td>
-                      <td>4</td>
+                      <td>February</td>
+                      <td>0</td>
                     </tr>
                     <tr>
                       <td></td>
-                      <td>Mar</td>
-                      <td>6</td>
+                      <td>March</td>
+                      <td>0</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>April</td>
-                      <td>4</td>
+                      <td>0</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>May</td>
-                      <td>4</td>
+                      <td>0</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>June</td>
-                      <td>4</td>
+                      <td>0</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>July</td>
-                      <td>4</td>
+                      <td>2</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>August</td>
-                      <td>4</td>
+                      <td>0</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>September</td>
-                      <td>4</td>
+                      <td>1</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>October</td>
-                      <td>4</td>
+                      <td>0</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>November</td>
-                      <td>4</td>
+                      <td>0</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>December</td>
-                      <td>4</td>
+                      <td>0</td>
                     </tr>
                   </tbody>
                 </Table>
               </Card>
             </Col>
           </Row>
+          {/* <Col md={20} style={{ alignItems: "right" }}>
+            <Row>
+              {" "}
+              <h6
+                style={{
+                  color: "#4F4F4F",
+                  paddingLeft: "15px",
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                  paddingTop: "65px",
+                }}
+              >
+                {" "}
+                UPCOMING HOLIDAYS
+              </h6>
+            </Row>
+            <Row>
+              <Col>
+                <Card>
+                  <Table >
+                    <thead>
+                      <tr style={{backgroundColor:"#f5896e",color:"white"}}>
+                        <th>Holiday Title</th>
+                        <th>Holiday Date</th>
+                        <th> </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {holiday.map((data) => (
+                        <tr>
+                          <td>{data.holidayTitle}</td>
+                          <td>
+                            {
+                              data.holidayDate
+                                .replace(/\b0/g, "")
+                                .split("T0")[0]
+                            }
+                          </td>
+                          <td></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </Card>
+              </Col>
+            </Row>
+          </Col> */}
+          <br></br>
         </Col>
       </Row>
-
-      {/* second row */}
-
-      <Row>
-        {/* Left side Content */}
-
-        <Col sm={7}></Col>
-
-        {/* Right side content */}
-        <Col md={5}>
-          <br></br>
-          <br></br>
-
-          {/* HOLIDAYS this month */}
-
-          <Row>
-            {" "}
-            <h6
-              style={{
-                color: "#4F4F4F",
-                paddingLeft: "15px",
-                fontSize: "15px",
-                fontWeight: "bold",
-              }}
-            >
-              UPCOMING HOLIDAYS{" "}
-            </h6>{" "}
-          </Row>
-          <Row>
-            <Col>
-              <Card style={{ paddingBlock: "10px" }}>
-                <h6 align="center" style={{ fontSize: "18px" }}>
-                 {holidayTitle} {holidayDate}
-                </h6>
-              </Card>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-
-      <br></br>
     </div>
   );
 };

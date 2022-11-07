@@ -38,7 +38,7 @@ const DeleteClient = (props) => {
                     <Row>
                         <Col><Button style={{
                             backgroundColor: "#f5896e",
-                            borderColor: "#ff9b44",
+                            borderColor: "#f5896e",
                         }} onClick={deleteClients}>Yes</Button></Col>
                     </Row>
                 </Col>

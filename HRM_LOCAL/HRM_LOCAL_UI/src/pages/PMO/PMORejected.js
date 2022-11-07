@@ -68,7 +68,7 @@ function PMORejected(props) {
           </Form.Group>
           </Form>
     <Button  style={{ backgroundColor: "#f5896e",
- borderColor: "#ff9b44",marginTop: "5%", float: "right" }}
+ borderColor: "#f5896e",marginTop: "5%", float: "right" }}
     onClick={RejectHandler}
     >
     Yes

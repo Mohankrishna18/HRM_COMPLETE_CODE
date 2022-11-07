@@ -84,7 +84,15 @@ public class Onboarding {
 	private boolean waitingforapprovalStatus;
 	@Column
 	private String onboardingStatus;
+	@Column
+	private String hrcomment;
 	
+	public String getHrcomment() {
+		return hrcomment;
+	}
+	public void setHrcomment(String hrcomment) {
+		this.hrcomment = hrcomment;
+	}
 	private boolean termsAndConditions;
 	public boolean isTermsAndConditions() {
 			return termsAndConditions;
@@ -391,7 +399,7 @@ public class Onboarding {
 			String fullName, String irmId, String srmId, String buhId, String taaApprovalComment,
 			String taaHeadApprovalComment, String pmoApprovalComment, String ceoApprovalComment,
 			String intermediateQualification, String sscQualification, String officialMail, String exitDate,
-			String band) {
+			String band,String hrcomment) {
 		super();
 		this.onboardingId = onboardingId;
 		this.designation = designation;
@@ -514,6 +522,7 @@ public class Onboarding {
 		this.intermediateQualification = intermediateQualification;
 		this.sscQualification = sscQualification;
 		this.officialMail = officialMail;
+		this.hrcomment=hrcomment;
 		this.exitDate = exitDate;
 		this.band = band;
 	}
@@ -1430,13 +1439,7 @@ public String getRequisitionId() {
 		// TODO Auto-generated constructor stub
 	}
 //	
-	public void setHrApprovalComment(String hrApprovalComment2) {
-		// TODO Auto-generated method stub
-		
-	}
-	public String getHrApprovalComment() {
-		return hrApprovalComment;
-	}
+	
 	
 
 	

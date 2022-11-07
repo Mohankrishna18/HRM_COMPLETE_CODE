@@ -163,7 +163,7 @@ function TaskMain(props) {
       >
         <Modal.Header
           closeButton
-          style={{ backgroundColor: "#FF9E14", color: "white" }}
+          style={{ backgroundColor: "#f5896e", color: "white" }}
         >
           <Modal.Title>Edit Task</Modal.Title>
         </Modal.Header>
@@ -193,7 +193,7 @@ function TaskMain(props) {
       >
         <Modal.Header
           closeButton
-          style={{ backgroundColor: "#FF9E14", color: "white" }}
+          style={{ backgroundColor: "#f5896e", color: "white" }}
         >
           <Modal.Title>Delete User</Modal.Title>
         </Modal.Header>

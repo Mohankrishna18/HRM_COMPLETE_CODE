@@ -128,7 +128,7 @@ function AddRole(props) {
         keyboard={false}
         centered
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white" }}>
           <Modal.Title style={{ backgroundColor: "#FF9E14", color : "white" }}>Add Roles & App Permissions</Modal.Title>
         </Modal.Header>
 

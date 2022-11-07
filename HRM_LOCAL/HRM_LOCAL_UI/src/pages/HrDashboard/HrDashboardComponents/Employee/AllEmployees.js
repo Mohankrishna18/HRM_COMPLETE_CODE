@@ -339,7 +339,7 @@ function AllEmployees(props) {
       <Row>
         <div className="responsive" style={{ paddingTop: "2%" }}>
           <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-            <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+            <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
               <Modal.Title>Onboarding Form</Modal.Title>
             </Modal.Header>
 

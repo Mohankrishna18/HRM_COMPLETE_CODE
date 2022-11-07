@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from '../../../Uri';
 import RecruitmentTimeline from './RecruitmentTimeline'
+import './utils/RT.css';
+
 
 const steps = ["Select master blaster campaign settings", "uggujjgh"];
 
@@ -37,11 +39,11 @@ const StepperForm = (props) => {
 
 
     // const [initDate, setInitDate] = useState("");
-    // const [reqId,setReqId] = useState(""); 
+    // const [reqId,setReqId] = useState("");
 
 
     const [initDate, setInitDate] = useState("");
-    const [reqId,setReqId] = useState(""); 
+    const [reqId,setReqId] = useState("");
 
     const userdata = JSON.parse(sessionStorage.getItem("userdata"));
     const userType = userdata.data.userType;
@@ -72,7 +74,7 @@ const StepperForm = (props) => {
     // const handleChangee1 = (event) => {
     //     setReqType2("Replacement")
     // }
-  
+ 
 
 
     const loadPocNames = async () => {
@@ -99,11 +101,7 @@ const StepperForm = (props) => {
         console.log(res.data);
     };
 
-    // const getProjectsByClientID = async () => {
-    //     const res = await axios.get(`/clientProjectMapping/getProjectsByClientId/${clientId}`);
-    //     setDepartments(res.data);
-    //     console.log(res.data);
-    // };
+
 
     const loadProjects = async () => {
         const res = await axios.get("/clientProjectMapping/getAllProjects");
@@ -313,7 +311,7 @@ const StepperForm = (props) => {
             newErrors.workLocation =
                 "Please enter Work Location";
 
-        
+       
 
 
         if (
@@ -328,7 +326,12 @@ const StepperForm = (props) => {
 
     //Setting raised By and RaisedOn Values from session storage and cureenet date
     const current = new Date();
-    const raisedOn = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+    console.log(current);
+    var raisedOn = Moment()
+      .utcOffset('+05:30')
+      .format('YYYY-MM-DD hh:mm:ss');
+      console.log(raisedOn);
+    // const raisedOn = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
     const raisedBy = response.firstName;
 
     console.log(raisedOn, raisedBy);
@@ -417,10 +420,10 @@ const StepperForm = (props) => {
         setActiveStep((previousStep) => previousStep - 1);
     };
     return (
-        <div >
+        <div className="example" style={{paddingLeft:"12px"}}>
             {activeStep === 0 && (
                 <div>
-                    <h5 style={{ paddingTop: "10px" }}>Arshaa Employee Requisition Form</h5>
+                    <h5 style={{ paddingTop: "13px" }}>Arshaa Employee Requisition Form</h5>
                     <Form className="formone">
                         <Row>
                             <Col md="9">
@@ -904,7 +907,7 @@ const StepperForm = (props) => {
                                             <option>Select </option>
                                             {pocname.map((poc) => (
                                                 <option value={poc.employeeId}>
-                                                    {poc.fullName}
+                                                    {poc.firstName}
                                                 </option>
                                             ))}
                                         </Form.Select>
@@ -913,7 +916,7 @@ const StepperForm = (props) => {
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Upload Document *</Form.Label>
+                                        <Form.Label>Upload Document </Form.Label>
                                         <Form.Control
                                             name="uploadDoc"
                                             type="file"
@@ -1022,7 +1025,7 @@ const StepperForm = (props) => {
                                             className="requestInitiatedDate"
                                             type="date"
                                         controlId="requestInitiatedDate"
-                                        
+                                       
                                         value={form.requestInitiatedDate}
                                         onChange={(e) => setField("requestInitiatedDate", e.target.value) }
                                         isInvalid={!!errors.requestInitiatedDate}
@@ -1085,7 +1088,7 @@ const StepperForm = (props) => {
 
                                         </Form.Control.Feedback>
                                     </Form.Group>
-                                
+                               
 
                                     {" "}
                                     <Form.Group controlId="submit">
@@ -1096,8 +1099,10 @@ const StepperForm = (props) => {
                                             className="'my-2"
                                             id="submitButton"
                                             style={{ backgroundColor: "#f5896e",
-                                            borderColor: "#ff9b44",width: "10rem" }}
+                                            borderColor: "#ff9b44",width: "10rem", borderRadius: "25px" }}
                                             variant="success"
+                                           
+
                                         >
                                             Submit
                                         </Button>
@@ -1108,7 +1113,7 @@ const StepperForm = (props) => {
                                             className="'my-2"
                                             id="cancelButton"
                                             style={{ backgroundColor: "#B6B6B4",
-                                            borderColor: "#B6B6B4",width: "10rem" }}
+                                            borderColor: "#B6B6B4",width: "10rem",borderRadius: "25px" }}
                                             variant="success"
                                         >
                                             Cancel
@@ -1116,7 +1121,7 @@ const StepperForm = (props) => {
                                     </Form.Group>
                                 </Row>
                             </Col>
-                            <Col md="1">
+                            <Col md="1" className="width-vr">
                                 <div className="vr" style={{ height: "90%" }}></div>
                             </Col>
                             <Col md="2">
@@ -1133,4 +1138,3 @@ const StepperForm = (props) => {
     );
 };
 export default StepperForm;
-

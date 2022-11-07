@@ -86,17 +86,17 @@ const EmployeeDashboardTask = () => {
     <div>
       <Row>
        
-        <Col style={{paddingLeft:"700px",paddingBottom:"80px",paddingTop:"-1000px"}}>
+       <Col style={{  fontWeight: "bold",paddingBottom:"20px"}}>
       <Form>
         <Form.Group>
-          <Form.Label>Select Tasks</Form.Label>
+          <Form.Label></Form.Label>
           <Form.Select
             style={{
-              width: "94%",
+              width: "24%",
               height: "4%",
-              padding: "9px",
+          //  paddingTop: "80px",
               marginLeft: "10px",
-           
+             
               cursor: "pointer",
               borderRadius: 10,
             }}
@@ -131,112 +131,42 @@ const EmployeeDashboardTask = () => {
       </Row>
     </div>
 
-    <Row styles={{ paddingTop: "20%" }}>
+    <Row>
       <MaterialTable
         title=""
         columns={columns1}
         data={approval}
         options={{
           headerStyle: {
-            backgroundColor: "white",
+            backgroundColor: "#f5896e",
             color: "black",
-            fontSize: "16px",
-            paddingTop: "0px",
-            paddingBottom: "2px",
+            padding:"5px",
+           
+            fontSize: "bold",
           },
 
           pageSize: 10,
           pageSizeOptions: [7],
-          // maxBodyHeight: 450,
+         
           addRowPosition: "first",
           actionsColumnIndex: -1,
           search: false
-          //grouping: true,
-         // exportButton: true,
+       
         }}
-        // onSelectionChange={(rows) => {
-        //   rows.map((items) => {
-        //     console.log(items.actualHours);
-        //     console.log(items);
-
-        //     setOutput([{ ...objectData, ...items }]);
-        //     ot.push({ ...objectData, ...items });
-        //     console.log(output);
-        //     rows.push(objectData);
-        //     console.log(rows);
-        //     time.push(parseInt(items.actualHours));
-        //   });
-        //   setOtt(ot);
-        //   let s = 0;
-        //   time.forEach(myFunction);
-
-        //   function myFunction(item) {
-        //     s += item;
-        //   }
-        //   console.log(s);
-        //   setTotalHours(s);
-
-        //   console.log(time);
-        // }}
+       
         actions={[
-        //   {
-        //     icon: "button",
-
-        //     tooltip: "Save User",
-        //     onClick: (event, rowData) =>
-        //       alert("You want to delete " + rowData.firstName),
-        //   },
+       
         ]}
         components={{
           Action: (props) => (
             <div>
-              {/* <Button
-                variant="white "
-                className="rounded-pill"
-                onClick={(event) => {
-                  setViewShow(true);
-
-                  // console.log(props);
-                  // setViewOnboard(props.data);
-                }}
-              >
-                {" "}
-                <FcWebcam /> View
-              </Button> */}
+           
             </div>
           ),
         }}
       />
-      {/* <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-        <Modal.Header style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Timesheet Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Table>
-            <thead>
-              <tr>
-                <th>Task Name</th>
-                <th>Estimated Hours</th>
-                <th>Actual Hours</th>
-                <th>Remaining Hours</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {taskData.map((item) => (
-                <tr>
-                  <td>{item.taskTitle}</td>
-                  <td>{item.estimatedHours}</td>
-                  <td>{item.actualHours}</td>
-                  <td>{item.remainingHours}</td>
-                  <td>{item.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </Modal.Body>
-      </Modal> */}
-    </Row>
+</Row>
+   
   </div>
 );
 };
