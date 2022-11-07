@@ -21,7 +21,7 @@ const EmployeeTimeSheetMain = () => {
     <div className='example'>
       <Row>
         <Col>
-        <Card.Title className="my-4">TimeSheet Management</Card.Title>
+        <Card.Title className="my-4">Timesheet </Card.Title>
                   <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
