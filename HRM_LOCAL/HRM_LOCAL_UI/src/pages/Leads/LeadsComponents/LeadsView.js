@@ -8,6 +8,7 @@ import axios from "../../../Uri";
 import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import moment from "moment";
 
 const ApprovalView = (props) => {
   console.log(props.viewOnboard);
@@ -34,6 +35,8 @@ const ApprovalView = (props) => {
   const validateForm = () => {
     const {
       leadName,
+      startDate,
+      endDate,
       companyName,
       companyEmail,
       companyPhoneNumber,
@@ -53,6 +56,12 @@ const ApprovalView = (props) => {
     const newErrors = {};
     if (!leadName || leadName === "" || !leadName.match(/^[aA-zZ\s]+$/))
       newErrors.leadName = "Please Enter Lead Name";
+
+    if (!startDate || startDate === "")
+      newErrors.startDate = "Please Enter Start Date";
+
+    if (!endDate || endDate === "")
+      newErrors.endDate = "Please Enter End Date";
     if (!companyName || companyName === "" || !companyName.match(/^[aA-zZ\s]+$/))
       newErrors.companyName = "Please Enter Company Name";
     if (!companyEmail || companyEmail === "") newErrors.companyEmail = "Please Enter company Email";
@@ -106,7 +115,7 @@ const ApprovalView = (props) => {
   return (
     <div className="scroll">
       {/* Attributes / fields */}
-      <Row style={{ marginTop: 20}}>
+      <Row style={{ marginTop: 20 }}>
         <Col md="5">
           {/* Lead name */}
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
@@ -118,6 +127,31 @@ const ApprovalView = (props) => {
             <Col md={{ offset: 1 }}>
               <Card.Text style={{ paddingBottom: 0, fontSize: "14px" }}>
                 {props.viewOnboard.leadName}
+              </Card.Text>
+            </Col>
+          </Row>
+          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+            <Col>
+              <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
+                Start Date:
+              </Card.Subtitle>{" "}
+            </Col>
+            <Col md={{ offset: 1 }}>
+              <Card.Text style={{ paddingBottom: 0, fontSize: "14px" }}>
+                {moment(props.viewOnboard.startDate).format('YYYY-MM-DD')}
+              </Card.Text>
+            </Col>
+          </Row>
+
+          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+            <Col>
+              <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
+                End Date:
+              </Card.Subtitle>{" "}
+            </Col>
+            <Col md={{ offset: 1 }}>
+              <Card.Text style={{ paddingBottom: 0, fontSize: "14px" }}>
+                {moment(props.viewOnboard.endDate ).format("YYYY-MM-DD")}
               </Card.Text>
             </Col>
           </Row>
