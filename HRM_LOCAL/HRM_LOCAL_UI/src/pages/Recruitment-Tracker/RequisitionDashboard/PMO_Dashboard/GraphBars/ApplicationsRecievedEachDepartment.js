@@ -5,7 +5,7 @@ import { Column } from '@ant-design/plots';
 import axios from '../../../../../Uri'
 
 
-const PositionsOpenByDepartment = () => {
+const ApplicationsRecievedEachDepartment = () => {
 
   const [departmentgraph, setDepartmentGraph] = useState([])
 
@@ -29,7 +29,7 @@ const PositionsOpenByDepartment = () => {
   const data2 = data2 && data2.departmentgraph ? departmentgraph.filter((item) => item.departmentName === "IT"):0
   console.log(data2)
 
-  const data3 = data3 && data3.departmentgraph ? departmentgraph.filter((item) => item.departmentName === "HR"):0
+  const data3 =  data3 && data3.departmentgraph ? departmentgraph.filter((item) => item.departmentName === "HR"):0
   console.log(data3)
 
   const data4 = data4 && data4.departmentgraph ? departmentgraph.filter((item) => item.departmentName === "Sales"):0
@@ -42,23 +42,23 @@ const PositionsOpenByDepartment = () => {
   const data = [
     {
       type: 'Cloud',
-      value: data1.length,
+      value: 11,
     },
     {
       type: 'IT',
-      value: data2.length,
+      value: 4,
     },
     {
       type: 'HR',
-      value: data3.length,
+      value: 7,
     },
     {
       type: 'Sales',
-      value: data4.length,
+      value: 2,
     },
     {
       type: 'Mgmt',
-      value: data5.length,
+      value: 5,
     },
   ];
   // shows red color if value is less than 2
@@ -103,5 +103,5 @@ const PositionsOpenByDepartment = () => {
   return <Column {...config} />;
 };
 
-export default PositionsOpenByDepartment;
+export default ApplicationsRecievedEachDepartment;
 

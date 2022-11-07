@@ -38,8 +38,8 @@ function OnboardingsMonth() {
 console.log(data)
 
     const [columns, setColumns] = useState([
-      { title: "Requisition ID", field: "requisitionId",color:"black" },
-      { title: "Onboarding ID", field: "onboardingId",color:"black" },
+      { title: "AERF ID", field: "requisitionId",color:"black" },
+      { title: "OBD ID", field: "onboardingId",color:"black" },
       { title: "Job Title", field: "jobTitle" },
       { title: "Name", field: "fullName" },
       { title: "Email", field: "email" },
@@ -50,7 +50,7 @@ console.log(data)
         type: "date",
         dateSetting: { locale: "en-GB" },
       },
-      { title: "Contact_Number", field: "phoneNumber" },  
+      { title: "Contact", field: "phoneNumber" },  
 
      
     ]);
