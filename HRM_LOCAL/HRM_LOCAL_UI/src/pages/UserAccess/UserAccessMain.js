@@ -28,9 +28,7 @@ const UserAccessMain = () => {
           <Row>
             <Col>
               <Card.Title>User Access</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Dashboard / User Access{" "}
-              </Card.Subtitle>
+              
             </Col>
           </Row>
           <Row>

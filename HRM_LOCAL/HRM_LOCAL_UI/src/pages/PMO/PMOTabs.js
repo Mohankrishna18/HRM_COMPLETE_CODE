@@ -38,8 +38,6 @@ function PMOTabs() {
                     </TabList>
                   </Box>
                   <TabPanel value="1"><PMOApproval /></TabPanel>
-                 
-                  
                   <TabPanel value="2"><AssignEmploymentDetailsMain /></TabPanel>
                   
                 </TabContext>

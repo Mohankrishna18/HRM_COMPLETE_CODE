@@ -20,16 +20,16 @@ function HRConfirmationMain() {
     <div >
       {/* HRConfirmationMain */}
       <Card.Title> Approvals</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
+              {/* <Card.Subtitle className="mb-2 text-muted">
                HR Approval
-              </Card.Subtitle>
+              </Card.Subtitle> */}
       <Box sx={{ width: "100%", typography: "body1", paddingTop: "15px" }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList
               onChange={handleChange}
               
-              sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"58px",paddingRight:0,color:"black" }}
+              sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"30px",paddingRight:0,color:"black" }}
               // textColor="secondary"
                indicatorColor="#f5896e"
             >

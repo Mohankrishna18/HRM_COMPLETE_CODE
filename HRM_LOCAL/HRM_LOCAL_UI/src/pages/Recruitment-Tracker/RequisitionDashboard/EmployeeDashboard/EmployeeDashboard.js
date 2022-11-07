@@ -285,8 +285,7 @@ const EmployeeDashboard = () => {
                           <td>
                             {
                               data.holidayDate
-                                .replace(/\b0/g, "")
-                                .split("T0")[0]
+                              .split("T0")[0].split('-').reverse().join('/')
                             }
                           </td>
                           <td></td>

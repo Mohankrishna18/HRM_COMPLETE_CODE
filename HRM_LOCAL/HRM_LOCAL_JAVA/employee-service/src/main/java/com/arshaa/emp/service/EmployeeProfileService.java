@@ -36,11 +36,16 @@ public class EmployeeProfileService {
 		// Date doj =e1.getDateOfJoining();
 
 		Date doj = new Date();
+		Date pcd = new Date();
 		doj = e1.getDateOfJoining();
+		pcd  = n.getConfirmationDate(); 
+		
 
 		Instant instant = n.getDateOfJoining().toInstant();
 		ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
 		LocalDate date = zdt.toLocalDate();
+		
+		
 
 		int companyProvidedLeave = 1;//
 		// int employeeLeaveTakenInThisMonth = 7;
@@ -57,10 +62,28 @@ public class EmployeeProfileService {
 		Period age = Period.between(date, localDate);
 		int monthsBetween = age.getMonths() + 1;
 		System.out.println(monthsBetween);
-		if (monthsBetween <= 6) {
+		
+
+
+		
+		if (monthsBetween <= 6 ) {
 			companyProvidedLeave = monthsBetween;// 5+1=6
-		} else {
-			companyProvidedLeave = monthsBetween + 2;
+		} 
+		else if(monthsBetween >=6 && pcd == null) {
+			
+			companyProvidedLeave = monthsBetween;
+		}
+		else {
+			Instant instant1 = n.getConfirmationDate().toInstant();
+			ZonedDateTime zdt1 = instant.atZone(ZoneId.systemDefault());
+			LocalDate date1 = zdt.toLocalDate();
+			
+			 Period ctg =Period.between(date, date1); 
+			 int monthsBetween1 = age.getMonths() + 1;
+			 
+			 System.out.println(monthsBetween1);
+			
+			companyProvidedLeave = monthsBetween1 + 2;
 		}
 
 //      int a=monthsBetween+companyProvidedLeave;

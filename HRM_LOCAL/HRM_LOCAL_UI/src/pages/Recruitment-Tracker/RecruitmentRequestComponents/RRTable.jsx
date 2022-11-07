@@ -148,9 +148,9 @@ function RRTable() {
         <Row>
           <Col>
             <Card.Title>Arshaa Employee Requisitions</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
+            {/* <Card.Subtitle className="mb-2 text-muted">
               Dashboard / Employee Requisitions{" "}
-            </Card.Subtitle>
+            </Card.Subtitle> */}
           </Col>
           <Col>
             <AddRequisition func={pull_dataAdd} />
