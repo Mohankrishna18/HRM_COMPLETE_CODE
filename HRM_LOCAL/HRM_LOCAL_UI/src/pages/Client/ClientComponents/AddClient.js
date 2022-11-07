@@ -147,7 +147,7 @@ function AddClient(props) {
         onClick={handleShow}
         style={{
           backgroundColor: "#f5896e",
-          borderColor: "#ff9b44",
+          borderColor: "#f5896e",
           float: "right",
           fontSize: "20px",
           borderRadius: "25px",
@@ -170,8 +170,8 @@ function AddClient(props) {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Add Client/Company</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
+          <Modal.Title style={{color:"white"}}>Add Client/Company</Modal.Title>
         </Modal.Header>
 
         <Modal.Body className="scroll">
@@ -441,7 +441,7 @@ function AddClient(props) {
                 <Button
                   style={{
                     backgroundColor: "#f5896e",
-                    borderColor: "#ff9b44",
+                    borderColor: "#f5896e",
                     float: "right",
                     width: "40%",
                     height: "120%",

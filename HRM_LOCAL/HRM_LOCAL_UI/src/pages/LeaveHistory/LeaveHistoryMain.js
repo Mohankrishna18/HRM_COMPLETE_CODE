@@ -7,10 +7,10 @@ const Leavehistoryofemployee = () => {
       <Card responsive className="scroll">
         <Card.Header  style={{backgroundColor:"white"}}>
           <Card.Body>
-            <Card.Title>List of Employee Leaves</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
+            <Card.Title>Employee Leaves</Card.Title>
+            {/* <Card.Subtitle className="mb-2 text-muted">
               EmployeeLeaves
-            </Card.Subtitle>{" "}
+            </Card.Subtitle>{" "} */}
             {/* <Container> */}
               <Row>
                 <Col xs={12}>

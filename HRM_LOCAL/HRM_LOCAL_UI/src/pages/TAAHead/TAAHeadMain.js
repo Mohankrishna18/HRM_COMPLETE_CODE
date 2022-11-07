@@ -37,7 +37,8 @@ function TAAHeadMain() {
                       title="Onboarding Approvals"
                       style={{ backgroundColor: "white" }}
                     >
-                      <TAAHeadApproval />
+                      {/* <TAAHeadApproval /> */}
+                      <HrEmployeesLeavesWaitingForApproval/>
                     </Tab>
                     <Tab
                       eventKey="Leave Approvals"

@@ -65,14 +65,24 @@ function RRTable() {
     setData(response.data);
     console.log(response.data);
   };
+  const sessionData = JSON.parse(sessionStorage.getItem('userdata'));
 
+  const employeeId = sessionData.data.employeeId;
+
+  const userType = sessionData.data.userType;
+
+  console.log(employeeId);
+
+  console.log(userType);
 
   return (
     <div>
-      
+
       <Modal show={show} onHide={handleClose} size="xl">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"7px",
-paddingBottom:"4px", }}>
+        <Modal.Header closeButton style={{
+          backgroundColor: "#FF9E14", paddingTop: "7px",
+          paddingBottom: "4px",
+        }}>
           <Modal.Title>Update Requisition</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -84,9 +94,11 @@ paddingBottom:"4px", }}>
         </Modal.Body>
 
       </Modal>
-      <Modal  show={viewShow} onHide={viewHandleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"7px",
-paddingBottom:"4px",  }}>
+      <Modal show={viewShow} onHide={viewHandleClose} size="lg">
+        <Modal.Header closeButton style={{
+          backgroundColor: "#FF9E14", paddingTop: "7px",
+          paddingBottom: "4px",
+        }}>
           <Modal.Title>Arshaa Employee Requisitions</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -112,8 +124,10 @@ paddingBottom:"4px",  }}>
         backdrop="static"
         keyboard={false}
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white", paddingTop:"7px",
-paddingBottom:"4px"  }}>
+        <Modal.Header closeButton style={{
+          backgroundColor: "#FF9E14", color: "white", paddingTop: "7px",
+          paddingBottom: "4px"
+        }}>
           <Modal.Title>Delete Requisition</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -130,129 +144,159 @@ paddingBottom:"4px"  }}>
         }}
       > */}
 
-        <Card.Body>
-          <Row>
-            <Col>
-              <Card.Title>Arshaa Employee Requisitions</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Dashboard / Employee Requisitions{" "}
-              </Card.Subtitle>
-            </Col>
-            <Col>
-              <AddRequisition func={pull_dataAdd} />
-              {/* <AddRR func={pull_dataAdd} /> */}
-            </Col>
-          </Row>
-        </Card.Body>
-        <Grid container>
+      <Card.Body>
+        <Row>
+          <Col>
+            <Card.Title>Arshaa Employee Requisitions</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              Dashboard / Employee Requisitions{" "}
+            </Card.Subtitle>
+          </Col>
+          <Col>
+            <AddRequisition func={pull_dataAdd} />
+            {/* <AddRR func={pull_dataAdd} /> */}
+          </Col>
+        </Row>
+      </Card.Body>
+      <Grid container>
         <Grid xs={12}>
-          <MaterialTable  
-             title="Arshaa Employee Requisitions"
-            columns={RRColumns}
-            style={{ color: "black", fontSize: "0.9rem" }}
-            data={data}
-            editable={{}}
-            options={{
-              pageSize: 10,
-              grouping: true,
-              pageSizeOptions: [8, 10, 15, 20, 30, 50, 75, 100],
-              maxBodyHeight: 450,
-              headerStyle: {
-                backgroundColor: "#f5896e",
-                color: "white",
-                fontSize: "12px",
-                //height: "10px",
-                //fontWeight: 'bold'
-            },
-            rowStyle: {
-                fontSize: 14,
-            },
-              addRowPosition: "first",
-              actionsColumnIndex: -1,
-              // grouping: true,
-              exportButton: true,
-            }}
-            actions={[
-              {
-                icon: "button",
-                tooltip: "Save User",
-                onClick: (event, rowData) =>
-                  alert("You want to delete " + rowData.firstName),
-              },
-            ]}
-            
-            components={{
-              Action: (props) => (
-                <div>
-                  <Stack direction="horizontal" gap={3}>
-                    
-                    <Button
-                      variant="info"
-                      onClick={(event) => {
-                        setShow(true);
-                        console.log(props);
-                        setUpdateOnboard(props.data);
-                        localStorage.setItem("requisition", JSON.stringify(props));
-                        history.push(
-                          `/app/updateRequisition/${props.data.rrfId}`
-                        );
-                      }}
-                    >
-                    
-                      <FiEdit />
-                    </Button>{" "}
+          {(userType === "taa") ?
+            <MaterialTable
+              title=""
+              columns={RRColumns}
+              style={{ color: "black", fontSize: "0.9rem" }}
+              data={data}
+              editable={{}}
+              options={{
+                pageSize: 10,
+                grouping: true,
+                pageSizeOptions: [8, 10, 15, 20, 30, 50, 75, 100],
+                maxBodyHeight: 450,
+                headerStyle: {
+                  backgroundColor: "#f5896e",
+                  color: "white",
+                  fontSize: "12px",
+                  //height: "10px",
+                  //fontWeight: 'bold'
+                },
+                rowStyle: {
+                  fontSize: 14,
+                },
+                addRowPosition: "first",
+                actionsColumnIndex: -1,
+                // grouping: true,
+                exportButton: true,
+              }}
+             
+            />
+            :
+            <MaterialTable
+            title=""
+              columns={RRColumns}
+              style={{ color: "black", fontSize: "0.9rem" }}
+              data={data}
+              editable={{}}
+              options={{
+                pageSize: 10,
+                grouping: true,
+                pageSizeOptions: [8, 10, 15, 20, 30, 50, 75, 100],
+                maxBodyHeight: 450,
+                headerStyle: {
+                  backgroundColor: "#f5896e",
+                  color: "white",
+                  fontSize: "12px",
+                  //height: "10px",
+                  //fontWeight: 'bold'
+                },
+                rowStyle: {
+                  fontSize: 14,
+                },
+                addRowPosition: "first",
+                actionsColumnIndex: -1,
+                // grouping: true,
+                exportButton: true,
+              }}
+              actions={[
+                {
+                  icon: "button",
+                  tooltip: "Save User",
+                  onClick: (event, rowData) =>
+                    alert("You want to delete " + rowData.firstName),
+                },
+              ]}
 
-                 
-                    <Button
-                      variant="danger"
-                      onClick={(event) => {
-                        setDeleteLeads(true);
-                        console.log(props);
-                        setDeleteOnboard(props.data);
-                      }}
-                    >
-                   
-                      <RiDeleteBin6Line />
-                    </Button>
+              components={{
+                Action: (props) => (
+                  <div>
+                    <Stack direction="horizontal" gap={3}>
 
-                    
+                      <Button
+                        variant="info"
+                        onClick={(event) => {
+                          setShow(true);
+                          console.log(props);
+                          setUpdateOnboard(props.data);
+                          localStorage.setItem("requisition", JSON.stringify(props));
+                          history.push(
+                            `/app/updateRequisition/${props.data.rrfId}`
+                          );
+                        }}
+                      >
 
-                   
-                    <Button
-                      variant="primary"
-                      onClick={(event) => {
-                        setViewShow(true);
-                        console.log(props);
-                        setViewOnboard(props.data);
-                      }}
-                      style={{
-                        backgroundColor: "#0000FF",
-                        color: "#F4F8F6",
-                        float: "right",
-                        borderRadius: "20px",
-                        height: "40px",
-                        width: "120px",
-                        fontSize:"12px",
-                        fontWeight:"bold"
+                        <FiEdit />
+                      </Button>{" "}
 
-                      }}
-                    >
-                     
-                      Send to Approval
-                    </Button>
 
-                  </Stack>
-                </div>
-              ),
-            }}
-          />
+                      <Button
+                        variant="danger"
+                        onClick={(event) => {
+                          setDeleteLeads(true);
+                          console.log(props);
+                          setDeleteOnboard(props.data);
+                        }}
+                      >
+
+                        <RiDeleteBin6Line />
+                      </Button>
+
+
+
+
+                      <Button
+                        variant="primary"
+                        onClick={(event) => {
+                          setViewShow(true);
+                          console.log(props);
+                          setViewOnboard(props.data);
+                        }}
+                        style={{
+                          backgroundColor: "#0000FF",
+                          color: "#F4F8F6",
+                          float: "right",
+                          borderRadius: "20px",
+                          height: "40px",
+                          width: "120px",
+                          fontSize: "12px",
+                          fontWeight: "bold"
+
+                        }}
+                      >
+
+                        Send to Approval
+                      </Button>
+
+                    </Stack>
+                  </div>
+                ),
+              }}
+            />
+}
         </Grid>
-        </Grid>
-       
+      </Grid>
+
       {/* </Card> */}
- 
+
     </div>
   );
 }
-
 export default RRTable;

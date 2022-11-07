@@ -228,8 +228,15 @@ public class EmployeeMaster {
     private String onboardingStatus;
     private String client;
     private String userType;
+    private String hrcomment;
 
 
+	public String getHrcomment() {
+		return hrcomment;
+	}
+	public void setHrcomment(String hrcomment) {
+		this.hrcomment = hrcomment;
+	}
 	public EmployeeMaster(String client, String userType) {
 		super();
 		this.client = client;
@@ -942,7 +949,7 @@ public class EmployeeMaster {
 			String employmentType, String primarySkills, String secondarySkills, String panNumber, String aadharNumber,
 			String uanNumber, String bankName, String accountNumber, String ifscCode, String branch, String band,
 			String exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,
-			String buhId, String intermediateQualification, String sscQualification, String officialMail) {
+			String buhId, String intermediateQualification, String sscQualification, String officialMail, String hrcomment) {
 		super();
 		this.employeeId = employeeId;
 		this.departmentName = departmentName;
@@ -1052,6 +1059,7 @@ public class EmployeeMaster {
 		this.intermediateQualification = intermediateQualification;
 		this.sscQualification = sscQualification;
 		this.officialMail = officialMail;
+		this.hrcomment=hrcomment;
 	}
 		public EmployeeMaster() {
 		super();

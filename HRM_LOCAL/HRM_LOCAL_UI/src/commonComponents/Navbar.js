@@ -99,7 +99,7 @@ const NavBar = (props) => {
                     <td style={{ paddingLeft: "50%" }}>
                       {isLoggedIn() && (
                         <FaSignOutAlt
-                          style={{ fontSize: "34px", paddingTop: "10px" }}
+                          style={{ fontSize: "34px", paddingTop: "10px",color:"white" }}
                           onClick={handleLogout}
                         />
                       )}

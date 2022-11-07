@@ -214,7 +214,7 @@ const EditLeave = () => {
               </Form.Group>
             </Row>
             <Button
-              style={{ backgroundColor: "#FF9B44", float: "right" }}
+              style={{ backgroundColor: "#f5896e", float: "right" }}
               type="submit"
               onClick={handleClose}
             >

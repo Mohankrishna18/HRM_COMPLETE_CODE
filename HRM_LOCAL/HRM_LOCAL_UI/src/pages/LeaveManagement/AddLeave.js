@@ -210,7 +210,7 @@ variant="warning"
 onClick={handleShow}
 style={{
     backgroundColor: "#f5896e",
-    borderColor: "#ff9b44",
+    borderColor: "#f5896e",
 float: "right",
 borderRadius: "25px",
 paddingBottom: "11.5px",
@@ -354,7 +354,7 @@ Upload Doctor's Certificate for Sick/Medical Leave
 </Row>
 <Button
 style={{ backgroundColor: "#f5896e",
-borderColor: "#ff9b44", float: "right" }}
+borderColor: "#f5896e", float: "right" }}
 type="submit"
 onClick={handleClose}
 >

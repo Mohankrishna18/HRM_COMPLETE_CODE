@@ -270,7 +270,7 @@ const ResetPassword = () => {
                   style={{
                     width: "100%",
                     backgroundColor: "#f5896e",
- borderColor: "#ff9b44",
+ borderColor: "#f5896e",
                   }}
                 >
                   Submit

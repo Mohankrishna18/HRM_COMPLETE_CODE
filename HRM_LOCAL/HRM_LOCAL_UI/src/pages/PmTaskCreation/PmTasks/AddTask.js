@@ -190,7 +190,7 @@ function AddUser(props) {
         style={{
 
           backgroundColor: "#f5896e",
-          borderColor: "#ff9b44",
+          borderColor: "#f5896e",
 
           float: "right",
 
@@ -221,9 +221,9 @@ function AddUser(props) {
       >
         <Modal.Header
           closeButton
-          style={{ backgroundColor: "#FF9E14", paddingTop: "5px", paddingBottom: "5px", color: "white" }}
+          style={{ backgroundColor: "#f5896e", paddingTop: "5px", paddingBottom: "5px", color: "white" }}
         >
-          <Modal.Title style={{ backgroundColor: '#FF9E14', color: 'white' }}>
+          <Modal.Title style={{ backgroundColor: '#f5896e', color: 'white' }}>
             Add Task
           </Modal.Title>
         </Modal.Header>
@@ -584,7 +584,7 @@ function AddUser(props) {
                 <Button
                   style={{
                     backgroundColor: "#f5896e",
- borderColor: "#ff9b44",
+ borderColor: "#f5896e",
                     float: 'right',
                     width: '40%',
                     height: '120%',

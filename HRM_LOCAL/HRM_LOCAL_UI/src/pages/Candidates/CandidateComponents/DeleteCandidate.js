@@ -9,7 +9,7 @@ const DeleteCandidate = (props) => {
 
     const deleteProjects = async () => {
         try {
-            const res = await axios.delete(`/clientProjectMapping/deleteProject/${props.deleteOnboard.projectId}`)
+            const res = await axios.delete(`/candidate/deleteCandidate/${props.deleteOnboard.candidateId}`)
                 .then((deletedResponse) => {
                     // const user = deletedResponse.data
                     // console.log(deletedResponse);

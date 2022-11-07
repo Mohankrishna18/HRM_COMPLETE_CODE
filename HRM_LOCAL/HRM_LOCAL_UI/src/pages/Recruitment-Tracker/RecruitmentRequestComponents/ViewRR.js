@@ -29,8 +29,8 @@ function ViewRR(props) {
                             </Col>
                             <Col md={{ offset: 1 }}>
                                 <Card.Text style={{ paddingBottom: 0 }}>
-                                    {props.viewOnboard.rrfId}
-                                </Card.Text>,
+                                    {props.viewOnboard.requisitionId}
+                                </Card.Text>
                             </Col>
                         </Row><Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
@@ -274,7 +274,7 @@ function ViewRR(props) {
                                 <Button
                                     style={{
                                         backgroundColor: "#f5896e",
-                                        borderColor: "#ff9b44",
+                                        borderColor: "#f5896e",
                                         float: "right",
                                         width: "50%",
                                         height: "100%",

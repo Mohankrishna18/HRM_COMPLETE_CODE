@@ -134,7 +134,7 @@ function TaskMain() {
       >
         <Modal.Header
           closeButton
-          style={{backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px",color:"white" }}
+          style={{backgroundColor: "#f5896e",paddingTop:"5px",paddingBottom:"5px",color:"white" }}
         >
           <Modal.Title>Edit Task</Modal.Title>
         </Modal.Header>
@@ -162,7 +162,7 @@ function TaskMain() {
       >
         <Modal.Header
           closeButton
-          style={{ backgroundColor: "#FF9E14", color: "white" }}
+          style={{ backgroundColor: "#f5896e", color: "white" }}
         >
           <Modal.Title>Delete User</Modal.Title>
         </Modal.Header>

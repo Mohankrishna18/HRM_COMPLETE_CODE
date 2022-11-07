@@ -413,7 +413,7 @@ function UpdateTeamMember(props) {
                 <Button
                     className="rounded-pill" md="3"
                     style={{ backgroundColor: "#f5896e",
-                    borderColor: "#ff9b44", float: "right" }}
+                    borderColor: "#f5896e", float: "right" }}
                     type="submit"
                     size="lg"
                 >

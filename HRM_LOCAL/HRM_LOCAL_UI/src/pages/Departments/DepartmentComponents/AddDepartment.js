@@ -115,7 +115,7 @@ function AddDepartment(props) {
         onClick={handleShow}
         style={{
           backgroundColor: "#f5896e",
-          borderColor: "#ff9b44",
+          borderColor: "#f5896e",
           float: "right",
           borderRadius: "25px",
           paddingBottom: "7px",
@@ -135,7 +135,7 @@ function AddDepartment(props) {
         keyboard={false}
         centered
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FE924A", color: "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
           <Modal.Title style={{ backgroundColor: "#FE924A", color: "white" }}>Add Business Unit</Modal.Title>
         </Modal.Header>
 
@@ -202,7 +202,7 @@ function AddDepartment(props) {
                 <Button
                   style={{
                     backgroundColor: "#f5896e",
-                    borderColor: "#ff9b44",
+                    borderColor: "#f5896e",
                     float: "right",
                     width: "40%",
                     height: "120%",

@@ -119,6 +119,7 @@ import ReportsMain from "../pages/Reports/ReportsMain";
 import CandidatesMain from "../pages/Candidates/CandidatesMain";
 
 
+
 export default [
   // {
   //   component: ProjectDashboardMain,
@@ -182,32 +183,32 @@ export default [
     exact: true,
   },
 
-  // {
-  //   component: LeadsMain,
-  //   path: "/leadsMain",
-  //   type: "configuration",
-  //   icon: <FcReadingEbook />,
-  //   title: "Leads",
-  //   permission: [
-  //     Roles.pmohead,
-  //     Roles.ceo,
+  {
+    component: LeadsMain,
+    path: "/leadsMain",
+    type: "configuration",
+    icon: <FcReadingEbook />,
+    title: "Leads",
+    permission: [
+      Roles.pmohead,
+      Roles.ceo,
 
-  //     Roles.hrmanager,
-  //   ],
-  // },
-  // {
-  //   component: ClientMain,
-  //   path: "/clientMain",
-  //   type: "configuration",
-  //   icon: <FcCollaboration />,
-  //   title: "Clients",
-  //   permission: [
-  //     Roles.pmohead,
-  //     Roles.irm,
-  //     Roles.employee,
+      Roles.hrmanager,
+    ],
+  },
+  {
+    component: ClientMain,
+    path: "/clientMain",
+    type: "configuration",
+    icon: <FcCollaboration />,
+    title: "Clients",
+    permission: [
+      Roles.pmohead,
+      Roles.irm,
+      Roles.employee,
 
-  //   ],
-  // },
+    ],
+  },
   {
     component: ProjectsMain,
     path: "/Projects",
@@ -244,7 +245,7 @@ export default [
     permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager],
   },
   {
-    component:ReportsMain,
+    component:EmployeeDashboard,
     path: "/ReportsMain",
     type: "null",
     icon: <FcNews />,
@@ -295,15 +296,7 @@ export default [
     ],
   },
 
-  {
-    component: ProjectsMain,
-    path: "/Projects",
-    type: "projects",
-    icon: <FcBullish />,
-    title: "Projects",
-
-    permission: [Roles.pmohead, Roles.irm, Roles.manager],
-  },
+  
 
 
   {
@@ -515,7 +508,7 @@ export default [
   },
   {
     component: OnboardedEmployeesTable,
-    type: "null",
+    type: "hr",
     path: "/Approvals",
     icon: <FcFeedIn />,
     title: "Onboardings",
@@ -684,7 +677,8 @@ export default [
     path: "/rrf",
     icon: <FcVoicePresentation />,
     title: "Requisition Request",
-    permission: [Roles.manager, Roles.irm,Roles.pmohead,Roles.hrmanager,Roles.srm],
+    permission: [Roles.irm,Roles.manager,Roles.taa,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager],
+
   },
   {
     component: PMO_Dashboard,
@@ -732,18 +726,17 @@ export default [
     component: StepperForm,
     path: '/StepperForm',
     type: "AERF",
-    permission: [Roles.irm],
-
+    permission: [Roles.irm,Roles.manager,Roles.taa,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager],
   },
 
-  {
-    component: EmployeeDashboard,
-    path: "/Employee_Dashboard",
-    type: "jobs",
-    icon: <FcApproval />,
-    title: "Requisition Dashboard",
-    permission: [Roles.irm]
-  },
+  // {
+  //   component: EmployeeDashboard,
+  //   path: "/Employee_Dashboard",
+  //   type: "jobs",
+  //   icon: <FcApproval />,
+  //   title: "Requisition Dashboard",
+  //   permission: [Roles.irm]
+  // },
   {
     component: CandidatesMain,
     path: "/Candidates",
