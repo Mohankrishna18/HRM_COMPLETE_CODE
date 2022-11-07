@@ -286,9 +286,9 @@ const ResignationMain = () => {
           <Col>
             <Card.Body>
               <Card.Title>Resignation</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Dashboard/Resignation
-              </Card.Subtitle>
+              {/* <Card.Subtitle className="mb-2 text-muted">
+                Resignation
+              </Card.Subtitle> */}
             </Card.Body>
             <AddResignation />
           </Col>
