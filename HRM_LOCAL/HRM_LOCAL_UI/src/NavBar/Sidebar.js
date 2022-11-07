@@ -1,12 +1,12 @@
 import React, { memo, useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import { Row, Col, Button, Accordion } from "react-bootstrap";
+import { Row, Col, Button, Accordion, Card } from "react-bootstrap";
 import Tab from "react-bootstrap/Tab";
 import ListGroup from "react-bootstrap/ListGroup";
 // import { isLoggedIn } from "../../utils";
 import './Sidebar.css'
 import styled from "styled-components";
-import { FcApproval, FcConferenceCall, FcCopyright, FcLeave, FcList, FcMultipleSmartphones, FcOvertime } from "react-icons/fc";
+import { FcApproval, FcBusinessman, FcConferenceCall, FcCopyright, FcLeave, FcList, FcMultipleSmartphones, FcOvertime } from "react-icons/fc";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 //Sidebar component is here
@@ -45,10 +45,15 @@ const Sidebar = (props) => {
   const hrmanager="hrmanager";
   const srm="srm";
   const buhead="buhead";
+  const employee="employee";
+  const ceo = "ceo";
+  const taa = "taa";
+  const taahead = "taahead";
+  const hr="hr";
 
   return (
     
-
+<Card style={{padding:"20px"}}>
     <Row className="example">
       <Tab.Container id="list-group-tabs-example" style={{backgroundColor:"white"}} className="Murali_1">
         <Col xs={12} xxl={12} xl={12} lg={12} md={12} sm={12}>
@@ -165,7 +170,7 @@ const Sidebar = (props) => {
                     ))}
                   </ListGroup> */}
                 {/* </Accordion.Body></Accordion.Item> */}
-                {( usertype === pmohead)?(
+                {( usertype === pmohead || irm ||srm || hrmanager || ceo || employee || buhead || taa || taahead)?(
               <Accordion.Item eventKey="2" style={{ border: "none",backgroundColor:"white"}}>
                 <Accordion.Header>
                   <Col md={2} style={{fontSize:"140%"}} ><FcList /></Col>
@@ -198,7 +203,7 @@ const Sidebar = (props) => {
                 </Accordion.Body></Accordion.Item>
               ):(<></>)}
               
-                 {( usertype === pmohead)?(
+                 {( usertype === pmohead )?(
               <Accordion.Item eventKey="3" style={{ border: "none", backgroundColor:"white"}}>
                 <Accordion.Header>
                   <Col md={2} style={{fontSize:"140%"}} ><FcCopyright /></Col>
@@ -230,7 +235,7 @@ const Sidebar = (props) => {
                   </ListGroup>
                 </Accordion.Body></Accordion.Item>
               ):(<></>)}
-              {( usertype === pmohead || hrmanager || irm || srm)?(
+              {( usertype === pmohead || irm || srm || hrmanager)?(
               <Accordion.Item eventKey="4" style={{ border: "none",backgroundColor:"white"}}>
                 <Accordion.Header>
                   <Col md={2} style={{fontSize:"140%"}} ><FcMultipleSmartphones /></Col>
@@ -262,7 +267,39 @@ const Sidebar = (props) => {
                   </ListGroup>
                 </Accordion.Body></Accordion.Item>
               ):(<></>)}
-              {( usertype === irm)?(
+               {( usertype === taa )?(
+              <Accordion.Item eventKey="5" style={{ border: "none", backgroundColor:"white"}}>
+                <Accordion.Header>
+                  <Col md={2} style={{fontSize:"140%"}} ><FcBusinessman /></Col>
+                  <Col  style={{color:"black",fontSize:17 }}>HR</Col>
+
+                </Accordion.Header>
+                <Accordion.Body>
+                  <ListGroup>
+                    {menuItems.map((item, index) => (
+                      (item.type === hr) ? (<>
+                        <Row>
+                          <ListGroup.Item style={{ border: "none", backgroundColor:"white" }}>
+                            <NavLink
+                            style={{padding:'none'}}
+                              key={item.path}
+                              className="link"
+                              exact activeclassName="active"
+                              to={`${props.prefix}${item.path}`} >
+                              <Row>
+                                <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
+                                <Col  style={{color:"black",fontSize:17 }}>{item.title}</Col>
+                              </Row>
+                            </NavLink>
+                          </ListGroup.Item>
+                        </Row></>
+                      ) : (<>
+                      </>)
+                    ))}
+                  </ListGroup>
+                </Accordion.Body></Accordion.Item>
+              ):(<></>)}
+              {/* {( usertype === irm)?(
               <Accordion.Item eventKey="2" style={{ border: "none", backgroundColor:"white"}}>
                 <Accordion.Header>
                   <Col md={2} style={{fontSize:"140%"}} ><FcList /></Col>
@@ -293,7 +330,7 @@ const Sidebar = (props) => {
                     ))}
                   </ListGroup>
                 </Accordion.Body ></Accordion.Item>
-              ):(<></>)}
+              ):(<></>)} */}
 
 
               
@@ -334,7 +371,7 @@ const Sidebar = (props) => {
 
     
     </Row>
-  
+    </Card>
   );
 };
 

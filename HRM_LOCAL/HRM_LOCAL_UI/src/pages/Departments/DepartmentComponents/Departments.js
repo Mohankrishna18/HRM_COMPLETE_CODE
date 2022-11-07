@@ -90,7 +90,7 @@ function Departments() {
         keyboard={false}
         
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white" }}>
           <Modal.Title>Update Business Unit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -109,7 +109,7 @@ function Departments() {
       backdrop="static"
       keyboard={false}
       centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white"}}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
           <Modal.Title>Delete Business Unit</Modal.Title>
         </Modal.Header>
         <Modal.Body>

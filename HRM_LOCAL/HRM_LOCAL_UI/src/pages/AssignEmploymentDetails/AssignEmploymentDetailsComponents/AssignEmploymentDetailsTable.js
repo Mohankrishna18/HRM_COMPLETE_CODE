@@ -83,7 +83,7 @@ function AssignEmploymentDetailsTable(props) {
       </Modal> */}
  
             <Modal show={show} onHide={handleClose} size="xl">
-                <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+                <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
                     <Modal.Title>Onboarding Form</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

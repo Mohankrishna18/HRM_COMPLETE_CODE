@@ -81,7 +81,8 @@ function PreHire(props) {
               defaultActiveKey="Job Position Details"
               transition={false}
               id="noanim-tab-example"
-              className="mb-3"
+              className="mb-3" 
+              //sx={{ "& button.Mui-selected": { background: "white", color: "#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", height: "60px", color:"white" }}
               style={{
                 justifyContent: "center",
                 color: "white",
@@ -253,7 +254,7 @@ export default PreHire;
 
 // <Modal show={viewShow} onHide={viewHandleClose} size="xl">
      
-//      <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+//      <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
 //        <Modal.Title>Onboarding Form</Modal.Title>
 //      </Modal.Header>
     

@@ -161,7 +161,7 @@ function BankStatementTab() {
                                 </Row>
                                 <Button style={{
                                     backgroundColor: "#f5896e",
-                                    borderColor: "#ff9b44",
+                                    borderColor: "#f5896e",
                                 }}>save</Button>
                             </Card.Body>
                         </Card>

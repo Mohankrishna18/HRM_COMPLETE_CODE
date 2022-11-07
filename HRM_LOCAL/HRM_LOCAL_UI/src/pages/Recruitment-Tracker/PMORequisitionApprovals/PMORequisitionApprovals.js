@@ -57,7 +57,7 @@ function PMORequisitionApprovals(props) {
     console.log(res.data);
   };
   const [columns, setColumns] = useState([
-    { title: "Job ID", field: "rrfId" },
+    { title: "Job ID", field: "requisitionId" },
     { title: "Business Unit", field: "departmentName","defaultGroupOrder":0 },
     { title: "Client", field: "clientName" },
     { title: "Project", field: "projectName" },
@@ -84,7 +84,7 @@ function PMORequisitionApprovals(props) {
         <Modal.Header
           closeButton
           style={{
-            backgroundColor: "#FF9E14",
+            backgroundColor: "#f5896e",
             paddingTop: "5px",
             paddingBottom: "5px",
             color: "white",
@@ -105,7 +105,7 @@ function PMORequisitionApprovals(props) {
         <Modal.Header
           closeButton
           style={{
-            backgroundColor: "#FF9E14",
+            backgroundColor: "#f5896e",
             paddingTop: "5px",
             paddingBottom: "5px",
             color: "white",

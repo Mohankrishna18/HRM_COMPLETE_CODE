@@ -178,7 +178,7 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
         onClick={handleShow}
         style={{
           backgroundColor: "#f5896e",
- borderColor: "#ff9b44",
+ borderColor: "#f5896e",
           float: "right",
           borderRadius: "25px",
           paddingBottom: "11.5px",
@@ -314,7 +314,7 @@ onChange={(event) => setRemainingLeaves(event.target.value)}
             </Row>
             <Button
               style={{ backgroundColor: "#f5896e",
-              borderColor: "#ff9b44", float: "right" }}
+              borderColor: "#f5896e", float: "right" }}
               type="submit"
               onClick={handleClose}
             >

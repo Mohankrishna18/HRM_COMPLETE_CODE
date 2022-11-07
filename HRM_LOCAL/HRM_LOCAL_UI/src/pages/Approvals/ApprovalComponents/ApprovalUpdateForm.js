@@ -59,7 +59,7 @@ const ApprovalUpdateForm = (props) => {
           <Button
             style={{
               backgroundColor: "#f5896e",
-              borderColor: "#ff9b44",
+              borderColor: "#f5896e",
               marginTop: "5%",
               float: "right",
               width: "30%",

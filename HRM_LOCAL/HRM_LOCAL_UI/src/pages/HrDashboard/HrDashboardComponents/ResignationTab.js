@@ -108,7 +108,7 @@ useEffect(() => {
                             </Card>
                             </Col></Row>
         <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-          <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+          <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
             <Modal.Title>Details</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -208,6 +208,7 @@ useEffect(() => {
           <MaterialTable
             title="RESIGNATIONS"
             columns={columns}
+            style={{color:"black",fontSize:"11px"}}
             data={data}
             options={{
               paging: true,
@@ -225,6 +226,7 @@ useEffect(() => {
                 paddingBottom:"4px",
                 paddingTop:"8px",
                 color: "white",
+
               },
               exportButton: true,
             }}

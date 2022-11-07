@@ -144,7 +144,7 @@ function AddEmployee() {
 
             <Button style={{
               backgroundColor: "#f5896e",
-              borderColor: "#ff9b44",
+              borderColor: "#f5896e",
             }} onClick={handleClose}>
               Submit
             </Button>

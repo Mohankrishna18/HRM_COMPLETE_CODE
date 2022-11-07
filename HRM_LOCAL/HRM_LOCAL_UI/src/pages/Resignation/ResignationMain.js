@@ -146,7 +146,7 @@
 //         backdrop="static"
 //         keyboard={false}
 //       >
-//         <Modal.Header closeButton style={{ backgroundColor: "#FE924A" }}>
+//         <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
 //           <Modal.Title>Apply Resignation</Modal.Title>
 //         </Modal.Header>
 
@@ -286,9 +286,9 @@ const ResignationMain = () => {
           <Col>
             <Card.Body>
               <Card.Title>Resignation</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Dashboard/Resignation
-              </Card.Subtitle>
+              {/* <Card.Subtitle className="mb-2 text-muted">
+                Resignation
+              </Card.Subtitle> */}
             </Card.Body>
             <AddResignation />
           </Col>

@@ -602,7 +602,7 @@ const EmployeeAttendance = () => {
                     onChange={(e) => setMonth(e.target.value)}
                     // value="10"
                   >
-                    <option>Select Month</option>
+                    {/* <option>Select Month</option> */}
                     <option>{currentmonth}</option>
                     <option value="01">January</option>
                     <option value="02">February </option>
