@@ -177,8 +177,8 @@ function TaskMain() {
       <div responsive>
         {/* <Container> */}
         <Row>
-          <Col>
-            <Card.Title>Task Management</Card.Title>
+          <Col style={{ textAlign:"left",paddingLeft:"35px"}}>
+            <Card.Title>Assign Task</Card.Title>
           </Col>
 
           <Col md={{ span: 4, offset: 4 }}>

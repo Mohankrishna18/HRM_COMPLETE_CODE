@@ -122,9 +122,7 @@ function Departments() {
               <Row>
                 <Col md={4}>
                   <Card.Title>Business Unit</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                    Business Unit{" "}
-                  </Card.Subtitle>
+                
                 </Col>
 
                 <Col md={{ span: 4, offset: 4 }}><AddDepartment func={pull_dataAdd} /></Col>

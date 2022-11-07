@@ -448,10 +448,13 @@ function MyTask() {
     //   title: "User story",
     //   field: "userStory",
     //   type: "text",
-    // },
     {
-      title: "Project Name",
+
+      title: "Project",
+
       field: "projectName",
+
+      defaultGroupOrder:0
 
     },
     // {
@@ -475,7 +478,16 @@ function MyTask() {
       field: "estimatedHours",
       type: "text"
     },
+    
+    {
 
+      title: "Actual Hours",
+
+      field: "actualHours",
+
+      type: "text",
+
+    },
 
     // {
     //   title: "Actual Hours",

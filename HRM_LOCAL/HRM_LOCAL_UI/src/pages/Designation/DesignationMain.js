@@ -138,9 +138,7 @@ function DesignationMain() {
           <Row>
             <Col>
               <Card.Title>Designations</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Dashboard / Designations{" "}
-              </Card.Subtitle>
+             
             </Col>
             <Col>
               <AddDesignation func={pull_dataAdd} />

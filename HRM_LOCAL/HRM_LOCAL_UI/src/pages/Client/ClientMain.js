@@ -187,9 +187,7 @@ function ClientMain() {
           <Row>
             <Col>
               <Card.Title>Clients/Company</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Dashboard / Clients{" "}
-              </Card.Subtitle>
+              
             </Col>
             <Col>
               <AddClient func={pull_dataAdd} />
