@@ -15,9 +15,7 @@ const HolidayManagementMain = () => {
         <Card.Header style={{backgroundColor:"white"}}>
           <Card.Body style={{backgroundColor:"white"}}>
             <Card.Title> Holiday Management</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              Holidays
-            </Card.Subtitle>{" "}
+          
             {/* <Container> */}
               <Row>
                 <Col xs={12}>

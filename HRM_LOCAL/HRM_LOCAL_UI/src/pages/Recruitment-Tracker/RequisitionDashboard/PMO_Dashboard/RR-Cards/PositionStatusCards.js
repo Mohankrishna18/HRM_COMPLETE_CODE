@@ -14,8 +14,10 @@ const PositionStatusCards = () => {
     useEffect(async () => {
         axios.get("/recruitmentTracker/getAllRequisitionRequests")
             .then((response) => {
-                setPositionStatus(response.data.data)
                 console.log(response.data)
+                
+                setPositionStatus(response.data.data)
+               
             })
             .catch((err) => {
                 err.error
@@ -24,25 +26,25 @@ const PositionStatusCards = () => {
     console.log(positionStatus)
 
     // count/length for onHold position
-    const data = data && data.positionStatus ? positionStatus.filter((item) => item.rrfStatus === "On Hold"): 0
-    // console.log(data)
-
-    // count/length for Closed position
-    const data1 = data1 && data1.positionStatus ? positionStatus.filter((item) => item.rrfStatus === "Closed"):0
-    // console.log(data1)
-
-    // count/length for In Progress position
-    const data2 = data2 && data2.positionStatus ? positionStatus.filter((item) => item.rrfStatus === "In Progress"):0
-    // console.log(data2)
-
-    // count/length for Pending approval position
-    const data3 = data3 && data3.positionStatus ? positionStatus.filter((item) => item.rrfStatus === "Pending Approval"):0
-    // console.log(data3)
-
-    // count/length for Pending Open position
-    const data4 = data4 && data4.positionStatus ? positionStatus.filter((item) => item.rrfStatus === "Open"):0
-    // console.log(data4)
-
+     // count/length for onHold position
+     const data = positionStatus ? positionStatus.filter((item) => item.rrfStatus === "On Hold"): 0
+     // console.log(data)
+ 
+     // count/length for Closed position
+     const data1 = positionStatus ? positionStatus.filter((item) => item.rrfStatus === "Closed"):0
+     // console.log(data1)
+ 
+     // count/length for In Progress position
+     const data2 = positionStatus ? positionStatus.filter((item) => item.rrfStatus === "In Progress"):0
+     // console.log(data2)
+ 
+     // count/length for Pending approval position
+     const data3 = positionStatus  ? positionStatus.filter((item) => item.rrfStatus === "Pending Approval"):0
+     // console.log(data3)
+ 
+     // count/length for Pending Open position
+     const data4 = positionStatus ? positionStatus.filter((item) => item.rrfStatus === "Open"):0
+     // console.log(data4)
 
     return (
         <div>
@@ -82,6 +84,7 @@ const PositionStatusCards = () => {
                 </Col>
                 
             </Row>
+           
         </div>
     )
 }

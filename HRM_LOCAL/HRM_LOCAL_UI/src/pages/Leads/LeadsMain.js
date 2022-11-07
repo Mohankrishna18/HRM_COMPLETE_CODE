@@ -222,9 +222,7 @@ function LeadsMain() {
           <Row>
             <Col>
               <Card.Title>Leads</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Dashboard / Leads{" "}
-              </Card.Subtitle>
+             
             </Col>
             <Col>
               <AddLeads func={pull_dataAdd} />

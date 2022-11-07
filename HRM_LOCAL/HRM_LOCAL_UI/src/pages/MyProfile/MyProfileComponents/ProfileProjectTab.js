@@ -120,10 +120,10 @@ const ProfileProjectTab = () => {
                         <td>{data.clientName}</td>
                         <td>{data.projectManager}</td>
                         <td dataSort = {true}   >
-                          {data.startDate.replace(/\b0/g, "").split("T0")[0]}
+                        {data.startDate.split("T0")[0].split('-').reverse().join('/')}
                         </td>
                         <td>
-                          {data.endDate.replace(/\b0/g, "").split("T0")[0]}
+                          {data.endDate.split("T0")[0].split('-').reverse().join('/')}
                         </td>
                       </tr>
                     ))}

@@ -9,7 +9,7 @@ const ApprovesMain = () => {
                 <Card.Header>
                     <Card.Body style={{backgroundColor:"white"}}>
                         <Card.Title> Approvals </Card.Title>
-                        <Card.Subtitle> Approvals / Approvals</Card.Subtitle>
+                       
                         
                             <Row>
                                 <Col xs={12}>
