@@ -51,7 +51,7 @@ function PreHire(props) {
     };
     console.log(data.length);
     const [columns, setColumns] = useState([
-      { title: "RRF ID", field: "requisitionId",color:"black" },
+      { title: "AERF ID", field: "requisitionId",color:"black" },
       { title: "OBD ID", field: "onboardingId",color:"black" },
       { title: "Job Title", field: "jobTitle" },
       { title: "Name", field: "fullName" },

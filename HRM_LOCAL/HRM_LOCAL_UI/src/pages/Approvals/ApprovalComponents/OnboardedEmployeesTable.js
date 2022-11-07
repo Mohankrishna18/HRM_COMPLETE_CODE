@@ -83,12 +83,12 @@ function OnboardedEmployeesTable() {
 
   const [columns, setColumns] = useState([
     {
-      title: "Requisition ID",
+      title: "AERF ID",
       field: "requisitionId",
       
     },
     {
-      title: "Full Name",
+      title: "Name",
       field: "fullName",
       type: "text",
     },
@@ -108,7 +108,7 @@ function OnboardedEmployeesTable() {
     },
     
     {
-      title: "Contact Number",
+      title: "Contact ",
       field: "phoneNumber",
       type: "number",
     },

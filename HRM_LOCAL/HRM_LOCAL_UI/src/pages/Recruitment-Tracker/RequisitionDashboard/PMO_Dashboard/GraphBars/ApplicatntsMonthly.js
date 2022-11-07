@@ -1,56 +1,131 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { Column } from '@ant-design/plots';
+import axios from '../../../../../Uri'
+import Moment from 'moment';
 
 const ApplicantsMonthly = () => {
+
+    const [monthlyGraph, setMonthlyGraph] = useState([])
+
+    useEffect(async () => {
+        axios.get("/candidate/getCandidate")
+            .then((response) => {
+                setMonthlyGraph(response.data)
+            })
+            .catch((err) => {
+                err.error
+            })
+
+    }, [])
+
+    // for month wise hired candidates   
+    const hired = monthlyGraph.filter((item) => item.candidateStatus === "Hired")
+    console.log(hired)
+
+    // for january
+    const january = hired.filter(item => item.candidateCreatedOn.includes("2022-01"));
+    console.log(january)
+
+    // for feb
+    const feb = hired.filter(item => item.candidateCreatedOn.includes("2022-02"));
+    console.log(feb)
+
+    // for march
+    const march = hired.filter(item => item.candidateCreatedOn.includes("2022-03"));
+    console.log(march)
+
+    // for april
+    const april = hired.filter(item => item.candidateCreatedOn.includes("2022-04"));
+    console.log(april)
+
+    // for may
+    const may = hired.filter(item => item.candidateCreatedOn.includes("2022-05"));
+    console.log(may)
+
+    // for june
+    const june = hired.filter(item => item.candidateCreatedOn.includes("2022-06"));
+    console.log(june)
+
+    // for july
+    const july = hired.filter(item => item.candidateCreatedOn.includes("2022-07"));
+    console.log(july)
+
+    // for august
+    const august = hired.filter(item => item.candidateCreatedOn.includes("2022-08"));
+    console.log(august)
+
+    // for september
+    const september = hired.filter(item => item.candidateCreatedOn.includes("2022-09"));
+    console.log(september)
+
+    // for october
+    const hiredOnOctober = hired.filter(item => item.candidateCreatedOn.includes("2022-10"));
+    console.log(hiredOnOctober)
+
+    // for november ==> here we get the hired filter into this variable and again filetr that got value which includes nov i.e => 11 
+    const hiredOnNovember = hired.filter(item => item.candidateCreatedOn.includes("2022-11"));
+    console.log(hiredOnNovember)
+
+    // for december ==> here we get the hired filter into this variable and again filetr that got value which includes nov i.e => 11 
+    const hiredOnDecember = hired.filter(item => item.candidateCreatedOn.includes("2022-12"));
+    console.log(hiredOnDecember)
+
+
+
+
+
+    // filter the hired data according to month.
+
+
     const data = [
         {
             type: 'Apr',
-            value: 2,
+            value: april.length,
         },
         {
             type: 'May',
-            value: 3,
+            value: may.length,
         },
         {
             type: 'June',
-            value: 4.45,
+            value: june.length,
         },
         {
             type: 'July',
-            value: 6.2,
+            value: july.length,
         },
         {
             type: 'Aug',
-            value: 2.9,
+            value: august.length,
         },
         {
             type: 'Sept',
-            value: 7.1,
+            value: september.length,
         },
         {
             type: 'Oct',
-            value: 1.9,
+            value: hiredOnOctober.length,
         },
         {
             type: 'Nov',
-            value: 10,
+            value: hiredOnNovember.length,
         },
         {
             type: 'Dec',
-            value: 4,
+            value: hiredOnDecember.length,
         },
         {
             type: 'Jan',
-            value: 9,
+            value: january.length,
         },
         {
             type: 'Feb',
-            value: 6,
+            value: feb.length,
         },
         {
             type: 'Mar',
-            value: 2.4,
+            value: march.length,
         },
     ];
     const paletteSemanticRed = '#F4664A';
