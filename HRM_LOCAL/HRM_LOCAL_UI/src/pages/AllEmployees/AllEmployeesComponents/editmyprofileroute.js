@@ -448,14 +448,12 @@ function EmployeeMasterForms(props) {
                                     </Col>
                                 </Row>
 
-                                <Card.Subtitle className="mb-2 text-muted">
-                                    Employees/All Employees
-                                </Card.Subtitle>
+                                
 
                                 <Row>
                                 <TabContext value={value}>
   <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{justifyContent:"center"}}>
-    <TabList onChange={handleChange1} aria-label="lab API tabs example" sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" }}} style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"58px",paddingRight:0,color:"black" }}
+    <TabList onChange={handleChange1} aria-label="lab API tabs example" sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" }}} style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"30px",paddingRight:0,color:"white" }}
        // textColor="secondary"
         indicatorColor="#f5896e">
       <Tab label="Personal Details" value="1" />

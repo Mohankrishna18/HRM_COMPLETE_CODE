@@ -30,30 +30,32 @@ const CandidateStatusCards = () => {
     //  **** Filter for Candidates Status ****
     // count/length for Hired Candidates
 
-    const hired = hired && hired.totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "Hired"):0
+    const hired = totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "Hired"):0
     console.log(hired)
 
+
     // count/length for Shortlisted Candidates
-    const shortlist = shortlist && shortlist.totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "Shortlisted"):0
+    const shortlist = totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "Shortlisted"):0
     console.log(shortlist)
 
     // count/length for In Onhold Candidates
-    const onhold = onhold && onhold.totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "Onhold"):0
+    const onhold = totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "Onhold"):0
     console.log(onhold)
 
     // count/length for Pending Rejected Candidates
-    const reject = reject && reject.totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "Rejected"):0
+    const reject = totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "Rejected"):0
     console.log(reject)
 
     // count/length for Pending Declined Candidates
-    const decline = decline && decline.totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "Declined"):0
+    const decline = totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "Declined"):0
     console.log(decline)
 
     // count/length for Pending Declined Candidates
-    const scheduld = scheduld && scheduld.totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "Scheduled"):0
+    const scheduld = totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "Scheduled"):0
     console.log(scheduld)
 
-
+    const prgrs = totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "In Progress"):0
+    console.log(scheduld)
 
     return (
         <div>
@@ -61,7 +63,7 @@ const CandidateStatusCards = () => {
                 <h4>Candidate Status</h4>
 
 
-                <Col sm={2}>
+                <Col sm={1}>
                     {/* card2 */}
                     <SingleCard data={hired} name='Hired'  color='#00c301' />
                 </Col>
@@ -71,7 +73,7 @@ const CandidateStatusCards = () => {
                     <SingleCard data={shortlist} name='Shortlisted' color='#008000' />
                 </Col>
 
-                <Col sm={2}>
+                <Col sm={1}>
                     {/* card2 */}
                     <SingleCard data={onhold} name='On Hold' color='#0000c4' />
                 </Col>
@@ -90,9 +92,17 @@ const CandidateStatusCards = () => {
                     {/* card2 */}
                     <SingleCard data={scheduld} name='Scheduled'  color='#329b24' />
                 </Col>
+
+                <Col sm={2}>
+                    {/* card2 */}
+                    <SingleCard data={prgrs} name='In Progress'  color='#329b24' />
+                </Col>
+
             </Row>
         </div>
     )
 }
 
 export default CandidateStatusCards
+
+

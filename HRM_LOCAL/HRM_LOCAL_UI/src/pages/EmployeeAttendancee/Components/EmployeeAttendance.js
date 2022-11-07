@@ -649,12 +649,11 @@ const EmployeeAttendance = () => {
             <Grid item xs={2} >
               <Box>
                 <Button
-                  variant="contained"
+                  variant="success"
                   disableRipple
                   style={{
                     width: '100%',
                     height: '100%',
-                    backgroundColor: '#FF7417',
                     borderRadius: 12,
                     color: 'white',
                   }}

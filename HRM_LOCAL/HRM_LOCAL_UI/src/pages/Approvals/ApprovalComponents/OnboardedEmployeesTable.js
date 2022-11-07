@@ -241,9 +241,7 @@ function OnboardedEmployeesTable() {
           <Row>
             <Col>
               <Card.Title>Onboardings</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Jobs / Shortlisted Candidates
-              </Card.Subtitle>
+              
             </Col>
             <Col>
               <AddOnboard func={pull_dataAdd} />
