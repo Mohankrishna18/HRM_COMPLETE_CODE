@@ -21,6 +21,7 @@ import {
   TimelineDot,
   TimelineConnector,
 } from "@mui/lab";
+import HorizontalTimeLiner from "./HorizontalTimeLiner";
 
 function AddLeads(props) {
   const [show, setShow] = useState(false);
@@ -52,6 +53,8 @@ function AddLeads(props) {
   const validateForm = () => {
     const {
       leadName,
+      startDate,
+      endDate,
       companyName,
       companyEmail,
       companyPhoneNumber,
@@ -78,6 +81,10 @@ function AddLeads(props) {
 
     if (!leadName || leadName === "" || !leadName.match(/^[aA-zZ\s]+$/))
       newErrors.leadName = "Please Enter Lead Name";
+    if (!startDate || startDate === "")
+      newErrors.startDate = "Please Enter Start Date";
+    if (!endDate || endDate === "")
+      newErrors.endDate = "Please Enter End Date";
     if (
       !companyName ||
       companyName === "" ||
@@ -277,7 +284,7 @@ function AddLeads(props) {
           // onSubmit={handleSubmit}
           >
             <Row>
-              <Col md="6">
+              <Col md="5">
                 {/* Lead Name */}
                 <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                   <Form.Label>Lead Name *</Form.Label>
@@ -297,6 +304,45 @@ function AddLeads(props) {
                     {errors.leadName}
                   </Form.Control.Feedback>
                 </Form.Group>
+
+                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                  <Form.Label>Start Date *</Form.Label>
+                  <Form.Control
+                    required
+                    className="startDate"
+                    type="date"
+                    controlId="startDate"
+                    placeholder="Start Date"
+                    // onChange={(event) => setclientName(event.target.value)}
+                    value={form.startDate}
+                    maxLength={30}
+                    onChange={(e) => setField("startDate", e.target.value)}
+                    isInvalid={!!errors.startDate}
+                  ></Form.Control>
+                  <Form.Control.Feedback type="invalid">
+                    {errors.startDate}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                  <Form.Label>End Date *</Form.Label>
+                  <Form.Control
+                    required
+                    className="endDate"
+                    type="date"
+                    controlId="endDate"
+                    placeholder="End Date"
+                    // onChange={(event) => setclientName(event.target.value)}
+                    value={form.endDate}
+                    maxLength={30}
+                    onChange={(e) => setField("endDate", e.target.value)}
+                    isInvalid={!!errors.endDate}
+                  ></Form.Control>
+                  <Form.Control.Feedback type="invalid">
+                    {errors.endDate}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
 
                 <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                   <Form.Label>Company/Client *</Form.Label>
@@ -456,7 +502,11 @@ function AddLeads(props) {
                     {errors.sourceEmail}
                   </Form.Control.Feedback>
                 </Form.Group>
-
+              </Col>
+              <Col md="2">
+                <div className="vr" style={{ height: "98%" }}></div>
+              </Col>
+              <Col md="5">
                 <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                   <Form.Label>Source PhoneNumber</Form.Label>
                   <InputGroup hasValidation>
@@ -618,80 +668,79 @@ function AddLeads(props) {
                   </Form.Control.Feedback>
                 </Form.Group>
               </Col>
-              <Col md="1">
-                <div className="vr" style={{ height: "98%" }}></div>
-              </Col>
-              <Col md="5">
-                <div style={{ height: "98%" }}>
-                  <div>
-                    <Form>
-                      {/* <Row> */}
-                      <Col>
-                        <Form.Group as={Col} md="12" style={{ padding: 5 }}>
-                          <Form.Label>Comment *</Form.Label>
-                          <Form.Control
-                            required
-                            className="comment"
-                            type="text"
-                            controlId="comment"
-                            placeholder="Comment"
-                            // onChange={(event) => setclientName(event.target.value)}
-                            value={form.comment}
-                            maxLength={30}
-                            onChange={(e) =>
-                              setField("comment", e.target.value)
-                            }
-                            isInvalid={!!errors.comment}
-                          ></Form.Control>
-                          <Form.Control.Feedback type="invalid">
-                            {errors.comment}
-                          </Form.Control.Feedback>
-                        </Form.Group>
-                      </Col>
-                      <Col style={{ paddingTop: "13%" }}>
-                      </Col>
-                      {/* </Row> */}
-                      <Button
-                        style={{
-                          backgroundColor: "#f5896e",
-                          borderColor: "#f5896e",
-                          float: "right",
-                          width: "40%",
-                          height: "120%",
-                          borderRadius: "25px",
-                          // paddingBottom: "11.5px",
-                          // marginTop: "100px",
-                        }}
-                        type="submit" onClick={postdata}>
-                        Post
-                      </Button>
-
-                    </Form>
-                    <Timeline style={{ paddingRight: "140%" }}>
-                      {comment.map((m) => (
-                        <TimelineItem>
-                          <TimelineSeparator>
-                            <TimelineDot />
-                            <TimelineConnector />
-                          </TimelineSeparator>
-                          <TimelineContent>
-                            {m.comment}
-                            <br />
-                            {m.date}
-                          </TimelineContent>
-                        </TimelineItem>
-                      ))}
-                    </Timeline>
+              <Row>
+                <Col md="12">
+                  <div style={{ height: "98%" }}>
+                    <div>
+                      <Form>
+                        <Col>
+                          <Form.Group as={Col} md="6" style={{ padding: 5 }}>
+                            <Form.Label>Comment *</Form.Label>
+                            <Form.Control
+                              required
+                              as="textarea"
+                              className="comment"
+                              type="text"
+                              controlId="comment"
+                              placeholder="Comment"
+                              value={form.comment}
+                              maxLength={30}
+                              onChange={(e) =>
+                                setField("comment", e.target.value)
+                              }
+                              isInvalid={!!errors.comment}
+                            ></Form.Control>
+                            <Form.Control.Feedback type="invalid">
+                              {errors.comment}
+                            </Form.Control.Feedback>
+                          </Form.Group>
+                        </Col>
+                        <Col>
+                        </Col>
+                        <Button
+                          style={{
+                            backgroundColor: "#f5896e",
+                            borderColor: "#f5896e",
+                            width: "30%",
+                            height: "120%",
+                            borderRadius: "25px",
+                            marginBottom:"45px"
+                          }}
+                          type="submit" onClick={postdata}>
+                          Post
+                        </Button>
+                        <HorizontalTimeLiner/>
+                      </Form>
+                      <Timeline style={{ paddingRight: "140%" }}>
+                        {comment.map((m) => (
+                          <TimelineItem>
+                            <TimelineSeparator>
+                              <TimelineDot />
+                              <TimelineConnector />
+                            </TimelineSeparator>
+                            <TimelineContent>
+                              {m.comment}
+                              <br />
+                              {m.date}
+                            </TimelineContent>
+                          </TimelineItem>
+                        ))}
+                      </Timeline>
+                    </div>
                   </div>
-                </div>
-              </Col>
+                </Col>
+              </Row>
+              <Row>
+                <Col md="12">
+                </Col>
+              </Row>
             </Row>
             <Row>
               <Col>
                 <Button
                   style={{
                     backgroundColor: "#f5896e",
- borderColor: "#f5896e",
+                    borderColor: "#f5896e",
                     float: "right",
                     width: "40%",
                     height: "120%",

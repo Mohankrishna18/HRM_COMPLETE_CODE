@@ -6,6 +6,7 @@ import { Form } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,8 +18,9 @@ const ClientUpdatedForm = (props) => {
   const [email, setEmail] = useState(props.updateOnboard.email);
   const [phoneNumber, setPhoneNumber] = useState(props.updateOnboard.phoneNumber);
   const [pocName, setPocName] = useState(props.updateOnboard.pocName);
-  const [startDate, setstartDate] = useState(props.updateOnboard.startDate);
-  const [endDate, setEndDate] = useState(props.updateOnboard.endDate);
+  const [startDate,setstartDate]=useState(moment(props.updateOnboard.startDate).format('YYYY-MM-DD'));
+  const [endDate,setEndDate]=useState(moment(props.updateOnboard.endDate).format('YYYY-MM-DD'));
+  const [companyName, setcompanyName] = useState(props.updateOnboard.companyName);
   const [status, setStatus] = useState(props.updateOnboard.status);
   const [country, setCountry] = useState(props.updateOnboard.country);
   const [address, setAddress] = useState(props.updateOnboard.address);
@@ -240,9 +242,6 @@ const ClientUpdatedForm = (props) => {
             </Form.Control.Feedback>
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
-
-
-          {/* Start Date
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Start Date</Form.Label>
             <Form.Control
@@ -251,7 +250,7 @@ const ClientUpdatedForm = (props) => {
               type="date"
               controlId="startDate"
               placeholder="Start Date"
-              value={startDate}
+              defaultValue={startDate}
               onChange={(e) => setstartDate(e.target.value)}
               isInvalid={!!errors.startDate}
             ></Form.Control>
@@ -259,9 +258,8 @@ const ClientUpdatedForm = (props) => {
               {errors.startDate}
             </Form.Control.Feedback>
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group> */}
+          </Form.Group> 
 
-          {/* End date
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>End Date</Form.Label>
             <Form.Control
@@ -269,7 +267,7 @@ const ClientUpdatedForm = (props) => {
               type="date"
               placeholder="endDate"
               controlId="endDate"
-              value={endDate}
+              defaultValue={endDate}
               min={startDate}
               onChange={(e) => setEndDate(e.target.value)}
               isInvalid={!!errors.endDate}
@@ -277,7 +275,7 @@ const ClientUpdatedForm = (props) => {
             <Form.Control.Feedback type="invalid">
               {errors.endDate}
             </Form.Control.Feedback>
-          </Form.Group> */}
+          </Form.Group>
 
           {/* Status */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
