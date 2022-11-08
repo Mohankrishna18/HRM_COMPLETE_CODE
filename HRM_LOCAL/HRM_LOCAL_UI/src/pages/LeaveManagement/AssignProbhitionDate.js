@@ -56,7 +56,7 @@ function AssignProbhitionDate(props) {
    
   } else {
     console.log(form)
-    const form1 = Object.assign(form,{onboardingStatus:"ProbhitionConfirmed"})
+    const form1 = Object.assign(form,{onboardingStatus:"ProbationConfirmed"})
     console.log(form1)
     axios
     .put(`/emp/updateProbhitionFields/${props.updateOnboard.employeeId}`, form1)

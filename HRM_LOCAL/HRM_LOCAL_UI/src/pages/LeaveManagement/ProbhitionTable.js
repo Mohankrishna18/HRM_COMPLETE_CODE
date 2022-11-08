@@ -43,55 +43,31 @@ function ProbhitionTable() {
     const [columns, setColumns] = useState([
         {
           title: "Employee ID",
-          field: "employeeId",
-          cellStyle: {
-            minWidth: 200,
-            maxWidth: 200
-          }
+          field: "employeeId"
         },
         {
           title: "Employee Name",
           field: "firstName",
-          type: "text",
-          cellStyle: {
-            minWidth: 200,
-            maxWidth: 200
-          }
+          type: "text"
         },
         {
           title: "Date.Of.Joining",
           field: "dateOfJoining",
-          cellStyle: {
-            minWidth: 200,
-            maxWidth: 200
-          },
           type: 'date',
           dateSetting: { locale: "en-GB" },
 
         },
         {
           title: "Designation",
-          field: "designationName",
-          cellStyle: {
-            minWidth: 200,
-            maxWidth: 200
-          }
+          field: "designationName"
         },
         {
           title: "IRM",
-          field: "irm",
-          cellStyle: {
-            minWidth: 200,
-            maxWidth: 200
-          }
+          field: "irm"
         },
         {
           title: "SRM",
-          field: "srm",
-          cellStyle: {
-            minWidth: 200,
-            maxWidth: 200
-          }
+          field: "srm"
         },
       ]);
 
@@ -101,7 +77,7 @@ function ProbhitionTable() {
        <Modal show={show} onHide={handleClose} size="md">
         <Modal.Header closeButton style={{ backgroundColor: "#f5896e",paddingTop:"5px",paddingBottom:"5px",color:"white" }}>
           <Modal.Title style={{ color: "white" }}>
-            Assign Probhition Confirmation Date
+            Assign Probation Confirmation Date
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

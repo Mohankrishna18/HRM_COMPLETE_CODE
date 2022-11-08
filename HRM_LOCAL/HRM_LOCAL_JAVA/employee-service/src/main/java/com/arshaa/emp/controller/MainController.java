@@ -271,7 +271,7 @@ public class MainController {
 				.body(fileDB.getData());
 	}
 	@GetMapping("/leavespermonth/{employeeId}")
-    int Lossofpayservice( @PathVariable String employeeId ) {
+    long Lossofpayservice( @PathVariable String employeeId ) {
 
       return   epServ.Lossofpayservice(employeeId);
 
