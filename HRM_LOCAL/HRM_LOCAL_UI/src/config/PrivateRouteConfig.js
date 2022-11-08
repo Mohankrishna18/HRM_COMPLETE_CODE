@@ -117,6 +117,8 @@ import EditEmployeeDetailsTabs from "../pages/EditEmployeeDetails/EditEmployeeDe
 import EmployeeDashboard from '../pages/Recruitment-Tracker/RequisitionDashboard/EmployeeDashboard/EmployeeDashboard'
 import ReportsMain from "../pages/Reports/ReportsMain";
 import CandidatesMain from "../pages/Candidates/CandidatesMain";
+import Probhitation from "../pages/LeaveManagement/ProbhitionTable";
+
 
 
 
@@ -745,5 +747,14 @@ export default [
     path: "/updateRequisition/:id",
     permission: [Roles.irm,Roles.manager],
   },
+
+  {
+    component: Probhitation,
+    path: "/Probhitation",
+    type: "null",
+    icon: <FcApproval />,
+    title: "Probhition Confirmation",
+    permission: [Roles.hrmanager]
+  }
 
 ];

@@ -84,18 +84,18 @@ function ClientMain() {
       field: "phoneNumber",
     },
 
-    // {
-    //   title: "Start Date",
-    //   field: "startDate",
-    //   type: "date",
-    //   dateSetting: { locale: "en-GB" },
-    // },
-    // {
-    //   title: "End Date",
-    //   field: "endDate",
-    //   type: "date",
-    //   dateSetting: { locale: "en-GB" },
-    // },
+    {
+      title: "Start Date",
+      field: "startDate",
+      type: "date",
+      dateSetting: { locale: "en-GB" },
+    },
+    {
+      title: "End Date",
+      field: "endDate",
+      type: "date",
+      dateSetting: { locale: "en-GB" },
+    },
 
     {
       title: "Status",

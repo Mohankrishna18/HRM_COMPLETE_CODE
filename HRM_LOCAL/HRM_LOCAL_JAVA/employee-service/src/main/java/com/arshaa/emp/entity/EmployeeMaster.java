@@ -230,6 +230,7 @@ public class EmployeeMaster {
     private String userType;
     private String hrcomment;
     private Date confirmationDate;
+    private String feedBack;
     
 
 
@@ -926,6 +927,13 @@ public class EmployeeMaster {
 	public void setBuhId(String buhId) {
 		this.buhId = buhId;
 	}
+	
+		public String getFeedBack() {
+		return feedBack;
+	}
+	public void setFeedBack(String feedBack) {
+		this.feedBack = feedBack;
+	}
 		public EmployeeMaster(String employeeId, String departmentName, String onboardingId, String designationName,
 			Date dateOfJoining, Date confirmationDate,String firstName, String middleName, String lastName, String email,
 			String primaryPhoneNumber, String secondaryPhoneNumber, String yearsOfExperience, String dateOfBirth,
@@ -957,7 +965,7 @@ public class EmployeeMaster {
 			String employmentType, String primarySkills, String secondarySkills, String panNumber, String aadharNumber,
 			String uanNumber, String bankName, String accountNumber, String ifscCode, String branch, String band,
 			String exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,
-			String buhId, String intermediateQualification, String sscQualification, String officialMail, String hrcomment) {
+			String buhId, String intermediateQualification, String sscQualification, String officialMail, String hrcomment, String feedBack) {
 		super();
 		this.employeeId = employeeId;
 		this.departmentName = departmentName;
@@ -1069,6 +1077,7 @@ public class EmployeeMaster {
 		this.officialMail = officialMail;
 		this.hrcomment=hrcomment;
 		this.confirmationDate = confirmationDate;
+		this.feedBack = feedBack;
 	}
 		public EmployeeMaster() {
 		super();
