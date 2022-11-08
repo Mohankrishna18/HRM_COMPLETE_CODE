@@ -28,7 +28,7 @@ const appcom = () => {
   console.log(selectedYear)
   const [columns, setColumns] = useState([
     {
-      title: 'Employee Name',
+      title: 'Name',
       field: 'employeeName',
     },
     {

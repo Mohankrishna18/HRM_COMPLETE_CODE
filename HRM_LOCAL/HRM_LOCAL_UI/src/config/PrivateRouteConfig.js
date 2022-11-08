@@ -743,9 +743,11 @@ export default [
   },
 
   {
+
     component: UpdateRR,
     path: "/updateRequisition/:id",
-    permission: [Roles.irm,Roles.manager],
+    permission: [Roles.irm,Roles.manager,Roles.taa,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager],
+
   },
 
   {
