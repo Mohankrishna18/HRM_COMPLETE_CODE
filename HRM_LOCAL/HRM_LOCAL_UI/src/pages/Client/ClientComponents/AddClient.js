@@ -266,8 +266,6 @@ function AddClient(props) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-
-              {/* Start Date 
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Start Date *</Form.Label>
                 <Form.Control
@@ -283,9 +281,8 @@ function AddClient(props) {
                   {errors.startDate}
                 </Form.Control.Feedback>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group> */}
+              </Form.Group> 
 
-              {/* End date
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>End Date *</Form.Label>
                 <Form.Control
@@ -302,7 +299,7 @@ function AddClient(props) {
                   {errors.endDate}
                 </Form.Control.Feedback>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group> */}
+              </Form.Group>
 
               {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Country *</Form.Label>
