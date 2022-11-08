@@ -85,10 +85,10 @@
     "typescript": "3.3.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "react-scripts --max_old_space_size=12288 start",  
+     "build": "react-scripts --max_old_space_size=12288 build",    
+     "test": "react-scripts test",  
+      "eject": "react-scripts eject"
   },
   "browserslist": [
     ">0.2%",
