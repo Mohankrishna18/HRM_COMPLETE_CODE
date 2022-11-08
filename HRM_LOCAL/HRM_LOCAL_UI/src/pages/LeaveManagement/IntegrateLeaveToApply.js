@@ -614,7 +614,7 @@ function IntegrateLeaveToApply() {
                     </Col>
                 </Row>
                 <Row md={4}>
-                    <Col style={{width:"280px"}} >
+                    <Col style={{width:"250px"}} >
                         <Card>
                             <Card border="warning">
                                 <Card.Body>
@@ -631,7 +631,7 @@ function IntegrateLeaveToApply() {
                             </Card>
                         </Card>
                     </Col>
-                    <Col style={{width:"280px"}}>
+                    <Col style={{width:"250px"}}>
                         <Card>
 
                             <Card border="warning">
@@ -652,7 +652,7 @@ function IntegrateLeaveToApply() {
 
 
 
-                    <Col style={{width:"280px"}}>
+                    <Col style={{width:"250px"}}>
                     <Card border="warning">
                         <Card.Body>
                             <h5>
@@ -666,7 +666,7 @@ function IntegrateLeaveToApply() {
                     </Card>
 </Col>
 
-<Col style={{width:"280px"}}>
+<Col style={{width:"250px"}}>
                         <Card>
                             <Card border="warning">
 
@@ -710,7 +710,7 @@ function IntegrateLeaveToApply() {
                             </Card>
                         </Card>
                     </Col>
-                    <Col style={{width:"280px"}}>
+                    <Col style={{width:"250px"}}>
                         <Card>
                             <Card border="warning">
 

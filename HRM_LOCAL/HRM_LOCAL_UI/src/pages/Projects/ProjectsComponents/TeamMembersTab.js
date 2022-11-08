@@ -32,7 +32,7 @@ console.log(params)
       editable: "never",
     },
     {
-      title: "Employee Name",
+      title: "Name",
       field: "employeeName",
       type: "text",
       editable: "never",

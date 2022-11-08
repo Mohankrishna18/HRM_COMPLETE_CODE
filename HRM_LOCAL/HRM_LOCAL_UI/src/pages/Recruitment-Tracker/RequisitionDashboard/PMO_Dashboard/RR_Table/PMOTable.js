@@ -27,7 +27,7 @@ useEffect(() => {
 
         {
 
-            title: "Job ID",
+            title: "AERF ID",
             field: "requisitionId",
         },
         {

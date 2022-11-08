@@ -15,7 +15,7 @@ function ApprovedLeaves() {
       console.log(res.data);
     };
     const [columns, setColumns] = useState([
-      { title: "EmployeeID", field: "employeeId" },
+      { title: "Employee ID", field: "employeeId" },
   
       { title: "Name", field: "firstName" },
   
