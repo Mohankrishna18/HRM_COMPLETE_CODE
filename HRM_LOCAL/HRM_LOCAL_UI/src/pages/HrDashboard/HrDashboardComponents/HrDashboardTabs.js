@@ -21,8 +21,6 @@ import { FaBusinessTime, FaHeadSideVirus, FaRegCalendarAlt, FaUsers } from "reac
 import { MdGroupAdd } from "react-icons/md";
 
 
-
-
 const HrDashboardTabs = () => {
 
     const [value, setValue] = React.useState('1');

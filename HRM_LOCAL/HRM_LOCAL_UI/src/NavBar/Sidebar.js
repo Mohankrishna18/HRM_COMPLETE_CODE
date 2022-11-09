@@ -170,7 +170,7 @@ const Sidebar = (props) => {
                     ))}
                   </ListGroup> */}
                 {/* </Accordion.Body></Accordion.Item> */}
-                {( usertype === pmohead || irm ||srm || hrmanager || ceo || employee || buhead || taa || taahead)?(
+                {( usertype === pmohead || irm || srm || hrmanager || ceo || employee || buhead || taa || taahead)?(
               <Accordion.Item eventKey="2" style={{ border: "none",backgroundColor:"white"}}>
                 <Accordion.Header>
                   <Col md={2} style={{fontSize:"140%"}} ><FcList /></Col>
@@ -235,7 +235,7 @@ const Sidebar = (props) => {
                   </ListGroup>
                 </Accordion.Body></Accordion.Item>
               ):(<></>)}
-              {( usertype === pmohead || irm || srm || hrmanager)?(
+              {( usertype === pmohead || irm || srm || hrmanager || taa || taahead)?(
               <Accordion.Item eventKey="4" style={{ border: "none",backgroundColor:"white"}}>
                 <Accordion.Header>
                   <Col md={2} style={{fontSize:"140%"}} ><FcMultipleSmartphones /></Col>

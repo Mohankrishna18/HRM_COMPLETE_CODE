@@ -11,9 +11,7 @@ const BandsMain = () => {
                 <Card.Header style={{backgroundColor:"white"}}>
                     <Card.Body>
                         <Card.Title> Bands </Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">
-                  Configuration / Bands
-                      </Card.Subtitle>
+                        
                         {/* <Container> */}
                             <Row>
                                 <Col xs={12}>

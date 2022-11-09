@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class EmployeeProfileService {
 
 	private String onboardingId;
 
-	public int Lossofpayservice(String employeeId) {
+	public long Lossofpayservice(String employeeId) {
 
 		EmployeeMaster e1 = new EmployeeMaster();
 		EmployeeMaster n = ee.getById(employeeId);
@@ -36,13 +38,15 @@ public class EmployeeProfileService {
 		// Date doj =e1.getDateOfJoining();
 
 		Date doj = new Date();
+		Date pcd = new Date();
 		doj = e1.getDateOfJoining();
+		pcd  = n.getConfirmationDate(); 		
 
 		Instant instant = n.getDateOfJoining().toInstant();
 		ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
 		LocalDate date = zdt.toLocalDate();
 
-		int companyProvidedLeave = 1;//
+		long companyProvidedLeave = 1;//
 		// int employeeLeaveTakenInThisMonth = 7;
 
 		// int leaveDifference = companyProvidedLeave-employeeLeaveTakenInThisMonth;
@@ -57,10 +61,40 @@ public class EmployeeProfileService {
 		Period age = Period.between(date, localDate);
 		int monthsBetween = age.getMonths() + 1;
 		System.out.println(monthsBetween);
-		if (monthsBetween <= 6) {
+		
+		if (monthsBetween <= 6 ) {
 			companyProvidedLeave = monthsBetween;// 5+1=6
-		} else {
-			companyProvidedLeave = monthsBetween + 2;
+		} 
+		else if(monthsBetween >=6 && pcd == null) {
+			
+			companyProvidedLeave = monthsBetween;
+		}
+		else {
+			
+			Instant instant1 = n.getConfirmationDate().toInstant();
+			ZonedDateTime zdt1 = instant.atZone(ZoneId.systemDefault());
+			LocalDate confirmedDate = zdt.toLocalDate();
+			
+			Instant instant2 = n.getDateOfJoining().toInstant();
+			ZonedDateTime zdt2 = instant.atZone(ZoneId.systemDefault());
+			LocalDate dateOfJoinig = zdt.toLocalDate();
+			
+			long mmonthsBetween = ChronoUnit.MONTHS.between(
+				     YearMonth.from(dateOfJoinig), 
+				     YearMonth.from(confirmedDate)
+				);
+			System.out.println(mmonthsBetween);
+			long mmonthsBetween1 = mmonthsBetween;
+				
+//			 LocalDate startDate = LocalDate.parse(n.getConfirmationDate());
+			 
+			 Period ctg =Period.between(confirmedDate, localDate);
+			 int monthsBetween1 = ctg.getMonths()+1;
+//			 System.out.println(monthsBetween1);
+			 System.out.println(monthsBetween1);
+			
+			companyProvidedLeave = mmonthsBetween+ monthsBetween1+2;
+			System.out.println(companyProvidedLeave);
 		}
 
 //      int a=monthsBetween+companyProvidedLeave;

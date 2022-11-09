@@ -9,7 +9,7 @@ import axios from "../../../Uri"; export default function HrApprovedLeaves() {
         setData(res.data);
         console.log(res.data);
     }; const [columns, setColumns] = useState([
-        { title: "Employee", field: "employeeId" },
+        { title: "Employee ID", field: "employeeId" },
         { title: "Leave Type", field: "leaveType" },
         { title: "From Date", field: "fromDate", type: "date", dateSetting: { locale: "en-GB" } },
         { title: "To Date", field: "toDate", type: "date", dateSetting: { locale: "en-GB" } },

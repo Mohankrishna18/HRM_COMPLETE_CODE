@@ -72,6 +72,18 @@ function LeadsMain() {
       field: "status",
     },
     {
+      title: "StartDate",
+      field: "startDate",
+      type: "date",
+      dateSetting: { locale: "en-GB" },
+    },
+    {
+      title: "EndDate",
+      field: "endDate",
+      type: "date",
+      dateSetting: { locale: "en-GB" },
+    },
+    {
       // changed the tilte name only, in backend its still taken as company name
       title: "Company Name",
       field: "companyName",
@@ -161,7 +173,7 @@ function LeadsMain() {
 
 
       {/* view modal */}
-      <Modal  show={viewShow} onHide={viewHandleClose} size="lg">
+      <Modal show={viewShow} onHide={viewHandleClose} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Lead Overall Details</Modal.Title>
         </Modal.Header>
@@ -173,8 +185,10 @@ function LeadsMain() {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button style ={{backgroundColor: "#B6B6B4",
-                    borderColor: "#B6B6B4",}} onClick={viewHandleClose}>
+          <Button style={{
+            backgroundColor: "#B6B6B4",
+            borderColor: "#B6B6B4",
+          }} onClick={viewHandleClose}>
             Close
           </Button>
           {/* <Button variant="primary" onClick={handleClose}>
@@ -222,9 +236,7 @@ function LeadsMain() {
           <Row>
             <Col>
               <Card.Title>Leads</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Dashboard / Leads{" "}
-              </Card.Subtitle>
+             
             </Col>
             <Col>
               <AddLeads func={pull_dataAdd} />
@@ -249,10 +261,10 @@ function LeadsMain() {
                 fontSize: "12px",
                 //height: "10px",
                 //fontWeight: 'bold'
-            },
-            rowStyle: {
+              },
+              rowStyle: {
                 fontSize: 14,
-            },
+              },
               addRowPosition: "first",
               actionsColumnIndex: -1,
               // grouping: true,

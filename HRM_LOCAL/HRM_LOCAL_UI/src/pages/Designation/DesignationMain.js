@@ -70,7 +70,7 @@ function DesignationMain() {
   const [columns, setColumns] = useState([
  
     {
-      title: "Business Unit Name",
+      title: "Business Unit",
       field: "departmentName",
       type: "text",
     },
@@ -138,9 +138,7 @@ function DesignationMain() {
           <Row>
             <Col>
               <Card.Title>Designations</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Dashboard / Designations{" "}
-              </Card.Subtitle>
+             
             </Col>
             <Col>
               <AddDesignation func={pull_dataAdd} />

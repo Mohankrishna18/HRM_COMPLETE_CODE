@@ -14,6 +14,7 @@ import com.arshaa.emp.model.EmploymentDetails;
 import com.arshaa.emp.model.Experience;
 import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.PersonalDetails;
+import com.arshaa.emp.model.ProbhitionFields;
 
 
 public interface MainService {
@@ -99,6 +100,7 @@ public interface MainService {
 	public ResponseEntity getDepartmentNameByEmployeeId(String employeeId);
 	//Divya changes
 	public String getEmployeeFullName(String employeedId);
+	public ResponseEntity updateProbhitionFields(String employeeId, ProbhitionFields newPrbh);
 
     
     

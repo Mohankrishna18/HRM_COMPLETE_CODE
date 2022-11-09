@@ -81,7 +81,7 @@ function ApprovalTable() {
 
   const [columns1, setColumns1] = useState([
     {
-      title: "Employee Id",
+      title: "Employee ID",
       field: "employeeId",
       type: "text",
       editable: "never",

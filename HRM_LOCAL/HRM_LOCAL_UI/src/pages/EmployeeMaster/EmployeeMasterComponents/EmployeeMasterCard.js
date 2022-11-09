@@ -293,7 +293,7 @@ function EmployeeMasterCard() {
                             <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Text style={{}}>
-                                        <h6>Official Mail: </h6>
+                                        <h6>Email: </h6>
                                     </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
