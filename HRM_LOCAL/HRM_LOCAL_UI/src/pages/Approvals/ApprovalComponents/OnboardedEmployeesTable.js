@@ -83,12 +83,17 @@ function OnboardedEmployeesTable() {
 
   const [columns, setColumns] = useState([
     {
-      title: "Requisition ID",
+      title: "AERF ID",
       field: "requisitionId",
       
     },
     {
-      title: "Full Name",
+      title: "OBD ID",
+      field: "onboardingId",
+      
+    },
+    {
+      title: "Name",
       field: "fullName",
       type: "text",
     },
@@ -108,7 +113,7 @@ function OnboardedEmployeesTable() {
     },
     
     {
-      title: "Contact Number",
+      title: "Contact ",
       field: "phoneNumber",
       type: "number",
     },
@@ -241,9 +246,7 @@ function OnboardedEmployeesTable() {
           <Row>
             <Col>
               <Card.Title>Onboardings</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Jobs / Shortlisted Candidates
-              </Card.Subtitle>
+              
             </Col>
             <Col>
               <AddOnboard func={pull_dataAdd} />

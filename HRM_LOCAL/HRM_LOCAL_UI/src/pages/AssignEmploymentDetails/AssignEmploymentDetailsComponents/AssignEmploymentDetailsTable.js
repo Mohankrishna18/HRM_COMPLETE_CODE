@@ -54,11 +54,11 @@ function AssignEmploymentDetailsTable(props) {
     };
 
     const [columns, setColumns] = useState([
-        { title: 'Employee_ID', field: 'employeeId' },
-        { title: 'FullName', field: 'firstName' },
+        { title: 'Employee ID', field: 'employeeId' },
+        { title: 'Name', field: 'firstName' },
         { title: 'Email', field: 'email' },
-        { title: 'PhoneNumber', field: 'primaryPhoneNumber' },
-        { title: 'Date of Joining', field: 'dateOfJoining', type: 'date', dateSetting: { locale: "en-GB" } },
+        { title: 'Contact', field: 'primaryPhoneNumber' },
+        { title: 'DOJ', field: 'dateOfJoining', type: 'date', dateSetting: { locale: "en-GB" } },
         { title: 'Job Title', field: 'jobTitle' },
         { title: 'Experience', field: 'yearsOfExperience' },
         // { title: 'Status', field: 'status' }

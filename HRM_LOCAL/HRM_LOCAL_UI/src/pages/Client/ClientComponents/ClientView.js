@@ -197,7 +197,6 @@ const ApprovalView = (props) => {
               </Col>
             </Row>
 
-             {/* startDate
              <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
               <Col>
                 <Card.Subtitle style={{ padding: 10 }}>
@@ -209,9 +208,8 @@ const ApprovalView = (props) => {
                   {props.viewOnboard.startDate}
                 </Card.Text>
               </Col>
-            </Row> */}
+            </Row> 
 
-             {/* EndDate
              <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
               <Col>
                 <Card.Subtitle style={{ padding: 10 }}>
@@ -223,7 +221,7 @@ const ApprovalView = (props) => {
                   {props.viewOnboard.endDate}
                 </Card.Text>
               </Col>
-            </Row> */}
+            </Row> 
 
             {/* status */}
             <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>

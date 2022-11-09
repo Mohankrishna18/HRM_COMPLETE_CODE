@@ -28,29 +28,28 @@ function PMOMain() {
         <Card.Header style={{ backgroundColor: "white" }}>
           <Card.Body style={{ backgroundColor: "white" }}>
             <Card.Title>Approvals</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              PMO Approval
-            </Card.Subtitle>
+           
             <Row>
               <Col xs={12}>
 
                 <TabContext value={value}>
                   <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{ justifyContent: "center" }}>
-                    <TabList onChange={handleChange} sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"58px",paddingRight:0,color:"black" }}
+                    <TabList onChange={handleChange} sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"30px",paddingRight:0,color:"black" }}
        // textColor="secondary"
         indicatorColor="#f5896e">
-                      <Tab label="Hiring" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="1" />
-                      <Tab label="Leave/WFH Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="2" />
-                      <Tab label="Timesheet Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="3" />
-                      <Tab label="Requisition Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="4" />
-                      <Tab label="Resignation Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="5" />
+                      <Tab label="Leave/WFH Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="1" />
+                      <Tab label="Timesheet Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="2" />
+                      <Tab label="Resignation Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="3" />
+                      <Tab label="Hiring" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="4" />
+                      <Tab label="Requisition Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="5" />
                     </TabList>
                   </Box>
-                  <TabPanel value="1"><PMOTabs /></TabPanel>
-                  <TabPanel value="2"><HrEmployeesLeavesWaitingForApproval /></TabPanel>
-                  <TabPanel value="3"><ApprovalsMain /></TabPanel>
-                  <TabPanel value="4"><PMORequisitionMain /></TabPanel>
-                  <TabPanel value="5"><PMOResignationMain /></TabPanel>
+                  <TabPanel value="1"><HrEmployeesLeavesWaitingForApproval /></TabPanel>
+                  <TabPanel value="2"><ApprovalsMain /></TabPanel>
+                  <TabPanel value="3"><PMOResignationMain /></TabPanel>
+                  <TabPanel value="4"><PMOTabs /></TabPanel>
+                  <TabPanel value="5"><PMORequisitionMain /></TabPanel>
+                  
                 </TabContext>
                 
               </Col>

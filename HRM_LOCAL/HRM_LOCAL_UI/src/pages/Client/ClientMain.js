@@ -80,22 +80,22 @@ function ClientMain() {
 
     {
       // changed the tilte name only, in backend its still taken as client name
-      title: "Phone#",
+      title: "Contact",
       field: "phoneNumber",
     },
 
-    // {
-    //   title: "Start Date",
-    //   field: "startDate",
-    //   type: "date",
-    //   dateSetting: { locale: "en-GB" },
-    // },
-    // {
-    //   title: "End Date",
-    //   field: "endDate",
-    //   type: "date",
-    //   dateSetting: { locale: "en-GB" },
-    // },
+    {
+      title: "Start Date",
+      field: "startDate",
+      type: "date",
+      dateSetting: { locale: "en-GB" },
+    },
+    {
+      title: "End Date",
+      field: "endDate",
+      type: "date",
+      dateSetting: { locale: "en-GB" },
+    },
 
     {
       title: "Status",
@@ -187,9 +187,7 @@ function ClientMain() {
           <Row>
             <Col>
               <Card.Title>Clients/Company</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Dashboard / Clients{" "}
-              </Card.Subtitle>
+              
             </Col>
             <Col>
               <AddClient func={pull_dataAdd} />

@@ -181,6 +181,7 @@ function AddUser(props) {
   };
   return (
     <div>
+      <div style={{paddingRight:"50px",paddingBottom:"50px"}}>
       <Button
 
         variant="warning"
@@ -211,6 +212,7 @@ function AddUser(props) {
         Add Task
 
       </Button>
+      </div>
       <Modal
         size="lg"
         show={show}
@@ -300,7 +302,7 @@ function AddUser(props) {
                 <Form.Label>User Story </Form.Label>
                 <Form.Select
                   required
-                  className="userStory"
+                  className="UserStory"
                   type="text"
                   placeholder="User Story"
                   // onChange={(event) => setclientName(event.target.value)}
@@ -309,7 +311,7 @@ function AddUser(props) {
                   onChange={(e) => setField("userStory", e.target.value)}
                   isInvalid={!!errors.userStory}
                 >
-                  <option>Select userStory</option>
+                  <option>Select UserStory</option>
 
                   {userStory.map((userSt) => (
                     <option value={userSt.storyTitle}>
@@ -322,7 +324,7 @@ function AddUser(props) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-              <Form.Group className="mb-12" as={Col} md="12">
+              <Form.Group className="mb-3" as={Col} md="12">
                 <Form.Label>Task Title *</Form.Label>
                 <Form.Control
                   required

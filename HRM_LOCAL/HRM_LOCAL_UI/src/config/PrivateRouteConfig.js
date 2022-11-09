@@ -117,6 +117,8 @@ import EditEmployeeDetailsTabs from "../pages/EditEmployeeDetails/EditEmployeeDe
 import EmployeeDashboard from '../pages/Recruitment-Tracker/RequisitionDashboard/EmployeeDashboard/EmployeeDashboard'
 import ReportsMain from "../pages/Reports/ReportsMain";
 import CandidatesMain from "../pages/Candidates/CandidatesMain";
+import Probhitation from "../pages/LeaveManagement/ProbhitionTable";
+
 
 
 
@@ -244,25 +246,25 @@ export default [
     // //title: "Projects",
     permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager],
   },
-  {
-    component:EmployeeDashboard,
-    path: "/ReportsMain",
-    type: "null",
-    icon: <FcNews />,
-    title: "Reports",
-    permission: [Roles.employee,
-      Roles.ceo,
-      Roles.it,
-      Roles.taa,
-      Roles.hrmanager,
-      Roles.manager,
-      Roles.recruitmentmanager,
-      Roles.irm,
-      Roles.srm,
-      Roles.pmohead,
-      Roles.taahead,
-      Roles.buhead,],
-  },
+  // {
+  //   component:EmployeeDashboard,
+  //   path: "/ReportsMain",
+  //   type: "null",
+  //   icon: <FcNews />,
+  //   title: "Reports",
+  //   permission: [Roles.employee,
+  //     Roles.ceo,
+  //     Roles.it,
+  //     Roles.taa,
+  //     Roles.hrmanager,
+  //     Roles.manager,
+  //     Roles.recruitmentmanager,
+  //     Roles.irm,
+  //     Roles.srm,
+  //     Roles.pmohead,
+  //     Roles.taahead,
+  //     Roles.buhead,],
+  // },
   {
     component: MyTask,
     path: "/MyTaskMain",
@@ -427,7 +429,7 @@ export default [
     type: "Employee",
     path: "/IntegrateLeaveToApply",
     icon: <FcLeave />,
-    title: "Leaves/WFH To Apply",
+    title: "Leaves/WFH Apply",
     permission: [
       Roles.employee,
       Roles.ceo,
@@ -541,28 +543,28 @@ export default [
     // permission: [Roles.hrmanager,Roles.irm,Roles.srm],
     permission: [Roles.irm, Roles.srm],
   },
-  {
-    component: LeaveHistoryMain,
-    type: "Employee",
-    path: "/LeaveHistory",
-    icon: <FcDatabase />,
-    title: "Leave History",
-    permission: [
-      Roles.employee,
-      Roles.hr,
-      Roles.ceo,
-      Roles.it,
-      Roles.taa,
-      Roles.hrmanager,
-      Roles.manager,
-      Roles.pmohead,
-      Roles.taahead,
-      Roles.buhead,
-      Roles.recruitmentmanager,
-      Roles.irm,
-      Roles.srm
-    ],
-  },
+  // {
+  //   component: LeaveHistoryMain,
+  //   type: "Employee",
+  //   path: "/LeaveHistory",
+  //   icon: <FcDatabase />,
+  //   title: "Leave History",
+  //   permission: [
+  //     Roles.employee,
+  //     Roles.hr,
+  //     Roles.ceo,
+  //     Roles.it,
+  //     Roles.taa,
+  //     Roles.hrmanager,
+  //     Roles.manager,
+  //     Roles.pmohead,
+  //     Roles.taahead,
+  //     Roles.buhead,
+  //     Roles.recruitmentmanager,
+  //     Roles.irm,
+  //     Roles.srm
+  //   ],
+  // },
   {
     component: EmployeeMasterForms,
     type: "null",
@@ -612,17 +614,11 @@ export default [
   },
   {
     component: BUHMain,
-
       type:"null",
-
       path: "/BUHead",
-
       icon: <FcManager />,
-
       title: "Approvals",
-
       permission: [Roles.buhead],
-
   },
   {
     component: HRConfirmationMain,
@@ -686,7 +682,7 @@ export default [
     type: "jobs",
     icon: <FcApproval />,
     title: "Requisition Dashboard",
-    permission: [Roles.pmohead]
+    permission: [Roles.pmohead,Roles.taa,Roles.taahead,Roles.srm]
   },
   
   {
@@ -704,14 +700,14 @@ export default [
     permission: [Roles.employee]
 
   },
-{
-    component: PMORequisitionMain,
-    path: "/PMORequisitionMain",
-    type: "jobs",
-    icon: <FcApproval />,
-    title: "Requisition Approvals",
-    permission: [Roles.pmohead],
-  },
+// {
+//     component: PMORequisitionMain,
+//     path: "/PMORequisitionMain",
+//     type: "jobs",
+//     icon: <FcApproval />,
+//     title: "Requisition Approvals",
+//     permission: [Roles.pmohead],
+//   },
 
   {
     component: BUHRequisitionMain,
@@ -747,9 +743,20 @@ export default [
   },
 
   {
+
     component: UpdateRR,
     path: "/updateRequisition/:id",
-    permission: [Roles.irm,Roles.manager],
+    permission: [Roles.irm,Roles.manager,Roles.taa,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager],
+
   },
+
+  {
+    component: Probhitation,
+    path: "/Probhitation",
+    type: "null",
+    icon: <FcApproval />,
+    title: "Probhition Confirmation",
+    permission: [Roles.hrmanager]
+  }
 
 ];

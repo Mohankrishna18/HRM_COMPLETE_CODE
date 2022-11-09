@@ -126,9 +126,9 @@ function OnboardedEmployeesTable() {
         <Row>
           <Col md={4}>
             <Card.Title>Users</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
+            {/* <Card.Subtitle className="mb-2 text-muted">
               User Management / Users{" "}
-            </Card.Subtitle>
+            </Card.Subtitle> */}
           </Col>
 
           <Col md={{ span: 4, offset: 4 }}><AddUser func={pull_dataAdd} /></Col>
