@@ -17,7 +17,7 @@ public interface RequisitionRequestInterface {
 	
 	public ResponseEntity deleteRRequest(long rrfId);
 	
-	public ResponseEntity updateRR(long rrfId, RequisitionRequestEntity RRUpdate);
+	public ResponseEntity updateRR(String requisitionId, RequisitionRequestEntity RRUpdate);
 	
 	public ResponseEntity updateWorkflowStatusByJobID(long rrfId);
 

@@ -21,7 +21,7 @@ const EmpTable = () => {
 
     const columns = [
         {
-            title: "Employee Id",
+            title: "Employee ID",
             field: "employeeId",
             type: "text",
             headerStyle: {
@@ -30,7 +30,7 @@ const EmpTable = () => {
             },
         },
         {
-            title: "Employee Name",
+            title: "Name",
             field: "employeeFirstName",
             type: "text",
             headerStyle: {

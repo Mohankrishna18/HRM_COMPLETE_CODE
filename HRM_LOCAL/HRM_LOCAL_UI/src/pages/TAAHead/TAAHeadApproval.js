@@ -69,8 +69,9 @@ function TAAHeadApproval() {
     console.log(res.data);
   };
   const [columns, setColumns] = useState([
-    { title: "AERF ID", field: "requisitionId" },
-    { title: "OBD ID", field: "onboardingId" },
+    { title: "AERF ID", field: "onboardingId" },
+
+    { title: "OBD Id", field: "onboardingId" },
     { title: "Name", field: "firstName" },
     { title: "Email", field: "email" },
     { title: "Contact", field: "phoneNumber" },

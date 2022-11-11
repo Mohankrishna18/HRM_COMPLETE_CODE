@@ -53,11 +53,11 @@ function AssignTeamMembers(props) {
     },
     {
       title: "Name",
-      field: "firstName",
+      field: "fullName",
       type: "text",
     },
     {
-      title: "Designation Name",
+      title: "Designation",
       field: "designationName",
     },
     {

@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 
 function EmploymentDetailsTab(props) {
 
-    const userData = sessionStorage.getItem("userdata");
-    const userData1 = JSON.parse(userData);
-    const employeeid = userData1.data.employeeId;
-    const empId = localStorage.getItem('item')
+    // const userData = sessionStorage.getItem("userdata");
+    // const userData1 = JSON.parse(userData);
+    // const employeeid = userData1.data.employeeId;
+    // const empId = localStorage.getItem('item')
 
 
     const [ferrors, setFErrors] = useState("");

@@ -22,9 +22,13 @@ function EducationalDetailsTab() {
     const params=useParams();
     console.log(params.id);
 
-  const userData = sessionStorage.getItem("userdata");
-  const userData1 = JSON.parse(userData);
-  const onboardingId = userData1.data.onboardingId;
+    const userData = sessionStorage.getItem("userdata");
+    const userData1 = JSON.parse(userData);
+    const employeeid = userData1.data.employeeId;
+
+  // const userData = sessionStorage.getItem("userdata");
+  // const userData1 = JSON.parse(userData);
+  // const onboardingId = userData1.data.onboardingId;
 
   const [ferrors, setFErrors] = useState("");
   const [serror, setSerror] = useState("");
@@ -187,7 +191,7 @@ function EducationalDetailsTab() {
 
   useEffect(() => {
     axios
-      .get(`/emp/getEmployeeDataByOnboardingId/${params.id}`)
+      .get(`/emp/getEducationDetails/${employeeid}`)
       .then((response) => {
         setTypeOfPostGraduation(response.data.data.postgraduationType),
           setPostgraduationBoardOfUniversity(
@@ -278,7 +282,7 @@ function EducationalDetailsTab() {
       fourtyseven === ""
     ) {
       await axios.put(
-        `/emp/updateEducationalDetailsInPreOnboarding/${params.id}`,
+        `/emp/updateEducationalDetails/${employeeid}`,
         {
           postgraduationType,
           postgraduationBoardOfUniversity,
@@ -314,8 +318,8 @@ function EducationalDetailsTab() {
           sscQualification,
         }
       );
-      toast.success("Form Submitted Successfully");
-      const url = `/api/post/image/${params.id}/EducationalDetails?image`;
+      toast.success("Educational Details Submitted Successfully");
+      const url = `/api/post/image/${employeeid}/EducationalDetails?image`;
       const formData = new FormData();
       formData.append("image", file);
       const config = {
@@ -351,7 +355,7 @@ function EducationalDetailsTab() {
   const loadData = () => {
     axios
       .get(
-        `${BASE_URL}/api/get/imageByTitle/EducationalDetails/${params.id}`
+        `${BASE_URL}/api/get/imageByTitle/EducationalDetails/${employeeid}`
       )
       .then((response) => {
         setDocuments(response);
@@ -368,7 +372,7 @@ function EducationalDetailsTab() {
     // window.open(`api/get/image/${imageName}/${onboardingId}`)
 
     axios
-      .get(`api/get/imageByTitle/EducationalDetails/${params.id}`, {
+      .get(`api/get/imageByTitle/EducationalDetails/${employeeid}`, {
         contentType: "application/pdf",
       })
       .then((res) => {
@@ -392,12 +396,12 @@ function EducationalDetailsTab() {
           backgroundColor: "#FAFDD0",
         }}
       >
-        <Card.Title style={{ margin: 7, textAlign: "center" }}>
+        <Card.Title style={{ margin: 7, textAlign: "center",color:"black" }}>
           Postgraduation Details
         </Card.Title>
       </Card>
 
-      <Form onSubmit={(e) => changeHandler(e)} style={{ padding: 10 }}>
+      <Form onSubmit={(e) => changeHandler(e)} style={{ padding: 10,color:"black"  }}>
         <Row className="mb-5">
 
         <Accordion>
@@ -1240,17 +1244,17 @@ function EducationalDetailsTab() {
                 <Form.Control type="file" onChange={handleChange} />
               </Form.Group>
             </Form.Group>
-            {documents.statusText === "OK" ? (
-              <Col>
+            {/* {documents.statusText === "OK" ? ( */}
+              {/* <Col> */}
                 <a
-                  href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${onboardingId}`}
+                  href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${employeeid}`}
                 >
                   Educational Documents
                 </a>
-              </Col>
+              {/* </Col>
             ) : (
               <></>
-            )}
+            )} */}
           </Row>
           <Row>
             <Row>

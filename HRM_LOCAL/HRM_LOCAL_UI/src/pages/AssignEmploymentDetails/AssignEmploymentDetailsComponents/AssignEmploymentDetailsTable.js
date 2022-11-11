@@ -84,12 +84,13 @@ function AssignEmploymentDetailsTable(props) {
  
             <Modal show={show} onHide={handleClose} size="xl">
                 <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
-                    <Modal.Title>Onboarding Form</Modal.Title>
+                    <Modal.Title>Employment Details</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                   <EmploymentDetailsTabbyPmo
                   viewOnboard={onboardID}
-                  viewHandleClose={viewHandleClose}
+                  viewHandleClose={handleClose}
+                  func={pull_data}
                   />
                 </Modal.Body>
 
