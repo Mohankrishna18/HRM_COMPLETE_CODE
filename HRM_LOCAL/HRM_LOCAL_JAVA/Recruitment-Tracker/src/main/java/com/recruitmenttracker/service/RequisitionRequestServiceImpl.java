@@ -127,11 +127,12 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 		}
 	}
 
-	@Override
-	public ResponseEntity updateRR(long rrfId, RequisitionRequestEntity rrUpdate) {
-		RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
-		try {
-			RequisitionRequestEntity rrEntity = rrRepository.getById(rrfId);
+    @Override
+    public ResponseEntity updateRR(String requisitionId, RequisitionRequestEntity rrUpdate) {
+        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+        try {
+
+            RequisitionRequestEntity rrEntity = rrRepository.findByRequisitionId(requisitionId);
 			rrEntity.setJobTitle(rrUpdate.getJobTitle());
 			rrEntity.setDescription(rrUpdate.getDescription());
 			rrEntity.setRrfCat(rrUpdate.getRrfCat());
@@ -322,8 +323,7 @@ hrApp.forEach(e->{
         RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
         try {
             EmployeeReq re = new EmployeeReq();
-            RequisitionRequestEntity rfs = rrRepository.getByRequisitionId(requisitionId);
-
+            RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
             re.setClientName(rfs.getClientName());
             re.setJobTitle(rfs.getJobTitle());
             re.setRaisedBy(rfs.getRaisedBy());
@@ -344,7 +344,7 @@ hrApp.forEach(e->{
 		 RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();  
 	        try {
 	        	EmployeeReq re = new EmployeeReq();
-	            RequisitionRequestEntity rfs = rrRepository.getByRequisitionId(requisitionId);
+	            RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
 	            
 	            re.setClientName(rfs.getClientName());
 	            re.setRaisedBy(rfs.getRaisedBy());
