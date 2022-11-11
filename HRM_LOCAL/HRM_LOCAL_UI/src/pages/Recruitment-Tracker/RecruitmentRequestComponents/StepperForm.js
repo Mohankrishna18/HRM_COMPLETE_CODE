@@ -385,6 +385,7 @@ const StepperForm = (props) => {
                     }
                     console.log("form submitted");
                     // notify();
+                    history.push("/app/rrf");
                 })
                 .catch((err) => {
                     //toast.error("Given details already exist please give Unique values")
