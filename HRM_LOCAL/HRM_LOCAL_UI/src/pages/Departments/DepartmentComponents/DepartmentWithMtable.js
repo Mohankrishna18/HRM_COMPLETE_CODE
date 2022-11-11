@@ -23,7 +23,7 @@ export default function Editable() {
     const [columns, setColumns] = useState([
         // { title: 'ID', field: 'departmentId', editable: false },
         // {title:"ID",field:"id"},
-        { title: 'Department Name', field: 'departmentName' },
+        { title: 'Department', field: 'departmentName' },
 
         //   {
         //     title: 'Birth Place',

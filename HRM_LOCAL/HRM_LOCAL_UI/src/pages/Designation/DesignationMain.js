@@ -70,13 +70,13 @@ function DesignationMain() {
   const [columns, setColumns] = useState([
  
     {
-      title: "Business Unit Name",
+      title: "Business Unit",
       field: "departmentName",
       type: "text",
     },
 
     {
-      title: "Designation Name",
+      title: "Designation",
       field: "designationName",
     }
   ]);

@@ -11,7 +11,6 @@ import LeadsView from "../../../Leads/LeadsComponents/LeadsView";
 
 
 
-
 function LeadTable(props) {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);

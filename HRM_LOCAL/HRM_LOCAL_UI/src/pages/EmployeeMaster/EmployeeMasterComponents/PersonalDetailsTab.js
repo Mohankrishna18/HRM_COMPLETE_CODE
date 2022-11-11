@@ -157,7 +157,7 @@ function PersonalDetailsTab() {
         bloodGroup,
         gender,
         maritalStatus,
-        status,
+       
       }
     );
 
@@ -182,6 +182,8 @@ function PersonalDetailsTab() {
         toast.error("Please Enter Valid Details");
       });
   };
+console.log(primarySkills)
+console.log(secondarySkills)
 
   const [file, setFile] = useState("");
   const handleChange = (event) => {
