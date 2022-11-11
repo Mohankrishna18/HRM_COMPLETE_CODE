@@ -4,7 +4,7 @@ import AditionalDetailsTab from './AdditionalDetailsTab';
 import AddressTab from './AddressTab';
 import EducationalDetailsTab from './EducationalDetailsTab';
 import EmployeeMasterCard from './EmployeeMasterCard';
-import EmploymentDetailsTab from './EmploymentDetailsTab';
+// import EmploymentDetailsTab from './EmploymentDetailsTab';
 import ExperienceTab from './ExperienceTab';
 import PersonalDetailsTab from './PersonalDetailsTab';
 import ProjectsTab from './ProjectsTab';
@@ -27,26 +27,22 @@ function EmployeeMasterTabs() {
                         style={{ justifyContent: "center", color: "white" , backgroundColor:"white",opacity:0.95, fontSize:"18px" ,padding:0,}}
                     >
                         <Tab eventKey="Personal Details" title="Personal Details" color='white' style={{ backgroundColor: "white" ,height:30}}>
-                            <PersonalDetailsTab />
+                            <PersonalDetailsTab/>
                         </Tab>
                         <Tab eventKey="Address" title="Address" style={{ backgroundColor: "white" }}>
-                            <AddressTab />
+                            <AddressTab/>
                         </Tab>
                         <Tab eventKey="Additional Details" title="Additional Details" style={{ backgroundColor: "white" }}>
-                            <AditionalDetailsTab />
+                            <AditionalDetailsTab/>
                         </Tab>
-                        <Tab eventKey="Employment Details" title="Employment Details" style={{ backgroundColor: "white" }}>
-                            <EmploymentDetailsTab />
-                        </Tab>
+                      
                         <Tab eventKey="Educational Details" title="Educational Details" style={{ backgroundColor: "white" }}>
-                            <EducationalDetailsTab />
+                            <EducationalDetailsTab/>
                         </Tab>
                         <Tab eventKey="Experience" title="Experience " style={{ backgroundColor: "white" }}>
-                            <ExperienceTab />
+                            <ExperienceTab/>
                         </Tab>
-                        <Tab eventKey="Project" title="Project" style={{ backgroundColor: "white" }}>
-                             <ProjectsTab/>
-                        </Tab>
+                     
                     </Tabs> 
   
 

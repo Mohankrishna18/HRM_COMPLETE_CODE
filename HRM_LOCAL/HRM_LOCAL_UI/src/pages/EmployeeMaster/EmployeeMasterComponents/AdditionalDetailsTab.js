@@ -10,14 +10,18 @@ import { useParams } from "react-router-dom";
 
 function AditionalDetailsTab() {
 
+  const userData = sessionStorage.getItem("userdata");
+  const userData1 = JSON.parse(userData);
+  const employeeid = userData1.data.employeeId;
+
     const params=useParams();
     console.log(params.id);
 
   console.log(Url.baseURL);
-  const userData = sessionStorage.getItem("userdata");
-  const userData1 = JSON.parse(userData);
-  const onboardingId = userData1.data.onboardingId;
-  console.log(onboardingId)
+  // const userData = sessionStorage.getItem("userdata");
+  // const userData1 = JSON.parse(userData);
+  // const onboardingId = userData1.data.onboardingId;
+  // console.log(onboardingId)
 
   const [eighteenerror, setEighteenerror] = useState("");
   const [nineteenerror, setNineteenerror] = useState("");
@@ -49,9 +53,10 @@ function AditionalDetailsTab() {
   const [file, setFile] = useState("");
   const [imageName, setImageName] = useState("");
 
+
   useEffect(() => {
     axios
-      .get(`/emp/getEmployeeDataByOnboardingId/${params.id}`)
+      .get(`/emp/getAdditionalDetails/${employeeid}`)
       .then((response) => {
         setPanNumber(response.data.data.panNumber);
         setAadharNumber(response.data.data.aadharNumber);
@@ -63,13 +68,14 @@ function AditionalDetailsTab() {
         setBand(response.data.data.band);
         setPassportExpiryDate(response.data.data.passportExpiryDate);
         setPassportNo(response.data.data.passportNo);
+       
       });
   }, []);
 
   const [documents, setDocuments] = useState("");
   const loadData = () => {
     axios
-      .get(`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${params.id}`)
+      .get(`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${employeeid}`)
       .then((response) => {
         setDocuments(response);
         console.log(response);
@@ -86,7 +92,7 @@ function AditionalDetailsTab() {
   const changeHandler = async (e) => {
     e.preventDefault();
     await axios.put(
-      `/emp/updateAdditionalDetailsInPreOnboarding/${params.id}`,
+      `/emp/updateAdditionalDetails/${employeeid}`,
       {
         passportExpiryDate,
         passportNo,
@@ -102,8 +108,8 @@ function AditionalDetailsTab() {
         passportExpiryDate,
       }
     );
-    toast.success("Form Submitted Successfully");
-    const url = `/api/post/image/${params.id}/AdditionalDetails?image`;
+    toast.success("Additional Details Submitted Successfully");
+    const url = `/api/post/image/${employeeid}/AdditionalDetails?image`;
     const formData = new FormData();
     formData.append("image", file);
     const config = {
@@ -133,7 +139,7 @@ function AditionalDetailsTab() {
   const viewUploadFile = () => {
     // window.open(`api/get/image/${imageName}/${onboardingId}`)
     axios
-      .get(`/api/get/imageByTitle/AdditionalDetails/${params.id}`, {
+      .get(`/api/get/imageByTitle/AdditionalDetails/${employeeid}`, {
         contentType: "application/pdf",
       })
       .then((res) => {
@@ -169,7 +175,7 @@ function AditionalDetailsTab() {
         </Card.Title>
       </Card> */}
 
-      <Form onSubmit={(e) => changeHandler(e)} style={{ padding: 10 }}>
+      <Form onSubmit={(e) => changeHandler(e)} style={{ padding: 10,color:"black"  }}>
         <Row className="mb-5">
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Passport Number</Form.Label>
@@ -310,12 +316,12 @@ function AditionalDetailsTab() {
               isInvalid={twentyoneerror}
               onChange={(event) => {
                 setAccountNumber(event.target.value);
-                if (event.target.value.length > 16 || event.target.value.length < 16) {
-                  setTwentyoneerror(" Bank account should be 16 characters");
-                }
-                else {
-                  setTwentyoneerror("");
-                }
+                // if (event.target.value.length > 16 || event.target.value.length < 16) {
+                //   setTwentyoneerror(" Bank account should be 16 characters");
+                // }
+                // else {
+                //   setTwentyoneerror("");
+                // }
               
               }}
             ></Form.Control>
@@ -381,7 +387,7 @@ function AditionalDetailsTab() {
                 <Form.Label>
                   <p class="fw-bold">
                     Please Upload Your Documents (Aadhar Card, Pan Card, Bank
-                    Document in PDF format only)
+                    Documents in one PDF only)
                   </p>
                 </Form.Label>
                 <Form.Control type="file" onChange={handleChange} />
@@ -392,14 +398,13 @@ function AditionalDetailsTab() {
           <Button onClick={viewUploadFile}>Download File</Button> */}
 
 
-            {documents.statusText === "OK" ? (<Col>
-              <a href={`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${onboardingId}`}>
+            {/* {documents.statusText === "OK" ? (<Col> */}
+              <a href={`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${employeeid}`}>
                 Additional Documents
 
               </a>
-            </Col>) : (<></>)
+            {/* </Col>) : (<></>) */}
 
-            }
 
           </Row>
           <Row>

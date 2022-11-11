@@ -29,11 +29,11 @@ function PMOTabs() {
 
                 <TabContext value={value}>
                   <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{ justifyContent: "center" }}>
-                    <TabList onChange={handleChange} sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"58px",paddingRight:0,color:"black" }}
+                    <TabList onChange={handleChange} sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"30px",paddingRight:0,color:"white" }}
        // textColor="secondary"
         indicatorColor="#f5896e">
-                      <Tab label="OFFER Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="1" />
-                      <Tab label="ONBOARDING APPROVALS" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="2" />
+                      <Tab label="OFFER Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="1" />
+                      <Tab label="ONBOARDING APPROVALS" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="2" />
                       
                     </TabList>
                   </Box>

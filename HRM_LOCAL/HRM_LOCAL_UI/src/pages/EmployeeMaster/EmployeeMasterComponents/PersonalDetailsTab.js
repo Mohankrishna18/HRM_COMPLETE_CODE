@@ -5,20 +5,24 @@ import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 
 function PersonalDetailsTab() {
+  // const userData = sessionStorage.getItem("userdata");
+  // const userData1 = JSON.parse(userData);
+  // const onboardingId = userData1.data.onboardingId;
+
   const userData = sessionStorage.getItem("userdata");
-  const userData1 = JSON.parse(userData);
-  const onboardingId = userData1.data.onboardingId;
+    const userData1 = JSON.parse(userData);
+    const employeeid = userData1.data.employeeId;
 
   const params=useParams();
     console.log(params.id);
 
   const payload = {
-    onboardingId,
+    employeeId,
     firstName,
     lastName,
     middleName,
     dateOfBirth,
-    phoneNumber,
+    primaryPhoneNumber,
     secondaryPhoneNumber,
     email,
     primarySkills,
@@ -60,7 +64,7 @@ function PersonalDetailsTab() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [middleName, setMiddleName] = useState(" ");
-  const [phoneNumber, setPhoneNumber] = useState(" ");
+  const [primaryPhoneNumber, setPhoneNumber] = useState(" ");
   const [secondaryPhoneNumber, setSecondaryPhone] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [employeeId, setEmployeeId] = useState("");
@@ -113,7 +117,7 @@ function PersonalDetailsTab() {
 
   useEffect(() => {
     axios
-      .get(`/emp/getEmployeeDataByOnboardingId/${params.id}`)
+      .get(`/emp/getPersonalDetails/${employeeid}`)
       .then((response) => {
         setOnboardingId(response.data.data.onboardingId1);
         setFirstName(response.data.data.firstName);
@@ -123,7 +127,7 @@ function PersonalDetailsTab() {
         setFirstName(response.data.data.firstName);
         setMiddleName(response.data.data.middleName);
         setLastName(response.data.data.lastName);
-        setPhoneNumber(response.data.data.phoneNumber);
+        setPhoneNumber(response.data.data.primaryPhoneNumber);
         setSecondaryPhone(response.data.data.secondaryPhoneNumber);
         setEmail(response.data.data.email);
         setDateOfBirth(response.data.data.dateOfBirth);
@@ -138,14 +142,14 @@ function PersonalDetailsTab() {
   const changeHandler = async (e) => {
     e.preventDefault();
     await axios.put(
-      `/emp/updatePersonalDetailsInPreOnboarding/${params.id}`,
+      `/emp/updatePersonalDetails/${employeeid}`,
       {
-        onboardingId,
+        
         firstName,
         lastName,
         middleName,
         dateOfBirth,
-        phoneNumber,
+        primaryPhoneNumber,
         secondaryPhoneNumber,
         email,
         primarySkills,
@@ -157,7 +161,7 @@ function PersonalDetailsTab() {
       }
     );
 
-    const url = `/emp/upload/${params.id}/`;
+    const url = `/emp/upload/${employeeid}/`;
     const formData = new FormData();
     formData.append("file", file);
     formData.append("fileName", file.name);
@@ -171,7 +175,7 @@ function PersonalDetailsTab() {
       .post(url, formData, config)
       .then((response) => {
         console.log(response.data);
-        toast.success("Form Submitted Successfully");
+        toast.success("Personal Details Submitted Successfully");
       })
       .catch((error) => {
         console.log("oops not uploaded!");
@@ -191,7 +195,7 @@ function PersonalDetailsTab() {
   const [imge, setImge] = useState([]);
   useEffect(() => {
     axios
-      .get(`/emp/files/${params.id}`)
+      .get(`/emp/files/${employeeid}`)
       .then((response) => {
         console.log(response.data);
         setImge(response.data);
@@ -233,13 +237,14 @@ function PersonalDetailsTab() {
                 </Card.Title>
             </Card> */}
 
-      <Form onSubmit={(e) => changeHandler(e)} style={{ padding: 10 }}>
-        <Row className="mb-5">
+      <Form onSubmit={(e) => changeHandler(e)} style={{ padding: 10,color:"black" }}>
+        <Row className="mb-5" style={{}}>
           <Form.Group
             as={Col}
             className="mb-3"
             md="6"
             controlId="formBasicEmail"
+
           >
             <Form.Label>First Name *</Form.Label>
             <Form.Control
@@ -249,7 +254,7 @@ function PersonalDetailsTab() {
               maxLength={50}
               onChange={(e) => {
                 setFirstName(e.target.value);
-                if (!e.target.value.match(/^[a-zA-Z]+$/)) {
+                if (!e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)) {
                   setFErrors("Invalid First Name");
                 } else {
                   setFErrors("");
@@ -275,7 +280,7 @@ function PersonalDetailsTab() {
               value={middleName}
               onChange={(e) => {
                 setMiddleName(e.target.value);
-                if (!e.target.value.match(/^[a-zA-Z]+$/)) {
+                if (!e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)) {
                   setTenerror("Invalid Middle Name");
                 } else {
                   setTenerror("");
@@ -305,7 +310,7 @@ function PersonalDetailsTab() {
                   setFErrors("");
                 }
                 setLastName(e.target.value);
-                if (!e.target.value.match(/^[a-zA-Z]+$/)) {
+                if (!e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)) {
                   setSerror("Invalid Last Name");
                 } else {
                   setSerror("");
@@ -330,7 +335,7 @@ function PersonalDetailsTab() {
                 name="primaryPhoneNumber"
                 placeholder="Phone Number"
                 maxLength={10}
-                value={phoneNumber}
+                value={primaryPhoneNumber}
                 onChange={(e) => {
                   setPhoneNumber(e.target.value);
                   if (
@@ -597,7 +602,7 @@ function PersonalDetailsTab() {
               Upload Profile Picture * (Size should be less than 1 MB)
             </Form.Label>
             <Form.Control
-              required
+              // required
               value={imge.name}
               type="file"
               // isInvalid={fourtysix}

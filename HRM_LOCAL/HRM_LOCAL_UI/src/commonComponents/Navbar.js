@@ -87,9 +87,9 @@ const NavBar = (props) => {
             <Col style={{
               paddingRight: "10px",color:"white"
             }}>
-              {getEmployeeDetails.firstName}
-              <br />
-              {getEmployeeDetails.lastName}
+              {getEmployeeDetails.fullName}
+              {/* <br /> */}
+              {/* {getEmployeeDetails.lastName} */}
             </Col>
             <br />
             <Col xs={2} md={{ span: 1, offset: 0 }}>

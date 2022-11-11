@@ -59,11 +59,11 @@ console.log(employeeId);
     
     if (!jobTitle || jobTitle === "")
       newErrors.jobTitle = "Please Enter type of Job Title";
-    if (!client || client === "") newErrors.client = "Please Select Client";
-    if (!projectName || projectName === "")
-      newErrors.projectName = "Please Select ProjectName";
-      if (!band || band === "")
-      newErrors.band = "Please Select Band";
+    // if (!client || client === "") newErrors.client = "Please Select Client";
+    // if (!projectName || projectName === "")
+    //   newErrors.projectName = "Please Select ProjectName";
+    //   if (!band || band === "")
+      // newErrors.band = "Please Select Band";
       if (!irm || irm === "") newErrors.irm = "Please Select irm";
       if (!srm || srm === "") newErrors.srm = "Please Select srm";
       if (!buh || buh === "") newErrors.buh = "Please Select buh";
@@ -83,23 +83,26 @@ console.log(employeeId);
     // e.target.reset();
     const formErrors = validateForm();
     console.log(Object.keys(formErrors).length);
-    if (Object.keys(formErrors).length > 0) {
+    if (Object.keys(formErrors).length > 2) {
       setErrors(formErrors);
       console.log("Form validation error");
     } else {
       axios    
         .put(`/emp/updateEmploymentDetailsInPMO/${employeeId}`, form1)
         .then((response) => {
-        //   const user = response.data;
-        //   if (user.status) {
-        //     props.func();
-        //   } else { 
-        //     console.log("Props Not Send");
-        //   }
+          
+          const user = response.data;
+          console.log(user)
+          if (user.status) {
+            props.func();
+          } else { 
+            props.func();
+            console.log("Props Not Send");
+          }
           toast.success("Employment Details Added Successfully");
         //   console.log(user);
-          setTimeout(5000);
-          handleClose();
+          //setTimeout(5000);
+          props.viewHandleClose();
         })
         // .catch((err) => {
         //   toast.error("Somethong Went Wrong");
@@ -146,6 +149,15 @@ console.log(employeeId);
     });
   }, []);
 
+  const [empType, setEmpType] = useState([]);
+  useEffect(() => {
+    axios.get("/employmentType/getAllEmployments").then((response) => {
+      console.log(response.data);
+      setEmpType(response.data.data);
+    });
+  }, []);
+  console.log(empType)
+
   const [client, setClient] = useState([]);
   useEffect(() => {
     axios.get("/clientProjectMapping/getAllClients").then((response) => {
@@ -162,7 +174,7 @@ console.log(employeeId);
     });
   }, []);
 
-  const [users, setUsers] = useState({});
+  const [users, setUsers] = useState([]);
   useEffect(() => {
     const loadUsers = async () => {
       const response = await axios.get("/emp/getAllEmployeeMasterData");
@@ -202,6 +214,14 @@ console.log(employeeId);
 
 <div>
     {/* <h5>Employment Details</h5> */}
+    <Row>
+        <Col>          
+        <h5>Name : {props.viewOnboard.fullName}</h5>
+        </Col>
+        <Col>
+        <h5>Employee ID: {employeeId}</h5>
+        </Col>
+    </Row>
      <Form
         ref={forms}
         className="formone"
@@ -214,6 +234,7 @@ console.log(employeeId);
     >
         <Row className="mb-4">
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+               
                 <Form.Label>Type Of Employment *</Form.Label>
                 <Form.Select
                     required
@@ -224,10 +245,10 @@ console.log(employeeId);
                     onChange={(e) => setField("employmentType", e.target.value)}
                     isInvalid={!!errors.employmentType}
                 >
-                    <option>Select</option>
-                    <option value="Intern">Intern</option>
-                    <option value="Contract">Contract</option>
-                    <option value="FTE">FTE</option>
+                     <option value="">Select </option>
+                    {client.map((empType) => (
+                        <option value={empType.employmentTypeName}>{empType.employmentTypeName}</option>
+                    ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                     {errors.employmentType}
@@ -334,41 +355,40 @@ console.log(employeeId);
                 </Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Select Client *</Form.Label>
+                <Form.Label>Select Client </Form.Label>
                 <Form.Select
-                    required
+                    // required
                     type="text"
                     placeholder="client"
                     controlId="client"
                     value={form.client}
                     onChange={(e) => setField("client", e.target.value)}
-                    isInvalid={!!errors.client}
-                >
-                    <option>Select </option>
+                    // isInvalid={!!errors.client}
+                > 
+                    <option value="">Select </option>
                     {client.map((clients) => (
                         <option value={clients.clientName}>{clients.clientName}</option>
                     ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
-                    {errors.client}
+                    {/* {errors.client} */}
                 </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Select Project *</Form.Label>
+                <Form.Label>Select Project </Form.Label>
                 <Form.Select
-                    required
+                    // required
                     type="text"
                     placeholder="projectName"
                     controlId="projectName"
                     value={form.projectName}
-                    isInvalid={!!errors.projectName}
+                    // isInvalid={!!errors.projectName}
 
                     onChange={(e) => setField("projectName", e.target.value)}
                 >
                     <option>Select</option>
-                    <option value="HRM">HRM</option>
-                    <option value="MDM">MDM</option>
+
                     {project.map((projects) => (
                         <option value={projects.projectName}>
                             {projects.projectName}
@@ -376,13 +396,13 @@ console.log(employeeId);
                     ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
-                    {errors.projectName}
+                    {/* {errors.projectName} */}
                 </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Select IRM*</Form.Label>
-                <AutoCompleteComponent
+                {/* <AutoCompleteComponent
                     outlined
                     dataSource={users}
                     placeholder="select IRM"
@@ -392,12 +412,28 @@ console.log(employeeId);
 
                     onChange={(e) => setField("irm", e.target.itemData.fullName)}
                 // query={dataQuery}
-                ></AutoCompleteComponent>
+                ></AutoCompleteComponent> */}
+                 <Form.Select
+                    required
+                    type="text"
+                    placeholder="select IRM"
+                    controlId="irm"
+                    value={form.irm}
+                    isInvalid={!!errors.irm}
+                    onChange={(e) => setField("irm", e.target.value)}
+                >
+                    <option value="">Select</option>
+                    {users.map((user) => (
+                        <option value={user.employeeId}>
+                            {user.fullName}
+                        </option>
+                    ))}
+                </Form.Select>
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Select SRM*</Form.Label>
-                <AutoCompleteComponent
+                {/* <AutoCompleteComponent
                     outlined
                     dataSource={users}
                     placeholder="select SRM"
@@ -407,12 +443,28 @@ console.log(employeeId);
 
                     onChange={(e) => setField("srm", e.target.itemData.fullName)}
                 // query={dataQuery}
-                ></AutoCompleteComponent>
+                ></AutoCompleteComponent> */}
+                <Form.Select
+                    required
+                    type="text"
+                    placeholder="select srm"
+                    controlId="srm"
+                    value={form.srm}
+                    isInvalid={!!errors.srm}
+                    onChange={(e) => setField("srm", e.target.value)}
+                >
+                    <option value="">Select</option>
+                    {users.map((user) => (
+                        <option value={user.employeeId}>
+                            {user.fullName}
+                        </option>
+                    ))}
+                </Form.Select>
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Select BUH*</Form.Label>
-                <AutoCompleteComponent
+                {/* <AutoCompleteComponent
                     outlined
                     dataSource={users}
                     placeholder="select BUH"
@@ -422,7 +474,23 @@ console.log(employeeId);
 
                     onChange={(e) => setField("buh", e.target.itemData.fullName)}
                 // query={dataQuery}
-                ></AutoCompleteComponent>
+                ></AutoCompleteComponent> */}
+                <Form.Select
+                    required
+                    type="text"
+                    placeholder="select BUH"
+                    controlId="buh"
+                    value={form.buh}
+                    isInvalid={!!errors.buh}
+                    onChange={(e) => setField("buh", e.target.value)}
+                >
+                    <option value="">Select</option>
+                    {users.map((user) => (
+                        <option value={user.employeeId}>
+                            {user.fullName}
+                        </option>
+                    ))}
+                </Form.Select>
 
             </Form.Group>
            

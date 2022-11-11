@@ -6,6 +6,7 @@ import { Form } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,90 +18,39 @@ const ClientUpdatedForm = (props) => {
   const [email, setEmail] = useState(props.updateOnboard.email);
   const [phoneNumber, setPhoneNumber] = useState(props.updateOnboard.phoneNumber);
   const [pocName, setPocName] = useState(props.updateOnboard.pocName);
-  const [startDate, setstartDate] = useState(props.updateOnboard.startDate);
+  const [startDate, setstartDate] = useState(moment(props.updateOnboard.startDate).format('YYYY-MM-DD'));
+  const strtdt = moment(props.updateOnboard.startDate).format("DD-MM-YYYY");
+  // <Moment format="DD/MM/YYYY">
+  //                     {data.dateOfJoining}
+  //                   </Moment>
+ 
+
   const [endDate, setEndDate] = useState(props.updateOnboard.endDate);
+  const enddt = moment(props.updateOnboard.endDate).format('YYYY-MM-DD')
+  // const [companyName, setcompanyName] = useState(props.updateOnboard.companyName);
   const [status, setStatus] = useState(props.updateOnboard.status);
   const [country, setCountry] = useState(props.updateOnboard.country);
   const [address, setAddress] = useState(props.updateOnboard.address);
-  const [tag, setTag] = useState(props.updateOnboard.tag);
+  // const [tag, setTag] = useState(props.updateOnboard.tag);
   const [note, setNote] = useState(props.updateOnboard.note);
 
 
-  const [form, setForm] = useState({});
-  const [errors, setErrors] = useState({});
 
-   // useState for phone number
-   const [thirderrors, setThirdErrors] = useState("");
+
+  const [errors1, setErrors1] = useState("");
+  const [errors2, setErrors2] = useState("");
+  const [errors3, setErrors3] = useState("");
+  const [errors4, setErrors4] = useState("");
+  const [errors5, setErrors5] = useState("");
+  
+ 
+
+
+  // useState for phone number
   //   const handleClose = () => setShow();
   //   const handleShow = () => setShow(true);
 
   const forms = useRef(null);
-
-  function setField(field, value) {
-    setForm({
-      ...form,
-      [field]: value,
-    });
-    if (!!errors[field])
-      setErrors({
-        ...errors,
-        [field]: null,
-      });
-  }
-
-  const validateForm = () => {
-    const { clientName, startDate, endDate, status, country } = form;
-    const newErrors = {};
-
-    if (!clientName || clientName === "" || !clientName.match(/^[aA-zZ\s]+$/))
-      newErrors.clientName = "Please Enter First Name";
-
-    if (!email || email === "") newErrors.email = "Please Enter Email";
-
-    if (!phoneNumber || phoneNumber === "" || !phoneNumber.match(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/))
-      newErrors.phoneNumber = "Please Enter Phonenumber";
-
-    if (!pocName || pocName === "" || !pocName.match(/^[aA-zZ\s]+$/))
-      newErrors.pocName = "Please Enter POC Name";
-
-    if (!startDate || startDate === "" )
-      newErrors.startDate = "Please Enter Last Name";
-
-    if (!endDate || endDate === "") newErrors.endDate = "Please Enter endDate";
-
-    newErrors.status = "Please Enter status";
-
-    if (!country || country === "" || !country.match(/^[aA-zZ\s]+$/)) newErrors.country = "Please Enter status";
-
-    if (!status || status === "") newErrors.status = "Please Enter status";
-
-    if (!address || address === "" || !address.match(/^[aA-zZ\s]+$/))
-      newErrors.address = "Please Enter type of employement";
-
-    if (!tag || tag === "") newErrors.tag = "Please Enter Tag";
-
-    if (!note || note === "" || !note.match(/^[aA-zZ\s]+$/)) newErrors.note = "Please Enter Note";
-
-    return newErrors;
-  };
-
-  // Countries
-  const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState({});
-
-  useEffect(() => {
-    const loadData = async () => {
-      const res = await axios.get("https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code");
-      setCountries(res.data.countries);
-      console.log(res.data);
-    };
-    loadData();
-  }, []);
-
-
-  
-  //testing for commit
-  const [user, setUser] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -117,26 +67,27 @@ const ClientUpdatedForm = (props) => {
           status,
           address,
           country,
-          tag,
+          // tag,
           note
         }
       )
-      .then((response) => {
-        const user = response.data;
-        if (response.data.status) {
+      .then((res) => {
+        console.log(res)
+        toast.success("Client Updated Successfully")
+        if (res.status == 200) {
           props.func();
-        } else {
-          console.log("Props not Send");
         }
-        toast.success("Form Submitted successfully");
-        // console.log(user);
+        else {
+          console.log("props not send")
+        }
       })
       .catch((err) => {
         console.log(err);
         toast.error("Something Went Wrong");
       });
     props.handleClose();
-  };
+  }
+
 
   return (
     <>
@@ -152,43 +103,99 @@ const ClientUpdatedForm = (props) => {
 
           {/* Client Name */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Client / Company Name</Form.Label>
+            <Form.Label>Client Name</Form.Label>
             <Form.Control
               required
               className="clientName"
               type="text"
               controlId="clientName"
-              placeholder="Company Name"
-              // onChange={(event) => setclientName(event.target.value)}
-              value={clientName}
-              onChange={(e) => setclientName(e.target.value)}
-              isInvalid={!!errors.clientName}
+              placeholder="Client Name  "
+              defaultValue={clientName}
+              // value={firstName}
+              onChange={(e) => {
+                if (
+                  e.target.value == "" ||
+                  !e.target.value.match(/^[\d a-zA-Z0-9 ()+-.]+$/)
+                ) {
+                  setErrors1("Invalid Name");
+                } else if (e.target.value.length > 30) {
+                  setErrors1("Too Long");
+                } else {
+                  setclientName(e.target.value);
+                  setErrors1("");
+                }
+              }}
+              isInvalid={!!errors1}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.clientName}
+              {errors1}
             </Form.Control.Feedback>
           </Form.Group>
 
           {/* email */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Company Email</Form.Label>
+            <Form.Label> Email </Form.Label>
             <Form.Control
               required
-              name="email"
-              type="text"
+              type="email"
+              placeholder="Email "
               controlId="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              isInvalid={!!errors.email}
+              defaultValue={email}
+              // value={emailId}
+              onChange={(e) => {
+                if (
+                  e.target.value == "" ||
+                  !e.target.value.match(/^[ ]*([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})[ ]*$/i)
+                ) {
+                  setErrors2("Invalid Email");
+                }
+                else {
+                  console.log(e.target);
+                  setEmail(e.target.value);
+                  setErrors2("");
+                }
+              }}
+              isInvalid={!!errors2}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.email}
+              {errors2}
+            </Form.Control.Feedback>
+          </Form.Group>
+
+
+          {/* phone number */}
+          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            <Form.Label>Phone No.</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Phone Number"
+              controlId="phoneNumber"
+              defaultValue={phoneNumber}
+              // value={phoneNumber}
+              onChange={(e) => {
+                if (
+                  e.target.value == "" ||
+                  !e.target.value.match(/^[\d ()+-]+$/)
+                ) {
+                  setErrors3("Invalid Phone Number");
+                  console.log(e.target.value);
+                } else if (e.target.value.length > 15) {
+                  setErrors3("Too Long");
+                } else {
+                  setPhoneNumber(e.target.value);
+                  setErrors3("");
+                }
+              }}
+              isInvalid={!!errors3}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors3}
             </Form.Control.Feedback>
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
 
-          {/* phone number */}
+          {/* phone number
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Phone No</Form.Label>
             <InputGroup hasValidation>
@@ -200,18 +207,18 @@ const ClientUpdatedForm = (props) => {
                 controlId="phoneNumber"
                 isInvalid={thirderrors}
                 value={phoneNumber}
-                onChange={(e) => {setPhoneNumber( e.target.value);
-                if(e.target.value.length>10)
-                {
-                  setThirdErrors("Phonenumber length should be 10 characters");
+                onChange={(e) => {
+                  setPhoneNumber(e.target.value);
+                  if (e.target.value.length > 10) {
+                    setThirdErrors("Phonenumber length should be 10 characters");
+                  }
+                  else {
+                    setThirdErrors("")
+                  };
                 }
-                else{
-                  setThirdErrors("")
-                };
-              }
-            }
-                // onChange={(e) => setPhoneNumber(e.target.value)}
-                // isInvalid={!!errors.phoneNumber}
+                }
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              isInvalid={!!errors.phoneNumber}
               >
               </Form.Control>
               <Form.Control.Feedback type="invalid">
@@ -220,64 +227,80 @@ const ClientUpdatedForm = (props) => {
               </Form.Control.Feedback>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </InputGroup>
-          </Form.Group>
+          </Form.Group> */}
 
           {/* POC Name */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>POC Name</Form.Label>
+            <Form.Label>POC name</Form.Label>
             <Form.Control
               required
-              name="pocName"
+              className="pocName"
               type="text"
               controlId="pocName"
-              placeholder="POC Name"
-              value={pocName}
-              onChange={(e) => setPocName(e.target.value)}
-              isInvalid={!!errors.pocName}
+              placeholder="POC Name  "
+              defaultValue={pocName}
+              // value={firstName}
+              onChange={(e) => {
+                if (
+                  e.target.value == "" ||
+                  !e.target.value.match(/^[aA-zZ ()+-]+$/)
+                ) {
+                  setErrors4("Invalid Name");
+                } else if (e.target.value.length > 30) {
+                  setErrors4("Too Long");
+                } else {
+                  setPocName(e.target.value);
+                  setErrors4("");
+                }
+              }}
+              isInvalid={!!errors4}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.pocName}
+              {errors4}
             </Form.Control.Feedback>
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
 
 
-          {/* Start Date
+          {/* start date */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Start Date</Form.Label>
             <Form.Control
               required
               name="startDate"
-              type="date"
+              type="text"
+              disabled
               controlId="startDate"
               placeholder="Start Date"
-              value={startDate}
-              onChange={(e) => setstartDate(e.target.value)}
-              isInvalid={!!errors.startDate}
+              defaultValue={strtdt}
+              // onChange={(e) => setstartDate(e.target.value)}
+              // isInvalid={!!errors5.startDate}
             ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.startDate}
-            </Form.Control.Feedback>
+            {/* <Form.Control.Feedback type="invalid">
+              {errors5.startDate}
+            </Form.Control.Feedback> */}
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group> */}
+          </Form.Group>
 
-          {/* End date
+
+
+          {/* end date */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>End Date</Form.Label>
             <Form.Control
               required
               type="date"
+              formate ="dd-mm-yyyy"
               placeholder="endDate"
               controlId="endDate"
-              value={endDate}
+              defaultValue={enddt}
               min={startDate}
               onChange={(e) => setEndDate(e.target.value)}
-              isInvalid={!!errors.endDate}
+              // isInvalid={!!errors5.endDate}
             ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.endDate}
-            </Form.Control.Feedback>
-          </Form.Group> */}
+            {/* <Form.Control.Feedback type="invalid">
+              {errors5.endDate}
+            </Form.Control.Feedback> */}
+          </Form.Group>
 
           {/* Status */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -288,16 +311,16 @@ const ClientUpdatedForm = (props) => {
               placeholder="Status"
               controlId="status"
               value={status}
-              onChange={(e) => setStatus( e.target.value)}
-              isInvalid={!!errors.status}
+              onChange={(e) => setStatus(e.target.value)}
+              // isInvalid={!!errors.status}
             >
               <option> Select Status</option>
               <option value="Active">Active</option>
               <option value="InActive">InActive</option>
             </Form.Select>
-            <Form.Control.Feedback type="invalid">
+            {/* <Form.Control.Feedback type="invalid">
               {errors.status}
-            </Form.Control.Feedback>
+            </Form.Control.Feedback> */}
           </Form.Group>
 
           {/* Country
@@ -326,6 +349,37 @@ const ClientUpdatedForm = (props) => {
 
           </Form.Group> */}
 
+          {/* country */}
+          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            <Form.Label>Country</Form.Label>
+            <Form.Control
+              required
+              className="country"
+              type="text"
+              controlId="country"
+              placeholder="Country "
+              defaultValue={country}
+              // value={firstName}
+              onChange={(e) => {
+                if (
+                  e.target.value == "" ||
+                  !e.target.value.match(/^[aA-zZ ()+-]+$/)
+                ) {
+                  setErrors5("Invalid Name");
+                } else if (e.target.value.length > 30) {
+                  setErrors5("Too Long");
+                } else {
+                  setCountry(e.target.value);
+                  setErrors5("");
+                }
+              }}
+              isInvalid={!!errors5}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors5}
+            </Form.Control.Feedback>
+          </Form.Group>
+
           {/* Address */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
             <Form.Label>Address</Form.Label>
@@ -337,11 +391,11 @@ const ClientUpdatedForm = (props) => {
               placeholder="address"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              isInvalid={!!errors.address}
+              // isInvalid={!!errors.address}
             ></Form.Control>
-            <Form.Control.Feedback type="invalid">
+            {/* <Form.Control.Feedback type="invalid">
               {errors.address}
-            </Form.Control.Feedback>
+            </Form.Control.Feedback> */}
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
 
@@ -375,11 +429,11 @@ const ClientUpdatedForm = (props) => {
               placeholder="note"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              isInvalid={!!errors.note}
+              // isInvalid={!!errors.note}
             ></Form.Control>
-            <Form.Control.Feedback type="invalid">
+            {/* <Form.Control.Feedback type="invalid">
               {errors.note}
-            </Form.Control.Feedback>
+            </Form.Control.Feedback> */}
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
 
@@ -390,7 +444,7 @@ const ClientUpdatedForm = (props) => {
             <Button
               style={{
                 backgroundColor: "#f5896e",
- borderColor: "#f5896e",
+                borderColor: "#f5896e",
                 // float: "right",
                 marginLeft: "200px",
                 width: "40%",
