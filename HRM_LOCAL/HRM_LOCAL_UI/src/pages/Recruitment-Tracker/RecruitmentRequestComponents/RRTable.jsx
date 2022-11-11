@@ -160,7 +160,7 @@ const params = useParams()
       </Card.Body>
       <Grid container>
         <Grid xs={12}>
-          {(userType === "taa" || userType === "ceo" ) ?
+          {(userType === "taa" ) ?
             <MaterialTable
               title=""
               columns={RRColumns}

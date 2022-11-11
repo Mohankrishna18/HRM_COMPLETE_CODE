@@ -4,7 +4,7 @@ import { InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
-import axios from "../../../../Uri";
+import axios from "../../../Uri";
 import { toast } from "react-toastify";
 import moment from "moment";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,7 +16,6 @@ import {
   TimelineDot,
   TimelineConnector,
 } from "@mui/lab";
-import HorizontalTimeLiner from "./HorizontalTimeLiner";
 // Empty commit
 const LeadsUpdatedForm = (props) => {
   console.log(props.updateOnboard);
@@ -42,16 +41,13 @@ const LeadsUpdatedForm = (props) => {
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-  const handleClose = () => setShow();
+  const [show, setShow] = useState(false);
   // useState for phone number
   const [firsterrors, setFirstErrors] = useState("");
   const [seconderrors, setSecondErrors] = useState("");
   const [thirderrors, setThirdErrors] = useState("");
-  //   const handleClose = () => setShow();
-  //   const handleShow = () => setShow(true);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShow();
   const [comment, setComment] = useState([]);
-
   const forms = useRef(null);
 
   function setField(field, value) {
@@ -74,8 +70,8 @@ const LeadsUpdatedForm = (props) => {
       newErrors.leadName = "Please Enter Lead Name";
     if (!startDate || startDate === "")
       newErrors.startDate = "Please Enter Start Date";
-    if (!endDate || endDate === "")
-      newErrors.endDate = "Please Enter End Date";
+    // if (!endDate || endDate === "")
+    //   newErrors.endDate = "Please Enter End Date";
     if (!companyName || companyName === "" || !companyName.match(/^[aA-zZ\s]+$/))
       newErrors.companyName = "Please Enter Company Name";
     if (!companyEmail || companyEmail === "") newErrors.companyEmail = "Please Enter company Email";
@@ -147,12 +143,13 @@ const LeadsUpdatedForm = (props) => {
       .then((response) => {
         const user = response.data;
         if (response.data.status) {
+          toast.success("Form Submitted successfully");
           props.func();
         } else {
           console.log("Props not Send");
         }
-        toast.success("Form Submitted successfully");
-        // console.log(user);
+        console.log(user);
+
       })
       .catch((err) => {
         console.log(err);
@@ -172,7 +169,7 @@ const LeadsUpdatedForm = (props) => {
         onSubmit={handleSubmit}
       >
         <Row>
-          <Col md="5">
+          <Col md="6" style={{ float: "right" }}>
             {/* lead Name */}
             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
               <Form.Label>Lead Name</Form.Label>
@@ -379,10 +376,10 @@ const LeadsUpdatedForm = (props) => {
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
           </Col>
-          <Col md="2">
+          <Col md="1">
             <div className="vr" style={{ height: "98%" }}></div>
           </Col>
-          <Col md="5">
+          <Col md="5" style={{ float: "right" }}>
             {/* phone number */}
             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
               <Form.Label>Phone Number</Form.Label>
@@ -561,7 +558,7 @@ const LeadsUpdatedForm = (props) => {
               <div>
                 <Form>
                   <Col>
-                    <Form.Group as={Col} md="6" style={{ padding: 5 }}>
+                    <Form.Group as={Col} md="12" style={{ padding: 5 }}>
                       <Form.Label>Comment *</Form.Label>
                       <Form.Control
                         required
@@ -588,14 +585,13 @@ const LeadsUpdatedForm = (props) => {
                     style={{
                       backgroundColor: "#f5896e",
                       borderColor: "#f5896e",
-                      width: "30%",
+                      width: "20%",
                       height: "120%",
                       borderRadius: "25px"
                     }}
                     type="submit">
                     Post
                   </Button>
-                <HorizontalTimeLiner/>
                 </Form>
                 <Timeline style={{ paddingRight: "140%" }}>
                   {comment.map((m) => (

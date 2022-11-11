@@ -38,7 +38,7 @@ export default function AddRequisition(props) {
 
   return (
     <div>
-      {(userType === "taa" || userType === "ceo") ?
+      {(userType === "taa" ) ?
         <div></div>
         :
         <Button

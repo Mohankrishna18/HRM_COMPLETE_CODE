@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
 import Card from "react-bootstrap/Card";
 import Grid from "@mui/material/Grid";
-import axios from "../../../Uri";
+import axios from "../../Uri";
 import { FiEdit } from "react-icons/fi";
 import { BsFillEyeFill } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -236,7 +236,7 @@ function LeadsMain() {
           <Row>
             <Col>
               <Card.Title>Leads</Card.Title>
-             
+
             </Col>
             <Col>
               <AddLeads func={pull_dataAdd} />

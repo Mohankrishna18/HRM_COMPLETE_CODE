@@ -677,7 +677,7 @@ export default [
 
     title: "Requisition Request",
 
-    permission: [Roles.irm,Roles.manager,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead],
+    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead],
 
   },
 
@@ -693,7 +693,7 @@ export default [
 
     title: "Requisitions",
 
-    permission: [Roles.ceo,Roles.taa]
+    permission: [Roles.taa]
 
   },
   {
@@ -746,7 +746,7 @@ export default [
 
     type: "AERF",
 
-    permission: [Roles.irm,Roles.manager,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead],
+    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead],
 
 
 
@@ -775,7 +775,7 @@ export default [
 
     path: "/updateRequisition/:id",
 
-    permission: [Roles.irm,Roles.manager,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead]
+    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead]
 
   },  
 

@@ -3,7 +3,7 @@ import { Row, Col, Button } from 'react-bootstrap';
 import { BsWindowSidebar } from 'react-icons/bs';
 import { toast } from 'react-toastify';
 import Modal from "react-bootstrap/Modal";
-import axios from "../../../../Uri";
+import axios from "../../../Uri";
 
 // To Delete Lead
 const DeleteLeads = (props) => {

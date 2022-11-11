@@ -4,7 +4,7 @@ import { Card, FormSelect, InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
-import axios from "../../../../Uri";
+import axios from "../../../Uri";
 import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
