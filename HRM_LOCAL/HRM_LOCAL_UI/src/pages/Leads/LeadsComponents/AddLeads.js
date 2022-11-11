@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { Modal } from "react-bootstrap";
@@ -21,7 +20,6 @@ import {
   TimelineDot,
   TimelineConnector,
 } from "@mui/lab";
-import HorizontalTimeLiner from "./HorizontalTimeLiner";
 
 function AddLeads(props) {
   const [show, setShow] = useState(false);
@@ -83,8 +81,8 @@ function AddLeads(props) {
       newErrors.leadName = "Please Enter Lead Name";
     if (!startDate || startDate === "")
       newErrors.startDate = "Please Enter Start Date";
-    if (!endDate || endDate === "")
-      newErrors.endDate = "Please Enter End Date";
+    // if (!endDate || endDate === "")
+    //   newErrors.endDate = "Please Enter End Date";
     if (
       !companyName ||
       companyName === "" ||
@@ -119,8 +117,8 @@ function AddLeads(props) {
       newErrors.sourcePhoneNumber = "Please Enter source PhoneNumber";
     if (!pocName || pocName === "" || !pocName.match(/^[aA-zZ\s]+$/))
       newErrors.pocName = "Please Enter POC Name";
-    // if (!pocEmail || pocEmail === "")
-    //   newErrors.pocEmail = "Please Enter POC Email";
+    if (!pocEmail || pocEmail === "")
+      newErrors.pocEmail = "Please Enter POC Email";
     if (
       !pocPhoneNumber ||
       pocPhoneNumber === "" ||
@@ -183,7 +181,6 @@ function AddLeads(props) {
         .then((response) => {
           const user = response.data;
           console.log(user);
-          console.log(user);
           // setForm("");
           if (user.status) {
             props.func();
@@ -196,7 +193,7 @@ function AddLeads(props) {
           handleClose();
         })
         .catch((err) => {
-          toast.error("Something Went Wrong");
+          toast.error(err,"Something Went Wrong");
         });
     }
   };
@@ -284,7 +281,7 @@ function AddLeads(props) {
           // onSubmit={handleSubmit}
           >
             <Row>
-              <Col md="5">
+              <Col md="6">
                 {/* Lead Name */}
                 <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                   <Form.Label>Lead Name *</Form.Label>
@@ -296,7 +293,7 @@ function AddLeads(props) {
                     placeholder="Lead Name"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.leadName}
-                    maxLength={30}
+                    maxLength={50}
                     onChange={(e) => setField("leadName", e.target.value)}
                     isInvalid={!!errors.leadName}
                   ></Form.Control>
@@ -354,7 +351,7 @@ function AddLeads(props) {
                     placeholder="Company Name"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.companyName}
-                    maxLength={30}
+                    maxLength={100}
                     onChange={(e) => setField("companyName", e.target.value)}
                     isInvalid={!!errors.companyName}
                   >
@@ -478,7 +475,7 @@ function AddLeads(props) {
                     placeholder="Source Name"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.sourceName}
-                    maxLength={30}
+                    maxLength={50}
                     onChange={(e) => setField("sourceName", e.target.value)}
                     isInvalid={!!errors.sourceName}
                   ></Form.Control>
@@ -503,7 +500,7 @@ function AddLeads(props) {
                   </Form.Control.Feedback>
                 </Form.Group>
               </Col>
-              <Col md="2">
+              <Col md="1">
                 <div className="vr" style={{ height: "98%" }}></div>
               </Col>
               <Col md="5">
@@ -548,7 +545,7 @@ function AddLeads(props) {
                     placeholder="POC Name"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.pocName}
-                    maxLength={30}
+                    maxLength={50}
                     onChange={(e) => setField("pocName", e.target.value)}
                     isInvalid={!!errors.pocName}
                   ></Form.Control>
@@ -659,7 +656,7 @@ function AddLeads(props) {
                     placeholder="lead Notes"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.leadNotes}
-                    maxLength={30}
+                    maxLength={100}
                     onChange={(e) => setField("leadNotes", e.target.value)}
                     isInvalid={!!errors.leadNotes}
                   ></Form.Control>
@@ -674,7 +671,7 @@ function AddLeads(props) {
                     <div>
                       <Form>
                         <Col>
-                          <Form.Group as={Col} md="6" style={{ padding: 5 }}>
+                          <Form.Group as={Col} md="12" style={{ padding: 5 }}>
                             <Form.Label>Comment *</Form.Label>
                             <Form.Control
                               required
@@ -684,7 +681,7 @@ function AddLeads(props) {
                               controlId="comment"
                               placeholder="Comment"
                               value={form.comment}
-                              maxLength={30}
+                              maxLength={200}
                               onChange={(e) =>
                                 setField("comment", e.target.value)
                               }
@@ -701,15 +698,14 @@ function AddLeads(props) {
                           style={{
                             backgroundColor: "#f5896e",
                             borderColor: "#f5896e",
-                            width: "30%",
+                            width: "20%",
                             height: "120%",
                             borderRadius: "25px",
-                            marginBottom:"45px"
+                            marginBottom: "45px"
                           }}
                           type="submit" onClick={postdata}>
                           Post
                         </Button>
-                        <HorizontalTimeLiner/>
                       </Form>
                       <Timeline style={{ paddingRight: "140%" }}>
                         {comment.map((m) => (

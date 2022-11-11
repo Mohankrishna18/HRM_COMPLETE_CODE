@@ -26,7 +26,7 @@ export default function HolidayTable() {
         // { title: 'ID', field: 'departmentId', editable: false },
         // {title:"ID",field:"id"},
         { title: 'Holiday Title', field: 'holidayTitle', 
-        validate:rowData =>{        if(rowData.holidayTitle===undefined){       return  "Holiday Title is Required"         }    else if(!rowData.holidayTitle.match(/^[aA-zZ\s]+$/)){      return" Please enter valid name"    }    return true     },
+        validate:rowData =>{        if(rowData.holidayTitle===undefined){       return  "Holiday Title is Required"         }    else if(!rowData.holidayTitle.match(/^[aA-zZ()-\s]+$/)){      return" Please enter valid name"    }    return true     },
        
     },
         { title: 'Holiday Date', field: 'holidayDate', type:'date', 

@@ -16,6 +16,7 @@ function AddDepartment(props) {
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
+  const [data, setData] = useState([]);
 
   const handleClose = () => setShow();
   const handleShow = () => setShow(true);
@@ -108,6 +109,21 @@ function AddDepartment(props) {
     // console.log(departments)
   }, []);
 
+  useEffect(() => {
+    axios
+        .get("/emp/getAllEmployeeMasterData")
+        .then((res) => {
+            setData(res.data.data);
+            console.log(res.data.data);
+            
+        })
+        .catch((err) => {
+            console.log(err);
+            // toast.error("Server Error")
+        });
+}, []);
+console.log(data);
+
   return (
     <div>
       <Button
@@ -136,7 +152,7 @@ function AddDepartment(props) {
         centered
       >
         <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
-          <Modal.Title style={{ backgroundColor: "#FE924A", color: "white" }}>Add Business Unit</Modal.Title>
+          <Modal.Title style={{ backgroundColor: "#f5896e", color: "white" }}>Add Business Unit</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -183,9 +199,9 @@ function AddDepartment(props) {
                   isInvalid={!!errors.businessUnitHead}
                 >
                   <option value="">Select </option>
-                  {role.map((role1) => (
-                    <option value={role1.employeeId}>
-                      {role1.name}
+                  {data.map((emp) => (
+                    <option value={emp.employeeId}>
+                      {emp.firstName}
                     </option>
                   ))}
 
