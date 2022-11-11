@@ -53,22 +53,28 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 	public static final String preEmailURL = "http://emailService/mail/sendmail";
 
 
-    @Override
+	@Override
     public ResponseEntity createRR(RequisitionRequestEntity newRR) {
         RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
         try {
             // newRR.setWorkflowStatus("Waiting for BUHead Approval");
-            newRR.setRrfStatus("Pending Approval");
+            newRR.setRrfStatus("Open");
             RequisitionRequestEntity raiseRequest = rrRepository.save(newRR);
+
+
 
 //            String p = StringUtils.substring(raiseRequest.getProjectName(), 0, 3);
 //            String c = StringUtils.substring(raiseRequest.getClientName(), 0, 3);
 
-            String p = "REQ";
+
+
+           String p = "REQ";
             raiseRequest.setRequisitionId(p + 0 + (raiseRequest.getRrfId()));
             RequisitionRequestEntity rreq = rrRepository.save(raiseRequest);
 
-            rrr.setStatus(true);
+
+
+           rrr.setStatus(true);
             rrr.setMessage("Data Submitted Successfully!!!");
             rrr.setData(rreq);
             return new ResponseEntity(rrr, HttpStatus.OK);

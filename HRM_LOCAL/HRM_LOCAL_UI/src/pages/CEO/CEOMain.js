@@ -3,7 +3,8 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { Row, Col, Card, Container,Tabs } from 'react-bootstrap';
-import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
+// import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
+import ManagerEmployeesLeavesWaitingForApproval from '../ManagerLeavesToApprove/ManagerEmployeesLeavesWaitingForApproval';
 import TaskMain from '../TimeSheet/EmployeeTimesheet/TaskMain';
 import CEOApproval from './CEOApproval';
 
@@ -36,7 +37,7 @@ function CEOMain() {
                     </TabList>
                   </Box>
                   <TabPanel value="1"><CEOApproval /></TabPanel>
-                  <TabPanel value="2"><HrEmployeesLeavesWaitingForApproval/></TabPanel>
+                  <TabPanel value="2"><ManagerEmployeesLeavesWaitingForApproval/></TabPanel>
                   <TabPanel value="3"><TaskMain/></TabPanel>
                 </TabContext>
                 </Col>

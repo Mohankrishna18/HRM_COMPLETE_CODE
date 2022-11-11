@@ -150,7 +150,7 @@ function EmployeeMasterCard() {
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{color:"#999897"}}>
-                                        {employeedetails.businessUnit}
+                                        {employeedetails.buh}
                                     </Card.Text>
                                 </Col>
 

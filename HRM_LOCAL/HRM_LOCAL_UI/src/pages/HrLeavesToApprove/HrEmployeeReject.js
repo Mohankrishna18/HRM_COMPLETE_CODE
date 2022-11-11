@@ -5,6 +5,9 @@ import { toast } from "react-toastify";
 
 
 function HrEmployeeReject(props) {
+    const da = JSON.parse(sessionStorage.getItem('userdata'))
+    const userType = da.data.userType;
+    console.log(userType);
     console.log(props.leaveID.employeeleaveId);
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
@@ -26,7 +29,7 @@ function HrEmployeeReject(props) {
         console.log(props.leaveID);
         const obj = { leaveStatus: "Rejected", hrApproval: "Rejected" };
         const form1 = Object.assign(form, obj);
-        axios.put(`/leave/updateLeave/${employeeleaveId}`, form1)
+        axios.put(`/leave/updateLeave/${employeeleaveId}/${userType}`, form1)
             .then((res) => {
                 axios.delete(`/leave/deleteBetweenDates/${employeeleaveId}`)
                     .then((resp) => {

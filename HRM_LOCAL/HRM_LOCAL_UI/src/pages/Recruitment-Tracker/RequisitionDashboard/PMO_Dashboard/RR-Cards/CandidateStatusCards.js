@@ -54,7 +54,7 @@ const CandidateStatusCards = () => {
     const scheduld = totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "Scheduled"):0
     console.log(scheduld)
 
-    const prgrs = totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "In Progress"):0
+    const prgrs = totalCandidatesStatus ? totalCandidatesStatus.filter((item) => item.candidateStatus === "In-Progress"):0
     console.log(scheduld)
 
     return (

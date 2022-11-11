@@ -9,7 +9,7 @@ function ApprovedEmployeesTable() {
 
   const columns = [
     {
-      title: "OBD ID",
+      title: "Onboarding Id",
       field: "onboardingId",
       type: "text",
 
@@ -30,20 +30,20 @@ function ApprovedEmployeesTable() {
         textAlign: "center",
       },
     },
-    // {
-    //   title: "First Name",
-    //   field: "firstName",
-    //   type: "text",
-
-    //   headerStyle: {
-    //     backgroundColor: "#FF9E14",
-    //     color: "white",
-    //     textAlign: "center",
-    //   },
-    // },
     {
-      title: "Name",
-      field: "fullName",
+      title: "First Name",
+      field: "firstName",
+      type: "text",
+
+      headerStyle: {
+        backgroundColor: "#FF9E14",
+        color: "white",
+        textAlign: "center",
+      },
+    },
+    {
+      title: "Last Name",
+      field: "lastName",
       type: "text",
 
       headerStyle: {
@@ -63,7 +63,7 @@ function ApprovedEmployeesTable() {
       },
     },
     {
-      title: "Contact",
+      title: "PhoneNumber",
       field: "phoneNumber",
       type: "text",
 
@@ -75,7 +75,7 @@ function ApprovedEmployeesTable() {
     },
 
     {
-      title: "DOJ",
+      title: "Date of Joining",
       field: "dateOfJoining",
       type: "date",
 

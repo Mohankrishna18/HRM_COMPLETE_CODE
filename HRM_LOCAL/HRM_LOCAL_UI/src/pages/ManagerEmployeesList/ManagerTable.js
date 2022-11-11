@@ -62,7 +62,7 @@ const ManagerTable = () => {
 
   }
   const [columns, setColumns] = useState([
-    { title: 'Employee ID', field: 'employeeId' },
+    { title: 'EmployeeId', field: 'employeeId' },
     { title: 'FirstName', field: 'firstName', type: 'date' },
     { title: 'LastName', field: 'lastName', type: 'date' },
     { title: 'ProjectName', field: 'projectName', type: 'date' },

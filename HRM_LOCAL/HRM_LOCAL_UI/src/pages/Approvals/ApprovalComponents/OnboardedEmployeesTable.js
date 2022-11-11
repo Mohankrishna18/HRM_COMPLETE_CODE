@@ -88,11 +88,6 @@ function OnboardedEmployeesTable() {
       
     },
     {
-      title: "OBD ID",
-      field: "onboardingId",
-      
-    },
-    {
       title: "Name",
       field: "fullName",
       type: "text",
