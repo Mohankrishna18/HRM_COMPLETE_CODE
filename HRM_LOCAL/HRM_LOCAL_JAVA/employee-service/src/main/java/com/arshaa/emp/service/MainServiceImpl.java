@@ -962,6 +962,8 @@ public class MainServiceImpl implements MainService {
 				pd.setMaritalStatus(em.getMaritalStatus());
 				pd.setPrimaryPhoneNumber(em.getPrimaryPhoneNumber());
 				pd.setSecondaryPhoneNumber(em.getSecondaryPhoneNumber());
+				pd.setPrimarySkills(em.getPrimarySkills());
+				pd.setSecondarySkills(em.getSecondarySkills());
 				
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
@@ -996,6 +998,8 @@ public class MainServiceImpl implements MainService {
 				em.setMaritalStatus(pd.getMaritalStatus());
 				em.setPrimaryPhoneNumber(pd.getPrimaryPhoneNumber());
 				em.setSecondaryPhoneNumber(pd.getSecondaryPhoneNumber());
+				em.setPrimarySkills(pd.getPrimarySkills());
+				em.setSecondarySkills(pd.getSecondarySkills());
 				emRepo.save(em);
 				r.setStatus(true);
 				r.setMessage("Data Fetching");

@@ -157,11 +157,11 @@ function PersonalDetailsTab() {
         bloodGroup,
         gender,
         maritalStatus,
-        status,
+       
       }
     );
 
-    const url = `/emp/upload/${params.id}/`;
+    const url = `/emp/upload/${employeeid}/`;
     const formData = new FormData();
     formData.append("file", file);
     formData.append("fileName", file.name);
@@ -182,6 +182,8 @@ function PersonalDetailsTab() {
         toast.error("Please Enter Valid Details");
       });
   };
+console.log(primarySkills)
+console.log(secondarySkills)
 
   const [file, setFile] = useState("");
   const handleChange = (event) => {
@@ -195,7 +197,7 @@ function PersonalDetailsTab() {
   const [imge, setImge] = useState([]);
   useEffect(() => {
     axios
-      .get(`/emp/files/${params.id}`)
+      .get(`/emp/files/${employeeid}`)
       .then((response) => {
         console.log(response.data);
         setImge(response.data);

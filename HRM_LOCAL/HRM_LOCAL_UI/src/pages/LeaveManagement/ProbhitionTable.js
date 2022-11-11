@@ -46,12 +46,12 @@ function ProbhitionTable() {
           field: "employeeId"
         },
         {
-          title: "Employee Name",
+          title: "Name",
           field: "firstName",
           type: "text"
         },
         {
-          title: "Date.Of.Joining",
+          title: "DOJ",
           field: "dateOfJoining",
           type: 'date',
           dateSetting: { locale: "en-GB" },
