@@ -116,8 +116,8 @@ import EditEmployeeDetailsTabs from "../pages/EditEmployeeDetails/EditEmployeeDe
 import EmployeeDashboard from '../pages/Recruitment-Tracker/RequisitionDashboard/EmployeeDashboard/EmployeeDashboard'
 import ReportsMain from "../pages/Reports/ReportsMain";
 import CandidatesMain from "../pages/Candidates/CandidatesMain";
-import LeadsMain from "../pages/Leads/Leads/LeadsMain";
-
+// import LeadsMain from "../pages/Leads/Leads/LeadsMain";
+import LeadsMain from '../pages/Leads/LeadsMain';
 
 
 export default [
