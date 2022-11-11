@@ -8,6 +8,7 @@ import axios from "../../../Uri";
 
  function Bands() {
     const [data, setData] = useState([]);
+    // const [status, setStatus] = useState(false);
 
     useEffect(() => {
 
@@ -20,9 +21,6 @@ import axios from "../../../Uri";
         setData(res.data.data);
         console.log(res.data.data);
     };
-
-  
-
 
     const [columns, setColumns] = useState([
         { title: 'Band', field: 'bandName' },
@@ -37,16 +35,22 @@ import axios from "../../../Uri";
                 editable={{
                     onRowAdd: newData =>
                         new Promise((resolve, reject) => {
-                           
-                          
-                            setTimeout(() => {
+                            setTimeout(async () => {
                                 console.log(newData)
-                                const res = axios.post("/bands/addBands",
-                                    newData,
-                                );
-                                setData([...data, newData]);
-                                toast.success("Band is added")
-                               loadData();
+                               await axios.post("/bands/addBands",
+                                newData,).then(res => 
+                                    {console.log(res)
+                                        toast.success("Band is added")
+                                    })
+                                .catch(e=> {
+                                    console.log(e)
+                                    toast.error(e.response.data.message)
+                                })
+                               
+                                loadData();
+                               // setData([...data, newData]);
+                                // toast.success("Band is added")
+                            //    loadData();
                                
 
                                 resolve();
