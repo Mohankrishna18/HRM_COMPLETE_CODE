@@ -161,7 +161,7 @@ function PersonalDetailsTab() {
       }
     );
 
-    const url = `/emp/upload/${params.id}/`;
+    const url = `/emp/upload/${employeeid}/`;
     const formData = new FormData();
     formData.append("file", file);
     formData.append("fileName", file.name);
@@ -195,7 +195,7 @@ function PersonalDetailsTab() {
   const [imge, setImge] = useState([]);
   useEffect(() => {
     axios
-      .get(`/emp/files/${params.id}`)
+      .get(`/emp/files/${employeeid}`)
       .then((response) => {
         console.log(response.data);
         setImge(response.data);

@@ -7,6 +7,9 @@ import MaterialTable from 'material-table';
 import { FiEdit } from "react-icons/fi";
 import { BsFillEyeFill } from 'react-icons/bs';
 import {Col,Row } from "react-bootstrap";
+import LeadsView from "../../../Leads/LeadsComponents/LeadsView";
+
+
 
 
 function LeadTable(props) {

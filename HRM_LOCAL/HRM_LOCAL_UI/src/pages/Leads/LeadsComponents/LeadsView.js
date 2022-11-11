@@ -184,7 +184,7 @@ const ApprovalView = (props) => {
           </Row>
 
 
-          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+          {/* <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
                 Company PhoneNumber   :
@@ -195,9 +195,9 @@ const ApprovalView = (props) => {
                 {props.viewOnboard.companyPhoneNumber}
               </Card.Text>
             </Col>
-          </Row>
+          </Row> */}
 
-          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+          {/* <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
                 Company Country   :
@@ -208,9 +208,9 @@ const ApprovalView = (props) => {
                 {props.viewOnboard.companyCountry}
               </Card.Text>
             </Col>
-          </Row>
+          </Row> */}
 
-          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+          {/* <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
                 Company Address   :
@@ -221,7 +221,7 @@ const ApprovalView = (props) => {
                 {props.viewOnboard.companyAddress}
               </Card.Text>
             </Col>
-          </Row>
+          </Row> */}
 
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
