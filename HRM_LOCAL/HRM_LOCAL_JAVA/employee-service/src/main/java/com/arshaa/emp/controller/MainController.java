@@ -46,7 +46,6 @@ import com.arshaa.emp.service.MainService;
 import com.arshaa.emp.service.ReportingManagerService;
 import com.arshaa.emp.service.RoleBasedEmployeesServiceImpl;
 import com.google.common.net.HttpHeaders;
-import com.arshaa.emp.model.ProbhitionFields;
 
 @RestController
 @RequestMapping("/emp")
@@ -271,7 +270,7 @@ public class MainController {
 				.body(fileDB.getData());
 	}
 	@GetMapping("/leavespermonth/{employeeId}")
-    long Lossofpayservice( @PathVariable String employeeId ) {
+    int Lossofpayservice( @PathVariable String employeeId ) {
 
       return   epServ.Lossofpayservice(employeeId);
 
@@ -542,10 +541,4 @@ public class MainController {
         // public int  getWeekendsByMonth(@PathVariable int year ,@PathVariable int month) {
         // 	return lServ.weekendCount(year, month);
         // }
-        
-        //to update Probhition Fields
-        @PutMapping("/updateProbhitionFields/{employeeId}")
-		public ResponseEntity updateProbhitionFields(@PathVariable String employeeId,@RequestBody ProbhitionFields newPrbh) {
-			return serv.updateProbhitionFields(employeeId, newPrbh);
-		}
 }

@@ -52,7 +52,7 @@ function AssignTeamMembers(props) {
       field: "employeeId",
     },
     {
-      title: "Name",
+      title: "Employee Name",
       field: "firstName",
       type: "text",
     },

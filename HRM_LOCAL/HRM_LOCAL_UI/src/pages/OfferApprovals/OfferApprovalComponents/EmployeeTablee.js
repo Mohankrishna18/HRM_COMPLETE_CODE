@@ -45,12 +45,12 @@ const EmployeeTablee = () => {
 
   const [columns, setColumns] = useState([
     {
-      title: "OBD ID",
+      title: "Onboarding Id",
       field: "onboardingId",
       editable: false,
     },
     {
-      title: "Name",
+      title: "Full Name",
       field: "firstName",
       type: "text",
     },
@@ -61,12 +61,12 @@ const EmployeeTablee = () => {
     },
 
     {
-      title: "Contact",
+      title: "Phone Number",
       field: "phoneNumber",
       type: "number",
     },
     {
-      title: "DOJ",
+      title: "Date of Joining",
       field: "dateOfJoining",
       type: "date",
     },

@@ -9,9 +9,13 @@ function ExperienceTab() {
     const params=useParams();
     console.log(params.id);
 
+  // const userData = sessionStorage.getItem("userdata");
+  // const userData1 = JSON.parse(userData);
+  // const onboardingId = userData1.data.onboardingId;
+
   const userData = sessionStorage.getItem("userdata");
   const userData1 = JSON.parse(userData);
-  const onboardingId = userData1.data.onboardingId;
+  const employeeid = userData1.data.employeeId;
 
   const [ferrors, setFErrors] = useState("");
   const [serror, setSerror] = useState("");
@@ -197,7 +201,7 @@ function ExperienceTab() {
 
   useEffect(() => {
     axios
-      .get(`/emp/getEmployeeDataByOnboardingId/${params.id}`)
+      .get(`/emp/getExperienceDetails/${employeeid}`)
       .then((response) => {
         setEmployeeId(response.data.data.employeeId);
         setPermanentAddress(response.data.data.permanentAdress);
@@ -271,7 +275,7 @@ function ExperienceTab() {
   const [documents, setDocuments] = useState("");
   const loadData = () => {
     axios
-      .get(`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${params.id}`)
+      .get(`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${employeeid}`)
       .then((response) => {
         setDocuments(response);
         console.log(response);
@@ -284,7 +288,7 @@ function ExperienceTab() {
 
   const changeHandler = async (e) => {
     e.preventDefault();
-    await axios.put(`/emp/updateExperienceInPreOnboarding/${params.id}`, {
+    await axios.put(`/emp/updateExperience/${employeeid}`, {
       previousCompany1_name,
       previousCompany1_designation,
       previousCompany1_joiningDate,
@@ -307,8 +311,8 @@ function ExperienceTab() {
       previousCompany3_typeOfEmployment,
       previousCompany3_reasonForRelieving,
     });
-    toast.success("Form Submitted Successfully");
-    const url = `/api/post/image/${params.id}/ExperienceDetails?image`;
+    toast.success("Experience Details Submitted Successfully");
+    const url = `/api/post/image/${employeeid}/ExperienceDetails?image`;
     const formData = new FormData();
     formData.append("image", file);
     const config = {
@@ -339,7 +343,7 @@ function ExperienceTab() {
     // window.open(`api/get/image/${imageName}/${onboardingId}`)
 
     axios
-      .get(`/api/get/imageByTitle/ExperienceDetails/${params.id}`, {
+      .get(`/api/get/imageByTitle/ExperienceDetails/${employeeid}`, {
         contentType: "application/pdf",
       })
       .then((res) => {
@@ -370,7 +374,7 @@ function ExperienceTab() {
         </Card.Title>
       </Card> */}
 
-      <Form onSubmit={(e) => changeHandler(e)} style={{ padding: 10 }}>
+      <Form onSubmit={(e) => changeHandler(e)} style={{ padding: 10,color:"black"  }}>
         <Card
           style={{
             marginLeft: 8,
@@ -829,15 +833,15 @@ function ExperienceTab() {
                 <Form.Control type="file"  onChange={handleChange} />
               </Form.Group>
             </Form.Group>
-            {documents.statusText === "OK" ? (<Col>
-              <a href={`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${onboardingId}`}>
+            {/* {documents.statusText === "OK" ? (<Col> */}
+              <a href={`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${employeeid}`}>
                 Experience Documents
 
               </a>
-            </Col>) : (<></>)
+            {/* </Col>) : (<></>)
 
             }
-        
+         */}
           </Row>
           <Row>
             <Col></Col>

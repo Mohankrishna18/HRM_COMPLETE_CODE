@@ -5,6 +5,9 @@ import { toast } from "react-toastify";
 
 
 function HrEmployeeApprove(props) {
+    const da = JSON.parse(sessionStorage.getItem('userdata'))
+    const userType = da.data.userType;
+    console.log(userType);
     console.log(props.leaveID.employeeleaveId);
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
@@ -26,7 +29,7 @@ function HrEmployeeApprove(props) {
         console.log(props.leaveID);
         const obj = { leaveStatus: "Approved" };
         const form1 = Object.assign(form, obj);
-        axios.put(`/leave/updateLeave/${employeeleaveId}`, form1)
+        axios.put(`/leave/updateLeave/${employeeleaveId}/${userType}`, form1)
             .then((res) => {
                 console.log(res)
                 if (res.status == 200) {

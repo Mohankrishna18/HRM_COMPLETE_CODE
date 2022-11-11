@@ -66,7 +66,7 @@ function CandidatesMain() {
 
   const [columns, setColumns] = useState([
     {
-      title: "AERF ID",
+      title: "Req ID",
       field: "requisitionId",
       type: "text",
       cellStyle: {
@@ -84,7 +84,7 @@ function CandidatesMain() {
       }
     },
     {
-      title: "Contact",
+      title: "Contact No.",
       field: "phoneNumber",
       cellStyle: {
         minWidth: 200,
@@ -92,7 +92,7 @@ function CandidatesMain() {
       }
     },
     {
-      title: "Email ID",
+      title: "E-Mail ID",
       field: "email",
       cellStyle: {
         minWidth: 200,
@@ -100,7 +100,7 @@ function CandidatesMain() {
       }
     },
     {
-      title: "Experiance",
+      title: "Experience",
       field: "yearsOfExperience",
       align:"center",
       cellStyle: {

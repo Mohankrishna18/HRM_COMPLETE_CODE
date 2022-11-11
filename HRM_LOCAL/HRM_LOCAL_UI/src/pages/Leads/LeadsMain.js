@@ -236,7 +236,7 @@ function LeadsMain() {
           <Row>
             <Col>
               <Card.Title>Leads</Card.Title>
-             
+
             </Col>
             <Col>
               <AddLeads func={pull_dataAdd} />

@@ -70,13 +70,12 @@ function HRConfirmation() {
     console.log(res.data);
   };
   const [columns, setColumns] = useState([
-    { title: "AERF ID", field: "requisitionId" },
-    { title: "OBD ID", field: "onboardingId" },
-    { title: "Name", field: "firstName" },
+    { title: "OnboardingId", field: "onboardingId" },
+    { title: "FullName", field: "firstName" },
     { title: "Email", field: "email" },
-    { title: "Contact", field: "phoneNumber" },
+    { title: "PhoneNumber", field: "phoneNumber" },
     {
-      title: "DOJ",
+      title: "Date of Joining",
       field: "dateOfJoining",
       type: "date",
       dateSetting: { locale: "en-GB" },

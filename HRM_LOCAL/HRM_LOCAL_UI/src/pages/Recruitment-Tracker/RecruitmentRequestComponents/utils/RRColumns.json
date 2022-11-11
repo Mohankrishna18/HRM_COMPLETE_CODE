@@ -1,6 +1,6 @@
 [
     {
-       
+        
         "title": "Job ID",
         "field": "requisitionId"
     },
@@ -41,10 +41,7 @@
         "title":"Job Status",
         "field": "rrfStatus"
     },
-    {
-        "title":"Workflow Status",
-        "field": "workflowStatus"
-    },
+
     {
         "title":"Positions",
         "field": "positions"
@@ -59,7 +56,7 @@
         "type": "date",
         "dateSetting": { "locale": "en-GB" }
     },
-   
+    
     {
         "title":"Ageing",
         "field":"ageing"

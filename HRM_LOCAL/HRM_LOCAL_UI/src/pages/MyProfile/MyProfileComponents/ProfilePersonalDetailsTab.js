@@ -146,9 +146,15 @@ function ProfilePersonalDetailsTab() {
                 console.log("oops not uploaded!");
             });
     };
+    
     function handleChange(event) {
         setFile(event.target.files[0]);
         console.log(event.target.files[0]);
+        const file = event.target.files[0];
+    console.log(file);
+    if (file.size > 1000000) toast.error("Size Should be less then 1Mb");
+    else setFile(event.target.files[0]);
+    console.log(event.target.files[0]);
     }
     const current = new Date();
     console.log(current)
