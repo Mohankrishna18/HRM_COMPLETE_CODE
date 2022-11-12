@@ -132,6 +132,7 @@ function AddDesignation(props) {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
+        centered
       >
         <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Add Designation</Modal.Title>

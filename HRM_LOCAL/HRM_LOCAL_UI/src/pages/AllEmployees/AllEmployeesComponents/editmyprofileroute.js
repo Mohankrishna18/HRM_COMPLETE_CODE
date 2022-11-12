@@ -55,8 +55,8 @@ function EmployeeMasterForms(props) {
       }
 
     function fnGoBack() {
-      history.goBack();
-    }
+        history.push("/app/dashboard");
+    } 
 
     const coursesPage = () => {
         history.push("/allEmployees")

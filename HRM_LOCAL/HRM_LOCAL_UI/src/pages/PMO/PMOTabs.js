@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { Row, Col, Card, Container, Tabs } from 'react-bootstrap';
 import AssignEmploymentDetailsMain from '../AssignEmploymentDetails/AssignEmploymentDetailsMain';
-import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
+// import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
 
 import EmploymentDetailsTabbyPmo from './EmploymentDetailsTabbyPmo';
 import PMOApproval from './PMOApproval';

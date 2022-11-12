@@ -145,7 +145,7 @@ function AssignTeamMembers(props) {
 
             pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
 
-            maxBodyHeight: 650,
+            maxBodyHeight: 9000,
 
             addRowPosition: "first",
 

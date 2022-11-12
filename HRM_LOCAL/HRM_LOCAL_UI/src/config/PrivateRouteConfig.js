@@ -353,14 +353,14 @@ export default [
       Roles.buhead,
     ],
   },
-  {
-    component: AllEmployeesMain,
-    path: "/allEmployees",
-    icon: <FcConferenceCall />,
-    title: "All Employees",
-    type: "Employee",
-    permission: [Roles.pmohead, Roles.ceo],
-  },
+  // {
+  //   component: AllEmployeesMain,
+  //   path: "/allEmployees",
+  //   icon: <FcConferenceCall />,
+  //   title: "All Employees",
+  //   type: "Employee",
+  //   permission: [Roles.pmohead, Roles.ceo],
+  // },
   {
     component: Employee,
     path: "/allEmployees",

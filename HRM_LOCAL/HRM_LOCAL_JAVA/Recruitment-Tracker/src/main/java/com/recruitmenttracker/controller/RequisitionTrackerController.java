@@ -179,7 +179,7 @@ public class RequisitionTrackerController {
            r.setResourceRequiredDate(o.getResourceRequiredDate());
            r.setRequestClosedDate(o.getRequestClosedDate());
            
-           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
+//           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
            req.add(r);
        });   
         return req;
