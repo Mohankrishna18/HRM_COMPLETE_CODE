@@ -11,16 +11,16 @@ const PMOTable = () => {
 
     const [data, setData] = useState([])
 
-    useEffect(() => {
-        axios.get("/recruitmentTracker/getAllRequisitionRequests")
-            .then((response) => {
-                setData(response.data.data)
-                console.log(response.data.data)
+useEffect(() => {
+    axios.get("/recruitmentTracker/getAllRequisitionRequests")
+        .then((response) => {
+            setData(response.data.data)
+            console.log(response.data.data)
 
 
-            })
-            .catch((err) => { toast.error("data is not getting") })
-    }, [])
+        })
+        .catch((err) => { toast.error("data is not getting") })
+}, [])
 
 
     const [columns, setColumns] = useState([
@@ -39,6 +39,7 @@ const PMOTable = () => {
 
             title: "Business Unit",
             field: "departmentName",
+            "defaultGroupOrder": 0
         },
 
         {
@@ -80,16 +81,16 @@ const PMOTable = () => {
                 options={{
                     showTitle: true,
                     pageSize: 10,
-                    maxBodyHeight: 290,
-                    pageSizeOptions: [10, 15],
+                    maxBodyHeight: 350,
+                    pageSizeOptions: [ 10, 15],
 
 
                     headerStyle: {
                         background: "#f5896e",
-                        fontSize: "14px",
-                        paddingBottom: "4px",
-                        paddingTop: "8px",
-                        color: "white",
+                fontSize:"11px",
+                paddingBottom:"4px",
+                paddingTop:"8px",
+                color: "white",
 
                     },
                     // addRowPosition: "first",
@@ -97,7 +98,7 @@ const PMOTable = () => {
                     search: false,
                     grouping: true,
                     // exportButton: true,
-                    toolbar: false
+                    toolbar:false
                 }}
 
             />
@@ -155,7 +156,7 @@ export default PMOTable;
 //                 <td>{data.jobTitle}</td>
 //                 <td>{data.positions}</td>
 //                 <td>{data.positions} </td>
-//                 <td>{data.positions} </td>
+//                 <td>{data.positions} </td>     
 //             </tr>
 //         )
 //     }

@@ -31,7 +31,8 @@ const PositionGraph_Table = () => {
 
 
                 {/* Second Graph */}
-                <Col sm={11} >
+                <Col sm={13} >
+
 
                     <Card>
                        

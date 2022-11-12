@@ -313,12 +313,19 @@ function UserStorymain() {
             editable={{}}
             options={{
               headerStyle: {
-                backgroundColor: "#f5896e",
+                // backgroundColor: "#FFC47A",
+                background: "#f5896e",
+                fontSize:"13px",
+                paddingBottom:"4px",
+                paddingTop:"8px",
                 color: "white",
-                fontSize: "12px",
-                //height: "10px",
-                //fontWeight: 'bold'
-            },
+
+  // height: "50px",
+  // position: "absolute",
+  // left: "10%",
+  // marginLeft: "-3px",
+  // top: "0",
+              },
             rowStyle: {
                 fontSize: 14,
             },

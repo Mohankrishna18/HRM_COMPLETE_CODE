@@ -424,7 +424,7 @@ function EducationalDetailsTab() {
                       controlId="postgraduationType"
                       name="postgraduationType"
                       value={postgraduationType}
-                      maxLength={50}
+                      maxLength={200}
                       onChange={(e) => setTypeOfPostGraduation(e.target.value)}
                     />
                       
@@ -437,7 +437,7 @@ function EducationalDetailsTab() {
                       placeholder="Borad"
                       controlId="postgraduationBoardOfUniversity"
                       name="postgraduationBoardOfUniversity"
-                      maxLength={50}
+                      maxLength={200}
                       value={postgraduationBoardOfUniversity}
                       onChange={(e) =>
                         setPostgraduationBoardOfUniversity(e.target.value)
@@ -451,7 +451,7 @@ function EducationalDetailsTab() {
                       placeholder="Institute Name "
                       controlId="postgraduationInstituteName"
                       value={postgraduationInstituteName}
-                      maxLength={50}
+                      maxLength={200}
                       name="postgraduationInstituteName"
                       onChange={(e) =>
                         setPostgraduationInstituteName(e.target.value)
@@ -465,7 +465,7 @@ function EducationalDetailsTab() {
                       placeholder="Institute City"
                       controlId="postgraduationInstituteCity"
                       value={postgraduationInstituteCity}
-                      maxLength={50}
+                      maxLength={200}
                       name="postgraduationInstituteCity"
                       onChange={(e) =>
                         setPostgraduationInstituteCity(e.target.value)
@@ -479,7 +479,7 @@ function EducationalDetailsTab() {
                       placeholder="Specialization"
                       controlId="postgraduationCourseName"
                       value={postgraduationCourseName}
-                      maxLength={50}
+                      maxLength={200}
                       name="postgraduationCourseName"
                       onChange={(e) =>
                         setPostgraduationCourseName(e.target.value)
@@ -523,7 +523,7 @@ function EducationalDetailsTab() {
                       controlId="postgraduationGrade"
                       value={postgraduationGrade}
                       name="postgraduationGrade"
-                      maxLength={5}
+                      maxLength={6}
                       onChange={(e) => {
                         setPostgraduationGrade(e.target.value);
                       }}
@@ -555,15 +555,17 @@ function EducationalDetailsTab() {
               type="text"
               placeholder="Qualification"
               controlId="graduationType"
-              maxLength={50}
+              maxLength={200}
               name="graduationType"
               value={graduationType}
               isInvalid={twentyfourerror}
               onChange={(e) => {
                 setTypeOfGraduation(e.target.value);
-                if (branch === "") {
-                  setTwentythreerror("Branch is Required");
-                } else {
+                if (
+                !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)){
+                  setTwentythreerror("Enter Valid Qualification");
+                }
+                else {
                   setTwentythreerror("");
                 }
               }}
@@ -585,7 +587,7 @@ function EducationalDetailsTab() {
               name="graduationBoardOfUniversity"
               value={graduationBoardOfUniversity}
               isInvalid={twentyfiveerror}
-              maxLength={50}
+              maxLength={200}
               onChange={(e) => {
                 setGraduationBoardOfUniversity(e.target.value);
                 if (
@@ -614,7 +616,7 @@ function EducationalDetailsTab() {
               placeholder="Institute Name "
               controlId="graduationInstituteName"
               name="graduationInstituteName"
-              maxLength={50}
+              maxLength={200}
               value={graduationInstituteName}
               isInvalid={twentysixerror}
               onChange={(e) => {
@@ -640,7 +642,7 @@ function EducationalDetailsTab() {
               type="text"
               placeholder="Institute City"
               controlId="graduationInstituteCity"
-              maxLength={50}
+              maxLength={200}
               value={graduationInstituteCity}
               isInvalid={twentysevenerror}
               //onChange={changeHandler}
@@ -672,7 +674,7 @@ function EducationalDetailsTab() {
               type="text"
               placeholder="Specialization"
               name="graduationCourseName"
-              maxLength={50}
+              maxLength={200}
               value={graduationCourseName}
               isInvalid={twentyeighterror}
               onChange={(e) => {
@@ -750,7 +752,7 @@ function EducationalDetailsTab() {
               isInvalid={thirtyoneerror}
               value={graduationGrade}
               name="graduationGrade"
-              maxLength={5}
+              maxLength={6}
               onChange={(e) => {
                 setGraduationGrade(e.target.value);
                 if (
@@ -791,7 +793,7 @@ function EducationalDetailsTab() {
               type="text"
               placeholder="Qualification"
               controlId="graduationType"
-              maxLength={50}
+              maxLength={200}
               name="graduationType"
               value={intermediateQualification}
               isInvalid={fourtysix}
@@ -815,7 +817,7 @@ function EducationalDetailsTab() {
               controlId="intermediateBoardOfUniversity"
               value={intermediateBoardOfUniversity}
               isInvalid={thirtytwoerror}
-              maxLength={50}
+              maxLength={200}
               onChange={(e) => {
                 setIntermediateBoardOfUniversity(e.target.value);
                 if (!setIntermediateQualification) {
@@ -847,7 +849,7 @@ function EducationalDetailsTab() {
               controlId="intermediateCollegeName"
               value={intermediateCollegeName}
               isInvalid={thirtythreeerror}
-              maxLength={50}
+              maxLength={200}
               onChange={(e) => {
                 setIntermediateCollegeName(e.target.value);
                 if (
@@ -874,7 +876,7 @@ function EducationalDetailsTab() {
               controlId="intermediateCollegeCity"
               value={intermediateCollegeCity}
               isInvalid={thirtyfourerror}
-              maxLength={50}
+              maxLength={200}
               onChange={(e) => {
                 setIntermediateCollegeCity(e.target.value);
                 if (
@@ -904,7 +906,7 @@ function EducationalDetailsTab() {
               placeholder="Specialization"
               name="intermediateCourseName"
               controlId="intermediateCourseName"
-              maxLength={50}
+              maxLength={200}
               value={intermediateCourseName}
               isInvalid={thirtyfiveerror}
               // onChange={changeHandler}
@@ -978,7 +980,7 @@ function EducationalDetailsTab() {
               type="text"
               placeholder="Percentage/Grade/GPA/CGPA"
               controlId="intermediateGrade"
-              maxLength={5}
+              maxLength={6}
               value={intermediateGrade}
               isInvalid={thirtyeighterror}
               name="intermediateGrade"
@@ -1024,7 +1026,7 @@ function EducationalDetailsTab() {
               type="text"
               placeholder="Qualification"
               controlId="graduationType"
-              maxLength={50}
+              maxLength={200}
               name="graduationType"
               value={sscQualification}
               isInvalid={fourtyseven}
@@ -1044,7 +1046,7 @@ function EducationalDetailsTab() {
               type="text"
               placeholder="Board"
               controlId="sscBoardOfUniversity"
-              maxLength={50}
+              maxLength={200}
               value={sscBoardOfUniversity}
               isInvalid={thirtynineerror}
               onChange={(e) => {
@@ -1077,7 +1079,7 @@ function EducationalDetailsTab() {
               type="text"
               placeholder="School Name "
               controlId="sscSchoolName"
-              maxLength={50}
+              maxLength={200}
               value={sscSchoolName}
               isInvalid={fourty}
               onChange={(e) => {
@@ -1103,7 +1105,7 @@ function EducationalDetailsTab() {
               type="text"
               placeholder="School City"
               controlId="sscSchoolCity"
-              maxLength={50}
+              maxLength={200}
               value={sscSchoolCity}
               isInvalid={fourtyone}
               name="sscSchoolCity"
@@ -1209,7 +1211,7 @@ function EducationalDetailsTab() {
               placeholder="Percentage/Grade/GPA/CGPA"
               controlId="sscGrade"
               value={sscGrade}
-              maxLength={5}
+              maxLength={6}
               name="sscGrade"
               isInvalid={fourtyfive}
               onChange={(e) => {

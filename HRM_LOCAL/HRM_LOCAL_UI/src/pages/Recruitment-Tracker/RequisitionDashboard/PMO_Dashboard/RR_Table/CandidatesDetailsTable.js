@@ -81,7 +81,7 @@ console.log(data);
                 options={{
                     showTitle: true,
                     pageSize: 10,
-                    maxBodyHeight: 290,
+                    maxBodyHeight: 380,
                     pageSizeOptions: [ 10, 15],
 
 
