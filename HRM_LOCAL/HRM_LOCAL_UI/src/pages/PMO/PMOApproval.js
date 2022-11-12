@@ -73,11 +73,11 @@ function PMOApproval(props) {
         console.log(res.data);
     };
     const [columns, setColumns] = useState([
-        { title: 'OnboardingId', field: 'onboardingId' },
-        { title: 'FullName', field: 'firstName' },
+        { title: 'OBD ID', field: 'onboardingId' },
+        { title: 'Name', field: 'firstName' },
         { title: 'Email', field: 'email' },
-        { title: 'PhoneNumber', field: 'phoneNumber' },
-        { title: 'Date of Joining', field: 'dateOfJoining', type: 'date', dateSetting: { locale: "en-GB" } },
+        { title: 'Contact', field: 'phoneNumber' },
+        { title: 'DOJ', field: 'dateOfJoining', type: 'date', dateSetting: { locale: "en-GB" } },
         { title: 'Job Title', field: 'jobTitle' },
         { title: 'Experience', field: 'yearsOfExperience' },
         // { title: 'Status', field: 'status' }

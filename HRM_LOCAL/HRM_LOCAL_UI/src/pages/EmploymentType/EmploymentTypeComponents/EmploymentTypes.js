@@ -6,24 +6,12 @@ import Grid from '@mui/material/Grid'
 import axios from "../../../Uri";
 
 
-
-
 export default function EmploymentTypes() {
     const [data, setData] = useState([]);
 
-
-
     useEffect(() => {
-
-
-
         loadData();
-
-
-
     }, []);
-
-
 
     const loadData = async () => {
         const res = await axios.get("/employmentType/getAllEmployments");
@@ -31,16 +19,9 @@ export default function EmploymentTypes() {
         console.log(res.data.data);
     };
 
-
-
-
-
-
     const [columns, setColumns] = useState([
         { title: 'Employment Type', field: 'employmentTypeName' },
     ]);
-
-
 
     return (
         <Grid>
@@ -51,20 +32,16 @@ export default function EmploymentTypes() {
                 editable={{
                     onRowAdd: newData =>
                         new Promise((resolve, reject) => {
-
-
-                            setTimeout(() => {
+                            setTimeout(async () => {
                                 console.log(newData)
-                                const res = axios.post("/employmentType/addEmploymentType",
+                                 await axios.post("/employmentType/addEmploymentType",
                                     newData,
-                                );
-                                console.log(res.data)
+                                ).then(res => toast.success(res.data.message) )
+                                .catch(e => toast.error(e.response.data.message))
+                                //console.log(res.data)
                                 // setData([...data, newData]);
-                                toast.success("Employment Type is added")
+                                //toast.success("Employment Type is added")
                                 loadData();
-
-
-
                                 resolve();
                             }, 1000)
                         }),
@@ -78,9 +55,6 @@ export default function EmploymentTypes() {
                             console.log(updatedRows);
                             updatedRows[oldRow.tableData.id] = updatedRow;
                             console.log(updatedRows);
-
-
-
                             setTimeout(() => {
                                 console.log(updatedRow)
                                 const res = axios.put(`/employmentType/updateEmploymentTypeById/${index}`, updatedRow)
@@ -88,16 +62,10 @@ export default function EmploymentTypes() {
                                         console.log(resp);
                                         loadData()
                                     })
-
-
-
                                     .catch((err) => {
                                         console.log("not updated")
                                         // toast.error("Server error");
                                     });
-
-
-
                                 setData(updatedRows);
                                 console.log("updated")
                                 toast.success("Employment Type is Updated")
@@ -105,10 +73,6 @@ export default function EmploymentTypes() {
                                 resolve();
                             });
                         }),
-
-
-
-
 
                     onRowDelete: oldData =>
                         new Promise((resolve, reject) => {
@@ -132,7 +96,9 @@ export default function EmploymentTypes() {
                         }),
                 }}
                 options={{
-                    paging: false,
+                    pageSize: 5,
+                    pageSizeOptions: [5,10, 15,20, 30 ,50, 75, 100 ],
+                    maxBodyHeight: 450,
                     addRowPosition: 'first',
                     actionsColumnIndex: -1,
                     headerStyle: {

@@ -13,16 +13,32 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import EmployeeMasterCard from "../../EmployeeMaster/EmployeeMasterComponents/EmployeeMasterCard";
 import { useHistory } from "react-router-dom";
+import EditCard from "./EditCard";
 import { set } from "lodash";
 import { Formik } from "formik";
-import PersonalDetailsTab from "../../EmployeeMaster/EmployeeMasterComponents/PersonalDetailsTab";
-import AddressTab from "../../EmployeeMaster/EmployeeMasterComponents/AddressTab";
-import AditionalDetailsTab from "../../EmployeeMaster/EmployeeMasterComponents/AdditionalDetailsTab";
-import EmploymentDetailsTab from "../../EmployeeMaster/EmployeeMasterComponents/EmploymentDetailsTab";
-import EducationalDetailsTab from "../../EmployeeMaster/EmployeeMasterComponents/EducationalDetailsTab";
-import ExperienceTab from "../../EmployeeMaster/EmployeeMasterComponents/ExperienceTab";
-import ProjectsTab from "../../EmployeeMaster/EmployeeMasterComponents/ProjectsTab";
+// import PersonalDetailsTab from "../../EmployeeMaster/EmployeeMasterComponents/PersonalDetailsTab";
+// import AddressTab from "../../EmployeeMaster/EmployeeMasterComponents/AddressTab";
+// import AditionalDetailsTab from "../../EmployeeMaster/EmployeeMasterComponents/AdditionalDetailsTab";
+// import EmploymentDetailsTab from "../../EmployeeMaster/EmployeeMasterComponents/EmploymentDetailsTab";
+// import EducationalDetailsTab from "../../EmployeeMaster/EmployeeMasterComponents/EducationalDetailsTab";
+// import ExperienceTab from "../../EmployeeMaster/EmployeeMasterComponents/ExperienceTab";
+// import ProjectsTab from "../../EmployeeMaster/EmployeeMasterComponents/ProjectsTab";
 import { FiArrowLeftCircle } from "react-icons/fi";
+import EditPersonal from "./EditPersonal";
+import EditAdditional from "./EditAdditional";
+import EditAddress from "./EditAddress";
+import EditEmployment from "./EditEmployment";
+import EditEducational from "./EditEducational";
+import EditExperience from "./EditExperience";
+import EditProject from "./EditProject";
+
+import { BsFillPersonLinesFill } from 'react-icons/bs';
+import { FaBookReader, FaBusinessTime, FaGraduationCap, FaRegAddressCard } from 'react-icons/fa';
+import { FiUserPlus } from 'react-icons/fi';
+import { TiBusinessCard } from 'react-icons/ti';
+import { GrUserExpert } from "react-icons/gr";
+import { VscProject } from "react-icons/vsc";
+import { AiOutlineProject } from 'react-icons/ai';
 
 function EmployeeMasterForms(props) {
     const userData = sessionStorage.getItem("userdata");
@@ -35,10 +51,15 @@ function EmployeeMasterForms(props) {
     // const navigate = useNavigate();
   
     function handleClick() {
-      history.push("/");
-    }
+        history.push("/");
+      }
+
     function fnGoBack() {
       history.goBack();
+    }
+
+    const coursesPage = () => {
+        history.push("/allEmployees")
     }
 
     const [value, setValue] = React.useState('1');
@@ -438,41 +459,44 @@ function EmployeeMasterForms(props) {
                             <Card.Body>
                                 <Row>
                                     <Col>
-                                        <Card.Title>Edit Employee Details</Card.Title>
+                                        <Card.Title>Employee Profile</Card.Title>
                                     </Col>
                                     <Col>
-                                    <button type="button" onClick={fnGoBack} style={{float:"right",border:"none",backgroundColor:"white"}}>
-                                         <FiArrowLeftCircle style={{ fontSize: "30px"}} />
-                                    </button>
-                                      
+                                    <button type="button" 
+                                    onClick={fnGoBack}
+                                     //onClick={() => history.goBack()} 
+                                     style={{float:"right",border:"none",backgroundColor:"white"}}>
+                                        <FiArrowLeftCircle style={{ fontSize: "30px"}} />
+                                    </button>                                      
                                     </Col>
                                 </Row>
-
-                                
-
+                                <Row>
+                                    <EditCard/>
+                                </Row>
                                 <Row>
                                 <TabContext value={value}>
   <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{justifyContent:"center"}}>
-    <TabList onChange={handleChange1} aria-label="lab API tabs example" sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" }}} style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"30px",paddingRight:0,color:"white" }}
+    <TabList onChange={handleChange1} aria-label="lab API tabs example" sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" }}} style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"60px",paddingRight:0,color:"white" }}
        // textColor="secondary"
         indicatorColor="#f5896e">
-      <Tab label="Personal Details" value="1" />
-      <Tab label="Address Details" value="2" />
-      <Tab label="Additional Details" value="3" />
-      <Tab label="Employment Details" value="4" />
-      <Tab label="Educational Details" value="5" />
-      <Tab label="Experience Details" value="6" />
-      <Tab label="Project Details" value="7" />
+      <Tab label="Personal Info." value="1" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<BsFillPersonLinesFill style={{ fontSize: "20px" }} />}/>
+      <Tab label="Address" value="2" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<FaRegAddressCard style={{ fontSize: "20px" }} />} />
+      <Tab label="Additional Details" value="3" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<FiUserPlus style={{ fontSize: "20px" }} />}/>
+      <Tab label="Employment" value="4" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<TiBusinessCard style={{ fontSize: "20px" }} />}/>
+      <Tab label="Educational" value="5" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<FaGraduationCap style={{ fontSize: "20px" }} />}/>
+      <Tab label="Experience" value="6" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<FaBusinessTime style={{ fontSize: "20px" }} />}/>
+      <Tab label="Projects" value="7" style={{paddingRight: "3%", paddingLeft: "3%", fontSize: "12px"}} icon={<AiOutlineProject style={{ fontSize: "20px" }} />}/>
+     
 
     </TabList>
   </Box>
-  <TabPanel value="1"><PersonalDetailsTab /></TabPanel>
-  <TabPanel value="2">  <AddressTab /></TabPanel>
-  <TabPanel value="3"> <AditionalDetailsTab/></TabPanel>
-  <TabPanel value="4"> <EmploymentDetailsTab /></TabPanel>
-  <TabPanel value="5"><EducationalDetailsTab/></TabPanel>
-  <TabPanel value="6"><ExperienceTab /></TabPanel>
-  <TabPanel value="7"><ProjectsTab /></TabPanel>
+  <TabPanel value="1"><EditPersonal/></TabPanel>
+  <TabPanel value="2">  <EditAddress /></TabPanel>
+  <TabPanel value="3"> <EditAdditional/></TabPanel>
+  <TabPanel value="4"> <EditEmployment /></TabPanel>
+  <TabPanel value="5"><EditEducational/></TabPanel>
+  <TabPanel value="6"><EditExperience/></TabPanel>
+  <TabPanel value="7"><EditProject /></TabPanel>
 </TabContext>
 
                                     {/* <Tabs
@@ -2670,5 +2694,4 @@ function EmployeeMasterForms(props) {
 }
 
 export default EmployeeMasterForms;
-
 

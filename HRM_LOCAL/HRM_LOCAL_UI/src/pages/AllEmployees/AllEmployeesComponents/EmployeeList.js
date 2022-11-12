@@ -3,8 +3,7 @@ import MaterialTable from "material-table";
 import { Grid } from "@mui/material";
 //import { Link } from "@mui/material";
 import { Link } from "react-router-dom";
-
-
+import { useHistory } from "react-router-dom";
 
 import EmployeeMasterForms from "./editmyprofileroute";
 
@@ -15,10 +14,12 @@ import axios from "../../../Uri";
 
 
 function EmployeeList() {
+    const history = useHistory();
     const [data, setData] = useState([]);
     const [eid, setEid] = useState("");
     const myProfile = (e) => {
         console.log(e.target.innerText);
+        history.push(`/app/`)
         setEid(e.target.innerText);
         localStorage.setItem('item', e.target.innerText)
         axios
@@ -27,6 +28,7 @@ function EmployeeList() {
                 console.log(response.data.data);
             });
     };
+
 
 
 

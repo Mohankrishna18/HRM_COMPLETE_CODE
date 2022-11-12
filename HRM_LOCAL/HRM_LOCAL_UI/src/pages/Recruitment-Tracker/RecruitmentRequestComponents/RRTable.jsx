@@ -16,6 +16,7 @@ import UpdateRR from './UpdateRR'
 import DeleteRR from "./DeleteRR";
 import ViewRR from "./ViewRR";
 import { useParams, useHistory } from "react-router-dom";
+import './utils/RT.css';
 
 function RRTable() {
   const [show, setShow] = useState(false);
@@ -33,16 +34,16 @@ function RRTable() {
   const [updateStatus, setUpdateStatus] = useState(false);
   const [deleteOnboard, setDeleteOnboard] = useState({});
   const [deleteStatus, setDeleteStatus] = useState(true);
-
+const params = useParams()
   const history = useHistory();
   const pull_dataAdd = () => {
     setAddStatus(!addStatus);
   };
 
-  const pull_dataUpdate = () => {
-    setUpdateStatus(!updateStatus);
+  // const pull_dataUpdate = () => {
+  //   setUpdateStatus(!updateStatus);
 
-  };
+  // };
 
   const pull_dataView = () => {
     setViewStatus(!viewStatus);
@@ -65,15 +66,14 @@ function RRTable() {
     setData(response.data);
     console.log(response.data);
   };
+
   const sessionData = JSON.parse(sessionStorage.getItem('userdata'));
-
   const employeeId = sessionData.data.employeeId;
-
   const userType = sessionData.data.userType;
-
   console.log(employeeId);
-
   console.log(userType);
+
+
 
   return (
     <div>
@@ -86,11 +86,11 @@ function RRTable() {
           <Modal.Title>Update Requisition</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <UpdateRR
+          {/* <UpdateRR
             updateOnboard={updateOnboard}
             func={pull_dataUpdate}
             handleClose={handleClose}
-          />
+          /> */}
         </Modal.Body>
 
       </Modal>
@@ -148,9 +148,9 @@ function RRTable() {
         <Row>
           <Col>
             <Card.Title>Arshaa Employee Requisitions</Card.Title>
-            {/* <Card.Subtitle className="mb-2 text-muted">
+            <Card.Subtitle className="mb-2 text-muted">
               Dashboard / Employee Requisitions{" "}
-            </Card.Subtitle> */}
+            </Card.Subtitle>
           </Col>
           <Col>
             <AddRequisition func={pull_dataAdd} />
@@ -160,7 +160,7 @@ function RRTable() {
       </Card.Body>
       <Grid container>
         <Grid xs={12}>
-          {(userType === "taa") ?
+          {(userType === "taa" ) ?
             <MaterialTable
               title=""
               columns={RRColumns}
@@ -187,14 +187,14 @@ function RRTable() {
                 // grouping: true,
                 exportButton: true,
               }}
-             
+              
             />
             :
             <MaterialTable
             title=""
               columns={RRColumns}
               style={{ color: "black", fontSize: "0.9rem" }}
-              data={data}
+              data={data ? data : []}
               editable={{}}
               options={{
                 pageSize: 10,
@@ -202,11 +202,18 @@ function RRTable() {
                 pageSizeOptions: [8, 10, 15, 20, 30, 50, 75, 100],
                 maxBodyHeight: 450,
                 headerStyle: {
-                  backgroundColor: "#f5896e",
+
+                  // backgroundColor: "#FFC47A",
+
+                  background: "#f5896e",
+
+                  fontSize:"13px",
+
+                  paddingBottom:"4px",
+
+                  paddingTop:"8px",
+
                   color: "white",
-                  fontSize: "12px",
-                  //height: "10px",
-                  //fontWeight: 'bold'
                 },
                 rowStyle: {
                   fontSize: 14,
@@ -233,13 +240,14 @@ function RRTable() {
                       <Button
                         variant="info"
                         onClick={(event) => {
-                          setShow(true);
-                          console.log(props);
+                          // setShow(true);
+                          console.log(props.data);
                           setUpdateOnboard(props.data);
                           localStorage.setItem("requisition", JSON.stringify(props));
                           history.push(
-                            `/app/updateRequisition/${props.data.rrfId}`
+                            `/app/updateRequisition/${props.data.requisitionId}`
                           );
+                          console.log(props.data);
                         }}
                       >
 
@@ -275,14 +283,15 @@ function RRTable() {
                           float: "right",
                           borderRadius: "20px",
                           height: "40px",
-                          width: "120px",
-                          fontSize: "12px",
+                          width: "70px",
+                          fontSize: "14px",
                           fontWeight: "bold"
 
                         }}
+
                       >
 
-                        Send to Approval
+                        View
                       </Button>
 
                     </Stack>
@@ -299,4 +308,6 @@ function RRTable() {
     </div>
   );
 }
+
 export default RRTable;
+

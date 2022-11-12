@@ -41,59 +41,10 @@ const EmployeeDashboard = () => {
 
   console.log(date1);
 
-  const counts = {};
+ 
 
-  const sampleArray = date1;
-
-  console.log(sampleArray);
-  sampleArray.forEach(function (x) {
-    counts[x] = (counts[x] || 0) + 1;
-  });
-  console.log(counts);
-  const dat=(Object.values(counts))
-  console.log(dat[0]);
-
-  // var specificValuesFromArray = counts.filter(obj => obj.08 ===
-  //   92 || obj.studentMarks === 98);
-  //   console.log(specificValuesFromArray)
-  // function count() {
-  //   array_elements = date1;
-
-  //   array_elements.sort();
-
-  //   var current = null;
-  //   var cnt = 0;
-  //   for (var i = 0; i < array_elements.length; i++) {
-  //     if (array_elements[i] != current) {
-  //       if (cnt > 0) {
-  //         console.log(current + " comes --> " + cnt + " times<br>");
-  //       }
-  //       current = array_elements[i];
-  //       cnt = 1;
-  //     } else {
-  //       cnt++;
-  //     }
-  //   }
-  //   if (cnt > 0) {
-  //     console.log(current + " comes --> " + cnt + " times");
-  //   }
-  // }
-
-  // count();
-  //console.log(
-  // let a=3;
-  // const pr = counts.map((projectName) => projectName.a);
-  // console.log(pr);
-  //console.log(counts.map((item) =>{item}));
-
-  // let mark = [];
-  // const daaa = new Date();
-  // let month = mark[daaa.getMonth()];
-  // console.log(month);
-
-  // console.log(daaa.getMonth() + 1);
-  // var uniq=daaa.map(s.getMonth());
-  // console.log(daaa)
+ 
+ 
 
   useEffect(() => {
     axios
@@ -110,15 +61,7 @@ const EmployeeDashboard = () => {
 
   console.log(date);
 
-  // useEffect(() => {
-  //     axios
-  //       .get(`/task/getByStatus/${employeeid}/In progress`)
-  //       .then((response) => {
-  //         setProg(response.data);
-  //       });
-  //   }, []);
-
-  // console.log(prog)
+ 
 
   useEffect(() => {
     axios.get(`/clientProjectMapping/getAllProjects`).then((response) => {
@@ -134,9 +77,54 @@ const EmployeeDashboard = () => {
       setDate(response.data);
     });
   }, []);
-  console.log(conDate);
+
 
   console.log(date1);
+  const counts = {};
+
+for (const num of date1) {
+  counts[num] = counts[num] ? counts[num] + 1 : 1;
+}
+
+console.log(counts[9]);
+
+
+let jan=counts[1];
+let feb=counts[2];
+let mar=counts[3];
+let apr=counts[4];
+let may=counts[5];
+let jun=counts[6];
+let jul=counts[7];
+let aug=counts[8];
+let sep=counts[9];
+let oct=counts[10];
+let nov=counts[11];
+let dec=counts[12];
+ 
+
+  // const counts = {};
+
+  // const sampleArray = date1;
+
+  // console.log(sampleArray);
+
+  // sampleArray.forEach(function (x) {
+  //   counts[x] = (counts[x] || 0) + 1;
+  // });
+  // console.log(counts);
+ 
+  // let a=(Object.keys(counts));
+  // console.log();
+ 
+ 
+
+
+ 
+ 
+   
+
+
   useEffect(() => {
     axios.get(`emp/leavespermonth/${employeeid}`).then((response) => {
       setLeaves(response.data);
@@ -219,7 +207,7 @@ const EmployeeDashboard = () => {
               />{" "}
             </Col> */}
 
-            {/* for name & details 
+            {/* for name & details
             <Col style={{ paddingLeft: "20px" }}>
               <h3>
                 Welcome , {getEmployeeDetails.firstName}{" "}
@@ -285,7 +273,8 @@ const EmployeeDashboard = () => {
                           <td>
                             {
                               data.holidayDate
-                              .split("T0")[0].split('-').reverse().join('/')
+                                .replace(/\b0/g, "")
+                                .split("T0")[0]
                             }
                           </td>
                           <td></td>
@@ -342,7 +331,7 @@ const EmployeeDashboard = () => {
               </Card>
             </Col>
           </Row> */}
-{/* 
+{/*
           <br></br> */}
 
           {/* <Row>
@@ -381,7 +370,7 @@ const EmployeeDashboard = () => {
                 style={{
                   // height: "500px",
                   overflowY: "auto",
-                  overflowX: "hidden",   
+                  overflowX: "hidden",  
                 }}
               >
                 {/* 1st row */}
@@ -409,7 +398,7 @@ const EmployeeDashboard = () => {
                     <Card >
                     <h6 style={{color:"#f5896e",paddingBottom:"10px",paddingTop:"10px"}}>TOTAL LEAVES    {leaves}</h6>
                     </Card>
-                    
+                   
                   </Col>
                 </Row>
                 <Table>
@@ -424,62 +413,62 @@ const EmployeeDashboard = () => {
                     <tr>
                       <td></td>
                       <td>January</td>
-                      <td>0</td>
+                        <td>{jan}</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>February</td>
-                      <td>0</td>
+                      <td>{feb}</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>March</td>
-                      <td>0</td>
+                      <td>{mar}</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>April</td>
-                      <td>0</td>
+                      <td>{apr}</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>May</td>
-                      <td>0</td>
+                      <td>{may}</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>June</td>
-                      <td>0</td>
+                      <td>{jun}</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>July</td>
-                      <td>2</td>
+                      <td>{jul}</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>August</td>
-                      <td>0</td>
+                      <td>{aug}</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>September</td>
-                      <td>1</td>
+                      <td>{sep}</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>October</td>
-                      <td>0</td>
+                      <td>{oct}</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>November</td>
-                      <td>0</td>
+                      <td>{nov}</td>
                     </tr>
                     <tr>
                       <td></td>
                       <td>December</td>
-                      <td>0</td>
+                      <td>{dec}</td>
                     </tr>
                   </tbody>
                 </Table>

@@ -16,10 +16,10 @@ const EmployeeMaster = () => {
                                 Employees / Edit My Profile
                             </Card.Subtitle>
                             <EmployeeMasterCard />
-                          
+                            <EmployeeMasterTabs/>
                         </Card.Body>
           {/* <EmployeeMasterForm /> */}
-          <EmployeeMasterTabs/>
+          
           </Card>
         </Col>
       </Row>

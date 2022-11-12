@@ -319,7 +319,7 @@ public class UserService {
 					mailTemp.setEmailType("IRM_REJECTED");
 				}
 
-				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+//				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 				break;
 			case "pmohead":
 //				EmailTemplate mailTemp = new EmailTemplate();
@@ -333,7 +333,7 @@ public class UserService {
 					mailTemp.setEmailType("SRM_REJECTED");
 				}
 
-				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+//				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 				break;
 			case "srm":
 //				EmailTemplate mailTemp = new EmailTemplate();
@@ -347,7 +347,7 @@ public class UserService {
 					mailTemp.setEmailType("SRM_REJECTED");
 				}
 
-				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+//				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 				break;
 			default:
 				break;
