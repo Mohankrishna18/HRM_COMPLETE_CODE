@@ -9,13 +9,13 @@ const PositionGraph_Table = () => {
             <Row>
 
                 {/* First Graph */}
-                <Col md={3}>
+                {/* <Col md={3}>
 
-                    {/*  className='grph'*/}
+                     className='grph'
                     <Card >
                         <Card.Body  >
                             <h6 align="center">Positions By Business Unit </h6>
-                            {/* Applicant Graph */}
+                            Applicant Graph
                             <div style={{ height: "369px",}}>
 
                                 <PositionsOpenByDepartment />
@@ -23,15 +23,16 @@ const PositionGraph_Table = () => {
                         </Card.Body>
                     </Card>
 
-                </Col>
+                </Col> */}
 
                 {/* Verticle line */}
-                <Col className='vl' style={{ paddingLeft: "0px", paddingRight: "0px", height: '416px' }} ></Col>
+                {/* <Col className='vl' style={{ paddingLeft: "0px", paddingRight: "0px", height: '416px' }} ></Col> */}
 
 
 
                 {/* Second Graph */}
-                <Col sm={9} >
+                <Col sm={13} >
+
 
                     <Card>
                        

@@ -9,12 +9,12 @@ function RejectedEmployeeArchieve() {
 
   const columns = [
     {
-      title: "Onboarding Id",
+      title: "OBD ID",
       field: "onboardingId",
       type: "text",
 
       headerStyle: {
-        backgroundColor: "#FF9E14",
+        backgroundColor: "#f5896e",
         color: "white",
       },
     },
@@ -24,7 +24,7 @@ function RejectedEmployeeArchieve() {
         type: "text",
   
         headerStyle: {
-          backgroundColor: "#FF9E14",
+          backgroundColor: "#f5896e",
           color: "white",
         },
     },
@@ -34,7 +34,7 @@ function RejectedEmployeeArchieve() {
       type: "text",
 
       headerStyle: {
-        backgroundColor: "#FF9E14",
+        backgroundColor: "#f5896e",
         color: "white",
       },
     },
@@ -44,7 +44,7 @@ function RejectedEmployeeArchieve() {
         type: "text",
   
         headerStyle: {
-          backgroundColor: "#FF9E14",
+          backgroundColor: "#f5896e",
           color: "white",
         },
       },
@@ -53,28 +53,28 @@ function RejectedEmployeeArchieve() {
       field: "email",
 
       headerStyle: {
-        backgroundColor: "#FF9E14",
+        backgroundColor: "#f5896e",
         color: "white",
       },
     },
     {
-      title: "PhoneNumber",
+      title: "Contact",
       field: "phoneNumber",
       type: "text",
 
       headerStyle: {
-        backgroundColor: "#FF9E14",
+        backgroundColor: "#f5896e",
         color: "white",
       },
     },
 
     {
-      title: "Date of Joining",
+      title: "DOJ",
       field: "dateOfJoining",
       type:'date',
 
       headerStyle: {
-        backgroundColor: "#FF9E14",
+        backgroundColor: "#f5896e",
         color: "white",
       },
     },
@@ -83,7 +83,7 @@ function RejectedEmployeeArchieve() {
       field: "yearsOfExperience",
 
       headerStyle: {
-        backgroundColor: "#FF9E14",
+        backgroundColor: "#f5896e",
         color: "white",
       },
     },
@@ -92,7 +92,7 @@ function RejectedEmployeeArchieve() {
       field: "comments",
 
       headerStyle: {
-        backgroundColor: "#FF9E14",
+        backgroundColor: "#f5896e",
         color: "white",
       },
     },

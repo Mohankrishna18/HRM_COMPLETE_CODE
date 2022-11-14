@@ -335,11 +335,11 @@ function AddOnboard(props) {
                   <Row className="mb-4">
                     <Row md="12">
                   <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Select Requisition ID*</Form.Label>
+                <Form.Label>Select AERF ID*</Form.Label>
                 <Form.Select
                     outlined
                     dataSource={rrf}
-                    placeholder="Select Requisition ID"
+                    placeholder="Select AERF ID"
                     fields={{ value: "requisitionId", display:"requisitionId"}}
                     value={form.requisitionId}
                     isInvalid={!!errors.requisitionId}

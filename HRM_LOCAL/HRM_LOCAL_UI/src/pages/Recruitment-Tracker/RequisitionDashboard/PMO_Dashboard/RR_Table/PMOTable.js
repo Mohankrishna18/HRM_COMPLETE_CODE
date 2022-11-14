@@ -39,6 +39,7 @@ useEffect(() => {
 
             title: "Business Unit",
             field: "departmentName",
+            "defaultGroupOrder": 0
         },
 
         {
@@ -55,12 +56,12 @@ useEffect(() => {
         {
 
             title: "Request Initiated",
-            field: "positions",
+            field: "requestInitiatedDate",
         },
         {
 
             title: "Aging",
-            field: "positions",
+            field: "ageing",
         },
 
 
@@ -80,7 +81,7 @@ useEffect(() => {
                 options={{
                     showTitle: true,
                     pageSize: 10,
-                    maxBodyHeight: 290,
+                    maxBodyHeight: 350,
                     pageSizeOptions: [ 10, 15],
 
 

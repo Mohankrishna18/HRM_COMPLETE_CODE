@@ -33,7 +33,7 @@ function ClientTable(props) {
       { title: "Client ID", field: "clientId",color:"black" },
       { title: "Client Name", field: "clientName",color:"black" },
       { title: "Email", field: "email" },
-      { title: "Contact Number", field: "phoneNumber" },  
+      { title: "Contact", field: "phoneNumber" },  
 
     ]);
     console.log(data);

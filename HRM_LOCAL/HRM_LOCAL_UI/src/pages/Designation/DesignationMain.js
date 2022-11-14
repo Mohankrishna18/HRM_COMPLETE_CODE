@@ -76,7 +76,7 @@ function DesignationMain() {
     },
 
     {
-      title: "Designation Name",
+      title: "Designation",
       field: "designationName",
     }
   ]);
