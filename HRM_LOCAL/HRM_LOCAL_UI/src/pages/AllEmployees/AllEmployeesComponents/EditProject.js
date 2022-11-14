@@ -43,6 +43,14 @@ const EditProject = () => {
   const[data,setData] = useState([]);
   //var dateTime = getEmployeeDetails.dateOfJoining;
 
+  const[projects,setProjects] = useState([]);
+  useEffect(() => {
+    axios.get(`/clientProjectMapping/getAllProjectsbyemployee/${localitem}`).then((response) => {
+      setProjects(response.data.data);
+    });
+  }, []);
+  console.log(projects);
+
 
   const [imge, setImge] = useState([]);
   //commit
@@ -69,17 +77,17 @@ const EditProject = () => {
   }, []);
   console.log(imge);
 
-  const [projects, setProjects] = useState(false);
+  // const [projects, setProjects] = useState(false);
  
 
-  useEffect(() => {
-    axios
-      .get(`/emp/getUserClientDetailsbyEmployeeId/${localitem}`)
-      .then((response) => {
-        setProjects(response.data);
-      });
-  }, []);
-  console.log(projects);
+  // useEffect(() => {
+  //   axios
+  //     .get(`/emp/getUserClientDetailsbyEmployeeId/${localitem}`)
+  //     .then((response) => {
+  //       setProjects(response.data);
+  //     });
+  // }, []);
+  // console.log(projects);
 
   useEffect(() => {
     axios
@@ -91,6 +99,7 @@ const EditProject = () => {
       });
   }, []);
   console.log(project);
+
   const [proj, setProj] = useState([]);
   useEffect(() => {
     axios.get(`/clientProjectMapping/getAllProjects`).then((response) => {
@@ -102,9 +111,9 @@ const EditProject = () => {
 
   return (
     <div style={{ paddingLeft: 20, paddingBottom: 0 }}>
-      <Card.Title>
+      {/* <Card.Title>
         <h5>Projects History:</h5>
-      </Card.Title>
+      </Card.Title> */}
       <Card.Body>
         <Row>
           <Col md={12}>
@@ -115,14 +124,21 @@ const EditProject = () => {
                   <th scope="col">Project Name</th>
                   <th scope="col">Client Name</th>
                   <th scope="col">Reporting Manager</th>
-                
                   <th scope="col">Start Date</th>
                   <th scope="col">End Date</th>
                 </tr>
               </thead>
 
               <tbody>
-                    {proj.map((data) => (
+              {!projects ? <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr> : 
+<>
+                    {projects.map((data) => (
                       <tr>
                         <td>{data.projectName}</td>
                         <td>{data.clientName}</td>
@@ -135,6 +151,8 @@ const EditProject = () => {
                         </td>
                       </tr>
                     ))}
+                     </> }
+                   
                   </tbody>
             </table>
           </Col>
