@@ -87,7 +87,7 @@ function ManagerEmployeeReject(props) {
             <Button variant="primary" style={{ marginTop: "5%", float: "right" }}
                 onClick={RejectHandler}
             >
-                Yes
+                Reject
             </Button>
 
             {/* </Row>
