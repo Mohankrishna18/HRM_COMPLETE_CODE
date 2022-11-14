@@ -60,20 +60,20 @@ const CandidateStatusCards = () => {
     return (
         <div>
             <Row>
-                <h4>Candidate Status</h4>
+                {/* <h4>Candidate Status</h4> */}
 
 
-                <Col sm={1}>
+                <Col sm={2}>
                     {/* card2 */}
                     <SingleCard data={hired} name='Hired'  color='#00c301' />
                 </Col>
-
+            
                 <Col sm={2}>
                     {/* card2 */}
                     <SingleCard data={shortlist} name='Shortlisted' color='#008000' />
                 </Col>
 
-                <Col sm={1}>
+                <Col sm={2}>
                     {/* card2 */}
                     <SingleCard data={onhold} name='On Hold' color='#0000c4' />
                 </Col>
@@ -88,12 +88,12 @@ const CandidateStatusCards = () => {
                     <SingleCard data={decline} name='Declined  ' />
                 </Col>
 
-                <Col sm={2}>
+                <Col sm={1}>
                     {/* card2 */}
                     <SingleCard data={scheduld} name='Scheduled'  color='#329b24' />
                 </Col>
 
-                <Col sm={2}>
+                <Col sm={1}>
                     {/* card2 */}
                     <SingleCard data={prgrs} name='In Progress'  color='#329b24' />
                 </Col>

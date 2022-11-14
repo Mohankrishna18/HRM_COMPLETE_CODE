@@ -208,12 +208,12 @@ function AddUser(props) {
         <Modal.Header
           closeButton
           style={{
-            backgroundColor: "#FF9E14",
+            backgroundColor: "#f5896e",
             paddingTop: "5px",
             paddingBottom: "5px",
           }}
         >
-          <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>
+          <Modal.Title style={{ backgroundColor: "#f5896e", color: "white" }}>
             Add Task
           </Modal.Title>
         </Modal.Header>

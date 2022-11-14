@@ -53,7 +53,7 @@ const Sidebar = (props) => {
 
   return (
 
-    <Card style={{ padding: "20px" }}>
+    <Card style={{ width:"240px" }}>
       <Row className="example">
         <Tab.Container id="list-group-tabs-example" style={{ backgroundColor: "white" }} className="Murali_1">
           <Col xs={12} xxl={12} xl={12} lg={12} md={12} sm={12}>
@@ -103,9 +103,9 @@ const Sidebar = (props) => {
                 ))}
               </ListGroup>
 
-              <Accordion style={{ width: "105%", border: "none", backgroundColor: "white", color: "white" }}>
+              <Accordion style={{ width: "100%", border: "none", backgroundColor: "white", color: "white" }}>
                 <Accordion.Item className="panel_header" eventKey="0" style={{ border: "none", backgroundColor: "white" }}>
-                  <Accordion.Header style={{ backgroundColor: "#070708" }}>
+                  <Accordion.Header style={{ backgroundColor: "white" }}>
                     <Col md={2} style={{ fontSize: "140%" }}><FcConferenceCall /></Col>
                     <Col style={{ color: "black", fontSize: 15 }}>Employees</Col>
 

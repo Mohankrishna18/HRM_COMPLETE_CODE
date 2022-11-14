@@ -6,6 +6,7 @@ import { AiFillDelete } from "react-icons/ai";
 import AvtarComponent from "../../../../commonComponents/AvtarComponent";
 import Moment from 'react-moment';
 import Graph from "./Graph";
+import EmployeeList from "../../../AllEmployees/AllEmployeesComponents/EmployeeList";
 
 
 
@@ -229,7 +230,7 @@ function AllEmployees(props) {
             </Card.Body>
           </Card> */}
         </Col>
-        <Col md="7" style={{ height: "25vh" }}>
+        <Col md="8" style={{ height: "25vh" }}>
           <Graph />
         </Col>
         {/* <Col md="2">
@@ -304,9 +305,9 @@ function AllEmployees(props) {
             </Card.Body>
           </Card>
         </Col> */}
-        <Col md="3" style={{ height: "15vh" }}>
-        {/* <Card class="shadow p-3 bg-light" > */}
-          <Card.Body>
+        <Col md="2" style={{ height: "15vh" }}>
+       
+          {/* <Card.Body>
             <Row style={{ paddingTop: "4%" }}>
               <input type="text" class="form-control" placeholder="Employee Name" />
             </Row><Row style={{ paddingTop: "10%" }}>
@@ -330,8 +331,8 @@ function AllEmployees(props) {
             <Row style={{ paddingTop: "10%" }}>
               <button type="button" class="btn btn-success" style={{ width: 200 }} onClick={getEmpData} >Search</button>
             </Row>
-          </Card.Body>
-          {/* </Card> */}
+          </Card.Body> */}
+         
           </Col>
 
       </Row>
@@ -352,8 +353,12 @@ function AllEmployees(props) {
             </Modal.Body>
           </Modal>
 
+          <Row>
+            <EmployeeList/>
+          </Row>
+
           {/* <HRConfirmation /> */}
-          {renderTable == false ? (
+          {/* {renderTable == false ? (
             <Table striped bordered hover responsive>
               <thead style={{backgroundColor : "#f5896e",color:"white" }}>
                 <tr>
@@ -401,9 +406,9 @@ function AllEmployees(props) {
                     }}
                   > {" "}
                     <AiFillDelete/>Delete
-                  </Button> */}
+                  </Button> 
                     {/* </Row>
-                    </td> */}
+                    </td> 
                   </tr>
                 ))}
               </tbody>
@@ -438,7 +443,7 @@ function AllEmployees(props) {
                 ))}
               </tbody>
             </Table>
-          )}
+          )} */}
 
         </div>
       </Row>

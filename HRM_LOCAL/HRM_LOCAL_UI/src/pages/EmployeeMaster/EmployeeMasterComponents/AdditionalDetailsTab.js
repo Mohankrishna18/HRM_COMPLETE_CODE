@@ -363,12 +363,12 @@ function AditionalDetailsTab() {
               placeholder="Branch Name"
               controlId="branchName"
               name="branch"
-              maxLength={50}
+              maxLength={100}
               value={branch}
               isInvalid={twentythreerror}
               onChange={(event) => {
                 setBranch(event.target.value);
-                if (!event.target.value.match(/^[a-zA-Z]+$/)) {
+                if (!event.target.value.match(/^[a-zA-Z ]+$/)) {
                   setTwentythreerror("Enter Valid Branch name");
                 }
                 else {

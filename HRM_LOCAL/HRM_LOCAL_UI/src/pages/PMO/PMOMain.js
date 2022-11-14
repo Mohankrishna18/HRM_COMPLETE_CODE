@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { Row, Col, Card, Container, Tabs } from 'react-bootstrap';
 import AssignEmploymentDetailsMain from '../AssignEmploymentDetails/AssignEmploymentDetailsMain';
-import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
+// import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
 
 import EmploymentDetailsTabbyPmo from './EmploymentDetailsTabbyPmo';
 import PMOApproval from './PMOApproval';
@@ -12,6 +12,7 @@ import PMOResignationMain from './PMOResignationMain';
 import ApprovalsMain from '../TimeSheet/irmApproval/ApprovalsMain';
 import PMOTabs from './PMOTabs';
 import PMORequisitionMain from '../Recruitment-Tracker/PMORequisitionApprovals/PMORequisitionMain';
+import ManagerEmployeesLeavesWaitingForApproval from '../ManagerLeavesToApprove/ManagerEmployeesLeavesWaitingForApproval';
 
 //Empty Commit
 function PMOMain() {
@@ -44,7 +45,7 @@ function PMOMain() {
                       {/* <Tab label="Requisition Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="5" /> */}
                     </TabList>
                   </Box>
-                  <TabPanel value="1"><HrEmployeesLeavesWaitingForApproval /></TabPanel>
+                  <TabPanel value="1"><ManagerEmployeesLeavesWaitingForApproval/></TabPanel>
                   <TabPanel value="2"><ApprovalsMain /></TabPanel>
                   <TabPanel value="3"><PMOResignationMain /></TabPanel>
                   <TabPanel value="4"><PMOTabs /></TabPanel>

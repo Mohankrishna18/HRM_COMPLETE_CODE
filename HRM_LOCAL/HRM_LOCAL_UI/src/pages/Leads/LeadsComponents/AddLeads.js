@@ -672,7 +672,7 @@ function AddLeads(props) {
                       <Form>
                         <Col>
                           <Form.Group as={Col} md="12" style={{ padding: 5 }}>
-                            <Form.Label>Comment *</Form.Label>
+                            <Form.Label>Comment </Form.Label>
                             <Form.Control
                               required
                               as="textarea"

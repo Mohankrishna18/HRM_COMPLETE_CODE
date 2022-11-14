@@ -202,11 +202,18 @@ const params = useParams()
                 pageSizeOptions: [8, 10, 15, 20, 30, 50, 75, 100],
                 maxBodyHeight: 450,
                 headerStyle: {
-                  backgroundColor: "#f5896e",
+
+                  // backgroundColor: "#FFC47A",
+
+                  background: "#f5896e",
+
+                  fontSize:"13px",
+
+                  paddingBottom:"4px",
+
+                  paddingTop:"8px",
+
                   color: "white",
-                  fontSize: "12px",
-                  //height: "10px",
-                  //fontWeight: 'bold'
                 },
                 rowStyle: {
                   fontSize: 14,
@@ -303,3 +310,4 @@ const params = useParams()
 }
 
 export default RRTable;
+

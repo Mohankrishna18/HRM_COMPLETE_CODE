@@ -7,12 +7,12 @@ const SingleCard = (props) => {
         <div>
             {/* Re-Usable card */}
 
-            <Card align="center" style={{ color: props.color, fontSize: props.fontSize, marginBottom: '8px',paddingTop: '6px' }}> <h5> {props.name}  </h5> </Card>
+            <Card align="center" style={{ color: props.color, fontSize: props.fontSize, marginBottom: '8px',paddingTop: '6px' }}> <h6> {props.name}  </h6> </Card>
             {/* <br></br> */}
 
             <Card align='center' style={{ height: '38px' }}>
               
-                    <h5  style={{ paddingTop: '6px' }}>  {props.data ? props.data.length : 0} </h5>
+                    <h6  style={{ paddingTop: '6px' }}>  {props.data ? props.data.length : 0} </h6>
                 
 
             </Card>
@@ -21,4 +21,4 @@ const SingleCard = (props) => {
     )
 }
 
-export default SingleCard
+export default SingleCard 

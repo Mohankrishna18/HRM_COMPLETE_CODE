@@ -51,10 +51,15 @@ function EmployeeMasterForms(props) {
     // const navigate = useNavigate();
   
     function handleClick() {
-      history.push("/");
-    }
+        history.push("/");
+      }
+
     function fnGoBack() {
-      history.goBack();
+        history.push("/app/dashboard");
+    } 
+
+    const coursesPage = () => {
+        history.push("/allEmployees")
     }
 
     const [value, setValue] = React.useState('1');
@@ -457,17 +462,17 @@ function EmployeeMasterForms(props) {
                                         <Card.Title>Employee Profile</Card.Title>
                                     </Col>
                                     <Col>
-                                    <button type="button" onClick={fnGoBack} style={{float:"right",border:"none",backgroundColor:"white"}}>
-                                         <FiArrowLeftCircle style={{ fontSize: "30px"}} />
-                                    </button>
-                                      
+                                    <button type="button" 
+                                    onClick={fnGoBack}
+                                     //onClick={() => history.goBack()} 
+                                     style={{float:"right",border:"none",backgroundColor:"white"}}>
+                                        <FiArrowLeftCircle style={{ fontSize: "30px"}} />
+                                    </button>                                      
                                     </Col>
                                 </Row>
-
                                 <Row>
                                     <EditCard/>
                                 </Row>
-
                                 <Row>
                                 <TabContext value={value}>
   <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{justifyContent:"center"}}>
@@ -2689,5 +2694,4 @@ function EmployeeMasterForms(props) {
 }
 
 export default EmployeeMasterForms;
-
 

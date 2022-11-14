@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { Card, FormSelect, InputGroup } from "react-bootstrap";
@@ -20,7 +19,14 @@ const ClientUpdatedForm = (props) => {
   const [phoneNumber, setPhoneNumber] = useState(props.updateOnboard.phoneNumber);
   const [pocName, setPocName] = useState(props.updateOnboard.pocName);
   const [startDate, setstartDate] = useState(moment(props.updateOnboard.startDate).format('YYYY-MM-DD'));
-  const [endDate, setEndDate] = useState(moment(props.updateOnboard.endDate).format('YYYY-MM-DD'));
+  const strtdt = moment(props.updateOnboard.startDate).format("DD-MM-YYYY");
+  // <Moment format="DD/MM/YYYY">
+  //                     {data.dateOfJoining}
+  //                   </Moment>
+ 
+
+  const [endDate, setEndDate] = useState(props.updateOnboard.endDate);
+  const enddt = moment(props.updateOnboard.endDate).format('YYYY-MM-DD')
   // const [companyName, setcompanyName] = useState(props.updateOnboard.companyName);
   const [status, setStatus] = useState(props.updateOnboard.status);
   const [country, setCountry] = useState(props.updateOnboard.country);
@@ -265,7 +271,7 @@ const ClientUpdatedForm = (props) => {
               disabled
               controlId="startDate"
               placeholder="Start Date"
-              defaultValue={startDate}
+              defaultValue={strtdt}
               // onChange={(e) => setstartDate(e.target.value)}
               // isInvalid={!!errors5.startDate}
             ></Form.Control>
@@ -283,9 +289,10 @@ const ClientUpdatedForm = (props) => {
             <Form.Control
               required
               type="date"
+              formate ="dd-mm-yyyy"
               placeholder="endDate"
               controlId="endDate"
-              defaultValue={endDate}
+              defaultValue={enddt}
               min={startDate}
               onChange={(e) => setEndDate(e.target.value)}
               // isInvalid={!!errors5.endDate}
