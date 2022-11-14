@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Roboto:wght@500&display=swap');
 
+
+
 /* ::-webkit-scrollbar {
   display: none;
 } */
@@ -11,6 +13,8 @@
   font-family: 'Roboto', sans-serif;
   
 }
+
+
 
 .home,
 .reports,
@@ -26,13 +30,18 @@
 body
 {
   background-color: #f7f7f7;
+  overflow-x: hidden;
 }
+
+
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+
 
 .main-container {
   display: flex;
@@ -41,11 +50,15 @@ main {
   padding: 10px;
 }
 
+
+
 .title {
   font-size: 3rem;
   display: grid;
   place-items: center;
 }
+
+
 
 /* Sidebar */
 /* .sidebar {
@@ -54,6 +67,8 @@ main {
   height: 900px;
   //overflow-y: auto;
 } */
+
+
 
 .top_section {
   display: flex;
@@ -72,6 +87,8 @@ main {
   display: none;
 }
 
+
+
 .search {
   display: flex;
   align-items: center;
@@ -85,8 +102,12 @@ main {
   border-radius: 5px;
   background: rgb(238, 238, 238);
 
-  color: white;
+
+
+ color: white;
 }
+
+
 
 .routes {
   margin-top: 15px;
@@ -97,8 +118,8 @@ main {
 .link {
   display: flex;
   color: white;
-  gap: 10px;
-  padding: 5px 10px;
+  /* gap: 10px; */
+  /* padding: 5px 10px; */
   border-right: 4px solid transparent;
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
@@ -116,11 +137,15 @@ main {
   font-size: -19px;
 }
 
+
+
 .menu {
   display: flex;
   color: white;
 
-  padding: 5px 10px;
+
+
+ padding: 5px 10px;
   border-right: 4px solid transparent;
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
   justify-content: space-between;
@@ -139,11 +164,15 @@ main {
 }
 
 
+
+
 body{
   font-family: 'PT Sans', sans-serif;
   font-family: 'Roboto', sans-serif;
   background-color: rgb(242, 248, 249);
 }
+
+
 
 *{
   margin:0;
@@ -152,7 +181,7 @@ body{
 }
 .container-fluid{
   display:flex;
-} 
+}
 main{
   width: 100%;
   padding: 20px;
@@ -181,8 +210,8 @@ main{
 .link{
   display: flex;
   color: #fff;
-  padding: 3.5px 15px;
-  gap: 15px;
+  /* padding: 3.5px 15px; */
+  /* gap: 15px; */
   transition: all 0.5s;
   text-decoration: none;
 }
@@ -202,26 +231,36 @@ main{
   background-color: crimson;
 }
 
+
+
 .content{
   padding: 12px;
   height: 3000px;
 }
 
+
+
 .coloring{
   color: black;
 }
 
+
+
 /* .scroll {
   max-height: 83vh;
- overflow: scroll;
+overflow: scroll;
     position: relative;
   
 } */
+
+
 
 .text_size {
   
   font-size: 15px;
 }
+
+
 
 .AppbarStatus{
   border-radius: 15px 50px 30px 5px
@@ -238,9 +277,13 @@ main{
 }
 
 
+
+
 .panel-wrap {
   margin-bottom: 5px;
 }
+
+
 
 .panel-wrap.active-panel .panel-header {
   background: #396ea5;
@@ -249,11 +292,15 @@ main{
   color: #ffffff;
 }
 
+
+
 .panel-header {
   border: 1px solid #cccc;
   font-weight: normal;
   border-radius: 5px 5px 0px 0px;
 }
+
+
 
 .panel-header button {
   border: none;
@@ -262,6 +309,8 @@ main{
 .panel-header button:focus {
   outline: 0px auto -webkit-focus-ring-color;
 }
+
+
 
 .panel-body {
   border: 1px solid #dddddd;

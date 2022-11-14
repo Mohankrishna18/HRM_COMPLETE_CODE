@@ -81,8 +81,8 @@ public class MainServiceImpl implements MainService {
 	public ResponseEntity onBoardUser(Onboarding newOnboard) {
 		
 //		String preEmailURL = "http://emailService/mail/preSendMail";
-		//String reqUrl= "http://RecruitmentTracker/recruitmentTracker/requiredDataById/";
-		String reqUrl= "http://RecruitmentTracker/recruitmentTracker/requiredDataById/";
+//		String reqUrlb= "http://RecruitmentTracker/recruitmentTracker/requiredDataById/";
+		String reqUrl= "http://RecruitmentTracker/recruitmentTracker/getDataById/";
 		String preOnboardUrl = "http://loginservice/login/addUsersForPreOnboard";
 		Response r = new Response<>();
 		try {
@@ -103,7 +103,7 @@ public class MainServiceImpl implements MainService {
 	                .concat(newData.getLastName()));
 			
 			EmployeeReq empReq  = template.getForObject(reqUrl+newData.getRequisitionId(), EmployeeReq.class);
-			System.out.println(empReq);
+			System.out.println(empReq.getJobTitle());
 			newData.setJobTitle(empReq.getJobTitle());
 			newData.setClientName(empReq.getClientName());
 			newData.setRaisedBy(empReq.getRaisedBy());
@@ -249,7 +249,8 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setIdProof(newOnboard.isIdProof());
 				getOnboarding.setDepartment(newOnboard.getDepartment());
                 getOnboarding.setDesignation(newOnboard.getDesignation());
-//				getOnboarding.setHrApprovalComment(newOnboard.);
+                getOnboarding.setHrcomment(newOnboard.getHrcomment());
+//				getOnboarding.setHrApprovalComment(newOnboard.getHrApprovalComment());
 //				getOnboarding.setProjectName(newOnboard.getProjectName());
 //				getOnboarding.setSecondaryPhoneNumber(newOnboard.getSecondaryPhoneNumber());
 //				getOnboarding.setBand(newOnboard.getBand());
@@ -262,7 +263,7 @@ public class MainServiceImpl implements MainService {
 					newOnboard.setApprovedDate(tSqlDate);
 					getOnboarding.setRejectedStatus(false);
 					getOnboarding.setWaitingforapprovalStatus(false);
-					// getOnboarding.setOnboardingStatus("Pending");
+//					 getOnboarding.setOnboardingStatus("Pending");
 
 					onRepo.save(getOnboarding);
 
@@ -395,6 +396,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setUanNumber(getOnboarding.getUanNumber());
 					employeeMaster.setProjectName(getOnboarding.getProjectName());
 					employeeMaster.setOnboardingStatus(getOnboarding.getOnboardingStatus());
+					employeeMaster.setHrcomment(getOnboarding.getHrcomment());
 					EmployeeMaster em = emRepo.save(employeeMaster);
 
 					// posting EmployeeId in Userproject Table
@@ -444,8 +446,10 @@ public class MainServiceImpl implements MainService {
 					Map<String,String> map=new HashMap();
 
 					mailTemp.setEmailType("HR_APPROVAL");
-					map.put("employeeName","Dheeraj");
+					map.put("employeeName",getOnboarding.getFirstName()+getOnboarding.getLastName());
 					map.put("email","muralikrishna.miriyala@arshaa.com");
+					map.put("employeeId", employeeMaster.getEmployeeId());
+					map.put("password", password);
 					mailTemp.setMap(map);
 		            template.postForObject(preEmailURL,mailTemp,MainEmailTemplate.class); 
 		            
@@ -958,6 +962,8 @@ public class MainServiceImpl implements MainService {
 				pd.setMaritalStatus(em.getMaritalStatus());
 				pd.setPrimaryPhoneNumber(em.getPrimaryPhoneNumber());
 				pd.setSecondaryPhoneNumber(em.getSecondaryPhoneNumber());
+				pd.setPrimarySkills(em.getPrimarySkills());
+				pd.setSecondarySkills(em.getSecondarySkills());
 				
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
@@ -992,6 +998,8 @@ public class MainServiceImpl implements MainService {
 				em.setMaritalStatus(pd.getMaritalStatus());
 				em.setPrimaryPhoneNumber(pd.getPrimaryPhoneNumber());
 				em.setSecondaryPhoneNumber(pd.getSecondaryPhoneNumber());
+				em.setPrimarySkills(pd.getPrimarySkills());
+				em.setSecondarySkills(pd.getSecondarySkills());
 				emRepo.save(em);
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
@@ -2022,7 +2030,7 @@ public class MainServiceImpl implements MainService {
 
 			mailTemp.setEmailType("TAA_APPROVAL");
 			map.put("employeeName","Vinod");
-			map.put("email","sandhya.bandaru@arshaa.com");
+			map.put("email","muralikrishna.miriyala@arshaa.com");
 			mailTemp.setMap(map);
             template.postForObject(preEmailURL,mailTemp,MainEmailTemplate.class); 
 			r.setStatus(true);

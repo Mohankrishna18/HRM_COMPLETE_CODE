@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Row, Col, Nav, Navbar, Button } from "react-bootstrap";
 import image from "../Images/arshaalogo.png";
@@ -58,10 +59,12 @@ const NavBar = (props) => {
           <Navbar
             style={{
               height: "80px",
-              background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
+              // background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
+              background: "linear-gradient(to right, #ff9b44 0%, #fc6075 100%)",
+             // background:"linear-gradient(to right, #faf7f9 0%,#e86a20, #de4e4e 100%)",
             }}
           >
-            <Col xs={10} md={10}>
+            <Col xs={8} md={8}>
               <Nav>
                 <Navbar>
                   <Navbar.Brand href="#">
@@ -69,7 +72,7 @@ const NavBar = (props) => {
                       src={image}
                       style={{
                         height: "70px",
-                        width: "550",
+                        width: "50",
                         paddingLeft: "50px",
                       }}
                     ></img>
@@ -78,31 +81,31 @@ const NavBar = (props) => {
               </Nav>
             </Col>
             <Col style={{
-              paddingRight: "0px",
+              paddingRight: "0px",paddingLeft:"190px"
             }}>
-              <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{
-              }} /></Col>
+              <Avatar src={`data:image/jpeg;base64,${imge.url}`} style={{}} />
+            </Col>
             <Col style={{
-              paddingRight: "0px",
+              paddingRight: "10px",color:"white"
             }}>
-              {getEmployeeDetails.firstName}
-              <br />
-              {getEmployeeDetails.lastName}
+              {getEmployeeDetails.fullName}
+              {/* <br /> */}
+              {/* {getEmployeeDetails.lastName} */}
             </Col>
             <br />
-            <Col xs={2} md={{ span: 1, offset: 0 }}>
+            <Col xs={2} md={{ span: 1, offset: 0 }} style={{paddingLeft:"10px"}}>
               <Nav >
                 <Navbar>
                   <Navbar.Brand href="#">
-                    <td style={{ paddingLeft: "50%" }}>
+                    <td style={{ paddingLeft: "70%" }}>
                       {isLoggedIn() && (
                         <FaSignOutAlt
-                          style={{ fontSize: "34px", paddingTop: "10px" }}
+                          style={{ fontSize: "34px", paddingTop: "10px",color:"white" }}
                           onClick={handleLogout}
                         />
                       )}
-                      <div style={{ fontSize: "15px" }}>
-                        <p onClick={handleLogout}>Logout  <br />
+                      <div style={{ fontSize: "13px",color:"white"}}>
+                        <p onClick={handleLogout} >Logout  <br />
                           {/* <span>V1.0</span> */}
                         </p>
                       </div>

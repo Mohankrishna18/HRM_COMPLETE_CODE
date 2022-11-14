@@ -82,31 +82,36 @@ function OnboardedEmployeesTable() {
   return (
     <div style={{ paddingTop: "20px" }}>
 
-      <Modal show={show}  size="md"
+      <Modal show={show} size="md"
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
           <Modal.Title>Update User Role</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ApprovalUpdateForm updateOnboard={updateOnboard} func={pull_dataUpdate} handleClose={handleClose} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button 
+          style={{
+            backgroundColor: "#B6B6B4",
+            borderColor: "#B6B6B4", paddingLeft: "10px"
+          }}  
+          onClick={handleClose}>
             Close
           </Button>
-          
+
         </Modal.Footer>
 
       </Modal>
       <Modal show={deleteUser} onHide={deleteHandleClose}
-       size="md"
-      backdrop="static"
-      keyboard={false}
-      centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white"}}>
+        size="md"
+        backdrop="static"
+        keyboard={false}
+        centered>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
           <Modal.Title>Delete User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -116,89 +121,94 @@ function OnboardedEmployeesTable() {
       </Modal>
       <div responsive >
 
-        
-            {/* <Container> */}
-              <Row>
-                <Col md={4}>
-                  <Card.Title>Users</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                    User Management / Users{" "}
-                  </Card.Subtitle>
-                </Col>
 
-                <Col md={{ span: 4, offset: 4 }}><AddUser func={pull_dataAdd} /></Col>
-              </Row>
-            {/* </Container> */}
-            {/* <Container> */}
-              <Row>
-                <Col xs={12}>
+        {/* <Container> */}
+        <Row>
+          <Col md={4}>
+            <Card.Title>Users</Card.Title>
+            {/* <Card.Subtitle className="mb-2 text-muted">
+              User Management / Users{" "}
+            </Card.Subtitle> */}
+          </Col>
 
-                  <Grid style={{ borderBlockEndWidth: "2px" }}>
-                    <MaterialTable
-                      title="Users Details"
-                      columns={columns}
-                      style={{ color: "black", fontSize: "1rem" }}
-                      data={data}
-                      editable={{
+          <Col md={{ span: 4, offset: 4 }}><AddUser func={pull_dataAdd} /></Col>
+        </Row>
+        {/* </Container> */}
+        {/* <Container> */}
+        <Row>
+          <Col xs={12}>
 
-                      }}
-                      options={{
-                        headerStyle: {
-                          backgroundColor: "#FE924A",
-                          color: "white",
-                          fontSize: "20px",
-                        },
-                        addRowPosition: "first",
-                        actionsColumnIndex: -1,
-                        //grouping: true,
-                        exportButton: true,
-                      }}
-                      actions={[
-                        {
-                          icon: "button",
+            <Grid style={{ borderBlockEndWidth: "2px" }}>
+              <MaterialTable
+                title="Users Details"
+                columns={columns}
+                style={{ color: "black", fontSize: "1rem" }}
+                data={data}
+                editable={{
 
-                          // tooltip: "Save User",
-                          // onClick: (event, rowData) =>
-                          //   alert("You want to delete " + rowData.firstName),
+                }}
+                options={{
+                  headerStyle: {
+                    backgroundColor: "#f5896e",
+                    color: "white",
+                    fontSize: "12px",
+                    //height: "10px",
+                    //fontWeight: 'bold'
+                  },
+                  rowStyle: {
+                    fontSize: 14,
+                  },
+                  addRowPosition: "first",
+                  actionsColumnIndex: -1,
+                  //grouping: true,
+                  exportButton: true,
+                }}
+                actions={[
+                  {
+                    icon: "button",
 
-                        },
-                      ]}
-                      components={{
-                        Action: (props) => (
-                          <div>
-                            <Stack direction="horizontal" gap={3}>
-                              <Button
-                              
-                                variant="info"
-                                onClick={(event) => {
-                                  setShow(true);
-                                  console.log(props);
-                                  setUpdateOnboard(props.data);
-                                }}
-                              >
-                                Edit
-                              </Button>{" "}
-                             
-                              <Button
-                                variant="primary"
-                                onClick={(event) => {
-                                  setDeleteUser(true);
-                                  console.log(props);
-                                  setDeleteOnboard(props.data);
-                                }}
-                              >
-                                Delete
-                              </Button>
-                            </Stack>
-                          </div>
-                        ),
-                      }}
-                    />
-                  </Grid>
-                </Col>
-              </Row>
-            {/* </Container> */}
-          
+                    // tooltip: "Save User",
+                    // onClick: (event, rowData) =>
+                    //   alert("You want to delete " + rowData.firstName),
+
+                  },
+                ]}
+                components={{
+                  Action: (props) => (
+                    <div>
+                      <Stack direction="horizontal" gap={3}>
+                        <Button
+
+                          variant="info"
+                          onClick={(event) => {
+                            setShow(true);
+                            console.log(props);
+                            setUpdateOnboard(props.data);
+                          }}
+                        >
+                          Edit
+                        </Button>{" "}
+
+                        <Button
+                          variant="primary"
+                          onClick={(event) => {
+                            setDeleteUser(true);
+                            console.log(props);
+                            setDeleteOnboard(props.data);
+                          }}
+                        >
+                          Delete
+                        </Button>
+                      </Stack>
+                    </div>
+                  ),
+                }}
+              />
+            </Grid>
+          </Col>
+        </Row>
+        {/* </Container> */}
+
       </div>
       {/* <Example /> */}
     </div>

@@ -16,8 +16,25 @@ public class ProjectModel {
 	private String priority;
 	private String projectManager;
 
+	private Integer clientId;
+
 	
-	
+	public String getProjectManager() {
+		return projectManager;
+	}
+
+	public void setProjectManager(String projectManager) {
+		this.projectManager = projectManager;
+	}
+
+	public Integer getClientId() {
+		return clientId;
+	}
+
+	public void setClientId(Integer clientId) {
+		this.clientId = clientId;
+	}
+
 	public Integer getProjectId() {
 		return projectId;
 	}
@@ -94,13 +111,6 @@ public class ProjectModel {
 		this.priority = priority;
 	}
 
-	public String getprojectManager() {
-		return projectManager;
-	}
-
-	public void setprojectManager(String projectManager) {
-		this.projectManager = projectManager;
-	}
 
 	public String getStatus() {
 		return status;

@@ -69,7 +69,7 @@ function SRMResignationMain(props) {
   return (
     <div className="example">
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton style={{backgroundColor: "#ff9b44"}}>
+        <Modal.Header closeButton style={{backgroundColor: "#f5896e"}}>
           <Modal.Title>Are you sure you want to Approve</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -81,7 +81,7 @@ function SRMResignationMain(props) {
         </Modal.Body>
       </Modal>
       <Modal show={rejectshow} onHide={handleCloseReject}>
-        <Modal.Header closeButton style={{backgroundColor: "#ff9b44"}}>
+        <Modal.Header closeButton style={{backgroundColor: "#f5896e"}}>
           <Modal.Title>Are you sure you want to Reject</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -103,10 +103,15 @@ function SRMResignationMain(props) {
             addRowPosition: "first",
             actionsColumnIndex: -1,
             headerStyle: {
-              backgroundColor: "#FE924A",
-
+              backgroundColor: "#f5896e",
               color: "white",
-            },
+              fontSize: "12px",
+              //height: "10px",
+              //fontWeight: 'bold'
+          },
+          rowStyle: {
+              fontSize: 14,
+          },
             exportButton: true,
           }}
           actions={[

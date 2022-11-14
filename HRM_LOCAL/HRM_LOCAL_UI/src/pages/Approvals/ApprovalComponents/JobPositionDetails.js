@@ -29,59 +29,63 @@ console.log(dob)
       <Card.Body >
       <Row>
         <Col>
-        <Row style={{ paddingLeft: 55, paddingBottom: 30 ,paddingTop:20}}>
-          <Col>
-            <Card.Subtitle>
-              Client Name
-            </Card.Subtitle>
-          </Col>
-          <Col md={{ offset: 1 }}>
-            <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.firstName}
-            </Card.Subtitle>
-          </Col>
-        </Row>
-        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
-          <Col>
-            <Card.Subtitle>
+        <Row style={{ paddingLeft: 55, paddingBottom: 30 ,paddingTop:0}}>
+        <Col>
+            <Card.Subtitle style={{color:"black"}}>
            Requisition ID
             </Card.Subtitle>
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.middleName}
+              {props.viewOnboard.requisitionId}
+            </Card.Subtitle>
+          </Col>
+        </Row>
+        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+         
+          <Col>
+            <Card.Subtitle style={{color:"black"}}>
+              Client Name
+            </Card.Subtitle>
+          </Col>
+          <Col md={{ offset: 1 }}>
+            <Card.Subtitle style={{ color: "#999897" }}>
+              {props.viewOnboard.clientName}
             </Card.Subtitle>
           </Col>
         </Row>
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
           
-            <Card.Subtitle>
+            <Card.Subtitle style={{color:"black"}}>
            Job Title
             </Card.Subtitle>
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.lastName}
+              {props.viewOnboard.jobTitle}
             </Card.Subtitle>
           </Col>
         </Row>
     
-        <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
+        
+     </Col>
+     <Col>
+     <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
-            <Card.Subtitle>
+            <Card.Subtitle style={{color:"black"}}>
              Requisition By
             </Card.Subtitle>
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.email}
+              {props.viewOnboard.raisedBy}
             </Card.Subtitle>
           </Col>
         </Row>
         <Row style={{ paddingLeft: 55, paddingBottom: 30 }}>
           <Col>
-            <Card.Subtitle
+            <Card.Subtitle style={{color:"black"}}
             >
          Requisition Initiated On
 
@@ -89,7 +93,7 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.email}
+              {props.viewOnboard.requestInitiatedDate}
             </Card.Subtitle>
           </Col>
       </Row>

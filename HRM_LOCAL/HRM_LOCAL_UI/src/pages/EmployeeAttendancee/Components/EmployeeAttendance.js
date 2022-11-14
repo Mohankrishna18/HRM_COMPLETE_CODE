@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import MaterialTable from 'material-table'
 import Grid from '@mui/material/Grid'
-import { Form, Button, Card } from 'react-bootstrap'
+import { Form, Button, Card, Row, Col } from 'react-bootstrap'
 import { Box } from '@mui/material'
 import AudiotrackIcon from '@mui/icons-material/Audiotrack'
 import axios from '../../../Uri'
@@ -11,51 +11,80 @@ import Backdrop from '@mui/material/Backdrop'
 import CircularProgress from '@mui/material/CircularProgress'
 import DoneOutlineIcon from '@mui/icons-material/DoneOutline'
 import DangerousIcon from '@mui/icons-material/Dangerous'
-import { bgcolor } from '@mui/system'
+import { bgcolor, display } from '@mui/system'
+import Moment from 'moment'
 
 const EmployeeAttendance = () => {
+ 
     const [year, setYear] = useState()
     //const [employeeName, setEmployeeName] = useState()
     const [rowData, setRowData] = useState([])
     const [value,setValue] = useState();
     const [month, setMonth] = useState();
+    // const [holiday, setHoliday] = useState();
      const [dept, setSelectedBUH] = useState([]);
     const userData = sessionStorage.getItem('userdata')
     const userData1 = JSON.parse(userData)
+    const [days,setDays]=useState(0)
+    const [workingdays,setWorkingDays]=useState(0)
+    const [holidays,setHolidays]=useState(0)
+    // const tableTitle ="Monthly Summary"+"-"+ {month}+"-" + {year}+"-" + "No.of Days:"+"31";
     //const employeeid = userData1.data.employeeId
     const [open, setOpen] = useState([])
     const [data, setData] = useState([])
+    // const [holiday, setHoliday] = useState([])
   
     console.log(month)
     console.log(year)
     const [columns, setColumns] = useState([
       {
-        title: 'EmployeeId',
+        title: 'Employee ID',
         field: 'employeeId',
       },
       {
-        title: 'EmployeeName',
+        title: 'Name',
         field: 'employeeName',
       },
+      // {
+      //   title: 'Days',
+      //   field: 'totalDays',
+      //   type: 'numeric',
+      //   align: 'center'
+      // },
+      // {
+      //   title: 'WorkingDays',
+      //   field: 'totalWorkingDays',
+      //   type: 'numeric',
+      //   align: 'center'
+      // },
+      // {
+      //   title: 'Holidays',
+      //   field: 'holidays',
+      //   type: 'numeric',
+      //   align: 'center'
+      // },
       // {
       //   title: 'L/W',
       //   field: 'leaveOrwfh',
       //   // type: 'numeric',
       // },
       {
-        title: 'Total No.of Days Present',
+        title: 'No.of Days Present',
         field: 'totalDaysPresent',
         type: 'numeric',
+        align: 'center'
       },
       {
-        title: 'Total No.of Days Absent',
+        title: 'No.of Days Absent',
         field: 'totalDaysAbsent',
         type: 'numeric',
+        align: 'center'
       },
       {
         title: 'No.of WFH',
         field: 'wfhCount',
         type: 'numeric',
+        align: 'center'
       },
       // {
       //   title: '1',
@@ -314,7 +343,30 @@ const EmployeeAttendance = () => {
     // console.log(date);
     // const day=date.getDate();
     // console.log(day);
+    // useEffect(() =>{
+    //   axios.get(`/holiday/getDataCountByYearAndMonth/${year}/${month}`).then((res) =>{
+    //     setHoliday(res.data.data)
+    //     console.log(res.data.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //     // toast.error("Server Error")
+    //   })
+    // },[])
+    // useEffect(() => {
+    //   display();
+    // },[])
+//     const display = async() =>{
+// const res = await axios.get(`/holiday/getDataCountByYearAndMonth/${year}/${month}`)
+// console.log(res.data);
+// setHoliday(res.data)
+// //setRowData(response.data)
+
+
+//     }
+    
     useEffect(() => {
+    
       axios
         .get('/emp/getAllEmployeeMasterData')
         .then((res) => {
@@ -351,7 +403,9 @@ const EmployeeAttendance = () => {
     useEffect(() => {
       handleClose()
     }, [])
+    // console.log(rowData[0].totalDays);
     const getTableBodyHandler = async () => {
+      // display()
       handleToggle()
       const response = await axios
         .get(
@@ -361,9 +415,14 @@ const EmployeeAttendance = () => {
           handleClose()
           toast.error(' No Records Found')
         })
-      console.log(response.data)
+        setDays(response.data[0].totalDays)
+        setWorkingDays(response.data[0].totalWorkingDays)
+        setHolidays(response.data[0].holidays)
+        console.log(response.data);
+        
       if (response.data.status == true || response.data != null) {
         handleClose()
+       
         setRowData(response.data)
       } else if (response.data.status == false && response.data == null) {
         handleClose()
@@ -392,10 +451,32 @@ const EmployeeAttendance = () => {
       // console.log(departments)
     }, []);
     
-   
+    var now = new Date();
+    const date = Moment(now).format('LL')
+    // var mth = new Date( now.getMonth()+1, 0);
+    // console.log(mth);
+    // var dtmth = Moment(mth).format('LL')
+    // console.log(dtmth);
+    const current = new Date();
+    var currentdate = `${current.getMonth()+1}`;
+    console.log(currentdate);
+    var currentmonth = current.toLocaleString('default', { month: 'long' });
+    console.log(currentmonth);
+    var currentyear = `${current.getFullYear()}`;
+    console.log(currentyear);
+    console.log(date)
+    var NoofDays=new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
+    console.log(NoofDays);
+  //   let datee = new Date(year, month, 1);
+  // let days = [];
+  // // while (datee.getMonth() === month) {
+  //   days.push(new Date(datee).toLocaleDateString('en-US', { weekday: 'short' }));
+  //   datee.setDate(datee.getDate() + 1); 
+  // // }
+  // console.log(days);
     return (
       <Grid spacing={2}>
-        <Grid item xs={12} style={{ height: 49 }}>
+        {/* <Grid item xs={12} style={{ height: 60 }}> */}
           <Grid container spacing={2} direction="row">
             {/* <Grid item xs={4} style={{paddingLeft:'10rem'}}>
               <Form>
@@ -481,7 +562,7 @@ const EmployeeAttendance = () => {
             <Grid item xs={3} >
               <Form>
                 <Form.Group>
-                  <Form.Label>Select Year</Form.Label>
+                  
                   <Form.Select
                     style={{
                       width: '58%',
@@ -492,18 +573,15 @@ const EmployeeAttendance = () => {
                       borderRadius: 10,
                     }}
                     onChange={(e) => setYear(e.target.value)}
+                    // value="2022"
                   >
-                    <option>Select</option>
+                    <option>Select Year</option>
+                    <option>{currentyear}</option>
                     <option value="2026">2026</option>
                     <option value="2025">2025</option>
                     <option value="2024">2024</option>
                     <option value="2023">2023</option>
                     <option value="2022">2022</option>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-                    <option value="2017">2017</option>
                   </Form.Select>
                 </Form.Group>
               </Form>
@@ -512,7 +590,6 @@ const EmployeeAttendance = () => {
             <Grid item xs={3}>
               <Form>
                 <Form.Group>
-                  <Form.Label>Select Month</Form.Label>
                   <Form.Select
                     style={{
                       width: '48%',
@@ -523,8 +600,10 @@ const EmployeeAttendance = () => {
                       borderRadius: 10,
                     }}
                     onChange={(e) => setMonth(e.target.value)}
+                    // value="10"
                   >
-                    <option>Select</option>
+                    {/* <option>Select Month</option> */}
+                    <option>{currentmonth}</option>
                     <option value="01">January</option>
                     <option value="02">February </option>
                     <option value="03">March</option>
@@ -538,13 +617,14 @@ const EmployeeAttendance = () => {
                     <option value="11">November</option>
                     <option value="12">December</option>
                   </Form.Select>
+                 
                 </Form.Group>
               </Form>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={4}>
               <Form>
                 <Form.Group>
-                  <Form.Label>Select BUH</Form.Label>
+                  {/* <Form.Label>Business Unit</Form.Label> */}
                   <Form.Select
                     style={{
                       width: '48%',
@@ -556,7 +636,7 @@ const EmployeeAttendance = () => {
                     }}
                     onChange={(e) => setSelectedBUH(e.target.value)}
                   >
-                   <option>Select </option>
+                   <option value="">Business Units</option>
                     {departments.map((departmentss) => (
                         <option value={departmentss.departmentName}>
                             {departmentss.departmentName}
@@ -566,16 +646,14 @@ const EmployeeAttendance = () => {
                 </Form.Group>
               </Form>
             </Grid>
-           
-            <Grid item xs={3}style={{paddingTop:'3rem',paddingRight:'10rem'}}>
+            <Grid item xs={2} >
               <Box>
                 <Button
-                  variant="contained"
+                  variant="success"
                   disableRipple
                   style={{
                     width: '100%',
                     height: '100%',
-                    backgroundColor: '#FF7417',
                     borderRadius: 12,
                     color: 'white',
                   }}
@@ -600,31 +678,45 @@ const EmployeeAttendance = () => {
           </Grid>
   
           <br />
+          {/* <Grid><h6>{tableTitle}</h6></Grid> */}
+          
           <Grid>
             <MaterialTable
               columns={columns}
-              title="Monthly Summary"
+              title={"Monthly Summary - "+" "+"Days:"+ days +" - "+"Working Days:"+workingdays+" - "+"Holidays:"+holidays}
               data={rowData}
-              style={{ color: 'black', fontSize: '13px' }}
+              style={{ color: 'black', fontSize: '10px' }}
               editable={{}}
               options={{
                 paging: false,
                 addRowPosition: 'first',
                 actionsColumnIndex: -1,
+                pageSize: 10,
+                pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
+                maxBodyHeight: 570,
+                height:500,
+                // headerStyle: {
+                //   backgroundColor: '#29AB87',
+                //   paddingTop: '5px',
   
+                //   paddingBottom: '2px',
+  
+                //   color: 'white',
+                // },
                 headerStyle: {
-                  backgroundColor: '#29AB87',
-                  paddingTop: '5px',
-  
-                  paddingBottom: '2px',
-  
-                  color: 'white',
+                  // backgroundColor: "#FFC47A",
+                  background: "#f5896e",
+                fontSize:"13px",
+                paddingBottom:"4px",
+                paddingTop:"8px",
+                color: "white",
+
                 },
                 exportButton: true,
               }}
             />
           </Grid>
-        </Grid>
+        {/* </Grid> */}
         <Backdrop
           sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={open}

@@ -7,7 +7,6 @@ import com.recruitmenttracker.entity.RequisitionRequestEntity;
 
 public class RequisitionRequestResponse<T> {
 	
-	
 	private boolean status;
 	private String message;
 	private T data;
@@ -29,6 +28,7 @@ public class RequisitionRequestResponse<T> {
 	public void setData(T data) {
 		this.data = data;
 	}
+
 		
 	
 		

@@ -2,6 +2,8 @@ package com.arshaa.emp.service;
 
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class LeaveService {
 	public static final String leaveURL = "http://leaveservice/leave/getcountLeavesByMonthofApplyingLeaves/";
 	public static final String holidayURL = "http://holidayService/holiday/getHolidaysCountByYearAndMonth/";
 	
+	Calendar startCal=Calendar.getInstance();
+	
 	public List<EmployeeLeavesData> getEmployeeLeavesData(int month,int year,String dept)
 	{
 		List<EmployeeMaster> getEmployees=emRepo.getBydepartmentName(dept);
@@ -43,8 +47,12 @@ public class LeaveService {
 			getLeaves.setWfhCount(wfhCount.getCount());
 			YearMonth yearMonthObject = YearMonth.of(year, month);
 			int daysInMonth = yearMonthObject.lengthOfMonth();
-	        int presentCount=daysInMonth-(leaveCount.getCount()+holidayCount.getHolidayCount());
+	        int presentCount=daysInMonth-(leaveCount.getCount()+holidayCount.getHolidayCount()+weekendCount( year,  month));
+	        int workingDays =daysInMonth-(holidayCount.getHolidayCount()+weekendCount( year,  month));//for wd
 	        getLeaves.setTotalDaysPresent(presentCount);
+	        getLeaves.setTotalDays(daysInMonth);//tDP
+	        getLeaves.setTotalWorkingDays(workingDays);//TWD
+	        getLeaves.setHolidays(holidayCount.getHolidayCount());//TH
 	        getLeavesList.add(getLeaves);
 		});
 		return getLeavesList;
@@ -54,5 +62,18 @@ public class LeaveService {
 		LeavesCount leaveCount=template.getForObject(leaveURL+month+"/"+year+"/L/"+dept+"/ATPL00050", LeavesCount.class);
 return leaveCount;
 	}
-	
+	public int weekendCount(int year, int month) {
+	    Calendar calendar = Calendar.getInstance();
+	    calendar.set(year, month - 1, 1);
+	    int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+	    int cnt = 0;
+	    for (int i= 1; i<= daysInMonth; i++) {
+	        calendar.set(year, month - 1, i);
+	        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+	        if (dayOfWeek == Calendar.SUNDAY || dayOfWeek == Calendar.SATURDAY) {
+	            cnt++;
+	        }
+	    }
+	    return cnt;
+	}
 }

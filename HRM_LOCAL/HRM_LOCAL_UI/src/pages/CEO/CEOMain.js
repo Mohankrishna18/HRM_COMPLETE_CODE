@@ -3,7 +3,8 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { Row, Col, Card, Container,Tabs } from 'react-bootstrap';
-import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
+// import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
+import ManagerEmployeesLeavesWaitingForApproval from '../ManagerLeavesToApprove/ManagerEmployeesLeavesWaitingForApproval';
 import TaskMain from '../TimeSheet/EmployeeTimesheet/TaskMain';
 import CEOApproval from './CEOApproval';
 
@@ -20,21 +21,23 @@ function CEOMain() {
        <Card.Header style={{ backgroundColor: "white"}}>
          <Card.Body>
            <Card.Title>Approvals</Card.Title>
-           <Card.Subtitle className="mb-2 text-muted">
+           {/* <Card.Subtitle className="mb-2 text-muted">
           CEO Approval
-           </Card.Subtitle>{" "}
+           </Card.Subtitle>{" "} */}
            <Row>
                 <Col xs={12}>
                 <TabContext value={value}>
                   <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{ justifyContent: "center" }}>
-                    <TabList onChange={handleChange} aria-label="lab API tabs example" style={{ justifyContent: "center"}}>
+                    <TabList onChange={handleChange} sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"30px",paddingRight:0,color:"White" }}
+       // textColor="secondary"
+        indicatorColor="#f5896e">
                       <Tab label="Onboarding Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="1" />
                       <Tab label="Leave Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="2" />
                       <Tab label="Timesheet Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="3" />
                     </TabList>
                   </Box>
                   <TabPanel value="1"><CEOApproval /></TabPanel>
-                  <TabPanel value="2"><HrEmployeesLeavesWaitingForApproval/></TabPanel>
+                  <TabPanel value="2"><ManagerEmployeesLeavesWaitingForApproval/></TabPanel>
                   <TabPanel value="3"><TaskMain/></TabPanel>
                 </TabContext>
                 </Col>

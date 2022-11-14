@@ -175,7 +175,7 @@ const ProjectUpdate = (props) => {
         >
           <Row className="mb-4">
             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-              <Form.Label>Project Name</Form.Label>
+              <Form.Label style={{color:"black"}}>Project Name</Form.Label>
               <Form.Control
                 required
                 type="text"
@@ -234,7 +234,7 @@ const ProjectUpdate = (props) => {
           </Form.Group> */}
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label>Client Name</Form.Label>
+              <Form.Label style={{color:"black"}}>Client Name</Form.Label>
               <Form.Control
                 required
                 className="clientName"
@@ -254,7 +254,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label>Business Unit</Form.Label>
+              <Form.Label style={{color:"black"}}>Business Unit</Form.Label>
               <Form.Select
                 required
                 type="text"
@@ -276,7 +276,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label>Start Date</Form.Label>
+              <Form.Label style={{color:"black"}}>Start Date</Form.Label>
               <Form.Control
                 required
                 type="date"
@@ -292,7 +292,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label>Project Manager </Form.Label>
+              <Form.Label style={{color:"black"}}>Project Manager </Form.Label>
               <Form.Select
                 required
                 className="projectManager"
@@ -318,7 +318,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label>End Date</Form.Label>
+              <Form.Label style={{color:"black"}}>End Date</Form.Label>
               <Form.Control
                 required
                 type="date"
@@ -336,7 +336,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label>Status</Form.Label>
+              <Form.Label style={{color:"black"}}>Status</Form.Label>
               <Form.Select
                 required
                 type="text"
@@ -357,7 +357,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label>Total Cost</Form.Label>
+              <Form.Label style={{color:"black"}}>Total Cost</Form.Label>
               <Form.Control
                 required
                 type="text"
@@ -373,7 +373,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label>Priority</Form.Label>
+              <Form.Label style={{color:"black"}}>Priority</Form.Label>
               <Form.Select
                 required
                 type="text"
@@ -394,7 +394,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-              <Form.Label>Description</Form.Label>
+              <Form.Label style={{color:"black"}}>Description</Form.Label>
               <Form.Control
                 required
                 as="textarea"
@@ -413,8 +413,8 @@ const ProjectUpdate = (props) => {
             <Col align="center" style={{ marginTop: "10px" }}>
               <Button
                 style={{
-                  backgroundColor: "#ff9b44",
-                  borderColor: "#ff9b44",
+                  backgroundColor: "#f5896e",
+ borderColor: "#f5896e",
                   width: "15%",
                   height: "120%",
                   borderRadius: "25px",

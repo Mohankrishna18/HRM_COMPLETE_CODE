@@ -57,16 +57,17 @@ function CandidatesMain() {
   // }, [viewStatus]);
 
   const loadData = async (e) => {
-    const response = await axios.get("/clientProjectMapping/getAllProjects");
-    setData(response.data.data);
+    const response = await axios.get("/candidate/getCandidate");
     console.log(response.data);
+    setData(response.data);
+    
 
   };
 
   const [columns, setColumns] = useState([
     {
-      title: "Req ID",
-      field: "clientName",
+      title: "AERF ID",
+      field: "requisitionId",
       type: "text",
       cellStyle: {
         minWidth: 200,
@@ -74,8 +75,8 @@ function CandidatesMain() {
       }
     },
     {
-      title: "Candidate Name",
-      field: "clientName",
+      title: "Name",
+      field: "candidateName",
       type: "text",
       cellStyle: {
         minWidth: 200,
@@ -83,39 +84,64 @@ function CandidatesMain() {
       }
     },
     {
-      title: "Business Unit",
-      field: "businessUnit",
-      defaultGroupOrder: 0,
+      title: "Contact",
+      field: "phoneNumber",
       cellStyle: {
         minWidth: 200,
-        maxWidth: 200,
+        maxWidth: 200
       }
+    },
+    {
+      title: "Email ID",
+      field: "email",
+      cellStyle: {
+        minWidth: 200,
+        maxWidth: 200
+      }
+    },
+    {
+      title: "Experience",
+      field: "yearsOfExperience",
+      align:"center",
+      cellStyle: {
+        minWidth: 250,
+        maxWidth: 250
+      }
+    },
+    // {
+    //   title: "Business Unit",
+    //   field: "businessUnit",
+    //   defaultGroupOrder: 0,
+    //   cellStyle: {
+    //     minWidth: 200,
+    //     maxWidth: 200,
+    //   }
       
-    },
+    // },
+    // {
+    //   title: "Project",
+    //   field: "projectName",
+    //   defaultGroupOrder: 1,
+    //   type: "text",
+    //   cellStyle: {
+    //     minWidth: 200,
+    //     maxWidth: 200
+    //   }
+    // },
+    // {
+    //   title: "Job Title",
+    //   field: "projectManager",
+    //   defaultGroupOrder: 2,
+    //   type: "text",
+    //   dateSetting: { locale: "en-GB" },
+    //   cellStyle: {
+    //     minWidth: 200,
+    //     maxWidth: 200
+    //   }
+    // },
     {
-      title: "Project",
-      field: "projectName",
-      defaultGroupOrder: 1,
-      type: "text",
-      cellStyle: {
-        minWidth: 200,
-        maxWidth: 200
-      }
-    },
-    {
-      title: "Job Title",
-      field: "projectManager",
-      defaultGroupOrder: 2,
-      type: "text",
-      dateSetting: { locale: "en-GB" },
-      cellStyle: {
-        minWidth: 200,
-        maxWidth: 200
-      }
-    },
-    {
-      title: "Primary Skills",
-      field: "endDate",
+      title: "Skill",
+      field: "primarySkills",
       type: "date",
       dateSetting: { locale: "en-GB" },
       cellStyle: {
@@ -123,67 +149,53 @@ function CandidatesMain() {
         maxWidth: 200
       }
     },
+    // {
+    //   title: "Secondary Skills",
+    //   field: "secondarySkills",
+    //   cellStyle: {
+    //     minWidth: 200,
+    //     maxWidth: 200
+    //   }
+    // },
     {
-      title: "Secondary Skills",
-      field: "status",
+      title: "Location",
+      field: "currentLocation",
       cellStyle: {
         minWidth: 200,
         maxWidth: 200
       }
     },
     {
-      title: "Current Location",
-      field: "description",
+      title: "Status",
+      field: "candidateStatus",
       cellStyle: {
         minWidth: 200,
         maxWidth: 200
       }
     },
-    {
-      title: "Phone Number",
-      field: "rate",
-      cellStyle: {
-        minWidth: 200,
-        maxWidth: 200
-      }
-    },
-    {
-      title: "Email",
-      field: "priority",
-      cellStyle: {
-        minWidth: 200,
-        maxWidth: 200
-      }
-    },
-    {
-      title: "Years Of Experiance",
-      field: "projectManager",
-      cellStyle: {
-        minWidth: 250,
-        maxWidth: 250
-      }
-    },
+   
+    
   ]);
 
   return (
     <div>
       <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px",color:"white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e",paddingTop:"5px",paddingBottom:"5px",color:"white" }}>
           <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>
             Edit Candidate Details
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <UpdateCandidate
-            // updateOnboard={updateOnboard}
-            // func={pull_dataUpdate}
-            // handleClose={handleClose}
+            updateOnboard={updateOnboard}
+            func={pull_dataUpdate}
+            handleClose={handleClose}
           />
         </Modal.Body>
       </Modal>
 
       {/* <Modal show={viewShow} onHide={viewHandleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -213,7 +225,7 @@ function CandidatesMain() {
       >
         <Modal.Header
           closeButton
-          style={{ backgroundColor: "#FF9E14", color: "white" }}
+          style={{ backgroundColor: "#f5896e", color: "white" }}
         >
           <Modal.Title>Delete Candidate</Modal.Title>
         </Modal.Header>
@@ -258,17 +270,15 @@ function CandidatesMain() {
             editable={{}}
             options={{
               headerStyle: {
-                backgroundColor: "#FF9E14",
-
+                backgroundColor: "#f5896e",
                 color: "white",
-
-                fontSize: "16px",
-
-                paddingTop:"5px",
-
-                paddingBottom:"2px",
-
-              },
+                fontSize: "12px",
+                //height: "10px",
+                //fontWeight: 'bold'
+            },
+            rowStyle: {
+                fontSize: 14,
+            },
 
               pageSize: 10,
 

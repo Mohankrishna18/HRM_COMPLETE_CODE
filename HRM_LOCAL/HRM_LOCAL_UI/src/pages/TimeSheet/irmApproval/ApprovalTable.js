@@ -81,7 +81,7 @@ function ApprovalTable() {
 
   const [columns1, setColumns1] = useState([
     {
-      title: "Employee Id",
+      title: "Employee ID",
       field: "employeeId",
       type: "text",
       editable: "never",
@@ -105,7 +105,7 @@ function ApprovalTable() {
   return (
     <div>
       <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-        <Modal.Header style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Timesheet Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -135,7 +135,7 @@ function ApprovalTable() {
       </Modal>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Approve Timesheet</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -148,7 +148,7 @@ function ApprovalTable() {
       </Modal>
 
       <Modal show={rejectShow} onHide={rejectHandleClose}>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Reject Timesheet</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -174,16 +174,15 @@ function ApprovalTable() {
         data={approval}
         options={{
           headerStyle: {
-            backgroundColor: "#FF9E14",
+            backgroundColor: "#f5896e",
             color: "white",
-            fontSize: "14px",
-            paddingTop: "5px",
-            paddingBottom: "2px",
-            paddingLeft: "20px",
-            paddingRight: "200px",
-            maxWidth: 200,
-            // actionsColumnIndex: 0,
-          },
+            fontSize: "12px",
+            //height: "10px",
+            //fontWeight: 'bold'
+        },
+        rowStyle: {
+            fontSize: 14,
+        },
 
           pageSize: 5,
           pageSizeOptions: [5],

@@ -8,8 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.arshaa.clientandprojects.entity.Clients;
+import com.arshaa.clientandprojects.entity.Projects;
 import com.arshaa.clientandprojects.model.ClientResponse;
+import com.arshaa.clientandprojects.model.ProjectResponse;
 import com.arshaa.clientandprojects.repository.ClientRepository;
+
 
 @Service
 public class ClientServiceImplementation implements ClientServiceInterface {
@@ -89,6 +92,7 @@ public class ClientServiceImplementation implements ClientServiceInterface {
                 updateClient.setTag(newClientUpdate.getTag());
                 updateClient.setNote(newClientUpdate.getNote());
                 updateClient.setPocName(newClientUpdate.getPocName());
+                updateClient.setStatus(newClientUpdate.getStatus());
 
                 Clients latestClient = clientRepo.save(updateClient);
                 System.out.println(latestClient);
@@ -129,5 +133,10 @@ public class ClientServiceImplementation implements ClientServiceInterface {
 				}
 			}
 
+
+
+
+
+		
 	
 }

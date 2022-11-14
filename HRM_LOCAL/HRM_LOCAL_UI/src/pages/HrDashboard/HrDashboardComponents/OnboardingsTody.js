@@ -12,6 +12,7 @@ import ExperienceTab from '../../Approvals/ApprovalComponents/ExperienceTab';
 import HRAssign from '../../HRApproval/HRAssign';
 import { Grid } from '@mui/material';
 import MaterialTable from 'material-table';
+import JobPositionDetails from '../../Approvals/ApprovalComponents/JobPositionDetails';
 
 
 function OnboardingsToday() {
@@ -57,8 +58,8 @@ function OnboardingsToday() {
 console.log(data)
 
     const [columns, setColumns] = useState([
-      { title: "Requisition ID", field: "requisitionId",color:"black" },
-      { title: "Onboarding ID", field: "onboardingId",color:"black" },
+      { title: "AERF ID", field: "requisitionId",color:"black" },
+      { title: "OBD ID", field: "onboardingId",color:"black" },
       { title: "Job Title", field: "jobTitle" },
       { title: "Name", field: "fullName" },
       { title: "Email", field: "email" },
@@ -69,7 +70,7 @@ console.log(data)
         type: "date",
         dateSetting: { locale: "en-GB" },
       },
-      { title: "Contact_Number", field: "phoneNumber" },  
+      { title: "Contact", field: "phoneNumber" },  
 
      
     ]);
@@ -79,7 +80,7 @@ console.log(data)
     return (
         <div>
         <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-          <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+          <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
             <Modal.Title>Details</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -177,7 +178,8 @@ console.log(data)
   
         <Grid>
           <MaterialTable
-            title="Onboarding's For Today"
+            title="TODAYS ONBOARDINGS"
+            style={{fontSize:"11px"}}
             columns={columns}
             data={data}
             options={{
@@ -190,13 +192,18 @@ console.log(data)
 
               maxBodyHeight: 350,
               headerStyle: {
-               // backgroundColor: "#FFCE83",
-               fontSize:"16px",
-               paddingBottom:"6px",
-               paddingTop:"12px",
-               background: "#ffa442",
-  
-                color: "black",
+                // backgroundColor: "#FFC47A",
+                background: "#f5896e",
+                fontSize:"13px",
+                paddingBottom:"4px",
+                paddingTop:"8px",
+                color: "white",
+
+  // height: "50px",
+  // position: "absolute",
+  // left: "10%",
+  // marginLeft: "-3px",
+  // top: "0",
               },
               exportButton: true,
             }}
@@ -218,6 +225,7 @@ console.log(data)
               
                     <Button
                       variant="white "
+                      style={{fontSize:"10px"}}
                       className="rounded-pill"
                       onClick={(event) => {
                         setViewShow(true);

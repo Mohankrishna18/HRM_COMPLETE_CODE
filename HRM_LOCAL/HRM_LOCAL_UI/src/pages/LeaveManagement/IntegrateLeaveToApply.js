@@ -29,7 +29,7 @@ function IntegrateLeaveToApply() {
     const [bdates, setBDates] = useState([]);
     const [color, setColor] = useState([]);
     const [state, setState] = useState(false);
-    const [wfh, setWfh]=useState();
+    const [wfh, setWfh]=useState(0);
     const [leaveOrwfh,setLeaveOrwfh]=useState('');
     const [wbtwnDates, setWBtwnDates] = useState([]);
     const [wbdates, setWBDates] = useState([]);
@@ -250,7 +250,7 @@ function IntegrateLeaveToApply() {
     const [remainingdata, setRemainingData] = useState([]);
     const [count, setCount] = useState();
     const [data, setData] = useState([]);
-    const [appliedleaves, setTotalAppliedleaves] = useState([]);
+    const [appliedleaves, setTotalAppliedleaves] = useState(0);
     const [earnedData, setTotalEarnedData] = useState([]);
     //const userData1 = JSON.parse(userData);
     const userData = sessionStorage.getItem("userdata");
@@ -577,9 +577,9 @@ function IntegrateLeaveToApply() {
                     <Col xs={6} md={8}>
                         <Card.Body>
                             <Card.Title>Leaves/WFH</Card.Title>
-                            <Card.Subtitle className="mb-2 text-muted">
-                                Dashboard/Leaves/WFH
-                            </Card.Subtitle>
+                            {/* <Card.Subtitle className="mb-2 text-muted">
+                                Leaves/WFH
+                            </Card.Subtitle> */}
                         </Card.Body>
                     </Col>
 
@@ -598,8 +598,8 @@ function IntegrateLeaveToApply() {
                                 variant="warning"
                                 onClick={handleShow}
                                 style={{
-                                    backgroundColor: "#ff9b44",
-                                    color: "#F4F8F6",
+                                    backgroundColor: "#f5896e",
+                                    borderColor: "#f5896e",
                                     float: "right",
                                     borderRadius: "25px",
                                     paddingBottom: "11.5px",
@@ -614,7 +614,7 @@ function IntegrateLeaveToApply() {
                     </Col>
                 </Row>
                 <Row md={4}>
-                    <Col style={{width:"280px"}} >
+                    <Col style={{width:"250px"}} >
                         <Card>
                             <Card border="warning">
                                 <Card.Body>
@@ -631,7 +631,7 @@ function IntegrateLeaveToApply() {
                             </Card>
                         </Card>
                     </Col>
-                    <Col style={{width:"280px"}}>
+                    <Col style={{width:"250px"}}>
                         <Card>
 
                             <Card border="warning">
@@ -652,7 +652,7 @@ function IntegrateLeaveToApply() {
 
 
 
-                    <Col style={{width:"280px"}}>
+                    <Col style={{width:"250px"}}>
                     <Card border="warning">
                         <Card.Body>
                             <h5>
@@ -666,7 +666,7 @@ function IntegrateLeaveToApply() {
                     </Card>
 </Col>
 
-<Col style={{width:"280px"}}>
+<Col style={{width:"250px"}}>
                         <Card>
                             <Card border="warning">
 
@@ -710,7 +710,7 @@ function IntegrateLeaveToApply() {
                             </Card>
                         </Card>
                     </Col>
-                    <Col style={{width:"280px"}}>
+                    <Col style={{width:"250px"}}>
                         <Card>
                             <Card border="warning">
 
@@ -767,7 +767,7 @@ function IntegrateLeaveToApply() {
                 backdrop="static"
                 keyboard={false} 
             >
-                <Modal.Header closeButton style={{ backgroundColor: "#FE924A" }}>
+                <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
                     <Modal.Title>Apply Leave/WFH</Modal.Title>
                 </Modal.Header>
 
@@ -1082,7 +1082,8 @@ function IntegrateLeaveToApply() {
                                 </Form.Group> */}
                                 <div class="col-md-12 text-center">
                                     <Button
-                                        style={{ backgroundColor: "#FF9B44", borderRadius: "15px" }}
+                                        style={{ backgroundColor: "#f5896e",
+                                        borderColor: "#f5896e", borderRadius: "15px" }}
                                         type="submit"
                                     // onClick={handleClose}
                                     >
@@ -1107,23 +1108,14 @@ function IntegrateLeaveToApply() {
                         addRowPosition: 'first',
                         actionsColumnIndex: -1,
                         headerStyle: {
-
-
-
-
-
-                            backgroundColor: "#FE924A",
-
-
-
-
-
+                            backgroundColor: "#f5896e",
                             color: "white",
-
-
-
-
-
+                            fontSize: "12px",
+                            //height: "10px",
+                            //fontWeight: 'bold'
+                        },
+                        rowStyle: {
+                            fontSize: 14,
                         },
                         exportButton: true
                     }}

@@ -56,7 +56,11 @@ function AddOnboard(props) {
       yearsOfExperience,
       primarySkills,
       secondarySkills,
-      requisitionId,jobTitle
+      requisitionId,
+      jobTitle,
+      clientName,
+      requestInitiatedDate,
+      raisedBy
     } = form;
     const newErrors = {};
 
@@ -290,8 +294,8 @@ function AddOnboard(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#ff9b44",
-          color: "#F4F8F6",
+          backgroundColor: "#f5896e",
+          borderColor: "#f5896e",
           float: "right",
           borderRadius: "25px",
           // paddingBottom: "11.5px",
@@ -309,7 +313,7 @@ function AddOnboard(props) {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
 
@@ -331,11 +335,11 @@ function AddOnboard(props) {
                   <Row className="mb-4">
                     <Row md="12">
                   <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Select Requisition ID*</Form.Label>
+                <Form.Label>Select AERF ID*</Form.Label>
                 <Form.Select
                     outlined
                     dataSource={rrf}
-                    placeholder="Select Requisition ID"
+                    placeholder="Select AERF ID"
                     fields={{ value: "requisitionId", display:"requisitionId"}}
                     value={form.requisitionId}
                     isInvalid={!!errors.requisitionId}
@@ -345,8 +349,8 @@ function AddOnboard(props) {
                         `/recruitmentTracker/getDataById/${e.target.value}`
                     )
                     .then((response) => {
-                        console.log(response.data);
-                        setJobT(response.data.data)
+                        console.log(response.data.data);
+                         setJobT(response.data.data)
                     });
                 setField("requisitionId", e.target.value);
             }}

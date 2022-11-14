@@ -120,8 +120,8 @@ const ModuleUpdate = (props) => {
               <Col>
             <Button
               style={{
-                backgroundColor: "#ff9b44",
-                borderColor: "#ff9b44",
+                backgroundColor: "#f5896e",
+                    borderColor: "#f5896e",
                 float: "right",
                 width: "40%",
                 height: "120%",

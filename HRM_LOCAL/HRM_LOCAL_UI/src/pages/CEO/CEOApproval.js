@@ -58,18 +58,18 @@ function CEOApproval() {
     // const empID = da.data.employeeId;
     const onboardingStatus = "PMOApproved";
 
-
     const loadData = async () => {
         const res = await axios.get(`/emp/getDetailsforPMOApprovalByOnboardingStatus/${onboardingStatus}`);
         setData(res.data.data);
         console.log(res.data);
     };
     const [columns, setColumns] = useState([
-        { title: 'OnboardingId', field: 'onboardingId' },
-        { title: 'FullName', field: 'firstName' },
+      { title: "AERF ID", field: "requisitionId" },
+        { title: 'OBD ID', field: 'onboardingId' },
+        { title: 'Name', field: 'firstName' },
         { title: 'Email', field: 'email' },
-        { title: 'PhoneNumber', field: 'phoneNumber' },
-        { title: 'Date of Joining', field: 'dateOfJoining', type: 'date', dateSetting: { locale: "en-GB" }},
+        { title: 'Contact', field: 'phoneNumber' },
+        { title: 'DOJ', field: 'dateOfJoining', type: 'date', dateSetting: { locale: "en-GB" }},
         { title: 'Job Title', field: 'jobTitle' },
         { title: 'Experience', field: 'yearsOfExperience' },
         // { title: 'Status', field: 'status' }
@@ -96,7 +96,7 @@ console.log(data);
         </Modal.Body>
     </Modal>
     <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -200,12 +200,15 @@ console.log(data);
                 addRowPosition: 'first',
                 actionsColumnIndex: -1,
                 headerStyle: {
-
-                    backgroundColor: "#FE924A",
-
-                    color: "white",
-
-                },
+                  backgroundColor: "#f5896e",
+                  color: "white",
+                  fontSize: "12px",
+                  //height: "10px",
+                  //fontWeight: 'bold'
+              },
+              rowStyle: {
+                  fontSize: 14,
+              },
                 exportButton: true
             }}
             actions={[
@@ -228,7 +231,8 @@ console.log(data);
                     <div>
                         <Stack direction="horizontal" gap={3}>
                             <Button
-                                variant="outline-success"
+                                style ={{backgroundColor: "#f5896e",
+                                borderColor: "#f5896e",}}
                                 onClick={() => {
                                     setShow(true);
                                     console.log(props)

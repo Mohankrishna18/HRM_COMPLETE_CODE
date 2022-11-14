@@ -1,5 +1,7 @@
 package com.recruitmenttracker.service;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,10 @@ public interface RequisitionRequestInterface {
 	
 	public ResponseEntity deleteRRequest(long rrfId);
 	
-	public ResponseEntity updateRR(long rrfId, RequisitionRequestEntity RRUpdate);
+	public ResponseEntity updateRR(String requisitionId, RequisitionRequestEntity RRUpdate);
 	
 	public ResponseEntity updateWorkflowStatusByJobID(long rrfId);
+
 
 	
 
@@ -34,5 +37,6 @@ public interface RequisitionRequestInterface {
 	
 	public ResponseEntity getRequisitionsByRequisitionId(String requisitionId);
     public ResponseEntity getRequisitionsData(String requisitionId);
+    public int getDaysBetweenDates(String requisitionId,String requestInitiatedDate) throws ParseException;
 
 }

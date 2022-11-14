@@ -367,8 +367,9 @@ function HRAssign(props) {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
             <Button
-              variant="primary"
-              style={{ marginTop: "5%", float: "right" }}
+              
+              style={{ backgroundColor: "#f5896e",
+              borderColor: "#ff9b44",marginTop: "5%", float: "right" }}
               onClick={ApproveHandler}
             >
               Submit
@@ -458,7 +459,8 @@ function HRAssign(props) {
 
             <Button disabled
               variant="primary"
-              style={{ marginTop: "5%", float: "right" }}
+              style={{ backgroundColor: "#f5896e",
+              borderColor: "#f5896e",marginTop: "5%", float: "right" }}
               onClick={ApproveHandler}
             >
               Submit

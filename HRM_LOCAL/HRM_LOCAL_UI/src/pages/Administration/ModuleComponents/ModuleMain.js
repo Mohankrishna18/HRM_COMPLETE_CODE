@@ -82,14 +82,15 @@ function ModuleMain() {
         backdrop="static"
         keyboard={false}
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white" }}>
           <Modal.Title>Edit Module </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <ModuleUpdate updateOnboard={updateOnboard} func={pull_dataUpdate} handleClose={handleClose} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button style={{backgroundColor: "#f5896e",
+                    borderColor: "#f5896e",}} variant="secondary" onClick={handleClose}>
             Close
           </Button>
           
@@ -101,7 +102,7 @@ function ModuleMain() {
       backdrop="static"
       keyboard={false}
       centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FE924A", color : "white"}}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
           <Modal.Title>Delete Module</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -139,10 +140,15 @@ function ModuleMain() {
                       }}
                       options={{
                         headerStyle: {
-                          backgroundColor: "#FE924A",
+                          backgroundColor: "#f5896e",
                           color: "white",
-                          fontSize: "20px",
-                        },
+                          fontSize: "12px",
+                          //height: "10px",
+                          //fontWeight: 'bold'
+                      },
+                      rowStyle: {
+                          fontSize: 14,
+                      },
                         addRowPosition: "first",
                         actionsColumnIndex: -1,
                         //grouping: true,

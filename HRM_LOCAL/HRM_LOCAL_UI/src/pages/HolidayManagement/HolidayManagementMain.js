@@ -14,10 +14,8 @@ const HolidayManagementMain = () => {
       <Card responsive className="scroll">
         <Card.Header style={{backgroundColor:"white"}}>
           <Card.Body style={{backgroundColor:"white"}}>
-            <Card.Title> Holiday Management</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              Holidays
-            </Card.Subtitle>{" "}
+            <Card.Title> Holiday's</Card.Title>
+          
             {/* <Container> */}
               <Row>
                 <Col xs={12}>

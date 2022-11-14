@@ -62,7 +62,7 @@ const ManagerTable = () => {
 
   }
   const [columns, setColumns] = useState([
-    { title: 'EmployeeId', field: 'employeeId' },
+    { title: 'Employee ID', field: 'employeeId' },
     { title: 'FirstName', field: 'firstName', type: 'date' },
     { title: 'LastName', field: 'lastName', type: 'date' },
     { title: 'ProjectName', field: 'projectName', type: 'date' },
@@ -171,18 +171,15 @@ const ManagerTable = () => {
           addRowPosition: 'first',
           actionsColumnIndex: -1,
           headerStyle: {
-
-
-
-            backgroundColor: "#FE924A",
-
-
-
+            backgroundColor: "#f5896e",
             color: "white",
-
-
-
-          },
+            fontSize: "12px",
+            //height: "10px",
+            //fontWeight: 'bold'
+        },
+        rowStyle: {
+            fontSize: 14,
+        },
           exportButton: true
         }}
       />

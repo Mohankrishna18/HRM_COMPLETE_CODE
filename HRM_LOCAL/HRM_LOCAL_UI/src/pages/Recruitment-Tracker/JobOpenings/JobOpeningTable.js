@@ -64,7 +64,7 @@ function JobOpeningTable() {
     <div>
         
         <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Update Job Opening</Modal.Title>
         </Modal.Header>
         <Modal.Body className="scroll">
@@ -80,7 +80,7 @@ function JobOpeningTable() {
 
       {/* view modal */}
       {/* <Modal  show={viewShow} onHide={viewHandleClose} size="md">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Share</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -104,7 +104,7 @@ function JobOpeningTable() {
         backdrop="static"
         keyboard={false}
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
           <Modal.Title>Delete Job Opening</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -147,10 +147,15 @@ function JobOpeningTable() {
               pageSizeOptions: [8, 10, , 15, 20, 30, 50, 75, 100],
               maxBodyHeight: 450,
               headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#f5896e",
                 color: "white",
-                fontSize: "14px",
-              },
+                fontSize: "12px",
+                //height: "10px",
+                //fontWeight: 'bold'
+            },
+            rowStyle: {
+                fontSize: 14,
+            },
               addRowPosition: "first",
               actionsColumnIndex: -1,
               grouping: true,

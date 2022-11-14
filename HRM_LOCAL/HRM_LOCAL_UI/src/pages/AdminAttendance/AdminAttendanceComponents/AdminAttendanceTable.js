@@ -21,7 +21,7 @@ const EmpTable = () => {
 
     const columns = [
         {
-            title: "Employee Id",
+            title: "Employee ID",
             field: "employeeId",
             type: "text",
             headerStyle: {
@@ -30,7 +30,7 @@ const EmpTable = () => {
             },
         },
         {
-            title: "Employee Name",
+            title: "Name",
             field: "employeeFirstName",
             type: "text",
             headerStyle: {
@@ -103,12 +103,14 @@ const EmpTable = () => {
                         grouping: true,
                         addRowPosition: "first",
                         headerStyle: {
-                            backgroundColor: "#f25b1b",
+                            backgroundColor: "#f5896e",
                             color: "white",
-                            fontSize: "15px",
+                            fontSize: "12px",
+                            //height: "10px",
+                            //fontWeight: 'bold'
                         },
                         rowStyle: {
-                            fontSize: 16,
+                            fontSize: 14,
                         },
                     }}
                 />

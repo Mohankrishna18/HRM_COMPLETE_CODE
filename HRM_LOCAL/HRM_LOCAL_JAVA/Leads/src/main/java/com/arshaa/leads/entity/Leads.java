@@ -31,6 +31,8 @@ public class Leads {
 	private String BusinessValue;
 	private String leadNotes;
 	private String leadTrackingNotes;
+	private Date startDate;
+	private Date endDate;
 	public int getId() {
 		return id;
 	}
@@ -133,10 +135,22 @@ public class Leads {
 	public void setLeadTrackingNotes(String leadTrackingNotes) {
 		this.leadTrackingNotes = leadTrackingNotes;
 	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 	public Leads(int id, String leadName, String status, String companyName, String companyPhoneNumber,
 			String companyEmail, String companyCountry, String companyAddress, String sourceName, String sourceEmail,
 			String sourcePhoneNumber, String pocName, String pocEmail, String pocPhoneNumber, String businessValue,
-			String leadNotes, String leadTrackingNotes) {
+			String leadNotes, String leadTrackingNotes, Date startDate, Date endDate) {
 		super();
 		this.id = id;
 		this.leadName = leadName;
@@ -155,11 +169,15 @@ public class Leads {
 		BusinessValue = businessValue;
 		this.leadNotes = leadNotes;
 		this.leadTrackingNotes = leadTrackingNotes;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 	public Leads() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	
 	
 	

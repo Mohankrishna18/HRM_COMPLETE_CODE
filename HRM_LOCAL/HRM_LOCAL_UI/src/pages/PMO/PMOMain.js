@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { Row, Col, Card, Container, Tabs } from 'react-bootstrap';
 import AssignEmploymentDetailsMain from '../AssignEmploymentDetails/AssignEmploymentDetailsMain';
-import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
+// import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
 
 import EmploymentDetailsTabbyPmo from './EmploymentDetailsTabbyPmo';
 import PMOApproval from './PMOApproval';
@@ -12,6 +12,7 @@ import PMOResignationMain from './PMOResignationMain';
 import ApprovalsMain from '../TimeSheet/irmApproval/ApprovalsMain';
 import PMOTabs from './PMOTabs';
 import PMORequisitionMain from '../Recruitment-Tracker/PMORequisitionApprovals/PMORequisitionMain';
+import ManagerEmployeesLeavesWaitingForApproval from '../ManagerLeavesToApprove/ManagerEmployeesLeavesWaitingForApproval';
 
 //Empty Commit
 function PMOMain() {
@@ -28,27 +29,28 @@ function PMOMain() {
         <Card.Header style={{ backgroundColor: "white" }}>
           <Card.Body style={{ backgroundColor: "white" }}>
             <Card.Title>Approvals</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              PMO Approval
-            </Card.Subtitle>
+           
             <Row>
               <Col xs={12}>
 
                 <TabContext value={value}>
                   <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{ justifyContent: "center" }}>
-                    <TabList onChange={handleChange} aria-label="lab API tabs example" style={{ justifyContent: "center"}}>
-                      <Tab label="Hiring" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="1" />
-                      <Tab label="Leave/WFH Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="2" />
-                      <Tab label="Timesheet Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="3" />
-                      <Tab label="Requisition Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="4" />
-                      <Tab label="Resignation Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="5" />
+                    <TabList onChange={handleChange} sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", fontSize: "8px",height:"30px",paddingRight:0,color:"white" }}
+       // textColor="secondary"
+        indicatorColor="#f5896e">
+                      <Tab label="Leave/WFH Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="1" />
+                      <Tab label="Timesheet Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="2" />
+                      <Tab label="Resignation Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="3" />
+                      <Tab label="Hiring" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="4" />
+                      {/* <Tab label="Requisition Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="5" /> */}
                     </TabList>
                   </Box>
-                  <TabPanel value="1"><PMOTabs /></TabPanel>
-                  <TabPanel value="2"><HrEmployeesLeavesWaitingForApproval /></TabPanel>
-                  <TabPanel value="3"><ApprovalsMain /></TabPanel>
-                  <TabPanel value="4"><PMORequisitionMain /></TabPanel>
-                  <TabPanel value="5"><PMOResignationMain /></TabPanel>
+                  <TabPanel value="1"><ManagerEmployeesLeavesWaitingForApproval/></TabPanel>
+                  <TabPanel value="2"><ApprovalsMain /></TabPanel>
+                  <TabPanel value="3"><PMOResignationMain /></TabPanel>
+                  <TabPanel value="4"><PMOTabs /></TabPanel>
+                  {/* <TabPanel value="5"><PMORequisitionMain /></TabPanel> */}
+                  
                 </TabContext>
                 
               </Col>

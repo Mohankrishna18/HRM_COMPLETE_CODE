@@ -513,8 +513,8 @@ function UpdateJobOpening(props) {
         <Col>
           <Button
             style={{
-              backgroundColor: "#ff9b44",
-              borderColor: "#ff9b44",
+              backgroundColor: "#f5896e",
+ borderColor: "#f5896e",
               // float: "right",
               marginLeft: "200px",
               width: "40%",

@@ -23,7 +23,7 @@ export default function Editable() {
     const [columns, setColumns] = useState([
         // { title: 'ID', field: 'departmentId', editable: false },
         // {title:"ID",field:"id"},
-        { title: 'Department Name', field: 'departmentName' },
+        { title: 'Department', field: 'departmentName' },
 
         //   {
         //     title: 'Birth Place',
@@ -122,11 +122,14 @@ export default function Editable() {
                     addRowPosition:'first',
                     actionsColumnIndex: -1,
                     headerStyle: {
-
-                        backgroundColor: "#FE924A",
-
+                        backgroundColor: "#f5896e",
                         color: "white",
-
+                        fontSize: "12px",
+                        //height: "10px",
+                        //fontWeight: 'bold'
+                    },
+                    rowStyle: {
+                        fontSize: 14,
                     },
                 }}
             />

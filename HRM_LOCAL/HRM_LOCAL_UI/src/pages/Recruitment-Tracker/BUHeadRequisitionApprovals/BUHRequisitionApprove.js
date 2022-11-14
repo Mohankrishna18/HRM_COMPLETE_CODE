@@ -181,10 +181,10 @@ const BUHRequisitionApprove = (props) => {
             <Row>
               <Col style={{ paddingLeft: "180px", marginTop: "10px" }}>
                 <Button
-                  variant="primary"
+                  
                   style={{
-                    backgroundColor: "#ff9b44",
-                    borderColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
+ borderColor: "#f5896e",
                     float: "left",
                   }}
                   onClick={ApproveHandler}

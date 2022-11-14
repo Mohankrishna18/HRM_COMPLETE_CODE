@@ -56,8 +56,8 @@ const ResetPassword = () => {
       // Employee-ID validation
       if (!values.employeeId) {
         errors.employeeId = "Employee-ID is required";
-      } else if (values.employeeId.length < 8) {
-        errors.employeeId = "Employee-ID must be mimimum of 7 characters";
+      } else if (values.employeeId.length > 15) {
+        errors.employeeId = "Employee-ID must be mimimum of 6 characters";
       } else if (values.employeeId.length > 15) {
         errors.employeeId = "Employee-ID cannot exceed more than 15 characters";
       }else if (!values.employeeId.match(/[A-Z]/)) {
@@ -269,9 +269,8 @@ const ResetPassword = () => {
                   type="submit"
                   style={{
                     width: "100%",
-                    background: "linear-gradient(#FFB914,#FF6914,#F1340C)",
-                    borderRadius: "15px",
-                    color: "black",
+                    backgroundColor: "#f5896e",
+ borderColor: "#f5896e",
                   }}
                 >
                   Submit

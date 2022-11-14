@@ -80,22 +80,22 @@ function ClientMain() {
 
     {
       // changed the tilte name only, in backend its still taken as client name
-      title: "Phone#",
+      title: "Contact",
       field: "phoneNumber",
     },
 
-    // {
-    //   title: "Start Date",
-    //   field: "startDate",
-    //   type: "date",
-    //   dateSetting: { locale: "en-GB" },
-    // },
-    // {
-    //   title: "End Date",
-    //   field: "endDate",
-    //   type: "date",
-    //   dateSetting: { locale: "en-GB" },
-    // },
+    {
+      title: "Start Date",
+      field: "startDate",
+      type: "date",
+      dateSetting: { locale: "en-GB" },
+    },
+    {
+      title: "End Date",
+      field: "endDate",
+      type: "date",
+      dateSetting: { locale: "en-GB" },
+    },
 
     {
       title: "Status",
@@ -121,7 +121,7 @@ function ClientMain() {
     <div>
       {/* edit modal */}
       <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Edit Client</Modal.Title>
         </Modal.Header>
         <Modal.Body className="scroll">
@@ -137,7 +137,7 @@ function ClientMain() {
 
       {/* view modal */}
       <Modal style={{ maxHeight: "1200px", maxWidth: "1550px", position: "absolute", }} show={viewShow} onHide={viewHandleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Company Overall Details</Modal.Title>
         </Modal.Header>
         <Modal.Body className="scroll">
@@ -148,7 +148,8 @@ function ClientMain() {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={viewHandleClose}>
+          <Button style ={{backgroundColor: "#f5896e",
+                    borderColor: "#f5896e",}} onClick={viewHandleClose}>
             Close
           </Button>
           {/* <Button variant="primary" onClick={handleClose}>
@@ -163,7 +164,7 @@ function ClientMain() {
         backdrop="static"
         keyboard={false}
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
           <Modal.Title>Delete Client</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -186,9 +187,7 @@ function ClientMain() {
           <Row>
             <Col>
               <Card.Title>Clients/Company</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Dashboard / Clients{" "}
-              </Card.Subtitle>
+              
             </Col>
             <Col>
               <AddClient func={pull_dataAdd} />
@@ -210,10 +209,15 @@ function ClientMain() {
               pageSizeOptions: [6, 10, 15, 20, 30, 50, 75, 100],
 
               headerStyle: {
-                backgroundColor: "#FF9E14",
+                backgroundColor: "#f5896e",
                 color: "white",
-                fontSize: "14px",
-              },
+                fontSize: "12px",
+                //height: "10px",
+                //fontWeight: 'bold'
+            },
+            rowStyle: {
+                fontSize: 14,
+            },
               addRowPosition: "first",
               actionsColumnIndex: -1,
               // grouping: true,

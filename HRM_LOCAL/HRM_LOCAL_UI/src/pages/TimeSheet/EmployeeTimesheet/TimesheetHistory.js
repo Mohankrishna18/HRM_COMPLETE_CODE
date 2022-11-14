@@ -178,12 +178,15 @@ const TimesheetHistory = () => {
           data={approval}
           options={{
             headerStyle: {
-              backgroundColor: "#FF9E14",
+              backgroundColor: "#f5896e",
               color: "white",
-              fontSize: "16px",
-              paddingTop: "5px",
-              paddingBottom: "2px",
-            },
+              fontSize: "12px",
+              //height: "10px",
+              //fontWeight: 'bold'
+          },
+          rowStyle: {
+              fontSize: 14,
+          },
 
             pageSize: 7,
             pageSizeOptions: [7],
@@ -247,7 +250,7 @@ const TimesheetHistory = () => {
           }}
         />
         <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-          <Modal.Header style={{ backgroundColor: "#FF9E14" }}>
+          <Modal.Header style={{ backgroundColor: "#f5896e" }}>
             <Modal.Title>Timesheet Details</Modal.Title>
           </Modal.Header>
           <Modal.Body>

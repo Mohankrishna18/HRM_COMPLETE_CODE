@@ -90,7 +90,7 @@ function Departments() {
         keyboard={false}
         
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white" }}>
           <Modal.Title>Update Business Unit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -109,7 +109,7 @@ function Departments() {
       backdrop="static"
       keyboard={false}
       centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white"}}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
           <Modal.Title>Delete Business Unit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -122,9 +122,7 @@ function Departments() {
               <Row>
                 <Col md={4}>
                   <Card.Title>Business Unit</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">
-                    Business Unit{" "}
-                  </Card.Subtitle>
+                
                 </Col>
 
                 <Col md={{ span: 4, offset: 4 }}><AddDepartment func={pull_dataAdd} /></Col>
@@ -149,10 +147,15 @@ function Departments() {
                         pageSizeOptions: [10, 15,20, 30 ,50, 75, 100 ],
                         maxBodyHeight: 450,
                         headerStyle: {
-                          backgroundColor: "#FE924A",
+                          backgroundColor: "#f5896e",
                           color: "white",
-                          fontSize: "20px",
-                        },                               
+                          fontSize: "12px",
+                          //height: "10px",
+                          //fontWeight: 'bold'
+                      },
+                      rowStyle: {
+                          fontSize: 14,
+                      },                               
                         addRowPosition:"first",
                         actionsColumnIndex: -1,
                         //grouping: true,

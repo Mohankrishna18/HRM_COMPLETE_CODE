@@ -73,11 +73,11 @@ function PMOApproval(props) {
         console.log(res.data);
     };
     const [columns, setColumns] = useState([
-        { title: 'OnboardingId', field: 'onboardingId' },
-        { title: 'FullName', field: 'firstName' },
+        { title: 'OBD ID', field: 'onboardingId' },
+        { title: 'Name', field: 'firstName' },
         { title: 'Email', field: 'email' },
-        { title: 'PhoneNumber', field: 'phoneNumber' },
-        { title: 'Date of Joining', field: 'dateOfJoining', type: 'date', dateSetting: { locale: "en-GB" } },
+        { title: 'Contact', field: 'phoneNumber' },
+        { title: 'DOJ', field: 'dateOfJoining', type: 'date', dateSetting: { locale: "en-GB" } },
         { title: 'Job Title', field: 'jobTitle' },
         { title: 'Experience', field: 'yearsOfExperience' },
         // { title: 'Status', field: 'status' }
@@ -104,7 +104,7 @@ function PMOApproval(props) {
                 </Modal.Body>
             </Modal>
             <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-                <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+                <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
                     <Modal.Title>Onboarding Form</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -222,11 +222,14 @@ function PMOApproval(props) {
 
                         actionsColumnIndex: -1,
                         headerStyle: {
-
-                            backgroundColor: "#FE924A",
-
+                            backgroundColor: "#f5896e",
                             color: "white",
-
+                            fontSize: "12px",
+                            //height: "10px",
+                            //fontWeight: 'bold'
+                        },
+                        rowStyle: {
+                            fontSize: 14,
                         },
                         exportButton: true
                     }}

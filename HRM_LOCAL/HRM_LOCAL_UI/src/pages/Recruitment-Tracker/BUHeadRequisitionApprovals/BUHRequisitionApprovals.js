@@ -60,7 +60,7 @@ function BUHRequisitionApprovals(props) {
 
   
   const [columns, setColumns] = useState([
-    { title: "Job ID", field: "rrfId" },
+    { title: "Job ID", field: "requisitionId" },
     { title: "Business Unit", field: "departmentName","defaultGroupOrder":0 },
     { title: "Client", field: "clientName" },
     { title: "Project", field: "projectName" },
@@ -87,7 +87,7 @@ function BUHRequisitionApprovals(props) {
         <Modal.Header
           closeButton
           style={{
-            backgroundColor: "#FF9E14",
+            backgroundColor: "#f5896e",
             paddingTop: "5px",
             paddingBottom: "5px",
             color: "white",
@@ -114,7 +114,7 @@ function BUHRequisitionApprovals(props) {
         <Modal.Header
           closeButton
           style={{
-            backgroundColor: "#FF9E14",
+            backgroundColor: "#f5896e",
             paddingTop: "5px",
             paddingBottom: "5px",
             color: "white",
@@ -153,16 +153,15 @@ function BUHRequisitionApprovals(props) {
           editable={{}}
           options={{
             headerStyle: {
-              backgroundColor: "#FF9E14",
-
+              backgroundColor: "#f5896e",
               color: "white",
-
-              fontSize: "16px",
-
-              paddingTop: "5px",
-
-              paddingBottom: "2px",
-            },
+              fontSize: "12px",
+              //height: "10px",
+              //fontWeight: 'bold'
+          },
+          rowStyle: {
+              fontSize: 14,
+          },
             pageSize: 10,
 
             pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],

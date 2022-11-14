@@ -48,11 +48,13 @@ function DeleteRR(props) {
                             <Col style={{
                                 textAlign: "right", marginLeft: "300px"
                             }}>
-                                <Button onClick={deleteRR}>Yes</Button>
+                                <Button style ={{backgroundColor: "#f5896e",
+ borderColor: "#f5896e",}} onClick={deleteRR}>Yes</Button>
                               
                             </Col>
                             <Col>
-                                <Button onClick={Delete}>No</Button>
+                                <Button style ={{backgroundColor: "#ff9b44",
+ borderColor: "#ff9b44",}} onClick={Delete}>No</Button>
                                 
                             </Col>
                         </Modal.Footer>

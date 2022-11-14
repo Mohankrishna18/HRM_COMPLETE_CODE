@@ -63,31 +63,32 @@ function AddClient(props) {
 
     const newErrors = {};
 
-    if (!clientName || clientName === "" || !clientName.match(/^[aA-zZ\s]+$/))
-      newErrors.clientName = "Please Enter Client Name";
+    if (!clientName || clientName === "" || !clientName.match(/^[\d a-zA-Z0-9 ()+-.]+$/))
+      newErrors.clientName = "Please  Enter valid Client Name";
 
-    if (!email || email === "") newErrors.email = "Please Enter Email";
+    if (!email || email === "" || !email.match(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/))
+      newErrors.email = "Please Enter valid Email";
 
-    if (!phoneNumber || phoneNumber === "" || !phoneNumber.match(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/))
-      newErrors.phoneNumber = "Please Enter Phonenumber";
+    if (!phoneNumber || phoneNumber === "" || !phoneNumber.match(/^[\d ()+-]+$/))
+      newErrors.phoneNumber = "Please Enter Valid Phonenumber";
 
-    if (!pocName || pocName === "" || !pocName.match(/^[aA-zZ\s]+$/))
-      newErrors.pocName = "Please Enter POC Name";
+    if (!pocName || pocName === "" || !pocName.match(/^[aA-zZ ()+-]+$/))
+      newErrors.pocName = "Please Enter valid POC Name";
 
 
-    // if (!startDate || startDate === "") newErrors.startDate = "Please Enter Start Date";
+    if (!startDate || startDate === "") newErrors.startDate = "Please Enter Start Date";
 
-    // if (!endDate || endDate === "") newErrors.endDate = "Please Enter End Date";
+    if (!endDate || endDate === "") newErrors.endDate = "Please Enter End Date";
 
     if (!status || status === "") newErrors.status = "Please Enter Status";
 
-    if (!country || country === "") newErrors.country = "Please Enter Location";
+    if (!country || country === "" || !country.match(/^[aA-zZ ()+-]+$/)) newErrors.country = "Please Enter Valid Location";
 
-    if (!address || address === "") newErrors.address = "Please Enter Address";
+    // if (!address || address === "") newErrors.address = "Please Enter Address";
 
     // if (!tag || tag === "") newErrors.tag = "Please Enter Tag";
 
-    if (!note || note === "") newErrors.note = "Please Enter Note";
+    // if (!note || note === "") newErrors.note = "Please Enter Note";
 
 
     return newErrors;
@@ -146,10 +147,10 @@ function AddClient(props) {
         variant="warning"
         onClick={handleShow}
         style={{
-          backgroundColor: "#ff9b44",
-          color: "#F4F8F6",
+          backgroundColor: "#f5896e",
+          borderColor: "#f5896e",
           float: "right",
-           fontSize: "20px",
+          fontSize: "20px",
           borderRadius: "25px",
           // paddingBottom: "11.5px",
           // marginTop: "100px",
@@ -163,18 +164,18 @@ function AddClient(props) {
         &nbsp;
         Add Client
       </Button>
-      <Modal style={{maxHeight: "1350px", maxWidth: "1550px"}}
+      <Modal style={{ maxHeight: "1350px", maxWidth: "1550px" }}
         size="lg"
         show={show}
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-          <Modal.Title>Add Client/Company</Modal.Title>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
+          <Modal.Title style={{ color: "white" }}>Add Client/Company</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body className = "scroll">
+        <Modal.Body className="scroll">
           <Form
             ref={forms}
             className="formone"
@@ -196,7 +197,7 @@ function AddClient(props) {
                   placeholder="Client/Company Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.clientName}
-                  maxLength={30}
+                  maxLength={100}
                   onChange={(e) => setField("clientName", e.target.value)}
                   isInvalid={!!errors.clientName}
                 ></Form.Control>
@@ -230,7 +231,7 @@ function AddClient(props) {
                   {/* <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text> */}
                   <Form.Control
                     required
-                    type="number"
+                    type="text"
                     placeholder="Phone Number"
                     controlId="phoneNumber"
                     value={form.phoneNumber}
@@ -246,8 +247,8 @@ function AddClient(props) {
                 </InputGroup>
               </Form.Group>
 
-               {/* POC Name */}
-               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+              {/* POC Name */}
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>POC Name *</Form.Label>
                 <Form.Control
                   required
@@ -257,7 +258,7 @@ function AddClient(props) {
                   placeholder="POC Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.pocName}
-                  maxLength={30}
+                  maxLength={100}
                   onChange={(e) => setField("pocName", e.target.value)}
                   isInvalid={!!errors.pocName}
                 ></Form.Control>
@@ -266,8 +267,7 @@ function AddClient(props) {
                 </Form.Control.Feedback>
               </Form.Group>
 
-             
-              {/* Start Date 
+              {/* start date */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Start Date *</Form.Label>
                 <Form.Control
@@ -283,9 +283,9 @@ function AddClient(props) {
                   {errors.startDate}
                 </Form.Control.Feedback>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group> */}
+              </Form.Group>
 
-              {/* End date
+              {/* start date */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>End Date *</Form.Label>
                 <Form.Control
@@ -302,28 +302,13 @@ function AddClient(props) {
                   {errors.endDate}
                 </Form.Control.Feedback>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group> */}
-
-              {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Country *</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  placeholder="Country"
-                  controlId="country"
-                  value={form.country}
-                  onChange={(e) => setField("country", e.target.value)}
-                  isInvalid={!!errors.country}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.country}
-                </Form.Control.Feedback>
-                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              </Form.Group> */}
+              </Form.Group>
 
 
-               {/* Status */}
-               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+
+
+              {/* Status */}
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Status *</Form.Label>
                 <Form.Select
                   required
@@ -343,9 +328,26 @@ function AddClient(props) {
                 </Form.Control.Feedback>
               </Form.Group>
 
+              {/* country */}
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Country *</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  placeholder="Country"
+                  controlId="country"
+                  value={form.country}
+                  maxLength={100}
+                  onChange={(e) => setField("country", e.target.value)}
+                  isInvalid={!!errors.country}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.country}
+                </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
 
-
-              {/* Country */}
+              {/* Country
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Country </Form.Label>
                 <Form.Select
@@ -369,7 +371,7 @@ function AddClient(props) {
                 <Form.Control.Feedback type="invalid">
                   {errors.country}
                 </Form.Control.Feedback>
-              </Form.Group>
+              </Form.Group> */}
 
               {/* Address */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -383,7 +385,7 @@ function AddClient(props) {
                   placeholder="Address"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.address}
-                  maxLength={60}
+                  maxLength={200}
                   onChange={(e) => setField("address", e.target.value)}
                   isInvalid={!!errors.address}
                 ></Form.Control>
@@ -425,7 +427,7 @@ function AddClient(props) {
                   placeholder="Notes/Description"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.note}
-                  maxLength={60}
+                  maxLength={300}
                   onChange={(e) => setField("note", e.target.value)}
                   isInvalid={!!errors.note}
                 ></Form.Control>
@@ -440,8 +442,8 @@ function AddClient(props) {
               <Col>
                 <Button
                   style={{
-                    backgroundColor: "#ff9b44",
-                    borderColor: "#ff9b44",
+                    backgroundColor: "#f5896e",
+                    borderColor: "#f5896e",
                     float: "right",
                     width: "40%",
                     height: "120%",

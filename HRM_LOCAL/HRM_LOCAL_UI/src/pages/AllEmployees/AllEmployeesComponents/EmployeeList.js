@@ -3,8 +3,7 @@ import MaterialTable from "material-table";
 import { Grid } from "@mui/material";
 //import { Link } from "@mui/material";
 import { Link } from "react-router-dom";
-
-
+import { useHistory } from "react-router-dom";
 
 import EmployeeMasterForms from "./editmyprofileroute";
 
@@ -15,10 +14,12 @@ import axios from "../../../Uri";
 
 
 function EmployeeList() {
+    const history = useHistory();
     const [data, setData] = useState([]);
     const [eid, setEid] = useState("");
     const myProfile = (e) => {
         console.log(e.target.innerText);
+        history.push(`/app/`)
         setEid(e.target.innerText);
         localStorage.setItem('item', e.target.innerText)
         axios
@@ -27,6 +28,7 @@ function EmployeeList() {
                 console.log(response.data.data);
             });
     };
+
 
 
 
@@ -43,89 +45,50 @@ function EmployeeList() {
 
 
 
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
+
         },
         {
-            title: "Employee Name",
+            title: "Name",
             field: "firstName",
             type: "text",
 
-
-
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
         },
         {
             title: "Email",
             field: "email",
 
-
-
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
         },
         {
-            title: "Department",
+            title: "Business Unit",
             field: "departmentName",
+            defaultGroupOrder:0,
 
-
-
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
         },
         {
             title: "Designation",
             field: "designationName",
             type: "text",
 
-
-
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
         },
-
-
 
         {
             title: "DOJ",
             field: "dateOfJoining",
             type: "date",
             dateSetting: { locale: "en-GB" },
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
+
         },
         {
             title: "IRM",
             field: "irm",
 
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
         },
         {
             title: "SRM",
             field: "srm",
 
-            headerStyle: {
-                backgroundColor: "#FF9E14",
-                color: "white",
-            },
         },
-        
+
         // {
         //     title: "Reporting Manager",
         //     field: "reportingManager",
@@ -138,24 +101,21 @@ function EmployeeList() {
         //     },
         // },
     ];
-
-
-
     useEffect(() => {
         axios
-     .get("/emp/getAllEmployeeMasterData")
+            .get("/emp/getAllEmployeeMasterData")
             .then((res) => {
                 setData(res.data.data);
                 console.log(res.data.data);
                 console.log(res.data.data.employeeid);
             })
-       .catch((err) => {
+            .catch((err) => {
                 console.log(err);
                 // toast.error("Server Error")
             });
     }, []);
     console.log(eid);
-    
+
     return (
         <div className="example">
             <Grid container data1={eid}>
@@ -172,14 +132,14 @@ function EmployeeList() {
                             grouping: true,
                             addRowPosition: "first",
                             headerStyle: {
-                                backgroundColor: "#1E90FF",
+                                backgroundColor: "#f5896e",
                                 color: "white",
-                                fontSize: "15px",
+                                fontSize: "12px",
                                 //height: "10px",
                                 //fontWeight: 'bold'
                             },
                             rowStyle: {
-                                fontSize: 16,
+                                fontSize: 14,
                             },
                         }}
                     />

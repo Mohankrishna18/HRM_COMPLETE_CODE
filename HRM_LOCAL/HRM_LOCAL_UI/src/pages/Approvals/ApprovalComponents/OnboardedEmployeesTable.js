@@ -83,12 +83,12 @@ function OnboardedEmployeesTable() {
 
   const [columns, setColumns] = useState([
     {
-      title: "Requisition ID",
+      title: "AERF ID",
       field: "requisitionId",
       
     },
     {
-      title: "Full Name",
+      title: "Name",
       field: "fullName",
       type: "text",
     },
@@ -108,7 +108,7 @@ function OnboardedEmployeesTable() {
     },
     
     {
-      title: "Contact Number",
+      title: "Contact ",
       field: "phoneNumber",
       type: "number",
     },
@@ -117,7 +117,7 @@ function OnboardedEmployeesTable() {
   return (
     <div>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -130,7 +130,7 @@ function OnboardedEmployeesTable() {
       
       </Modal>
       <Modal show={viewShow} static={true} centered onHide={handleClose} size="xl"  style={{paddingBottom :"0px"}}>
-        <Modal.Header closeButton onClick={viewHandleClose} style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton onClick={viewHandleClose} style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -220,7 +220,8 @@ function OnboardedEmployeesTable() {
           </Tabs>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={viewHandleClose}>
+          <Button style ={{backgroundColor: "#B6B6B4",
+                    borderColor: "#B6B6B4",}} onClick={viewHandleClose}>
             Close
           </Button>
         </Modal.Footer>
@@ -240,9 +241,7 @@ function OnboardedEmployeesTable() {
           <Row>
             <Col>
               <Card.Title>Onboardings</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Jobs / Shortlisted Candidates
-              </Card.Subtitle>
+              
             </Col>
             <Col>
               <AddOnboard func={pull_dataAdd} />
@@ -262,12 +261,15 @@ function OnboardedEmployeesTable() {
               pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
               maxBodyHeight: 470,
               headerStyle: {
-                background: "#ffa442",
-                color: "black",
-                fontSize:"16px",
-                paddingBottom:"6px",
-                paddingTop:"12px",
-              },
+                backgroundColor: "#f5896e",
+                color: "white",
+                fontSize: "12px",
+                //height: "10px",
+                //fontWeight: 'bold'
+            },
+            rowStyle: {
+                fontSize: 14,
+            },
               addRowPosition: "first",
               actionsColumnIndex: -1,
               // grouping: true,

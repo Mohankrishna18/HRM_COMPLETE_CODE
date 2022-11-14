@@ -112,7 +112,7 @@ public class HolidayManagementController {
 	public HolidayManagementController() {
 		// TODO Auto-generated constructor stub
 	}
-	@GetMapping("getHolidaysCountByYearAndMonth/{year}/{month}")
+	@GetMapping("/getHolidaysCountByYearAndMonth/{year}/{month}")
 	public ResponseEntity getHolidaysCount(@PathVariable int year,@PathVariable int month)
 	{
 	HolidaysCount count=new HolidaysCount();

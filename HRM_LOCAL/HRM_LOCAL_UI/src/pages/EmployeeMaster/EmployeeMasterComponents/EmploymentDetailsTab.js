@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 
 function EmploymentDetailsTab(props) {
 
-    const userData = sessionStorage.getItem("userdata");
-    const userData1 = JSON.parse(userData);
-    const employeeid = userData1.data.employeeId;
-    const empId = localStorage.getItem('item')
+    // const userData = sessionStorage.getItem("userdata");
+    // const userData1 = JSON.parse(userData);
+    // const employeeid = userData1.data.employeeId;
+    // const empId = localStorage.getItem('item')
 
 
     const [ferrors, setFErrors] = useState("");
@@ -365,7 +365,8 @@ function EmploymentDetailsTab(props) {
 
                 <Button
                     className="rounded-pill" md="3"
-                    style={{ backgroundColor: "#eb4509", float: "right" }}
+                    style={{ backgroundColor: "#f5896e",
+                    borderColor: "#f5896e", float: "right" }}
                     type="submit"
                     size="lg"
                 >

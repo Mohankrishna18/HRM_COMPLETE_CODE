@@ -15,7 +15,7 @@ function ApprovedLeaves() {
       console.log(res.data);
     };
     const [columns, setColumns] = useState([
-      { title: "EmployeeID", field: "employeeId" },
+      { title: "Employee ID", field: "employeeId" },
   
       { title: "Name", field: "firstName" },
   
@@ -41,10 +41,15 @@ function ApprovedLeaves() {
               actionsColumnIndex: -1,
               // filtering: true,
               headerStyle: {
-                backgroundColor: "#FE924A",
-  
+                backgroundColor: "#f5896e",
                 color: "white",
-              },
+                fontSize: "12px",
+                //height: "10px",
+                //fontWeight: 'bold'
+            },
+            rowStyle: {
+                fontSize: 14,
+            },
               exportButton: true,
             }}
           />

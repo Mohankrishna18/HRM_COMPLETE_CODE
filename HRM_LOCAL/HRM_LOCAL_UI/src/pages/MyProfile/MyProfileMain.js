@@ -7,20 +7,20 @@ import MyProfileTabs from "./MyProfileComponents/MyProfileTabs";
 
 const MyProfileMain = () => {
   return (
-    <div>
+    <div responsive className='example'>
       <Row>
         <Col>
-          <Card responsive className='example' style={{ marginTop: 0 }}>
-
-            <Card.Body>
+       {/* <Card responsive className='example' style={{ marginTop: 0 }}> */}
+       {/* e8eded */}
+            <Card.Body style={{backgroundColor:"white" }}>
               <Card.Title> My Profile</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
+              {/* <Card.Subtitle className="mb-2 text-muted">
                 Employee/My Profile
-              </Card.Subtitle>
+              </Card.Subtitle> */}
               <MyProfileTabs/>
               {/* <MyProfile /> */}
             </Card.Body>
-          </Card>
+          {/* </Card> */}
 
         </Col>
       </Row>

@@ -437,8 +437,8 @@ const UserstoryUpdate = (props) => {
           <Col>
             <Button
               style={{
-                backgroundColor: "#ff9b44",
-                borderColor: "#ff9b44",
+                backgroundColor: "#f5896e",
+                borderColor: "#f5896e",
                 // float: "right",
                 marginLeft: "200px",
                 width: "40%",
@@ -456,6 +456,7 @@ const UserstoryUpdate = (props) => {
                   style={{
                     backgroundColor: "#B6B6B4",
                     borderColor: "#B6B6B4",
+            
                     alignItems: "center",
                     width: "40%",
                     height: "120%",

@@ -13,11 +13,10 @@ import 'react-toastify/dist/ReactToastify.css';
 function AddEmployee() {
   let employee = "Add Module";
   const [show, setShow] = useState(false);
-  const notify=()=>toast("Employee data is added");
+  const notify = () => toast("Employee data is added");
 
-  
-  const handleClose = () =>
-  {
+
+  const handleClose = () => {
     setShow(false);
     notify();
   }
@@ -27,7 +26,10 @@ function AddEmployee() {
     <div>
 
 
-      <Button  onClick={handleShow} style={{backgroundColor: "#eb4509", float:"right"} }><FaFontAwesome icon=" add" />{employee} </Button>
+      <Button onClick={handleShow} style={{
+        backgroundColor: "#f5896e",
+        borderColor: "#ff9b44", float: "right"
+      }}><FaFontAwesome icon=" add" />{employee} </Button>
       <Modal size="lg"
         show={show}
         onHide={handleClose}
@@ -39,9 +41,9 @@ function AddEmployee() {
         </Modal.Header>
 
         <Modal.Body>
-          <Form className="formLabel"  style={ {padding :15} }>
+          <Form className="formLabel" style={{ padding: 15 }}>
             <Row className="mb-5" >
-              <Form.Group as={Col} md="6" style={ {padding :15 } } controlId="validationCustom01">
+              <Form.Group as={Col} md="6" style={{ padding: 15 }} controlId="validationCustom01">
                 <Form.Label>First name</Form.Label>
                 <Form.Control
                   required
@@ -49,7 +51,7 @@ function AddEmployee() {
                   placeholder="First name"
                 />
               </Form.Group>
-              <Form.Group as={Col} md="6"  style={ {padding :15 } } controlId="validationCustom02">
+              <Form.Group as={Col} md="6" style={{ padding: 15 }} controlId="validationCustom02">
                 <Form.Label>Last name</Form.Label>
                 <Form.Control
                   required
@@ -57,7 +59,7 @@ function AddEmployee() {
                   placeholder="Last name"
                 />
               </Form.Group>
-              <Form.Group as={Col} md="6" style={ {padding :15 } } controlId="validationCustom01">
+              <Form.Group as={Col} md="6" style={{ padding: 15 }} controlId="validationCustom01">
                 <Form.Label>User name</Form.Label>
                 <Form.Control
                   required
@@ -65,7 +67,7 @@ function AddEmployee() {
                   placeholder="User name"
                 />
               </Form.Group>
-              <Form.Group as={Col} md="6" style={ {padding :15 } } controlId="validationCustom02">
+              <Form.Group as={Col} md="6" style={{ padding: 15 }} controlId="validationCustom02">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   required
@@ -73,7 +75,7 @@ function AddEmployee() {
                   placeholder="Email"
                 />
               </Form.Group>
-              <Form.Group as={Col} md="6" style={ {padding :15 } } controlId="validationCustom01">
+              <Form.Group as={Col} md="6" style={{ padding: 15 }} controlId="validationCustom01">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   required
@@ -81,7 +83,7 @@ function AddEmployee() {
                   placeholder="Password"
                 />
               </Form.Group>
-              <Form.Group as={Col} md="6" style={ {padding :15 } } controlId="validationCustom02">
+              <Form.Group as={Col} md="6" style={{ padding: 15 }} controlId="validationCustom02">
                 <Form.Label>Confirm Password</Form.Label>
                 <Form.Control
                   required
@@ -89,7 +91,7 @@ function AddEmployee() {
                   placeholder="Confirm Password"
                 />
               </Form.Group>
-              <Form.Group as={Col} md="6" style={ {padding :15 } } controlId="validationCustom01">
+              <Form.Group as={Col} md="6" style={{ padding: 15 }} controlId="validationCustom01">
                 <Form.Label>Employee Id</Form.Label>
                 <Form.Control
                   required
@@ -97,7 +99,7 @@ function AddEmployee() {
                   placeholder="Employee ID"
                 />
               </Form.Group>
-              <Form.Group as={Col} md="6" style={ {padding :15 } } controlId="validationCustom02">
+              <Form.Group as={Col} md="6" style={{ padding: 15 }} controlId="validationCustom02">
                 <Form.Label>Joinning Date</Form.Label>
                 <Form.Control
                   required
@@ -105,14 +107,14 @@ function AddEmployee() {
                   placeholder="Last name"
                 />
               </Form.Group>
-              <Form.Group as={Col} md="6" style={ {padding :15 } } controlId="validationCustom01">
+              <Form.Group as={Col} md="6" style={{ padding: 15 }} controlId="validationCustom01">
                 <Form.Label>Phone No</Form.Label>
                 <Form.Control
                   required
                   type="text"
                   placeholder="phone Number"
                 /></Form.Group>
-              <Form.Group as={Col} md="6" style={ {padding :15 } } controlId="validationCustom01">
+              <Form.Group as={Col} md="6" style={{ padding: 15 }} controlId="validationCustom01">
                 <Form.Label>Company</Form.Label>
                 <Form.Select aria-label="Default select example">
                   <option>Select Company</option>
@@ -120,7 +122,7 @@ function AddEmployee() {
                   <option value="2">Delta Infotech</option>
                 </Form.Select>
               </Form.Group>
-              <Form.Group as={Col} md="6" style={ {padding :15 } } controlId="validationCustom01">
+              <Form.Group as={Col} md="6" style={{ padding: 15 }} controlId="validationCustom01">
                 <Form.Label>Department</Form.Label>
                 <Form.Select aria-label="Default select example">
                   <option>Select Department</option>
@@ -129,7 +131,7 @@ function AddEmployee() {
                   <option value="3">Marketing</option>
                 </Form.Select>
               </Form.Group>
-              <Form.Group as={Col} md="6" style={ {padding :15 } } controlId="validationCustom01">
+              <Form.Group as={Col} md="6" style={{ padding: 15 }} controlId="validationCustom01">
                 <Form.Label>Destination</Form.Label>
                 <Form.Select aria-label="Default select example">
                   <option>Select Destination</option>
@@ -140,15 +142,18 @@ function AddEmployee() {
               </Form.Group>
             </Row>
 
-            <Button variant="warning" style={{backgroundColor: "#e18300"}} onClick={handleClose}>
-            Submit
-          </Button>
+            <Button style={{
+              backgroundColor: "#f5896e",
+              borderColor: "#f5896e",
+            }} onClick={handleClose}>
+              Submit
+            </Button>
           </Form>
-         
+
         </Modal.Body>
 
         <Modal.Footer>
-          
+
         </Modal.Footer>
       </Modal>
 

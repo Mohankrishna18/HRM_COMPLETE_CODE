@@ -54,7 +54,7 @@ const ModuleDelete = (props) => {
             <Col>
               <Button
                 onClick={deleteuser}
-                style={{ width: "40%", height: "120%" }}
+                style={{ backgroundColor: "#f5896e",borderColor: "#f5896e",width: "40%", height: "120%" }}
               >
                 Yes
               </Button>

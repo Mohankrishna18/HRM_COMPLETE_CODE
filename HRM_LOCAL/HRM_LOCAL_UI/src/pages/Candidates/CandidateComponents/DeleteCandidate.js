@@ -9,20 +9,20 @@ const DeleteCandidate = (props) => {
 
     const deleteProjects = async () => {
         try {
-            const res = await axios.delete(`/clientProjectMapping/deleteProject/${props.deleteOnboard.projectId}`)
-            .then((deletedResponse)=>{
-                // const user = deletedResponse.data
-                // console.log(deletedResponse);
-                if (deletedResponse.data.status) {
-                    props.func();
-                    toast.success("Candidate deleted successfully!!!");
-                  }
-                  else {
-                    console.log("Props not Send")
-                  }
-                  
-                  // console.log(user);
-            })
+            const res = await axios.delete(`/candidate/deleteCandidate/${props.deleteOnboard.candidateId}`)
+                .then((deletedResponse) => {
+                    // const user = deletedResponse.data
+                    // console.log(deletedResponse);
+                    if (deletedResponse.data.status) {
+                        props.func();
+                        toast.success("Candidate deleted successfully!!!");
+                    }
+                    else {
+                        console.log("Props not Send")
+                    }
+
+                    // console.log(user);
+                })
         }
         catch (error) {
             console.log(error)
@@ -33,9 +33,10 @@ const DeleteCandidate = (props) => {
         <div>
             <Row>
                 <Col>
-                    <Row><Col style={{ paddingLeft:"100px" }}> Are you sure that you want to delete {props.deleteOnboard.project}?</Col></Row>
+                <Row><Col style={{ paddingLeft:"80px",fontSize:"20px" }}> Are you sure that you want to delete {props.deleteOnboard.project}?</Col></Row>
+
                     <Row>
-                        <Col style={{ paddingLeft:"220px" }}><Button onClick={deleteProjects}>Yes</Button></Col>
+                    <Col style={{ paddingLeft:"430px",paddingTop:"5px " }}><Button onClick={deleteProjects}>Yes</Button></Col>
                     </Row>
                 </Col>
             </Row>

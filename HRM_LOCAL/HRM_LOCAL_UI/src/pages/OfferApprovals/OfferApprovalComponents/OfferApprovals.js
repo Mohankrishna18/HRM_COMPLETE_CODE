@@ -14,9 +14,7 @@ function OfferApprovals() {
             <Card.Header>
               <Card.Body>
                 <Card.Title>Offer Approval</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                  OfferApprovals{" "}
-                </Card.Subtitle>
+                
               </Card.Body>
               <Tabs
                 defaultActiveKey="Waiting For Approval"

@@ -228,8 +228,23 @@ public class EmployeeMaster {
     private String onboardingStatus;
     private String client;
     private String userType;
+    private String hrcomment;
+    private Date confirmationDate;
+    
 
 
+	public Date getConfirmationDate() {
+		return confirmationDate;
+	}
+	public void setConfirmationDate(Date confirmationDate) {
+		this.confirmationDate = confirmationDate;
+	}
+	public String getHrcomment() {
+		return hrcomment;
+	}
+	public void setHrcomment(String hrcomment) {
+		this.hrcomment = hrcomment;
+	}
 	public EmployeeMaster(String client, String userType) {
 		super();
 		this.client = client;
@@ -912,7 +927,7 @@ public class EmployeeMaster {
 		this.buhId = buhId;
 	}
 		public EmployeeMaster(String employeeId, String departmentName, String onboardingId, String designationName,
-			Date dateOfJoining, String firstName, String middleName, String lastName, String email,
+			Date dateOfJoining, Date confirmationDate,String firstName, String middleName, String lastName, String email,
 			String primaryPhoneNumber, String secondaryPhoneNumber, String yearsOfExperience, String dateOfBirth,
 			String bloodGroup, String gender, String projectName, String maritalStatus, String permanentAdress,
 			String permanentState, String permanentCountry, String permanentPincode, String currentAdress,
@@ -942,7 +957,7 @@ public class EmployeeMaster {
 			String employmentType, String primarySkills, String secondarySkills, String panNumber, String aadharNumber,
 			String uanNumber, String bankName, String accountNumber, String ifscCode, String branch, String band,
 			String exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,
-			String buhId, String intermediateQualification, String sscQualification, String officialMail) {
+			String buhId, String intermediateQualification, String sscQualification, String officialMail, String hrcomment) {
 		super();
 		this.employeeId = employeeId;
 		this.departmentName = departmentName;
@@ -1052,6 +1067,8 @@ public class EmployeeMaster {
 		this.intermediateQualification = intermediateQualification;
 		this.sscQualification = sscQualification;
 		this.officialMail = officialMail;
+		this.hrcomment=hrcomment;
+		this.confirmationDate = confirmationDate;
 	}
 		public EmployeeMaster() {
 		super();

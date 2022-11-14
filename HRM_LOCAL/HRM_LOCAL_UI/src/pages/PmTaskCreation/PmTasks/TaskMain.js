@@ -134,7 +134,7 @@ function TaskMain() {
       >
         <Modal.Header
           closeButton
-          style={{backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px",color:"white" }}
+          style={{backgroundColor: "#f5896e",paddingTop:"5px",paddingBottom:"5px",color:"white" }}
         >
           <Modal.Title>Edit Task</Modal.Title>
         </Modal.Header>
@@ -162,7 +162,7 @@ function TaskMain() {
       >
         <Modal.Header
           closeButton
-          style={{ backgroundColor: "#FF9E14", color: "white" }}
+          style={{ backgroundColor: "#f5896e", color: "white" }}
         >
           <Modal.Title>Delete User</Modal.Title>
         </Modal.Header>
@@ -177,8 +177,8 @@ function TaskMain() {
       <div responsive>
         {/* <Container> */}
         <Row>
-          <Col>
-            <Card.Title>Task Management</Card.Title>
+          <Col style={{ textAlign:"left",paddingLeft:"35px"}}>
+            <Card.Title>Assign Task</Card.Title>
           </Col>
 
           <Col md={{ span: 4, offset: 4 }}>
@@ -199,12 +199,15 @@ function TaskMain() {
           editable={{}}
           options={{
             headerStyle: {
-              backgroundColor: "#FF9E14",
+              backgroundColor: "#f5896e",
               color: "white",
-              fontSize: "16px",
-              paddingTop: "5px",
-              paddingBottom: "2px",
-            },
+              fontSize: "12px",
+              //height: "10px",
+              //fontWeight: 'bold'
+          },
+          rowStyle: {
+              fontSize: 14,
+          },
             pageSize: 25,
 
             pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],

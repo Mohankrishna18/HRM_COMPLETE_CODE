@@ -163,7 +163,7 @@ function TaskMain(props) {
       >
         <Modal.Header
           closeButton
-          style={{ backgroundColor: "#FF9E14", color: "white" }}
+          style={{ backgroundColor: "#f5896e", color: "white" }}
         >
           <Modal.Title>Edit Task</Modal.Title>
         </Modal.Header>
@@ -193,7 +193,7 @@ function TaskMain(props) {
       >
         <Modal.Header
           closeButton
-          style={{ backgroundColor: "#FF9E14", color: "white" }}
+          style={{ backgroundColor: "#f5896e", color: "white" }}
         >
           <Modal.Title>Delete User</Modal.Title>
         </Modal.Header>
@@ -243,16 +243,15 @@ function TaskMain(props) {
           editable={{}}
           options={{
             headerStyle: {
-              backgroundColor: "#FF9E14",
-
+              backgroundColor: "#f5896e",
               color: "white",
-
-              fontSize: "16px",
-
-              paddingTop: "5px",
-
-              paddingBottom: "2px",
-            },
+              fontSize: "12px",
+              //height: "10px",
+              //fontWeight: 'bold'
+          },
+          rowStyle: {
+              fontSize: 14,
+          },
 
             addRowPosition: "first",
 

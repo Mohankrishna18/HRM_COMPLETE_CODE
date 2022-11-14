@@ -536,5 +536,22 @@ public class MainController {
         public String getEmployeeFullNameByEmployeeId(@PathVariable("employeeId") String employeeId) {
         	return serv.getEmployeeFullName(employeeId);   
         	}
-        
+        // //get weekends count
+        // @GetMapping("/getweekends/{year}/{month}")
+        // public int  getWeekendsByMonth(@PathVariable int year ,@PathVariable int month) {
+        // 	return lServ.weekendCount(year, month);
+        // }
+        @PutMapping("/upload/{employeeId}")
+        public ResponseEntity<ResponseMessage> uploadFile1(@PathVariable String employeeId,
+                @RequestParam("file") MultipartFile file) {
+            String message = "";
+            try {
+                epServ.store(file, employeeId);
+                message = "Uploaded the file successfully: " + file.getOriginalFilename();
+                return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+            } catch (Exception e) {
+                message = "Can't able to upload file" + file.getOriginalFilename();
+                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+            }
+        }
 }
