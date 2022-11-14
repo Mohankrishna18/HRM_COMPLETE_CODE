@@ -57,6 +57,10 @@ useEffect(() => {
 
             title: "Request Initiated",
             field: "requestInitiatedDate",
+             type: 'date',
+             dateSetting: { locale: 'en-GB' },
+
+
         },
         {
 
