@@ -29,7 +29,7 @@ function IntegrateLeaveToApply() {
     const [bdates, setBDates] = useState([]);
     const [color, setColor] = useState([]);
     const [state, setState] = useState(false);
-    const [wfh, setWfh]=useState();
+    const [wfh, setWfh]=useState(0);
     const [leaveOrwfh,setLeaveOrwfh]=useState('');
     const [wbtwnDates, setWBtwnDates] = useState([]);
     const [wbdates, setWBDates] = useState([]);
@@ -250,7 +250,7 @@ function IntegrateLeaveToApply() {
     const [remainingdata, setRemainingData] = useState([]);
     const [count, setCount] = useState();
     const [data, setData] = useState([]);
-    const [appliedleaves, setTotalAppliedleaves] = useState([]);
+    const [appliedleaves, setTotalAppliedleaves] = useState(0);
     const [earnedData, setTotalEarnedData] = useState([]);
     //const userData1 = JSON.parse(userData);
     const userData = sessionStorage.getItem("userdata");

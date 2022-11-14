@@ -1,5 +1,7 @@
 package com.arshaa.emp.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 
 public class EmploymentDetails {
@@ -16,7 +18,29 @@ public class EmploymentDetails {
 	private String jobTitle;
 	private String client;
 	private String onboardingStatus;
+	private String exitDate;
+	private Date resignationDate;
+	private String status;
 	
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getExitDate() {
+		return exitDate;
+	}
+	public void setExitDate(String exitDate) {
+		this.exitDate = exitDate;
+	}
+	public Date getResignationDate() {
+		return resignationDate;
+	}
+	public void setResignationDate(Date resignationDate) {
+		this.resignationDate = resignationDate;
+	}
 	public String getOnboardingStatus() {
 		return onboardingStatus;
 	}
