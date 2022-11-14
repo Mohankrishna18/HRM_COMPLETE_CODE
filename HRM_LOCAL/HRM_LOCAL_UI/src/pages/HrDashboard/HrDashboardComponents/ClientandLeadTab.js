@@ -79,8 +79,8 @@ function ClientandLeadTab() {
             .then((res) => {
                 const sata = res.data.data.filter(item => item.status === 'Approved')
                 //   setData(res.data.data);
-                  console.log(res.data);
-                  setData1(sata)
+                console.log(res.data);
+                setData1(sata)
 
             }).catch((err) => {
                 console.log(err)
@@ -92,10 +92,10 @@ function ClientandLeadTab() {
             .then((res) => {
                 const sata1 = res.data.data.filter(item => item.status === 'Active')
                 //   setData(res.data.data);
-                  console.log(res.data);
-                  setData(sata1)
+                console.log(res.data);
+                setData(sata1)
 
-
+ 
             }).catch((err) => {
                 console.log(err)
             })
@@ -105,14 +105,14 @@ function ClientandLeadTab() {
     return (
         <div>
             <TabContext value={value} style={{ padingRight: "10px" }}>
-                <Box sx={{ borderBottom: 0, borderColor: 'divider', width: '20%'}}>
+                <Box sx={{ borderBottom: 0, borderColor: 'divider', width: '25%' }}>
                     <TabList onChange={handleChange} variant="scrollable"
-                                             scrollButtons="auto" 
-                                             indicatorColor="#f5896e" sx={{ "& button.Mui-selected": { background: "white", color: "#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", height: "60px", color: "white" }}>
+                        scrollButtons="auto"
+                        indicatorColor="#f5896e" sx={{ "& button.Mui-selected": { background: "white", color: "#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", height: "60px", color: "white" }}>
                         <Tab wrapped label=" Active  Clients"
-                            {...a11yProps(0)} value="1" style={{ paddingRight: "3%", paddingLeft: "3%" }} icon={(data.length === 0) ? (<div style={{ paddingLeft: "6px", fontSize: "16px" }}>0</div>) : (<div style={{ paddingLeft: "6px", fontSize: "14px" }}>{data.length}</div>)} />
+                            {...a11yProps(0)} value="1" style={{ paddingRight: "4%", paddingLeft: "3%" }} icon={(data.length === 0) ? (<div style={{ paddingLeft: "6px", fontSize: "16px" }}>0</div>) : (<div style={{ paddingLeft: "6px", fontSize: "14px" }}>{data.length}</div>)} />
                         <Tab wrapped label="Active  Leads"
-                            {...a11yProps(0)} value="2" style={{ paddingRight: "3%", paddingLeft: "3%" }} icon={(data1.length === 0) ? (<div style={{ paddingLeft: "6px", fontSize: "16px" }}>0</div>) : (<div style={{ paddingLeft: "6px", fontSize: "14px" }}>{data1.length}</div>)} />
+                            {...a11yProps(0)} value="2" style={{ paddingRight: "4%", paddingLeft: "3%" }} icon={(data1.length === 0) ? (<div style={{ paddingLeft: "6px", fontSize: "16px" }}>0</div>) : (<div style={{ paddingLeft: "6px", fontSize: "14px" }}>{data1.length}</div>)} />
                     </TabList>
                 </Box>
                 <TabPanel style={{ padding: "15px" }} value="1"><ClientTable /></TabPanel>
