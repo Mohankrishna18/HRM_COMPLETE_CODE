@@ -4,8 +4,9 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TaskMain from '../TimeSheet/EmployeeTimesheet/TaskMain';
-import HrEmployeesLeavesWaitingForApproval from "./HrEmployeesLeavesWaitingForApproval";
+// import HrEmployeesLeavesWaitingForApproval from "./HrEmployeesLeavesWaitingForApproval";
 import SRMResignationMain from './SRMResignationMAin';
+import ManagerEmployeesLeavesWaitingForApproval from "../ManagerLeavesToApprove/ManagerEmployeesLeavesWaitingForApproval";
 
 const HrLeavesToApproveMain = () => {
 
@@ -35,7 +36,9 @@ const HrLeavesToApproveMain = () => {
                       <Tab label="Resignation Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="3" />
                     </TabList>
                   </Box>
-                  <TabPanel value="1"><HrEmployeesLeavesWaitingForApproval /></TabPanel>
+                  {/* <TabPanel value="1"><HrEmployeesLeavesWaitingForApproval /></TabPanel> */}
+              
+                    <TabPanel value="1"><ManagerEmployeesLeavesWaitingForApproval/></TabPanel>
                   <TabPanel value="2"><TaskMain /></TabPanel>
                   <TabPanel value="3"><SRMResignationMain /></TabPanel>
                 </TabContext>  

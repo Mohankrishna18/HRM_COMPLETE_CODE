@@ -25,7 +25,7 @@ public interface RequisitionRequestRepository extends JpaRepository<RequisitionR
 	    
 	    RequisitionRequestEntity findByRequisitionId(String requisitionId);
 	    
-	   RequisitionRequestEntity getByRequisitionId(String requisitionId);
+//	   RequisitionRequestEntity getByRequisitionId(String requisitionId);
 	   
 	   @Query(value="select *, TIMESTAMPDIFF(day, raised_on,now()) AS diffDaysCount from requisition_requests ", nativeQuery = true)
        List<RequisitionRequestEntity> getDataWithAgingDays();

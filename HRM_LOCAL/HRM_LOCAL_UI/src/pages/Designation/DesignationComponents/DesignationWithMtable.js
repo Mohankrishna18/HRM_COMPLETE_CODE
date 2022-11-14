@@ -52,7 +52,7 @@ export default function EditableDesignation() {
   const [columns, setColumns] = useState([
     // { title: 'ID', field: 'designationId', editable: false },
     {
-      title: "Department Name",
+      title: "Department",
       field: "departmentName",
       lookup: status,
       //   render: (rowData) => (
@@ -60,7 +60,7 @@ export default function EditableDesignation() {
       //  )
 
       headerStyle: {
-        backgroundColor: "#FE924A",
+        backgroundColor: "#f5896e",
 
         color: "white",
         // options: { obj },
@@ -76,7 +76,7 @@ export default function EditableDesignation() {
       title: "Designation Name",
       field: "designationName",
       headerStyle: {
-        backgroundColor: "#FE924A",
+        backgroundColor: "#f5896e",
 
         color: "white",
       },

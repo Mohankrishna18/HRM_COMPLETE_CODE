@@ -104,7 +104,7 @@ console.log(params)
 
         pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
 
-        maxBodyHeight: 650,
+        maxBodyHeight: 1050,
 
         addRowPosition: "first",
 

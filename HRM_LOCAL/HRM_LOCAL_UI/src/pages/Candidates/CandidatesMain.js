@@ -100,7 +100,7 @@ function CandidatesMain() {
       }
     },
     {
-      title: "Experiance",
+      title: "Experience",
       field: "yearsOfExperience",
       align:"center",
       cellStyle: {

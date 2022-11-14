@@ -47,7 +47,7 @@ const ClientMaterial = () => {
 
         {
             // changed the tilte name only, in backend its still taken as client name
-            title: "Contact",
+            title: "Phone#",
             field: "phoneNumber",
         },
 

@@ -58,7 +58,6 @@ import com.arshaa.emp.repository.EmployeeProfileRepository;
 import com.arshaa.emp.repository.OnboardRepository;
 import com.arshaa.emp.repository.UserClientProjectManagementRepositorty;
 import com.thoughtworks.xstream.mapper.Mapper.Null;
-import com.arshaa.emp.model.ProbhitionFields;
 
 @Service
 public class MainServiceImpl implements MainService {
@@ -963,6 +962,8 @@ public class MainServiceImpl implements MainService {
 				pd.setMaritalStatus(em.getMaritalStatus());
 				pd.setPrimaryPhoneNumber(em.getPrimaryPhoneNumber());
 				pd.setSecondaryPhoneNumber(em.getSecondaryPhoneNumber());
+				pd.setPrimarySkills(em.getPrimarySkills());
+				pd.setSecondarySkills(em.getSecondarySkills());
 				
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
@@ -997,6 +998,8 @@ public class MainServiceImpl implements MainService {
 				em.setMaritalStatus(pd.getMaritalStatus());
 				em.setPrimaryPhoneNumber(pd.getPrimaryPhoneNumber());
 				em.setSecondaryPhoneNumber(pd.getSecondaryPhoneNumber());
+				em.setPrimarySkills(pd.getPrimarySkills());
+				em.setSecondarySkills(pd.getSecondarySkills());
 				emRepo.save(em);
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
@@ -2236,32 +2239,11 @@ public class MainServiceImpl implements MainService {
 		return new ResponseEntity(dn, HttpStatus.OK);
 		
 	}
-	//Probhition update call
+	//Divya Changes
 		@Override
 		public String getEmployeeFullName(String employeedId) {
 			EmployeeMaster master = emRepo.getByEmployeeId(employeedId);
 			return master.getFullName();
-		}
-		@Override
-		public ResponseEntity updateProbhitionFields(String employeeId, ProbhitionFields newPrbh) {
-			Response r = new Response<>();
-			try {
-			EmployeeMaster master = emRepo.getById(employeeId);
-			master.setConfirmationDate(newPrbh.getConfirmationDate());
-			master.setFeedBack(newPrbh.getFeedBack());
-			master.setOnboardingStatus(newPrbh.getOnboardingStatus());
-			EmployeeMaster master1 = emRepo.save(master);
-			System.out.println(master1);
-			r.setStatus(true);
-			r.setMessage(sConstants.PUT_RESPONSE);
-			return new ResponseEntity(r, HttpStatus.OK);
-
-		} catch (Exception e) {
-			r.setStatus(false);
-			r.setMessage(sConstants.FAILURE_RESPONSE);
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-
 		}
 	
 }

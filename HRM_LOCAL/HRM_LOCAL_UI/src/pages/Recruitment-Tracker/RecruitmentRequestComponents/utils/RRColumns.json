@@ -1,6 +1,6 @@
 [
     {
-       
+        
         "title": "Job ID",
         "field": "requisitionId"
     },
@@ -18,7 +18,7 @@
         "field":"projectName"
     },
     {
-        "title":"Job Title",
+        "title":"Title",
         "field": "jobTitle"
     },
     {
@@ -30,7 +30,11 @@
         "field":"role"
     },
     {
-        "title":"Work Location",
+        "title":"Ageing",
+        "field":"ageing"
+    },
+    {
+        "title":"Location",
         "field": "workLocation"
     },
     {
@@ -38,31 +42,28 @@
         "field":"yoe"
     },
     {
-        "title":"Job Status",
+        "title":"Status",
         "field": "rrfStatus"
     },
-    {
-        "title":"Workflow Status",
-        "field": "workflowStatus"
-    },
-    {
+
+
+
+   {
         "title":"Positions",
         "field": "positions"
     },
-    {
-        "title" : "Working Hours",
-        "field" : "workingHours"
-    },
+    
     {
         "title" : "Raised Date",
         "field" : "raisedOn",
         "type": "date",
         "dateSetting": { "locale": "en-GB" }
-    },
-   
-    {
-        "title":"Ageing",
-        "field":"ageing"
     }
+    
+   
+
+
 
 ]
+
+

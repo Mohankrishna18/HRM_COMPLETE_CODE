@@ -70,7 +70,6 @@ function HRConfirmation() {
     console.log(res.data);
   };
   const [columns, setColumns] = useState([
-    { title: "AERF ID", field: "requisitionId" },
     { title: "OBD ID", field: "onboardingId" },
     { title: "Name", field: "firstName" },
     { title: "Email", field: "email" },

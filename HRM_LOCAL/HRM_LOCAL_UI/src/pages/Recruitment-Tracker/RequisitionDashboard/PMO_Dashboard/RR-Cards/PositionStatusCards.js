@@ -54,7 +54,7 @@ const PositionStatusCards = () => {
                 
                 <Col sm={2} >
 
-                    <SingleCard data={data4} name='Open'  color='#00c301'  />
+                    <SingleCard data={data4} name='Open'  color='#00c301'/>
 
                 </Col>
 

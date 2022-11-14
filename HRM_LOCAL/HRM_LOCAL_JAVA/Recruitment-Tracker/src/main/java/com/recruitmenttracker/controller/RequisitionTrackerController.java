@@ -71,10 +71,10 @@ public class RequisitionTrackerController {
 		return serv.deleteRRequest(rrfId);
 	}
 	
-	@PutMapping("/updateRR/{rrfId}")
-	public ResponseEntity updateRRs(@PathVariable long rrfId, @RequestBody RequisitionRequestEntity RRUpdate) {
-		return serv.updateRR(rrfId, RRUpdate);
-	}
+    @PutMapping("/updateRR/{requisitionId}")
+    public ResponseEntity updateRRs(@PathVariable String requisitionId, @RequestBody RequisitionRequestEntity RRUpdate) {
+        return serv.updateRR(requisitionId, RRUpdate);
+    }
 	
 	@GetMapping("/updateWorkflowStatus/{rrfId}")
 	public ResponseEntity updateWorkFlowStatus(@PathVariable long rrfId) {
@@ -179,7 +179,7 @@ public class RequisitionTrackerController {
            r.setResourceRequiredDate(o.getResourceRequiredDate());
            r.setRequestClosedDate(o.getRequestClosedDate());
            
-           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
+//           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
            req.add(r);
        });   
         return req;

@@ -159,7 +159,7 @@ function AddUser(props) {
   };
   return (
     <div>
-      <div style={{paddingLeft:"250px",paddingBottom:"50px"}}>
+      <div style={{paddingLeft:"250px",paddingBottom:"10px"}}>
       <Button
         variant="warning"
         onClick={handleShow}
