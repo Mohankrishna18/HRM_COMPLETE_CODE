@@ -40,16 +40,16 @@ function ManagerEmployeeApprove(props) {
         return newErrors;
       }
     const ApproveHandler = (e) => {
-        const formErrors = validateForm();
+    //     const formErrors = validateForm();
 
-    console.log(Object.keys(formErrors).length);
+    // console.log(Object.keys(formErrors).length);
 
-    if (Object.keys(formErrors).length > 0) {
+    // if (Object.keys(formErrors).length > 0) {
 
-      setErrors(formErrors);
+    //   setErrors(formErrors);
 
-      console.log("Form validation error");
-    }else{
+    //   console.log("Form validation error");
+    // }else{
         // e.prevetDefault();
         const notify = () => toast("Leave  is approved");
         // handleClose();
@@ -76,7 +76,7 @@ function ManagerEmployeeApprove(props) {
        
         notify();
     }
-      };
+    //   };
   return (
     <div>
         
@@ -97,15 +97,15 @@ function ManagerEmployeeApprove(props) {
                         placeholder="Approve Reason"
                         value={form.irmApproveReason}
                         onChange={(e) => setField("irmApproveReason", e.target.value)}
-                        isInvalid={!!errors.irmApproveReason}
+                        // isInvalid={!!errors.irmApproveReason}
                     ></Form.Control>
-                    <Form.Control.Feedback>{errors.irmApproveReason}</Form.Control.Feedback>
+                    {/* <Form.Control.Feedback>{errors.irmApproveReason}</Form.Control.Feedback> */}
                 </Form.Group>
                 <Button  style={{backgroundColor: "#f5896e",
  borderColor: "#f5896e", marginTop: "5%", float: "right" }}
             onClick={ApproveHandler}
             >
-            Yes
+            Approve
           </Button>
 
             </Form>
