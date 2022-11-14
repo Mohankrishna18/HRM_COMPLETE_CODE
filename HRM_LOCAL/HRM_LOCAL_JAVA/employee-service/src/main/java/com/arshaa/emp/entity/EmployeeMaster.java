@@ -211,6 +211,7 @@ public class EmployeeMaster {
 	private String branch;
 	private String band;
 	private String exitDate;
+	private Date resignationDate;
 	
 	private String srm;
 	private String irm;
@@ -231,9 +232,16 @@ public class EmployeeMaster {
     private String hrcomment;
     private Date confirmationDate;
     private String status;
+   
 
   
 	
+	public Date getResignationDate() {
+		return resignationDate;
+	}
+	public void setResignationDate(Date resignationDate) {
+		this.resignationDate = resignationDate;
+	}
 	public String getStatus() {
 		return status;
 	}
@@ -964,7 +972,7 @@ public class EmployeeMaster {
 			String employmentType, String primarySkills, String secondarySkills, String panNumber, String aadharNumber,
 			String uanNumber, String bankName, String accountNumber, String ifscCode, String branch, String band,
 			String exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,
-			String buhId, String intermediateQualification, String sscQualification, String officialMail, String hrcomment,String Status) {
+			String buhId,Date resignationDate,String intermediateQualification, String sscQualification, String officialMail, String hrcomment,String Status) {
 		super();
 		this.employeeId = employeeId;
 		this.departmentName = departmentName;
@@ -1000,6 +1008,7 @@ public class EmployeeMaster {
 		this.postgraduationPassedYear = postgraduationPassedYear;
 		this.postgraduationGrade = postgraduationGrade;
 		this.graduationType = graduationType;
+		this.resignationDate = resignationDate;
 		this.graduationBoardOfUniversity = graduationBoardOfUniversity;
 		this.graduationInstituteName = graduationInstituteName;
 		this.graduationInstituteCity = graduationInstituteCity;
