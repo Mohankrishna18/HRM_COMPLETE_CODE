@@ -14,6 +14,7 @@ function AllEmployees(props) {
   const [data, setData] = useState([]);
   const [departmentName, setDepartmentName] = useState([]);
   const [getDepartmentName, setGetDepartmentName] = useState([]);
+  const [employeeData, setEmployeeData] = useState([]);
   const [empData, setEmpData] = useState([]);
   const [value, setValue] = React.useState("1");
   const [viewShow, setViewShow] = useState(false);
@@ -40,10 +41,7 @@ function AllEmployees(props) {
   }, []);
   console.log(data)
   const empcount = data.length;
-  const female = data ? data.filter((item) => item.gender === "female") : 0
-  const male = data ? data.filter((item) => item.gender === "male") : 0
-
-
+ 
   useEffect(() => {
     loadData();
   }, []);
@@ -174,6 +172,67 @@ function AllEmployees(props) {
     }
   }
 
+  useEffect(() => {
+    axios
+        .get("/emp/getAllEmployeeMasterData")
+        .then((res) => {
+            // setData(res.data.data);
+        const sata1 = res.data.data.filter(item => item.status === 'Active')
+        console.log(res.data);
+            setEmployeeData(sata1) 
+           
+        })
+        .catch((err) => {
+            console.log(err);
+            // toast.error("Server Error")
+        });
+}, []);
+console.log(employeeData);
+const[f,setF]=useState([]);
+useEffect(() => {
+  axios
+      .get("/emp/getAllEmployeeMasterData")
+      .then((res) => {
+          // setData(res.data.data);
+      const sata1 = res.data.data.filter(item => item.status === 'Active' && item.gender ==="Female")
+      console.log(res.data);
+          setF(sata1) 
+         
+      })
+      .catch((err) => {
+          console.log(err);
+          // toast.error("Server Error")
+      });
+}, []);
+console.log(f);
+
+const[m,setM]=useState([]);
+useEffect(() => {
+  axios
+      .get("/emp/getAllEmployeeMasterData")
+      .then((res) => {
+          // setData(res.data.data);
+      const sata1 = res.data.data.filter(item => item.status === 'Active' && item.gender ==="Male")
+      console.log(res.data);
+      setM(sata1) 
+         
+      })
+      .catch((err) => {
+          console.log(err);
+          // toast.error("Server Error")
+      });
+}, []);
+console.log(m);
+
+// const female = employeeData ? employeeData.filter((item) => item.gender === "Female") : 0
+// const male = employeeData ? employeeData.filter((item) => item.gender === "Male") : 0
+
+// const[f,setF]=useState([]);
+// setF=employeeData.filter((item)=>item.gender==="Female"):0;
+// console.log(f),
+
+
+
   var today = new Date(data.dateOfJoining);
   var dd = String(today.getDate()).padStart(2, '0');
   var mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -205,17 +264,17 @@ function AllEmployees(props) {
         <Col md="2">
             <Row style={{paddingTop:"10px",paddingLeft:"5px"}}>
             <Card style={{padding:10}}>
-            {empcount === 0 ? (<Card.Subtitle className="mb-2 text-muted">0 Employees</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {empcount}</Card.Subtitle>)}
+            {!employeeData ? (<Card.Subtitle className="mb-2 text-muted">Employees: 0 </Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {employeeData.length}</Card.Subtitle>)}
             </Card>
             </Row>
             <Row style={{paddingTop:"10px",paddingLeft:"5px"}}>
             <Card style={{padding:10}}>
-            {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data} Male</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {male.length} </Card.Subtitle>)}
+            {!m ? (<Card.Subtitle className="mb-2 text-muted">Male: 0</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {m.length} </Card.Subtitle>)} 
             </Card>
             </Row>
             <Row style={{paddingTop:"10px",paddingLeft:"5px"}}>
             <Card style={{padding:10}}>
-            {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data}  Female</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Female : {female.length} </Card.Subtitle>)}
+             {!f ? (<Card.Subtitle className="mb-2 text-muted"> Female: 0</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Female : {f.length} </Card.Subtitle>)} 
             </Card>
             </Row>
         {/* {empcount === 0 ? (<Card.Subtitle className="mb-2 text-muted">0 Employees</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {empcount}</Card.Subtitle>)}
