@@ -62,8 +62,10 @@ export default function ChangeUserDetails(props) {
           <Action
             data={action}
             func={pull_dataUpdate}
-            handleClose={handleClose}
+             handleClose={handleClose}
           />
+          
+
         </Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -107,6 +109,7 @@ export default function ChangeUserDetails(props) {
                                     setShow(true)
                                     console.log(props);
                                     setAction(data.employeeId)
+                                    setUpdateStatus(props.data)
                                   }}
                             > update
                             </Button>

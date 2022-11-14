@@ -12,6 +12,7 @@ export default function Action(props) {
     const [departments, setDepartments] = useState([]);
     const [designations, setDesignations] = useState([]);
     const [data, setData] = useState([]);
+    const handleClose =() => setShow(false);
 
     const forms = useRef(null);
     console.log(props);
@@ -31,7 +32,7 @@ export default function Action(props) {
     const loadDesignations = async () => {
         const res = await axios.get("/designation/getAllDesignations");
         setDesignations(res.data);
-        console.log(res.data)
+        console.log(res.data);
     };
 
     const loadEmploymentDetails = async () => {
@@ -61,11 +62,15 @@ export default function Action(props) {
                 .put(`/emp/updateEmploymentDetails/${props.data}`, form)
                 .then((res)=>{
                     console.log(res)
+                    
+                   
                     if(res.status ==200){
                       props.func();
+                    
                     }
                   })
                   props.handleClose;
+                  
         }
 
     return (
@@ -120,7 +125,7 @@ export default function Action(props) {
 
                                 {designations.map((designationsName) => (
 
-                                    <option value={designationsName.designationsName}>{designationsName.designationsName}</option>
+                                    <option value={designationsName.designationName}>{designationsName.designationName}</option>
                                     ))}</Form.Select>
                                 <Form.Control.Feedback type="invalid">
                                     {errors.designationName}
@@ -194,7 +199,8 @@ export default function Action(props) {
                                         borderRadius: "25px",
                                     }}
                                     type="submit"
-                                    onClick={handleSubmit}
+                                    onClick={props.handleClose}
+                                    
                                 >
                                     Submit
                                 </Button>
