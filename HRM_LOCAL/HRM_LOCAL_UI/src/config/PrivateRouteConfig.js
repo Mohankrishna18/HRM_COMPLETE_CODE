@@ -329,7 +329,7 @@ export default [
     type: "configuration",
     path: "/rolesAndExits",
     icon: <FcApproval />,
-    title: "RolesAndExits",
+    title: "Roles And Exits",
     permission: [Roles.pmohead],
   },
   {

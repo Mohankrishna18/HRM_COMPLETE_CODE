@@ -1159,6 +1159,9 @@ public class MainServiceImpl implements MainService {
 				empd.setDesignation(em.getDesignationName());
 				empd.setReportingManager(em.getReportingManager());
 				empd.setProjectName(em.getProjectName());
+				empd.setExitDate(em.getExitDate());
+				empd.setResignationDate(em.getResignationDate());
+				empd.setStatus(em.getStatus());
 
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
@@ -1190,6 +1193,9 @@ public class MainServiceImpl implements MainService {
 				em.setDesignationName(empd.getDesignation());
 				em.setReportingManager(empd.getReportingManager());
 				em.setProjectName(empd.getProjectName());
+				em.setExitDate(empd.getExitDate());
+				em.setResignationDate(empd.getResignationDate());
+				em.setStatus(empd.getStatus());
 				emRepo.save(em);
 				r.setStatus(true);
 				r.setMessage("Data Fetching");

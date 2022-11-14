@@ -152,7 +152,7 @@ console.log(employeeId);
   const [empType, setEmpType] = useState([]);
   useEffect(() => {
     axios.get("/employmentType/getAllEmployments").then((response) => {
-      console.log(response.data);
+      console.log(response.data.data);
       setEmpType(response.data.data);
     });
   }, []);
@@ -246,8 +246,8 @@ console.log(employeeId);
                     isInvalid={!!errors.employmentType}
                 >
                      <option value="">Select </option>
-                    {client.map((empType) => (
-                        <option value={empType.employmentTypeName}>{empType.employmentTypeName}</option>
+                    {empType.map((employmentType) => (
+                        <option value={employmentType.employmentTypeName}>{employmentType.employmentTypeName}</option>
                     ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
