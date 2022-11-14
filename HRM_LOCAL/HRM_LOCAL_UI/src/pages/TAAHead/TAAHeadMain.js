@@ -76,9 +76,10 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import HrEmployeesLeavesWaitingForApproval from "../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval";
+// import HrEmployeesLeavesWaitingForApproval from "../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval";
 import TaskMain from "../TimeSheet/EmployeeTimesheet/TaskMain";
 import TAAHeadApproval from "./TAAHeadApproval";
+import ManagerEmployeesLeavesWaitingForApproval from "../ManagerLeavesToApprove/ManagerEmployeesLeavesWaitingForApproval";
 
 
 const TAAHeadMain = () => {
@@ -115,7 +116,7 @@ const TAAHeadMain = () => {
                                         </TabList>
                                     </Box>
                                     <TabPanel style={{ padding: "10px" }} value="1"> <TAAHeadApproval/></TabPanel>
-                                    <TabPanel style={{ padding: "10px" }} value="2"><HrEmployeesLeavesWaitingForApproval /></TabPanel>
+                                    <TabPanel style={{ padding: "10px" }} value="2"><ManagerEmployeesLeavesWaitingForApproval/></TabPanel>
                                     <TabPanel style={{ padding: "10px" }} value="3"><TaskMain /></TabPanel>
                                 </TabContext>
                             </Box>

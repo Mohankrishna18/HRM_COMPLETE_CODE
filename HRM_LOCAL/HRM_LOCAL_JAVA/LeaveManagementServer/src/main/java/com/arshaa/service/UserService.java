@@ -374,44 +374,45 @@ public class UserService {
 		try {
 			List<User> u = repository.findUserByIrmId(irmId);
 			UserModel s = new UserModel();
-			LocalDateTime now = LocalDateTime.now();
-			LocalDate currentDate = LocalDate.of(2022, 8, 29);
-//			 Date date=new Date(2022, 8, 12);
-			Date date = new Date(System.currentTimeMillis());
-			u.stream().filter(user -> date.before(getValidateDat(user.getSubmittedDate()))).forEach(g -> {
-				System.out.println("Current Date" + date + "5 days after" + getValidateDat(g.getSubmittedDate()));
-
-				UsersByIrm usrm = new UsersByIrm();
-				usrm.setEmployeeId(g.getEmployeeId());
-				usrm.setLeaveType(g.getLeaveType());
-				usrm.setFromDate(g.getFromDate());
-				usrm.setToDate(g.getToDate());
-				usrm.setNumberOfDays(g.getNumberOfDays());
-				usrm.setLeaveReason(g.getLeaveReason());
-				usrm.setManagerApproval(g.getManagerApproval());
-				usrm.setEmployeeleaveId(g.getEmployeeleaveId());
-				usrm.setLeaveStatus(g.getLeaveStatus());
-				usrm.setLeaveOrwfh(g.getLeaveOrwfh());
-				EmployeeName al = template.getForObject(url + g.getEmployeeId(), EmployeeName.class);
-				usrm.setName(al.getEmployeeName());
-				getList.add(usrm);
-			});
-
-//			u.forEach(g->{
-//				UsersByIrm usrm=new UsersByIrm();
+//			LocalDateTime now = LocalDateTime.now();
+//			LocalDate currentDate = LocalDate.of(2022, 8, 29);
+////			 Date date=new Date(2022, 8, 12);
+//			Date date = new Date(System.currentTimeMillis());
+//			u.stream().filter(user -> date.before(getValidateDat(user.getSubmittedDate()))).forEach(g -> {
+//				System.out.println("Current Date" + date + "5 days after" + getValidateDat(g.getSubmittedDate()));
+//
+//				UsersByIrm usrm = new UsersByIrm();
 //				usrm.setEmployeeId(g.getEmployeeId());
 //				usrm.setLeaveType(g.getLeaveType());
 //				usrm.setFromDate(g.getFromDate());
 //				usrm.setToDate(g.getToDate());
 //				usrm.setNumberOfDays(g.getNumberOfDays());
-//				usrm.setLeaveReason(g.getLeaveReason()); 
+//				usrm.setLeaveReason(g.getLeaveReason());
 //				usrm.setManagerApproval(g.getManagerApproval());
 //				usrm.setEmployeeleaveId(g.getEmployeeleaveId());
 //				usrm.setLeaveStatus(g.getLeaveStatus());
-//				EmployeeName al=template.getForObject(url + g.getEmployeeId(),EmployeeName.class);
-//                usrm.setName(al.getEmployeeName());
-//                getList.add(usrm);
+//				usrm.setLeaveOrwfh(g.getLeaveOrwfh());
+//				EmployeeName al = template.getForObject(url + g.getEmployeeId(), EmployeeName.class);
+//				usrm.setName(al.getEmployeeName());
+//				getList.add(usrm);
 //			});
+
+			u.forEach(g->{
+				UsersByIrm usrm=new UsersByIrm();
+				usrm.setEmployeeId(g.getEmployeeId());
+				usrm.setLeaveType(g.getLeaveType());
+				usrm.setFromDate(g.getFromDate());
+				usrm.setToDate(g.getToDate());
+				usrm.setNumberOfDays(g.getNumberOfDays());
+				usrm.setLeaveReason(g.getLeaveReason()); 
+				usrm.setManagerApproval(g.getManagerApproval());
+				usrm.setEmployeeleaveId(g.getEmployeeleaveId());
+				usrm.setLeaveStatus(g.getLeaveStatus());
+				usrm.setLeaveOrwfh(g.getLeaveOrwfh());
+				EmployeeName al=template.getForObject(url + g.getEmployeeId(),EmployeeName.class);
+                usrm.setName(al.getEmployeeName());
+                getList.add(usrm);
+			});
 			return new ResponseEntity(getList, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity("Something went wrong", HttpStatus.OK);
@@ -454,7 +455,7 @@ public class UserService {
 //				rConfirm.setEmployeeName(getOnboarding.getFirstName()+getOnboarding.getLastName());
 //				rConfirm.setEmail("muralikrishna.miriyala@arshaa.com");
 
-				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+//				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 
 				UsersByIrm usrm = new UsersByIrm();
 				usrm.setEmployeeId(g.getEmployeeId());

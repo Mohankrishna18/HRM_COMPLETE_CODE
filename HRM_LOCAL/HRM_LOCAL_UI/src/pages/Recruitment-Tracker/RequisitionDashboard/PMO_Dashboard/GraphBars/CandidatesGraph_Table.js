@@ -17,7 +17,7 @@ const CandidatesGraph_Table = () => {
                     <Card >
                         <Card.Body  >
                             <h6 align="center">Applicants Hired Per Month </h6>
-                            <div style={{ height: "369px", }}>
+                            <div style={{ height: "450px", }}>
                                  <ApplicantsMonthly />
                             </div>
                         </Card.Body>
@@ -38,7 +38,7 @@ const CandidatesGraph_Table = () => {
 
                             <h6 align="center">Candidate Details </h6>
                             {/* we kept the graph component inside this div , to keep this graph inside card and also to give height and width  */}
-                            <div style={{ height: "240px", }}>
+                            <div style={{ height: "260px", }}>
                                 {/* <ApplicantsRecievedByDepartment /> */}
                                 {/* <ApplicationsRecievedEachDepartment /> */}
                                 <CandidatesDetailsTable/>

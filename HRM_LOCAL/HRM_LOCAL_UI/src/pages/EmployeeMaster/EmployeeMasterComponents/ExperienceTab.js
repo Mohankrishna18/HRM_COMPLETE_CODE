@@ -396,7 +396,7 @@ function ExperienceTab() {
               controlId="previousCompany1_name"
               value={previousCompany1_name}
               isInvalid ={ferrors}
-              maxLength={50}
+              maxLength={200}
               onChange={(e) => {setPreviousCompany1_name(e.target.value)
                 if (!e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)) {
                   setFErrors("Enter Valid Company Name");
@@ -419,7 +419,7 @@ function ExperienceTab() {
               placeholder="Designation"
               controlId="previousCompany1_designation"
               value={previousCompany1_designation}
-              maxLength={50}
+              maxLength={200}
               isInvalid = {serror}
               name="previousCompany1_designation"
               onChange={(e) => {setPreviousCompany1_designation(e.target.value)
@@ -467,7 +467,7 @@ function ExperienceTab() {
               placeholder="Employee ID"
               controlId="previousCompany1_employeeId"
               value={previousCompany1_employeeId}
-              maxLength={50}
+              maxLength={200}
               isInvalid={thirderrors}
               name="previousCompany1_employeeId"
               onChange={(e) => {
@@ -543,7 +543,7 @@ function ExperienceTab() {
               type="text"
               placeholder="Company Name"
               controlId="previousCompany2_name"
-              maxLength={50}
+              maxLength={200}
               value={previousCompany2_name}
               isInvalid ={fourerror}
               onChange={(event) => {
@@ -567,7 +567,7 @@ function ExperienceTab() {
               type="text"
               placeholder="Designation"
               controlId="previousCompany2_designation"
-              maxLength={50}
+              maxLength={200}
               isInvalid = {fiveerrors}
               value={previousCompany2_designation}
               onChange={(e) => {setPreviousCompany2_designation(e.target.value)
@@ -617,7 +617,7 @@ function ExperienceTab() {
               placeholder="Employee ID"
               controlId="previousCompany2_employeeId"
               value={previousCompany2_employeeId}
-              maxLength={50}
+              maxLength={200}
               isInvalid={sixerror}
               onChange={(e) => {
                 setPreviousCompany2_employeeId(e.target.value);
@@ -692,7 +692,7 @@ function ExperienceTab() {
               type="text"
               placeholder="Company Name"
               controlId="previousCompany3_name"
-              maxLength={50}
+              maxLength={200}
               value={previousCompany3_name}
               isInvalid={sevenerrors}
               onChange={(e) => {setPreviousCompany3_name(e.target.value)
@@ -716,7 +716,7 @@ function ExperienceTab() {
               type="text"
               placeholder="Designation"
               controlId="previousCompany3_designation"
-              maxLength={50}
+              maxLength={200}
               isInvalid = {eighterror}
               value={previousCompany3_designation}
               onChange={(e) => {setPreviousCompany3_designation(e.target.value);
@@ -765,7 +765,7 @@ function ExperienceTab() {
               type="text"
               placeholder="Employee ID"
               controlId="previousCompany3_employeeId"
-              maxLength={50}
+              maxLength={200}
               isInvalid={nineerrors}
               value={previousCompany3_employeeId}
               onChange={(e) => {

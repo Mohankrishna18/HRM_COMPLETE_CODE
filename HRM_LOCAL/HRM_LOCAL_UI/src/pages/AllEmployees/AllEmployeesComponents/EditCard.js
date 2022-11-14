@@ -299,14 +299,14 @@ function EditCard() {
                             </Row>
                             <Row style={{ paddingBottom: 10 }}>
                                 <Col>
-                                    <Card.Text style={{}}>
+                                    {/* <Card.Text style={{}}>
                                         <h6>Email: </h6>
-                                    </Card.Text>
+                                    </Card.Text> */}
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
-                                    <Card.Text style={{color:"#999897"}}>
+                                    {/* <Card.Text style={{color:"#999897"}}>
                                       
-                                    </Card.Text>
+                                    </Card.Text> */}
                                 </Col>
                             </Row>
                             

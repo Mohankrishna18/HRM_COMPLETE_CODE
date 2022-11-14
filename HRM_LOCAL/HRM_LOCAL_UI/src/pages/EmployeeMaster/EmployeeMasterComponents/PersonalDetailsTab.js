@@ -157,7 +157,7 @@ function PersonalDetailsTab() {
         bloodGroup,
         gender,
         maritalStatus,
-       
+        status,
       }
     );
 
@@ -182,8 +182,6 @@ function PersonalDetailsTab() {
         toast.error("Please Enter Valid Details");
       });
   };
-console.log(primarySkills)
-console.log(secondarySkills)
 
   const [file, setFile] = useState("");
   const handleChange = (event) => {
@@ -253,7 +251,7 @@ console.log(secondarySkills)
               value={firstName}
               // disabled
               required
-              maxLength={50}
+              maxLength={200}
               onChange={(e) => {
                 setFirstName(e.target.value);
                 if (!e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)) {
@@ -277,7 +275,7 @@ console.log(secondarySkills)
               name="middleName"
               type="text"
               placeholder="Middle name"
-              maxLength={50}
+              maxLength={200}
               isInvalid={tenerror}
               value={middleName}
               onChange={(e) => {
@@ -304,7 +302,7 @@ console.log(secondarySkills)
               value={lastName}
               // disabled
               required
-              maxLength={50}
+              maxLength={200}
               onChange={(e) => {
                 if (firstName === "") {
                   setFErrors("First Name is required");
@@ -555,7 +553,7 @@ console.log(secondarySkills)
               placeholder="Primary Skills"
               controlId="primarySkils"
               value={primarySkills}
-              maxLength={15}
+              maxLength={200}
               name="primarySkills"
               isInvalid={elevenerror}
               onChange={(e) => {
@@ -580,7 +578,7 @@ console.log(secondarySkills)
               placeholder="Secondary Skills"
               controlId="secondarySkills"
               value={secondarySkills}
-              maxLength={15}
+              maxLength={200}
               name="secondarySkills"
               isInvalid={twelveerror}
               onChange={(e) => {
