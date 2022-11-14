@@ -32,7 +32,14 @@ const ProfileProjectTab = () => {
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
   const [project, setProject] = useState([]);
   
+  //get projects by employeeid
   const[data,setData] = useState([]);
+  useEffect(() => {
+    axios.get(`/clientProjectMapping/getAllProjectsbyemployee/${employeeid}`).then((response) => {
+      setData(response.data.data);
+    });
+  }, []);
+  console.log(data);
   //var dateTime = getEmployeeDetails.dateOfJoining;
 
 
@@ -43,6 +50,9 @@ const ProfileProjectTab = () => {
       .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
       .then((response) => {
         setGetEmployeeDetails(response.data.data);
+         console.log(response.data.data);
+        // const sata1 = response.data.data.filter(item => item.status === 'Active')
+        // setGetEmployeeDetails(sata1)
       });
   }, []);
   console.log(getEmployeeDetails);
@@ -94,9 +104,9 @@ const ProfileProjectTab = () => {
 
   return (
     <div style={{ paddingLeft: 20, paddingBottom: 0 }}>
-      <Card.Title>
+      {/* <Card.Title>
         <h5>Projects History:</h5>
-      </Card.Title>
+      </Card.Title> */}
       <Card.Body>
         <Row>
           <Col md={12}>
@@ -107,14 +117,22 @@ const ProfileProjectTab = () => {
                   <th scope="col">Project Name</th>
                   <th scope="col">Client Name</th>
                   <th scope="col">Reporting Manager</th>
-                
+    
                   <th scope="col">Start Date</th>
                   <th scope="col">End Date</th>
                 </tr>
               </thead>
 
               <tbody>
-                    {proj.map((data) => (
+              {!data ? <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr> : 
+<>
+                    {data.map((data) => (
                       <tr>
                         <td>{data.projectName}</td>
                         <td>{data.clientName}</td>
@@ -127,6 +145,8 @@ const ProfileProjectTab = () => {
                         </td>
                       </tr>
                     ))}
+                     </> }
+                   
                   </tbody>
             </table>
           </Col>

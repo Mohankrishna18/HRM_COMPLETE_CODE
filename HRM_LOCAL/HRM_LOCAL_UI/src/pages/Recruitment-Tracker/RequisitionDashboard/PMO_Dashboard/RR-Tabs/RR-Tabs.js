@@ -14,7 +14,6 @@ import PositionGraph_Table from "../GraphBars/PositionGraph_Table";
 import CandidatesGraph_Table from "../GraphBars/CandidatesGraph_Table";
 
 
-
 const RRTabs = () => {
 
   const [value, setValue] = React.useState("1");
