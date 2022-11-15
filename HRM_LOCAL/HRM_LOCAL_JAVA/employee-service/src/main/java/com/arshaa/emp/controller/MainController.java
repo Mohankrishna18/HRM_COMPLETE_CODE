@@ -559,4 +559,18 @@ public class MainController {
         public ResponseEntity getActiveEmployeesByStatus(@PathVariable String status) {
             return serv.getActiveEmployeesByStatus(status);
         }
+        @GetMapping("/getEmployeeLeavesDatawithoutDept/{month}/{year}")
+        public ResponseEntity getEmployeeLeavesDataWithoutDept(@PathVariable int month,@PathVariable int year)
+        {
+            try
+            {
+            return new ResponseEntity<>(lServ.getEmployeeLeavesDataWithoutDept(month, year),HttpStatus.OK);
+            }
+            
+            catch(Exception e)
+            {
+                return new ResponseEntity(e.getMessage(),HttpStatus.OK);
+
+            }
+        }
 }

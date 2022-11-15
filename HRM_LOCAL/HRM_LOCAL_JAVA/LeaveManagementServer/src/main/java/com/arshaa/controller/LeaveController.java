@@ -309,4 +309,23 @@ public ResponseEntity getAbsanceCount(@PathVariable Integer month,@PathVariable 
 public List<String> getAllMonths(@PathVariable("employeeId") String employeeId){
     return service.getMonthsForEmployeeLeaves(employeeId);
 }
+@GetMapping("/getcountLeavesByMonthofApplyingLeaveswithoutDept/{month}/{year}/{leaveOrwfh}/{employeeId}")
+public ResponseEntity getAbsanceCountWithoutDept(@PathVariable Integer month,@PathVariable Integer year,@PathVariable String leaveOrwfh,@PathVariable String employeeId)
+{   LeavesCount cc=new LeavesCount();
+
+    try {
+    
+    int count=br.findLeaveapplyingleavescountBYMonthwithoutDept(month, year, leaveOrwfh, employeeId);
+    cc.setCount(count);
+    cc.setStatus(true);
+    return new ResponseEntity(cc ,HttpStatus.OK);
+    }
+    catch(Exception e)
+    {
+        cc.setStatus(false);
+        return new ResponseEntity(cc ,HttpStatus.OK);
+
+    }
+
+}
 }

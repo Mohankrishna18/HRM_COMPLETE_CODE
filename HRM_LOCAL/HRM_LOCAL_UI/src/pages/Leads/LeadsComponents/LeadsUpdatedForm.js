@@ -478,7 +478,7 @@ console.log(dro)
                     isInvalid={!!errors.pocName}
                   >
                      <option value="">Select</option>
-                    {activeEmp.map((item) => (
+                    {sortedActiveEmp.map((item) => (
                       <option value={item.fullName}>
                         {item.fullName}
                         </option>
