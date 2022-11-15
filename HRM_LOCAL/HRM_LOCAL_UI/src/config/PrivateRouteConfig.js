@@ -118,6 +118,7 @@ import ReportsMain from "../pages/Reports/ReportsMain";
 import CandidatesMain from "../pages/Candidates/CandidatesMain";
 // import LeadsMain from "../pages/Leads/Leads/LeadsMain";
 import LeadsMain from '../pages/Leads/LeadsMain';
+import Main from "../pages/BUAccess/Main";
 
 
 export default [
@@ -321,6 +322,14 @@ export default [
     path: "/PMO",
     icon: <FcApproval />,
     title: "Approvals",
+    permission: [Roles.pmohead],
+  },
+  {
+    component: Main,
+    type: "configuration",
+    path: "/rolesAndExits",
+    icon: <FcApproval />,
+    title: "Roles And Exits",
     permission: [Roles.pmohead],
   },
   {

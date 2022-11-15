@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function AddClient(props) {
   const [show, setShow] = useState(false);
+  // initially the form will be emty becoz => useState is empty.
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [thirderrors, setThirdErrors] = useState("");
@@ -63,7 +64,7 @@ function AddClient(props) {
 
     const newErrors = {};
 
-    if (!clientName || clientName === "" || !clientName.match(/^[\d a-zA-Z0-9 ()+-.]+$/))
+    if (!clientName || clientName === "" || !clientName.match(/^[\d a-zA-Z0-9 ()+-._&'",:;@$]+$/))
       newErrors.clientName = "Please  Enter valid Client Name";
 
     if (!email || email === "" || !email.match(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/))
@@ -72,7 +73,7 @@ function AddClient(props) {
     if (!phoneNumber || phoneNumber === "" || !phoneNumber.match(/^[\d ()+-]+$/))
       newErrors.phoneNumber = "Please Enter Valid Phonenumber";
 
-    if (!pocName || pocName === "" || !pocName.match(/^[aA-zZ ()+-]+$/))
+    if (!pocName || pocName === "" || !pocName.match(/^[aA-zZ ()+-.@&_]+$/))
       newErrors.pocName = "Please Enter valid POC Name";
 
 
@@ -130,8 +131,11 @@ function AddClient(props) {
           }
           toast.success("Client Added Successfully");
           console.log(user);
+
           // console.log(user);
-          setTimeout(5000);
+          // setTimeout(5000);
+          // here we have set form as again empty, i.e after submitting the form , the form should again become empty..(before it was not getting cleared)
+          setForm({});
           handleClose();
         })
         .catch((err) => {
@@ -285,7 +289,7 @@ function AddClient(props) {
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
 
-              {/* start date */}
+              {/* end date */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>End Date *</Form.Label>
                 <Form.Control

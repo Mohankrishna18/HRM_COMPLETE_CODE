@@ -204,7 +204,7 @@ function ClientMain() {
             editable={{}}
             options={{
               showTitle: false,
-              pageSize: 6,
+              pageSize: 10,
               maxBodyHeight: 480,
               pageSizeOptions: [6, 10, 15, 20, 30, 50, 75, 100],
 

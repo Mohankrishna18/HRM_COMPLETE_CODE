@@ -364,7 +364,7 @@ public class MainController {
 			return serv.updateAdditionalDetailsByOnboardId(add, onboardingId);
 		}
 		
-		@PutMapping("/updateEmploymentDetails/{onboardingId}")
+		@PutMapping("/updateEmploymentDetailss/{onboardingId}")
 		public ResponseEntity updateEmploymentDetailsByOnboardingId(@PathVariable String onboardingId,
 				@RequestBody EmploymentDetails empd) {
 			return serv.updateEmploymentDetailsByOnboardId(empd, onboardingId);
