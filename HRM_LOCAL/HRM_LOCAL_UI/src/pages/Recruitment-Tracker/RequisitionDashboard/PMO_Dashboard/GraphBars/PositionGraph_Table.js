@@ -37,7 +37,7 @@ const PositionGraph_Table = () => {
                     <Card>
                        
 
-                            <h6 align="center" style={{paddingTop: '6px'}}> Arshaa Employee Requisition Status </h6>
+                            <h6 align="center" style={{paddingTop: '6px'}}>  </h6>
                             {/* we kept the graph component inside this div , to keep this graph inside card and also to give height and width  */}
                             <div style={{  }}>
                                 <PMOTable  />
