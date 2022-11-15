@@ -86,7 +86,7 @@ export default function ChangeUserDetails(props) {
                   <th style={{color:"white"}}>Employee ID</th>
                   <th style={{color:"white"}}>Name</th>
                   <th style={{color:"white"}}>Bussiness Unit</th>
-                  <th style={{color:"white"}}></th>
+                  <th style={{color:"white"}}>Designation Name</th>
                   <th style={{color:"white"}}>Action</th>
                 </tr>
               </thead>

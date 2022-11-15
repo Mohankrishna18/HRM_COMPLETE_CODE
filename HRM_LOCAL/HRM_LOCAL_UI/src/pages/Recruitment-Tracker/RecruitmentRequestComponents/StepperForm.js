@@ -180,11 +180,15 @@ const StepperForm = (props) => {
         // validations for forms
 
         if (
+
             !jobTitle ||
-            jobTitle === "" ||
-            !jobTitle.match(/^(\w+\s)*\w+$/)
+
+            jobTitle === ""
+
         )
+
             newErrors.jobTitle =
+
                 "Please enter Job Title";
         if (
             !technology ||
