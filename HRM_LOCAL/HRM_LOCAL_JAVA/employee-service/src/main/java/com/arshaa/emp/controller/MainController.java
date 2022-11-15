@@ -554,4 +554,9 @@ public class MainController {
                 return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
             }
         }
+      //get call to get employees by status Active/InActive
+        @GetMapping("/getActiveEmployees/{status}")
+        public ResponseEntity getActiveEmployeesByStatus(@PathVariable String status) {
+            return serv.getActiveEmployeesByStatus(status);
+        }
 }
