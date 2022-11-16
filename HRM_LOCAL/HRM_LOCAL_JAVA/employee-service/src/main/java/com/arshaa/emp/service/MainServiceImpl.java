@@ -50,6 +50,7 @@ import com.arshaa.emp.model.GetListByBandForManager;
 import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.PersonalDetails;
 import com.arshaa.emp.model.PreOnboarding;
+import com.arshaa.emp.model.ProbationEmployeeFeedBack;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.StringConstants;
 import com.arshaa.emp.model.WaitingForApproval;
@@ -2231,4 +2232,48 @@ public class MainServiceImpl implements MainService {
 			return new ResponseEntity(r, HttpStatus.OK);
 		}
 	}
+	
+	 @Override
+ 	public ResponseEntity getDateOfJoiningByEmployeeId(String employeeId) {
+ 		Response r = new Response();
+ 		try {
+
+ 			EmployeeMaster newDoj = emRepo.getDateOfJoiningByEmployeeId(employeeId);
+
+// 				DateOfJoining doj = new DateOfJoining();
+ 			r.setStatus(true);
+ 			r.setMessage("Data Fetching");
+ 			r.setData(newDoj.getDateOfJoining());
+
+ 			return new ResponseEntity(r, HttpStatus.OK);
+ 		} catch (Exception e) {
+ 			// TODO: handle exception
+
+ 			r.setStatus(false);
+ 			r.setMessage(e.getMessage());
+ 			return new ResponseEntity(r, HttpStatus.OK);
+ 		}
+ 	}
+
+	@Override
+	public ResponseEntity probationEmployeeFeedBack(String employeeId, ProbationEmployeeFeedBack prb) {
+		Response r = new Response();
+		try {
+			EmployeeMaster emp = emRepo.getByEmployeeId(employeeId);
+			emp.setProbationempfeedback(prb.getProbationempfeedback());
+			EmployeeMaster save = emRepo.save(emp);
+
+			r.setStatus(true);
+			r.setMessage("Probation Updated Successfully");
+			return new ResponseEntity(r, HttpStatus.OK);
+		} catch (Exception e) {
+			// TODO: handle exception
+
+			r.setStatus(false);
+			r.setMessage(e.getMessage());
+			return new ResponseEntity(r, HttpStatus.OK);
+		}
+	}
+
+	
 }
