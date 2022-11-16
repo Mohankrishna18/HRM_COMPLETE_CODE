@@ -15,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function AddUser(props) {
   console.log(props.projectId);
+  console.log(props.projectName);
   console.log(props);
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});

@@ -16,7 +16,6 @@ const ApplicantsMonthly = () => {
             .catch((err) => {
                 err.error
             })
-
     }, [])
 
     // for month wise hired candidates   
@@ -129,29 +128,28 @@ const ApplicantsMonthly = () => {
         },
     ];
     const paletteSemanticRed = '#F4664A';
-    const brandColor = '#5B8FF9';
+    const brandColor = '#fe8c50';
     const config = {
         data,
         xField: 'type',
         yField: 'value',
-        seriesField: '',
+        seriesField: 'value',
         color: ({ type }) => {
-            if (type === '10-30分' || type === '30+分') {
-                return paletteSemanticRed;
-            }
+            
 
             return brandColor;
         },
         label: {
-            content: (originData) => {
-                const val = parseFloat(originData.value);
-
-                if (val < 0.05) {
-                    return (val * 100).toFixed(1) + '%';
-                }
-            },
+            layout: [
+              
+              {
+                type: 'interval-adjust-position',
+              }, 
+              
+            ],
             offset: 10,
-        },
+          },
+       
         legend: false,
         xAxis: {
             label: {
