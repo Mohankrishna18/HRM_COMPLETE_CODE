@@ -30,7 +30,8 @@ BetweenDates findByEmployeeleaveId(Integer employeeleaveId);
 	
 	@Query(value="select count(employee_id) AS days from between_dates where month(between_dates.applied_date)=?1 and year(between_dates.applied_date)=?2 and leave_orwfh=?3 and department_name=?4 and employee_id=?5",nativeQuery=true)
     Integer findLeaveapplyingleavescountBYMonth(@Param("month") Integer month,@Param("year") Integer year,@Param("leave_orwfh") String leaveOrwfh,@Param("department_name") String departmentName,@Param("employee_id") String employeeId);
-	
+	@Query(value="select count(employee_id) AS days from between_dates where month(between_dates.applied_date)=?1 and year(between_dates.applied_date)=?2 and leave_orwfh=?3 and employee_id=?4",nativeQuery=true)
+    Integer findLeaveapplyingleavescountBYMonthwithoutDept(@Param("month") Integer month,@Param("year") Integer year,@Param("leave_orwfh") String leaveOrwfh,@Param("employee_id") String employeeId);
 //	@Query(value="select count(employee_id) AS days from between_dates where month(between_dates.applied_date)=?1 and year(between_dates.applied_date)=?2 ",nativeQuery=true)
 //    Integer findcountBYMonth(@Param("month") Integer month,@Param("year") Integer year);
 }

@@ -30,7 +30,7 @@ function ClientTable(props) {
     };
     console.log(data.length);
     const [columns, setColumns] = useState([
-      { title: "Client ID", field: "clientId",color:"black" },
+      // { title: "Client ID", field: "clientId",color:"black" },
       { title: "Client Name", field: "clientName",color:"black" },
       { title: "Email", field: "email" },
       { title: "Contact", field: "phoneNumber" },  

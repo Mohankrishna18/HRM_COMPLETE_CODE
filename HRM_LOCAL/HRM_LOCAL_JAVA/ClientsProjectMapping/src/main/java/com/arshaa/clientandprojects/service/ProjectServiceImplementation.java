@@ -388,6 +388,34 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 	}
 
 
+
+	@Override
+	public ResponseEntity getAllProjectsById(String employeeId) {
+		ProjectResponse pr = new ProjectResponse<>();
+		java.util.List<Projects> getProjectsData=projectRepo.getProjectsByEmployeeId(employeeId);
+		try {
+        if(!getProjectsData.isEmpty())
+        {
+            pr.setStatus(true);
+            pr.setMessage("Data Fetching");
+            pr.setData(getProjectsData);
+            return new ResponseEntity(pr,HttpStatus.OK);
+        }
+        else {
+            pr.setStatus(false);
+            pr.setMessage("Data Not Found");
+            return new ResponseEntity(pr,HttpStatus.OK);
+        }
+    }
+    catch(Exception e)
+    {
+        pr.setStatus(false);
+        pr.setMessage("Something went wrong");
+        return new ResponseEntity(pr,HttpStatus.OK);
+	}
+	}
+
+
 		
 //		@Override
 //	    public ResponseEntity getActiveProjectsByEmployeeId(String employeeId) {

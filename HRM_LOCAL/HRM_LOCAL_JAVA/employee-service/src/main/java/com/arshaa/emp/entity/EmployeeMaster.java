@@ -211,6 +211,7 @@ public class EmployeeMaster {
 	private String branch;
 	private String band;
 	private String exitDate;
+	private String resignationDate;
 	
 	private String srm;
 	private String irm;
@@ -230,9 +231,23 @@ public class EmployeeMaster {
     private String userType;
     private String hrcomment;
     private Date confirmationDate;
-    
+    private String status;
+   
 
-
+  
+	
+	public String getResignationDate() {
+		return resignationDate;
+	}
+	public void setResignationDate(String resignationDate) {
+		this.resignationDate = resignationDate;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public Date getConfirmationDate() {
 		return confirmationDate;
 	}
@@ -957,7 +972,7 @@ public class EmployeeMaster {
 			String employmentType, String primarySkills, String secondarySkills, String panNumber, String aadharNumber,
 			String uanNumber, String bankName, String accountNumber, String ifscCode, String branch, String band,
 			String exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,
-			String buhId, String intermediateQualification, String sscQualification, String officialMail, String hrcomment) {
+			String buhId,String resignationDate,String intermediateQualification, String sscQualification, String officialMail, String hrcomment,String Status) {
 		super();
 		this.employeeId = employeeId;
 		this.departmentName = departmentName;
@@ -993,6 +1008,7 @@ public class EmployeeMaster {
 		this.postgraduationPassedYear = postgraduationPassedYear;
 		this.postgraduationGrade = postgraduationGrade;
 		this.graduationType = graduationType;
+		this.resignationDate = resignationDate;
 		this.graduationBoardOfUniversity = graduationBoardOfUniversity;
 		this.graduationInstituteName = graduationInstituteName;
 		this.graduationInstituteCity = graduationInstituteCity;
@@ -1069,6 +1085,7 @@ public class EmployeeMaster {
 		this.officialMail = officialMail;
 		this.hrcomment=hrcomment;
 		this.confirmationDate = confirmationDate;
+		this.status=status;
 	}
 		public EmployeeMaster() {
 		super();

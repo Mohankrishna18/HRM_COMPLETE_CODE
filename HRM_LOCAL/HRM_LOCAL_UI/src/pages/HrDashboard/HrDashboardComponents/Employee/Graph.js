@@ -10,9 +10,11 @@ const Graph = () => {
   useEffect(() => {
     axios
       .get("/emp/getAllEmployeeMasterData")
+
       .then((res) => {
-        setData(res.data.data);
-        console.log(res.data.data);
+        const sata1 = res.data.data.filter(item => item.status === 'Active')
+        setData(sata1);
+        console.log(sata1);
       })
       .catch((err) => {
         console.log(err);
@@ -20,12 +22,12 @@ const Graph = () => {
       });
   }, []);
   const IT = dataa.filter((item) => item.departmentName === "IT")
-  const HR = dataa.filter((item) => item.departmentName === "Human Resource(HR)")
+  const HR = dataa.filter((item) => item.departmentName === "HR")
   const TAG = dataa.filter((item) => item.departmentName === "TAG")
   const PMO = dataa.filter((item) => item.departmentName === "PMO")
-  const Digital = dataa.filter((item) => item.departmentName === "Digital")
+  const Digital = dataa.filter((item) => item.departmentName === "DIGITAL")
 
-  const Oracle = dataa.filter((item) => item.departmentName === "Oracle")
+  const Oracle = dataa.filter((item) => item.departmentName === "ORACLE")
 
   const DigitalMale = Digital.filter((item) => item.gender === 'male')
   const DigitalFemale = Digital.filter((item) => item.gender === 'female')
@@ -69,37 +71,37 @@ const Graph = () => {
 
     {
       name: 'All',
-      department: 'Digital',
+      department: 'DIGITAL',
       count: Digital.length,
 
     },
     {
       name: 'All',
-      department: 'Oracle',
+      department: 'ORACLE',
       count: Oracle.length,
 
     },
     {
       name: 'Male',
-      department: 'Digital',
+      department: 'DIGITAL',
       count: DigitalMale.length,
 
     },
     {
       name: 'Female',
-      department: 'Digital',
+      department: 'DIGITAL',
       count: DigitalFemale.length,
 
     },
     {
       name: 'Female',
-      department: 'Oracle',
+      department: 'ORACLE',
       count: Oraclefemale.length,
 
     },
     {
       name: 'Male',
-      department: 'Oracle',
+      department: 'ORACLE',
       count: Oraclemale.length,
 
     },
