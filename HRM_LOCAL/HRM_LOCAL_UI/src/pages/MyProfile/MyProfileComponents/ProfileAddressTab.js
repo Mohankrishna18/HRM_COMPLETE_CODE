@@ -398,12 +398,11 @@ function ProfileAddressTab() {
                                 </Col>
                                 <Col>
                                     <Row>
-                                        <Col style={{ paddingLeft: 25, paddingTop: 20 }}>
-                                            <Form.Label>State * </Form.Label>
+                                    <Col style={{ width: 50 }}>
+                                            <Form.Label style={{ paddingTop: 20 }}>State *</Form.Label>
                                         </Col>
-                                        <Col md="9" style={{ paddingLeft: 25, paddingRight: 20, paddingTop: 10 }}>
-                                            <Form.Group as={Col} md="12" style={{ padding: 0 }}>
-
+                                        <Col md="9" style={{marginLeft:"30px"}}>
+                                            <Form.Group as={Col} style={{ padding: 10 }}>
                                                 <Form.Control
                                                     required
                                                     type="text"

@@ -554,4 +554,23 @@ public class MainController {
                 return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
             }
         }
+      //get call to get employees by status Active/InActive
+        @GetMapping("/getActiveEmployees/{status}")
+        public ResponseEntity getActiveEmployeesByStatus(@PathVariable String status) {
+            return serv.getActiveEmployeesByStatus(status);
+        }
+        @GetMapping("/getEmployeeLeavesDatawithoutDept/{month}/{year}")
+        public ResponseEntity getEmployeeLeavesDataWithoutDept(@PathVariable int month,@PathVariable int year)
+        {
+            try
+            {
+            return new ResponseEntity<>(lServ.getEmployeeLeavesDataWithoutDept(month, year),HttpStatus.OK);
+            }
+            
+            catch(Exception e)
+            {
+                return new ResponseEntity(e.getMessage(),HttpStatus.OK);
+
+            }
+        }
 }
