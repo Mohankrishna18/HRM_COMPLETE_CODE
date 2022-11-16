@@ -13,7 +13,8 @@ import DeleteTask from "./DeleteTask";
 import { date } from "yup/lib/locale";
 //vipul
 
-function TaskMain() {
+function TaskMain(props) {
+ 
   const [show, setShow] = useState(false);
   const [deleteUser, setDeleteUser] = useState(false);
 
@@ -143,6 +144,7 @@ function TaskMain() {
             updateOnboard={updateOnboard}
             func={pull_dataUpdate}
             handleClose={handleClose}
+        
           />
         </Modal.Body>
         {/* <Modal.Footer>
@@ -234,6 +236,7 @@ function TaskMain() {
                       setShow(true);
                       console.log(props);
                       setUpdateOnboard(props.data);
+                      console.log(props.data);
                     }}
                   >
                   <FiEdit />
