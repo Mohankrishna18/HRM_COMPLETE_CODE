@@ -62,10 +62,8 @@ export default function ChangeUserDetails(props) {
           <Action
             data={action}
             func={pull_dataUpdate}
-             handleClose={handleClose}
+            handleClose={handleClose}
           />
-          
-
         </Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -82,14 +80,22 @@ export default function ChangeUserDetails(props) {
             <div>
                 {/* <ReactTable cols={tableConstants} data={data} /> */}
 
-                <Table striped bordered hover responsive>
+                <Table striped bordered hover responsive="xl">
               <thead style={{backgroundColor : "#f5896e",color:"white"}}>
                 <tr>
                   <th style={{color:"white"}}>Employee ID</th>
                   <th style={{color:"white"}}>Name</th>
                   <th style={{color:"white"}}>Bussiness Unit</th>
-                  <th style={{color:"white"}}></th>
+                  <th style={{color:"white"}}>Designation Name</th>
+                  <th style={{color:"white"}}>Resignation Date</th>
+                  <th style={{color:"white"}}>Exit Date</th>
+                  <th style={{color:"white"}}>Status</th>
+                  <th style={{color:"white"}}>Bands</th>
+                  <th style={{color:"white"}}>Employment Type</th>
+                  <th style={{color:"white"}}>IRM</th>
+                  <th style={{color:"white"}}>SRM</th>
                   <th style={{color:"white"}}>Action</th>
+                  
                 </tr>
               </thead>
 
@@ -101,6 +107,13 @@ export default function ChangeUserDetails(props) {
                     <td>{data.fullName}</td>
                     <td>{data.departmentName}</td>
                     <td>{data.designationName}</td>
+                    <td>{data.resignationDate}</td>
+                    <td>{data.exitDate}</td>
+                    <td>{data.status}</td>
+                    <td>{data.band}</td>
+                    <td>{data.employementType}</td>
+                    <td>{data.irm}</td>
+                    <td>{data.srm}</td>
                     <td><Button
                                 style ={{backgroundColor: "#f5896e"}}
                                 data ={data}
@@ -109,7 +122,6 @@ export default function ChangeUserDetails(props) {
                                     setShow(true)
                                     console.log(props);
                                     setAction(data.employeeId)
-                                    setUpdateStatus(props.data)
                                   }}
                             > update
                             </Button>

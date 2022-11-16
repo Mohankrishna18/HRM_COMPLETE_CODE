@@ -116,7 +116,7 @@ const ApprovalView = (props) => {
     <div className="scroll">
       {/* Attributes / fields */}
       <Row style={{ marginTop: 20 }}>
-        <Col md="5">
+        <Col md="6">
           {/* Lead name */}
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
@@ -248,11 +248,6 @@ const ApprovalView = (props) => {
             </Col>
           </Row>
         </Col>
-        <Col md="1">
-          <div class="vr" style={{ height: "320px" }}>
-          </div>
-        </Col>
-
         <Col md="6"> 
         <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
