@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const UpdateTask = (props) => {
   console.log(props.projectId)
+  console.log(props.projectName)
 
   const [userId, setUserId] = useState(props.updateOnboard.userId)
   const [userStory, setUserStory] = useState(props.updateOnboard.userStory)
@@ -153,6 +154,7 @@ const UpdateTask = (props) => {
        
           userId: userId,
           userStory: userStory,
+          
           taskTitle: taskTitle,
           taskType: taskType,
           estimatedHours: estimatedHours,
@@ -257,7 +259,7 @@ const UpdateTask = (props) => {
                   isInvalid={!!errors.projectName}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
-                  {errors.projectName}
+                  {errors.projectId}
                 </Form.Control.Feedback>
               </Form.Group>
           <Form.Group className="mb-3" as={Col} md="6">
@@ -458,7 +460,7 @@ const UpdateTask = (props) => {
                   <option>madhu</option> */}
               {data.map((item) => {
                 return (
-                  <option value={item.employeeId}>{item.employeeName}</option>
+                  <option value={item.employeeName}>{item.employeeName}</option>
                 )
               })}
             </Form.Select>
