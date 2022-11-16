@@ -173,11 +173,10 @@ function PreHire(props) {
         <Grid>
           <MaterialTable 
             title="OFFER RELEASED"
-            
             // {(data.length)+"  Offer Released"}
             icons={data.length}
             columns={columns}
-            style={{color:"black",fontSize:"11px"}}
+            style={{color:"black",fontSize:"13px"}}
             data={data}
             options={{
               paging: true,
