@@ -184,7 +184,7 @@ const ProfileExperienceTab = () => {
     <>
       
 
-                        <div style={{ padding: 20, marginTop: 0, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
+                        <div style={{ padding: 10, marginTop: 0, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
                           {/* <Card.Title>
                             <h5>Experience:</h5>
                           </Card.Title> */}

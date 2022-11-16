@@ -10,9 +10,13 @@ import EmployeeMasterForms from "./editmyprofileroute";
 
 
 import axios from "../../../Uri";
+import { ExportCSV } from "../../../commonComponents/ExportCSV";
+import { Row, Stack } from "react-bootstrap";
 
 
 function EmployeeList() {
+
+    const fileName = "All Employees"
     const history = useHistory();
     const [data, setData] = useState([]);
     const [eid, setEid] = useState("");
@@ -121,13 +125,22 @@ function EmployeeList() {
         <div className="example">
             <Grid container data1={eid}>
                 <Grid xs={12}>
+                    
+                
                     <MaterialTable
                         title="All Employees"
+
                         data={data}
                         sx={{ color: "white" }}
                         columns={columns}
+                        editable={{
+                            onRowAdd:()=>{
+
+                            }
+                        }}
                         options={{
-                            exportButton: true,
+                            
+                            // exportButton: true,
                             pageSize: 20,
                             actionsColumnIndex: -1,
                             grouping: true,
@@ -143,7 +156,19 @@ function EmployeeList() {
                                 fontSize: 14,
                             },
                         }}
+                        components={{
+                            Action: (props) => (
+                                <div>
+                                    <Stack direction="horizontal" gap={4}>
+                                    <ExportCSV csvData={data}  fileName={fileName}/>
+    
+                                    </Stack>
+                                </div>
+                            ),
+                        }}
+    
                     />
+                    
                 </Grid>
             </Grid></div>
     );

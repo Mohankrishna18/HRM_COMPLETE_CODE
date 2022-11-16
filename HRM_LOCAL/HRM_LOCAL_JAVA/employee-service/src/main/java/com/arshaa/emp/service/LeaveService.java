@@ -27,6 +27,7 @@ public class LeaveService {
 	
 	public static final String leaveURL = "http://leaveservice/leave/getcountLeavesByMonthofApplyingLeaves/";
 	public static final String holidayURL = "http://holidayService/holiday/getHolidaysCountByYearAndMonth/";
+	public static final String leaveURLL ="http://leaveservice/leave/getcountLeavesByMonthofApplyingLeaveswithoutDept/";
 	
 	Calendar startCal=Calendar.getInstance();
 	
@@ -76,4 +77,31 @@ return leaveCount;
 	    }
 	    return cnt;
 	}
+	public List<EmployeeLeavesData> getEmployeeLeavesDataWithoutDept(int month,int year)
+    {
+        List<EmployeeMaster> getEmployees=emRepo.findAll();
+        List<EmployeeLeavesData>getLeavesList=new ArrayList<>();
+        getEmployees.stream().forEach(e->{
+            EmployeeLeavesData getLeaves=new EmployeeLeavesData();
+                        LeavesCount leaveCount=template.getForObject(leaveURLL+month+"/"+year+"/L/"+"/"+e.getEmployeeId(), LeavesCount.class);
+                        LeavesCount holidayCount=template.getForObject(holidayURL+year+"/"+month, LeavesCount.class);
+            System.out.println(holidayCount.getCount());
+                getLeaves.setTotalDaysAbsent(leaveCount.getCount());
+
+            LeavesCount wfhCount=template.getForObject(leaveURLL+month+"/"+year+"/W/"+"/"+e.getEmployeeId(), LeavesCount.class);
+            getLeaves.setEmployeeId(e.getEmployeeId());
+            getLeaves.setEmployeeName(e.getFirstName()+e.getLastName());
+            getLeaves.setWfhCount(wfhCount.getCount());
+            YearMonth yearMonthObject = YearMonth.of(year, month);
+            int daysInMonth = yearMonthObject.lengthOfMonth();
+            int presentCount=daysInMonth-(leaveCount.getCount()+holidayCount.getHolidayCount()+weekendCount( year,  month));
+            int workingDays =daysInMonth-(holidayCount.getHolidayCount()+weekendCount( year,  month));//for wd
+            getLeaves.setTotalDaysPresent(presentCount);
+            getLeaves.setTotalDays(daysInMonth);//tDP
+            getLeaves.setTotalWorkingDays(workingDays);//TWD
+            getLeaves.setHolidays(holidayCount.getHolidayCount());//TH
+            getLeavesList.add(getLeaves);
+        });
+        return getLeavesList;
+    }
 }
