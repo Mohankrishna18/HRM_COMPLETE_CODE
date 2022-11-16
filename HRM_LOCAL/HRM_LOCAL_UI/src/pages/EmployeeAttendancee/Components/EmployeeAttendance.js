@@ -756,7 +756,7 @@ const EmployeeAttendance = () => {
               columns={columns}
               title={"Monthly Summary - "+" "+"Days:"+ days +" - "+"Working Days:"+workingdays+" - "+"Holidays:"+holidays}
               data={rowData}
-              style={{ color: 'black', fontSize: '10px' }}
+              style={{ color: 'black', fontSize: '12px' }}
               editable={{}}
               options={{
                 paging: false,
