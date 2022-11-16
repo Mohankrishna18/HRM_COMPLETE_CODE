@@ -89,7 +89,6 @@ import CEOMain from "../pages/CEO/CEOMain";
 
 import * as RiIcons from "react-icons/ri";
 import { Accordion } from "react-bootstrap";
-import ApprovesMain from "../pages/Approves/ApprovesMain";
 import EmployeeList from "../pages/AllEmployees/AllEmployeesComponents/EmployeeList";
 import Employee from "../pages/RoleUnderEmployees/RoleUnderEmployeesMain";
 import AllEmployeesMain from "../pages/AllEmployees/AllEmployeesMain";
@@ -676,7 +675,6 @@ export default [
 
   {
 
-    component: RRMain,
 
     type: "jobs",
 
