@@ -136,10 +136,10 @@ function LeadsMain() {
     //   title: "Email",
     //   field: "pocEmail",
     // },
-    {
-      title: "Phone Number",
-      field: "pocPhoneNumber",
-    }
+    // {
+    //   title: "Phone Number",
+    //   field: "pocPhoneNumber",
+    // }
   ]);
 
   return (
@@ -173,7 +173,7 @@ function LeadsMain() {
 
 
       {/* view modal */}
-      <Modal show={viewShow} onHide={viewHandleClose} size="lg">
+      <Modal show={viewShow} onHide={viewHandleClose} size="xl">
         <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Lead Overall Details</Modal.Title>
         </Modal.Header>

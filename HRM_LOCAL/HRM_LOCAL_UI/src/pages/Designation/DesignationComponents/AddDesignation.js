@@ -158,7 +158,7 @@ function AddDesignation(props) {
                   placeholder="Business Unit Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.departmentId}
-                  maxLength={30}
+                  maxLength={225}
                   onChange={(e) => setField("departmentName", e.target.value)}
                   isInvalid={!!errors.departmentId}
                 ><option>Select Business Unit</option>
@@ -183,7 +183,7 @@ function AddDesignation(props) {
                   placeholder="Designation Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.designationName}
-                  maxLength={30}
+                  maxLength={225}
                   onChange={(e) => setField("designationName", e.target.value)}
                   isInvalid={!!errors.designationName}
                 ></Form.Control>
