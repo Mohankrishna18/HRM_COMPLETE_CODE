@@ -107,6 +107,12 @@ public class ClientsProjectsController {
 		return projectServ.getAllActiveProjectss(status);
 	}
 
+	//get projects by employeeId
+	@GetMapping("/getAllProjectsbyemployee/{employeeId}")
+	public ResponseEntity getAllProjectsById(@PathVariable String employeeId) {
+		return projectServ.getAllProjectsById(employeeId);
+	}
+	
 	// For employee
 	@GetMapping("/getActiveProjectsByEmpIdForEmployee/Active/{employeeId}")
 	public ResponseEntity getEmployeeProjectList(@PathVariable String employeeId) {
@@ -176,7 +182,6 @@ public class ClientsProjectsController {
     }
 	@GetMapping("/getProjectsByClientId/{clientId}")
     public ResponseEntity getProjectsByClientId(@PathVariable int clientId) {
-        
         return projectServ.getProjectNamesByClientId(clientId);
     }
 	

@@ -14,7 +14,6 @@ import PositionGraph_Table from "../GraphBars/PositionGraph_Table";
 import CandidatesGraph_Table from "../GraphBars/CandidatesGraph_Table";
 
 
-
 const RRTabs = () => {
 
   const [value, setValue] = React.useState("1");
@@ -40,7 +39,7 @@ const RRTabs = () => {
             // for background color of tab
             // sx={{"& button.Mui-selected " :{backgroundColor:'orange'} }} 
             onChange={handleChange} aria-label="lab API tabs example">
-              <Tab  label="Position Status" value="1" style={{paddingLeft:"10px",paddingRight:"10px"}} />
+              <Tab  label="Job Status" value="1" style={{paddingLeft:"10px",paddingRight:"10px"}} />
               
               <Tab label="Candidate Status" value="2"  style={{paddingLeft:"10px",paddingRight:"10px"}}/>
               {/* <Tab label="Content Creator Details" value="3" /> */}

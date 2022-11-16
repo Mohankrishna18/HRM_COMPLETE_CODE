@@ -431,10 +431,10 @@ function EducationalDetailsTab() {
                  
                   </Form.Group>
                   <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                    <Form.Label>Borad </Form.Label>
+                    <Form.Label>Board </Form.Label>
                     <Form.Control
                       type="text"
-                      placeholder="Borad"
+                      placeholder="Board"
                       controlId="postgraduationBoardOfUniversity"
                       name="postgraduationBoardOfUniversity"
                       maxLength={200}
