@@ -20,7 +20,7 @@ import { TiBusinessCard } from 'react-icons/ti';
 import { GrUserExpert } from "react-icons/gr";
 import { VscProject } from "react-icons/vsc";
 import { AiOutlineProject } from 'react-icons/ai';
-import ProfileRecognizationTab from './ProfileRecognizationTab';
+// import ProfileRecognizationTab from './ProfileRecognizationTab';
 
 
 function MyProfileTabs() {
@@ -96,7 +96,8 @@ console.log(total_days);
   <TabPanel value="5"><ProfileEducationalDetailsTab/></TabPanel>
   <TabPanel value="6"><ProfileExperienceTab/></TabPanel>
   <TabPanel value="7"><ProfileProjectTab/></TabPanel>
-  <TabPanel value="8"><ProfileRecognizationTab/></TabPanel>
+  {/* <TabPanel value="8"><ProfileRecognizationTab/></TabPanel> */}
+  <TabPanel value="8"></TabPanel>
 </TabContext>
        
         </div>

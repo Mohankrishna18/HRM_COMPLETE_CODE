@@ -49,14 +49,14 @@ function AddProject(props) {
   // console.log(reportingManager);
 
   // Get API's for reportingManager(projectManger)
+  const status="Active"
   const [reportingManager, setReportingManager] = useState([]);
-
   useEffect(() => {
     axios
-      .get("/emp/getUsersNamesByBand")
+      .get(`/emp/getActiveEmployees/${status}`)
       .then((response) => {
-        setReportingManager(response.data);
-        console.log(response.data)
+        setReportingManager(response.data.data);
+        console.log(response.data.data)
       })
       .catch(() => {
         toast.error("Data is not getting");
@@ -324,7 +324,7 @@ function AddProject(props) {
                 >
                   <option value="">Select </option>
                   {reportingManager.map((projectManager) => (
-                    <option value={projectManager.name}>{projectManager.name}</option>
+                    <option value={projectManager.fullName}>{projectManager.fullName}</option>
                   
                   ))}
                 </Form.Select>
