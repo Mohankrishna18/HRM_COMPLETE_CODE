@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { Card, FormSelect, InputGroup } from "react-bootstrap";
@@ -13,17 +11,13 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const UpdateTask = (props) => {
-  console.log(props)
+  console.log(props);
 
   //console.log(props.updateOnboard);
-  const [projectId, setProjectId] = useState(
-    props.updateOnboard.projectId
-  );
+  const [projectId, setProjectId] = useState(props.updateOnboard.projectId);
   const [userId, setUserId] = useState(props.updateOnboard.userId);
   const [userStory, setUserStory] = useState(props.updateOnboard.userStory);
   const [taskTitle, setTaskTitle] = useState(props.updateOnboard.taskTitle);
-  const [data, setData] = useState([]);
-  console.log(data);
   const [data, setData] = useState([]);
   console.log(data);
   const [taskType, setTaskType] = useState(props.updateOnboard.taskType);
@@ -52,7 +46,6 @@ const UpdateTask = (props) => {
   const [assignDate, setAssignDate] = useState(props.updateOnboard.assignDate);
   const [assignedTo, setAssignedto] = useState(props.updateOnboard.assignedTo);
   console.log(assignedTo);
-  const [assignedTo, setAssignedto] = useState(props.updateOnboard.assignedTo);
   const [projectName, setProjectName] = useState(
     props.updateOnboard.projectName
   );
@@ -108,10 +101,10 @@ const UpdateTask = (props) => {
       newErrors.taskType = "Please Enter Task name";
     if (!status || status === "") newErrors.status = "Please Enter Status";
     if (!plannedStartDate || plannedStartDate === "")
-        newErrors.plannedStartDate = "Please Enter Start date";
+      newErrors.plannedStartDate = "Please Enter Start date";
 
-      if (!plannedEndDate || plannedEndDate === "")
-        newErrors.plannedEndDate = "Please Enter Start date";
+    if (!plannedEndDate || plannedEndDate === "")
+      newErrors.plannedEndDate = "Please Enter Start date";
     // if (!toDate || toDate === "")
     //   newErrors.toDate = "Please Enter End date";
     //   if (!fromDate || fromDate === "")
@@ -146,13 +139,13 @@ const UpdateTask = (props) => {
           userId: userId,
           projectName: props.updateOnboard.projectName,
           assignedTo: assignedTo,
-          projectId:props.updateOnboard.projectId,
+          projectId: props.updateOnboard.projectId,
           userStory: userStory,
           taskTitle: taskTitle,
           taskType: taskType,
           estimatedHours: estimatedHours,
           actualHours: actualHours,
-        
+
           plannedStartDate: plannedStartDate,
           plannedEndDate: plannedEndDate,
           assignDate: assignDate,
@@ -297,7 +290,7 @@ const UpdateTask = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" as={Col} md="3">
-          <Form.Label>Estimated Hours *</Form.Label>
+            <Form.Label>Estimated Hours *</Form.Label>
             <Form.Control
               required
               type="text"
@@ -325,8 +318,8 @@ const UpdateTask = (props) => {
               onChange={(e) => setPriority(e.target.value)}
               isInvalid={!!errors.priority}
             >
-               <option> Select Priority</option>
-              
+              <option> Select Priority</option>
+
               <option>P1</option>
               <option>P2</option>
               <option>P3</option>
@@ -336,14 +329,14 @@ const UpdateTask = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" as={Col} md="6">
-          <Form.Label>Planned Start Date*</Form.Label>
+            <Form.Label>Planned Start Date*</Form.Label>
             <Form.Control
               required
               type="date"
               placeholder="Planned Start Date"
               controlId="plannedStartDate "
-              defaultValue={props.updateOnboard.plannedStartDate.split('T')[0]}
-              value={plannedStartDate.split('T')[0]}
+              defaultValue={props.updateOnboard.plannedStartDate.split("T")[0]}
+              value={plannedStartDate.split("T")[0]}
               onChange={(e) => setPlannedStartDate(e.target.value)}
               isInvalid={!!errors.plannedStartDate}
             />
@@ -363,7 +356,6 @@ const UpdateTask = (props) => {
               onChange={(e) => setStatus(e.target.value)}
               isInvalid={!!errors.status}
             >
-             
               <option> Select Status</option>
               <option value="Open">Open</option>
               <option value="In Progress">In Progress</option>
@@ -399,8 +391,8 @@ const UpdateTask = (props) => {
               type="date"
               placeholder="Planned End Date"
               controlId="plannedEndDate "
-              defaultValue={props.updateOnboard.plannedEndDate.split('T')[0]}
-              value={plannedEndDate.split('T')[0]}
+              defaultValue={props.updateOnboard.plannedEndDate.split("T")[0]}
+              value={plannedEndDate.split("T")[0]}
               onChange={(e) => setPlannedEndDate(e.target.value)}
               isInvalid={!!errors.plannedEndDate}
             />
@@ -447,7 +439,7 @@ const UpdateTask = (props) => {
                 </Form.Control.Feedback>
               </Form.Group> */}
 
-                    {/*
+          {/*
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Actual Start Date </Form.Label>
                 <Form.Control
@@ -475,19 +467,16 @@ const UpdateTask = (props) => {
               controlId="assignedTo"
               // value={assignedTo}
               defaultValue={assignedTo}
-              onChange={(e) => setAssignedto( e.target.value)}
+              onChange={(e) => setAssignedto(e.target.value)}
               isInvalid={!!errors.assignedTo}
-             
             >
-             
               {/* <option>mohan</option>
                   <option>sravya</option>
                   <option>divya</option>
                   <option>madhu</option> */}
-                   <option>{assignedTo}</option>
+              <option>{assignedTo}</option>
               {projects.map((item) => {
                 return (
-                 
                   <option value={item.employeeName}>{item.employeeName}</option>
                 );
               })}
@@ -496,62 +485,17 @@ const UpdateTask = (props) => {
               {errors.assignedTo}
             </Form.Control.Feedback>
           </Form.Group>
-         
-          <Form.Group className="mb-3">
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter the Description "
-              controlId="description"
-              as="textarea"
-              value={form.description}
-              onChange={(e) => setField("description", e.target.value)}
-              // isInvalid={!!errors.description}
-          <Form.Group className="mb-3" as={Col} md="6">
-            <Form.Label>Assigned To *</Form.Label>
-            <Form.Select
-              required
-              type="text"
-              //placeholder="assignedTo"
-              controlId="assignedTo"
-              // value={assignedTo}
-              defaultValue={assignedTo}
-              onChange={(e) => setAssignedto( e.target.value)}
-              isInvalid={!!errors.assignedTo}
-             
-            >
-             
-              {/* <option>mohan</option>
-                  <option>sravya</option>
-                  <option>divya</option>
-                  <option>madhu</option> */}
-                   <option>{assignedTo}</option>
-              {projects.map((item) => {
-                return (
-                 
-                  <option value={item.employeeName}>{item.employeeName}</option>
-                );
-              })}
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.assignedTo}
-            </Form.Control.Feedback>
-          </Form.Group>
-         
-          <Form.Group className="mb-3">
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter the Description "
-              controlId="description"
-              as="textarea"
-              value={form.description}
-              onChange={(e) => setField("description", e.target.value)}
-              // isInvalid={!!errors.description}
 
-              maxlength="100"
-            />
-          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter the Description "
+              controlId="description"
+              as="textarea"
+              value={form.description}
+              onChange={(e) => setField("description", e.target.value)}
+              // isInvalid={!!errors.description}
               maxlength="100"
             />
           </Form.Group>
@@ -574,7 +518,6 @@ const UpdateTask = (props) => {
               Submit
             </Button>
           </Col>
-
 
           <Col>
             <Button
