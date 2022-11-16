@@ -99,6 +99,7 @@ public interface MainService {
 	public ResponseEntity getDepartmentNameByEmployeeId(String employeeId);
 	//Divya changes
 	public String getEmployeeFullName(String employeedId);
+	public ResponseEntity getActiveEmployeesByStatus(String status);
 
     
     

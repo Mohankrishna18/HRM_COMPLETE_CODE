@@ -116,7 +116,7 @@ const ApprovalView = (props) => {
     <div className="scroll">
       {/* Attributes / fields */}
       <Row style={{ marginTop: 20 }}>
-        <Col md="5">
+        <Col md="6">
           {/* Lead name */}
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
@@ -235,14 +235,6 @@ const ApprovalView = (props) => {
               </Card.Text>
             </Col>
           </Row>
-
-        </Col>
-        <Col md="1">
-          <div class="vr" style={{ height: "360px" }}>
-          </div>
-        </Col>
-
-        <Col md="6">
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
@@ -255,10 +247,12 @@ const ApprovalView = (props) => {
               </Card.Text>
             </Col>
           </Row>
-          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+        </Col>
+        <Col md="6"> 
+        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
-              <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
-                Source PhoneNumber   :
+              <Card.Subtitle style={{ padding: 10, fontSize: "13px" }}>
+                SourcePhoneNumber   :
               </Card.Subtitle>{" "}
             </Col>
             <Col md={{ offset: 1 }}>
@@ -266,8 +260,8 @@ const ApprovalView = (props) => {
                 {props.viewOnboard.sourcePhoneNumber}
               </Card.Text>
             </Col>
-          </Row>
-          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+          </Row>  
+        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
                 POC Name   :
@@ -279,6 +273,7 @@ const ApprovalView = (props) => {
               </Card.Text>
             </Col>
           </Row>
+  
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>

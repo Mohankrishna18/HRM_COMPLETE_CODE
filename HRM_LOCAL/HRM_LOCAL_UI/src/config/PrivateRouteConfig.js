@@ -89,7 +89,6 @@ import CEOMain from "../pages/CEO/CEOMain";
 
 import * as RiIcons from "react-icons/ri";
 import { Accordion } from "react-bootstrap";
-import ApprovesMain from "../pages/Approves/ApprovesMain";
 import EmployeeList from "../pages/AllEmployees/AllEmployeesComponents/EmployeeList";
 import Employee from "../pages/RoleUnderEmployees/RoleUnderEmployeesMain";
 import AllEmployeesMain from "../pages/AllEmployees/AllEmployeesMain";
@@ -118,6 +117,7 @@ import ReportsMain from "../pages/Reports/ReportsMain";
 import CandidatesMain from "../pages/Candidates/CandidatesMain";
 // import LeadsMain from "../pages/Leads/Leads/LeadsMain";
 import LeadsMain from '../pages/Leads/LeadsMain';
+import Main from "../pages/BUAccess/Main";
 
 
 export default [
@@ -321,6 +321,14 @@ export default [
     path: "/PMO",
     icon: <FcApproval />,
     title: "Approvals",
+    permission: [Roles.pmohead],
+  },
+  {
+    component: Main,
+    type: "configuration",
+    path: "/rolesAndExits",
+    icon: <FcApproval />,
+    title: "Roles And Exits",
     permission: [Roles.pmohead],
   },
   {
@@ -667,7 +675,6 @@ export default [
 
   {
 
-    component: RRMain,
 
     type: "jobs",
 
