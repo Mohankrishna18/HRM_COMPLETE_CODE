@@ -534,7 +534,7 @@ const UpdateTask = (props) => {
             >
               Close
             </Button>
-            <Button
+            {/* <Button
               style={{
                 backgroundColor: "#B6B6B4",
                 borderColor: "#B6B6B4",
@@ -547,7 +547,7 @@ const UpdateTask = (props) => {
               onClick={handleClose}
             >
               Close
-            </Button>
+            </Button> */}
           </Col>
         </Row>
       </Form>

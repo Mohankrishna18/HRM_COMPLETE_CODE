@@ -398,7 +398,7 @@ public class Onboarding {
 			String accountNumber, String ifscCode, String branch, String client, String irm, String srm, String buh,
 			String fullName, String irmId, String srmId, String buhId, String taaApprovalComment,
 			String taaHeadApprovalComment, String pmoApprovalComment, String ceoApprovalComment,
-			String intermediateQualification, String sscQualification, String officialMail, String exitDate,
+			String intermediateQualification, String sscQualification, String officialMail, Date exitDate,
 			String band,String hrcomment) {
 		super();
 		this.onboardingId = onboardingId;
@@ -1030,13 +1030,20 @@ public class Onboarding {
 	public void setBranch(String branch) {
 		this.branch = branch;
 	}
-	public String getExitDate() {
+
+	public String getHrApprovalComment() {
+		return hrApprovalComment;
+	}
+	public void setHrApprovalComment(String hrApprovalComment) {
+		this.hrApprovalComment = hrApprovalComment;
+	}
+	public Date getExitDate() {
 		return exitDate;
 	}
-	public void setExitDate(String exitDate) {
+	public void setExitDate(Date exitDate) {
 		this.exitDate = exitDate;
 	}
-	private String exitDate;
+	private Date exitDate;
 
 	public String getOnboardingId() {
 		return onboardingId;
@@ -1258,7 +1265,7 @@ public String getRequisitionId() {
 			String taaHeadApprovalComment, String pmoApprovalComment, String ceoApprovalComment, boolean offerLetter,
 			boolean salarySlip, boolean hikeLetter, boolean form16, boolean educationalDocuments, boolean idProof,
 			boolean resignation, String intermediateQualification, String sscQualification, String officialMail,
-			String exitDate, String band) {
+			Date exitDate, String band) {
 		super();
 		this.onboardingId = onboardingId;
 		this.designation = designation;

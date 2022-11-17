@@ -18,7 +18,7 @@ public class EmploymentDetails {
 	private String jobTitle;
 	private String client;
 	private String onboardingStatus;
-	private String exitDate;
+	private Date exitDate;
 	private String resignationDate;
 	private String status;
 	private String irm;
@@ -47,10 +47,11 @@ public class EmploymentDetails {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getExitDate() {
+	
+	public Date getExitDate() {
 		return exitDate;
 	}
-	public void setExitDate(String exitDate) {
+	public void setExitDate(Date exitDate) {
 		this.exitDate = exitDate;
 	}
 	public String getResignationDate() {
