@@ -13,7 +13,9 @@ import "react-toastify/dist/ReactToastify.css";
 const UpdateTask = (props) => {
 
   //console.log(props.updateOnboard);
-  const[projectName,setProjectNamew]=useState(props.updateOnboard.projectName);
+  const [projectName, setProjectNamew] = useState(
+    props.updateOnboard.projectName
+  );
   const [userId,setUserId] = useState(props.updateOnboard.userId);
   const [userStory, setUserStory] = useState(props.updateOnboard.userStory);
   const [taskTitle, setTaskTitle] = useState(props.updateOnboard.taskTitle);
@@ -46,6 +48,7 @@ const UpdateTask = (props) => {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [isDisabled, setIsDisabled] = useState(true);
+  console.log(props.updateOnboard.projectName);
 
   const handleClose = () => {
     props.handleClose();
@@ -125,8 +128,9 @@ const UpdateTask = (props) => {
         .put(`/task/updateTask/${props.updateOnboard.taskId}`, {
 
           userId: userId,
-          projectName:props.projectName,
-          assignedTo: props.assignTo,
+          projectName: props.updateOnboard.projectName,
+         
+       //   projectId:props.updateOnboard.projectId,
           userStory: userStory,
           taskTitle: taskTitle,
           taskType: taskType,
@@ -167,6 +171,22 @@ const UpdateTask = (props) => {
     });
   }, []);
   console.log(task);
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    loadDated();
+  }, [form.projectId]);
+
+  const loadDated = async (e) => {
+    const response = await axios.get(
+      `/clientProjectMapping/getAllProjectTeams/Active/${props.updateOnboard.projectName}`
+    );
+
+    setProjects(response.data.data);
+    console.log(response.data.data);
+  };
+  console.log(projects);
+
  
   return (
     <div>
@@ -296,24 +316,25 @@ disabled
 
               <Form.Group className="mb-3" as={Col} md="3">
                 <Form.Label>Priority </Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="priority"
-                  controlId="priority"
-                  value={form.priority}
-                  onChange={(e) => setField("priority", e.target.value)}
-                  isInvalid={!!errors.priority}
-                >
-                  <option>Select priority</option>
-                  <option>P1</option>
-                  <option>P2</option>
-                  <option>P3</option>
-                  
-                </Form.Select>
-                <Form.Control.Feedback type="invalid">
-                  {errors.priority}
-                </Form.Control.Feedback>
+            <Form.Select
+              required
+              type="text"
+              placeholder="priority"
+              controlId="priority"
+              value={priority}
+              defaultValue={props.updateOnboard.priority}
+              onChange={(e) => setPriority(e.target.value)}
+              isInvalid={!!errors.priority}
+            >
+               <option> Select Priority</option>
+             
+              <option>P1</option>
+              <option>P2</option>
+              <option>P3</option>
+            </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              {errors.priority}
+            </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Planned Start Date *</Form.Label>
@@ -422,14 +443,14 @@ disabled
                   <option>P1</option>
                   <option>P2</option>
                   <option>P3</option>
-                  
+                 
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.priority}
                 </Form.Control.Feedback>
               </Form.Group> */}
 
-{/* 
+{/*
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Actual Start Date </Form.Label>
                 <Form.Control
@@ -496,7 +517,7 @@ disabled
             <Button
               style={{
                 backgroundColor: "#f5896e",
- borderColor: "#ff9b44",
+ borderColor: "#f5896e",
                 float: "right",
                 width: "40%",
                 height: "120%",

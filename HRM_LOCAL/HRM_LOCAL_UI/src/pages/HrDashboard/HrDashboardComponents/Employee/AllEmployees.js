@@ -6,6 +6,7 @@ import { AiFillDelete } from "react-icons/ai";
 import AvtarComponent from "../../../../commonComponents/AvtarComponent";
 import Moment from 'react-moment';
 import Graph from "./Graph";
+import EmployeeList from "../../../AllEmployees/AllEmployeesComponents/EmployeeList";
 
 
 
@@ -13,6 +14,7 @@ function AllEmployees(props) {
   const [data, setData] = useState([]);
   const [departmentName, setDepartmentName] = useState([]);
   const [getDepartmentName, setGetDepartmentName] = useState([]);
+  const [employeeData, setEmployeeData] = useState([]);
   const [empData, setEmpData] = useState([]);
   const [value, setValue] = React.useState("1");
   const [viewShow, setViewShow] = useState(false);
@@ -39,10 +41,7 @@ function AllEmployees(props) {
   }, []);
   console.log(data)
   const empcount = data.length;
-  const female = data ? data.filter((item) => item.gender === "female") : 0
-  const male = data ? data.filter((item) => item.gender === "male") : 0
-
-
+ 
   useEffect(() => {
     loadData();
   }, []);
@@ -167,11 +166,68 @@ function AllEmployees(props) {
         })
         .catch((err) => {
           console.log(err);
-          // toast.error("Server Error")
         });
       setRenderTable(true);
     }
   }
+
+  useEffect(() => {
+    axios
+        .get("/emp/getAllEmployeeMasterData")
+        .then((res) => {
+        const sata1 = res.data.data.filter(item => item.status === 'Active')
+        console.log(res.data);
+          setEmployeeData(sata1)    
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}, []);
+console.log(employeeData);
+//Male-female count using filter
+const female = employeeData ? employeeData.filter((item) => item.gender === "Female") : 0
+console.log(female);
+ const male = employeeData ? employeeData.filter((item) => item.gender === "Male") : 0
+console.log(male);
+
+// const[f,setF]=useState([]);
+// useEffect(() => {
+//   axios
+//       .get("/emp/getAllEmployeeMasterData")
+//       .then((res) => {
+//           // setData(res.data.data);
+//       const sata1 = res.data.data.filter(item => item.status === 'Active' && item.gender ==="Female")
+//       console.log(res.data);
+//           setF(sata1);
+         
+//       })
+//       .catch((err) => {
+//           console.log(err);
+//           // toast.error("Server Error")
+//       });
+// }, []);
+// console.log(f);
+
+// const[m,setM]=useState([]);
+// useEffect(() => {
+//   axios
+//       .get("/emp/getAllEmployeeMasterData")
+//       .then((res) => {
+//           // setData(res.data.data);
+//       const sata1 = res.data.data.filter(item => item.status === 'Active' && item.gender ==="Male")
+//       console.log(res.data);
+//       setM(sata1) 
+         
+//       })
+//       .catch((err) => {
+//           console.log(err);
+//           // toast.error("Server Error")
+//       });
+// }, []);
+// console.log(m);
+
+
+
 
   var today = new Date(data.dateOfJoining);
   var dd = String(today.getDate()).padStart(2, '0');
@@ -204,17 +260,17 @@ function AllEmployees(props) {
         <Col md="2">
             <Row style={{paddingTop:"10px",paddingLeft:"5px"}}>
             <Card style={{padding:10}}>
-            {empcount === 0 ? (<Card.Subtitle className="mb-2 text-muted">0 Employees</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {empcount}</Card.Subtitle>)}
+            {!employeeData ? (<Card.Subtitle className="mb-2 text-muted">Employees: 0 </Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {employeeData.length}</Card.Subtitle>)}
             </Card>
             </Row>
             <Row style={{paddingTop:"10px",paddingLeft:"5px"}}>
             <Card style={{padding:10}}>
-            {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data} Male</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {male.length} </Card.Subtitle>)}
+            {!male ? (<Card.Subtitle className="mb-2 text-muted">Male: 0</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {male.length} </Card.Subtitle>)} 
             </Card>
             </Row>
             <Row style={{paddingTop:"10px",paddingLeft:"5px"}}>
             <Card style={{padding:10}}>
-            {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data}  Female</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Female : {female.length} </Card.Subtitle>)}
+             {!female ? (<Card.Subtitle className="mb-2 text-muted"> Female: 0</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Female : {female.length} </Card.Subtitle>)} 
             </Card>
             </Row>
         {/* {empcount === 0 ? (<Card.Subtitle className="mb-2 text-muted">0 Employees</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {empcount}</Card.Subtitle>)}
@@ -229,7 +285,7 @@ function AllEmployees(props) {
             </Card.Body>
           </Card> */}
         </Col>
-        <Col md="7" style={{ height: "25vh" }}>
+        <Col md="8" style={{ height: "25vh" }}>
           <Graph />
         </Col>
         {/* <Col md="2">
@@ -304,9 +360,9 @@ function AllEmployees(props) {
             </Card.Body>
           </Card>
         </Col> */}
-        <Col md="3" style={{ height: "15vh" }}>
-        {/* <Card class="shadow p-3 bg-light" > */}
-          <Card.Body>
+        <Col md="2" style={{ height: "15vh" }}>
+       
+          {/* <Card.Body>
             <Row style={{ paddingTop: "4%" }}>
               <input type="text" class="form-control" placeholder="Employee Name" />
             </Row><Row style={{ paddingTop: "10%" }}>
@@ -330,8 +386,8 @@ function AllEmployees(props) {
             <Row style={{ paddingTop: "10%" }}>
               <button type="button" class="btn btn-success" style={{ width: 200 }} onClick={getEmpData} >Search</button>
             </Row>
-          </Card.Body>
-          {/* </Card> */}
+          </Card.Body> */}
+         
           </Col>
 
       </Row>
@@ -339,7 +395,7 @@ function AllEmployees(props) {
       <Row>
         <div className="responsive" style={{ paddingTop: "2%" }}>
           <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-            <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+            <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
               <Modal.Title>Onboarding Form</Modal.Title>
             </Modal.Header>
 
@@ -352,8 +408,12 @@ function AllEmployees(props) {
             </Modal.Body>
           </Modal>
 
+          <Row>
+            <EmployeeList/>
+          </Row>
+
           {/* <HRConfirmation /> */}
-          {renderTable == false ? (
+          {/* {renderTable == false ? (
             <Table striped bordered hover responsive>
               <thead style={{backgroundColor : "#f5896e",color:"white" }}>
                 <tr>
@@ -401,9 +461,9 @@ function AllEmployees(props) {
                     }}
                   > {" "}
                     <AiFillDelete/>Delete
-                  </Button> */}
+                  </Button> 
                     {/* </Row>
-                    </td> */}
+                    </td> 
                   </tr>
                 ))}
               </tbody>
@@ -438,7 +498,7 @@ function AllEmployees(props) {
                 ))}
               </tbody>
             </Table>
-          )}
+          )} */}
 
         </div>
       </Row>
@@ -448,3 +508,5 @@ function AllEmployees(props) {
 }
 
 export default AllEmployees;
+
+

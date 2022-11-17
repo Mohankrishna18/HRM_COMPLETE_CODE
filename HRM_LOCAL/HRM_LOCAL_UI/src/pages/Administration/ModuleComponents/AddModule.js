@@ -92,7 +92,7 @@ function AddModule(props) {
         onClick={handleShow}
         style={{
           backgroundColor: "#f5896e",
-          borderColor: "#ff9b44",
+          borderColor: "#f5896e",
           float: "right",
           borderRadius: "25px",
           paddingBottom: "7px",
@@ -112,7 +112,7 @@ function AddModule(props) {
         keyboard={false}
         centered
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
           <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>Add Module</Modal.Title>
         </Modal.Header>
 
@@ -151,7 +151,7 @@ function AddModule(props) {
                 <Button
                   style={{
                     backgroundColor: "#f5896e",
-                    borderColor: "#ff9b44",
+                    borderColor: "#f5896e",
                     float: "right",
                     width: "40%",
                     height: "120%",

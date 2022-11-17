@@ -205,17 +205,18 @@ function AddResignation(props) {
             // onSubmit={handleSubmit}
           >
             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-              <Form.Label>Resigning Employee *</Form.Label>
+              <Form.Label>Employee ID </Form.Label>
               <Form.Control
                 required
-                className="resigningEmployee"
+                disabled
+                className="employeeId"
                 type="text"
-                controlId="resigningEmployee"
-                placeholder="Resigning Employee"
+                controlId="employeeId"
+                // placeholder="Name"
                 // onChange={(event) => setFirstName(event.target.value)}
-                value={form.resigningEmployee}
+                value={empID}
                 maxLength={30}
-                onChange={(e) => setField("resigningEmployee", e.target.value)}
+                // onChange={(e) => setField("resigningEmployee", e.target.value)}
                 isInvalid={!!errors.resigningEmployee}
               ></Form.Control>
               <Form.Control.Feedback type="invalid">
@@ -285,7 +286,7 @@ function AddResignation(props) {
           </Form>
         </Col>
         <Col>
-        <h5 style={{ textAlign: "center" }}>Resignation Tracking</h5>
+        <h5 style={{ textAlign: "center" }}>Resignation Workflow</h5>
           <Box sx={{ maxWidth: 400, marginTop:10, marginLeft:20 }}>
             <Stepper activeStep={activeStep} orientation="vertical">
               {steps.map((step, index) => (

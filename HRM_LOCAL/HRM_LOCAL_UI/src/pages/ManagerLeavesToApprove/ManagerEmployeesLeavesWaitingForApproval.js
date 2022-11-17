@@ -79,9 +79,9 @@ function ManagerEmployeesLeavesWaitingForApproval(props) {
   // ]);
 
   return (
-    <div className="example">
+    <div >
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton style={{backgroundColor: "#f5896e"}}>
           <Modal.Title>Are you sure you want to Approve</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -102,7 +102,7 @@ function ManagerEmployeesLeavesWaitingForApproval(props) {
         </Modal.Footer> */}
       </Modal>
       <Modal show={rejectshow} onHide={handleCloseReject}>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton  style={{backgroundColor: "#f5896e"}}>
           <Modal.Title>Are you sure you want to Reject</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -159,6 +159,7 @@ function ManagerEmployeesLeavesWaitingForApproval(props) {
                       setShow(true);
                       console.log(props);
                       setLeaveID(props.data);
+                      
                     }}
                   >
                     Approve

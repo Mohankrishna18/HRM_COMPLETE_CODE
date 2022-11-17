@@ -51,7 +51,7 @@ function PreHire(props) {
     };
     console.log(data.length);
     const [columns, setColumns] = useState([
-      { title: "RRF ID", field: "requisitionId",color:"black" },
+      { title: "AERF ID", field: "requisitionId",color:"black" },
       { title: "OBD ID", field: "onboardingId",color:"black" },
       { title: "Job Title", field: "jobTitle" },
       { title: "Name", field: "fullName" },
@@ -81,7 +81,8 @@ function PreHire(props) {
               defaultActiveKey="Job Position Details"
               transition={false}
               id="noanim-tab-example"
-              className="mb-3"
+              className="mb-3" 
+              //sx={{ "& button.Mui-selected": { background: "white", color: "#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", height: "60px", color:"white" }}
               style={{
                 justifyContent: "center",
                 color: "white",
@@ -172,11 +173,10 @@ function PreHire(props) {
         <Grid>
           <MaterialTable 
             title="OFFER RELEASED"
-            
             // {(data.length)+"  Offer Released"}
             icons={data.length}
             columns={columns}
-            style={{color:"black",fontSize:"11px"}}
+            style={{color:"black",fontSize:"13px"}}
             data={data}
             options={{
               paging: true,
@@ -253,7 +253,7 @@ export default PreHire;
 
 // <Modal show={viewShow} onHide={viewHandleClose} size="xl">
      
-//      <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+//      <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
 //        <Modal.Title>Onboarding Form</Modal.Title>
 //      </Modal.Header>
     

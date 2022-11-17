@@ -70,12 +70,12 @@ function BUHApproval() {
     console.log(res.data);
   };
   const [columns, setColumns] = useState([
-    { title: "OnboardingId", field: "onboardingId" },
-    { title: "FullName", field: "firstName" },
+    { title: "OBD ID", field: "onboardingId" },
+    { title: "Name", field: "firstName" },
     { title: "Email", field: "email" },
-    { title: "PhoneNumber", field: "phoneNumber" },
+    { title: "Contact", field: "phoneNumber" },
     {
-      title: "Date of Joining",
+      title: "DOJ",
       field: "dateOfJoining",
       type: "date",
       dateSetting: { locale: "en-GB" },
@@ -116,7 +116,7 @@ function BUHApproval() {
 
       <Modal show={viewShow} onHide={viewHandleClose} size="lg">
         {" "}
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Onboarding Form</Modal.Title>       {" "}
         </Modal.Header>
         {" "}

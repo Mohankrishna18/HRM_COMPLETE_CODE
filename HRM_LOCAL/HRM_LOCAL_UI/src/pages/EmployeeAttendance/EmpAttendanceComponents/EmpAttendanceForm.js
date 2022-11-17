@@ -135,7 +135,7 @@ const EmpAttendanceForm = () => {
               onClick={onSubmit}
               style={{
                 backgroundColor: "#f5896e",
-                borderColor: "#ff9b44",
+                borderColor: "#f5896e",
                 float: "right",
                 borderRadius: "25px",
               }}
@@ -153,7 +153,7 @@ const EmpAttendanceForm = () => {
               onClick={punchOutSubmit}
               style={{
                 backgroundColor: "#f5896e",
-                borderColor: "#ff9b44",
+                borderColor: "#f5896e",
                 float: "right",
                 borderRadius: "25px",
               }}

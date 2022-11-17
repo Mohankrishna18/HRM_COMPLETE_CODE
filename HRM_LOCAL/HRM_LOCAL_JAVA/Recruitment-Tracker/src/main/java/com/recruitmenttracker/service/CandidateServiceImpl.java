@@ -1,5 +1,6 @@
 package com.recruitmenttracker.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,15 +18,21 @@ public class CandidateServiceImpl implements CandidateService{
 	 
     @Autowired(required=true)
 	private CandidateRepository candidateRepo;
-	@Override
-	public CandidateEntity save(CandidateEntity candidate) {
-		try {
-		return candidateRepo.save(candidate);
-		}catch(Exception e) {
-			e.getMessage();
-		}
-		return null;
-	}
+    
+    
+//  auto generate the date
+  @Override
+  public CandidateEntity save(CandidateEntity candidate) {
+      try {
+          candidate.setCandidateCreatedOn(new Date());
+      return candidateRepo.save(candidate);
+      }catch(Exception e) {
+          e.getMessage();
+      }
+      return null;
+  }
+  
+	
 
 	@Override
 	public List<CandidateEntity> getAll() {

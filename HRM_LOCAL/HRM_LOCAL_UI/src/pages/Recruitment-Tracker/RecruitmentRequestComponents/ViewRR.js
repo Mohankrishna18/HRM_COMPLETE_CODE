@@ -29,8 +29,8 @@ function ViewRR(props) {
                             </Col>
                             <Col md={{ offset: 1 }}>
                                 <Card.Text style={{ paddingBottom: 0 }}>
-                                    {props.viewOnboard.rrfId}
-                                </Card.Text>,
+                                    {props.viewOnboard.requisitionId}
+                                </Card.Text>
                             </Col>
                         </Row><Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
@@ -185,7 +185,7 @@ function ViewRR(props) {
                         <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
                                 <Card.Subtitle style={{ padding: 10 }}>
-                                    POC Name   :
+                                    Contact Name  :
                                 </Card.Subtitle>{" "}
                             </Col>
                             <Col md={{ offset: 1 }}>
@@ -269,14 +269,15 @@ function ViewRR(props) {
                                 </Card.Text>
                             </Col>
                         </Row>
-                        <Row>
-                            <Col>
+                        {/* <Row>
+                        <Col md="4"></Col>
+                            <Col md="4">
                                 <Button
                                     style={{
                                         backgroundColor: "#f5896e",
                                         borderColor: "#ff9b44",
                                         float: "right",
-                                        width: "50%",
+                                        width: "80%",
                                         height: "100%",
                                         borderRadius: "25px",
                                     }}
@@ -298,7 +299,8 @@ function ViewRR(props) {
                                     Send to Approval
                                 </Button>
                             </Col>
-                            <Col>
+                            <Col md="4"></Col> */}
+                            {/* <Col>
                                 <Button
                                     style={{
                                         backgroundColor: "#B6B6B4",
@@ -313,8 +315,8 @@ function ViewRR(props) {
                                 >
                                     Cancel
                                 </Button>
-                            </Col>
-                        </Row>
+                            </Col> */}
+                        {/* </Row> */}
                     </Card>
                 </Col>
             </Row>

@@ -17,7 +17,6 @@ function Admin() {
 
         <Card.Body>
           <Card.Title>Attendance</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">Attendance/Dashboard</Card.Subtitle>
         </Card.Body>
 
         {/* <Form style={{ padding: 10 }}>

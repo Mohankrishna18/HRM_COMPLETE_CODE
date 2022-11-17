@@ -8,6 +8,7 @@ import axios from "../../../Uri";
 import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import moment from "moment";
 
 const ApprovalView = (props) => {
   console.log(props.viewOnboard);
@@ -34,6 +35,8 @@ const ApprovalView = (props) => {
   const validateForm = () => {
     const {
       leadName,
+      startDate,
+      endDate,
       companyName,
       companyEmail,
       companyPhoneNumber,
@@ -53,6 +56,12 @@ const ApprovalView = (props) => {
     const newErrors = {};
     if (!leadName || leadName === "" || !leadName.match(/^[aA-zZ\s]+$/))
       newErrors.leadName = "Please Enter Lead Name";
+
+    if (!startDate || startDate === "")
+      newErrors.startDate = "Please Enter Start Date";
+
+    if (!endDate || endDate === "")
+      newErrors.endDate = "Please Enter End Date";
     if (!companyName || companyName === "" || !companyName.match(/^[aA-zZ\s]+$/))
       newErrors.companyName = "Please Enter Company Name";
     if (!companyEmail || companyEmail === "") newErrors.companyEmail = "Please Enter company Email";
@@ -106,8 +115,8 @@ const ApprovalView = (props) => {
   return (
     <div className="scroll">
       {/* Attributes / fields */}
-      <Row style={{ marginTop: 20}}>
-        <Col md="5">
+      <Row style={{ marginTop: 20 }}>
+        <Col md="6">
           {/* Lead name */}
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
@@ -118,6 +127,31 @@ const ApprovalView = (props) => {
             <Col md={{ offset: 1 }}>
               <Card.Text style={{ paddingBottom: 0, fontSize: "14px" }}>
                 {props.viewOnboard.leadName}
+              </Card.Text>
+            </Col>
+          </Row>
+          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+            <Col>
+              <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
+                Start Date:
+              </Card.Subtitle>{" "}
+            </Col>
+            <Col md={{ offset: 1 }}>
+              <Card.Text style={{ paddingBottom: 0, fontSize: "14px" }}>
+                {moment(props.viewOnboard.startDate).format('YYYY-MM-DD')}
+              </Card.Text>
+            </Col>
+          </Row>
+
+          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+            <Col>
+              <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
+                End Date:
+              </Card.Subtitle>{" "}
+            </Col>
+            <Col md={{ offset: 1 }}>
+              <Card.Text style={{ paddingBottom: 0, fontSize: "14px" }}>
+                {moment(props.viewOnboard.endDate ).format("YYYY-MM-DD")}
               </Card.Text>
             </Col>
           </Row>
@@ -150,7 +184,7 @@ const ApprovalView = (props) => {
           </Row>
 
 
-          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+          {/* <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
                 Company PhoneNumber   :
@@ -161,9 +195,9 @@ const ApprovalView = (props) => {
                 {props.viewOnboard.companyPhoneNumber}
               </Card.Text>
             </Col>
-          </Row>
+          </Row> */}
 
-          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+          {/* <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
                 Company Country   :
@@ -174,9 +208,9 @@ const ApprovalView = (props) => {
                 {props.viewOnboard.companyCountry}
               </Card.Text>
             </Col>
-          </Row>
+          </Row> */}
 
-          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+          {/* <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
                 Company Address   :
@@ -187,7 +221,7 @@ const ApprovalView = (props) => {
                 {props.viewOnboard.companyAddress}
               </Card.Text>
             </Col>
-          </Row>
+          </Row> */}
 
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
@@ -201,14 +235,6 @@ const ApprovalView = (props) => {
               </Card.Text>
             </Col>
           </Row>
-
-        </Col>
-        <Col md="1">
-          <div class="vr" style={{ height: "360px" }}>
-          </div>
-        </Col>
-
-        <Col md="6">
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
@@ -221,10 +247,12 @@ const ApprovalView = (props) => {
               </Card.Text>
             </Col>
           </Row>
-          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+        </Col>
+        <Col md="6"> 
+        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
-              <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
-                Source PhoneNumber   :
+              <Card.Subtitle style={{ padding: 10, fontSize: "13px" }}>
+                SourcePhoneNumber   :
               </Card.Subtitle>{" "}
             </Col>
             <Col md={{ offset: 1 }}>
@@ -232,8 +260,8 @@ const ApprovalView = (props) => {
                 {props.viewOnboard.sourcePhoneNumber}
               </Card.Text>
             </Col>
-          </Row>
-          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+          </Row>  
+        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
                 POC Name   :
@@ -245,6 +273,7 @@ const ApprovalView = (props) => {
               </Card.Text>
             </Col>
           </Row>
+  
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>

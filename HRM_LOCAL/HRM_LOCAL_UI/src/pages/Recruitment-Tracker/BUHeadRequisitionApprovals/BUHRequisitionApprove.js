@@ -184,7 +184,7 @@ const BUHRequisitionApprove = (props) => {
                   
                   style={{
                     backgroundColor: "#f5896e",
- borderColor: "#ff9b44",
+ borderColor: "#f5896e",
                     float: "left",
                   }}
                   onClick={ApproveHandler}

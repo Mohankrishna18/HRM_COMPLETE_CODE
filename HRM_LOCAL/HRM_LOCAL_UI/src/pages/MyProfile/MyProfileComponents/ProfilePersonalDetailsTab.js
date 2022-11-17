@@ -146,9 +146,15 @@ function ProfilePersonalDetailsTab() {
                 console.log("oops not uploaded!");
             });
     };
+    
     function handleChange(event) {
         setFile(event.target.files[0]);
         console.log(event.target.files[0]);
+        const file = event.target.files[0];
+    console.log(file);
+    if (file.size > 1000000) toast.error("Size Should be less then 1Mb");
+    else setFile(event.target.files[0]);
+    console.log(event.target.files[0]);
     }
     const current = new Date();
     console.log(current)
@@ -616,8 +622,8 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         Upload Profile Picture * (Size should be less than 1 MB)
                                     </Form.Label>
                                     <Form.Control
-                                        required
-                                        value={imge.name}
+                                        
+                                        //value={imge.name}
                                         type="file"
                                         isInvalid={fourtysix}
                                         onChange={handleChange}

@@ -58,8 +58,8 @@ function OnboardingsToday() {
 console.log(data)
 
     const [columns, setColumns] = useState([
-      { title: "Requisition ID", field: "requisitionId",color:"black" },
-      { title: "Onboarding ID", field: "onboardingId",color:"black" },
+      { title: "AERF ID", field: "requisitionId",color:"black" },
+      { title: "OBD ID", field: "onboardingId",color:"black" },
       { title: "Job Title", field: "jobTitle" },
       { title: "Name", field: "fullName" },
       { title: "Email", field: "email" },
@@ -70,7 +70,7 @@ console.log(data)
         type: "date",
         dateSetting: { locale: "en-GB" },
       },
-      { title: "Contact_Number", field: "phoneNumber" },  
+      { title: "Contact", field: "phoneNumber" },  
 
      
     ]);
@@ -179,18 +179,16 @@ console.log(data)
         <Grid>
           <MaterialTable
             title="TODAYS ONBOARDINGS"
-            style={{fontSize:"11px"}}
+            style={{fontSize:"13px"}}
             columns={columns}
             data={data}
             options={{
               paging: true,
               addRowPosition: "first",
               actionsColumnIndex: -1,
-              pageSize: 5,
-
+              pageSize: 8,
               pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
-
-              maxBodyHeight: 350,
+              maxBodyHeight: 370,
               headerStyle: {
                 // backgroundColor: "#FFC47A",
                 background: "#f5896e",

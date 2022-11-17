@@ -60,7 +60,7 @@ function BUHRequisitionApprovals(props) {
 
   
   const [columns, setColumns] = useState([
-    { title: "Job ID", field: "rrfId" },
+    { title: "AERF ID", field: "requisitionId" },
     { title: "Business Unit", field: "departmentName","defaultGroupOrder":0 },
     { title: "Client", field: "clientName" },
     { title: "Project", field: "projectName" },
@@ -87,7 +87,7 @@ function BUHRequisitionApprovals(props) {
         <Modal.Header
           closeButton
           style={{
-            backgroundColor: "#FF9E14",
+            backgroundColor: "#f5896e",
             paddingTop: "5px",
             paddingBottom: "5px",
             color: "white",
@@ -114,7 +114,7 @@ function BUHRequisitionApprovals(props) {
         <Modal.Header
           closeButton
           style={{
-            backgroundColor: "#FF9E14",
+            backgroundColor: "#f5896e",
             paddingTop: "5px",
             paddingBottom: "5px",
             color: "white",

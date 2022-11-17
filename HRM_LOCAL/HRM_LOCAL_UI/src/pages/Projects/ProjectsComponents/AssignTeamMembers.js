@@ -52,12 +52,12 @@ function AssignTeamMembers(props) {
       field: "employeeId",
     },
     {
-      title: "Employee Name",
-      field: "firstName",
+      title: "Name",
+      field: "fullName",
       type: "text",
     },
     {
-      title: "Designation Name",
+      title: "Designation",
       field: "designationName",
     },
     {
@@ -77,7 +77,7 @@ function AssignTeamMembers(props) {
         <Modal.Header
           closeButton
           style={{
-            backgroundColor: "#FF9E14",
+            backgroundColor: "#f5896e",
             paddingTop: "5px",
             paddingBottom: "5px",
             color: "white",
@@ -115,7 +115,7 @@ function AssignTeamMembers(props) {
       >
         <Modal.Header
           closeButton
-          style={{ backgroundColor: "#FF9E14", color: "white" }}
+          style={{ backgroundColor: "#f5896e", color: "white" }}
         >
           <Modal.Title>Delete Project</Modal.Title>
         </Modal.Header>
@@ -145,7 +145,7 @@ function AssignTeamMembers(props) {
 
             pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
 
-            maxBodyHeight: 650,
+            maxBodyHeight: 9000,
 
             addRowPosition: "first",
 

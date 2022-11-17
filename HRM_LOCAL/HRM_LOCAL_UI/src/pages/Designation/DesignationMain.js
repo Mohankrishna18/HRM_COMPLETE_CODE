@@ -70,13 +70,13 @@ function DesignationMain() {
   const [columns, setColumns] = useState([
  
     {
-      title: "Business Unit Name",
+      title: "Business Unit",
       field: "departmentName",
       type: "text",
     },
 
     {
-      title: "Designation Name",
+      title: "Designation",
       field: "designationName",
     }
   ]);
@@ -84,7 +84,7 @@ function DesignationMain() {
   return (
     <div>
       <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Edit Designation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -108,7 +108,7 @@ function DesignationMain() {
       backdrop="static"
       keyboard={false}
       centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color : "white"}}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
           <Modal.Title>Delete Designation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -138,9 +138,7 @@ function DesignationMain() {
           <Row>
             <Col>
               <Card.Title>Designations</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Dashboard / Designations{" "}
-              </Card.Subtitle>
+             
             </Col>
             <Col>
               <AddDesignation func={pull_dataAdd} />

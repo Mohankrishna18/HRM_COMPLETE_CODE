@@ -11,7 +11,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
-
+import { FaPlus } from "react-icons/fa";
+import UpdateTask from "../../Task/MyTaskComponents/UpdateTask";
 function AddUser(props) {
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
@@ -158,23 +159,25 @@ function AddUser(props) {
   };
   return (
     <div>
+      <div style={{paddingLeft:"250px",paddingBottom:"10px"}}>
       <Button
         variant="warning"
         onClick={handleShow}
         style={{
           backgroundColor: "#f5896e",
- borderColor: "#ff9b44",
-          float: "right",
+ borderColor: "#f5896e",
+        
           borderRadius: "25px",
           // paddingBottom: "11.5px",
           // marginTop: "100px",
         }}
       >
         {" "}
-        <BsPlusLg  />
+        <FaPlus  />
         &nbsp;Add Task 
       
       </Button>
+      </div>
       <Modal
         size="lg"
         show={show}
@@ -504,7 +507,7 @@ function AddUser(props) {
                 <Button
                   style={{
                     backgroundColor: "#f5896e",
- borderColor: "#ff9b44",
+ borderColor: "#f5896e",
                     float: "right",
                     width: "40%",
                     height: "120%",

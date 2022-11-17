@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { Row, Col, Card, Container, Tabs } from 'react-bootstrap';
 import AssignEmploymentDetailsMain from '../AssignEmploymentDetails/AssignEmploymentDetailsMain';
-import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
+// import HrEmployeesLeavesWaitingForApproval from '../HrLeavesToApprove/HrEmployeesLeavesWaitingForApproval';
 
 import EmploymentDetailsTabbyPmo from './EmploymentDetailsTabbyPmo';
 import PMOApproval from './PMOApproval';
@@ -29,15 +29,15 @@ function PMOTabs() {
 
                 <TabContext value={value}>
                   <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{ justifyContent: "center" }}>
-                    <TabList onChange={handleChange} aria-label="lab API tabs example" style={{ justifyContent: "center"}}>
-                      <Tab label="OFFER Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="1" />
-                      <Tab label="ONBOARDING APPROVALS" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="2" />
+                    <TabList onChange={handleChange} sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"30px",paddingRight:0,color:"white" }}
+       // textColor="secondary"
+        indicatorColor="#f5896e">
+                      <Tab label="OFFER Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="1" />
+                      <Tab label="ONBOARDING APPROVALS" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="2" />
                       
                     </TabList>
                   </Box>
                   <TabPanel value="1"><PMOApproval /></TabPanel>
-                 
-                  
                   <TabPanel value="2"><AssignEmploymentDetailsMain /></TabPanel>
                   
                 </TabContext>

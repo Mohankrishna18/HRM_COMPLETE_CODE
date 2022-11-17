@@ -45,12 +45,12 @@ const EmployeeTablee = () => {
 
   const [columns, setColumns] = useState([
     {
-      title: "Onboarding Id",
+      title: "OBD ID",
       field: "onboardingId",
       editable: false,
     },
     {
-      title: "Full Name",
+      title: "Name",
       field: "firstName",
       type: "text",
     },
@@ -61,12 +61,12 @@ const EmployeeTablee = () => {
     },
 
     {
-      title: "Phone Number",
+      title: "Contact",
       field: "phoneNumber",
       type: "number",
     },
     {
-      title: "Date of Joining",
+      title: "DOJ",
       field: "dateOfJoining",
       type: "date",
     },
@@ -89,7 +89,7 @@ const EmployeeTablee = () => {
   return (
     <div>
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Approve an Employee</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -102,7 +102,7 @@ const EmployeeTablee = () => {
       </Modal>
 
       <Modal show={rejectShow} onHide={rejectHandleClose}>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Reject an Employee</Modal.Title>
         </Modal.Header>
         <Modal.Body>

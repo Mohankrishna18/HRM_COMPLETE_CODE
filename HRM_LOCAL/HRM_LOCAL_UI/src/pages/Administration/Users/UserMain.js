@@ -87,7 +87,7 @@ function OnboardedEmployeesTable() {
         backdrop="static"
         keyboard={false}
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
           <Modal.Title>Update User Role</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -111,7 +111,7 @@ function OnboardedEmployeesTable() {
         backdrop="static"
         keyboard={false}
         centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14", color: "white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
           <Modal.Title>Delete User</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -126,9 +126,9 @@ function OnboardedEmployeesTable() {
         <Row>
           <Col md={4}>
             <Card.Title>Users</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
+            {/* <Card.Subtitle className="mb-2 text-muted">
               User Management / Users{" "}
-            </Card.Subtitle>
+            </Card.Subtitle> */}
           </Col>
 
           <Col md={{ span: 4, offset: 4 }}><AddUser func={pull_dataAdd} /></Col>

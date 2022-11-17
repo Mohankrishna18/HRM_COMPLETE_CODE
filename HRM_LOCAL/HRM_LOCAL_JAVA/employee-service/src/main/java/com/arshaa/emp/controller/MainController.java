@@ -364,7 +364,7 @@ public class MainController {
 			return serv.updateAdditionalDetailsByOnboardId(add, onboardingId);
 		}
 		
-		@PutMapping("/updateEmploymentDetails/{onboardingId}")
+		@PutMapping("/updateEmploymentDetailss/{onboardingId}")
 		public ResponseEntity updateEmploymentDetailsByOnboardingId(@PathVariable String onboardingId,
 				@RequestBody EmploymentDetails empd) {
 			return serv.updateEmploymentDetailsByOnboardId(empd, onboardingId);
@@ -541,4 +541,36 @@ public class MainController {
         // public int  getWeekendsByMonth(@PathVariable int year ,@PathVariable int month) {
         // 	return lServ.weekendCount(year, month);
         // }
+        @PutMapping("/upload/{employeeId}")
+        public ResponseEntity<ResponseMessage> uploadFile1(@PathVariable String employeeId,
+                @RequestParam("file") MultipartFile file) {
+            String message = "";
+            try {
+                epServ.store(file, employeeId);
+                message = "Uploaded the file successfully: " + file.getOriginalFilename();
+                return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+            } catch (Exception e) {
+                message = "Can't able to upload file" + file.getOriginalFilename();
+                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+            }
+        }
+      //get call to get employees by status Active/InActive
+        @GetMapping("/getActiveEmployees/{status}")
+        public ResponseEntity getActiveEmployeesByStatus(@PathVariable String status) {
+            return serv.getActiveEmployeesByStatus(status);
+        }
+        @GetMapping("/getEmployeeLeavesDatawithoutDept/{month}/{year}")
+        public ResponseEntity getEmployeeLeavesDataWithoutDept(@PathVariable int month,@PathVariable int year)
+        {
+            try
+            {
+            return new ResponseEntity<>(lServ.getEmployeeLeavesDataWithoutDept(month, year),HttpStatus.OK);
+            }
+            
+            catch(Exception e)
+            {
+                return new ResponseEntity(e.getMessage(),HttpStatus.OK);
+
+            }
+        }
 }

@@ -66,7 +66,7 @@ function CandidatesMain() {
 
   const [columns, setColumns] = useState([
     {
-      title: "Req ID",
+      title: "AERF ID",
       field: "requisitionId",
       type: "text",
       cellStyle: {
@@ -75,12 +75,37 @@ function CandidatesMain() {
       }
     },
     {
-      title: "Candidate Name",
+      title: "Name",
       field: "candidateName",
       type: "text",
       cellStyle: {
         minWidth: 200,
         maxWidth: 200
+      }
+    },
+    {
+      title: "Contact",
+      field: "phoneNumber",
+      cellStyle: {
+        minWidth: 200,
+        maxWidth: 200
+      }
+    },
+    {
+      title: "Email ID",
+      field: "email",
+      cellStyle: {
+        minWidth: 200,
+        maxWidth: 200
+      }
+    },
+    {
+      title: "Experience",
+      field: "yearsOfExperience",
+      align:"center",
+      cellStyle: {
+        minWidth: 250,
+        maxWidth: 250
       }
     },
     // {
@@ -115,7 +140,7 @@ function CandidatesMain() {
     //   }
     // },
     {
-      title: "Primary Skills",
+      title: "Skill",
       field: "primarySkills",
       type: "date",
       dateSetting: { locale: "en-GB" },
@@ -124,16 +149,16 @@ function CandidatesMain() {
         maxWidth: 200
       }
     },
+    // {
+    //   title: "Secondary Skills",
+    //   field: "secondarySkills",
+    //   cellStyle: {
+    //     minWidth: 200,
+    //     maxWidth: 200
+    //   }
+    // },
     {
-      title: "Secondary Skills",
-      field: "secondarySkills",
-      cellStyle: {
-        minWidth: 200,
-        maxWidth: 200
-      }
-    },
-    {
-      title: "Current Location",
+      title: "Location",
       field: "currentLocation",
       cellStyle: {
         minWidth: 200,
@@ -141,35 +166,21 @@ function CandidatesMain() {
       }
     },
     {
-      title: "Phone Number",
-      field: "phoneNumber",
+      title: "Status",
+      field: "candidateStatus",
       cellStyle: {
         minWidth: 200,
         maxWidth: 200
       }
     },
-    {
-      title: "Email",
-      field: "email",
-      cellStyle: {
-        minWidth: 200,
-        maxWidth: 200
-      }
-    },
-    {
-      title: "Years Of Experiance",
-      field: "yearsOfExperience",
-      cellStyle: {
-        minWidth: 250,
-        maxWidth: 250
-      }
-    },
+   
+    
   ]);
 
   return (
     <div>
       <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14",paddingTop:"5px",paddingBottom:"5px",color:"white" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e",paddingTop:"5px",paddingBottom:"5px",color:"white" }}>
           <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>
             Edit Candidate Details
           </Modal.Title>
@@ -184,7 +195,7 @@ function CandidatesMain() {
       </Modal>
 
       {/* <Modal show={viewShow} onHide={viewHandleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -214,7 +225,7 @@ function CandidatesMain() {
       >
         <Modal.Header
           closeButton
-          style={{ backgroundColor: "#FF9E14", color: "white" }}
+          style={{ backgroundColor: "#f5896e", color: "white" }}
         >
           <Modal.Title>Delete Candidate</Modal.Title>
         </Modal.Header>

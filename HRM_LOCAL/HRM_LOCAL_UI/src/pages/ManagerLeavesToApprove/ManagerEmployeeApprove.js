@@ -18,6 +18,18 @@ function ManagerEmployeeApprove(props) {
                 [field]: null,
             });
     };
+
+
+
+    const da = JSON.parse(sessionStorage.getItem('userdata'))
+
+    const userType = da.data.userType;
+
+    console.log(userType);
+
+
+
+
     const validateForm = () =>{
         const{
             irmApproveReason
@@ -28,16 +40,16 @@ function ManagerEmployeeApprove(props) {
         return newErrors;
       }
     const ApproveHandler = (e) => {
-        const formErrors = validateForm();
+    //     const formErrors = validateForm();
 
-    console.log(Object.keys(formErrors).length);
+    // console.log(Object.keys(formErrors).length);
 
-    if (Object.keys(formErrors).length > 0) {
+    // if (Object.keys(formErrors).length > 0) {
 
-      setErrors(formErrors);
+    //   setErrors(formErrors);
 
-      console.log("Form validation error");
-    }else{
+    //   console.log("Form validation error");
+    // }else{
         // e.prevetDefault();
         const notify = () => toast("Leave  is approved");
         // handleClose();
@@ -46,7 +58,7 @@ function ManagerEmployeeApprove(props) {
         console.log(props.leaveID);
         const obj = { leaveStatus: "Approved" };
         const form1 = Object.assign(form, obj);
-        axios.put(`/leave/managerupdateLeave/${employeeleaveId}`,form1)
+        axios.put(`/leave/managerupdateLeave/${employeeleaveId}/${userType}`,form1)
         .then((res)=>{
             console.log(res)
             if(res.status == 200){
@@ -64,7 +76,7 @@ function ManagerEmployeeApprove(props) {
        
         notify();
     }
-      };
+    //   };
   return (
     <div>
         
@@ -85,15 +97,15 @@ function ManagerEmployeeApprove(props) {
                         placeholder="Approve Reason"
                         value={form.irmApproveReason}
                         onChange={(e) => setField("irmApproveReason", e.target.value)}
-                        isInvalid={!!errors.irmApproveReason}
+                        // isInvalid={!!errors.irmApproveReason}
                     ></Form.Control>
-                    <Form.Control.Feedback>{errors.irmApproveReason}</Form.Control.Feedback>
+                    {/* <Form.Control.Feedback>{errors.irmApproveReason}</Form.Control.Feedback> */}
                 </Form.Group>
                 <Button  style={{backgroundColor: "#f5896e",
- borderColor: "#ff9b44", marginTop: "5%", float: "right" }}
+ borderColor: "#f5896e", marginTop: "5%", float: "right" }}
             onClick={ApproveHandler}
             >
-            Yes
+            Approve
           </Button>
 
             </Form>

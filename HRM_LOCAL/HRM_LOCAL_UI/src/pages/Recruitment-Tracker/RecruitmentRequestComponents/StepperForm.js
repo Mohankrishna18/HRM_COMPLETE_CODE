@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from '../../../Uri';
 import RecruitmentTimeline from './RecruitmentTimeline'
+import './utils/RT.css';
+
 
 const steps = ["Select master blaster campaign settings", "uggujjgh"];
 
@@ -22,7 +24,7 @@ const StepperForm = (props) => {
     const [errors, setErrors] = useState({});
     const [courses, setCourses] = useState([]);
     const [response, setResponse] = useState([]);
-   
+
 
     const [clientId, setClientId] = useState([]);
     const [clients, setClients] = useState([]);
@@ -41,7 +43,7 @@ const StepperForm = (props) => {
 
 
     const [initDate, setInitDate] = useState("");
-    const [reqId,setReqId] = useState(""); 
+    const [reqId, setReqId] = useState("");
 
     const userdata = JSON.parse(sessionStorage.getItem("userdata"));
     const userType = userdata.data.userType;
@@ -72,7 +74,7 @@ const StepperForm = (props) => {
     // const handleChangee1 = (event) => {
     //     setReqType2("Replacement")
     // }
-  
+
 
 
     const loadPocNames = async () => {
@@ -82,7 +84,7 @@ const StepperForm = (props) => {
     };
 
     const loadHRDeptEmployees = async () => {
-        const res = await axios.get("/emp/getEmployeesByDepartment/Human Resource(HR)");
+        const res = await axios.get("/emp/getEmployeesByDepartment/HR");
         setHrPanel(res.data.data);
         console.log(res.data.data);
     };
@@ -99,11 +101,7 @@ const StepperForm = (props) => {
         console.log(res.data);
     };
 
-    // const getProjectsByClientID = async () => {
-    //     const res = await axios.get(`/clientProjectMapping/getProjectsByClientId/${clientId}`);
-    //     setDepartments(res.data);
-    //     console.log(res.data);
-    // };
+
 
     const loadProjects = async () => {
         const res = await axios.get("/clientProjectMapping/getAllProjects");
@@ -168,12 +166,12 @@ const StepperForm = (props) => {
             // workingHours,
             empType,
             yoe,
-            rate,
-
+            // rate,
+            // clientName,
             reqType3,
-            projectName,
+            // projectName,
             // uploadDoc,
-            clientName,
+
             // comments,
             departmentName
         } = form;
@@ -183,36 +181,39 @@ const StepperForm = (props) => {
 
         if (
             !jobTitle ||
-            jobTitle === "" ||
-            !jobTitle.match(/^(\w+\s)*\w+$/)
+            jobTitle === ""
+
         )
             newErrors.jobTitle =
                 "Please enter Job Title";
-                if (
-                    !technology ||
-                    technology === "" ||
-                    !technology.match(/^(\w+\s)*\w+$/)
-                )
-                    newErrors.technology =
-                        "Please enter Technology";
+        if (
+            !technology ||
+            technology === ""
+
+        )
+            newErrors.technology = "Please Enter Technology";
+        if (
+            !allocType ||
+            allocType === ""
+
+        )
+            newErrors.allocType = "Please Enter Allocation Type";
         if (
             !description ||
-            description === "" ||
-            !description.match(/^(\w+\s)*\w+$/)
+            description === ""
+
         )
-            newErrors.description =
-                "Please enter Job Description";
+            newErrors.description = "Please Enter Job Description";
         if (
             !pSkills ||
-            pSkills === "" ||
-            !pSkills.match(/^(\w+\s)*\w+$/)
+            pSkills === ""
+
         )
-            newErrors.pSkills =
-                "Please enter Primary Skills";
+            newErrors.pSkills = "Please Enter Primary Skills";
         if (
             !empType ||
-            empType === "" ||
-            !empType.match(/^(\w+\s)*\w+$/)
+            empType === ""
+
         )
             newErrors.empType =
                 "Please enter Employment Type";
@@ -223,20 +224,8 @@ const StepperForm = (props) => {
 
             newErrors.reqType3 =
                 "Please enter Requirement Type";
-        if (
-            !interviewPanel1 ||
-            interviewPanel1 === ""
-        )
-
-            newErrors.interviewPanel1 =
-                "Please enter Interview Panel1";
-        if (
-            !interviewPanel2 ||
-            interviewPanel2 === ""
-        )
-
-            newErrors.interviewPanel2 =
-                "Please enter Interview Panel2";
+        
+        
         if (
             !priority ||
             priority === "" ||
@@ -262,12 +251,12 @@ const StepperForm = (props) => {
 
         )
             newErrors.positions = "Please enter No. of Positions";
-        if (
-            !rate ||
-            rate === ""
+        // if (
+        //     !rate ||
+        //     rate === ""
 
-        )
-            newErrors.rate = "Please enter Rate";
+        // )
+        //     newErrors.rate = "Please enter Rate";
 
         if (
             !departmentName ||
@@ -281,18 +270,18 @@ const StepperForm = (props) => {
 
         )
             newErrors.pocname = "Please Enter POC Name";
-        if (
-            !clientName ||
-            clientName === ""
+        // if (
+        //     !clientName ||
+        //     clientName === ""
 
-        )
-            newErrors.clientName = "Please Enter Client Name";
-        if (
-            !projectName ||
-            projectName === ""
+        // )
+        //     newErrors.clientName = "Please Enter Client Name";
+        // if (
+        //     !projectName ||
+        //     projectName === ""
 
-        )
-            newErrors.projectName = "Please Enter Project Name";
+        // )
+        //     newErrors.projectName = "Please Enter Project Name";
         // if (
         //     !reqType1 ||
         //     reqType1 === ""
@@ -307,13 +296,12 @@ const StepperForm = (props) => {
         //         newErrors.reqType2 = "Please select any of above options";
         if (
             !workLocation ||
-            workLocation === "" ||
-            !workLocation.match(/^(\w+\s)*\w+$/)
-        )
-            newErrors.workLocation =
-                "Please enter Work Location";
+            workLocation === ""
 
-        
+        )
+            newErrors.workLocation = "Please Enter Work Location";
+
+
 
 
         if (
@@ -328,14 +316,20 @@ const StepperForm = (props) => {
 
     //Setting raised By and RaisedOn Values from session storage and cureenet date
     const current = new Date();
-    const raisedOn = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+    console.log(current);
+    var raisedOn = Moment()
+        .utcOffset('+05:30')
+        .format('YYYY-MM-DD hh:mm:ss');
+    console.log(raisedOn);
+    // const raisedOn = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
     const raisedBy = response.firstName;
 
     console.log(raisedOn, raisedBy);
 
 
-
-    const handleSubmit = (e) => {
+    const history = useHistory();
+    const routeToRRPage=() => history.push("/app/rrf")
+    const handleSubmit =(e)=> {
         e.preventDefault();
         //  const branch = JSON.parse(sessionStorage.getItem("branches"));
         //console.log(branch);
@@ -365,7 +359,9 @@ const StepperForm = (props) => {
                 .post("/recruitmentTracker/createRequisitionRequest", form1)
                 .then((response) => {
                     console.log(response);
-                    toast.success("Job Requirement Raised Successfully", { autoClose: 1000 });
+                    toast.success("Requisition Raised Successfully", { autoClose: 1000 });
+                    routeToRRPage();
+
                     if (response.data.status) {
                         props.func();
                     } else {
@@ -417,10 +413,10 @@ const StepperForm = (props) => {
         setActiveStep((previousStep) => previousStep - 1);
     };
     return (
-        <div >
+        <div className="example" style={{ paddingLeft: "12px" }}>
             {activeStep === 0 && (
                 <div>
-                    <h5 style={{ paddingTop: "10px" }}>Arshaa Employee Requisition Form</h5>
+                    <h5 style={{ paddingTop: "13px" }}>Arshaa Employee Requisition Form</h5>
                     <Form className="formone">
                         <Row>
                             <Col md="9">
@@ -572,7 +568,7 @@ const StepperForm = (props) => {
                                     </Form.Group>
 
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Client *</Form.Label>
+                                        <Form.Label>Client </Form.Label>
                                         <Form.Select
                                             required
                                             className="clientName"
@@ -585,12 +581,12 @@ const StepperForm = (props) => {
                                             onChange={(e) => {
                                                 console.log(e.target.name);
 
-                                                axios.get(`/clientProjectMapping/getProjectsByClientId/${e.target.value}`).then((response)=>{
+                                                axios.get(`/clientProjectMapping/getProjectsByClientId/${e.target.value}`).then((response) => {
                                                     console.log(response.data.data);
                                                     setProjects(response.data.data);
                                                     console.log(response.data.clientName);
 
-                                                     setField("clientName",response.data.clientName)
+                                                    setField("clientName", response.data.clientName)
 
                                                 });
                                                 console.log(e.target.name);
@@ -610,7 +606,7 @@ const StepperForm = (props) => {
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Project *</Form.Label>
+                                        <Form.Label>Project </Form.Label>
                                         <Form.Select
                                             required
                                             className="projectName"
@@ -673,7 +669,7 @@ const StepperForm = (props) => {
 
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                                         <Form.Label>Role *</Form.Label>
-                                        <Form.Select
+                                        <Form.Control
                                             required
                                             className="role"
                                             type="text"
@@ -683,16 +679,8 @@ const StepperForm = (props) => {
                                             onChange={(e) => setField("role", e.target.value)}
                                             isInvalid={!!errors.role}
                                         >
-                                            <option>Select </option>
-                                            <option>Java Developer</option>
-                                            <option>React JS Developer</option>
-                                            <option>Vue JS Developer</option>
-                                            <option>Python Developer</option>
-                                            <option>HR Manager</option>
-                                            <option>Admin</option>
-                                            <option>QA Tester</option>
-                                            <option>Data Analyst</option>
-                                        </Form.Select>
+                                           
+                                        </Form.Control>
                                         <Form.Control.Feedback type="invalid">
                                             {errors.role}
                                         </Form.Control.Feedback>
@@ -799,7 +787,7 @@ const StepperForm = (props) => {
                                     <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                                         <Form.Label>Secondary Skills</Form.Label>
                                         <Form.Control
-                                            required
+                                            
                                             className="sSkills"
                                             type="text"
                                             id="sSkills"
@@ -820,7 +808,7 @@ const StepperForm = (props) => {
                                         height="10rem"
                                         style={{ padding: 10 }}
                                     >
-                                        <Form.Label>Job Description</Form.Label>
+                                        <Form.Label>Job Description *</Form.Label>
                                         <Form.Control
                                             required
                                             type="textarea"
@@ -837,7 +825,7 @@ const StepperForm = (props) => {
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Rate *</Form.Label>
+                                        <Form.Label>Rate</Form.Label>
                                         <Form.Control
                                             name="rate"
                                             type="number"
@@ -904,7 +892,7 @@ const StepperForm = (props) => {
                                             <option>Select </option>
                                             {pocname.map((poc) => (
                                                 <option value={poc.employeeId}>
-                                                    {poc.fullName}
+                                                    {poc.firstName}
                                                 </option>
                                             ))}
                                         </Form.Select>
@@ -913,7 +901,7 @@ const StepperForm = (props) => {
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Upload Document *</Form.Label>
+                                        <Form.Label>Upload Document </Form.Label>
                                         <Form.Control
                                             name="uploadDoc"
                                             type="file"
@@ -930,7 +918,7 @@ const StepperForm = (props) => {
                                     </Form.Group>
                                     <Form.Label>Comments</Form.Label>
                                     <Form.Control
-                                        required
+                                        
                                         type="textarea"
                                         id="comments"
                                         placeholder="Comments"
@@ -944,9 +932,9 @@ const StepperForm = (props) => {
                                         {errors.comments}
                                     </Form.Control.Feedback>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Interview Panel1 *</Form.Label>
+                                        <Form.Label>Interview Panel1</Form.Label>
                                         <Form.Select
-                                            required
+                                            
                                             className="interviewPanel1"
                                             type="text"
                                             controlId="interviewPanel1"
@@ -968,9 +956,9 @@ const StepperForm = (props) => {
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>Interview Panel2 *</Form.Label>
+                                        <Form.Label>Interview Panel2</Form.Label>
                                         <Form.Select
-                                            required
+                                            
                                             className="interviewPanel2"
                                             type="text"
                                             controlId="interviewPanel2"
@@ -992,9 +980,9 @@ const StepperForm = (props) => {
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                        <Form.Label>HR Panel *</Form.Label>
+                                        <Form.Label>HR Panel</Form.Label>
                                         <Form.Select
-                                            required
+                                            
                                             className="hrPanel"
                                             type="text"
                                             controlId="hrPanel"
@@ -1021,11 +1009,11 @@ const StepperForm = (props) => {
                                             required
                                             className="requestInitiatedDate"
                                             type="date"
-                                        controlId="requestInitiatedDate"
-                                        
-                                        value={form.requestInitiatedDate}
-                                        onChange={(e) => setField("requestInitiatedDate", e.target.value) }
-                                        isInvalid={!!errors.requestInitiatedDate}
+                                            controlId="requestInitiatedDate"
+
+                                            value={form.requestInitiatedDate}
+                                            onChange={(e) => setField("requestInitiatedDate", e.target.value)}
+                                            isInvalid={!!errors.requestInitiatedDate}
                                         >
 
                                         </Form.Control>
@@ -1048,7 +1036,7 @@ const StepperForm = (props) => {
 
                                         </Form.Control>
                                         <Form.Control.Feedback type="invalid">
-                                        {errors.resourceRequiredDate}
+                                            {errors.resourceRequiredDate}
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                     <Form.Group as={Col} md="4" style={{ padding: 10 }}>
@@ -1085,7 +1073,7 @@ const StepperForm = (props) => {
 
                                         </Form.Control.Feedback>
                                     </Form.Group>
-                                
+
 
                                     {" "}
                                     <Form.Group controlId="submit">
@@ -1093,30 +1081,38 @@ const StepperForm = (props) => {
                                         <Button
                                             type="submit"
                                             onClick={handleSubmit}
+                                            
                                             className="'my-2"
                                             id="submitButton"
-                                            style={{ backgroundColor: "#f5896e",
-                                            borderColor: "#ff9b44",width: "10rem" }}
+                                            style={{
+                                                backgroundColor: "#f5896e",
+                                                borderColor: "#ff9b44", width: "10rem", borderRadius: "25px"
+                                            }}
                                             variant="success"
+
+
                                         >
                                             Submit
                                         </Button>
                                         &nbsp;&nbsp;&nbsp;
                                         <Button
                                             type="submit"
-                                            onClick={handleBack}
+                                            // onClick={handleBack}
                                             className="'my-2"
                                             id="cancelButton"
-                                            style={{ backgroundColor: "#B6B6B4",
-                                            borderColor: "#B6B6B4",width: "10rem" }}
+                                            style={{
+                                                backgroundColor: "#B6B6B4",
+                                                borderColor: "#B6B6B4", width: "10rem", borderRadius: "25px"
+                                            }}
                                             variant="success"
+                                            onClick={() => history.push("/app/rrf")}
                                         >
-                                            Cancel
+                                            Back
                                         </Button>
                                     </Form.Group>
                                 </Row>
                             </Col>
-                            <Col md="1">
+                            <Col md="1" className="width-vr">
                                 <div className="vr" style={{ height: "90%" }}></div>
                             </Col>
                             <Col md="2">
@@ -1133,4 +1129,3 @@ const StepperForm = (props) => {
     );
 };
 export default StepperForm;
-

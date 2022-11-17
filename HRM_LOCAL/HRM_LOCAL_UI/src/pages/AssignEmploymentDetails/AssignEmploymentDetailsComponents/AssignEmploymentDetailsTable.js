@@ -54,11 +54,11 @@ function AssignEmploymentDetailsTable(props) {
     };
 
     const [columns, setColumns] = useState([
-        { title: 'Employee_ID', field: 'employeeId' },
-        { title: 'FullName', field: 'firstName' },
+        { title: 'Employee ID', field: 'employeeId' },
+        { title: 'Name', field: 'firstName' },
         { title: 'Email', field: 'email' },
-        { title: 'PhoneNumber', field: 'primaryPhoneNumber' },
-        { title: 'Date of Joining', field: 'dateOfJoining', type: 'date', dateSetting: { locale: "en-GB" } },
+        { title: 'Contact', field: 'primaryPhoneNumber' },
+        { title: 'DOJ', field: 'dateOfJoining', type: 'date', dateSetting: { locale: "en-GB" } },
         { title: 'Job Title', field: 'jobTitle' },
         { title: 'Experience', field: 'yearsOfExperience' },
         // { title: 'Status', field: 'status' }
@@ -83,13 +83,14 @@ function AssignEmploymentDetailsTable(props) {
       </Modal> */}
  
             <Modal show={show} onHide={handleClose} size="xl">
-                <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
-                    <Modal.Title>Onboarding Form</Modal.Title>
+                <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
+                    <Modal.Title>Employment Details</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                   <EmploymentDetailsTabbyPmo
                   viewOnboard={onboardID}
-                  viewHandleClose={viewHandleClose}
+                  viewHandleClose={handleClose}
+                  func={pull_data}
                   />
                 </Modal.Body>
 

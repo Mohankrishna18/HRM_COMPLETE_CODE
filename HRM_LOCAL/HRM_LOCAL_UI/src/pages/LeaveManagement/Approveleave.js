@@ -39,7 +39,7 @@ const Approve = (props) => {
         <Col>
         <Button
             style = {{backgroundColor: "#f5896e",
-            borderColor: "#ff9b44",}}
+            borderColor: "#f5896e",}}
             className="rounded-pill"
             onClick={handleShow}
           >
@@ -73,7 +73,7 @@ const Approve = (props) => {
                   style={{
                     borderRadius: "25px",
                     backgroundColor: "#f5896e",
-                    borderColor: "#ff9b44",
+                    borderColor: "#f5896e",
                   }}
                   onClick={ApproveHandler}
                   // onChange={(e) => setField()}

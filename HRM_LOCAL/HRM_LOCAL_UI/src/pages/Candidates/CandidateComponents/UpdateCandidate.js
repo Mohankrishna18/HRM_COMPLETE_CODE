@@ -34,6 +34,7 @@ const UpdateCandidate = (props) => {
   const [mailError, setMailError]=useState("");
   const [phnError, setPhnError]=useState("");
   const [expyrError, setExpyrError]=useState("");
+  const [show, setShow] =useState(false);
 
   const handleClose = () => setShow();
   // useState for phone number
@@ -145,7 +146,7 @@ const UpdateCandidate = (props) => {
   const [user, setUser] = useState("");
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     if (
       jobError === ""&&
       candidateNameError === "" &&
@@ -181,7 +182,7 @@ const UpdateCandidate = (props) => {
         } else {
           console.log("Props not Send");
         }
-        toast.success("Candidate updated successfully");
+        // toast.success("Candidate updated successfully");
         // console.log(user);
       })
       .catch((err) => {
@@ -300,18 +301,19 @@ const UpdateCandidate = (props) => {
               defaultValue={candidateStatus}
               // onChange={(e) => setCandidateStatus(e.target.value)}
               // isInvalid={!!errors.candidateStatus}
-              onChange ={(e) =>{
-                if(e.target.value === ""){
-                  setCandidateStatus ("Invalid Candidate Status");
-                }
-                else if(e.target.value.length>50){
-                  setCandidateStatus("Too Long")
-                }
-                else{
-                  setCandidateStatus(e.target.value);
-                  setCandidateStatus("");
-                }
-              }}
+              onChange ={(e) => setCandidateStatus(e.target.value) }
+              // onChange ={(e) =>{
+              //   if(e.target.value === ""){
+              //     setCandidateStatus ("Invalid Candidate Status");
+              //   }
+              //   else if(e.target.value.length>50){
+              //     setCandidateStatus("Too Long")
+              //   }
+              //   else{
+              //     setCandidateStatus(e.target.value);
+              //     setCandidateStatus("");
+              //   }
+              // }}
             >
                <option value="">Select Status </option>
                   <option value="Hired">Hired</option>
@@ -542,7 +544,7 @@ const UpdateCandidate = (props) => {
             <Button
               style={{
                 backgroundColor: "#f5896e",
-                borderColor: "#ff9b44",
+                borderColor: "#f5896e",
                 // float: "right",
                 marginLeft: "200px",
                 width: "40%",

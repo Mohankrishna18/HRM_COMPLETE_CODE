@@ -81,7 +81,7 @@ function ApprovalTable() {
 
   const [columns1, setColumns1] = useState([
     {
-      title: "Employee Id",
+      title: "Employee ID",
       field: "employeeId",
       type: "text",
       editable: "never",
@@ -105,7 +105,7 @@ function ApprovalTable() {
   return (
     <div>
       <Modal show={viewShow} onHide={viewHandleClose} size="xl">
-        <Modal.Header style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Timesheet Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -135,7 +135,7 @@ function ApprovalTable() {
       </Modal>
 
       <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Approve Timesheet</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -148,7 +148,7 @@ function ApprovalTable() {
       </Modal>
 
       <Modal show={rejectShow} onHide={rejectHandleClose}>
-        <Modal.Header closeButton style={{ backgroundColor: "#FF9E14" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Reject Timesheet</Modal.Title>
         </Modal.Header>
         <Modal.Body>

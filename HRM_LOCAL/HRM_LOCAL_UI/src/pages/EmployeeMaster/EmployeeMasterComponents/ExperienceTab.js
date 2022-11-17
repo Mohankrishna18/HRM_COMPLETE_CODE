@@ -9,9 +9,13 @@ function ExperienceTab() {
     const params=useParams();
     console.log(params.id);
 
+  // const userData = sessionStorage.getItem("userdata");
+  // const userData1 = JSON.parse(userData);
+  // const onboardingId = userData1.data.onboardingId;
+
   const userData = sessionStorage.getItem("userdata");
   const userData1 = JSON.parse(userData);
-  const onboardingId = userData1.data.onboardingId;
+  const employeeid = userData1.data.employeeId;
 
   const [ferrors, setFErrors] = useState("");
   const [serror, setSerror] = useState("");
@@ -197,7 +201,7 @@ function ExperienceTab() {
 
   useEffect(() => {
     axios
-      .get(`/emp/getEmployeeDataByOnboardingId/${params.id}`)
+      .get(`/emp/getExperienceDetails/${employeeid}`)
       .then((response) => {
         setEmployeeId(response.data.data.employeeId);
         setPermanentAddress(response.data.data.permanentAdress);
@@ -271,7 +275,7 @@ function ExperienceTab() {
   const [documents, setDocuments] = useState("");
   const loadData = () => {
     axios
-      .get(`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${params.id}`)
+      .get(`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${employeeid}`)
       .then((response) => {
         setDocuments(response);
         console.log(response);
@@ -284,7 +288,7 @@ function ExperienceTab() {
 
   const changeHandler = async (e) => {
     e.preventDefault();
-    await axios.put(`/emp/updateExperienceInPreOnboarding/${params.id}`, {
+    await axios.put(`/emp/updateExperience/${employeeid}`, {
       previousCompany1_name,
       previousCompany1_designation,
       previousCompany1_joiningDate,
@@ -307,8 +311,8 @@ function ExperienceTab() {
       previousCompany3_typeOfEmployment,
       previousCompany3_reasonForRelieving,
     });
-    toast.success("Form Submitted Successfully");
-    const url = `/api/post/image/${params.id}/ExperienceDetails?image`;
+    toast.success("Experience Details Submitted Successfully");
+    const url = `/api/post/image/${employeeid}/ExperienceDetails?image`;
     const formData = new FormData();
     formData.append("image", file);
     const config = {
@@ -339,7 +343,7 @@ function ExperienceTab() {
     // window.open(`api/get/image/${imageName}/${onboardingId}`)
 
     axios
-      .get(`/api/get/imageByTitle/ExperienceDetails/${params.id}`, {
+      .get(`/api/get/imageByTitle/ExperienceDetails/${employeeid}`, {
         contentType: "application/pdf",
       })
       .then((res) => {
@@ -370,7 +374,7 @@ function ExperienceTab() {
         </Card.Title>
       </Card> */}
 
-      <Form onSubmit={(e) => changeHandler(e)} style={{ padding: 10 }}>
+      <Form onSubmit={(e) => changeHandler(e)} style={{ padding: 10,color:"black"  }}>
         <Card
           style={{
             marginLeft: 8,
@@ -392,7 +396,7 @@ function ExperienceTab() {
               controlId="previousCompany1_name"
               value={previousCompany1_name}
               isInvalid ={ferrors}
-              maxLength={50}
+              maxLength={200}
               onChange={(e) => {setPreviousCompany1_name(e.target.value)
                 if (!e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)) {
                   setFErrors("Enter Valid Company Name");
@@ -415,7 +419,7 @@ function ExperienceTab() {
               placeholder="Designation"
               controlId="previousCompany1_designation"
               value={previousCompany1_designation}
-              maxLength={50}
+              maxLength={200}
               isInvalid = {serror}
               name="previousCompany1_designation"
               onChange={(e) => {setPreviousCompany1_designation(e.target.value)
@@ -463,7 +467,7 @@ function ExperienceTab() {
               placeholder="Employee ID"
               controlId="previousCompany1_employeeId"
               value={previousCompany1_employeeId}
-              maxLength={50}
+              maxLength={200}
               isInvalid={thirderrors}
               name="previousCompany1_employeeId"
               onChange={(e) => {
@@ -539,7 +543,7 @@ function ExperienceTab() {
               type="text"
               placeholder="Company Name"
               controlId="previousCompany2_name"
-              maxLength={50}
+              maxLength={200}
               value={previousCompany2_name}
               isInvalid ={fourerror}
               onChange={(event) => {
@@ -563,7 +567,7 @@ function ExperienceTab() {
               type="text"
               placeholder="Designation"
               controlId="previousCompany2_designation"
-              maxLength={50}
+              maxLength={200}
               isInvalid = {fiveerrors}
               value={previousCompany2_designation}
               onChange={(e) => {setPreviousCompany2_designation(e.target.value)
@@ -613,7 +617,7 @@ function ExperienceTab() {
               placeholder="Employee ID"
               controlId="previousCompany2_employeeId"
               value={previousCompany2_employeeId}
-              maxLength={50}
+              maxLength={200}
               isInvalid={sixerror}
               onChange={(e) => {
                 setPreviousCompany2_employeeId(e.target.value);
@@ -688,7 +692,7 @@ function ExperienceTab() {
               type="text"
               placeholder="Company Name"
               controlId="previousCompany3_name"
-              maxLength={50}
+              maxLength={200}
               value={previousCompany3_name}
               isInvalid={sevenerrors}
               onChange={(e) => {setPreviousCompany3_name(e.target.value)
@@ -712,7 +716,7 @@ function ExperienceTab() {
               type="text"
               placeholder="Designation"
               controlId="previousCompany3_designation"
-              maxLength={50}
+              maxLength={200}
               isInvalid = {eighterror}
               value={previousCompany3_designation}
               onChange={(e) => {setPreviousCompany3_designation(e.target.value);
@@ -761,7 +765,7 @@ function ExperienceTab() {
               type="text"
               placeholder="Employee ID"
               controlId="previousCompany3_employeeId"
-              maxLength={50}
+              maxLength={200}
               isInvalid={nineerrors}
               value={previousCompany3_employeeId}
               onChange={(e) => {
@@ -829,15 +833,15 @@ function ExperienceTab() {
                 <Form.Control type="file"  onChange={handleChange} />
               </Form.Group>
             </Form.Group>
-            {documents.statusText === "OK" ? (<Col>
-              <a href={`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${onboardingId}`}>
+            {/* {documents.statusText === "OK" ? (<Col> */}
+              <a href={`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${employeeid}`}>
                 Experience Documents
 
               </a>
-            </Col>) : (<></>)
+            {/* </Col>) : (<></>)
 
             }
-        
+         */}
           </Row>
           <Row>
             <Col></Col>
@@ -846,7 +850,7 @@ function ExperienceTab() {
           className="rounded-pill"
           md="3"
           style={{ backgroundColor: "#f5896e",
-          borderColor: "#ff9b44", float: "right" }}
+          borderColor: "#f5896e", float: "right" }}
           type="submit"
           size="lg"
         >

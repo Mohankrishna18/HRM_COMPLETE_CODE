@@ -71,7 +71,7 @@ function TAAHeadApproved(props) {
 
             </Form>
             <Button variant="primary" style={{backgroundColor: "#f5896e",
- borderColor: "#ff9b44", marginTop: "5%", float: "right" }}
+ borderColor: "#f5896e", marginTop: "5%", float: "right" }}
             onClick={ApproveHandler}
             >
             Yes

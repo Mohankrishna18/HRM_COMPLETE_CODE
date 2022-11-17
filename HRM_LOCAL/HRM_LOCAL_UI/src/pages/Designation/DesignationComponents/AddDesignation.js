@@ -115,7 +115,7 @@ function AddDesignation(props) {
         onClick={handleShow}
         style={{
           backgroundColor: "#f5896e",
-          borderColor: "#ff9b44",
+          borderColor: "#f5896e",
           float: "right",
           borderRadius: "25px",
           // paddingBottom: "11.5px",
@@ -132,8 +132,9 @@ function AddDesignation(props) {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
+        centered
       >
-        <Modal.Header closeButton style={{ backgroundColor: "#FE924A" }}>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
           <Modal.Title>Add Designation</Modal.Title>
         </Modal.Header>
 
@@ -157,7 +158,7 @@ function AddDesignation(props) {
                   placeholder="Business Unit Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.departmentId}
-                  maxLength={30}
+                  maxLength={225}
                   onChange={(e) => setField("departmentName", e.target.value)}
                   isInvalid={!!errors.departmentId}
                 ><option>Select Business Unit</option>
@@ -182,7 +183,7 @@ function AddDesignation(props) {
                   placeholder="Designation Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.designationName}
-                  maxLength={30}
+                  maxLength={225}
                   onChange={(e) => setField("designationName", e.target.value)}
                   isInvalid={!!errors.designationName}
                 ></Form.Control>
@@ -198,7 +199,7 @@ function AddDesignation(props) {
                 <Button
                   style={{
                     backgroundColor: "#f5896e",
-                    borderColor: "#ff9b44",
+                    borderColor: "#f5896e",
                     float: "right",
                     width: "40%",
                     height: "120%",

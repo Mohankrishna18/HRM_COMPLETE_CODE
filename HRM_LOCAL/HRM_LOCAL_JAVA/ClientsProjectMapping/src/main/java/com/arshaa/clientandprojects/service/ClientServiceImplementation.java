@@ -92,6 +92,7 @@ public class ClientServiceImplementation implements ClientServiceInterface {
                 updateClient.setTag(newClientUpdate.getTag());
                 updateClient.setNote(newClientUpdate.getNote());
                 updateClient.setPocName(newClientUpdate.getPocName());
+                updateClient.setStatus(newClientUpdate.getStatus());
 
                 Clients latestClient = clientRepo.save(updateClient);
                 System.out.println(latestClient);

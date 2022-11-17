@@ -12,7 +12,11 @@ function AddressTab() {
 
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
-    const onboardingId = userData1.data.onboardingId;
+    const employeeid = userData1.data.employeeId;
+
+    // const userData = sessionStorage.getItem("userdata");
+    // const userData1 = JSON.parse(userData);
+    // const onboardingId = userData1.data.onboardingId;
 
     const [elevenerrors, setElevenErrors] = useState("");
     const [tweleveerror, setTweleveerror] = useState("");
@@ -36,7 +40,7 @@ function AddressTab() {
 
     useEffect(() => {
         axios
-            .get(`/emp/getEmployeeDataByOnboardingId/${params.id}`)
+            .get(`/emp/getAddress/${employeeid}`)
             .then((response) => {
                 
                 setPermanentAddress(response.data.data.permanentAdress);
@@ -52,7 +56,7 @@ function AddressTab() {
 
     const changeHandler = async (e) => {
         e.preventDefault();
-        await axios.put(`/emp/updateAddressInPreOnboarding/${params.id}`, {
+        await axios.put(`/emp/updateAddress/${employeeid}`, {
             permanentAdress,
             permanentState,
             permanentCountry,
@@ -62,7 +66,7 @@ function AddressTab() {
             currentCountry,
             currentPincode,
         });
-        toast.success("Form Submitted Successfully");
+        toast.success("Address Details Submitted Successfully");
 
     };
 
@@ -78,7 +82,7 @@ function AddressTab() {
 
         <Form
             onSubmit={(e) => changeHandler(e)}
-            style={{ padding: 10 }}
+            style={{ padding: 10 ,color:"black" }}
         >
             <h5 style={{ paddingLeft: 10 }}>Permanent Address :</h5>
             <Row className="mb-5">
@@ -125,7 +129,7 @@ function AddressTab() {
                                     value={permanentState}
                                     onChange={(e) => {
                                         setPermanentState(e.target.value)
-                                        if(!e.target.value.match(/^[a-zA-Z]+$/)){
+                                        if(!e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)){
 
                                             setTweleveerror(" Enter valid State");
 
@@ -295,7 +299,7 @@ function AddressTab() {
                                         value={currentState}
                                         onChange={(e) => {
                                             setCurrentState(e.target.value)
-                                            if(!e.target.value.match(/^[a-zA-Z]+$/)){
+                                            if(!e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)){
 
                                                 setSixteenerror(" Enter valid State");
 
@@ -422,7 +426,7 @@ function AddressTab() {
                     <Col>
                     <Button
                 className="rounded-pill" md="3"
-                style={{ backgroundColor: "#eb4509", float: "right" }}
+                style={{ backgroundColor: "#f5896e", float: "right" }}
                 type="submit"
                 size="lg"
             >

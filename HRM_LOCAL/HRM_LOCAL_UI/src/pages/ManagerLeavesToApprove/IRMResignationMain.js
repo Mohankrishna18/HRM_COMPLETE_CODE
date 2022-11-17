@@ -68,9 +68,9 @@ function IRMResignationMain(props) {
   ]);
 
   return (
-    <div className="example">
+    <div>
       <Modal  show={show} onHide={handleClose} >
-        <Modal.Header closeButton style={{backgroundColor: "#ff9b44"}}>
+        <Modal.Header closeButton style={{backgroundColor: "#f5896e"}}>
           <Modal.Title >Are you sure you want to Approve</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -82,7 +82,7 @@ function IRMResignationMain(props) {
         </Modal.Body>
       </Modal>
       <Modal show={rejectshow} onHide={handleCloseReject}>
-        <Modal.Header closeButton style={{backgroundColor: "#ff9b44"}}>
+        <Modal.Header closeButton style={{backgroundColor: "#f5896e"}}>
           <Modal.Title>Are you sure you want to Reject</Modal.Title>
         </Modal.Header>
         <Modal.Body>
