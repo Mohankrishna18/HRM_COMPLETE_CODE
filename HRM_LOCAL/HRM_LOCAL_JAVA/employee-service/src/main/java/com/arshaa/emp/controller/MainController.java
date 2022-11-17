@@ -34,6 +34,7 @@ import com.arshaa.emp.model.EmploymentDetails;
 import com.arshaa.emp.model.Experience;
 import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.PersonalDetails;
+import com.arshaa.emp.model.ProbationEmployeeFeedBack;
 import com.arshaa.emp.model.ReportingManagerMain;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.ResponseFile;
@@ -562,6 +563,7 @@ public class MainController {
         @GetMapping("/getEmployeeLeavesDatawithoutDept/{month}/{year}")
         public ResponseEntity getEmployeeLeavesDataWithoutDept(@PathVariable int month,@PathVariable int year)
         {
+        	
             try
             {
             return new ResponseEntity<>(lServ.getEmployeeLeavesDataWithoutDept(month, year),HttpStatus.OK);
@@ -573,4 +575,15 @@ public class MainController {
 
             }
         }
+        @GetMapping("/getDateOfJoiningByEmployeeId/{employeeId}")
+    	public ResponseEntity getDateOfJoiningByEmployeeId(@PathVariable String employeeId) {
+    		return serv.getDateOfJoiningByEmployeeId(employeeId);
+
+    	}
+        
+        @PutMapping("/probationEmployeeFeedBack/{employeeId}")
+        public ResponseEntity probationEmployeeFeedBack(@PathVariable String employeeId,
+    			@RequestBody ProbationEmployeeFeedBack prb) {
+    		return serv.probationEmployeeFeedBack(employeeId, prb);
+    	}
 }

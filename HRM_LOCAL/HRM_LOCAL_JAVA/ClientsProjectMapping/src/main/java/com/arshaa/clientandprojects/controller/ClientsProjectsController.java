@@ -22,7 +22,6 @@ import com.arshaa.clientandprojects.service.ProjectRolesInterface;
 import com.arshaa.clientandprojects.service.ProjectServiceInterface;
 import com.arshaa.clientandprojects.service.ProjectTeamInterface;
 
-
 @RequestMapping("/clientProjectMapping")
 @RestController
 @CrossOrigin("*")
@@ -107,29 +106,30 @@ public class ClientsProjectsController {
 		return projectServ.getAllActiveProjectss(status);
 	}
 
-	//get projects by employeeId
+	// get projects by employeeId
 	@GetMapping("/getAllProjectsbyemployee/{employeeId}")
 	public ResponseEntity getAllProjectsById(@PathVariable String employeeId) {
-		return projectServ.getAllProjectsById(employeeId);
+		return projectTeamServ.getAllProjectsByEmployeeId(employeeId);
 	}
-	
+
 	// For employee
 	@GetMapping("/getActiveProjectsByEmpIdForEmployee/Active/{employeeId}")
 	public ResponseEntity getEmployeeProjectList(@PathVariable String employeeId) {
 		return projectTeamServ.getEmployeeProjectList(employeeId);
 	}
-	
-	//Business Logic - displaying data in accordance of userType, employeeId and the status
-    @GetMapping("/getProjectsByUser/{userType}/{employeeId}")
-    public ResponseEntity getBasedOnUser(@PathVariable String userType,@PathVariable String employeeId ) {
-        return projectServ.getProjectsByUserType(userType,employeeId);
-    }
-    
-  //Getting client name by client ID at ProjectMaster
-    @GetMapping("/getClientNameByClientID/{clientId}")
-    public ResponseEntity getBasedOnClientId(@PathVariable int clientId) {
-        return projectServ.getClientNameByClientID(clientId);
-    }
+
+	// Business Logic - displaying data in accordance of userType, employeeId and
+	// the status
+	@GetMapping("/getProjectsByUser/{userType}/{employeeId}")
+	public ResponseEntity getBasedOnUser(@PathVariable String userType, @PathVariable String employeeId) {
+		return projectServ.getProjectsByUserType(userType, employeeId);
+	}
+
+	// Getting client name by client ID at ProjectMaster
+	@GetMapping("/getClientNameByClientID/{clientId}")
+	public ResponseEntity getBasedOnClientId(@PathVariable int clientId) {
+		return projectServ.getClientNameByClientID(clientId);
+	}
 
 //		@GetMapping("/getRoleBasedEmployeesByEmployeeId/{status}/{employeeId}")
 //	    public ResponseEntity getRoleBasedEmployeesByEmployeeId( @PathVariable String employeeId,@PathVariable String status) {
@@ -175,22 +175,24 @@ public class ClientsProjectsController {
 	public Projects getOneProjectByProjectId(@PathVariable("projectId") Integer projectId) {
 		return projectRepository.findByProjectId(projectId);
 	}
+
 	@GetMapping("/getTeamMemberNameByEmployeeID/{employeeId}")
-    public ResponseEntity getTeamMembersNameByEmployeeId(@PathVariable String employeeId) {
-        
-        return projectTeamServ.getTMNameByEmployeeId(employeeId);
-    }
+	public ResponseEntity getTeamMembersNameByEmployeeId(@PathVariable String employeeId) {
+
+		return projectTeamServ.getTMNameByEmployeeId(employeeId);
+	}
+
 	@GetMapping("/getProjectsByClientId/{clientId}")
-    public ResponseEntity getProjectsByClientId(@PathVariable int clientId) {
-        return projectServ.getProjectNamesByClientId(clientId);
-    }
-	
+	public ResponseEntity getProjectsByClientId(@PathVariable int clientId) {
+		return projectServ.getProjectNamesByClientId(clientId);
+	}
+
 //	@GetMapping("/getClientIdByName/{clientName}")
 //	public int getClientIdByClientName(@PathVariable String clientName) {
 //     return clientServ.getClientIdByClientName(clientName);
 //
 //	}
-	
+
 //	@GetMapping("/getDepartmentIdByName/{departmentName}")
 //	public int getDepartmentIdByDepartmentName(@PathVariable String departmentName) {
 //     return serv.getDepartmentIdByDepartmentName(departmentName);
@@ -202,5 +204,10 @@ public class ClientsProjectsController {
 //	{
 //		Departmentmaster dm = repo.findByDepartmentId(departmentId);
 //		return dm.getDepartmentName();
+//	}
+
+//	@GetMapping("/AllProjectTeamCountWithActiveStatus/Active/{projectId}")
+//	public Long AllProjectTeamCountWithActiveStatus(@PathVariable("projectId") Integer projectId) {
+//		return projectTeamServ.AllProjectTeamCountWithActiveStatus(projectId);
 //	}
 }

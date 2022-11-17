@@ -11,7 +11,7 @@ import { UserContext } from "./ProjectUpdateTabs";
 
 function TeamMembersTab(props) {
   const {data } = useContext(UserContext)
-  console.log(props.rowData.data.projectName)
+  console.log(props.rowData.data.projectId)
  // const rowData = props.rowData;
   useEffect(() => {
     loadData();

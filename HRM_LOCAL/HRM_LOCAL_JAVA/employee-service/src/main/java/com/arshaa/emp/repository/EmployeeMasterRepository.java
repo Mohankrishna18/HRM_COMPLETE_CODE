@@ -42,5 +42,6 @@ public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster,S
 //    List<EmployeeMaster> findAllByOrderByFullNameAscAndStatus(String status);
 
     List<EmployeeMaster> getActiveEmployeesByStatus(String status);
+    EmployeeMaster getDateOfJoiningByEmployeeId(String employeeId);
     
 }

@@ -11,12 +11,23 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ApprovalView = (props) => {
  
-  
+  var today = new Date(props.viewOnboard.startDate);
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+  var startDate = dd + '-' + mm + '-' + yyyy;
+
+  var today = new Date(props.viewOnboard.endDate);
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+  var endDate = dd + '-' + mm + '-' + yyyy;
+
 
   
-  var tempDate = new Date(props.viewOnboard.dateOfJoining);
-  var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-  console.log(dob)
+  // var tempDate = new Date(props.viewOnboard.dateOfJoining);
+  // var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+  // console.log(dob)
 
   return (
     <div>
@@ -92,7 +103,7 @@ const ApprovalView = (props) => {
               </Col>
               <Col md={{ offset: 1 }}>
                 <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.viewOnboard.startDate}
+                  {startDate}
                 </Card.Text>
               </Col>
             </Row>
@@ -106,7 +117,7 @@ const ApprovalView = (props) => {
               </Col>
               <Col md={{ offset: 1 }}>
                 <Card.Text style={{ paddingBottom: 0 }}>
-                  {props.viewOnboard.endDate}
+                  {endDate}
                 </Card.Text>
               </Col>
             </Row>

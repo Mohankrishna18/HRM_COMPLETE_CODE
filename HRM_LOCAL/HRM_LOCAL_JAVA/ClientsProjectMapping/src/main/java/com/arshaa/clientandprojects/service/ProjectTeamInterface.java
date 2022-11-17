@@ -16,9 +16,14 @@ public interface ProjectTeamInterface {
 
    public ResponseEntity deleteProjectTeam(Integer employeeprojectId);
 
+   public ResponseEntity getAllProjectsByEmployeeId(String employeeId);
    
 // Madhu Changes
    public ResponseEntity getEmployeeProjectList(String employeeId);
    public ResponseEntity getTMNameByEmployeeId(String employeeId);
+
+
+   
+   //public Long AllProjectTeamCountWithActiveStatus(Integer projectId);
 	
 }

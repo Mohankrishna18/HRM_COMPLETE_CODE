@@ -410,7 +410,7 @@ const EmployeeAttendance = () => {
       //handleToggle()
      
       if(dept == null){
-        axios.get( `/emp/getEmployeeLeavesDatawithoutDept/${month}/${year}`).then((response)=>{
+        axios.get( `/emp/getEmployeeLeavesDatawithoutDept/${month}/${year}/${dept}`).then((response)=>{
           console.log(response)
           setRowData(response.data)
           setDays(response.data[0].totalDays)
@@ -756,7 +756,7 @@ const EmployeeAttendance = () => {
               columns={columns}
               title={"Monthly Summary - "+" "+"Days:"+ days +" - "+"Working Days:"+workingdays+" - "+"Holidays:"+holidays}
               data={rowData}
-              style={{ color: 'black', fontSize: '10px' }}
+              style={{ color: 'black', fontSize: '12px' }}
               editable={{}}
               options={{
                 paging: false,
