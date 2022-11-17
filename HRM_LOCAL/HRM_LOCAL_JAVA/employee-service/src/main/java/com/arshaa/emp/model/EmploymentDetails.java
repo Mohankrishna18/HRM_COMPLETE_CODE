@@ -28,7 +28,18 @@ public class EmploymentDetails {
 	private String srmId;
 	private String buhId;
 	
-	
+	private Date confirmationDate;
+
+
+
+
+	public Date getConfirmationDate() {
+	return confirmationDate;
+	}
+	public void setConfirmationDate(Date confirmationDate) {
+	this.confirmationDate = confirmationDate;
+	}
+
 	
 	public String getStatus() {
 		return status;
