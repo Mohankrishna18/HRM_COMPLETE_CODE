@@ -973,7 +973,7 @@ public class EmployeeMaster {
 			String reportingManager, String passportNo, String passportExpiryDate, String jobTitle,
 			String employmentType, String primarySkills, String secondarySkills, String panNumber, String aadharNumber,
 			String uanNumber, String bankName, String accountNumber, String ifscCode, String branch, String band,
-			String exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,
+			Date exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,
 			String buhId,String resignationDate,String intermediateQualification, String sscQualification, String officialMail, String hrcomment,String Status) {
 		super();
 		this.employeeId = employeeId;

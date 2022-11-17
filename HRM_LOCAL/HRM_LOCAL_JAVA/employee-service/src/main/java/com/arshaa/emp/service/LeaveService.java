@@ -169,28 +169,94 @@ System.out.println("year"+exitYear+""+year+"month"+exitMonth+""+month);
 		List<EmployeeMaster> getEmployees = emRepo.findAll();
 		List<EmployeeLeavesData> getLeavesList = new ArrayList<>();
 		getEmployees.stream().forEach(e -> {
-			EmployeeLeavesData getLeaves = new EmployeeLeavesData();
-			LeavesCount leaveCount = template
-					.getForObject(leaveURLL + month + "/" + year + "/L/" + "/" + e.getEmployeeId(), LeavesCount.class);
-			LeavesCount holidayCount = template.getForObject(holidayURL + year + "/" + month, LeavesCount.class);
-			System.out.println(holidayCount.getCount());
-			getLeaves.setTotalDaysAbsent(leaveCount.getCount());
 
-			LeavesCount wfhCount = template
-					.getForObject(leaveURLL + month + "/" + year + "/W/" + "/" + e.getEmployeeId(), LeavesCount.class);
-			getLeaves.setEmployeeId(e.getEmployeeId());
-			getLeaves.setEmployeeName(e.getFirstName() + e.getLastName());
-			getLeaves.setWfhCount(wfhCount.getCount());
-			YearMonth yearMonthObject = YearMonth.of(year, month);
-			int daysInMonth = yearMonthObject.lengthOfMonth();
-			int presentCount = daysInMonth
-					- (leaveCount.getCount() + holidayCount.getHolidayCount() + weekendCount(year, month));
-			int workingDays = daysInMonth - (holidayCount.getHolidayCount() + weekendCount(year, month));// for wd
-			getLeaves.setTotalDaysPresent(presentCount);
-			getLeaves.setTotalDays(daysInMonth);// tDP
-			getLeaves.setTotalWorkingDays(workingDays);// TWD
-			getLeaves.setHolidays(holidayCount.getHolidayCount());// TH
-			getLeavesList.add(getLeaves);
+			EmployeeLeavesData getLeaves = new EmployeeLeavesData();
+			if (e.getStatus().equalsIgnoreCase("active")) {
+				Instant currentDate = Instant.now();
+				Instant instDateOfJoin = e.getDateOfJoining().toInstant();
+				if (currentDate.isAfter(instDateOfJoin)) {
+					LeavesCount leaveCount = template.getForObject(
+							leaveURLL + month + "/" + year + "/L/" + "/" + e.getEmployeeId(), LeavesCount.class);
+					LeavesCount holidayCount = template.getForObject(holidayURL + year + "/" + month,
+							LeavesCount.class);
+					System.out.println(holidayCount.getCount());
+					getLeaves.setTotalDaysAbsent(leaveCount.getCount());
+
+					LeavesCount wfhCount = template.getForObject(
+							leaveURLL + month + "/" + year + "/W/" + "/" + e.getEmployeeId(), LeavesCount.class);
+					getLeaves.setEmployeeId(e.getEmployeeId());
+					getLeaves.setEmployeeName(e.getFirstName() + e.getLastName());
+					getLeaves.setWfhCount(wfhCount.getCount());
+					YearMonth yearMonthObject = YearMonth.of(year, month);
+					int daysInMonth = yearMonthObject.lengthOfMonth();
+					int presentCount = daysInMonth
+							- (leaveCount.getCount() + holidayCount.getHolidayCount() + weekendCount(year, month));
+					int workingDays = daysInMonth - (holidayCount.getHolidayCount() + weekendCount(year, month));// for
+																													// wd
+					getLeaves.setTotalDaysPresent(presentCount);
+					getLeaves.setTotalDays(daysInMonth);// tDP
+					getLeaves.setTotalWorkingDays(workingDays);// TWD
+					getLeaves.setHolidays(holidayCount.getHolidayCount());// TH
+					getLeavesList.add(getLeaves);
+				}
+			}  if (e.getStatus().equalsIgnoreCase("InActive")) {
+				LocalDate currentDateForE = LocalDate.now();
+//				LocalDate currentDateForE =LocalDate.of(2022, 11, 1);    
+				//Local Date to Sql Date .
+				 java.sql.Date currentCheckdate = java.sql.Date.valueOf(currentDateForE); // Magic happens here!
+				Instant currentDate = Instant.now();
+				Instant instDateOfJoin = e.getDateOfJoining().toInstant();
+				Calendar calendar = new GregorianCalendar();
+				calendar.setTime(e.getExitDate());
+				int exitYear = calendar.get(Calendar.YEAR);
+				//Add one to month {0 - 11}
+				int exitMonth = calendar.get(Calendar.MONTH) + 1;
+				
+System.out.println("year"+exitYear+""+year+"month"+exitMonth+""+month);
+				if(exitYear >= year && exitMonth >= month){
+
+//						if (currentDate.isAfter(instDateOfJoin) && e.getExitDate().after(currentCheckdate)) {
+							LeavesCount leaveCount = template.getForObject(
+									leaveURLL + month + "/" + year + "/L/"+ "/" + e.getEmployeeId(), LeavesCount.class);
+							LeavesCount holidayCount = template.getForObject(holidayURL + year + "/" + month,
+									LeavesCount.class);
+							System.out.println(holidayCount.getCount());
+							getLeaves.setTotalDaysAbsent(leaveCount.getCount());
+
+							LeavesCount wfhCount = template.getForObject(
+									leaveURLL + month + "/" + year + "/W/" + "/" + e.getEmployeeId(), LeavesCount.class);
+							getLeaves.setEmployeeId(e.getEmployeeId());
+							getLeaves.setEmployeeName(e.getFirstName() + e.getLastName());
+							getLeaves.setWfhCount(wfhCount.getCount());
+							YearMonth yearMonthObject = YearMonth.of(year, month);
+							int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+							System.out.println("Days"+day);
+							LocalDate lcd =LocalDate.of(exitYear,exitMonth,day); 
+							int workingCountDays= this.addDaysSkippingWeekends(lcd,day);
+							int daysInMonth = yearMonthObject.lengthOfMonth();
+							int presentCount = daysInMonth
+									- (leaveCount.getCount() + holidayCount.getHolidayCount() + weekendCount(year, month));
+							int workingDays = daysInMonth - (holidayCount.getHolidayCount() + weekendCount(year, month));// for
+												if(exitMonth == month) {
+													getLeaves.setTotalDaysPresent(workingCountDays);	
+												}
+												else
+												{
+													getLeaves.setTotalDaysPresent(presentCount);
+												}
+													// wd
+							getLeaves.setTotalDays(daysInMonth);// tDP
+							getLeaves.setTotalWorkingDays(workingDays);// TWD
+							getLeaves.setHolidays(holidayCount.getHolidayCount());// TH
+							getLeavesList.add(getLeaves);
+//						}
+						
+				}
+			
+
+			}
+
 		});
 		return getLeavesList;
 	}
