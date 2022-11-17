@@ -1,426 +1,188 @@
-import React, { useEffect, useState } from "react";
-import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
+import React, { useEffect, useRef } from "react";
+import { useState } from "react";
+import { Card, FormSelect, InputGroup } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+const BUHRequisitionView = (props) => {
+  console.log(props.data);
+  console.log(props.data.jobTitle);
 
+  const [form, setForm] = useState({});
+  const [errors, setErrors] = useState({});
+  const handleClose = () => setShow(true);
 
-function UpdateTeamMember(props) {
+  const forms = useRef(null);
 
-  
+  function setField(field, value) {
+    setForm({
+      ...form,
+      [field]: value,
+    });
+    if (!!errors[field])
+      setErrors({
+        ...errors,
+        [field]: null,
+      });
+  }
 
-    const payload = {
-        employeeId,
-        firstName,
-        lastName,
-        middleName,
-        dateOfBirth,
-        primaryPhoneNumber,
-        secondaryPhoneNumber,
-        email,
-        primarySkills,
-        secondarySkills,
-        bloodGroup,
-        gender,
-        maritalStatus,
-    }
+  const validateForm = () => {
+    const {
+      jobId,
+      jobTitle,
+      positions,
+      status,
+      primarySkills,
+      secondarySkills,
+      workLocation,
+      workTimings,
+      rate,
+      employmentType,
+      project,
+      client,
+      businessUnit,
+      yearsOfExperience,
+      description,
+      raisedBy,
+      raisedOn,
+    } = form;
 
-
-    const [ferrors, setFErrors] = useState("");
-    const [serror, setSerror] = useState("");
-    const [thirderrors, setThirdErrors] = useState("");
-    const [fourerror, setFourerror] = useState("");
-    const [fiveerrors, setFiveErrors] = useState("");
-    const [sixerror, setSixerror] = useState("");
-    const [sevenerrors, setSevenErrors] = useState("");
-    const [eighterror, setEighterror] = useState("");
-    const [nineerrors, setNineErrors] = useState("");
-    const [tenerror, setTenerror] = useState("");
-
-    const [employeeId, setEmployeeId] = useState();
-    const [firstName, setFirstName] = useState(props.updateOnboard.firstName);
-    const [designationName, setDesignationName] = useState(props.updateOnboard.designationName);
-    const[departmentName,setDepartmentName] = useState(props.updateOnboard.departmentName);
-    const [startDate, setStartDate] = useState(props.updateOnboard.startDate);
-  
-    const [endDate, setEndDate] = useState(props.updateOnboard.endDate);
-    const [status, setStatus] = useState(props.updateOnboard.status);
-    const [roles, setRoles] = useState(props.updateOnboard.roles);
-    const [assignedDate,setAssignedDate] = useState(props.updateOnboard.assignedDate);
-    const [priority, setPriority] = useState(props.updateOnboard.priority);
-  
-    const [projectManager, setProjectManager] = useState(
-      props.updateOnboard.projectManager
-    );
-    const [description, setDescription] = useState(
-      props.updateOnboard.description
-    );
-  
-
-
-
-    useEffect(() => {
-        axios
-            .get(`/emp/getPersonalDetails/${empId}`)
-            .then((response) => {
-                setEmployeeId(response.data.data.employeeId);
-                setFirstName(response.data.data.firstName);
-                setLastName(response.data.data.lastName);
-                setSecondaryPhone(response.data.data.secondaryPhoneNumber);
-                setEmployeeId(response.data.data.employeeId);
-                setFirstName(response.data.data.firstName);
-                setMiddleName(response.data.data.middleName);
-                setLastName(response.data.data.lastName);
-                setPrimaryPhoneNumber(response.data.data.primaryPhoneNumber);
-                setSecondaryPhone(response.data.data.secondaryPhoneNumber);
-                setEmail(response.data.data.email);
-                setDateOfBirth(response.data.data.dateOfBirth);
-                setBloodGroup(response.data.data.bloodGroup);
-                setGender(response.data.data.gender);
-                setMaritalStatus(response.data.data.maritalStatus);
-
-            });
-    }, []);
-
-    const changeHandler = async (e) => {
-        e.preventDefault();
-        try{
-        await axios.put(`/emp/updatePersonalDetails/${empId}`, {
-            employeeId,
-            firstName,
-            lastName,
-            middleName,
-            dateOfBirth,
-            primaryPhoneNumber,
-            secondaryPhoneNumber,
-            email,
-            primarySkills,
-            secondarySkills,
-            bloodGroup,
-            gender,
-            maritalStatus
-        });
-        toast.success("Form Submitted Successfully");
-    }
-        catch (error) {
-            toast.error("Somethingwent Wrong");
-    }
-    };
-
-    return (
-
-        <div>
-            {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-                <Card.Title style={{ margin: 12, textAlign: "center" }}>
-                    Personal Details
-                </Card.Title>
-            </Card> */}
-
-            <Form
-                onSubmit={(e) => changeHandler(e)}
-                style={{ padding: 10 }}
-            >
-                <Row className="mb-5">
-                    <Form.Group
-                        as={Col}
-                        className="mb-3"
-                        md="6"
-                        controlId="formBasicEmail"
-                    >
-                        <Form.Label>First Name *</Form.Label>
-                        <Form.Control
-                            value={firstName}
-                            disabled
-                            required
-                            maxLength={50}
-                            onChange={(e) => {
-                                setFirstName(e.target.value);
-                            }}
-                            type="text"
-                            placeholder="Enter Name"
-                            isInvalid={ferrors}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            {ferrors}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-
-
-                    <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }}>
-                        <Form.Label>Middle name</Form.Label>
-                        <Form.Control
-                        disabled
-                            name="middleName"
-                            type="text"
-                            placeholder="Middle name"
-                            maxLength={50}
-                            value={middleName}
-                            onChange={(e) => {
-
-                                setMiddleName(e.target.value);
-                            }}
-                        />
-                    </Form.Group>
-                    <Form.Group
-                        as={Col}
-                        className="mb-3"
-                        md="6"
-                        controlId="formBasicEmail"
-                    >
-                        <Form.Label>Last Name *</Form.Label>
-                        <Form.Control
-                            value={lastName}
-                            disabled
-                            required
-                            maxLength={50}
-                            onChange={(e) => {
-                                if (firstName == "") {
-                                    setFErrors("First Name is required")
-                                }
-                                else {
-                                    setFErrors("")
-                                }
-                                setLastName(e.target.value);
-                            }}
-                            isInvalid={serror}
-                            type="text"
-                            placeholder="Enter Name"
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            {serror}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-
-                    <Form.Group as={Col} md="6" style={{ paddingLeft: 10 }}>
-                        <Form.Label>Phone Number *</Form.Label>
-                        <InputGroup>
-                            <InputGroup.Text id="inputGroupPrepend">
-                                +91
-                            </InputGroup.Text>
-                            <Form.Control
-                            disabled
-                                required
-                                type="number"
-                                name="primaryPhoneNumber"
-                                placeholder="phone Number"
-                                maxLength={10}
-                                value={primaryPhoneNumber}
-                                onChange={(e) => {
-                                    setPrimaryPhoneNumber(e.target.value);
-                                    if (e.target.value.length > 10) {
-                                        setThirdErrors(" Phonenumber length should be 10 characters");;
-                                    }
-                                    if (lastName === "") {
-                                        setSerror("Last Name is Required");
-                                    }
-                                    else {
-                                        setSerror("")
-                                    }
-                                }}
-                                isInvalid={thirderrors}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                {thirderrors}
-                            </Form.Control.Feedback>
-                        </InputGroup>
-                    </Form.Group>
-                    <Form.Group
-                        as={Col}
-                        className="mb-3"
-                        md="6"
-                        style={{ padding: 10 }}
-                        controlId="formBasicEmail"
-                    >
-                        <Form.Label>Emergency Phone Number </Form.Label>
-                        <InputGroup>
-                            <InputGroup.Text id="inputGroupPrepend">
-                                +91
-                            </InputGroup.Text>
-                            <Form.Control
-                            disabled
-                                value={secondaryPhoneNumber}
-                                maxLength={10}
-                                isInvalid={nineerrors}
-                                onChange={(e) => {
-                                    setSecondaryPhone(e.target.value);
-                                    if (e.target.value.length > 10) {
-                                        setNineErrors(" Phonenumber length should be 10 characters");;
-                                    }
-                                }}
-                                type="number"
-                                placeholder="Enter Phone"
-                            />
-                        </InputGroup>
-                        <Form.Control.Feedback type="invalid">
-                            {/* {fourtyseven} */}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-
-                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Email *</Form.Label>
-                        <Form.Control
-                        disabled
-                            required
-                            type="email"
-                            placeholder="Email"
-                            value={email}
-                            isInvalid={fourerror}
-                            onChange={(e) => {
-                                if (primaryPhoneNumber === "") {
-                                    setThirdErrors("Phone Number is Required");
-                                }
-                                else {
-                                    setThirdErrors("")
-                                }
-                                setEmail(e.target.value);
-                            }}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            {fourerror}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-
-                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Date of Birth *</Form.Label>
-                        <Form.Control
-                        disabled
-                            required
-                            type="date"
-                            name="dateOfBirth"
-                            placeholder="DOB"
-                            controlId="dateOfBirth"
-                            value={dateOfBirth}
-                            isInvalid={fiveerrors}
-                            onChange={(e) => {
-                                setDateOfBirth(e.target.value);
-                                if (email === "") {
-                                    setFourerror("Email is Required");
-                                }
-                                else {
-                                    setFourerror("")
-                                }
-                                setDateOfBirth(e.target.value);
-                            }}
-                        ></Form.Control>
-                        <Form.Control.Feedback type="invalid">
-                            {fiveerrors}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-
-                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Blood Group *</Form.Label>
-                        <Form.Select
-                        disabled
-                            required
-                            type="text"
-                            name="bloodGroup"
-                            placeholder="Blood Group "
-                            controlId="bloodGroup"
-                            isInvalid={sixerror}
-                            value={bloodGroup}
-
-                            onChange={(e) => {
-                                setBloodGroup(e.target.value);
-                                if (dateOfBirth === "") {
-                                    setFiveErrors("Email is Required");
-                                }
-                                else {
-                                    setFiveErrors("")
-                                }
-                            }}
-                        >
-                            <option>Select</option>
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
-                        </Form.Select>
-                        <Form.Control.Feedback type="invalid">
-                            {sixerror}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Gender *</Form.Label>
-                        <Form.Select
-                        disabled
-                            required
-                            type="text"
-                            name="gender"
-                            placeholder="Gender "
-                            controlId="gender"
-                            value={gender}
-                            isInvalid={sevenerrors}
-                            onChange={(e) => {
-                                setGender(e.target.value);
-                                if (bloodGroup === "") {
-                                    setSixerror(" Blood group is Required");
-                                }
-                                else {
-                                    setSixerror("")
-                                }
-                            }}
-                        >
-                            <option>Select</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                        </Form.Select>
-                        <Form.Control.Feedback type="invalid">
-                            {sevenerrors}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                        <Form.Label>Marital Status *</Form.Label>
-                        <Form.Select
-                        disabled
-                            required
-                            type="text"
-                            name="maritalStatus"
-                            placeholder="Marital Status "
-                            controlId="maritalStatus"
-                            value={maritalStatus}
-                            isInvalid={eighterror}
-                            onChange={(event) => {
-                                setMaritalStatus(event.target.value)
-                                if (gender === "") {
-                                    setSevenErrors(" Gender is Required");
-                                }
-                                else {
-                                    setSevenErrors("")
-                                }
-                            }}
-                        >
-                            <option>Select</option>
-                            <option value="Single">Single</option>
-                            <option value="Married">Married</option>
-                            <option value="Diverced">Other</option>
-                        </Form.Select>
-                        <Form.Control.Feedback type="invalid">
-                            {eighterror}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-
-
-                    <Row>
-
-                    </Row>
-
-                </Row>
-                <Button
-                    className="rounded-pill" md="3"
-                    style={{ backgroundColor: "#f5896e",
-                    borderColor: "#f5896e", float: "right" }}
-                    type="submit"
-                    size="lg"
-                >
-                    Submit
-                </Button>
-            </Form>
-        </div>
+    const newErrors = {};
+    if (
+      !jobId ||
+      jobId === "" ||
+      !jobId.match(
+        /^((\\+[1-9]{1}[ \\-]*)|(\\([0-9]{9}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+      )
     )
-}
-export default UpdateTeamMember;
+      newErrors.jobId = "Please Enter company PhoneNumber";
+    if (!jobTitle || jobTitle === "" || !jobTitle.match(/^[aA-zZ\s]+$/))
+      newErrors.jobTitle = "Please Select Client";
+    if (
+      !primarySkills ||
+      primarySkills === "" ||
+      !primarySkills.match(/^[aA-zZ\s]+$/)
+    )
+      newErrors.primarySkills = "";
+    if (
+      !positions ||
+      positions === "" ||
+      positions.match(
+        /^((\\+[1-9]{1}[ \\-]*)|(\\([0-9]{9}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+      )
+    )
+      newErrors.positions = "";
+    if (
+      !secondarySkills ||
+      secondarySkills === "" ||
+      !secondarySkills.match(/^[aA-zZ\s]+$/)
+    )
+      if (!workLocation || workLocation === "")
+        newErrors.workLocation = "Please Select startDate";
+
+    if (!raisedOn || raisedOn === "")
+      newErrors.raisedOn = "Please Select End Date";
+    if (!rate || rate === "" || rate.match(/[^0-9]/g))
+      newErrors.rate = "Please Enter rate";
+    if (!status || status === "") newErrors.status = "Please select status";
+    if (!priority || priority === "")
+      newErrors.priority = "Please Select priority";
+
+    if (!yearsOfExperience || yearsOfExperience === "")
+      newErrors.yearsOfExperience = "";
+    if (!description || description === "")
+      newErrors.description = "Please Enter Description";
+    return newErrors;
+  };
+  const da = JSON.parse(sessionStorage.getItem("userdata"));
+  const userType = da.data.userType;
+
+  const ApproveHandler = (e) => {
+    // e.prevetDefault();
+    const notify = () => toast("Approved");
+    // handleClose();
+    // const form1 = Object.assign(form, obj);
+    let employeeId = props.data.employeeId;
+
+    console.log(employeeId);
+    const obj = { status: "BUHeadApproved" };
+    const form1 = Object.assign(form, obj);
+    axios
+      .put(
+        `/recruitmentTracker/modifyRequisitionStatus/${employeeId}/${userType}`,
+        form1
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.status == 200) {
+          props.func();
+        } else {
+          console.log("props not send");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Something wrong");
+      });
+    props.handleClose();
+
+    notify();
+  };
+
+  return (
+    <div className="scroll">
+      <Row style={{ marginTop: 20 }}>
+                <Col>
+                    <Card style={{ padding: 30, paddingBottom: 20 }}>
+
+                    <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Employee ID   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                {/* {props.data.rrfId} */}
+                                </Card.Text>
+                            </Col>
+                        </Row><Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Employee Name   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {/* {props.data.departmentName} */}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                    </Card>
+                </Col>
+            </Row>
+    </div>
+  );
+};
+
+export default BUHRequisitionView;
+
+export const UserContext = createContext(null);
+const {data } = useContext(UserContext)
+  console.log(props.rowData.data.projectName)
+  const [teamData1, setTeamData] = useState([]);
+ // const rowData = props.rowData;
+  useEffect(() => {
+    loadTeamData();
+  }, [props.data]);
+const params = useParams()
+console.log(params)
+  const loadTeamData = async (e) => {
+    const response = await axios.get(`clientProjectMapping/getAllProjectTeams/Active/${params.id}`);
+    setTeamData(response.data.data);
+    console.log(response.data.data);
+  };
