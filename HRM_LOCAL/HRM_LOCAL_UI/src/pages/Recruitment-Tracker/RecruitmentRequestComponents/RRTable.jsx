@@ -173,35 +173,7 @@ const RRTable = () => {
       </Card.Body>
       <Grid container>
         <Grid xs={12}>
-          {userType === "taa" ? (
-            <MaterialTable
-              title=""
-              columns={RRColumns}
-              style={{ color: "black", fontSize: "0.9rem" }}
-              data={data}
-              editable={{}}
-              options={{
-                pageSize: 10,
-                grouping: true,
-                pageSizeOptions: [8, 10, 15, 20, 30, 50, 75, 100],
-                maxBodyHeight: 450,
-                headerStyle: {
-                  backgroundColor: "#f5896e",
-                  color: "white",
-                  fontSize: "12px",
-                  //height: "10px",
-                  //fontWeight: 'bold'
-                },
-                rowStyle: {
-                  fontSize: 14,
-                },
-                addRowPosition: "first",
-                actionsColumnIndex: -1,
-                // grouping: true,
-                exportButton: true,
-              }}
-            />
-          ) : (
+
             <MaterialTable
               title=""
               columns={RRColumns}
@@ -299,7 +271,7 @@ const RRTable = () => {
                 ),
               }}
             />
-          )}
+       
         </Grid>
       </Grid>
 
