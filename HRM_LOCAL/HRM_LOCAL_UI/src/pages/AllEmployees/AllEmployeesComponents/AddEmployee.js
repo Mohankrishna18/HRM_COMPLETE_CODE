@@ -36,7 +36,7 @@ function AddEmployee() {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
           <Modal.Title >Add Module</Modal.Title>
         </Modal.Header>
 
