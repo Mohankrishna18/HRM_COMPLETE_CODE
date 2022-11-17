@@ -164,6 +164,7 @@ const ResetPassword = () => {
                 style={{ paddingTop: "200px", height: "400px", width: "300px",marginTop:"120px" }}
               />
             </Col>
+
             <Col
               className="p-5 m-auto shadow-sm rounded-lg"
               style={{
@@ -181,9 +182,27 @@ const ResetPassword = () => {
               md={6}
               sm={12}
             >
+
               <h4 style={{ textAlign: "center", paddingTop: "10px" }}>
                 Welcome To Arshaa
               </h4>
+                            <Button
+
+size="lg"
+onClick={goBack}
+
+style={{
+  float:"right",
+  width: "30%",
+  border:"none",
+  color:"black",
+  background: "none",
+  fontsize:"15px"
+
+}}
+><BsArrowLeftShort/>
+Back
+</Button>
               <br />
               <br />
               <Form autoComplete="off" onSubmit={formik.handleSubmit}>
@@ -275,23 +294,7 @@ const ResetPassword = () => {
                 ><BsArrowLeftShort/>
                 Back
                 </Link> */}
-                <Button
-
-                  size="lg"
-                  onClick={goBack}
-                  
-                  style={{
-                    float:"right",
-                    width: "30%",
-                    border:"none",
-                    color:"black",
-                    background: "none"
-                    
                 
-                  }}
-                ><BsArrowLeftShort/>
-                  Back
-                </Button>
                 <Button
                   size="lg"
                   type="submit"
