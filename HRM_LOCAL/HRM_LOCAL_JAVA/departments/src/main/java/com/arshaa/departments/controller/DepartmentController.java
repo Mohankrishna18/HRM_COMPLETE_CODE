@@ -80,8 +80,10 @@ public class DepartmentController {
 	@GetMapping("/getDepartmentIdByBusinessUnitName/{departmentName}")
     public ResponseEntity getDepartmentIdByBusinessUnitName(@PathVariable String departmentName) {
      return serv.getBUHIDfromDepartmentName(departmentName);
-
-
-
+   }
+	
+    @GetMapping("/getBuheadNameByBusinessUnitName/{departmentName}")
+    public ResponseEntity getBuheadByDepartmentName(@PathVariable String departmentName) {
+     return serv.getBuheadNameByDepartmentName(departmentName);
    }
 }

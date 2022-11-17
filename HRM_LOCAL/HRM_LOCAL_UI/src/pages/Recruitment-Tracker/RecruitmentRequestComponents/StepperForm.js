@@ -80,19 +80,21 @@ const StepperForm = (props) => {
     const loadPocNames = async () => {
         const res = await axios.get("/emp/getAllEmployeeMasterData");
         setPocName(res.data.data);
-        console.log(res.data.data);
+        
     };
 
     const loadHRDeptEmployees = async () => {
         const res = await axios.get("/emp/getEmployeesByDepartment/HR");
-        setHrPanel(res.data.data);
-        console.log(res.data.data);
+        const sData1 = res.data.data.filter(item => item.status === 'Active')
+        setHrPanel(sData1);
+        console.log(sData1);
+        
     };
 
     const loadClients = async () => {
         const res = await axios.get("/clientProjectMapping/getAllClients");
         setClients(res.data.data);
-        console.log(res.data.data);
+       
     };
 
     const loadDepartmentsData = async () => {
@@ -322,11 +324,7 @@ const StepperForm = (props) => {
         .format('YYYY-MM-DD hh:mm:ss');
     console.log(raisedOn);
     // const raisedOn = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
-    const raisedBy = response.firstName;
-
-    console.log(raisedOn, raisedBy);
-
-
+    const raisedBy = response.fullName;
     const history = useHistory();
     const routeToRRPage=() => history.push("/app/rrf")
     const handleSubmit =(e)=> {
@@ -892,7 +890,7 @@ const StepperForm = (props) => {
                                             <option>Select </option>
                                             {pocname.map((poc) => (
                                                 <option value={poc.employeeId}>
-                                                    {poc.firstName}
+                                                    {poc.fullName}
                                                 </option>
                                             ))}
                                         </Form.Select>
@@ -947,7 +945,7 @@ const StepperForm = (props) => {
                                             <option>Select </option>
                                             {pocname.map((poc) => (
                                                 <option value={poc.employeeId}>
-                                                    {poc.firstName}
+                                                    {poc.fullName}
                                                 </option>
                                             ))}
                                         </Form.Select>
@@ -971,7 +969,7 @@ const StepperForm = (props) => {
                                             <option>Select </option>
                                             {pocname.map((poc) => (
                                                 <option value={poc.employeeId}>
-                                                    {poc.firstName}
+                                                    {poc.fullName}
                                                 </option>
                                             ))}
                                         </Form.Select>

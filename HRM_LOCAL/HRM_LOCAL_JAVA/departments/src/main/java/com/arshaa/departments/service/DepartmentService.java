@@ -11,4 +11,5 @@ public interface DepartmentService {
 	public ResponseEntity saveData(Departmentmaster newDepartmentMaster);
 	public int getDepartmentIdByDepartmentName(String departmentName);
 	public ResponseEntity getBUHIDfromDepartmentName(String departmentName);
+	public ResponseEntity getBuheadNameByDepartmentName(String departmentName);
 }
