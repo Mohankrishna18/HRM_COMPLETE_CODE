@@ -1157,8 +1157,6 @@ public class MainServiceImpl implements MainService {
 				empd.setIrm(em.getIrm());
 				empd.setSrm(em.getSrm());
 				empd.setConfirmationDate(em.getConfirmationDate());
-				empd.setEmploymentType(em.getEmploymentType());
-				empd.setBand(em.getBand());
 
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
@@ -1184,7 +1182,6 @@ public class MainServiceImpl implements MainService {
 			if (!em.equals(null)) {
 				em.setPrimarySkills(empd.getPrimarySkills());
 				em.setSecondarySkills(empd.getSecondarySkills());
-				em.setEmploymentType(empd.getEmploymentType());
 				em.setBand(empd.getBand());
 				em.setDepartmentName(empd.getDepartmentName());
 				em.setDesignationName(empd.getDesignationName());
@@ -1194,7 +1191,6 @@ public class MainServiceImpl implements MainService {
 				em.setResignationDate(empd.getResignationDate());
 				em.setStatus(empd.getStatus());
 				em.setEmploymentType(empd.getEmploymentType());
-				em.setBand(empd.getBand());
 				em.setIrm(empd.getIrm());
 				em.setSrm(empd.getSrm());
 				em.setConfirmationDate(empd.getConfirmationDate());
