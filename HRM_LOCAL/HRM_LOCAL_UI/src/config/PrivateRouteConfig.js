@@ -319,7 +319,7 @@ export default [
     component: PMOMain,
     type: "approvals",
     path: "/PMO",
-    icon: <FcApproval />,
+    icon: <FcApproval/>,
     title: "Approvals",
     permission: [Roles.pmohead],
   },
@@ -618,14 +618,14 @@ export default [
 
     permission: [Roles.pmohead],
   },
-  {
-    component: BUHMain,
-    type: "null",
-    path: "/BUHead",
-    icon: <FcManager />,
-    title: "Approvals",
-    permission: [Roles.buhead],
-  },
+  // {
+  //   component: BUHMain,
+  //   type: "null",
+  //   path: "/BUHead",
+  //   icon: <FcManager />,
+  //   title: "Approvals",
+  //   permission: [Roles.buhead],
+  // },
   {
     component: HRConfirmationMain,
     type: "approvals",

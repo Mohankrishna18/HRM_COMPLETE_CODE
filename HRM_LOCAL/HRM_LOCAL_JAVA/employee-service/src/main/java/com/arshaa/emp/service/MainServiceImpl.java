@@ -1210,6 +1210,11 @@ public class MainServiceImpl implements MainService {
 				em.setSrm(empd.getSrm());
 				em.setConfirmationDate(empd.getConfirmationDate());
 				emRepo.save(em);
+				
+				String updateStatus = "http://loginservice/login/makeLoginsInActive/";
+                if (em.getStatus().equalsIgnoreCase("InActive")) {
+                String restemplate = template.getForObject(updateStatus+em.getEmployeeId(),String.class);
+                }
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
 				r.setData(em);

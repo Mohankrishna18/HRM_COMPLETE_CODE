@@ -24,7 +24,8 @@ function BUHMain() {
            <Card.Title>Approvals</Card.Title>
              <Row>
               <Col xs={12}>
-              <Box sx={{ width: '100%', typography: 'body1' }}>
+              <ManagerEmployeesLeavesWaitingForApproval/>
+              {/* <Box sx={{ width: '100%', typography: 'body1' }}>
                                 <TabContext value={value}>
                                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                         <TabList onChange={handleChange} 
@@ -33,14 +34,14 @@ function BUHMain() {
                                             <Tab label="Approval" value="1" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }}  ></Tab>
                                             <Tab label="Leave Approval" value="2" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }}  />
 
-                                            {/* FcConferenceCall/FcLeave/FcPositiveDynamic/FcConferenceCall/FcLeave/ */}
+                       
                                         </TabList>
                                     </Box>
                                     <TabPanel style={{ padding: "10px" }} value="1"><BHUApproval/></TabPanel>
                                     <TabPanel style={{ padding: "10px" }} value="2"><ManagerEmployeesLeavesWaitingForApproval/></TabPanel>
                                   
                                 </TabContext>
-                            </Box>
+                            </Box> */}
                
                </Col>
              </Row>

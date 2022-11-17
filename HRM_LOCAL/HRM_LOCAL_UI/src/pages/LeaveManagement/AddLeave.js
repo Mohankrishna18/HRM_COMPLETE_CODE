@@ -228,7 +228,7 @@ onHide={handleClose}
 backdrop="static"
 keyboard={false}
 >
-<Modal.Header closeButton>
+<Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
 <Modal.Title>Apply Leave</Modal.Title>
 </Modal.Header>
 
