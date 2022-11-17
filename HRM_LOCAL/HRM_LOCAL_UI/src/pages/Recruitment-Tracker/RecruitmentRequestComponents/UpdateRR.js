@@ -11,7 +11,7 @@ import Moment from "moment";
 import { UserContext } from './UpdateRequisition';
 import './utils/RT.css';
 
-export default function UpdateRR(props) {
+ const UpdateRR= (props) => {
 
   // console.log(props);
   // const { data, setData } = useContext(UserContext);
@@ -892,4 +892,4 @@ console.log(initDate);
     </div>
   )
 }
-
+export default UpdateRR;

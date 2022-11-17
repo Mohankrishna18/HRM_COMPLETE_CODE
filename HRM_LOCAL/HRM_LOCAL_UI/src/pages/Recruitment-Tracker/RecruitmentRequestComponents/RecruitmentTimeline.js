@@ -31,7 +31,7 @@ const steps = [
   }
 ];
 
-export default function RecruitmentTimeline() {
+ const RecruitmentTimeline=()=> {
   const [activeStep, setActiveStep] = useState(0);
   const status = true;
 
@@ -74,3 +74,5 @@ export default function RecruitmentTimeline() {
     </Box>
   );
 }
+
+export default RecruitmentTimeline;
