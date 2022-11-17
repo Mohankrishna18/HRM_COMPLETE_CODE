@@ -155,6 +155,7 @@ public class RequisitionTrackerController {
            r.setRole(o.getRole());
            r.setWorkLocation(o.getWorkLocation());
            r.setYoe(o.getYoe());
+           r.setPriority(o.getPriority());
            r.setRrfStatus(o.getRrfStatus());
            r.setWorkflowStatus(o.getWorkflowStatus());
            r.setPositions(o.getPositions());
@@ -173,13 +174,16 @@ public class RequisitionTrackerController {
            r.setRaisedBy(o.getRaisedBy());
            r.setComments(o.getComments());
            r.setReqType1(o.getReqType1());
+           r.setInterviewPanel2(o.getInterviewPanel2());
+           r.setInterviewPanel1(o.getInterviewPanel1());
+           r.setHrPanel(o.getHrPanel());
            r.setReqType2(o.getReqType2());
            r.setReqType3(o.getReqType3());
            r.setAllocType(o.getAllocType());
            r.setResourceRequiredDate(o.getResourceRequiredDate());
            r.setRequestClosedDate(o.getRequestClosedDate());
            
-//           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
+           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
            req.add(r);
        });   
         return req;

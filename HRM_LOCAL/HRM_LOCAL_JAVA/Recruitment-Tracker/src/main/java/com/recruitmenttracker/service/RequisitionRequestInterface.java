@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
 import com.recruitmenttracker.modal.EmployeeReq;
@@ -20,11 +21,6 @@ public interface RequisitionRequestInterface {
 	public ResponseEntity updateRR(String requisitionId, RequisitionRequestEntity RRUpdate);
 	
 	public ResponseEntity updateWorkflowStatusByJobID(long rrfId);
-
-
-	
-
-
 	
 	// GSDR Changes
 

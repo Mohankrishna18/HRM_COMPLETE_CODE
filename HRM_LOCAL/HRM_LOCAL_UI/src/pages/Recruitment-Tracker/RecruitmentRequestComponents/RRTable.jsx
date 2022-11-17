@@ -96,7 +96,7 @@ const params = useParams()
       </Modal>
       <Modal show={viewShow} onHide={viewHandleClose} size="lg">
         <Modal.Header closeButton style={{
-          backgroundColor: "#FF9E14", paddingTop: "7px",
+          backgroundColor: "#f5896e", paddingTop: "7px",
           paddingBottom: "4px",
         }}>
           <Modal.Title>Arshaa Employee Requisitions</Modal.Title>
