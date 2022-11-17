@@ -30,9 +30,10 @@
         "field":"role"
     },
     {
-        "title":"Ageing",
-        "field":"ageing"
+        "title":"Positions",
+        "field": "positions"
     },
+
     {
         "title":"Location",
         "field": "workLocation"
@@ -45,24 +46,16 @@
         "title":"Status",
         "field": "rrfStatus"
     },
-
-
-
-   {
-        "title":"Positions",
-        "field": "positions"
+    {
+        "title":"Aging",
+        "field":"ageing"
     },
-    
     {
         "title" : "Raised Date",
         "field" : "raisedOn",
         "type": "date",
         "dateSetting": { "locale": "en-GB" }
     }
-    
-   
-
-
 
 ]
 

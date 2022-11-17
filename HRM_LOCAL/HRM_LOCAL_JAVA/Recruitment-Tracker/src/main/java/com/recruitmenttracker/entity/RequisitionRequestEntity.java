@@ -34,9 +34,11 @@ public class RequisitionRequestEntity {
     private String jobTitle;
     @Column(length = 700)
     private String description;
-
+    
     @Column
     private String rrfStatus;
+    @Column
+    private String businessUnitHeadName;
     @Column
     private String rrfCat;
     @Column
@@ -97,8 +99,14 @@ public class RequisitionRequestEntity {
     private Date requestClosedDate;
     @Column
     private int ageing;
-
-    
+    @Column 
+    private String priority;
+    @Column 
+    private String interviewPanel1;
+    @Column
+    private String interviewPanel2;
+    @Column 
+    private String hrPanel;
     
     // GSDR Changes
 
@@ -498,25 +506,69 @@ public class RequisitionRequestEntity {
         this.requestClosedDate = requestClosedDate;
     }
 
-  
+    public String getBusinessUnitHeadName() {
+        return businessUnitHeadName;
+    }
+
+    public void setBusinessUnitHeadName(String businessUnitHeadName) {
+        this.businessUnitHeadName = businessUnitHeadName;
+    }
 
     
+   
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+   
+
+    public String getInterviewPanel1() {
+        return interviewPanel1;
+    }
+
+    public void setInterviewPanel1(String interviewPanel1) {
+        this.interviewPanel1 = interviewPanel1;
+    }
+
+    public String getInterviewPanel2() {
+        return interviewPanel2;
+    }
+
+    public void setInterviewPanel2(String interviewPanel2) {
+        this.interviewPanel2 = interviewPanel2;
+    }
+
+    public String getHrPanel() {
+        return hrPanel;
+    }
+
+    public void setHrPanel(String hrPanel) {
+        this.hrPanel = hrPanel;
+    }
 
     public RequisitionRequestEntity(long rrfId, String requisitionId, String jobTitle, String description,
-            String rrfStatus, String rrfCat, String technology, String pocname, String role, String workflowStatus,
-            int positions, String pSkills, String sSkills, String workLocation, float workingHours, String empType,
-            String qualification, float yoe, float rate, String projectName, String clientName, String departmentName,
-            String raisedBy, String raisedOn, String textAreaDesc, String comments, String employeeId, String reqType1,
-            String reqType2, String reqType3, String allocType, Date requestInitiatedDate, Date resourceRequiredDate,
-            Date requestClosedDate, int ageing, String buheadId, String buheadName, String pmoheadId,
-            String pmoheadName, String buheadApprove, String pmoheadApprove, String buheadReject, String pmoheadReject,
-            Date buheadApprovedOn, Date pmoheadApprovedOn, String buheadApprovedBy, String pmoheadApprovedBy) {
+            String rrfStatus, String businessUnitHeadName, String rrfCat, String technology, String pocname,
+            String role, String workflowStatus, int positions, String pSkills, String sSkills, String workLocation,
+            float workingHours, String empType, String qualification, float yoe, float rate, String projectName,
+            String clientName, String departmentName, String raisedBy, String raisedOn, String textAreaDesc,
+            String comments, String employeeId, String reqType1, String reqType2, String reqType3, String allocType,
+            Date requestInitiatedDate, Date resourceRequiredDate, Date requestClosedDate, int ageing, String priority,
+            String interviewPanel1, String interviewPanel2, String hrPanel, String buheadId, String buheadName,
+            String pmoheadId, String pmoheadName, String buheadApprove, String pmoheadApprove, String buheadReject,
+            String pmoheadReject, Date buheadApprovedOn, Date pmoheadApprovedOn, String buheadApprovedBy,
+            String pmoheadApprovedBy) {
         super();
         this.rrfId = rrfId;
         this.requisitionId = requisitionId;
         this.jobTitle = jobTitle;
         this.description = description;
         this.rrfStatus = rrfStatus;
+        this.businessUnitHeadName = businessUnitHeadName;
         this.rrfCat = rrfCat;
         this.technology = technology;
         this.pocname = pocname;
@@ -547,6 +599,10 @@ public class RequisitionRequestEntity {
         this.resourceRequiredDate = resourceRequiredDate;
         this.requestClosedDate = requestClosedDate;
         this.ageing = ageing;
+        this.priority = priority;
+        this.interviewPanel1 = interviewPanel1;
+        this.interviewPanel2 = interviewPanel2;
+        this.hrPanel = hrPanel;
         this.buheadId = buheadId;
         this.buheadName = buheadName;
         this.pmoheadId = pmoheadId;

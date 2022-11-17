@@ -91,9 +91,20 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 	public ResponseEntity getAllRequisitions() {
 		RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
 		List<RequisitionRequestEntity> requisitions = rrRepository.findAll();
+//		String empDeptUrl = "http://empService/emp/getDepartmentNameByEmployeeId/";
+//		String deptHeadUrl = "http://departments/dept/getBuheadNameByBusinessUnitName/";
 		try {
 			if(!requisitions.isEmpty()) {
-                
+//			    requisitions.forEach(e->{
+//			        
+//			        RequisitionRequestResponse res = template.getForObject(deptHeadUrl,RequisitionRequestResponse.class);
+//
+//			        RequisitionRequestResponse res1 = template.getForObject(empDeptUrl, RequisitionRequestResponse.class);
+//			        
+//			        
+//			        
+//			    });
+			   
 				rrr.setStatus(true);
 				rrr.setMessage("Data Fetching");
 				rrr.setData(requisitions);
@@ -142,6 +153,7 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 			rrEntity.setPositions(rrUpdate.getPositions());
 			rrEntity.setpSkills(rrUpdate.getpSkills());
 			rrEntity.setsSkills(rrUpdate.getsSkills());
+			rrEntity.setPriority(rrUpdate.getPriority());
 			rrEntity.setWorkingHours(rrUpdate.getWorkingHours());
 			rrEntity.setWorkLocation(rrUpdate.getWorkLocation());
 			rrEntity.setEmpType(rrUpdate.getEmpType());
@@ -155,6 +167,9 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 			rrEntity.setRaisedOn(rrUpdate.getRaisedOn());
 			rrEntity.setTextAreaDesc(rrUpdate.getTextAreaDesc());
 			rrEntity.setComments(rrUpdate.getComments());
+			rrEntity.setInterviewPanel1(rrUpdate.getInterviewPanel1());
+			rrEntity.setInterviewPanel2(rrUpdate.getInterviewPanel2());
+			rrEntity.setHrPanel(rrUpdate.getHrPanel());
 			
 			RequisitionRequestEntity RRsEntity = rrRepository.save(rrEntity);
 			System.out.println(RRsEntity);
@@ -339,30 +354,59 @@ hrApp.forEach(e->{
         }
     }
 
-	@Override
-	public ResponseEntity getRequisitionsByRequisitionId(String requisitionId) {
-		 RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();  
-	        try {
-	        	EmployeeReq re = new EmployeeReq();
-	            RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
-	            
-	            re.setClientName(rfs.getClientName());
-	            re.setRaisedBy(rfs.getRaisedBy());
-	            re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
-	            re.setJobTitle(rfs.getJobTitle());
-	            re.setDepartmentName(rfs.getDepartmentName());
-	            re.setProjectName(rfs.getProjectName());
-	            re.setRequisitionId(rfs.getRequisitionId());
-	            rrr.setStatus(true);
-	            rrr.setMessage("Geting Data Succussfully");
-	            rrr.setData(re);
-	            return new ResponseEntity(rrr, HttpStatus.OK);
-	        } catch (Exception e) {
-	            rrr.setStatus(true);
-	            rrr.setMessage("Something went wrong");
-	            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
-	        }
-	}
+    @Override
+    public ResponseEntity getRequisitionsByRequisitionId(String requisitionId) {
+         RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();  
+            try {
+                EmployeeReq re = new EmployeeReq();
+                RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
+                
+                re.setClientName(rfs.getClientName());
+                re.setRaisedBy(rfs.getRaisedBy());
+                re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
+                re.setJobTitle(rfs.getJobTitle());
+                re.setDepartmentName(rfs.getDepartmentName());
+                re.setProjectName(rfs.getProjectName());
+                re.setRequisitionId(rfs.getRequisitionId());
+               
+                re.setDescription(rfs.getDescription());
+                re.setTechnology(rfs.getTechnology());
+                re.setPocname(rfs.getPocname());
+                re.setRole(rfs.getRole());
+                re.setPositions(rfs.getPositions());
+                re.setpSkills(rfs.getpSkills());
+                re.setsSkills(rfs.getsSkills());
+                re.setWorkLocation(rfs.getWorkLocation());
+                re.setWorkingHours(rfs.getWorkingHours());
+                re.setEmpType(rfs.getEmpType());
+                re.setQualification(rfs.getQualification());
+                re.setYoe(rfs.getYoe());
+                re.setRate(rfs.getRate());
+                re.setPriority(rfs.getPriority());
+                re.setProjectName(rfs.getProjectName());
+                re.setClientName(rfs.getClientName());
+                re.setDepartmentName(rfs.getDepartmentName());
+                re.setComments(rfs.getComments());
+                re.setReqType1(rfs.getReqType1());
+                re.setReqType2(rfs.getReqType2());
+                re.setReqType3(rfs.getReqType3());
+                re.setAllocType(rfs.getAllocType());
+                re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
+                re.setResourceRequiredDate(rfs.getResourceRequiredDate());
+                re.setInterviewPanel1(rfs.getInterviewPanel1());
+                re.setInterviewPanel2(rfs.getInterviewPanel2());
+                re.setHrPanel(rfs.getHrPanel());
+                rrr.setStatus(true);
+                rrr.setMessage("Geting Data Succussfully");
+                rrr.setData(re);
+                return new ResponseEntity(rrr, HttpStatus.OK);
+            } catch (Exception e) {
+                rrr.setStatus(true);
+                rrr.setMessage("Something went wrong");
+                return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+            }
+    }
+
 
 
 
