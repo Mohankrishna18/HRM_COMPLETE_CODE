@@ -6,13 +6,41 @@ import { toast } from "react-toastify";
 import { Button } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import axios from '../../Uri';
+import Moment from 'react-moment';
+import { BASE_URL } from '../../Constant';
 
 export default function Action(props) {
+    console.log(props);
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
     const [departments, setDepartments] = useState([]);
     const [designations, setDesignations] = useState([]);
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({});
+
+
+
+    const [primarySkills, setPrimarySkills] = useState("");
+    const [secondarySkills, setSecondarySkills] = useState("");
+    const [reportingManager, setReportingManager] = useState("");
+    const [jobTitle, setJobTitle] = useState("");
+    const [client, setClient] = useState("");
+    const [projectName, setProjectName] = useState("");
+    const [buh, setBuh] = useState("");
+    const [irmId, setirmId] = useState("");
+    const [srmId, setSrmId] = useState("");
+    const [buhId, setBuhId] = useState("");
+
+    const [departmentName, setDepartmentName] = useState("");
+   
+    const [designationName, setDesignationName] = useState("");
+    const [exitDate, setExitDate] = useState("");
+    const [resignationDate, setResignationDate] = useState("");
+    const [srm, setSrm] = useState("");
+    const [irm, setIrm] = useState("");
+    const [confirmationDate, setConfirmationDate] = useState("");
+    const [band, setBand] = useState("");
+    const [employmentType, setEmploymentType] = useState("");
+    const [status, setStatus] = useState("");
 
     const forms = useRef(null);
     console.log(props);
@@ -35,13 +63,53 @@ export default function Action(props) {
         setDesignations(res.data);
     };
 
+
+    console.log(props.data)
     const loadEmploymentDetails = async () => {
-        const res = await axios.get(`/emp/getEmploymentDetails/${props.data}`);
-        setData(res.data);
-        console.log(res.data)
+        const res = await axios.get(`${BASE_URL}/emp/getEmploymentDetails/${props.data}`);
+        console.log(res.data.data);
+        setData(res.data.data);
+        console.log(data);
+        setDepartmentName(res.data.data.departmentName);
+        console.log(res.data.data.departmentName);
+        setDesignationName(res.data.data.designationName);
+        setExitDate(res.data.data.exitDate);
+        setResignationDate(res.data.data.resignationDate);
+        setSrm(res.data.data.srm);
+        setIrm(res.data.data.irm);
+        setProjectName(res.data.data.projectName);
+        setConfirmationDate(res.data.data.confirmationDate);
+        setBand(res.data.data.band);
+        setEmploymentType(res.data.data.employmentType);
+        setStatus(res.data.data.status);
+        setPrimarySkills(res.data.data.primarySkills);
+        setSecondarySkills(res.data.data.secondarySkills);
+        setReportingManager(res.data.data.reportingManager);
+        // setJobTitle(res.data.jobTitle);
+        // setClient(res.data.client);
+        // setOnboardingStatus(res.data.onboardingStatus);
+        // setBuh(res.data.data.buh);
+        // setirmId(res.data.irmId);
+        // setSrmId(res.data.srmId);
+        // setBuhId(res.data.buhId);
+        console.log(res.data.data.departmentName)
+        console.log(res.data.data.designationName)
+        console.log(res.data.data.exitDate)
+        console.log(res.data.data.resignationDate)
+        console.log(res.data.data.srm)
+        console.log(res.data.data.irm)
+        console.log(res.data.data.confirmationDate)
+        console.log(res.data.data.employmentType)
+        console.log(res.data.data.band)
+        console.log(res.data.data.primarySkills)
+        console.log(res.data.data.status)
+        console.log(res.data.data.secondarySkills)
+        console.log(res.data.data.reportingManager)
+        // console.log(res.data)
     };
 
-
+    console.log(departmentName);
+    console.log(employmentType, designationName);
     const [bands, setBands] = useState([]);
     useEffect(() => {
         axios.get("/bands/getAllBands").then((response) => {
@@ -66,6 +134,7 @@ export default function Action(props) {
             // console.log(result);
             console.log(response.data.data);
             setUsers(response.data.data);
+
         };
         loadUsers();
     }, []);
@@ -86,16 +155,32 @@ export default function Action(props) {
             });
     }
 
+
+//     setPrimarySkills setSecondarySkills setEmploymentType setBand setDepartmentName setStatus
+// setDepartmentName setDesignationName setReportingManager setProjectName setExitDate setResignationDate setConfirmationDate
     const handleSubmit = (e) => {
         e.preventDefault();
         // e.target.reset();
         axios
-            .put(`/emp/updateEmploymentDetails/${props.data}`, form)
-            // .then((res) => {
-            // // console.log(res)
-            // 
-            //   setTimeout(5000);
-            // props.handleClose;
+            .put(`/emp/updateEmploymentDetails/${props.data}`,
+            {
+                departmentName,
+                designationName,
+                exitDate,
+                resignationDate,
+                confirmationDate,
+                employmentType,
+                status,
+                primarySkills,
+                secondarySkills,
+                reportingManager,
+                irm,
+                srm,
+                band,
+                projectName
+               
+
+            })
             .then((response) => {
                 if (response.status == 200) {
                     props.func()
@@ -107,28 +192,24 @@ export default function Action(props) {
                 }
             })
             .catch((err) => {
-                toast.error("Something went wrong");
+                toast.error("went wrong");
             });
-        // })
-
     }
 
-    console.log(form);
-
+    
+console.log(data);
 
     //sorting Array of Objects
 
     var sortedDepartments = _.sortBy(departments, 'departmentName');
     var sortedDesignations = _.sortBy(designations, 'designationName');
     var sortedUsers = _.sortBy(users, 'fullName');
-    console.log(sortedDesignations);
-    console.log(sortedUsers);
-    console.log(sortedDepartments);
+
 
     return (
         <>
             <Form
-                ref={forms}
+                // ref={forms}
                 className="formone"
                 style={{ padding: 10 }}
                 onSubmit={handleSubmit}
@@ -142,11 +223,11 @@ export default function Action(props) {
                             type="text"
                             controlId="departmentName"
                             placeholder="Business Unit Name"
-                            defaultValue={data.department}
-                            value={form.departmentName}
+                            defaultValue={departmentName}
+                            value={departmentName}
                             maxLength={30}
-                            onChange={(e) => setField("departmentName", e.target.value)}
-                        ><option>Select Business Unit</option>
+                            onChange={(e) => setDepartmentName(e.target.value)}
+                        ><option>select Department</option>
                             {sortedDepartments.map((departmentName) => (
                                 <option value={departmentName.departmentName}>{departmentName.departmentName}</option>
                             ))}</Form.Select>
@@ -160,10 +241,10 @@ export default function Action(props) {
                             type="text"
                             controlId="designationName"
                             placeholder="Designation Name"
-                            defaultValue={data.designation}
-                            value={form.designationName}
+                            defaultValue={designationName}
+                            value={designationName}
                             maxLength={30}
-                            onChange={(e) => setField("designationName", e.target.value)}
+                            onChange={(e) => setDesignationName(e.target.value)}
                         ><option>Select Designation</option>
                             {sortedDesignations.map((designationsName) => (
                                 <option value={designationsName.designationName}>{designationsName.designationName}</option>
@@ -176,10 +257,12 @@ export default function Action(props) {
                             type="date"
                             placeholder="Resignation Date"
                             controlId="resignationDate"
-                            defaultValue={data.resignationDate}
-                            value={form.resignationDate}
-                            onChange={(e) => setField("resignationDate", e.target.value)}
+                            defaultValue={resignationDate}
+                            value={resignationDate}
+                            onChange={(e) => setResignationDate(e.target.value)}
                         ></Form.Control>
+
+
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                         <Form.Label>Exit Date</Form.Label>
@@ -188,9 +271,9 @@ export default function Action(props) {
                             type="date"
                             placeholder="exitDate"
                             controlId="exitDate"
-                            defaultValue={data.exitDate}
-                            value={form.exitDate}
-                            onChange={(e) => setField("exitDate", e.target.value)}
+                            defaultValue={exitDate}
+                            value={exitDate}
+                            onChange={(e) => setExitDate(e.target.value)}
 
                         ></Form.Control>
                     </Form.Group>
@@ -202,10 +285,10 @@ export default function Action(props) {
                             type="text"
                             controlId="status"
                             placeholder="status"
-                            // defaultValue={data.status}
-                            value={form.status}
+                            defaultValue={status}
+                            value={status}
                             maxLength={30}
-                            onChange={(e) => setField("status", e.target.value)}
+                            onChange={(e) => setStatus(e.target.value)}
                         ><option value="">select status</option>
                             <option value="Active">Active</option>
                             <option value="InActive">InActive</option>
@@ -220,8 +303,9 @@ export default function Action(props) {
                             type="text"
                             placeholder="Type Of Employment"
                             controlId="employmentType"
-                            value={form.employmentType}
-                            onChange={(e) => setField("employmentType", e.target.value)}
+                            value={employmentType}
+                            defaultValue={employmentType}
+                            onChange={(e) => setEmploymentType(e.target.value)}
 
                         >
                             <option value="">Select </option>
@@ -238,8 +322,8 @@ export default function Action(props) {
                             type="text"
                             placeholder="Band"
                             controlId="band"
-                            value={form.band}
-                            onChange={(e) => setField("band", e.target.value)}
+                            value={band}
+                            onChange={(e) => setBand(e.target.value)}
                         >
                             <option>Select</option>
                             {bands.map((bandss) => (
@@ -257,8 +341,9 @@ export default function Action(props) {
                             type="text"
                             placeholder="select IRM"
                             controlId="irm"
-                            value={form.irm}
-                            onChange={(e) => setField("irm", e.target.value)}
+                            value={irm}
+
+                            onChange={(e) => setIrm(e.target.value)}
                         >
                             <option value="">Select</option>
                             {sortedUsers.map((user) => (
@@ -276,8 +361,8 @@ export default function Action(props) {
                             type="text"
                             placeholder="select srm"
                             controlId="srm"
-                            value={form.srm}
-                            onChange={(e) => setField("srm", e.target.value)}
+                            value={srm}
+                            onChange={(e) => setSrm(e.target.value)}
                         >
                             <option value="">Select</option>
                             {sortedUsers.map((user) => (
@@ -286,6 +371,21 @@ export default function Action(props) {
                                 </option>
                             ))}
                         </Form.Select>
+                    </Form.Group>
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Confirmation Date</Form.Label>
+                        <Form.Control
+                            required
+                            type="date"
+                            placeholder="confirmationDate"
+                            controlId="confirmationDate"
+                            defaultValue={<Moment format="DD-MM-YYYY">
+                            {confirmationDate}
+                          </Moment>}
+                            value={confirmationDate}
+                            onChange={(e) => setConfirmationDate(e.target.value)}
+
+                        ></Form.Control>
                     </Form.Group>
 
                 </Row>
