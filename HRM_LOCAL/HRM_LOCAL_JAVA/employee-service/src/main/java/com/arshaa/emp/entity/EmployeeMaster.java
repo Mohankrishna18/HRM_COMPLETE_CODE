@@ -232,6 +232,7 @@ public class EmployeeMaster {
     private String hrcomment;
     private Date confirmationDate;
     private String status;
+    private String probationempfeedback;
    
 
   
@@ -972,7 +973,7 @@ public class EmployeeMaster {
 			String employmentType, String primarySkills, String secondarySkills, String panNumber, String aadharNumber,
 			String uanNumber, String bankName, String accountNumber, String ifscCode, String branch, String band,
 			String exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,
-			String buhId,String resignationDate,String intermediateQualification, String sscQualification, String officialMail, String hrcomment,String Status) {
+			String buhId,String resignationDate,String intermediateQualification, String sscQualification, String officialMail, String hrcomment,String Status, String probationempfeedback) {
 		super();
 		this.employeeId = employeeId;
 		this.departmentName = departmentName;
@@ -1086,7 +1087,14 @@ public class EmployeeMaster {
 		this.hrcomment=hrcomment;
 		this.confirmationDate = confirmationDate;
 		this.status=status;
+		this.probationempfeedback = probationempfeedback;
 	}
+		public String getProbationempfeedback() {
+			return probationempfeedback;
+		}
+		public void setProbationempfeedback(String probationempfeedback) {
+			this.probationempfeedback = probationempfeedback;
+		}
 		public EmployeeMaster() {
 		super();
 		// TODO Auto-generated constructor stub
