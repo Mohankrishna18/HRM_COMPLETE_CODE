@@ -210,7 +210,7 @@ public class EmployeeMaster {
 	private String ifscCode;
 	private String branch;
 	private String band;
-	private String exitDate;
+	private Date exitDate;
 	private String resignationDate;
 	
 	private String srm;
@@ -232,6 +232,7 @@ public class EmployeeMaster {
     private String hrcomment;
     private Date confirmationDate;
     private String status;
+    private String probationempfeedback;
    
 
   
@@ -893,10 +894,11 @@ public class EmployeeMaster {
 	public void setBand(String band) {
 		this.band = band;
 	}
-	public String getExitDate() {
+	
+	public Date getExitDate() {
 		return exitDate;
 	}
-	public void setExitDate(String exitDate) {
+	public void setExitDate(Date exitDate) {
 		this.exitDate = exitDate;
 	}
 	public String getSrm() {
@@ -1086,7 +1088,14 @@ public class EmployeeMaster {
 		this.hrcomment=hrcomment;
 		this.confirmationDate = confirmationDate;
 		this.status=status;
+		this.probationempfeedback = probationempfeedback;
 	}
+		public String getProbationempfeedback() {
+			return probationempfeedback;
+		}
+		public void setProbationempfeedback(String probationempfeedback) {
+			this.probationempfeedback = probationempfeedback;
+		}
 		public EmployeeMaster() {
 		super();
 		// TODO Auto-generated constructor stub

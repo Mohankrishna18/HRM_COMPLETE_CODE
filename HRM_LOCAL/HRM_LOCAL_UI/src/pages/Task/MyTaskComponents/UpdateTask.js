@@ -129,8 +129,8 @@ const UpdateTask = (props) => {
 
           userId: userId,
           projectName: props.updateOnboard.projectName,
-         
-       //   projectId:props.updateOnboard.projectId,
+          
+         projectId:props.updateOnboard.projectId,
           userStory: userStory,
           taskTitle: taskTitle,
           taskType: taskType,
@@ -266,52 +266,51 @@ disabled
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>Task Type *</Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="Task Type"
-                  controlId="taskType"
-                  value={form.taskType}
-                  defaultValue={props.updateOnboard.taskType}
-                  onChange={(e) => setField("taskType", e.target.value)}
-                  isInvalid={!!errors.taskType}
-                >
-                  <option>Select Task Type</option>
-                  <option>Analysis</option>
-                  <option>Development</option>
-                  <option>Code Review</option>
-                  <option>Unit Testing</option>
-                  <option>Code Integration</option>
-                  <option>Integration Testing</option>
-                  <option>Design Review</option>
-                  <option>TestCase Creation</option>
-                  <option>Testcase Review</option>
-                  <option>Testcase Execution</option>
-                  <option>Deployment</option>
-                  <option>others</option>
-                </Form.Select>
+               <Form.Label>Task Type *</Form.Label>
+            <Form.Select
+              required
+              type="text"
+              placeholder="Task Type"
+              controlId="taskType"
+              defaultValue={props.updateOnboard.taskType}
+              value={taskType}
+              onChange={(e) => setTaskType(e.target.value)}
+              isInvalid={!!errors.taskType}
+            >
+              <option>Select Task Type</option>
+              <option>Analysis</option>
+              <option>Development</option>
+              <option>Code Review</option>
+              <option>Unit Testing</option>
+              <option>Code Integration</option>
+              <option>Integration Testing</option>
+              <option>Analysis</option>
+              <option>Design Review</option>
+              <option>TestCase Creation</option>
+              <option>Testcase Review</option>
+              <option>Testcase Execution</option>
+              <option>Deployment</option>
+            </Form.Select>
 
-                <Form.Control.Feedback type="invalid">
-                  {errors.taskType}
-                </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">
+              {errors.taskType}
+            </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="3">
-                <Form.Label>Estimated Hours *</Form.Label>
-                <Form.Control
-                  required
-                  type="text"
-                  maxLength={3}
-                  placeholder="Estimated Hours"
-                  controlId="estimatedHours"
-                  value={form.estimatedHours}
-                  defaultValue={props.updateOnboard.estimatedHours}
-                  onChange={(e) => setField("estimatedHours", e.target.value)}
-                  isInvalid={!!errors.estimatedHours}
-                ></Form.Control>
-                <Form.Control.Feedback type="invalid">
-                  {errors.estimatedHours}
-                </Form.Control.Feedback>
+              <Form.Label>Estimated Hours *</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Estimated Hours"
+              controlId="estimatedHours"
+              defaultValue={props.updateOnboard.estimatedHours}
+              value={estimatedHours}
+              onChange={(e) => setEstimatedHours(e.target.value)}
+              isInvalid={!!errors.estimatedHours}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors.estimatedHours}
+            </Form.Control.Feedback>
               </Form.Group>
 
               <Form.Group className="mb-3" as={Col} md="3">
@@ -327,7 +326,7 @@ disabled
               isInvalid={!!errors.priority}
             >
                <option> Select Priority</option>
-             
+              
               <option>P1</option>
               <option>P2</option>
               <option>P3</option>
@@ -337,20 +336,20 @@ disabled
             </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>Planned Start Date *</Form.Label>
-                <Form.Control
-                  required
-                  type="date"
-                  placeholder="plannedStartDate"
-                  controlId="plannedStartDate"
-                  defaultValue={props.updateOnboard.plannedEndDate.split("T")[0]}
-               value={plannedEndDate.split("T")[0]}
-                  onChange={(e) => setField("plannedStartDate", e.target.value)}
-                  isInvalid={!!errors.plannedStartDate}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {errors.plannedStartDate}
-                </Form.Control.Feedback>
+              <Form.Label>Planned Start Date*</Form.Label>
+            <Form.Control
+              required
+              type="date"
+              placeholder="Planned Start Date"
+              controlId="plannedStartDate "
+              defaultValue={props.updateOnboard.plannedStartDate.split('T')[0]}
+              value={plannedStartDate.split('T')[0]}
+              onChange={(e) => setPlannedStartDate(e.target.value)}
+              isInvalid={!!errors.plannedStartDate}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.plannedStartDate}
+            </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="6">
               <Form.Label>Status *</Form.Label>
@@ -396,38 +395,38 @@ disabled
               </Form.Group> */}
 
               <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>Planned End Date *</Form.Label>
-                <Form.Control
-                  type="date"
-                  placeholder="Enter "
-                  controlId="plannedEndDate"
-                  defaultValue={props.updateOnboard.plannedEndDate.split("T")[0]}
-                  value={plannedEndDate.split("T")[0]}
-                  onChange={(e) => setField("plannedEndDate", e.target.value)}
-                  isInvalid={!!errors.plannedEndDate}
-                />
-
-                <Form.Control.Feedback type="invalid">
-                  {errors.plannedEndDate}
-                </Form.Control.Feedback>
+              <Form.Label>Planned End Date*</Form.Label>
+            <Form.Control
+              required
+              type="date"
+              placeholder="Planned End Date"
+              controlId="plannedEndDate "
+              defaultValue={props.updateOnboard.plannedEndDate.split('T')[0]}
+              value={plannedEndDate.split('T')[0]}
+              onChange={(e) => setPlannedEndDate(e.target.value)}
+              isInvalid={!!errors.plannedEndDate}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.plannedEndDate}
+            </Form.Control.Feedback>
               </Form.Group>
-
-              <Form.Group className="mb-3" as={Col} md="6">
-                <Form.Label>Actual Start Date </Form.Label>
-                <Form.Control
-                  required
-                  type="date"
-                  placeholder="Assign Date"
-                  controlId="assignDate"
-                  value={form.assignDate}
-                  onChange={(e) => setField("assignDate", e.target.value)}
-                  isInvalid={!!errors.assignDate}
-                />
-                {/* <Form.Control.Feedback type="invalid">
-                  {errors.assignDate}
-                </Form.Control.Feedback> */}
-              </Form.Group>
-
+              
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            <Form.Label>Actual Start Date</Form.Label>
+            <Form.Control
+              required
+              type="date"
+              placeholder="Assign Date"
+              controlId="assignDate"
+              defaultValue={props.updateOnboard.assignDate.split("T")[0]}
+              value={assignDate.split("T")[0]}
+              onChange={(e) => setAssignDate(e.target.value)}
+              isInvalid={!!errors.assignDate}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors.assignDate}
+            </Form.Control.Feedback>
+          </Form.Group>
               {/* <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Priority </Form.Label>
                 <Form.Select
@@ -517,7 +516,7 @@ disabled
             <Button
               style={{
                 backgroundColor: "#f5896e",
- borderColor: "#f5896e",
+                borderColor: "#f5896e",
                 float: "right",
                 width: "40%",
                 height: "120%",
