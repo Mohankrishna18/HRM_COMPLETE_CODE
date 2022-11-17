@@ -203,6 +203,12 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
 		}
 	}
 
+	@Override
+    public ResponseEntity getAllProjectsByEmployeeId(String employeeId) {
+
+       List<ProjectTeamMaster> ptm=ptmrepo.getAllProjectsByEmployeeId(employeeId);
+        return new ResponseEntity(ptm,HttpStatus.OK);
+    }
 	
 
 //	@Override
