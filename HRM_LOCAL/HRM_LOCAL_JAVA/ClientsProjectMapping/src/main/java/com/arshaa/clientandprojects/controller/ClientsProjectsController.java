@@ -110,7 +110,7 @@ public class ClientsProjectsController {
 	//get projects by employeeId
 	@GetMapping("/getAllProjectsbyemployee/{employeeId}")
 	public ResponseEntity getAllProjectsById(@PathVariable String employeeId) {
-		return projectServ.getAllProjectsById(employeeId);
+		return projectTeamServ.getAllProjectsByEmployeeId(employeeId);
 	}
 	
 	// For employee
