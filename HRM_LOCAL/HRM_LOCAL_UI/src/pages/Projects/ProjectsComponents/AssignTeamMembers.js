@@ -124,7 +124,7 @@ function AssignTeamMembers(props) {
 
       <Grid style={{ borderBlockEndWidth: "2px" }}>
         <MaterialTable
-          title={"Assign Team Members For Project : " + data}
+          title={"Project Name : " + data}
           columns={columns}
           style={{ color: "black", fontSize: "1rem" }}
           data={data1}
