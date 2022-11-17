@@ -410,7 +410,7 @@ const EmployeeAttendance = () => {
       //handleToggle()
      
       if(dept == null){
-        axios.get( `/emp/getEmployeeLeavesDatawithoutDept/${month}/${year}`).then((response)=>{
+        axios.get( `/emp/getEmployeeLeavesDatawithoutDept/${month}/${year}/${dept}`).then((response)=>{
           console.log(response)
           setRowData(response.data)
           setDays(response.data[0].totalDays)

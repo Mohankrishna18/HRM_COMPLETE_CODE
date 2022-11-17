@@ -227,4 +227,13 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
             return new ResponseEntity(ptrm, HttpStatus.OK);
         }
     }
+
+
+
+	@Override
+	public ResponseEntity getAllProjectsByEmployeeId(String employeeId) {
+
+		List<ProjectTeamMaster> ptm=ptmrepo.findAll();
+		return new ResponseEntity(ptm,HttpStatus.OK);
+	}
 }

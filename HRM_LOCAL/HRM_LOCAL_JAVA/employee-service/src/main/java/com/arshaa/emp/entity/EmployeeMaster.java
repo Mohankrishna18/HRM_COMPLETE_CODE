@@ -210,7 +210,7 @@ public class EmployeeMaster {
 	private String ifscCode;
 	private String branch;
 	private String band;
-	private String exitDate;
+	private Date exitDate;
 	private String resignationDate;
 	
 	private String srm;
@@ -894,10 +894,11 @@ public class EmployeeMaster {
 	public void setBand(String band) {
 		this.band = band;
 	}
-	public String getExitDate() {
+	
+	public Date getExitDate() {
 		return exitDate;
 	}
-	public void setExitDate(String exitDate) {
+	public void setExitDate(Date exitDate) {
 		this.exitDate = exitDate;
 	}
 	public String getSrm() {
@@ -973,7 +974,7 @@ public class EmployeeMaster {
 			String employmentType, String primarySkills, String secondarySkills, String panNumber, String aadharNumber,
 			String uanNumber, String bankName, String accountNumber, String ifscCode, String branch, String band,
 			String exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,
-			String buhId,String resignationDate,String intermediateQualification, String sscQualification, String officialMail, String hrcomment,String Status, String probationempfeedback) {
+			String buhId,String resignationDate,String intermediateQualification, String sscQualification, String officialMail, String hrcomment,String Status) {
 		super();
 		this.employeeId = employeeId;
 		this.departmentName = departmentName;
