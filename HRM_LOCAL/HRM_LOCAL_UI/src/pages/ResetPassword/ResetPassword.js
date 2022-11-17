@@ -4,13 +4,14 @@ import { Button, Card } from "react-bootstrap";
 import "../LoginPage/Sign-in.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "../../Uri";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Container, Row, Col, NavLink } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import image from "../../Images/arshaalogo.png";
+import image from "../../Images/arshaalogo.png"
 import { useFormik } from "formik";
 import BlockImage from 'react-block-image'
+import { BsArrowLeftShort } from 'react-icons/bs';
 
 const ResetPassword = () => {
   const history = useHistory();
@@ -132,6 +133,10 @@ const ResetPassword = () => {
        return false;
     }
   }
+
+  const goBack =() =>{
+    history.push("/");
+  }
   return (
     <>
       <Container
@@ -154,11 +159,12 @@ const ResetPassword = () => {
         >
           <Row>
             <Col xs={5}>
-              <BlockImage
+              <BlockImage className="arshaalogo"
                 src={image}
-                style={{ paddingTop: "100px", height: "450px", width: "300px" }}
+                style={{ paddingTop: "200px", height: "400px", width: "300px",marginTop:"120px" }}
               />
             </Col>
+
             <Col
               className="p-5 m-auto shadow-sm rounded-lg"
               style={{
@@ -176,9 +182,27 @@ const ResetPassword = () => {
               md={6}
               sm={12}
             >
+
               <h4 style={{ textAlign: "center", paddingTop: "10px" }}>
                 Welcome To Arshaa
               </h4>
+                            <Button
+
+size="lg"
+onClick={goBack}
+
+style={{
+  float:"right",
+  width: "30%",
+  border:"none",
+  color:"black",
+  background: "none",
+  fontsize:"15px"
+
+}}
+><BsArrowLeftShort/>
+Back
+</Button>
               <br />
               <br />
               <Form autoComplete="off" onSubmit={formik.handleSubmit}>
@@ -264,17 +288,25 @@ const ResetPassword = () => {
                   ) : null}
                 </Form.Group>
                 &nbsp;
+                {/* <Link
+                onClick={goBack}
+                style={{float: 'right',color:'black', padding:"10px",fontSize:"20px"}}
+                ><BsArrowLeftShort/>
+                Back
+                </Link> */}
+                
                 <Button
                   size="lg"
                   type="submit"
                   style={{
                     width: "100%",
                     backgroundColor: "#f5896e",
- borderColor: "#f5896e",
+                    borderColor: "#f5896e",
                   }}
                 >
                   Submit
                 </Button>
+                
               </Form>
             </Col>
           </Row>

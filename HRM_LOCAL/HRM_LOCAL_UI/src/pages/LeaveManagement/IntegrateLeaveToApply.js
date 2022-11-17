@@ -830,9 +830,9 @@ function IntegrateLeaveToApply() {
                             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                                 <Form.Label>From</Form.Label>
                                 <Calendar
-                                     minDate={
-                                        new Date(BackDate)
-                                    }
+                                    //  minDate={
+                                    //     new Date(BackDate)
+                                    // }
                                     onChange={(e) => {
                                         console.log(e)
                                         const da = moment.utc(e + 1).format('YYYY-MM-DD')

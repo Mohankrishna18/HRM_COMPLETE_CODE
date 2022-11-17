@@ -111,7 +111,7 @@ export default function ChangeUserDetails(props) {
                     <td>{data.exitDate}</td>
                     <td>{data.status}</td>
                     <td>{data.band}</td>
-                    <td>{data.employementType}</td>
+                    <td>{data.employmentType}</td>
                     <td>{data.irm}</td>
                     <td>{data.srm}</td>
                     <td><Button

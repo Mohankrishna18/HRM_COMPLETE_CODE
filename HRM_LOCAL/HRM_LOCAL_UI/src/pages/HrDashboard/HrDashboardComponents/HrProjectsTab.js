@@ -8,8 +8,10 @@ import { FiEdit } from "react-icons/fi";
 import { BsFillEyeFill } from "react-icons/bs";
 import { RiTeamFill } from "react-icons/ri";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
-export const UserContext = createContext(null);
+import { Button,ListGroup, Col, Modal, Row, Stack } from "react-bootstrap";
+import TeamMembersTab from "../../Projects/ProjectsComponents/TeamMembersTab";
+import TeamMembersList from "./TeamMembersList";
+
 
 function HrProjectsTab() {
   const [show, setShow] = useState(false);
@@ -20,11 +22,12 @@ function HrProjectsTab() {
 
   const handleShow = () => setShow(false);
   const viewHandleShow = () => setShow(false);
-
+  const [onboardID, setOnboardID] = useState({});
   const [updateOnboard, setUpdateOnboard] = useState({});
   const [viewOnboard, setViewOnboard] = useState({});
 
   const [data, setData] = useState([]);
+  const [teamData,setTeamData] = useState([]);
   const [addStatus, setAddStatus] = useState(false);
   const [updateStatus, setUpdateStatus] = useState(false);
   const [viewStatus, setViewStatus] = useState(false);
@@ -47,6 +50,10 @@ function HrProjectsTab() {
     // console.log("Delete");
   };
 
+  // useEffect(() => {
+  //   loadTeamData();
+  // }, [props.data]);
+
   useEffect(() => {
     loadData();
   }, [addStatus, updateStatus, deleteProjects]);
@@ -54,12 +61,21 @@ function HrProjectsTab() {
   //   loadData();
   // }, [viewStatus]);
 
+// const projectId= axios.get(
+//       `/clientProjectMapping/getOneProjectByProjectId/${params.id}`
+//     );
+
   const loadData = async (e) => {
     const response = await axios.get("/clientProjectMapping/getAllProjects");
     setData(response.data.data);
     console.log(response.data);
   };
 
+  // const loadTeamData = async (e) => {
+  //   const response = await axios.get(`clientProjectMapping/getAllProjectTeams/Active/${params.id}`);
+  //   setTeamData(response.data.data);
+  //   console.log(response.data.data);
+  // };
   const [columns, setColumns] = useState([
     {
       title: "Project Name",
@@ -108,10 +124,43 @@ function HrProjectsTab() {
       title: "PM",
       field: "projectManager",
     },
+    {
+      title: "Team Members",
+      field: "teamMembers",
+    },
   ]);
 
   return (
     <div>
+<Modal show={show} onHide={handleClose} size="md" centered>
+        <Modal.Header
+          closeButton
+          style={{
+            backgroundColor: "#f5896e",
+            paddingTop: "6px",
+            paddingBottom: "6px",
+            color: "white",
+          }}
+        >
+          <Modal.Title style={{ color: "white" }}>
+           Team Members
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        {/* <ListGroup as="ol" numbered>
+          
+                  {teamData.map((team) => (
+                    <option value={team.employeeprojectId}>{client.employeeName}</option>
+                  ))}
+        </ListGroup> */}
+        <TeamMembersList
+        data={onboardID}
+        // func={pull_data}
+        handleClose={handleClose}
+        />
+      </Modal.Body>
+      </Modal>
+
         <Grid style={{ borderBlockEndWidth: "2px" }}>
           <MaterialTable
             title="Projects"
@@ -144,6 +193,40 @@ function HrProjectsTab() {
               grouping: true,
 
               exportButton: true,
+            }}
+            actions={[
+              {
+                icon: "button",
+                tooltip: "Save User",
+                onClick: (event, rowData) =>
+                  alert("You want to delete " + rowData.firstName),
+              },
+            ]}
+            components={{
+              Action: (props) => (
+                <div>
+                  <Stack direction="horizontal" gap={3}>
+                    <Button
+                      className="rounded-pill"
+                      variant="white"
+                      // style={{
+                      //   backgroundColor: "#FFFFFF",
+                      //   // borderColor: "#ff9b44",
+                      //   float: "right",
+                      //   fontSize:"12px",
+                      //   // height: "60px",
+                      // }}
+                      onClick={() => {
+                        setShow(true);
+                        console.log(props);
+                        setOnboardID(props.data);
+                      }}
+                    >
+                      <BsFillEyeFill style={{ fontSize: "25px" }} />{" "}
+                    </Button>
+                  </Stack>
+                </div>
+              ),
             }}
           />
         </Grid>
