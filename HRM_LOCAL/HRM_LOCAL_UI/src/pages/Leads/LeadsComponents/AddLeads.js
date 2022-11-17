@@ -195,7 +195,7 @@ const Active="Active"
         .then((response) => {
           const user = response.data;
           console.log(user);
-          // setForm("");
+          setForm("");
           if (user.status) {
             props.func();
             // console.log(user);
