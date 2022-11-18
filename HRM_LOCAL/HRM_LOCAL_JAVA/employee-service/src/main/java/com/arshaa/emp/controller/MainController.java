@@ -239,41 +239,42 @@ public class MainController {
 
 
 	@GetMapping("/files/{employeeId}")
-	public ResponseEntity<ResponseFile> getFilebyID(@PathVariable String employeeId) {
-		try {
-			EmployeeProfile fileDB = epServ.getFileByID(employeeId);
-			ResponseFile file = new ResponseFile();
-			file.setUrl(fileDB.getData());
-			file.setName(fileDB.getName());
-			file.setType(fileDB.getType());
-			file.setSize(fileDB.getData().length);
-			return new ResponseEntity<ResponseFile>(file, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
-		}
-	}
-	
-	@GetMapping("/file/{onboardingId}")
-	public ResponseEntity<ResponseFile> getFileByOnboardingID(@PathVariable String onboardingId) {
-		try {
-			EmployeeProfile profile = epServ.getFileByOnboardingID(onboardingId);
-			ResponseFile file = new ResponseFile();
-			file.setUrl(profile.getData());
-			file.setName(profile.getName());
-			file.setType(profile.getType());
-			file.setSize(profile.getData().length);
-			return new ResponseEntity<ResponseFile>(file, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
-		}
-	}
-	@GetMapping("/getImage/{id}")
-	public ResponseEntity<byte[]> getFile(@PathVariable String id) {
-		EmployeeProfile fileDB = epServ.getFileByID(id);
-		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
-				.body(fileDB.getData());
-	}
+    public ResponseEntity<ResponseFile> getFilebyID(@PathVariable String employeeId) {
+        try {
+            EmployeeProfile fileDB = epServ.getFileByID(employeeId);
+            ResponseFile file = new ResponseFile();
+            file.setUrl(fileDB.getData());
+            file.setName(fileDB.getName());
+            file.setType(fileDB.getType());
+            file.setSize(fileDB.getData().length);
+            return new ResponseEntity<ResponseFile>(file, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+        }
+    }
+    
+    @GetMapping("/file/{onboardingId}")
+    public ResponseEntity<ResponseFile> getFileByOnboardingID(@PathVariable String onboardingId) {
+        try {
+            EmployeeProfile profile = epServ.getFileByOnboardingID(onboardingId);
+            ResponseFile file = new ResponseFile();
+            file.setUrl(profile.getData());
+            file.setName(profile.getName());
+            file.setType(profile.getType());
+            file.setSize(profile.getData().length);
+            return new ResponseEntity<ResponseFile>(file, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+        }
+    }
+    @GetMapping("/getImage/{id}")
+    public ResponseEntity<byte[]> getFile(@PathVariable String id) {
+        EmployeeProfile fileDB = epServ.getFileByID(id);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
+                .body(fileDB.getData());
+    }
+    
 	@GetMapping("/leavespermonth/{employeeId}")
     int Lossofpayservice( @PathVariable String employeeId ) {
 
@@ -546,16 +547,32 @@ public class MainController {
         // public int  getWeekendsByMonth(@PathVariable int year ,@PathVariable int month) {
         // 	return lServ.weekendCount(year, month);
         // }
-        @PutMapping("/upload/{employeeId}")
+        
+        
+        @PostMapping("/uploads/{employeeId}")
         public ResponseEntity<ResponseMessage> uploadFile1(@PathVariable String employeeId,
                 @RequestParam("file") MultipartFile file) {
             String message = "";
             try {
-                epServ.store(file, employeeId);
+                epServ.store1(file, employeeId);
                 message = "Uploaded the file successfully: " + file.getOriginalFilename();
                 return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
             } catch (Exception e) {
                 message = "Can't able to upload file" + file.getOriginalFilename();
+                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+            }
+        }
+        
+        @PutMapping("/update/{employeeId}")
+        public ResponseEntity<ResponseMessage> updateFile(@PathVariable String employeeId,
+                @RequestParam("file") MultipartFile file) {
+            String message = "";
+            try {
+                epServ.update(file, employeeId);
+                message = "Updated the file successfully: " + file.getOriginalFilename();
+                return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+            } catch (Exception e) {
+                message = "Can't able to update a file" + file.getOriginalFilename();
                 return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
             }
         }
