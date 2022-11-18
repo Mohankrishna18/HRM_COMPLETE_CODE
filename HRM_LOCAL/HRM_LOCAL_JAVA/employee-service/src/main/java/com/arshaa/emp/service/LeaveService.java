@@ -104,8 +104,13 @@ System.out.println("year"+exitYear+""+year+"month"+exitMonth+""+month);
 							int day = calendar.get(Calendar.DAY_OF_MONTH);
 
 							System.out.println("Days"+day);
-							LocalDate lcd =LocalDate.of(exitYear,exitMonth,day); 
-							int workingCountDays= this.addDaysSkippingWeekends(lcd,day);
+							LocalDate startDate =LocalDate.of(exitYear,exitMonth,1); 
+							LocalDate endDate =LocalDate.of(exitYear,exitMonth,day); 
+
+							long workingdaysWithoutWeakEnd= days(startDate,endDate);
+//							int workingCountDays= this.addDaysSkippingWeekends(lcd,day);
+							 int workingCountDays=(int)workingdaysWithoutWeakEnd;
+							System.out.println(" working days"+workingCountDays);
 							int daysInMonth = yearMonthObject.lengthOfMonth();
 							int presentCount = daysInMonth
 									- (leaveCount.getCount() + holidayCount.getHolidayCount() + weekendCount(year, month));
@@ -140,10 +145,51 @@ System.out.println("year"+exitYear+""+year+"month"+exitMonth+""+month);
 	        result = result.plusDays(1);
 	        if (!(result.getDayOfWeek() == DayOfWeek.SATURDAY || result.getDayOfWeek() == DayOfWeek.SUNDAY)) {
 	            ++addedDays;
+	            
 	        }
 	    }
 	    return addedDays;
 	}
+	
+	static long days(LocalDate start, LocalDate end){
+		java.sql.Date startCheckdate = java.sql.Date.valueOf(start);
+		java.sql.Date endCheckdate = java.sql.Date.valueOf(end);
+
+	    //Ignore argument check
+
+	    Calendar c1 = Calendar.getInstance();
+	    c1.setTime(startCheckdate);
+	    int w1 = c1.get(Calendar.DAY_OF_WEEK);
+	    c1.add(Calendar.DAY_OF_WEEK, -w1);
+
+	    Calendar c2 = Calendar.getInstance();
+	    c2.setTime(endCheckdate);
+	    int w2 = c2.get(Calendar.DAY_OF_WEEK);
+	    c2.add(Calendar.DAY_OF_WEEK, -w2);
+
+	    //end Saturday to start Saturday 
+	    long days = (c2.getTimeInMillis()-c1.getTimeInMillis())/(1000*60*60*24);
+	    long daysWithoutWeekendDays = days-(days*2/7);
+
+	    // Adjust days to add on (w2) and days to subtract (w1) so that Saturday
+	    // and Sunday are not included
+	    if (w1 == Calendar.SUNDAY && w2 != Calendar.SATURDAY) {
+	        w1 = Calendar.MONDAY;
+	    } else if (w1 == Calendar.SATURDAY && w2 != Calendar.SUNDAY) {
+	        w1 = Calendar.FRIDAY;
+	    } 
+
+	    if (w2 == Calendar.SUNDAY) {
+	        w2 = Calendar.MONDAY;
+	    } else if (w2 == Calendar.SATURDAY) {
+	        w2 = Calendar.FRIDAY;
+	    }
+
+	    return daysWithoutWeekendDays-w1+w2;
+	}
+	
+	
+	
 	public LeavesCount getCount(int month, int year, String dept) {
 		LeavesCount leaveCount = template.getForObject(leaveURL + month + "/" + year + "/L/" + dept + "/ATPL00050",
 				LeavesCount.class);
@@ -217,7 +263,7 @@ System.out.println("year"+exitYear+""+year+"month"+exitMonth+""+month);
 
 //						if (currentDate.isAfter(instDateOfJoin) && e.getExitDate().after(currentCheckdate)) {
 							LeavesCount leaveCount = template.getForObject(
-									leaveURLL + month + "/" + year + "/L/"+ "/" + e.getEmployeeId(), LeavesCount.class);
+									leaveURLL + month + "/" + year + "/L/" + "/" + e.getEmployeeId(), LeavesCount.class);
 							LeavesCount holidayCount = template.getForObject(holidayURL + year + "/" + month,
 									LeavesCount.class);
 							System.out.println(holidayCount.getCount());
@@ -232,8 +278,13 @@ System.out.println("year"+exitYear+""+year+"month"+exitMonth+""+month);
 							int day = calendar.get(Calendar.DAY_OF_MONTH);
 
 							System.out.println("Days"+day);
-							LocalDate lcd =LocalDate.of(exitYear,exitMonth,day); 
-							int workingCountDays= this.addDaysSkippingWeekends(lcd,day);
+							LocalDate startDate =LocalDate.of(exitYear,exitMonth,1); 
+							LocalDate endDate =LocalDate.of(exitYear,exitMonth,day); 
+
+							long workingdaysWithoutWeakEnd= days(startDate,endDate);
+//							int workingCountDays= this.addDaysSkippingWeekends(lcd,day);
+							 int workingCountDays=(int)workingdaysWithoutWeakEnd;
+							System.out.println(" working days"+workingCountDays);
 							int daysInMonth = yearMonthObject.lengthOfMonth();
 							int presentCount = daysInMonth
 									- (leaveCount.getCount() + holidayCount.getHolidayCount() + weekendCount(year, month));
@@ -259,5 +310,5 @@ System.out.println("year"+exitYear+""+year+"month"+exitMonth+""+month);
 
 		});
 		return getLeavesList;
-	}
+}
 }
