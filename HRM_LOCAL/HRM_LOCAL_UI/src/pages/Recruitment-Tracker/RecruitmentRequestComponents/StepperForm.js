@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from '../../../Uri';
 import RecruitmentTimeline from './RecruitmentTimeline'
 import './utils/RT.css';
+import RadioButton from './RadioButton';
 
 
 const steps = ["Select master blaster campaign settings", "uggujjgh"];
@@ -49,17 +50,13 @@ const StepperForm = (props) => {
     const userType = userdata.data.userType;
     const employeeId = userdata.data.employeeId;
 
-    console.log(form);
-
-    console.log(form);
 
 
     const handleChange = (event) => {
-        console.log(event.target.value)
+       
 
         setField("reqType1", event.target.value)
     }
-    console.log(reqType1);
 
     // const handleChangee = (event) => {
     //     console.log(event.target.value)
@@ -87,7 +84,7 @@ const StepperForm = (props) => {
         const res = await axios.get("/emp/getEmployeesByDepartment/HR");
         const sData1 = res.data.data.filter(item => item.status === 'Active')
         setHrPanel(sData1);
-        console.log(sData1);
+       
         
     };
 
@@ -100,7 +97,7 @@ const StepperForm = (props) => {
     const loadDepartmentsData = async () => {
         const res = await axios.get("/dept/getAllDepartments");
         setDepartments(res.data);
-        console.log(res.data);
+       
     };
 
 
@@ -108,7 +105,7 @@ const StepperForm = (props) => {
     const loadProjects = async () => {
         const res = await axios.get("/clientProjectMapping/getAllProjects");
         setProjects(res.data.data);
-        console.log(res.data.data);
+       
     };
 
     const getRequestedBy = async () => {
@@ -178,7 +175,7 @@ const StepperForm = (props) => {
             departmentName
         } = form;
         const newErrors = {};
-        console.log("Client stepper form");
+       
         // validations for forms
 
         if (
@@ -188,6 +185,12 @@ const StepperForm = (props) => {
         )
             newErrors.jobTitle =
                 "Please enter Job Title";
+                if (
+                    !requisitionId ||
+                    requisitionId === ""
+        
+                )
+                    newErrors.requisitionId = "Please Enter AERF ID";
         if (
             !technology ||
             technology === ""
@@ -318,11 +321,11 @@ const StepperForm = (props) => {
 
     //Setting raised By and RaisedOn Values from session storage and cureenet date
     const current = new Date();
-    console.log(current);
+   
     var raisedOn = Moment()
         .utcOffset('+05:30')
         .format('YYYY-MM-DD hh:mm:ss');
-    console.log(raisedOn);
+   
     // const raisedOn = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
     const raisedBy = response.fullName;
     const history = useHistory();
@@ -337,11 +340,11 @@ const StepperForm = (props) => {
         //a.push(cours);
         //const obje2 = { ccModel: cours };
         const formErrors = validateForm();
-        console.log(Object.keys(formErrors).length);
+        
         if (Object.keys(formErrors).length > 0) {
             setErrors(formErrors);
         } else {
-            console.log(form);
+          
             const obj = { raisedOn: raisedOn, raisedBy: raisedBy };
             const form1 = Object.assign(form, obj);
             // const form1 = Object.assign(form, obje1);
@@ -356,14 +359,14 @@ const StepperForm = (props) => {
             axios
                 .post("/recruitmentTracker/createRequisitionRequest", form1)
                 .then((response) => {
-                    console.log(response);
+                    
                     toast.success("Requisition Raised Successfully", { autoClose: 1000 });
                     routeToRRPage();
 
                     if (response.data.status) {
                         props.func();
                     } else {
-                        console.log("Props not send");
+                        
                     }
                     console.log("form submitted");
                     // notify();
@@ -380,20 +383,20 @@ const StepperForm = (props) => {
     const handleNext = (e) => {
         e.preventDefault();
         const formErrors = validateForm();
-        console.log(Object.keys(formErrors).length);
+        
         if (Object.keys(formErrors).length > 3) {
             setErrors(formErrors);
             console.log("Form validation error");
         } else {
             console.log("Form validation success");
-            // console.log(form);
+          
             setActiveStep((nextStep) => nextStep + 1);
-            // console.log(form.value);
+            
         }
     };
     const handleNext1 = (e) => {
         e.preventDefault();
-        console.log();
+       
         const formErrors = validateForm();
         console.log(Object.keys(formErrors).length);
         if (Object.keys(formErrors).length > 0) {
@@ -402,7 +405,7 @@ const StepperForm = (props) => {
         } else {
             console.log("Form validation success");
             setActiveStep((nextStep) => nextStep + 1);
-            console.log(form.value);
+            
         }
     };
     const date = new Date();
@@ -419,7 +422,25 @@ const StepperForm = (props) => {
                         <Row>
                             <Col md="9">
                                 <Row className="mb-5">
-                                    <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                                <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                                        <Form.Label>AERF ID *</Form.Label>
+                                        <Form.Control
+                                            required
+                                            className="requisitionId"
+                                            type="text"
+                                            id="requisitionId"
+                                            controlId="requisitionId"
+                                            //placeholder="Job Title"
+                                            // onChange={(event) => setFirstName(event.target.value)}
+                                            value={form.requisitionId}
+                                            onChange={(e) => setField("requisitionId", e.target.value)}
+                                            isInvalid={!!errors.requisitionId}
+                                        ></Form.Control>
+                                        <Form.Control.Feedback type="invalid">
+                                            {errors.requisitionId}
+                                        </Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="8" style={{ padding: 10 }}>
                                         <Form.Label>Job Title *</Form.Label>
                                         <Form.Control
                                             required
@@ -577,17 +598,17 @@ const StepperForm = (props) => {
                                             name={form.clientName}
                                             maxLength={30}
                                             onChange={(e) => {
-                                                console.log(e.target.name);
+                                               
 
                                                 axios.get(`/clientProjectMapping/getProjectsByClientId/${e.target.value}`).then((response) => {
-                                                    console.log(response.data.data);
+                                                    
                                                     setProjects(response.data.data);
-                                                    console.log(response.data.clientName);
+                                                   
 
                                                     setField("clientName", response.data.clientName)
 
                                                 });
-                                                console.log(e.target.name);
+                                           
 
                                             }}
                                             isInvalid={!!errors.clientName}
@@ -889,7 +910,7 @@ const StepperForm = (props) => {
                                         >
                                             <option>Select </option>
                                             {pocname.map((poc) => (
-                                                <option value={poc.employeeId}>
+                                                <option value={poc.fullName}>
                                                     {poc.fullName}
                                                 </option>
                                             ))}

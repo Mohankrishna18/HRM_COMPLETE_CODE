@@ -14,8 +14,8 @@ public interface RequisitionRequestInterface {
 
 	public ResponseEntity createRR(RequisitionRequestEntity newRR);
 	
-	public ResponseEntity getAllRequisitions();
-	
+//	public ResponseEntity getAllRequisitions(String departmentName);
+
 	public ResponseEntity deleteRRequest(long rrfId);
 	
 	public ResponseEntity updateRR(String requisitionId, RequisitionRequestEntity RRUpdate);
@@ -34,5 +34,7 @@ public interface RequisitionRequestInterface {
 	public ResponseEntity getRequisitionsByRequisitionId(String requisitionId);
     public ResponseEntity getRequisitionsData(String requisitionId);
     public int getDaysBetweenDates(String requisitionId,String requestInitiatedDate) throws ParseException;
+
+    public ResponseEntity getAllRequisitions();
 
 }

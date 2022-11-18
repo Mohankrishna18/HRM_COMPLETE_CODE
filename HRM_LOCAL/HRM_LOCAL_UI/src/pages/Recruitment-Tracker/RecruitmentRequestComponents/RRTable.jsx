@@ -61,14 +61,13 @@ const RRTable = () => {
   const loadData = async () => {
     const response = await axios.get("/recruitmentTracker/");
     setData(response.data);
-    console.log(response.data);
+    
   };
 
   const sessionData = JSON.parse(sessionStorage.getItem("userdata"));
   const employeeId = sessionData.data.employeeId;
   const userType = sessionData.data.userType;
-  console.log(employeeId);
-  console.log(userType);
+ 
 
   return (
     <div>
@@ -221,8 +220,7 @@ const RRTable = () => {
                       <Button
                         variant="info"
                         onClick={(event) => {
-                          // setShow(true);
-                          console.log(props.data);
+                         
                           setUpdateOnboard(props.data);
                           localStorage.setItem(
                             "requisition",
@@ -231,7 +229,7 @@ const RRTable = () => {
                           history.push(
                             `/app/updateRequisition/${props.data.requisitionId}`
                           );
-                          console.log(props.data);
+                        
                         }}
                       >
                         <FiEdit />
@@ -240,7 +238,7 @@ const RRTable = () => {
                         variant="danger"
                         onClick={(event) => {
                           setDeleteLeads(true);
-                          console.log(props);
+                          
                           setDeleteOnboard(props.data);
                         }}
                       >
@@ -250,7 +248,7 @@ const RRTable = () => {
                         variant="primary"
                         onClick={(event) => {
                           setViewShow(true);
-                          console.log(props);
+                          
                           setViewOnboard(props.data);
                         }}
                         style={{
