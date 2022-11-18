@@ -394,7 +394,7 @@ function EmployeeMasterForms(props) {
 
         toast.success("Form Submitted Successfully");
 
-        const url = `/emp/upload/${empId}/`;
+        const url = `/emp/update/${empId}`;
 
         const formData = new FormData();
 
@@ -425,7 +425,7 @@ function EmployeeMasterForms(props) {
         // notify();
         toast.success("Form Submitted Successfully");
         // refreshPage();
-        const url = `/emp/upload/${empId}/`;
+        const url = `/emp/update/${empId}`;
 
         const formData = new FormData();
 

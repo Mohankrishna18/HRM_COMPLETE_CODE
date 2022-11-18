@@ -403,10 +403,10 @@ public class MainServiceImpl implements MainService {
 					userclient.setEmployeeId(em.getEmployeeId());
 					userClientRepo.save(userclient);
 
-					// posting employeeId to employee profile table
-					EmployeeProfile eprofile = new EmployeeProfile();
-					eprofile.setEmployeeId(employeeMaster.getEmployeeId());
-					empProfileRepo.save(eprofile);
+					//posting employeeId to employee profile table
+                    EmployeeProfile eprofile = new EmployeeProfile();
+                    eprofile.setEmployeeId(employeeMaster.getEmployeeId());
+                    empProfileRepo.save(eprofile);
 
 					// Generating Random userId and Password
 					Random rand = new Random();
