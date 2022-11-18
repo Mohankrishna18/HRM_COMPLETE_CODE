@@ -36,7 +36,7 @@ import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.PersonalDetails;
 import com.arshaa.emp.model.ProbationEmployeeFeedBack;
 import com.arshaa.emp.model.ReportingManagerMain;
-//import com.arshaa.emp.model.ResignationModel;
+import com.arshaa.emp.model.ResignationModel;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.ResponseFile;
 import com.arshaa.emp.model.ResponseMessage;
@@ -46,7 +46,7 @@ import com.arshaa.emp.service.EmployeeProfileService;
 import com.arshaa.emp.service.LeaveService;
 import com.arshaa.emp.service.MainService;
 import com.arshaa.emp.service.ReportingManagerService;
-//import com.arshaa.emp.service.ResignationService;
+import com.arshaa.emp.service.ResignationService;
 import com.arshaa.emp.service.RoleBasedEmployeesServiceImpl;
 import com.google.common.net.HttpHeaders;
 
@@ -67,8 +67,8 @@ public class MainController {
 	@Autowired
 	LeaveService lServ;
 	//changes by murali miriyala	
-//	@Autowired
-//	ResignationService resignationServ;
+	@Autowired
+	ResignationService resignationServ;
 	@Autowired
     RoleBasedEmployeesServiceImpl roleBasedServ;
 
@@ -584,20 +584,20 @@ public class MainController {
         
         //Murali miriyala resignation changes
         
-//        @GetMapping("/getResignationInfoByEmployeeeId/{employeeId}")
-//        public ResignationModel getResignationInfoByEmployeeeId( @PathVariable String employeeId)
-//        {
-//        	return resignationServ.getResignationInfoByEmployeeeId(employeeId);
-//        }
-//        @GetMapping("/getDateOfJoiningByEmployeeId/{employeeId}")
-//    	public ResponseEntity getDateOfJoiningByEmployeeId(@PathVariable String employeeId) {
-//    		return serv.getDateOfJoiningByEmployeeId(employeeId);
-//
-//    	}
-//        
-//        @PutMapping("/probationEmployeeFeedBack/{employeeId}")
-//        public ResponseEntity probationEmployeeFeedBack(@PathVariable String employeeId,
-//    			@RequestBody ProbationEmployeeFeedBack prb) {
-//    		return serv.probationEmployeeFeedBack(employeeId, prb);
-//    	}
+        @GetMapping("/getResignationInfoByEmployeeeId/{employeeId}")
+        public ResignationModel getResignationInfoByEmployeeeId( @PathVariable String employeeId)
+        {
+        	return resignationServ.getResignationInfoByEmployeeeId(employeeId);
+        }
+        @GetMapping("/getDateOfJoiningByEmployeeId/{employeeId}")
+    	public ResponseEntity getDateOfJoiningByEmployeeId(@PathVariable String employeeId) {
+    		return serv.getDateOfJoiningByEmployeeId(employeeId);
+
+    	}
+        
+        @PutMapping("/probationEmployeeFeedBack/{employeeId}")
+        public ResponseEntity probationEmployeeFeedBack(@PathVariable String employeeId,
+    			@RequestBody ProbationEmployeeFeedBack prb) {
+    		return serv.probationEmployeeFeedBack(employeeId, prb);
+    	}
 }
