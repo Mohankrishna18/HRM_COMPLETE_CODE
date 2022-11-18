@@ -99,6 +99,30 @@ public class DepartmentServiceImpl  implements DepartmentService{
             return new ResponseEntity(res,HttpStatus.OK);
         }
     }
+
+	@Override
+	public ResponseEntity getBuheadIdByDepartmentName(String departmentName) {
+		 BuheadName res = new BuheadName();
+	        try {
+	            Departmentmaster dData = repository.getByDepartmentName(departmentName);
+	            if(!dData.equals(null)) {
+	                res.setStatus(true);
+	                res.setMessage("Data Fetching");
+	                res.setBusinessUnitHeadName(dData.getBusinessUnitHead());
+	                return new ResponseEntity(res, HttpStatus.OK);
+	            }
+	            else {
+	                res.setStatus(false);
+	                res.setMessage("Data Not Found");
+	                return new ResponseEntity(res,HttpStatus.OK);
+	            }
+	        }
+	        catch(Exception e){
+	            res.setStatus(false);
+	            res.setMessage("Something went wrong");
+	            return new ResponseEntity(res,HttpStatus.OK);
+	        }
+	}
 	
 
 }

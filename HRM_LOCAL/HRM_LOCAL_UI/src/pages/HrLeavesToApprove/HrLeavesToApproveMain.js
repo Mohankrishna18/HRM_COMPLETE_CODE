@@ -33,14 +33,14 @@ const HrLeavesToApproveMain = () => {
         indicatorColor="#f5896e">
                       <Tab label="Leave Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="1" />
                       <Tab label="Timesheet Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="2" />
-                      <Tab label="Resignation Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="3" />
+                      {/* <Tab label="Resignation Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"16px"}} value="3" /> */}
                     </TabList>
                   </Box>
                   {/* <TabPanel value="1"><HrEmployeesLeavesWaitingForApproval /></TabPanel> */}
               
                     <TabPanel value="1"><ManagerEmployeesLeavesWaitingForApproval/></TabPanel>
                   <TabPanel value="2"><TaskMain /></TabPanel>
-                  <TabPanel value="3"><SRMResignationMain /></TabPanel>
+                  {/* <TabPanel value="3"><SRMResignationMain /></TabPanel> */}
                 </TabContext>  
               </Col>
             </Row>
