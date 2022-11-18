@@ -38,9 +38,8 @@ import { useHistory } from 'react-router-dom'
 
   return (
     <div>
-      {(userType === "taa" ) ?
-        <div></div>
-        :
+      
+        
         <Button
           variant="warning"
           onClick={gotoStepperForm}
@@ -58,7 +57,7 @@ import { useHistory } from 'react-router-dom'
           {/* <BsPlusLg />  */}
           &nbsp; Raise Requisition
         </Button>
-        }
+       
 
       {/* <Modal
         style={{ maxHeight: "1350px", maxWidth: "1550px", }}
