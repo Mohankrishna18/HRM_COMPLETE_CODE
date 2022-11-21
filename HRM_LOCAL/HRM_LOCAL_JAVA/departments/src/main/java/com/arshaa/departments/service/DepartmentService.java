@@ -12,12 +12,12 @@ public interface DepartmentService {
 	public int getDepartmentIdByDepartmentName(String departmentName);
 	public ResponseEntity getBUHIDfromDepartmentName(String departmentName);
 	public ResponseEntity getBuheadNameByDepartmentName(String departmentName);
-<<<<<<< Updated upstream
+
 	
 	public ResponseEntity getBuheadIdByDepartmentName(String departmentName);
  
-=======
+
 
     ResponseEntity getBuheadNameByEmployeeName(String employeeName);
->>>>>>> Stashed changes
+
 }
