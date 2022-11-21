@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { Button } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import axios from '../../Uri';
-import Moment from 'react-moment';
+import moment from 'react-moment';
 import { BASE_URL } from '../../Constant';
 
 export default function Action(props) {
@@ -64,7 +64,7 @@ export default function Action(props) {
     };
 
 
-    console.log(props.data)
+    
     const loadEmploymentDetails = async () => {
         const res = await axios.get(`${BASE_URL}/emp/getEmploymentDetails/${props.data}`);
         console.log(res.data.data);
@@ -78,7 +78,9 @@ export default function Action(props) {
         setSrm(res.data.data.srm);
         setIrm(res.data.data.irm);
         setProjectName(res.data.data.projectName);
+       
         setConfirmationDate(res.data.data.confirmationDate);
+        console.log(confirmationDate);
         setBand(res.data.data.band);
         setEmploymentType(res.data.data.employmentType);
         setStatus(res.data.data.status);
@@ -108,7 +110,10 @@ export default function Action(props) {
         // console.log(res.data)
     };
 
-    console.log(departmentName);
+    // const exitdatef=  moment(res.data.data.exitDate).format('YYYY-MM-DD');
+    // const confirmationDatef = moment(res.data.data.confirmationDate).format('YYYY-MM-DD');
+    // const resignationDatef =  moment(res.data.data.resignationDate).format('YYYY-MM-DD')
+
     console.log(employmentType, designationName);
     const [bands, setBands] = useState([]);
     useEffect(() => {
@@ -177,8 +182,7 @@ export default function Action(props) {
                 irm,
                 srm,
                 band,
-                projectName
-               
+                projectName     
 
             })
             .then((response) => {
@@ -197,7 +201,7 @@ export default function Action(props) {
     }
 
     
-console.log(data);
+
 
     //sorting Array of Objects
 
@@ -205,7 +209,7 @@ console.log(data);
     var sortedDesignations = _.sortBy(designations, 'designationName');
     var sortedUsers = _.sortBy(users, 'fullName');
 
-
+// const confirmationDatef = {<Moment format= {dd-mm-yyyy}>confirmationDate</Moment>}
     return (
         <>
             <Form
@@ -379,9 +383,7 @@ console.log(data);
                             type="date"
                             placeholder="confirmationDate"
                             controlId="confirmationDate"
-                            defaultValue={<Moment format="DD-MM-YYYY">
-                            {confirmationDate}
-                          </Moment>}
+                            defaultValue={confirmationDate}
                             value={confirmationDate}
                             onChange={(e) => setConfirmationDate(e.target.value)}
 

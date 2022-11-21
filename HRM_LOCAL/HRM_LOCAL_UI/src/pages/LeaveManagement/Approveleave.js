@@ -48,7 +48,7 @@ const Approve = (props) => {
           </Button>
 
           <Modal show={onhold} onHide={handleClose} size="sm" centered>
-            <Modal.Header closeButton>
+            <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
               <Modal.Title>Approve Leave</Modal.Title>
             </Modal.Header>
             <Modal.Body>

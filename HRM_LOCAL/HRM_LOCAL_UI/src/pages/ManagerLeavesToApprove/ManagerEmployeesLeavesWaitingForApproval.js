@@ -116,8 +116,8 @@ function ManagerEmployeesLeavesWaitingForApproval(props) {
 
       <Grid>
         <MaterialTable
-        //   title="Leaves/WFH Approvals"
-        title=""
+           title="Leaves/WFH Approvals"
+        // title=""
           columns={columns}
           data={data}
           options={{

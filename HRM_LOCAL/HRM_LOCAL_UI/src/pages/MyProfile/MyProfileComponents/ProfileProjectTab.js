@@ -13,6 +13,8 @@ import {
   Section,
   Description,
 } from "vertical-timeline-component-react";
+import Moment from "moment";
+import moment from "moment";
 
 const customTheme = {
   yearColor: "#405b73",
@@ -36,7 +38,7 @@ const ProfileProjectTab = () => {
   const[data,setData] = useState([]);
   useEffect(() => {
     axios.get(`/clientProjectMapping/getAllProjectsbyemployee/${employeeid}`).then((response) => {
-      setData(response.data.data);
+      setData(response.data);
     });
   }, []);
   console.log(data);
@@ -113,13 +115,15 @@ const ProfileProjectTab = () => {
             <table class="table">
               <thead>
                 <tr>
-               
+                <th scope="col">Project ID</th>
                   <th scope="col">Project Name</th>
                   <th scope="col">Client Name</th>
                   <th scope="col">Reporting Manager</th>
-    
-                  <th scope="col">Start Date</th>
+                  <th scope="col">Assigned Date</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" >Start Date</th>
                   <th scope="col">End Date</th>
+                  <th scope="col">Allocation</th>
                 </tr>
               </thead>
 
@@ -134,15 +138,18 @@ const ProfileProjectTab = () => {
 <>
                     {data.map((data) => (
                       <tr>
+                        <td>{data.projectId}</td>
                         <td>{data.projectName}</td>
                         <td>{data.clientName}</td>
                         <td>{data.projectManager}</td>
-                        <td dataSort = {true}   >
-                        {data.startDate.split("T0")[0].split('-').reverse().join('/')}
+                        <td>{moment(data.assignedDate).format("DD/MM/YYYY")}</td>
+                        <td>{data.status}</td>
+                        <td >{moment(data.startDate).format("DD/MM/YYYY")}
                         </td>
                         <td>
-                          {data.endDate.split("T0")[0].split('-').reverse().join('/')}
+                        {moment(data.endDate).format("DD/MM/YYYY")}
                         </td>
+                        <td>{data.projectAllocation}</td>
                       </tr>
                     ))}
                      </> }

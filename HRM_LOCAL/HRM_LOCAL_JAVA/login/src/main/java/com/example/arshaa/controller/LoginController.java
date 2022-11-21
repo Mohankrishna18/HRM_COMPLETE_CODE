@@ -115,6 +115,13 @@ public class LoginController
 	}
 		
 		
+//changes by MURALI MIRIYALA
+    
+	@GetMapping("/makeLoginsInActive/{employeeId}")
+    public String makeLoginsInActive(@PathVariable String employeeId)
+    {
+    	return service.makeLoginsInActive(employeeId);
+    }
 	
 	/* Role Module Access API's*------------------------sandhya changes*/
 	

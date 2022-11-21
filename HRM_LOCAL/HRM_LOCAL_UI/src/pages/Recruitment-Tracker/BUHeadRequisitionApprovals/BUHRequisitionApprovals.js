@@ -132,7 +132,7 @@ function BUHRequisitionApprovals(props) {
       </Modal>
 
       <Modal show={rejectshow} onHide={handleCloseReject} centered>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
           <Modal.Title>Are you sure you want to Reject</Modal.Title>
         </Modal.Header>
         <Modal.Footer>
