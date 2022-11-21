@@ -181,12 +181,12 @@ const EditAdditional = () => {
                 </Col>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                        Band:
+                    Bank Name:
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                        {band}
+                    {bankName}
                     </Card.Text>
                 </Col>
             </Row>
@@ -194,22 +194,22 @@ const EditAdditional = () => {
             <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                        Bank Name:
+                    Account Number:
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                        {bankName}
+                    {accountNumber}
                     </Card.Text>
                 </Col>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                        Account Number:
+                    IFSC Code:
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                        {accountNumber}
+                    {ifscCode}
                     </Card.Text>
                 </Col>
             </Row>
@@ -217,22 +217,22 @@ const EditAdditional = () => {
             <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                        IFSC Code:
+                    Branch:
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                        {ifscCode}
+                    {branch}
                     </Card.Text>
                 </Col>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                        Branch:
+                     
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                        {branch}
+                      
                     </Card.Text>
                 </Col>
             </Row>

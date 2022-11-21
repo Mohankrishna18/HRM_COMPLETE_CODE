@@ -14,6 +14,7 @@ import {
   Section,
   Description,
 } from "vertical-timeline-component-react";
+import moment from "moment";
 
 const customTheme = {
   yearColor: "#405b73",
@@ -39,14 +40,13 @@ const EditProject = () => {
   const employeeid = userData1.data.employeeId;
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
   const [project, setProject] = useState([]);
-  
-  const[data,setData] = useState([]);
+ 
   //var dateTime = getEmployeeDetails.dateOfJoining;
 
   const[projects,setProjects] = useState([]);
   useEffect(() => {
     axios.get(`/clientProjectMapping/getAllProjectsbyemployee/${localitem}`).then((response) => {
-      setProjects(response.data.data);
+      setProjects(response.data);
     });
   }, []);
   console.log(projects);
@@ -78,8 +78,6 @@ const EditProject = () => {
   console.log(imge);
 
   // const [projects, setProjects] = useState(false);
- 
-
   // useEffect(() => {
   //   axios
   //     .get(`/emp/getUserClientDetailsbyEmployeeId/${localitem}`)
@@ -100,13 +98,14 @@ const EditProject = () => {
   }, []);
   console.log(project);
 
-  const [proj, setProj] = useState([]);
+
+  const[data,setData] = useState([]);
   useEffect(() => {
-    axios.get(`/clientProjectMapping/getAllProjects`).then((response) => {
-      setProj(response.data.data);
+    axios.get(`/clientProjectMapping/getAllProjectsbyemployee/${localitem}`).then((response) => {
+      setData(response.data);
     });
   }, []);
-  console.log(proj);
+  console.log(data);
   
 
   return (
@@ -121,11 +120,15 @@ const EditProject = () => {
               <thead>
                 <tr>
                
+                <th scope="col">Project ID</th>
                   <th scope="col">Project Name</th>
                   <th scope="col">Client Name</th>
                   <th scope="col">Reporting Manager</th>
-                  <th scope="col">Start Date</th>
+                  <th scope="col">Assigned Date</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" >Start Date</th>
                   <th scope="col">End Date</th>
+                  <th scope="col">Allocation</th>
                 </tr>
               </thead>
 
@@ -140,15 +143,18 @@ const EditProject = () => {
 <>
                     {projects.map((data) => (
                       <tr>
+                         <td>{data.projectId}</td>
                         <td>{data.projectName}</td>
                         <td>{data.clientName}</td>
                         <td>{data.projectManager}</td>
-                        <td dataSort = {true}   >
-                        {data.startDate.split("T0")[0].split('-').reverse().join('/')}
+                        <td>{moment(data.assignedDate).format("DD/MM/YYYY")}</td>
+                        <td>{data.status}</td>
+                        <td >{moment(data.startDate).format("DD/MM/YYYY")}
                         </td>
                         <td>
-                          {data.endDate.split("T0")[0].split('-').reverse().join('/')}
+                        {moment(data.endDate).format("DD/MM/YYYY")}
                         </td>
+                        <td>{data.projectAllocation}</td>
                       </tr>
                     ))}
                      </> }

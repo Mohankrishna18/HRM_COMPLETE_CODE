@@ -152,11 +152,8 @@ const AddRequisitionRequests=(props) =>{
       newErrors.pSkills = "Please enter Primary skills";
     
       return newErrors;
-     
     };
-  
-  
-  
+ 
     const handleNext = (e) => {
       e.preventDefault();
       const formErrors = validateForm();
