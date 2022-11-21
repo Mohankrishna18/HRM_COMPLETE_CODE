@@ -45,7 +45,7 @@ const Reject = (props) => {
           </Button>
 
           <Modal show={onhold} onHide={handleClose}  size="md"centered>
-            <Modal.Header closeButton>
+            <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
               <Modal.Title>Reject</Modal.Title>
             </Modal.Header>
             <Modal.Body>

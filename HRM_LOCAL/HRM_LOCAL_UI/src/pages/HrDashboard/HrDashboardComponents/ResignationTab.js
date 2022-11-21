@@ -66,8 +66,8 @@ useEffect(() => {
   // }, [viewStatus]);
   const status = "InActive";
   const loadData = async (e) => {
-    const response = await axios.get(`/resignation/getAllResignation/${status}`);// u ned to change this
-    setData(response.data);
+    const response = await axios.get(`/emp/getActiveEmployees/${status}`);// u ned to change this
+    setData(response.data.data);
     console.log(response.data);
   };
   console.log(data.employeeId)

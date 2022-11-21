@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Row, Col, Nav, Navbar, Button } from "react-bootstrap";
-import image from "../Images/arshaalogo.png";
+import Image from "../Images/arshaalogo.png";
 import { NavLink, useHistory } from "react-router-dom";
 import { isLoggedIn } from "../utils";
 
@@ -18,7 +18,7 @@ const NavBar = (props) => {
   const employeeid = userData1.data.employeeId;
 
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
-  const [imge, setImge] = useState([]);
+  const [imge, setImge] = useState({});
 
   useEffect(() => {
     axios
@@ -69,7 +69,7 @@ const NavBar = (props) => {
                 <Navbar>
                   <Navbar.Brand href="#">
                     <img
-                      src={image}
+                      src={Image}
                       style={{
                         height: "70px",
                         width: "50",

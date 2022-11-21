@@ -7,11 +7,13 @@ import axios from "../../../Uri";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams, useHistory } from "react-router-dom";
+import Moment from "moment";
 import { UserContext } from './UpdateRequisition';
-function UpdateRR(props) {
+import './utils/RT.css';
 
-  // console.log(props);
-  // const { data, setData } = useContext(UserContext);
+ const UpdateRR= (props) => {
+
+  const [raisedOn, setRaisedOn] = useState();
   const [jobTitle, setJobTitle] = useState();
   const [reqType1, setReqType1] = useState();
   const [reqType2, setReqType2] = useState();
@@ -24,7 +26,7 @@ function UpdateRR(props) {
   const [pSkills, setPSkills] = useState();
   const [sSkills, setSSkills] = useState();
   const [allocType, setAllocType] = useState();
-
+  const [requisitionId, setRequisitionId] = useState();
   const [workLocation, setWorkLocation] = useState();
   const [workingHours, setWorkingHours] = useState();
   const [empType, setEmpType] = useState();
@@ -42,6 +44,15 @@ function UpdateRR(props) {
   const [qualification, setQualification] = useState();
   const [uploadDoc, setUploadDoc] = useState();
   const [projectName, setProjectName] = useState();
+  const [initDate, setInitDate] = useState();
+const [resourceRequiredDate,setResourceRequiredDate] = useState();
+const [interviewPanel1, setInterviewPanel1] = useState([]);
+const [interviewPanel2, setInterviewPanel2] = useState([]);
+const [hrPanel, setHrPanel] = useState([]);
+const [newInterviewPanel1, setNewInterviewPanel1] = useState();
+const [newInterviewPanel2, setNewInterviewPanel2] = useState();
+const [newHrPanel, setNewHrPanel] = useState();
+
 
   const [clientName, setClientName] = useState();
   const [comments, setComments] = useState();
@@ -53,7 +64,7 @@ function UpdateRR(props) {
     setStatus1(!status1);
   };
 
-  const handleClose = () => setShow();
+ 
   // useState for phone number
   const [firsterrors, setFirstErrors] = useState("");
   const [seconderrors, setSecondErrors] = useState("");
@@ -76,46 +87,73 @@ function UpdateRR(props) {
         [field]: null,
       });
   }
+  // const [paymentMethod, setPaymentMethod] = useState(props.data.data);
 
+  // const radioChangeHandler = (e) => {
+  //   setPaymentMethod(e.target.value);
+  // };
 
+  // var initDate = Moment()
+  // .utcOffset('+05:30')
+  // .format('YYYY-MM-DD hh:mm:ss');
 
   const loadPocNames = async () => {
     const res = await axios.get("/emp/getAllEmployeeMasterData");
     setPocname(res.data.data);
-    console.log(res.data.data);
+   
   };
 
   const loadClients = async () => {
     const res = await axios.get("/clientProjectMapping/getAllClients");
     setClients(res.data.data);
-    console.log(res.data.data);
+
   };
 
   const loadDepartmentsData = async () => {
     const res = await axios.get("/dept/getAllDepartments");
-    console.log(res.data);
+ 
     setDepartments(res.data);
 
   };
 
+  // const loadHRDeptEmployees = async () => {
+  //   const res = await axios.get("/emp/getEmployeesByDepartment/HR");
+  //  sData1 = res.data.data.filter(item => item.status === 'Active')
+  //   setHrPanel(sData1);
+  //   // console.log(sData1);
+  //   console.log(sData1);
+   
+  // }
+  const loadHRDeptEmployees =()=>{
+    axios.get("/emp/getEmployeesByDepartment/HR").then((res)=>{
+     
+       const dat = res.data.data.filter(item => item.status == "Active")
+       setHrPanel(dat)
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
+
   const loadProjects = async () => {
     const res = await axios.get("/clientProjectMapping/getAllProjects");
     setProjects(res.data.data);
-    console.log(res.data.data);
+   
   };
   useEffect(() => {
     loadDepartmentsData();
     loadProjects();
     loadClients();
     loadPocNames();
+    loadHRDeptEmployees();
   }, []);
 
-  console.log(params);
   const loadData1 = async () => {
     const response = await axios.get(
       `/recruitmentTracker/getDataById/${params.id}`
     );
-    console.log(response);
+    setRaisedOn(response.data.data.raisedOn);
+    console.log(response.data.data.raisedOn);
+    setRequisitionId(response.data.data.requisitionId);
     setJobTitle(response.data.data.jobTitle);
     setReqType1(response.data.data.reqType1);
     setReqType2(response.data.data.reqType2);
@@ -132,32 +170,39 @@ function UpdateRR(props) {
     setEmpType(response.data.data.empType);
     setRole(response.data.data.role);
     // setDepartments(response.data.departments);
-    setNewDepartmentName(response.data.data.newDepartmentName);
+    setNewDepartmentName(response.data.data.departmentName);
     // setClients(response.data.clients);
     // setProjects(response.data.projects);
-    setNewProject(response.data.data.newProject);
-    setNewClient(response.data.data.newClient);
+    setNewProject(response.data.data.projectName);
+    setNewClient(response.data.data.clientName);
     // setPocname(response.data.pocname);
-    setNewPOCName(response.data.data.newPOCName);
+    setNewPOCName(response.data.data.pocname);
     setYoe(response.data.data.yoe);
     setRate(response.data.data.rate);
     setUploadDoc(response.data.data.uploadDoc);
     setComments(response.data.data.comments);
-
+    setInitDate(response.data.data.requestInitiatedDate);
+   
+    setResourceRequiredDate(response.data.data.resourceRequiredDate);
+    // console(response.data.data.resourceRequiredDate);
+    setNewInterviewPanel1(response.data.data.interviewPanel1);
+    setNewInterviewPanel2(response.data.data.interviewPanel2);
+    setNewHrPanel(response.data.data.hrPanel);
+    setQualification(response.data.data.qualification);
   }
 
   useEffect(() => {
     loadData1();
   }, [status1]);
-
+  const routeToRRPage=() => history.push("/app/rrf")
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(jobTitle, technology, role, description, positions, pSkills, sSkills, qualification, workLocation, workingHours, empType, yoe, rate, projectName, uploadDoc, clientName, comments, newDepartmentName, newPOCName)
+   
     axios
       .put(
-        `/recruitmentTracker/updateRR/${props.updateOnboard.rrfId}`,
+        `/recruitmentTracker/updateRR/${params.id}`,
         {
-
+          requisitionId:requisitionId,
           jobTitle: jobTitle,
           technology: technology,
           role: role,
@@ -175,32 +220,37 @@ function UpdateRR(props) {
           projectName: newProject,
           uploadDoc: uploadDoc,
           clientName: newClient,
-
+          raisedOn:raisedOn,
           comments: comments,
-          departmentName: newDepartmentName
+          priority: priority,
+          departmentName: newDepartmentName,
+          interviewPanel1: newInterviewPanel1,
+          interviewPanel2: newInterviewPanel2,
+          hrPanel: newHrPanel
         }
       )
       .then((response) => {
         const user = response.data;
         if (response.data.status) {
           pull_data();
-          // props.func();
+         
           toast.success("Requisition Updated successfully");
+          routeToRRPage();
         } else {
           console.log("Props not Send");
         }
-        toast.success("Form Submitted successfully");
-        // console.log(user);
+       
+       
       })
       .catch((err) => {
-        console.log(err);
+       
         toast.error("Something Went Wrong");
       });
-    props.handleClose();
+    // props.handleClose();
   };
   return (
-    <>
-    <h5 style={{ paddingTop: "13px" }}>Update Requisition</h5>
+    <div className="example" style={{ paddingLeft: "12px" }}>
+      <h5 style={{ paddingTop: "13px" }}>Update Requisition</h5>
       <Form
         ref={forms}
         className="formone"
@@ -211,15 +261,29 @@ function UpdateRR(props) {
 
       >
         <Row>
-          <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+        <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+            <Form.Label>AERF ID</Form.Label>
+            <Form.Control
+              required
+              className="requisitionId"
+              type="text"
+              controlId="requisitionId"
+              value={requisitionId}
+              disabled
+              onChange={(e) => setRequisitionId(e.target.value)}
+              isInvalid={!!errors.requisitionId}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors.requisitionId}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} md="8" style={{ padding: 10 }}>
             <Form.Label>Job Title</Form.Label>
             <Form.Control
               required
               className="jobTitle"
               type="text"
               controlId="jobTitle"
-
-
               value={jobTitle}
               onChange={(e) => setJobTitle(e.target.value)}
               isInvalid={!!errors.jobTitle}
@@ -237,8 +301,8 @@ function UpdateRR(props) {
               label="Internal"
               name="reqType1"
               type='radio'
-
-              onChange={(e) => setField("reqType1", e.target.value)}
+              checked={reqType1 ==='Internal' ? true :false}
+              // onChange={(e) => setField("reqType1", e.target.value)}
               value="Internal"
             />
             <Form.Check
@@ -247,6 +311,7 @@ function UpdateRR(props) {
               label="External"
               name="reqType1"
               type='radio'
+              checked={reqType1 ==='External' ? true :false}
               // id={`inline-${type}-2`}
               // onChange={(event) => setLeaveOrwfh(event.target.value)}
               onChange={(e) => setField("reqType1", e.target.value)}
@@ -261,6 +326,7 @@ function UpdateRR(props) {
               label="New Recruitment"
               name="reqType2"
               type='radio'
+              checked={reqType2 ==='New Recruitment' ? true :false}
               //id={`inline-${type}-1`}
               //onChange={(event) => setInternalOrExternal(event.target.value)}
               onChange={(e) => setField("reqType2", e.target.value)}
@@ -272,6 +338,7 @@ function UpdateRR(props) {
               label="Replacement"
               name="reqType2"
               type='radio'
+              checked={reqType2 ==='Replacement' ? true :false}
               // id={`inline-${type}-2`}
               // onChange={(event) => setLeaveOrwfh(event.target.value)}
               onChange={(e) => setField("reqType2", e.target.value)}
@@ -282,7 +349,7 @@ function UpdateRR(props) {
           </Card>
 
           <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Requirement Type *</Form.Label>
+            <Form.Label>Requirement Type</Form.Label>
             <Form.Select
               required
               className="reqType3"
@@ -307,7 +374,7 @@ function UpdateRR(props) {
             <Form.Select
               required
               type="text"
-              placeholder="Employment Type"
+             
               controlId="empType"
               value={empType}
               onChange={(e) => setEmpType(e.target.value)}
@@ -391,7 +458,7 @@ function UpdateRR(props) {
               <Form.Control
                 required
                 type="text"
-                // placeholder="Work Location"
+               
                 controlId="workLocation"
                 isInvalid={seconderrors}
                 value={workLocation}
@@ -416,7 +483,7 @@ function UpdateRR(props) {
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </InputGroup>
           </Form.Group>
-          <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
             <Form.Label>Technology</Form.Label>
             <Form.Control
               required
@@ -425,33 +492,25 @@ function UpdateRR(props) {
               controlId="technology"
               value={technology}
               onChange={(e) => setTechnology(e.target.value)}
-              isInvalid={!!errors.jobTitle}
+              isInvalid={!!errors.technology}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.jobTitle}
+              {errors.technology}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group as={Col} md="4" style={{ padding: 10 }}>
             <Form.Label>Role </Form.Label>
-            <Form.Select
+            <Form.Control
               required
               type="text"
-              placeholder="Role"
+             
               controlId="role"
               value={role}
               onChange={(e) => setRole(e.target.value)}
               isInvalid={!!errors.role}
             >
-              <option>{role} </option>
-              <option>Java Developer</option>
-              <option>React JS Developer</option>
-              <option>Vue JS Developer</option>
-              <option>Python Developer</option>
-              <option>HR Manager</option>
-              <option>Admin</option>
-              <option>QA Tester</option>
-              <option>Data Analyst</option>
-            </Form.Select>
+             
+            </Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.role}
             </Form.Control.Feedback>
@@ -483,7 +542,7 @@ function UpdateRR(props) {
               name="positions"
               type="number"
               controlId="positions"
-              placeholder="Positions"
+             
               value={positions}
               onChange={(e) => setPositions(e.target.value)}
               isInvalid={!!errors.positions}
@@ -500,7 +559,7 @@ function UpdateRR(props) {
               <Form.Control
                 required
                 type="text"
-                placeholder="Years of Experience"
+               
                 controlId="yoe"
                 isInvalid={thirderrors}
                 value={yoe}
@@ -527,23 +586,23 @@ function UpdateRR(props) {
             </InputGroup>
           </Form.Group>
           <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Technology</Form.Label>
+            <Form.Label>Priority</Form.Label>
             <Form.Select
               required
               type="text"
-              placeholder="Technology"
-              controlId="technology"
-              value={technology}
-              onChange={(e) => setTechnology(e.target.value)}
-              isInvalid={!!errors.technology}
+             
+              controlId="priority"
+              value={priority}
+              onChange={(e) => setPriority(e.target.value)}
+              isInvalid={!!errors.priority}
             >
-              <option>{technology}</option>
-              <option>React JS</option>
-              <option>Vue JS</option>
-              <option>Java Microservices</option>
+              <option>{priority}</option>
+              <option>P1</option>
+              <option>P2</option>
+              <option>P3</option>
             </Form.Select>
             <Form.Control.Feedback type="invalid">
-              {errors.technology}
+              {errors.priority}
             </Form.Control.Feedback>
           </Form.Group>
         </Row>
@@ -555,8 +614,6 @@ function UpdateRR(props) {
               className="pSkills"
               type="text"
               controlId="pSkills"
-              placeholder="Primary Skills"
-
               value={pSkills}
               onChange={(e) => setPSkills(e.target.value)}
               isInvalid={!!errors.pSkills}
@@ -578,7 +635,6 @@ function UpdateRR(props) {
               name="sSkills"
               type="text"
               controlId="sSkills"
-              placeholder="Secondary Skills"
               value={sSkills}
               onChange={(e) => setSSkills(e.target.value)}
               isInvalid={!!errors.sSkills}
@@ -590,7 +646,7 @@ function UpdateRR(props) {
           </Form.Group>
         </Row>
         <Row>
-        <Form.Group as={Col} md="12" height="10rem" style={{ padding: 10 }}>
+          <Form.Group as={Col} md="12" height="10rem" style={{ padding: 10 }}>
             <Form.Label>Job Description</Form.Label>
             <Form.Control
               required
@@ -611,7 +667,7 @@ function UpdateRR(props) {
         <Row>
 
 
-          
+
           <Form.Group as={Col} md="4" style={{ padding: 10 }}>
             <Form.Label>Rate</Form.Label>
             <Form.Control
@@ -619,8 +675,6 @@ function UpdateRR(props) {
               className="rate"
               type="number"
               controlId="rate"
-              placeholder="Rate"
-
               value={rate}
               onChange={(e) => setRate(e.target.value)}
               isInvalid={!!errors.rate}
@@ -636,7 +690,7 @@ function UpdateRR(props) {
               className="workingHours"
               type="text"
               controlId="workingHours"
-              placeholder="Working Hours"
+             
 
               value={workingHours}
               onChange={(e) => setWorkingHours(e.target.value)}
@@ -654,8 +708,6 @@ function UpdateRR(props) {
               className="qualification"
               type="text"
               controlId="qualification"
-             
-
               value={qualification}
               onChange={(e) => setQualification(e.target.value)}
               isInvalid={!!errors.qualification}
@@ -669,7 +721,7 @@ function UpdateRR(props) {
         <Row>
 
           <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>POC Name</Form.Label>
+            <Form.Label>Contact Name</Form.Label>
             <Form.Select
               required
               type="text"
@@ -680,35 +732,31 @@ function UpdateRR(props) {
             >
               <option>{newPOCName}</option>
               {pocname.map((poc) => (
-                <option value={poc.employeeId}>{poc.firstName}</option>
+                <option value={poc.fullName}>{poc.fullName}</option>
               ))}
             </Form.Select>
             <Form.Control.Feedback type="invalid">
               {errors.pocname}
             </Form.Control.Feedback>
           </Form.Group>
-          
-        </Row>
-        <Row>
-          <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-            <Form.Label>Job Description</Form.Label>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+            <Form.Label>Upload Document </Form.Label>
             <Form.Control
-              required
-              name="description"
-              type="textarea"
-              controlId="description"
-              style={{ height: "80px" }}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              isInvalid={!!errors.description}
+              name="uploadDoc"
+              type="file"
+              id="uploadDoc"
+              controlId="uploadDoc"
+             
+              value={uploadDoc}
+              onChange={(e) => setUploadDoc(e.target.value)}
+              isInvalid={!!errors.uploadDoc}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.description}
+              {errors.uploadDoc}
             </Form.Control.Feedback>
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
-
         </Row>
+
         <Row>
           <Form.Group as={Col} md="12" style={{ padding: 10 }}>
             <Form.Label>Comments</Form.Label>
@@ -728,6 +776,116 @@ function UpdateRR(props) {
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
 
+        </Row>
+        <Row>
+        <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+            <Form.Label>Interview Panel1</Form.Label>
+            <Form.Select
+              required
+              type="text"
+              controlId="interviewPanel1"
+              defaultValue={newInterviewPanel1}
+              onChange={(e) => setNewInterviewPanel1(e.target.value)}
+              isInvalid={!!errors.interviewPanel1}
+            >
+              <option>{newInterviewPanel1}</option>
+              {pocname.map((panel1) => (
+                <option value={panel1.fullName}>{panel1.fullName}</option>
+              ))}
+            </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              {errors.interviewPanel1}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+            <Form.Label>Interview Panel2</Form.Label>
+            <Form.Select
+              required
+              type="text"
+              controlId="interviewPanel2"
+              defaultValue={newInterviewPanel2}
+              onChange={(e) => setNewInterviewPanel2(e.target.value)}
+              isInvalid={!!errors.interviewPanel2}
+            >
+              <option>{newInterviewPanel2}</option>
+              {pocname.map((panel2) => (
+                <option value={panel2.fullName}>{panel2.fullName}</option>
+              ))}
+            </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              {errors.interviewPanel2}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+            <Form.Label>HR Panel</Form.Label>
+            <Form.Select
+              required
+              type="text"
+              controlId="hrPanel"
+              defaultValue={newHrPanel}
+              onChange={(e) => setNewHrPanel(e.target.value)}
+              isInvalid={!!errors.hrPanel}
+            >
+              {/* <option>{hrPanel}</option> */}
+              {hrPanel.map((HRpanel) => (
+                <option value={HRpanel.fullName}>{HRpanel.fullName}</option>
+              ))}
+            </Form.Select>
+            <Form.Control.Feedback type="invalid">
+              {errors.hrPanel1}
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+        <Row>
+        <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+            <Form.Label>Request Initiated Date</Form.Label>
+            <Form.Control
+              required
+              type="date"
+              controlId="initDate"
+              value={Moment(initDate).format("YYYY-MM-DD")}
+              onChange={(e) => setInitDate(e.target.value)}
+              isInvalid={!!errors.initDate}
+            >
+             
+            </Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors.initDate}
+            </Form.Control.Feedback>
+          </Form.Group>
+        <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+            <Form.Label>Resource Required Date</Form.Label>
+            <Form.Control
+              required
+              type="date"
+              controlId="resourceRequiredDate"
+              value={Moment(resourceRequiredDate).format("YYYY-MM-DD")}
+              onChange={(e) => setResourceRequiredDate(e.target.value)}
+              isInvalid={!!errors.resourceRequiredDate}
+            >
+             
+            </Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors.resourceRequiredDate}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+            <Form.Label>Raised Date</Form.Label>
+            <Form.Control
+              required
+              type="date"
+              disabled
+              controlId="raisedOn"
+              value={Moment(raisedOn).format("YYYY-MM-DD")}
+              onChange={(e) => setRaisedOn(e.target.value)}
+              isInvalid={!!errors.raisedOn}
+            >
+             
+            </Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors.raisedOn}
+            </Form.Control.Feedback>
+          </Form.Group>
         </Row>
         <Row>
           <Col>
@@ -780,8 +938,7 @@ function UpdateRR(props) {
           </Col>
         </Row>
       </Form>
-    </>
+    </div>
   )
 }
-
 export default UpdateRR;

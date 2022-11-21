@@ -16,6 +16,7 @@ public class EmployeeReq {
     private String role;
     private String workflowStatus;
     private int positions;
+    private String priority;
     private String pSkills;
     private String sSkills;
     private String workLocation;
@@ -40,6 +41,9 @@ public class EmployeeReq {
     private Date resourceRequiredDate;
     private Date requestClosedDate;
     private int ageing;
+    private String interviewPanel1;
+    private String interviewPanel2;
+    private String hrPanel;
 
     private String buheadId;
 
@@ -430,6 +434,38 @@ public class EmployeeReq {
 
     public void setPmoheadApprovedBy(String pmoheadApprovedBy) {
         this.pmoheadApprovedBy = pmoheadApprovedBy;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public String getInterviewPanel1() {
+        return interviewPanel1;
+    }
+
+    public void setInterviewPanel1(String interviewPanel1) {
+        this.interviewPanel1 = interviewPanel1;
+    }
+
+    public String getInterviewPanel2() {
+        return interviewPanel2;
+    }
+
+    public void setInterviewPanel2(String interviewPanel2) {
+        this.interviewPanel2 = interviewPanel2;
+    }
+
+    public String getHrPanel() {
+        return hrPanel;
+    }
+
+    public void setHrPanel(String hrPanel) {
+        this.hrPanel = hrPanel;
     }
 
     

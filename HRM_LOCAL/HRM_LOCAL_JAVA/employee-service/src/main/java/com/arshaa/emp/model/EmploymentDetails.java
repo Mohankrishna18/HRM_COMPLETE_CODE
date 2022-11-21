@@ -11,17 +11,44 @@ public class EmploymentDetails {
 	private String employmentType;
 	private String band;
 	@Column
-	private String department;
+	private String departmentName;
 	@Column
-	private String designation;
+	private String designationName;
 	private String reportingManager;
 	private String jobTitle;
 	private String client;
 	private String onboardingStatus;
-	private String exitDate;
-	private Date resignationDate;
+	private Date exitDate;
+	private String resignationDate;
 	private String status;
+	private String irm;
+	private String srm;
+	private String buh;
+	private String irmId;
+	private String srmId;
+	private String buhId;
 	
+	private Date confirmationDate;
+
+    private int leaveBalance;
+
+	public int getLeaveBalance() {
+		return leaveBalance;
+	}
+
+	public void setLeaveBalance(int leaveBalance) {
+		this.leaveBalance = leaveBalance;
+	}
+
+
+
+	public Date getConfirmationDate() {
+	return confirmationDate;
+	}
+	public void setConfirmationDate(Date confirmationDate) {
+	this.confirmationDate = confirmationDate;
+	}
+
 	
 	public String getStatus() {
 		return status;
@@ -29,16 +56,17 @@ public class EmploymentDetails {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getExitDate() {
+	
+	public Date getExitDate() {
 		return exitDate;
 	}
-	public void setExitDate(String exitDate) {
+	public void setExitDate(Date exitDate) {
 		this.exitDate = exitDate;
 	}
-	public Date getResignationDate() {
+	public String getResignationDate() {
 		return resignationDate;
 	}
-	public void setResignationDate(Date resignationDate) {
+	public void setResignationDate(String resignationDate) {
 		this.resignationDate = resignationDate;
 	}
 	public String getOnboardingStatus() {
@@ -65,13 +93,7 @@ public class EmploymentDetails {
 	public void setBuh(String buh) {
 		this.buh = buh;
 	}
-	private String irm;
-	private String srm;
-	private String buh;
-	
-	  private String irmId;
-	    private String srmId;
-	    private String buhId;
+
 	    
 		public String getIrmId() {
 			return irmId;
@@ -118,17 +140,17 @@ public class EmploymentDetails {
 		this.band = band;
 	}
 	
-	public String getDepartment() {
-		return department;
+	public String getDepartmentName() {
+		return departmentName;
 	}
-	public void setDepartment(String department) {
-		this.department = department;
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
-	public String getDesignation() {
-		return designation;
+	public String getDesignationName() {
+		return designationName;
 	}
-	public void setDesignation(String designation) {
-		this.designation = designation;
+	public void setDesignationName(String designationName) {
+		this.designationName = designationName;
 	}
 	public String getReportingManager() {
 		return reportingManager;
@@ -154,6 +176,8 @@ public class EmploymentDetails {
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
+	
+	
 	
 	
 

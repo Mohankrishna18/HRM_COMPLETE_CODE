@@ -14,6 +14,7 @@ import com.arshaa.emp.model.EmploymentDetails;
 import com.arshaa.emp.model.Experience;
 import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.PersonalDetails;
+import com.arshaa.emp.model.ProbationEmployeeFeedBack;
 
 
 public interface MainService {
@@ -100,6 +101,9 @@ public interface MainService {
 	//Divya changes
 	public String getEmployeeFullName(String employeedId);
 	public ResponseEntity getActiveEmployeesByStatus(String status);
+	public ResponseEntity getDateOfJoiningByEmployeeId(String employeeId);
+	public ResponseEntity probationEmployeeFeedBack(String employeeId, ProbationEmployeeFeedBack prb);
+
 
     
     

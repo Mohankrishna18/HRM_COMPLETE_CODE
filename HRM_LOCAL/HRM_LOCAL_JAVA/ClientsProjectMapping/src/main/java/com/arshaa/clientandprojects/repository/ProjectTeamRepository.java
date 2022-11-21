@@ -23,4 +23,6 @@ public interface ProjectTeamRepository extends JpaRepository<ProjectTeamMaster, 
 
 	List<ProjectTeamMaster> findAllByEmployeeIdAndStatus(String employeeId,String status);
 
+	List<ProjectTeamMaster> getAllProjectsByEmployeeId(String employeeId);
+
 }

@@ -13,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from 'react-router-dom'
 
 
-export default function AddRequisition(props) {
+ const  AddRequisition=(props)=> {
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -33,14 +33,11 @@ export default function AddRequisition(props) {
   const sessionData = JSON.parse(sessionStorage.getItem('userdata'));
   const employeeId = sessionData.data.employeeId;
   const userType = sessionData.data.userType;
-  console.log(employeeId);
-  console.log(userType);
+
 
   return (
     <div>
-      {(userType === "taa" ) ?
-        <div></div>
-        :
+      
         <Button
           variant="warning"
           onClick={gotoStepperForm}
@@ -58,7 +55,7 @@ export default function AddRequisition(props) {
           {/* <BsPlusLg />  */}
           &nbsp; Raise Requisition
         </Button>
-        }
+      
 
       {/* <Modal
         style={{ maxHeight: "1350px", maxWidth: "1550px", }}
@@ -82,3 +79,4 @@ export default function AddRequisition(props) {
     </div>
   );
 }
+export default AddRequisition

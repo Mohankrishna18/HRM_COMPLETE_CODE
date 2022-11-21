@@ -38,7 +38,7 @@ const ProfileEducationalDetailsTab = () => {
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
   //var dateTime = getEmployeeDetails.dateOfJoining;
 
-  const [imge, setImge] = useState([]);
+  const [imge, setImge] = useState({});
 //commit
   useEffect(() => {
     axios
@@ -101,6 +101,7 @@ const ProfileEducationalDetailsTab = () => {
   var intermediateJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
   var tempDate = new Date(getEmployeeDetails.intermediatePassedYear);
+  console.log(tempDate);
   var intermediatePassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
   var tempDate = new Date(getEmployeeDetails.sscJoiningYear);
@@ -114,7 +115,7 @@ const ProfileEducationalDetailsTab = () => {
   return (
     <>
       
-                        <div style={{ padding: 20, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
+                        <div style={{ padding: 10, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
                           {/* <Card.Title>
                             <h5>Educational Information:</h5>
                           </Card.Title> */}

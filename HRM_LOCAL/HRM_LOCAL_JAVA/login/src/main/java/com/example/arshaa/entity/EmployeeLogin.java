@@ -27,6 +27,16 @@ public class EmployeeLogin
 	private Boolean updatedBy;
 	private String userType;
 	
+
+	private String userStatus;
+	
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
+	public String getUserStatus() {
+		return userStatus;
+	}
+
 	public String getUserType() {
 		return userType;
 	}

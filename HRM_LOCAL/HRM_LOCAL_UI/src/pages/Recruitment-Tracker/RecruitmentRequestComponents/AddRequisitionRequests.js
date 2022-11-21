@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
-function AddRequisitionRequests(props) {
+const AddRequisitionRequests=(props) =>{
     const [users, setUsers] = useState({});
     const [suggestions, setSuggestions] = useState([]);
     const [suggestions1, setSuggestions1] = useState([]);

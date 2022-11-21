@@ -21,7 +21,7 @@ const DeleteLeave = () => {
 
       <Modal show={show} onHide={handleClose} centered>
         <div class="col-md-12 text-center">
-          <Modal.Header closeButton>
+          <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
             <Modal.Title>Delete Leave</Modal.Title>
           </Modal.Header>
         </div>

@@ -41,7 +41,7 @@ function EmployeeMasterCard() {
 
 
     const [employeedetails, setEmployeeDetails] = useState([])
-    const [imge, setImge] = useState([]);
+    const [imge, setImge] = useState({});
     useEffect(() => {
         axios.get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
             .then((response) => {
@@ -68,7 +68,6 @@ function EmployeeMasterCard() {
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
-
     var doj = dd + '-' + mm + '-' + yyyy;
     console.log(doj);
 
@@ -164,21 +163,6 @@ function EmployeeMasterCard() {
                             <Col md={{ offset: 1 }}>
                                 <Card.Text style={{color:"#999897"}}>
                                     {employeedetails.irm}
-                                </Card.Text>
-                            </Col>
-                        </Row>
-
-
-                            
-                            <Row style={{ paddingBottom: 0 }}>
-                            <Col>
-                                <Card.Text style={{}}>
-                                    <h6>SRM: </h6>
-                                </Card.Text>
-                            </Col>{" "}
-                            <Col md={{ offset: 1 }}>
-                                <Card.Text style={{color:"#999897"}}>
-                                    {employeedetails.srm}
                                 </Card.Text>
                             </Col>
                         </Row>
@@ -281,30 +265,16 @@ function EmployeeMasterCard() {
                         <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Text style={{}}>
-                                        <h6>Project: </h6>
+                                        <h6>SRM: </h6>
                                     </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{color:"#999897"}}>
-                                        {employeedetails.projectName}
+                                      {employeedetails.srm}
                                     </Card.Text>
                                 </Col>
                             </Row>
-                            <Row style={{ paddingBottom: 10 }}>
-                                <Col>
-                                    {/* <Card.Text style={{}}>
-                                        <h6>Email: </h6>
-                                    </Card.Text> */}
-                                </Col>{" "}
-                                <Col md={{ offset: 1 }}>
-                                    {/* <Card.Text style={{color:"#999897"}}>
-                                      
-                                    </Card.Text> */}
-                                </Col>
-                            </Row>
-                            
-                      
-
+                           
                     </Col>
                 </Row>
 

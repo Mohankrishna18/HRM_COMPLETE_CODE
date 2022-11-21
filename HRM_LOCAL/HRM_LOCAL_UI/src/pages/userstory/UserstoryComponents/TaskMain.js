@@ -18,6 +18,7 @@ function TaskMain(props) {
   console.log(props);
   console.log(props);
   const projectId = props.projectId;
+  const projectName = props.projectName;
   
   let status = props.UserStory;
   const [show, setShow] = useState(false);
@@ -173,6 +174,7 @@ function TaskMain(props) {
             func={pull_dataUpdate}
             handleClose={handleClose}
             projectId={projectId}
+            projectName={projectName}
             
           />
         </Modal.Body>

@@ -1,6 +1,6 @@
 import React from 'react'
 import JobOpeningTable from './JobOpenings/JobOpeningTable'
-function JobOpeningMain() {
+const JobOpeningMain=()=> {
   return (
     <div><JobOpeningTable/></div>
   )

@@ -8,17 +8,17 @@ import { BsFillEyeFill } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdOutlinePersonAddAlt } from "react-icons/md";
 import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
-import RRColumns from './utils/RRColumns.json';
-import AddRequisition from './AddRequisition';
-import AddRR from './StepperForm';
-import AddRequisitionRequests from './AddRequisitionRequests'
-import UpdateRR from './UpdateRR'
+import RRColumns from "./utils/RRColumns.json";
+import AddRequisition from "./AddRequisition";
+// import AddRR from "./StepperForm";
+// import AddRequisitionRequests from "./AddRequisitionRequests";
+// import UpdateRR from "./UpdateRR";
 import DeleteRR from "./DeleteRR";
 import ViewRR from "./ViewRR";
 import { useParams, useHistory } from "react-router-dom";
-import './utils/RT.css';
+import "./utils/RT.css";
 
-function RRTable() {
+const RRTable = () => {
   const [show, setShow] = useState(false);
   const [viewShow, setViewShow] = useState(false);
   const [deleteLeads, setDeleteLeads] = useState(false);
@@ -34,7 +34,7 @@ function RRTable() {
   const [updateStatus, setUpdateStatus] = useState(false);
   const [deleteOnboard, setDeleteOnboard] = useState({});
   const [deleteStatus, setDeleteStatus] = useState(true);
-const params = useParams()
+  const params = useParams();
   const history = useHistory();
   const pull_dataAdd = () => {
     setAddStatus(!addStatus);
@@ -47,12 +47,10 @@ const params = useParams()
 
   const pull_dataView = () => {
     setViewStatus(!viewStatus);
-
   };
 
   const pull_dataDelete = () => {
     setDeleteStatus(!deleteStatus);
-
   };
 
   useEffect(() => {
@@ -60,29 +58,28 @@ const params = useParams()
     // createStatus();
   }, [addStatus, updateStatus, deleteStatus, viewStatus]);
 
-
   const loadData = async () => {
     const response = await axios.get("/recruitmentTracker/");
     setData(response.data);
-    console.log(response.data);
+   
   };
 
-  const sessionData = JSON.parse(sessionStorage.getItem('userdata'));
+  const sessionData = JSON.parse(sessionStorage.getItem("userdata"));
   const employeeId = sessionData.data.employeeId;
   const userType = sessionData.data.userType;
-  console.log(employeeId);
-  console.log(userType);
-
-
+ 
 
   return (
     <div>
-
       <Modal show={show} onHide={handleClose} size="xl">
-        <Modal.Header closeButton style={{
-          backgroundColor: "#FF9E14", paddingTop: "7px",
-          paddingBottom: "4px",
-        }}>
+        <Modal.Header
+          closeButton
+          style={{
+            backgroundColor: "#FF9E14",
+            paddingTop: "7px",
+            paddingBottom: "4px",
+          }}
+        >
           <Modal.Title>Update Requisition</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -92,13 +89,16 @@ const params = useParams()
             handleClose={handleClose}
           /> */}
         </Modal.Body>
-
       </Modal>
       <Modal show={viewShow} onHide={viewHandleClose} size="lg">
-        <Modal.Header closeButton style={{
-          backgroundColor: "#FF9E14", paddingTop: "7px",
-          paddingBottom: "4px",
-        }}>
+        <Modal.Header
+          closeButton
+          style={{
+            backgroundColor: "#f5896e",
+            paddingTop: "7px",
+            paddingBottom: "4px",
+          }}
+        >
           <Modal.Title>Arshaa Employee Requisitions</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -119,19 +119,31 @@ const params = useParams()
       </Modal>
 
       {/* delete modal */}
-      <Modal show={deleteLeads} onHide={deleteHandleClose}
+      <Modal
+        show={deleteLeads}
+        onHide={deleteHandleClose}
         size="md"
         backdrop="static"
         keyboard={false}
-        centered>
-        <Modal.Header closeButton style={{
-          backgroundColor: "#FF9E14", color: "white", paddingTop: "7px",
-          paddingBottom: "4px"
-        }}>
+        centered
+      >
+        <Modal.Header
+          closeButton
+          style={{
+            backgroundColor: "#FF9E14",
+            color: "white",
+            paddingTop: "7px",
+            paddingBottom: "4px",
+          }}
+        >
           <Modal.Title>Delete Requisition</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <DeleteRR deleteOnboard={deleteOnboard} func={pull_dataDelete} deleteHandleClose={deleteHandleClose} />
+          <DeleteRR
+            deleteOnboard={deleteOnboard}
+            func={pull_dataDelete}
+            deleteHandleClose={deleteHandleClose}
+          />
         </Modal.Body>
       </Modal>
 
@@ -160,38 +172,9 @@ const params = useParams()
       </Card.Body>
       <Grid container>
         <Grid xs={12}>
-          {(userType === "taa" ) ?
+
             <MaterialTable
               title=""
-              columns={RRColumns}
-              style={{ color: "black", fontSize: "0.9rem" }}
-              data={data}
-              editable={{}}
-              options={{
-                pageSize: 10,
-                grouping: true,
-                pageSizeOptions: [8, 10, 15, 20, 30, 50, 75, 100],
-                maxBodyHeight: 450,
-                headerStyle: {
-                  backgroundColor: "#f5896e",
-                  color: "white",
-                  fontSize: "12px",
-                  //height: "10px",
-                  //fontWeight: 'bold'
-                },
-                rowStyle: {
-                  fontSize: 14,
-                },
-                addRowPosition: "first",
-                actionsColumnIndex: -1,
-                // grouping: true,
-                exportButton: true,
-              }}
-              
-            />
-            :
-            <MaterialTable
-            title=""
               columns={RRColumns}
               style={{ color: "black", fontSize: "0.9rem" }}
               data={data ? data : []}
@@ -202,16 +185,15 @@ const params = useParams()
                 pageSizeOptions: [8, 10, 15, 20, 30, 50, 75, 100],
                 maxBodyHeight: 450,
                 headerStyle: {
-
                   // backgroundColor: "#FFC47A",
 
                   background: "#f5896e",
 
-                  fontSize:"13px",
+                  fontSize: "13px",
 
-                  paddingBottom:"4px",
+                  paddingBottom: "4px",
 
-                  paddingTop:"8px",
+                  paddingTop: "8px",
 
                   color: "white",
                 },
@@ -231,50 +213,42 @@ const params = useParams()
                     alert("You want to delete " + rowData.firstName),
                 },
               ]}
-
               components={{
                 Action: (props) => (
                   <div>
                     <Stack direction="horizontal" gap={3}>
-
                       <Button
                         variant="info"
                         onClick={(event) => {
-                          // setShow(true);
-                          console.log(props.data);
+                         
                           setUpdateOnboard(props.data);
-                          localStorage.setItem("requisition", JSON.stringify(props));
+                          localStorage.setItem(
+                            "requisition",
+                            JSON.stringify(props)
+                          );
                           history.push(
                             `/app/updateRequisition/${props.data.requisitionId}`
                           );
-                          console.log(props.data);
+                       
                         }}
                       >
-
                         <FiEdit />
                       </Button>{" "}
-
-
                       <Button
                         variant="danger"
                         onClick={(event) => {
                           setDeleteLeads(true);
-                          console.log(props);
+                         
                           setDeleteOnboard(props.data);
                         }}
                       >
-
                         <RiDeleteBin6Line />
                       </Button>
-
-
-
-
                       <Button
                         variant="primary"
                         onClick={(event) => {
                           setViewShow(true);
-                          console.log(props);
+                         
                           setViewOnboard(props.data);
                         }}
                         style={{
@@ -285,29 +259,23 @@ const params = useParams()
                           height: "40px",
                           width: "70px",
                           fontSize: "14px",
-                          fontWeight: "bold"
-
+                          fontWeight: "bold",
                         }}
-
                       >
-
                         View
                       </Button>
-
                     </Stack>
                   </div>
                 ),
               }}
             />
-}
+       
         </Grid>
       </Grid>
 
       {/* </Card> */}
-
     </div>
   );
 }
 
 export default RRTable;
-

@@ -80,6 +80,8 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import TaskMain from "../TimeSheet/EmployeeTimesheet/TaskMain";
 import TAAHeadApproval from "./TAAHeadApproval";
 import ManagerEmployeesLeavesWaitingForApproval from "../ManagerLeavesToApprove/ManagerEmployeesLeavesWaitingForApproval";
+import HRConfirmation from "../HRApproval/HRConfirmation"
+import HRResignationMain from "../HRApproval/HRResignationMain";
 
 
 const TAAHeadMain = () => {
@@ -112,12 +114,18 @@ const TAAHeadMain = () => {
                                             <Tab label="Onboarding Approvals" value="1" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }} ></Tab>
                                             <Tab label="Leave Approvals" value="2" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }}/>
                                             <Tab label="Timesheet Approvals" value="3" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }} />
+                                            <Tab label="Resignation Approvals" value="4" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }} />
+                                            <Tab label="Hiring Approvals" value="5" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }} />
+
                                             {/* FcConferenceCall/FcLeave/FcPositiveDynamic/FcConferenceCall/FcLeave/ */}
                                         </TabList>
                                     </Box>
                                     <TabPanel style={{ padding: "10px" }} value="1"> <TAAHeadApproval/></TabPanel>
                                     <TabPanel style={{ padding: "10px" }} value="2"><ManagerEmployeesLeavesWaitingForApproval/></TabPanel>
                                     <TabPanel style={{ padding: "10px" }} value="3"><TaskMain /></TabPanel>
+                                    <TabPanel style={{ padding: "10px" }} value="4"><HRResignationMain /></TabPanel>
+                                    <TabPanel style={{ padding: "10px" }} value="5"><HRConfirmation/></TabPanel>
+
                                 </TabContext>
                             </Box>
                             </Card>
