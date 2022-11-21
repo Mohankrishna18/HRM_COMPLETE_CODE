@@ -14,7 +14,8 @@ import {
 import UpdateRR from "./UpdateRR";
 
 export const UserContext = createContext(null);
-function UpdateRequisition(props) {
+
+const UpdateRequisition=(props)=> {
   // console.log(props.rowData)
   const [data, setData] = useState([]);
   //const {rowData} = props

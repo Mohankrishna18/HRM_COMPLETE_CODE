@@ -100,7 +100,7 @@ console.log(localitem)
         });
         toast.success("Form Submitted Successfully");
         handleClose();
-        const url = `/emp/upload/${localitem}/`;
+        const url = `/emp/update/${localitem}`;
         const formData = new FormData();
         formData.append("file", file);
         formData.append("fileName", file.name);
@@ -132,7 +132,7 @@ console.log(localitem)
         // notify();
         toast.success("Form Submitted Successfully");
         // refreshPage();
-        const url = `/emp/upload/${localitem}/`;
+        const url = `/emp/update/${localitem}`;
         const formData = new FormData();
         formData.append("file", file);
         formData.append("fileName", file.name);

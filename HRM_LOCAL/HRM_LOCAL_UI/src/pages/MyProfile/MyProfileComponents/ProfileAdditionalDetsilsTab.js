@@ -174,7 +174,7 @@ const ProfileAdditionalDetailsTab = () => {
                 </Col>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                    Bank Name::
+                    Bank Name:
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
@@ -238,7 +238,7 @@ const ProfileAdditionalDetailsTab = () => {
                 size="lg"
                 centered
             >
-                <Modal.Header closeButton>
+                <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
                     <Modal.Title>Additional Details</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

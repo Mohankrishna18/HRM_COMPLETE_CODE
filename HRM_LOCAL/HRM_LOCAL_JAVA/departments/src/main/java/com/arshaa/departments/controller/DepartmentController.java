@@ -80,8 +80,24 @@ public class DepartmentController {
 	@GetMapping("/getDepartmentIdByBusinessUnitName/{departmentName}")
     public ResponseEntity getDepartmentIdByBusinessUnitName(@PathVariable String departmentName) {
      return serv.getBUHIDfromDepartmentName(departmentName);
-
-
-
    }
+	
+    @GetMapping("/getBuheadNameByBusinessUnitName/{departmentName}")
+    public ResponseEntity getBuheadByDepartmentName(@PathVariable String departmentName) {
+     return serv.getBuheadNameByDepartmentName(departmentName);
+   }
+    
+<<<<<<< Updated upstream
+    
+    @GetMapping("/getBuheadEmployeeIdByBusinessUnitName/{departmentName}")
+    public ResponseEntity getBuheadEmployeeIdByDepartmentName(@PathVariable String departmentName) {
+     return serv.getBuheadIdByDepartmentName(departmentName);
+   }
+=======
+    @GetMapping("/matchEmpNameToDeptHead/{businessUnitHeadName}")
+    public ResponseEntity getDeptHeadbyMatchingEmpName(@PathVariable String businessUnitHeadName) {
+        return serv.getBuheadNameByEmployeeName(businessUnitHeadName);
+    }
+    
+>>>>>>> Stashed changes
 }

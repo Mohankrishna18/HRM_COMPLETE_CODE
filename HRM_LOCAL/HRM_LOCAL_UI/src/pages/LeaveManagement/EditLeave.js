@@ -101,7 +101,7 @@ const EditLeave = () => {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
           <Modal.Title id="example-modal-sizes-title-lg">
             Edit Apply Leave
           </Modal.Title>

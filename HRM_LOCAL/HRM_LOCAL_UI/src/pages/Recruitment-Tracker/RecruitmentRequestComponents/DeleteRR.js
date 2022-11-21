@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import Modal from "react-bootstrap/Modal";
 import axios from '../../../Uri';
 
-function DeleteRR(props) {
+const DeleteRR=(props)=> {
     console.log(props.deleteOnboard);
     console.log(props.deleteOnboard.reqId);
     const Delete = () => {

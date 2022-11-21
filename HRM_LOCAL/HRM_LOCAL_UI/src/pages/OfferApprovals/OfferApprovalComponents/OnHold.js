@@ -38,7 +38,7 @@ const OnHold = () => {
           </Button>
 
           <Modal show={onhold} onHide={handleClose} centered>
-            <Modal.Header closeButton>
+            <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
               <Modal.Title>Pending Employee</Modal.Title>
             </Modal.Header>
             <Modal.Body>

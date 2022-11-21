@@ -92,30 +92,67 @@ public class EmployeeProfileService {
 	}
 
 	public EmployeeProfile store(MultipartFile file, String onboardingId) throws IOException {
-		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 //String employeeId1=employeeId;
 //EmployeeProfile FileDB = new EmployeeProfile();
-		EmployeeProfile newFile = new EmployeeProfile();
-		newFile.setData(file.getBytes());
-		newFile.setOnboardingId(onboardingId);
-		newFile.setName(fileName);
-		newFile.setType(file.getContentType());
-		return epRepo.save(newFile);
-	}
+        EmployeeProfile newFile = new EmployeeProfile();
+        newFile.setData(file.getBytes());
+        newFile.setOnboardingId(onboardingId);
+        newFile.setName(fileName);
+        newFile.setType(file.getContentType());
+        return epRepo.save(newFile);
+    }
+    
+    public EmployeeProfile store1(MultipartFile file, String employeeId) throws IOException {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+//String employeeId1=employeeId;
+//EmployeeProfile FileDB = new EmployeeProfile();
+        EmployeeProfile newFile = new EmployeeProfile();
+        newFile.setData(file.getBytes());
+        newFile.setName(fileName);
+        newFile.setType(file.getContentType());
+        newFile.setEmployeeId(employeeId);
+        return epRepo.save(newFile);
+    }
+    
+    public EmployeeProfile update(MultipartFile file, String employeeId) throws IOException {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+//        
+//        EmployeeProfile newFile = new EmployeeProfile();
+//       
+//        emp.setName(newFile.getName());
+//        emp.setData(newFile.getData());
+//        emp.setType(newFile.getType());
+        EmployeeProfile emp = epRepo.findByEmployeeId(employeeId);
+//        EmployeeProfile newFile = new EmployeeProfile();
+        emp.setData(file.getBytes());
+        emp.setName(fileName);
+        emp.setType(file.getContentType());
+//        newFile.setEmployeeId(employeeId);
+        return epRepo.save(emp);
+    }
 
-	public EmployeeProfile getFile(String id) {
-		return epRepo.findById(id).get();
-	}
 
-	public EmployeeProfile getFileByID(String id) {
-		return epRepo.findByEmployeeId(id);
-	}
 
-	public EmployeeProfile getFileByOnboardingID(String onboardingId) {
-		return epRepo.findByOnboardingId(onboardingId);
-	}
+   public EmployeeProfile getFile(String id) {
+        return epRepo.findById(id).get();
+    }
 
-	public Stream<EmployeeProfile> getAllFiles() {
-		return epRepo.findAll().stream();
-	}
+
+
+   public EmployeeProfile getFileByID(String id) {
+        return epRepo.findByEmployeeId(id);
+    }
+
+
+
+   public EmployeeProfile getFileByOnboardingID(String onboardingId) {
+        return epRepo.findByOnboardingId(onboardingId);
+    }
+
+
+
+   public Stream<EmployeeProfile> getAllFiles() {
+        return epRepo.findAll().stream();
+    }
 }
