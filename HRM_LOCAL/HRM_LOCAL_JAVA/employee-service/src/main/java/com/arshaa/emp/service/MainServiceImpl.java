@@ -1172,6 +1172,7 @@ public class MainServiceImpl implements MainService {
 				empd.setIrm(em.getIrm());
 				empd.setSrm(em.getSrm());
 				empd.setConfirmationDate(em.getConfirmationDate());
+				empd.setLeaveBalance(em.getLeaveBalance());
 
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
@@ -1209,6 +1210,7 @@ public class MainServiceImpl implements MainService {
 				em.setIrm(empd.getIrm());
 				em.setSrm(empd.getSrm());
 				em.setConfirmationDate(empd.getConfirmationDate());
+				em.setLeaveBalance(empd.getLeaveBalance());
 				emRepo.save(em);
 				
 				String updateStatus = "http://loginservice/login/makeLoginsInActive/";

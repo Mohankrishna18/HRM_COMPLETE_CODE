@@ -346,7 +346,7 @@ function OnboardedEmployeesTable() {
                      }}
                    
                    >
-                      <FiEdit />qqqq
+                      <FiEdit />Edit
                    </Button>
                     
                    </Stack>

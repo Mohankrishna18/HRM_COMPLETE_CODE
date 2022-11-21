@@ -30,6 +30,15 @@ public class EmploymentDetails {
 	
 	private Date confirmationDate;
 
+    private int leaveBalance;
+
+	public int getLeaveBalance() {
+		return leaveBalance;
+	}
+
+	public void setLeaveBalance(int leaveBalance) {
+		this.leaveBalance = leaveBalance;
+	}
 
 
 
