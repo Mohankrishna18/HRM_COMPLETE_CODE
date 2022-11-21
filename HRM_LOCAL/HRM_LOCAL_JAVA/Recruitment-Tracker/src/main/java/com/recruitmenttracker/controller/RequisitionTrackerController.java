@@ -187,8 +187,8 @@ public class RequisitionTrackerController {
            r.setAllocType(o.getAllocType());
            r.setResourceRequiredDate(o.getResourceRequiredDate());
            r.setRequestClosedDate(o.getRequestClosedDate());
-           r.setRaisedOn(o.getRaisedOn());
-//           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
+           
+           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
            req.add(r);
        });   
         return req;

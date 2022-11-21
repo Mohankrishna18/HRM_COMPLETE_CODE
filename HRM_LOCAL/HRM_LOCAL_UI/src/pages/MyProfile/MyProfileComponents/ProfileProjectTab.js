@@ -45,7 +45,7 @@ const ProfileProjectTab = () => {
   //var dateTime = getEmployeeDetails.dateOfJoining;
 
 
-  const [imge, setImge] = useState([]);
+  const [imge, setImge] = useState({});
   //commit
   useEffect(() => {
     axios

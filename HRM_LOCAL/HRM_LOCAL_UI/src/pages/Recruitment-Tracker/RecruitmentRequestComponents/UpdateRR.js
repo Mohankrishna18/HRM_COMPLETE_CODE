@@ -64,7 +64,7 @@ const [newHrPanel, setNewHrPanel] = useState();
     setStatus1(!status1);
   };
 
-  
+ 
   // useState for phone number
   const [firsterrors, setFirstErrors] = useState("");
   const [seconderrors, setSecondErrors] = useState("");
@@ -100,7 +100,7 @@ const [newHrPanel, setNewHrPanel] = useState();
   const loadPocNames = async () => {
     const res = await axios.get("/emp/getAllEmployeeMasterData");
     setPocname(res.data.data);
-    
+   
   };
 
   const loadClients = async () => {
@@ -111,7 +111,7 @@ const [newHrPanel, setNewHrPanel] = useState();
 
   const loadDepartmentsData = async () => {
     const res = await axios.get("/dept/getAllDepartments");
-  
+ 
     setDepartments(res.data);
 
   };
@@ -122,11 +122,11 @@ const [newHrPanel, setNewHrPanel] = useState();
   //   setHrPanel(sData1);
   //   // console.log(sData1);
   //   console.log(sData1);
-    
+   
   // }
   const loadHRDeptEmployees =()=>{
     axios.get("/emp/getEmployeesByDepartment/HR").then((res)=>{
-      
+     
        const dat = res.data.data.filter(item => item.status == "Active")
        setHrPanel(dat)
     }).catch((err)=>{
@@ -182,7 +182,7 @@ const [newHrPanel, setNewHrPanel] = useState();
     setUploadDoc(response.data.data.uploadDoc);
     setComments(response.data.data.comments);
     setInitDate(response.data.data.requestInitiatedDate);
-    
+   
     setResourceRequiredDate(response.data.data.resourceRequiredDate);
     // console(response.data.data.resourceRequiredDate);
     setNewInterviewPanel1(response.data.data.interviewPanel1);
@@ -243,7 +243,7 @@ const [newHrPanel, setNewHrPanel] = useState();
        
       })
       .catch((err) => {
-        
+       
         toast.error("Something Went Wrong");
       });
     // props.handleClose();
@@ -268,8 +268,8 @@ const [newHrPanel, setNewHrPanel] = useState();
               className="requisitionId"
               type="text"
               controlId="requisitionId"
-              disabled
               value={requisitionId}
+              disabled
               onChange={(e) => setRequisitionId(e.target.value)}
               isInvalid={!!errors.requisitionId}
             ></Form.Control>
@@ -374,7 +374,7 @@ const [newHrPanel, setNewHrPanel] = useState();
             <Form.Select
               required
               type="text"
-              
+             
               controlId="empType"
               value={empType}
               onChange={(e) => setEmpType(e.target.value)}
@@ -503,13 +503,13 @@ const [newHrPanel, setNewHrPanel] = useState();
             <Form.Control
               required
               type="text"
-              
+             
               controlId="role"
               value={role}
               onChange={(e) => setRole(e.target.value)}
               isInvalid={!!errors.role}
             >
-              
+             
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.role}
@@ -542,7 +542,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               name="positions"
               type="number"
               controlId="positions"
-              
+             
               value={positions}
               onChange={(e) => setPositions(e.target.value)}
               isInvalid={!!errors.positions}
@@ -559,7 +559,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               <Form.Control
                 required
                 type="text"
-                
+               
                 controlId="yoe"
                 isInvalid={thirderrors}
                 value={yoe}
@@ -690,7 +690,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               className="workingHours"
               type="text"
               controlId="workingHours"
-              
+             
 
               value={workingHours}
               onChange={(e) => setWorkingHours(e.target.value)}
@@ -746,7 +746,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               type="file"
               id="uploadDoc"
               controlId="uploadDoc"
-              
+             
               value={uploadDoc}
               onChange={(e) => setUploadDoc(e.target.value)}
               isInvalid={!!errors.uploadDoc}
@@ -847,7 +847,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               onChange={(e) => setInitDate(e.target.value)}
               isInvalid={!!errors.initDate}
             >
-              
+             
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.initDate}
@@ -863,7 +863,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               onChange={(e) => setResourceRequiredDate(e.target.value)}
               isInvalid={!!errors.resourceRequiredDate}
             >
-              
+             
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.resourceRequiredDate}
@@ -880,7 +880,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               onChange={(e) => setRaisedOn(e.target.value)}
               isInvalid={!!errors.raisedOn}
             >
-              
+             
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.raisedOn}

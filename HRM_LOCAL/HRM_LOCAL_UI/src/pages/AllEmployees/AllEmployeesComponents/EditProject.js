@@ -52,7 +52,7 @@ const EditProject = () => {
   console.log(projects);
 
 
-  const [imge, setImge] = useState([]);
+  const [imge, setImge] = useState({});
   //commit
   useEffect(() => {
     axios

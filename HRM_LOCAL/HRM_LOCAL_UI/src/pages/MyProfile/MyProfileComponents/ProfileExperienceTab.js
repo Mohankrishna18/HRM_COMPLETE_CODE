@@ -38,7 +38,7 @@ const ProfileExperienceTab = () => {
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
   //var dateTime = getEmployeeDetails.dateOfJoining;
 
-  const [imge, setImge] = useState([]);
+  const [imge, setImge] = useState({});
 //commit
   useEffect(() => {
     axios

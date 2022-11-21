@@ -106,7 +106,7 @@ function ProfilePersonalDetailsTab() {
         };
         console.log(formData);
         axios
-            .post(url, formData, config)
+            .put(url, formData, config)
             .then((response) => {
                 console.log(response.data);
             })
@@ -138,7 +138,7 @@ function ProfilePersonalDetailsTab() {
         };
         console.log(formData);
         axios
-            .post(url, formData, config)
+            .put(url, formData, config)
             .then((response) => {
                 console.log(response.data);
             })
@@ -159,7 +159,7 @@ function ProfilePersonalDetailsTab() {
     const current = new Date();
     console.log(current)
 
-    const [imge, setImge] = useState([]);
+    const [imge, setImge] = useState({});
     useEffect(() => {
         axios
             .get(`/emp/files/${employeeid}`)
