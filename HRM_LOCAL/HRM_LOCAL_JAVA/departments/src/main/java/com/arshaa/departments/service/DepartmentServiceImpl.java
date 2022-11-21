@@ -100,7 +100,6 @@ public class DepartmentServiceImpl  implements DepartmentService{
             return new ResponseEntity(res,HttpStatus.OK);
         }
     }
-
 	@Override
 	public ResponseEntity getBuheadIdByDepartmentName(String departmentName) {
 		 BuheadName res = new BuheadName();
@@ -126,48 +125,29 @@ public class DepartmentServiceImpl  implements DepartmentService{
 	}
     @Override
     public ResponseEntity getBuheadNameByEmployeeName(String employeeName) {
-//        String OnboardUrl = "http://loginservice/login/getEmployeeByUserType/";
-//        
-//        RequisitionRequestEntity requisitionUpdate = rrRepository.findByRrfId(rrfId);
-//        System.out.println("userType:"+userType);
-//        if(userType.equalsIgnoreCase("buhead")) {
-//             List<RequisitionRequestEntity> getDataa = rrRepository.getByDepartmentName(departmentName);
-//            UserServiceEmail response = template.getForObject(
-//                    OnboardUrl+"buhead",
-//                    UserServiceEmail.class);
         String matchUrl = "http://empService/emp/getEmployeeNameByEmployeeId/";
         BuheadName bn=new BuheadName();
         try {
             List<Departmentmaster> getDataa = repository.findAll();
-            
-
             getDataa.forEach(d->{
                 if(d.getBusinessUnitHeadName().equalsIgnoreCase(employeeName))
                 {
-                    
                     bn.setStatus(true);
                     bn.setMessage("Data Fetching");
-                    bn.setBusinessUnitHeadName(d.getBusinessUnitHeadName());
-                   
+                    bn.setBusinessUnitHeadName(d.getBusinessUnitHeadName());  
                 }
                 else {
                     bn.setStatus(false);
                     bn.setMessage("Data Not Found");
-                    
                 }
-                
             });
-       
         } catch (Exception e) {
             bn.setStatus(false);
             bn.setMessage("Data Not Found");
-            
         }
         return new ResponseEntity(bn,HttpStatus.OK);
         
     }
-	
-
 }
 
 
