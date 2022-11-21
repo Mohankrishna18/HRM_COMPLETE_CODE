@@ -137,7 +137,6 @@ public class ClientsProjectsController {
 //	    }
 
 	// Project Roles API's
-
 	@PostMapping("/addProjectRoles")
 	public ResponseEntity addProjectRoles(@RequestBody ProjectRolesMaster newProjectRolesMaster) {
 		return projectRoleserv.addProjectRoles(newProjectRolesMaster);
@@ -149,7 +148,6 @@ public class ClientsProjectsController {
 	}
 
 	// Project Team API's
-
 	@PostMapping("/addProjectTeam")
 	public ResponseEntity addProjectTeam(@RequestBody ProjectTeamMaster newTeam) {
 		return projectTeamServ.addProjectTeam(newTeam);
