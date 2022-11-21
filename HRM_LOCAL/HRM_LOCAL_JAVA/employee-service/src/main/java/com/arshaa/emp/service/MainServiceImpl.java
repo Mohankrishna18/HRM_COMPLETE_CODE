@@ -403,10 +403,10 @@ public class MainServiceImpl implements MainService {
 					userclient.setEmployeeId(em.getEmployeeId());
 					userClientRepo.save(userclient);
 
-					// posting employeeId to employee profile table
-					EmployeeProfile eprofile = new EmployeeProfile();
-					eprofile.setEmployeeId(employeeMaster.getEmployeeId());
-					empProfileRepo.save(eprofile);
+					//posting employeeId to employee profile table
+                    EmployeeProfile eprofile = new EmployeeProfile();
+                    eprofile.setEmployeeId(employeeMaster.getEmployeeId());
+                    empProfileRepo.save(eprofile);
 
 					// Generating Random userId and Password
 					Random rand = new Random();
@@ -917,7 +917,7 @@ public class MainServiceImpl implements MainService {
 		EmployeeMaster employeeMaster = emRepo.getById(employeeId);
 
 		EmployeeName en = new EmployeeName();
-		en.setEmployeeName(employeeMaster.getFirstName().concat(" ").concat(employeeMaster.getLastName()));
+		en.setEmployeeName(employeeMaster.getFirstName().concat(" ").concat(employeeMaster.getMiddleName()).concat(" ").concat(employeeMaster.getLastName()));
 
 		return new ResponseEntity(en, HttpStatus.OK);
 	}

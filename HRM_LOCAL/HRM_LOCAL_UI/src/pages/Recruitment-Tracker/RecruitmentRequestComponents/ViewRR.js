@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-function ViewRR(props) {
+const ViewRR=(props)=> {
     console.log(props.viewOnboard);
    
     

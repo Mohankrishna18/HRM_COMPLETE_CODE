@@ -88,6 +88,11 @@ function OnboardedEmployeesTable() {
       
     },
     {
+      title: "OBD ID",
+      field: "onboardingId",
+      
+    },
+    {
       title: "Name",
       field: "fullName",
       type: "text",
@@ -341,7 +346,7 @@ function OnboardedEmployeesTable() {
                      }}
                    
                    >
-                      <FiEdit />Edit
+                      <FiEdit />qqqq
                    </Button>
                     
                    </Stack>

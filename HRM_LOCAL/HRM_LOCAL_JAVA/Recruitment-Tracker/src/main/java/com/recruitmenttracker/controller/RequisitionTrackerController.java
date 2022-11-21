@@ -43,6 +43,11 @@ public class RequisitionTrackerController {
     public ResponseEntity getRequisitions() {
         return serv.getAllRequisitions();
     }
+    
+//  @GetMapping("/getAllRequisitionRequests")
+//  public ResponseEntity getRequisitions(@PathVariable String departmentName) {
+//      return serv.getAllRequisitions(departmentName);
+//  }
 
 //    @GetMapping("/getAgeing/{}")
 //    public ResponseEntity getByWorkflowStatus(@PathVariable String userType) {
@@ -182,8 +187,8 @@ public class RequisitionTrackerController {
            r.setAllocType(o.getAllocType());
            r.setResourceRequiredDate(o.getResourceRequiredDate());
            r.setRequestClosedDate(o.getRequestClosedDate());
-           
-           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
+           r.setRaisedOn(o.getRaisedOn());
+//           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
            req.add(r);
        });   
         return req;

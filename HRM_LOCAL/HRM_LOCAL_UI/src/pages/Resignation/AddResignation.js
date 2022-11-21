@@ -31,9 +31,7 @@ function AddResignation(props) {
     {
       label: "SRM",
     },
-    {
-      label: "PMO",
-    },
+   
     {
       label: "HR",
     },
@@ -73,19 +71,14 @@ function AddResignation(props) {
 
   const validateForm = () => {
     const {
-      resigningEmployee,
+      
 
       resignationDate,
       reason,
     } = form;
     const newErrors = {};
 
-    if (
-      !resigningEmployee ||
-      resigningEmployee === "" ||
-      !resigningEmployee.match(/^[aA-zZ\s]+$/)
-    )
-      newErrors.resigningEmployee = "Please Enter Your Name";
+    
 
     if (!resignationDate || resignationDate === "")
       newErrors.resignationDate = "Please Enter Resignation Date";
@@ -158,14 +151,12 @@ function AddResignation(props) {
       setActiveStep(0)
     }else if(statuss == "srm"){
       setActiveStep(1)
-    }else if( statuss == "pmo"){
-      setActiveStep(2)
-    }else if(statuss == ""){
-    setActiveStep(0)
+    }else if(statuss == "hrmanager"){
+    setActiveStep(2)
 
   }
   else {
-    setActiveStep(3)
+    setActiveStep(0)
   }
     // res.data.map((item) => {
     //    statuss = item.status;
@@ -219,25 +210,10 @@ function AddResignation(props) {
                 // onChange={(e) => setField("resigningEmployee", e.target.value)}
                 isInvalid={!!errors.resigningEmployee}
               ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                {errors.resigningEmployee}
-              </Form.Control.Feedback>
+              
             </Form.Group>
 
-            <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-              <Form.Label>Notice Date</Form.Label>
-              <Form.Control
-                required
-                name="noticeDate"
-                type="date"
-                controlId="noticeDate"
-                placeholder="Notice Date"
-                value={form.noticeDate}
-                maxLength={30}
-                onChange={(e) => setField("noticeDate", e.target.value)}
-                // isInvalid={!!errors.noticeDate}
-              ></Form.Control>
-            </Form.Group>
+            
 
             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
               <Form.Label>Resignation Date *</Form.Label>
@@ -254,6 +230,20 @@ function AddResignation(props) {
                 {errors.resignationDate}
               </Form.Control.Feedback>
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+              <Form.Label>Notice Date</Form.Label>
+              <Form.Control
+                required
+                name="noticeDate"
+                type="date"
+                controlId="noticeDate"
+                placeholder="Notice Date"
+                value={form.noticeDate}
+                maxLength={30}
+                onChange={(e) => setField("noticeDate", e.target.value)}
+                // isInvalid={!!errors.noticeDate}
+              ></Form.Control>
             </Form.Group>
             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
               <Form.Label>Reason *</Form.Label>
