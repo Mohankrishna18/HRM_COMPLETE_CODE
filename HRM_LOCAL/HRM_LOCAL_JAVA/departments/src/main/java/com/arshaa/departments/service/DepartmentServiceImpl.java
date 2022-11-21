@@ -100,8 +100,6 @@ public class DepartmentServiceImpl  implements DepartmentService{
             return new ResponseEntity(res,HttpStatus.OK);
         }
     }
-
-
 	@Override
 	public ResponseEntity getBuheadIdByDepartmentName(String departmentName) {
 		 BuheadName res = new BuheadName();
@@ -125,7 +123,6 @@ public class DepartmentServiceImpl  implements DepartmentService{
 	            return new ResponseEntity(res,HttpStatus.OK);
 	        }
 	}
-
     @Override
     public ResponseEntity getBuheadNameByEmployeeName(String employeeName) {
         String matchUrl = "http://empService/emp/getEmployeeNameByEmployeeId/";
@@ -151,9 +148,6 @@ public class DepartmentServiceImpl  implements DepartmentService{
         return new ResponseEntity(bn,HttpStatus.OK);
         
     }
-
-	
-
 }
 
 
