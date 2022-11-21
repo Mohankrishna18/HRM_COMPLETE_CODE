@@ -86,8 +86,7 @@ public class DepartmentController {
     public ResponseEntity getBuheadByDepartmentName(@PathVariable String departmentName) {
      return serv.getBuheadNameByDepartmentName(departmentName);
    }
-    
-    
+        
     @GetMapping("/getBuheadEmployeeIdByBusinessUnitName/{departmentName}")
     public ResponseEntity getBuheadEmployeeIdByDepartmentName(@PathVariable String departmentName) {
      return serv.getBuheadIdByDepartmentName(departmentName);
@@ -96,5 +95,5 @@ public class DepartmentController {
     public ResponseEntity getDeptHeadbyMatchingEmpName(@PathVariable String businessUnitHeadName) {
         return serv.getBuheadNameByEmployeeName(businessUnitHeadName);
     }
-    
+   
 }

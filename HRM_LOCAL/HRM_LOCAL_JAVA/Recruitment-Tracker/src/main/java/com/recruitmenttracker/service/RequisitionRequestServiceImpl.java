@@ -67,8 +67,8 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 
 
 
-//           String p = "REQ";
-//            raiseRequest.setRequisitionId(p + 0 + (raiseRequest.getRrfId()));
+           String p = "REQ";
+            raiseRequest.setRequisitionId(p + 0 + (raiseRequest.getRrfId()));
             RequisitionRequestEntity rreq = rrRepository.save(raiseRequest);
 
 
@@ -384,9 +384,9 @@ hrApp.forEach(e->{
                 EmployeeReq re = new EmployeeReq();
                 RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
                 
-
-//                re.setRaisedBy(rfs.getRaisedBy());
-//                re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
+                re.setClientName(rfs.getClientName());
+                re.setRaisedBy(rfs.getRaisedBy());
+                re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
                 re.setJobTitle(rfs.getJobTitle());
 
 //                re.setProjectName(rfs.getProjectName());
@@ -431,7 +431,6 @@ hrApp.forEach(e->{
                 return new ResponseEntity(e.getMessage(), HttpStatus.OK);
             }
     }
-
 
 
 

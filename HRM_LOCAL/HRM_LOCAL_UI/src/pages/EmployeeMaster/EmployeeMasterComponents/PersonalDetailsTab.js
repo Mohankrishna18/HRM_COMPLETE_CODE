@@ -172,7 +172,7 @@ function PersonalDetailsTab() {
     };
     console.log(formData);
     axios
-      .post(url, formData, config)
+      .put(url, formData, config)
       .then((response) => {
         console.log(response.data);
         toast.success("Personal Details Submitted Successfully");
@@ -192,20 +192,20 @@ function PersonalDetailsTab() {
     console.log(event.target.files[0]);
   };
 
-  const [imge, setImge] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`/emp/files/${employeeid}`)
-      .then((response) => {
-        console.log(response.data);
-        setImge(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
+  const [imge, setImge] = useState({});
+  // useEffect(() => {
+  //   axios
+  //     .get(`/emp/files/${employeeid}`)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setImge(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
 
-        console.log("something wrong");
-      });
-  }, []);
+  //       console.log("something wrong");
+  //     });
+  // }, []);
 
   function getAge(dateString) {
     var today = new Date();

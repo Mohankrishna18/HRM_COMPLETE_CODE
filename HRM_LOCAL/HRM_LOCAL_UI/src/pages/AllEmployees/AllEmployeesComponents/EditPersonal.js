@@ -111,7 +111,7 @@ console.log(localitem)
         };
         console.log(formData);
         axios
-            .post(url, formData, config)
+            .put(url, formData, config)
             .then((response) => {
                 console.log(response.data);
             })
@@ -143,7 +143,7 @@ console.log(localitem)
         };
         console.log(formData);
         axios
-            .post(url, formData, config)
+            .put(url, formData, config)
             .then((response) => {
                 console.log(response.data);
             })
@@ -164,7 +164,7 @@ console.log(localitem)
     const current = new Date();
     console.log(current)
 
-    const [imge, setImge] = useState([]);
+    const [imge, setImge] = useState({});
     useEffect(() => {
         axios
             .get(`/emp/files/${params.id}`)

@@ -234,6 +234,15 @@ public class EmployeeMaster {
     private String status;
     private String probationempfeedback;
    
+    private int leaveBalance;
+
+	public int getLeaveBalance() {
+		return leaveBalance;
+	}
+
+	public void setLeaveBalance(int leaveBalance) {
+		this.leaveBalance = leaveBalance;
+	}
 
   
 	
@@ -973,9 +982,10 @@ public class EmployeeMaster {
 			String reportingManager, String passportNo, String passportExpiryDate, String jobTitle,
 			String employmentType, String primarySkills, String secondarySkills, String panNumber, String aadharNumber,
 			String uanNumber, String bankName, String accountNumber, String ifscCode, String branch, String band,
-			Date exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,
+			Date exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,int leaveBalance,
 			String buhId,String resignationDate,String intermediateQualification, String sscQualification, String officialMail, String hrcomment,String Status) {
 		super();
+		this.leaveBalance = leaveBalance;
 		this.employeeId = employeeId;
 		this.departmentName = departmentName;
 		this.onboardingId = onboardingId;

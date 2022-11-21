@@ -50,6 +50,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-	</build>
+		<finalName>departments</finalName>
+</build>
 
 </project>

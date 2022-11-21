@@ -61,7 +61,7 @@ const RRTable = () => {
   const loadData = async () => {
     const response = await axios.get("/recruitmentTracker/");
     setData(response.data);
-    
+   
   };
 
   const sessionData = JSON.parse(sessionStorage.getItem("userdata"));
@@ -229,7 +229,7 @@ const RRTable = () => {
                           history.push(
                             `/app/updateRequisition/${props.data.requisitionId}`
                           );
-                        
+                       
                         }}
                       >
                         <FiEdit />
@@ -238,7 +238,7 @@ const RRTable = () => {
                         variant="danger"
                         onClick={(event) => {
                           setDeleteLeads(true);
-                          
+                         
                           setDeleteOnboard(props.data);
                         }}
                       >
@@ -248,7 +248,7 @@ const RRTable = () => {
                         variant="primary"
                         onClick={(event) => {
                           setViewShow(true);
-                          
+                         
                           setViewOnboard(props.data);
                         }}
                         style={{

@@ -114,7 +114,7 @@ function EmployeePersonalDetails() {
     };
     console.log(formData);
     axios
-      .post(url, formData, config)
+      .put(url, formData, config)
       .then((response) => {
         console.log(response.data);
         toast.success("Form Submitted Successfully");
@@ -136,7 +136,7 @@ console.log(event.target.files[0]);
 
 }
 
-  const [imge, setImge] = useState([]);
+  const [imge, setImge] = useState({});
   useEffect(() => {
     axios
       .get(`/emp/files/${params.id}`)

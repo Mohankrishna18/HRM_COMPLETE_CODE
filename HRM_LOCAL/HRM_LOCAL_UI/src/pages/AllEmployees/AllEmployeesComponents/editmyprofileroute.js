@@ -406,7 +406,7 @@ function EmployeeMasterForms(props) {
             },
         };
         console.log(formData);
-        axios.post(url, formData, config).then((response) => {
+        axios.put(url, formData, config).then((response) => {
             console.log(response.data);
         }).catch((error) => {
             console.log("oops not uploaded!");

@@ -16,6 +16,8 @@ function CEORejected(props) {
         [field]: null,
       });
   };
+  const da=JSON.parse(sessionStorage.getItem("userdata"));
+  const user=da.data.userType;
   const RejectHandler = (e) => {
     // e.prevetDefault();
     const notify = () => toast("Rejected");
@@ -23,7 +25,7 @@ function CEORejected(props) {
     // const form1 = Object.assign(form, obj);
     let onboardingId = props.onboardID.onboardingId;
     console.log(props.onboardID);
-    const obj = { onboardingStatus: "TAAHeadApproved" };
+    const obj = { onboardingStatus: "TAAHeadApproved",userType:user };
     const form1 = Object.assign(form, obj);
     axios.put(`/emp/updateRejectStatus/${onboardingId}`, form1)
       .then((res) => {

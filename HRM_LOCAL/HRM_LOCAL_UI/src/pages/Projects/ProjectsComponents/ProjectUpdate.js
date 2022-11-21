@@ -96,13 +96,29 @@ const ProjectUpdate = (props) => {
     console.log(res.data);
   };
 
+  // // Get API's for reportingManager(projectManger)
+  // const [reportingManager, setReportingManager] = useState([]);
+  // useEffect(() => {
+  //   axios.get("/emp/getUsersNamesByBand").then((response) => {
+  //     console.log(response.data);
+  //     setReportingManager(response.data);
+  //   });
+  // }, []);
+
   // Get API's for reportingManager(projectManger)
+  const statusEmp = "Active";
   const [reportingManager, setReportingManager] = useState([]);
   useEffect(() => {
-    axios.get("/emp/getUsersNamesByBand").then((response) => {
-      console.log(response.data);
-      setReportingManager(response.data);
-    });
+    axios
+      .get(`/emp/getActiveEmployees/${statusEmp}`)
+      .then((response) => {
+        setReportingManager(response.data.data);
+        console.log(response.data.data);
+      })
+      .catch(() => {
+        toast.error("Data is not getting");
+      });
+    // console.log(departments)
   }, []);
 
   const forms = useRef(null);
@@ -175,7 +191,7 @@ const ProjectUpdate = (props) => {
         >
           <Row className="mb-4">
             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-              <Form.Label style={{color:"black"}}>Project Name</Form.Label>
+              <Form.Label style={{ color: "black" }}>Project Name</Form.Label>
               <Form.Control
                 required
                 type="text"
@@ -234,7 +250,7 @@ const ProjectUpdate = (props) => {
           </Form.Group> */}
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label style={{color:"black"}}>Client Name</Form.Label>
+              <Form.Label style={{ color: "black" }}>Client Name</Form.Label>
               <Form.Control
                 required
                 className="clientName"
@@ -254,7 +270,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label style={{color:"black"}}>Business Unit</Form.Label>
+              <Form.Label style={{ color: "black" }}>Business Unit</Form.Label>
               <Form.Select
                 required
                 type="text"
@@ -276,7 +292,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label style={{color:"black"}}>Start Date</Form.Label>
+              <Form.Label style={{ color: "black" }}>Start Date</Form.Label>
               <Form.Control
                 required
                 type="date"
@@ -292,7 +308,9 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label style={{color:"black"}}>Project Manager </Form.Label>
+              <Form.Label style={{ color: "black" }}>
+                Project Manager{" "}
+              </Form.Label>
               <Form.Select
                 required
                 className="projectManager"
@@ -307,8 +325,8 @@ const ProjectUpdate = (props) => {
               >
                 <option value={projectManager}>{projectManager} </option>
                 {reportingManager.map((projectManager) => (
-                  <option value={projectManager.name}>
-                    {projectManager.name}
+                  <option value={projectManager.fullName}>
+                    {projectManager.fullName}
                   </option>
                 ))}
               </Form.Select>
@@ -318,7 +336,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label style={{color:"black"}}>End Date</Form.Label>
+              <Form.Label style={{ color: "black" }}>End Date</Form.Label>
               <Form.Control
                 required
                 type="date"
@@ -336,7 +354,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label style={{color:"black"}}>Status</Form.Label>
+              <Form.Label style={{ color: "black" }}>Status</Form.Label>
               <Form.Select
                 required
                 type="text"
@@ -357,7 +375,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label style={{color:"black"}}>Total Cost</Form.Label>
+              <Form.Label style={{ color: "black" }}>Total Cost</Form.Label>
               <Form.Control
                 required
                 type="text"
@@ -373,7 +391,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Label style={{color:"black"}}>Priority</Form.Label>
+              <Form.Label style={{ color: "black" }}>Priority</Form.Label>
               <Form.Select
                 required
                 type="text"
@@ -394,7 +412,7 @@ const ProjectUpdate = (props) => {
             </Form.Group>
 
             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-              <Form.Label style={{color:"black"}}>Description</Form.Label>
+              <Form.Label style={{ color: "black" }}>Description</Form.Label>
               <Form.Control
                 required
                 as="textarea"
@@ -414,7 +432,7 @@ const ProjectUpdate = (props) => {
               <Button
                 style={{
                   backgroundColor: "#f5896e",
- borderColor: "#f5896e",
+                  borderColor: "#f5896e",
                   width: "15%",
                   height: "120%",
                   borderRadius: "25px",

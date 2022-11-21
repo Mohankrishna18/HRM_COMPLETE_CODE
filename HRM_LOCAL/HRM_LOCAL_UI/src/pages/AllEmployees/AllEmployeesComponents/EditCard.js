@@ -48,7 +48,7 @@ function EditCard() {
 
 
     const [employeedetails, setEmployeeDetails] = useState([])
-    const [imge, setImge] = useState([]);
+    const [imge, setImge] = useState({});
     useEffect(() => {
         axios.get(`/emp/getEmployeeDataByEmployeeId/${localitem}`)
             .then((response) => {
