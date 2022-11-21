@@ -129,7 +129,7 @@ console.log(params)
             console.log(updatedRow);
             const index = oldRow.employeeprojectId;
             console.log(index);
-            const updatedRows = [...data];
+            const updatedRows = [...data1];
             console.log(updatedRows);
             updatedRows[oldRow.tableData.id] = updatedRow;
             console.log(updatedRows);

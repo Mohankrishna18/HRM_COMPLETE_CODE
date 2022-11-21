@@ -193,19 +193,19 @@ function PersonalDetailsTab() {
   };
 
   const [imge, setImge] = useState({});
-  useEffect(() => {
-    axios
-      .get(`/emp/files/${employeeid}`)
-      .then((response) => {
-        console.log(response.data);
-        setImge(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
+  // useEffect(() => {
+  //   axios
+  //     .get(`/emp/files/${employeeid}`)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setImge(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
 
-        console.log("something wrong");
-      });
-  }, []);
+  //       console.log("something wrong");
+  //     });
+  // }, []);
 
   function getAge(dateString) {
     var today = new Date();

@@ -81,14 +81,7 @@ const StepperForm = (props) => {
         setResponse(res.data.data);
     };
 
-    useEffect(() => {
-        getRequestedBy();
-        loadProjects();
-        loadDepartmentsData();
-        loadClients();
-        loadPocNames();
-        loadHRDeptEmployees();
-    }, []);
+
 
     const notify = () => toast();
 
@@ -302,18 +295,18 @@ const StepperForm = (props) => {
                     if (response.data.status) {
                         props.func();
                     } else {
-                       
+                       console.log("Form is not submitted");
                     }
-                    console.log("form submitted");
+                    console.log("Form submitted");
                     // notify();
                 })
                 .catch((err) => {
-                    //toast.error("Given details already exist please give Unique values")
+                    
                     console.log("Something went wrong!");
-                    // toast.error("Something went wrong!", { autoClose: 1000 });
+                   
                 });
             //props.send();
-
+       
         }
     };
     const handleNext = (e) => {
@@ -349,6 +342,14 @@ const StepperForm = (props) => {
     const handleBack = () => {
         setActiveStep((previousStep) => previousStep - 1);
     };
+    useEffect(() => {
+        getRequestedBy();
+        loadProjects();
+        loadDepartmentsData();
+        loadClients();
+        loadPocNames();
+        loadHRDeptEmployees();
+    }, []);
     return (
         <div className="example" style={{ paddingLeft: "12px" }}>
             {activeStep === 0 && (

@@ -325,8 +325,8 @@ const ProjectUpdate = (props) => {
               >
                 <option value={projectManager}>{projectManager} </option>
                 {reportingManager.map((projectManager) => (
-                  <option value={projectManager.name}>
-                    {projectManager.name}
+                  <option value={projectManager.fullName}>
+                    {projectManager.fullName}
                   </option>
                 ))}
               </Form.Select>
