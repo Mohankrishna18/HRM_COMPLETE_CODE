@@ -647,12 +647,12 @@ const EmployeeAttendance = () => {
                     // value="2022"
                   >
                     <option>Select Year</option>
-                    <option>{currentyear}</option>
-                    <option value="2026">2026</option>
-                    <option value="2025">2025</option>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
+                    {/* <option>{currentyear}</option> */}
                     <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
                   </Form.Select>
                 </Form.Group>
               </Form>
@@ -673,8 +673,8 @@ const EmployeeAttendance = () => {
                     onChange={(e) => setMonth(e.target.value)}
                     // value="10"
                   >
-                    {/* <option>Select Month</option> */}
-                    <option>{currentmonth}</option>
+                    <option>Select Month</option>
+                    {/* <option>{currentmonth}</option> */}
                     <option value="01">January</option>
                     <option value="02">February </option>
                     <option value="03">March</option>

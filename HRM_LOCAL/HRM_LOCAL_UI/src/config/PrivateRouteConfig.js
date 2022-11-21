@@ -319,7 +319,7 @@ export default [
     component: PMOMain,
     type: "approvals",
     path: "/PMO",
-    icon: <FcApproval />,
+    icon: <FcApproval/>,
     title: "Approvals",
     permission: [Roles.pmohead],
   },
@@ -618,14 +618,14 @@ export default [
 
     permission: [Roles.pmohead],
   },
-  {
-    component: BUHMain,
-    type: "null",
-    path: "/BUHead",
-    icon: <FcManager />,
-    title: "Approvals",
-    permission: [Roles.buhead],
-  },
+  // {
+  //   component: BUHMain,
+  //   type: "null",
+  //   path: "/BUHead",
+  //   icon: <FcManager />,
+  //   title: "Approvals",
+  //   permission: [Roles.buhead],
+  // },
   {
     component: HRConfirmationMain,
     type: "approvals",
@@ -675,7 +675,7 @@ export default [
 
   {
 
-
+    component: RRMain,
     type: "jobs",
 
     path: "/rrf",
@@ -684,25 +684,24 @@ export default [
 
     title: "Requisition Request",
 
-    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead],
+    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead,Roles.taa],
 
   },
 
-  {
+  // {
+  //   component: RRMain,
 
-    component: RRMain,
+  //   type: "jobs",
 
-    type: "jobs",
+  //   path: "/rrfmain",
 
-    path: "/rrf",
+  //   icon: <FcVoicePresentation />,
 
-    icon: <FcVoicePresentation />,
+  //   title: "Requisitions",
 
-    title: "Requisitions",
+  //   permission: [Roles.taa]
 
-    permission: [Roles.taa]
-
-  },
+  // },
   {
     component: PMO_Dashboard,
     path: "/PMO_Dashboard",
@@ -753,7 +752,7 @@ export default [
 
     type: "AERF",
 
-    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead],
+    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead,Roles.taa],
 
 
 
@@ -782,7 +781,7 @@ export default [
 
     path: "/updateRequisition/:id",
 
-    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead]
+    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead,Roles.taa]
 
   },  
 

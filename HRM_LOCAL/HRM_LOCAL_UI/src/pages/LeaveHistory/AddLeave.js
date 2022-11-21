@@ -196,7 +196,7 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
           <Modal.Title>Apply Leave</Modal.Title>
         </Modal.Header>
 

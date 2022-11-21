@@ -29,8 +29,10 @@ import com.arshaa.emp.common.PreMailModel;
 import com.arshaa.emp.common.UserModel;
 import com.arshaa.emp.common.Users;
 import com.arshaa.emp.emailModel.EmployeeReq;
+import com.arshaa.emp.emailModel.MailGet;
 import com.arshaa.emp.emailModel.MainEmailTemplate;
 import com.arshaa.emp.emailModel.RegistrationConfirmation;
+import com.arshaa.emp.emailModel.UserMail;
 import com.arshaa.emp.entity.EmployeeMaster;
 import com.arshaa.emp.entity.EmployeeProfile;
 import com.arshaa.emp.entity.Intern;
@@ -58,6 +60,7 @@ import com.arshaa.emp.repository.EmployeeMasterRepository;
 import com.arshaa.emp.repository.EmployeeProfileRepository;
 import com.arshaa.emp.repository.OnboardRepository;
 import com.arshaa.emp.repository.UserClientProjectManagementRepositorty;
+
 import com.thoughtworks.xstream.mapper.Mapper.Null;
 
 @Service
@@ -218,6 +221,8 @@ public class MainServiceImpl implements MainService {
 //		String emailURL = "http://emailService/mail/sendmail";
 		// String employee="ATPL";
 		// String intern="TRP";
+		String OnboardUrl = "http://loginservice/login/getEmployeeByUserType/";
+
 
 		try {
 			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
@@ -398,10 +403,10 @@ public class MainServiceImpl implements MainService {
 					userclient.setEmployeeId(em.getEmployeeId());
 					userClientRepo.save(userclient);
 
-					// posting employeeId to employee profile table
-					EmployeeProfile eprofile = new EmployeeProfile();
-					eprofile.setEmployeeId(employeeMaster.getEmployeeId());
-					empProfileRepo.save(eprofile);
+					//posting employeeId to employee profile table
+                    EmployeeProfile eprofile = new EmployeeProfile();
+                    eprofile.setEmployeeId(employeeMaster.getEmployeeId());
+                    empProfileRepo.save(eprofile);
 
 					// Generating Random userId and Password
 					Random rand = new Random();
@@ -438,10 +443,13 @@ public class MainServiceImpl implements MainService {
 
 					MainEmailTemplate mailTemp = new MainEmailTemplate();
 					Map<String, String> map = new HashMap();
+					
+				
+		        	
 
 					mailTemp.setEmailType("HR_APPROVAL");
 					map.put("employeeName", getOnboarding.getFirstName() + getOnboarding.getLastName());
-					map.put("email", "muralikrishna.miriyala@arshaa.com");
+					map.put("email", getOnboarding.getEmail());
 					map.put("employeeId", employeeMaster.getEmployeeId());
 					map.put("password", password);
 					mailTemp.setMap(map);
@@ -467,12 +475,19 @@ public class MainServiceImpl implements MainService {
 
 					MainEmailTemplate mailTemp3 = new MainEmailTemplate();
 					Map<String, String> map3 = new HashMap();
-
+					
+					UserMail response1 = template.getForObject(
+		        			OnboardUrl+"pmohead",
+		        			UserMail.class);
+		        	List<MailGet> hrApp = response1.getMails();
+		        	
+		        	hrApp.forEach(e->{
 					mailTemp3.setEmailType("PMO");
-					map3.put("employeeName", "Dheeraj");
-					map3.put("email", "muralikrishna.miriyala@arshaa.com");
+					map3.put("employeeName", em.getFullName());
+					map3.put("email", e.getEmail());
 					mailTemp3.setMap(map3);
 					template.postForObject(preEmailURL, mailTemp3, MainEmailTemplate.class);
+		        	});
 
 					response.setStatus(true);
 					response.setMessage("Hr Approved successfully");
@@ -902,7 +917,7 @@ public class MainServiceImpl implements MainService {
 		EmployeeMaster employeeMaster = emRepo.getById(employeeId);
 
 		EmployeeName en = new EmployeeName();
-		en.setEmployeeName(employeeMaster.getFirstName().concat(" ").concat(employeeMaster.getLastName()));
+		en.setEmployeeName(employeeMaster.getFirstName().concat(" ").concat(employeeMaster.getMiddleName()).concat(" ").concat(employeeMaster.getLastName()));
 
 		return new ResponseEntity(en, HttpStatus.OK);
 	}
@@ -1157,8 +1172,6 @@ public class MainServiceImpl implements MainService {
 				empd.setIrm(em.getIrm());
 				empd.setSrm(em.getSrm());
 				empd.setConfirmationDate(em.getConfirmationDate());
-				empd.setEmploymentType(em.getEmploymentType());
-				empd.setBand(em.getBand());
 
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
@@ -1184,7 +1197,6 @@ public class MainServiceImpl implements MainService {
 			if (!em.equals(null)) {
 				em.setPrimarySkills(empd.getPrimarySkills());
 				em.setSecondarySkills(empd.getSecondarySkills());
-				em.setEmploymentType(empd.getEmploymentType());
 				em.setBand(empd.getBand());
 				em.setDepartmentName(empd.getDepartmentName());
 				em.setDesignationName(empd.getDesignationName());
@@ -1194,11 +1206,15 @@ public class MainServiceImpl implements MainService {
 				em.setResignationDate(empd.getResignationDate());
 				em.setStatus(empd.getStatus());
 				em.setEmploymentType(empd.getEmploymentType());
-				em.setBand(empd.getBand());
 				em.setIrm(empd.getIrm());
 				em.setSrm(empd.getSrm());
 				em.setConfirmationDate(empd.getConfirmationDate());
 				emRepo.save(em);
+				
+				String updateStatus = "http://loginservice/login/makeLoginsInActive/";
+                if (em.getStatus().equalsIgnoreCase("InActive")) {
+                String restemplate = template.getForObject(updateStatus+em.getEmployeeId(),String.class);
+                }
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
 				r.setData(em);
@@ -1705,6 +1721,8 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public ResponseEntity updateExperienceByOnboardId(Experience exp, String onboardingId) {
 		Response r = new Response<>();
+		String OnboardUrl = "http://loginservice/login/getEmployeeByUserType/";
+
 		try {
 			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 			if (!getOnboarding.equals(null)) {
@@ -1739,9 +1757,15 @@ public class MainServiceImpl implements MainService {
 				RegistrationConfirmation rConfirm = new RegistrationConfirmation();
 				MainEmailTemplate mailTemp = new MainEmailTemplate();
 				Map<String, String> map = new HashMap();
-
+				
+				UserMail response = template.getForObject(
+	        			OnboardUrl+"taa",
+	        			UserMail.class);
+	        	List<MailGet> hrApp = response.getMails();
+				
+				hrApp.forEach(e->{
 				map.put("employeeName", getOnboarding.getFirstName() + getOnboarding.getLastName());
-				map.put("email", "muralikrishna.miriyala@arshaa.com");
+				map.put("email", e.getEmail());
 				map.put("LOGIN_LINK", rConfirm.getLoginLink());
 				mailTemp.setMap(map);
 				mailTemp.setEmailType("REGISTRATION_CONFIRMATION");
@@ -1750,6 +1774,7 @@ public class MainServiceImpl implements MainService {
 //					rConfirm.setEmail("muralikrishna.miriyala@arshaa.com");
 
 				template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
+				});
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
 				r.setData(getOnboarding);
@@ -1935,6 +1960,7 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public ResponseEntity updateTAAHeadApproval(String onboardingId, HrApprovalStatus newOnboard) {
 		Response r = new Response();
+		String OnboardUrl = "http://loginservice/login/getEmployeeByUserType/";
 		try {
 			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 			getOnboarding.setTaaHeadApprovalComment(newOnboard.getTaaHeadApprovalComment());
@@ -1943,11 +1969,18 @@ public class MainServiceImpl implements MainService {
 			MainEmailTemplate mailTemp = new MainEmailTemplate();
 			Map<String, String> map = new HashMap();
 
+			UserMail response = template.getForObject(
+        			OnboardUrl+"pmohead",
+        			UserMail.class);
+        	List<MailGet> hrApp = response.getMails();
+        	
+        	hrApp.forEach(e->{
 			mailTemp.setEmailType("TAG_APPROVAL");
-			map.put("employeeName", "Vikas");
-			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			map.put("employeeName", getOnboarding.getFullName());
+			map.put("email", e.getEmail());
 			mailTemp.setMap(map);
 			template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
+        	});
 			r.setStatus(true);
 			r.setMessage("TAAHeadApproved Successfully");
 			return new ResponseEntity(r, HttpStatus.OK);
@@ -1963,6 +1996,8 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public ResponseEntity updatePMOApproval(String onboardingId, HrApprovalStatus newOnboard) {
 		Response r = new Response();
+		String OnboardUrl = "http://loginservice/login/getEmployeeByUserType/";
+
 		try {
 			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 			getOnboarding.setPmoApprovalComment(newOnboard.getPmoApprovalComment());
@@ -1970,12 +2005,19 @@ public class MainServiceImpl implements MainService {
 			Onboarding saveList = onRepo.save(getOnboarding);
 			MainEmailTemplate mailTemp = new MainEmailTemplate();
 			Map<String, String> map = new HashMap();
-
+			
+			UserMail response = template.getForObject(
+        			OnboardUrl+"ceo",
+        			UserMail.class);
+        	List<MailGet> hrApp = response.getMails();
+        	
+        	hrApp.forEach(e->{
 			mailTemp.setEmailType("PMO_APPROVAL");
-			map.put("employeeName", "Raj");
-			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			map.put("employeeName", getOnboarding.getFullName());
+			map.put("email", e.getEmail());
 			mailTemp.setMap(map);
 			template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
+        	});
 			r.setStatus(true);
 			r.setMessage("PMOApproved Successfully");
 			return new ResponseEntity(r, HttpStatus.OK);
@@ -1991,6 +2033,8 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public ResponseEntity updateTAAApproval(String onboardingId, HrApprovalStatus newOnboard) {
 		Response r = new Response();
+		String OnboardUrl = "http://loginservice/login/getEmployeeByUserType/";
+
 		try {
 			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 			getOnboarding.setTaaApprovalComment(newOnboard.getTaaApprovalComment());
@@ -1998,12 +2042,19 @@ public class MainServiceImpl implements MainService {
 			Onboarding saveList = onRepo.save(getOnboarding);
 			MainEmailTemplate mailTemp = new MainEmailTemplate();
 			Map<String, String> map = new HashMap();
-
+			
+			UserMail response = template.getForObject(
+        			OnboardUrl+"taahead",
+        			UserMail.class);
+        	List<MailGet> hrApp = response.getMails();
+        	
+        	hrApp.forEach(e->{
 			mailTemp.setEmailType("TAA_APPROVAL");
-			map.put("employeeName", "Vinod");
-			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			map.put("employeeName", getOnboarding.getFullName());
+			map.put("email", e.getEmail());
 			mailTemp.setMap(map);
 			template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
+        	});
 			r.setStatus(true);
 			r.setMessage("TAAApproved Successfully");
 			return new ResponseEntity(r, HttpStatus.OK);
@@ -2030,8 +2081,8 @@ public class MainServiceImpl implements MainService {
 			Map<String, String> map = new HashMap();
 
 			mailTemp.setEmailType("CEO_APPROVAL");
-			map.put("employeeName", "Sanjay");
-			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			map.put("employeeName", getOnboarding.getFullName());
+			map.put("email", getOnboarding.getEmail());
 			map.put("dateOfJoining", getOnboarding.getDateOfJoining().toString());
 			System.out.println(getOnboarding.getDateOfJoining().toString());
 			mailTemp.setMap(map);

@@ -101,6 +101,7 @@ const ProfileEducationalDetailsTab = () => {
   var intermediateJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
   var tempDate = new Date(getEmployeeDetails.intermediatePassedYear);
+  console.log(tempDate);
   var intermediatePassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
   var tempDate = new Date(getEmployeeDetails.sscJoiningYear);

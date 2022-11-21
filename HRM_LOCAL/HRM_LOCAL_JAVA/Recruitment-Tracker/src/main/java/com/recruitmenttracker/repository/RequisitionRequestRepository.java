@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
 
 @Repository
@@ -25,7 +26,7 @@ public interface RequisitionRequestRepository extends JpaRepository<RequisitionR
 	    
 	    RequisitionRequestEntity findByRequisitionId(String requisitionId);
 	    
-//	   RequisitionRequestEntity getByRequisitionId(String requisitionId);
+	    List<RequisitionRequestEntity> getByDepartmentName(String departmentName);
 	   
 	   @Query(value="select *, TIMESTAMPDIFF(day, raised_on,now()) AS diffDaysCount from requisition_requests ", nativeQuery = true)
        List<RequisitionRequestEntity> getDataWithAgingDays();

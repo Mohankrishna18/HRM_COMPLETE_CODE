@@ -103,7 +103,7 @@ function EmployeePersonalDetails() {
     );
     
 
-    const url = `/emp/upload/${params.id}/`;
+    const url = `/emp/update/${params.id}/`;
     const formData = new FormData();
     formData.append("file", file);
     formData.append("fileName", file.name);
