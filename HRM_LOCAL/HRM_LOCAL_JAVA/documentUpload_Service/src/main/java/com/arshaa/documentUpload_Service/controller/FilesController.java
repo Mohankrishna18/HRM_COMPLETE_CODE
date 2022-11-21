@@ -110,7 +110,9 @@ public class FilesController {
 		@GetMapping(value = "/get/imageByTitle/{title}/{employeeId}")
 		public void downloadImageByTitle(@PathVariable("title") String title, @PathVariable String employeeId,
 				HttpServletResponse response) throws IOException {
-			String imageName=pRepo.getImageNameByTitleAndEmployeeId(title, employeeId).getImageName();
+			System.out.println(title+"  "+employeeId);
+			String imageName=pRepo.getImageNameByTitleAndEmployeeId(title,employeeId).getImageName();
+			System.out.println("imageName"+imageName);
 			InputStream resource = this.fileService.getResource(path +"/"+ employeeId, imageName);
 			response.setContentType(MediaType.ALL_VALUE);
 			response.setHeader("Content-disposition", "attachment; filename=\"" + imageName + "\"");

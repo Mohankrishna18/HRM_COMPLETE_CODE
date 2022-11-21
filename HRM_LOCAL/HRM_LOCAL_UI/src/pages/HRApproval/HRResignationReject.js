@@ -30,7 +30,7 @@ function HRResignationReject(props) {
         let employeeId = props.leaveID.employeeId;
     console.log(employeeId);
     const da = JSON.parse(sessionStorage.getItem("userdata"));
-    const empID = da.data.userType;
+    const empID = da.data.employeeId;
 
     axios
       .put(

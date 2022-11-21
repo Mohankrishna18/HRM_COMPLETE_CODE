@@ -8,10 +8,10 @@ function PMOResignationReject(props) {
     console.log(props.leaveID.employeeleaveId);
     const [form, setForm] = useState({});
     const [errors, setErrors] = useState({});
-    const [pmoReject, setPmoReject] = useState("");
+    const [srmReject, setSrmReject] = useState("");
 
     const initialValues = {
-        pmoReject
+        srmReject
     }
 
     const setField = (field, value) => {
@@ -30,7 +30,7 @@ function PMOResignationReject(props) {
         let employeeId = props.leaveID.employeeId;
     console.log(employeeId);
     const da = JSON.parse(sessionStorage.getItem("userdata"));
-    const empID = da.data.userType;
+    const empID = da.data.employeeId;
 
     axios
       .put(
@@ -68,13 +68,13 @@ function PMOResignationReject(props) {
                         required
                         as="textarea"
                         rows={2}
-                        className="pmoReject"
+                        className="srmReject"
                         type="text"
-                        controlId="pmoReject"
+                        controlId="srmReject"
                         placeholder="Reject Reason"
-                        value={pmoReject}
-                        onChange={(e) => setPmoReject(e.target.value)}
-                        isInvalid={!!errors.pmoReject}
+                        value={srmReject}
+                        onChange={(e) => setSrmReject(e.target.value)}
+                        isInvalid={!!errors.srmReject}
                     ></Form.Control>
                 </Form.Group>
 

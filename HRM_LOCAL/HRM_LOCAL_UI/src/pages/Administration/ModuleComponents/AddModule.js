@@ -113,7 +113,7 @@ function AddModule(props) {
         centered
       >
         <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
-          <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>Add Module</Modal.Title>
+          <Modal.Title style={{  color: "white" }}>Add Module</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>

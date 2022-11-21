@@ -4,9 +4,10 @@ import axios from "../../Uri";
 import { toast } from "react-toastify";
 
 function IRMResignationApprove(props) {
-  console.log(props.employeeId);
-
   console.log(props.leaveID.employeeId);
+
+
+  console.log(props.leaveID.reason);
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -32,7 +33,7 @@ function IRMResignationApprove(props) {
     let employeeId = props.leaveID.employeeId;
     console.log(employeeId);
     const da = JSON.parse(sessionStorage.getItem("userdata"));
-    const empID = da.data.userType;
+    const empID = da.data.employeeId;
     //   const employeeId = da.data.employeeId;
 
     console.log(props.leaveID);
@@ -66,7 +67,22 @@ function IRMResignationApprove(props) {
             </Col> */}
 
       <Form role="form">
-        <Form.Group md="12" style={{ padding: 0 }}>
+      <Form.Group md="12" style={{ padding: 0 }}>
+          <Form.Label>Employee Reason</Form.Label>
+          <Form.Control
+            required
+            
+           
+            className="reason"
+            type="text"
+            disabled
+            
+            
+            value={props.leaveID.reason}
+            
+          ></Form.Control>
+        </Form.Group>
+        <Form.Group md="12" style={{ paddingTop: "10px" }}>
           <Form.Label>Comment</Form.Label>
           <Form.Control
             required

@@ -161,7 +161,7 @@ function PersonalDetailsTab() {
       }
     );
 
-    const url = `/emp/upload/${employeeid}/`;
+    const url = `/emp/update/${employeeid}/`;
     const formData = new FormData();
     formData.append("file", file);
     formData.append("fileName", file.name);
