@@ -623,7 +623,7 @@ function PersonalDetailsTab() {
                 type="submit"
                 size="lg"
               >
-                Next
+                Submit
               </Button>
             </Col>
           </Row>

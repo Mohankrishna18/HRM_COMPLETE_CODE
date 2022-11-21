@@ -174,21 +174,6 @@ function EditCard() {
                                 </Card.Text>
                             </Col>
                         </Row>
-
-
-                            
-                            <Row style={{ paddingBottom: 0 }}>
-                            <Col>
-                                <Card.Text style={{}}>
-                                    <h6>SRM: </h6>
-                                </Card.Text>
-                            </Col>{" "}
-                            <Col md={{ offset: 1 }}>
-                                <Card.Text style={{color:"#999897"}}>
-                                    {employeedetails.srm}
-                                </Card.Text>
-                            </Col>
-                        </Row>
                         </Card.Body>
                     </Col>
 
@@ -288,12 +273,12 @@ function EditCard() {
                         <Row style={{ paddingBottom: 10 }}>
                                 <Col>
                                     <Card.Text style={{}}>
-                                        <h6>Project: </h6>
+                                        <h6>SRM: </h6>
                                     </Card.Text>
                                 </Col>{" "}
                                 <Col md={{ offset: 1 }}>
                                     <Card.Text style={{color:"#999897"}}>
-                                        {employeedetails.projectName}
+                                    {employeedetails.srm}
                                     </Card.Text>
                                 </Col>
                             </Row>

@@ -66,8 +66,8 @@ function AddOnboard(props) {
 
     if (!firstName || firstName === "" || !firstName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
       newErrors.firstName = "Please Enter First Name";
-    // if (!lastName || lastName === "" || !lastName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
-    //   newErrors.lastName = "Please Enter Last Name";
+    if (!lastName || lastName === "" || !lastName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
+      newErrors.lastName = "Please Enter Last Name";
     if (!email || email === "") newErrors.email = "Please Enter Valid Email";
     if (
       !phoneNumber ||
@@ -444,7 +444,7 @@ function AddOnboard(props) {
                       ></Form.Control>
                     </Form.Group>
                     <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                      <Form.Label>Last name </Form.Label>
+                      <Form.Label>Last name *</Form.Label>
                       <Form.Control
                         required
                         name="last_name"
@@ -454,10 +454,10 @@ function AddOnboard(props) {
                         value={form.lastName}
                         maxLength={30}
                         onChange={(e) => setField("lastName", e.target.value)}
-                        //isInvalid={!!errors.lastName}
+                        isInvalid={!!errors.lastName}
                       ></Form.Control>
                       <Form.Control.Feedback type="invalid">
-                        {/* {errors.lastName} */}
+                        {errors.lastName}
                       </Form.Control.Feedback>
                       <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
