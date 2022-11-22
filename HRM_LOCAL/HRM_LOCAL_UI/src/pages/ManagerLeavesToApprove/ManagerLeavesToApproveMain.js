@@ -128,7 +128,7 @@ const ManagerLeavesToApproveMain = () => {
                                                  scrollButtons="auto" indicatorColor="#f5896e" sx={{ "& button.Mui-selected": { background: "white", color: "#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", height: "30px", color:"white" }}>
                                             <Tab label="Leave/WFH Approvals" value="1" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }}  ></Tab>
                                             <Tab label="Timesheet Approvals" value="2" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }}    />
-                                            <Tab label="Resignation Approvals" value="3" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }}  />
+                                            <Tab label="Exit Approvals" value="3" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }}  />
                                             {/* FcConferenceCall/FcLeave/FcPositiveDynamic/FcConferenceCall/FcLeave/ */}
                                         </TabList>
                                     </Box>

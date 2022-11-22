@@ -88,6 +88,9 @@ function AddUser(props) {
     } else if (!estimatedHours.match(/^[0-9,aA-zZ\s]+$/)) {
       newErrors.estimatedHours = 'Please Enter Estimated Hours'
     }
+    if (!assignedTo || assignedTo === "" || assignedTo === "Assigned To")
+
+    newErrors.assignedTo = "Please Enter Assigned To";
 
     // if (!actualHours || actualHours === '') {
     //   newErrors.actualHours = 'Please Enter Actual Hours'

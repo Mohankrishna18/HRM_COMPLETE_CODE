@@ -617,4 +617,17 @@ public class MainController {
     			@RequestBody ProbationEmployeeFeedBack prb) {
     		return serv.probationEmployeeFeedBack(employeeId, prb);
     	}
+        
+        @PutMapping("/updateEmployeeAfterResignApply/{employeeId}")
+        public ResponseEntity updateEmployeeAfterResignApply(@PathVariable String employeeId,@RequestBody ResignationModel rmodel)
+        {
+        	return new ResponseEntity(resignationServ.updateEmployeeAfterResignApply(employeeId, rmodel),HttpStatus.OK);
+        }
+        
+        @PutMapping("/updateEmployeeAfterResignConfirmed/{employeeId}")
+        public ResponseEntity updateEmployeeAfterResignConfirmed(@PathVariable String employeeId,@RequestBody ResignationModel rmodel)
+        {
+        	return new ResponseEntity(resignationServ.updateEmployeeAfterResignConfirmed(employeeId, rmodel),HttpStatus.OK);
+        }
+
 }

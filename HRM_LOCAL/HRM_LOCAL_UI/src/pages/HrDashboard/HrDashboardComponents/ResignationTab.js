@@ -76,10 +76,10 @@ useEffect(() => {
      // { title: "Resignation ID", field: "resignationId",color:"black" },
       { title: "Employee ID", field: "employeeId",color:"black" },
       { title: "Name", field: "fullName" },
-      { title: "Reason", field: "reason" },
+      { title: "Reason", field: "resignedReason" },
       {
-        title: "Notice Date",
-        field: "noticeDate",
+        title: "Exit Date",
+        field: "exitDate",
         type: "date",
         dateSetting: { locale: "en-GB" },
       },

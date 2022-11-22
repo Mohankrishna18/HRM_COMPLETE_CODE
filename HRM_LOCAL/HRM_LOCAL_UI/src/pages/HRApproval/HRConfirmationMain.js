@@ -40,7 +40,7 @@ function HRConfirmationMain() {
                 
               ></Tab>
               <Tab
-                label="Resignation Approvals"
+                label="Exit Approvals"
                 value="2"
                 style={{ paddingRight: "2%", paddingLeft: "2%" }}
                

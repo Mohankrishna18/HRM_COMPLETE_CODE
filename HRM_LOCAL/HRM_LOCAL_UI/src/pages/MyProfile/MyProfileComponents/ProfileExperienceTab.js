@@ -17,6 +17,7 @@ import {
   Section,
   Description,
 } from "vertical-timeline-component-react";
+import { BASE_URL } from "../../../Constant";
 
 const customTheme = {
   yearColor: "#405b73",
@@ -74,6 +75,20 @@ const ProfileExperienceTab = (props) => {
       });
   }, []);
   console.log(projects)
+
+  const [documents, setDocuments] = useState("");
+  const loadData = () => {
+    axios
+      .get(`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${employeeid}`)
+      .then((response) => {
+        setDocuments(response);
+        console.log(response);
+      });
+  }
+  useEffect(() => {
+    loadData();
+  }, []);
+  console.log(documents);
 
 
 
@@ -241,6 +256,16 @@ const ProfileExperienceTab = (props) => {
                               </tbody>
                             </Table>
                           </Card.Body>
+                          <Row>
+                          {documents.statusText === "OK" ? (<Col>
+              <a href={`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${employeeid}`}>
+                Experience Documents
+
+              </a>
+            </Col>) : (<></>)
+            }
+        
+                          </Row>
                         </div>
 
     </>
