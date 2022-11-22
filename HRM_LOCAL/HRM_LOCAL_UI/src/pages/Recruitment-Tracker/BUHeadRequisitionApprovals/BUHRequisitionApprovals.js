@@ -60,7 +60,7 @@ function BUHRequisitionApprovals(props) {
 
   
   const [columns, setColumns] = useState([
-    { title: "Job ID", field: "requisitionId" },
+    { title: "AERF ID", field: "requisitionId" },
     { title: "Business Unit", field: "departmentName","defaultGroupOrder":0 },
     { title: "Client", field: "clientName" },
     { title: "Project", field: "projectName" },
@@ -132,7 +132,7 @@ function BUHRequisitionApprovals(props) {
       </Modal>
 
       <Modal show={rejectshow} onHide={handleCloseReject} centered>
-        <Modal.Header closeButton>
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
           <Modal.Title>Are you sure you want to Reject</Modal.Title>
         </Modal.Header>
         <Modal.Footer>

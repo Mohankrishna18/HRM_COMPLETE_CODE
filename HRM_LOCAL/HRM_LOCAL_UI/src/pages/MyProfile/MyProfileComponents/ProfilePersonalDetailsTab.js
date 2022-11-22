@@ -95,7 +95,7 @@ function ProfilePersonalDetailsTab() {
         });
         toast.success("Form Submitted Successfully");
         handleClose();
-        const url = `/emp/upload/${employeeid}/`;
+        const url = `/emp/update/${employeeid}/`;
         const formData = new FormData();
         formData.append("file", file);
         formData.append("fileName", file.name);
@@ -106,7 +106,7 @@ function ProfilePersonalDetailsTab() {
         };
         console.log(formData);
         axios
-            .post(url, formData, config)
+            .put(url, formData, config)
             .then((response) => {
                 console.log(response.data);
             })
@@ -127,7 +127,7 @@ function ProfilePersonalDetailsTab() {
         // notify();
         toast.success("Form Submitted Successfully");
         // refreshPage();
-        const url = `/emp/upload/${employeeid}/`;
+        const url = `/emp/update/${employeeid}/`;
         const formData = new FormData();
         formData.append("file", file);
         formData.append("fileName", file.name);
@@ -138,7 +138,7 @@ function ProfilePersonalDetailsTab() {
         };
         console.log(formData);
         axios
-            .post(url, formData, config)
+            .put(url, formData, config)
             .then((response) => {
                 console.log(response.data);
             })
@@ -159,7 +159,7 @@ function ProfilePersonalDetailsTab() {
     const current = new Date();
     console.log(current)
 
-    const [imge, setImge] = useState([]);
+    const [imge, setImge] = useState({});
     useEffect(() => {
         axios
             .get(`/emp/files/${employeeid}`)

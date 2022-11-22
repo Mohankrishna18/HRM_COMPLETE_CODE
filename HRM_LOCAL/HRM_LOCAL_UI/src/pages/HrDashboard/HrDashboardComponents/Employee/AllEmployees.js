@@ -166,7 +166,6 @@ function AllEmployees(props) {
         })
         .catch((err) => {
           console.log(err);
-          // toast.error("Server Error")
         });
       setRenderTable(true);
     }
@@ -176,60 +175,57 @@ function AllEmployees(props) {
     axios
         .get("/emp/getAllEmployeeMasterData")
         .then((res) => {
-            // setData(res.data.data);
         const sata1 = res.data.data.filter(item => item.status === 'Active')
         console.log(res.data);
-            setEmployeeData(sata1) 
-           
+          setEmployeeData(sata1)    
         })
         .catch((err) => {
             console.log(err);
-            // toast.error("Server Error")
         });
 }, []);
 console.log(employeeData);
-const[f,setF]=useState([]);
-useEffect(() => {
-  axios
-      .get("/emp/getAllEmployeeMasterData")
-      .then((res) => {
-          // setData(res.data.data);
-      const sata1 = res.data.data.filter(item => item.status === 'Active' && item.gender ==="Female")
-      console.log(res.data);
-          setF(sata1) 
-         
-      })
-      .catch((err) => {
-          console.log(err);
-          // toast.error("Server Error")
-      });
-}, []);
-console.log(f);
-
-const[m,setM]=useState([]);
-useEffect(() => {
-  axios
-      .get("/emp/getAllEmployeeMasterData")
-      .then((res) => {
-          // setData(res.data.data);
-      const sata1 = res.data.data.filter(item => item.status === 'Active' && item.gender ==="Male")
-      console.log(res.data);
-      setM(sata1) 
-         
-      })
-      .catch((err) => {
-          console.log(err);
-          // toast.error("Server Error")
-      });
-}, []);
-console.log(m);
-
-// const female = employeeData ? employeeData.filter((item) => item.gender === "Female") : 0
-// const male = employeeData ? employeeData.filter((item) => item.gender === "Male") : 0
+//Male-female count using filter
+const female = employeeData ? employeeData.filter((item) => item.gender === "Female") : 0
+console.log(female);
+ const male = employeeData ? employeeData.filter((item) => item.gender === "Male") : 0
+console.log(male);
 
 // const[f,setF]=useState([]);
-// setF=employeeData.filter((item)=>item.gender==="Female"):0;
-// console.log(f),
+// useEffect(() => {
+//   axios
+//       .get("/emp/getAllEmployeeMasterData")
+//       .then((res) => {
+//           // setData(res.data.data);
+//       const sata1 = res.data.data.filter(item => item.status === 'Active' && item.gender ==="Female")
+//       console.log(res.data);
+//           setF(sata1);
+         
+//       })
+//       .catch((err) => {
+//           console.log(err);
+//           // toast.error("Server Error")
+//       });
+// }, []);
+// console.log(f);
+
+// const[m,setM]=useState([]);
+// useEffect(() => {
+//   axios
+//       .get("/emp/getAllEmployeeMasterData")
+//       .then((res) => {
+//           // setData(res.data.data);
+//       const sata1 = res.data.data.filter(item => item.status === 'Active' && item.gender ==="Male")
+//       console.log(res.data);
+//       setM(sata1) 
+         
+//       })
+//       .catch((err) => {
+//           console.log(err);
+//           // toast.error("Server Error")
+//       });
+// }, []);
+// console.log(m);
+
 
 
 
@@ -269,12 +265,12 @@ console.log(m);
             </Row>
             <Row style={{paddingTop:"10px",paddingLeft:"5px"}}>
             <Card style={{padding:10}}>
-            {!m ? (<Card.Subtitle className="mb-2 text-muted">Male: 0</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {m.length} </Card.Subtitle>)} 
+            {!male ? (<Card.Subtitle className="mb-2 text-muted">Male: 0</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {male.length} </Card.Subtitle>)} 
             </Card>
             </Row>
             <Row style={{paddingTop:"10px",paddingLeft:"5px"}}>
             <Card style={{padding:10}}>
-             {!f ? (<Card.Subtitle className="mb-2 text-muted"> Female: 0</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Female : {f.length} </Card.Subtitle>)} 
+             {!female ? (<Card.Subtitle className="mb-2 text-muted"> Female: 0</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Female : {female.length} </Card.Subtitle>)} 
             </Card>
             </Row>
         {/* {empcount === 0 ? (<Card.Subtitle className="mb-2 text-muted">0 Employees</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {empcount}</Card.Subtitle>)}
@@ -512,3 +508,5 @@ console.log(m);
 }
 
 export default AllEmployees;
+
+

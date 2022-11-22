@@ -361,19 +361,19 @@ public class EmailSender {
 	}
 
 	private String hrApprovalText(MainEmailTemplate uModel) {
-		String text="Hello "+uModel.getMap().get("employeeName")+"\n"+"\n"+"Welcome to Arshaa Technologies."+"\n"+"\n"+"Please login with your Employee-ID and password as we mentioned here, There are your credentials Employee-ID : "+uModel.getMap().get("employeeId")+" and Password :"+uModel.getMap().get("password")+"\n"+"\n"+"Link to login : http://15.206.247.212/"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Hello "+uModel.getMap().get("employeeName")+"\n"+"\n"+"Welcome to Arshaa Technologies."+"\n"+"\n"+"Please login with your Employee-ID and password as we mentioned here, There are your credentials Employee-ID : "+uModel.getMap().get("employeeId")+" and Password :"+uModel.getMap().get("password")+"\n"+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 	
 	
 	private String ceoReject(MainEmailTemplate uModel) {
-		String text="CEO Rejected"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="CEO Rejected"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 
 	private String pmoReject(MainEmailTemplate uModel) {
-		String text="PMO Rejected"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="PMO Rejected"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
@@ -385,7 +385,7 @@ public class EmailSender {
 
 
 	private String ceoApprovalText(MainEmailTemplate uModel) {
-		String text="Hi "+uModel.getMap().get("employeeName")+"\n"+"\n"+"\n"+"Welcome to Arshaa Technologies"+"\n"+"\n"+"\n"+"We are glad to infrom on the joining date of yours at Arshaa Technologies on "+uModel.getMap().get("dateOfJoining")+"\n"+"\n"+"\n"+"As per the discussion with me, please find the below documents to be carried on your Day of joining."+"\n"+"\n"+"\n"+"1] Offer letter."+"\n"+"2] Pan and Aadhar Copies (ID Proof)."+"\n"+"3] Educational Documents."+"\n"+"4] Hike Letter."+"\n"+"5] Form-16."+"\n"+"6] Resignation Copy"+"\n"+"\n"+"\n"+"Venue Details :-"+"\n"+"Reporting Time - 10:00 AM"+"\n"+"Reporting Address -Arshaa Technologies, SALARPURIA SATTVA KNOWLEDGE CITY, "+"\n"+"Level 1, 2A&2B Octave Block, Parcel 4, Rai Durg, "+"\n"+"Hyderabad, Telangana-500081"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Hi "+uModel.getMap().get("employeeName")+"\n"+"\n"+"\n"+"Welcome to Arshaa Technologies"+"\n"+"\n"+"\n"+"We are glad to infrom on the joining date of yours at Arshaa Technologies on "+uModel.getMap().get("dateOfJoining")+"\n"+"\n"+"\n"+"As per the discussion with me, please find the below documents to be carried on your Day of joining."+"\n"+"\n"+"\n"+"1] Offer letter."+"\n"+"2] Pan and Aadhar Copies (ID Proof)."+"\n"+"3] Educational Documents."+"\n"+"4] Hike Letter."+"\n"+"5] Form-16."+"\n"+"6] Resignation Copy"+"\n"+"\n"+"\n"+"Venue Details :-"+"\n"+"Reporting Time - 10:00 AM"+"\n"+"Reporting Address -Arshaa Technologies, SALARPURIA SATTVA KNOWLEDGE CITY, "+"\n"+"Level 1, 2A&2B Octave Block, Parcel 4, Rai Durg, "+"\n"+"Hyderabad, Telangana-500081"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 
 	
 				return text;
@@ -393,19 +393,19 @@ public class EmailSender {
 
 
 	private String pmoApprovalText(MainEmailTemplate uModel) {
-		String text="Hai Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Hai Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 
 	private String tagApprovalText(MainEmailTemplate uModel) {
-		String text="Hai Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Hai Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 
 	private String taaApprovalText(MainEmailTemplate uModel) {
-        String text="Hai Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+        String text="Hai Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
@@ -420,13 +420,13 @@ public class EmailSender {
 	
 	public String registrationSubmissionText(MainEmailTemplate uModel)
 	{
-		String text="Completed form submission successfully, you can check those details in the below link : "+uModel.getMap().get("LOGIN_LINK") +"\n"+"\n"+"Regards"+"\n"+uModel.getMap().get("employeeName")+".";
+		String text="All Details are submitted successfully, Please Check those details in the below link : "+uModel.getMap().get("LOGIN_LINK") +"\n"+"\n"+"Regards"+"\n"+uModel.getMap().get("employeeName")+".";
 		return text;
 	}
 	
 	public String OnboardApproveText(MainEmailTemplate uModel)
 	{
-		String text="Hi "+uModel.getMap().get("employeeName")+"\n"+"Welcome to Arshaa Technologies"+"\n"+"Your Onboard was Approved, Please login with your Email-ID and Password as we mentioned here, These are your credentials Email-ID:-"+uModel.getMap().get("email")+" Password:-"+uModel.getMap().get("password")+"\n"+"\n"+"Link to login : http://10.10.10.40:4000"+"\n"+"Kindly fill your details in Edit My Profile."+"\n"+"\n"+"Regards,"+"\n"+"Recuiter Team"+"\n"+"Arshaa Technology Pvt. Ltd.";
+		String text="Hi "+uModel.getMap().get("employeeName")+"\n"+"Welcome to Arshaa Technologies"+"\n"+"Your Onboard was Approved, Please login with your Email-ID and Password as we mentioned here, These are your credentials Email-ID:-"+uModel.getMap().get("email")+" Password:-"+uModel.getMap().get("password")+"\n"+"\n"+"Link to login : http://15.206.247.212:5000/"+"\n"+"Kindly fill your details in Edit My Profile."+"\n"+"\n"+"Regards,"+"\n"+"Recuiter Team"+"\n"+"Arshaa Technology Pvt. Ltd.";
 		return text;
 	}
 

@@ -197,12 +197,12 @@ function ClientMain() {
 
         <Grid style={{ borderBlockEndWidth: "2px" }}>
           <MaterialTable
-            title="Clients/Company"
+            title="Clients"
             columns={columns}
             style={{ color: "black", fontSize: "1rem" }}
             data={data}
             editable={{}}
-            options={{
+            options={{          
               showTitle: false,
               pageSize: 10,
               maxBodyHeight: 480,

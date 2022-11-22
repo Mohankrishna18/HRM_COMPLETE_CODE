@@ -394,7 +394,7 @@ function EmployeeMasterForms(props) {
 
         toast.success("Form Submitted Successfully");
 
-        const url = `/emp/upload/${empId}/`;
+        const url = `/emp/update/${empId}`;
 
         const formData = new FormData();
 
@@ -406,7 +406,7 @@ function EmployeeMasterForms(props) {
             },
         };
         console.log(formData);
-        axios.post(url, formData, config).then((response) => {
+        axios.put(url, formData, config).then((response) => {
             console.log(response.data);
         }).catch((error) => {
             console.log("oops not uploaded!");
@@ -425,7 +425,7 @@ function EmployeeMasterForms(props) {
         // notify();
         toast.success("Form Submitted Successfully");
         // refreshPage();
-        const url = `/emp/upload/${empId}/`;
+        const url = `/emp/update/${empId}`;
 
         const formData = new FormData();
 

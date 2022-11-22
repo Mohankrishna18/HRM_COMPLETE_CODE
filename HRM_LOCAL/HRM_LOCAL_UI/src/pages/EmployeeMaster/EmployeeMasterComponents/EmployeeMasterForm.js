@@ -399,7 +399,7 @@
 //             exitDate,
 //         });
 //         toast.success("Form Submitted Successfully");
-//         const url = `/emp/upload/${employeeid}/`;
+//         const url = `/emp/update/${employeeid}/`;
 //         const formData = new FormData();
 //         formData.append("file", file);
 //         formData.append("fileName", file.name);
@@ -431,7 +431,7 @@
 //         // notify();
 //         toast.success("Form Submitted Successfully");
 //         // refreshPage();
-//         const url = `/emp/upload/${employeeid}/`;
+//         const url = `/emp/update/${employeeid}/`;
 //         const formData = new FormData();
 //         formData.append("file", file);
 //         formData.append("fileName", file.name);

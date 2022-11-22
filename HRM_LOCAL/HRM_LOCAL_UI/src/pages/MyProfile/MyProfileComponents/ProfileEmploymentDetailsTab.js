@@ -28,7 +28,7 @@ const ProfileEmploymentDetailsTab = () => {
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
   //var dateTime = getEmployeeDetails.dateOfJoining;
 
-  const [imge, setImge] = useState([]);
+  const [imge, setImge] = useState({});
 //commit
   useEffect(() => {
     axios
@@ -143,12 +143,12 @@ const ProfileEmploymentDetailsTab = () => {
                             </Col>
                             <Col>
                               <Card.Subtitle style={{ padding: 10 }}>
-                                Project Name:
+                                {/* Project Name: */}
                               </Card.Subtitle>{" "}
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                                {getEmployeeDetails.projectName}
+                                {/* {getEmployeeDetails.projectName} */}
                               </Card.Text>
                             </Col>
                           </Row>

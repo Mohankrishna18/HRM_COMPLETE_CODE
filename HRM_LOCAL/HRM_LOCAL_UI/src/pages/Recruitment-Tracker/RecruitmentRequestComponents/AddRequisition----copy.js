@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function AddRequisition(props) {
+ const AddRequisition=(props)=> {
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -720,3 +720,5 @@ export default function AddRequisition(props) {
     </div>
   );
 }
+
+export default AddRequisition;

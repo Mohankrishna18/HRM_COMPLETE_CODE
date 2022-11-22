@@ -3,6 +3,7 @@ package com.arshaa.emp.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -37,5 +38,10 @@ public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster,S
 	@Query(value="select * from employeemaster where date_of_joining = CURRENT_DATE ", nativeQuery=true)
 	List<EmployeeMaster> findEmployeeMasterCountWithParticularDate();
 	
-	List<EmployeeMaster> getBydepartmentName(String departmentName);
+	List<EmployeeMaster> getBydepartmentName(String departmentName);   
+//    List<EmployeeMaster> findAllByOrderByFullNameAscAndStatus(String status);
+
+    List<EmployeeMaster> getActiveEmployeesByStatus(String status);
+    EmployeeMaster getDateOfJoiningByEmployeeId(String employeeId);
+    
 }

@@ -89,7 +89,6 @@ import CEOMain from "../pages/CEO/CEOMain";
 
 import * as RiIcons from "react-icons/ri";
 import { Accordion } from "react-bootstrap";
-import ApprovesMain from "../pages/Approves/ApprovesMain";
 import EmployeeList from "../pages/AllEmployees/AllEmployeesComponents/EmployeeList";
 import Employee from "../pages/RoleUnderEmployees/RoleUnderEmployeesMain";
 import AllEmployeesMain from "../pages/AllEmployees/AllEmployeesMain";
@@ -320,7 +319,7 @@ export default [
     component: PMOMain,
     type: "approvals",
     path: "/PMO",
-    icon: <FcApproval />,
+    icon: <FcApproval/>,
     title: "Approvals",
     permission: [Roles.pmohead],
   },
@@ -436,7 +435,7 @@ export default [
     type: "Employee",
     path: "/IntegrateLeaveToApply",
     icon: <FcLeave />,
-    title: "Leaves/WFH Apply",
+    title: "Leaves/WFH",
     permission: [
       Roles.employee,
       Roles.ceo,
@@ -458,7 +457,7 @@ export default [
     path: "/holidayManagenent",
     type: "configuration",
     icon: <FcPlanner />,
-    title: "Holiday Management",
+    title: "Holidays",
     permission: [Roles.pmohead],
   },
   {
@@ -619,14 +618,14 @@ export default [
 
     permission: [Roles.pmohead],
   },
-  {
-    component: BUHMain,
-    type: "null",
-    path: "/BUHead",
-    icon: <FcManager />,
-    title: "Approvals",
-    permission: [Roles.buhead],
-  },
+  // {
+  //   component: BUHMain,
+  //   type: "null",
+  //   path: "/BUHead",
+  //   icon: <FcManager />,
+  //   title: "Approvals",
+  //   permission: [Roles.buhead],
+  // },
   {
     component: HRConfirmationMain,
     type: "approvals",
@@ -677,7 +676,6 @@ export default [
   {
 
     component: RRMain,
-
     type: "jobs",
 
     path: "/rrf",
@@ -686,25 +684,24 @@ export default [
 
     title: "Requisition Request",
 
-    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead],
+    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead,Roles.taa],
 
   },
 
-  {
+  // {
+  //   component: RRMain,
 
-    component: RRMain,
+  //   type: "jobs",
 
-    type: "jobs",
+  //   path: "/rrfmain",
 
-    path: "/rrf",
+  //   icon: <FcVoicePresentation />,
 
-    icon: <FcVoicePresentation />,
+  //   title: "Requisitions",
 
-    title: "Requisitions",
+  //   permission: [Roles.taa]
 
-    permission: [Roles.taa]
-
-  },
+  // },
   {
     component: PMO_Dashboard,
     path: "/PMO_Dashboard",
@@ -755,7 +752,7 @@ export default [
 
     type: "AERF",
 
-    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead],
+    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead,Roles.taa],
 
 
 
@@ -784,7 +781,7 @@ export default [
 
     path: "/updateRequisition/:id",
 
-    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead]
+    permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead,Roles.taa]
 
   },  
 

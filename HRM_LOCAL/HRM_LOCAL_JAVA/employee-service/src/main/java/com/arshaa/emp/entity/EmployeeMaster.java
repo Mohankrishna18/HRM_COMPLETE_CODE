@@ -210,8 +210,8 @@ public class EmployeeMaster {
 	private String ifscCode;
 	private String branch;
 	private String band;
-	private String exitDate;
-	private Date resignationDate;
+	private Date exitDate;
+	private String resignationDate;
 	
 	private String srm;
 	private String irm;
@@ -232,14 +232,24 @@ public class EmployeeMaster {
     private String hrcomment;
     private Date confirmationDate;
     private String status;
+    private String probationempfeedback;
    
+    private int leaveBalance;
+
+	public int getLeaveBalance() {
+		return leaveBalance;
+	}
+
+	public void setLeaveBalance(int leaveBalance) {
+		this.leaveBalance = leaveBalance;
+	}
 
   
 	
-	public Date getResignationDate() {
+	public String getResignationDate() {
 		return resignationDate;
 	}
-	public void setResignationDate(Date resignationDate) {
+	public void setResignationDate(String resignationDate) {
 		this.resignationDate = resignationDate;
 	}
 	public String getStatus() {
@@ -893,10 +903,11 @@ public class EmployeeMaster {
 	public void setBand(String band) {
 		this.band = band;
 	}
-	public String getExitDate() {
+	
+	public Date getExitDate() {
 		return exitDate;
 	}
-	public void setExitDate(String exitDate) {
+	public void setExitDate(Date exitDate) {
 		this.exitDate = exitDate;
 	}
 	public String getSrm() {
@@ -971,9 +982,10 @@ public class EmployeeMaster {
 			String reportingManager, String passportNo, String passportExpiryDate, String jobTitle,
 			String employmentType, String primarySkills, String secondarySkills, String panNumber, String aadharNumber,
 			String uanNumber, String bankName, String accountNumber, String ifscCode, String branch, String band,
-			String exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,
-			String buhId,Date resignationDate,String intermediateQualification, String sscQualification, String officialMail, String hrcomment,String Status) {
+			Date exitDate, String srm, String irm, String buh, String fullName, String irmId, String srmId,int leaveBalance,
+			String buhId,String resignationDate,String intermediateQualification, String sscQualification, String officialMail, String hrcomment,String Status) {
 		super();
+		this.leaveBalance = leaveBalance;
 		this.employeeId = employeeId;
 		this.departmentName = departmentName;
 		this.onboardingId = onboardingId;
@@ -1086,7 +1098,14 @@ public class EmployeeMaster {
 		this.hrcomment=hrcomment;
 		this.confirmationDate = confirmationDate;
 		this.status=status;
+		this.probationempfeedback = probationempfeedback;
 	}
+		public String getProbationempfeedback() {
+			return probationempfeedback;
+		}
+		public void setProbationempfeedback(String probationempfeedback) {
+			this.probationempfeedback = probationempfeedback;
+		}
 		public EmployeeMaster() {
 		super();
 		// TODO Auto-generated constructor stub

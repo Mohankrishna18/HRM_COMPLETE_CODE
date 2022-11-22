@@ -34,7 +34,9 @@ import com.arshaa.emp.model.EmploymentDetails;
 import com.arshaa.emp.model.Experience;
 import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.PersonalDetails;
+import com.arshaa.emp.model.ProbationEmployeeFeedBack;
 import com.arshaa.emp.model.ReportingManagerMain;
+import com.arshaa.emp.model.ResignationModel;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.ResponseFile;
 import com.arshaa.emp.model.ResponseMessage;
@@ -44,6 +46,7 @@ import com.arshaa.emp.service.EmployeeProfileService;
 import com.arshaa.emp.service.LeaveService;
 import com.arshaa.emp.service.MainService;
 import com.arshaa.emp.service.ReportingManagerService;
+import com.arshaa.emp.service.ResignationService;
 import com.arshaa.emp.service.RoleBasedEmployeesServiceImpl;
 import com.google.common.net.HttpHeaders;
 
@@ -63,8 +66,10 @@ public class MainController {
 	EmployeeProfileService epServ;
 	@Autowired
 	LeaveService lServ;
-	@Autowired	
-
+	//changes by murali miriyala	
+	@Autowired
+	ResignationService resignationServ;
+	@Autowired
     RoleBasedEmployeesServiceImpl roleBasedServ;
 
 	@PostMapping("/createNewPotentialEmployee")
@@ -234,41 +239,42 @@ public class MainController {
 
 
 	@GetMapping("/files/{employeeId}")
-	public ResponseEntity<ResponseFile> getFilebyID(@PathVariable String employeeId) {
-		try {
-			EmployeeProfile fileDB = epServ.getFileByID(employeeId);
-			ResponseFile file = new ResponseFile();
-			file.setUrl(fileDB.getData());
-			file.setName(fileDB.getName());
-			file.setType(fileDB.getType());
-			file.setSize(fileDB.getData().length);
-			return new ResponseEntity<ResponseFile>(file, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
-		}
-	}
-	
-	@GetMapping("/file/{onboardingId}")
-	public ResponseEntity<ResponseFile> getFileByOnboardingID(@PathVariable String onboardingId) {
-		try {
-			EmployeeProfile profile = epServ.getFileByOnboardingID(onboardingId);
-			ResponseFile file = new ResponseFile();
-			file.setUrl(profile.getData());
-			file.setName(profile.getName());
-			file.setType(profile.getType());
-			file.setSize(profile.getData().length);
-			return new ResponseEntity<ResponseFile>(file, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
-		}
-	}
-	@GetMapping("/getImage/{id}")
-	public ResponseEntity<byte[]> getFile(@PathVariable String id) {
-		EmployeeProfile fileDB = epServ.getFileByID(id);
-		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
-				.body(fileDB.getData());
-	}
+    public ResponseEntity<ResponseFile> getFilebyID(@PathVariable String employeeId) {
+        try {
+            EmployeeProfile fileDB = epServ.getFileByID(employeeId);
+            ResponseFile file = new ResponseFile();
+            file.setUrl(fileDB.getData());
+            file.setName(fileDB.getName());
+            file.setType(fileDB.getType());
+            file.setSize(fileDB.getData().length);
+            return new ResponseEntity<ResponseFile>(file, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+        }
+    }
+    
+    @GetMapping("/file/{onboardingId}")
+    public ResponseEntity<ResponseFile> getFileByOnboardingID(@PathVariable String onboardingId) {
+        try {
+            EmployeeProfile profile = epServ.getFileByOnboardingID(onboardingId);
+            ResponseFile file = new ResponseFile();
+            file.setUrl(profile.getData());
+            file.setName(profile.getName());
+            file.setType(profile.getType());
+            file.setSize(profile.getData().length);
+            return new ResponseEntity<ResponseFile>(file, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+        }
+    }
+    @GetMapping("/getImage/{id}")
+    public ResponseEntity<byte[]> getFile(@PathVariable String id) {
+        EmployeeProfile fileDB = epServ.getFileByID(id);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
+                .body(fileDB.getData());
+    }
+    
 	@GetMapping("/leavespermonth/{employeeId}")
     int Lossofpayservice( @PathVariable String employeeId ) {
 
@@ -541,12 +547,14 @@ public class MainController {
         // public int  getWeekendsByMonth(@PathVariable int year ,@PathVariable int month) {
         // 	return lServ.weekendCount(year, month);
         // }
-        @PutMapping("/upload/{employeeId}")
+        
+        
+        @PostMapping("/uploads/{employeeId}")
         public ResponseEntity<ResponseMessage> uploadFile1(@PathVariable String employeeId,
                 @RequestParam("file") MultipartFile file) {
             String message = "";
             try {
-                epServ.store(file, employeeId);
+                epServ.store1(file, employeeId);
                 message = "Uploaded the file successfully: " + file.getOriginalFilename();
                 return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
             } catch (Exception e) {
@@ -554,4 +562,59 @@ public class MainController {
                 return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
             }
         }
+        
+        @PutMapping("/update/{employeeId}")
+        public ResponseEntity<ResponseMessage> updateFile(@PathVariable String employeeId,
+                @RequestParam("file") MultipartFile file) {
+            String message = "";
+            try {
+                epServ.update(file, employeeId);
+                message = "Updated the file successfully: " + file.getOriginalFilename();
+                return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+            } catch (Exception e) {
+                message = "Can't able to update a file" + file.getOriginalFilename();
+                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+            }
+        }
+
+      //get call to get employees by status Active/InActive
+        @GetMapping("/getActiveEmployees/{status}")
+        public ResponseEntity getActiveEmployeesByStatus(@PathVariable String status) {
+            return serv.getActiveEmployeesByStatus(status);
+        }
+        @GetMapping("/getEmployeeLeavesDatawithoutDept/{month}/{year}")
+        public ResponseEntity getEmployeeLeavesDataWithoutDept(@PathVariable int month,@PathVariable int year)
+        {
+        	
+            try
+            {
+            return new ResponseEntity<>(lServ.getEmployeeLeavesDataWithoutDept(month, year),HttpStatus.OK);
+            }
+            
+            catch(Exception e)
+            {
+                return new ResponseEntity(e.getMessage(),HttpStatus.OK);
+            }
+
+            }
+        
+        
+        //Murali miriyala resignation changes
+        
+        @GetMapping("/getResignationInfoByEmployeeeId/{employeeId}")
+        public ResignationModel getResignationInfoByEmployeeeId( @PathVariable String employeeId)
+        {
+        	return resignationServ.getResignationInfoByEmployeeeId(employeeId);
+        }
+        @GetMapping("/getDateOfJoiningByEmployeeId/{employeeId}")
+    	public ResponseEntity getDateOfJoiningByEmployeeId(@PathVariable String employeeId) {
+    		return serv.getDateOfJoiningByEmployeeId(employeeId);
+
+    	}
+        
+        @PutMapping("/probationEmployeeFeedBack/{employeeId}")
+        public ResponseEntity probationEmployeeFeedBack(@PathVariable String employeeId,
+    			@RequestBody ProbationEmployeeFeedBack prb) {
+    		return serv.probationEmployeeFeedBack(employeeId, prb);
+    	}
 }

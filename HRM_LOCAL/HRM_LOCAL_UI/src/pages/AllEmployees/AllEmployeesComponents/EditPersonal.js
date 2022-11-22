@@ -100,7 +100,7 @@ console.log(localitem)
         });
         toast.success("Form Submitted Successfully");
         handleClose();
-        const url = `/emp/upload/${localitem}/`;
+        const url = `/emp/update/${localitem}`;
         const formData = new FormData();
         formData.append("file", file);
         formData.append("fileName", file.name);
@@ -111,7 +111,7 @@ console.log(localitem)
         };
         console.log(formData);
         axios
-            .post(url, formData, config)
+            .put(url, formData, config)
             .then((response) => {
                 console.log(response.data);
             })
@@ -132,7 +132,7 @@ console.log(localitem)
         // notify();
         toast.success("Form Submitted Successfully");
         // refreshPage();
-        const url = `/emp/upload/${localitem}/`;
+        const url = `/emp/update/${localitem}`;
         const formData = new FormData();
         formData.append("file", file);
         formData.append("fileName", file.name);
@@ -143,7 +143,7 @@ console.log(localitem)
         };
         console.log(formData);
         axios
-            .post(url, formData, config)
+            .put(url, formData, config)
             .then((response) => {
                 console.log(response.data);
             })
@@ -164,7 +164,7 @@ console.log(localitem)
     const current = new Date();
     console.log(current)
 
-    const [imge, setImge] = useState([]);
+    const [imge, setImge] = useState({});
     useEffect(() => {
         axios
             .get(`/emp/files/${params.id}`)

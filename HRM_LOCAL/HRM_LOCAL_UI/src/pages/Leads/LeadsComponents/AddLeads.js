@@ -52,18 +52,18 @@ function AddLeads(props) {
     const {
       leadName,
       startDate,
-      endDate,
+      // endDate,
       companyName,
       companyEmail,
-      companyPhoneNumber,
-      companyAddress,
-      companyCountry,
+      // companyPhoneNumber,
+      // companyAddress,
+      // companyCountry,
       sourceName,
       sourceEmail,
       sourcePhoneNumber,
       pocName,
-      pocEmail,
-      pocPhoneNumber,
+      // pocEmail,
+      // pocPhoneNumber,
       status,
       businessValue,
       leadNotes,
@@ -117,24 +117,24 @@ function AddLeads(props) {
       newErrors.sourcePhoneNumber = "Please Enter source PhoneNumber";
     if (!pocName || pocName === "" || !pocName.match(/^[aA-zZ\s]+$/))
       newErrors.pocName = "Please Enter POC Name";
-    if (!pocEmail || pocEmail === "")
-      newErrors.pocEmail = "Please Enter POC Email";
-    if (
-      !pocPhoneNumber ||
-      pocPhoneNumber === "" ||
-      !pocPhoneNumber.match(
-        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-      )
-    )
-      newErrors.pocPhoneNumber = "Please Enter POC PhoneNumber";
+    // if (!pocEmail || pocEmail === "")
+    //   newErrors.pocEmail = "Please Enter POC Email";
+    // if (
+    //   !pocPhoneNumber ||
+    //   pocPhoneNumber === "" ||
+    //   !pocPhoneNumber.match(
+    //     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+    //   )
+    // )
+    //   newErrors.pocPhoneNumber = "Please Enter POC PhoneNumber";
     if (!status || status === "") newErrors.status = "Please Enter Status";
     if (
       !businessValue ||
       businessValue === "" ||
-      !businessValue.match(/^[0-9\s]+$/)
+      !businessValue.match(/^[0-9a-zA-Z]*$/)
     )
       newErrors.businessValue = "Please Enter Business Value";
-    if (!leadNotes || leadNotes === "" || !leadNotes.match(/^[aA-zZ\s]+$/))
+    if (!leadNotes || leadNotes === "" || !leadNotes.match(/^[0-9a-zA-Z]*$/))
       newErrors.leadNotes = "Please Enter Lead Notes";
     return newErrors;
   };
@@ -163,15 +163,29 @@ function AddLeads(props) {
     };
     loadData();
   }, []);
+const[activeEmp,setActiveEmp]=useState([]);
+var sortedActiveEmp = _.sortBy(activeEmp,'fullName');
+const Active="Active"
+  useEffect(() => {
+    const loadData = async () => {
+      const res = await axios.get(
+        `/emp/getActiveEmployees/${Active}`
+      );
+      setActiveEmp(res.data.data);
+      console.log(res.data.data);
+    };
+    loadData();
+  }, []);
 
   //testing for commit
   const [user, setUser] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    // e.target.reset();
-    setForm("");
+    
+    console.log(form);
+    // console.log(Object.keys(formErrors).length);
     const formErrors = validateForm();
-    if (Object.keys(formErrors).length > 0) {
+    if (Object.keys(formErrors).length > 1) {
       setErrors(formErrors);
     } else {
       // console.log(form);
@@ -181,7 +195,7 @@ function AddLeads(props) {
         .then((response) => {
           const user = response.data;
           console.log(user);
-          // setForm("");
+          setForm("");
           if (user.status) {
             props.func();
             // console.log(user);
@@ -281,10 +295,9 @@ function AddLeads(props) {
           // onSubmit={handleSubmit}
           >
             <Row>
-              <Col md="6">
-                {/* Lead Name */}
-                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>Lead Name *</Form.Label>
+              <Col md="12">
+              <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                  <Form.Label>Lead Name*</Form.Label>
                   <Form.Control
                     required
                     className="leadName"
@@ -301,9 +314,14 @@ function AddLeads(props) {
                     {errors.leadName}
                   </Form.Control.Feedback>
                 </Form.Group>
-
-                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>Start Date *</Form.Label>
+              </Col>
+            </Row>
+            <Row>
+              <Col md="6">
+                <Row>
+                  <Col md="6">
+                <Form.Group style={{ padding: 10 }}>
+                  <Form.Label>Start Date*</Form.Label>
                   <Form.Control
                     required
                     className="startDate"
@@ -320,9 +338,10 @@ function AddLeads(props) {
                     {errors.startDate}
                   </Form.Control.Feedback>
                 </Form.Group>
-
-                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>End Date *</Form.Label>
+                </Col>
+                <Col md="6" >
+                <Form.Group style={{ padding: 10 }}>
+                  <Form.Label>End Date</Form.Label>
                   <Form.Control
                     required
                     className="endDate"
@@ -339,48 +358,66 @@ function AddLeads(props) {
                     {errors.endDate}
                   </Form.Control.Feedback>
                 </Form.Group>
-
-
+                </Col>
+                </Row>
                 <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>Company/Client *</Form.Label>
-                  <Form.Select
+                  <Form.Label>Source Name *</Form.Label>
+                  <Form.Control
                     required
-                    className="companyName"
+                    className="sourceName"
                     type="text"
-                    controlId="companyName"
-                    placeholder="Company Name"
+                    controlId="sourceName"
+                    placeholder="Source Name"
                     // onChange={(event) => setclientName(event.target.value)}
-                    value={form.companyName}
-                    maxLength={100}
-                    onChange={(e) => setField("companyName", e.target.value)}
-                    isInvalid={!!errors.companyName}
-                  >
-                    <option>Select </option>
-                    {getClient.map((r) => (
-                      <option value={r.clientName}>
-                        {r.clientName}
-                      </option>
-                    ))}
-                  </Form.Select>
+                    value={form.sourceName}
+                    maxLength={50}
+                    onChange={(e) => setField("sourceName", e.target.value)}
+                    isInvalid={!!errors.sourceName}
+                  ></Form.Control>
                   <Form.Control.Feedback type="invalid">
-                    {errors.companyName}
+                    {errors.sourceName}
                   </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>Company Email</Form.Label>
+                  <Form.Label>Source Email*</Form.Label>
                   <Form.Control
-                    type="email"
-                    placeholder="Company Email"
                     required
-                    pattern=".+@gmail\.com"
-                    controlId="companyEmail"
-                    value={form.companyEmail}
-                    onChange={(e) => setField("companyEmail", e.target.value)}
-                    isInvalid={!!errors.companyEmail}
+                    type="email"
+                    placeholder="Source Email"
+                    controlId="sourceEmail"
+                    value={form.sourceEmail}
+                    onChange={(e) => setField("sourceEmail", e.target.value)}
+                    isInvalid={!!errors.sourceEmail}
                   ></Form.Control>
                   <Form.Control.Feedback type="invalid">
-                    {errors.companyEmail}
+                    {errors.sourceEmail}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                
+                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                  <Form.Label>Status *</Form.Label>
+                  <Form.Select
+                    required
+                    type="text"
+                    placeholder="Status"
+                    controlId="status"
+                    value={form.status}
+                    onChange={(e) => setField("status", e.target.value)}
+                    isInvalid={!!errors.status}
+                  >
+                    <option> Select Status</option>
+                    <option value="Created">Created</option>
+                    <option value="Qualified">Qualified</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Converted">Converted</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Onhold">Onhold</option>
+                    <option value="Deleted">Deleted</option>
+                  </Form.Select>
+                  <Form.Control.Feedback type="invalid">
+                    {errors.status}
                   </Form.Control.Feedback>
                 </Form.Group>
 
@@ -463,49 +500,55 @@ function AddLeads(props) {
                     {errors.companyAddress}
                   </Form.Control.Feedback>
                 </Form.Group>  */}
-
-                {/* source Name */}
-                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>Source Name *</Form.Label>
-                  <Form.Control
-                    required
-                    className="sourceName"
-                    type="text"
-                    controlId="sourceName"
-                    placeholder="Source Name"
-                    // onChange={(event) => setclientName(event.target.value)}
-                    value={form.sourceName}
-                    maxLength={50}
-                    onChange={(e) => setField("sourceName", e.target.value)}
-                    isInvalid={!!errors.sourceName}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.sourceName}
-                  </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>Source Email</Form.Label>
-                  <Form.Control
-                    required
-                    type="email"
-                    placeholder="Source Email"
-                    controlId="sourceEmail"
-                    value={form.sourceEmail}
-                    onChange={(e) => setField("sourceEmail", e.target.value)}
-                    isInvalid={!!errors.sourceEmail}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.sourceEmail}
-                  </Form.Control.Feedback>
-                </Form.Group>
               </Col>
-              <Col md="1">
+              {/* <Col md="1">
                 <div className="vr" style={{ height: "98%" }}></div>
-              </Col>
-              <Col md="5">
+              </Col> */}
+              <Col md="6">
+              <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                  <Form.Label>Company/Client*</Form.Label>
+                  <Form.Select
+                    required
+                    className="companyName"
+                    type="text"
+                    controlId="companyName"
+                    placeholder="Company Name"
+                    // onChange={(event) => setclientName(event.target.value)}
+                    value={form.companyName}
+                    maxLength={100}
+                    onChange={(e) => setField("companyName", e.target.value)}
+                    isInvalid={!!errors.companyName}
+                  >
+                    <option>Select </option>
+                    {getClient.map((r) => (
+                      <option value={r.clientName}>
+                        {r.clientName}
+                      </option>
+                    ))}
+                  </Form.Select>
+                  <Form.Control.Feedback type="invalid">
+                    {errors.companyName}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
                 <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>Source PhoneNumber</Form.Label>
+                  <Form.Label>Company Email*</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Company Email"
+                    required
+                    pattern=".+@gmail\.com"
+                    controlId="companyEmail"
+                    value={form.companyEmail}
+                    onChange={(e) => setField("companyEmail", e.target.value)}
+                    isInvalid={!!errors.companyEmail}
+                  ></Form.Control>
+                  <Form.Control.Feedback type="invalid">
+                    {errors.companyEmail}
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                  <Form.Label>Source Contact*</Form.Label>
                   <InputGroup hasValidation>
                     {/* <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text> */}
                     <Form.Control
@@ -536,8 +579,8 @@ function AddLeads(props) {
                 </Form.Group>
 
                 <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>POC Name *</Form.Label>
-                  <Form.Control
+                  <Form.Label>EmployeePOCName *</Form.Label>
+                  <Form.Select
                     required
                     className="pocName"
                     type="text"
@@ -548,13 +591,20 @@ function AddLeads(props) {
                     maxLength={50}
                     onChange={(e) => setField("pocName", e.target.value)}
                     isInvalid={!!errors.pocName}
-                  ></Form.Control>
+                  >
+                    <option value="">Select</option>
+                    {sortedActiveEmp.map((item) => (
+                      <option value={item.fullName}>
+                        {item.fullName}
+                        </option>
+                        ))}
+                  </Form.Select>
                   <Form.Control.Feedback type="invalid">
                     {errors.pocName}
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                {/* <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                   <Form.Label>POC Email</Form.Label>
                   <Form.Control
                     required
@@ -573,7 +623,6 @@ function AddLeads(props) {
                 <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                   <Form.Label>POC PhoneNumber</Form.Label>
                   <InputGroup hasValidation>
-                    {/* <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text> */}
                     <Form.Control
                       required
                       type="number"
@@ -599,44 +648,22 @@ function AddLeads(props) {
                     </Form.Control.Feedback>
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   </InputGroup>
-                </Form.Group>
-
+                </Form.Group> */}
+              </Col>
+              <Row>
+                <Col md="12">
                 <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>Status *</Form.Label>
-                  <Form.Select
-                    required
-                    type="text"
-                    placeholder="Status"
-                    controlId="status"
-                    value={form.status}
-                    onChange={(e) => setField("status", e.target.value)}
-                    isInvalid={!!errors.status}
-                  >
-                    <option> Select Status</option>
-                    <option value="Created">Created</option>
-                    <option value="Qualified">Qualified</option>
-                    <option value="Approved">Approved</option>
-                    <option value="Converted">Converted</option>
-                    <option value="Rejected">Rejected</option>
-                    <option value="Onhold">Onhold</option>
-                    <option value="Deleted">Deleted</option>
-                  </Form.Select>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.status}
-                  </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>Business Value</Form.Label>
+                  <Form.Label>Business Value *</Form.Label>
                   <Form.Control
                     required
+                    as="textarea"
                     className="businessValue"
-                    type="number"
+                    type="text"
                     controlId="businessValue"
                     placeholder="Business Value"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.businessValue}
-                    maxLength={10}
+                    maxLength={225}
                     onChange={(e) => setField("businessValue", e.target.value)}
                     isInvalid={!!errors.businessValue}
                   ></Form.Control>
@@ -644,9 +671,12 @@ function AddLeads(props) {
                     {errors.businessValue}
                   </Form.Control.Feedback>
                 </Form.Group>
-
+                </Col>
+              </Row>
+              <Row>
+                <Col md="12">   
                 <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>Lead Notes</Form.Label>
+                  <Form.Label>Lead Notes*</Form.Label>
                   <Form.Control
                     required
                     as="textarea"
@@ -656,7 +686,7 @@ function AddLeads(props) {
                     placeholder="lead Notes"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.leadNotes}
-                    maxLength={100}
+                    maxLength={225}
                     onChange={(e) => setField("leadNotes", e.target.value)}
                     isInvalid={!!errors.leadNotes}
                   ></Form.Control>
@@ -664,8 +694,10 @@ function AddLeads(props) {
                     {errors.leadNotes}
                   </Form.Control.Feedback>
                 </Form.Group>
-              </Col>
-              <Row>
+                </Col>
+              </Row>
+
+              {/* <Row>
                 <Col md="12">
                   <div style={{ height: "98%" }}>
                     <div>
@@ -725,7 +757,7 @@ function AddLeads(props) {
                     </div>
                   </div>
                 </Col>
-              </Row>
+              </Row> */}
               <Row>
                 <Col md="12">
                 </Col>

@@ -1,8 +1,10 @@
 import React from 'react'
 import RRTable from './RecruitmentRequestComponents/RRTable'
-function RRMain() {
+const RRMain = () => {
   return (
-    <div><RRTable/></div>
+    <div>
+      <RRTable/>
+      </div>
   )
 }
 

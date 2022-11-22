@@ -22,7 +22,7 @@ const EmployeeAttendance = () => {
     const [value,setValue] = useState();
     const [month, setMonth] = useState();
     // const [holiday, setHoliday] = useState();
-     const [dept, setSelectedBUH] = useState([]);
+     const [dept, setSelectedBUH] = useState(null);
     const userData = sessionStorage.getItem('userdata')
     const userData1 = JSON.parse(userData)
     const [days,setDays]=useState(0)
@@ -400,36 +400,107 @@ const EmployeeAttendance = () => {
     const handleToggle = () => {
       setOpen(!open)
     }
-    useEffect(() => {
-      handleClose()
-    }, [])
+    // useEffect(() => {
+    //   handleClose()
+    // }, [])
     // console.log(rowData[0].totalDays);
     const getTableBodyHandler = async () => {
       // display()
-      handleToggle()
-      const response = await axios
-        .get(
-          `/emp/getEmployeeLeavesData/${month}/${year}/${dept}`,
-        )
-        .catch((error) => {
-          handleClose()
-          toast.error(' No Records Found')
+      console.log(dept);
+      //handleToggle()
+     
+      if(dept == null){
+        axios.get( `/emp/getEmployeeLeavesDatawithoutDept/${month}/${year}`).then((response)=>{
+          console.log(response)
+          setRowData(response.data)
+          setDays(response.data[0].totalDays)
+          setWorkingDays(response.data[0].totalWorkingDays)
+          setHolidays(response.data[0].holidays)
         })
+        .catch((err)=>{
+          console.log(err)
+        })
+
+        // const response = await axios
+        //     .get(
+        //       `/emp/getEmployeeLeavesDatawithoutDept/${month}/${year}`
+        //     )
+        //     .catch((error) => {
+        //       handleClose()
+        //       toast.error(' No Records Found')
+        //     })
+        //     setDays(response.data[0].totalDays)
+        //     setWorkingDays(response.data[0].totalWorkingDays)
+        //     setHolidays(response.data[0].holidays)
+        //     console.log(response.data);
+
+
+      }else{
+        axios
+        .get(
+        `/emp/getEmployeeLeavesData/${month}/${year}/${dept}`,
+      ).then((response)=>{
+        console.log(response)
+        setRowData(response.data)
         setDays(response.data[0].totalDays)
         setWorkingDays(response.data[0].totalWorkingDays)
         setHolidays(response.data[0].holidays)
-        console.log(response.data);
-        
-      if (response.data.status == true || response.data != null) {
-        handleClose()
-       
-        setRowData(response.data)
-      } else if (response.data.status == false && response.data == null) {
-        handleClose()
-        console.log('No Records Found')
-        toast.warning(' No Records Found')
+      }).catch((err)=>{
+        console.log(err)
+      })
+
+        // const response = await axios
+           
+        //     .catch((error) => {
+        //       handleClose()
+        //       toast.error(' No Records Found')
+        //     })
+        //     setDays(response.data[0].totalDays)
+        //     setWorkingDays(response.data[0].totalWorkingDays)
+        //     setHolidays(response.data[0].holidays)
+        //     console.log(response.data);
+    
       }
-    }
+    //   if(dept == null || undefined){
+    //     const response = await axios
+    //     .get(
+    //       `/emp/getEmployeeLeavesDatawithoutDept/${month}/${year}`
+    //     )
+    //     .catch((error) => {
+    //       handleClose()
+    //       toast.error(' No Records Found')
+    //     })
+    //     setDays(response.data[0].totalDays)
+    //     setWorkingDays(response.data[0].totalWorkingDays)
+    //     setHolidays(response.data[0].holidays)
+    //     console.log(response.data);
+    //   }
+    //   else{
+    //     const response = await axios
+    //     .get(
+    //       `/emp/getEmployeeLeavesData/${month}/${year}/${dept}`,
+    //     )
+    //     .catch((error) => {
+    //       handleClose()
+    //       toast.error(' No Records Found')
+    //     })
+    //     setDays(response.data[0].totalDays)
+    //     setWorkingDays(response.data[0].totalWorkingDays)
+    //     setHolidays(response.data[0].holidays)
+    //     console.log(response.data);
+    //   }
+      
+        
+    //   if (response.data.status == true || response.data != null) {
+    //     // handleClose()
+       
+    //     setRowData(response.data)
+    //   } else if (response.data.status == false && response.data == null) {
+    //     // handleClose()
+    //     console.log('No Records Found')
+    //     toast.warning(' No Records Found')
+    //   }
+     }
     // useEffect(() => {
     //   getDepartments();
     // }, []);
@@ -576,12 +647,12 @@ const EmployeeAttendance = () => {
                     // value="2022"
                   >
                     <option>Select Year</option>
-                    <option>{currentyear}</option>
-                    <option value="2026">2026</option>
-                    <option value="2025">2025</option>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
+                    {/* <option>{currentyear}</option> */}
                     <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
                   </Form.Select>
                 </Form.Group>
               </Form>
@@ -602,8 +673,8 @@ const EmployeeAttendance = () => {
                     onChange={(e) => setMonth(e.target.value)}
                     // value="10"
                   >
-                    {/* <option>Select Month</option> */}
-                    <option>{currentmonth}</option>
+                    <option>Select Month</option>
+                    {/* <option>{currentmonth}</option> */}
                     <option value="01">January</option>
                     <option value="02">February </option>
                     <option value="03">March</option>
@@ -636,7 +707,7 @@ const EmployeeAttendance = () => {
                     }}
                     onChange={(e) => setSelectedBUH(e.target.value)}
                   >
-                   <option value="">Business Units</option>
+                   <option value="">All</option>
                     {departments.map((departmentss) => (
                         <option value={departmentss.departmentName}>
                             {departmentss.departmentName}
@@ -685,7 +756,7 @@ const EmployeeAttendance = () => {
               columns={columns}
               title={"Monthly Summary - "+" "+"Days:"+ days +" - "+"Working Days:"+workingdays+" - "+"Holidays:"+holidays}
               data={rowData}
-              style={{ color: 'black', fontSize: '10px' }}
+              style={{ color: 'black', fontSize: '12px' }}
               editable={{}}
               options={{
                 paging: false,
@@ -717,13 +788,13 @@ const EmployeeAttendance = () => {
             />
           </Grid>
         {/* </Grid> */}
-        <Backdrop
+        {/* <Backdrop
           sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={open}
           onClick={handleClose}
         >
           <CircularProgress color="inherit" />
-        </Backdrop>
+        </Backdrop> */}
       </Grid>
     )
   }

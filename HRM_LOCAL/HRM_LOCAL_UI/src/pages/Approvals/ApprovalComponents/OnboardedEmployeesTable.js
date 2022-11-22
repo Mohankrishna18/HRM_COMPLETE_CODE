@@ -88,6 +88,11 @@ function OnboardedEmployeesTable() {
       
     },
     {
+      title: "OBD ID",
+      field: "onboardingId",
+      
+    },
+    {
       title: "Name",
       field: "fullName",
       type: "text",
@@ -130,7 +135,7 @@ function OnboardedEmployeesTable() {
       
       </Modal>
       <Modal show={viewShow} static={true} centered onHide={handleClose} size="xl"  style={{paddingBottom :"0px"}}>
-        <Modal.Header closeButton onClick={viewHandleClose} style={{ backgroundColor: "#f5896e" }}>
+        <Modal.Header closeButton onClick={viewHandleClose} style={{ backgroundColor: "#f5896e" ,color:"white"}}>
           <Modal.Title>Onboarding Form</Modal.Title>
         </Modal.Header>
         <Modal.Body>
