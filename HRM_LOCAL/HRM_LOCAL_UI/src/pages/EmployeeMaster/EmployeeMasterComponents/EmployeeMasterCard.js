@@ -19,7 +19,7 @@ import {
     Description,
 } from "vertical-timeline-component-react";
 
-function EmployeeMasterCard() {
+function EmployeeMasterCard(props) {
 
     const customTheme = {
         yearColor: "#405b73",
@@ -33,11 +33,14 @@ function EmployeeMasterCard() {
 
 
 
-    const userData = sessionStorage.getItem('userdata')
+    // const userData = sessionStorage.getItem('userdata')
     //console.log(userData)
     //commit
-    const userData1 = JSON.parse(userData)
-    const employeeid = userData1.data.employeeId
+    // const userData1 = JSON.parse(userData)
+    // const employeeid = userData1.data.employeeId
+
+    console.log(props.profile);
+    const employeeid = props.profile;
 
 
     const [employeedetails, setEmployeeDetails] = useState([])

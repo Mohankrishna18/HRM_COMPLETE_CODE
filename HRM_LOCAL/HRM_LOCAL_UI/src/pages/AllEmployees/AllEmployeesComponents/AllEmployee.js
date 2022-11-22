@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { Form } from 'react-bootstrap';
 import { Row, Col, Table, } from 'react-bootstrap';
-import AddEmployee from './AddEmployee';
 
 import { useState, useEffect } from "react";
 import axios from '../../../Uri'
