@@ -24,7 +24,7 @@ public class ResignationService {
 			rm.setDepartmentName(emp.get().getDepartmentName());
 			rm.setIrm(emp.get().getIrmId());
 			rm.setSrm(emp.get().getSrmId());
-			
+			rm.setConfirmationDate(emp.get().getConfirmationDate());
 			
 			return rm;
 		}
@@ -32,5 +32,38 @@ public class ResignationService {
 		{
 			return rm;
 		}
+	}
+	
+	
+	public String updateEmployeeAfterResignApply(String employeeId,ResignationModel rmodel)
+	{
+		try {
+			EmployeeMaster getEmployee=empRepo.getById(employeeId);
+			getEmployee.setResignationDate(rmodel.getResignationDate());
+			getEmployee.setResignedReason(rmodel.getResignedReason());
+			empRepo.save(getEmployee);
+			return "success";
+		}
+		catch(Exception e) {
+			return "Failed";
+		}
+		
+	}
+	
+	
+	public String updateEmployeeAfterResignConfirmed(String employeeId,ResignationModel rmodel)
+	{
+		try {
+			EmployeeMaster getEmployee=empRepo.getById(employeeId);
+			getEmployee.setStatus("InActive");
+			getEmployee.setExitDate(rmodel.getExitDate());
+			empRepo.save(getEmployee);
+			return "success";
+		}
+		catch(Exception e)
+		{
+			return "Failed";
+		}
+		
 	}
 }

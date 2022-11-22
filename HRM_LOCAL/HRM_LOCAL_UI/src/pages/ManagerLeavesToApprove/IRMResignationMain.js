@@ -54,8 +54,8 @@ function IRMResignationMain(props) {
     // { title: "Department", field: "department" },
     { title: "Reason", field: "reason" },
     {
-      title: "Notice Date",
-      field: "noticeDate",
+      title: "Exit Date",
+      field: "exitDate",
       type: "date",
       dateSetting: { locale: "en-GB" },
     },

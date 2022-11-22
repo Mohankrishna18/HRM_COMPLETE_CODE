@@ -19,7 +19,7 @@ public class EmploymentDetails {
 	private String client;
 	private String onboardingStatus;
 	private Date exitDate;
-	private String resignationDate;
+	private Date resignationDate;
 	private String status;
 	private String irm;
 	private String srm;
@@ -63,10 +63,11 @@ public class EmploymentDetails {
 	public void setExitDate(Date exitDate) {
 		this.exitDate = exitDate;
 	}
-	public String getResignationDate() {
+	
+	public Date getResignationDate() {
 		return resignationDate;
 	}
-	public void setResignationDate(String resignationDate) {
+	public void setResignationDate(Date resignationDate) {
 		this.resignationDate = resignationDate;
 	}
 	public String getOnboardingStatus() {
