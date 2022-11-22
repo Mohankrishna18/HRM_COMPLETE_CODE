@@ -115,8 +115,7 @@ const ProfileProjectTab = (props) => {
                         <td>{data.projectId}</td>
                         <td>{data.projectName}</td>
                         <td>{data.clientName}</td>
-                        <td>{data.projectManager}</td>
-                       
+                        <td>{data.projectManager}</td> 
                         <td>{data.status}</td>
                         <td >{data.startDate === null ?" ": moment(data.startDate).format("DD/MM/YYYY")}
                         </td>

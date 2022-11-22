@@ -17,6 +17,7 @@ import {
   Section,
   Description,
 } from "vertical-timeline-component-react";
+import { BASE_URL } from "../../../Constant";
 
 const customTheme = {
   yearColor: "#405b73",
@@ -74,6 +75,22 @@ const ProfileEducationalDetailsTab = (props) => {
       });
   }, []);
   console.log(projects)
+
+  const [documents, setDocuments] = useState("");
+  const loadData = () => {
+    axios
+      .get(
+        `${BASE_URL}/api/get/imageByTitle/EducationalDetails/${employeeid}`
+      )
+      .then((response) => {
+        setDocuments(response);
+        console.log(response);
+      });
+  };
+  useEffect(() => {
+    loadData();
+  }, []);
+console.log(documents)
 
 
 
@@ -196,6 +213,18 @@ const ProfileEducationalDetailsTab = (props) => {
                             </Table>
 
                           </Card.Body>
+                          <Row>
+                          {documents.statusText === "OK" ? ( 
+               <Col>
+                <a
+                  href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${employeeid}`}
+                >
+                  Educational Documents
+                </a>
+              </Col>
+            ) : (
+              <></>
+            )}</Row>
                         </div>
 
                      
