@@ -34,7 +34,7 @@ public class Resignation
 	@Column
 	private String reason;
 	@Column
-	private Date noticeDate;
+	private Date exitDate;
 	@Column
 	private Date resignationDate;
 	@Column
@@ -80,12 +80,7 @@ public class Resignation
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	public Date getNoticeDate() {
-		return noticeDate;
-	}
-	public void setNoticeDate(Date noticeDate) {
-		this.noticeDate = noticeDate;
-	}
+
 	public Date getResignationDate() {
 		return resignationDate;
 	}

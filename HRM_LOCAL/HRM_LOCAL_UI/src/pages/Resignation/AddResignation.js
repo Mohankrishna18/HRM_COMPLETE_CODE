@@ -19,6 +19,7 @@ import StepContent from "@mui/material/StepContent";
 // import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import moment from "moment";
 
 
 
@@ -47,13 +48,22 @@ function AddResignation(props) {
   const [irm, setIrm] = useState("");
   const [step, setStep] = useState(0);
   const [value, setValue] = useState("");
-
+  const[exitDate, setExitDate]= useState(null);
 
   const da = JSON.parse(sessionStorage.getItem("userdata"));
     const empID = da.data.employeeId;
     console.log(empID);
    
 
+
+    const [data, setData] = useState([]);
+  useEffect(() => {
+    axios.get(`/emp/getEmployeeDataByEmployeeId/${empID}`).then((response) => {
+      console.log(response.data.data.fullName);
+      setData(response.data.data.fullName);
+    });
+   
+  }, []);
 
   const forms = useRef(null);
 
@@ -72,9 +82,10 @@ function AddResignation(props) {
   const validateForm = () => {
     const {
       
-
+      resigningEmployee,
       resignationDate,
       reason,
+      exitDate,
     } = form;
     const newErrors = {};
 
@@ -110,7 +121,7 @@ function AddResignation(props) {
       setErrors(formErrors);
       console.log("Form validation error");
     } else {
-      const form1 = Object.assign(form, {employeeId:empID});
+      const form1 = Object.assign(form, {employeeId:empID},{resigningEmployee:data},{exitDate:exitDate});
       console.log(form1)
       axios
         .post("/resignation/resignationApplied", form1)
@@ -223,7 +234,15 @@ function AddResignation(props) {
                 placeholder="Resignation Date"
                 controlId="resignationDate"
                 value={form.resignationDate}
-                onChange={(e) => setField("resignationDate", e.target.value)}
+                onChange={(e) => {
+
+                  setField("resignationDate", e.target.value)
+                console.log(e.target.value);
+                axios.get(`/resignation/getNoticeDateByResignationDate/${e.target.value}/${empID}`).then((response)=>{
+                  console.log(response.data);
+                  setExitDate(response.data);
+                })
+                }}
                 isInvalid={!!errors.resignationDate}
               ></Form.Control>
               <Form.Control.Feedback type="invalid">
@@ -232,16 +251,16 @@ function AddResignation(props) {
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-              <Form.Label>Notice Date</Form.Label>
+              <Form.Label>Exit Date</Form.Label>
               <Form.Control
                 required
-                name="noticeDate"
-                type="date"
-                controlId="noticeDate"
-                placeholder="Notice Date"
-                value={form.noticeDate}
+                name="exitDate"
+                type="text"
+                controlId="exitDate"
+                placeholder="Exit Date"
+                value={exitDate===null ?"":moment(exitDate).format("DD-MM-YYYY")}
                 maxLength={30}
-                onChange={(e) => setField("noticeDate", e.target.value)}
+                onChange={(e) => setField("exitDate", e.target.value)}
                 // isInvalid={!!errors.noticeDate}
               ></Form.Control>
             </Form.Group>

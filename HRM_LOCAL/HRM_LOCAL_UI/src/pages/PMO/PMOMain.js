@@ -40,7 +40,7 @@ function PMOMain() {
         indicatorColor="#f5896e">
                       <Tab label="Leave/WFH Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="1" />
                       <Tab label="Timesheet Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="2" />
-                      <Tab label="Resignation Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="3" />
+                      <Tab label="Exit Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="3" />
                       <Tab label="Hiring" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="4" />
                       {/* <Tab label="Requisition Approvals" style={{paddingRight:"2%",paddingLeft:"2%",fontSize:"13px"}} value="5" /> */}
                     </TabList>
