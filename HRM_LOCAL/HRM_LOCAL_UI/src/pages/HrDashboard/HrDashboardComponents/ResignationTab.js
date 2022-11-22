@@ -75,7 +75,7 @@ useEffect(() => {
     const [columns, setColumns] = useState([
      // { title: "Resignation ID", field: "resignationId",color:"black" },
       { title: "Employee ID", field: "employeeId",color:"black" },
-      { title: "Name", field: "resigningEmployee" },
+      { title: "Name", field: "fullName" },
       { title: "Reason", field: "reason" },
       {
         title: "Notice Date",
@@ -91,7 +91,6 @@ useEffect(() => {
       }, 
     ]);
     console.log(data);
-
 
     return (
         <div>

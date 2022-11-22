@@ -28,15 +28,16 @@ const customTheme = {
   textColor: "#262626",
 };
 
-const ProfileEducationalDetailsTab = () => {
+const ProfileEducationalDetailsTab = (props) => {
 
-
-  const userData = sessionStorage.getItem("userdata");
+  console.log(props.profile);
+  const employeeid = props.profile;
+  // const userData = sessionStorage.getItem("userdata");
   // console.log(userData);
-  const userData1 = JSON.parse(userData);
-  const employeeid = userData1.data.employeeId;
+  // const userData1 = JSON.parse(userData);
+  // const employeeid = userData1.data.employeeId;
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
-  //var dateTime = getEmployeeDetails.dateOfJoining;
+  var dateTime = getEmployeeDetails.dateOfJoining;
 
   const [imge, setImge] = useState({});
 //commit

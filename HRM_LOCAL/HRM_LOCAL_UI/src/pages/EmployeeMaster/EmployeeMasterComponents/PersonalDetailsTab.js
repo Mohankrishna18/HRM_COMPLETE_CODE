@@ -193,19 +193,19 @@ function PersonalDetailsTab() {
   };
 
   const [imge, setImge] = useState({});
-  useEffect(() => {
-    axios
-      .get(`/emp/files/${employeeid}`)
-      .then((response) => {
-        console.log(response.data);
-        setImge(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
+  // useEffect(() => {
+  //   axios
+  //     .get(`/emp/files/${employeeid}`)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setImge(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
 
-        console.log("something wrong");
-      });
-  }, []);
+  //       console.log("something wrong");
+  //     });
+  // }, []);
 
   function getAge(dateString) {
     var today = new Date();
@@ -331,23 +331,28 @@ function PersonalDetailsTab() {
               <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
               <Form.Control
                 required
-                type="number"
+                type="text"
                 name="primaryPhoneNumber"
                 placeholder="Phone Number"
-                maxLength={10}
+              
                 value={primaryPhoneNumber}
                 onChange={(e) => {
                   setPhoneNumber(e.target.value);
                   if (
                     e.target.value.length > 10 ||
-                    e.target.value.length < 10
+                    e.target.value.length < 10 
                   ) {
                     setThirdErrors(
-                      " Phone Number length should be 10 characters"
+                      " Enter valid Number"
                     );
-                  } else {
-                    setThirdErrors("");
+                  } else if( isNaN(e.target.value)) {
+                    setThirdErrors(
+                      " Enter valid Number")
+                  }else{
+                    setThirdErrors(
+                      " ")
                   }
+                  
                   if (lastName === "") {
                     setSerror("Last Name is Required");
                   } else {
@@ -380,7 +385,11 @@ function PersonalDetailsTab() {
                   setSecondaryPhone(e.target.value);
                   if (e.target.value.length >10 || e.target.value.length < 10 ) {
                      setNineErrors("Phone Number length should be 10 characters");
-                  } else {
+                  } 
+                  else if( isNaN(e.target.value)) {
+                    setNineErrors(
+                      " Enter valid Number")
+                  }else {
                     setNineErrors("");
                   }
                   if (phoneNumber === "") {
@@ -623,7 +632,7 @@ function PersonalDetailsTab() {
                 type="submit"
                 size="lg"
               >
-                Next
+                Submit
               </Button>
             </Col>
           </Row>
