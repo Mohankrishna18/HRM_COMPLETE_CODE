@@ -467,14 +467,14 @@ function AddOnboard(props) {
                         <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
                         <Form.Control
                           required
-                          type="number"
+                          type="text"
                           placeholder="Phone Number"
                           controlId="phoneNumber"
                           value={form.phoneNumber}
                           maxLength={10}
                           onChange={(e) => {
                             setField("phoneNumber", e.target.value);
-                            if (e.target.value.length > 10) {
+                            if (e.target.value.length < 10) {
                               setThirdErrors(
                                 " Phone Number length should be 10 characters"
                               );

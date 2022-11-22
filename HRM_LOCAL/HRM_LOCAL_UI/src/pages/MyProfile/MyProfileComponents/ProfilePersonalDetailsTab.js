@@ -7,11 +7,14 @@ import { BsFillPersonLinesFill } from "react-icons/bs";
 
 
 
-function ProfilePersonalDetailsTab() {
+function ProfilePersonalDetailsTab(props) {
 
-    const userData = sessionStorage.getItem("userdata");
-    const userData1 = JSON.parse(userData);
-    const employeeid = userData1.data.employeeId;
+    console.log(props.profile);
+    const employeeid = props.profile;
+
+    // const userData = sessionStorage.getItem("userdata");
+    // const userData1 = JSON.parse(userData);
+    // const employeeid = userData1.data.employeeId;
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -70,7 +73,6 @@ function ProfilePersonalDetailsTab() {
                 setBloodGroup(response.data.data.bloodGroup);
                 setGender(response.data.data.gender);
                 setMaritalStatus(response.data.data.maritalStatus);
-
             });
     }, []);
     console.log(dateOfBirth)
