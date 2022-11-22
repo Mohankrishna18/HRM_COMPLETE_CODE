@@ -142,12 +142,12 @@ function ProfileAddressTab(props) {
                     </Col>
                     <Col>
 
-                        <Card.Subtitle style={{ padding: 10 }}>
+                        <Card.Subtitle style={{ padding: 0 }}>
                             <h5>Current Address:</h5>
                         </Card.Subtitle>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 0 }}>
                                     Address:
                                 </Card.Subtitle>
                             </Col>
@@ -159,7 +159,7 @@ function ProfileAddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 0 }}>
                                     State:
                                 </Card.Subtitle>
                             </Col>
@@ -171,7 +171,7 @@ function ProfileAddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 0 }}>
                                     Country:
                                 </Card.Subtitle>
                             </Col>
@@ -183,7 +183,7 @@ function ProfileAddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 0 }}>
                                     Pincode:
                                 </Card.Subtitle>{" "}
                             </Col>
