@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import EmployeeMasterCard from "./EmployeeMasterComponents/EmployeeMasterCard";
 import EmployeeMasterForm from "./EmployeeMasterComponents/EmployeeMasterForm";
 import EmployeeMasterTabs from "./EmployeeMasterComponents/EmployeeMasterTabs";
 
-const EmployeeMaster = () => {
+const EmployeeMaster = (props) => {
+
+  const da = JSON.parse(sessionStorage.getItem('userdata'))
+  const empID = da.data.employeeId;
+
+  const[profile,setProfile] = useState(empID);
+  console.log(profile)
+
+  const [employeedetails, setEmployeeDetails] = useState([])
+   
+    // useEffect(() => {
+    //     axios.get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
+    //         .then((response) => {
+    //             setEmployeeDetails(response.data.data);
+    //         })
+    // }, [])
+
   return (
     <div>
       <Row>
@@ -15,7 +31,7 @@ const EmployeeMaster = () => {
                             <Card.Subtitle className="mb-2 text-muted">
                                 Employees / Edit My Profile
                             </Card.Subtitle>
-                            <EmployeeMasterCard />
+                            <EmployeeMasterCard profile={profile}/>
                             <EmployeeMasterTabs/>
                         </Card.Body>
           {/* <EmployeeMasterForm /> */}
