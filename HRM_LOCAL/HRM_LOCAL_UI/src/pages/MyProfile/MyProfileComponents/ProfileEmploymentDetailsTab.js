@@ -7,7 +7,6 @@ import { split } from "lodash";
 import Avatar from '@mui/material/Avatar';
 
 
-
 const customTheme = {
   yearColor: "#405b73",
   lineColor: "#d0cdc4",
@@ -22,7 +21,6 @@ const ProfileEmploymentDetailsTab = (props) => {
 
   console.log(props.profile);
   const employeeid = props.profile;
-
 
   const userData = sessionStorage.getItem("userdata");
   // console.log(userData);
@@ -56,19 +54,17 @@ const ProfileEmploymentDetailsTab = (props) => {
   console.log(imge)
   console.log(getEmployeeDetails.primarySkills)
 
-
-
   return (
  
                         <div style={{ padding: 20, paddingBottom: 20 }}>    
                           {/* <Card.Title>
                             <h5>Employment Details:</h5>
-                          </Card.Title> */}
+                          </Card.Title> */}                                                                              
                           <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                             <Col>
                               <Card.Subtitle style={{ padding: 10 }}>
                                 Primary Skills:
-                              </Card.Subtitle>{" "}
+                              </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
@@ -78,7 +74,7 @@ const ProfileEmploymentDetailsTab = (props) => {
                             <Col>
                               <Card.Subtitle style={{ padding: 10 }}>
                                 Secondary Skills:
-                              </Card.Subtitle>{" "}
+                              </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Subtitle style={{ color: "#999897" }}>
@@ -90,7 +86,7 @@ const ProfileEmploymentDetailsTab = (props) => {
                             <Col>
                               <Card.Subtitle style={{ padding: 10 }}>
                                 Employment Type:
-                              </Card.Subtitle>{" "}
+                              </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
@@ -100,7 +96,7 @@ const ProfileEmploymentDetailsTab = (props) => {
                             <Col>
                               <Card.Subtitle style={{ padding: 10 }}>
                                 Band:
-                              </Card.Subtitle>{" "}
+                              </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
@@ -113,7 +109,7 @@ const ProfileEmploymentDetailsTab = (props) => {
                             <Col>
                               <Card.Subtitle style={{ padding: 10 }}>
                               Business Unit:
-                              </Card.Subtitle>{" "}
+                              </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
@@ -123,7 +119,7 @@ const ProfileEmploymentDetailsTab = (props) => {
                             <Col>
                               <Card.Subtitle style={{ padding: 10 }}>
                                 Designation:
-                              </Card.Subtitle>{" "}
+                              </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
@@ -135,18 +131,18 @@ const ProfileEmploymentDetailsTab = (props) => {
                           <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                             <Col>
                               <Card.Subtitle style={{ padding: 10 }}>
-                                Reporting Manager:
-                              </Card.Subtitle>{" "}
+                                
+                              </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                                {getEmployeeDetails.reportingManager}
+                                
                               </Card.Text>
                             </Col>
                             <Col>
                               <Card.Subtitle style={{ padding: 10 }}>
                                 {/* Project Name: */}
-                              </Card.Subtitle>{" "}
+                              </Card.Subtitle>
                             </Col>
                             <Col md={{ offset: 1 }}>
                               <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
@@ -154,8 +150,6 @@ const ProfileEmploymentDetailsTab = (props) => {
                               </Card.Text>
                             </Col>
                           </Row>
-
-
                         </div>
 
   );

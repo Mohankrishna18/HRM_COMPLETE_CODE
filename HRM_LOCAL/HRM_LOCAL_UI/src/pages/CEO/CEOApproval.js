@@ -15,6 +15,7 @@ import EducationalDetailsTab from "../../pages/Approvals/ApprovalComponents/Educ
 import ExperienceTab from "../../pages/Approvals/ApprovalComponents/ExperienceTab";
 import PersonalDetailsTab from "../../pages/Approvals/ApprovalComponents/PersonalDetailsTab";
 import EmploymentDetailsTab from '../Approvals/ApprovalComponents/EmploymentDetailsTab';
+import JobPositionDetails from '../Approvals/ApprovalComponents/JobPositionDetails';
 
 
 
@@ -107,7 +108,7 @@ console.log(data);
           /> */}
 
           <Tabs
-            defaultActiveKey="Personal Details"
+            defaultActiveKey="Job Position Details"
             transition={false}
             id="noanim-tab-example"
             className="mb-3"
@@ -119,6 +120,16 @@ console.log(data);
               padding: 10,
             }}
           >
+             <Tab
+                eventKey="Job Position Details"
+                title="Job Position Details"
+                style={{ backgroundColor: "white" }}
+              >
+                <JobPositionDetails
+                  viewOnboard={viewOnboard}
+                  viewHandleClose={viewHandleClose}
+                />
+              </Tab>
             <Tab
               eventKey="Personal Details"
               title="Personal Details"
