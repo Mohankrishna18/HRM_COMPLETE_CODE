@@ -26,26 +26,33 @@ const customTheme = {
   textColor: "#262626",
 };
 
-const ProfileProjectTab = () => {
-  const userData = sessionStorage.getItem("userdata");
-  // console.log(userData);
-  const userData1 = JSON.parse(userData);
-  const employeeid = userData1.data.employeeId;
+const ProfileProjectTab = (props) => {
+  console.log(props.profile);
+  const employeeid = props.profile;
+  // const userData = sessionStorage.getItem("userdata");
+  // // console.log(userData);
+  // const userData1 = JSON.parse(userData);
+  // const employeeid = userData1.data.employeeId;
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
   const [project, setProject] = useState([]);
   
   //get projects by employeeid
   const[data,setData] = useState([]);
   useEffect(() => {
-    axios.get(`/clientProjectMapping/getAllProjectsbyemployee/${employeeid}`).then((response) => {
-      setData(response.data);
+    axios.get(`/clientProjectMapping/getAllProjectsbyemployee/${employeeid}`)
+    .then((response) => {
+        setData(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+      console.log("something wrong");
     });
   }, []);
   console.log(data);
   //var dateTime = getEmployeeDetails.dateOfJoining;
 
 
-  const [imge, setImge] = useState([]);
+  const [imge, setImge] = useState({});
   //commit
   useEffect(() => {
     axios
@@ -61,32 +68,6 @@ const ProfileProjectTab = () => {
 
   useEffect(() => {
     axios
-      .get(`/emp/files/${employeeid}`)
-      .then((response) => {
-        console.log(response.data);
-        setImge(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log("something wrong");
-      });
-  }, []);
-  console.log(imge);
-
-  const [projects, setProjects] = useState(false);
- 
-
-  useEffect(() => {
-    axios
-      .get(`/emp/getUserClientDetailsbyEmployeeId/${employeeid}`)
-      .then((response) => {
-        setProjects(response.data);
-      });
-  }, []);
-  console.log(projects);
-
-  useEffect(() => {
-    axios
       .get(
         `/clientProjectMapping/getActiveProjectsByEmpIdForEmployee/Active/${employeeid}`
       )
@@ -95,14 +76,7 @@ const ProfileProjectTab = () => {
       });
   }, []);
   console.log(project);
-  const [proj, setProj] = useState([]);
-  useEffect(() => {
-    axios.get(`/clientProjectMapping/getAllProjects`).then((response) => {
-      setProj(response.data.data);
-    });
-  }, []);
-  console.log(proj);
-  
+
 
   return (
     <div style={{ paddingLeft: 20, paddingBottom: 0 }}>
@@ -119,7 +93,7 @@ const ProfileProjectTab = () => {
                   <th scope="col">Project Name</th>
                   <th scope="col">Client Name</th>
                   <th scope="col">Reporting Manager</th>
-                  <th scope="col">Assigned Date</th>
+                
                   <th scope="col">Status</th>
                   <th scope="col" >Start Date</th>
                   <th scope="col">End Date</th>
@@ -142,12 +116,12 @@ const ProfileProjectTab = () => {
                         <td>{data.projectName}</td>
                         <td>{data.clientName}</td>
                         <td>{data.projectManager}</td>
-                        <td>{moment(data.assignedDate).format("DD/MM/YYYY")}</td>
+                       
                         <td>{data.status}</td>
-                        <td >{moment(data.startDate).format("DD/MM/YYYY")}
+                        <td >{data.startDate === null ?" ": moment(data.startDate).format("DD/MM/YYYY")}
                         </td>
                         <td>
-                        {moment(data.endDate).format("DD/MM/YYYY")}
+                        {data.endDate === null ?" ": moment(data.endDate).format("DD/MM/YYYY")}
                         </td>
                         <td>{data.projectAllocation}</td>
                       </tr>

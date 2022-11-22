@@ -435,7 +435,7 @@ export default [
     type: "Employee",
     path: "/IntegrateLeaveToApply",
     icon: <FcLeave />,
-    title: "Leaves/WFH Apply",
+    title: "Leaves/WFH",
     permission: [
       Roles.employee,
       Roles.ceo,
@@ -457,7 +457,7 @@ export default [
     path: "/holidayManagenent",
     type: "configuration",
     icon: <FcPlanner />,
-    title: "Holiday Management",
+    title: "Holidays",
     permission: [Roles.pmohead],
   },
   {
@@ -640,7 +640,7 @@ export default [
     path: "/resignation",
     type: "Employee",
     icon: <FcExport />,
-    title: "Resignation",
+    title: "Exits",
     permission: [
       Roles.employee,
       Roles.ceo,

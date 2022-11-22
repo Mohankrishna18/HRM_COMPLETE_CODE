@@ -28,6 +28,7 @@ import EmployeeEducationalDetails from "../../EditEmployeeDetails/EmployeeEducat
 import EmployeeExperienceDetails from "../../EditEmployeeDetails/EmployeeExperienceDetails";
 import EditEmployeeDetailsTabs from "../../EditEmployeeDetails/EditEmployeeDetailsTabs";
 import JobPositionDetails from "./JobPositionDetails";
+import { ExportCSV } from "../../../commonComponents/ExportCSV";
 
 // import ApprovalView from "./ApprovalView"; 
 
@@ -55,7 +56,7 @@ function OnboardedEmployeesTable() {
   const [updateStatus, setUpdateStatus] = useState(false);
   const [viewStatus, setViewStatus] = useState(false);
   const history = useHistory();
-
+  const fileName = "Onboard Candidates";
   function gotoStepperForm(){
     history.push("/app/approvals/editDetails");
   }
@@ -264,7 +265,7 @@ function OnboardedEmployeesTable() {
             options={{
               pageSize: 10,
               pageSizeOptions: [10,15,20, 30 ,50, 75, 100],
-              maxBodyHeight: 470,
+              maxBodyHeight: 400,
               headerStyle: {
                 backgroundColor: "#f5896e",
                 color: "white",
@@ -278,8 +279,9 @@ function OnboardedEmployeesTable() {
               addRowPosition: "first",
               actionsColumnIndex: -1,
               // grouping: true,
-              exportButton: true,
+              exportButton: false,
             }}
+
             actions={[
               {
                 icon: "button",
@@ -288,9 +290,20 @@ function OnboardedEmployeesTable() {
                   alert("You want to delete " + rowData.firstName),
               },
             ]}
+          //   components={{
+          //     Action: (props) => (
+          //         <div>
+          //             <Stack direction="horizontal" gap={4}>
+          //             <ExportCSV csvData={data}  fileName={fileName}/>
+
+          //             </Stack>
+          //         </div>
+          //     ),
+          // }}
             components={{
               Action: (props) => (
                 <div>
+                 
                   {props.data.percentage >= 80 ? (
                     <Stack direction="horizontal" gap={3}>
                       <Button
@@ -346,13 +359,16 @@ function OnboardedEmployeesTable() {
                      }}
                    
                    >
-                      <FiEdit />qqqq
+                      <FiEdit />Edit
                    </Button>
-                    
+                   
+
                    </Stack>
                   )}
                  
                 </div>
+                                   
+
               ),
             }}
           />

@@ -184,7 +184,6 @@ export default EmployeeList;
 // import { Card, Button } from "react-bootstrap";
 // import { Form } from "react-bootstrap";
 // import { Row, Col, Table } from "react-bootstrap";
-// import AddEmployee from "./AddEmployee";
 
 
 

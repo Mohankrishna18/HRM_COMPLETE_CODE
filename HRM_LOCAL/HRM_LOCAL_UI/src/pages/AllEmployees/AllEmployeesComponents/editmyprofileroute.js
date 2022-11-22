@@ -13,7 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import EmployeeMasterCard from "../../EmployeeMaster/EmployeeMasterComponents/EmployeeMasterCard";
 import { useHistory } from "react-router-dom";
-import EditCard from "./EditCard";
+
 import { set } from "lodash";
 import { Formik } from "formik";
 // import PersonalDetailsTab from "../../EmployeeMaster/EmployeeMasterComponents/PersonalDetailsTab";
@@ -24,13 +24,6 @@ import { Formik } from "formik";
 // import ExperienceTab from "../../EmployeeMaster/EmployeeMasterComponents/ExperienceTab";
 // import ProjectsTab from "../../EmployeeMaster/EmployeeMasterComponents/ProjectsTab";
 import { FiArrowLeftCircle } from "react-icons/fi";
-import EditPersonal from "./EditPersonal";
-import EditAdditional from "./EditAdditional";
-import EditAddress from "./EditAddress";
-import EditEmployment from "./EditEmployment";
-import EditEducational from "./EditEducational";
-import EditExperience from "./EditExperience";
-import EditProject from "./EditProject";
 
 import { BsFillPersonLinesFill } from 'react-icons/bs';
 import { FaBookReader, FaBusinessTime, FaGraduationCap, FaRegAddressCard } from 'react-icons/fa';
@@ -39,14 +32,25 @@ import { TiBusinessCard } from 'react-icons/ti';
 import { GrUserExpert } from "react-icons/gr";
 import { VscProject } from "react-icons/vsc";
 import { AiOutlineProject } from 'react-icons/ai';
+import ProfilePersonalDetailsTab from "../../MyProfile/MyProfileComponents/ProfilePersonalDetailsTab";
+import ProfileAddressTab from "../../MyProfile/MyProfileComponents/ProfileAddressTab";
+import ProfileAdditionalDetailsTab from "../../MyProfile/MyProfileComponents/ProfileAdditionalDetsilsTab";
+import ProfileEmploymentDetailsTab from "../../MyProfile/MyProfileComponents/ProfileEmploymentDetailsTab";
+import ProfileEducationalDetailsTab from "../../MyProfile/MyProfileComponents/ProfileEducationalDetailsTab";
+import ProfileExperienceTab from "../../MyProfile/MyProfileComponents/ProfileExperienceTab";
+import ProfileProjectTab from "../../MyProfile/MyProfileComponents/ProfileProjectTab";
 
 function EmployeeMasterForms(props) {
     const userData = sessionStorage.getItem("userdata");
     const userData1 = JSON.parse(userData);
     const employeeid = userData1.data.employeeId;
-    const empId = localStorage.getItem('item')
     let history = useHistory();
 
+    const localitem = localStorage.getItem('item')
+    console.log(localitem)
+
+    const[profile,setProfile] = useState(localitem);
+    console.log(profile)
     
     // const navigate = useNavigate();
   
@@ -66,389 +70,6 @@ function EmployeeMasterForms(props) {
     const handleChange1 = (event, newValue) => {
         setValue(newValue);
     };
-
-    var doj = new Date(dateOfJoining);
-    var dd = String(doj.getDate()).padStart(2, '0');
-    var mm = String(doj.getMonth() + 1).padStart(2, '0');
-    var yyyy = doj.getFullYear();
-    doj = yyyy + '-' + mm + '-' + dd;
-    // console.log(doj);
-
-    // var dob = new Date(dateOfBirth);
-    // var dd = String(dob.getDate()).padStart(2, '0');
-    // var mm = String(dob.getMonth() + 1).padStart(2, '0');
-    // var yyyy = dob.getFullYear();
-    //  var dob1 = yyyy + '-' + mm + '-' + dd;
-    // console.log(dob1);
-
-
-  
-
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState(" ");
-    const [middleName, setMiddleName] = useState(" ");
-    const [primaryPhoneNumber, setPrimaryPhoneNumber] = useState(" ");
-    const [secondaryPhoneNumber, setSecondaryPhone] = useState("");
-    const [yearsOfExperience, setYearsOfExperience] = useState(" ");
-    const [dateOfBirth, setDateOfBirth] = useState("");
-    const [passportExpiryDate, setPassportExpiryDate] = useState("");
-    const [passportNo, setPassportNo] = useState("");
-    const [employeeId, setEmployeeId] = useState("");
-    const [primarySkills, setPrimarySkills] = useState("");
-    const [secondarySkills, setSecondarySkills] = useState("");
-    const [email, setEmail] = useState("");
-    const [bloodGroup, setBloodGroup] = useState("");
-    const [gender, setGender] = useState("");
-    const [maritalStatus, setMaritalStatus] = useState("");
-    const [designationName, setDesignationName] = useState("");
-    const [dateOfJoining, setDateOfJoining] = useState("");
-    const [permanentAdress, setPermanentAddress] = useState("");
-    const [permanentState, setPermanentState] = useState("");
-    const [permanentCountry, setPermanentCountry] = useState("");
-    const [permanentPincode, setPermanentPincode] = useState("");
-    const [currentAdress, setCurrentAddress] = useState("");
-    const [currentState, setCurrentState] = useState("");
-    const [currentCountry, setCurrentCountry] = useState("");
-    const [currentPincode, setCurrentPincode] = useState("");
-    const [postgraduationType, setTypeOfPostGraduation] = useState("");
-    const [postgraduationBoardOfUniversity, setPostgraduationBoardOfUniversity] = useState("");
-    const [postgraduationInstituteName, setPostgraduationInstituteName] = useState("");
-    const [postgraduationInstituteCity, setPostgraduationInstituteCity] = useState("");
-    const [postgraduationCourseName, setPostgraduationCourseName] = useState("");
-    const [postgraduationJoiningYear, setPostgraduationJoiningYear] = useState("");
-    const [postgraduationPassedYear, setPostgraduationPassedYear] = useState("");
-    const [postgraduationGrade, setPostgraduationGrade] = useState("");
-    const [graduationType, setTypeOfGraduation] = useState("");
-    const [graduationBoardOfUniversity, setGraduationBoardOfUniversity] = useState("");
-    const [graduationInstituteName, setGraduationInstituteName] = useState("");
-    const [graduationInstituteCity, setGraduationInstituteCity] = useState("");
-    const [graduationCourseName, setGraduationCourseName] = useState("");
-    const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
-    const [graduationPassedYear, setGraduationPassedYear] = useState("");
-    // const [graduationJoiningYear, setGraduationJoiningYear] = useState("");
-    // const [graduationPassedYear, setGraduationPassedYear] = useState("");
-    const [graduationGrade, setGraduationGrade] = useState("");
-    const [intermediateBoardOfUniversity, setIntermediateBoardOfUniversity] = useState("");
-    const [intermediateCollegeName, setIntermediateCollegeName] = useState("");
-    const [intermediateCollegeCity, setIntermediateCollegeCity] = useState("");
-    const [intermediateCourseName, setIntermediateCourseName] = useState("");
-    const [intermediateJoiningYear, setIntermediateJoiningYear] = useState("");
-    const [intermediatePassedYear, setIntermediatePassedYear] = useState("");
-    const [intermediateGrade, setIntermediateGrade] = useState("");
-    const [sscBoardOfUniversity, setSscBoardOfUniversity] = useState("");
-    const [sscSchoolName, setSscSchoolName] = useState("");
-    const [sscSchoolCity, setSscSchoolCity] = useState("");
-    const [sscCourseName, setSscCourseName] = useState("");
-    const [sscJoiningYear, setSscJoiningYear] = useState("");
-    const [sscPassedYear, setSscPassedYear] = useState("");
-    const [sscGrade, setSscGrade] = useState("");
-    const [previousCompany1_name, setPreviousCompany1_name] = useState("");
-    const [previousCompany1_designation, setPreviousCompany1_designation] = useState("");
-    const [previousCompany1_joiningDate, setPreviousCompany1_joiningDate] = useState("");
-    const [previousCompany1_relievingDate, setPreviousCompany1_relievingDate] = useState("");
-    const [previousCompany1_employeeId, setPreviousCompany1_employeeId] = useState("");
-    const [previousCompany1_typeOfEmployment, setPreviousCompany1_typeOfEmployement] = useState("");
-    const [previousCompany1_reasonForRelieving, setPreviousCompany1_reasonForRelieving] = useState("");
-    const [previousCompany2_name, setPreviousCompany2_name] = useState("");
-    const [previousCompany2_designation, setPreviousCompany2_designation] = useState("");
-    const [previousCompany2_joiningDate, setPreviousCompany2_joiningDate] = useState("");
-    const [previousCompany2_relievingDate, setPreviousCompany2_relievingDate] = useState("");
-    const [previousCompany2_employeeId, setPreviousCompany2_employeeId] = useState("");
-    const [previousCompany2_typeOfEmployment, setPreviousCompany2_typeOfEmployement] = useState("");
-    const [previousCompany2_reasonForRelieving, setPreviousCompany2_reasonForRelieving] = useState("");
-    const [previousCompany3_name, setPreviousCompany3_name] = useState("");
-    const [previousCompany3_designation, setPreviousCompany3_designation] = useState("");
-    const [previousCompany3_joiningDate, setPreviousCompany3_joiningDate] = useState("");
-    const [previousCompany3_relievingDate, setPreviousCompany3_relievingDate] = useState("");
-    const [previousCompany3_employeeId, setPreviousCompany3_employeeId] = useState("");
-    const [previousCompany3_typeOfEmployment, setPreviousCompany3_typeOfEmployement] = useState("");
-    const [previousCompany3_reasonForRelieving, setPreviousCompany3_reasonForRelieving] = useState("");
-    const [employmentType, setEmploymentType] = useState("");
-    const [departmentName, setDepartmentName] = useState("");
-    const [projectName, setProjectName] = useState("");
-
-    const [panNumber, setPanNumber] = useState("");
-    const [aadharNumber, setAadharNumber] = useState("");
-    const [uanNumber, setUanNumber] = useState("");
-    const [bankName, setBankName] = useState("");
-    const [accountNumber, setAccountNumber] = useState("");
-    const [ifscCode, setIfscCode] = useState("");
-    const [branch, setBranch] = useState("");
-    const [band, setBand] = useState("");
-    const [exitDate, setExitDate] = useState("");
-    const [reportingManager, setReportingManager] = useState("");
-
-
-
-    // Useeffect take care that page will be rendered only once
-    // useEffect(() => {
-    //     // setname(localStorage.getItem('Name'))
-    //     // setage(localStorage.getItem('Age'))
-    //     // setid(localStorage.getItem('id'))
-    // }, [])
-
-    //get call Get the Employee onboarding Details
-    const [employeedetails, setEmployeeDetails] = useState([])
-    useEffect(() => {
-        axios.get(`/emp/getEmployeeDataByEmployeeId/${empId}`)
-            .then((response) => {
-                setEmployeeId(response.data.data.employeeId)
-                setFirstName(response.data.data.firstName);
-                setLastName(response.data.data.lastName);
-                setSecondaryPhone(response.data.data.secondaryPhoneNumber);
-                setPassportExpiryDate(response.data.data.passportExpiryDate)
-                setPassportNo(response.data.data.passportNo);
-                setEmployeeId(response.data.data.employeeId)
-                setFirstName(response.data.data.firstName);
-                setMiddleName(response.data.data.middleName);
-                setLastName(response.data.data.lastName);
-                setPrimaryPhoneNumber(response.data.data.primaryPhoneNumber);
-                setSecondaryPhone(response.data.data.secondaryPhoneNumber);
-                setEmail(response.data.data.email)
-                setYearsOfExperience(response.data.data.yearsOfExperience);
-                setDateOfBirth(response.data.data.dateOfBirth)
-                // setPassportExpiryDate(response.data.data.passportExpiryDate)
-                // setPassportNo(response.data.data.passportNo)
-                setDesignationName(response.data.data.designationName)
-                setBloodGroup(response.data.data.bloodGroup)
-                setGender(response.data.data.gender)
-                setMaritalStatus(response.data.data.maritalStatus);
-                setPrimarySkills(response.data.data.primarySkills)
-                setSecondarySkills(response.data.data.secondarySkills)
-                setDateOfJoining(response.data.data.dateOfJoining)
-                setPermanentAddress(response.data.data.permanentAdress)
-                setPermanentState(response.data.data.permanentState)
-                setPermanentCountry(response.data.data.permanentCountry)
-                setPermanentPincode(response.data.data.permanentPincode)
-                setCurrentAddress(response.data.data.currentAdress)
-                setCurrentState(response.data.data.currentState)
-                setCurrentCountry(response.data.data.currentCountry)
-                setCurrentPincode(response.data.data.currentPincode)
-                // setPassportNo(response.data.data.passportNo);
-                // setPassportExpiryDate(response.data.data.passportExpiryDate)
-                setTypeOfPostGraduation(response.data.data.postgraduationType)
-                setPostgraduationBoardOfUniversity(response.data.data.postgraduationBoardOfUniversity)
-                setPostgraduationInstituteName(response.data.data.postgraduationInstituteName)
-                setPostgraduationInstituteCity(response.data.data.postgraduationInstituteCity)
-                setPostgraduationCourseName(response.data.data.postgraduationCourseName)
-                setPostgraduationJoiningYear(response.data.data.postgraduationJoiningYear)
-                setPostgraduationPassedYear(response.data.data.postgraduationPassedYear)
-                setPostgraduationGrade(response.data.data.postgraduationGrade)
-                setTypeOfGraduation(response.data.data.graduationType)
-                setGraduationBoardOfUniversity(response.data.data.graduationBoardOfUniversity)
-                setGraduationInstituteName(response.data.data.graduationInstituteName)
-                setGraduationInstituteCity(response.data.data.graduationInstituteCity)
-                setGraduationCourseName(response.data.data.graduationCourseName)
-                setGraduationJoiningYear(response.data.data.graduationJoiningYear)
-                setGraduationPassedYear(response.data.data.graduationPassedYear)
-                setGraduationGrade(response.data.data.graduationGrade)
-                setIntermediateBoardOfUniversity(response.data.data.intermediateBoardOfUniversity)
-                setIntermediateCollegeName(response.data.data.intermediateCollegeName)
-                setIntermediateCollegeCity(response.data.data.intermediateCollegeCity)
-                setIntermediateCourseName(response.data.data.intermediateCourseName)
-                setIntermediateJoiningYear(response.data.data.intermediateJoiningYear)
-                setIntermediatePassedYear(response.data.data.intermediatePassedYear)
-                setIntermediateGrade(response.data.data.intermediateGrade)
-                setSscBoardOfUniversity(response.data.data.sscBoardOfUniversity)
-                setSscSchoolName(response.data.data.sscSchoolName)
-                setSscSchoolCity(response.data.data.sscSchoolCity)
-                setSscCourseName(response.data.data.sscCourseName)
-                setSscJoiningYear(response.data.data.sscJoiningYear)
-                setSscPassedYear(response.data.data.sscPassedYear)
-                setSscGrade(response.data.data.sscGrade)
-                setPreviousCompany1_name(response.data.data.previousCompany1_name)
-                setPreviousCompany1_designation(response.data.data.previousCompany1_designation)
-                setPreviousCompany1_joiningDate(response.data.data.previousCompany1_joiningDate)
-                setPreviousCompany1_relievingDate(response.data.data.previousCompany1_relievingDate)
-                setPreviousCompany1_employeeId(response.data.data.previousCompany1_employeeId)
-                setPreviousCompany1_typeOfEmployement(response.data.data.previousCompany1_typeOfEmployment)
-                setPreviousCompany1_reasonForRelieving(response.data.data.previousCompany1_reasonForRelieving)
-                setPreviousCompany2_name(response.data.data.previousCompany2_name)
-                setPreviousCompany2_designation(response.data.data.previousCompany2_designation)
-                setPreviousCompany2_joiningDate(response.data.data.previousCompany2_joiningDate)
-                setPreviousCompany2_relievingDate(response.data.data.previousCompany2_relievingDate)
-                setPreviousCompany2_employeeId(response.data.data.previousCompany2_employeeId)
-                setPreviousCompany2_typeOfEmployement(response.data.data.previousCompany2_typeOfEmployment)
-                setPreviousCompany2_reasonForRelieving(response.data.data.previousCompany2_reasonForRelieving)
-                setPreviousCompany3_name(response.data.data.previousCompany3_name)
-                setPreviousCompany3_designation(response.data.data.previousCompany3_designation)
-                setPreviousCompany3_joiningDate(response.data.data.previousCompany3_joiningDate)
-                setPreviousCompany3_relievingDate(response.data.data.previousCompany3_relievingDate)
-                setPreviousCompany3_employeeId(response.data.data.previousCompany3_employeeId)
-                setPreviousCompany3_typeOfEmployement(response.data.data.previousCompany3_typeOfEmployment)
-                setPreviousCompany3_reasonForRelieving(response.data.data.previousCompany3_reasonForRelieving);
-                setEmploymentType(response.data.data.employmentType);
-                setDepartmentName(response.data.data.departmentName);
-                setProjectName(response.data.data.projectName)
-
-                setPanNumber(response.data.data.panNumber)
-                setAadharNumber(response.data.data.aadharNumber);
-                setUanNumber(response.data.data.uanNumber)
-                setBankName(response.data.data.bankName);
-                setAccountNumber(response.data.data.accountNumber);
-                setIfscCode(response.data.data.ifscCode);
-                setBranch(response.data.data.branch);
-                setBand(response.data.data.band);
-                setExitDate(response.data.data.exitDate);
-            })
-    }, [])
-    // console.log(firstName)
-
-
-    // function for handling the edit and 
-    // pushing changes of editing/updating
-    const changeHandler = async (e) => {
-        e.preventDefault();
-        await axios.put(`/emp/updateEmployeeDataByEmployeeId/${empId}`, {
-            employeeId, firstName,
-            lastName,
-            middleName,
-            dateOfBirth,
-            primaryPhoneNumber,
-            secondaryPhoneNumber,
-            email,
-            yearsOfExperience,
-            designationName,
-            primarySkills,
-            secondarySkills,
-            dateOfJoining,
-            bloodGroup, gender, maritalStatus,
-            permanentAdress,
-            permanentState,
-            permanentCountry,
-            permanentPincode,
-            currentAdress,
-            currentState,
-            currentCountry,
-            currentPincode,
-            passportNo,
-            passportExpiryDate,
-            postgraduationType,
-            postgraduationBoardOfUniversity,
-            postgraduationInstituteName,
-            postgraduationInstituteCity,
-            postgraduationCourseName,
-            postgraduationJoiningYear,
-            postgraduationPassedYear,
-            postgraduationGrade,
-            graduationType,
-            graduationBoardOfUniversity,
-            graduationInstituteName,
-            graduationInstituteCity,
-            graduationCourseName,
-            graduationJoiningYear,
-            graduationPassedYear,
-            graduationGrade,
-            intermediateBoardOfUniversity,
-            intermediateCollegeName,
-            intermediateCollegeCity,
-            intermediateCourseName,
-            intermediateJoiningYear,
-            intermediatePassedYear,
-            intermediateGrade,
-            sscBoardOfUniversity,
-            sscSchoolName,
-            sscSchoolCity,
-            sscCourseName,
-            sscJoiningYear,
-            sscPassedYear,
-            sscGrade,
-            previousCompany1_name,
-            previousCompany1_designation,
-            previousCompany1_joiningDate,
-            previousCompany1_relievingDate,
-            previousCompany1_employeeId,
-            previousCompany1_typeOfEmployment,
-            previousCompany1_reasonForRelieving,
-            previousCompany2_name,
-            previousCompany2_designation,
-            previousCompany2_joiningDate,
-            previousCompany2_relievingDate,
-            previousCompany2_employeeId,
-            previousCompany2_typeOfEmployment,
-            previousCompany2_reasonForRelieving,
-            previousCompany3_name,
-            previousCompany3_designation,
-            previousCompany3_joiningDate,
-            previousCompany3_relievingDate,
-            previousCompany3_employeeId,
-            previousCompany3_typeOfEmployment,
-            previousCompany3_reasonForRelieving,
-            employmentType,
-            departmentName,
-            projectName,
-
-            panNumber,
-            aadharNumber,
-            uanNumber,
-            bankName,
-            accountNumber,
-            ifscCode,
-            branch,
-            band,
-            exitDate
-        })
-        // console.log(firstName);
-        // console.log(lastName);
-        // console.log(passportExpiryDate)
-
-        toast.success("Form Submitted Successfully");
-
-        const url = `/emp/update/${empId}`;
-
-        const formData = new FormData();
-
-        formData.append('file', file);
-        formData.append('fileName', file.name);
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data',
-            },
-        };
-        console.log(formData);
-        axios.post(url, formData, config).then((response) => {
-            console.log(response.data);
-        }).catch((error) => {
-            console.log("oops not uploaded!");
-        })
-    }
-    const [file, setFile] = useState("")
-    const onSubmit = async (e) => {
-        // setData(" ");
-        // data.preventDefault();
-        //e.preventDefault()
-        // console.log(data)
-
-        // reset();
-        await axios.put(`/emp/updateEmployeeDataByEmployeeId/${empId}`, data)
-        console.log(data);
-        // notify();
-        toast.success("Form Submitted Successfully");
-        // refreshPage();
-        const url = `/emp/update/${empId}`;
-
-        const formData = new FormData();
-
-        formData.append('file', file);
-
-        formData.append('fileName', file.name);
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data',
-            },
-        };
-        console.log(formData);
-        axios.post(url, formData, config).then((response) => {
-            console.log(response.data);
-        }).catch((error) => {
-            console.log("oops not uploaded!");
-        })
-
-    }
-    function handleChange(event) {
-        setFile(event.target.files[0])
-        console.log(event.target.files[0])
-    }
 
     return (
         <div className="example">
@@ -471,7 +92,7 @@ function EmployeeMasterForms(props) {
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <EditCard/>
+                                <EmployeeMasterCard profile={profile}/>
                                 </Row>
                                 <Row>
                                 <TabContext value={value}>
@@ -490,13 +111,15 @@ function EmployeeMasterForms(props) {
 
     </TabList>
   </Box>
-  <TabPanel value="1"><EditPersonal/></TabPanel>
-  <TabPanel value="2">  <EditAddress /></TabPanel>
-  <TabPanel value="3"> <EditAdditional/></TabPanel>
-  <TabPanel value="4"> <EditEmployment /></TabPanel>
-  <TabPanel value="5"><EditEducational/></TabPanel>
-  <TabPanel value="6"><EditExperience/></TabPanel>
-  <TabPanel value="7"><EditProject /></TabPanel>
+  <TabPanel value="1"><ProfilePersonalDetailsTab profile={profile}/></TabPanel>
+  <TabPanel value="2"> <ProfileAddressTab profile={profile}/></TabPanel>
+  <TabPanel value="3"><ProfileAdditionalDetailsTab profile={profile}/></TabPanel>
+  <TabPanel value="4"><ProfileEmploymentDetailsTab profile={profile}/></TabPanel>
+  <TabPanel value="5"><ProfileEducationalDetailsTab profile={profile}/></TabPanel>
+  <TabPanel value="6"><ProfileExperienceTab profile={profile}/></TabPanel>
+  <TabPanel value="7"><ProfileProjectTab profile={profile}/></TabPanel>
+  {/* <TabPanel value="8"><ProfileRecognizationTab/></TabPanel> */} 
+  <TabPanel value="8"></TabPanel>
 </TabContext>
 
                                     {/* <Tabs

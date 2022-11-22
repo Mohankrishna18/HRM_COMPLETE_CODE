@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 function JobPositionDetails(props) {
   console.log(props.viewOnboard);
@@ -10,7 +11,14 @@ function JobPositionDetails(props) {
   const employeeid = userData1.data.employeeId;
   const handleClose = () => setShow();
 
-
+  const [jobDetails, setJobDetails] = useState("");
+  useEffect(() => {
+    axios.get(`/recruitmentTracker/getDataById/${props.viewOnboard.requisitionId}`).then((response) => {
+      console.log(response.data);
+      setJobDetails(response.data.data);
+    });
+  }, []);
+  console.log(jobDetails)
 
   var tempDate = new Date(props.viewOnboard.dateOfBirth);
 
@@ -50,7 +58,7 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.clientName}
+              {jobDetails.clientName}
             </Card.Subtitle>
           </Col>
         </Row>
@@ -63,7 +71,7 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.jobTitle}
+              {jobDetails.jobTitle}
             </Card.Subtitle>
           </Col>
         </Row>
@@ -79,7 +87,7 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.raisedBy}
+              {jobDetails.raisedBy}
             </Card.Subtitle>
           </Col>
         </Row>
@@ -93,7 +101,8 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.requestInitiatedDate}
+            {moment(jobDetails.requestInitiatedDate).format("DD/MM/YYYY")}
+             
             </Card.Subtitle>
           </Col>
       </Row>

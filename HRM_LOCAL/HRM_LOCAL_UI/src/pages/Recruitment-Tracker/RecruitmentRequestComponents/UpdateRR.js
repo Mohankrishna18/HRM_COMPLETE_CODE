@@ -11,7 +11,7 @@ import Moment from "moment";
 import { UserContext } from './UpdateRequisition';
 import './utils/RT.css';
 
- const UpdateRR= (props) => {
+const UpdateRR = (props) => {
 
   const [raisedOn, setRaisedOn] = useState();
   const [jobTitle, setJobTitle] = useState();
@@ -45,13 +45,13 @@ import './utils/RT.css';
   const [uploadDoc, setUploadDoc] = useState();
   const [projectName, setProjectName] = useState();
   const [initDate, setInitDate] = useState();
-const [resourceRequiredDate,setResourceRequiredDate] = useState();
-const [interviewPanel1, setInterviewPanel1] = useState([]);
-const [interviewPanel2, setInterviewPanel2] = useState([]);
-const [hrPanel, setHrPanel] = useState([]);
-const [newInterviewPanel1, setNewInterviewPanel1] = useState();
-const [newInterviewPanel2, setNewInterviewPanel2] = useState();
-const [newHrPanel, setNewHrPanel] = useState();
+  const [resourceRequiredDate, setResourceRequiredDate] = useState();
+  const [interviewPanel1, setInterviewPanel1] = useState([]);
+  const [interviewPanel2, setInterviewPanel2] = useState([]);
+  const [hrPanel, setHrPanel] = useState([]);
+  const [newInterviewPanel1, setNewInterviewPanel1] = useState();
+  const [newInterviewPanel2, setNewInterviewPanel2] = useState();
+  const [newHrPanel, setNewHrPanel] = useState();
 
 
   const [clientName, setClientName] = useState();
@@ -64,7 +64,7 @@ const [newHrPanel, setNewHrPanel] = useState();
     setStatus1(!status1);
   };
 
-  
+
   // useState for phone number
   const [firsterrors, setFirstErrors] = useState("");
   const [seconderrors, setSecondErrors] = useState("");
@@ -74,7 +74,7 @@ const [newHrPanel, setNewHrPanel] = useState();
   //   const handleShow = () => setShow(true);
   const params = useParams();
   const history = useHistory();
-  const forms = useRef(null);
+  // const forms = useRef(null);
 
   function setField(field, value) {
     setForm({
@@ -100,7 +100,7 @@ const [newHrPanel, setNewHrPanel] = useState();
   const loadPocNames = async () => {
     const res = await axios.get("/emp/getAllEmployeeMasterData");
     setPocname(res.data.data);
-    
+
   };
 
   const loadClients = async () => {
@@ -111,7 +111,7 @@ const [newHrPanel, setNewHrPanel] = useState();
 
   const loadDepartmentsData = async () => {
     const res = await axios.get("/dept/getAllDepartments");
-  
+
     setDepartments(res.data);
 
   };
@@ -122,14 +122,14 @@ const [newHrPanel, setNewHrPanel] = useState();
   //   setHrPanel(sData1);
   //   // console.log(sData1);
   //   console.log(sData1);
-    
+
   // }
-  const loadHRDeptEmployees =()=>{
-    axios.get("/emp/getEmployeesByDepartment/HR").then((res)=>{
-      
-       const dat = res.data.data.filter(item => item.status == "Active")
-       setHrPanel(dat)
-    }).catch((err)=>{
+  const loadHRDeptEmployees = () => {
+    axios.get("/emp/getEmployeesByDepartment/HR").then((res) => {
+
+      const dat = res.data.data.filter(item => item.status == "Active")
+      setHrPanel(dat)
+    }).catch((err) => {
       console.log(err)
     })
   }
@@ -137,7 +137,7 @@ const [newHrPanel, setNewHrPanel] = useState();
   const loadProjects = async () => {
     const res = await axios.get("/clientProjectMapping/getAllProjects");
     setProjects(res.data.data);
-   
+
   };
   useEffect(() => {
     loadDepartmentsData();
@@ -182,7 +182,7 @@ const [newHrPanel, setNewHrPanel] = useState();
     setUploadDoc(response.data.data.uploadDoc);
     setComments(response.data.data.comments);
     setInitDate(response.data.data.requestInitiatedDate);
-    
+
     setResourceRequiredDate(response.data.data.resourceRequiredDate);
     // console(response.data.data.resourceRequiredDate);
     setNewInterviewPanel1(response.data.data.interviewPanel1);
@@ -194,15 +194,14 @@ const [newHrPanel, setNewHrPanel] = useState();
   useEffect(() => {
     loadData1();
   }, [status1]);
-  const routeToRRPage=() => history.push("/app/rrf")
+  const routeToRRPage = () => history.push("/app/rrf")
   const handleSubmit = (e) => {
     e.preventDefault();
-   
     axios
       .put(
         `/recruitmentTracker/updateRR/${params.id}`,
         {
-          requisitionId:requisitionId,
+          requisitionId: requisitionId,
           jobTitle: jobTitle,
           technology: technology,
           role: role,
@@ -220,7 +219,7 @@ const [newHrPanel, setNewHrPanel] = useState();
           projectName: newProject,
           uploadDoc: uploadDoc,
           clientName: newClient,
-          raisedOn:raisedOn,
+          raisedOn: raisedOn,
           comments: comments,
           priority: priority,
           departmentName: newDepartmentName,
@@ -233,17 +232,17 @@ const [newHrPanel, setNewHrPanel] = useState();
         const user = response.data;
         if (response.data.status) {
           pull_data();
-         
+
           toast.success("Requisition Updated successfully");
           routeToRRPage();
         } else {
           console.log("Props not Send");
         }
-       
-       
+
+
       })
       .catch((err) => {
-        
+
         toast.error("Something Went Wrong");
       });
     // props.handleClose();
@@ -252,24 +251,24 @@ const [newHrPanel, setNewHrPanel] = useState();
     <div className="example" style={{ paddingLeft: "12px" }}>
       <h5 style={{ paddingTop: "13px" }}>Update Requisition</h5>
       <Form
-        ref={forms}
+        // ref={forms}
         className="formone"
         // noValidate
         // validated={validated}
         style={{ padding: 10 }}
-        onSubmit={handleSubmit}
+   
 
       >
         <Row>
-        <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
             <Form.Label>AERF ID</Form.Label>
             <Form.Control
               required
               className="requisitionId"
               type="text"
               controlId="requisitionId"
-              disabled
               value={requisitionId}
+              disabled
               onChange={(e) => setRequisitionId(e.target.value)}
               isInvalid={!!errors.requisitionId}
             ></Form.Control>
@@ -301,7 +300,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               label="Internal"
               name="reqType1"
               type='radio'
-              checked={reqType1 ==='Internal' ? true :false}
+              checked={reqType1 === 'Internal' ? true : false}
               // onChange={(e) => setField("reqType1", e.target.value)}
               value="Internal"
             />
@@ -311,7 +310,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               label="External"
               name="reqType1"
               type='radio'
-              checked={reqType1 ==='External' ? true :false}
+              checked={reqType1 === 'External' ? true : false}
               // id={`inline-${type}-2`}
               // onChange={(event) => setLeaveOrwfh(event.target.value)}
               onChange={(e) => setField("reqType1", e.target.value)}
@@ -326,7 +325,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               label="New Recruitment"
               name="reqType2"
               type='radio'
-              checked={reqType2 ==='New Recruitment' ? true :false}
+              checked={reqType2 === 'New Recruitment' ? true : false}
               //id={`inline-${type}-1`}
               //onChange={(event) => setInternalOrExternal(event.target.value)}
               onChange={(e) => setField("reqType2", e.target.value)}
@@ -338,7 +337,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               label="Replacement"
               name="reqType2"
               type='radio'
-              checked={reqType2 ==='Replacement' ? true :false}
+              checked={reqType2 === 'Replacement' ? true : false}
               // id={`inline-${type}-2`}
               // onChange={(event) => setLeaveOrwfh(event.target.value)}
               onChange={(e) => setField("reqType2", e.target.value)}
@@ -374,7 +373,7 @@ const [newHrPanel, setNewHrPanel] = useState();
             <Form.Select
               required
               type="text"
-              
+
               controlId="empType"
               value={empType}
               onChange={(e) => setEmpType(e.target.value)}
@@ -458,7 +457,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               <Form.Control
                 required
                 type="text"
-               
+
                 controlId="workLocation"
                 isInvalid={seconderrors}
                 value={workLocation}
@@ -503,13 +502,13 @@ const [newHrPanel, setNewHrPanel] = useState();
             <Form.Control
               required
               type="text"
-              
+
               controlId="role"
               value={role}
               onChange={(e) => setRole(e.target.value)}
               isInvalid={!!errors.role}
             >
-              
+
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.role}
@@ -542,7 +541,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               name="positions"
               type="number"
               controlId="positions"
-              
+
               value={positions}
               onChange={(e) => setPositions(e.target.value)}
               isInvalid={!!errors.positions}
@@ -559,7 +558,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               <Form.Control
                 required
                 type="text"
-                
+
                 controlId="yoe"
                 isInvalid={thirderrors}
                 value={yoe}
@@ -590,7 +589,7 @@ const [newHrPanel, setNewHrPanel] = useState();
             <Form.Select
               required
               type="text"
-             
+
               controlId="priority"
               value={priority}
               onChange={(e) => setPriority(e.target.value)}
@@ -690,7 +689,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               className="workingHours"
               type="text"
               controlId="workingHours"
-              
+
 
               value={workingHours}
               onChange={(e) => setWorkingHours(e.target.value)}
@@ -746,7 +745,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               type="file"
               id="uploadDoc"
               controlId="uploadDoc"
-              
+
               value={uploadDoc}
               onChange={(e) => setUploadDoc(e.target.value)}
               isInvalid={!!errors.uploadDoc}
@@ -778,7 +777,7 @@ const [newHrPanel, setNewHrPanel] = useState();
 
         </Row>
         <Row>
-        <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
             <Form.Label>Interview Panel1</Form.Label>
             <Form.Select
               required
@@ -837,7 +836,7 @@ const [newHrPanel, setNewHrPanel] = useState();
           </Form.Group>
         </Row>
         <Row>
-        <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
             <Form.Label>Request Initiated Date</Form.Label>
             <Form.Control
               required
@@ -847,13 +846,13 @@ const [newHrPanel, setNewHrPanel] = useState();
               onChange={(e) => setInitDate(e.target.value)}
               isInvalid={!!errors.initDate}
             >
-              
+
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.initDate}
             </Form.Control.Feedback>
           </Form.Group>
-        <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
             <Form.Label>Resource Required Date</Form.Label>
             <Form.Control
               required
@@ -863,7 +862,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               onChange={(e) => setResourceRequiredDate(e.target.value)}
               isInvalid={!!errors.resourceRequiredDate}
             >
-              
+
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.resourceRequiredDate}
@@ -880,7 +879,7 @@ const [newHrPanel, setNewHrPanel] = useState();
               onChange={(e) => setRaisedOn(e.target.value)}
               isInvalid={!!errors.raisedOn}
             >
-              
+
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.raisedOn}

@@ -18,17 +18,19 @@ const customTheme = {
   textColor: "#262626",
 };
 
-const ProfileEmploymentDetailsTab = () => {
+const ProfileEmploymentDetailsTab = (props) => {
+
+  console.log(props.profile);
+  const employeeid = props.profile;
 
 
   const userData = sessionStorage.getItem("userdata");
   // console.log(userData);
-  const userData1 = JSON.parse(userData);
-  const employeeid = userData1.data.employeeId;
+  // const userData1 = JSON.parse(userData);
+  // const employeeid = userData1.data.employeeId;
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
-  //var dateTime = getEmployeeDetails.dateOfJoining;
-
-  const [imge, setImge] = useState([]);
+  var dateTime = getEmployeeDetails.dateOfJoining;
+  const [imge, setImge] = useState({});
 //commit
   useEffect(() => {
     axios

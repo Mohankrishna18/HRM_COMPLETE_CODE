@@ -17,6 +17,12 @@ public class ProjectTeamMaster {
 
 	@Column
 	private String employeeId;
+	private String projectName;
+	@Column
+	private String clientName;	
+	
+	@Column
+	private String projectManager;
 
 	@Column
 	private String employeeName;
@@ -53,7 +59,8 @@ public class ProjectTeamMaster {
 	}
 
 	public ProjectTeamMaster(String employeeId, String employeeName, String designationName, String departmentName,
-			Integer prmasterId, Date startDate, Date endDate, String status, Date assignedDate,
+			Integer prmasterId, Date startDate, Date endDate, String status, Date assignedDate,String projectName,String clientName,String projectManager,	
+
 			String projectAllocation) {
 		super();
 		this.employeeId = employeeId;
@@ -65,6 +72,9 @@ public class ProjectTeamMaster {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.status = status;
+		this.projectName= projectName;
+		this.clientName = clientName;
+		this.projectManager = projectManager;
 		this.assignedDate = assignedDate;
 		this.projectAllocation = projectAllocation;
 	}
@@ -165,6 +175,30 @@ public class ProjectTeamMaster {
 	public void setProjectId(Integer projectId) {
 		this.projectId = projectId;
 	}
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
+	public String getProjectManager() {
+		return projectManager;
+	}
+
+	public void setProjectManager(String projectManager) {
+		this.projectManager = projectManager;
+	}
+
 	
 	
 

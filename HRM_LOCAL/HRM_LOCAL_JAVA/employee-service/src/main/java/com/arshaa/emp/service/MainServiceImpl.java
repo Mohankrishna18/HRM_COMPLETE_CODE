@@ -216,6 +216,7 @@ public class MainServiceImpl implements MainService {
 
 	public ResponseEntity updateApprovStatus(String onboardingId, HrApprovalStatus newOnboard) {
 		Response response = new Response();
+		String dUrl="http://departments/dept/getDepartmentNameById/";
 //		String userURL = "http://urpService/user/addUser";
 		String loginURL = "http://loginservice/login/addUsers";
 //		String emailURL = "http://emailService/mail/sendmail";
@@ -228,6 +229,8 @@ public class MainServiceImpl implements MainService {
 			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 			System.out.println(getOnboarding);
 			if (!getOnboarding.equals(null)) {
+				String depName=template.getForObject(dUrl+newOnboard.getDepartment(), String.class);
+				getOnboarding.setDepartment(depName);
 				getOnboarding.setApprovedStatus(newOnboard.isApprovedStatus());
 				getOnboarding.setRejectedStatus(newOnboard.isRejectedStatus());
 				getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
@@ -1172,6 +1175,7 @@ public class MainServiceImpl implements MainService {
 				empd.setIrm(em.getIrm());
 				empd.setSrm(em.getSrm());
 				empd.setConfirmationDate(em.getConfirmationDate());
+				empd.setLeaveBalance(em.getLeaveBalance());
 
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
@@ -1209,6 +1213,7 @@ public class MainServiceImpl implements MainService {
 				em.setIrm(empd.getIrm());
 				em.setSrm(empd.getSrm());
 				em.setConfirmationDate(empd.getConfirmationDate());
+				em.setLeaveBalance(empd.getLeaveBalance());
 				emRepo.save(em);
 				
 				String updateStatus = "http://loginservice/login/makeLoginsInActive/";

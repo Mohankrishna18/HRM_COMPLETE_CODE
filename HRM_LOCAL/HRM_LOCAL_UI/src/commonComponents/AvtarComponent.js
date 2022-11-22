@@ -7,7 +7,7 @@ import axios from "../Uri";
 
 
 const AvtarComponent = (props) => {
-  const [imge, setImge] = useState([]);
+  const [imge, setImge] = useState({});
 
   useEffect(() => {
     axios
