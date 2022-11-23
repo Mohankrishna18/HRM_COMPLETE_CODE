@@ -8,6 +8,8 @@ import IRMResignationApprove from "./IRMResignationApprove";
 import IRMResignationReject from "./IRMResignationReject";
 
 function IRMResignationMain(props) {
+
+  const [loading, setLoading] = useState(false);
   
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
@@ -43,6 +45,7 @@ function IRMResignationMain(props) {
     const res = await axios.get(`/resignation/getAllResignation/${empID}`);
     
     console.log(res.data);
+    setLoading(false);
     setData(res.data);
     // const dat = res.data.filter((m) => m.leaveStatus == "pending");
     // console.log(dat);

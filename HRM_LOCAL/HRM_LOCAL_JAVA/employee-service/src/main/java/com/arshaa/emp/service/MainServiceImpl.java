@@ -1220,26 +1220,29 @@ public class MainServiceImpl implements MainService {
 				em.setLeaveBalance(empd.getLeaveBalance());
 				emRepo.save(em);
 				//get data from Leave Master Table
-				String Listemployees="http://leaveservice/leave/getLeaveBalance";
-				LeaveBalanceModel getData =  template.getForObject(Listemployees, LeaveBalanceModel.class);
+//				String Listemployees="http://leaveservice/leave/getLeaveBalance";
+//				LeaveBalanceModel getData =  template.getForObject(Listemployees, LeaveBalanceModel.class);
 			
 				//update call for Leava Balance in Leave Table
 				String updateLeaveBalance = "http://leaveservice/leave/updateLeaveBalance/";
-
-				//Post employeeId and Leave Balance to Leave Mater Table 
-				String post="http://leaveservice/leave/postLeaves";
-				LeaveMaster lm = new LeaveMaster();
 				
-				if(getData.getEmployeeId().isEmpty()) {
-					
-					lm.setEmployeeId(em.getEmployeeId());
-					lm.setLeaveBalance(em.getLeaveBalance());
-					template.postForObject(post,lm, LeaveMaster.class);
-				    
-				}else {
-					lbm.setLeaveBalance(empd.getLeaveBalance());
-					template.put(updateLeaveBalance+em.getEmployeeId(),lbm,LeaveBalanceModel.class);
-				}
+				lbm.setLeaveBalance(empd.getLeaveBalance());
+				template.put(updateLeaveBalance+em.getEmployeeId(),lbm,LeaveBalanceModel.class);
+
+//				//Post employeeId and Leave Balance to Leave Mater Table 
+//				String post="http://leaveservice/leave/postLeaves";
+//				LeaveMaster lm = new LeaveMaster();
+//				
+//				if(getData.getEmployeeId().isEmpty()) {
+//					
+//					lm.setEmployeeId(em.getEmployeeId());
+//					lm.setLeaveBalance(em.getLeaveBalance());
+//					template.postForObject(post,lm, LeaveMaster.class);
+//				    
+//				}else {
+//					lbm.setLeaveBalance(empd.getLeaveBalance());
+//					template.put(updateLeaveBalance+em.getEmployeeId(),lbm,LeaveBalanceModel.class);
+//				}
 				
 				
 		                

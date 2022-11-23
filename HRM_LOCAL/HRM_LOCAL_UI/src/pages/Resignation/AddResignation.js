@@ -37,15 +37,11 @@ function AddResignation(props) {
       label: "HR",
     },
   ];
-  const [users, setUsers] = useState({});
-  const [suggestions, setSuggestions] = useState([]);
-  const [suggestions1, setSuggestions1] = useState([]);
-  const [suggestions2, setSuggestions2] = useState([]);
-  const [show, setShow] = useState(false);
+ 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-  const [thirderrors, setThirdErrors] = useState("");
-  const [irm, setIrm] = useState("");
+  
+  
   const [step, setStep] = useState(0);
   const [value, setValue] = useState("");
   const[exitDate, setExitDate]= useState(null);
@@ -83,7 +79,7 @@ function AddResignation(props) {
     const {
       
       resigningEmployee,
-      resignationDate,
+      today,
       reason,
       exitDate,
     } = form;
@@ -91,21 +87,20 @@ function AddResignation(props) {
 
     
 
-    if (!resignationDate || resignationDate === "")
-      newErrors.resignationDate = "Please Enter Resignation Date";
+   
     if (!reason || reason === "") newErrors.reason = "Please Enter Reason";
 
     return newErrors;
   };
   const today =moment(new Date()).format("DD-MM-YYYY") 
 const todays =()=>{
-  // setField("resignationDate", today)
-  // console.log(e.target.value);
+   
+  console.log(today);
   axios.get(`/resignation/getNoticeDateByResignationDate/${today}/${empID}`).then((response)=>{
-    console.log(response.data);
+    //  console.log(response.data);
     setExitDate(response.data);
   })
-  
+  // setField("resignationDate", today)
 }
 todays();
 
@@ -133,7 +128,7 @@ todays();
       setErrors(formErrors);
       console.log("Form validation error");
     } else {
-      const form1 = Object.assign(form, {employeeId:empID},{resigningEmployee:data},{exitDate:exitDate});
+      const form1 = Object.assign(form, {employeeId:empID},{resigningEmployee:data},{exitDate:exitDate},{resignationDate:moment(new Date()).format("YYYY-MM-DD")});
       console.log(form1)
       axios
         .post("/resignation/resignationApplied", form1)
@@ -250,19 +245,17 @@ todays();
                 defaultValue={today}
                 onChange={(e) => {
 
-                  setField("resignationDate", e.target.value)
-                console.log(e.target.value);
-                axios.get(`/resignation/getNoticeDateByResignationDate/${e.target.value}/${empID}`).then((response)=>{
+                  setField("resignationDate", today)
+                // console.log(e.target.value);
+                axios.get(`/resignation/getNoticeDateByResignationDate/${today}/${empID}`).then((response)=>{
                   console.log(response.data);
                   setExitDate(response.data);
                 })
                 }}
-                isInvalid={!!errors.resignationDate}
+                
               ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                {errors.resignationDate}
-              </Form.Control.Feedback>
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+             
+              
             </Form.Group>
             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
               <Form.Label>Exit Date</Form.Label>

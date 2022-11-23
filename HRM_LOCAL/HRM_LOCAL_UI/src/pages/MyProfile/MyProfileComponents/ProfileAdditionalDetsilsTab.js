@@ -256,7 +256,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                 Additional Documents
 
               </a>
-            </Col>) : (<></>)
+            </Col>) : (<Col style={{color:"blue"}}>Additional Documents are not uploaded</Col>)
 }
                         </Col>
                     </Row>
