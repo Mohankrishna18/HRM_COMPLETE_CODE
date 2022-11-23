@@ -9,8 +9,6 @@ import axios from '../../../Uri';
 import RecruitmentTimeline from './RecruitmentTimeline'
 import './utils/RT.css';
 
-const steps = ["Select master blaster campaign settings", "uggujjgh"];
-
 const StepperForm = (props) => {
 
     const navigate = useHistory();
@@ -81,7 +79,14 @@ const StepperForm = (props) => {
         setResponse(res.data.data);
     };
 
-
+    useEffect(() => {
+        getRequestedBy();
+        loadProjects();
+        loadDepartmentsData();
+        loadClients();
+        loadPocNames();
+        loadHRDeptEmployees();
+    }, []);
 
     const notify = () => toast();
 
@@ -106,36 +111,23 @@ const StepperForm = (props) => {
     const validateForm = () => {
 
         const {
-            rrfCat,
-            // rrfId,
             jobTitle,
             technology,
             role,
             description,
-            // workflowStatus,
             positions,
             pSkills,
             priority,
             allocType,
             pocname,
             requisitionId,
-            // qualification,
             workLocation,
-            // workingHours,
             empType,
             yoe,
-            // rate,
-            // clientName,
             reqType3,
-            // projectName,
-            // uploadDoc,
-
-            // comments,
             departmentName
         } = form;
         const newErrors = {};
-       
-        // validations for forms
 
         if (
             !jobTitle ||
@@ -147,7 +139,6 @@ const StepperForm = (props) => {
                 if (
                     !requisitionId ||
                     requisitionId === ""
-       
                 )
                     newErrors.requisitionId = "Please Enter AERF ID";
         if (
@@ -215,12 +206,6 @@ const StepperForm = (props) => {
 
         )
             newErrors.positions = "Please enter No. of Positions";
-        // if (
-        //     !rate ||
-        //     rate === ""
-
-        // )
-        //     newErrors.rate = "Please enter Rate";
 
         if (
             !departmentName ||
@@ -268,13 +253,7 @@ const StepperForm = (props) => {
     const routeToRRPage=() => history.push("/app/rrf")
     const handleSubmit =(e)=> {
         e.preventDefault();
-        //  const branch = JSON.parse(sessionStorage.getItem("branches"));
-        //console.log(branch);
-        //  const obje1 = { branches: branch };
-        // const cours = JSON.parse(localStorage.getItem("courses1"));
-        // console.log(cours);
-        //a.push(cours);
-        //const obje2 = { ccModel: cours };
+       
         const formErrors = validateForm();
        
         if (Object.keys(formErrors).length > 0) {
@@ -295,61 +274,22 @@ const StepperForm = (props) => {
                     if (response.data.status) {
                         props.func();
                     } else {
-                       console.log("Form is not submitted");
+                        console.log("props not send");
                     }
-                    console.log("Form submitted");
+                    console.log("form submitted");
                     // notify();
                 })
                 .catch((err) => {
-                    
                     console.log("Something went wrong!");
-                   
                 });
-            //props.send();
-       
         }
     };
-    const handleNext = (e) => {
-        e.preventDefault();
-        const formErrors = validateForm();
-       
-        if (Object.keys(formErrors).length > 3) {
-            setErrors(formErrors);
-            console.log("Form validation error");
-        } else {
-            console.log("Form validation success");
-         
-            setActiveStep((nextStep) => nextStep + 1);
-           
-        }
-    };
-    const handleNext1 = (e) => {
-        e.preventDefault();
-       
-        const formErrors = validateForm();
-        console.log(Object.keys(formErrors).length);
-        if (Object.keys(formErrors).length > 0) {
-            setErrors(formErrors);
-            console.log("Form validation error");
-        } else {
-            console.log("Form validation success");
-            setActiveStep((nextStep) => nextStep + 1);
-           
-        }
-    };
+   
     const date = new Date();
     const date1 = Moment(date).format("YYYY-MM-DD");
     const handleBack = () => {
         setActiveStep((previousStep) => previousStep - 1);
     };
-    useEffect(() => {
-        getRequestedBy();
-        loadProjects();
-        loadDepartmentsData();
-        loadClients();
-        loadPocNames();
-        loadHRDeptEmployees();
-    }, []);
     return (
         <div className="example" style={{ paddingLeft: "12px" }}>
             {activeStep === 0 && (
@@ -367,8 +307,7 @@ const StepperForm = (props) => {
                                             type="text"
                                             id="requisitionId"
                                             controlId="requisitionId"
-                                            //placeholder="Job Title"
-                                            // onChange={(event) => setFirstName(event.target.value)}
+                                           
                                             value={form.requisitionId}
                                             onChange={(e) => setField("requisitionId", e.target.value)}
                                             isInvalid={!!errors.requisitionId}

@@ -6,11 +6,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import countryListAllIsoData from "../../../commonComponents/Countries";
 import { FaRegAddressCard } from "react-icons/fa";
 
-function ProfileAddressTab() {
+function ProfileAddressTab(props) {
 
-    const userData = sessionStorage.getItem("userdata");
-    const userData1 = JSON.parse(userData);
-    const employeeid = userData1.data.employeeId;
+    console.log(props.profile);
+    const employeeid = props.profile;
+
+    // const userData = sessionStorage.getItem("userdata");
+    // const userData1 = JSON.parse(userData);
+    // const employeeid = userData1.data.employeeId;
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -139,12 +142,12 @@ function ProfileAddressTab() {
                     </Col>
                     <Col>
 
-                        <Card.Subtitle style={{ padding: 10 }}>
+                        <Card.Subtitle style={{ padding: 0 }}>
                             <h5>Current Address:</h5>
                         </Card.Subtitle>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 0 }}>
                                     Address:
                                 </Card.Subtitle>
                             </Col>
@@ -156,7 +159,7 @@ function ProfileAddressTab() {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 0 }}>
                                     State:
                                 </Card.Subtitle>
                             </Col>
@@ -168,7 +171,7 @@ function ProfileAddressTab() {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 0 }}>
                                     Country:
                                 </Card.Subtitle>
                             </Col>
@@ -180,7 +183,7 @@ function ProfileAddressTab() {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 10 }}>
+                                <Card.Subtitle style={{ padding: 0 }}>
                                     Pincode:
                                 </Card.Subtitle>{" "}
                             </Col>

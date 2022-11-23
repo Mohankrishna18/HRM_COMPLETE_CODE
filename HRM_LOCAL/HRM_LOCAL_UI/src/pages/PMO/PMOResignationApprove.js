@@ -7,9 +7,12 @@ function PMOResignationApprove(props) {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [srmApprove, setSrmApprove] = useState("");
+  const [exitDate, setExitDate] = useState("");
 
   const initialValues = {
     srmApprove,
+    exitDate
+    
   };
 
   const setField = (field, value) => {
@@ -106,8 +109,8 @@ function PMOResignationApprove(props) {
             type="date"
             controlId="exitDate"
             placeholder="Exit Date"
-            value={form.exitDate}
-            onChange={(e) => setField("exitDate", e.target.value)}
+            value={exitDate}
+            onChange={(e) => setExitDate( e.target.value)}
             // isInvalid={!!errors.noticeDate}
           ></Form.Control>
         </Form.Group>

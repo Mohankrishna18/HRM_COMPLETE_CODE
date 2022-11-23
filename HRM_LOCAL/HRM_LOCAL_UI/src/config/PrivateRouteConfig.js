@@ -640,7 +640,7 @@ export default [
     path: "/resignation",
     type: "Employee",
     icon: <FcExport />,
-    title: "Resignation",
+    title: "Exits",
     permission: [
       Roles.employee,
       Roles.ceo,

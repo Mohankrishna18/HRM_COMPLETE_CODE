@@ -19,6 +19,7 @@ import {
     Section,
     Description,
 } from "vertical-timeline-component-react";
+import { BASE_URL } from "../../../Constant";
 
 const customTheme = {
     yearColor: "#405b73",
@@ -30,11 +31,14 @@ const customTheme = {
     textColor: "#262626",
 };
 
-const ProfileAdditionalDetailsTab = () => {
+const ProfileAdditionalDetailsTab = (props) => {
 
-    const userData = sessionStorage.getItem("userdata");
-    const userData1 = JSON.parse(userData);
-    const employeeid = userData1.data.employeeId;
+    console.log(props.profile);
+    const employeeid = props.profile;
+
+    // const userData = sessionStorage.getItem("userdata");
+    // const userData1 = JSON.parse(userData);
+    // const employeeid = userData1.data.employeeId;
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -100,6 +104,22 @@ const ProfileAdditionalDetailsTab = () => {
             toast.error("Somethingwent Wrong");
         }
     };
+
+    const [documents, setDocuments] = useState("");
+  const loadData = () => {
+    axios
+      .get(`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${employeeid}`)
+      .then((response) => {
+        setDocuments(response);
+        console.log(response);
+      });
+
+  }
+  useEffect(() => {
+    loadData();
+
+  }, []);
+  console.log(documents)
 
     var tempDate = new Date(passportExpiryDate);
     var ped = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
@@ -174,12 +194,12 @@ const ProfileAdditionalDetailsTab = () => {
                 </Col>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                    Bank Name:
+                        Bank Name:
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                    {bankName}
+                        {bankName}
                     </Card.Text>
                 </Col>
             </Row>
@@ -187,22 +207,22 @@ const ProfileAdditionalDetailsTab = () => {
             <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                    Account Number:
+                        Account Number:
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                    {accountNumber}
+                        {accountNumber}
                     </Card.Text>
                 </Col>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                    IFSC Code:
+                        IFSC Code:
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                    {ifscCode}
+                        {ifscCode}
                     </Card.Text>
                 </Col>
             </Row>
@@ -210,27 +230,38 @@ const ProfileAdditionalDetailsTab = () => {
             <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                    Branch:
+                        Branch:
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                    {branch}
+                        {branch}
                     </Card.Text>
                 </Col>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                       
+
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                        
+
                     </Card.Text>
                 </Col>
-            </Row>
+            </Row> 
+            <Row>
+                        <Col md="6" style={{ paddingTop: 0 }}>
+                             {documents.statusText === "OK" ? (<Col>
+              <a href={`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${employeeid}`}>
+                Additional Documents
 
-            <Modal
+              </a>
+            </Col>) : (<></>)
+}
+                        </Col>
+                    </Row>
+
+            {/* <Modal
                 show={show}
                 onHide={handleClose}
                 backdrop="static"
@@ -238,7 +269,7 @@ const ProfileAdditionalDetailsTab = () => {
                 size="lg"
                 centered
             >
-                <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
+                <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
                     <Modal.Title>Additional Details</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -437,17 +468,19 @@ const ProfileAdditionalDetailsTab = () => {
                         </Row>
                         <Button
                             className="rounded-pill" md="3"
-                            style={{ backgroundColor: "#f5896e",
-                            borderColor: "#f5896e", float: "right" }}
+                            style={{
+                                backgroundColor: "#f5896e",
+                                borderColor: "#f5896e", float: "right"
+                            }}
                             type="submit"
                             size="lg"
                         >
                             Submit
                         </Button>
                     </Form>
-
+                    
                 </Modal.Body>
-            </Modal>
+            </Modal> */}
 
         </div>
 
