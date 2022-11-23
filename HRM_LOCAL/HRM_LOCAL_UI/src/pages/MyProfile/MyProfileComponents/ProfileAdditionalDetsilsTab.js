@@ -20,6 +20,7 @@ import {
     Description,
 } from "vertical-timeline-component-react";
 import { BASE_URL } from "../../../Constant";
+import { toast } from "react-toastify";
 
 const customTheme = {
     yearColor: "#405b73",
@@ -123,6 +124,10 @@ const ProfileAdditionalDetailsTab = (props) => {
 
     var tempDate = new Date(passportExpiryDate);
     var ped = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+
+const handleclick = () =>{
+      toast.error("Additional Documents are not uploaded")
+}
 
     return (
 
@@ -256,7 +261,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                 Additional Documents
 
               </a>
-            </Col>) : (<Col style={{color:"blue"}}>Additional Documents are not uploaded</Col>)
+            </Col>) : (<Col > <Button onClick={handleclick} style={{background:"none",color:"blue",border:"none"}}>Additional Documents</Button></Col>)
 }
                         </Col>
                     </Row>

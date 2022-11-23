@@ -29,7 +29,7 @@ function IRMResignationApprove(props) {
   };
   const ApproveHandler = (e) => {
 
-    setLoading(true);
+    
     // e.prevetDefault();
     const notify = () => toast("Resignation is approved");
     // handleClose();

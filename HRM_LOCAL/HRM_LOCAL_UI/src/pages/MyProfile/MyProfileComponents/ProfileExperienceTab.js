@@ -18,6 +18,7 @@ import {
   Description,
 } from "vertical-timeline-component-react";
 import { BASE_URL } from "../../../Constant";
+import { toast } from "react-toastify";
 
 const customTheme = {
   yearColor: "#405b73",
@@ -89,6 +90,10 @@ const ProfileExperienceTab = (props) => {
     loadData();
   }, []);
   console.log(documents);
+
+  const handleclick = () =>{
+    toast.error("Experience Documents are not uploaded")
+  }
 
 
 
@@ -262,7 +267,7 @@ const ProfileExperienceTab = (props) => {
                 Experience Documents
 
               </a>
-            </Col>) : (<Col style={{color:"blue"}}>Experience Documents are not uploaded</Col>
+            </Col>) : (<Col style={{color:"blue"}}> <Button onClick={handleclick} style={{background:"none",color:"blue",border:"none"}}>Experience Documents</Button></Col>
 )
             }
         
