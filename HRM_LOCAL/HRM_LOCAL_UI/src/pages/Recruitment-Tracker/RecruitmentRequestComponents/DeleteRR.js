@@ -5,19 +5,21 @@ import { toast } from 'react-toastify';
 import Modal from "react-bootstrap/Modal";
 import axios from '../../../Uri';
 
-const DeleteRR = (props) => {
-   
-
+const DeleteRR=(props)=> {
     const Delete = () => {
         props.deleteHandleClose();
     }
-
-    const deleteRR =  () => {
-        axios.delete(`/recruitmentTracker/deleteRR/${props.deleteOnboard.rrfId}`).then((res)=>{
-            if(res.data){
-                props.func();
-                         toast.success("Requisition Request deleted successfully!!!");
-            }
+    const deleteRR = async () => {
+      try {
+          const res = await axios.delete(`/recruitmentTracker/deleteRR/${props.deleteOnboard.rrfId}`)
+              .then((deletedResponse) => {
+                  if (deletedResponse.data) {
+                      props.func();
+                      toast.success("Requisition Request deleted successfully!!!");
+                  }
+                  else {
+                      console.log("Props not Send")
+                  }
 
         }).catch((err)=>{
             console.log(err)

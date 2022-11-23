@@ -31,6 +31,7 @@ import com.recruitmenttracker.modal.EmailTemplate;
 
 import com.recruitmenttracker.modal.EmployeeReq;
 import com.recruitmenttracker.modal.GetMail;
+import com.recruitmenttracker.modal.RRFClosed;
 import com.recruitmenttracker.modal.RequisitionRequestResponse;
 import com.recruitmenttracker.modal.UserServiceEmail;
 import com.recruitmenttracker.repository.RequisitionRequestRepository;
@@ -59,19 +60,16 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
             // newRR.setWorkflowStatus("Waiting for BUHead Approval");
             newRR.setRrfStatus("Open");
             RequisitionRequestEntity raiseRequest = rrRepository.save(newRR);
-
-
+            //rrRepository.getDateDiff(newRR.getRequisitionId())
+            newRR.setAgeing(0);
+            
+            RequisitionRequestEntity raiseRequest1 = rrRepository.save(raiseRequest);
 
 //            String p = StringUtils.substring(raiseRequest.getProjectName(), 0, 3);
 //            String c = StringUtils.substring(raiseRequest.getClientName(), 0, 3);
-
-
-
 //           String p = "REQ";
 //            raiseRequest.setRequisitionId(p + 0 + (raiseRequest.getRrfId()));
-            RequisitionRequestEntity rreq = rrRepository.save(raiseRequest);
-
-
+            RequisitionRequestEntity rreq = rrRepository.save(raiseRequest1);
 
            rrr.setStatus(true);
             rrr.setMessage("Data Submitted Successfully!!!");
@@ -165,48 +163,54 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
         try {
 
             RequisitionRequestEntity rrEntity = rrRepository.findByRequisitionId(requisitionId);
-            rrEntity.setJobTitle(rrUpdate.getJobTitle());
-            rrEntity.setDescription(rrUpdate.getDescription());
-            rrEntity.setRrfCat(rrUpdate.getRrfCat());
-            rrEntity.setTechnology(rrUpdate.getTechnology());
-            rrEntity.setRequisitionId(rrUpdate.getRequisitionId());
-            rrEntity.setPocname(rrUpdate.getPocname());
-            rrEntity.setWorkflowStatus(rrUpdate.getWorkflowStatus());
-            rrEntity.setPositions(rrUpdate.getPositions());
-            rrEntity.setpSkills(rrUpdate.getpSkills());
-            rrEntity.setsSkills(rrUpdate.getsSkills());
-            rrEntity.setPriority(rrUpdate.getPriority());
-            rrEntity.setWorkingHours(rrUpdate.getWorkingHours());
-            rrEntity.setWorkLocation(rrUpdate.getWorkLocation());
-            rrEntity.setEmpType(rrUpdate.getEmpType());
-            rrEntity.setRole(rrUpdate.getRole());
-            rrEntity.setYoe(rrUpdate.getYoe());
-            rrEntity.setRate(rrUpdate.getRate());
-            rrEntity.setProjectName(rrUpdate.getProjectName());
-            rrEntity.setClientName(rrUpdate.getClientName());
-            rrEntity.setDepartmentName(rrUpdate.getDepartmentName());
-            rrEntity.setRaisedBy(rrUpdate.getRaisedBy());
-            rrEntity.setRaisedOn(rrUpdate.getRaisedOn());
-            rrEntity.setTextAreaDesc(rrUpdate.getTextAreaDesc());
-            rrEntity.setComments(rrUpdate.getComments());
-            rrEntity.setInterviewPanel1(rrUpdate.getInterviewPanel1());
-            rrEntity.setInterviewPanel2(rrUpdate.getInterviewPanel2());
-            rrEntity.setHrPanel(rrUpdate.getHrPanel());
-           
-           
-            RequisitionRequestEntity RRsEntity = rrRepository.save(rrEntity);
-            System.out.println(RRsEntity);
-            rrr.setStatus(true);
-            rrr.setMessage("Update successfully");
-            rrr.setData(RRsEntity);
-            return new ResponseEntity(rrr,HttpStatus.OK);
-           
-        }catch(Exception e){
-            rrr.setStatus(true);
-            rrr.setMessage("Something went wrong");
-            return new ResponseEntity(rrr,HttpStatus.OK);
-        }
-    }
+			rrEntity.setJobTitle(rrUpdate.getJobTitle());
+			rrEntity.setDescription(rrUpdate.getDescription());
+//			rrEntity.setRrfCat(rrUpdate.getRrfCat());
+			rrEntity.setTechnology(rrUpdate.getTechnology());
+			rrEntity.setRequisitionId(rrUpdate.getRequisitionId());
+			rrEntity.setPocname(rrUpdate.getPocname());
+			rrEntity.setWorkflowStatus(rrUpdate.getWorkflowStatus());
+			rrEntity.setPositions(rrUpdate.getPositions());
+			rrEntity.setpSkills(rrUpdate.getpSkills());
+			rrEntity.setsSkills(rrUpdate.getsSkills());
+			rrEntity.setPriority(rrUpdate.getPriority());
+			rrEntity.setWorkingHours(rrUpdate.getWorkingHours());
+			rrEntity.setWorkLocation(rrUpdate.getWorkLocation());
+			rrEntity.setEmpType(rrUpdate.getEmpType());
+			rrEntity.setRole(rrUpdate.getRole());
+			rrEntity.setYoe(rrUpdate.getYoe());
+			rrEntity.setRate(rrUpdate.getRate());
+			rrEntity.setProjectName(rrUpdate.getProjectName());
+			rrEntity.setClientName(rrUpdate.getClientName());
+			rrEntity.setDepartmentName(rrUpdate.getDepartmentName());
+			rrEntity.setRaisedBy(rrUpdate.getRaisedBy());
+			rrEntity.setRaisedOn(rrUpdate.getRaisedOn());
+			rrEntity.setTextAreaDesc(rrUpdate.getTextAreaDesc());
+			rrEntity.setComments(rrUpdate.getComments());
+			rrEntity.setInterviewPanel1(rrUpdate.getInterviewPanel1());
+			rrEntity.setInterviewPanel2(rrUpdate.getInterviewPanel2());
+			rrEntity.setHrPanel(rrUpdate.getHrPanel());
+			rrEntity.setReqType1(rrUpdate.getReqType1());
+			rrEntity.setReqType2(rrUpdate.getReqType2());
+			rrEntity.setReqType3(rrUpdate.getReqType3());
+			rrEntity.setRequestInitiatedDate(rrUpdate.getRequestInitiatedDate());
+			rrEntity.setResourceRequiredDate(rrEntity.getResourceRequiredDate());
+			rrEntity.setAllocType(rrUpdate.getAllocType());
+			rrEntity.setQualification(rrUpdate.getQualification());
+			
+			RequisitionRequestEntity RRsEntity = rrRepository.save(rrEntity);
+			System.out.println(RRsEntity);
+			rrr.setStatus(true);
+			rrr.setMessage("Update successfully");
+			rrr.setData(RRsEntity);
+			return new ResponseEntity(rrr,HttpStatus.OK);
+			
+		}catch(Exception e){
+			rrr.setStatus(true);
+			rrr.setMessage("Something went wrong");
+			return new ResponseEntity(rrr,HttpStatus.OK);
+		}
+	}
 
     @Override
     public ResponseEntity updateWorkflowStatusByJobID(long rrfId) {
@@ -383,10 +387,10 @@ hrApp.forEach(e->{
             try {
                 EmployeeReq re = new EmployeeReq();
                 RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
-               
+                
                 re.setClientName(rfs.getClientName());
                 re.setRaisedBy(rfs.getRaisedBy());
-                re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
+//                re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
                 re.setJobTitle(rfs.getJobTitle());
 
 //                re.setProjectName(rfs.getProjectName());
@@ -431,7 +435,7 @@ hrApp.forEach(e->{
                 return new ResponseEntity(e.getMessage(), HttpStatus.OK);
             }
     }
-
+    
 
 
     @Override
@@ -442,10 +446,40 @@ hrApp.forEach(e->{
 
 
 
+
+  
     @Override
-    public ResponseEntity updateRrfStatus(String requisitionId, RequisitionRequestEntity RRfStatusUpdate) {
-       
-        return null;
+    public ResponseEntity updateAgeing(String requisitionId, RRFClosed rrUpdate) {
+        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+        try {
+            RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
+            RRFClosed gg = new RRFClosed();
+                
+            rfs.setAgeing(rrRepository.getDateDiff(rfs.getRequisitionId()));
+                      
+            rrRepository.save(rfs);
+            
+            System.out.println(rrUpdate);
+            rrr.setStatus(true);
+            rrr.setMessage("Update successfully");
+            rrr.setData(rrUpdate);
+            return new ResponseEntity(rrr,HttpStatus.OK);
+            
+        }catch(Exception e){
+            rrr.setStatus(true);
+            rrr.setMessage("Something went wrong");
+            return new ResponseEntity(rrr,HttpStatus.OK);
+        }
+    }
+
+
+
+
+
+    
+    
+    
+
     }
    
    
