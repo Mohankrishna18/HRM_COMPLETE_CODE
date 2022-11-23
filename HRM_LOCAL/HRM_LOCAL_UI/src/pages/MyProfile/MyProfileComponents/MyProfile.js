@@ -1029,7 +1029,7 @@
                             
 //                             <Row>
 //                               <Col md={12}>
-//                                 <table class="table">
+//                                 <table className="table">
 //                                   <thead>
 //                                     <tr>
 //                                       <th scope="col">S.No</th>

@@ -214,7 +214,7 @@ style={{ backgroundColor: "#9FD5E2", float: "right",marginLeft:"100px",borderRad
 as={Col}
 md="6"
 style={{ padding: 10 }}
-controlId="validationCustom01"
+controlid="validationCustom01"
 >
 <Form.Label>Employee Id</Form.Label>
 <Form.Control
@@ -255,7 +255,7 @@ setEmployeeId(getEmployeeDetails.employeeId)
                 as={Col}
                 md="6"
                 style={{ padding: 15 }}
-                controlId="validationCustom02"
+                controlid="validationCustom02"
               >
                 <Form.Label>To</Form.Label>
                 <Form.Control
@@ -304,7 +304,7 @@ onChange={(event) => setRemainingLeaves(event.target.value)}
                 />
               </Form.Group>
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Group controlId="formFileMultiple" className="mb-3">
+                <Form.Group controlid="formFileMultiple" className="mb-3">
                   <Form.Label>
                     Upload Doctor's Certificate for Sick/Medical Leave
                   </Form.Label>

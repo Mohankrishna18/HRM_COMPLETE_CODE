@@ -70,7 +70,7 @@ function PMOResignationReject(props) {
                         rows={2}
                         className="srmReject"
                         type="text"
-                        controlId="srmReject"
+                        controlid="srmReject"
                         placeholder="Reject Reason"
                         value={srmReject}
                         onChange={(e) => setSrmReject(e.target.value)}

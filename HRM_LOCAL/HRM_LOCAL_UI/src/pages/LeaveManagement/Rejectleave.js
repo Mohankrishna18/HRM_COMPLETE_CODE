@@ -58,14 +58,14 @@ const Reject = (props) => {
                     rows={2}
                     className="rejectReason"
                     type="text"
-                    controlId="rejectReason"
+                    controlid="rejectReason"
                     placeholder="reject Reason"
                     value={form.rejectReason}
                     onChange={(e) => setField("rejectReason", e.target.value)}
                     isInvalid={!!errors.rejectReason}
                   ></Form.Control>
                 </Form.Group>
-                <div class="col-md-12 text-center">
+                <div className="col-md-12 text-center">
                 <Button
                   variant="warning"
                   type="submit"

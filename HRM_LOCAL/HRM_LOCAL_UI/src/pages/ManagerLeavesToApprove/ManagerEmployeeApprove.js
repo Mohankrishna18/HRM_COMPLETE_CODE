@@ -93,7 +93,7 @@ function ManagerEmployeeApprove(props) {
                         rows={2}
                         className="irmApproveReason"
                         type="text"
-                        controlId="irmApproveReason"
+                        controlid="irmApproveReason"
                         placeholder="Approve Reason"
                         value={form.irmApproveReason}
                         onChange={(e) => setField("irmApproveReason", e.target.value)}

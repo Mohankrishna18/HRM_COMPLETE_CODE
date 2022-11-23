@@ -215,7 +215,7 @@ console.log(confirmationDate)
                             required
                             className="departmentName"
                             type="text"
-                            controlId="departmentName"
+                            controlid="departmentName"
                             placeholder="Business Unit Name"
                             defaultValue={data.departmentName}
                             value={departmentName}
@@ -233,7 +233,7 @@ console.log(confirmationDate)
                             required
                             className="designationName"
                             type="text"
-                            controlId="designationName"
+                            controlid="designationName"
                             placeholder="Designation Name"
                             defaultValue={data.designationName}
                             value={designationName}
@@ -250,7 +250,7 @@ console.log(confirmationDate)
                             required
                             type="date"
                             placeholder="Resignation Date"
-                            controlId="resignationDate"
+                            controlid="resignationDate"
                             defaultValue={resignationDate}
                             value={resignationDate}
                             onChange={(e) => setResignationDate(e.target.value)}
@@ -264,7 +264,7 @@ console.log(confirmationDate)
                             required
                             type="date"
                             placeholder="exitDate"
-                            controlId="exitDate"
+                            controlid="exitDate"
                             defaultValue={exitDate}
                             value={exitDate}
                             onChange={(e) => setExitDate(e.target.value)}
@@ -277,7 +277,7 @@ console.log(confirmationDate)
                             required
                             className="status"
                             type="text"
-                            controlId="status"
+                            controlid="status"
                             placeholder="status"
                             defaultValue={status}
                             value={status}
@@ -296,7 +296,7 @@ console.log(confirmationDate)
                             required
                             type="text"
                             placeholder="Type Of Employment"
-                            controlId="employmentType"
+                            controlid="employmentType"
                             value={employmentType}
                             defaultValue={employmentType}
                             onChange={(e) => setEmploymentType(e.target.value)}
@@ -315,7 +315,7 @@ console.log(confirmationDate)
                             required
                             type="text"
                             placeholder="Band"
-                            controlId="band"
+                            controlid="band"
                             value={band}
                             onChange={(e) => setBand(e.target.value)}
                         >
@@ -334,7 +334,7 @@ console.log(confirmationDate)
                             required
                             type="text"
                             placeholder="select IRM"
-                            controlId="irm"
+                            controlid="irm"
                             value={irm}
 
                             onChange={(e) => setIrm(e.target.value)}
@@ -354,7 +354,7 @@ console.log(confirmationDate)
                             required
                             type="text"
                             placeholder="select srm"
-                            controlId="srm"
+                            controlid="srm"
                             value={srm}
                             onChange={(e) => setSrm(e.target.value)}
                         >
@@ -372,7 +372,7 @@ console.log(confirmationDate)
                             required
                             type="date"
                             placeholder="confirmationDate"
-                            controlId="confirmationDate"
+                            controlid="confirmationDate"
                             defaultValue={confirmationDate}
                             value={confirmationDate}
                             onChange={(e) => setConfirmationDate(e.target.value)}
@@ -386,7 +386,7 @@ console.log(confirmationDate)
                             required
                             type="text"
                             placeholder="Leave Balance"
-                            controlId="leaveBalance"
+                            controlid="leaveBalance"
                             defaultValue={leaveBalance}
                             value={leaveBalance}
                             onChange={(e) => setLeaveBalance(e.target.value)}

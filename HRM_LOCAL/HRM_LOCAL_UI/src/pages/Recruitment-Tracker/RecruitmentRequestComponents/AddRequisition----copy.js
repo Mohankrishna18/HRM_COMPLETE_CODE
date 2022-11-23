@@ -267,7 +267,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       className="departmentName"
                       type="text"
-                      controlId="departmentName"
+                      controlid="departmentName"
                       placeholder="Business Unit"
                       value={form.departmentName}
                       maxLength={30}
@@ -294,7 +294,7 @@ import "react-toastify/dist/ReactToastify.css";
                         type="number"
                         maxLength={10}
                         placeholder="Primary Contact"
-                        controlId="primaryContact"
+                        controlid="primaryContact"
                         value={form.primaryContact}
                         onChange={(e) => {
                           setField("primaryContact", e.target.value);
@@ -323,7 +323,7 @@ import "react-toastify/dist/ReactToastify.css";
                       type="text"
                       placeholder="Project Name"
                       required
-                      controlId="projectName"
+                      controlid="projectName"
                       value={form.projectName}
                       onChange={(e) => setField("projectName", e.target.value)}
                       isInvalid={!!errors.projectName}
@@ -348,7 +348,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       className="clientName"
                       type="text"
-                      controlId="clientName"
+                      controlid="clientName"
                       placeholder="Client"
                       value={form.clientName}
                       maxLength={30}
@@ -372,7 +372,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       className="Primary Contact"
                       type="text"
-                      controlId="reqId"
+                      controlid="reqId"
                       placeholder="Req ID"
                       // onChange={(event) => setclientName(event.target.value)}
                       value={form.reqId}
@@ -390,7 +390,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       className="jobTitle"
                       type="text"
-                      controlId="jobTitle"
+                      controlid="jobTitle"
                       placeholder="Job Title"
                       value={form.jobTitle}
                       maxLength={30}
@@ -410,7 +410,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       type="number"
                       placeholder="No of Positions"
-                      controlId="positions"
+                      controlid="positions"
                       value={form.positions}
                       onChange={(e) => setField("positions", e.target.value)}
                       isInvalid={!!errors.positions}
@@ -425,7 +425,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       type="rate"
                       placeholder="Rate"
-                      controlId="rate"
+                      controlid="rate"
                       value={form.rate}
                       onChange={(e) => setField("rate", e.target.value)}
                       isInvalid={!!errors.rate}
@@ -441,7 +441,7 @@ import "react-toastify/dist/ReactToastify.css";
 
                       className="empType"
                       type="text"
-                      controlId="empType"
+                      controlid="empType"
                       placeholder="Employment Type"
 
                       value={form.empType}
@@ -468,7 +468,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       type="text"
                       placeholder="Primary Skills"
-                      controlId="pSkills"
+                      controlid="pSkills"
                       value={form.pSkills}
                       onChange={(e) => setField("pSkills", e.target.value)}
                       isInvalid={!!errors.pSkills}
@@ -488,7 +488,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       className="sSkills"
                       type="text"
-                      controlId="sSkills"
+                      controlid="sSkills"
                       placeholder="Secondary Skills"
 
                       value={form.sSkills}
@@ -506,7 +506,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       className="rrStatus"
                       type="text"
-                      controlId="rrStatus"
+                      controlid="rrStatus"
                       placeholder="Requisition Request Status"
 
                       value={form.rrStatus}
@@ -535,7 +535,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       className="workflowStatus"
                       type="text"
-                      controlId="workflowStatus"
+                      controlid="workflowStatus"
                       placeholder="Workflow Status"
                       // onChange={(event) => setclientName(event.target.value)}
                       value={form.workflowStatus}
@@ -558,7 +558,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       type="workLocation"
                       placeholder="Work Location"
-                      controlId="workLocation"
+                      controlid="workLocation"
                       value={form.workLocation}
                       onChange={(e) => setField("workLocation", e.target.value)}
                       isInvalid={!!errors.workLocation}
@@ -573,7 +573,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       className="workingHours"
                       type="text"
-                      controlId="workingHours"
+                      controlid="workingHours"
                       placeholder="Working Hours"
                       // onChange={(event) => setclientName(event.target.value)}
                       value={form.workingHours}
@@ -594,7 +594,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       type="yoe"
                       placeholder="Years Of Experiance"
-                      controlId="yoe"
+                      controlid="yoe"
                       value={form.yoe}
                       onChange={(e) => setField("yoe", e.target.value)}
                       isInvalid={!!errors.yoe}
@@ -609,7 +609,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       className="uploadSOW"
                       type="file"
-                      controlId="uploadSOW"
+                      controlid="uploadSOW"
                       placeholder="Upload SOW"
                       
                       value={form.desc}
@@ -627,7 +627,7 @@ import "react-toastify/dist/ReactToastify.css";
                       required
                       className="uploadDesc"
                       type="file"
-                      controlId="uploadDesc"
+                      controlid="uploadDesc"
                       placeholder="uploadDesc"
                       
                       value={form.uploadDesc}
@@ -652,7 +652,7 @@ import "react-toastify/dist/ReactToastify.css";
                 <Form.Control 
                 required
                 className="textAreaDesc"
-                controlId="textAreaDesc"
+                controlid="textAreaDesc"
                 value={form.textAreaDesc}
                 maxLength={100}
                 onChange={(e) => setField("textAreaDesc", e.target.value)}
@@ -669,7 +669,7 @@ import "react-toastify/dist/ReactToastify.css";
                 <Form.Control 
                 required
                 className="comments"
-                controlId="comments"
+                controlid="comments"
                 value={form.comments}
                 maxLength={150}
                 onChange={(e) => setField("comments", e.target.value)}

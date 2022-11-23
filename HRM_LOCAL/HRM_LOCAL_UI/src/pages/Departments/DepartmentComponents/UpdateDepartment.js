@@ -133,7 +133,7 @@ const UpdateDepartment = (props) => {
               required
               type="text"
               placeholder="Business Unit"
-              controlId="departmentName"
+              controlid="departmentName"
               value={departmentName}
               onChange={(e) => setDepartmentName(e.target.value)}
               isInvalid={!!errors.departmentName}
@@ -150,7 +150,7 @@ const UpdateDepartment = (props) => {
               required
               type="text"
               placeholder="Business Unit Head"
-              controlId="businessUnitHead"
+              controlid="businessUnitHead"
               value={businessUnitHead}
               onChange={(e) => setBusinessUnitHead(e.target.value)}
               isInvalid={!!errors.businessUnitHead}

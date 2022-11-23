@@ -94,7 +94,7 @@ function PMOResignationApprove(props) {
             rows={2}
             className="srmApprove"
             type="text"
-            controlId="srmApprove"
+            controlid="srmApprove"
             placeholder="Approve Reason"
             value={srmApprove}
             onChange={(e) => setSrmApprove(e.target.value)}
@@ -107,7 +107,7 @@ function PMOResignationApprove(props) {
             required
             name="exitDate"
             type="date"
-            controlId="exitDate"
+            controlid="exitDate"
             placeholder="Exit Date"
             value={exitDate}
             onChange={(e) => setExitDate( e.target.value)}

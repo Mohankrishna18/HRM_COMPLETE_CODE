@@ -134,7 +134,7 @@ function ExperienceTab() {
                             disabled
                             type="text"
                             placeholder="Company Name"
-                            controlId="previousCompany1_name"
+                            controlid="previousCompany1_name"
                             value={previousCompany1_name}
                             maxLength={50}
                             onChange={(e) =>
@@ -149,7 +149,7 @@ function ExperienceTab() {
                             disabled
                             type="text"
                             placeholder="Designation"
-                            controlId="previousCompany1_designation"
+                            controlid="previousCompany1_designation"
                             value={previousCompany1_designation}
                             maxLength={50}
                             onChange={(e) =>
@@ -166,7 +166,7 @@ function ExperienceTab() {
                             disabled
                             type="date"
                             placeholder="Date of Joining"
-                            controlId="previousCompany1_joiningDate"
+                            controlid="previousCompany1_joiningDate"
                             value={previousCompany1_joiningDate}
                             onChange={(e) =>
                                 setPreviousCompany1_joiningDate(
@@ -182,7 +182,7 @@ function ExperienceTab() {
                             disabled
                             type="Date"
                             placeholder="Date of Relieving"
-                            controlId="previousCompany1_relievingDate"
+                            controlid="previousCompany1_relievingDate"
                             value={previousCompany1_relievingDate}
                             min={previousCompany1_joiningDate}
                             onChange={(e) =>
@@ -199,7 +199,7 @@ function ExperienceTab() {
                             disabled
                             type="text"
                             placeholder="Employee ID"
-                            controlId="previousCompany1_employeeId"
+                            controlid="previousCompany1_employeeId"
                             value={previousCompany1_employeeId}
                             maxLength={50}
                             onChange={(e) =>
@@ -215,7 +215,7 @@ function ExperienceTab() {
                             disabled
                             type="text"
                             placeholder="Employment Type"
-                            controlId="previousCompany1_typeOfEmployeement"
+                            controlid="previousCompany1_typeOfEmployeement"
                             value={previousCompany1_typeOfEmployment}
 
                             onChange={(e) =>
@@ -243,7 +243,7 @@ function ExperienceTab() {
                             rows={2}
                             type="text"
                             placeholder="Reason"
-                            controlId="previousCompany1_reasonForRelieving"
+                            controlid="previousCompany1_reasonForRelieving"
                             value={previousCompany1_reasonForRelieving}
                             onChange={(e) =>
                                 setPreviousCompany1_reasonForRelieving(
@@ -266,7 +266,7 @@ function ExperienceTab() {
                             disabled
                             type="text"
                             placeholder="Company Name"
-                            controlId="previousCompany2_name"
+                            controlid="previousCompany2_name"
                             maxLength={50}
                             value={previousCompany2_name}
                             onChange={(event) =>
@@ -281,7 +281,7 @@ function ExperienceTab() {
                             disabled
                             type="text"
                             placeholder="Designation"
-                            controlId="previousCompany2_designation"
+                            controlid="previousCompany2_designation"
                             maxLength={50}
                             value={previousCompany2_designation}
                             onChange={(e) =>
@@ -298,7 +298,7 @@ function ExperienceTab() {
                             disabled
                             type="date"
                             placeholder="Date of Joining"
-                            controlId="previousCompany2_joiningDate"
+                            controlid="previousCompany2_joiningDate"
                             value={previousCompany2_joiningDate}
                             onChange={(e) =>
                                 setPreviousCompany2_joiningDate(
@@ -315,7 +315,7 @@ function ExperienceTab() {
                             disabled
                             type="Date"
                             placeholder="Date of Relieving"
-                            controlId="previousCompany2_relievingDate"
+                            controlid="previousCompany2_relievingDate"
                             value={previousCompany2_relievingDate}
                             min={previousCompany2_joiningDate}
                             onChange={(e) =>
@@ -332,7 +332,7 @@ function ExperienceTab() {
                             disabled
                             type="text"
                             placeholder="Employee ID"
-                            controlId="previousCompany2_employeeId"
+                            controlid="previousCompany2_employeeId"
                             value={previousCompany2_employeeId}
                             onChange={(e) =>
                                 setPreviousCompany2_employeeId(e.target.value)
@@ -347,7 +347,7 @@ function ExperienceTab() {
                             disabled
                             type="text"
                             placeholder="Employment Type"
-                            controlId="previousCompany2_typeOfEmployment"
+                            controlid="previousCompany2_typeOfEmployment"
                             value={previousCompany2_typeOfEmployment}
                             onChange={(e) =>
                                 setPreviousCompany2_typeOfEmployement(
@@ -374,7 +374,7 @@ function ExperienceTab() {
                             rows={2}
                             type="text"
                             placeholder="Reason"
-                            controlId="previousCompany2_reasonForRelieving"
+                            controlid="previousCompany2_reasonForRelieving"
                             value={previousCompany2_reasonForRelieving}
                             onChange={(e) =>
                                 setPreviousCompany2_reasonForRelieving(
@@ -397,7 +397,7 @@ function ExperienceTab() {
                             disabled
                             type="text"
                             placeholder="Company Name"
-                            controlId="previousCompany3_name"
+                            controlid="previousCompany3_name"
                             maxLength={50}
                             value={previousCompany3_name}
                             onChange={(e) =>
@@ -412,7 +412,7 @@ function ExperienceTab() {
                             disabled
                             type="text"
                             placeholder="Designation"
-                            controlId="previousCompany3_designation"
+                            controlid="previousCompany3_designation"
                             maxLength={50}
                             value={previousCompany3_designation}
                             onChange={(e) =>
@@ -429,7 +429,7 @@ function ExperienceTab() {
                             disabled
                             type="date"
                             placeholder="Date of Joining"
-                            controlId="previousCompany3_joiningDate"
+                            controlid="previousCompany3_joiningDate"
                             value={previousCompany3_joiningDate}
                             onChange={(e) =>
                                 setPreviousCompany3_joiningDate(
@@ -445,7 +445,7 @@ function ExperienceTab() {
                             disabled
                             type="Date"
                             placeholder="Date of Relieving"
-                            controlId="prevoiusCompany3_relievingDate"
+                            controlid="prevoiusCompany3_relievingDate"
                             value={previousCompany3_relievingDate}
                             min={previousCompany3_joiningDate}
                             onChange={(e) =>
@@ -462,7 +462,7 @@ function ExperienceTab() {
                             disabled
                             type="text"
                             placeholder="Employee ID"
-                            controlId="previousCompany3_employeeId"
+                            controlid="previousCompany3_employeeId"
                             maxLength={50}
                             value={previousCompany3_employeeId}
                             onChange={(e) =>
@@ -477,7 +477,7 @@ function ExperienceTab() {
                             disabled
                             type="text"
                             placeholder="Employment Type"
-                            controlId="previousCompany3_typeOfEmployment"
+                            controlid="previousCompany3_typeOfEmployment"
                             value={previousCompany3_typeOfEmployment}
                             onChange={(e) =>
                                 setPreviousCompany3_typeOfEmployement(
@@ -504,7 +504,7 @@ function ExperienceTab() {
                             rows={2}
                             type="text"
                             placeholder="Reason"
-                            controlId="previousCompany3_reasonForRelieving"
+                            controlid="previousCompany3_reasonForRelieving"
                             value={previousCompany3_reasonForRelieving}
                             onChange={(e) =>
                                 setPreviousCompany3_reasonForRelieving(
@@ -527,7 +527,7 @@ function ExperienceTab() {
                             disabled
                                                 type="date"
                                                 placeholder="Exit Date"
-                                                controlId="exitDate"
+                                                controlid="exitDate"
                                                 value={exitDate}
                                                 onChange={(e) => setExitDate(e.target.value)}
                                                 name="exitDate"

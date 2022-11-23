@@ -46,7 +46,7 @@ const ApprovalUpdateForm = (props) => {
               rows={2}
               className="taaApprovalComment"
               type="text"
-              controlId="taaApprovalComment"
+              controlid="taaApprovalComment"
               placeholder="Approve Reason"
               value={form.taaApprovalComment}
               onChange={(e) => setField("taaApprovalComment", e.target.value)}

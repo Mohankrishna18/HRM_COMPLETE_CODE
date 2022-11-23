@@ -146,7 +146,7 @@ const AddPOC = (props) => {
                   required
                   className="POCName"
                   type="text"
-                  controlId="POCName"
+                  controlid="POCName"
                   placeholder="POC Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.leadName}
@@ -166,7 +166,7 @@ const AddPOC = (props) => {
                   required
                   type="text"
                   placeholder="Status"
-                  controlId="status"
+                  controlid="status"
                   value={form.status}
                   onChange={(e) => setField("status", e.target.value)}
                   isInvalid={!!errors.status}
@@ -192,7 +192,7 @@ const AddPOC = (props) => {
                   required
                   className="details"
                   type="text"
-                  controlId="details"
+                  controlid="details"
                   placeholder="Details"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.details}
@@ -211,7 +211,7 @@ const AddPOC = (props) => {
                   required
                   type="email"
                   placeholder="Company Email"
-                  controlId="companyEmail"
+                  controlid="companyEmail"
                   value={form.companyEmail}
                   onChange={(e) => setField("companyEmail", e.target.value)}
                   isInvalid={!!errors.companyEmail}
@@ -232,7 +232,7 @@ const AddPOC = (props) => {
                     required
                     type="text"
                     placeholder="company PhoneNumber"
-                    controlId="companyPhoneNumber"
+                    controlid="companyPhoneNumber"
                     value={form.phoneNumber}
                     onChange={(e) => setField("companyPhoneNumber", e.target.value)}
                     isInvalid={!!errors.companyPhoneNumber}
@@ -252,7 +252,7 @@ const AddPOC = (props) => {
                   required
                   className="companyCountry"
                   type="text"
-                  controlId="companyCountry"
+                  controlid="companyCountry"
                   placeholder="Select Country"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.companyCountry}
@@ -279,7 +279,7 @@ const AddPOC = (props) => {
                   as="textarea"
                   className="description"
                   type="text"
-                  controlId="description"
+                  controlid="description"
                   placeholder="Description"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.description}
@@ -300,7 +300,7 @@ const AddPOC = (props) => {
                   required
                   type="date"
                   placeholder="Start Date"
-                  controlId="startDate"
+                  controlid="startDate"
                   value={form.startDate}
                   onChange={(e) => setField("startDate", e.target.value)}
                   isInvalid={!!errors.startDate}
@@ -318,7 +318,7 @@ const AddPOC = (props) => {
                   required
                   type="date"
                   placeholder="End Date"
-                  controlId="endDate"
+                  controlid="endDate"
                   value={form.endDate}
                   min={form.startDate}
                   onChange={(e) => setField("endDate", e.target.value)}
@@ -337,7 +337,7 @@ const AddPOC = (props) => {
                   required
                   className="sourceName"
                   type="text"
-                  controlId="sourceName"
+                  controlid="sourceName"
                   placeholder="Source Name" */}
                   {/* // onChange={(event) => setclientName(event.target.value)}
                   value={form.sourceName}
@@ -356,7 +356,7 @@ const AddPOC = (props) => {
                   required
                   type="email"
                   placeholder="Source Email"
-                  controlId="sourceEmail"
+                  controlid="sourceEmail"
                   value={form.sourceEmail}
                   onChange={(e) => setField("sourceEmail", e.target.value)}
                   isInvalid={!!errors.sourceEmail}
@@ -374,7 +374,7 @@ const AddPOC = (props) => {
                     required
                     type="text"
                     placeholder="source PhoneNumber"
-                    controlId="sourcePhoneNumber"
+                    controlid="sourcePhoneNumber"
                     value={form.sourcePhoneNumber}
                     onChange={(e) => setField("sourcePhoneNumber", e.target.value)}
                     isInvalid={!!errors.sourcePhoneNumber}
