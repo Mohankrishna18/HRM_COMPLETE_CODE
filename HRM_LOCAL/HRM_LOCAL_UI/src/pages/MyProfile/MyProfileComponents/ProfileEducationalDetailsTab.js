@@ -223,7 +223,7 @@ console.log(documents)
                 </a>
               </Col>
             ) : (
-              <></>
+              <Col style={{color:"blue"}}>Educational Documents are not uploaded</Col>
             )}</Row>
                         </div>
 

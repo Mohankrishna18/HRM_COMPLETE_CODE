@@ -262,7 +262,8 @@ const ProfileExperienceTab = (props) => {
                 Experience Documents
 
               </a>
-            </Col>) : (<></>)
+            </Col>) : (<Col style={{color:"blue"}}>Experience Documents are not uploaded</Col>
+)
             }
         
                           </Row>
