@@ -216,6 +216,7 @@ public class MainServiceImpl implements MainService {
 
 	public ResponseEntity updateApprovStatus(String onboardingId, HrApprovalStatus newOnboard) {
 		Response response = new Response();
+		String dUrl="http://departments/dept/getDepartmentNameById/";
 //		String userURL = "http://urpService/user/addUser";
 		String loginURL = "http://loginservice/login/addUsers";
 //		String emailURL = "http://emailService/mail/sendmail";
@@ -228,6 +229,8 @@ public class MainServiceImpl implements MainService {
 			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 			System.out.println(getOnboarding);
 			if (!getOnboarding.equals(null)) {
+				String depName=template.getForObject(dUrl+newOnboard.getDepartment(), String.class);
+				getOnboarding.setDepartment(depName);
 				getOnboarding.setApprovedStatus(newOnboard.isApprovedStatus());
 				getOnboarding.setRejectedStatus(newOnboard.isRejectedStatus());
 				getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
@@ -403,10 +406,10 @@ public class MainServiceImpl implements MainService {
 					userclient.setEmployeeId(em.getEmployeeId());
 					userClientRepo.save(userclient);
 
-					// posting employeeId to employee profile table
-					EmployeeProfile eprofile = new EmployeeProfile();
-					eprofile.setEmployeeId(employeeMaster.getEmployeeId());
-					empProfileRepo.save(eprofile);
+					//posting employeeId to employee profile table
+                    EmployeeProfile eprofile = new EmployeeProfile();
+                    eprofile.setEmployeeId(employeeMaster.getEmployeeId());
+                    empProfileRepo.save(eprofile);
 
 					// Generating Random userId and Password
 					Random rand = new Random();
@@ -917,7 +920,7 @@ public class MainServiceImpl implements MainService {
 		EmployeeMaster employeeMaster = emRepo.getById(employeeId);
 
 		EmployeeName en = new EmployeeName();
-		en.setEmployeeName(employeeMaster.getFirstName().concat(" ").concat(employeeMaster.getLastName()));
+		en.setEmployeeName(employeeMaster.getFirstName().concat(" ").concat(employeeMaster.getMiddleName()).concat(" ").concat(employeeMaster.getLastName()));
 
 		return new ResponseEntity(en, HttpStatus.OK);
 	}
@@ -1172,6 +1175,7 @@ public class MainServiceImpl implements MainService {
 				empd.setIrm(em.getIrm());
 				empd.setSrm(em.getSrm());
 				empd.setConfirmationDate(em.getConfirmationDate());
+				empd.setLeaveBalance(em.getLeaveBalance());
 
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
@@ -1209,6 +1213,7 @@ public class MainServiceImpl implements MainService {
 				em.setIrm(empd.getIrm());
 				em.setSrm(empd.getSrm());
 				em.setConfirmationDate(empd.getConfirmationDate());
+				em.setLeaveBalance(empd.getLeaveBalance());
 				emRepo.save(em);
 				
 				String updateStatus = "http://loginservice/login/makeLoginsInActive/";

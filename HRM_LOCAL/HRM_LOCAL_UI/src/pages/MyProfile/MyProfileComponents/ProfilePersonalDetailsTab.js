@@ -7,11 +7,14 @@ import { BsFillPersonLinesFill } from "react-icons/bs";
 
 
 
-function ProfilePersonalDetailsTab() {
+function ProfilePersonalDetailsTab(props) {
 
-    const userData = sessionStorage.getItem("userdata");
-    const userData1 = JSON.parse(userData);
-    const employeeid = userData1.data.employeeId;
+    console.log(props.profile);
+    const employeeid = props.profile;
+
+    // const userData = sessionStorage.getItem("userdata");
+    // const userData1 = JSON.parse(userData);
+    // const employeeid = userData1.data.employeeId;
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -70,7 +73,6 @@ function ProfilePersonalDetailsTab() {
                 setBloodGroup(response.data.data.bloodGroup);
                 setGender(response.data.data.gender);
                 setMaritalStatus(response.data.data.maritalStatus);
-
             });
     }, []);
     console.log(dateOfBirth)
@@ -95,7 +97,7 @@ function ProfilePersonalDetailsTab() {
         });
         toast.success("Form Submitted Successfully");
         handleClose();
-        const url = `/emp/upload/${employeeid}/`;
+        const url = `/emp/update/${employeeid}/`;
         const formData = new FormData();
         formData.append("file", file);
         formData.append("fileName", file.name);
@@ -106,7 +108,7 @@ function ProfilePersonalDetailsTab() {
         };
         console.log(formData);
         axios
-            .post(url, formData, config)
+            .put(url, formData, config)
             .then((response) => {
                 console.log(response.data);
             })
@@ -127,7 +129,7 @@ function ProfilePersonalDetailsTab() {
         // notify();
         toast.success("Form Submitted Successfully");
         // refreshPage();
-        const url = `/emp/upload/${employeeid}/`;
+        const url = `/emp/update/${employeeid}/`;
         const formData = new FormData();
         formData.append("file", file);
         formData.append("fileName", file.name);
@@ -138,7 +140,7 @@ function ProfilePersonalDetailsTab() {
         };
         console.log(formData);
         axios
-            .post(url, formData, config)
+            .put(url, formData, config)
             .then((response) => {
                 console.log(response.data);
             })
@@ -159,7 +161,7 @@ function ProfilePersonalDetailsTab() {
     const current = new Date();
     console.log(current)
 
-    const [imge, setImge] = useState([]);
+    const [imge, setImge] = useState({});
     useEffect(() => {
         axios
             .get(`/emp/files/${employeeid}`)

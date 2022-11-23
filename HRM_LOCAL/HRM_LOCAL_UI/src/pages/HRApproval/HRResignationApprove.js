@@ -31,7 +31,7 @@ function HRResignationApprove(props) {
         let employeeId = props.leaveID.employeeId;
     console.log(employeeId);
     const da = JSON.parse(sessionStorage.getItem("userdata"));
-    const empID = da.data.userType;
+    const empID = da.data.employeeId;
     //   const employeeId = da.data.employeeId;
 
     console.log(props.leaveID);
@@ -66,7 +66,37 @@ function HRResignationApprove(props) {
             </Col> */}
             
             <Form role="form">
-                <Form.Group md="12" style={{ padding: 0 }}>
+
+            <Form.Group md="12" style={{ paddingTop: "10px" }}>
+          <Form.Label>Employee Reason</Form.Label>
+          <Form.Control
+            required
+            className="reason"
+            type="text"
+            disabled
+            value={props.leaveID.reason}
+          ></Form.Control>
+          <Form.Group md="12" style={{ paddingTop: "10px" }}>
+            <Form.Label>IRM Reason</Form.Label>
+            <Form.Control
+              required
+              className="reason"
+              type="text"
+              disabled
+              value={props.leaveID.irmApprove}
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group md="12" style={{ paddingTop: "10px" }}>
+            <Form.Label>SRM Reason</Form.Label>
+            <Form.Control
+              required
+              className="reason"
+              type="text"
+              disabled
+              value={props.leaveID.srmApprove}
+            ></Form.Control>
+          </Form.Group>
+
                     <Form.Label>Comment</Form.Label>
                     <Form.Control
                         required

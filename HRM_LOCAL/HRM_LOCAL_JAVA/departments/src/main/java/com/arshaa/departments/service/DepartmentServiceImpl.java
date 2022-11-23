@@ -17,6 +17,7 @@ import com.arshaa.departments.model.DepartmentResponse;
 import com.arshaa.departments.model.EmployeeName;
 import com.arshaa.departments.repository.DepartmentInterface;
 
+
 @Service
 public class DepartmentServiceImpl  implements DepartmentService{
 
@@ -99,8 +100,54 @@ public class DepartmentServiceImpl  implements DepartmentService{
             return new ResponseEntity(res,HttpStatus.OK);
         }
     }
-	
-
+	@Override
+	public ResponseEntity getBuheadIdByDepartmentName(String departmentName) {
+		 BuheadName res = new BuheadName();
+	        try {
+	            Departmentmaster dData = repository.getByDepartmentName(departmentName);
+	            if(!dData.equals(null)) {
+	                res.setStatus(true);
+	                res.setMessage("Data Fetching");
+	                res.setBusinessUnitHeadName(dData.getBusinessUnitHead());
+	                return new ResponseEntity(res, HttpStatus.OK);
+	            }
+	            else {
+	                res.setStatus(false);
+	                res.setMessage("Data Not Found");
+	                return new ResponseEntity(res,HttpStatus.OK);
+	            }
+	        }
+	        catch(Exception e){
+	            res.setStatus(false);
+	            res.setMessage("Something went wrong");
+	            return new ResponseEntity(res,HttpStatus.OK);
+	        }
+	}
+    @Override
+    public ResponseEntity getBuheadNameByEmployeeName(String employeeName) {
+        String matchUrl = "http://empService/emp/getEmployeeNameByEmployeeId/";
+        BuheadName bn=new BuheadName();
+        try {
+            List<Departmentmaster> getDataa = repository.findAll();
+            getDataa.forEach(d->{
+                if(d.getBusinessUnitHeadName().equalsIgnoreCase(employeeName))
+                {
+                    bn.setStatus(true);
+                    bn.setMessage("Data Fetching");
+                    bn.setBusinessUnitHeadName(d.getBusinessUnitHeadName());  
+                }
+                else {
+                    bn.setStatus(false);
+                    bn.setMessage("Data Not Found");
+                }
+            });
+        } catch (Exception e) {
+            bn.setStatus(false);
+            bn.setMessage("Data Not Found");
+        }
+        return new ResponseEntity(bn,HttpStatus.OK);
+        
+    }
 }
 
 

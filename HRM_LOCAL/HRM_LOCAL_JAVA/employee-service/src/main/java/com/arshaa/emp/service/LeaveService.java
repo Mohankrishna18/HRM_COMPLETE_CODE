@@ -64,7 +64,7 @@ public class LeaveService {
 					int presentCount = daysInMonth
 							- (leaveCount.getCount() + holidayCount.getHolidayCount() + weekendCount(year, month));
 					int workingDays = daysInMonth - (holidayCount.getHolidayCount() + weekendCount(year, month));// for
-																													// wd
+																												// wd
 					getLeaves.setTotalDaysPresent(presentCount);
 					getLeaves.setTotalDays(daysInMonth);// tDP
 					getLeaves.setTotalWorkingDays(workingDays);// TWD

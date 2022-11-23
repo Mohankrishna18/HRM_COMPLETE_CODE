@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { Form } from 'react-bootstrap';
 import { useState, useEffect, useRef } from "react";
@@ -25,10 +26,10 @@ export default function Action(props) {
     const [jobTitle, setJobTitle] = useState("");
     const [client, setClient] = useState("");
     const [projectName, setProjectName] = useState("");
-    const [buh, setBuh] = useState("");
+    const [buh, setBuh] = useState(data.buh);
     const [irmId, setirmId] = useState("");
     const [srmId, setSrmId] = useState("");
-    const [buhId, setBuhId] = useState("");
+    const [leaveBalance, setLeaveBalance] = useState("");
 
     const [departmentName, setDepartmentName] = useState("");
    
@@ -64,9 +65,9 @@ export default function Action(props) {
     };
 
 
-    
+    console.log(props.data)
     const loadEmploymentDetails = async () => {
-        const res = await axios.get(`${BASE_URL}/emp/getEmploymentDetails/${props.data}`);
+        const res = await axios.get(`/emp/getEmploymentDetails/${props.data}`);
         console.log(res.data.data);
         setData(res.data.data);
         console.log(data);
@@ -77,43 +78,26 @@ export default function Action(props) {
         setResignationDate(res.data.data.resignationDate);
         setSrm(res.data.data.srm);
         setIrm(res.data.data.irm);
-        setProjectName(res.data.data.projectName);
+        setProjectName(res.data.data.projectName); 
        
         setConfirmationDate(res.data.data.confirmationDate);
-        console.log(confirmationDate);
+        console.log(res.data.data.confirmationDate);
         setBand(res.data.data.band);
         setEmploymentType(res.data.data.employmentType);
         setStatus(res.data.data.status);
         setPrimarySkills(res.data.data.primarySkills);
         setSecondarySkills(res.data.data.secondarySkills);
         setReportingManager(res.data.data.reportingManager);
-        // setJobTitle(res.data.jobTitle);
-        // setClient(res.data.client);
-        // setOnboardingStatus(res.data.onboardingStatus);
-        // setBuh(res.data.data.buh);
-        // setirmId(res.data.irmId);
-        // setSrmId(res.data.srmId);
-        // setBuhId(res.data.buhId);
-        console.log(res.data.data.departmentName)
-        console.log(res.data.data.designationName)
-        console.log(res.data.data.exitDate)
-        console.log(res.data.data.resignationDate)
-        console.log(res.data.data.srm)
-        console.log(res.data.data.irm)
-        console.log(res.data.data.confirmationDate)
-        console.log(res.data.data.employmentType)
-        console.log(res.data.data.band)
-        console.log(res.data.data.primarySkills)
-        console.log(res.data.data.status)
-        console.log(res.data.data.secondarySkills)
-        console.log(res.data.data.reportingManager)
-        // console.log(res.data)
+        setLeaveBalance(res.data.leaveBalance);
+        
+        setBuh(res.data.data.buh);
+       
     };
-
+console.log(confirmationDate)
     // const exitdatef=  moment(res.data.data.exitDate).format('YYYY-MM-DD');
     // const confirmationDatef = moment(res.data.data.confirmationDate).format('YYYY-MM-DD');
     // const resignationDatef =  moment(res.data.data.resignationDate).format('YYYY-MM-DD')
-
+    console.log(departmentName);
     console.log(employmentType, designationName);
     const [bands, setBands] = useState([]);
     useEffect(() => {
@@ -182,7 +166,8 @@ export default function Action(props) {
                 irm,
                 srm,
                 band,
-                projectName     
+                projectName,
+                leaveBalance    
 
             })
             .then((response) => {
@@ -201,13 +186,18 @@ export default function Action(props) {
     }
 
     
-
+console.log(data);
 
     //sorting Array of Objects
 
     var sortedDepartments = _.sortBy(departments, 'departmentName');
     var sortedDesignations = _.sortBy(designations, 'designationName');
     var sortedUsers = _.sortBy(users, 'fullName');
+
+    var tempDate = new Date(confirmationDate);
+  var Year1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+console.log(Year1)
+console.log(confirmationDate)
 
 // const confirmationDatef = {<Moment format= {dd-mm-yyyy}>confirmationDate</Moment>}
     return (
@@ -227,7 +217,7 @@ export default function Action(props) {
                             type="text"
                             controlId="departmentName"
                             placeholder="Business Unit Name"
-                            defaultValue={departmentName}
+                            defaultValue={data.departmentName}
                             value={departmentName}
                             maxLength={30}
                             onChange={(e) => setDepartmentName(e.target.value)}
@@ -245,7 +235,7 @@ export default function Action(props) {
                             type="text"
                             controlId="designationName"
                             placeholder="Designation Name"
-                            defaultValue={designationName}
+                            defaultValue={data.designationName}
                             value={designationName}
                             maxLength={30}
                             onChange={(e) => setDesignationName(e.target.value)}
@@ -387,6 +377,19 @@ export default function Action(props) {
                             value={confirmationDate}
                             onChange={(e) => setConfirmationDate(e.target.value)}
 
+                        ></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Leave Balance</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Leave Balance"
+                            controlId="leaveBalance"
+                            defaultValue={leaveBalance}
+                            value={leaveBalance}
+                            onChange={(e) => setLeaveBalance(e.target.value)}
                         ></Form.Control>
                     </Form.Group>
 

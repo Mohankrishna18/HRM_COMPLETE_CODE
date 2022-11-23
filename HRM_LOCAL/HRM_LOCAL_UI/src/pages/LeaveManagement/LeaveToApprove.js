@@ -3,7 +3,6 @@ import { Card, Button, Container } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import CardHeader from "react-bootstrap/esm/CardHeader";
-import AddEmployee from "../AllEmployees/AllEmployeesComponents/AddEmployee";
 import Employee from "../AllEmployees/AllEmployeesComponents/Employee";
 import BootstrapDatePickerComponent from "../LeaveManagement/Datepicker";
 import LeaveTable from "../LeaveManagement/LeaveTable";

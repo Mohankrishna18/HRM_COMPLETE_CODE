@@ -12,4 +12,8 @@ public interface DepartmentService {
 	public int getDepartmentIdByDepartmentName(String departmentName);
 	public ResponseEntity getBUHIDfromDepartmentName(String departmentName);
 	public ResponseEntity getBuheadNameByDepartmentName(String departmentName);
+	public ResponseEntity getBuheadIdByDepartmentName(String departmentName);
+
+    ResponseEntity getBuheadNameByEmployeeName(String employeeName);
+
 }

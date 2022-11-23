@@ -26,7 +26,7 @@ const RRTable = () => {
   const handleClose = () => setShow(false);
   const viewHandleClose = () => setViewShow(false);
   const [viewStatus, setViewStatus] = useState(false);
-  const addPocHandleClose = () => setAddPocShow(false);
+ 
   const [updateOnboard, setUpdateOnboard] = useState({});
   const [viewOnboard, setViewOnboard] = useState({});
   const [data, setData] = useState([]);
@@ -34,7 +34,7 @@ const RRTable = () => {
   const [updateStatus, setUpdateStatus] = useState(false);
   const [deleteOnboard, setDeleteOnboard] = useState({});
   const [deleteStatus, setDeleteStatus] = useState(true);
-  const params = useParams();
+  const sessionData = JSON.parse(sessionStorage.getItem("userdata"));
   const history = useHistory();
   const pull_dataAdd = () => {
     setAddStatus(!addStatus);
@@ -54,43 +54,23 @@ const RRTable = () => {
   };
 
   useEffect(() => {
-    loadData();
+  axios.get("/recruitmentTracker/").then((res)=>{
+    setData(res.data)
+  }).catch((err)=>{
+    console.log(err)
+  })
     // createStatus();
-  }, [addStatus, updateStatus, deleteStatus, viewStatus]);
+  }, [addStatus, updateStatus, deleteStatus]);
 
-  const loadData = async () => {
-    const response = await axios.get("/recruitmentTracker/");
-    setData(response.data);
-    console.log(response.data);
-  };
+ 
 
-  const sessionData = JSON.parse(sessionStorage.getItem("userdata"));
-  const employeeId = sessionData.data.employeeId;
-  const userType = sessionData.data.userType;
-  console.log(employeeId);
-  console.log(userType);
+
+
+ 
 
   return (
     <div>
-      <Modal show={show} onHide={handleClose} size="xl">
-        <Modal.Header
-          closeButton
-          style={{
-            backgroundColor: "#FF9E14",
-            paddingTop: "7px",
-            paddingBottom: "4px",
-          }}
-        >
-          <Modal.Title>Update Requisition</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {/* <UpdateRR
-            updateOnboard={updateOnboard}
-            func={pull_dataUpdate}
-            handleClose={handleClose}
-          /> */}
-        </Modal.Body>
-      </Modal>
+     
       <Modal show={viewShow} onHide={viewHandleClose} size="lg">
         <Modal.Header
           closeButton
@@ -221,17 +201,16 @@ const RRTable = () => {
                       <Button
                         variant="info"
                         onClick={(event) => {
-                          // setShow(true);
-                          console.log(props.data);
+                         
                           setUpdateOnboard(props.data);
-                          localStorage.setItem(
-                            "requisition",
-                            JSON.stringify(props)
-                          );
+                          // localStorage.setItem(
+                          //   "requisition",
+                          //   JSON.stringify(props)
+                          // );
                           history.push(
                             `/app/updateRequisition/${props.data.requisitionId}`
                           );
-                          console.log(props.data);
+                       
                         }}
                       >
                         <FiEdit />
@@ -240,7 +219,7 @@ const RRTable = () => {
                         variant="danger"
                         onClick={(event) => {
                           setDeleteLeads(true);
-                          console.log(props);
+                         
                           setDeleteOnboard(props.data);
                         }}
                       >
@@ -250,7 +229,7 @@ const RRTable = () => {
                         variant="primary"
                         onClick={(event) => {
                           setViewShow(true);
-                          console.log(props);
+                         
                           setViewOnboard(props.data);
                         }}
                         style={{

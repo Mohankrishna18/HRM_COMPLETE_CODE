@@ -37,7 +37,7 @@ function IRMResignationMain(props) {
   }, [update, leaveID, reject]);
 
   const da = JSON.parse(sessionStorage.getItem("userdata"));
-  const empID = da.data.userType;
+  const empID = da.data.employeeId;
 
   const loadData = async () => {
     const res = await axios.get(`/resignation/getAllResignation/${empID}`);
@@ -54,8 +54,8 @@ function IRMResignationMain(props) {
     // { title: "Department", field: "department" },
     { title: "Reason", field: "reason" },
     {
-      title: "Notice Date",
-      field: "noticeDate",
+      title: "Exit Date",
+      field: "exitDate",
       type: "date",
       dateSetting: { locale: "en-GB" },
     },
@@ -96,7 +96,7 @@ function IRMResignationMain(props) {
 
       <Grid>
         <MaterialTable
-          title=""
+          title="Resignation Approval"
           columns={columns}
           data={data}
           options={{

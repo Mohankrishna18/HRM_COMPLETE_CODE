@@ -11,10 +11,9 @@ import Moment from "moment";
 import { UserContext } from './UpdateRequisition';
 import './utils/RT.css';
 
- const UpdateRR= (props) => {
+const UpdateRR = (props) => {
 
-  // console.log(props);
-  // const { data, setData } = useContext(UserContext);
+  const [raisedOn, setRaisedOn] = useState();
   const [jobTitle, setJobTitle] = useState();
   const [reqType1, setReqType1] = useState();
   const [reqType2, setReqType2] = useState();
@@ -27,7 +26,7 @@ import './utils/RT.css';
   const [pSkills, setPSkills] = useState();
   const [sSkills, setSSkills] = useState();
   const [allocType, setAllocType] = useState();
-
+  const [requisitionId, setRequisitionId] = useState();
   const [workLocation, setWorkLocation] = useState();
   const [workingHours, setWorkingHours] = useState();
   const [empType, setEmpType] = useState();
@@ -46,13 +45,13 @@ import './utils/RT.css';
   const [uploadDoc, setUploadDoc] = useState();
   const [projectName, setProjectName] = useState();
   const [initDate, setInitDate] = useState();
-const [resourceRequiredDate,setResourceRequiredDate] = useState();
-const [interviewPanel1, setInterviewPanel1] = useState([]);
-const [interviewPanel2, setInterviewPanel2] = useState([]);
-const [hrPanel, setHrPanel] = useState([]);
-const [newInterviewPanel1, setNewInterviewPanel1] = useState();
-const [newInterviewPanel2, setNewInterviewPanel2] = useState();
-const [newHrPanel, setNewHrPanel] = useState();
+  const [resourceRequiredDate, setResourceRequiredDate] = useState();
+  const [interviewPanel1, setInterviewPanel1] = useState([]);
+  const [interviewPanel2, setInterviewPanel2] = useState([]);
+  const [hrPanel, setHrPanel] = useState([]);
+  const [newInterviewPanel1, setNewInterviewPanel1] = useState();
+  const [newInterviewPanel2, setNewInterviewPanel2] = useState();
+  const [newHrPanel, setNewHrPanel] = useState();
 
 
   const [clientName, setClientName] = useState();
@@ -65,7 +64,7 @@ const [newHrPanel, setNewHrPanel] = useState();
     setStatus1(!status1);
   };
 
-  
+
   // useState for phone number
   const [firsterrors, setFirstErrors] = useState("");
   const [seconderrors, setSecondErrors] = useState("");
@@ -75,7 +74,7 @@ const [newHrPanel, setNewHrPanel] = useState();
   //   const handleShow = () => setShow(true);
   const params = useParams();
   const history = useHistory();
-  const forms = useRef(null);
+  // const forms = useRef(null);
 
   function setField(field, value) {
     setForm({
@@ -88,61 +87,74 @@ const [newHrPanel, setNewHrPanel] = useState();
         [field]: null,
       });
   }
+  // const [paymentMethod, setPaymentMethod] = useState(props.data.data);
 
+  // const radioChangeHandler = (e) => {
+  //   setPaymentMethod(e.target.value);
+  // };
 
   // var initDate = Moment()
   // .utcOffset('+05:30')
   // .format('YYYY-MM-DD hh:mm:ss');
-console.log(initDate);
+
   const loadPocNames = async () => {
     const res = await axios.get("/emp/getAllEmployeeMasterData");
-    console.log(res.data);
     setPocname(res.data.data);
-    
+
   };
 
   const loadClients = async () => {
     const res = await axios.get("/clientProjectMapping/getAllClients");
     setClients(res.data.data);
-    console.log(res.data.data);
+
   };
 
   const loadDepartmentsData = async () => {
     const res = await axios.get("/dept/getAllDepartments");
-    console.log(res.data);
+
     setDepartments(res.data);
 
   };
-  const loadHRDeptEmployees = async () => {
-    const res = await axios.get("/emp/getEmployeesByDepartment/HR");
-    const sData1 = res.data.data.filter(item => item.status === 'Active')
-    setHrPanel(sData1);
-    console.log(sData1);
+
+  // const loadHRDeptEmployees = async () => {
+  //   const res = await axios.get("/emp/getEmployeesByDepartment/HR");
+  //  sData1 = res.data.data.filter(item => item.status === 'Active')
+  //   setHrPanel(sData1);
+  //   // console.log(sData1);
+  //   console.log(sData1);
+
+  // }
+  const loadHRDeptEmployees = () => {
+    axios.get("/emp/getEmployeesByDepartment/HR").then((res) => {
+
+      const dat = res.data.data.filter(item => item.status == "Active")
+      setHrPanel(dat)
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 
   const loadProjects = async () => {
     const res = await axios.get("/clientProjectMapping/getAllProjects");
     setProjects(res.data.data);
-    console.log(res.data.data);
+
   };
   useEffect(() => {
     loadDepartmentsData();
     loadProjects();
     loadClients();
     loadPocNames();
-    // loadHRDeptEmployees();
+    loadHRDeptEmployees();
   }, []);
 
-
-
-  console.log(params);
   const loadData1 = async () => {
     const response = await axios.get(
       `/recruitmentTracker/getDataById/${params.id}`
     );
-    console.log(response);
+    setRaisedOn(response.data.data.raisedOn);
+    console.log(response.data.data.raisedOn);
+    setRequisitionId(response.data.data.requisitionId);
     setJobTitle(response.data.data.jobTitle);
-    console.log(response);
     setReqType1(response.data.data.reqType1);
     setReqType2(response.data.data.reqType2);
     setReqType3(response.data.data.reqType3);
@@ -170,7 +182,7 @@ console.log(initDate);
     setUploadDoc(response.data.data.uploadDoc);
     setComments(response.data.data.comments);
     setInitDate(response.data.data.requestInitiatedDate);
-    console.log(response.data.data.requestInitiatedDate);
+
     setResourceRequiredDate(response.data.data.resourceRequiredDate);
     // console(response.data.data.resourceRequiredDate);
     setNewInterviewPanel1(response.data.data.interviewPanel1);
@@ -182,15 +194,14 @@ console.log(initDate);
   useEffect(() => {
     loadData1();
   }, [status1]);
-
+  const routeToRRPage = () => history.push("/app/rrf")
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(jobTitle, technology, role, description, positions, pSkills, sSkills, qualification, workLocation, workingHours, empType, yoe, rate, projectName, uploadDoc, clientName, comments, newDepartmentName, newPOCName)
     axios
       .put(
         `/recruitmentTracker/updateRR/${params.id}`,
         {
-
+          requisitionId: requisitionId,
           jobTitle: jobTitle,
           technology: technology,
           role: role,
@@ -208,7 +219,7 @@ console.log(initDate);
           projectName: newProject,
           uploadDoc: uploadDoc,
           clientName: newClient,
-
+          raisedOn: raisedOn,
           comments: comments,
           priority: priority,
           departmentName: newDepartmentName,
@@ -221,16 +232,17 @@ console.log(initDate);
         const user = response.data;
         if (response.data.status) {
           pull_data();
-          // props.func();
+
           toast.success("Requisition Updated successfully");
+          routeToRRPage();
         } else {
           console.log("Props not Send");
         }
-        toast.success("Form Submitted successfully");
-        // console.log(user);
+
+
       })
       .catch((err) => {
-        console.log(err);
+
         toast.error("Something Went Wrong");
       });
     // props.handleClose();
@@ -239,16 +251,32 @@ console.log(initDate);
     <div className="example" style={{ paddingLeft: "12px" }}>
       <h5 style={{ paddingTop: "13px" }}>Update Requisition</h5>
       <Form
-        ref={forms}
+        // ref={forms}
         className="formone"
         // noValidate
         // validated={validated}
         style={{ padding: 10 }}
-        onSubmit={handleSubmit}
+   
 
       >
         <Row>
-          <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+            <Form.Label>AERF ID</Form.Label>
+            <Form.Control
+              required
+              className="requisitionId"
+              type="text"
+              controlId="requisitionId"
+              value={requisitionId}
+              disabled
+              onChange={(e) => setRequisitionId(e.target.value)}
+              isInvalid={!!errors.requisitionId}
+            ></Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors.requisitionId}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} md="8" style={{ padding: 10 }}>
             <Form.Label>Job Title</Form.Label>
             <Form.Control
               required
@@ -272,8 +300,8 @@ console.log(initDate);
               label="Internal"
               name="reqType1"
               type='radio'
-
-              onChange={(e) => setField("reqType1", e.target.value)}
+              checked={reqType1 === 'Internal' ? true : false}
+              // onChange={(e) => setField("reqType1", e.target.value)}
               value="Internal"
             />
             <Form.Check
@@ -282,6 +310,7 @@ console.log(initDate);
               label="External"
               name="reqType1"
               type='radio'
+              checked={reqType1 === 'External' ? true : false}
               // id={`inline-${type}-2`}
               // onChange={(event) => setLeaveOrwfh(event.target.value)}
               onChange={(e) => setField("reqType1", e.target.value)}
@@ -296,6 +325,7 @@ console.log(initDate);
               label="New Recruitment"
               name="reqType2"
               type='radio'
+              checked={reqType2 === 'New Recruitment' ? true : false}
               //id={`inline-${type}-1`}
               //onChange={(event) => setInternalOrExternal(event.target.value)}
               onChange={(e) => setField("reqType2", e.target.value)}
@@ -307,6 +337,7 @@ console.log(initDate);
               label="Replacement"
               name="reqType2"
               type='radio'
+              checked={reqType2 === 'Replacement' ? true : false}
               // id={`inline-${type}-2`}
               // onChange={(event) => setLeaveOrwfh(event.target.value)}
               onChange={(e) => setField("reqType2", e.target.value)}
@@ -342,7 +373,7 @@ console.log(initDate);
             <Form.Select
               required
               type="text"
-              
+
               controlId="empType"
               value={empType}
               onChange={(e) => setEmpType(e.target.value)}
@@ -426,7 +457,7 @@ console.log(initDate);
               <Form.Control
                 required
                 type="text"
-               
+
                 controlId="workLocation"
                 isInvalid={seconderrors}
                 value={workLocation}
@@ -471,13 +502,13 @@ console.log(initDate);
             <Form.Control
               required
               type="text"
-              
+
               controlId="role"
               value={role}
               onChange={(e) => setRole(e.target.value)}
               isInvalid={!!errors.role}
             >
-              
+
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.role}
@@ -510,7 +541,7 @@ console.log(initDate);
               name="positions"
               type="number"
               controlId="positions"
-              
+
               value={positions}
               onChange={(e) => setPositions(e.target.value)}
               isInvalid={!!errors.positions}
@@ -527,7 +558,7 @@ console.log(initDate);
               <Form.Control
                 required
                 type="text"
-                
+
                 controlId="yoe"
                 isInvalid={thirderrors}
                 value={yoe}
@@ -558,7 +589,7 @@ console.log(initDate);
             <Form.Select
               required
               type="text"
-             
+
               controlId="priority"
               value={priority}
               onChange={(e) => setPriority(e.target.value)}
@@ -658,7 +689,7 @@ console.log(initDate);
               className="workingHours"
               type="text"
               controlId="workingHours"
-              
+
 
               value={workingHours}
               onChange={(e) => setWorkingHours(e.target.value)}
@@ -700,7 +731,7 @@ console.log(initDate);
             >
               <option>{newPOCName}</option>
               {pocname.map((poc) => (
-                <option value={poc.firstName}>{poc.firstName}</option>
+                <option value={poc.fullName}>{poc.fullName}</option>
               ))}
             </Form.Select>
             <Form.Control.Feedback type="invalid">
@@ -714,7 +745,7 @@ console.log(initDate);
               type="file"
               id="uploadDoc"
               controlId="uploadDoc"
-              
+
               value={uploadDoc}
               onChange={(e) => setUploadDoc(e.target.value)}
               isInvalid={!!errors.uploadDoc}
@@ -746,7 +777,7 @@ console.log(initDate);
 
         </Row>
         <Row>
-        <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
             <Form.Label>Interview Panel1</Form.Label>
             <Form.Select
               required
@@ -756,9 +787,9 @@ console.log(initDate);
               onChange={(e) => setNewInterviewPanel1(e.target.value)}
               isInvalid={!!errors.interviewPanel1}
             >
-              <option>{interviewPanel1}</option>
+              <option>{newInterviewPanel1}</option>
               {pocname.map((panel1) => (
-                <option value={panel1.employeeId}>{panel1.firstName}</option>
+                <option value={panel1.fullName}>{panel1.fullName}</option>
               ))}
             </Form.Select>
             <Form.Control.Feedback type="invalid">
@@ -775,9 +806,9 @@ console.log(initDate);
               onChange={(e) => setNewInterviewPanel2(e.target.value)}
               isInvalid={!!errors.interviewPanel2}
             >
-              <option>{interviewPanel2}</option>
+              <option>{newInterviewPanel2}</option>
               {pocname.map((panel2) => (
-                <option value={panel2.firstName}>{panel2.firstName}</option>
+                <option value={panel2.fullName}>{panel2.fullName}</option>
               ))}
             </Form.Select>
             <Form.Control.Feedback type="invalid">
@@ -794,18 +825,18 @@ console.log(initDate);
               onChange={(e) => setNewHrPanel(e.target.value)}
               isInvalid={!!errors.hrPanel}
             >
-              <option>{hrPanel}</option>
-              {pocname.map((HRpanel) => (
-                <option value={HRpanel.employeeId}>{HRpanel.firstName}</option>
+              {/* <option>{hrPanel}</option> */}
+              {hrPanel.map((HRpanel) => (
+                <option value={HRpanel.fullName}>{HRpanel.fullName}</option>
               ))}
             </Form.Select>
             <Form.Control.Feedback type="invalid">
-              {errors.hrPanel}
+              {errors.hrPanel1}
             </Form.Control.Feedback>
           </Form.Group>
         </Row>
         <Row>
-        <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
             <Form.Label>Request Initiated Date</Form.Label>
             <Form.Control
               required
@@ -815,13 +846,13 @@ console.log(initDate);
               onChange={(e) => setInitDate(e.target.value)}
               isInvalid={!!errors.initDate}
             >
-              
+
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.initDate}
             </Form.Control.Feedback>
           </Form.Group>
-        <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
             <Form.Label>Resource Required Date</Form.Label>
             <Form.Control
               required
@@ -831,10 +862,27 @@ console.log(initDate);
               onChange={(e) => setResourceRequiredDate(e.target.value)}
               isInvalid={!!errors.resourceRequiredDate}
             >
-              
+
             </Form.Control>
             <Form.Control.Feedback type="invalid">
               {errors.resourceRequiredDate}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+            <Form.Label>Raised Date</Form.Label>
+            <Form.Control
+              required
+              type="date"
+              disabled
+              controlId="raisedOn"
+              value={Moment(raisedOn).format("YYYY-MM-DD")}
+              onChange={(e) => setRaisedOn(e.target.value)}
+              isInvalid={!!errors.raisedOn}
+            >
+
+            </Form.Control>
+            <Form.Control.Feedback type="invalid">
+              {errors.raisedOn}
             </Form.Control.Feedback>
           </Form.Group>
         </Row>

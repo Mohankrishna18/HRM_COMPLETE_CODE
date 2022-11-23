@@ -12,27 +12,32 @@ import com.recruitmenttracker.modal.EmployeeReq;
 
 public interface RequisitionRequestInterface {
 
-	public ResponseEntity createRR(RequisitionRequestEntity newRR);
-	
-	public ResponseEntity getAllRequisitions();
-	
-	public ResponseEntity deleteRRequest(long rrfId);
-	
-	public ResponseEntity updateRR(String requisitionId, RequisitionRequestEntity RRUpdate);
-	
-	public ResponseEntity updateWorkflowStatusByJobID(long rrfId);
-	
-	// GSDR Changes
+    public ResponseEntity createRR(RequisitionRequestEntity newRR);
+   
+//  public ResponseEntity getAllRequisitions(String departmentName);
+
+    public ResponseEntity deleteRRequest(long rrfId);
+   
+    public ResponseEntity updateRR(String requisitionId, RequisitionRequestEntity RRUpdate);
+   
+    public ResponseEntity updateWorkflowStatusByJobID(long rrfId);
+   
+    //update rrf status to closed
+    public ResponseEntity updateRrfStatus(String requisitionId, RequisitionRequestEntity RRfStatusUpdate);
+   
+    // GSDR Changes
 
     public List<RequisitionRequestEntity> getByWorkflowStatus(String userType);
     public RequisitionRequestEntity modifyRequisitionStatus(RequisitionRequestEntity requisition, long rrfId, String userType);
     public RequisitionRequestEntity rejectRequisition(RequisitionRequestEntity requisition, long rrfId, String userType);
-		//Nikhil changes
-		 public ResponseEntity getRequisitionsByRrfStatus();
-	
-	
-	public ResponseEntity getRequisitionsByRequisitionId(String requisitionId);
+        //Nikhil changes
+         public ResponseEntity getRequisitionsByRrfStatus();
+   
+   
+    public ResponseEntity getRequisitionsByRequisitionId(String requisitionId);
     public ResponseEntity getRequisitionsData(String requisitionId);
     public int getDaysBetweenDates(String requisitionId,String requestInitiatedDate) throws ParseException;
+
+    public ResponseEntity getAllRequisitions();
 
 }

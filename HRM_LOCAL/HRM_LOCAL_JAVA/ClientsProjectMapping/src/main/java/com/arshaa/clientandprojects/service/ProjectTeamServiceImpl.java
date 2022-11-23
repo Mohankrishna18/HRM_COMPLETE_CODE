@@ -36,6 +36,11 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
 		ProjectTeamResponse ptrm = new ProjectTeamResponse<>();
 		try {
 			ProjectTeamMaster newProjectTeamData = ptmrepo.save(newTeam);
+			Projects p= projectRepo.getById(newTeam.getProjectId());
+			newProjectTeamData.setClientName(p.getClientName());
+			newProjectTeamData.setProjectName(p.getProjectName());
+			newProjectTeamData.setProjectManager(p.getProjectManager());
+			ptmrepo.save(newProjectTeamData);
 			ptrm.setStatus(true);
 			ptrm.setMessage("Data added successfully");
 			ptrm.setData(newProjectTeamData);

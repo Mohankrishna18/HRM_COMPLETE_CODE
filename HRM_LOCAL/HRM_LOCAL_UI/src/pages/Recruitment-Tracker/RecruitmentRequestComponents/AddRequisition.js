@@ -33,13 +33,11 @@ import { useHistory } from 'react-router-dom'
   const sessionData = JSON.parse(sessionStorage.getItem('userdata'));
   const employeeId = sessionData.data.employeeId;
   const userType = sessionData.data.userType;
-  console.log(employeeId);
-  console.log(userType);
+
 
   return (
     <div>
       
-        
         <Button
           variant="warning"
           onClick={gotoStepperForm}
@@ -57,7 +55,7 @@ import { useHistory } from 'react-router-dom'
           {/* <BsPlusLg />  */}
           &nbsp; Raise Requisition
         </Button>
-       
+      
 
       {/* <Modal
         style={{ maxHeight: "1350px", maxWidth: "1550px", }}

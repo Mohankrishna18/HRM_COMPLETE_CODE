@@ -1,5 +1,6 @@
 package com.arshaa.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,12 @@ public class Resignation_Controller {
 	public ResponseEntity getStatusByEmployeeId(@PathVariable String employeeId) {
 		return new ResponseEntity(resignationService.getStatusByEmployeeId(employeeId),HttpStatus.OK);
 	}
+	
+	@GetMapping("/getNoticeDateByResignationDate/{resignationDate}/{employeeId}")
+	public ResponseEntity getNoticeDateByResignationDate(Date resignationDate, String employeeId)
+	{
+		return new ResponseEntity(resignationService.getNoticeDateByResignationDate(resignationDate, employeeId),HttpStatus.OK);
+	}
+
 
 }

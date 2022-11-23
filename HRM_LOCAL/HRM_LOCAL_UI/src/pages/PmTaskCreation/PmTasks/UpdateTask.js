@@ -105,6 +105,9 @@ const UpdateTask = (props) => {
 
     if (!plannedEndDate || plannedEndDate === "")
       newErrors.plannedEndDate = "Please Enter Start date";
+      if (!assignedTo || assignedTo === "" || assignedTo === "Assigned To")
+
+      newErrors.assignedTo = "Please Enter Assigned To";
     // if (!toDate || toDate === "")
     //   newErrors.toDate = "Please Enter End date";
     //   if (!fromDate || fromDate === "")

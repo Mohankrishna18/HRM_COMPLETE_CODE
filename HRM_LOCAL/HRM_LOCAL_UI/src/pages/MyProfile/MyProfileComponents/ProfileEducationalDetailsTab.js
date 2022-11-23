@@ -17,6 +17,7 @@ import {
   Section,
   Description,
 } from "vertical-timeline-component-react";
+import { BASE_URL } from "../../../Constant";
 
 const customTheme = {
   yearColor: "#405b73",
@@ -28,17 +29,18 @@ const customTheme = {
   textColor: "#262626",
 };
 
-const ProfileEducationalDetailsTab = () => {
+const ProfileEducationalDetailsTab = (props) => {
 
-
-  const userData = sessionStorage.getItem("userdata");
+  console.log(props.profile);
+  const employeeid = props.profile;
+  // const userData = sessionStorage.getItem("userdata");
   // console.log(userData);
-  const userData1 = JSON.parse(userData);
-  const employeeid = userData1.data.employeeId;
+  // const userData1 = JSON.parse(userData);
+  // const employeeid = userData1.data.employeeId;
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
-  //var dateTime = getEmployeeDetails.dateOfJoining;
+  var dateTime = getEmployeeDetails.dateOfJoining;
 
-  const [imge, setImge] = useState([]);
+  const [imge, setImge] = useState({});
 //commit
   useEffect(() => {
     axios
@@ -74,6 +76,22 @@ const ProfileEducationalDetailsTab = () => {
   }, []);
   console.log(projects)
 
+  const [documents, setDocuments] = useState("");
+  const loadData = () => {
+    axios
+      .get(
+        `${BASE_URL}/api/get/imageByTitle/EducationalDetails/${employeeid}`
+      )
+      .then((response) => {
+        setDocuments(response);
+        console.log(response);
+      });
+  };
+  useEffect(() => {
+    loadData();
+  }, []);
+console.log(documents)
+
 
 
   var GraduationJoiningYear = new Date(getEmployeeDetails.graduationJoiningYear);
@@ -101,6 +119,7 @@ const ProfileEducationalDetailsTab = () => {
   var intermediateJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
   var tempDate = new Date(getEmployeeDetails.intermediatePassedYear);
+  console.log(tempDate);
   var intermediatePassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
   var tempDate = new Date(getEmployeeDetails.sscJoiningYear);
@@ -194,6 +213,18 @@ const ProfileEducationalDetailsTab = () => {
                             </Table>
 
                           </Card.Body>
+                          <Row>
+                          {documents.statusText === "OK" ? ( 
+               <Col>
+                <a
+                  href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${employeeid}`}
+                >
+                  Educational Documents
+                </a>
+              </Col>
+            ) : (
+              <></>
+            )}</Row>
                         </div>
 
                      
