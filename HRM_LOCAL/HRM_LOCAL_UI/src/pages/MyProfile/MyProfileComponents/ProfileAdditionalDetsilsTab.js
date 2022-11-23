@@ -283,7 +283,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                 <Form.Control
                                     type="text"
                                     placeholder="Passport Number"
-                                    controlId="passportNo"
+                                    controlid="passportNo"
                                     value={passportNo}
                                     maxLength={15}
                                     name="passportNo"
@@ -297,7 +297,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                 <Form.Control
                                     type="date"
                                     placeholder="Passport Expiry Date"
-                                    controlId="passportExpiryDate"
+                                    controlid="passportExpiryDate"
                                     name="passportExpiryDate"
                                     value={passportExpiryDate}
                                     min={new Date()}
@@ -312,7 +312,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                 <Form.Control
                                     type="text"
                                     placeholder="PAN Card Number"
-                                    controlId="panNumber"
+                                    controlid="panNumber"
                                     name="panNumber"
                                     maxLength={50}
                                     value={panNumber}
@@ -325,7 +325,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="number"
                                     placeholder="Aadharcard Number"
-                                    controlId="aadharNumber"
+                                    controlid="aadharNumber"
                                     name="panNumber"
                                     maxLength={12}
                                     isInvalid={nineteenerror}
@@ -353,7 +353,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                 <Form.Control
                                     type="text"
                                     placeholder="UAN Number"
-                                    controlId="uanNumber"
+                                    controlid="uanNumber"
                                     name="uanNumber"
                                     value={uanNumber}
                                     maxLength={12}
@@ -366,7 +366,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="text"
                                     placeholder="Bank Name"
-                                    controlId="bankName"
+                                    controlid="bankName"
                                     name="bankName"
                                     maxLength={50}
                                     value={bankName}
@@ -391,7 +391,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="text"
                                     placeholder="Branch Name"
-                                    controlId="branchName"
+                                    controlid="branchName"
                                     name="branch"
                                     maxLength={50}
                                     value={branch}
@@ -417,7 +417,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="number"
                                     placeholder="Account Number"
-                                    controlId="accountNumber"
+                                    controlid="accountNumber"
                                     name="accountNumber"
                                     maxLength={50}
                                     value={accountNumber}
@@ -445,7 +445,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="text"
                                     placeholder="IFSC Code"
-                                    controlId="ifscCode"
+                                    controlid="ifscCode"
                                     name="ifscCode"
                                     maxLength={50}
                                     value={ifscCode}

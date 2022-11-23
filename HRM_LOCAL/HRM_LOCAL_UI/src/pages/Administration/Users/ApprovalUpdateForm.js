@@ -131,7 +131,7 @@ const ApprovalUpdateForm = (props) => {
                   required
                   type="text"
                   placeholder="Employee ID"
-                  controlId="employeeId"
+                  controlid="employeeId"
                   value={employeeId}
                   isInvalid={!!errors.employeeId}
                 >
@@ -149,7 +149,7 @@ const ApprovalUpdateForm = (props) => {
                   required
                   type="text"
                   placeholder="User Name"
-                  controlId="userName"
+                  controlid="userName"
                   value={userName}
                   isInvalid={!!errors.userName}
                 >
@@ -167,7 +167,7 @@ const ApprovalUpdateForm = (props) => {
                   required
                   type="text"
                   placeholder="Role"
-                  controlId="roleName"
+                  controlid="roleName"
                   value={roleName}
                   onChange={(e) => setRoleName(e.target.value)}
                   isInvalid={!!errors.roleName}

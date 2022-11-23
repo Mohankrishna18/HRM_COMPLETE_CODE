@@ -60,14 +60,14 @@
 //                     rows={2}
 //                     className="managersRejectReason"
 //                     type="text"
-//                     controlId="managersRejectReason"
+//                     controlid="managersRejectReason"
 //                     placeholder="reject Reason"
 //                     value={form.managersRejectReason}
 //                     onChange={(e) => setField("managersRejectReason", e.target.value)}
 //                     isInvalid={!!errors.managersRejectReason}
 //                   ></Form.Control>
 //                 </Form.Group>
-//                 <div class="col-md-12 text-center">
+//                 <div className="col-md-12 text-center">
 //                 <Button
 //                   variant="warning"
 //                   type="submit"

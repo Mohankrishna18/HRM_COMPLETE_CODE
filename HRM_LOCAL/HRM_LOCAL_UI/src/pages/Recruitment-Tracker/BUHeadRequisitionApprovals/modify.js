@@ -84,7 +84,7 @@ const BUHRequisitionApprove = (props) => {
           <Col>
             <Form role="form">
               <Form.Group
-                controlId="formFileSm"
+                controlid="formFileSm"
                 className="mb-3"
                 style={{ marginTop: "30px" }}
               >
@@ -111,7 +111,7 @@ const BUHRequisitionApprove = (props) => {
                   rows={2}
                   className="buheadApprove"
                   type="text"
-                  controlId="buheadApprove"
+                  controlid="buheadApprove"
                   placeholder="Approve Reason"
                   value={buheadApprove}
                   onChange={(e) => setBuheadApprove(e.target.value)}

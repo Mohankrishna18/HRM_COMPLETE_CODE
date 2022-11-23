@@ -77,7 +77,7 @@ function ProfileRecognizationTab() {
                         rows={4}
                         className="probationempfeedback"
                         type="text"
-                        controlId="probationempfeedback"
+                        controlid="probationempfeedback"
                         placeholder=""
                         // value={probationempfeedback}
                          onChange={(e) => setField("probationempfeedback", e.target.value)}

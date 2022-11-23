@@ -69,7 +69,7 @@ function IRMResignationReject(props) {
             rows={2}
             className="irmReject"
             type="text"
-            controlId="irmReject"
+            controlid="irmReject"
             placeholder="Reject Reason"
             value={irmReject}
             onChange={(e) => setIrmReject(e.target.value)}

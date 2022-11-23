@@ -220,7 +220,7 @@ function AddUser(props) {
                 <Form.Control
                   required
                   type="date"
-                  controlId="timesheet "
+                  controlid="timesheet "
                   value={form.timesheet}
                   onChange={(e) => setField("timesheet", e.target.value)}
                   isInvalid={!!errors.timesheet}
@@ -236,7 +236,7 @@ function AddUser(props) {
                   type="text"
                   
                   required
-                  controlId="project"
+                  controlid="project"
                  // defaultValue={data.projectName}
                   defaultValue={data.projectName}
                 // onChange={(e) => setField("projectName", e.target.value)}
@@ -270,7 +270,7 @@ function AddUser(props) {
                    required
                    type="text"
                    // placeholder="Task Name"
-                  controlId="taskName"
+                  controlid="taskName"
                    defaultValue={item.taskTitle}
                    //onChange={(e) => setField("taskName", e.target.value)}
                    isInvalid={!!errors.taskName}
@@ -293,7 +293,7 @@ function AddUser(props) {
                   required
                   type="date"
                   placeholder="fromDate"
-                  controlId="fromDate"
+                  controlid="fromDate"
                   value={form.fromDate}
                   onChange={(e) => setField("fromDate", e.target.value)}
                   isInvalid={!!errors.fromDate}
@@ -306,7 +306,7 @@ function AddUser(props) {
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>End Date*</Form.Label>
                 <Form.Control type="date" placeholder="Enter "
-                  controlId="toDate"
+                  controlid="toDate"
                   value={form.toDate}
                   onChange={(e) => setField("toDate", e.target.value)}
                 isInvalid={!!errors.toDate}
@@ -324,7 +324,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="Task Type"
-                  controlId="taskType"
+                  controlid="taskType"
                   value={form.taskType}
                   onChange={(e) => setField("taskType", e.target.value)}
                   isInvalid={!!errors.taskType}
@@ -359,7 +359,7 @@ function AddUser(props) {
               {/* <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>CloseDate*</Form.Label>
                 <Form.Control type="date" placeholder="Enter "
-                controlId="CloseDate"
+                controlid="CloseDate"
                 value={form.CloseDate}
                 onChange={(e) => setField("CloseDate", e.target.value)}
                 isInvalid={!!errors.CloseDate} 
@@ -374,7 +374,7 @@ function AddUser(props) {
               {/* <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>StartTime</Form.Label>
                 <Form.Control type="time" placeholder="Enter "
-                controlId="StartTime"
+                controlid="StartTime"
                 value={form.StartTime}
                 onChange={(e) => setField("StartTime", e.target.value)}
                 isInvalid={!!errors.StartTime} 
@@ -389,7 +389,7 @@ function AddUser(props) {
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Estimated Hours</Form.Label>
                 <Form.Control type="number" placeholder="Enter "
-                  controlId="number"
+                  controlid="number"
                   defaultValue={item.estimatedHours}
                  // onChange={(e) => setField("duration", e.target.value)}
                   // isInvalid={!!errors.duration}
@@ -404,7 +404,7 @@ function AddUser(props) {
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Actual  Hours</Form.Label>
                 <Form.Control type="number" placeholder="Enter "
-                  controlId="number"
+                  controlid="number"
                   value={form.duration}
                   onChange={(e) => setField("duration", e.target.value)}
                   // isInvalid={!!errors.duration}
@@ -418,7 +418,7 @@ function AddUser(props) {
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Remaining  Hours</Form.Label>
                 <Form.Control type="number" placeholder="Enter "
-                  controlId="number"
+                  controlid="number"
                   value={form.duration}
                   onChange={(e) => setField("duration", e.target.value)}
                   // isInvalid={!!errors.duration}
@@ -435,7 +435,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="status"
-                  controlId="status"
+                  controlid="status"
                   value={form.status}
                   onChange={(e) => setField("status", e.target.value)}
                 isInvalid={!!errors.status}
@@ -461,7 +461,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="priority"
-                  controlId="priority"
+                  controlid="priority"
                   value={form.priority}
                   onChange={(e) => setField("priority", e.target.value)}
                   isInvalid={!!errors.priority}
@@ -483,7 +483,7 @@ function AddUser(props) {
               <Form.Group className="mb-3">
                 <Form.Label>Description</Form.Label>
                 <Form.Control type="text" placeholder="Enter the Description "
-                  controlId="description"
+                  controlid="description"
                   as="textarea"
                   value={form.description}
                   onChange={(e) => setField("description", e.target.value)}

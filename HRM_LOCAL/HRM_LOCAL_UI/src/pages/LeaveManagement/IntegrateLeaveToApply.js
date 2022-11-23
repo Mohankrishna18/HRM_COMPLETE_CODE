@@ -883,7 +883,7 @@ function IntegrateLeaveToApply() {
                                 as={Col}
                                 md="6"
                                 style={{ padding: 10 }}
-                                controlId="validationCustom02"
+                                controlid="validationCustom02"
                             >
                                 <Form.Label>To</Form.Label>
 
@@ -1050,7 +1050,7 @@ function IntegrateLeaveToApply() {
                                 />
                             </Form.Group>
                             <Form.Group as={Col} md="10" style={{ padding: 10 , paddingLeft: "50px"}}>
-                                <Form.Group controlId="formFileMultiple" className="mb-3">
+                                <Form.Group controlid="formFileMultiple" className="mb-3">
                                     <Form.Label>
                                         Upload Doctor's Certificate for Sick/Medical Condition
                                     </Form.Label>
@@ -1066,7 +1066,7 @@ function IntegrateLeaveToApply() {
                                     as="textarea"
                                     type="text"
                                     rows={2}
-                                    controlId="leaveReason"
+                                    controlid="leaveReason"
                                     placeholder="Leave/WFH Reason"
                                     onChange={(event) => setReasonForLeaves(event.target.value)}
                                     isInvalid={!!errors.leaveReason}
@@ -1074,13 +1074,13 @@ function IntegrateLeaveToApply() {
                                 <Form.Control.Feedback type="invalid">{errors.leaveReason}</Form.Control.Feedback>
                             </Form.Group>
                             {/* <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                                <Form.Group controlId="formFileMultiple" className="mb-3">
+                                <Form.Group controlid="formFileMultiple" className="mb-3">
                                     <Form.Label>
                                         Upload Doctor's Certificate for Sick/Medical Leave
                                     </Form.Label>
                                     <Form.Control type="file" multiple />
                                 </Form.Group> */}
-                                <div class="col-md-12 text-center">
+                                <div className="col-md-12 text-center">
                                     <Button
                                         style={{ backgroundColor: "#f5896e",
                                         borderColor: "#f5896e", borderRadius: "15px" }}

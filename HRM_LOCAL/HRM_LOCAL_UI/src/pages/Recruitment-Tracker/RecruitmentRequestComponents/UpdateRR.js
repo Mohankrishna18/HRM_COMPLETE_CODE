@@ -266,7 +266,7 @@ const UpdateRR = (props) => {
               required
               className="requisitionId"
               type="text"
-              controlId="requisitionId"
+              controlid="requisitionId"
               value={requisitionId}
               disabled
               onChange={(e) => setRequisitionId(e.target.value)}
@@ -282,7 +282,7 @@ const UpdateRR = (props) => {
               required
               className="jobTitle"
               type="text"
-              controlId="jobTitle"
+              controlid="jobTitle"
               value={jobTitle}
               onChange={(e) => setJobTitle(e.target.value)}
               isInvalid={!!errors.jobTitle}
@@ -353,7 +353,7 @@ const UpdateRR = (props) => {
               required
               className="reqType3"
               type="text"
-              controlId="reqType3"
+              controlid="reqType3"
               value={reqType3}
               onChange={(e) => setReqType3(e.target.value)}
               isInvalid={!!errors.reqType3}
@@ -373,8 +373,8 @@ const UpdateRR = (props) => {
             <Form.Select
               required
               type="text"
-
-              controlId="empType"
+             
+              controlid="empType"
               value={empType}
               onChange={(e) => setEmpType(e.target.value)}
               isInvalid={!!errors.empType}
@@ -395,7 +395,7 @@ const UpdateRR = (props) => {
             <Form.Select
               required
               type="text"
-              controlId="departmentName"
+              controlid="departmentName"
               defaultValue={newDepartmentName}
               onChange={(e) => setNewDepartmentName(e.target.value)}
               isInvalid={!!errors.departmentName}
@@ -414,7 +414,7 @@ const UpdateRR = (props) => {
             <Form.Select
               required
               type="text"
-              controlId="clientName"
+              controlid="clientName"
               defaultValue={newClient}
               onChange={(e) => setNewClient(e.target.value)}
               isInvalid={!!errors.clientName}
@@ -433,7 +433,7 @@ const UpdateRR = (props) => {
             <Form.Select
               required
               type="text"
-              controlId="projectName"
+              controlid="projectName"
               defaultValue={newProject}
               onChange={(e) => setNewProject(e.target.value)}
               isInvalid={!!errors.projectName}
@@ -458,7 +458,9 @@ const UpdateRR = (props) => {
                 required
                 type="text"
 
-                controlId="workLocation"
+              
+               
+                controlid="workLocation"
                 isInvalid={seconderrors}
                 value={workLocation}
                 onChange={(e) => {
@@ -488,7 +490,7 @@ const UpdateRR = (props) => {
               required
               className="technology"
               type="text"
-              controlId="technology"
+              controlid="technology"
               value={technology}
               onChange={(e) => setTechnology(e.target.value)}
               isInvalid={!!errors.technology}
@@ -502,8 +504,8 @@ const UpdateRR = (props) => {
             <Form.Control
               required
               type="text"
-
-              controlId="role"
+             
+              controlid="role"
               value={role}
               onChange={(e) => setRole(e.target.value)}
               isInvalid={!!errors.role}
@@ -521,7 +523,7 @@ const UpdateRR = (props) => {
             <Form.Select
               required
               type="text"
-              controlId="allocType"
+              controlid="allocType"
               value={allocType}
               onChange={(e) => setAllocType(e.target.value)}
               isInvalid={!!errors.allocType}
@@ -540,8 +542,8 @@ const UpdateRR = (props) => {
               required
               name="positions"
               type="number"
-              controlId="positions"
-
+              controlid="positions"
+             
               value={positions}
               onChange={(e) => setPositions(e.target.value)}
               isInvalid={!!errors.positions}
@@ -558,8 +560,8 @@ const UpdateRR = (props) => {
               <Form.Control
                 required
                 type="text"
-
-                controlId="yoe"
+               
+                controlid="yoe"
                 isInvalid={thirderrors}
                 value={yoe}
                 onChange={(e) => {
@@ -589,8 +591,8 @@ const UpdateRR = (props) => {
             <Form.Select
               required
               type="text"
-
-              controlId="priority"
+             
+              controlid="priority"
               value={priority}
               onChange={(e) => setPriority(e.target.value)}
               isInvalid={!!errors.priority}
@@ -612,7 +614,7 @@ const UpdateRR = (props) => {
               required
               className="pSkills"
               type="text"
-              controlId="pSkills"
+              controlid="pSkills"
               value={pSkills}
               onChange={(e) => setPSkills(e.target.value)}
               isInvalid={!!errors.pSkills}
@@ -633,7 +635,7 @@ const UpdateRR = (props) => {
               required
               name="sSkills"
               type="text"
-              controlId="sSkills"
+              controlid="sSkills"
               value={sSkills}
               onChange={(e) => setSSkills(e.target.value)}
               isInvalid={!!errors.sSkills}
@@ -652,7 +654,7 @@ const UpdateRR = (props) => {
               type="textarea"
               id="description"
               style={{ height: "80px" }}
-              controlId="description"
+              controlid="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               isInvalid={!!errors.description}
@@ -673,7 +675,7 @@ const UpdateRR = (props) => {
               required
               className="rate"
               type="number"
-              controlId="rate"
+              controlid="rate"
               value={rate}
               onChange={(e) => setRate(e.target.value)}
               isInvalid={!!errors.rate}
@@ -688,8 +690,8 @@ const UpdateRR = (props) => {
               required
               className="workingHours"
               type="text"
-              controlId="workingHours"
-
+              controlid="workingHours"
+             
 
               value={workingHours}
               onChange={(e) => setWorkingHours(e.target.value)}
@@ -706,7 +708,7 @@ const UpdateRR = (props) => {
               required
               className="qualification"
               type="text"
-              controlId="qualification"
+              controlid="qualification"
               value={qualification}
               onChange={(e) => setQualification(e.target.value)}
               isInvalid={!!errors.qualification}
@@ -724,7 +726,7 @@ const UpdateRR = (props) => {
             <Form.Select
               required
               type="text"
-              controlId="pocname"
+              controlid="pocname"
               defaultValue={newPOCName}
               onChange={(e) => setNewPOCName(e.target.value)}
               isInvalid={!!errors.pocname}
@@ -744,8 +746,8 @@ const UpdateRR = (props) => {
               name="uploadDoc"
               type="file"
               id="uploadDoc"
-              controlId="uploadDoc"
-
+              controlid="uploadDoc"
+             
               value={uploadDoc}
               onChange={(e) => setUploadDoc(e.target.value)}
               isInvalid={!!errors.uploadDoc}
@@ -763,7 +765,7 @@ const UpdateRR = (props) => {
               required
               name="comments"
               type="textarea"
-              controlId="comments"
+              controlid="comments"
               style={{ height: "80px" }}
               value={comments}
               onChange={(e) => setComments(e.target.value)}
@@ -782,7 +784,7 @@ const UpdateRR = (props) => {
             <Form.Select
               required
               type="text"
-              controlId="interviewPanel1"
+              controlid="interviewPanel1"
               defaultValue={newInterviewPanel1}
               onChange={(e) => setNewInterviewPanel1(e.target.value)}
               isInvalid={!!errors.interviewPanel1}
@@ -801,7 +803,7 @@ const UpdateRR = (props) => {
             <Form.Select
               required
               type="text"
-              controlId="interviewPanel2"
+              controlid="interviewPanel2"
               defaultValue={newInterviewPanel2}
               onChange={(e) => setNewInterviewPanel2(e.target.value)}
               isInvalid={!!errors.interviewPanel2}
@@ -820,7 +822,7 @@ const UpdateRR = (props) => {
             <Form.Select
               required
               type="text"
-              controlId="hrPanel"
+              controlid="hrPanel"
               defaultValue={newHrPanel}
               onChange={(e) => setNewHrPanel(e.target.value)}
               isInvalid={!!errors.hrPanel}
@@ -841,7 +843,7 @@ const UpdateRR = (props) => {
             <Form.Control
               required
               type="date"
-              controlId="initDate"
+              controlid="initDate"
               value={Moment(initDate).format("YYYY-MM-DD")}
               onChange={(e) => setInitDate(e.target.value)}
               isInvalid={!!errors.initDate}
@@ -857,7 +859,7 @@ const UpdateRR = (props) => {
             <Form.Control
               required
               type="date"
-              controlId="resourceRequiredDate"
+              controlid="resourceRequiredDate"
               value={Moment(resourceRequiredDate).format("YYYY-MM-DD")}
               onChange={(e) => setResourceRequiredDate(e.target.value)}
               isInvalid={!!errors.resourceRequiredDate}
@@ -874,7 +876,7 @@ const UpdateRR = (props) => {
               required
               type="date"
               disabled
-              controlId="raisedOn"
+              controlid="raisedOn"
               value={Moment(raisedOn).format("YYYY-MM-DD")}
               onChange={(e) => setRaisedOn(e.target.value)}
               isInvalid={!!errors.raisedOn}

@@ -68,7 +68,7 @@ const Sidebar = (props) => {
                           style={{ padding: 'none' }}
                           key={item.path}
                           className="link"
-                          exact activeclassName="active"
+                          exact activeclassname="active"
                           to={`${props.prefix}${item.path}`} >
                           <Row style={{ paddingLeft: "7%" }} className="Murali_6">
                             <Col md={2} style={{ fontSize: "140%" }} className="Murali_7">{item.icon}</Col>
@@ -90,7 +90,7 @@ const Sidebar = (props) => {
                           style={{ padding: 'none' }}
                           key={item.path}
                           className="link"
-                          exact activeclassName="active"
+                          exact activeclassname="active"
                           to={`${props.prefix}${item.path}`} >
                           <Row style={{ paddingLeft: "7%" }}>
                             <Col md={2} style={{ fontSize: "140%" }}  >{item.icon}</Col>
@@ -120,7 +120,7 @@ const Sidebar = (props) => {
                                 style={{ padding: 'none' }}
                                 key={item.path}
                                 className="link"
-                                exact activeclassName="active"
+                                exact activeclassname="active"
                                 to={`${props.prefix}${item.path}`} >
                                 <Row>
                                   <Col md={2} style={{ fontSize: "140%" }} >{item.icon}</Col>
@@ -187,7 +187,7 @@ const Sidebar = (props) => {
                                   style={{ padding: 'none' }}
                                   key={item.path}
                                   className="link"
-                                  exact activeclassName="active"
+                                  exact activeclassname="active"
                                   to={`${props.prefix}${item.path}`} >
                                   <Row>
                                     <Col md={2} style={{ fontSize: "140%" }} >{item.icon}</Col>
@@ -220,7 +220,7 @@ const Sidebar = (props) => {
                                   style={{ padding: 'none' }}
                                   key={item.path}
                                   className="link"
-                                  exact activeclassName="active"
+                                  exact activeclassname="active"
                                   to={`${props.prefix}${item.path}`} >
                                   <Row>
                                     <Col md={2} style={{ fontSize: "140%" }} >{item.icon}</Col>
@@ -252,7 +252,7 @@ const Sidebar = (props) => {
                                   style={{ padding: 'none' }}
                                   key={item.path}
                                   className="link"
-                                  exact activeclassName="active"
+                                  exact activeclassname="active"
                                   to={`${props.prefix}${item.path}`} >
                                   <Row>
                                     <Col md={2} style={{ fontSize: "140%" }} >{item.icon}</Col>
@@ -284,7 +284,7 @@ const Sidebar = (props) => {
                                   style={{ padding: 'none' }}
                                   key={item.path}
                                   className="link"
-                                  exact activeclassName="active"
+                                  exact activeclassname="active"
                                   to={`${props.prefix}${item.path}`} >
                                   <Row>
                                     <Col md={2} style={{ fontSize: "140%" }} >{item.icon}</Col>
@@ -316,7 +316,7 @@ const Sidebar = (props) => {
                             style={{padding:'none'}}
                               key={item.path}
                               className="link"
-                              exact activeclassName="active"
+                              exact activeclassname="active"
                               to={`${props.prefix}${item.path}`} >
                               <Row>
                                 <Col md={2} style={{fontSize:"140%"}} >{item.icon}</Col>
@@ -350,7 +350,7 @@ const Sidebar = (props) => {
                           style={{ padding: 'none' }}
                           key={item.path}
                           className="link"
-                          activeclassName="active"
+                          activeclassname="active"
                           to={`${props.prefix}${item.path}`} >
                           <Row style={{ paddingLeft: "7%" }}>
                             <Col md={2} style={{ fontSize: "140%" }} >{item.icon}</Col>

@@ -236,7 +236,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="User Id"
-                  controlId="userId"
+                  controlid="userId"
                   value={form.userId}
                   onChange={(e) => setField("userId", e.target.value)}
                   isInvalid={!!errors.userId}
@@ -253,7 +253,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="Project"
-                  controlId="projectName"
+                  controlid="projectName"
                   defaultValue={props.projectName}
                   value={form.projectName}
                   onChange={(e) => setField("projectName", e.target.value)}
@@ -270,7 +270,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="User Story"
-                  controlId="value1"
+                  controlid="value1"
                   defaultValue={props.value1}
                   value={form.value1}
                   onChange={(e) => setField("value1", e.target.value)}
@@ -290,7 +290,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="Task Type"
-                  controlId="taskType"
+                  controlid="taskType"
                   value={form.taskType}
                   onChange={(e) => setField("taskType", e.target.value)}
                   isInvalid={!!errors.taskType}
@@ -320,7 +320,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="Task Title"
-                  controlId="taskTitle"
+                  controlid="taskTitle"
                   value={form.taskTitle}
                   onChange={(e) => setField("taskTitle", e.target.value)}
                   isInvalid={!!errors.taskTitle}
@@ -336,7 +336,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="status"
-                  controlId="status"
+                  controlid="status"
                   value={form.status}
                   onChange={(e) => setField("status", e.target.value)}
                   isInvalid={!!errors.status}
@@ -359,7 +359,7 @@ function AddUser(props) {
                   type="text"
                   maxLength={3}
                   placeholder="Estimated Hours"
-                  controlId="estimatedHours"
+                  controlid="estimatedHours"
                   value={form.estimatedHours}
                   onChange={(e) => setField("estimatedHours", e.target.value)}
                   isInvalid={!!errors.estimatedHours}
@@ -375,7 +375,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="priority"
-                  controlId="priority"
+                  controlid="priority"
                   value={form.priority}
                   onChange={(e) => setField("priority", e.target.value)}
                   isInvalid={!!errors.priority}
@@ -397,7 +397,7 @@ function AddUser(props) {
                   type="text"
                   placeholder="Actual Hours"
                   maxLength={3}
-                  controlId="actualHours"
+                  controlid="actualHours"
                   value={form.actualHours}
                   onChange={(e) => setField("actualHours", e.target.value)}
                   isInvalid={!!errors.actualHours}
@@ -413,7 +413,7 @@ function AddUser(props) {
                   required
                   type="date"
                   placeholder="plannedStartDate"
-                  controlId="plannedStartDate"
+                  controlid="plannedStartDate"
                   value={form.plannedStartDate}
                   onChange={(e) => setField("plannedStartDate", e.target.value)}
                   isInvalid={!!errors.plannedStartDate}
@@ -428,7 +428,7 @@ function AddUser(props) {
                 <Form.Control
                   type="date"
                   placeholder="Enter "
-                  controlId="plannedEndDate"
+                  controlid="plannedEndDate"
                   value={form.plannedEndDate}
                   min={form.plannedStartDate}
                   onChange={(e) => setField("plannedEndDate", e.target.value)}
@@ -445,7 +445,7 @@ function AddUser(props) {
                   required
                   type="date"
                   placeholder="Assign Date"
-                  controlId="assignDate"
+                  controlid="assignDate"
                   value={form.assignDate}
                   onChange={(e) => setField("assignDate", e.target.value)}
                   isInvalid={!!errors.assignDate}
@@ -461,7 +461,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="assignedTo"
-                  controlId="assignedTo"
+                  controlid="assignedTo"
                   value={form.assignedTo}
                   onChange={(e) => setField("assignedTo", e.target.value)}
                   isInvalid={!!errors.assignedTo}
@@ -489,7 +489,7 @@ function AddUser(props) {
                 <Form.Control
                   type="text"
                   placeholder="Enter the Description "
-                  controlId="description"
+                  controlid="description"
                   as="textarea"
                   value={form.description}
                   onChange={(e) => setField("description", e.target.value)}

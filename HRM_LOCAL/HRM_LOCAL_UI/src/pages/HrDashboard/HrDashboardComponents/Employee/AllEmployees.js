@@ -277,7 +277,7 @@ console.log(male);
         {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data} Male</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {male.length} </Card.Subtitle>)}
         {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data}  Female</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Female : {female.length} </Card.Subtitle>)} */}
 
-          {/* <Card class="shadow p-3 bg-light" style={{ height: "25vh", width: "20vh", paddingTop: "25%", fontSize: "20px" }}>
+          {/* <Card className="shadow p-3 bg-light" style={{ height: "25vh", width: "20vh", paddingTop: "25%", fontSize: "20px" }}>
             <Card.Body >
               {empcount === 0 ? (<Card.Subtitle className="mb-2 text-muted">0 Employees</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Employees : {empcount}</Card.Subtitle>)}
               {data > 0 ? (<Card.Subtitle className="mb-2 text-muted">{data} Male</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted">Male : {male.length} </Card.Subtitle>)}
@@ -364,10 +364,10 @@ console.log(male);
        
           {/* <Card.Body>
             <Row style={{ paddingTop: "4%" }}>
-              <input type="text" class="form-control" placeholder="Employee Name" />
+              <input type="text" className="form-control" placeholder="Employee Name" />
             </Row><Row style={{ paddingTop: "10%" }}>
 
-              <select class="form-control" placeholder="Select Department"
+              <select className="form-control" placeholder="Select Department"
                 onChange={(e) => {
                   console.log(e.target.value);
                   if (e.target.value === "ALL") {
@@ -384,7 +384,7 @@ console.log(male);
             </Row>
 
             <Row style={{ paddingTop: "10%" }}>
-              <button type="button" class="btn btn-success" style={{ width: 200 }} onClick={getEmpData} >Search</button>
+              <button type="button" className="btn btn-success" style={{ width: 200 }} onClick={getEmpData} >Search</button>
             </Row>
           </Card.Body> */}
          

@@ -208,7 +208,7 @@
 //               required
 //               className="employeeId"
 //               type="text"
-//               controlId="employeeId"
+//               controlid="employeeId"
 //               placeholder="employee ID"
 //               // onChange={(event) => setclientName(event.target.value)}
 //               value={employeeId}
@@ -228,7 +228,7 @@
 //               required
 //               className="firstName"
 //               type="text"
-//               controlId="firstName"
+//               controlid="firstName"
 //               placeholder="Employee Name"
 //               disabled
 //               // onChange={(event) => setclientName(event.target.value)}
@@ -250,7 +250,7 @@
 //               type="text"
 //               placeholder=""
 //               disabled
-//               controlId="designationName"
+//               controlid="designationName"
 //               value={designationName}
 //               onChange={(e) =>
 //                 setDesignationName("designationName", e.target.value)
@@ -271,7 +271,7 @@
 //               type="text"
 //               placeholder=""
 //               disabled
-//               controlId="departmentName"
+//               controlid="departmentName"
 //               value={departmentName}
 //               onChange={(e) =>
 //                 setDepartmentName("departmentName", e.target.value)
@@ -290,7 +290,7 @@
 //               required
 //               className="projectName"
 //               type="text"
-//               controlId="projectName"
+//               controlid="projectName"
 //               placeholder="project Name"
 //               disabled
 //               // onChange={(event) => setclientName(event.target.value)}
@@ -310,7 +310,7 @@
 //               required
 //               type="date"
 //               placeholder="Start Date"
-//               controlId="startDate"
+//               controlid="startDate"
 //               value={startDate}
 //               onChange={(e) => setStartDate(e.target.value)}
 //               isInvalid={!!errors.startDate}
@@ -326,7 +326,7 @@
 //               required
 //               className="projectRolesName"
 //               type="text"
-//               controlId="projectRolesName"
+//               controlid="projectRolesName"
 //               placeholder="project Role"
 //               // onChange={(event) => setclientName(event.target.value)}
 //               value={prmasterId}
@@ -355,7 +355,7 @@
 //               required
 //               type="date"
 //               placeholder="End Date"
-//               controlId="endDate"
+//               controlid="endDate"
 //               value={endDate}
 //               min={startDate}
 //               onChange={(e) => setEndDate(e.target.value)}
@@ -373,7 +373,7 @@
 //               required
 //               type="text"
 //               placeholder="Status"
-//               controlId="status"
+//               controlid="status"
 //               value={form.status}
 //               onChange={(e) => setStatus(e.target.value)}
 //               isInvalid={!!errors.status}
@@ -393,7 +393,7 @@
 //               required
 //               type="date"
 //               placeholder="Assigned Date"
-//               controlId="assignedDate"
+//               controlid="assignedDate"
 //               onChange={(e) => setAssignedDate(e.target.value)}
 //               isInvalid={!!errors.assignedDate}
 //             ></Form.Control>
@@ -678,7 +678,7 @@ const UpdateTeamMember = (props) => {
               required
               className="employeeId"
               type="text"
-              controlId="employeeId"
+              controlid="employeeId"
               placeholder="employee ID"
               // onChange={(event) => setclientName(event.target.value)}
               value={employeeId}
@@ -698,7 +698,7 @@ const UpdateTeamMember = (props) => {
               required
               className="firstName"
               type="text"
-              controlId="firstName"
+              controlid="firstName"
               placeholder="Employee Name"
               disabled
               // onChange={(event) => setclientName(event.target.value)}
@@ -720,7 +720,7 @@ const UpdateTeamMember = (props) => {
               type="text"
               placeholder=""
               disabled
-              controlId="designationName"
+              controlid="designationName"
               value={designationName}
               onChange={(e) =>
                 setDesignationName("designationName", e.target.value)
@@ -741,7 +741,7 @@ const UpdateTeamMember = (props) => {
               type="text"
               placeholder=""
               disabled
-              controlId="departmentName"
+              controlid="departmentName"
               value={departmentName}
               onChange={(e) =>
                 setDepartmentName("departmentName", e.target.value)
@@ -760,7 +760,7 @@ const UpdateTeamMember = (props) => {
               required
               className="projectName"
               type="text"
-              controlId="projectName"
+              controlid="projectName"
               placeholder="project Name"
               disabled
               // onChange={(event) => setclientName(event.target.value)}
@@ -780,7 +780,7 @@ const UpdateTeamMember = (props) => {
               required
               type="date"
               placeholder="Start Date"
-              controlId="startDate"
+              controlid="startDate"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
               isInvalid={!!errors.startDate}
@@ -796,7 +796,7 @@ const UpdateTeamMember = (props) => {
               required
               className="projectRolesName"
               type="text"
-              controlId="projectRolesName"
+              controlid="projectRolesName"
               placeholder="project Role"
               // onChange={(event) => setclientName(event.target.value)}
               value={prmasterId}
@@ -825,7 +825,7 @@ const UpdateTeamMember = (props) => {
               required
               type="date"
               placeholder="End Date"
-              controlId="endDate"
+              controlid="endDate"
               value={endDate}
               min={startDate}
               onChange={(e) => setEndDate(e.target.value)}
@@ -843,7 +843,7 @@ const UpdateTeamMember = (props) => {
               required
               type="text"
               placeholder="Status"
-              controlId="status"
+              controlid="status"
               value={form.status}
               onChange={(e) => setStatus(e.target.value)}
               isInvalid={!!errors.status}
@@ -863,7 +863,7 @@ const UpdateTeamMember = (props) => {
               required
               type="date"
               placeholder="Assigned Date"
-              controlId="assignedDate"
+              controlid="assignedDate"
               onChange={(e) => setAssignedDate(e.target.value)}
               isInvalid={!!errors.assignedDate}
             ></Form.Control>

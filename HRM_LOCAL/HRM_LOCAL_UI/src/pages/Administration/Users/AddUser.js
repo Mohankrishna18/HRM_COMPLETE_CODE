@@ -160,7 +160,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="Employee ID"
-                  controlId="employeeId"
+                  controlid="employeeId"
                   value={form.employeeId}
                   onChange={(e) => setField("employeeId", e.target.value)}
                   isInvalid={!!errors.employeeId}
@@ -182,7 +182,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="Role"
-                  controlId="roleName"
+                  controlid="roleName"
                   value={form.roleName}
                   onChange={(e) => setField("roleName", e.target.value)}
                   isInvalid={!!errors.roleName}

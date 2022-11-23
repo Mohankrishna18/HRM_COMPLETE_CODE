@@ -90,7 +90,7 @@ function IRMResignationApprove(props) {
             rows={2}
             className="irmApprove"
             type="text"
-            controlId="irmApprove"
+            controlid="irmApprove"
             placeholder="Approve Reason"
             value={irmApprove}
             onChange={(e) => setIrmApprove(e.target.value)}

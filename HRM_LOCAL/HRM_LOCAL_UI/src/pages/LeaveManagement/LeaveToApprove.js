@@ -104,7 +104,7 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
           </Col>
           <Col>
             <Form.Group className="mb-3">
-              <FloatingLabel controlId="floatingSelectGrid" label="Leave Type">
+              <FloatingLabel controlid="floatingSelectGrid" label="Leave Type">
                 <Form.Select aria-label="Default select">
                   <option>-- Select --</option>
                   <option value="Medical Leave">Medical Leave</option>
@@ -116,7 +116,7 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
           </Col>
           <Col>
             <Form.Group className="mb-3">
-              <FloatingLabel controlId="floatingSelectGrid" label="LeaveStatus">
+              <FloatingLabel controlid="floatingSelectGrid" label="LeaveStatus">
                 <Form.Select aria-label="Default select">
                   <option>-- Select --</option>
                   <option value="Pending">Pending</option>
@@ -129,7 +129,7 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
           <Col>
             <Form.Group className="mb-3">
               <FloatingLabel
-                controlId="floatingSelectGrid"
+                controlid="floatingSelectGrid"
                 label="Select from Date"
               >
                 <Form.Control
@@ -143,7 +143,7 @@ style={{ backgroundColor: "#eb4509", float: "right" }}
           <Col>
             <Form.Group className="mb-3">
               <FloatingLabel
-                controlId="floatingSelectGrid"
+                controlid="floatingSelectGrid"
                 label="Select to Date"
               >
                 <Form.Control

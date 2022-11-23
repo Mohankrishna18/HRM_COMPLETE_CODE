@@ -195,7 +195,7 @@ console.log(dro)
                     required
                     className="leadName"
                     type="text"
-                    controlId="leadName"
+                    controlid="leadName"
                     placeholder="Lead Name"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={leadName}
@@ -219,7 +219,7 @@ console.log(dro)
                     required
                     className="startDate"
                     type="date"
-                    controlId="startDate"
+                    controlid="startDate"
                     placeholder="Start Date"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={startDate}
@@ -239,7 +239,7 @@ console.log(dro)
                     required
                     className="endDate"
                     type="date"
-                    controlId="endDate"
+                    controlid="endDate"
                     placeholder="End Date"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={endDate}
@@ -259,7 +259,7 @@ console.log(dro)
                     required
                     className="sourceName"
                     type="text"
-                    controlId="sourceName"
+                    controlid="sourceName"
                     placeholder="Source Name"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={sourceName}
@@ -278,7 +278,7 @@ console.log(dro)
                     required
                     type="email"
                     placeholder="Source Email"
-                    controlId="sourceEmail"
+                    controlid="sourceEmail"
                     value={sourceEmail}
                     onChange={(e) => setsourceEmail(e.target.value)}
                     isInvalid={!!errors.sourceEmail}
@@ -293,7 +293,7 @@ console.log(dro)
                     required
                     type="text"
                     placeholder="Status"
-                    controlId="status"
+                    controlid="status"
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
                     isInvalid={!!errors.status}
@@ -322,7 +322,7 @@ console.log(dro)
                       type="number"
                       maxLength={10}
                       placeholder="company PhoneNumber"
-                      controlId="companyPhoneNumber"
+                      controlid="companyPhoneNumber"
                       value={form.phoneNumber}
                       onChange={(e) => {
                         setField("companyPhoneNumber", e.target.value);
@@ -350,7 +350,7 @@ console.log(dro)
                     required
                     className="companyCountry"
                     type="text"
-                    controlId="companyCountry"
+                    controlid="companyCountry"
                     placeholder="Select Country"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.companyCountry}
@@ -379,7 +379,7 @@ console.log(dro)
                     as="textarea"
                     className="address"
                     type="text"
-                    controlId="companyAddress"
+                    controlid="companyAddress"
                     placeholder="Company Address"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.companyAddress}
@@ -402,7 +402,7 @@ console.log(dro)
                     required
                     className="companyName"
                     type="text"
-                    controlId="companyName"
+                    controlid="companyName"
                     placeholder="Company Name"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={companyName}
@@ -423,7 +423,7 @@ console.log(dro)
                     placeholder="Company Email"
                     required
                     pattern=".+@gmail\.com"
-                    controlId="companyEmail"
+                    controlid="companyEmail"
                     value={companyEmail}
                     onChange={(e) => setcompanyEmail(e.target.value)}
                     isInvalid={!!errors.companyEmail}
@@ -441,7 +441,7 @@ console.log(dro)
                       type="number"
                       maxLength={10}
                       placeholder="source PhoneNumber"
-                      controlId="sourcePhoneNumber"
+                      controlid="sourcePhoneNumber"
                       value={sourcePhoneNumber}
                       onChange={(e) => {
                         setsourcePhoneNumber(e.target.value);
@@ -469,7 +469,7 @@ console.log(dro)
                     required
                     className="pocName"
                     type="text"
-                    controlId="pocName"
+                    controlid="pocName"
                     placeholder="POC Name"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={pocName}
@@ -495,7 +495,7 @@ console.log(dro)
                     required
                     type="email"
                     placeholder="POC Email"
-                    controlId="pocEmail"
+                    controlid="pocEmail"
                     value={form.pocEmail}
                     onChange={(e) => setField("pocEmail", e.target.value)}
                     isInvalid={!!errors.pocEmail}
@@ -513,7 +513,7 @@ console.log(dro)
                       type="number"
                       maxLength={10}
                       placeholder="POC PhoneNumber"
-                      controlId="pocPhoneNumber"
+                      controlid="pocPhoneNumber"
                       value={form.pocPhoneNumber}
                       onChange={(e) => {
                         setField("pocPhoneNumber", e.target.value);
@@ -544,7 +544,7 @@ console.log(dro)
                     as="textarea"
                     className="businessValue"
                     type="text"
-                    controlId="businessValue"
+                    controlid="businessValue"
                     placeholder="Business Value"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={businessValue}
@@ -567,7 +567,7 @@ console.log(dro)
                     as="textarea"
                     className="leadNotes"
                     type="text"
-                    controlId="leadNotes"
+                    controlid="leadNotes"
                     placeholder="lead Notes"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={leadNotes}
@@ -595,7 +595,7 @@ console.log(dro)
                               as="textarea"
                               className="comment"
                               type="text"
-                              controlId="comment"
+                              controlid="comment"
                               placeholder="Comment"
                               value={form.comment}
                               maxLength={200}

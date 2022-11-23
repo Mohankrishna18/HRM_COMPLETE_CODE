@@ -255,7 +255,7 @@ console.log(dob)
             as={Col}
             className="mb-3"
             md="6"
-            controlId="formBasicEmail"
+            controlid="formBasicEmail"
           >
             <Form.Label>First Name *</Form.Label>
             <Form.Control
@@ -280,7 +280,7 @@ console.log(dob)
             as={Col}
             className="mb-3"
             md="6"
-            controlId="formBasicEmail"
+            controlid="formBasicEmail"
           >
             <Form.Label>Last Name *</Form.Label>
             <Form.Control
@@ -312,7 +312,7 @@ console.log(dob)
             className="mb-3"
             md="6"
             style={{ padding: 10 }}
-            controlId="formBasicEmail"
+            controlid="formBasicEmail"
           >
             <Form.Label>Emergency Phone Number </Form.Label>
             <InputGroup>
@@ -342,7 +342,7 @@ console.log(dob)
               // required
               type="date"
               name="dateOfBirth"
-              controlId="dateOfBirth"
+              controlid="dateOfBirth"
               value={props.viewOnboard.dateOfBirth}
             ></Form.Control>
           </Form.Group>
@@ -353,7 +353,7 @@ console.log(dob)
               required
               type="text"
               name="bloodGroup"
-              controlId="bloodGroup"
+              controlid="bloodGroup"
               value={props.viewOnboard.bloodGroup}
             />
           </Form.Group>
@@ -363,7 +363,7 @@ console.log(dob)
               required
               type="text"
               name="gender"
-              controlId="gender"
+              controlid="gender"
               value={props.viewOnboard.gender}
               
             />
@@ -374,7 +374,7 @@ console.log(dob)
               required
               type="text"
               name="maritalStatus"
-              controlId="maritalStatus"
+              controlid="maritalStatus"
               value={props.viewOnboard.maritalStatus}
             />
           </Form.Group>

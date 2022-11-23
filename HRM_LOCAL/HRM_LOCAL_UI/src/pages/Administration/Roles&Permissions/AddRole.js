@@ -148,7 +148,7 @@ function AddRole(props) {
                   required
                   className="roleName"
                   type="text"
-                  controlId="roleName"
+                  controlid="roleName"
                   placeholder="Role Name"
                   // onChange={(event) => setFirstName(event.target.value)}
                   value={form.roleName}
@@ -167,7 +167,7 @@ function AddRole(props) {
                   required
                   type="text"
                   placeholder="Module-1"
-                  controlId="permission1"
+                  controlid="permission1"
                   value={form.permission1}
                   onChange={(e) => setField("permission1", e.target.value)}
                   isInvalid={!!errors.permission1}
@@ -191,7 +191,7 @@ function AddRole(props) {
                   required
                   type="text"
                   placeholder="Module-2"
-                  controlId="permission2"
+                  controlid="permission2"
                   value={form.permission2}
                   onChange={(e) => setField("permission2", e.target.value)}
                   isInvalid={!!errors.permission2}
@@ -215,7 +215,7 @@ function AddRole(props) {
                   required
                   type="text"
                   placeholder="Module-3"
-                  controlId="permission3"
+                  controlid="permission3"
                   value={form.permission3}
                   onChange={(e) => setField("permission3", e.target.value)}
                   isInvalid={!!errors.permission3}
@@ -239,7 +239,7 @@ function AddRole(props) {
                   required
                   type="text"
                   placeholder="Module-4"
-                  controlId="permission4"
+                  controlid="permission4"
                   value={form.permission4}
                   onChange={(e) => setField("permission4", e.target.value)}
                   isInvalid={!!errors.permission4}
@@ -263,7 +263,7 @@ function AddRole(props) {
                   required
                   type="text"
                   placeholder="Module-5"
-                  controlId="permission5"
+                  controlid="permission5"
                   value={form.permission5}
                   onChange={(e) => setField("permission5", e.target.value)}
                   isInvalid={!!errors.permission5}
@@ -287,7 +287,7 @@ function AddRole(props) {
                   required
                   type="text"
                   placeholder="Module-6"
-                  controlId="permission6"
+                  controlid="permission6"
                   value={form.permission6}
                   onChange={(e) => setField("permission6", e.target.value)}
                   isInvalid={!!errors.permission6}
@@ -311,7 +311,7 @@ function AddRole(props) {
                   required
                   type="text"
                   placeholder="Module-7"
-                  controlId="permission7"
+                  controlid="permission7"
                   value={form.permission7}
                   onChange={(e) => setField("permission7", e.target.value)}
                   isInvalid={!!errors.permission7}
@@ -335,7 +335,7 @@ function AddRole(props) {
                   required
                   type="text"
                   placeholder="Module-8"
-                  controlId="permission8"
+                  controlid="permission8"
                   value={form.permission8}
                   onChange={(e) => setField("permission8", e.target.value)}
                   isInvalid={!!errors.permission8}
@@ -359,7 +359,7 @@ function AddRole(props) {
                   required
                   type="text"
                   placeholder="Module-9"
-                  controlId="permission9"
+                  controlid="permission9"
                   value={form.permission2}
                   onChange={(e) => setField("permission9", e.target.value)}
                   isInvalid={!!errors.permission9}
@@ -383,7 +383,7 @@ function AddRole(props) {
                   required
                   type="text"
                   placeholder="Module-10"
-                  controlId="permission10"
+                  controlid="permission10"
                   value={form.permission10}
                   onChange={(e) => setField("permission10", e.target.value)}
                   isInvalid={!!errors.permission10}
@@ -700,10 +700,10 @@ export default AddRole;
 //                   </Form.Group>
 //                   </Row>
 //                   <Stack gap={3}></Stack>
-//                   <div class="d-flex justify-content-around">
+//                   <div className="d-flex justify-content-around">
 //                     {/* <Modal.Footer> */}
 //                     {/* <div className="form-group"> */}
-//                     <div class="col-md-12 text-center">
+//                     <div className="col-md-12 text-center">
 //                       <Row>
 //                         <Col md={12}>
 //                           <button
@@ -732,7 +732,7 @@ export default AddRole;
 
 //         <Row>
 //           <Col md={12}>
-//             <table class="table">
+//             <table className="table">
 //               <thead>
 //                 <tr>
 //                   <th scope="col">Role Id</th>

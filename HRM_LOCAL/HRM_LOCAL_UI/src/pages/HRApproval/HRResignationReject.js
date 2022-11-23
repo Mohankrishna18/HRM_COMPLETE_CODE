@@ -70,7 +70,7 @@ function HRResignationReject(props) {
                         rows={2}
                         className="hrReject"
                         type="text"
-                        controlId="hrReject"
+                        controlid="hrReject"
                         placeholder="Reject Reason"
                         value={hrReject}
                         onChange={(e) => setHrReject(e.target.value)}

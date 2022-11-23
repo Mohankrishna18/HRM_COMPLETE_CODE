@@ -108,7 +108,7 @@ const ClientUpdatedForm = (props) => {
               required
               className="clientName"
               type="text"
-              controlId="clientName"
+              controlid="clientName"
               placeholder="Client Name  "
               defaultValue={clientName}
               // value={firstName}
@@ -139,7 +139,7 @@ const ClientUpdatedForm = (props) => {
               required
               type="email"
               placeholder="Email "
-              controlId="email"
+              controlid="email"
               defaultValue={email}
               // value={emailId}
               onChange={(e) => {
@@ -170,7 +170,7 @@ const ClientUpdatedForm = (props) => {
               required
               type="text"
               placeholder="Phone Number"
-              controlId="phoneNumber"
+              controlid="phoneNumber"
               defaultValue={phoneNumber}
               // value={phoneNumber}
               onChange={(e) => {
@@ -204,7 +204,7 @@ const ClientUpdatedForm = (props) => {
                 required
                 type="text"
                 placeholder="Phone Number"
-                controlId="phoneNumber"
+                controlid="phoneNumber"
                 isInvalid={thirderrors}
                 value={phoneNumber}
                 onChange={(e) => {
@@ -236,7 +236,7 @@ const ClientUpdatedForm = (props) => {
               required
               className="pocName"
               type="text"
-              controlId="pocName"
+              controlid="pocName"
               placeholder="POC Name  "
               defaultValue={pocName}
               // value={firstName}
@@ -269,7 +269,7 @@ const ClientUpdatedForm = (props) => {
               name="startDate"
               type="text"
               disabled
-              controlId="startDate"
+              controlid="startDate"
               placeholder="Start Date"
               defaultValue={strtdt}
               // onChange={(e) => setstartDate(e.target.value)}
@@ -291,7 +291,7 @@ const ClientUpdatedForm = (props) => {
               type="date"
               formate ="dd-mm-yyyy"
               placeholder="endDate"
-              controlId="endDate"
+              controlid="endDate"
               defaultValue={enddt}
               min={startDate}
               onChange={(e) => setEndDate(e.target.value)}
@@ -309,7 +309,7 @@ const ClientUpdatedForm = (props) => {
               required
               type="text"
               placeholder="Status"
-              controlId="status"
+              controlid="status"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
               // isInvalid={!!errors.status}
@@ -330,7 +330,7 @@ const ClientUpdatedForm = (props) => {
               required
               name="country"
               type="text"
-              controlId="country"
+              controlid="country"
               placeholder="Select Country"
               value={country}
               maxLength={30}
@@ -356,7 +356,7 @@ const ClientUpdatedForm = (props) => {
               required
               className="country"
               type="text"
-              controlId="country"
+              controlid="country"
               placeholder="Country "
               defaultValue={country}
               // value={firstName}
@@ -387,7 +387,7 @@ const ClientUpdatedForm = (props) => {
               required
               name="address"
               type="text"
-              controlId="address"
+              controlid="address"
               placeholder="address"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
@@ -406,7 +406,7 @@ const ClientUpdatedForm = (props) => {
               required
               name="tag"
               type="text"
-              controlId="tag"
+              controlid="tag"
               placeholder="tag"
               value={tag}
               onChange={(e) => setTag(e.target.value)}
@@ -425,7 +425,7 @@ const ClientUpdatedForm = (props) => {
               required
               name="note"
               type="text"
-              controlId="note"
+              controlid="note"
               placeholder="note"
               value={note}
               onChange={(e) => setNote(e.target.value)}
