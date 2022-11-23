@@ -383,4 +383,12 @@ public class LeaveController {
 	    }      
 	}
 	
+	@GetMapping("/findLeavesCountBetWeenTwoDates/{employeeId}/{startDate}/{endDate}")
+    public ResponseEntity<Integer> findLeavesCountBetWeenTwoDates(@PathVariable String employeeId,
+            @PathVariable String startDate, @PathVariable String endDate) throws ParseException, Exception {
+        return ResponseEntity
+                .ok(br.findLeavesCountBetWeenTwoDates(employeeId, new SimpleDateFormat("yyyy-MM-dd").parse(startDate),
+                        new SimpleDateFormat("yyyy-MM-dd").parse(endDate)));
+    }
+	
 }
