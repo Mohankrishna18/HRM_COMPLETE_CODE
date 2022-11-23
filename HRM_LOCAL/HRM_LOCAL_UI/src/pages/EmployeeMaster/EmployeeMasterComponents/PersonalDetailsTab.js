@@ -349,10 +349,8 @@ function PersonalDetailsTab() {
                     setThirdErrors(
                       " Enter valid Number")
                   }else{
-                    setThirdErrors(
-                      " ")
+                    setThirdErrors(" ")
                   }
-                  
                   if (lastName === "") {
                     setSerror("Last Name is Required");
                   } else {
@@ -378,6 +376,7 @@ function PersonalDetailsTab() {
               <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
               <Form.Control
                 required
+                type="text"
                 value={secondaryPhoneNumber}
                 maxLength={10}
                 isInvalid={nineerrors}
@@ -392,13 +391,12 @@ function PersonalDetailsTab() {
                   }else {
                     setNineErrors("");
                   }
-                  if (phoneNumber === "") {
+                  if (primaryPhoneNumber === "") {
                     setThirdErrors("Phone Number is Required");
                   } else {
                     setThirdErrors("");
                   }
                 }}
-                type="number"
                 placeholder="Enter Emergency Phone number"
               />
             </InputGroup>

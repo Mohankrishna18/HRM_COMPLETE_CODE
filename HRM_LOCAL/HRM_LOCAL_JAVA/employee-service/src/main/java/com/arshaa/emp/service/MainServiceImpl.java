@@ -50,6 +50,8 @@ import com.arshaa.emp.model.Experience;
 import com.arshaa.emp.model.GetEmployeeIds;
 import com.arshaa.emp.model.GetListByBandForManager;
 import com.arshaa.emp.model.HrApprovalStatus;
+import com.arshaa.emp.model.LeaveBalanceModel;
+import com.arshaa.emp.model.LeaveMaster;
 import com.arshaa.emp.model.PersonalDetails;
 import com.arshaa.emp.model.PreOnboarding;
 import com.arshaa.emp.model.ProbationEmployeeFeedBack;
@@ -558,6 +560,7 @@ public class MainServiceImpl implements MainService {
 			template.postForObject(userURL, users, Users.class);
 
 			// Posting data to Employee login table
+			
 			EmployeeLogin login = new EmployeeLogin();
 			login.setEmail(newEmployee.getEmail());
 			login.setUserName(userId);
@@ -1198,6 +1201,7 @@ public class MainServiceImpl implements MainService {
 		Response r = new Response<>();
 		try {
 			EmployeeMaster em = emRepo.getById(employeeId);
+			LeaveBalanceModel lbm = new LeaveBalanceModel();
 			if (!em.equals(null)) {
 				em.setPrimarySkills(empd.getPrimarySkills());
 				em.setSecondarySkills(empd.getSecondarySkills());
@@ -1215,8 +1219,32 @@ public class MainServiceImpl implements MainService {
 				em.setConfirmationDate(empd.getConfirmationDate());
 				em.setLeaveBalance(empd.getLeaveBalance());
 				emRepo.save(em);
+				//get data from Leave Master Table
+				String Listemployees="http://leaveservice/leave/getLeaveBalance";
+				LeaveBalanceModel getData =  template.getForObject(Listemployees, LeaveBalanceModel.class);
+			
+				//update call for Leava Balance in Leave Table
+				String updateLeaveBalance = "http://leaveservice/leave/updateLeaveBalance/";
+
+				//Post employeeId and Leave Balance to Leave Mater Table 
+				String post="http://leaveservice/leave/postLeaves";
+				LeaveMaster lm = new LeaveMaster();
 				
+				if(getData.getEmployeeId().isEmpty()) {
+					
+					lm.setEmployeeId(em.getEmployeeId());
+					lm.setLeaveBalance(em.getLeaveBalance());
+					template.postForObject(post,lm, LeaveMaster.class);
+				    
+				}else {
+					lbm.setLeaveBalance(empd.getLeaveBalance());
+					template.put(updateLeaveBalance+em.getEmployeeId(),lbm,LeaveBalanceModel.class);
+				}
+				
+				
+		                
 				String updateStatus = "http://loginservice/login/makeLoginsInActive/";
+				
                 if (em.getStatus().equalsIgnoreCase("InActive")) {
                 String restemplate = template.getForObject(updateStatus+em.getEmployeeId(),String.class);
                 }
@@ -1235,7 +1263,6 @@ public class MainServiceImpl implements MainService {
 			return new ResponseEntity(r, HttpStatus.OK);
 		}
 	}
-
 	@Override
 	public ResponseEntity getEducationalDetailsByEmployeeId(String employeeId) {
 		Response r = new Response<>();

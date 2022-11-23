@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import ReactTable from '../../commonComponents/ReactTable';
 import { Button, Modal, Tab, Table, Tabs, Row, Col, Card } from "react-bootstrap";
@@ -130,7 +131,7 @@ export default function ChangeUserDetails(props) {
                 <th style={{ color: "white" }}>Employment Type</th>
                 <th style={{ color: "white" }}>IRM</th>
                 <th style={{ color: "white" }}>SRM</th>
-                <th style={{ color: "white" }}>Leave Balance</th>
+                {/* <th style={{ color: "white" }}>Leave Balance</th> */}
                 <th style={{ color: "white" }}>Resignation Date</th>
                 <th style={{ color: "white" }}>Exit Date</th>
                 <th style={{ color: "white" }}>Action</th>
@@ -151,7 +152,7 @@ export default function ChangeUserDetails(props) {
                     <td>{data.employmentType}</td>
                     <td>{data.irm}</td>
                     <td>{data.srm}</td>
-                    <td>{data.leaveBalance}</td>
+                    {/* <td>{data.leaveBalance}</td> */}
                     <td> {data.resignationDate ? <Moment format="DD/MM/YYYY">
                       {data.resignationDate}
                     </Moment> : <></>}</td>
