@@ -19,10 +19,10 @@ import { Divider } from '@mui/material';
 const TabWithCount = ({ children, count }) => {
   return (
     <Box sx={{ display: "inline-flex", alignItems: "center" }}>
-      <Typography component="div">{children}</Typography>
+      <Typography component="span">{children}</Typography>
       {count ? (
         <Typography
-          component="div"
+          component="span"
           variant="body2"
           sx={{ marginLeft: "0.5rem" }}
         >

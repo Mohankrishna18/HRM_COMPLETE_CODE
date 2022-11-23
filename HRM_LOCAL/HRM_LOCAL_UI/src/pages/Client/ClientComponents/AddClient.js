@@ -197,7 +197,7 @@ function AddClient(props) {
                   required
                   className="clientName"
                   type="text"
-                  controlId="clientName"
+                  controlid="clientName"
                   placeholder="Client/Company Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.clientName}
@@ -217,7 +217,7 @@ function AddClient(props) {
                   required
                   type="email"
                   placeholder="Email"
-                  controlId="email"
+                  controlid="email"
                   value={form.email}
                   onChange={(e) => setField("email", e.target.value)}
                   isInvalid={!!errors.email}
@@ -237,7 +237,7 @@ function AddClient(props) {
                     required
                     type="text"
                     placeholder="Phone Number"
-                    controlId="phoneNumber"
+                    controlid="phoneNumber"
                     value={form.phoneNumber}
                     onChange={(e) => setField("phoneNumber", e.target.value)}
                     isInvalid={!!errors.phoneNumber}
@@ -258,7 +258,7 @@ function AddClient(props) {
                   required
                   className="pocName"
                   type="text"
-                  controlId="pocName"
+                  controlid="pocName"
                   placeholder="POC Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.pocName}
@@ -278,7 +278,7 @@ function AddClient(props) {
                   required
                   type="date"
                   placeholder="Start Date"
-                  controlId="startDate"
+                  controlid="startDate"
                   value={form.startDate}
                   onChange={(e) => setField("startDate", e.target.value)}
                   isInvalid={!!errors.startDate}
@@ -296,7 +296,7 @@ function AddClient(props) {
                   required
                   type="date"
                   placeholder="End Date"
-                  controlId="endDate"
+                  controlid="endDate"
                   value={form.endDate}
                   min={form.startDate}
                   onChange={(e) => setField("endDate", e.target.value)}
@@ -318,7 +318,7 @@ function AddClient(props) {
                   required
                   type="text"
                   placeholder="Status"
-                  controlId="status"
+                  controlid="status"
                   value={form.status}
                   onChange={(e) => setField("status", e.target.value)}
                   isInvalid={!!errors.status}
@@ -339,7 +339,7 @@ function AddClient(props) {
                   required
                   type="text"
                   placeholder="Country"
-                  controlId="country"
+                  controlid="country"
                   value={form.country}
                   maxLength={100}
                   onChange={(e) => setField("country", e.target.value)}
@@ -358,7 +358,7 @@ function AddClient(props) {
                   required
                   className="countries"
                   type="text"
-                  controlId="countries"
+                  controlid="countries"
                   placeholder="Select Country"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.country}
@@ -385,7 +385,7 @@ function AddClient(props) {
                   as="textarea"
                   className="address"
                   type="text"
-                  controlId="address"
+                  controlid="address"
                   placeholder="Address"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.address}
@@ -406,7 +406,7 @@ function AddClient(props) {
                   as="textarea"
                   className="tag"
                   type="text"
-                  controlId="tag"
+                  controlid="tag"
                   placeholder="TAG"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.tag}
@@ -427,7 +427,7 @@ function AddClient(props) {
                   as="textarea"
                   className="note"
                   type="text"
-                  controlId="note"
+                  controlid="note"
                   placeholder="Notes/Description"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.note}

@@ -104,7 +104,7 @@ function HRResignationApprove(props) {
                         rows={2}
                         className="hrApprove"
                         type="text"
-                        controlId="hrApprove"
+                        controlid="hrApprove"
                         placeholder="Approve Reason"
                         value={hrApprove}
                         onChange={(e) => setHrApprove(e.target.value)}

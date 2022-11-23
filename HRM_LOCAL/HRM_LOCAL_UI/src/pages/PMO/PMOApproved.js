@@ -210,7 +210,7 @@ console.log(onboardingId);
                         rows={2}
                         className="pmoApprovalComment"
                         type="text"
-                        controlId="pmoApprovalComment"
+                        controlid="pmoApprovalComment"
                         placeholder="Approve Reason"
                         value={form.pmoApprovalComment}
                         onChange={(e) => setField("pmoApprovalComment", e.target.value)}

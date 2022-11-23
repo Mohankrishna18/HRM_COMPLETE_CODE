@@ -60,7 +60,7 @@ function CEOApproved(props) {
                                     rows={2}
                                     className="ceoApprovalComment"
                                     type="text"
-                                    controlId="ceoApprovalComment"
+                                    controlid="ceoApprovalComment"
                                     placeholder="Approve Reason"
                                     value={form.ceoApprovalComment}
                                     onChange={(e) => setField("ceoApprovalComment", e.target.value)}

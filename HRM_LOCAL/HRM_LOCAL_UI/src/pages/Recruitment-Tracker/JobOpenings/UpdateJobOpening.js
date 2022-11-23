@@ -115,7 +115,7 @@ function UpdateJobOpening(props) {
                 required
                 className="jobTitle"
                 type="text"
-                controlId="jobTitle"
+                controlid="jobTitle"
                 placeholder="Job Title"
                 // onChange={(event) => setclientName(event.target.value)}
                 value={jobTitle}
@@ -133,7 +133,7 @@ function UpdateJobOpening(props) {
                 required
                 className="desc"
                 type="text"
-                controlId="desc"
+                controlid="desc"
                 placeholder="Description"
                 // onChange={(event) => setclientName(event.target.value)}
                 value={desc}
@@ -153,7 +153,7 @@ function UpdateJobOpening(props) {
               required
               type="text"
               placeholder="Status"
-              controlId="status"
+              controlid="status"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
               isInvalid={!!errors.status}
@@ -174,7 +174,7 @@ function UpdateJobOpening(props) {
               required
               name="positions"
               type="number"
-              controlId="positions"
+              controlid="positions"
               placeholder="Positions"
               value={positions}
               onChange={(e) => setPositions(e.target.value)}
@@ -195,7 +195,7 @@ function UpdateJobOpening(props) {
               required
               type="number"
               placeholder="Phone Number"
-              controlId="comapnyPhoneNumber"
+              controlid="comapnyPhoneNumber"
               isInvalid={firsterrors}
               value={companyPhoneNumber}
               onChange={(e) => {setcompanyPhoneNumber(e.target.value);
@@ -225,7 +225,7 @@ function UpdateJobOpening(props) {
             required
             name="address"
             type="text"
-            controlId="companyAddress"
+            controlid="companyAddress"
             placeholder="Company Address"
             value={companyAddress}
             onChange={(e) => setcompanyAddress(e.target.value)}
@@ -244,7 +244,7 @@ function UpdateJobOpening(props) {
             required
             name="country"
             type="text"
-            controlId="companyCountry"
+            controlid="companyCountry"
             placeholder="Select Country"
             value={companyCountry}
             maxLength={30}
@@ -268,7 +268,7 @@ function UpdateJobOpening(props) {
               required
               className="pSkills"
               type="text"
-              controlId="pSkills"
+              controlid="pSkills"
               placeholder="Primary Skills"
               // onChange={(event) => setclientName(event.target.value)}
               value={pSkills}
@@ -288,7 +288,7 @@ function UpdateJobOpening(props) {
               required
               name="sSkills"
               type="text"
-              controlId="sSkills"
+              controlid="sSkills"
               placeholder="Secondary Skills"
               value={sSkills}
               onChange={(e) => setSSkills(e.target.value)}
@@ -310,7 +310,7 @@ function UpdateJobOpening(props) {
                 required
                 type="text"
                 placeholder="Work Location"
-                controlId="workLocation"
+                controlid="workLocation"
                 isInvalid={seconderrors}
                 value={workLocation}
                 onChange={(e) => {
@@ -343,7 +343,7 @@ function UpdateJobOpening(props) {
               required
               className="workingHours"
               type="text"
-              controlId="workingHours"
+              controlid="workingHours"
               placeholder="Working Hours"
               // onChange={(event) => setclientName(event.target.value)}
               value={workingHours}
@@ -362,7 +362,7 @@ function UpdateJobOpening(props) {
               required
               type="text"
               placeholder="Employment Type"
-              controlId="empType"
+              controlid="empType"
               value={empType}
               onChange={(e) => setEmpType(e.target.value)}
               isInvalid={!!errors.empType}
@@ -381,7 +381,7 @@ function UpdateJobOpening(props) {
               required
               type="text"
               placeholder="Business Unit"
-              controlId="departments"
+              controlid="departments"
               value={departments}
               onChange={(e) => setDepartments(e.target.value)}
               isInvalid={!!errors.departments}
@@ -404,7 +404,7 @@ function UpdateJobOpening(props) {
                 required
                 type="text"
                 placeholder="Years of Experience"
-                controlId="yoe"
+                controlid="yoe"
                 isInvalid={thirderrors}
                 value={yoe}
                 onChange={(e) => {
@@ -438,7 +438,7 @@ function UpdateJobOpening(props) {
               required
               className="rate"
               type="number"
-              controlId="rate"
+              controlid="rate"
               placeholder="Rate"
               // onChange={(event) => setclientName(event.target.value)}
               value={rate}
@@ -465,7 +465,7 @@ function UpdateJobOpening(props) {
                 required
                 type="mail"
                 placeholder="Mail ID"
-                controlId="mail"
+                controlid="mail"
                 isInvalid={thirderrors}
                 value={mail}
                 onChange={(e) => {
@@ -497,7 +497,7 @@ function UpdateJobOpening(props) {
               required
               className="phone"
               type="tel"
-              controlId="phone"
+              controlid="phone"
               placeholder="Phone Number"
               // onChange={(event) => setclientName(event.target.value)}
               value={phone}

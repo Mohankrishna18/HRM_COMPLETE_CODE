@@ -65,7 +65,7 @@ const OnHold = () => {
                 required
                 type="text"
                 placeholder="Designation"
-                controlId="desgination"
+                controlid="desgination"
                 value={form.desgination}
                 onChange={(e) => setField("desgination", e.target.value)}
                 isInvalid={!!errors.desgination}

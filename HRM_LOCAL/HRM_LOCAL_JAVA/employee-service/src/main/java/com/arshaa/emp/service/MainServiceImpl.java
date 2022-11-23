@@ -50,6 +50,8 @@ import com.arshaa.emp.model.Experience;
 import com.arshaa.emp.model.GetEmployeeIds;
 import com.arshaa.emp.model.GetListByBandForManager;
 import com.arshaa.emp.model.HrApprovalStatus;
+import com.arshaa.emp.model.LeaveBalanceModel;
+import com.arshaa.emp.model.LeaveMaster;
 import com.arshaa.emp.model.PersonalDetails;
 import com.arshaa.emp.model.PreOnboarding;
 import com.arshaa.emp.model.ProbationEmployeeFeedBack;
@@ -558,6 +560,7 @@ public class MainServiceImpl implements MainService {
 			template.postForObject(userURL, users, Users.class);
 
 			// Posting data to Employee login table
+			
 			EmployeeLogin login = new EmployeeLogin();
 			login.setEmail(newEmployee.getEmail());
 			login.setUserName(userId);
@@ -1194,48 +1197,87 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public ResponseEntity updateEmploymentDetailsByEmployeeId(EmploymentDetails empd, String employeeId) {
-		Response r = new Response<>();
-		try {
-			EmployeeMaster em = emRepo.getById(employeeId);
-			if (!em.equals(null)) {
-				em.setPrimarySkills(empd.getPrimarySkills());
-				em.setSecondarySkills(empd.getSecondarySkills());
-				em.setBand(empd.getBand());
-				em.setDepartmentName(empd.getDepartmentName());
-				em.setDesignationName(empd.getDesignationName());
-				em.setReportingManager(empd.getReportingManager());
-				em.setProjectName(empd.getProjectName());
-				em.setExitDate(empd.getExitDate());
-				em.setResignationDate(empd.getResignationDate());
-				em.setStatus(empd.getStatus());
-				em.setEmploymentType(empd.getEmploymentType());
-				em.setIrm(empd.getIrm());
-				em.setSrm(empd.getSrm());
-				em.setConfirmationDate(empd.getConfirmationDate());
-				em.setLeaveBalance(empd.getLeaveBalance());
-				emRepo.save(em);
-				
-				String updateStatus = "http://loginservice/login/makeLoginsInActive/";
-                if (em.getStatus().equalsIgnoreCase("InActive")) {
-                String restemplate = template.getForObject(updateStatus+em.getEmployeeId(),String.class);
+    public ResponseEntity updateEmploymentDetailsByEmployeeId(EmploymentDetails empd, String employeeId) {
+        Response r = new Response<>();
+        try {
+            EmployeeMaster em = emRepo.getById(employeeId);
+            
+            if (!em.equals(null)) {
+                em.setPrimarySkills(empd.getPrimarySkills());
+                em.setSecondarySkills(empd.getSecondarySkills());
+                em.setBand(empd.getBand());
+                em.setDepartmentName(empd.getDepartmentName());
+                em.setDesignationName(empd.getDesignationName());
+                em.setReportingManager(empd.getReportingManager());
+                em.setProjectName(empd.getProjectName());
+                em.setExitDate(empd.getExitDate());
+                em.setResignationDate(empd.getResignationDate());
+                em.setStatus(empd.getStatus());
+                em.setEmploymentType(empd.getEmploymentType());
+                em.setIrm(empd.getIrm());
+                em.setSrm(empd.getSrm());
+                em.setConfirmationDate(empd.getConfirmationDate());
+                em.setLeaveBalance(empd.getLeaveBalance());
+                emRepo.save(em);
+                
+                LeaveMaster lm = new LeaveMaster();
+                
+                //get data from Leave Master Table  
+                String Listemployees="http://leaveservice/leave/leaveBalanceByEmployeeId/";
+                LeaveMaster getData =  template.getForObject(Listemployees+em.getEmployeeId(), LeaveMaster.class);
+            
+                if(getData == null) {
+                    
+                    //Post employeeId and Leave Balance to Leave Mater Table
+                    String post="http://leaveservice/leave/postLeaves";
+                    
+                    lm.setEmployeeId(em.getEmployeeId());
+                    lm.setLeaveBalance(em.getLeaveBalance());
+                    template.postForObject(post,lm, LeaveMaster.class);    
+                }else {
+                    
+                    //update call for Leava Balance in Leave Table
+                    String updateLeaveBalance = "http://leaveservice/leave/updateLeaveBalance/";
+                    LeaveBalanceModel lbm = new LeaveBalanceModel();
+                    
+                    lbm.setLeaveBalance(empd.getLeaveBalance());
+                    template.put(updateLeaveBalance+em.getEmployeeId(),lbm,LeaveBalanceModel.class);
                 }
-				r.setStatus(true);
-				r.setMessage("Data Fetching");
-				r.setData(em);
-				return new ResponseEntity(r, HttpStatus.OK);
-			} else {
-				r.setStatus(false);
-				r.setMessage("Data Not updated");
-				return new ResponseEntity(r, HttpStatus.OK);
-			}
-		} catch (Exception e) {
-			r.setStatus(false);
-			r.setMessage("Something went wrong");
-			return new ResponseEntity(r, HttpStatus.OK);
-		}
-	}
+                
+                
+//                //update call for Leava Balance in Leave Table
+//                String updateLeaveBalance = "http://leaveservice/leave/updateLeaveBalance/";
+//                LeaveBalanceModel lbm = new LeaveBalanceModel();
+//                
+//                lbm.setLeaveBalance(empd.getLeaveBalance());
+//                template.put(updateLeaveBalance+em.getEmployeeId(),lbm,LeaveBalanceModel.class);
+                
 
+
+
+               if (em.getStatus().equalsIgnoreCase("InActive")) {
+                    
+                    //updating status in login table
+                    String updateStatus = "http://loginservice/login/makeLoginsInActive/";
+                     String restemplate = template.getForObject(updateStatus+em.getEmployeeId(),String.class);
+                }
+                
+                r.setStatus(true);
+                r.setMessage("Data Fetching");
+                r.setData(em);
+                return new ResponseEntity(r, HttpStatus.OK);
+            } else {
+                r.setStatus(false);
+                r.setMessage("Data Not updated");
+                return new ResponseEntity(r, HttpStatus.OK);
+            }
+        } catch (Exception e) {
+            r.setStatus(false);
+            r.setMessage(e.getMessage());
+            return new ResponseEntity(r, HttpStatus.OK);
+        }
+    }
+	
 	@Override
 	public ResponseEntity getEducationalDetailsByEmployeeId(String employeeId) {
 		Response r = new Response<>();

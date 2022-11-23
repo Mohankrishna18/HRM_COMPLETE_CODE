@@ -215,7 +215,7 @@ const UpdateCandidate = (props) => {
               required
               className="jobTitle"
               type="text"
-              controlId="jobTitle"
+              controlid="jobTitle"
               placeholder="Job Title"
               defaultValue={jobTitle}
               // onChange={(e) => setJobTitle(e.target.value)}
@@ -246,7 +246,7 @@ const UpdateCandidate = (props) => {
               disabled
               className="requisitionId"
               type="text"
-              controlId="requisitionId"
+              controlid="requisitionId"
               placeholder="Requisition ID"
               defaultValue={requisitionId}
               onChange={(e) => setRequisitionId(e.target.value)}
@@ -265,7 +265,7 @@ const UpdateCandidate = (props) => {
               // defaultvalue={candidateName}
               className="candidateName"
               type="text"
-              controlId="candidateName"
+              controlid="candidateName"
               placeholder="Candidate Name"
               defaultValue={candidateName}
               maxLength={30}
@@ -297,7 +297,7 @@ const UpdateCandidate = (props) => {
               required
               type="text"
               placeholder="Candidate Status"
-              controlId="candidateStatus"
+              controlid="candidateStatus"
               defaultValue={candidateStatus}
               // onChange={(e) => setCandidateStatus(e.target.value)}
               // isInvalid={!!errors.candidateStatus}
@@ -337,7 +337,7 @@ const UpdateCandidate = (props) => {
               required
               type="text"
               placeholder="Current Location"
-              controlId="currentLocation"
+              controlid="currentLocation"
               defaultValue={currentLocation}
               // onChange={(e) => setCurrentLocation(e.target.value)}
               // isInvalid={!!errors.currentLocation}
@@ -371,7 +371,7 @@ const UpdateCandidate = (props) => {
               required
               type="text"
               placeholder="Primary Skills"
-              controlId="primarySkills"
+              controlid="primarySkills"
               defaultValue={primarySkills}
               // onChange={(e) => setPrimarySkills(e.target.value)}
               // isInvalid={!!errors.primarySkills}
@@ -402,7 +402,7 @@ const UpdateCandidate = (props) => {
               required
               className="secondarySkills"
               type="text"
-              controlId="secondarySkills"
+              controlid="secondarySkills"
               placeholder="Secondary Skills"
               defaultValue={secondarySkills}
               maxLength={30}
@@ -434,7 +434,7 @@ const UpdateCandidate = (props) => {
               required
               type="mail"
               placeholder="Mail ID"
-              controlId="email"
+              controlid="email"
               defaultValue={email}
               // onChange={(e) => setEmail(e.target.value)}
               // isInvalid={!!errors.email}
@@ -466,7 +466,7 @@ const UpdateCandidate = (props) => {
               type="number"
               maxLength={10}
               placeholder="Phone Number"
-              controlId="phoneNumber"
+              controlid="phoneNumber"
               defaultValue={phoneNumber}
               // onChange={(e) => setPhoneNumber(e.target.value)}
               // isInvalid={!!errors.phoneNumber}
@@ -497,7 +497,7 @@ const UpdateCandidate = (props) => {
               required
               type="text"
               placeholder="Years Of Experience"
-              controlId="yearsOfExperience"
+              controlid="yearsOfExperience"
               defaultValue={yearsOfExperience}
               // onChange={(e) => setYearsOfExperience(e.target.value)}
               // isInvalid={!!errors.yearsOfExperience}
@@ -528,7 +528,7 @@ const UpdateCandidate = (props) => {
               required
               type="file"
               placeholder="Upload Resume"
-              controlId="uploadResume"
+              controlid="uploadResume"
               value={uploadResume}
               onChange={(e) => setUploadResume("uploadResume", e.target.value)}
               isInvalid={!!errors.uploadResume}

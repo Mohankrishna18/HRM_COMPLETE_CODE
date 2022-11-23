@@ -152,7 +152,7 @@ const[user,setUser]=useState("")
                                     required
                                     className="firstName"
                                     type="text"
-                                    controlId="firstName"
+                                    controlid="firstName"
                                     placeholder="First name"
                                     // onChange={(event) => setFirstName(event.target.value)}
                                     value={form.firstName}
@@ -168,7 +168,7 @@ const[user,setUser]=useState("")
                                 <Form.Control
                                     name="middle_name"
                                     type="text"
-                                    controlId="middleName"
+                                    controlid="middleName"
                                     placeholder="Middle name"
                                     value={form.middleName}
                                     onChange={(e) => setField("middleName", e.target.value)}
@@ -180,7 +180,7 @@ const[user,setUser]=useState("")
                                     required
                                     name="last_name"
                                     type="text"
-                                    controlId="lastName"
+                                    controlid="lastName"
                                     placeholder="Last name"
                                     value={form.lastName}
                                     onChange={(e) => setField("lastName", e.target.value)}
@@ -199,7 +199,7 @@ const[user,setUser]=useState("")
                                     required
                                     type="text"
                                     placeholder="Phone Number"
-                                    controlId="phoneNumber"
+                                    controlid="phoneNumber"
                                     value={form.phoneNumber}
                                     onChange={(e) => setField("phoneNumber", e.target.value)}
                                     isInvalid={!!errors.phoneNumber}
@@ -218,7 +218,7 @@ const[user,setUser]=useState("")
                                     required
                                     type="text"
                                     placeholder="Designation"
-                                    controlId="designation"
+                                    controlid="designation"
                                     value={form.designation}
                                     onChange={(e) => setField("designation", e.target.value)}
                                     isInvalid={!!errors.designation}>
@@ -237,7 +237,7 @@ const[user,setUser]=useState("")
                                     required
                                     type="text"
                                     placeholder="Department"
-                                    controlId="department"
+                                    controlid="department"
                                     value={form.department}
                                     onChange={(e) => setField("department", e.target.value)}
                                     isInvalid={!!errors.department}
@@ -262,7 +262,7 @@ const[user,setUser]=useState("")
                                     required
                                     type="date"
                                     placeholder="joining date"
-                                    controlId="dateOfJoining"
+                                    controlid="dateOfJoining"
                                     value={form.dateOfJoining}
                                     onChange={(e) => setField("dateOfJoining", e.target.value)}
                                     isInvalid={!!errors.dateOfJoining}
@@ -279,7 +279,7 @@ const[user,setUser]=useState("")
                                     required
                                     type="text"
                                     placeholder="Experience "
-                                    controlId="yearsOfExperience"
+                                    controlid="yearsOfExperience"
                                     value={form.yearsOfExperience}
                                     onChange={(e) => setField("yearsOfExperience", e.target.value)}
                                     isInvalid={!!errors.yearsOfExperience}
@@ -294,7 +294,7 @@ const[user,setUser]=useState("")
                                     required
                                     type="email"
                                     placeholder="Email"
-                                    controlId="email"
+                                    controlid="email"
                                     value={form.email}
                                     onChange={(e) => setField("email", e.target.value)}
                                     isInvalid={!!errors.email}
@@ -309,7 +309,7 @@ const[user,setUser]=useState("")
                                 <Form.Control
                                     name="jobTitle"
                                     type="text"
-                                    controlId="jobTitle"
+                                    controlid="jobTitle"
                                     placeholder="Job Title "
                                     value={form.jobTitle}
                                     onChange={(e) => setField("jobTitle", e.target.value)}
@@ -322,7 +322,7 @@ const[user,setUser]=useState("")
                                     type="text"
                                     name="primarySkills"
                                     placeholder="Primary Skills"
-                                    controlId="primarySkills"
+                                    controlid="primarySkills"
                                     value={form.primarySkills}
                                     onChange={(e) => setField("primarySkills", e.target.value)}
                                 // onChange={changeHandler}
@@ -335,7 +335,7 @@ const[user,setUser]=useState("")
                                     type="text"
                                     name="secondarySkills"
                                     placeholder="SecondarySkills"
-                                    controlId="secondarySkills"
+                                    controlid="secondarySkills"
                                     value={form.secondarySkills}
                                     onChange={(e) => setField("secondarySkills", e.target.value)}
 
@@ -349,7 +349,7 @@ const[user,setUser]=useState("")
                                     required
                                     type="text"
                                     placeholder="Type Of Employment"
-                                    controlId="employmentType"
+                                    controlid="employmentType"
                                     value={form.employmentType}
                                     onChange={(e) => setField("employmentType", e.target.value)}
                                     isInvalid={!!errors.employmentType}

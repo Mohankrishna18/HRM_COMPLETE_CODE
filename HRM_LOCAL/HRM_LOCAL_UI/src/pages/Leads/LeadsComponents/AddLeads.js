@@ -302,7 +302,7 @@ const Active="Active"
                     required
                     className="leadName"
                     type="text"
-                    controlId="leadName"
+                    controlid="leadName"
                     placeholder="Lead Name"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.leadName}
@@ -326,7 +326,7 @@ const Active="Active"
                     required
                     className="startDate"
                     type="date"
-                    controlId="startDate"
+                    controlid="startDate"
                     placeholder="Start Date"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.startDate}
@@ -346,7 +346,7 @@ const Active="Active"
                     required
                     className="endDate"
                     type="date"
-                    controlId="endDate"
+                    controlid="endDate"
                     placeholder="End Date"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.endDate}
@@ -366,7 +366,7 @@ const Active="Active"
                     required
                     className="sourceName"
                     type="text"
-                    controlId="sourceName"
+                    controlid="sourceName"
                     placeholder="Source Name"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.sourceName}
@@ -385,7 +385,7 @@ const Active="Active"
                     required
                     type="email"
                     placeholder="Source Email"
-                    controlId="sourceEmail"
+                    controlid="sourceEmail"
                     value={form.sourceEmail}
                     onChange={(e) => setField("sourceEmail", e.target.value)}
                     isInvalid={!!errors.sourceEmail}
@@ -402,7 +402,7 @@ const Active="Active"
                     required
                     type="text"
                     placeholder="Status"
-                    controlId="status"
+                    controlid="status"
                     value={form.status}
                     onChange={(e) => setField("status", e.target.value)}
                     isInvalid={!!errors.status}
@@ -431,7 +431,7 @@ const Active="Active"
                       type="number"
                       maxLength={10}
                       placeholder="company PhoneNumber"
-                      controlId="companyPhoneNumber"
+                      controlid="companyPhoneNumber"
                       value={form.phoneNumber}
                       onChange={(e) => {
                         setField("companyPhoneNumber", e.target.value);
@@ -459,7 +459,7 @@ const Active="Active"
                     required
                     className="companyCountry"
                     type="text"
-                    controlId="companyCountry"
+                    controlid="companyCountry"
                     placeholder="Select Country"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.companyCountry}
@@ -488,7 +488,7 @@ const Active="Active"
                     as="textarea"
                     className="address"
                     type="text"
-                    controlId="companyAddress"
+                    controlid="companyAddress"
                     placeholder="Company Address"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.companyAddress}
@@ -511,7 +511,7 @@ const Active="Active"
                     required
                     className="companyName"
                     type="text"
-                    controlId="companyName"
+                    controlid="companyName"
                     placeholder="Company Name"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.companyName}
@@ -538,7 +538,7 @@ const Active="Active"
                     placeholder="Company Email"
                     required
                     pattern=".+@gmail\.com"
-                    controlId="companyEmail"
+                    controlid="companyEmail"
                     value={form.companyEmail}
                     onChange={(e) => setField("companyEmail", e.target.value)}
                     isInvalid={!!errors.companyEmail}
@@ -556,7 +556,7 @@ const Active="Active"
                       type="number"
                       maxLength={10}
                       placeholder="source PhoneNumber"
-                      controlId="sourcePhoneNumber"
+                      controlid="sourcePhoneNumber"
                       value={form.sourcePhoneNumber}
                       onChange={(e) => {
                         setField("sourcePhoneNumber", e.target.value);
@@ -584,7 +584,7 @@ const Active="Active"
                     required
                     className="pocName"
                     type="text"
-                    controlId="pocName"
+                    controlid="pocName"
                     placeholder="POC Name"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.pocName}
@@ -610,7 +610,7 @@ const Active="Active"
                     required
                     type="email"
                     placeholder="POC Email"
-                    controlId="pocEmail"
+                    controlid="pocEmail"
                     value={form.pocEmail}
                     onChange={(e) => setField("pocEmail", e.target.value)}
                     isInvalid={!!errors.pocEmail}
@@ -628,7 +628,7 @@ const Active="Active"
                       type="number"
                       maxLength={10}
                       placeholder="POC PhoneNumber"
-                      controlId="pocPhoneNumber"
+                      controlid="pocPhoneNumber"
                       value={form.pocPhoneNumber}
                       onChange={(e) => {
                         setField("pocPhoneNumber", e.target.value);
@@ -659,7 +659,7 @@ const Active="Active"
                     as="textarea"
                     className="businessValue"
                     type="text"
-                    controlId="businessValue"
+                    controlid="businessValue"
                     placeholder="Business Value"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.businessValue}
@@ -682,7 +682,7 @@ const Active="Active"
                     as="textarea"
                     className="leadNotes"
                     type="text"
-                    controlId="leadNotes"
+                    controlid="leadNotes"
                     placeholder="lead Notes"
                     // onChange={(event) => setclientName(event.target.value)}
                     value={form.leadNotes}
@@ -710,7 +710,7 @@ const Active="Active"
                               as="textarea"
                               className="comment"
                               type="text"
-                              controlId="comment"
+                              controlid="comment"
                               placeholder="Comment"
                               value={form.comment}
                               maxLength={200}

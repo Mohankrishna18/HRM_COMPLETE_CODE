@@ -61,7 +61,7 @@ function TAAHeadApproved(props) {
                         rows={2}
                         className="taaHeadApprovalComment"
                         type="text"
-                        controlId="taaHeadApprovalComment"
+                        controlid="taaHeadApprovalComment"
                         placeholder="Approve Reason"
                         value={form.taaHeadApprovalComment}
                         onChange={(e) => setField("taaHeadApprovalComment", e.target.value)}

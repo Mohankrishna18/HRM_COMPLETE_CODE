@@ -306,8 +306,9 @@ const StepperForm = (props) => {
                                             className="requisitionId"
                                             type="text"
                                             id="requisitionId"
-                                            controlId="requisitionId"
-                                           
+                                            controlid="requisitionId"
+                                            //placeholder="Job Title"
+                                            // onChange={(event) => setFirstName(event.target.value)}
                                             value={form.requisitionId}
                                             onChange={(e) => setField("requisitionId", e.target.value)}
                                             isInvalid={!!errors.requisitionId}
@@ -323,7 +324,7 @@ const StepperForm = (props) => {
                                             className="jobTitle"
                                             type="text"
                                             id="jobTitle"
-                                            controlId="jobTitle"
+                                            controlid="jobTitle"
                                            
                                             value={form.jobTitle}
                                             onChange={(e) => setField("jobTitle", e.target.value)}
@@ -390,7 +391,7 @@ const StepperForm = (props) => {
                                             required
                                             className="reqType3"
                                             type="text"
-                                            controlId="reqType3"
+                                            controlid="reqType3"
                                            
                                             value={form.reqType3}
                                             onChange={(e) => setField("reqType3", e.target.value)}
@@ -413,7 +414,7 @@ const StepperForm = (props) => {
 
                                             className="empType"
                                             type="text"
-                                            controlId="empType"
+                                            controlid="empType"
                                            
                                             value={form.empType}
                                             maxLength={30}
@@ -437,7 +438,7 @@ const StepperForm = (props) => {
                                             required
                                             className="departmentName"
                                             type="text"
-                                            controlId="departmentName"
+                                            controlid="departmentName"
                                             // placeholder="Business Unit"
                                             value={form.departmentName}
                                             maxLength={30}
@@ -462,7 +463,7 @@ const StepperForm = (props) => {
                                             required
                                             className="clientName"
                                             type="text"
-                                            controlId="clientName"
+                                            controlid="clientName"
                                             // placeholder="Client"
                                             value={form.clientId}
                                             name={form.clientName}
@@ -500,7 +501,7 @@ const StepperForm = (props) => {
                                             required
                                             className="projectName"
                                             type="text"
-                                            controlId="projectName"
+                                            controlid="projectName"
                                             // placeholder="Project Name"
                                             value={form.projectName}
                                             maxLength={30}
@@ -526,7 +527,7 @@ const StepperForm = (props) => {
                                             className="workLocation"
                                             type="text"
                                             id="workLocation"
-                                            controlId="workLocation"
+                                            controlid="workLocation"
                                             // placeholder="Work Location"
                                             // onChange={(event) => setFirstName(event.target.value)}
                                             value={form.workLocation}
@@ -543,7 +544,7 @@ const StepperForm = (props) => {
                                             required
                                             className="technology"
                                             type="text"
-                                            controlId="technology"
+                                            controlid="technology"
                                             // placeholder="Requisition Request Status"
                                             value={form.technology}
                                             onChange={(e) => setField("technology", e.target.value)}
@@ -562,7 +563,7 @@ const StepperForm = (props) => {
                                             required
                                             className="role"
                                             type="text"
-                                            controlId="role"
+                                            controlid="role"
                                             // placeholder="Role"
                                             value={form.role}
                                             onChange={(e) => setField("role", e.target.value)}
@@ -580,7 +581,7 @@ const StepperForm = (props) => {
                                             required
                                             className="allocType"
                                             type="text"
-                                            controlId="allocType"
+                                            controlid="allocType"
 
                                             value={form.allocType}
                                             onChange={(e) => setField("allocType", e.target.value)}
@@ -602,7 +603,7 @@ const StepperForm = (props) => {
                                             className="positions"
                                             type="number"
                                             id="positions"
-                                            controlId="positions"
+                                            controlid="positions"
 
                                             value={form.positions}
                                             onChange={(e) => setField("positions", e.target.value)}
@@ -619,7 +620,7 @@ const StepperForm = (props) => {
                                             className="yoe"
                                             type="number"
                                             id="yoe"
-                                            controlId="yoe"
+                                            controlid="yoe"
                                            
                                             value={form.yoe}
                                             onChange={(e) => setField("yoe", e.target.value)}
@@ -637,7 +638,7 @@ const StepperForm = (props) => {
                                             className="priority"
                                             type="text"
                                             id="priority"
-                                            controlId="priority"
+                                            controlid="priority"
                                            
                                             value={form.priority}
                                             onChange={(e) => setField("priority", e.target.value)}
@@ -660,7 +661,7 @@ const StepperForm = (props) => {
                                             className="pSkills"
                                             type="text"
                                             id="pSkills"
-                                            controlId="pSkills"
+                                            controlid="pSkills"
                                            
 
                                             value={form.pSkills}
@@ -678,7 +679,7 @@ const StepperForm = (props) => {
                                             className="sSkills"
                                             type="text"
                                             id="sSkills"
-                                            controlId="sSkills"
+                                            controlid="sSkills"
                                            
                                             value={form.sSkills}
                                             onChange={(e) => setField("sSkills", e.target.value)}
@@ -701,7 +702,7 @@ const StepperForm = (props) => {
                                             id="description"
                                             style={{ height: "80px" }}
                                             placeholder="Job Description"
-                                            controlId="description"
+                                            controlid="description"
                                             value={form.description}
                                             onChange={(e) => setField("description", e.target.value)}
                                             isInvalid={!!errors.description}
@@ -716,7 +717,7 @@ const StepperForm = (props) => {
                                             name="rate"
                                             type="number"
                                             id="rate"
-                                            controlId="rate"
+                                            controlid="rate"
                                            
                                             value={form.rate}
                                             onChange={(e) => setField("rate", e.target.value)}
@@ -733,7 +734,7 @@ const StepperForm = (props) => {
                                             name="workingHours"
                                             type="number"
                                             id="workingHours"
-                                            controlId="workingHours"
+                                            controlid="workingHours"
                                            
                                             value={form.workingHours}
                                             onChange={(e) => setField("workingHours", e.target.value)}
@@ -749,7 +750,7 @@ const StepperForm = (props) => {
                                             name="qualification"
                                             type="text"
                                             id="qualification"
-                                            controlId="qualification"
+                                            controlid="qualification"
                                            
                                             value={form.qualification}
                                             onChange={(e) => setField("qualification", e.target.value)}
@@ -768,7 +769,7 @@ const StepperForm = (props) => {
                                             required
                                             className="pocname"
                                             type="text"
-                                            controlId="pocname"
+                                            controlid="pocname"
                                            
                                             value={form.pocname}
                                             maxLength={30}
@@ -792,7 +793,7 @@ const StepperForm = (props) => {
                                             name="uploadDoc"
                                             type="file"
                                             id="uploadDoc"
-                                            controlId="uploadDoc"
+                                            controlid="uploadDoc"
                                            
                                             value={form.uploadDoc}
                                             onChange={(e) => setField("uploadDoc", e.target.value)}
@@ -809,7 +810,7 @@ const StepperForm = (props) => {
                                         id="comments"
                                         placeholder="Comments"
                                         style={{ height: "80px" }}
-                                        controlId="comments"
+                                        controlid="comments"
                                         value={form.comments}
                                         onChange={(e) => setField("comments", e.target.value)}
                                         isInvalid={!!errors.comments}
@@ -823,7 +824,7 @@ const StepperForm = (props) => {
                                            
                                             className="interviewPanel1"
                                             type="text"
-                                            controlId="interviewPanel1"
+                                            controlid="interviewPanel1"
                                            
                                             value={form.interviewPanel1}
                                             maxLength={30}
@@ -847,7 +848,7 @@ const StepperForm = (props) => {
                                            
                                             className="interviewPanel2"
                                             type="text"
-                                            controlId="interviewPanel2"
+                                            controlid="interviewPanel2"
                                            
                                             value={form.interviewPanel2}
                                             maxLength={30}
@@ -871,7 +872,7 @@ const StepperForm = (props) => {
                                            
                                             className="hrPanel"
                                             type="text"
-                                            controlId="hrPanel"
+                                            controlid="hrPanel"
                                            
                                             value={form.hrPanel}
                                             maxLength={30}
@@ -895,7 +896,7 @@ const StepperForm = (props) => {
                                             required
                                             className="requestInitiatedDate"
                                             type="date"
-                                            controlId="requestInitiatedDate"
+                                            controlid="requestInitiatedDate"
 
                                             value={form.requestInitiatedDate}
                                             onChange={(e) => setField("requestInitiatedDate", e.target.value)}
@@ -913,7 +914,7 @@ const StepperForm = (props) => {
                                             required
                                             className="resourceRequiredDate"
                                             type="date"
-                                            controlId="resourceRequiredDate"
+                                            controlid="resourceRequiredDate"
                                            
                                             value={form.resourceRequiredDate}
                                             onChange={(e) => setField("resourceRequiredDate", e.target.value)}
@@ -962,7 +963,7 @@ const StepperForm = (props) => {
 
 
                                     {" "}
-                                    <Form.Group controlId="submit">
+                                    <Form.Group controlid="submit">
                                         <br />
                                         <Button
                                             type="submit"

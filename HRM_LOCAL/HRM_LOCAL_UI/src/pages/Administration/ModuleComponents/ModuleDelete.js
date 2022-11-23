@@ -171,7 +171,7 @@ export default ModuleDelete;
 //             centered
 //             style={{ borderRadius: "250px" }}
 //           >
-//             <div class="col-md-12 text-center">
+//             <div className="col-md-12 text-center">
 //               <Modal.Title>Add Module</Modal.Title>
 //               <Modal.Header closeButton></Modal.Header>
 //             </div>
@@ -203,10 +203,10 @@ export default ModuleDelete;
 //                     </Stack>
 //                   </div>
 
-//                   <div class="d-flex justify-content-around">
+//                   <div className="d-flex justify-content-around">
 //                     {/* <Modal.Footer> */}
 //                     {/* <div className="form-group"> */}
-//                     <div class="col-md-12 text-center">
+//                     <div className="col-md-12 text-center">
 //                       <Row>
 //                         <Col md={12}>
 //                           <button
@@ -234,7 +234,7 @@ export default ModuleDelete;
 //       <Container>
 //         <Row>
 //           <Col md={12}>
-//             <table class="table">
+//             <table className="table">
 //               <thead>
 //                 <tr>
 //                   <th scope="col">SNo</th>

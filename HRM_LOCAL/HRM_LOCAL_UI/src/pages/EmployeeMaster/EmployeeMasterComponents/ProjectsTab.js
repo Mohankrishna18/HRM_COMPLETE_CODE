@@ -58,7 +58,7 @@ function ProjectsTab() {
                         disabled 
                             type="text"
                             placeholder="Project Name"
-                            controlId="projectName"
+                            controlid="projectName"
                             value={projectName}
                             maxLength={25}
                             name="projectName"
@@ -76,7 +76,7 @@ function ProjectsTab() {
                         disabled
                             type="text"
                             placeholder="Client Name"
-                            controlId="projectName"
+                            controlid="projectName"
                             value={projectName}
                             maxLength={25}
                             name="projectName"
@@ -94,7 +94,7 @@ function ProjectsTab() {
                         disabled
                             type="text"
                             placeholder="Reporting Manager"
-                            controlId="projectName"
+                            controlid="projectName"
                             value={projectName}
                             maxLength={25}
                             name="projectName"
@@ -112,7 +112,7 @@ function ProjectsTab() {
                         disabled
                             type="text"
                             placeholder="Skills"
-                            controlId="projectName"
+                            controlid="projectName"
                             value={projectName}
                             maxLength={25}
                             name="projectName"

@@ -13,10 +13,10 @@ import LeadTable from './Employee/LeadsTable';
 const TabWithCount = ({ children, count }) => {
     return (
         <Box sx={{ display: "inline-flex", alignItems: "center" }}>
-            <Typography component="div">{children}</Typography>
+            <Typography component="span">{children}</Typography>
             {count ? (
                 <Typography
-                    component="div"
+                    component="span"
                     variant="body2"
                     sx={{ marginLeft: "0.5rem" }}
                 >
@@ -45,7 +45,7 @@ function TabPanel1(props) {
         >
             {value === index && (
                 <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
+                    <Typography component="span">{children}</Typography>
                 </Box>
             )}
         </div>

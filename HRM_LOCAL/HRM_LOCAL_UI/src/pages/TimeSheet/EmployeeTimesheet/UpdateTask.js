@@ -190,7 +190,7 @@ console.log(task);
                 <Form.Control
                   required
                   type="date"
-                  controlId="timesheet "
+                  controlid="timesheet "
                   value={form.timesheet}
                   onChange={(e) => setField("timesheet", e.target.value)}
                   isInvalid={!!errors.timesheet}
@@ -206,7 +206,7 @@ console.log(task);
                   type="text"
                   placeholder="project"
                   required
-                  controlId="project"
+                  controlid="project"
                   defaultValue={props.updateOnboard.project}
                   value={project}
                   onChange={(e) => setProject(e.target.value)}
@@ -240,7 +240,7 @@ console.log(task);
                   required
                   type="text"
                   placeholder="Task Name"
-                  controlId="taskName"
+                  controlid="taskName"
                   defaultValue={props.updateOnboard.taskName} 
                   value={taskName}
                   onChange={(e) => setTaskName(e.target.value)}
@@ -263,7 +263,7 @@ console.log(task);
                   required
                   type="date"
                   placeholder="fromDate"
-                  controlId="fromDate"
+                  controlid="fromDate"
                   defaultValue={props.updateOnboard.fromDate.split("T")[0]}
                   value={fromDate.split("T")[0]}
                   onChange={(e) => setFromDate(e.target.value)}
@@ -277,7 +277,7 @@ console.log(task);
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>To Date*</Form.Label>
                 <Form.Control type="date" placeholder="Enter "
-                  controlId="toDate"
+                  controlid="toDate"
                   defaultValue={props.updateOnboard.toDate.split("T")[0]}
                   value={toDate.split("T")[0]}
                   onChange={(e) => setToDate(e.target.value)}
@@ -295,7 +295,7 @@ console.log(task);
                   required
                   type="text"
                   placeholder="Task Type"
-                  controlId="taskType"
+                  controlid="taskType"
                   defaultValue={props.updateOnboard.taskType}
                   value={taskType}
                   onChange={(e) => setTaskType(e.target.value)}
@@ -327,7 +327,7 @@ console.log(task);
               {/* <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>CloseDate*</Form.Label>
                 <Form.Control type="date" placeholder="Enter "
-                controlId="CloseDate"
+                controlid="CloseDate"
                 value={form.CloseDate}
                 onChange={(e) => setField("CloseDate", e.target.value)}
                 isInvalid={!!errors.CloseDate} 
@@ -342,7 +342,7 @@ console.log(task);
               {/* <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>StartTime</Form.Label>
                 <Form.Control type="time" placeholder="Enter "
-                controlId="StartTime"
+                controlid="StartTime"
                 value={form.StartTime}
                 onChange={(e) => setField("StartTime", e.target.value)}
                 isInvalid={!!errors.StartTime} 
@@ -356,7 +356,7 @@ console.log(task);
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Duration</Form.Label>
                 <Form.Control type="time" placeholder="Enter "
-                  controlId="duration"
+                  controlid="duration"
                   value={duration}
                   defaultValue={props.updateOnboard.duration}
                   onChange={(e) => setDuration(e.target.value)}
@@ -374,7 +374,7 @@ console.log(task);
                   required
                   type="text"
                   placeholder="status"
-                  controlId="status"
+                  controlid="status"
                   defaultValue={props.updateOnboard.status}
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
@@ -402,7 +402,7 @@ console.log(task);
                   required
                   type="text"
                   placeholder="priority"
-                  controlId="priority"
+                  controlid="priority"
                   defaultValue={props.updateOnboard.priority}
                   value={priority}
                   onChange={(e) => setPriority(e.target.value)}
@@ -425,7 +425,7 @@ console.log(task);
               <Form.Group className="mb-3">
                 <Form.Label>Description</Form.Label>
                 <Form.Control type="text" placeholder="Enter the Description "
-                  controlId="description"
+                  controlid="description"
                   as="textarea"
                   value={description}
                   defaultValue={props.updateOnboard.description}

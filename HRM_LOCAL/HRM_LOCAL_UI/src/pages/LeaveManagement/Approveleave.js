@@ -59,7 +59,7 @@ const Approve = (props) => {
                     required
                     className="rejectReason"
                     type="text"
-                    controlId="rejectReason"
+                    controlid="rejectReason"
                     placeholder="reject Reason"
                     value={form.rejectReason}
                     onChange={(e) => setField("rejectReason", e.target.value)}

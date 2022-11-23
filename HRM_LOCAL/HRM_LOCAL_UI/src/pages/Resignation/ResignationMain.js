@@ -163,7 +163,7 @@
 //                         required
 //                         className="resigningEmployee"
 //                         type="text"
-//                         controlId="resigningEmployee"
+//                         controlid="resigningEmployee"
 //                         placeholder="Resigning Employee"
 //                         // onChange={(event) => setFirstName(event.target.value)}
 //                         // value={form.firstName}
@@ -182,7 +182,7 @@
 //                         required
 //                         className="noticeDate"
 //                         type="Date"
-//                         controlId="noticeDate"
+//                         controlid="noticeDate"
 //                         placeholder="Notice Date"
 //                         // onChange={(event) => setFirstName(event.target.value)}
 //                         // value={form.firstName}
@@ -201,7 +201,7 @@
 //                         required
 //                         className="resignationDate"
 //                         type="Date"
-//                         controlId="resignationDate"
+//                         controlid="resignationDate"
 //                         placeholder="Resignation Date"
 //                         // onChange={(event) => setFirstName(event.target.value)}
 //                         // value={form.firstName}
@@ -222,7 +222,7 @@
 //                         type="text"
 //                         as="textarea"
 //                         rows ={2}
-//                         controlId="reason"
+//                         controlid="reason"
 //                         placeholder="Reason"
 //                         // onChange={(event) => setFirstName(event.target.value)}
 //                         // value={form.firstName}

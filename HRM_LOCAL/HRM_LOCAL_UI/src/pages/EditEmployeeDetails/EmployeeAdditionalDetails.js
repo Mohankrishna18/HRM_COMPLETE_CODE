@@ -165,7 +165,7 @@ function EmployeeAditionalDetails(props) {
             <Form.Control
               type="text"
               placeholder="Passport Number"
-              controlId="passportNo"
+              controlid="passportNo"
               value={passportNo}
               maxLength={15}
               name="passportNo"
@@ -177,7 +177,7 @@ function EmployeeAditionalDetails(props) {
             <Form.Control
               type="date"
               placeholder="Passport Expiry Date"
-              controlId="passportExpiryDate"
+              controlid="passportExpiryDate"
               name="passportExpiryDate"
               value={passportExpiryDate}
               min={new Date()}
@@ -191,7 +191,7 @@ function EmployeeAditionalDetails(props) {
               required
               type="text"
               placeholder="PAN Card Number"
-              controlId="panNumber"
+              controlid="panNumber"
               name="panNumber"
               maxLength={50}
               isInvalid={ferrors}
@@ -218,7 +218,7 @@ function EmployeeAditionalDetails(props) {
               required
               type="number"
               placeholder="Aadhar Card Number"
-              controlId="aadharNumber"
+              controlid="aadharNumber"
               name="panNumber"
               maxLength={12}
               isInvalid={nineteenerror}
@@ -243,7 +243,7 @@ function EmployeeAditionalDetails(props) {
             <Form.Control
               type="text"
               placeholder="UAN Number"
-              controlId="uanNumber"
+              controlid="uanNumber"
               name="uanNumber"
               value={uanNumber}
               maxLength={12}
@@ -256,7 +256,7 @@ function EmployeeAditionalDetails(props) {
               required
               type="text"
               placeholder="Bank Name"
-              controlId="bankName"
+              controlid="bankName"
               name="bankName"
               maxLength={50}
               value={bankName}
@@ -286,7 +286,7 @@ function EmployeeAditionalDetails(props) {
               required
               type="number"
               placeholder="Account Number"
-              controlId="accountNumber"
+              controlid="accountNumber"
               name="accountNumber"
               maxLength={50}
               value={accountNumber}
@@ -316,7 +316,7 @@ function EmployeeAditionalDetails(props) {
               required
               type="text"
               placeholder="IFSC Code"
-              controlId="ifscCode"
+              controlid="ifscCode"
               name="ifscCode"
               maxLength={50}
               value={ifscCode}
@@ -346,7 +346,7 @@ function EmployeeAditionalDetails(props) {
               required
               type="text"
               placeholder="Branch Name"
-              controlId="branchName"
+              controlid="branchName"
               name="branch"
               maxLength={50}
               value={branch}
@@ -372,9 +372,9 @@ function EmployeeAditionalDetails(props) {
           </Form.Group>
           <Row>
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Group controlId="formFileMultiple" className="mb-3">
+              <Form.Group controlid="formFileMultiple" className="mb-3">
                 <Form.Label>
-                  <p class="fw-bold">
+                  <p className="fw-bold">
                     Please Upload Your Documents (Aadhar Card, Pan Card, Bank
                     Document in PDF format only)
                   </p>

@@ -132,7 +132,7 @@ function AddModule(props) {
                   required
                   className="moduleName"
                   type="text"
-                  controlId="moduleName"
+                  controlid="moduleName"
                   placeholder="Module Name"
                   // onChange={(event) => setFirstName(event.target.value)}
                   value={form.moduleName}
