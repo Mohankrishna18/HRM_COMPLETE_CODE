@@ -32,7 +32,7 @@ public interface RequisitionRequestRepository extends JpaRepository<RequisitionR
 
        List<RequisitionRequestEntity> getDataWithAgingDays();
        
-       @Query(value=" SELECT DATEDIFF(now(),raised_on) AS ageing from requisition_requests   where requisition_id=?1 ", nativeQuery=true)
+       @Query(value=" SELECT DATEDIFF(now(),request_initiated_date) AS ageing from requisition_requests   where requisition_id=?1 ", nativeQuery=true)
           Integer  getDateDiff(@Param("requisition_id")  String requisitionId);
      
    
