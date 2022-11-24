@@ -662,7 +662,7 @@ function IntegrateLeaveToApply() {
                                     <h5>
                                         {" "}
                                         <Card.Title style={{paddingLeft:"20%"}}>Leave Balance</Card.Title>
-                                        {LeaveBalanace > 0 ? (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>{LeaveBalanace}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>0</Card.Subtitle>)}
+                                        {leaveBalance > 0 ? (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>{leaveBalance}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>0</Card.Subtitle>)}
                                         {/* */}
                                         {/* <Card.Text>12/60</Card.Text> */}
                                     </h5>
