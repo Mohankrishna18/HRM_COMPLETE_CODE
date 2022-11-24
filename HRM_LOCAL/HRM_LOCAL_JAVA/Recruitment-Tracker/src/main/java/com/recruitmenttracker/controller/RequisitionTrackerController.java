@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
 import com.recruitmenttracker.modal.EmployeeReq;
+import com.recruitmenttracker.modal.JobsPerDepartment;
 import com.recruitmenttracker.modal.RRFClosed;
 import com.recruitmenttracker.repository.RequisitionRequestRepository;
 import com.recruitmenttracker.service.RequisitionRequestInterface;
@@ -212,6 +213,11 @@ public class RequisitionTrackerController {
         return serv.updateAgeing(requisitionId, rrUpdate);
     }
     
+//  getJobsOpenByDepartments
+  @GetMapping("/getJobsOpenByDepartmentName")
+  public List<JobsPerDepartment> getJobsOpenByDepartmentName(){
+  	return serv.getJobsOpenByDepartmentName();
+  }
     
 //    @PutMapping("/rrfStatusClosed/{rrfStaus}")
 //    public ResponseEntity updateRRfStatus(@PathVariable String rrfStatus, @RequestBody RequisitionRequestEntity RRfStatusUpdate) {

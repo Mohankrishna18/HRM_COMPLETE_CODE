@@ -234,7 +234,7 @@ export default [
 
     // icon: <FcApprove />,
     // //title: "Projects",
-    permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager],
+    permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager,Roles.irm],
   },
   {
     component: ProjectUpdateTabs,
@@ -243,7 +243,7 @@ export default [
 
     // icon: <FcApprove />,
     // //title: "Projects",
-    permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager],
+    permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager,Roles.irm],
   },
   // {
   //   component:EmployeeDashboard,
