@@ -117,6 +117,11 @@ function TaskMain(props) {
       type: "text",
     },
     {
+      title: "Complexity",
+      field: "complexity",
+      type: "text"
+    },
+    {
       title: "Assign To",
       field: "assignedTo",
       type: "text",

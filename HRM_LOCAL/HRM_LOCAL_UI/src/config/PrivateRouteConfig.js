@@ -37,6 +37,7 @@ import {
   FcComboChart,
   FcExport,
   FcNews,
+  FcPortraitMode,
 } from "react-icons/fc";
 
 import { MdReport } from "react-icons/md";
@@ -769,10 +770,10 @@ export default [
   {
     component: CandidatesMain,
     path: "/Candidates",
-    type: "null",
-    icon: <FcApproval />,
+    type: "jobs",
+    icon: <FcPortraitMode />,
     title: "Candidates",
-    permission: [Roles.taahead]
+    permission: [Roles.taahead,Roles.taa]
   },
 
   {
