@@ -261,7 +261,7 @@ const UpdateTask = (props) => {
               {errors.taskTitle}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-3" as={Col} md="6">
+          <Form.Group className="mb-3" as={Col} md="3">
             <Form.Label>Task Type *</Form.Label>
             <Form.Select
               required
@@ -331,6 +331,28 @@ const UpdateTask = (props) => {
               {errors.priority}
             </Form.Control.Feedback>
           </Form.Group>
+          <Form.Group className="mb-3" as={Col} md="3">
+                <Form.Label>Complexity </Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="complexity"
+                  controlid="complexity"
+                  defaultValue={props.updateOnboard.complexity}
+                  value={form.complexity}
+                  onChange={(e) => setField("complexity", e.target.value)}
+                  isInvalid={!!errors.complexity}
+                >
+                  <option>Select Complexity</option>
+                  <option>Highly Complex</option>
+                  <option>Medium Complex</option>
+                  <option>Moderate</option>
+                  <option>Simple</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.complexity}
+                </Form.Control.Feedback>
+              </Form.Group>
           <Form.Group className="mb-3" as={Col} md="6">
             <Form.Label>Planned Start Date*</Form.Label>
             <Form.Control
