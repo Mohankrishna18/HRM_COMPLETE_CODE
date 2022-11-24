@@ -361,6 +361,7 @@ function IntegrateLeaveToApply() {
         console.log(res.data);
         LA();
         WFH();
+        leaveBalanceCall();
     };
 
     useEffect(() => {
@@ -378,8 +379,30 @@ function IntegrateLeaveToApply() {
     useEffect(() => {
         LA();
         WFH();
+        leaveBalanceCall();
 
     }, []);
+
+
+    const [leaveBalance, setLeaveBalance] = useState(0);
+
+    const leaveBalanceCall = () => {
+
+        axios.get(`leave/leaveBalanceByEmployeeId/${empID}`).then((res) => {
+
+
+
+            console.log(res.data);
+
+            console.log(res.data.leaveBalance);
+
+            setLeaveBalance(res.data.leaveBalance);
+
+        }
+
+        )
+
+    }
     const LA = () => {
         axios.get(`leave/getcountLeavesofApplyingLeaves/${empID}`).then((res) => {
 
