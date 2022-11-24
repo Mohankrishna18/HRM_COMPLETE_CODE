@@ -249,8 +249,19 @@ public class LeaveService {
 		return true;
 	}
 
+	public List<EmployeeMaster> getRequiredEmployees(int month,int year)
+    {
+        LocalDate today = LocalDate.of(year,month,1);
+        LocalDate lastDayOfMonth = today.withDayOfMonth(today.lengthOfMonth());
+        Date date = Date.from(lastDayOfMonth.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        //String lastDay = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(lastDayOfMonth);
+        
+        return emRepo.findByDateOfJoiningBefore(date);
+         
+    }
 	public List<EmployeeLeavesData> getEmployeeLeavesDataWithoutDept(int month, int year) {
-		List<EmployeeMaster> getEmployees = emRepo.findAll();
+		//List<EmployeeMaster> getEmployees = emRepo.findAll();
+		List<EmployeeMaster> getEmployees = getRequiredEmployees(month, year);
 		List<EmployeeLeavesData> getLeavesList = new ArrayList<>();
 
 		getEmployees.stream().forEach(e -> {
