@@ -56,8 +56,8 @@ public class MainController {
 
 	@Autowired
 	OnboardRepository onrepo;
-	@Autowired
-	EmployeeMasterRepository emRepo;
+	@Autowired(required=true)
+	private EmployeeMasterRepository emRepo;
 	@Autowired
 	MainService serv;
 	@Autowired

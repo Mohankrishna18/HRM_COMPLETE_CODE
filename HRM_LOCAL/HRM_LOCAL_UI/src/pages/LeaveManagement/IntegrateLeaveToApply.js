@@ -361,6 +361,7 @@ function IntegrateLeaveToApply() {
         console.log(res.data);
         LA();
         WFH();
+        leaveBalanceCall();
     };
 
     useEffect(() => {
@@ -378,8 +379,30 @@ function IntegrateLeaveToApply() {
     useEffect(() => {
         LA();
         WFH();
+        leaveBalanceCall();
 
     }, []);
+
+
+    const [leaveBalance, setLeaveBalance] = useState(0);
+
+    const leaveBalanceCall = () => {
+
+        axios.get(`leave/leaveBalanceByEmployeeId/${empID}`).then((res) => {
+
+
+
+            console.log(res.data);
+
+            console.log(res.data.leaveBalance);
+
+            setLeaveBalance(res.data.leaveBalance);
+
+        }
+
+        )
+
+    }
     const LA = () => {
         axios.get(`leave/getcountLeavesofApplyingLeaves/${empID}`).then((res) => {
 
@@ -639,7 +662,7 @@ function IntegrateLeaveToApply() {
                                     <h5>
                                         {" "}
                                         <Card.Title style={{paddingLeft:"20%"}}>Leave Balance</Card.Title>
-                                        {LeaveBalanace > 0 ? (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>{LeaveBalanace}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>0</Card.Subtitle>)}
+                                        {leaveBalance > 0 ? (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>{leaveBalance}</Card.Subtitle>) : (<Card.Subtitle className="mb-2 text-muted" style={{paddingLeft:"40%"}}>0</Card.Subtitle>)}
                                         {/* */}
                                         {/* <Card.Text>12/60</Card.Text> */}
                                     </h5>
