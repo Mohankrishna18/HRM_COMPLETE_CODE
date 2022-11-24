@@ -180,6 +180,11 @@ function MyTask() {
       // type: { name: "date", options: { format: "DD/MM/YYYY" } },
     },
     {
+      title: "Complexity",
+      field: "complexity",
+      type: "text"
+    },
+    {
       title: "Status",
       field: "status",
       type: "text",

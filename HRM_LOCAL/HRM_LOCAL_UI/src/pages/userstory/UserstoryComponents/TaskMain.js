@@ -144,6 +144,11 @@ function TaskMain(props) {
       // type: { name: "date", options: { format: "DD/MM/YYYY" } },
     },
     {
+      title: "Complexity",
+      field: "complexity",
+      type: "text"
+    },
+    {
       title: "Assigned To",
       field: "assignedTo",
       type: "text",
