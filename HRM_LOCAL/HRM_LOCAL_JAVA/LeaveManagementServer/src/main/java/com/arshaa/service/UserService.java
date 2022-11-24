@@ -191,6 +191,7 @@ public class UserService {
 				d.setAppliedDate(e.getBetWeenDates());
 				d.setLeaveOrwfh(savedUser.getLeaveOrwfh());
 				d.setDepartmentName(savedUser.getDepartmentName());
+				d.setLeaveStatus(savedUser.getLeaveStatus());
 				BetweenDates bd = bro.save(d);
 				bdatesList.add(bd);
 
