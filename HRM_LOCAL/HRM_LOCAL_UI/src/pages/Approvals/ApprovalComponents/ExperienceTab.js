@@ -177,7 +177,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Company Name</Form.Label>
     //         <Form.Control
     //           type="text"
-    //           controlId="previousCompany1_name"
+    //           controlid="previousCompany1_name"
 
     //           value={props.viewOnboard.previousCompany1_name}
     //           maxLength={50}
@@ -188,7 +188,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Designation</Form.Label>
     //         <Form.Control
     //           type="text"
-    //           controlId="previousCompany1_designation"
+    //           controlid="previousCompany1_designation"
     //           value={props.viewOnboard.previousCompany1_designation}
     //           maxLength={50}
     //           name="previousCompany1_designation"
@@ -198,7 +198,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Joining date</Form.Label>
     //         <Form.Control
     //           type="date"
-    //           controlId="previousCompany1_joiningDate"
+    //           controlid="previousCompany1_joiningDate"
     //           value={props.viewOnboard.previousCompany1_joiningDate}
     //           name="previousCompany1_joiningDate"
     //         />
@@ -207,7 +207,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Relieving Date</Form.Label>
     //         <Form.Control
     //           type="Date"
-    //           controlId="previousCompany1_relievingDate"
+    //           controlid="previousCompany1_relievingDate"
     //           value={props.viewOnboard.previousCompany1_relievingDate}
     //           name="previousCompany1_relievingDate"
     //         />
@@ -216,7 +216,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Employee ID</Form.Label>
     //         <Form.Control
     //           type="text"
-    //           controlId="previousCompany1_employeeId"
+    //           controlid="previousCompany1_employeeId"
     //           value={props.viewOnboard.previousCompany1_employeeId}
     //           maxLength={50}
     //           name="previousCompany1_employeeId"
@@ -227,7 +227,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Employment Type</Form.Label>
     //         <Form.Control
     //           type="text"
-    //           controlId="previousCompany1_typeOfEmployeement"
+    //           controlid="previousCompany1_typeOfEmployeement"
     //           value={props.viewOnboard.previousCompany1_typeOfEmployment}
     //           name="previousCompany1_typeOfEmployment"
     //         />
@@ -238,7 +238,7 @@ function ExperienceTab(props) {
     //           as="textarea"
     //           rows={2}
     //           type="text"
-    //           controlId="previousCompany1_reasonForRelieving"
+    //           controlid="previousCompany1_reasonForRelieving"
     //           value={props.viewOnboard.previousCompany1_reasonForRelieving}
     //           name="previousCompany1_reasonForRelieving"
     //         />
@@ -263,7 +263,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Company Name</Form.Label>
     //         <Form.Control
     //           type="text"
-    //           controlId="previousCompany2_name"
+    //           controlid="previousCompany2_name"
     //           maxLength={50}
     //           value={props.viewOnboard.previousCompany2_name}
     //           name="previousCompany2_name"
@@ -273,7 +273,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Designation</Form.Label>
     //         <Form.Control
     //           type="text"
-    //           controlId="previousCompany2_designation"
+    //           controlid="previousCompany2_designation"
     //           maxLength={50}
     //           value={props.viewOnboard.previousCompany2_designation}
     //           name="previousCompany2_designation"
@@ -283,7 +283,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Joining date</Form.Label>
     //         <Form.Control
     //           type="date"
-    //           controlId="previousCompany2_joiningDate"
+    //           controlid="previousCompany2_joiningDate"
     //           value={props.viewOnboard.previousCompany2_joiningDate}
     //           name="previousCompany2_joiningDate"
     //         />
@@ -292,7 +292,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Relieving Date</Form.Label>
     //         <Form.Control
     //           type="Date"
-    //           controlId="previousCompany2_relievingDate"
+    //           controlid="previousCompany2_relievingDate"
     //           value={props.viewOnboard.previousCompany2_relievingDate}
     //           name="previousCompany2_relievingDate"
     //         />
@@ -301,7 +301,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Employee ID</Form.Label>
     //         <Form.Control
     //           type="text"
-    //           controlId="previousCompany2_employeeId"
+    //           controlid="previousCompany2_employeeId"
     //           value={props.viewOnboard.previousCompany2_employeeId}
     //           name="previousCompany2_employeeId"
     //         />
@@ -311,7 +311,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Employment Type</Form.Label>
     //         <Form.Control
     //           type="text"
-    //           controlId="previousCompany2_typeOfEmployment"
+    //           controlid="previousCompany2_typeOfEmployment"
     //           value={props.viewOnboard.previousCompany2_typeOfEmployment}
     //           name="previousCompany2_typeOfEmployment"
     //         />
@@ -322,7 +322,7 @@ function ExperienceTab(props) {
     //           as="textarea"
     //           rows={2}
     //           type="text"
-    //           controlId="previousCompany2_reasonForRelieving"
+    //           controlid="previousCompany2_reasonForRelieving"
     //           value={props.viewOnboard.previousCompany2_reasonForRelieving}
     //           name="previousCompany2_reasonForRelieving"
     //         />
@@ -346,7 +346,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Company Name</Form.Label>
     //         <Form.Control
     //           type="text"
-    //           controlId="previousCompany3_name"
+    //           controlid="previousCompany3_name"
     //           maxLength={50}
     //           value={props.viewOnboard.previousCompany3_name}
     //           name="previousCompany3_name"
@@ -356,7 +356,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Designation</Form.Label>
     //         <Form.Control
     //           type="text"
-    //           controlId="previousCompany3_designation"
+    //           controlid="previousCompany3_designation"
     //           maxLength={50}
     //           value={props.viewOnboard.previousCompany3_designation}
     //           name="previousCompany3_designation"
@@ -366,7 +366,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Joining date</Form.Label>
     //         <Form.Control
     //           type="date"
-    //           controlId="previousCompany3_joiningDate"
+    //           controlid="previousCompany3_joiningDate"
     //           value={props.viewOnboard.previousCompany3_joiningDate}
     //           name="previousCompany3_joiningDate"
     //         />
@@ -375,7 +375,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Relieving Date</Form.Label>
     //         <Form.Control
     //           type="Date"
-    //           controlId="prevoiusCompany3_relievingDate"
+    //           controlid="prevoiusCompany3_relievingDate"
     //           value={props.viewOnboard.previousCompany3_relievingDate}
     //           name="previousCompany3_relievingDate"
     //         />
@@ -384,7 +384,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Employee ID</Form.Label>
     //         <Form.Control
     //           type="text"
-    //           controlId="previousCompany3_employeeId"
+    //           controlid="previousCompany3_employeeId"
     //           maxLength={50}
     //           value={props.viewOnboard.previousCompany3_employeeId}
     //           name="previousCompany3_employeeId"
@@ -394,7 +394,7 @@ function ExperienceTab(props) {
     //         <Form.Label>Employment Type</Form.Label>
     //         <Form.Control
     //           type="text"
-    //           controlId="previousCompany3_typeOfEmployment"
+    //           controlid="previousCompany3_typeOfEmployment"
     //           value={props.viewOnboard.previousCompany3_typeOfEmployment}
     //           name="previousCompany3_typeOfEmployment"
     //         />
@@ -405,7 +405,7 @@ function ExperienceTab(props) {
     //           as="textarea"
     //           rows={2}
     //           type="text"
-    //           controlId="previousCompany3_reasonForRelieving"
+    //           controlid="previousCompany3_reasonForRelieving"
     //           value={props.viewOnboard.previousCompany3_reasonForRelieving}
     //           name="previousCompany3_reasonForRelieving"
     //         />

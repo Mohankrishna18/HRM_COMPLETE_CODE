@@ -34,4 +34,8 @@ BetweenDates findByEmployeeleaveId(Integer employeeleaveId);
     Integer findLeaveapplyingleavescountBYMonthwithoutDept(@Param("month") Integer month,@Param("year") Integer year,@Param("leave_orwfh") String leaveOrwfh,@Param("employee_id") String employeeId);
 //	@Query(value="select count(employee_id) AS days from between_dates where month(between_dates.applied_date)=?1 and year(between_dates.applied_date)=?2 ",nativeQuery=true)
 //    Integer findcountBYMonth(@Param("month") Integer month,@Param("year") Integer year);
+	
+	
+	@Query(value="select count(*) from between_dates where employee_id=?1 and leave_orwfh='L'and applied_date between ?2 and ?3",nativeQuery=true)
+    int findLeavesCountBetWeenTwoDates(@Param("employee_id") String employeeId, @Param("fromDate") Date fromDate, @Param("toDate") Date toDate);
 }

@@ -171,7 +171,7 @@ console.log(data);
                   required
                   type="text"
                   placeholder="Business Unit"
-                  controlId="department_name"
+                  controlid="department_name"
                   value={form.departmentName}
                   onChange={(e) => setField("departmentName", e.target.value)}
                   isInvalid={!!errors.departmentName}
@@ -193,7 +193,7 @@ console.log(data);
                   required
                   type="text"
                   placeholder="Business Unit Head"
-                  controlId="businessUnitHead"
+                  controlid="businessUnitHead"
                   value={form.businessUnitHead}
                   onChange={(e) => setField("businessUnitHead", e.target.value)}
                   isInvalid={!!errors.businessUnitHead}

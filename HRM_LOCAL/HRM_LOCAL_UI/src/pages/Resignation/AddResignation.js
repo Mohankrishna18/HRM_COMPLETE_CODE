@@ -37,15 +37,11 @@ function AddResignation(props) {
       label: "HR",
     },
   ];
-  const [users, setUsers] = useState({});
-  const [suggestions, setSuggestions] = useState([]);
-  const [suggestions1, setSuggestions1] = useState([]);
-  const [suggestions2, setSuggestions2] = useState([]);
-  const [show, setShow] = useState(false);
+ 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-  const [thirderrors, setThirdErrors] = useState("");
-  const [irm, setIrm] = useState("");
+  
+  
   const [step, setStep] = useState(0);
   const [value, setValue] = useState("");
   const[exitDate, setExitDate]= useState(null);
@@ -83,7 +79,7 @@ function AddResignation(props) {
     const {
       
       resigningEmployee,
-      resignationDate,
+      today,
       reason,
       exitDate,
     } = form;
@@ -91,13 +87,24 @@ function AddResignation(props) {
 
     
 
-    if (!resignationDate || resignationDate === "")
-      newErrors.resignationDate = "Please Enter Resignation Date";
+   
     if (!reason || reason === "") newErrors.reason = "Please Enter Reason";
 
     return newErrors;
   };
+  const today =moment(new Date()).format("DD-MM-YYYY") 
+const todays =()=>{
+   
+  console.log(today);
+  axios.get(`/resignation/getNoticeDateByResignationDate/${today}/${empID}`).then((response)=>{
+    //  console.log(response.data);
+    setExitDate(response.data);
+  })
+  // setField("resignationDate", today)
+}
+todays();
 
+ 
   const handleNext = (e) => {
     // e.preventDefault();
     const formErrors = validateForm();
@@ -121,7 +128,7 @@ function AddResignation(props) {
       setErrors(formErrors);
       console.log("Form validation error");
     } else {
-      const form1 = Object.assign(form, {employeeId:empID},{resigningEmployee:data},{exitDate:exitDate});
+      const form1 = Object.assign(form, {employeeId:empID},{resigningEmployee:data},{exitDate:exitDate},{resignationDate:moment(new Date()).format("YYYY-MM-DD")});
       console.log(form1)
       axios
         .post("/resignation/resignationApplied", form1)
@@ -213,7 +220,7 @@ function AddResignation(props) {
                 disabled
                 className="employeeId"
                 type="text"
-                controlId="employeeId"
+                controlid="employeeId"
                 // placeholder="Name"
                 // onChange={(event) => setFirstName(event.target.value)}
                 value={empID}
@@ -230,25 +237,25 @@ function AddResignation(props) {
               <Form.Label>Resignation Date *</Form.Label>
               <Form.Control
                 required
-                type="date"
+                // type="date"
+                min={today}
+                max={today}
                 placeholder="Resignation Date"
-                controlId="resignationDate"
-                value={form.resignationDate}
+                controlid="resignationDate"
+                defaultValue={today}
                 onChange={(e) => {
 
-                  setField("resignationDate", e.target.value)
-                console.log(e.target.value);
-                axios.get(`/resignation/getNoticeDateByResignationDate/${e.target.value}/${empID}`).then((response)=>{
+                  setField("resignationDate", today)
+                // console.log(e.target.value);
+                axios.get(`/resignation/getNoticeDateByResignationDate/${today}/${empID}`).then((response)=>{
                   console.log(response.data);
                   setExitDate(response.data);
                 })
                 }}
-                isInvalid={!!errors.resignationDate}
+                
               ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                {errors.resignationDate}
-              </Form.Control.Feedback>
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+             
+              
             </Form.Group>
             <Form.Group as={Col} md="12" style={{ padding: 10 }}>
               <Form.Label>Exit Date</Form.Label>
@@ -256,7 +263,7 @@ function AddResignation(props) {
                 required
                 name="exitDate"
                 type="text"
-                controlId="exitDate"
+                controlid="exitDate"
                 placeholder="Exit Date"
                 value={exitDate===null ?"":moment(exitDate).format("DD-MM-YYYY")}
                 maxLength={30}
@@ -273,7 +280,7 @@ function AddResignation(props) {
                 rows={2}
                 name="reason"
                 placeholder="Reason"
-                controlId="reason"
+                controlid="reason"
                 value={form.reason}
                 maxLength={30}
                 onChange={(e) => setField("reason", e.target.value)}
@@ -302,7 +309,7 @@ function AddResignation(props) {
                 <Step key={step.label}>
                   <StepLabel>{step.label}</StepLabel>
                   <StepContent>
-                    {/* <Typography>{step.description}</Typography> */}
+                    {/* <Typography component="span">{step.description}</Typography> */}
                     <Box sx={{ mb: 2 }}>
                       <div>
                         {/* <Button
@@ -327,7 +334,7 @@ function AddResignation(props) {
             </Stepper>
             {activeStep === steps.length && (
               <Paper square elevation={0} sx={{ p: 3 }}>
-                <Typography>
+                <Typography component="span">
                   All steps completed - you&apos;re finished
                 </Typography>
                 <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>

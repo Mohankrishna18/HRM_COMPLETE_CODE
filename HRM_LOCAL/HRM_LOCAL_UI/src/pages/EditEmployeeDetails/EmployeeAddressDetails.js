@@ -90,7 +90,7 @@ function EmployeeAddressDetails(props) {
                             type="text"
                             name="permanentAdress"
                             placeholder="Address"
-                            controlId="permanentAdress"
+                            controlid="permanentAdress"
                             value={permanentAdress}
                             isInvalid={elevenerrors}
                             maxLength={125}
@@ -117,7 +117,7 @@ function EmployeeAddressDetails(props) {
                                     type="text"
                                     placeholder="State"
                                     name="permanentState"
-                                    controlId="permanentState"
+                                    controlid="permanentState"
                                     maxLength={50}
                                     isInvalid={tweleveerror}
                                     value={permanentState}
@@ -161,7 +161,7 @@ function EmployeeAddressDetails(props) {
                                     type="text"
                                     placeholder="Country"
                                     name="permanentCountry"
-                                    controlId="permanentCountry"
+                                    controlid="permanentCountry"
                                     maxLength={50}
                                     // options={countries}
                                     value={permanentCountry}
@@ -200,7 +200,7 @@ function EmployeeAddressDetails(props) {
                                     required
                                     type="number"
                                     placeholder="Pincode"
-                                    controlId="permanentPincode"
+                                    controlid="permanentPincode"
                                     name="permanentPincode"
                                     isInvalid={fourteenerror}
                                     value={permanentPincode}
@@ -254,7 +254,7 @@ function EmployeeAddressDetails(props) {
                                 rows={4}
                                 type="text"
                                 placeholder="Address"
-                                controlId="currentAdress"
+                                controlid="currentAdress"
                                 isInvalid={fifteenerrors}
                                 value={currentAdress}
                                 name="currentAdress"
@@ -287,7 +287,7 @@ function EmployeeAddressDetails(props) {
                                         type="text"
                                         placeholder="State"
                                         name="currentState"
-                                        controlId="currentState"
+                                        controlid="currentState"
                                         maxLength={50}
                                         isInvalid={sixteenerror}
                                         value={currentState}
@@ -336,7 +336,7 @@ function EmployeeAddressDetails(props) {
                                         required
                                         type="text"
                                         placeholder="Country"
-                                        //controlId="currentCountry"
+                                        //controlid="currentCountry"
                                         value={currentCountry}
                                         isInvalid={seventeenerror}
                                         maxLength={50}
@@ -380,7 +380,7 @@ function EmployeeAddressDetails(props) {
                                         required
                                         type="number"
                                         placeholder="Pincode"
-                                        controlId="currentPincode"
+                                        controlid="currentPincode"
                                         value={currentPincode}
                                         isInvalid={eighteenerror}
                                         name="currentPincode"

@@ -278,7 +278,7 @@ function EmployeeEducationalDetails(props) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Post Graduation Details</Typography>
+          <Typography component="span">Post Graduation Details</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
@@ -290,7 +290,7 @@ function EmployeeEducationalDetails(props) {
                       // required
                       type="text"
                       placeholder="Qualification"
-                      controlId="postgraduationType"
+                      controlid="postgraduationType"
                       name="postgraduationType"
                       value={postgraduationType}
                       maxLength={50}
@@ -326,7 +326,7 @@ function EmployeeEducationalDetails(props) {
                     <Form.Control
                       type="text"
                       placeholder="University Name"
-                      controlId="postgraduationBoardOfUniversity"
+                      controlid="postgraduationBoardOfUniversity"
                       name="postgraduationBoardOfUniversity"
                       maxLength={50}
                       value={postgraduationBoardOfUniversity}
@@ -340,7 +340,7 @@ function EmployeeEducationalDetails(props) {
                     <Form.Control
                       type="text"
                       placeholder="Institute Name "
-                      controlId="postgraduationInstituteName"
+                      controlid="postgraduationInstituteName"
                       value={postgraduationInstituteName}
                       maxLength={50}
                       name="postgraduationInstituteName"
@@ -354,7 +354,7 @@ function EmployeeEducationalDetails(props) {
                     <Form.Control
                       type="text"
                       placeholder="Institute City"
-                      controlId="postgraduationInstituteCity"
+                      controlid="postgraduationInstituteCity"
                       value={postgraduationInstituteCity}
                       maxLength={50}
                       name="postgraduationInstituteCity"
@@ -368,7 +368,7 @@ function EmployeeEducationalDetails(props) {
                     <Form.Control
                       type="text"
                       placeholder="Course Name"
-                      controlId="postgraduationCourseName"
+                      controlid="postgraduationCourseName"
                       value={postgraduationCourseName}
                       maxLength={50}
                       name="postgraduationCourseName"
@@ -382,7 +382,7 @@ function EmployeeEducationalDetails(props) {
                     <Form.Control
                       type="date"
                       placeholder="Joining Year"
-                      controlId="postgraduationJoiningYear"
+                      controlid="postgraduationJoiningYear"
                       value={postgraduationJoiningYear}
                       maxLength={50}
                       name="postgraduationJoiningYear"
@@ -396,7 +396,7 @@ function EmployeeEducationalDetails(props) {
                     <Form.Control
                       type="date"
                       placeholder="Passed out year"
-                      controlId="postgraduationPassedYear"
+                      controlid="postgraduationPassedYear"
                       value={postgraduationPassedYear}
                       min={postgraduationJoiningYear}
                       maxLength={50}
@@ -411,7 +411,7 @@ function EmployeeEducationalDetails(props) {
                     <Form.Control
                       type="text"
                       placeholder="Percentage/Grade/CGPA/GPA"
-                      controlId="postgraduationGrade"
+                      controlid="postgraduationGrade"
                       value={postgraduationGrade}
                       name="postgraduationGrade"
                       maxLength={5}
@@ -448,7 +448,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="Qualification"
-              controlId="graduationType"
+              controlid="graduationType"
               maxLength={50}
               name="graduationType"
               value={graduationType}
@@ -489,7 +489,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="University Name"
-              controlId="graduationBoardOfUniversity"
+              controlid="graduationBoardOfUniversity"
               name="graduationBoardOfUniversity"
               value={graduationBoardOfUniversity}
               isInvalid={twentyfiveerror}
@@ -519,7 +519,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="Institute Name "
-              controlId="graduationInstituteName"
+              controlid="graduationInstituteName"
               name="graduationInstituteName"
               maxLength={50}
               value={graduationInstituteName}
@@ -550,7 +550,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="Institute City"
-              controlId="graduationInstituteCity"
+              controlid="graduationInstituteCity"
               maxLength={50}
               value={graduationInstituteCity}
               isInvalid={twentysevenerror}
@@ -611,7 +611,7 @@ function EmployeeEducationalDetails(props) {
               type="date"
               placeholder="Joining Year"
               name="graduationJoiningYear"
-              controlId="graduationJoiningYear"
+              controlid="graduationJoiningYear"
               maxLength={50}
               value={graduationJoiningYear}
               isInvalid={twentynineerror}
@@ -634,7 +634,7 @@ function EmployeeEducationalDetails(props) {
               //required
               type="date"
               placeholder="Passed out year"
-              controlId="graduationPassedYear"
+              controlid="graduationPassedYear"
               name="graduationPassedYear"
               maxLength={50}
               min={graduationJoiningYear}
@@ -659,7 +659,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="Percentage/Grade/GPA/CGPA"
-              controlId="graduationGrade"
+              controlid="graduationGrade"
               isInvalid={thirtyoneerror}
               value={graduationGrade}
               name="graduationGrade"
@@ -702,7 +702,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="Qualification"
-              controlId="graduationType"
+              controlid="graduationType"
               maxLength={50}
               name="graduationType"
               value={intermediateQualification}
@@ -728,7 +728,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="Board"
-              controlId="intermediateBoardOfUniversity"
+              controlid="intermediateBoardOfUniversity"
               value={intermediateBoardOfUniversity}
               isInvalid={thirtytwoerror}
               maxLength={50}
@@ -763,7 +763,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="School/College Name "
-              controlId="intermediateCollegeName"
+              controlid="intermediateCollegeName"
               value={intermediateCollegeName}
               isInvalid={thirtythreeerror}
               maxLength={50}
@@ -793,7 +793,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="School/College City"
-              controlId="intermediateCollegeCity"
+              controlid="intermediateCollegeCity"
               value={intermediateCollegeCity}
               isInvalid={thirtyfourerror}
               maxLength={50}
@@ -824,7 +824,7 @@ function EmployeeEducationalDetails(props) {
               type="text"
               placeholder="Course Name"
               name="intermediateCourseName"
-              controlId="intermediateCourseName"
+              controlid="intermediateCourseName"
               maxLength={50}
               value={intermediateCourseName}
               isInvalid={thirtyfiveerror}
@@ -854,7 +854,7 @@ function EmployeeEducationalDetails(props) {
               //required
               type="date"
               placeholder="Joining Year"
-              controlId="intermediateJoiningYear"
+              controlid="intermediateJoiningYear"
               name="intermediateJoiningYear"
               value={intermediateJoiningYear}
               isInvalid={thirtysixerror}
@@ -877,7 +877,7 @@ function EmployeeEducationalDetails(props) {
               //required
               type="date"
               placeholder="Passed out year"
-              controlId="intermediatePassedYear"
+              controlid="intermediatePassedYear"
               value={intermediatePassedYear}
               min={intermediateJoiningYear}
               isInvalid={thirtysevenerror}
@@ -901,7 +901,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="Percentage/Grade/GPA/CGPA"
-              controlId="intermediateGrade"
+              controlid="intermediateGrade"
               maxLength={5}
               value={intermediateGrade}
               isInvalid={thirtyeighterror}
@@ -946,7 +946,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="Qualification"
-              controlId="graduationType"
+              controlid="graduationType"
               maxLength={50}
               name="graduationType"
               value={sscQualification}
@@ -972,7 +972,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="Board"
-              controlId="sscBoardOfUniversity"
+              controlid="sscBoardOfUniversity"
               maxLength={50}
               value={sscBoardOfUniversity}
               isInvalid={thirtynineerror}
@@ -1008,7 +1008,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="School Name "
-              controlId="sscSchoolName"
+              controlid="sscSchoolName"
               maxLength={50}
               value={sscSchoolName}
               isInvalid={fourty}
@@ -1039,7 +1039,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="School City"
-              controlId="sscSchoolCity"
+              controlid="sscSchoolCity"
               maxLength={50}
               value={sscSchoolCity}
               isInvalid={fourtyone}
@@ -1069,7 +1069,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="Course Name"
-              controlId="sscCourseName"
+              controlid="sscCourseName"
               maxLength={50}
               value={sscCourseName}
               isInvalid={fourtytwo}
@@ -1100,7 +1100,7 @@ function EmployeeEducationalDetails(props) {
               type="date"
               name="sscJoiningYear"
               placeholder="Joining Year"
-              controlId="sscJoiningYear"
+              controlid="sscJoiningYear"
               value={sscJoiningYear}
               isInvalid={fourtythree}
               onChange={(e) => {
@@ -1123,7 +1123,7 @@ function EmployeeEducationalDetails(props) {
               type="date"
               name="sscPassedYear"
               placeholder="Passed out year"
-              controlId="sscPassedYear"
+              controlid="sscPassedYear"
               value={sscPassedYear}
               min={sscJoiningYear}
               isInvalid={fourtyfour}
@@ -1146,7 +1146,7 @@ function EmployeeEducationalDetails(props) {
               required
               type="text"
               placeholder="Percentage/Grade/GPA/CGPA"
-              controlId="sscGrade"
+              controlid="sscGrade"
               value={sscGrade}
               maxLength={5}
               name="sscGrade"
@@ -1172,9 +1172,9 @@ function EmployeeEducationalDetails(props) {
           </Form.Group>
           <Row>
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-              <Form.Group controlId="formFileMultiple">
+              <Form.Group controlid="formFileMultiple">
                 <Form.Label>
-                  <p class="fw-bold">
+                  <p className="fw-bold">
                     Please Upload Your Educational Certificates(PG,UG,12th,10th in PDF format only)
                   </p>
                 </Form.Label>

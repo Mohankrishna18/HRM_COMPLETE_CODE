@@ -116,7 +116,7 @@ const RoleUpdate = (props) => {
                   required
                   className="roleName"
                   type="text"
-                  controlId="roleName"
+                  controlid="roleName"
                   placeholder="Role Name"
                   onChange={(event) => setRoleName(event.target.value)}
                   value={roleName}
@@ -135,7 +135,7 @@ const RoleUpdate = (props) => {
                   required
                   type="text"
                   placeholder="Module-1"
-                  controlId="permission1"
+                  controlid="permission1"
                   value={permission1}
                   onChange={(e) => setPermission1(e.target.value)}
                   isInvalid={!!errors.permission1}
@@ -159,7 +159,7 @@ const RoleUpdate = (props) => {
                   required
                   type="text"
                   placeholder="Module-2"
-                  controlId="permission2"
+                  controlid="permission2"
                   value={form.permission2}
                   onChange={(e) => setPermission2(e.target.value)}
                   isInvalid={!!errors.permission2}
@@ -183,7 +183,7 @@ const RoleUpdate = (props) => {
                   required
                   type="text"
                   placeholder="Module-3"
-                  controlId="permission3"
+                  controlid="permission3"
                   value={form.permission3}
                   onChange={(e) => setField("permission3", e.target.value)}
                   isInvalid={!!errors.permission3}
@@ -207,7 +207,7 @@ const RoleUpdate = (props) => {
                   required
                   type="text"
                   placeholder="Module-4"
-                  controlId="permission4"
+                  controlid="permission4"
                   value={form.permission4}
                   onChange={(e) => setField("permission4", e.target.value)}
                   isInvalid={!!errors.permission4}
@@ -231,7 +231,7 @@ const RoleUpdate = (props) => {
                   required
                   type="text"
                   placeholder="Module-5"
-                  controlId="permission5"
+                  controlid="permission5"
                   value={form.permission5}
                   onChange={(e) => setField("permission5", e.target.value)}
                   isInvalid={!!errors.permission5}
@@ -255,7 +255,7 @@ const RoleUpdate = (props) => {
                   required
                   type="text"
                   placeholder="Module-6"
-                  controlId="permission6"
+                  controlid="permission6"
                   value={form.permission6}
                   onChange={(e) => setField("permission6", e.target.value)}
                   isInvalid={!!errors.permission6}
@@ -279,7 +279,7 @@ const RoleUpdate = (props) => {
                   required
                   type="text"
                   placeholder="Module-7"
-                  controlId="permission7"
+                  controlid="permission7"
                   value={form.permission7}
                   onChange={(e) => setField("permission7", e.target.value)}
                   isInvalid={!!errors.permission7}
@@ -303,7 +303,7 @@ const RoleUpdate = (props) => {
                   required
                   type="text"
                   placeholder="Module-8"
-                  controlId="permission8"
+                  controlid="permission8"
                   value={form.permission8}
                   onChange={(e) => setField("permission8", e.target.value)}
                   isInvalid={!!errors.permission8}
@@ -327,7 +327,7 @@ const RoleUpdate = (props) => {
                   required
                   type="text"
                   placeholder="Module-9"
-                  controlId="permission9"
+                  controlid="permission9"
                   value={form.permission2}
                   onChange={(e) => setField("permission9", e.target.value)}
                   isInvalid={!!errors.permission9}
@@ -352,7 +352,7 @@ const RoleUpdate = (props) => {
                   required
                   type="text"
                   placeholder="Module-10"
-                  controlId="permission10"
+                  controlid="permission10"
                   value={form.permission10}
                   onChange={(e) => setField("permission10", e.target.value)}
                   isInvalid={!!errors.permission10}

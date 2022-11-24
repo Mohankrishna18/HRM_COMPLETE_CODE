@@ -325,7 +325,7 @@ function ProfilePersonalDetailsTab(props) {
                                     as={Col}
                                     className="mb-3"
                                     md="6"
-                                    controlId="formBasicEmail"
+                                    controlid="formBasicEmail"
                                 >
                                     <Form.Label>First Name *</Form.Label>
                                     <Form.Control
@@ -365,7 +365,7 @@ function ProfilePersonalDetailsTab(props) {
                                     as={Col}
                                     className="mb-3"
                                     md="6"
-                                    controlId="formBasicEmail"
+                                    controlid="formBasicEmail"
                                 >
                                     <Form.Label>Last Name *</Form.Label>
                                     <Form.Control
@@ -438,7 +438,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                     className="mb-3"
                                     md="6"
                                     style={{ padding: 10 }}
-                                    controlId="formBasicEmail"
+                                    controlid="formBasicEmail"
                                 >
                                     <Form.Label>Emergency Phone Number </Form.Label>
                                     <InputGroup>
@@ -503,7 +503,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         type="date"
                                         name="dateOfBirth"
                                         placeholder="DOB"
-                                        controlId="dateOfBirth"
+                                        controlid="dateOfBirth"
                                         value={dateOfBirth}
                                         isInvalid={fiveerrors}
                                         onChange={(e) => {
@@ -530,7 +530,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         type="text"
                                         name="bloodGroup"
                                         placeholder="Blood Group "
-                                        controlId="bloodGroup"
+                                        controlid="bloodGroup"
                                         isInvalid={sixerror}
                                         value={bloodGroup}
 
@@ -566,7 +566,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         type="text"
                                         name="gender"
                                         placeholder="Gender "
-                                        controlId="gender"
+                                        controlid="gender"
                                         value={gender}
                                         isInvalid={sevenerrors}
                                         onChange={(e) => {
@@ -596,7 +596,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         type="text"
                                         name="maritalStatus"
                                         placeholder="Marital Status "
-                                        controlId="maritalStatus"
+                                        controlid="maritalStatus"
                                         value={maritalStatus}
                                         isInvalid={eighterror}
                                         onChange={(event) => {

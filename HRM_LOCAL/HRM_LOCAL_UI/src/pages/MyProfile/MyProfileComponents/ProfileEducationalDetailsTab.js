@@ -18,6 +18,7 @@ import {
   Description,
 } from "vertical-timeline-component-react";
 import { BASE_URL } from "../../../Constant";
+import { toast } from "react-toastify";
 
 const customTheme = {
   yearColor: "#405b73",
@@ -92,7 +93,9 @@ const ProfileEducationalDetailsTab = (props) => {
   }, []);
 console.log(documents)
 
-
+const handleclick = () =>{
+  toast.error("Educational Documents are not uploaded")
+}
 
   var GraduationJoiningYear = new Date(getEmployeeDetails.graduationJoiningYear);
   var dd = String(GraduationJoiningYear.getDate()).padStart(2, '0');
@@ -223,7 +226,7 @@ console.log(documents)
                 </a>
               </Col>
             ) : (
-              <></>
+              <Col> <Button onClick={handleclick} style={{background:"none",color:"blue",border:"none"}}>Educational Documents</Button></Col>
             )}</Row>
                         </div>
 

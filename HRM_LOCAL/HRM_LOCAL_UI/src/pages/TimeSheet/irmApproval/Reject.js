@@ -56,7 +56,7 @@ import axios from "../../../Uri";
                 required
                 className="comments"
                 type="textarea"
-                controlId="comments"
+                controlid="comments"
                 placeholder="Comment"
                 as="textarea"
                 rows={2}

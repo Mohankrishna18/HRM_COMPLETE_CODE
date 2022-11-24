@@ -240,7 +240,7 @@ console.log(employeeId);
                     required
                     type="text"
                     placeholder="Type Of Employment"
-                    controlId="employmentType"
+                    controlid="employmentType"
                     value={form.employmentType}
                     onChange={(e) => setField("employmentType", e.target.value)}
                     isInvalid={!!errors.employmentType}
@@ -260,7 +260,7 @@ console.log(employeeId);
                     required
                     type="text"
                     placeholder="Businees Unit"
-                    controlId="department"
+                    controlid="department"
                     value={form.department}
                     onChange={(e) => {
                         console.log(e.target.value);
@@ -295,7 +295,7 @@ console.log(employeeId);
                     required
                     type="text"
                     placeholder="Designation"
-                    controlId="designation"
+                    controlid="designation"
                     value={form.designation}
                     onChange={(e) => setField("designation", e.target.value)}
                     isInvalid={!!errors.designation}
@@ -321,7 +321,7 @@ console.log(employeeId);
                     required
                     type="text"
                     placeholder="Band"
-                    controlId="band"
+                    controlid="band"
                     value={form.band}
                     isInvalid={!!errors.band}
                     onChange={(e) => setField("band", e.target.value)}
@@ -343,7 +343,7 @@ console.log(employeeId);
                 <Form.Control
                     name="jobTitle"
                     type="text"
-                    controlId="jobTitle"
+                    controlid="jobTitle"
                     placeholder="Job Title "
                     value={form.jobTitle}
                     maxLength={30}
@@ -360,7 +360,7 @@ console.log(employeeId);
                     // required
                     type="text"
                     placeholder="client"
-                    controlId="client"
+                    controlid="client"
                     value={form.client}
                     onChange={(e) => setField("client", e.target.value)}
                     // isInvalid={!!errors.client}
@@ -381,7 +381,7 @@ console.log(employeeId);
                     // required
                     type="text"
                     placeholder="projectName"
-                    controlId="projectName"
+                    controlid="projectName"
                     value={form.projectName}
                     // isInvalid={!!errors.projectName}
 
@@ -417,7 +417,7 @@ console.log(employeeId);
                     required
                     type="text"
                     placeholder="select IRM"
-                    controlId="irm"
+                    controlid="irm"
                     value={form.irm}
                     isInvalid={!!errors.irm}
                     onChange={(e) => setField("irm", e.target.value)}
@@ -448,7 +448,7 @@ console.log(employeeId);
                     required
                     type="text"
                     placeholder="select srm"
-                    controlId="srm"
+                    controlid="srm"
                     value={form.srm}
                     isInvalid={!!errors.srm}
                     onChange={(e) => setField("srm", e.target.value)}
@@ -479,7 +479,7 @@ console.log(employeeId);
                     required
                     type="text"
                     placeholder="select BUH"
-                    controlId="buh"
+                    controlid="buh"
                     value={form.buh}
                     isInvalid={!!errors.buh}
                     onChange={(e) => setField("buh", e.target.value)}

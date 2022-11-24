@@ -165,7 +165,7 @@ function HRAssign(props) {
                 rows={2}
                 className="ceoApprovalComment"
                 type="text"
-                controlId="ceoApprovalComment"
+                controlid="ceoApprovalComment"
                 placeholder="Approve Reason"
                 value={form.ceoApprovalComment}
                 onChange={(e) => setField("ceoApprovalComment", e.target.value)}
@@ -296,7 +296,7 @@ function HRAssign(props) {
                     required
                     type="text"
                     placeholder="Businees Unit"
-                    controlId="department"
+                    controlid="department"
                     value={form.department}
                     onChange={(e) => {
                         console.log(e.target.value);
@@ -331,7 +331,7 @@ function HRAssign(props) {
                     required
                     type="text"
                     placeholder="Designation"
-                    controlId="designation"
+                    controlid="designation"
                     value={form.designation}
                     onChange={(e) => setField("designation", e.target.value)}
                     isInvalid={!!errors.designation}
@@ -354,7 +354,7 @@ function HRAssign(props) {
                     type="text"
                     as="textarea"
                     placeholder="Comment"
-                    controlId="hrcomment"
+                    controlid="hrcomment"
                     value={form.hrcomment}
                     onChange={(e) => setField("hrcomment", e.target.value)}
                     isInvalid={!!errors.hrcomment}
@@ -384,7 +384,7 @@ function HRAssign(props) {
                     required
                     type="text"
                     placeholder="Businees Unit"
-                    controlId="department"
+                    controlid="department"
                     value={form.department}
                     onChange={(e) => {
                         console.log(e.target.value);
@@ -419,7 +419,7 @@ function HRAssign(props) {
                     required
                     type="text"
                     placeholder="Designation"
-                    controlId="designation"
+                    controlid="designation"
                     value={form.designation}
                     onChange={(e) => setField("designation", e.target.value)}
                     isInvalid={!!errors.designation}
@@ -443,7 +443,7 @@ function HRAssign(props) {
                     type="text"
                     as="textarea"
                     placeholder="Comment"
-                    controlId="hrcomment"
+                    controlid="hrcomment"
                     value={form.hrcomment}
                     onChange={(e) => setField("hrcomment", e.target.value)}
                     isInvalid={!!errors.hrcomment}

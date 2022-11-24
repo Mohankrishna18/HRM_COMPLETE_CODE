@@ -127,7 +127,7 @@ function PersonalDetailsTab() {
                         as={Col}
                         className="mb-3"
                         md="6"
-                        controlId="formBasicEmail"
+                        controlid="formBasicEmail"
                     >
                         <Form.Label>First Name *</Form.Label>
                         <Form.Control
@@ -167,7 +167,7 @@ function PersonalDetailsTab() {
                         as={Col}
                         className="mb-3"
                         md="6"
-                        controlId="formBasicEmail"
+                        controlid="formBasicEmail"
                     >
                         <Form.Label>Last Name *</Form.Label>
                         <Form.Control
@@ -231,7 +231,7 @@ function PersonalDetailsTab() {
                         className="mb-3"
                         md="6"
                         style={{ padding: 10 }}
-                        controlId="formBasicEmail"
+                        controlid="formBasicEmail"
                     >
                         <Form.Label>Emergency Phone Number </Form.Label>
                         <InputGroup>
@@ -290,7 +290,7 @@ function PersonalDetailsTab() {
                             type="date"
                             name="dateOfBirth"
                             placeholder="DOB"
-                            controlId="dateOfBirth"
+                            controlid="dateOfBirth"
                             value={dateOfBirth}
                             isInvalid={fiveerrors}
                             onChange={(e) => {
@@ -317,7 +317,7 @@ function PersonalDetailsTab() {
                             type="text"
                             name="bloodGroup"
                             placeholder="Blood Group "
-                            controlId="bloodGroup"
+                            controlid="bloodGroup"
                             isInvalid={sixerror}
                             value={bloodGroup}
 
@@ -353,7 +353,7 @@ function PersonalDetailsTab() {
                             type="text"
                             name="gender"
                             placeholder="Gender "
-                            controlId="gender"
+                            controlid="gender"
                             value={gender}
                             isInvalid={sevenerrors}
                             onChange={(e) => {
@@ -383,7 +383,7 @@ function PersonalDetailsTab() {
                             type="text"
                             name="maritalStatus"
                             placeholder="Marital Status "
-                            controlId="maritalStatus"
+                            controlid="maritalStatus"
                             value={maritalStatus}
                             isInvalid={eighterror}
                             onChange={(event) => {

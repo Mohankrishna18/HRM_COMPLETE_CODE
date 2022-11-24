@@ -9,6 +9,8 @@ function IRMResignationApprove(props) {
 
   console.log(props.leaveID.reason);
 
+
+
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [irmApprove, setIrmApprove] = useState("");
@@ -26,6 +28,8 @@ function IRMResignationApprove(props) {
       });
   };
   const ApproveHandler = (e) => {
+
+    
     // e.prevetDefault();
     const notify = () => toast("Resignation is approved");
     // handleClose();
@@ -46,6 +50,7 @@ function IRMResignationApprove(props) {
       )
       .then((res) => {
         console.log(res);
+        
         if (res.status == 200) {
           props.func();
         } else {
@@ -61,10 +66,10 @@ function IRMResignationApprove(props) {
     notify();
   };
   return (
-    <div>
-      {/* <Col xs={9}>
-            Are You Want to Approve This Leave
-            </Col> */}
+    
+    
+     <div>
+      
 
       <Form role="form">
       <Form.Group md="12" style={{ padding: 0 }}>
@@ -90,7 +95,7 @@ function IRMResignationApprove(props) {
             rows={2}
             className="irmApprove"
             type="text"
-            controlId="irmApprove"
+            controlid="irmApprove"
             placeholder="Approve Reason"
             value={irmApprove}
             onChange={(e) => setIrmApprove(e.target.value)}
@@ -107,7 +112,8 @@ function IRMResignationApprove(props) {
       >
         Yes
       </Button>
-    </div>
+     </div>
+     
   );
 }
 

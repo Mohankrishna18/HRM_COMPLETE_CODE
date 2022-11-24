@@ -86,7 +86,7 @@ function BUHRequisitionRejected(props) {
                 rows={2}
                 className="buheadReject"
                 type="text"
-                controlId="buheadReject"
+                controlid="buheadReject"
                 placeholder="Approve Reason"
                 value={form.buheadReject}
                 onChange={(e) => setField("buheadReject", e.target.value)}

@@ -107,6 +107,11 @@ public class HolidayManagementController {
 	return ResponseEntity.ok(serv.getWorkingDaysBetweenTwoDates(new SimpleDateFormat("yyyy-MM-dd").parse(startDate), new SimpleDateFormat("yyyy-MM-dd").parse(endDate)));
 	}
 
+	@GetMapping("/findHolidaysCountBetWeenTwoDates/{startDate}/{endDate}")
+	public ResponseEntity <Integer> findHolidaysCountBetWeenTwoDates(@PathVariable String startDate,@PathVariable String endDate) throws ParseException, Exception
+	{
+	return ResponseEntity.ok(repo.findHolidaysCountBetWeenTwoDates(new SimpleDateFormat("yyyy-MM-dd").parse(startDate), new SimpleDateFormat("yyyy-MM-dd").parse(endDate)));
+	}
 
 
 	public HolidayManagementController() {

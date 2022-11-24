@@ -87,7 +87,7 @@
 //             rows={2}
 //             className="srmApprove"
 //             type="text"
-//             controlId="srmApprove"
+//             controlid="srmApprove"
 //             placeholder="Approve Reason"
 //             value={srmApprove}
 //             onChange={(e) => setSrmApprove(e.target.value)}

@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
 import com.recruitmenttracker.modal.EmployeeReq;
+import com.recruitmenttracker.modal.RRFClosed;
 
 public interface RequisitionRequestInterface {
 
@@ -39,5 +40,7 @@ public interface RequisitionRequestInterface {
     public int getDaysBetweenDates(String requisitionId,String requestInitiatedDate) throws ParseException;
 
     public ResponseEntity getAllRequisitions();
+    
+    public ResponseEntity updateAgeing(String requisitionId, RRFClosed rrUpdate);
 
 }
