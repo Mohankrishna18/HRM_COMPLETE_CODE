@@ -8,7 +8,6 @@ import { FaRegAddressCard } from "react-icons/fa";
 
 function ProfileAddressTab(props) {
 
-    console.log(props.profile);
     const employeeid = props.profile;
 
     // const userData = sessionStorage.getItem("userdata");

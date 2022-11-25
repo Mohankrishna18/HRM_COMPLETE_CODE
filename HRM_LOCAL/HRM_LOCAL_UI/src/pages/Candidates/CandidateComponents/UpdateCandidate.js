@@ -35,6 +35,7 @@ const UpdateCandidate = (props) => {
   const [phnError, setPhnError]=useState("");
   const [expyrError, setExpyrError]=useState("");
   const [show, setShow] =useState(false);
+  const [level,setLevel] = useState("");
 
   const handleClose = () => setShow();
   // useState for phone number
@@ -73,6 +74,7 @@ const UpdateCandidate = (props) => {
       phoneNumber,
       yearsOfExperience,
       uploadResume,
+      level
     } = form;
     const newErrors = {};
 
@@ -102,8 +104,8 @@ const UpdateCandidate = (props) => {
     if (!primarySkills || primarySkills === "")
       newErrors.primarySkills = "Please Enter Primary Skills";
 
-    if (!secondarySkills || secondarySkills === "")
-      newErrors.secondarySkills = "Please Enter Secondary Skills";
+    // if (!secondarySkills || secondarySkills === "")
+    //   newErrors.secondarySkills = "Please Enter Secondary Skills";
 
     if (!email || email === "") newErrors.email = "Please Enter Mail Id";
 
@@ -118,6 +120,9 @@ const UpdateCandidate = (props) => {
 
     if (!yearsOfExperience || yearsOfExperience === "")
       newErrors.yearsOfExperience = "Please Enter Years Of Experience";
+
+      if (!level || level === "")
+      newErrors.level = "Please Enter Level";
 
     if (!uploadResume || uploadResume === "")
       newErrors.uploadResume = "Please upload uploadResume";
@@ -172,6 +177,7 @@ const UpdateCandidate = (props) => {
         email,
         phoneNumber,
         yearsOfExperience,
+        level,
         uploadResume,
       })
       .then((response) => {
@@ -182,7 +188,7 @@ const UpdateCandidate = (props) => {
         } else {
           console.log("Props not Send");
         }
-        // toast.success("Candidate updated successfully");
+       toast.success("Candidate updated successfully");
         // console.log(user);
       })
       .catch((err) => {
@@ -328,7 +334,29 @@ const UpdateCandidate = (props) => {
             </Form.Control.Feedback>
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
-
+          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Level*</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  // placeholder="Candidate Status"
+                  controlid="level"
+                  defaultValue={level}
+                  value={level}
+                  onChange={(e) => setField("level", e.target.value)}
+                  isInvalid={!!errors.level}
+                >
+                  <option value="">Select Level </option>
+                  <option value="Level 1">Level 1</option>
+                  <option value="Level 2">Level 2</option>
+                  <option value="Level 3">Level 3</option>
+                  <option value="Level 4">Level 4</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.level}
+                </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
 
           {/* Current LOCation */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
