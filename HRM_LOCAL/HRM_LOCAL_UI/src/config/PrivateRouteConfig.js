@@ -705,7 +705,7 @@ export default [
   // },
   {
     component: PMO_Dashboard,
-    path: "/PMO_Dashboard",
+    path: "/requisition_Dashboard",
     type: "jobs",
     icon: <FcApproval />,
     title: "Requisition Dashboard",
@@ -750,12 +750,8 @@ export default [
     component: StepperForm,
 
     path: '/StepperForm',
-
     type: "AERF",
-
     permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead,Roles.taa],
-
-
 
   },
 

@@ -411,7 +411,8 @@ const EmployeeAttendance = () => {
      
       if(dept == null){
         axios.get( `/emp/getEmployeeLeavesDatawithoutDept/${month}/${year}`).then((response)=>{
-          console.log(response)
+          console.log(response);
+
           setRowData(response.data)
           setDays(response.data[0].totalDays)
           setWorkingDays(response.data[0].totalWorkingDays)

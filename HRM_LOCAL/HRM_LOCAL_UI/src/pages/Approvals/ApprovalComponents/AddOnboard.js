@@ -63,8 +63,8 @@ function AddOnboard(props) {
       raisedBy
     } = form;
     const newErrors = {};
-
-    if (!firstName || firstName === "" || !firstName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
+    /^[\d a-zA-Z ()+-]+$/
+    if (!firstName || firstName === "" || !firstName.match(/^[\d a-zA-Z ()+-]+$/))
       newErrors.firstName = "Please Enter First Name";
     if (!lastName || lastName === "" || !lastName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
       newErrors.lastName = "Please Enter Last Name";
@@ -150,7 +150,7 @@ function AddOnboard(props) {
           }
           toast.success("Employee Onboarded Successfully");
           console.log(user);
-          setTimeout(500);
+          setTimeout(100);
           handleClose();
         })
         .catch((err) => {
@@ -479,6 +479,10 @@ function AddOnboard(props) {
                                 " Phone Number length should be 10 characters"
                               );
                             }
+                              else{
+                                setThirdErrors("");
+                              }
+                            
                           }}
                           isInvalid={thirderrors}
                         ></Form.Control>

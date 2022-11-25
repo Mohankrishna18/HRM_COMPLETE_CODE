@@ -484,16 +484,27 @@ public class MainServiceImpl implements MainService {
 					MainEmailTemplate mailTemp3 = new MainEmailTemplate();
 					Map<String, String> map3 = new HashMap();
 
-					UserMail response1 = template.getForObject(OnboardUrl + "pmohead", UserMail.class);
-					List<MailGet> hrApp = response1.getMails();
-
-					hrApp.forEach(e -> {
-						mailTemp3.setEmailType("PMO");
-						map3.put("employeeName", em.getFullName());
-						map3.put("email", e.getEmail());
-						mailTemp3.setMap(map3);
-						template.postForObject(preEmailURL, mailTemp3, MainEmailTemplate.class);
-					});
+					
+					
+					UserMail response1 = template.getForObject(	OnboardUrl+"pmohead",UserMail.class);
+		        	List<MailGet> hrApp = response1.getMails();
+		        	
+		        	hrApp.forEach(e->{
+					mailTemp3.setEmailType("PMO");
+					map3.put("employeeName", em.getFullName());
+					map3.put("email", e.getEmail());
+					mailTemp3.setMap(map3);
+					template.postForObject(preEmailURL, mailTemp3, MainEmailTemplate.class);
+		        	});
+		        	
+		        	
+		        	//Post employeeId and Leave Balance to Leave Mater Table
+		        	LeaveMaster lmm = new LeaveMaster();
+                    String posst="http://leaveservice/leave/postLeaves";       
+                    lmm.setEmployeeId(getOnboarding.getEmployeeId());
+                    lmm.setLeaveBalance(1);
+                  
+                    template.postForObject(posst,lmm, LeaveMaster.class);   
 
 					response.setStatus(true);
 					response.setMessage("Hr Approved successfully");
