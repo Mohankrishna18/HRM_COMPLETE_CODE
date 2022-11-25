@@ -147,7 +147,7 @@ function ProfileAddressTab(props) {
                         </Card.Subtitle>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 0 }}>
+                                <Card.Subtitle style={{ padding: 10 }}>
                                     Address:
                                 </Card.Subtitle>
                             </Col>
@@ -159,7 +159,7 @@ function ProfileAddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 0 }}>
+                                <Card.Subtitle style={{ padding: 10 }}>
                                     State:
                                 </Card.Subtitle>
                             </Col>
@@ -171,7 +171,7 @@ function ProfileAddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 0 }}>
+                                <Card.Subtitle style={{ padding: 10 }}>
                                     Country:
                                 </Card.Subtitle>
                             </Col>
@@ -183,7 +183,7 @@ function ProfileAddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 0 }}>
+                                <Card.Subtitle style={{ padding: 10 }}>
                                     Pincode:
                                 </Card.Subtitle>{" "}
                             </Col>

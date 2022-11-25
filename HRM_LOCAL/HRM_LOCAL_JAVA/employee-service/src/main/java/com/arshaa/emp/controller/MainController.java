@@ -27,6 +27,7 @@ import com.arshaa.emp.entity.Onboarding;
 import com.arshaa.emp.entity.ReportingManager;
 import com.arshaa.emp.model.AdditionalDetails;
 import com.arshaa.emp.model.Address;
+import com.arshaa.emp.model.AssignProjectName;
 import com.arshaa.emp.model.DesignationName;
 import com.arshaa.emp.model.EducationalDetails;
 import com.arshaa.emp.model.EmployeeLeavesData;
@@ -618,6 +619,7 @@ public class MainController {
     		return serv.probationEmployeeFeedBack(employeeId, prb);
     	}
         
+        
         @PutMapping("/updateEmployeeAfterResignApply/{employeeId}")
         public ResponseEntity updateEmployeeAfterResignApply(@PathVariable String employeeId,@RequestBody ResignationModel rmodel)
         {
@@ -629,5 +631,15 @@ public class MainController {
         {
         	return new ResponseEntity(resignationServ.updateEmployeeAfterResignConfirmed(employeeId, rmodel),HttpStatus.OK);
         }
-
+        
+        //changes
+        @GetMapping("/employeesToDisplayByTheirProjectAllocation/{projectName}")
+        public List<EmployeeMaster> employeesToDisplayByTheirProjectAllocation(@PathVariable("projectName") String projectName){
+        	return serv.employeesToDisplayByTheirProjectAllocation(projectName);
+        }
+        
+        @PostMapping("saveProjectAllocationPercentAfterMapping/{employeeId}")
+        public Boolean saveProjectAllocationPercentAfterMapping(@PathVariable("employeeId") String employeeId, @RequestBody AssignProjectName apn) {
+        	return serv.saveProjectAllocationPercentAfterMapping(employeeId, apn);
+        }
 }
