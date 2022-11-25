@@ -34,6 +34,7 @@ function ManagerEmployeeApprove(props) {
         const{
             irmApproveReason
         } = form;
+        
         const newErrors ={};
         if (!irmApproveReason || irmApproveReason === "" )
         newErrors.irmApproveReason = "Please Enter Comment";
@@ -63,18 +64,20 @@ function ManagerEmployeeApprove(props) {
             console.log(res)
             if(res.status == 200){
                 props.func();
+                notify();
+                props.closeLoader();
             }
             else{
                 console.log('props not send')
             }
         })
         .catch((err)=>{
-            console.log(err);
+            // console.log(err);
             toast.error("Something wrong");
         });
         props.handleClose();
        
-        notify();
+       
     }
     //   };
   return (

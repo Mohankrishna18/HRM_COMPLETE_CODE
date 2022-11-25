@@ -5,6 +5,10 @@ import axios from "../../Uri";
 import { Button, Stack, Modal } from "react-bootstrap";
 import ManagerEmployeeApprove from "./ManagerEmployeeApprove";
 import ManagerEmployeeReject from "./ManagerEmployeeReject";
+
+import Backdrop from "@mui/material/Backdrop";
+
+import CircularProgress from "@mui/material/CircularProgress";
 import { FcApproval } from "react-icons/fc";
 import { FcCancel } from "react-icons/fc";
 
@@ -16,8 +20,19 @@ function ManagerEmployeesLeavesWaitingForApproval(props) {
   const [update, setUpdate] = useState(false);
   const [reject, setReject] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setLoading(true)
+  }
+  const closeLoader=()=>{
+    setLoading(false)
+  }
+
   const approveHandleClose = () => setUpdate(false);
+
+  const [loading, setLoading] = React.useState(false);
+
+  const closeLoading = () => setLoading(!loading);
 
   const handleCloseReject = () => setRejectShow(false);
   const rejectHandleClose = () => setReject(false);
@@ -40,6 +55,7 @@ function ManagerEmployeesLeavesWaitingForApproval(props) {
   const empID = da.data.employeeId;
 
   const loadData = async () => {
+    setLoading(false);
     const res = await axios.get(`/leave/getUserByReportingManager/${empID}`);
     // setData(res.data);
     // console.log(res.data);
@@ -47,6 +63,8 @@ function ManagerEmployeesLeavesWaitingForApproval(props) {
     const dat = res.data.filter((m) => m.leaveStatus == "pending");
     console.log(dat);
     setData(dat);
+    setLoading(true);
+   
   };
   const [columns, setColumns] = useState([
     { title: "Employee ID", field: "employeeId" },
@@ -79,132 +97,154 @@ function ManagerEmployeesLeavesWaitingForApproval(props) {
   // ]);
 
   return (
-    <div >
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton style={{backgroundColor: "#f5896e"}}>
-          <Modal.Title>Are you sure you want to Approve</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <ManagerEmployeeApprove
-            leaveID={leaveID}
-            func={pull_data}
-            handleClose={handleClose}
-          />
-        </Modal.Body>
-        {/* <Modal.Footer>
-        <Button variant="primary" onClick={handleClose}>
-            Approve
-          </Button>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-         
-        </Modal.Footer> */}
-      </Modal>
-      <Modal show={rejectshow} onHide={handleCloseReject}>
-        <Modal.Header closeButton  style={{backgroundColor: "#f5896e"}}>
-          <Modal.Title>Are you sure you want to Reject</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <ManagerEmployeeReject
-            leaveID={leaveID}
-            func={pull_dataReject}
-            handleClose={handleCloseReject}
-          />
-        </Modal.Body>
-      </Modal>
 
-      <Grid>
-        <MaterialTable
-           title="Leaves/WFH Approvals"
-        // title=""
-          columns={columns}
-          data={data}
-          options={{
-            pageSize: 10,
-            pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
-            maxBodyHeight: 350,
-            paging: true,
-            addRowPosition: "first",
-            actionsColumnIndex: -1,
-            headerStyle: {
-              backgroundColor: "#f5896e",
-              color: "white",
-              fontSize: "12px",
-              //height: "10px",
-              //fontWeight: 'bold'
-          },
-          rowStyle: {
-              fontSize: 14,
-          },
-            exportButton: true,
-          }}
-          actions={[
-            {
-              icon: "button",
-
-              tooltip: "Save User",
-
-              onClick: (event, rowData) =>
-                alert("You saved " + rowData.firstName),
+    <div>
+      {loading ? (
+        <div >
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton style={{backgroundColor: "#f5896e"}}>
+            <Modal.Title>Are you sure you want to Approve</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <ManagerEmployeeApprove
+              leaveID={leaveID}
+              func={pull_data}
+              handleClose={handleClose}
+              closeLoader={closeLoader}
+            />
+          </Modal.Body>
+          {/* <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+              Approve
+            </Button>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+           
+          </Modal.Footer> */}
+        </Modal>
+        <Modal show={rejectshow} onHide={handleCloseReject}>
+          <Modal.Header closeButton  style={{backgroundColor: "#f5896e"}}>
+            <Modal.Title>Are you sure you want to Reject</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <ManagerEmployeeReject
+              leaveID={leaveID}
+              func={pull_dataReject}
+              handleClose={handleCloseReject}
+            />
+          </Modal.Body>
+        </Modal>
+  
+        <Grid>
+          <MaterialTable
+             title="Leaves/WFH Approvals"
+          // title=""
+            columns={columns}
+            data={data}
+            options={{
+              pageSize: 10,
+              pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
+              maxBodyHeight: 350,
+              paging: true,
+              addRowPosition: "first",
+              actionsColumnIndex: -1,
+              headerStyle: {
+                backgroundColor: "#f5896e",
+                color: "white",
+                fontSize: "12px",
+                //height: "10px",
+                //fontWeight: 'bold'
             },
-          ]}
-          components={{
-            Action: (props) => (
-              <div>
-                <Stack direction="horizontal" gap={3}>
-                  <Button
-                    variant="outline-success"
-                    onClick={() => {
-                      setShow(true);
-                      console.log(props);
-                      setLeaveID(props.data);
-                      
-                    }}
-                  >
-                    Approve
-                  </Button>
-                  {/* <Button
-                                        variant="white "
-                                        className="rounded-pill"
-                                        onClick={() => {
-                                            setShow(true);
-                                            console.log(props)
-                                            setLeaveID(props.data);
-                                        }}
-                                    >
-                                        <FcApproval /> Approve
-                                    </Button> */}
+            rowStyle: {
+                fontSize: 14,
+            },
+              exportButton: true,
+            }}
+            actions={[
+              {
+                icon: "button",
+  
+                tooltip: "Save User",
+  
+                onClick: (event, rowData) =>
+                  alert("You saved " + rowData.firstName),
+              },
+            ]}
+            components={{
+              Action: (props) => (
+                <div>
+                  <Stack direction="horizontal" gap={3}>
+                    <Button
+                      variant="outline-success"
+                      onClick={() => {
+                        setShow(true);
+                        console.log(props);
+                        setLeaveID(props.data);
+                        
+                      }}
+                    >
+                      Approve
+                    </Button>
+                    {/* <Button
+                                          variant="white "
+                                          className="rounded-pill"
+                                          onClick={() => {
+                                              setShow(true);
+                                              console.log(props)
+                                              setLeaveID(props.data);
+                                          }}
+                                      >
+                                          <FcApproval /> Approve
+                                      </Button> */}
+  
+                    <Button
+                      variant="outline-danger"
+                      onClick={() => {
+                        setRejectShow(true);
+                        console.log(props);
+                        setLeaveID(props.data);
+                      }}
+                    >
+                      Reject
+                    </Button>
+                    {/* <Button
+                                          variant="white "
+                                          className="rounded-pill"
+                                          onClick={() => {
+                                              setRejectShow(true);
+                                              console.log(props)
+                                              setLeaveID(props.data);
+                                          }}
+                                      >
+                                          {" "}
+                                          <FcCancel /> Reject
+                                      </Button> */}
+                  </Stack>
+                </div>
+              ),
+            }}
+          />
+        </Grid>
+      </div>
+      ) : (
+        <Backdrop
+        sx={{
+          color: "#fff",
 
-                  <Button
-                    variant="outline-danger"
-                    onClick={() => {
-                      setRejectShow(true);
-                      console.log(props);
-                      setLeaveID(props.data);
-                    }}
-                  >
-                    Reject
-                  </Button>
-                  {/* <Button
-                                        variant="white "
-                                        className="rounded-pill"
-                                        onClick={() => {
-                                            setRejectShow(true);
-                                            console.log(props)
-                                            setLeaveID(props.data);
-                                        }}
-                                    >
-                                        {" "}
-                                        <FcCancel /> Reject
-                                    </Button> */}
-                </Stack>
-              </div>
-            ),
-          }}
-        />
-      </Grid>
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+        }}
+        open
+        onClick={closeLoading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+      )}
     </div>
+
+
+    
+    
   );
 }
 
