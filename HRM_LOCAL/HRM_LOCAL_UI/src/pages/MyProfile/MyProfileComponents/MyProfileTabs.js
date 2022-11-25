@@ -31,24 +31,19 @@ function MyProfileTabs(props) {
 
   const da = JSON.parse(sessionStorage.getItem('userdata'))
   const empID = da.data.employeeId;
-
   const[profile,setProfile] = useState(empID);
-  console.log(profile)
- 
-
 
   const currentdate = new Date();
   var cd = String(currentdate.getDate()).padStart(2, '0');
   var cm = currentdate.toLocaleString([], { month: 'long' });
   var cy = currentdate.getFullYear();
   var cdd = cm+' ' + cd  + ' ' +cy;
-  console.log(cdd);
+
   // console.log(currentdate);
   // const hstr = moment.utc(currentdate).format('DD-MM-YYYY')
   // console.log(hstr);
  const loadData = async () => {
       const res = await axios.get(`/emp/getDateOfJoiningByEmployeeId/${empID}`);
-      console.log(res.data.data);
       setData(res.data.data);
       
   };
@@ -56,14 +51,12 @@ function MyProfileTabs(props) {
   var dd = String(today.getDate()).padStart(2, '0');
   var mm = String(today.getMonth() + 1).padStart(2, '0');
   var mmm = today.toLocaleString([], { month: 'long' });
-  console.log(mmm);
   var yyyy = today.getFullYear();
   var doj = mmm + ' ' + dd + ' ' + yyyy;
-  console.log(doj);
+
   var day_start = new Date(doj);
 var day_end = new Date(cdd);
 var total_days = (day_end - day_start) / (1000 * 60 * 60 * 24);
-console.log(total_days);
   
     const [value, setValue] = React.useState('1');
     const handleChange = (event, newValue) => {

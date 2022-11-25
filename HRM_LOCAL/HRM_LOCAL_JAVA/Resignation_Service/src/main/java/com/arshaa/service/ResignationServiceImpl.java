@@ -2,11 +2,13 @@ package com.arshaa.service;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,8 +33,9 @@ public class ResignationServiceImpl implements ResignationService {
 	public static final String empResiInfoURL = "http://empService/emp/getResignationInfoByEmployeeeId/";
 	public static final String makeInactiveURL = "http://loginservice/login/makeLoginsInActive/";
 	public static final String getHrIdFromDepURL = "http://departments/dept/getBuheadEmployeeIdByBusinessUnitName/";
-    public static final String empResiApplyURL="http://empService/emp/updateEmployeeAfterResignApply/";
-    public static final String empResiConfirmURL="http://empService/emp/updateEmployeeAfterResignConfirmed/";
+	public static final String empResiApplyURL = "http://empService/emp/updateEmployeeAfterResignApply/";
+	public static final String empResiConfirmURL = "http://empService/emp/updateEmployeeAfterResignConfirmed/";
+
 	@Override
 	public Resignation createResignation(Resignation resignation) {
 //		String empURL = "http://empService/getEmployeeDataByEmployeeId/";
@@ -53,11 +56,11 @@ public class ResignationServiceImpl implements ResignationService {
 		map.put("employeeName", resignation.getResigningEmployee());
 		map.put("email", "muralikrishna.miriyala@arshaa.com");
 		mailTemp.setMap(map);
-		template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
-		ResignationModel resi=new ResignationModel();
+//		template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+		ResignationModel resi = new ResignationModel();
 		resi.setResignationDate(res.getResignationDate());
 		resi.setResignedReason(res.getReason());
-		template.put(empResiApplyURL+resignation.getEmployeeId(), resi);
+//		template.put(empResiApplyURL + resignation.getEmployeeId(), resi);
 		return res;
 
 	}
@@ -86,10 +89,10 @@ public class ResignationServiceImpl implements ResignationService {
 	@Override
 	public Resignation modifyResignationStatus(Resignation resignation, String employeeId, String userType) {
 		String OnboardUrl = "http://loginservice/login/getEmployeeDataByUserType/";
-		ResignationModel rm = template.getForObject(this.empResiInfoURL + employeeId, ResignationModel.class);
+		ResignationModel rm = template.getForObject(this.empResiInfoURL+employeeId, ResignationModel.class);
 
-		ResignationModel hrId = template.getForObject(this.getHrIdFromDepURL + "HR", ResignationModel.class);
-		Resignation resignUpdate = resignationRepo.getByEmployeeId(employeeId);
+		ResignationModel hrId = template.getForObject(this.getHrIdFromDepURL+"HR", ResignationModel.class);
+		Resignation resignUpdate = resignationRepo.getById(resignation.getResignationId());
 		System.out.println("userType:" + userType);
 
 		if (userType.equalsIgnoreCase(rm.getIrm())) {
@@ -100,7 +103,7 @@ public class ResignationServiceImpl implements ResignationService {
 				resignUpdate.setIrmApprove(resignation.getIrmApprove());
 				resignUpdate.setStatus(hrId.getBusinessUnitHeadName());
 				resignModify = resignationRepo.save(resignUpdate);
-				GetMail hrApp = template.getForObject(OnboardUrl + "hrmanager", GetMail.class);
+				GetMail hrApp = template.getForObject(OnboardUrl+"hrmanager", GetMail.class);
 
 			}
 
@@ -108,7 +111,7 @@ public class ResignationServiceImpl implements ResignationService {
 				resignUpdate.setIrmApprove(resignation.getIrmApprove());
 				resignUpdate.setStatus(rm.getSrm());
 				resignModify = resignationRepo.save(resignUpdate);
-				GetMail hrApp = template.getForObject(OnboardUrl + "srm", GetMail.class);
+				GetMail hrApp = template.getForObject(OnboardUrl+"srm", GetMail.class);
 
 			}
 			EmailTemplate mailTemp = new EmailTemplate();
@@ -128,7 +131,7 @@ public class ResignationServiceImpl implements ResignationService {
 			resignUpdate.setExitDate(resignation.getExitDate());
 			resignUpdate.setStatus(hrId.getBusinessUnitHeadName());
 			resignModify = resignationRepo.save(resignUpdate);
-			GetMail hrApp = template.getForObject(OnboardUrl + "hrmanager", GetMail.class);
+			GetMail hrApp = template.getForObject(OnboardUrl+"hrmanager", GetMail.class);
 
 			EmailTemplate mailTemp = new EmailTemplate();
 			Map<String, String> map = new HashMap();
@@ -162,16 +165,15 @@ public class ResignationServiceImpl implements ResignationService {
 //		}
 		else if (userType.equalsIgnoreCase(hrId.getBusinessUnitHeadName())) {
 
-			GetMail hrApp = template.getForObject(OnboardUrl + "pmohead", GetMail.class);
+			GetMail hrApp = template.getForObject(OnboardUrl+"pmohead", GetMail.class);
 
 			resignUpdate.setHrApprove(resignation.getHrApprove());
 			resignUpdate.setStatus("Finished");
 
-			
 			Resignation resignModify = resignationRepo.save(resignUpdate);
-			ResignationModel resi=new ResignationModel();
+			ResignationModel resi = new ResignationModel();
 			resi.setExitDate(resignModify.getExitDate());
-			template.put(empResiConfirmURL+employeeId, resi);
+			template.put(empResiConfirmURL + employeeId, resi);
 			EmailTemplate mailTemp = new EmailTemplate();
 			Map<String, String> map = new HashMap();
 
@@ -181,7 +183,7 @@ public class ResignationServiceImpl implements ResignationService {
 //			map.put("email",hrApp.getEmail());
 			mailTemp.setMap(map);
 
-			template.getForObject(makeInactiveURL + employeeId, String.class);
+			template.getForObject(makeInactiveURL+employeeId, String.class);
 			template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 
 			return resignModify;
@@ -193,9 +195,10 @@ public class ResignationServiceImpl implements ResignationService {
 	@Override
 	public Resignation rejectResignation(Resignation resignation, String employeeId, String userType) {
 
-		Resignation resignReject = resignationRepo.getByEmployeeId(employeeId);
-		ResignationModel rm = template.getForObject(this.empResiInfoURL + employeeId, ResignationModel.class);
-		ResignationModel hrId = template.getForObject(this.getHrIdFromDepURL + "HR", ResignationModel.class);
+		System.out.println("resignationresignation"+resignation.getResignationId());
+		Resignation resignReject = resignationRepo.getById(resignation.getResignationId());
+		ResignationModel rm = template.getForObject(this.empResiInfoURL+employeeId, ResignationModel.class);
+		ResignationModel hrId = template.getForObject(this.getHrIdFromDepURL+"HR", ResignationModel.class);
 
 		if (userType.equalsIgnoreCase(rm.getIrm())) {
 			resignReject.setIrmReject(resignation.getIrmReject());
@@ -270,46 +273,23 @@ public class ResignationServiceImpl implements ResignationService {
 		List<Resignation> resignAllemp = resignationRepo.getStatusByEmployeeId(employeeId);
 		return resignAllemp;
 	}
-	
-	public Date getNoticeDateByResignationDate(Date resignationDate, String employeeId)
-	{
-		Resignation resignUpdate = resignationRepo.getByEmployeeId(employeeId);
 
-		ResignationModel rm = template.getForObject(this.empResiInfoURL + employeeId, ResignationModel.class);
+	public Date getNoticeDateByResignationDate(Date resignationDate, String employeeId) {
 
-		Date d=rm.getConfirmationDate();
-		if (d!=null) {
-			java.util.Date resignCofimedDate = new Date();
-//            java.sql.Date resignCofimedDate = java.sql.Date.valueOf(LocalDate.now());
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(resignCofimedDate);
-			cal.add(Calendar.DATE, 90);
-			resignCofimedDate = cal.getTime();
-			System.out.println(resignCofimedDate);
-			// converted to util to sql format
-			java.sql.Date covertedResignCofimedDate = new java.sql.Date(resignCofimedDate.getTime());
+		ResignationModel rm = template.getForObject(this.empResiInfoURL+employeeId, ResignationModel.class);
 
-//			String date=new SimpleDateFormat("dd-MM-yyyy").format(covertedResignCofimedDate);
-//			java.sql.Date exitCofimedDate = java.sql.Date.valueOf(date);
-//			System.out.println( "final date"+exitCofimedDate);
-			return covertedResignCofimedDate;			
+		Date d = rm.getConfirmationDate();
+		if (Objects.isNull(d)) {
+			ZonedDateTime zd = ZonedDateTime.now();
+
+			return Date.from(zd.plusDays(45).toInstant());
 		} else {
-			java.util.Date resignCofimedDate = new Date();
-//          java.sql.Date resignCofimedDate = java.sql.Date.valueOf(LocalDate.now());
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(resignCofimedDate);
-			cal.add(Calendar.DATE, 45);
-			resignCofimedDate = cal.getTime();
-			System.out.println(resignCofimedDate);
-			// converted to util to sql format
-			java.sql.Date covertedResignCofimedDate = new java.sql.Date(resignCofimedDate.getTime());
-//			String date=new SimpleDateFormat("dd-MM-yyyy").format(covertedResignCofimedDate);
-//			java.sql.Date exitCofimedDate = java.sql.Date.valueOf(date);
-//			System.out.println( "final date"+exitCofimedDate);
+			ZonedDateTime zd = ZonedDateTime.now();
 
-			return covertedResignCofimedDate;
-			
+			return Date.from(zd.plusDays(90).toInstant());
 		}
 	}
+
+
 
 }
