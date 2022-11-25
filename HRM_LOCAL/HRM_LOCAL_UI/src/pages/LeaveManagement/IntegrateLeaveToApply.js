@@ -193,6 +193,8 @@ function IntegrateLeaveToApply() {
             // btwn.push(bb);
             // setBtwnDates(btwn);
 
+
+
             response.data.map((item) => {
 
                 const daa = moment.utc(item.fromDate).format('YYYY-MM-DD')
@@ -302,12 +304,12 @@ function IntegrateLeaveToApply() {
     };
 
 
-    useEffect(() => {
-        axios.get(`leave/getremainingleaves/${employeeid}`).then((res) => {
-            console.log(res.data);
-            setRemainingData(res.data);
-        });
-    }, []);
+    // useEffect(() => {
+    //     axios.get(`leave/getremainingleaves/${employeeid}`).then((res) => {
+    //         console.log(res.data);
+    //         setRemainingData(res.data);
+    //     });
+    // }, []);
 
 
     useEffect(() => {
@@ -336,15 +338,15 @@ function IntegrateLeaveToApply() {
 
 
 
-    useEffect(() => {
-        loadDataa();
-    }, []);
-    const loadDataa = () => {
-        axios.get(`/leave/Annual`).then((res) => {
-            console.log(res.data.noOfDays);
-            setEntitle(res.data.noOfDays);
-        });
-    };
+    // useEffect(() => {
+    //     loadDataa();
+    // }, []);
+    // const loadDataa = () => {
+    //     axios.get(`/leave/Annual`).then((res) => {
+    //         console.log(res.data.noOfDays);
+    //         setEntitle(res.data.noOfDays);
+    //     });
+    // };
 
     useEffect(() => {
         loadTable();
@@ -613,7 +615,11 @@ function IntegrateLeaveToApply() {
 
 
 
-                    <Col>
+                    <Col  style={{
+                                   
+                                    paddingBottom: "11.5px",
+                                   
+                                }}>
                         <div class="p-3">
                             <Button
                                 variant="warning"

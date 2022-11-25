@@ -245,17 +245,17 @@ public class LeaveController {
 	}
 
 	@GetMapping("/getcountLeavesofApplyingLeaves/{employeeId}")
-	public int findLeaveapplyingleavescount(@PathVariable String employeeId) {
+	public Integer findLeaveapplyingleavescount(@PathVariable String employeeId) {
 		// repo.findNumberOfRemainingLeavesByEmployeeId(employeeId);
-		int b = repo.findLeaveapplyingleavescount(employeeId);
-		return b;
+		Optional<Integer> b = repo.findLeaveapplyingleavescount(employeeId);
+		return b.isPresent() ? b.get() : 0;
 	}
-
+	
 	@GetMapping("/getcountWFHofApplyingLeaves/{employeeId}")
-	public int findWFHapplyingleavescount(@PathVariable String employeeId) {
+	public Integer findWFHapplyingleavescount(@PathVariable String employeeId) {
 		// repo.findNumberOfRemainingLeavesByEmployeeId(employeeId);
-		int b = repo.findWFHapplyingleavescount(employeeId);
-		return b;
+		Optional<Integer> b = repo.findWFHapplyingleavescount(employeeId);
+		return b.isPresent() ? b.get() : 0;
 	}
 
 	@GetMapping("/getLeaveDatesByEmployeeidAndLeaveStatus/{leaveStatus}/{employeeId}")
