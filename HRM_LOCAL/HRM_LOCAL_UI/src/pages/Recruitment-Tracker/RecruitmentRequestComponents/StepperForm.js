@@ -626,7 +626,7 @@ const StepperForm = (props) => {
                                                 </Form.Control.Feedback>
                                             </Form.Group>
                                             <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                                <Form.Label>Allocation Type</Form.Label>
+                                                <Form.Label>Allocation Type *</Form.Label>
                                                 <Form.Select
                                                     required
                                                     className="allocType"

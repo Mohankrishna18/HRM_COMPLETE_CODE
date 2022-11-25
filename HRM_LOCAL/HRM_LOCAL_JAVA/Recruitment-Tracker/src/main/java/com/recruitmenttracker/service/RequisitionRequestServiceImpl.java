@@ -31,6 +31,7 @@ import com.recruitmenttracker.modal.EmailTemplate;
 
 import com.recruitmenttracker.modal.EmployeeReq;
 import com.recruitmenttracker.modal.GetMail;
+import com.recruitmenttracker.modal.JobsPerDepartment;
 import com.recruitmenttracker.modal.RRFClosed;
 import com.recruitmenttracker.modal.RequisitionRequestResponse;
 import com.recruitmenttracker.modal.UserServiceEmail;
@@ -46,14 +47,14 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 
     @Autowired
     private WebClient webClient;
-   
+    
     @Autowired
-    private RestTemplate template;
-   
-    public static final String preEmailURL = "http://emailService/mail/sendmail";
+	private RestTemplate template;
+	
+	public static final String preEmailURL = "http://emailService/mail/sendmail";
 
 
-    @Override
+	@Override
     public ResponseEntity createRR(RequisitionRequestEntity newRR) {
         RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
         try {
@@ -82,42 +83,42 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
         }
     }
 
-   
-   
-//  @Override
-//  public ResponseEntity getAllRequisitions(String departmentName) {
-//      RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+    
+    
+//	@Override
+//	public ResponseEntity getAllRequisitions(String departmentName) {
+//		RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
 //
-//      String deptHeadUrl = "http://departments/dept/getBuheadNameByBusinessUnitName/";
-//      try {
-//          List<RequisitionRequestEntity> getDataa = rrRepository.getByDepartmentName(departmentName);
-//          if(!getDataa.isEmpty()) {
-//              
-//              getDataa.forEach(e->{
-//                  RequisitionRequestResponse response = new RequisitionRequestResponse();
-//                  RequisitionRequestResponse res = template.getForObject(deptHeadUrl+departmentName,RequisitionRequestResponse.class);
-//                  
-//                  
-//              });
-//            
-//              rrr.setStatus(true);
-//              rrr.setMessage("Data Fetching");
-//              rrr.setData(getDataa);
-//              return new ResponseEntity(rrr, HttpStatus.OK);
-//          }
-//          else {
-//              rrr.setStatus(false);
-//              rrr.setMessage("Data Not Found");
-//              return new ResponseEntity(rrr, HttpStatus.OK);
-//          }
-//      }catch(Exception e) {
-//          rrr.setStatus(false);
-//          rrr.setMessage("Something went Wrong");
-//          return new ResponseEntity(rrr, HttpStatus.OK);
-//      }
-//  }
+//		String deptHeadUrl = "http://departments/dept/getBuheadNameByBusinessUnitName/";
+//		try {
+//		    List<RequisitionRequestEntity> getDataa = rrRepository.getByDepartmentName(departmentName);
+//			if(!getDataa.isEmpty()) {
+//			    
+//			    getDataa.forEach(e->{
+//			        RequisitionRequestResponse response = new RequisitionRequestResponse();
+//			        RequisitionRequestResponse res = template.getForObject(deptHeadUrl+departmentName,RequisitionRequestResponse.class);
+//			        
+//			        
+//			    });
+//			   
+//				rrr.setStatus(true);
+//				rrr.setMessage("Data Fetching");
+//				rrr.setData(getDataa);
+//				return new ResponseEntity(rrr, HttpStatus.OK);
+//			}
+//			else {
+//				rrr.setStatus(false);
+//				rrr.setMessage("Data Not Found");
+//				return new ResponseEntity(rrr, HttpStatus.OK);
+//			}
+//		}catch(Exception e) {
+//			rrr.setStatus(false);
+//			rrr.setMessage("Something went Wrong");
+//			return new ResponseEntity(rrr, HttpStatus.OK);
+//		}
+//	}
 
-    @Override
+	@Override
     public ResponseEntity getAllRequisitions() {
         RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
         List<RequisitionRequestEntity> requisitions = rrRepository.findAll();
@@ -140,22 +141,22 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
             return new ResponseEntity(rrr, HttpStatus.OK);
         }
     }
-   
-    @Override
-    public ResponseEntity deleteRRequest(long rrfId) {
-        RequisitionRequestResponse rrr =new RequisitionRequestResponse<>();
-        try {
-            rrRepository.deleteById(rrfId);
-            rrr.setMessage("Deleted Requisition Request succesfully");
-            rrr.setStatus(true);
-            return new ResponseEntity(rrr,HttpStatus.OK);
-        }catch(Exception e) {
-            rrr.setMessage("Can't delete Requisition Request");
-            rrr.setStatus(false);
-            return new ResponseEntity(rrr,HttpStatus.OK);
-           
-        }
-    }
+	
+	@Override
+	public ResponseEntity deleteRRequest(long rrfId) {
+		RequisitionRequestResponse rrr =new RequisitionRequestResponse<>();
+		try {
+			rrRepository.deleteById(rrfId);
+			rrr.setMessage("Deleted Requisition Request succesfully");
+			rrr.setStatus(true);
+			return new ResponseEntity(rrr,HttpStatus.OK);
+		}catch(Exception e) {
+			rrr.setMessage("Can't delete Requisition Request");
+			rrr.setStatus(false);
+			return new ResponseEntity(rrr,HttpStatus.OK);
+			
+		}
+	}
 
     @Override
     public ResponseEntity updateRR(String requisitionId, RequisitionRequestEntity rrUpdate) {
@@ -212,22 +213,22 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 		}
 	}
 
-    @Override
-    public ResponseEntity updateWorkflowStatusByJobID(long rrfId) {
-        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
-        try {
-            RequisitionRequestEntity rrEntity = rrRepository.getById(rrfId);
-            rrEntity.setWorkflowStatus("Waiting for Buhead approval");
-            RequisitionRequestEntity RRsEntity = rrRepository.save(rrEntity);
-        } catch (Exception e) {
-           
-        }
-        return null;
-    }
+	@Override
+	public ResponseEntity updateWorkflowStatusByJobID(long rrfId) {
+		RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+		try {
+			RequisitionRequestEntity rrEntity = rrRepository.getById(rrfId);
+			rrEntity.setWorkflowStatus("Waiting for Buhead approval");
+			RequisitionRequestEntity RRsEntity = rrRepository.save(rrEntity);
+		} catch (Exception e) {
+			
+		}
+		return null;
+	}
 
-    // GSDR Changes
+	// GSDR Changes
     @Override
-        public List<RequisitionRequestEntity> getByWorkflowStatus(String userType) {
+        public List<RequisitionRequestEntity> getByWorkflowStatus(String userType) { 
 
             if(userType.equalsIgnoreCase("buhead")){
             List<RequisitionRequestEntity> requisitionAll = rrRepository.getByWorkflowStatus("Waiting for BUHead Approval");
@@ -242,18 +243,18 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
         @Override
         public RequisitionRequestEntity modifyRequisitionStatus(RequisitionRequestEntity requisition, long rrfId, String userType)
         {
-            String OnboardUrl = "http://loginservice/login/getEmployeeByUserType/";
-           
+        	String OnboardUrl = "http://loginservice/login/getEmployeeByUserType/";
+            
             RequisitionRequestEntity requisitionUpdate = rrRepository.findByRrfId(rrfId);
             System.out.println("userType:"+userType);
             if(userType.equalsIgnoreCase("buhead")) {
-               
-                UserServiceEmail response = template.getForObject(
-                        OnboardUrl+"buhead",
-                        UserServiceEmail.class);
-                List<GetMail> hrApp = response.getMails();
-//              List<GetMail> hrApp= template.getForObject(OnboardUrl+"buhead", GetMail.class);
-               
+            	
+            	UserServiceEmail response = template.getForObject(
+            			OnboardUrl+"buhead",
+            			UserServiceEmail.class);
+            	List<GetMail> hrApp = response.getMails();
+//            	List<GetMail> hrApp= template.getForObject(OnboardUrl+"buhead", GetMail.class);
+            	
                 requisitionUpdate.setBuheadApprove(requisition.getBuheadApprove());
                 requisitionUpdate.setWorkflowStatus(requisition.getWorkflowStatus());
                 requisitionUpdate.setBuheadApprovedOn(new Date());
@@ -262,31 +263,31 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
                 System.out.println(bName);
                 requisitionUpdate.setBuheadName(bName);
                 RequisitionRequestEntity requisitionModify = rrRepository.save(requisitionUpdate);
-               
+                
                 EmailTemplate mailTemp=new EmailTemplate();
-                Map<String,String> map=new HashMap();
+    			Map<String,String> map=new HashMap();
 hrApp.forEach(e->{
-                   
-    mailTemp.setEmailType("BUH_RESIGN_APPROVED");
-//  map.put("employeeName",resignation.getResigningEmployee());
-    map.put("email", e.getEmail());
-//  map.put("email","muralikrishna.miriyala@arshaa.com");
-    mailTemp.setMap(map);
-    template.postForObject(preEmailURL,mailTemp,EmailTemplate.class);
-                });
-               
-               
+            		
+	mailTemp.setEmailType("BUH_RESIGN_APPROVED");
+//	map.put("employeeName",resignation.getResigningEmployee());
+	map.put("email", e.getEmail());
+//	map.put("email","muralikrishna.miriyala@arshaa.com");
+	mailTemp.setMap(map);
+    template.postForObject(preEmailURL,mailTemp,EmailTemplate.class); 
+            	});
+    			
+                
                 return requisitionModify;
-               
+                
                 //rest template for buh name
 //              String bName =template.getForObject(approvalUrl,String.class,requisitionUpdate.getBuheadId());
 //              updated.setBuheadName(bName);
 //              updated.setBuheadName(approvalUrl+requisitionUpdate.getBuheadId());
 //              RequisitionRequestEntity requisitionModify = rrRepository.save(updated);
 //              return requisitionModify;
-               
+                
             }
-           
+            
             else if(userType.equalsIgnoreCase("pmohead")) {
                 String bName = webClient.get().uri("/emp/getEmployeeFullNameByEmployeeId/" + requisition.getPmoheadId()).retrieve().bodyToMono(String.class).block();
                 requisitionUpdate.setPmoheadApprove(requisition.getPmoheadApprove());
@@ -296,15 +297,15 @@ hrApp.forEach(e->{
                 requisitionUpdate.setRrfStatus("Open");
                 requisitionUpdate.setPmoheadApprovedOn(new Date());
                 return rrRepository.save(requisitionUpdate);
-               
+                
             }
-           
+            
             else {
                 return requisitionUpdate;
             }
         }
-       
-       
+        
+        
 
         @Override
         public RequisitionRequestEntity rejectRequisition(RequisitionRequestEntity requisition, long rrfId, String userType) {
@@ -321,11 +322,11 @@ hrApp.forEach(e->{
                 RequisitionRequestEntity resignReject1 = rrRepository.save(requisitionReject);
                 return resignReject1;
             }
-           
+            
             else {
                 return requisitionReject;
             }
-           
+            
         }
 
        @Override
@@ -445,6 +446,13 @@ hrApp.forEach(e->{
     }
 
 
+//	get position by departmentName
+	@Override
+	public List<JobsPerDepartment> getJobsOpenByDepartmentName() {
+		
+		List<JobsPerDepartment> openJobsPerDepartment = rrRepository.getJobsOpenByDepartmentName();
+		return openJobsPerDepartment;
+	}
 
 
   
@@ -481,8 +489,5 @@ hrApp.forEach(e->{
     
 
     }
-   
-   
-   
 
-    }
+
