@@ -4,6 +4,7 @@ import { Card, FormSelect, InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
+import moment from 'moment'
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
 //vipul
@@ -440,8 +441,8 @@ disabled
               type="date"
               placeholder="Assign Date"
               controlid="assignDate"
-              defaultValue={props.updateOnboard.assignDate.split("T")[0]}
-              value={assignDate.split("T")[0]}
+              defaultValue={moment(props.updateOnboard.assignDate).format("YYYY-MM-DD")}
+              //value={assignDate.split("T")[0]}
               onChange={(e) => setAssignDate(e.target.value)}
               isInvalid={!!errors.assignDate}
             ></Form.Control>

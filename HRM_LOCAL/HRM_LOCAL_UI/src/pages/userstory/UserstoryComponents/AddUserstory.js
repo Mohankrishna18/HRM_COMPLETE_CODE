@@ -884,17 +884,17 @@ function AddUserstory(props) {
                   onChange={(e) => setField("projectId", e.target.value)}
                   isInvalid={!!errors.projectId}
                 >
-                  <option>Select project</option>
-
-                  {projects.map((project) => (
-                    <option value={project.projectId}>
+                   <option>Select project</option>
+                  {projects === null ?(<> <option>Select project</option></>):(<> {projects.map((project) => (
+                    <option value={project.projectName}>
                       {project.projectName}
                     </option>
-                  ))}
-                </Form.Select>
+                  ))}</>)}
                 <Form.Control.Feedback type="invalid">
                   {errors.projectId}
+              
                 </Form.Control.Feedback>
+                </Form.Select>
               </Form.Group>
               <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                 <Form.Label>Story Title *</Form.Label>

@@ -306,7 +306,7 @@ function AddUser(props) {
                 <Form.Label>User Story </Form.Label>
                 <Form.Select
                   required
-                  className="UserStory"
+                  className="userStory"
                   type="text"
                   placeholder="User Story"
                   // onChange={(event) => setclientName(event.target.value)}
@@ -315,13 +315,14 @@ function AddUser(props) {
                   onChange={(e) => setField("userStory", e.target.value)}
                   isInvalid={!!errors.userStory}
                 >
-                  <option>Select UserStory</option>
-
-                  {userStory.map((userSt) => (
+                  <option>Select userStory</option>
+                {userStory === null ?(<><option>Select userStory</option></>):(<>{userStory.map((userSt) => (
                     <option value={userSt.storyTitle}>
                       {userSt.storyTitle}
                     </option>
-                  ))}
+                  ))}</>)}
+
+                  
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.userStory}
