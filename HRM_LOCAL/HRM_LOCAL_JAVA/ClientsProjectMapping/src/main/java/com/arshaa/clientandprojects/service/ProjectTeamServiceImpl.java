@@ -1,10 +1,12 @@
 package com.arshaa.clientandprojects.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.arshaa.clientandprojects.entity.Clients;
 import com.arshaa.clientandprojects.entity.ProjectTeamMaster;
 import com.arshaa.clientandprojects.entity.Projects;
+import com.arshaa.clientandprojects.model.AssignProjectName;
 import com.arshaa.clientandprojects.model.ProjectModel;
 import com.arshaa.clientandprojects.model.ProjectTeamResponse;
 import com.arshaa.clientandprojects.repository.ClientRepository;
@@ -24,6 +26,9 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
 
 	@Autowired(required = true)
 	private ProjectTeamRepository ptmrepo;
+	
+	@Autowired
+	private RestTemplate template;
 
 	@Autowired(required = true)
 	private ProjectRepository projectRepo;
@@ -41,6 +46,11 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
 			newProjectTeamData.setProjectName(p.getProjectName());
 			newProjectTeamData.setProjectManager(p.getProjectManager());
 			ptmrepo.save(newProjectTeamData);
+			AssignProjectName apn = new AssignProjectName();
+			apn.setProjectName(newTeam.getProjectName());
+			apn.setProjectAllocation(newTeam.getProjectAllocation());
+			//Integer projectAllocation =newProjectTeamData.getProjectAllocation();
+			template.postForEntity("http://empService/emp/saveProjectAllocationPercentAfterMapping/"+newProjectTeamData.getEmployeeId(), apn, AssignProjectName.class);
 			ptrm.setStatus(true);
 			ptrm.setMessage("Data added successfully");
 			ptrm.setData(newProjectTeamData);
@@ -80,7 +90,7 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
 		try {
 			ProjectTeamMaster updateProjectTeam = ptmrepo.findByemployeeprojectId(employeeprojectId);
 //               updateProjectTeam.setEmployeeprojectId(employeeprojectId);
-			updateProjectTeam.setEmployeeName(newTeamUpdate.getEmployeeName());
+			updateProjectTeam.setFullName(newTeamUpdate.getFullName());
 			updateProjectTeam.setDesignationName(newTeamUpdate.getDesignationName());
 			updateProjectTeam.setDepartmentName(newTeamUpdate.getDepartmentName());
 			updateProjectTeam.setStartDate(newTeamUpdate.getStartDate());

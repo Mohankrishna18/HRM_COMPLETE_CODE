@@ -474,17 +474,18 @@ import { toast } from "react-toastify";
 //Assign team members to project
 import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "./ProjectUpdateTabs";
+import moment from "moment";
 
 const UpdateTeamMember = (props) => {
   const params = useParams();
-  const { data } = useContext(UserContext);
-  console.log(props.updateOnboard);
+  const { data,setUpdateStatus,updateStatus } = useContext(UserContext);
+  console.log(props.updateOnboard.projectAllocation);
   console.log(props.data);
 
   const [employeeId, setEmployeeId] = useState(props.updateOnboard.employeeId);
 
-  const [employeeName, setEmployeeName] = useState(
-    props.updateOnboard.firstName
+  const [fullName, setfullName] = useState(
+    props.updateOnboard.fullName
   );
   const [designationName, setDesignationName] = useState(
     props.updateOnboard.designationName
@@ -495,7 +496,7 @@ const UpdateTeamMember = (props) => {
   const [projectName, setProjectName] = useState(
     props.updateOnboard.projectName
   );
-  const [startDate, setStartDate] = useState();
+  const [startDate, setStartDate] = useState("");
   const [prmasterId, setPrmasterId] = useState();
 
   const [endDate, setEndDate] = useState();
@@ -517,12 +518,17 @@ const UpdateTeamMember = (props) => {
   const [projectId, setProjectId] = useState(params.id);
 
   const [form, setForm] = useState({});
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState("");
+  
 
   // Get API's for roles Dropdown
   useEffect(() => {
     loadData();
   }, []);
+
+  const teamUpdate = () =>{
+    setUpdateStatus(!updateStatus)
+  }
 
   const loadData = async () => {
     const response = await axios.get(
@@ -549,7 +555,7 @@ const UpdateTeamMember = (props) => {
   const validateForm = () => {
     const {
       employeeId,
-      employeeName,
+      fullName,
       designationName,
       departmentName,
       startDate,
@@ -564,11 +570,11 @@ const UpdateTeamMember = (props) => {
     if (!employeeId || employeeId === "" || !employeeId.match(/^[aA-zZ\s]+$/))
       newErrors.employeeId = "";
     if (
-      !employeeName ||
-      employeeName === "" ||
-      !employeeName.match(/^[aA-zZ\s]+$/)
+      !fullName ||
+      fullName === "" ||
+      !fullName.match(/^[aA-zZ\s]+$/)
     )
-      newErrors.employeeName = "Please Enter Employee Name";
+      newErrors.fullName = "Please Enter Employee Name";
     if (
       !designationName ||
       designationName === "" ||
@@ -612,11 +618,11 @@ const UpdateTeamMember = (props) => {
   //testing for commit
   const [user, setUser] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log({
       employeeId,
-      employeeName,
+      fullName,
       designationName,
       departmentName,
       startDate,
@@ -627,10 +633,10 @@ const UpdateTeamMember = (props) => {
       projectAllocation,
       projectId,
     });
-    axios
+    await axios
       .post(`/clientProjectMapping/addProjectTeam`, {
         employeeId,
-        employeeName,
+        fullName,
         designationName,
         departmentName,
         startDate,
@@ -643,8 +649,10 @@ const UpdateTeamMember = (props) => {
       })
       .then((response) => {
         console.log(response)
-        if (response.data.status) {
-          props.func();
+        if (response.statusText === "OK") {
+          // props.func();
+          // props.pull_dataUpdate();
+          teamUpdate();
         } else {
           console.log("Props not Send");
         }
@@ -696,19 +704,19 @@ const UpdateTeamMember = (props) => {
             <Form.Label>Employee Name</Form.Label>
             <Form.Control
               required
-              className="firstName"
+              className="fullName"
               type="text"
-              controlid="firstName"
+              controlid="fullName"
               placeholder="Employee Name"
               disabled
               // onChange={(event) => setclientName(event.target.value)}
-              value={employeeName}
+              value={fullName}
               maxLength={30}
-              onChange={(e) => setEmployeeName("employeeName", e.target.value)}
-              isInvalid={!!errors.employeeName}
+              onChange={(e) => setfullName("fullName", e.target.value)}
+              isInvalid={!!errors.fullName}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.employeeName}
+              {errors.fullName}
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -827,12 +835,19 @@ const UpdateTeamMember = (props) => {
               placeholder="End Date"
               controlid="endDate"
               value={endDate}
-              min={startDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              isInvalid={!!errors.endDate}
+              min={moment(startDate).format('YYYY-MM-DD')}
+              onChange={(e) => {
+                if(startDate === ""){
+                  setErrors("please select the start date")
+                }else{
+                  setEndDate(e.target.value)
+                  setErrors("")
+                }
+              }}
+              isInvalid={errors}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.endDate}
+              {errors}
             </Form.Control.Feedback>
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>

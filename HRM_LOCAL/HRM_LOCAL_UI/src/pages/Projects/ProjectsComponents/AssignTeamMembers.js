@@ -11,8 +11,9 @@ import UpdateTeamMember from "./UpdateTeamMember";
 import { UserContext } from "./ProjectUpdateTabs";
 
 function AssignTeamMembers(props) {
-  console.log(props.data);
-  const { data } = useContext(UserContext);
+  const projectName = props.data.data.projectName;
+  console.log(props.data.data.projectName);
+  const { data,updateStatus } = useContext(UserContext);
   const [show, setShow] = useState(false);
   const [viewShow, setViewShow] = useState(false);
 
@@ -21,7 +22,7 @@ function AssignTeamMembers(props) {
 
   const [data1, setData] = useState([]);
   const [addStatus, setAddStatus] = useState(false);
-  const [updateStatus, setUpdateStatus] = useState(false);
+  // const [updateStatus, setUpdateStatus] = useState(false);
   const [viewStatus, setViewStatus] = useState(false);
   const [deleteOnboard, setDeleteOnboard] = useState({});
   const [deleteProjects, setDeleteProjects] = useState(false);
@@ -32,19 +33,19 @@ function AssignTeamMembers(props) {
   const handleShow = () => setShow(false);
   const viewHandleShow = () => setShow(false);
 
-  const pull_dataUpdate = () => {
-    setUpdateStatus(!updateStatus);
-  };
-
+  // const pull_dataUpdate = () => {
+  //   setUpdateStatus(!updateStatus);
+  // };
+  // console.log(pull_dataUpdate);
   useEffect(() => {
     loadData();
   }, [addStatus, updateStatus]);
 
   const loadData = async (e) => {
-    const response = await axios.get("/emp/getAllEmployeeMasterData");
-    setData(response.data.data);
+    const response = await axios.get(`emp/employeesToDisplayByTheirProjectAllocation/${projectName}`);
+    setData(response.data);
     console.log(response.data);
-  };
+  };    
 
   const [columns, setColumns] = useState([
     {
@@ -93,6 +94,7 @@ function AssignTeamMembers(props) {
             data={props.data}
             func={props.func}
             handleClose={handleClose}
+            // dataUpdate={pull_dataUpdate}
           />
         </Modal.Body>
         {/* <Modal.Footer>
@@ -136,10 +138,10 @@ function AssignTeamMembers(props) {
               fontSize: "12px",
               //height: "10px",
               //fontWeight: 'bold'
-          },
-          rowStyle: {
+            },
+            rowStyle: {
               fontSize: 14,
-          },
+            },
 
             pageSize: 15,
 

@@ -244,6 +244,7 @@ public class EmployeeMaster {
 	private String probationempfeedback;
 	private String resignedReason;
 	private Integer projectAllocation;
+    private Integer projectAllocation;
 
 	public String getResignedReason() {
 		return resignedReason;
@@ -262,6 +263,12 @@ public class EmployeeMaster {
 		this.resignedReason = resignedReason;
 	}
 
+	public Integer getProjectAllocation() {
+		return projectAllocation;
+	}
+	public void setProjectAllocation(Integer projectAllocation) {
+		this.projectAllocation = projectAllocation;
+	}
 	public Date getResignationDate() {
 		return resignationDate;
 	}
