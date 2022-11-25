@@ -54,6 +54,7 @@ function AddResignation(props) {
 
     const [data, setData] = useState([]);
   useEffect(() => {
+    todays();
     axios.get(`/emp/getEmployeeDataByEmployeeId/${empID}`).then((response) => {
       console.log(response.data.data.fullName);
       setData(response.data.data.fullName);
@@ -102,7 +103,7 @@ const todays =()=>{
   })
   // setField("resignationDate", today)
 }
-todays();
+
 
  
   const handleNext = (e) => {
