@@ -31,6 +31,7 @@ import com.recruitmenttracker.modal.EmailTemplate;
 
 import com.recruitmenttracker.modal.EmployeeReq;
 import com.recruitmenttracker.modal.GetMail;
+import com.recruitmenttracker.modal.JobsPerDepartment;
 import com.recruitmenttracker.modal.RRFClosed;
 import com.recruitmenttracker.modal.RequisitionRequestResponse;
 import com.recruitmenttracker.modal.UserServiceEmail;
@@ -445,6 +446,13 @@ hrApp.forEach(e->{
     }
 
 
+//	get position by departmentName
+	@Override
+	public List<JobsPerDepartment> getJobsOpenByDepartmentName() {
+		
+		List<JobsPerDepartment> openJobsPerDepartment = rrRepository.getJobsOpenByDepartmentName();
+		return openJobsPerDepartment;
+	}
 
 
   
