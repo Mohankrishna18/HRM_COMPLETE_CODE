@@ -21,6 +21,7 @@ public class BetweenDates {
 	private int employeeleaveId;
 	private String leaveOrwfh;
 	private String departmentName;
+	private String leaveStatus;
 	
 	public int getIds() {
 		return ids;
@@ -69,9 +70,18 @@ public class BetweenDates {
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
+	
+
+	public String getLeaveStatus() {
+		return leaveStatus;
+	}
+
+	public void setLeaveStatus(String leaveStatus) {
+		this.leaveStatus = leaveStatus;
+	}
 
 	public BetweenDates(int ids, String employeeId, String appliedDate, int employeeleaveId, String leaveOrwfh,
-			String departmentName) {
+			String departmentName, String leaveStatus) {
 		super();
 		this.ids = ids;
 		this.employeeId = employeeId;
@@ -79,6 +89,7 @@ public class BetweenDates {
 		this.employeeleaveId = employeeleaveId;
 		this.leaveOrwfh = leaveOrwfh;
 		this.departmentName = departmentName;
+		this.leaveStatus = leaveStatus;
 	}
 
 	public BetweenDates() {

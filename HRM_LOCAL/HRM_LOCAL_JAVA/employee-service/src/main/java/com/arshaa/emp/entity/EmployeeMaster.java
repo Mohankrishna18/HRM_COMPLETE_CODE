@@ -231,10 +231,19 @@ public class EmployeeMaster {
 	private String client;
 	private String userType;
 	private String hrcomment;
+	public Integer getProjectAllocation() {
+		return projectAllocation;
+	}
+
+	public void setProjectAllocation(Integer projectAllocation) {
+		this.projectAllocation = projectAllocation;
+	}
+
 	private Date confirmationDate;
 	private String status;
 	private String probationempfeedback;
 	private String resignedReason;
+	private Integer projectAllocation;
 
 	public String getResignedReason() {
 		return resignedReason;
@@ -1238,7 +1247,7 @@ public class EmployeeMaster {
 			Date exitDate, Date resignationDate, String srm, String irm, String buh, String fullName, String irmId,
 			String srmId,int leaveBalance, String buhId, String intermediateQualification, String sscQualification, String officialMail,
 			String onboardingStatus, String client, String userType, String hrcomment, Date confirmationDate,
-			String status, String probationempfeedback, String resignedReason) {
+			String status, String probationempfeedback, String resignedReason,Integer projectAllocation) {
 		super();
 		this.leaveBalance = leaveBalance;
 		this.employeeId = employeeId;
@@ -1358,6 +1367,7 @@ public class EmployeeMaster {
 		this.status = status;
 		this.probationempfeedback = probationempfeedback;
 		this.resignedReason = resignedReason;
+		this.projectAllocation = projectAllocation;
 	}
 	
 	

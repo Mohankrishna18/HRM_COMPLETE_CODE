@@ -11,7 +11,7 @@ import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
 import Backdrop from "@mui/material/Backdrop";
 
 import CircularProgress from "@mui/material/CircularProgress";
-import RRColumns from "./utils/RRColumns.json";
+// import RRColumns from "./utils/RRColumns.json";
 import AddRequisition from "./AddRequisition";
 // import AddRR from "./StepperForm";
 // import AddRequisitionRequests from "./AddRequisitionRequests";
@@ -74,13 +74,79 @@ const RRTable = () => {
   function gotoStepperForm() {
     history.push('/app/StepperForm');
   }
-  // const loadData = async () => {
-  //   const response = await axios.get("/recruitmentTracker/");
-  //   setData(response.data);
 
-  // };
+  const RRColumns=[
+    {
+       
+        "title": "Job ID",
+        "field": "requisitionId"
+    },
+    {
+        "title":"Business Unit",
+        "field":"departmentName",
+        "defaultGroupOrder": 0
+    },
+    {
+        "title":"Client",
+        "field":"clientName"
+    },
+    {
+        "title":"Project",
+        "field":"projectName"
+    },
+    {
+        "title":"Title",
+        "field": "jobTitle"
+    },
+    {
+        "title":"Technology",
+        "field":"technology"
+    },
+    {
+        "title":"Role",
+        "field":"role"
+    },
+    {
+        "title":"Positions",
+        "field": "positions"
+    },
+    {
+        "title":"Priority",
+        "field": "priority"
+    },
+    {
+        "title":"Location",
+        "field": "workLocation"
+    },
+    {
+        "title":"Experience",
+        "field":"yoe"
+    },
+    {
+        "title":"Status",
+        "field": "rrfStatus"
+    },
 
-  // const sessionData = JSON.parse(sessionStorage.getItem("userdata"));
+    {
+        "title":"Ageing",
+        "field":"ageing"
+    },
+    {
+        "title" : "Initiated Date",
+        "field" : "requestInitiatedDate",
+        "type": "date",
+        "dateSetting": { "locale": "en-GB" }
+    },
+    {
+        "title" : "Raised Date",
+        "field" : "raisedOn",
+        "type": "date",
+        "dateSetting": { "locale": "en-GB" }
+    }
+   
+
+]
+
 
 
 

@@ -7,42 +7,43 @@ const PositionGraph_Table = () => {
     return (
         <div>
             <Row>
+                {/* <Col sm={1}></Col> */}
 
                 {/* First Graph */}
-                {/* <Col md={3}>
+                <Col  sm={12}>
 
-                     className='grph'
-                    <Card >
+                    {/* className='grph' */}
+                    <Card  >
                         <Card.Body  >
-                            <h6 align="center">Positions By Business Unit </h6>
-                            Applicant Graph
-                            <div style={{ height: "369px",}}>
+                            <h6 align="center">Jobs Open By BU </h6>
+                            {/* Applicant Graph */}
+                            <div style={{ height: "180px", }}>
 
                                 <PositionsOpenByDepartment />
                             </div>
                         </Card.Body>
                     </Card>
 
-                </Col> */}
+                </Col>
+            </Row>
+            <br></br>
+            {/* Verticle line */}
+            {/* <Col className='vl' style={{ paddingLeft: "0px", paddingRight: "0px", height: '416px' }} ></Col> */}
 
-                {/* Verticle line */}
-                {/* <Col className='vl' style={{ paddingLeft: "0px", paddingRight: "0px", height: '416px' }} ></Col> */}
-
-
-
+            <Row>
                 {/* Second Graph */}
-                <Col sm={13} >
+                <Col sm={12} >
 
 
                     <Card>
-                       
 
-                            <h6 align="center" style={{paddingTop: '6px'}}>  </h6>
-                            {/* we kept the graph component inside this div , to keep this graph inside card and also to give height and width  */}
-                            <div style={{  }}>
-                                <PMOTable  />
-                            </div>
-                       
+
+                        <h6 align="center" style={{ paddingTop: '6px' }}>  </h6>
+                        {/* we kept the graph component inside this div , to keep this graph inside card and also to give height and width  */}
+                        <div style={{}}>
+                            <PMOTable />
+                        </div>
+
                     </Card>
 
                 </Col>

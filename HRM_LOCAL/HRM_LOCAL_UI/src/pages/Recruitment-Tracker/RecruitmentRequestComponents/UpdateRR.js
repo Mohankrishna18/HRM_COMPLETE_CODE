@@ -15,7 +15,7 @@ import { UserContext } from './UpdateRequisition';
 import './utils/RT.css';
 
 const UpdateRR = (props) => {
-  console.log("Hello Update");
+
   const [raisedOn, setRaisedOn] = useState();
   const [jobTitle, setJobTitle] = useState();
   const [reqType1, setReqType1] = useState();
@@ -266,7 +266,7 @@ const UpdateRR = (props) => {
     setNewClient(response.data.data.clientName);
     console.log(response.data.data.pocname);
     // setPocName(response.data.data.pocname);
-    
+   
     setNewPOCName(response.data.data.pocname);
     setYoe(response.data.data.yoe);
     setRate(response.data.data.rate);
@@ -817,11 +817,12 @@ const UpdateRR = (props) => {
                   required
                   type="text"
                   controlid="pocname"
-                  defaultValue={newPOCName}
+                  // defaultValue={newPOCName}
+                  value={newPOCName}
                   onChange={(e) => setNewPOCName(e.target.value)}
                   isInvalid={!!errors.pocname}
                 >
-                  <option>{newPOCName}</option>
+                  <option>Select</option>
                   {pocname.map((poc, i) => (
                     <option key={i} value={poc.fullName}>{poc.fullName}</option>
                   ))}
@@ -875,11 +876,12 @@ const UpdateRR = (props) => {
                   required
                   type="text"
                   controlid="interviewPanel1"
-                  defaultValue={newInterviewPanel1}
+                  // defaultValue={newInterviewPanel1}
+                  value={newInterviewPanel1}
                   onChange={(e) => setNewInterviewPanel1(e.target.value)}
                   isInvalid={!!errors.interviewPanel1}
                 >
-                  <option>{newInterviewPanel1}</option>
+                  <option>Select</option>
                   {pocname.map((panel1, i) => (
                     <option key={i} value={panel1.fullName}>{panel1.fullName}</option>
                   ))}
@@ -894,11 +896,12 @@ const UpdateRR = (props) => {
                   required
                   type="text"
                   controlid="interviewPanel2"
-                  defaultValue={newInterviewPanel2}
+                  // defaultValue={newInterviewPanel2}
+                  value={newInterviewPanel2}
                   onChange={(e) => setNewInterviewPanel2(e.target.value)}
                   isInvalid={!!errors.interviewPanel2}
                 >
-                  <option>{newInterviewPanel2}</option>
+                  <option>Select</option>
                   {pocname.map((panel2, i) => (
                     <option key={i} value={panel2.fullName}>{panel2.fullName}</option>
                   ))}
@@ -913,11 +916,12 @@ const UpdateRR = (props) => {
                   required
                   type="text"
                   controlid="hrPanel"
-                  defaultValue={newHrPanel}
+                  // defaultValue={newHrPanel}
+                  value={newHrPanel}
                   onChange={(e) => setNewHrPanel(e.target.value)}
                   isInvalid={!!errors.hrPanel}
                 >
-                  <option>{newHrPanel}</option>
+                  <option>Select</option>
                   {hrPanel.map((HRpanel, i) => (
                     <option key={i} value={HRpanel.fullName}>{HRpanel.fullName}</option>
                   ))}
