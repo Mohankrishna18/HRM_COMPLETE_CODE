@@ -224,7 +224,7 @@ public class MainServiceImpl implements MainService {
 
 	public ResponseEntity updateApprovStatus(String onboardingId, HrApprovalStatus newOnboard) {
 		Response response = new Response();
-		String dUrl="http://departments/dept/getDepartmentNameById/";
+		String dUrl="http://departments/dept/getDepartmentsNameById/";
 //		String userURL = "http://urpService/user/addUser";
 		String loginURL = "http://loginservice/login/addUsers";
 //		String emailURL = "http://emailService/mail/sendmail";

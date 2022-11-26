@@ -52,4 +52,19 @@ public class DesignationServcie {
 			return new ResponseEntity(e.getMessage(), HttpStatus.OK);	
 		}
 	}
+	
+	// changes for Dept in Hr
+		public ResponseEntity getDesignationsMasterByDepartmentName(String departmentName) {
+			{
+				try {
+					
+					List<Designationmaster> dm=repository.getAllByDepartmentName(departmentName);
+					return new ResponseEntity(dm, HttpStatus.OK);	
+					}
+				catch(Exception e){
+					
+					return new ResponseEntity(e.getMessage(), HttpStatus.OK);	
+				}
+			}
+		}
 }
