@@ -114,7 +114,7 @@ const TAAHeadMain = () => {
                                             <Tab label="Onboarding Approvals" value="1" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }} ></Tab>
                                             <Tab label="Leave Approvals" value="2" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }}/>
                                             <Tab label="Timesheet Approvals" value="3" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }} />
-                                            <Tab label="Resignation Approvals" value="4" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }} />
+                                            <Tab label="Exit Approvals" value="4" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }} />
                                             <Tab label="Hiring Approvals" value="5" style={{ paddingRight: "4%", paddingLeft: "4%", fontSize: "12px" }} />
 
                                             {/* FcConferenceCall/FcLeave/FcPositiveDynamic/FcConferenceCall/FcLeave/ */}

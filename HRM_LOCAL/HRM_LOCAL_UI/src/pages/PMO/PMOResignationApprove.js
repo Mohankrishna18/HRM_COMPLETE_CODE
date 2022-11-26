@@ -2,12 +2,15 @@ import { React, useState } from "react";
 import { Button, Row, Col, Form } from "react-bootstrap";
 import axios from "../../Uri";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 function PMOResignationApprove(props) {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [srmApprove, setSrmApprove] = useState("");
-  const [exitDate, setExitDate] = useState("");
+  const [exitDate, setExitDate] = useState(props.leaveID.exitDate);
+  const enddt = moment(props.leaveID.exitDate).format('YYYY-MM-DD')
+
 
   const initialValues = {
     srmApprove,
@@ -110,9 +113,10 @@ function PMOResignationApprove(props) {
             required
             name="exitDate"
             type="date"
+            formate="dd-mm-yyyy"
             controlid="exitDate"
             placeholder="Exit Date"
-            value={exitDate}
+            defaultValue={enddt}
             onChange={(e) => setExitDate( e.target.value)}
             // isInvalid={!!errors.noticeDate}
           ></Form.Control>
