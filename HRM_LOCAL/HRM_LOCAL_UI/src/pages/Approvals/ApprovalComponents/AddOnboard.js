@@ -150,7 +150,7 @@ function AddOnboard(props) {
           }
           toast.success("Employee Onboarded Successfully");
           console.log(user);
-          setTimeout(100);
+          // setTimeout(100);
           handleClose();
         })
         .catch((err) => {
