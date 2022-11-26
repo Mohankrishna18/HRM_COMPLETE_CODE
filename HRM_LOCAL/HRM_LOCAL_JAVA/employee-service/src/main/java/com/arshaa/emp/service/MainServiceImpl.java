@@ -5,12 +5,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
+import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -40,6 +45,7 @@ import com.arshaa.emp.entity.Onboarding;
 import com.arshaa.emp.entity.UserClientProjectManagement;
 import com.arshaa.emp.model.AdditionalDetails;
 import com.arshaa.emp.model.Address;
+import com.arshaa.emp.model.AssignProjectName;
 import com.arshaa.emp.model.DepartmentName;
 import com.arshaa.emp.model.DesignationName;
 import com.arshaa.emp.model.EducationalDetails;
@@ -226,7 +232,6 @@ public class MainServiceImpl implements MainService {
 		// String intern="TRP";
 		String OnboardUrl = "http://loginservice/login/getEmployeeByUserType/";
 
-
 		try {
 			Onboarding getOnboarding = onRepo.getByOnboardingId(onboardingId);
 			System.out.println(getOnboarding);
@@ -401,6 +406,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setProjectName(getOnboarding.getProjectName());
 					employeeMaster.setOnboardingStatus(getOnboarding.getOnboardingStatus());
 					employeeMaster.setHrcomment(getOnboarding.getHrcomment());
+					employeeMaster.setProjectAllocation(0);
 					EmployeeMaster em = emRepo.save(employeeMaster);
 
 					// posting EmployeeId in Userproject Table
@@ -408,10 +414,10 @@ public class MainServiceImpl implements MainService {
 					userclient.setEmployeeId(em.getEmployeeId());
 					userClientRepo.save(userclient);
 
-					//posting employeeId to employee profile table
-                    EmployeeProfile eprofile = new EmployeeProfile();
-                    eprofile.setEmployeeId(employeeMaster.getEmployeeId());
-                    empProfileRepo.save(eprofile);
+					// posting employeeId to employee profile table
+					EmployeeProfile eprofile = new EmployeeProfile();
+					eprofile.setEmployeeId(employeeMaster.getEmployeeId());
+					empProfileRepo.save(eprofile);
 
 					// Generating Random userId and Password
 					Random rand = new Random();
@@ -448,9 +454,6 @@ public class MainServiceImpl implements MainService {
 
 					MainEmailTemplate mailTemp = new MainEmailTemplate();
 					Map<String, String> map = new HashMap();
-					
-				
-		        	
 
 					mailTemp.setEmailType("HR_APPROVAL");
 					map.put("employeeName", getOnboarding.getFirstName() + getOnboarding.getLastName());
@@ -480,10 +483,10 @@ public class MainServiceImpl implements MainService {
 
 					MainEmailTemplate mailTemp3 = new MainEmailTemplate();
 					Map<String, String> map3 = new HashMap();
+
 					
-					UserMail response1 = template.getForObject(
-		        			OnboardUrl+"pmohead",
-		        			UserMail.class);
+					
+					UserMail response1 = template.getForObject(	OnboardUrl+"pmohead",UserMail.class);
 		        	List<MailGet> hrApp = response1.getMails();
 		        	
 		        	hrApp.forEach(e->{
@@ -493,6 +496,15 @@ public class MainServiceImpl implements MainService {
 					mailTemp3.setMap(map3);
 					template.postForObject(preEmailURL, mailTemp3, MainEmailTemplate.class);
 		        	});
+		        	
+		        	
+		        	//Post employeeId and Leave Balance to Leave Mater Table
+		        	LeaveMaster lmm = new LeaveMaster();
+                    String posst="http://leaveservice/leave/postLeaves";       
+                    lmm.setEmployeeId(getOnboarding.getEmployeeId());
+                    lmm.setLeaveBalance(1);
+                  
+                    template.postForObject(posst,lmm, LeaveMaster.class);   
 
 					response.setStatus(true);
 					response.setMessage("Hr Approved successfully");
@@ -923,7 +935,8 @@ public class MainServiceImpl implements MainService {
 		EmployeeMaster employeeMaster = emRepo.getById(employeeId);
 
 		EmployeeName en = new EmployeeName();
-		en.setEmployeeName(employeeMaster.getFirstName().concat(" ").concat(employeeMaster.getMiddleName()).concat(" ").concat(employeeMaster.getLastName()));
+		en.setEmployeeName(employeeMaster.getFirstName().concat(" ").concat(employeeMaster.getMiddleName()).concat(" ")
+				.concat(employeeMaster.getLastName()));
 
 		return new ResponseEntity(en, HttpStatus.OK);
 	}
@@ -1804,23 +1817,21 @@ public class MainServiceImpl implements MainService {
 				RegistrationConfirmation rConfirm = new RegistrationConfirmation();
 				MainEmailTemplate mailTemp = new MainEmailTemplate();
 				Map<String, String> map = new HashMap();
-				
-				UserMail response = template.getForObject(
-	        			OnboardUrl+"taa",
-	        			UserMail.class);
-	        	List<MailGet> hrApp = response.getMails();
-				
-				hrApp.forEach(e->{
-				map.put("employeeName", getOnboarding.getFirstName() + getOnboarding.getLastName());
-				map.put("email", e.getEmail());
-				map.put("LOGIN_LINK", rConfirm.getLoginLink());
-				mailTemp.setMap(map);
-				mailTemp.setEmailType("REGISTRATION_CONFIRMATION");
+
+				UserMail response = template.getForObject(OnboardUrl + "taa", UserMail.class);
+				List<MailGet> hrApp = response.getMails();
+
+				hrApp.forEach(e -> {
+					map.put("employeeName", getOnboarding.getFirstName() + getOnboarding.getLastName());
+					map.put("email", e.getEmail());
+					map.put("LOGIN_LINK", rConfirm.getLoginLink());
+					mailTemp.setMap(map);
+					mailTemp.setEmailType("REGISTRATION_CONFIRMATION");
 
 //					rConfirm.setEmployeeName(getOnboarding.getFirstName()+getOnboarding.getLastName());
 //					rConfirm.setEmail("muralikrishna.miriyala@arshaa.com");
 
-				template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
+					template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
 				});
 				r.setStatus(true);
 				r.setMessage("Data Fetching");
@@ -2016,18 +2027,16 @@ public class MainServiceImpl implements MainService {
 			MainEmailTemplate mailTemp = new MainEmailTemplate();
 			Map<String, String> map = new HashMap();
 
-			UserMail response = template.getForObject(
-        			OnboardUrl+"pmohead",
-        			UserMail.class);
-        	List<MailGet> hrApp = response.getMails();
-        	
-        	hrApp.forEach(e->{
-			mailTemp.setEmailType("TAG_APPROVAL");
-			map.put("employeeName", getOnboarding.getFullName());
-			map.put("email", e.getEmail());
-			mailTemp.setMap(map);
-			template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
-        	});
+			UserMail response = template.getForObject(OnboardUrl + "pmohead", UserMail.class);
+			List<MailGet> hrApp = response.getMails();
+
+			hrApp.forEach(e -> {
+				mailTemp.setEmailType("TAG_APPROVAL");
+				map.put("employeeName", getOnboarding.getFullName());
+				map.put("email", e.getEmail());
+				mailTemp.setMap(map);
+				template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
+			});
 			r.setStatus(true);
 			r.setMessage("TAAHeadApproved Successfully");
 			return new ResponseEntity(r, HttpStatus.OK);
@@ -2052,19 +2061,17 @@ public class MainServiceImpl implements MainService {
 			Onboarding saveList = onRepo.save(getOnboarding);
 			MainEmailTemplate mailTemp = new MainEmailTemplate();
 			Map<String, String> map = new HashMap();
-			
-			UserMail response = template.getForObject(
-        			OnboardUrl+"ceo",
-        			UserMail.class);
-        	List<MailGet> hrApp = response.getMails();
-        	
-        	hrApp.forEach(e->{
-			mailTemp.setEmailType("PMO_APPROVAL");
-			map.put("employeeName", getOnboarding.getFullName());
-			map.put("email", e.getEmail());
-			mailTemp.setMap(map);
-			template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
-        	});
+
+			UserMail response = template.getForObject(OnboardUrl + "ceo", UserMail.class);
+			List<MailGet> hrApp = response.getMails();
+
+			hrApp.forEach(e -> {
+				mailTemp.setEmailType("PMO_APPROVAL");
+				map.put("employeeName", getOnboarding.getFullName());
+				map.put("email", e.getEmail());
+				mailTemp.setMap(map);
+				template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
+			});
 			r.setStatus(true);
 			r.setMessage("PMOApproved Successfully");
 			return new ResponseEntity(r, HttpStatus.OK);
@@ -2089,19 +2096,17 @@ public class MainServiceImpl implements MainService {
 			Onboarding saveList = onRepo.save(getOnboarding);
 			MainEmailTemplate mailTemp = new MainEmailTemplate();
 			Map<String, String> map = new HashMap();
-			
-			UserMail response = template.getForObject(
-        			OnboardUrl+"taahead",
-        			UserMail.class);
-        	List<MailGet> hrApp = response.getMails();
-        	
-        	hrApp.forEach(e->{
-			mailTemp.setEmailType("TAA_APPROVAL");
-			map.put("employeeName", getOnboarding.getFullName());
-			map.put("email", e.getEmail());
-			mailTemp.setMap(map);
-			template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
-        	});
+
+			UserMail response = template.getForObject(OnboardUrl + "taahead", UserMail.class);
+			List<MailGet> hrApp = response.getMails();
+
+			hrApp.forEach(e -> {
+				mailTemp.setEmailType("TAA_APPROVAL");
+				map.put("employeeName", getOnboarding.getFullName());
+				map.put("email", e.getEmail());
+				mailTemp.setMap(map);
+				template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
+			});
 			r.setStatus(true);
 			r.setMessage("TAAApproved Successfully");
 			return new ResponseEntity(r, HttpStatus.OK);
@@ -2191,14 +2196,21 @@ public class MainServiceImpl implements MainService {
 		Response r = new Response<>();
 		try {
 			EmployeeMaster master = emRepo.getById(employeeId);
-
+//			if(newEmp.getProjectName().isBlank() || newEmp.getProjectName().trim().length()==0) {
+//			master.setProjectAllocation(0);
+//			}
+//			else {
+//				master.
+//			}
 			master.setEmploymentType(newEmp.getEmploymentType());
 //		master.setDepartmentName(newEmp.getDepartment());
 //		master.setDesignationName(newEmp.getDesignation());
 			master.setBand(newEmp.getBand());
 			master.setJobTitle(newEmp.getJobTitle());
 			master.setClient(newEmp.getClient());
+//			if()
 			master.setProjectName(newEmp.getProjectName());
+			master.setProjectAllocation(0);
 			master.setIrm(newEmp.getIrm());
 			master.setSrm(newEmp.getSrm());
 			master.setBuh(newEmp.getBuh());
@@ -2363,6 +2375,30 @@ public class MainServiceImpl implements MainService {
 			r.setMessage(e.getMessage());
 			return new ResponseEntity(r, HttpStatus.OK);
 		}
+	}
+
+	// latest changes
+	@Override
+	public List<EmployeeMaster> employeesToDisplayByTheirProjectAllocation(String projectName) {
+		return emRepo.findByStatusEqualsAndProjectAllocationLessThanAndProjectNameIsNullOrIsNotEquals(status, 100, projectName);
+		/*
+		 * List<EmployeeMaster> employeesLessThan100PercentWithNoProject =
+		 * employees.stream().filter(emp -> { return emp.getProjectAllocation() < 100;
+		 * }).collect(Collectors.toList()); return
+		 * employeesLessThan100PercentWithNoProject;
+		 */
+
+	}
+
+	@Override
+	@Transactional
+	public Boolean saveProjectAllocationPercentAfterMapping(String employeeId,AssignProjectName apn) {
+		// TODO Auto-generated method stub
+		EmployeeMaster master = emRepo.getByEmployeeId(employeeId);
+		master.setProjectName(apn.getProjectName());
+		master.setProjectAllocation(apn.getProjectAllocation()+master.getProjectAllocation());
+		emRepo.save(master);
+		return true;
 	}
 
 }

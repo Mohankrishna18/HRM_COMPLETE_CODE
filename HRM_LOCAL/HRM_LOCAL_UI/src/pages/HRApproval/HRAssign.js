@@ -143,6 +143,7 @@ function HRAssign(props) {
   useEffect(() => {
     axios.get("/dept/getAllDepartments").then((response) => {
       setDepartments(response.data);
+      console.log(response.data);
     });
     console.log(departments)
     // .catch(() => {
@@ -290,7 +291,7 @@ function HRAssign(props) {
       {checked.offerLetter === true  &&  checked.salarySlip === true && checked.educationalDocuments === true && checked.hikeLetter === true && checked.form16 === true && checked.idProof === true && checked.resignation === true? (
         <div>
           <Form>
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+          {/* <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Business Unit *</Form.Label>
                 <Form.Select
                     required
@@ -298,19 +299,20 @@ function HRAssign(props) {
                     placeholder="Businees Unit"
                     controlid="department"
                     value={form.department}
-                    onChange={(e) => {
-                        console.log(e.target.value);
-                        //empty commit
-                        axios
-                            .get(
-                                `/designation/getDesignationByDepartment/${e.target.value}`
-                            )
-                            .then((response) => {
-                                console.log(response.data);
-                                setDesignations(response.data);
-                            });
-                        setField("department", e.target.value);
-                    }}
+                    onChange={(e) => setField("department", e.target.value)};
+                      // {
+                      //   console.log(e.target.value);
+                      //   //empty commit
+                      //   axios
+                      //       .get(
+                      //           `/designation/getDesignationByDepartment/${e.target.value}`
+                      //       )
+                      //       .then((response) => {
+                      //           console.log(response.data);
+                      //           setDesignations(response.data);
+                      //       });
+                        // setField("department", e.target.value);
+                    // }}
                     isInvalid={!!errors.department}
                 >
                     <option value="">Select </option>
@@ -323,6 +325,30 @@ function HRAssign(props) {
                 <Form.Control.Feedback type="invalid">
                     {errors.department}
                 </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group> */}
+             <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Department *</Form.Label>
+                <Form.Select
+                    required
+                    type="text"
+                    placeholder="Department"
+                    controlid="department"
+                    value={form.department}
+                    onChange={(e) => setField("department", e.target.value)}
+                    isInvalid={!!errors.department}
+                >
+                     <option value="">Select </option>
+                    {departments.map((departmentss) => (
+                        <option value={departmentss.departmentName}>
+                            {departmentss.departmentName}
+                        </option>
+                    ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                    {errors.department}
+                </Form.Control.Feedback>
+
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
             <Form.Group as={Col} md="6" style={{ padding: 10 }}>

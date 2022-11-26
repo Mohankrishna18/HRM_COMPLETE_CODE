@@ -28,21 +28,20 @@ function ProjectUpdateTabs(props) {
   const handleShow = () => setShow(true);
   const UpdatehandleClose = () => setShow(false);
   const [updateLoading, setUpdateLoading] = useState(false);
+  const [updateStatus, setUpdateStatus] = useState(false);
 
   const [oneProject, setOneProject] = useState();
 
   // Get API's for Clients Dropdown
 
-  const pull_dataUpdate = () => {
-    setUpdateStatus(!updateStatus);
-  };
+  
 
   const update_loading = (id) => {
     setUpdateLoading(!updateLoading);
   };
   return (
     <div>
-      <UserContext.Provider value={{ data, setData }}>
+      <UserContext.Provider value={{ data, setData,setUpdateStatus ,updateStatus}}>
         <Container style={{ marginTop: "25px", marginBottom: "25px" }}>
           <Card>
             <Tabs

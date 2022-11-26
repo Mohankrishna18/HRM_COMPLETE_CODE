@@ -298,31 +298,30 @@ public class UserService {
 			user.getEmployeeleaveId();
 			u.getToDate();
 			u.getLeaveReason();
-//			user.getManagerApproval();
 			user.getLeaveStatus();
 			user.getNumberOfDays();
-//			u.setManagerApproval(user.getManagerApproval());
 			u.setLeaveStatus(user.getLeaveStatus());
-//u.setLeaveReason(user.getLeaveReason()); 
 			u.setRejectReason(user.getRejectReason());
-//      user.getManagersRejectReason();
 			u.setManagersRejectReason(user.getManagersRejectReason());
 			u.setIrmApproveReason(user.getIrmApproveReason());
 			u.setSrmApproveReason(user.getSrmApproveReason());
 
-//u.setEmployeeId(user.getEmployeeId());
-//u.setFromDate(user.getFromDate());
-//u.setToDate(user.getToDate());
-// u.setNumberOfDays(user.getNumberOfDays());
-//u.setLeaveType(user.getLeaveType());
 			User savedU = repository.save(u);
+			List<BetweenDates> bdates=bro.findByEmployeeleaveIdAndEmployeeId(savedU.getEmployeeleaveId(),savedU.getEmployeeId());
+
+            bdates.forEach(e->{
+
+                e.setLeaveStatus(savedU.getLeaveStatus());
+
+                  bro.save(e);
+
+            });
+            
 			if (savedU.getLeaveStatus().equals("Approved")) {
-                // User k = leee.getByemployeeId(u.getEmployeeId());
-                // System.out.println(k);
-                
+
                 LeaveMaster m = leee.findByEmployeeId(savedU.getEmployeeId());
             //    m.setEmployeeId(u.getEmployeeId());
-                
+               
                 Integer totalLeaves =  template.getForObject(url + u.getEmployeeId(), Integer.class);
                 System.out.println(totalLeaves);
                 int temp = Objects.isNull(m.getUsedLeaves()) ? 0 : m.getUsedLeaves();
@@ -334,6 +333,9 @@ public class UserService {
 
 
                leee.save(m);
+               
+               
+               
 
 
 
@@ -688,9 +690,6 @@ public class UserService {
 	}
 	
 	
-	
-	
-	
 	 public List<LeaveMaster> listAll() {
 	        return leee.findAll();
 	    }
@@ -722,11 +721,6 @@ public class UserService {
 	    	return leavebalance;
 	  }
 	       
-	    
-	    
-	    
-		
-
 }
 
 

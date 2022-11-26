@@ -29,17 +29,22 @@ function IRMResignationReject(props) {
     let employeeId = props.leaveID.employeeId;
     console.log(employeeId);
     const da = JSON.parse(sessionStorage.getItem("userdata"));
-    const empID = da.data.userType;
+    const empID = da.data.employeeId;
+    const values = Object.assign(initialValues,{resignationId:props.leaveID.resignationId})
+    
+    
 
     axios
       .put(
         `/resignation/rejectResignation/${employeeId}/${empID}`,
-        initialValues
+        values
       )
       .then((res) => {
         console.log(res);
         if (res.status == 200) {
           props.func();
+          notify();
+          props.closeLoader();
         } else {
           console.log("props not send");
         }
@@ -50,7 +55,7 @@ function IRMResignationReject(props) {
       });
     props.handleClose();
 
-    notify();
+   
   };
   return (
     <div>

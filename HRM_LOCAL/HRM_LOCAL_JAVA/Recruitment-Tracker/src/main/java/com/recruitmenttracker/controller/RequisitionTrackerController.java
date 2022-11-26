@@ -46,6 +46,13 @@ public class RequisitionTrackerController {
         return serv.getAllRequisitions();
     }
     
+//  total/overall positions count
+    @GetMapping("/sumOfPosition")
+    public ResponseEntity<Long> sumOfPositions() {
+        Long i = reqRepo.getCountOfPositions();
+        return new ResponseEntity<Long>(i, HttpStatus.OK);
+    }
+    
 //  @GetMapping("/getAllRequisitionRequests")
 //  public ResponseEntity getRequisitions(@PathVariable String departmentName) {
 //      return serv.getAllRequisitions(departmentName);

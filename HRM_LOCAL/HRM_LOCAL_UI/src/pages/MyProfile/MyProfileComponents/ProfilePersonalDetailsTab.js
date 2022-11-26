@@ -9,7 +9,6 @@ import { BsFillPersonLinesFill } from "react-icons/bs";
 
 function ProfilePersonalDetailsTab(props) {
 
-    console.log(props.profile);
     const employeeid = props.profile;
 
     // const userData = sessionStorage.getItem("userdata");
@@ -75,7 +74,6 @@ function ProfilePersonalDetailsTab(props) {
                 setMaritalStatus(response.data.data.maritalStatus);
             });
     }, []);
-    console.log(dateOfBirth)
 
     // function for handling the edit and
     // pushing changes of editing/updating
@@ -106,14 +104,11 @@ function ProfilePersonalDetailsTab(props) {
                 "content-type": "multipart/form-data",
             },
         };
-        console.log(formData);
         axios
             .put(url, formData, config)
             .then((response) => {
-                console.log(response.data);
             })
             .catch((error) => {
-                console.log("oops not uploaded!");
             });
     };
     const [file, setFile] = useState("");
@@ -125,7 +120,6 @@ function ProfilePersonalDetailsTab(props) {
 
         // reset();
         await axios.put(`/emp/updatePersonalDetails/${employeeid}`, data);
-        console.log(data);
         // notify();
         toast.success("Form Submitted Successfully");
         // refreshPage();
@@ -138,7 +132,6 @@ function ProfilePersonalDetailsTab(props) {
                 "content-type": "multipart/form-data",
             },
         };
-        console.log(formData);
         axios
             .put(url, formData, config)
             .then((response) => {
@@ -151,39 +144,30 @@ function ProfilePersonalDetailsTab(props) {
     
     function handleChange(event) {
         setFile(event.target.files[0]);
-        console.log(event.target.files[0]);
         const file = event.target.files[0];
-    console.log(file);
     if (file.size > 1000000) toast.error("Size Should be less then 1Mb");
     else setFile(event.target.files[0]);
-    console.log(event.target.files[0]);
     }
     const current = new Date();
-    console.log(current)
 
     const [imge, setImge] = useState({});
     useEffect(() => {
         axios
             .get(`/emp/files/${employeeid}`)
             .then((response) => {
-                console.log(response.data);
+
                 setImge(response.data)
             })
             .catch((error) => {
-                console.log(error);
 
-                console.log("something wrong");
             });
     }, []);
-
-    console.log(imge);
 
     useEffect(() => {
         axios
             .get(`/emp/getPersonalDetails/${employeeid}`)
             .then((response) => {
                 setPersonalDetails(response.data)
-                console.log(personalDetails)
             });
     }, []);
 

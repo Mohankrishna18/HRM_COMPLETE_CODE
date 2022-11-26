@@ -262,6 +262,7 @@ public class EmployeeMaster {
 		this.resignedReason = resignedReason;
 	}
 
+	
 	public Date getResignationDate() {
 		return resignationDate;
 	}
