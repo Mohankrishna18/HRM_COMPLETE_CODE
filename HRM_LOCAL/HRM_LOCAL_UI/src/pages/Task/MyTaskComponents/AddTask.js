@@ -42,7 +42,7 @@ function AddUser(props) {
     setUserStory(res.data.data);
     console.log(res.data.data);
   };
-  console.log(userStory);
+ // console.log(userStory);
 
   useEffect(() => {
     axios
@@ -214,12 +214,12 @@ function AddUser(props) {
                   isInvalid={!!errors.projectName}
                 >
                   <option>Select project</option>
-
-                  {projects.map((project) => (
+                  {projects === null ?(<> <option>Select project</option></>):(<> {projects.map((project) => (
                     <option value={project.projectName}>
                       {project.projectName}
                     </option>
-                  ))}
+                  ))}</>)}
+                 
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.projectName}
@@ -239,12 +239,13 @@ function AddUser(props) {
                   isInvalid={!!errors.userStory}
                 >
                   <option>Select userStory</option>
-
-                  {userStory.map((userSt) => (
+                {userStory === null ?(<><option>Select userStory</option></>):(<>{userStory.map((userSt) => (
                     <option value={userSt.storyTitle}>
                       {userSt.storyTitle}
                     </option>
-                  ))}
+                  ))}</>)}
+
+                  
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.userStory}

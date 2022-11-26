@@ -39,5 +39,10 @@ public interface RequisitionRequestRepository extends JpaRepository<RequisitionR
 //     jobsOpenPerDepartment 
       @Query(value= "select new com.recruitmenttracker.modal.JobsPerDepartment(r.departmentName as departmentName, count(jobTitle) as jobsOpen) from requisition_requests r where r.rrfStatus='Open' group by r.departmentName")  
        List<JobsPerDepartment> getJobsOpenByDepartmentName();
+
+      
+//    total/overall positions count  
+      @Query(value="SELECT  sum(positions) FROM requisition_requests",nativeQuery=true)
+      Long getCountOfPositions();
    
 }

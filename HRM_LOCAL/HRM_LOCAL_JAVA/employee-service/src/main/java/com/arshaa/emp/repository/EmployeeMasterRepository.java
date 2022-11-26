@@ -46,6 +46,12 @@ public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster,S
 	
 	List<EmployeeMaster> getActiveEmployeesByStatus(String status);
     EmployeeMaster getDateOfJoiningByEmployeeId(String employeeId);
+    List<EmployeeMaster> findByStatusAndProjectNameIsNotOrProjectNameIsNull(String status, String projectName);
+    
+    @Query(value= "select * from employeemaster where status=:status and project_allocation<:value and (project_name<> :projectName or project_name is null)", nativeQuery=true)
+    List<EmployeeMaster> findByStatusEqualsAndProjectAllocationLessThanAndProjectNameIsNullOrIsNotEquals(@Param("status") String status, @Param("value") Integer value, @Param("projectName") String projectName);
+    
     List<EmployeeMaster> findByDateOfJoiningBefore(Date date);
     List<EmployeeMaster> findByDateOfJoiningBeforeAndDepartmentName(Date date,String dept);
+
 }

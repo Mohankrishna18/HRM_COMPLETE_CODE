@@ -289,6 +289,7 @@ public class LeaveService {
 		
 		return true;
 	}
+	
 
 	public List<EmployeeMaster> getRequiredEmployees(int month,int year, String dept)
     {
@@ -306,6 +307,7 @@ public class LeaveService {
 	public List<EmployeeLeavesData> getEmployeeLeavesDataWithoutDept(int month, int year) {
 		//List<EmployeeMaster> getEmployees = emRepo.findAll();
 		List<EmployeeMaster> getEmployees = getRequiredEmployees(month, year, "ALL");
+
 		List<EmployeeLeavesData> getLeavesList = new ArrayList<>();
 
 		getEmployees.stream().forEach(e -> {

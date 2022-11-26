@@ -34,7 +34,6 @@ const customTheme = {
 
 const ProfileAdditionalDetailsTab = (props) => {
 
-    console.log(props.profile);
     const employeeid = props.profile;
 
     // const userData = sessionStorage.getItem("userdata");
@@ -112,7 +111,6 @@ const ProfileAdditionalDetailsTab = (props) => {
       .get(`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${employeeid}`)
       .then((response) => {
         setDocuments(response);
-        console.log(response);
       });
 
   }
@@ -120,7 +118,6 @@ const ProfileAdditionalDetailsTab = (props) => {
     loadData();
 
   }, []);
-  console.log(documents)
 
     var tempDate = new Date(passportExpiryDate);
     var ped = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');

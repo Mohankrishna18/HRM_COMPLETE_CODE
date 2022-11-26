@@ -33,7 +33,6 @@ const customTheme = {
 
 const ProfileExperienceTab = (props) => {
 
-  console.log(props.profile);
   const employeeid = props.profile;
   // const userData = sessionStorage.getItem("userdata");
   // console.log(userData);
@@ -51,32 +50,7 @@ const ProfileExperienceTab = (props) => {
         setGetEmployeeDetails(response.data.data);
       });
   }, []);
-  console.log(getEmployeeDetails)
 
-  useEffect(() => {
-    axios
-      .get(`/emp/files/${employeeid}`)
-      .then((response) => {
-        console.log(response.data);
-        setImge(response.data)
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log("something wrong");
-      });
-  }, []);
-  console.log(imge)
-
-  const [projects, setProjects] = useState(false)
-
-  useEffect(() => {
-    axios
-      .get(`/emp/getUserClientDetailsbyEmployeeId/${employeeid}`)
-      .then((response) => {
-        setProjects(response.data);
-      });
-  }, []);
-  console.log(projects)
 
   const [documents, setDocuments] = useState("");
   const loadData = () => {
@@ -84,13 +58,12 @@ const ProfileExperienceTab = (props) => {
       .get(`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${employeeid}`)
       .then((response) => {
         setDocuments(response);
-        console.log(response);
       });
   }
   useEffect(() => {
     loadData();
   }, []);
-  console.log(documents);
+
 
   const handleclick = () => {
     toast.error("Experience Documents are not uploaded")
@@ -114,12 +87,6 @@ const ProfileExperienceTab = (props) => {
   var mm = String(doj.getMonth() + 1).padStart(2, '0');
   var yyyy = doj.getFullYear();
   var doj1 = dd + '-' + mm + '-' + yyyy;
-  console.log(doj1);
-
-
-
-  console.log(getEmployeeDetails.dateOfBirth)
-
 
   return (
     <>
