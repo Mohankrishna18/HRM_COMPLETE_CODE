@@ -54,8 +54,6 @@ const UpdateRR = (props) => {
   const [newInterviewPanel1, setNewInterviewPanel1] = useState();
   const [newInterviewPanel2, setNewInterviewPanel2] = useState();
   const [newHrPanel, setNewHrPanel] = useState();
-  const [date, setDate] = useState();
-  const [requiredDate, setRequiredDate] = useState();
 
   const [loading, setLoading] = React.useState(false);
   const closeLoading = () => setLoading(!loading);
@@ -147,16 +145,12 @@ const UpdateRR = (props) => {
     const response = await axios.get(
       `/recruitmentTracker/getDataById/${params.id}`
     );
+    console.log(response.data.data.raisedOn);
     setRaisedOn(response.data.data.raisedOn);
-    setDate(Moment(response.data.data.requestInitiatedDate).format('YYYY-MM-DD'));
-    
-    setRequiredDate(Moment(response.data.data.resourceRequiredDate).format('YYYY-MM-DD'));
-   
-    setReqDate(response.data.data.resourceRequiredDate);
+
     setRequisitionId(response.data.data.requisitionId);
     setJobTitle(response.data.data.jobTitle);
     setReqType1(response.data.data.reqType1);
-    setInitDate(response.data.data.requestInitiatedDate);
 
     setReqType2(response.data.data.reqType2);
     setReqType3(response.data.data.reqType3);
@@ -174,6 +168,9 @@ const UpdateRR = (props) => {
     setNewDepartmentName(response.data.data.departmentName);
     setNewProject(response.data.data.projectName);
     setNewClient(response.data.data.clientName);
+    console.log(response.data.data.pocname);
+    // setPocName(response.data.data.pocname);
+   
     setNewPOCName(response.data.data.pocname);
     setYoe(response.data.data.yoe);
     setRate(response.data.data.rate);
@@ -223,9 +220,6 @@ const UpdateRR = (props) => {
           reqType1: reqType1,
           reqType2: reqType2,
           reqType3: reqType3,
-          requestInitiatedDate: initDate,
-          allocType: allocType,
-          resourceRequiredDate: reqDate
         }
       )
       .then((response) => {
@@ -239,10 +233,7 @@ const UpdateRR = (props) => {
       .catch((err) => {
         toast.error("Something Went Wrong");
       });
-
-    console.log(date);
-    console.log(requiredDate);
-
+    // props.handleClose();
   };
   return (
     <div className="example" style={{ paddingLeft: "12px" }}>
@@ -841,8 +832,8 @@ const UpdateRR = (props) => {
                   required
                   type="date"
                   controlid="initDate"
-                  defaultValue={date}
-                  onChange={(e) => setInitDate((Moment(e.target.value).format("YYYY-MM-DD")))}
+                  value={Moment(initDate).format("YYYY-MM-DD")}
+                  onChange={(e) => setInitDate(e.target.value)}
                   isInvalid={!!errors.initDate}
                 >
 
@@ -856,10 +847,10 @@ const UpdateRR = (props) => {
                 <Form.Control
                   required
                   type="date"
-                  controlid="reqDate"
-                  defaultValue={requiredDate}
-                  onChange={(e) => setReqDate((Moment(e.target.value).format("YYYY-MM-DD")))}
-                  isInvalid={!!errors.reqDate}
+                  controlid="resourceRequiredDate"
+                  value={Moment(resourceRequiredDate).format("YYYY-MM-DD")}
+                  onChange={(e) => setResourceRequiredDate(e.target.value)}
+                  isInvalid={!!errors.resourceRequiredDate}
                 >
 
                 </Form.Control>

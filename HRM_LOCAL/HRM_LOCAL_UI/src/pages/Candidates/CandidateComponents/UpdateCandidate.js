@@ -22,6 +22,7 @@ const UpdateCandidate = (props) => {
   const [phoneNumber, setPhoneNumber] = useState(props.updateOnboard.phoneNumber);
   const [yearsOfExperience, setYearsOfExperience] = useState(props.updateOnboard.yearsOfExperience);
   const [uploadResume, setUploadResume] = useState();
+  const [level,setLevel] = useState(props.updateOnboard.level);
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -35,7 +36,7 @@ const UpdateCandidate = (props) => {
   const [phnError, setPhnError]=useState("");
   const [expyrError, setExpyrError]=useState("");
   const [show, setShow] =useState(false);
-  const [level,setLevel] = useState("");
+  
 
   const handleClose = () => setShow();
   // useState for phone number
@@ -343,7 +344,7 @@ const UpdateCandidate = (props) => {
                   controlid="level"
                   defaultValue={level}
                   value={level}
-                  onChange={(e) => setField("level", e.target.value)}
+                  onChange={(e) => setLevel("level", e.target.value)}
                   isInvalid={!!errors.level}
                 >
                   <option value="">Select Level </option>
