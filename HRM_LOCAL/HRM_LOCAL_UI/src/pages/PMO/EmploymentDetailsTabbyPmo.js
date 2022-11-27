@@ -424,7 +424,7 @@ console.log(employeeId);
                 >
                     <option value="">Select</option>
                     {users.map((user) => (
-                        <option value={user.employeeId}>
+                        <option value={user.fullName}>
                             {user.fullName}
                         </option>
                     ))}
@@ -455,7 +455,7 @@ console.log(employeeId);
                 >
                     <option value="">Select</option>
                     {users.map((user) => (
-                        <option value={user.employeeId}>
+                        <option value={user.fullName}>
                             {user.fullName}
                         </option>
                     ))}
@@ -486,7 +486,7 @@ console.log(employeeId);
                 >
                     <option value="">Select</option>
                     {users.map((user) => (
-                        <option value={user.employeeId}>
+                        <option value={user.fullName}>
                             {user.fullName}
                         </option>
                     ))}

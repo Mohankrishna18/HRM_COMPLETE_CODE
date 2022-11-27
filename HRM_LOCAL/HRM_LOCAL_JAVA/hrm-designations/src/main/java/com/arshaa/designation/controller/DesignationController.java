@@ -66,5 +66,12 @@ public class DesignationController {
 	{
 		return service.getDesignationMasterByDepartmentId(id);
 	}
+	
+	//changes in Dept for HR
+		@GetMapping("/getDesignationsByDepartment/{departmentName}")
+		public ResponseEntity getDesignationsMasterByDepartmentName(@PathVariable String departmentName)
+		{
+			return service.getDesignationsMasterByDepartmentName(departmentName);
+		}
 
 }
