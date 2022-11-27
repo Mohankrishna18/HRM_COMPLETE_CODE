@@ -348,7 +348,7 @@ function OnboardedEmployeesTable() {
                        View
                     </Button>
                     
-                    <Button style={{paddingTop:"10px"}}
+                    {/* <Button style={{paddingTop:"10px"}}
                      variant="white"
                      
                      onClick={(event) => {
@@ -360,7 +360,7 @@ function OnboardedEmployeesTable() {
                    
                    >
                       <FiEdit />Edit
-                   </Button>
+                   </Button> */}
                    
 
                    </Stack>
