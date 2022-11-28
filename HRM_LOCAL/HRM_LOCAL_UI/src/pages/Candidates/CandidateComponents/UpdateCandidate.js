@@ -227,7 +227,7 @@ const UpdateCandidate = (props) => {
               defaultValue={jobTitle}
               // onChange={(e) => setJobTitle(e.target.value)}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){  
                   setJobError("Invalid JobTitle");
                 }
                 else if(e.target.value.length>50){
@@ -279,7 +279,7 @@ const UpdateCandidate = (props) => {
               // onChange={(e) => setCandidateName(e.target.value)}
               // isInvalid={!!errors.candidateName}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)){
                   setCandidateNameError ("Invalid Candidate Name");
                 }
                 else if(e.target.value.length>50){
@@ -343,7 +343,7 @@ const UpdateCandidate = (props) => {
                   // placeholder="Candidate Status"
                   controlid="level"
                   defaultValue={level}
-                  // value={level}
+                  value={level}
                   onChange={(e) => setLevel(e.target.value)}
                   isInvalid={!!errors.level}
                 >
@@ -371,7 +371,7 @@ const UpdateCandidate = (props) => {
               // onChange={(e) => setCurrentLocation(e.target.value)}
               // isInvalid={!!errors.currentLocation}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){
                   setLocationError  ("Invalid Location");
                 }
                 else if(e.target.value.length>50){
@@ -405,7 +405,7 @@ const UpdateCandidate = (props) => {
               // onChange={(e) => setPrimarySkills(e.target.value)}
               // isInvalid={!!errors.primarySkills}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){
                   setSkillError ("Invalid");
                 }
                 else if(e.target.value.length>50){
@@ -438,7 +438,7 @@ const UpdateCandidate = (props) => {
               // onChange={(e) => setSecondarySkills(e.target.value)}
               // isInvalid={!!errors.secondarySkills}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){
                   setSecSkillError  ("Invalid");
                 }
                 else if(e.target.value.length>50){
@@ -528,10 +528,11 @@ const UpdateCandidate = (props) => {
               placeholder="Years Of Experience"
               controlid="yearsOfExperience"
               defaultValue={yearsOfExperience}
+              maxLength={3}
               // onChange={(e) => setYearsOfExperience(e.target.value)}
               // isInvalid={!!errors.yearsOfExperience}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[0-9-,]+(\s[0-9-, ])*$/)){
                   setExpyrError ("Invalid");
                 }
                 else if(e.target.value.length>50){
