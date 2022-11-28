@@ -12,7 +12,6 @@ import "react-toastify/dist/ReactToastify.css";
 const ViewRR=(props)=> {
     console.log(props.viewOnboard);
    
-    
 
 
     return (
@@ -21,10 +20,10 @@ const ViewRR=(props)=> {
                 <Col>
                     <Card style={{ padding: 30, paddingBottom: 20 }}>
 
-                    <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
                                 <Card.Subtitle style={{ padding: 10 }}>
-                                    Job ID   :
+                                    AERF ID   :
                                 </Card.Subtitle>{" "}
                             </Col>
                             <Col md={{ offset: 1 }}>
@@ -32,7 +31,8 @@ const ViewRR=(props)=> {
                                     {props.viewOnboard.requisitionId}
                                 </Card.Text>
                             </Col>
-                        </Row><Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
                                 <Card.Subtitle style={{ padding: 10 }}>
                                     Business unit   :
@@ -56,7 +56,19 @@ const ViewRR=(props)=> {
                                 </Card.Text>
                             </Col>
                         </Row>
-
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Requirement Type   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.viewOnboard.reqType3}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        
                         <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
                                 <Card.Subtitle style={{ padding: 10 }}>
