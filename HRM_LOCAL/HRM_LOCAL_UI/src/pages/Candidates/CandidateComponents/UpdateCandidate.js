@@ -344,7 +344,7 @@ const UpdateCandidate = (props) => {
                   controlid="level"
                   defaultValue={level}
                   value={level}
-                  onChange={(e) => setLevel("level", e.target.value)}
+                  onChange={(e) => setLevel(e.target.value)}
                   isInvalid={!!errors.level}
                 >
                   <option value="">Select Level </option>
@@ -378,7 +378,7 @@ const UpdateCandidate = (props) => {
                   setLocationError("Too Long")
                 }
                 else{
-                  setLocationError(e.target.value);
+                  setCurrentLocation(e.target.value);
                   setLocationError("");
                 }
               }}
@@ -445,7 +445,7 @@ const UpdateCandidate = (props) => {
                   setSecSkillError("Too Long")
                 }
                 else{
-                  setSecSkillError(e.target.value);
+                  setSecondarySkills(e.target.value);
                   setSecSkillError("");
                 }
               }}
