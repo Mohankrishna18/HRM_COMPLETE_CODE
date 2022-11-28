@@ -51,7 +51,7 @@ export default function VerticalLinearStepper() {
           <Step key={step.label}>
             <StepLabel>{step.label}</StepLabel>
             <StepContent>
-              <Typography>{step.description}</Typography>
+              <Typography component="span">{step.description}</Typography>
               <Box sx={{ mb: 2 }}>
                 <div>
                   <Button
@@ -76,7 +76,7 @@ export default function VerticalLinearStepper() {
       </Stepper>
       {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
+          <Typography component="span">All steps completed - you&apos;re finished</Typography>
           <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
             Reset
           </Button>

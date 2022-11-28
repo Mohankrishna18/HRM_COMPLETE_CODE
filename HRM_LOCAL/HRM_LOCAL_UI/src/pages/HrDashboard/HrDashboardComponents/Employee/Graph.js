@@ -21,26 +21,32 @@ const Graph = () => {
         // toast.error("Server Error")
       });
   }, []);
-  const IT = dataa.filter((item) => item.departmentName === "IT")
+ // console.log(sata1)
+ console.log(dataa)
+  const IT =dataa.filter((item) => item.departmentName === "IT")
   const HR = dataa.filter((item) => item.departmentName === "HR")
   const TAG = dataa.filter((item) => item.departmentName === "TAG")
   const PMO = dataa.filter((item) => item.departmentName === "PMO")
   const Digital = dataa.filter((item) => item.departmentName === "DIGITAL")
-
   const Oracle = dataa.filter((item) => item.departmentName === "ORACLE")
-
-  const DigitalMale = Digital.filter((item) => item.gender === 'male')
-  const DigitalFemale = Digital.filter((item) => item.gender === 'female')
-  const Oraclefemale = Oracle.filter((item) => item.gender === 'female')
-  const ITmale = IT.filter((item) => item.gender === 'male')
-  const ITfemale = IT.filter((item) => item.gender === 'female')
-  const HRfemale = HR.filter((item) => item.gender === 'female')
-  const HRmale = HR.filter((item) => item.gender === 'male')
-  const TAGmale = TAG.filter((item) => item.gender === 'male')
-  const TAGfemale = TAG.filter((item) => item.gender === 'female')
-  const PMOmale = PMO.filter((item) => item.gender === 'male')
-  const PMOfemale = PMO.filter((item) => item.gender === 'female')
-  const Oraclemale = Oracle.filter((item) => item.gender === 'female')
+  const Management = dataa.filter((item) => item.departmentName === "MANAGEMENT")
+  const Cybersecurity = dataa.filter((item) => item.departmentName === "CYBERSECURITY")
+  const CybersecurityMale = Cybersecurity.filter((item) => item.gender === 'Male')
+  const CybersecurityFemale = Cybersecurity.filter((item) => item.gender === 'Female')
+  const ManagementMale=Management.filter((item) => item.gender === 'Male')
+  const ManagementFemale=Management.filter((item) => item.gender === 'Female')
+  const DigitalMale = Digital.filter((item) => item.gender === 'Male')
+  const DigitalFemale = Digital.filter((item) => item.gender === 'Female')
+  const Oraclefemale = Oracle.filter((item) => item.gender === 'Female')
+  const ITmale = IT.filter((item) => item.gender === 'Male')
+  const ITfemale = IT.filter((item) => item.gender === 'Female')
+  const HRfemale = HR.filter((item) => item.gender === 'Female')
+  const HRmale = HR.filter((item) => item.gender === 'Male')
+  const TAGmale = TAG.filter((item) => item.gender === 'Male')
+  const TAGfemale = TAG.filter((item) => item.gender === 'Female')
+  const PMOmale = PMO.filter((item) => item.gender === 'Male')
+  const PMOfemale = PMO.filter((item) => item.gender === 'Female')
+  const Oraclemale = Oracle.filter((item) => item.gender === 'Male')
 
 
   const data = [
@@ -82,9 +88,33 @@ const Graph = () => {
 
     },
     {
+      name: 'All',
+      department: 'MANAGEMENT',
+      count: Management.length,
+
+    },
+    {
+      name: 'All',
+      department: 'CYBERSECURITY',
+      count: Cybersecurity.length,
+
+    },
+    {
       name: 'Male',
       department: 'DIGITAL',
       count: DigitalMale.length,
+
+    },
+    {
+      name: 'Male',
+      department: 'CYBERSECURITY',
+      count: CybersecurityMale.length,
+
+    },
+    {
+      name: 'Female',
+      department: 'CYBERSECURITY',
+      count: CybersecurityFemale.length,
 
     },
     {
@@ -125,9 +155,21 @@ const Graph = () => {
 
     },
     {
+      name: 'Female',
+      department: 'MANAGEMENT',
+      count: ManagementFemale.length,
+
+    },
+    {
       name: 'Male',
       department: 'HR',
       count: HRmale.length,
+
+    },
+    {
+      name: 'Male',
+      department: 'MANAGEMENT',
+      count: ManagementMale.length,
 
     },
     {

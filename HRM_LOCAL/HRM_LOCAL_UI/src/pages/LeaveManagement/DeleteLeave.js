@@ -26,7 +26,7 @@ const DeleteLeave = () => {
           </Modal.Header>
         </div>
         <Modal.Body>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Group className="mb-3" controlid="exampleForm.ControlInput1">
             <div className="text-center">
               <Form.Label>Are you Sure want to delete?</Form.Label>
             </div>

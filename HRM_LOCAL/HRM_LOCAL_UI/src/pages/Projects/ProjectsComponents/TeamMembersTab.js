@@ -10,12 +10,12 @@ import { UserContext } from "./ProjectUpdateTabs";
 
 
 function TeamMembersTab(props) {
-  const {data } = useContext(UserContext)
+  const {data,updateStatus } = useContext(UserContext)
   console.log(props.rowData.data.projectId)
  // const rowData = props.rowData;
   useEffect(() => {
     loadData();
-  }, [props.data]);
+  }, [updateStatus]);
 const params = useParams()
 console.log(params)
   const loadData = async (e) => {
@@ -33,7 +33,7 @@ console.log(params)
     },
     {
       title: "Name",
-      field: "employeeName",
+      field: "fullName",
       type: "text",
       editable: "never",
     },
@@ -129,7 +129,7 @@ console.log(params)
             console.log(updatedRow);
             const index = oldRow.employeeprojectId;
             console.log(index);
-            const updatedRows = [...data];
+            const updatedRows = [...data1];
             console.log(updatedRows);
             updatedRows[oldRow.tableData.id] = updatedRow;
             console.log(updatedRows);

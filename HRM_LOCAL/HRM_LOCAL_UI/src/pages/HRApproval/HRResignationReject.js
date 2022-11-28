@@ -31,11 +31,14 @@ function HRResignationReject(props) {
     console.log(employeeId);
     const da = JSON.parse(sessionStorage.getItem("userdata"));
     const empID = da.data.employeeId;
+    const values = Object.assign(initialValues,{resignationId:props.leaveID.resignationId})
+    console.log(values);
+    
 
     axios
       .put(
         `/resignation/rejectResignation/${employeeId}/${empID}`,
-        initialValues
+        values
       )
       .then((res) => {
         console.log(res);
@@ -70,7 +73,7 @@ function HRResignationReject(props) {
                         rows={2}
                         className="hrReject"
                         type="text"
-                        controlId="hrReject"
+                        controlid="hrReject"
                         placeholder="Reject Reason"
                         value={hrReject}
                         onChange={(e) => setHrReject(e.target.value)}

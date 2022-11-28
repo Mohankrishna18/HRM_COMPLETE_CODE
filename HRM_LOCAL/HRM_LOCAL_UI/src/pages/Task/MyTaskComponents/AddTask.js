@@ -42,7 +42,7 @@ function AddUser(props) {
     setUserStory(res.data.data);
     console.log(res.data.data);
   };
-  console.log(userStory);
+ // console.log(userStory);
 
   useEffect(() => {
     axios
@@ -214,12 +214,12 @@ function AddUser(props) {
                   isInvalid={!!errors.projectName}
                 >
                   <option>Select project</option>
-
-                  {projects.map((project) => (
+                  {projects === null ?(<> <option>Select project</option></>):(<> {projects.map((project) => (
                     <option value={project.projectName}>
                       {project.projectName}
                     </option>
-                  ))}
+                  ))}</>)}
+                 
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.projectName}
@@ -239,12 +239,13 @@ function AddUser(props) {
                   isInvalid={!!errors.userStory}
                 >
                   <option>Select userStory</option>
-
-                  {userStory.map((userSt) => (
+                {userStory === null ?(<><option>Select userStory</option></>):(<>{userStory.map((userSt) => (
                     <option value={userSt.storyTitle}>
                       {userSt.storyTitle}
                     </option>
-                  ))}
+                  ))}</>)}
+
+                  
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.userStory}
@@ -256,7 +257,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="Task Title"
-                  controlId="taskTitle"
+                  controlid="taskTitle"
                   value={form.taskTitle}
                   onChange={(e) => setField("taskTitle", e.target.value)}
                   isInvalid={!!errors.taskTitle}
@@ -265,13 +266,13 @@ function AddUser(props) {
                   {errors.taskTitle}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group className="mb-3" as={Col} md="6">
+              <Form.Group className="mb-3" as={Col} md="3">
                 <Form.Label>Task Type *</Form.Label>
                 <Form.Select
                   required
                   type="text"
                   placeholder="Task Type"
-                  controlId="taskType"
+                  controlid="taskType"
                   value={form.taskType}
                   onChange={(e) => setField("taskType", e.target.value)}
                   isInvalid={!!errors.taskType}
@@ -302,7 +303,7 @@ function AddUser(props) {
                   type="text"
                   maxLength={3}
                   placeholder="Estimated Hours"
-                  controlId="estimatedHours"
+                  controlid="estimatedHours"
                   value={form.estimatedHours}
                   onChange={(e) => setField("estimatedHours", e.target.value)}
                   isInvalid={!!errors.estimatedHours}
@@ -318,7 +319,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="priority"
-                  controlId="priority"
+                  controlid="priority"
                   value={form.priority}
                   onChange={(e) => setField("priority", e.target.value)}
                   isInvalid={!!errors.priority}
@@ -332,13 +333,34 @@ function AddUser(props) {
                   {errors.priority}
                 </Form.Control.Feedback>
               </Form.Group>
+              <Form.Group className="mb-3" as={Col} md="3">
+                <Form.Label>Complexity </Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  placeholder="complexity"
+                  controlid="complexity"
+                  value={form.complexity}
+                  onChange={(e) => setField("complexity", e.target.value)}
+                  isInvalid={!!errors.complexity}
+                >
+                  <option>Select Complexity</option>
+                  <option>Highly Complex</option>
+                  <option>Medium Complex</option>
+                  <option>Moderate</option>
+                  <option>Simple</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.complexity}
+                </Form.Control.Feedback>
+              </Form.Group>
               <Form.Group className="mb-3" as={Col} md="6">
                 <Form.Label>Planned Start Date *</Form.Label>
                 <Form.Control
                   required
                   type="date"
                   placeholder="plannedStartDate"
-                  controlId="plannedStartDate"
+                  controlid="plannedStartDate"
                   value={form.plannedStartDate}
                   onChange={(e) => setField("plannedStartDate", e.target.value)}
                   isInvalid={!!errors.plannedStartDate}
@@ -353,7 +375,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="status"
-                  controlId="status"
+                  controlid="status"
                   value={form.status}
                   onChange={(e) => setField("status", e.target.value)}
                   isInvalid={!!errors.status}
@@ -376,7 +398,7 @@ function AddUser(props) {
                   required
                   type="date"
                   placeholder="plannedStartDate"
-                  controlId="plannedStartDate"
+                  controlid="plannedStartDate"
                   value={form.plannedStartDate}
                   onChange={(e) => setField("plannedStartDate", e.target.value)}
                   isInvalid={!!errors.plannedStartDate}
@@ -391,7 +413,7 @@ function AddUser(props) {
                 <Form.Control
                   type="date"
                   placeholder="Enter "
-                  controlId="plannedEndDate"
+                  controlid="plannedEndDate"
                   value={form.plannedEndDate}
                   min={form.plannedStartDate}
                   onChange={(e) => setField("plannedEndDate", e.target.value)}
@@ -409,7 +431,7 @@ function AddUser(props) {
                   required
                   type="date"
                   placeholder="Assign Date"
-                  controlId="assignDate"
+                  controlid="assignDate"
                   value={form.assignDate}
                   onChange={(e) => setField("assignDate", e.target.value)}
                   isInvalid={!!errors.assignDate}
@@ -425,7 +447,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="priority"
-                  controlId="priority"
+                  controlid="priority"
                   value={form.priority}
                   onChange={(e) => setField("priority", e.target.value)}
                   isInvalid={!!errors.priority}
@@ -448,7 +470,7 @@ function AddUser(props) {
                   required
                   type="date"
                   placeholder="Assign Date"
-                  controlId="assignDate"
+                  controlid="assignDate"
                   value={form.assignDate}
                   onChange={(e) => setField("assignDate", e.target.value)}
                   isInvalid={!!errors.assignDate}
@@ -465,7 +487,7 @@ function AddUser(props) {
                   required
                   type="text"
                   placeholder="assignedTo"
-                  controlId="assignedTo"
+                  controlid="assignedTo"
                   value={form.assignedTo}
                   onChange={(e) => setField("assignedTo", e.target.value)}
                   isInvalid={!!errors.assignedTo}
@@ -493,7 +515,7 @@ function AddUser(props) {
                 <Form.Control
                   type="text"
                   placeholder="Enter the Description "
-                  controlId="description"
+                  controlid="description"
                   as="textarea"
                   value={form.description}
                   onChange={(e) => setField("description", e.target.value)}

@@ -288,7 +288,7 @@ function EmploymentDetailsTab() {
                             disabled
                             type="text"
                             placeholder="Primary Skills"
-                            controlId="primarySkils"
+                            controlid="primarySkils"
                             value={primarySkills}
                             maxLength={15}
                             name="primarySkills"
@@ -303,7 +303,7 @@ function EmploymentDetailsTab() {
                             disabled
                             type="text"
                             placeholder="Secondary Skills"
-                            controlId="secondarySkills"
+                            controlid="secondarySkills"
                             value={secondarySkills}
                             maxLength={15}
                             name="secondarySkills"
@@ -318,7 +318,7 @@ function EmploymentDetailsTab() {
                         
                             type="text"
                             placeholder="Employment Type"
-                            controlId="employmentType"
+                            controlid="employmentType"
                             value={employmentType}
                             maxLength={15}
                             name="employmentType"
@@ -341,7 +341,7 @@ function EmploymentDetailsTab() {
                         
                             type="text"
                             placeholder="Band"
-                            controlId="band"
+                            controlid="band"
                             name="band"
                             value={band}
                             onChange={(event) => setBand(event.target.value)}
@@ -360,7 +360,7 @@ function EmploymentDetailsTab() {
                         
                             type="text"
                             placeholder="Department Name"
-                            controlId="departmentName"
+                            controlid="departmentName"
                             value={departmentName}
                             maxLength={25}
                             name="departmentName"
@@ -391,7 +391,7 @@ function EmploymentDetailsTab() {
                        
                             type="text"
                             placeholder="Designation Name"
-                            controlId="designationName"
+                            controlid="designationName"
                             value={designationName}
                             maxLength={25}
                             name="designationName"
@@ -432,7 +432,7 @@ function EmploymentDetailsTab() {
                        
                             type="text"
                             placeholder="Project"
-                            controlId="project"
+                            controlid="project"
                             value={projectName}
                             maxLength={15}
                             name="projectName"

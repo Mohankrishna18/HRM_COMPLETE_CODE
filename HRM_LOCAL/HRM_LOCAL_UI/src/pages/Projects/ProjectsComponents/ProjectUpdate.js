@@ -197,7 +197,7 @@ const ProjectUpdate = (props) => {
                 type="text"
                 className="projectName"
                 placeholder="Project Name "
-                controlId="projectName"
+                controlid="projectName"
                 defaultValue={projectName}
                 onChange={(e) => {
                   if (e.target.value === "") {
@@ -233,7 +233,7 @@ const ProjectUpdate = (props) => {
               required
               type="text"
               placeholder="Client Name"
-              controlId="clientName"
+              controlid="clientName"
               defaultValue={clientName}
               onChange={(e) => setclientName(e.target.value)}
               isInvalid={!!errors.clientName}
@@ -255,7 +255,7 @@ const ProjectUpdate = (props) => {
                 required
                 className="clientName"
                 type="text"
-                controlId="clientName"
+                controlid="clientName"
                 placeholder="Client Name"
                 // onChange={(event) => setclientName(event.target.value)}
                 value={updateOnboard.clientName}
@@ -275,7 +275,7 @@ const ProjectUpdate = (props) => {
                 required
                 type="text"
                 placeholder="Business Unit Head"
-                controlId="businessUnit"
+                controlid="businessUnit"
                 defaultValue={updateOnboard.businessUnit}
                 onChange={(e) => setBusinessUnit(e.target.value)}
                 isInvalid={!!errors.businessUnit}
@@ -297,7 +297,7 @@ const ProjectUpdate = (props) => {
                 required
                 type="date"
                 placeholder="Start Date"
-                controlId="startDate"
+                controlid="startDate"
                 value={startdate}
                 onChange={(e) => setStartDate(e.target.value)}
                 isInvalid={!!errors.startDate}
@@ -315,7 +315,7 @@ const ProjectUpdate = (props) => {
                 required
                 className="projectManager"
                 type="text"
-                controlId="projectManager"
+                controlid="projectManager"
                 placeholder="Project Manager"
                 // onChange={(event) => setclientName(event.target.value)}
                 defaultValue={projectManager}
@@ -325,8 +325,8 @@ const ProjectUpdate = (props) => {
               >
                 <option value={projectManager}>{projectManager} </option>
                 {reportingManager.map((projectManager) => (
-                  <option value={projectManager.name}>
-                    {projectManager.name}
+                  <option value={projectManager.fullName}>
+                    {projectManager.fullName}
                   </option>
                 ))}
               </Form.Select>
@@ -341,7 +341,7 @@ const ProjectUpdate = (props) => {
                 required
                 type="date"
                 placeholder="End Date"
-                controlId="endDate"
+                controlid="endDate"
                 value={enddate}
                 //min={startDate}
                 onChange={(e) => setEndDate(e.target.value)}
@@ -359,7 +359,7 @@ const ProjectUpdate = (props) => {
                 required
                 type="text"
                 placeholder="Status"
-                controlId="status"
+                controlid="status"
                 defaultValue={updateOnboard.status}
                 onChange={(e) => setStatus(e.target.value)}
                 isInvalid={!!errors.status}
@@ -380,7 +380,7 @@ const ProjectUpdate = (props) => {
                 required
                 type="text"
                 placeholder="Cost "
-                controlId="rate"
+                controlid="rate"
                 defaultValue={updateOnboard.rate}
                 onChange={(e) => setRate(e.target.value)}
                 isInvalid={!!errors.rate}
@@ -396,7 +396,7 @@ const ProjectUpdate = (props) => {
                 required
                 type="text"
                 placeholder="Priority"
-                controlId="priority"
+                controlid="priority"
                 defaultValue={updateOnboard.priority}
                 onChange={(e) => setPriority(e.target.value)}
                 isInvalid={!!errors.priority}
@@ -419,7 +419,7 @@ const ProjectUpdate = (props) => {
                 type="text"
                 name="description"
                 placeholder="Description"
-                controlId="description"
+                controlid="description"
                 defaultValue={updateOnboard.description}
                 onChange={(e) => setDescription(e.target.value)}
 

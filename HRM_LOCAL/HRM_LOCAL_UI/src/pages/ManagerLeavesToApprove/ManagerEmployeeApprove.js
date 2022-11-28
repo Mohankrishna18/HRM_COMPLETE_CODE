@@ -34,6 +34,7 @@ function ManagerEmployeeApprove(props) {
         const{
             irmApproveReason
         } = form;
+        
         const newErrors ={};
         if (!irmApproveReason || irmApproveReason === "" )
         newErrors.irmApproveReason = "Please Enter Comment";
@@ -63,18 +64,20 @@ function ManagerEmployeeApprove(props) {
             console.log(res)
             if(res.status == 200){
                 props.func();
+                notify();
+                props.closeLoader();
             }
             else{
                 console.log('props not send')
             }
         })
         .catch((err)=>{
-            console.log(err);
+            // console.log(err);
             toast.error("Something wrong");
         });
         props.handleClose();
        
-        notify();
+       
     }
     //   };
   return (
@@ -93,7 +96,7 @@ function ManagerEmployeeApprove(props) {
                         rows={2}
                         className="irmApproveReason"
                         type="text"
-                        controlId="irmApproveReason"
+                        controlid="irmApproveReason"
                         placeholder="Approve Reason"
                         value={form.irmApproveReason}
                         onChange={(e) => setField("irmApproveReason", e.target.value)}

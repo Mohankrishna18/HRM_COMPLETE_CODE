@@ -114,7 +114,7 @@ function EmployeePersonalDetails() {
     };
     console.log(formData);
     axios
-      .post(url, formData, config)
+      .put(url, formData, config)
       .then((response) => {
         console.log(response.data);
         toast.success("Form Submitted Successfully");
@@ -136,7 +136,7 @@ console.log(event.target.files[0]);
 
 }
 
-  const [imge, setImge] = useState([]);
+  const [imge, setImge] = useState({});
   useEffect(() => {
     axios
       .get(`/emp/files/${params.id}`)
@@ -165,7 +165,7 @@ console.log(event.target.files[0]);
             as={Col}
             className="mb-3"
             md="6"
-            controlId="formBasicEmail"
+            controlid="formBasicEmail"
           >
             <Form.Label>First Name *</Form.Label>
             <Form.Control
@@ -216,7 +216,7 @@ console.log(event.target.files[0]);
             as={Col}
             className="mb-3"
             md="6"
-            controlId="formBasicEmail"
+            controlid="formBasicEmail"
           >
             <Form.Label>Last Name *</Form.Label>
             <Form.Control
@@ -288,7 +288,7 @@ console.log(event.target.files[0]);
             className="mb-3"
             md="6"
             style={{ padding: 10 }}
-            controlId="formBasicEmail"
+            controlid="formBasicEmail"
           >
             <Form.Label>Emergency Phone Number </Form.Label>
             <InputGroup>
@@ -359,7 +359,7 @@ console.log(event.target.files[0]);
               // max={today}
               // max={new Date(BackDate).toISOString().split("T")[0]}
               placeholder="DOB"
-              controlId="dateOfBirth"
+              controlid="dateOfBirth"
               value={dateOfBirth}
               isInvalid={fiveerrors}
               
@@ -385,7 +385,7 @@ console.log(event.target.files[0]);
               type="text"
               name="bloodGroup"
               placeholder="Blood Group "
-              controlId="bloodGroup"
+              controlid="bloodGroup"
               isInvalid={sixerror}
               value={bloodGroup}
               onChange={(e) => {
@@ -418,7 +418,7 @@ console.log(event.target.files[0]);
               type="text"
               name="gender"
               placeholder="Gender "
-              controlId="gender"
+              controlid="gender"
               value={gender}
               isInvalid={sevenerrors}
               onChange={(e) => {
@@ -446,7 +446,7 @@ console.log(event.target.files[0]);
               type="text"
               name="maritalStatus"
               placeholder="Marital Status "
-              controlId="maritalStatus"
+              controlid="maritalStatus"
               value={maritalStatus}
               isInvalid={eighterror}
               onChange={(event) => {
@@ -473,7 +473,7 @@ console.log(event.target.files[0]);
             <Form.Control
               type="text"
               placeholder="Primary Skills"
-              controlId="primarySkils"
+              controlid="primarySkils"
               value={primarySkills}
               maxLength={15}
               name="primarySkills"
@@ -496,7 +496,7 @@ console.log(event.target.files[0]);
             <Form.Control
               type="text"
               placeholder="Secondary Skills"
-              controlId="secondarySkills"
+              controlid="secondarySkills"
               value={secondarySkills}
               maxLength={15}
               name="secondarySkills"

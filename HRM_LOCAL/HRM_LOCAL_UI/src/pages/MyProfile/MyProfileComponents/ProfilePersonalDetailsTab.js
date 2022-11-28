@@ -7,11 +7,13 @@ import { BsFillPersonLinesFill } from "react-icons/bs";
 
 
 
-function ProfilePersonalDetailsTab() {
+function ProfilePersonalDetailsTab(props) {
 
-    const userData = sessionStorage.getItem("userdata");
-    const userData1 = JSON.parse(userData);
-    const employeeid = userData1.data.employeeId;
+    const employeeid = props.profile;
+
+    // const userData = sessionStorage.getItem("userdata");
+    // const userData1 = JSON.parse(userData);
+    // const employeeid = userData1.data.employeeId;
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -70,10 +72,8 @@ function ProfilePersonalDetailsTab() {
                 setBloodGroup(response.data.data.bloodGroup);
                 setGender(response.data.data.gender);
                 setMaritalStatus(response.data.data.maritalStatus);
-
             });
     }, []);
-    console.log(dateOfBirth)
 
     // function for handling the edit and
     // pushing changes of editing/updating
@@ -104,14 +104,11 @@ function ProfilePersonalDetailsTab() {
                 "content-type": "multipart/form-data",
             },
         };
-        console.log(formData);
         axios
-            .post(url, formData, config)
+            .put(url, formData, config)
             .then((response) => {
-                console.log(response.data);
             })
             .catch((error) => {
-                console.log("oops not uploaded!");
             });
     };
     const [file, setFile] = useState("");
@@ -123,7 +120,6 @@ function ProfilePersonalDetailsTab() {
 
         // reset();
         await axios.put(`/emp/updatePersonalDetails/${employeeid}`, data);
-        console.log(data);
         // notify();
         toast.success("Form Submitted Successfully");
         // refreshPage();
@@ -136,9 +132,8 @@ function ProfilePersonalDetailsTab() {
                 "content-type": "multipart/form-data",
             },
         };
-        console.log(formData);
         axios
-            .post(url, formData, config)
+            .put(url, formData, config)
             .then((response) => {
                 console.log(response.data);
             })
@@ -149,39 +144,30 @@ function ProfilePersonalDetailsTab() {
     
     function handleChange(event) {
         setFile(event.target.files[0]);
-        console.log(event.target.files[0]);
         const file = event.target.files[0];
-    console.log(file);
     if (file.size > 1000000) toast.error("Size Should be less then 1Mb");
     else setFile(event.target.files[0]);
-    console.log(event.target.files[0]);
     }
     const current = new Date();
-    console.log(current)
 
-    const [imge, setImge] = useState([]);
+    const [imge, setImge] = useState({});
     useEffect(() => {
         axios
             .get(`/emp/files/${employeeid}`)
             .then((response) => {
-                console.log(response.data);
+
                 setImge(response.data)
             })
             .catch((error) => {
-                console.log(error);
 
-                console.log("something wrong");
             });
     }, []);
-
-    console.log(imge);
 
     useEffect(() => {
         axios
             .get(`/emp/getPersonalDetails/${employeeid}`)
             .then((response) => {
                 setPersonalDetails(response.data)
-                console.log(personalDetails)
             });
     }, []);
 
@@ -323,7 +309,7 @@ function ProfilePersonalDetailsTab() {
                                     as={Col}
                                     className="mb-3"
                                     md="6"
-                                    controlId="formBasicEmail"
+                                    controlid="formBasicEmail"
                                 >
                                     <Form.Label>First Name *</Form.Label>
                                     <Form.Control
@@ -363,7 +349,7 @@ function ProfilePersonalDetailsTab() {
                                     as={Col}
                                     className="mb-3"
                                     md="6"
-                                    controlId="formBasicEmail"
+                                    controlid="formBasicEmail"
                                 >
                                     <Form.Label>Last Name *</Form.Label>
                                     <Form.Control
@@ -436,7 +422,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                     className="mb-3"
                                     md="6"
                                     style={{ padding: 10 }}
-                                    controlId="formBasicEmail"
+                                    controlid="formBasicEmail"
                                 >
                                     <Form.Label>Emergency Phone Number </Form.Label>
                                     <InputGroup>
@@ -501,7 +487,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         type="date"
                                         name="dateOfBirth"
                                         placeholder="DOB"
-                                        controlId="dateOfBirth"
+                                        controlid="dateOfBirth"
                                         value={dateOfBirth}
                                         isInvalid={fiveerrors}
                                         onChange={(e) => {
@@ -528,7 +514,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         type="text"
                                         name="bloodGroup"
                                         placeholder="Blood Group "
-                                        controlId="bloodGroup"
+                                        controlid="bloodGroup"
                                         isInvalid={sixerror}
                                         value={bloodGroup}
 
@@ -564,7 +550,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         type="text"
                                         name="gender"
                                         placeholder="Gender "
-                                        controlId="gender"
+                                        controlid="gender"
                                         value={gender}
                                         isInvalid={sevenerrors}
                                         onChange={(e) => {
@@ -594,7 +580,7 @@ onChange={(e) => setPrimaryPhoneNumber(e.target.value)}
                                         type="text"
                                         name="maritalStatus"
                                         placeholder="Marital Status "
-                                        controlId="maritalStatus"
+                                        controlid="maritalStatus"
                                         value={maritalStatus}
                                         isInvalid={eighterror}
                                         onChange={(event) => {

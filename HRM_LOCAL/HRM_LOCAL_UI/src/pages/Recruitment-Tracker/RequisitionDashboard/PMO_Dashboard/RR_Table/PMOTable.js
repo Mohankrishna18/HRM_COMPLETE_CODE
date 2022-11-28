@@ -55,6 +55,13 @@ useEffect(() => {
         },
         {
 
+            title: "Priority",
+
+            field: "priority",
+
+        },
+        {
+
             title: "Request Initiated",
             field: "requestInitiatedDate",
              type: 'date',
@@ -64,7 +71,7 @@ useEffect(() => {
         },
         {
 
-            title: "Aging",
+            title: "Ageing",
             field: "ageing",
         },
 
@@ -85,7 +92,7 @@ useEffect(() => {
                 options={{
                     showTitle: true,
                     pageSize: 10,
-                    maxBodyHeight: 350,
+                    maxBodyHeight: 320,
                     pageSizeOptions: [ 10, 15],
 
 

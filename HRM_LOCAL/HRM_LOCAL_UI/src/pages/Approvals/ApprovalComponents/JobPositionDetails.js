@@ -2,18 +2,26 @@ import React, { useEffect, useState } from "react";
 import { Card, Form, Row, Col, InputGroup, Button } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
+import moment from "moment";
 
 function JobPositionDetails(props) {
+
   console.log(props.viewOnboard);
   const userData = sessionStorage.getItem("userdata");
   const userData1 = JSON.parse(userData);
   const employeeid = userData1.data.employeeId;
   const handleClose = () => setShow();
 
-
+  const [jobDetails, setJobDetails] = useState("");
+  useEffect(() => {
+    axios.get(`/recruitmentTracker/getDataById/${props.viewOnboard.requisitionId}`).then((response) => {
+      console.log(response.data);
+      setJobDetails(response.data.data);
+    });
+  }, []);
+  console.log(jobDetails);
 
   var tempDate = new Date(props.viewOnboard.dateOfBirth);
-
   var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 console.log(dob)
   return (
@@ -22,7 +30,6 @@ console.log(dob)
        <Card.Title>
         <Row>
           <Col> <h5> Job Position Details:</h5></Col>
-          
        </Row>
       
       </Card.Title>
@@ -50,7 +57,7 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.clientName}
+              {jobDetails.clientName}
             </Card.Subtitle>
           </Col>
         </Row>
@@ -63,7 +70,7 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.jobTitle}
+              {jobDetails.jobTitle}
             </Card.Subtitle>
           </Col>
         </Row>
@@ -79,7 +86,7 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.raisedBy}
+              {jobDetails.raisedBy}
             </Card.Subtitle>
           </Col>
         </Row>
@@ -93,7 +100,8 @@ console.log(dob)
           </Col>
           <Col md={{ offset: 1 }}>
             <Card.Subtitle style={{ color: "#999897" }}>
-              {props.viewOnboard.requestInitiatedDate}
+            {moment(jobDetails.requestInitiatedDate).format("DD/MM/YYYY")}
+             
             </Card.Subtitle>
           </Col>
       </Row>

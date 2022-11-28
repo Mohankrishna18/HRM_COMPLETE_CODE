@@ -37,6 +37,7 @@ import {
   FcComboChart,
   FcExport,
   FcNews,
+  FcPortraitMode,
 } from "react-icons/fc";
 
 import { MdReport } from "react-icons/md";
@@ -233,7 +234,7 @@ export default [
 
     // icon: <FcApprove />,
     // //title: "Projects",
-    permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager],
+    permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager,Roles.irm],
   },
   {
     component: ProjectUpdateTabs,
@@ -242,7 +243,7 @@ export default [
 
     // icon: <FcApprove />,
     // //title: "Projects",
-    permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager],
+    permission: [Roles.pmohead, Roles.ceo, Roles.buhead, Roles.manager,Roles.irm],
   },
   // {
   //   component:EmployeeDashboard,
@@ -435,7 +436,7 @@ export default [
     type: "Employee",
     path: "/IntegrateLeaveToApply",
     icon: <FcLeave />,
-    title: "Leaves/WFH Apply",
+    title: "Leaves/WFH",
     permission: [
       Roles.employee,
       Roles.ceo,
@@ -457,7 +458,7 @@ export default [
     path: "/holidayManagenent",
     type: "configuration",
     icon: <FcPlanner />,
-    title: "Holiday Management",
+    title: "Holidays",
     permission: [Roles.pmohead],
   },
   {
@@ -640,7 +641,7 @@ export default [
     path: "/resignation",
     type: "Employee",
     icon: <FcExport />,
-    title: "Resignation",
+    title: "Exits",
     permission: [
       Roles.employee,
       Roles.ceo,
@@ -704,7 +705,7 @@ export default [
   // },
   {
     component: PMO_Dashboard,
-    path: "/PMO_Dashboard",
+    path: "/requisition_Dashboard",
     type: "jobs",
     icon: <FcApproval />,
     title: "Requisition Dashboard",
@@ -749,12 +750,8 @@ export default [
     component: StepperForm,
 
     path: '/StepperForm',
-
     type: "AERF",
-
     permission: [Roles.irm,Roles.ceo,Roles.taahead,Roles.pmohead,Roles.srm,Roles.hrmanager,  Roles.buhead,Roles.taa],
-
-
 
   },
 
@@ -769,10 +766,10 @@ export default [
   {
     component: CandidatesMain,
     path: "/Candidates",
-    type: "null",
-    icon: <FcApproval />,
+    type: "jobs",
+    icon: <FcPortraitMode />,
     title: "Candidates",
-    permission: [Roles.taahead]
+    permission: [Roles.taahead,Roles.taa]
   },
 
   {

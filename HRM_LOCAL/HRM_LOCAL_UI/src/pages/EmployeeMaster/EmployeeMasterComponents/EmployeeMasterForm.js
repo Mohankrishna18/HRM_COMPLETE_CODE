@@ -506,7 +506,7 @@
 //                                             as={Col}
 //                                             className="mb-3"
 //                                             md="6"
-//                                             controlId="formBasicEmail"
+//                                             controlid="formBasicEmail"
 //                                         >
 //                                             <Form.Label>First Name *</Form.Label>
 //                                             <Form.Control
@@ -545,7 +545,7 @@
 //                                             as={Col}
 //                                             className="mb-3"
 //                                             md="6"
-//                                             controlId="formBasicEmail"
+//                                             controlid="formBasicEmail"
 //                                         >
 //                                             <Form.Label>Last Name *</Form.Label>
 //                                             <Form.Control
@@ -615,7 +615,7 @@
 //                                             className="mb-3"
 //                                             md="6"
 //                                             style={{ padding: 10 }}
-//                                             controlId="formBasicEmail"
+//                                             controlid="formBasicEmail"
 //                                         >
 //                                             <Form.Label>Emergency Phone Number </Form.Label>
 //                                             <InputGroup>
@@ -671,7 +671,7 @@
 //                                                 type="date"
 //                                                 name="dateOfBirth"
 //                                                 placeholder="DOB"
-//                                                 controlId="dateOfBirth"
+//                                                 controlid="dateOfBirth"
 //                                                 value={dateOfBirth}
 //                                                 isInvalid={fiveerrors}
 //                                                 onChange={(e) => {
@@ -697,7 +697,7 @@
 //                                                 type="text"
 //                                                 name="bloodGroup"
 //                                                 placeholder="Blood Group "
-//                                                 controlId="bloodGroup"
+//                                                 controlid="bloodGroup"
 //                                                 isInvalid={sixerror}
 //                                                 value={bloodGroup}
 
@@ -732,7 +732,7 @@
 //                                                 type="text"
 //                                                 name="gender"
 //                                                 placeholder="Gender "
-//                                                 controlId="gender"
+//                                                 controlid="gender"
 //                                                 value={gender}
 //                                                 isInvalid={sevenerrors}
 //                                                 onChange={(e) => {
@@ -761,7 +761,7 @@
 //                                                 type="text"
 //                                                 name="maritalStatus"
 //                                                 placeholder="Marital Status "
-//                                                 controlId="maritalStatus"
+//                                                 controlid="maritalStatus"
 //                                                 value={maritalStatus}
 //                                                 isInvalid={eighterror}
 //                                                 onChange={(event) => {
@@ -804,7 +804,7 @@
 //                                                         type="text"
 //                                                         name="permanentAdress"
 //                                                         placeholder="Address"
-//                                                         controlId="permanentAdress"
+//                                                         controlid="permanentAdress"
 //                                                         value={permanentAdress}
 //                                                         isInvalid={elevenerrors}
 //                                                         maxLength={125}
@@ -830,7 +830,7 @@
 //                                                         type="text"
 //                                                         placeholder="State"
 //                                                         name="permanentState"
-//                                                         controlId="permanentState"
+//                                                         controlid="permanentState"
 //                                                         maxLength={50}
 //                                                         isInvalid={tweleveerror}
 //                                                         value={permanentState}
@@ -855,7 +855,7 @@
 //                                                         type="text"
 //                                                         placeholder="Country"
 //                                                         name="permanentCountry"
-//                                                         controlId="permanentCountry"
+//                                                         controlid="permanentCountry"
 //                                                         maxLength={50}
 //                                                         // options={countries}
 //                                                         value={permanentCountry}
@@ -884,7 +884,7 @@
 //                                                 type="text"
 //                                                 placeholder="Country"
 //                                                 name="permanentCountry"
-//                                                 controlId="permanentCountry"                                                
+//                                                 controlid="permanentCountry"                                                
 //                                                 value={permanentCountry}
 //                                                 onChange={(e) => setPermanentCountry(e.target.value)}>
                                     
@@ -895,7 +895,7 @@
 //                                                         required
 //                                                         type="number"
 //                                                         placeholder="Pincode"
-//                                                         controlId="permanentPincode"
+//                                                         controlid="permanentPincode"
 //                                                         name="permanentPincode"
 //                                                         isInvalid={fourteenerror}
 //                                                         value={permanentPincode}
@@ -935,7 +935,7 @@
 //                                                         rows={4}
 //                                                         type="text"
 //                                                         placeholder="Address"
-//                                                         controlId="currentAdress"
+//                                                         controlid="currentAdress"
 //                                                         isInvalid={fifteenerrors}
 //                                                         value={currentAdress}
 //                                                         name="currentAdress"
@@ -962,7 +962,7 @@
 //                                                         type="text"
 //                                                         placeholder="State"
 //                                                         name="currentState"
-//                                                         controlId="currentState"
+//                                                         controlid="currentState"
 //                                                         maxLength={50}
 //                                                         isInvalid={sixteenerror}
 //                                                         value={currentState}
@@ -986,7 +986,7 @@
 //                                                         required
 //                                                         type="text"
 //                                                         placeholder="Country"
-//                                                         //controlId="currentCountry"
+//                                                         //controlid="currentCountry"
 //                                                         value={currentCountry}
 //                                                         isInvalid={seventeenerror}
 //                                                         maxLength={50}
@@ -1012,7 +1012,7 @@
 //                                                         required
 //                                                         type="number"
 //                                                         placeholder="Pincode"
-//                                                         controlId="currentPincode"
+//                                                         controlid="currentPincode"
 //                                                         value={currentPincode}
 //                                                         isInvalid={eighteenerror}
 //                                                         name="currentPincode"
@@ -1050,7 +1050,7 @@
 //                                                 disabled
 //                                                 type="text"
 //                                                 placeholder="Primary Skills"
-//                                                 controlId="primarySkils"
+//                                                 controlid="primarySkils"
 //                                                 value={primarySkills}
 //                                                 maxLength={15}
 //                                                 name="primarySkills"
@@ -1067,7 +1067,7 @@
 //                                                 disabled
 //                                                 type="text"
 //                                                 placeholder="Secondary Skills"
-//                                                 controlId="secondarySkills"
+//                                                 controlid="secondarySkills"
 //                                                 value={secondarySkills}
 //                                                 maxLength={15}
 //                                                 name="secondarySkills"
@@ -1084,7 +1084,7 @@
 //                                                 disabled
 //                                                 type="text"
 //                                                 placeholder="Type of Employee"
-//                                                 controlId="employmentType"
+//                                                 controlid="employmentType"
 //                                                 value={employmentType}
 //                                                 maxLength={15}
 //                                                 name="employmentType"
@@ -1101,7 +1101,7 @@
 //                                                 disabled
 //                                                 type="text"
 //                                                 placeholder="Band"
-//                                                 controlId="band"
+//                                                 controlid="band"
 
 //                                                 name="band"
 //                                                 value={band}
@@ -1119,7 +1119,7 @@
 //                                                 disabled
 //                                                 type="text"
 //                                                 placeholder="Department Name"
-//                                                 controlId="departmentName"
+//                                                 controlid="departmentName"
 //                                                 value={departmentName}
 //                                                 maxLength={15}
 //                                                 name="departmentName"
@@ -1136,7 +1136,7 @@
 //                                                 disabled
 //                                                 type="text"
 //                                                 placeholder="Designation Name"
-//                                                 controlId="designationName"
+//                                                 controlid="designationName"
 //                                                 value={designationName}
 //                                                 maxLength={15}
 //                                                 name="designationName"
@@ -1168,7 +1168,7 @@
 //                                                 disabled
 //                                                 type="text"
 //                                                 placeholder="Project"
-//                                                 controlId="project"
+//                                                 controlid="project"
 //                                                 value={projectName}
 //                                                 maxLength={15}
 //                                                 name="projectName"
@@ -1196,7 +1196,7 @@
 //                                             <Form.Control
 //                                                 type="text"
 //                                                 placeholder="Passport Number"
-//                                                 controlId="passportNo"
+//                                                 controlid="passportNo"
 //                                                 value={passportNo}
 //                                                 maxLength={15}
 //                                                 name="passportNo"
@@ -1212,7 +1212,7 @@
 //                                             <Form.Control
 //                                                 type="date"
 //                                                 placeholder="Passport Expiry Date"
-//                                                 controlId="passportExpiryDate"
+//                                                 controlid="passportExpiryDate"
 //                                                 name="passportExpiryDate"
 //                                                 value={passportExpiryDate}
 //                                                 min={new Date()}
@@ -1227,7 +1227,7 @@
 //                                             <Form.Control
 //                                                 type="text"
 //                                                 placeholder="PAN Card Number"
-//                                                 controlId="panNumber"
+//                                                 controlid="panNumber"
 //                                                 name="panNumber"
 //                                                 maxLength={50}
 //                                                 value={panNumber}
@@ -1240,7 +1240,7 @@
 //                                                 required
 //                                                 type="number"
 //                                                 placeholder="Aadhar Card Number"
-//                                                 controlId="aadharNumber"
+//                                                 controlid="aadharNumber"
 //                                                 name="panNumber"
 //                                                 maxLength={12}
 //                                                 isInvalid={nineteenerror}
@@ -1268,7 +1268,7 @@
 //                                             <Form.Control
 //                                                 type="text"
 //                                                 placeholder="UAN Number"
-//                                                 controlId="uanNumber"
+//                                                 controlid="uanNumber"
 //                                                 name="uanNumber"
 //                                                 value={uanNumber}
 //                                                 maxLength={12}
@@ -1281,7 +1281,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="Bank Name"
-//                                                 controlId="bankName"
+//                                                 controlid="bankName"
 //                                                 name="bankName"
 //                                                 maxLength={50}
 //                                                 value={bankName}
@@ -1306,7 +1306,7 @@
 //                                                 required
 //                                                 type="number"
 //                                                 placeholder="Account Number"
-//                                                 controlId="accountNumber"
+//                                                 controlid="accountNumber"
 //                                                 name="accountNumber"
 //                                                 maxLength={50}
 //                                                 value={accountNumber}
@@ -1334,7 +1334,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="IFSC Code"
-//                                                 controlId="ifscCode"
+//                                                 controlid="ifscCode"
 //                                                 name="ifscCode"
 //                                                 maxLength={50}
 //                                                 value={ifscCode}
@@ -1359,7 +1359,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="Branch Name"
-//                                                 controlId="branchName"
+//                                                 controlid="branchName"
 //                                                 name="branch"
 //                                                 maxLength={50}
 //                                                 value={branch}
@@ -1417,7 +1417,7 @@
 //                                                                 required
 //                                                                 type="text"
 //                                                                 placeholder="Type Of Post Graduation"
-//                                                                 controlId="postgraduationType"
+//                                                                 controlid="postgraduationType"
 //                                                                 name="postgraduationType"
 //                                                                 value={postgraduationType}
 //                                                                 maxLength={50}
@@ -1443,7 +1443,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="University Name"
-//                                                                 controlId="postgraduationBoardOfUniversity"
+//                                                                 controlid="postgraduationBoardOfUniversity"
 //                                                                 name="postgraduationBoardOfUniversity"
 //                                                                 maxLength={50}
 //                                                                 value={postgraduationBoardOfUniversity}
@@ -1459,7 +1459,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="Institute Name "
-//                                                                 controlId="postgraduationInstituteName"
+//                                                                 controlid="postgraduationInstituteName"
 //                                                                 value={postgraduationInstituteName}
 //                                                                 maxLength={50}
 //                                                                 name="postgraduationInstituteName"
@@ -1473,7 +1473,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="Institute City"
-//                                                                 controlId="postgraduationInstituteCity"
+//                                                                 controlid="postgraduationInstituteCity"
 //                                                                 value={postgraduationInstituteCity}
 //                                                                 maxLength={50}
 //                                                                 name="postgraduationInstituteCity"
@@ -1487,7 +1487,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="Course Name"
-//                                                                 controlId="postgraduationCourseName"
+//                                                                 controlid="postgraduationCourseName"
 //                                                                 value={postgraduationCourseName}
 //                                                                 maxLength={50}
 //                                                                 name="postgraduationCourseName"
@@ -1501,7 +1501,7 @@
 //                                                             <Form.Control
 //                                                                 type="date"
 //                                                                 placeholder="Joining Year"
-//                                                                 controlId="postgraduationJoiningYear"
+//                                                                 controlid="postgraduationJoiningYear"
 //                                                                 value={postgraduationJoiningYear}
 //                                                                 maxLength={50}
 //                                                                 name="postgraduationJoiningYear"
@@ -1515,7 +1515,7 @@
 //                                                             <Form.Control
 //                                                                 type="date"
 //                                                                 placeholder="Passed out year"
-//                                                                 controlId="postgraduationPassedYear"
+//                                                                 controlid="postgraduationPassedYear"
 //                                                                 value={postgraduationPassedYear}
 
 //                                                                 min={postgraduationJoiningYear}
@@ -1531,7 +1531,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="Percentage/Grade/CGPA/GPA"
-//                                                                 controlId="postgraduationGrade"
+//                                                                 controlid="postgraduationGrade"
 //                                                                 value={postgraduationGrade}
 
 //                                                                 name="postgraduationGrade"
@@ -1565,7 +1565,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="Type Of Graduation"
-//                                                 controlId="graduationType"
+//                                                 controlid="graduationType"
 //                                                 maxLength={50}
 //                                                 name="graduationType"
 //                                                 value={graduationType}
@@ -1602,7 +1602,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="University Name"
-//                                                 controlId="graduationBoardOfUniversity"
+//                                                 controlid="graduationBoardOfUniversity"
 //                                                 name="graduationBoardOfUniversity"
 //                                                 value={graduationBoardOfUniversity}
 //                                                 isInvalid={twentyfiveerror}
@@ -1630,7 +1630,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="Institute Name "
-//                                                 controlId="graduationInstituteName"
+//                                                 controlid="graduationInstituteName"
 //                                                 name="graduationInstituteName"
 //                                                 maxLength={50}
 //                                                 value={graduationInstituteName}
@@ -1656,7 +1656,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="Institute City"
-//                                                 controlId="graduationInstituteCity"
+//                                                 controlid="graduationInstituteCity"
 //                                                 maxLength={50}
 //                                                 value={graduationInstituteCity}
 //                                                 isInvalid={twentysevenerror}
@@ -1708,7 +1708,7 @@
 //                                                 type="date"
 //                                                 placeholder="Joining Year"
 //                                                 name="graduationJoiningYear"
-//                                                 controlId="graduationJoiningYear"
+//                                                 controlid="graduationJoiningYear"
 //                                                 maxLength={50}
 //                                                 value={graduationJoiningYear}
 //                                                 isInvalid={twentynineerror}
@@ -1733,7 +1733,7 @@
 //                                                 //required
 //                                                 type="date"
 //                                                 placeholder="Passed out year"
-//                                                 controlId="graduationPassedYear"
+//                                                 controlid="graduationPassedYear"
 //                                                 name="graduationPassedYear"
 //                                                 maxLength={50}
 //                                                 min={graduationJoiningYear}
@@ -1759,7 +1759,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="Percentage/Grade/GPA/CGPA"
-//                                                 controlId="graduationGrade"
+//                                                 controlid="graduationGrade"
 //                                                 isInvalid={thirtyoneerror}
 //                                                 value={graduationGrade}
 //                                                 name="graduationGrade"
@@ -1793,7 +1793,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="Board"
-//                                                 controlId="intermediateBoardOfUniversity"
+//                                                 controlid="intermediateBoardOfUniversity"
 //                                                 value={intermediateBoardOfUniversity}
 //                                                 isInvalid={thirtytwoerror}
 //                                                 maxLength={50}
@@ -1819,7 +1819,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="School/College Name "
-//                                                 controlId="intermediateCollegeName"
+//                                                 controlid="intermediateCollegeName"
 //                                                 value={intermediateCollegeName}
 //                                                 isInvalid={thirtythreeerror}
 //                                                 maxLength={50}
@@ -1844,7 +1844,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="School/College City"
-//                                                 controlId="intermediateCollegeCity"
+//                                                 controlid="intermediateCollegeCity"
 //                                                 value={intermediateCollegeCity}
 //                                                 isInvalid={thirtyfourerror}
 //                                                 maxLength={50}
@@ -1870,7 +1870,7 @@
 //                                                 type="text"
 //                                                 placeholder="Course Name"
 //                                                 name="intermediateCourseName"
-//                                                 controlId="intermediateCourseName"
+//                                                 controlid="intermediateCourseName"
 //                                                 maxLength={50}
 //                                                 value={intermediateCourseName}
 //                                                 isInvalid={thirtyfiveerror}
@@ -1895,7 +1895,7 @@
 //                                                 //required
 //                                                 type="date"
 //                                                 placeholder="Joining Year"
-//                                                 controlId="intermediateJoiningYear"
+//                                                 controlid="intermediateJoiningYear"
 //                                                 name="intermediateJoiningYear"
 //                                                 value={intermediateJoiningYear}
 //                                                 isInvalid={thirtysixerror}
@@ -1920,7 +1920,7 @@
 //                                                 //required
 //                                                 type="date"
 //                                                 placeholder="Passed out year"
-//                                                 controlId="intermediatePassedYear"
+//                                                 controlid="intermediatePassedYear"
 //                                                 value={intermediatePassedYear}
 //                                                 min={intermediateJoiningYear}
 //                                                 isInvalid={thirtysevenerror}
@@ -1945,7 +1945,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="Percentage/Grade/GPA/CGPA"
-//                                                 controlId="intermediateGrade"
+//                                                 controlid="intermediateGrade"
 //                                                 maxLength={5}
 //                                                 value={intermediateGrade}
 //                                                 isInvalid={thirtyeighterror}
@@ -1980,7 +1980,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="Board"
-//                                                 controlId="sscBoardOfUniversity"
+//                                                 controlid="sscBoardOfUniversity"
 //                                                 maxLength={50}
 //                                                 value={sscBoardOfUniversity}
 //                                                 isInvalid={thirtynineerror}
@@ -2006,7 +2006,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="School Name "
-//                                                 controlId="sscSchoolName"
+//                                                 controlid="sscSchoolName"
 //                                                 maxLength={50}
 //                                                 value={sscSchoolName}
 //                                                 isInvalid={fourty}
@@ -2031,7 +2031,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="School City"
-//                                                 controlId="sscSchoolCity"
+//                                                 controlid="sscSchoolCity"
 //                                                 maxLength={50}
 //                                                 value={sscSchoolCity}
 //                                                 isInvalid={fourtyone}
@@ -2056,7 +2056,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="Course Name"
-//                                                 controlId="sscCourseName"
+//                                                 controlid="sscCourseName"
 //                                                 maxLength={50}
 //                                                 value={sscCourseName}
 //                                                 isInvalid={fourtytwo}
@@ -2082,7 +2082,7 @@
 //                                                 type="date"
 //                                                 name="sscJoiningYear"
 //                                                 placeholder="Joining Year"
-//                                                 controlId="sscJoiningYear"
+//                                                 controlid="sscJoiningYear"
 //                                                 value={sscJoiningYear}
 //                                                 isInvalid={fourtythree}
 //                                                 onChange={(e) => {
@@ -2106,7 +2106,7 @@
 //                                                 type="date"
 //                                                 name="sscPassedYear"
 //                                                 placeholder="Passed out year"
-//                                                 controlId="sscPassedYear"
+//                                                 controlid="sscPassedYear"
 //                                                 value={sscPassedYear}
 //                                                 min={sscJoiningYear}
 //                                                 isInvalid={fourtyfour}
@@ -2130,7 +2130,7 @@
 //                                                 required
 //                                                 type="text"
 //                                                 placeholder="Percentage/Grade/GPA/CGPA"
-//                                                 controlId="sscGrade"
+//                                                 controlid="sscGrade"
 //                                                 value={sscGrade}
 //                                                 maxLength={5}
 //                                                 name="sscGrade"
@@ -2171,7 +2171,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="Company Name"
-//                                                                 controlId="previousCompany1_name"
+//                                                                 controlid="previousCompany1_name"
 //                                                                 value={previousCompany1_name}
 //                                                                 maxLength={50}
 //                                                                 onChange={(e) =>
@@ -2185,7 +2185,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="Designation"
-//                                                                 controlId="previousCompany1_designation"
+//                                                                 controlid="previousCompany1_designation"
 //                                                                 value={previousCompany1_designation}
 //                                                                 maxLength={50}
 //                                                                 onChange={(e) =>
@@ -2201,7 +2201,7 @@
 //                                                             <Form.Control
 //                                                                 type="date"
 //                                                                 placeholder="Date of Joining"
-//                                                                 controlId="previousCompany1_joiningDate"
+//                                                                 controlid="previousCompany1_joiningDate"
 //                                                                 value={previousCompany1_joiningDate}
 //                                                                 onChange={(e) =>
 //                                                                     setPreviousCompany1_joiningDate(
@@ -2216,7 +2216,7 @@
 //                                                             <Form.Control
 //                                                                 type="Date"
 //                                                                 placeholder="Date of Relieving"
-//                                                                 controlId="previousCompany1_relievingDate"
+//                                                                 controlid="previousCompany1_relievingDate"
 //                                                                 value={previousCompany1_relievingDate}
 //                                                                 min={previousCompany1_joiningDate}
 //                                                                 onChange={(e) =>
@@ -2232,7 +2232,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="Employee ID"
-//                                                                 controlId="previousCompany1_employeeId"
+//                                                                 controlid="previousCompany1_employeeId"
 //                                                                 value={previousCompany1_employeeId}
 //                                                                 maxLength={50}
 //                                                                 onChange={(e) =>
@@ -2248,7 +2248,7 @@
                                                             
 //                                                                 type="text"
 //                                                                 placeholder="Employment Type"
-//                                                                 controlId="previousCompany1_typeOfEmployeement"
+//                                                                 controlid="previousCompany1_typeOfEmployeement"
 //                                                                 value={previousCompany1_typeOfEmployment}
 
 //                                                                 onChange={(e) =>
@@ -2275,7 +2275,7 @@
 //                                                                 rows={2}
 //                                                                 type="text"
 //                                                                 placeholder="Reason"
-//                                                                 controlId="previousCompany1_reasonForRelieving"
+//                                                                 controlid="previousCompany1_reasonForRelieving"
 //                                                                 value={previousCompany1_reasonForRelieving}
 //                                                                 onChange={(e) =>
 //                                                                     setPreviousCompany1_reasonForRelieving(
@@ -2299,7 +2299,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="Company Name"
-//                                                                 controlId="previousCompany2_name"
+//                                                                 controlid="previousCompany2_name"
 //                                                                 maxLength={50}
 //                                                                 value={previousCompany2_name}
 //                                                                 onChange={(event) =>
@@ -2313,7 +2313,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="Designation"
-//                                                                 controlId="previousCompany2_designation"
+//                                                                 controlid="previousCompany2_designation"
 //                                                                 maxLength={50}
 //                                                                 value={previousCompany2_designation}
 //                                                                 onChange={(e) =>
@@ -2329,7 +2329,7 @@
 //                                                             <Form.Control
 //                                                                 type="date"
 //                                                                 placeholder="Date of Joining"
-//                                                                 controlId="previousCompany2_joiningDate"
+//                                                                 controlid="previousCompany2_joiningDate"
 //                                                                 value={previousCompany2_joiningDate}
 //                                                                 onChange={(e) =>
 //                                                                     setPreviousCompany2_joiningDate(
@@ -2345,7 +2345,7 @@
 //                                                             <Form.Control
 //                                                                 type="Date"
 //                                                                 placeholder="Date of Relieving"
-//                                                                 controlId="previousCompany2_relievingDate"
+//                                                                 controlid="previousCompany2_relievingDate"
 //                                                                 value={previousCompany2_relievingDate}
 //                                                                 min={previousCompany2_joiningDate}
 //                                                                 onChange={(e) =>
@@ -2361,7 +2361,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="Employee ID"
-//                                                                 controlId="previousCompany2_employeeId"
+//                                                                 controlid="previousCompany2_employeeId"
 //                                                                 value={previousCompany2_employeeId}
 //                                                                 onChange={(e) =>
 //                                                                     setPreviousCompany2_employeeId(e.target.value)
@@ -2375,7 +2375,7 @@
 //                                                             <Form.Select
 //                                                                 type="text"
 //                                                                 placeholder="Employment Type"
-//                                                                 controlId="previousCompany2_typeOfEmployment"
+//                                                                 controlid="previousCompany2_typeOfEmployment"
 //                                                                 value={previousCompany2_typeOfEmployment}
 //                                                                 onChange={(e) =>
 //                                                                     setPreviousCompany2_typeOfEmployement(
@@ -2401,7 +2401,7 @@
 //                                                                 rows={2}
 //                                                                 type="text"
 //                                                                 placeholder="Reason"
-//                                                                 controlId="previousCompany2_reasonForRelieving"
+//                                                                 controlid="previousCompany2_reasonForRelieving"
 //                                                                 value={previousCompany2_reasonForRelieving}
 //                                                                 onChange={(e) =>
 //                                                                     setPreviousCompany2_reasonForRelieving(
@@ -2425,7 +2425,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="Company Name"
-//                                                                 controlId="previousCompany3_name"
+//                                                                 controlid="previousCompany3_name"
 //                                                                 maxLength={50}
 //                                                                 value={previousCompany3_name}
 //                                                                 onChange={(e) =>
@@ -2439,7 +2439,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="Designation"
-//                                                                 controlId="previousCompany3_designation"
+//                                                                 controlid="previousCompany3_designation"
 //                                                                 maxLength={50}
 //                                                                 value={previousCompany3_designation}
 //                                                                 onChange={(e) =>
@@ -2455,7 +2455,7 @@
 //                                                             <Form.Control
 //                                                                 type="date"
 //                                                                 placeholder="Date of Joining"
-//                                                                 controlId="previousCompany3_joiningDate"
+//                                                                 controlid="previousCompany3_joiningDate"
 //                                                                 value={previousCompany3_joiningDate}
 //                                                                 onChange={(e) =>
 //                                                                     setPreviousCompany3_joiningDate(
@@ -2470,7 +2470,7 @@
 //                                                             <Form.Control
 //                                                                 type="Date"
 //                                                                 placeholder="Date of Relieving"
-//                                                                 controlId="prevoiusCompany3_relievingDate"
+//                                                                 controlid="prevoiusCompany3_relievingDate"
 //                                                                 value={previousCompany3_relievingDate}
 //                                                                 min={previousCompany3_joiningDate}
 //                                                                 onChange={(e) =>
@@ -2486,7 +2486,7 @@
 //                                                             <Form.Control
 //                                                                 type="text"
 //                                                                 placeholder="Employee ID"
-//                                                                 controlId="previousCompany3_employeeId"
+//                                                                 controlid="previousCompany3_employeeId"
 //                                                                 maxLength={50}
 //                                                                 value={previousCompany3_employeeId}
 //                                                                 onChange={(e) =>
@@ -2500,7 +2500,7 @@
 //                                                             <Form.Select
 //                                                                 type="text"
 //                                                                 placeholder="Employment Type"
-//                                                                 controlId="previousCompany3_typeOfEmployment"
+//                                                                 controlid="previousCompany3_typeOfEmployment"
 //                                                                 value={previousCompany3_typeOfEmployment}
 //                                                                 onChange={(e) =>
 //                                                                     setPreviousCompany3_typeOfEmployement(
@@ -2526,7 +2526,7 @@
 //                                                                 rows={2}
 //                                                                 type="text"
 //                                                                 placeholder="Reason"
-//                                                                 controlId="previousCompany3_reasonForRelieving"
+//                                                                 controlid="previousCompany3_reasonForRelieving"
 //                                                                 value={previousCompany3_reasonForRelieving}
 //                                                                 onChange={(e) =>
 //                                                                     setPreviousCompany3_reasonForRelieving(
@@ -2550,7 +2550,7 @@
 //                                             <Form.Control
 //                                                 type="date"
 //                                                 placeholder="Exit Date"
-//                                                 controlId="exitDate"
+//                                                 controlid="exitDate"
 //                                                 value={exitDate}
 //                                                 onChange={(e) => setExitDate(e.target.value)}
 //                                                 name="exitDate"

@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { Form } from 'react-bootstrap';
 import { useState, useEffect, useRef } from "react";
@@ -25,10 +26,10 @@ export default function Action(props) {
     const [jobTitle, setJobTitle] = useState("");
     const [client, setClient] = useState("");
     const [projectName, setProjectName] = useState("");
-    const [buh, setBuh] = useState("");
+    const [buh, setBuh] = useState(data.buh);
     const [irmId, setirmId] = useState("");
     const [srmId, setSrmId] = useState("");
-    const [buhId, setBuhId] = useState("");
+    const [leaveBalance, setLeaveBalance] = useState("");
 
     const [departmentName, setDepartmentName] = useState("");
    
@@ -41,6 +42,7 @@ export default function Action(props) {
     const [band, setBand] = useState("");
     const [employmentType, setEmploymentType] = useState("");
     const [status, setStatus] = useState("");
+    const [getLeaveBalance, setGetLeaveBalance] = useState([{}]);
 
     const forms = useRef(null);
     console.log(props);
@@ -49,11 +51,24 @@ export default function Action(props) {
         loadData();
         loadDesignations();
         loadEmploymentDetails();
+        // loadLeaveBalance();
     }, []);
+
+    
+    // const loadLeaveBalance = async () => {
+    //     const res = await axios.get(`/leave/leaveBalanceByEmployeeId/ATPL014`);
+    //     // console.log(res.data)
+    //     // console.log(res.data.leaveBalance)
+    //     setLeaveBalance(res.data.leaveBalance)
+        
+
+    //     // setGetLeaveBalance(res.data);
+
+    // };
 
     const loadData = async () => {
         const res = await axios.get("/dept/getAllDepartments");
-        console.log(res.data)
+        // console.log(res.data)
         setDepartments(res.data);
 
     };
@@ -64,57 +79,39 @@ export default function Action(props) {
     };
 
 
-    
+    console.log(props.data)
     const loadEmploymentDetails = async () => {
-        const res = await axios.get(`${BASE_URL}/emp/getEmploymentDetails/${props.data}`);
-        console.log(res.data.data);
+        const res = await axios.get(`/emp/getEmploymentDetails/${props.data}`);
+        // console.log(res.data.data);
         setData(res.data.data);
-        console.log(data);
+       
         setDepartmentName(res.data.data.departmentName);
-        console.log(res.data.data.departmentName);
+    
         setDesignationName(res.data.data.designationName);
         setExitDate(res.data.data.exitDate);
         setResignationDate(res.data.data.resignationDate);
         setSrm(res.data.data.srm);
         setIrm(res.data.data.irm);
-        setProjectName(res.data.data.projectName);
+        setProjectName(res.data.data.projectName); 
        
         setConfirmationDate(res.data.data.confirmationDate);
-        console.log(confirmationDate);
+       
         setBand(res.data.data.band);
         setEmploymentType(res.data.data.employmentType);
         setStatus(res.data.data.status);
         setPrimarySkills(res.data.data.primarySkills);
         setSecondarySkills(res.data.data.secondarySkills);
         setReportingManager(res.data.data.reportingManager);
-        // setJobTitle(res.data.jobTitle);
-        // setClient(res.data.client);
-        // setOnboardingStatus(res.data.onboardingStatus);
-        // setBuh(res.data.data.buh);
-        // setirmId(res.data.irmId);
-        // setSrmId(res.data.srmId);
-        // setBuhId(res.data.buhId);
-        console.log(res.data.data.departmentName)
-        console.log(res.data.data.designationName)
-        console.log(res.data.data.exitDate)
-        console.log(res.data.data.resignationDate)
-        console.log(res.data.data.srm)
-        console.log(res.data.data.irm)
-        console.log(res.data.data.confirmationDate)
-        console.log(res.data.data.employmentType)
-        console.log(res.data.data.band)
-        console.log(res.data.data.primarySkills)
-        console.log(res.data.data.status)
-        console.log(res.data.data.secondarySkills)
-        console.log(res.data.data.reportingManager)
-        // console.log(res.data)
+       setLeaveBalance(res.data.data.leaveBalance);
+        setBuh(res.data.data.buh);
+       
     };
-
+// console.log(confirmationDate)
     // const exitdatef=  moment(res.data.data.exitDate).format('YYYY-MM-DD');
     // const confirmationDatef = moment(res.data.data.confirmationDate).format('YYYY-MM-DD');
     // const resignationDatef =  moment(res.data.data.resignationDate).format('YYYY-MM-DD')
-
-    console.log(employmentType, designationName);
+    // console.log(departmentName);
+    // console.log(employmentType, designationName);
     const [bands, setBands] = useState([]);
     useEffect(() => {
         axios.get("/bands/getAllBands").then((response) => {
@@ -126,7 +123,7 @@ export default function Action(props) {
     const [empType, setEmpType] = useState([]);
     useEffect(() => {
         axios.get("/employmentType/getAllEmployments").then((response) => {
-            console.log(response.data.data);
+            // console.log(response.data.data);
             setEmpType(response.data.data);
         });
     }, []);
@@ -137,7 +134,7 @@ export default function Action(props) {
             const response = await axios.get("/emp/getAllEmployeeMasterData");
             // const result = response.data.data.sort((a, b) => a.departmentName.localCompare(b.departmentName))
             // console.log(result);
-            console.log(response.data.data);
+            // console.log(response.data.data);
             setUsers(response.data.data);
 
         };
@@ -182,8 +179,8 @@ export default function Action(props) {
                 irm,
                 srm,
                 band,
-                projectName     
-
+                projectName,
+                leaveBalance   
             })
             .then((response) => {
                 if (response.status == 200) {
@@ -198,16 +195,22 @@ export default function Action(props) {
             .catch((err) => {
                 toast.error("went wrong");
             });
+
     }
 
     
-
+console.log(data);
 
     //sorting Array of Objects
 
     var sortedDepartments = _.sortBy(departments, 'departmentName');
     var sortedDesignations = _.sortBy(designations, 'designationName');
     var sortedUsers = _.sortBy(users, 'fullName');
+
+    var tempDate = new Date(confirmationDate);
+  var Year1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+console.log(Year1)
+console.log(confirmationDate)
 
 // const confirmationDatef = {<Moment format= {dd-mm-yyyy}>confirmationDate</Moment>}
     return (
@@ -225,9 +228,9 @@ export default function Action(props) {
                             required
                             className="departmentName"
                             type="text"
-                            controlId="departmentName"
+                            controlid="departmentName"
                             placeholder="Business Unit Name"
-                            defaultValue={departmentName}
+                            defaultValue={data.departmentName}
                             value={departmentName}
                             maxLength={30}
                             onChange={(e) => setDepartmentName(e.target.value)}
@@ -243,9 +246,9 @@ export default function Action(props) {
                             required
                             className="designationName"
                             type="text"
-                            controlId="designationName"
+                            controlid="designationName"
                             placeholder="Designation Name"
-                            defaultValue={designationName}
+                            defaultValue={data.designationName}
                             value={designationName}
                             maxLength={30}
                             onChange={(e) => setDesignationName(e.target.value)}
@@ -260,7 +263,7 @@ export default function Action(props) {
                             required
                             type="date"
                             placeholder="Resignation Date"
-                            controlId="resignationDate"
+                            controlid="resignationDate"
                             defaultValue={resignationDate}
                             value={resignationDate}
                             onChange={(e) => setResignationDate(e.target.value)}
@@ -274,7 +277,7 @@ export default function Action(props) {
                             required
                             type="date"
                             placeholder="exitDate"
-                            controlId="exitDate"
+                            controlid="exitDate"
                             defaultValue={exitDate}
                             value={exitDate}
                             onChange={(e) => setExitDate(e.target.value)}
@@ -287,7 +290,7 @@ export default function Action(props) {
                             required
                             className="status"
                             type="text"
-                            controlId="status"
+                            controlid="status"
                             placeholder="status"
                             defaultValue={status}
                             value={status}
@@ -306,7 +309,7 @@ export default function Action(props) {
                             required
                             type="text"
                             placeholder="Type Of Employment"
-                            controlId="employmentType"
+                            controlid="employmentType"
                             value={employmentType}
                             defaultValue={employmentType}
                             onChange={(e) => setEmploymentType(e.target.value)}
@@ -325,7 +328,7 @@ export default function Action(props) {
                             required
                             type="text"
                             placeholder="Band"
-                            controlId="band"
+                            controlid="band"
                             value={band}
                             onChange={(e) => setBand(e.target.value)}
                         >
@@ -344,7 +347,7 @@ export default function Action(props) {
                             required
                             type="text"
                             placeholder="select IRM"
-                            controlId="irm"
+                            controlid="irm"
                             value={irm}
 
                             onChange={(e) => setIrm(e.target.value)}
@@ -364,7 +367,7 @@ export default function Action(props) {
                             required
                             type="text"
                             placeholder="select srm"
-                            controlId="srm"
+                            controlid="srm"
                             value={srm}
                             onChange={(e) => setSrm(e.target.value)}
                         >
@@ -382,11 +385,24 @@ export default function Action(props) {
                             required
                             type="date"
                             placeholder="confirmationDate"
-                            controlId="confirmationDate"
+                            controlid="confirmationDate"
                             defaultValue={confirmationDate}
                             value={confirmationDate}
                             onChange={(e) => setConfirmationDate(e.target.value)}
 
+                        ></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                        <Form.Label>Leave Balance</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Leave Balance"
+                            controlid="leaveBalance"
+                            defaultValue={leaveBalance}
+                            value={leaveBalance}
+                            onChange={(e) => setLeaveBalance(e.target.value)}
                         ></Form.Control>
                     </Form.Group>
 

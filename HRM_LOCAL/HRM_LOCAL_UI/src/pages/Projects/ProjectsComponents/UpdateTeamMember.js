@@ -208,7 +208,7 @@
 //               required
 //               className="employeeId"
 //               type="text"
-//               controlId="employeeId"
+//               controlid="employeeId"
 //               placeholder="employee ID"
 //               // onChange={(event) => setclientName(event.target.value)}
 //               value={employeeId}
@@ -228,7 +228,7 @@
 //               required
 //               className="firstName"
 //               type="text"
-//               controlId="firstName"
+//               controlid="firstName"
 //               placeholder="Employee Name"
 //               disabled
 //               // onChange={(event) => setclientName(event.target.value)}
@@ -250,7 +250,7 @@
 //               type="text"
 //               placeholder=""
 //               disabled
-//               controlId="designationName"
+//               controlid="designationName"
 //               value={designationName}
 //               onChange={(e) =>
 //                 setDesignationName("designationName", e.target.value)
@@ -271,7 +271,7 @@
 //               type="text"
 //               placeholder=""
 //               disabled
-//               controlId="departmentName"
+//               controlid="departmentName"
 //               value={departmentName}
 //               onChange={(e) =>
 //                 setDepartmentName("departmentName", e.target.value)
@@ -290,7 +290,7 @@
 //               required
 //               className="projectName"
 //               type="text"
-//               controlId="projectName"
+//               controlid="projectName"
 //               placeholder="project Name"
 //               disabled
 //               // onChange={(event) => setclientName(event.target.value)}
@@ -310,7 +310,7 @@
 //               required
 //               type="date"
 //               placeholder="Start Date"
-//               controlId="startDate"
+//               controlid="startDate"
 //               value={startDate}
 //               onChange={(e) => setStartDate(e.target.value)}
 //               isInvalid={!!errors.startDate}
@@ -326,7 +326,7 @@
 //               required
 //               className="projectRolesName"
 //               type="text"
-//               controlId="projectRolesName"
+//               controlid="projectRolesName"
 //               placeholder="project Role"
 //               // onChange={(event) => setclientName(event.target.value)}
 //               value={prmasterId}
@@ -355,7 +355,7 @@
 //               required
 //               type="date"
 //               placeholder="End Date"
-//               controlId="endDate"
+//               controlid="endDate"
 //               value={endDate}
 //               min={startDate}
 //               onChange={(e) => setEndDate(e.target.value)}
@@ -373,7 +373,7 @@
 //               required
 //               type="text"
 //               placeholder="Status"
-//               controlId="status"
+//               controlid="status"
 //               value={form.status}
 //               onChange={(e) => setStatus(e.target.value)}
 //               isInvalid={!!errors.status}
@@ -393,7 +393,7 @@
 //               required
 //               type="date"
 //               placeholder="Assigned Date"
-//               controlId="assignedDate"
+//               controlid="assignedDate"
 //               onChange={(e) => setAssignedDate(e.target.value)}
 //               isInvalid={!!errors.assignedDate}
 //             ></Form.Control>
@@ -474,17 +474,18 @@ import { toast } from "react-toastify";
 //Assign team members to project
 import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "./ProjectUpdateTabs";
+import moment from "moment";
 
 const UpdateTeamMember = (props) => {
   const params = useParams();
-  const { data } = useContext(UserContext);
-  console.log(props.updateOnboard);
+  const { data,setUpdateStatus,updateStatus } = useContext(UserContext);
+  console.log(props.updateOnboard.projectAllocation);
   console.log(props.data);
 
   const [employeeId, setEmployeeId] = useState(props.updateOnboard.employeeId);
 
-  const [employeeName, setEmployeeName] = useState(
-    props.updateOnboard.firstName
+  const [fullName, setfullName] = useState(
+    props.updateOnboard.fullName
   );
   const [designationName, setDesignationName] = useState(
     props.updateOnboard.designationName
@@ -495,7 +496,7 @@ const UpdateTeamMember = (props) => {
   const [projectName, setProjectName] = useState(
     props.updateOnboard.projectName
   );
-  const [startDate, setStartDate] = useState();
+  const [startDate, setStartDate] = useState("");
   const [prmasterId, setPrmasterId] = useState();
 
   const [endDate, setEndDate] = useState();
@@ -517,12 +518,17 @@ const UpdateTeamMember = (props) => {
   const [projectId, setProjectId] = useState(params.id);
 
   const [form, setForm] = useState({});
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState("");
+  
 
   // Get API's for roles Dropdown
   useEffect(() => {
     loadData();
   }, []);
+
+  const teamUpdate = () =>{
+    setUpdateStatus(!updateStatus)
+  }
 
   const loadData = async () => {
     const response = await axios.get(
@@ -549,7 +555,7 @@ const UpdateTeamMember = (props) => {
   const validateForm = () => {
     const {
       employeeId,
-      employeeName,
+      fullName,
       designationName,
       departmentName,
       startDate,
@@ -564,11 +570,11 @@ const UpdateTeamMember = (props) => {
     if (!employeeId || employeeId === "" || !employeeId.match(/^[aA-zZ\s]+$/))
       newErrors.employeeId = "";
     if (
-      !employeeName ||
-      employeeName === "" ||
-      !employeeName.match(/^[aA-zZ\s]+$/)
+      !fullName ||
+      fullName === "" ||
+      !fullName.match(/^[aA-zZ\s]+$/)
     )
-      newErrors.employeeName = "Please Enter Employee Name";
+      newErrors.fullName = "Please Enter Employee Name";
     if (
       !designationName ||
       designationName === "" ||
@@ -612,11 +618,11 @@ const UpdateTeamMember = (props) => {
   //testing for commit
   const [user, setUser] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log({
       employeeId,
-      employeeName,
+      fullName,
       designationName,
       departmentName,
       startDate,
@@ -627,10 +633,10 @@ const UpdateTeamMember = (props) => {
       projectAllocation,
       projectId,
     });
-    axios
+    await axios
       .post(`/clientProjectMapping/addProjectTeam`, {
         employeeId,
-        employeeName,
+        fullName,
         designationName,
         departmentName,
         startDate,
@@ -643,8 +649,10 @@ const UpdateTeamMember = (props) => {
       })
       .then((response) => {
         console.log(response)
-        if (response.data.status) {
-          props.func();
+        if (response.statusText === "OK") {
+          // props.func();
+          // props.pull_dataUpdate();
+          teamUpdate();
         } else {
           console.log("Props not Send");
         }
@@ -678,7 +686,7 @@ const UpdateTeamMember = (props) => {
               required
               className="employeeId"
               type="text"
-              controlId="employeeId"
+              controlid="employeeId"
               placeholder="employee ID"
               // onChange={(event) => setclientName(event.target.value)}
               value={employeeId}
@@ -696,19 +704,19 @@ const UpdateTeamMember = (props) => {
             <Form.Label>Employee Name</Form.Label>
             <Form.Control
               required
-              className="firstName"
+              className="fullName"
               type="text"
-              controlId="firstName"
+              controlid="fullName"
               placeholder="Employee Name"
               disabled
               // onChange={(event) => setclientName(event.target.value)}
-              value={employeeName}
+              value={fullName}
               maxLength={30}
-              onChange={(e) => setEmployeeName("employeeName", e.target.value)}
-              isInvalid={!!errors.employeeName}
+              onChange={(e) => setfullName("fullName", e.target.value)}
+              isInvalid={!!errors.fullName}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.employeeName}
+              {errors.fullName}
             </Form.Control.Feedback>
           </Form.Group>
 
@@ -720,7 +728,7 @@ const UpdateTeamMember = (props) => {
               type="text"
               placeholder=""
               disabled
-              controlId="designationName"
+              controlid="designationName"
               value={designationName}
               onChange={(e) =>
                 setDesignationName("designationName", e.target.value)
@@ -741,7 +749,7 @@ const UpdateTeamMember = (props) => {
               type="text"
               placeholder=""
               disabled
-              controlId="departmentName"
+              controlid="departmentName"
               value={departmentName}
               onChange={(e) =>
                 setDepartmentName("departmentName", e.target.value)
@@ -760,7 +768,7 @@ const UpdateTeamMember = (props) => {
               required
               className="projectName"
               type="text"
-              controlId="projectName"
+              controlid="projectName"
               placeholder="project Name"
               disabled
               // onChange={(event) => setclientName(event.target.value)}
@@ -780,7 +788,7 @@ const UpdateTeamMember = (props) => {
               required
               type="date"
               placeholder="Start Date"
-              controlId="startDate"
+              controlid="startDate"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
               isInvalid={!!errors.startDate}
@@ -796,7 +804,7 @@ const UpdateTeamMember = (props) => {
               required
               className="projectRolesName"
               type="text"
-              controlId="projectRolesName"
+              controlid="projectRolesName"
               placeholder="project Role"
               // onChange={(event) => setclientName(event.target.value)}
               value={prmasterId}
@@ -825,14 +833,21 @@ const UpdateTeamMember = (props) => {
               required
               type="date"
               placeholder="End Date"
-              controlId="endDate"
+              controlid="endDate"
               value={endDate}
-              min={startDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              isInvalid={!!errors.endDate}
+              min={moment(startDate).format('YYYY-MM-DD')}
+              onChange={(e) => {
+                if(startDate === ""){
+                  setErrors("please select the start date")
+                }else{
+                  setEndDate(e.target.value)
+                  setErrors("")
+                }
+              }}
+              isInvalid={errors}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors.endDate}
+              {errors}
             </Form.Control.Feedback>
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
@@ -843,7 +858,7 @@ const UpdateTeamMember = (props) => {
               required
               type="text"
               placeholder="Status"
-              controlId="status"
+              controlid="status"
               value={form.status}
               onChange={(e) => setStatus(e.target.value)}
               isInvalid={!!errors.status}
@@ -863,7 +878,7 @@ const UpdateTeamMember = (props) => {
               required
               type="date"
               placeholder="Assigned Date"
-              controlId="assignedDate"
+              controlid="assignedDate"
               onChange={(e) => setAssignedDate(e.target.value)}
               isInvalid={!!errors.assignedDate}
             ></Form.Control>

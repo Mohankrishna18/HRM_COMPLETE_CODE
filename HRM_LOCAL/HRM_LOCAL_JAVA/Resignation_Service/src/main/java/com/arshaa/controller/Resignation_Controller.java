@@ -1,5 +1,8 @@
 package com.arshaa.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +48,16 @@ public class Resignation_Controller {
 	{
 		return new ResponseEntity(resignationService.rejectResignation(resignation,employeeId,userType),HttpStatus.OK);
 	}
-	@GetMapping("/getResignationByEmployeeStatus/{employeeId}")
+	@GetMapping("/getResignationByEmployeeStatus/{employeeId}/{resignationId}")
 	public ResponseEntity getStatusByEmployeeId(@PathVariable String employeeId) {
 		return new ResponseEntity(resignationService.getStatusByEmployeeId(employeeId),HttpStatus.OK);
 	}
+	
+	@GetMapping("/getNoticeDateByResignationDate/{resignationDate}/{employeeId}")
+	public ResponseEntity getNoticeDateByResignationDate(@PathVariable String resignationDate,@PathVariable String employeeId) throws ParseException
+	{
+		return new ResponseEntity(resignationService.getNoticeDateByResignationDate(new SimpleDateFormat("yyyy-MM-dd").parse(resignationDate), employeeId),HttpStatus.OK);
+	}
 
+	
 }

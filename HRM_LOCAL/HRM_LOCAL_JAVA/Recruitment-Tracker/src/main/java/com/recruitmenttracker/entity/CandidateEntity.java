@@ -38,6 +38,7 @@ public class CandidateEntity
 	private String phoneNumber;
 	private int yearsOfExperience;
 	private Date candidateCreatedOn;
+	private String level;
 	
 	
 	

@@ -8,7 +8,10 @@ import { BsFillEyeFill } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdOutlinePersonAddAlt } from "react-icons/md";
 import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
-import RRColumns from "./utils/RRColumns.json";
+import Backdrop from "@mui/material/Backdrop";
+
+import CircularProgress from "@mui/material/CircularProgress";
+// import RRColumns from "./utils/RRColumns.json";
 import AddRequisition from "./AddRequisition";
 // import AddRR from "./StepperForm";
 // import AddRequisitionRequests from "./AddRequisitionRequests";
@@ -26,7 +29,7 @@ const RRTable = () => {
   const handleClose = () => setShow(false);
   const viewHandleClose = () => setViewShow(false);
   const [viewStatus, setViewStatus] = useState(false);
-  const addPocHandleClose = () => setAddPocShow(false);
+ 
   const [updateOnboard, setUpdateOnboard] = useState({});
   const [viewOnboard, setViewOnboard] = useState({});
   const [data, setData] = useState([]);
@@ -34,16 +37,19 @@ const RRTable = () => {
   const [updateStatus, setUpdateStatus] = useState(false);
   const [deleteOnboard, setDeleteOnboard] = useState({});
   const [deleteStatus, setDeleteStatus] = useState(true);
-  const params = useParams();
+
   const history = useHistory();
-  const pull_dataAdd = () => {
-    setAddStatus(!addStatus);
-  };
+  const [loading, setLoading] = React.useState(false);
+  const closeLoading = () => setLoading(!loading);
 
-  // const pull_dataUpdate = () => {
-  //   setUpdateStatus(!updateStatus);
-
+  // const pull_dataAdd = () => {
+  //   setAddStatus(!addStatus);
   // };
+
+  // // const pull_dataUpdate = () => {
+  // //   setUpdateStatus(!updateStatus);
+
+  // // };
 
   const pull_dataView = () => {
     setViewStatus(!viewStatus);
@@ -54,100 +60,157 @@ const RRTable = () => {
   };
 
   useEffect(() => {
-    loadData();
-    // createStatus();
-  }, [addStatus, updateStatus, deleteStatus, viewStatus]);
 
-  const loadData = async () => {
-    const response = await axios.get("/recruitmentTracker/");
-    setData(response.data);
-    
-  };
+    axios.get("/recruitmentTracker/").then((response) => {
+      setData(response.data);
+      setLoading(true)
+    }).catch((err) => {
+      console.log("Error")
+      closeLoading();
+    })
 
-  const sessionData = JSON.parse(sessionStorage.getItem("userdata"));
-  const employeeId = sessionData.data.employeeId;
-  const userType = sessionData.data.userType;
- 
+
+  }, [deleteStatus, viewStatus]);
+  function gotoStepperForm() {
+    history.push('/app/StepperForm');
+  }
+
+  const RRColumns=[
+    {
+       
+        "title": "Job ID",
+        "field": "requisitionId"
+    },
+    {
+        "title":"Business Unit",
+        "field":"departmentName",
+        "defaultGroupOrder": 0
+    },
+    {
+        "title":"Client",
+        "field":"clientName"
+    },
+    {
+        "title":"Project",
+        "field":"projectName"
+    },
+    {
+        "title":"Title",
+        "field": "jobTitle"
+    },
+    {
+        "title":"Technology",
+        "field":"technology"
+    },
+    {
+        "title":"Role",
+        "field":"role"
+    },
+    {
+        "title":"Positions",
+        "field": "positions"
+    },
+    {
+        "title":"Priority",
+        "field": "priority"
+    },
+    {
+        "title":"Location",
+        "field": "workLocation"
+    },
+    {
+        "title":"Experience",
+        "field":"yoe"
+    },
+    {
+        "title":"Status",
+        "field": "rrfStatus"
+    },
+
+    {
+        "title":"Ageing",
+        "field":"ageing"
+    },
+    {
+        "title" : "Initiated Date",
+        "field" : "requestInitiatedDate",
+        "type": "date",
+        "dateSetting": { "locale": "en-GB" }
+    },
+    {
+        "title" : "Raised Date",
+        "field" : "raisedOn",
+        "type": "date",
+        "dateSetting": { "locale": "en-GB" }
+    }
+   
+
+]
+
+
+
 
   return (
     <div>
-      <Modal show={show} onHide={handleClose} size="xl">
-        <Modal.Header
-          closeButton
-          style={{
-            backgroundColor: "#FF9E14",
-            paddingTop: "7px",
-            paddingBottom: "4px",
-          }}
-        >
-          <Modal.Title>Update Requisition</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {/* <UpdateRR
-            updateOnboard={updateOnboard}
-            func={pull_dataUpdate}
-            handleClose={handleClose}
-          /> */}
-        </Modal.Body>
-      </Modal>
-      <Modal show={viewShow} onHide={viewHandleClose} size="lg">
-        <Modal.Header
-          closeButton
-          style={{
-            backgroundColor: "#f5896e",
-            paddingTop: "7px",
-            paddingBottom: "4px",
-          }}
-        >
-          <Modal.Title>Arshaa Employee Requisitions</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <ViewRR
-            viewOnboard={viewOnboard}
-            func={pull_dataView}
-            viewHandleClose={viewHandleClose}
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={viewHandleClose}>
-            Cancel
-          </Button>
-          {/* <Button variant="primary" onClick={handleClose}>
+      {loading ? (<>
+        <Modal show={viewShow} onHide={viewHandleClose} size="lg">
+          <Modal.Header
+            closeButton
+            style={{
+              backgroundColor: "#f5896e",
+              paddingTop: "7px",
+              paddingBottom: "4px",
+            }}
+          >
+            <Modal.Title>Arshaa Employee Requisitions</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <ViewRR
+              viewOnboard={viewOnboard}
+              func={pull_dataView}
+              viewHandleClose={viewHandleClose}
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={viewHandleClose}>
+              Cancel
+            </Button>
+            {/* <Button variant="primary" onClick={handleClose}>
             Save Changes
           </Button> */}
-        </Modal.Footer>
-      </Modal>
+          </Modal.Footer>
+        </Modal>
 
-      {/* delete modal */}
-      <Modal
-        show={deleteLeads}
-        onHide={deleteHandleClose}
-        size="md"
-        backdrop="static"
-        keyboard={false}
-        centered
-      >
-        <Modal.Header
-          closeButton
-          style={{
-            backgroundColor: "#FF9E14",
-            color: "white",
-            paddingTop: "7px",
-            paddingBottom: "4px",
-          }}
+        {/* delete modal */}
+        <Modal
+          show={deleteLeads}
+          onHide={deleteHandleClose}
+          size="md"
+          backdrop="static"
+          keyboard={false}
+          centered
         >
-          <Modal.Title>Delete Requisition</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <DeleteRR
-            deleteOnboard={deleteOnboard}
-            func={pull_dataDelete}
-            deleteHandleClose={deleteHandleClose}
-          />
-        </Modal.Body>
-      </Modal>
+          <Modal.Header
+            closeButton
+            style={{
+              backgroundColor: "#FF9E14",
+              color: "white",
+              paddingTop: "7px",
+              paddingBottom: "4px",
+            }}
+          >
+            <Modal.Title>Delete Requisition</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <DeleteRR
+              deleteOnboard={deleteOnboard}
+              func={pull_dataDelete}
+              deleteHandleClose={deleteHandleClose}
+            />
+          </Modal.Body>
+        </Modal>
 
-      {/* <Card
+        {/* <Card
         style={{
           paddingTop: "2px",
           paddingRight: "10px",
@@ -156,28 +219,44 @@ const RRTable = () => {
         }}
       > */}
 
-      <Card.Body>
-        <Row>
-          <Col>
-            <Card.Title>Arshaa Employee Requisitions</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">
-              Dashboard / Employee Requisitions{" "}
-            </Card.Subtitle>
-          </Col>
-          <Col>
-            <AddRequisition func={pull_dataAdd} />
-            {/* <AddRR func={pull_dataAdd} /> */}
-          </Col>
-        </Row>
-      </Card.Body>
-      <Grid container>
-        <Grid xs={12}>
+        <Card.Body>
+          <Row>
+            <Col>
+              <Card.Title>Arshaa Employee Requisitions</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
+                Dashboard / Employee Requisitions{" "}
+              </Card.Subtitle>
+            </Col>
+            <Col>
+              <Button
+                variant="warning"
+                onClick={gotoStepperForm}
+                style={{
+                  backgroundColor: "#f5896e",
+                  borderColor: "#ff9b44",
+                  float: "right",
+                  borderRadius: "25px",
+                  // paddingBottom: "11.5px",
+                  // marginTop: "100px",
+                }}
+              >
+                {" "}
+                <MdOutlinePersonAddAlt />
+                {/* <BsPlusLg />  */}
+                &nbsp; Raise Requisition
+              </Button>
+              {/* <AddRR func={pull_dataAdd} /> */}
+            </Col>
+          </Row>
+        </Card.Body>
+        <Grid container>
+          <Grid xs={12}>
 
             <MaterialTable
               title=""
               columns={RRColumns}
               style={{ color: "black", fontSize: "0.9rem" }}
-              data={data ? data : []}
+              data={data}
               editable={{}}
               options={{
                 pageSize: 10,
@@ -220,16 +299,16 @@ const RRTable = () => {
                       <Button
                         variant="info"
                         onClick={(event) => {
-                         
-                          setUpdateOnboard(props.data);
-                          localStorage.setItem(
-                            "requisition",
-                            JSON.stringify(props)
-                          );
+
+                          // setUpdateOnboard(props.data);
+                          // localStorage.setItem(
+                          //   "requisition",
+                          //   JSON.stringify(props)
+                          // );
                           history.push(
                             `/app/updateRequisition/${props.data.requisitionId}`
                           );
-                        
+
                         }}
                       >
                         <FiEdit />
@@ -238,7 +317,7 @@ const RRTable = () => {
                         variant="danger"
                         onClick={(event) => {
                           setDeleteLeads(true);
-                          
+
                           setDeleteOnboard(props.data);
                         }}
                       >
@@ -248,7 +327,7 @@ const RRTable = () => {
                         variant="primary"
                         onClick={(event) => {
                           setViewShow(true);
-                          
+
                           setViewOnboard(props.data);
                         }}
                         style={{
@@ -269,9 +348,22 @@ const RRTable = () => {
                 ),
               }}
             />
-       
+
+          </Grid>
         </Grid>
-      </Grid>
+      </>) : (<>
+        <Backdrop
+          sx={{
+            color: "#fff",
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+          }}
+          open
+          onClick={closeLoading}
+        >
+          <CircularProgress color="inherit" />
+
+        </Backdrop>
+      </>)}
 
       {/* </Card> */}
     </div>

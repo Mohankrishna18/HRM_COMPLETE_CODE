@@ -222,7 +222,7 @@ function EducationalDetailsTab() {
                                             disabled
                                             type="text"
                                             placeholder="Type Of Post Graduation"
-                                            controlId="postgraduationType"
+                                            controlid="postgraduationType"
                                             name="postgraduationType"
                                             value={postgraduationType}
                                             maxLength={50}
@@ -249,7 +249,7 @@ function EducationalDetailsTab() {
                                         disabled
                                             type="text"
                                             placeholder="University Name"
-                                            controlId="postgraduationBoardOfUniversity"
+                                            controlid="postgraduationBoardOfUniversity"
                                             name="postgraduationBoardOfUniversity"
                                             maxLength={50}
                                             value={postgraduationBoardOfUniversity}
@@ -266,7 +266,7 @@ function EducationalDetailsTab() {
                                         disabled
                                             type="text"
                                             placeholder="Institute Name "
-                                            controlId="postgraduationInstituteName"
+                                            controlid="postgraduationInstituteName"
                                             value={postgraduationInstituteName}
                                             maxLength={50}
                                             name="postgraduationInstituteName"
@@ -281,7 +281,7 @@ function EducationalDetailsTab() {
                                         disabled
                                             type="text"
                                             placeholder="Institute City"
-                                            controlId="postgraduationInstituteCity"
+                                            controlid="postgraduationInstituteCity"
                                             value={postgraduationInstituteCity}
                                             maxLength={50}
                                             name="postgraduationInstituteCity"
@@ -296,7 +296,7 @@ function EducationalDetailsTab() {
                                         disabled
                                             type="text"
                                             placeholder="Course Name"
-                                            controlId="postgraduationCourseName"
+                                            controlid="postgraduationCourseName"
                                             value={postgraduationCourseName}
                                             maxLength={50}
                                             name="postgraduationCourseName"
@@ -311,7 +311,7 @@ function EducationalDetailsTab() {
                                         disabled
                                             type="date"
                                             placeholder="Joining Year"
-                                            controlId="postgraduationJoiningYear"
+                                            controlid="postgraduationJoiningYear"
                                             value={postgraduationJoiningYear}
                                             maxLength={50}
                                             name="postgraduationJoiningYear"
@@ -326,7 +326,7 @@ function EducationalDetailsTab() {
                                         disabled
                                             type="date"
                                             placeholder="Passed out year"
-                                            controlId="postgraduationPassedYear"
+                                            controlid="postgraduationPassedYear"
                                             value={postgraduationPassedYear}
 
                                             min={postgraduationJoiningYear}
@@ -343,7 +343,7 @@ function EducationalDetailsTab() {
                                         disabled
                                             type="text"
                                             placeholder="Percentage/Grade/CGPA/GPA"
-                                            controlId="postgraduationGrade"
+                                            controlid="postgraduationGrade"
                                             value={postgraduationGrade}
 
                                             name="postgraduationGrade"
@@ -378,7 +378,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="text"
                             placeholder="Type Of Graduation"
-                            controlId="graduationType"
+                            controlid="graduationType"
                             maxLength={50}
                             name="graduationType"
                             value={graduationType}
@@ -416,7 +416,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="text"
                             placeholder="University Name"
-                            controlId="graduationBoardOfUniversity"
+                            controlid="graduationBoardOfUniversity"
                             name="graduationBoardOfUniversity"
                             value={graduationBoardOfUniversity}
                             isInvalid={twentyfiveerror}
@@ -445,7 +445,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="text"
                             placeholder="Institute Name "
-                            controlId="graduationInstituteName"
+                            controlid="graduationInstituteName"
                             name="graduationInstituteName"
                             maxLength={50}
                             value={graduationInstituteName}
@@ -472,7 +472,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="text"
                             placeholder="Institute City"
-                            controlId="graduationInstituteCity"
+                            controlid="graduationInstituteCity"
                             maxLength={50}
                             value={graduationInstituteCity}
                             isInvalid={twentysevenerror}
@@ -526,7 +526,7 @@ function EducationalDetailsTab() {
                             type="date"
                             placeholder="Joining Year"
                             name="graduationJoiningYear"
-                            controlId="graduationJoiningYear"
+                            controlid="graduationJoiningYear"
                             maxLength={50}
                             value={graduationJoiningYear}
                             isInvalid={twentynineerror}
@@ -552,7 +552,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="date"
                             placeholder="Passed out year"
-                            controlId="graduationPassedYear"
+                            controlid="graduationPassedYear"
                             name="graduationPassedYear"
                             maxLength={50}
                             min={graduationJoiningYear}
@@ -579,7 +579,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="text"
                             placeholder="Percentage/Grade/GPA/CGPA"
-                            controlId="graduationGrade"
+                            controlid="graduationGrade"
                             isInvalid={thirtyoneerror}
                             value={graduationGrade}
                             name="graduationGrade"
@@ -614,7 +614,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="text"
                             placeholder="Board"
-                            controlId="intermediateBoardOfUniversity"
+                            controlid="intermediateBoardOfUniversity"
                             value={intermediateBoardOfUniversity}
                             isInvalid={thirtytwoerror}
                             maxLength={50}
@@ -641,7 +641,7 @@ function EducationalDetailsTab() {
                             required
                             type="text"
                             placeholder="School/College Name "
-                            controlId="intermediateCollegeName"
+                            controlid="intermediateCollegeName"
                             value={intermediateCollegeName}
                             isInvalid={thirtythreeerror}
                             maxLength={50}
@@ -667,7 +667,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="text"
                             placeholder="School/College City"
-                            controlId="intermediateCollegeCity"
+                            controlid="intermediateCollegeCity"
                             value={intermediateCollegeCity}
                             isInvalid={thirtyfourerror}
                             maxLength={50}
@@ -694,7 +694,7 @@ function EducationalDetailsTab() {
                             type="text"
                             placeholder="Course Name"
                             name="intermediateCourseName"
-                            controlId="intermediateCourseName"
+                            controlid="intermediateCourseName"
                             maxLength={50}
                             value={intermediateCourseName}
                             isInvalid={thirtyfiveerror}
@@ -720,7 +720,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="date"
                             placeholder="Joining Year"
-                            controlId="intermediateJoiningYear"
+                            controlid="intermediateJoiningYear"
                             name="intermediateJoiningYear"
                             value={intermediateJoiningYear}
                             isInvalid={thirtysixerror}
@@ -746,7 +746,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="date"
                             placeholder="Passed out year"
-                            controlId="intermediatePassedYear"
+                            controlid="intermediatePassedYear"
                             value={intermediatePassedYear}
                             min={intermediateJoiningYear}
                             isInvalid={thirtysevenerror}
@@ -772,7 +772,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="text"
                             placeholder="Percentage/Grade/GPA/CGPA"
-                            controlId="intermediateGrade"
+                            controlid="intermediateGrade"
                             maxLength={5}
                             value={intermediateGrade}
                             isInvalid={thirtyeighterror}
@@ -808,7 +808,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="text"
                             placeholder="Board"
-                            controlId="sscBoardOfUniversity"
+                            controlid="sscBoardOfUniversity"
                             maxLength={50}
                             value={sscBoardOfUniversity}
                             isInvalid={thirtynineerror}
@@ -835,7 +835,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="text"
                             placeholder="School Name "
-                            controlId="sscSchoolName"
+                            controlid="sscSchoolName"
                             maxLength={50}
                             value={sscSchoolName}
                             isInvalid={fourty}
@@ -861,7 +861,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="text"
                             placeholder="School City"
-                            controlId="sscSchoolCity"
+                            controlid="sscSchoolCity"
                             maxLength={50}
                             value={sscSchoolCity}
                             isInvalid={fourtyone}
@@ -887,7 +887,7 @@ function EducationalDetailsTab() {
                             disabled
                             type="text"
                             placeholder="Course Name"
-                            controlId="sscCourseName"
+                            controlid="sscCourseName"
                             maxLength={50}
                             value={sscCourseName}
                             isInvalid={fourtytwo}
@@ -914,7 +914,7 @@ function EducationalDetailsTab() {
                             type="date"
                             name="sscJoiningYear"
                             placeholder="Joining Year"
-                            controlId="sscJoiningYear"
+                            controlid="sscJoiningYear"
                             value={sscJoiningYear}
                             isInvalid={fourtythree}
                             onChange={(e) => {
@@ -939,7 +939,7 @@ function EducationalDetailsTab() {
                             type="date"
                             name="sscPassedYear"
                             placeholder="Passed out year"
-                            controlId="sscPassedYear"
+                            controlid="sscPassedYear"
                             value={sscPassedYear}
                             min={sscJoiningYear}
                             isInvalid={fourtyfour}
@@ -964,7 +964,7 @@ function EducationalDetailsTab() {
                             required
                             type="text"
                             placeholder="Percentage/Grade/GPA/CGPA"
-                            controlId="sscGrade"
+                            controlid="sscGrade"
                             value={sscGrade}
                             maxLength={5}
                             name="sscGrade"

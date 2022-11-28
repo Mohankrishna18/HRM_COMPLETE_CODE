@@ -79,6 +79,7 @@ function AddCandidate(props) {
       email,
       phoneNumber,
       yearsOfExperience,
+      level
       // uploadResume,
     } = form;
 
@@ -119,8 +120,8 @@ function AddCandidate(props) {
     if (!primarySkills || primarySkills === "")
       newErrors.primarySkills = "Please Enter Primary Skills";
 
-    if (!secondarySkills || secondarySkills === "")
-      newErrors.secondarySkills = "Please Enter Secondary Skills";
+    // if (!secondarySkills || secondarySkills === "")
+    //   newErrors.secondarySkills = "Please Enter Secondary Skills";
 
     if (!email || email === "") newErrors.email = "Please Enter Mail Id";
 
@@ -136,8 +137,8 @@ function AddCandidate(props) {
     if (!yearsOfExperience || yearsOfExperience === "")
       newErrors.yearsOfExperience = "Please Enter Years Of Experience";
 
-    // if (!uploadResume || uploadResume === "")
-    //   newErrors.uploadResume = "Please upload uploadResume";
+    if (!level || level === "")
+      newErrors.level = "Please select Level";
     return newErrors;
   };
 
@@ -159,6 +160,7 @@ function AddCandidate(props) {
         { projectName: projectName }
       );
       console.log(lastForm);
+      console.log(form);
       axios
         .post("/candidate/addCandidate", form)
         .then((response) => {
@@ -173,11 +175,12 @@ function AddCandidate(props) {
           // toast.success("Project added Successfully");
           console.log(user);
           // console.log(user);
-          setTimeout(5000);
+          setTimeout(1000);
           setForm({});
           handleClose();
         })
         .catch((err) => {
+          console.log(err);
           toast.error("Something went Wrong");
         });
     }
@@ -257,7 +260,7 @@ const projectName = user.projectName;
                   required
                   type="text"
                   // placeholder="Requisition ID"
-                  controlId="requisitionId"
+                  controlid="requisitionId"
                   value={form.requisitionId}
                   // onChange={(e) => setField("requisitionId", e.target.value)}
                   onChange={(e) => {
@@ -292,7 +295,7 @@ const projectName = user.projectName;
                   required
                   className="candidateName"
                   type="text"
-                  controlId="candidateName"
+                  controlid="candidateName"
                   // placeholder="Candidate Name"
                   value={form.candidateName}
                   maxLength={30}
@@ -311,7 +314,7 @@ const projectName = user.projectName;
                   disabled
                   className="departmentName"
                   type="text"
-                  controlId="departmentName"
+                  controlid="departmentName"
                   // placeholder="Department Name"
                   value={user.departmentName}
                   maxLength={50}
@@ -330,7 +333,7 @@ const projectName = user.projectName;
                   required
                   type="mail"
                   // placeholder="Email"
-                  controlId="email"
+                  controlid="email"
                   value={form.email}
                   onChange={(e) => setField("email", e.target.value)}
                   isInvalid={!!errors.email}
@@ -348,7 +351,7 @@ const projectName = user.projectName;
                   disabled
                   className="jobTitle"
                   type="text"
-                  controlId="jobTitle"
+                  controlid="jobTitle"
                   // placeholder="Job Title"
                   value={user.jobTitle}
                   maxLength={50}
@@ -367,7 +370,7 @@ const projectName = user.projectName;
                   required
                   type="number"
                   // placeholder="Phone Number"
-                  controlId="phoneNumber"
+                  controlid="phoneNumber"
                   value={form.phoneNumber}
                   onChange={(e) => setField("phoneNumber", e.target.value)}
                   isInvalid={!!errors.phoneNumber}
@@ -384,7 +387,7 @@ const projectName = user.projectName;
                   disabled
                   className="projectName"
                   type="text"
-                  controlId="projectName"
+                  controlid="projectName"
                   // placeholder="Project Assigned"
                   value={user.projectName}
                   maxLength={50}
@@ -403,7 +406,7 @@ const projectName = user.projectName;
                   required
                   className="yearsOfExperience"
                   type="text"
-                  controlId="yearsOfExperience"
+                  controlid="yearsOfExperience"
                   // placeholder="Years Of Experience"
                   value={form.yearsOfExperience}
                   maxLength={30}
@@ -424,7 +427,7 @@ const projectName = user.projectName;
                   required
                   type="text"
                   // placeholder="Current Location"
-                  controlId="currentLocation"
+                  controlid="currentLocation"
                   value={form.currentLocation}
                   maxLength={80}
                   onChange={(e) => setField("currentLocation", e.target.value)}
@@ -443,7 +446,7 @@ const projectName = user.projectName;
                   required
                   type="text"
                   // placeholder="Candidate Status"
-                  controlId="candidateStatus"
+                  controlid="candidateStatus"
                   value={form.candidateStatus}
                   onChange={(e) => setField("candidateStatus", e.target.value)}
                   isInvalid={!!errors.candidateStatus}
@@ -462,6 +465,28 @@ const projectName = user.projectName;
                 </Form.Control.Feedback>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Level*</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  // placeholder="Candidate Status"
+                  controlid="level"
+                  value={form.level}
+                  onChange={(e) => setField("level", e.target.value)}
+                  isInvalid={!!errors.level}
+                >
+                  <option value="">Select Level </option>
+                  <option value="Level 1">Level 1</option>
+                  <option value="Level 2">Level 2</option>
+                  <option value="Level 3">Level 3</option>
+                  <option value="Level 4">Level 4</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.level}
+                </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
 
               {/* P Skills */}
               <Form.Group as={Col} md="12" style={{ padding: 10 }}>
@@ -470,7 +495,7 @@ const projectName = user.projectName;
                   required
                   type="text"
                   // placeholder="Primary Skills"
-                  controlId="primarySkills"
+                  controlid="primarySkills"
                   value={form.primarySkills}
                   onChange={(e) => setField("primarySkills", e.target.value)}
                   isInvalid={!!errors.primarySkills}
@@ -488,15 +513,15 @@ const projectName = user.projectName;
                   required
                   className="secondarySkills"
                   type="text"
-                  controlId="secondarySkills"
+                  controlid="secondarySkills"
                   // placeholder="Secondary Skills"
                   value={form.secondarySkills}
                   maxLength={30}
                   onChange={(e) => setField("secondarySkills", e.target.value)}
-                  isInvalid={!!errors.secondarySkills}
+                  //isInvalid={!!errors.secondarySkills}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
-                  {errors.secondarySkills}
+                  {/* {errors.secondarySkills} */}
                 </Form.Control.Feedback>
               </Form.Group>
 
@@ -507,7 +532,7 @@ const projectName = user.projectName;
                   required
                   type="file"
                   placeholder="Upload Resume"
-                  controlId="uploadResume"
+                  controlid="uploadResume"
                   value={form.uploadResume}
                   onChange={(e) => setField("uploadResume", e.target.value)}
                   isInvalid={!!errors.uploadResume}

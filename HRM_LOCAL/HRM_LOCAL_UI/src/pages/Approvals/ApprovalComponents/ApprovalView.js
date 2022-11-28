@@ -368,7 +368,7 @@ export default ApprovalView;
               required
               className="firstName"
               type="text"
-              controlId="firstName"
+              controlid="firstName"
               placeholder="First name"
               // onChange={(event) => setFirstName(event.target.value)}
               value={props.viewOnboard.firstName}
@@ -384,7 +384,7 @@ export default ApprovalView;
             <Form.Control
               name="middle_name"
               type="text"
-              controlId="middleName"
+              controlid="middleName"
               placeholder="Middle name"
               value={props.viewOnboard.middleName}
               onChange={(e) => setField("middleName", e.target.value)}
@@ -396,7 +396,7 @@ export default ApprovalView;
               required
               name="last_name"
               type="text"
-              controlId="lastName"
+              controlid="lastName"
               placeholder="Last name"
               value={props.viewOnboard.lastName}
               onChange={(e) => setField("lastName", e.target.value)}
@@ -415,7 +415,7 @@ export default ApprovalView;
                 required
                 type="text"
                 placeholder="Phone Number"
-                controlId="phoneNumber"
+                controlid="phoneNumber"
                 value={props.viewOnboard.phoneNumber}
                 onChange={(e) => setField("phoneNumber", e.target.value)}
                 isInvalid={!!errors.phoneNumber}
@@ -432,7 +432,7 @@ export default ApprovalView;
               required
               type="text"
               placeholder="Designation"
-              controlId="designation"
+              controlid="designation"
               value={props.viewOnboard.designation}
               onChange={(e) => setField("designation", e.target.value)}
               isInvalid={!!errors.designation}
@@ -450,7 +450,7 @@ export default ApprovalView;
               required
               type="text"
               placeholder="Department"
-              controlId="department"
+              controlid="department"
               value={props.viewOnboard.department}
               onChange={(e) => setField("department", e.target.value)}
               isInvalid={!!errors.department}
@@ -471,7 +471,7 @@ export default ApprovalView;
               required
               type="date"
               placeholder="joining date"
-              controlId="dateOfJoining"
+              controlid="dateOfJoining"
               value={props.viewOnboard.dateOfJoining}
               onChange={(e) => setField("dateOfJoining", e.target.value)}
               isInvalid={!!errors.dateOfJoining}
@@ -488,7 +488,7 @@ export default ApprovalView;
               required
               type="text"
               placeholder="Experience "
-              controlId="yearsOfExperience"
+              controlid="yearsOfExperience"
               value={props.viewOnboard.yearsOfExperience}
               onChange={(e) => setField("yearsOfExperience", e.target.value)}
               isInvalid={!!errors.yearsOfExperience}
@@ -503,7 +503,7 @@ export default ApprovalView;
               required
               type="email"
               placeholder="Email"
-              controlId="email"
+              controlid="email"
               value={props.viewOnboard.email}
               onChange={(e) => setField("email", e.target.value)}
               isInvalid={!!errors.email}
@@ -517,7 +517,7 @@ export default ApprovalView;
             <Form.Control
               name="jobTitle"
               type="text"
-              controlId="jobTitle"
+              controlid="jobTitle"
               placeholder="Job Title "
               value={props.viewOnboard.jobTitle}
               onChange={(e) => setField("jobTitle", e.target.value)}
@@ -530,7 +530,7 @@ export default ApprovalView;
               type="text"
               name="primarySkills"
               placeholder="Primary Skills"
-              controlId="primarySkills"
+              controlid="primarySkills"
               value={props.viewOnboard.primarySkills}
               onChange={(e) => setField("primarySkills", e.target.value)}
               // onChange={changeHandler}
@@ -543,7 +543,7 @@ export default ApprovalView;
               type="text"
               name="secondarySkills"
               placeholder="SecondarySkills"
-              controlId="secondarySkills"
+              controlid="secondarySkills"
               value={props.viewOnboard.secondarySkills}
               onChange={(e) => setField("secondarySkills", e.target.value)}
 
@@ -557,7 +557,7 @@ export default ApprovalView;
               required
               type="text"
               placeholder="Type Of Employment"
-              controlId="employmentType"
+              controlid="employmentType"
               value={props.viewOnboard.employmentType}
               onChange={(e) => setField("employmentType", e.target.value)}
               isInvalid={!!errors.employmentType}

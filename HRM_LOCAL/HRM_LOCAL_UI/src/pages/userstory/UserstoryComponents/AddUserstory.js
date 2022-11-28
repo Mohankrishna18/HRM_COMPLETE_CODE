@@ -297,7 +297,7 @@
 //                   required
 //                   className="storyTitle"
 //                   type="text"
-//                   // controlId="storyTitle"
+//                   // controlid="storyTitle"
 //                   placeholder="Enter Story Title"
 //                   // onChange={(event) => setclientName(event.target.value)}
 //                   value={form.storyTitle}
@@ -316,7 +316,7 @@
 //                   required
 //                   className="acceptanceCriteria"
 //                   type="text"
-//                   controlId="acceptanceCriteria"
+//                   controlid="acceptanceCriteria"
 //                   placeholder="Acceptance Criteria"
 //                   // onChange={(event) => setclientName(event.target.value)}
 //                   value={form.acceptanceCriteria}
@@ -361,7 +361,7 @@
 //                   required
 //                   className="role"
 //                   type="text"
-//                   controlId="role"
+//                   controlid="role"
 //                   placeholder="Role"
 //                   // onChange={(event) => setclientName(event.target.value)}
 //                   value={form.role}
@@ -379,7 +379,7 @@
 //                   required
 //                   className="goal"
 //                   type="text"
-//                   controlId="goal"
+//                   controlid="goal"
 //                   placeholder="goal"
 //                   // onChange={(event) => setclientName(event.target.value)}
 //                   value={form.goal}
@@ -397,7 +397,7 @@
 //                   required
 //                   className="reason"
 //                   type="text"
-//                   controlId="reason"
+//                   controlid="reason"
 //                   placeholder="reason"
 //                   // onChange={(event) => setclientName(event.target.value)}
 //                   value={form.reason}
@@ -416,7 +416,7 @@
 //                   required
 //                   type="text"
 //                   placeholder="priority"
-//                   controlId="priority"
+//                   controlid="priority"
 //                   value={form.priority}
 //                   onChange={(e) => setField("priority", e.target.value)}
 //                   isInvalid={!!errors.priority}
@@ -436,7 +436,7 @@
 //                   required
 //                   className="EstimatedHours"
 //                   type="text"
-//                   controlId="estimatedHours"
+//                   controlid="estimatedHours"
 //                   placeholder="estimatedHours"
 //                   // onChange={(event) => setclientName(event.target.value)}
 //                   value={form.estimatedHours}
@@ -454,7 +454,7 @@
 //                   required
 //                   className="actualHours"
 //                   type="text"
-//                   controlId="actualHours"
+//                   controlid="actualHours"
 //                   placeholder="actualHours"
 //                   // onChange={(event) => setclientName(event.target.value)}
 //                   value={form.actualHours}
@@ -472,7 +472,7 @@
 //                   required
 //                   className="remainingHours"
 //                   type="text"
-//                   controlId="remainingHours"
+//                   controlid="remainingHours"
 //                   placeholder="remaining Hours"
 //                   // onChange={(event) => setclientName(event.target.value)}
 //                   value={form.remainingHours}
@@ -490,7 +490,7 @@
 //                   required
 //                   type="text"
 //                   placeholder="Status"
-//                   controlId="status"
+//                   controlid="status"
 //                   value={form.status}
 //                   onChange={(e) => setField("status", e.target.value)}
 //                   isInvalid={!!errors.status}
@@ -510,7 +510,7 @@
 //                   required
 //                   type="date"
 //                   placeholder="Start Date"
-//                   controlId="startDate"
+//                   controlid="startDate"
 //                   value={form.startDate}
 
 //                   onChange={(e) => setField("startDate", e.target.value)}
@@ -527,7 +527,7 @@
 //                   required
 //                   type="date"
 //                   placeholder="End Date"
-//                   controlId="endDate"
+//                   controlid="endDate"
 //                   value={form.endDate}
 //                   min={form.startDate}
 //                   onChange={(e) => setField("endDate", e.target.value)}
@@ -544,7 +544,7 @@
 //                   required
 //                   type="text"
 //                   placeholder="AssignedTo"
-//                   controlId="assignedTo"
+//                   controlid="assignedTo"
 //                   value={form.assignedTo}
 //                   onChange={(e) => setField("assignedTo", e.target.value)}
 //                   isInvalid={!!errors.assignedTo}
@@ -560,7 +560,7 @@
 //                   required
 //                   type="date"
 //                   placeholder="Assigned Date"
-//                   controlId="assignedDate"
+//                   controlid="assignedDate"
 //                   value={form.assignedDate}
 //                   min={form.startDate}
 //                   onChange={(e) => setField("assignedDate", e.target.value)}
@@ -884,17 +884,17 @@ function AddUserstory(props) {
                   onChange={(e) => setField("projectId", e.target.value)}
                   isInvalid={!!errors.projectId}
                 >
-                  <option>Select project</option>
-
-                  {projects.map((project) => (
-                    <option value={project.projectId}>
+                   <option>Select project</option>
+                  {projects === null ?(<> <option>Select project</option></>):(<> {projects.map((project) => (
+                    <option value={project.projectName}>
                       {project.projectName}
                     </option>
-                  ))}
-                </Form.Select>
+                  ))}</>)}
                 <Form.Control.Feedback type="invalid">
                   {errors.projectId}
+              
                 </Form.Control.Feedback>
+                </Form.Select>
               </Form.Group>
               <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                 <Form.Label>Story Title *</Form.Label>
@@ -902,7 +902,7 @@ function AddUserstory(props) {
                   required
                   className="storyTitle"
                   type="text"
-                  // controlId="storyTitle"
+                  // controlid="storyTitle"
                   placeholder="Enter Story Title"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.storyTitle}
@@ -922,7 +922,7 @@ function AddUserstory(props) {
                   className="acceptanceCriteria"
                   type="text"
                   as="textarea"
-                  controlId="acceptanceCriteria"
+                  controlid="acceptanceCriteria"
                   placeholder="Acceptance Criteria"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.acceptanceCriteria}
@@ -942,7 +942,7 @@ function AddUserstory(props) {
                   required
                   className="reason"
                   type="text"
-                  controlId="reason"
+                  controlid="reason"
                   placeholder="reason"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.reason}
@@ -960,7 +960,7 @@ function AddUserstory(props) {
                   required
                   className="goal"
                   type="text"
-                  controlId="goal"
+                  controlid="goal"
                   placeholder="goal"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.goal}
@@ -1001,7 +1001,7 @@ function AddUserstory(props) {
                   required
                   className="role"
                   type="text"
-                  controlId="role"
+                  controlid="role"
                   placeholder="Role"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.role}
@@ -1019,7 +1019,7 @@ function AddUserstory(props) {
                   required
                   className="EstimatedHours"
                   type="text"
-                  controlId="estimatedHours"
+                  controlid="estimatedHours"
                   placeholder="estimatedHours"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.estimatedHours}
@@ -1037,7 +1037,7 @@ function AddUserstory(props) {
                   required
                   type="text"
                   placeholder="priority"
-                  controlId="priority"
+                  controlid="priority"
                   value={form.priority}
                   onChange={(e) => setField("priority", e.target.value)}
                   isInvalid={!!errors.priority}
@@ -1058,7 +1058,7 @@ function AddUserstory(props) {
                   required
                   type="text"
                   placeholder="Status"
-                  controlId="status"
+                  controlid="status"
                   value={form.status}
                   onChange={(e) => setField("status", e.target.value)}
                   isInvalid={!!errors.status}
@@ -1081,7 +1081,7 @@ function AddUserstory(props) {
                   required
                   className="actualHours"
                   type="text"
-                  controlId="actualHours"
+                  controlid="actualHours"
                   placeholder="actualHours"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.actualHours}
@@ -1099,7 +1099,7 @@ function AddUserstory(props) {
                   required
                   className="remainingHours"
                   type="text"
-                  controlId="remainingHours"
+                  controlid="remainingHours"
                   placeholder="remaining Hours"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.remainingHours}
@@ -1118,7 +1118,7 @@ function AddUserstory(props) {
                   required
                   type="date"
                   placeholder="Start Date"
-                  controlId="startDate"
+                  controlid="startDate"
                   value={form.startDate}
                   onChange={(e) => setField("startDate", e.target.value)}
                   isInvalid={!!errors.startDate}
@@ -1134,7 +1134,7 @@ function AddUserstory(props) {
                   required
                   type="date"
                   placeholder="End Date"
-                  controlId="endDate"
+                  controlid="endDate"
                   value={form.endDate}
                   min={form.startDate}
                   onChange={(e) => setField("endDate", e.target.value)}
@@ -1151,7 +1151,7 @@ function AddUserstory(props) {
                   required
                   type="text"
                   placeholder="AssignedTo"
-                  controlId="assignedTo"
+                  controlid="assignedTo"
                   value={form.assignedTo}
                   onChange={(e) => setField("assignedTo", e.target.value)}
                   isInvalid={!!errors.assignedTo}
@@ -1168,7 +1168,7 @@ function AddUserstory(props) {
                   required
                   type="date"
                   placeholder="Assigned Date"
-                  controlId="assignedDate"
+                  controlid="assignedDate"
                   value={form.assignedDate}
                   min={form.startDate}
                   onChange={(e) => setField("assignedDate", e.target.value)}

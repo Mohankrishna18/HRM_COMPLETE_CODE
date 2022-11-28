@@ -58,7 +58,7 @@
 //         </Modal.Header>
 //         <Modal.Body>
 //           <Form>
-//             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+//             <Form.Group className="mb-3" controlid="exampleForm.ControlInput1">
 //               <Form.Label>Department Name</Form.Label>
 //               <Form.Control type="text" value={departmentName}  onChange={(e) => setDepartmentName(e.target.value)} autoFocus />
 //             </Form.Group>

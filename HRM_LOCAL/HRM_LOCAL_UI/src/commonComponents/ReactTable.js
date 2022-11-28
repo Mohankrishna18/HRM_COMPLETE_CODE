@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const ReactTable = ({ cols, data, bordered, hoverable, striped, isDark }) => {
     return (
-        <div class="table-responsive">
+        <div className="table-responsive">
             <table className={`table ${bordered ? 'table-bordered' : 'table-borderless'} ${hoverable && 'table-hover'} ${striped && 'table-striped'} ${isDark && 'table-dark'}`}>
                 <thead >
                     <tr>

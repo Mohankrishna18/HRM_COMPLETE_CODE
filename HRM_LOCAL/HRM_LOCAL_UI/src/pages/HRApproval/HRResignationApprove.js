@@ -37,10 +37,13 @@ function HRResignationApprove(props) {
     console.log(props.leaveID);
     // const obj = { leaveStatus: "Approved" };
     // const form1 = Object.assign(form, obj);
+    const values = Object.assign(initialValues,{resignationId:props.leaveID.resignationId})
+    console.log(values);
+    
     axios
       .put(
         `/resignation/modifyResignationStatus/${employeeId}/${empID}`,
-        initialValues
+        values
       )
       .then((res) => {
         console.log(res);
@@ -66,7 +69,37 @@ function HRResignationApprove(props) {
             </Col> */}
             
             <Form role="form">
-                <Form.Group md="12" style={{ padding: 0 }}>
+
+            <Form.Group md="12" style={{ paddingTop: "10px" }}>
+          <Form.Label>Employee Reason</Form.Label>
+          <Form.Control
+            required
+            className="reason"
+            type="text"
+            disabled
+            value={props.leaveID.reason}
+          ></Form.Control>
+          <Form.Group md="12" style={{ paddingTop: "10px" }}>
+            <Form.Label>IRM Reason</Form.Label>
+            <Form.Control
+              required
+              className="reason"
+              type="text"
+              disabled
+              value={props.leaveID.irmApprove}
+            ></Form.Control>
+          </Form.Group>
+          <Form.Group md="12" style={{ paddingTop: "10px" }}>
+            <Form.Label>SRM Reason</Form.Label>
+            <Form.Control
+              required
+              className="reason"
+              type="text"
+              disabled
+              value={props.leaveID.srmApprove}
+            ></Form.Control>
+          </Form.Group>
+
                     <Form.Label>Comment</Form.Label>
                     <Form.Control
                         required
@@ -74,7 +107,7 @@ function HRResignationApprove(props) {
                         rows={2}
                         className="hrApprove"
                         type="text"
-                        controlId="hrApprove"
+                        controlid="hrApprove"
                         placeholder="Approve Reason"
                         value={hrApprove}
                         onChange={(e) => setHrApprove(e.target.value)}

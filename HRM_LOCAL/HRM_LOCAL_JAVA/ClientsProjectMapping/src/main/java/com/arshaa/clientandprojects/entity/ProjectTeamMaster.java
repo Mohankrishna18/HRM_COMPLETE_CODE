@@ -17,9 +17,15 @@ public class ProjectTeamMaster {
 
 	@Column
 	private String employeeId;
+	private String projectName;
+	@Column
+	private String clientName;	
+	
+	@Column
+	private String projectManager;
 
 	@Column
-	private String employeeName;
+	private String fullName;
 
 	@Column
 	private String designationName;
@@ -43,7 +49,7 @@ public class ProjectTeamMaster {
 	private Date assignedDate;
 
 	@Column
-	private String projectAllocation;
+	private Integer projectAllocation;
 	
 	@Column
 	private Integer projectId;
@@ -52,12 +58,13 @@ public class ProjectTeamMaster {
 		super();
 	}
 
-	public ProjectTeamMaster(String employeeId, String employeeName, String designationName, String departmentName,
-			Integer prmasterId, Date startDate, Date endDate, String status, Date assignedDate,
-			String projectAllocation) {
+	public ProjectTeamMaster(String employeeId, String fullName, String designationName, String departmentName,
+			Integer prmasterId, Date startDate, Date endDate, String status, Date assignedDate,String projectName,String clientName,String projectManager,	
+
+			Integer projectAllocation) {
 		super();
 		this.employeeId = employeeId;
-		this.employeeName = employeeName;
+		this.fullName = fullName;
 		this.designationName = designationName;
 		this.departmentName = departmentName;
 //		this.projectName = projectName;
@@ -65,10 +72,21 @@ public class ProjectTeamMaster {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.status = status;
+		this.projectName= projectName;
+		this.clientName = clientName;
+		this.projectManager = projectManager;
 		this.assignedDate = assignedDate;
 		this.projectAllocation = projectAllocation;
 	}
 
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
 	public Integer getEmployeeprojectId() {
 		return employeeprojectId;
@@ -86,13 +104,7 @@ public class ProjectTeamMaster {
 		this.employeeId = employeeId;
 	}
 
-	public String getEmployeeName() {
-		return employeeName;
-	}
-
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
-	}
+	
 
 	public String getDesignationName() {
 		return designationName;
@@ -150,11 +162,11 @@ public class ProjectTeamMaster {
 		this.assignedDate = assignedDate;
 	}
 
-	public String getProjectAllocation() {
+	public Integer getProjectAllocation() {
 		return projectAllocation;
 	}
 
-	public void setProjectAllocation(String projectAllocation) {
+	public void setProjectAllocation(Integer projectAllocation) {
 		this.projectAllocation = projectAllocation;
 	}
 
@@ -165,6 +177,30 @@ public class ProjectTeamMaster {
 	public void setProjectId(Integer projectId) {
 		this.projectId = projectId;
 	}
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
+	public String getProjectManager() {
+		return projectManager;
+	}
+
+	public void setProjectManager(String projectManager) {
+		this.projectManager = projectManager;
+	}
+
 	
 	
 

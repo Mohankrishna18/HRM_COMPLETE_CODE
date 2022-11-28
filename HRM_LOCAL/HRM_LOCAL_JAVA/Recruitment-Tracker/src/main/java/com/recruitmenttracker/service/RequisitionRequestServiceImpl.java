@@ -31,6 +31,8 @@ import com.recruitmenttracker.modal.EmailTemplate;
 
 import com.recruitmenttracker.modal.EmployeeReq;
 import com.recruitmenttracker.modal.GetMail;
+import com.recruitmenttracker.modal.JobsPerDepartment;
+import com.recruitmenttracker.modal.RRFClosed;
 import com.recruitmenttracker.modal.RequisitionRequestResponse;
 import com.recruitmenttracker.modal.UserServiceEmail;
 import com.recruitmenttracker.repository.RequisitionRequestRepository;
@@ -59,19 +61,16 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
             // newRR.setWorkflowStatus("Waiting for BUHead Approval");
             newRR.setRrfStatus("Open");
             RequisitionRequestEntity raiseRequest = rrRepository.save(newRR);
-
-
+            //rrRepository.getDateDiff(newRR.getRequisitionId())
+            newRR.setAgeing(0);
+            
+            RequisitionRequestEntity raiseRequest1 = rrRepository.save(raiseRequest);
 
 //            String p = StringUtils.substring(raiseRequest.getProjectName(), 0, 3);
 //            String c = StringUtils.substring(raiseRequest.getClientName(), 0, 3);
-
-
-
 //           String p = "REQ";
 //            raiseRequest.setRequisitionId(p + 0 + (raiseRequest.getRrfId()));
-            RequisitionRequestEntity rreq = rrRepository.save(raiseRequest);
-
-
+            RequisitionRequestEntity rreq = rrRepository.save(raiseRequest1);
 
            rrr.setStatus(true);
             rrr.setMessage("Data Submitted Successfully!!!");
@@ -167,7 +166,7 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
             RequisitionRequestEntity rrEntity = rrRepository.findByRequisitionId(requisitionId);
 			rrEntity.setJobTitle(rrUpdate.getJobTitle());
 			rrEntity.setDescription(rrUpdate.getDescription());
-			rrEntity.setRrfCat(rrUpdate.getRrfCat());
+//			rrEntity.setRrfCat(rrUpdate.getRrfCat());
 			rrEntity.setTechnology(rrUpdate.getTechnology());
 			rrEntity.setRequisitionId(rrUpdate.getRequisitionId());
 			rrEntity.setPocname(rrUpdate.getPocname());
@@ -192,7 +191,13 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 			rrEntity.setInterviewPanel1(rrUpdate.getInterviewPanel1());
 			rrEntity.setInterviewPanel2(rrUpdate.getInterviewPanel2());
 			rrEntity.setHrPanel(rrUpdate.getHrPanel());
-			
+			rrEntity.setReqType1(rrUpdate.getReqType1());
+			rrEntity.setReqType2(rrUpdate.getReqType2());
+			rrEntity.setReqType3(rrUpdate.getReqType3());
+			rrEntity.setRequestInitiatedDate(rrUpdate.getRequestInitiatedDate());
+			rrEntity.setResourceRequiredDate(rrEntity.getResourceRequiredDate());
+			rrEntity.setAllocType(rrUpdate.getAllocType());
+			rrEntity.setQualification(rrUpdate.getQualification());
 			
 			RequisitionRequestEntity RRsEntity = rrRepository.save(rrEntity);
 			System.out.println(RRsEntity);
@@ -384,8 +389,8 @@ hrApp.forEach(e->{
                 EmployeeReq re = new EmployeeReq();
                 RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
                 
-
-//                re.setRaisedBy(rfs.getRaisedBy());
+                re.setClientName(rfs.getClientName());
+                re.setRaisedBy(rfs.getRaisedBy());
 //                re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
                 re.setJobTitle(rfs.getJobTitle());
 
@@ -431,8 +436,7 @@ hrApp.forEach(e->{
                 return new ResponseEntity(e.getMessage(), HttpStatus.OK);
             }
     }
-
-
+    
 
 
     @Override
@@ -440,6 +444,46 @@ hrApp.forEach(e->{
         // TODO Auto-generated method stub
         return 0;
     }
+
+
+//	get position by departmentName
+	@Override
+	public List<JobsPerDepartment> getJobsOpenByDepartmentName() {
+		
+		List<JobsPerDepartment> openJobsPerDepartment = rrRepository.getJobsOpenByDepartmentName();
+		return openJobsPerDepartment;
+	}
+
+
+  
+    @Override
+    public ResponseEntity updateAgeing(String requisitionId, RRFClosed rrUpdate) {
+        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+        try {
+            RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
+            RRFClosed gg = new RRFClosed();
+                
+            rfs.setAgeing(rrRepository.getDateDiff(rfs.getRequisitionId()));
+                      
+            rrRepository.save(rfs);
+            
+            System.out.println(rrUpdate);
+            rrr.setStatus(true);
+            rrr.setMessage("Update successfully");
+            rrr.setData(rrUpdate);
+            return new ResponseEntity(rrr,HttpStatus.OK);
+            
+        }catch(Exception e){
+            rrr.setStatus(true);
+            rrr.setMessage("Something went wrong");
+            return new ResponseEntity(rrr,HttpStatus.OK);
+        }
+    }
+
+
+
+
+
     
     
     

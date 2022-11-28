@@ -172,7 +172,7 @@ function PersonalDetailsTab() {
     };
     console.log(formData);
     axios
-      .post(url, formData, config)
+      .put(url, formData, config)
       .then((response) => {
         console.log(response.data);
         toast.success("Personal Details Submitted Successfully");
@@ -192,20 +192,20 @@ function PersonalDetailsTab() {
     console.log(event.target.files[0]);
   };
 
-  const [imge, setImge] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`/emp/files/${employeeid}`)
-      .then((response) => {
-        console.log(response.data);
-        setImge(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
+  const [imge, setImge] = useState({});
+  // useEffect(() => {
+  //   axios
+  //     .get(`/emp/files/${employeeid}`)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setImge(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
 
-        console.log("something wrong");
-      });
-  }, []);
+  //       console.log("something wrong");
+  //     });
+  // }, []);
 
   function getAge(dateString) {
     var today = new Date();
@@ -243,7 +243,7 @@ function PersonalDetailsTab() {
             as={Col}
             className="mb-3"
             md="6"
-            controlId="formBasicEmail"
+            controlid="formBasicEmail"
 
           >
             <Form.Label>First Name *</Form.Label>
@@ -295,7 +295,7 @@ function PersonalDetailsTab() {
             as={Col}
             className="mb-3"
             md="6"
-            controlId="formBasicEmail"
+            controlid="formBasicEmail"
           >
             <Form.Label>Last Name *</Form.Label>
             <Form.Control
@@ -331,22 +331,25 @@ function PersonalDetailsTab() {
               <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
               <Form.Control
                 required
-                type="number"
+                type="text"
                 name="primaryPhoneNumber"
                 placeholder="Phone Number"
-                maxLength={10}
+              
                 value={primaryPhoneNumber}
                 onChange={(e) => {
                   setPhoneNumber(e.target.value);
                   if (
                     e.target.value.length > 10 ||
-                    e.target.value.length < 10
+                    e.target.value.length < 10 
                   ) {
                     setThirdErrors(
-                      " Phone Number length should be 10 characters"
+                      " Enter valid Number"
                     );
-                  } else {
-                    setThirdErrors("");
+                  } else if( isNaN(e.target.value)) {
+                    setThirdErrors(
+                      " Enter valid Number")
+                  }else{
+                    setThirdErrors(" ")
                   }
                   if (lastName === "") {
                     setSerror("Last Name is Required");
@@ -366,13 +369,14 @@ function PersonalDetailsTab() {
             className="mb-3"
             md="6"
             style={{ padding: 10 }}
-            controlId="formBasicEmail"
+            controlid="formBasicEmail"
           >
             <Form.Label>Emergency Phone Number* </Form.Label>
             <InputGroup>
               <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
               <Form.Control
                 required
+                type="text"
                 value={secondaryPhoneNumber}
                 maxLength={10}
                 isInvalid={nineerrors}
@@ -380,16 +384,19 @@ function PersonalDetailsTab() {
                   setSecondaryPhone(e.target.value);
                   if (e.target.value.length >10 || e.target.value.length < 10 ) {
                      setNineErrors("Phone Number length should be 10 characters");
-                  } else {
+                  } 
+                  else if( isNaN(e.target.value)) {
+                    setNineErrors(
+                      " Enter valid Number")
+                  }else {
                     setNineErrors("");
                   }
-                  if (phoneNumber === "") {
+                  if (primaryPhoneNumber === "") {
                     setThirdErrors("Phone Number is Required");
                   } else {
                     setThirdErrors("");
                   }
                 }}
-                type="number"
                 placeholder="Enter Emergency Phone number"
               />
             </InputGroup>
@@ -438,7 +445,7 @@ function PersonalDetailsTab() {
               max={bd}
               min={bdd}
               placeholder="DOB"
-              controlId="dateOfBirth"
+              controlid="dateOfBirth"
               value={dateOfBirth}
               isInvalid={fiveerrors}
               onChange={(e) => {
@@ -463,7 +470,7 @@ function PersonalDetailsTab() {
               type="text"
               name="bloodGroup"
               placeholder="Blood Group "
-              controlId="bloodGroup"
+              controlid="bloodGroup"
               isInvalid={sixerror}
               value={bloodGroup}
               onChange={(e) => {
@@ -496,7 +503,7 @@ function PersonalDetailsTab() {
               type="text"
               name="gender"
               placeholder="Gender "
-              controlId="gender"
+              controlid="gender"
               value={gender}
               isInvalid={sevenerrors}
               onChange={(e) => {
@@ -524,7 +531,7 @@ function PersonalDetailsTab() {
               type="text"
               name="maritalStatus"
               placeholder="Marital Status "
-              controlId="maritalStatus"
+              controlid="maritalStatus"
               value={maritalStatus}
               isInvalid={eighterror}
               onChange={(event) => {
@@ -551,7 +558,7 @@ function PersonalDetailsTab() {
             <Form.Control
               type="text"
               placeholder="Primary Skills"
-              controlId="primarySkils"
+              controlid="primarySkils"
               value={primarySkills}
               maxLength={200}
               name="primarySkills"
@@ -576,7 +583,7 @@ function PersonalDetailsTab() {
             <Form.Control
               type="text"
               placeholder="Secondary Skills"
-              controlId="secondarySkills"
+              controlid="secondarySkills"
               value={secondarySkills}
               maxLength={200}
               name="secondarySkills"
@@ -623,7 +630,7 @@ function PersonalDetailsTab() {
                 type="submit"
                 size="lg"
               >
-                Next
+                Submit
               </Button>
             </Col>
           </Row>

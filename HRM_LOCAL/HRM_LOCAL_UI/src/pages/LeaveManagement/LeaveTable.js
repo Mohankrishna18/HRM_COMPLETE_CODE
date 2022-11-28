@@ -51,7 +51,7 @@
 // return (
 // <div>
 // <Container-fluid>
-// <Table responsive="sm" Table id="data" class="table table-striped">
+// <Table responsive="sm" Table id="data" className="table table-striped">
 // <thead>
 // <tr>
 // {/* <th align="left">Leave Id</th>

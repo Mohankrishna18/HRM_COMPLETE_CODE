@@ -23,7 +23,7 @@ import { AiOutlineProject } from 'react-icons/ai';
 // import ProfileRecognizationTab from './ProfileRecognizationTab';
 
 
-function MyProfileTabs() {
+function MyProfileTabs(props) {
   const [data, setData] = useState();
   useEffect(() => {
       loadData();
@@ -31,18 +31,19 @@ function MyProfileTabs() {
 
   const da = JSON.parse(sessionStorage.getItem('userdata'))
   const empID = da.data.employeeId;
+  const[profile,setProfile] = useState(empID);
+
   const currentdate = new Date();
   var cd = String(currentdate.getDate()).padStart(2, '0');
   var cm = currentdate.toLocaleString([], { month: 'long' });
   var cy = currentdate.getFullYear();
   var cdd = cm+' ' + cd  + ' ' +cy;
-  console.log(cdd);
+
   // console.log(currentdate);
   // const hstr = moment.utc(currentdate).format('DD-MM-YYYY')
   // console.log(hstr);
  const loadData = async () => {
       const res = await axios.get(`/emp/getDateOfJoiningByEmployeeId/${empID}`);
-      console.log(res.data.data);
       setData(res.data.data);
       
   };
@@ -50,14 +51,12 @@ function MyProfileTabs() {
   var dd = String(today.getDate()).padStart(2, '0');
   var mm = String(today.getMonth() + 1).padStart(2, '0');
   var mmm = today.toLocaleString([], { month: 'long' });
-  console.log(mmm);
   var yyyy = today.getFullYear();
   var doj = mmm + ' ' + dd + ' ' + yyyy;
-  console.log(doj);
+
   var day_start = new Date(doj);
 var day_end = new Date(cdd);
 var total_days = (day_end - day_start) / (1000 * 60 * 60 * 24);
-console.log(total_days);
   
     const [value, setValue] = React.useState('1');
     const handleChange = (event, newValue) => {
@@ -66,7 +65,7 @@ console.log(total_days);
 
     return(
         <div className='example'>
-        <EmployeeMasterCard/>
+        <EmployeeMasterCard profile={profile}/>
         <TabContext value={value}>
   <Box sx={{ borderBottom: 1, borderColor: 'divider' }} style={{justifyContent:"center"}} >
     <TabList onChange={handleChange} value={value} sx={{ "& button.Mui-selected": { background: "white",color:"#f5896e" } }} aria-label="lab API tabs example" style={{ background: "#f5896e", borderRadius: "3px", fontSize: "10px",height:"58px",paddingRight:0,color:"black" }}
@@ -89,13 +88,15 @@ console.log(total_days);
 
     </TabList>
   </Box>
-  <TabPanel value="1"><ProfilePersonalDetailsTab/></TabPanel>
-  <TabPanel value="2"> <ProfileAddressTab/></TabPanel>
-  <TabPanel value="3"><ProfileAdditionalDetailsTab /></TabPanel>
-  <TabPanel value="4"><ProfileEmploymentDetailsTab/></TabPanel>
-  <TabPanel value="5"><ProfileEducationalDetailsTab/></TabPanel>
-  <TabPanel value="6"><ProfileExperienceTab/></TabPanel>
-  <TabPanel value="7"><ProfileProjectTab/></TabPanel>
+  {/* <PMOApproved onboardID={onboardID} func={pull_data} handleClose={handleClose} /> */}
+
+  <TabPanel value="1"><ProfilePersonalDetailsTab profile={profile}/></TabPanel>
+  <TabPanel value="2"> <ProfileAddressTab profile={profile}/></TabPanel>
+  <TabPanel value="3"><ProfileAdditionalDetailsTab profile={profile}/></TabPanel>
+  <TabPanel value="4"><ProfileEmploymentDetailsTab profile={profile}/></TabPanel>
+  <TabPanel value="5"><ProfileEducationalDetailsTab profile={profile}/></TabPanel>
+  <TabPanel value="6"><ProfileExperienceTab profile={profile}/></TabPanel>
+  <TabPanel value="7"><ProfileProjectTab profile={profile}/></TabPanel>
   {/* <TabPanel value="8"><ProfileRecognizationTab/></TabPanel> */}
   <TabPanel value="8"></TabPanel>
 </TabContext>

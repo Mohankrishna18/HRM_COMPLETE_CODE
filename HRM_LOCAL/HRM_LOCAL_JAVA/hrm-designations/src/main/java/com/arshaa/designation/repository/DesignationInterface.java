@@ -18,4 +18,6 @@ public interface DesignationInterface extends JpaRepository<Designationmaster,In
 	 // Added recently by Sri Divya
 		Optional<Designationmaster> findByDepartmentNameAndDesignationName(String departmentName, String designationName);
 		
+		//changes for Dept in Hr
+				List<Designationmaster> getAllByDepartmentName(String departmentName);
 }

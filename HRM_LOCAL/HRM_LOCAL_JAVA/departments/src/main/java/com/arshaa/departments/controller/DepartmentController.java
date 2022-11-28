@@ -86,8 +86,7 @@ public class DepartmentController {
     public ResponseEntity getBuheadByDepartmentName(@PathVariable String departmentName) {
      return serv.getBuheadNameByDepartmentName(departmentName);
    }
-    
-    
+        
     @GetMapping("/getBuheadEmployeeIdByBusinessUnitName/{departmentName}")
     public ResponseEntity getBuheadEmployeeIdByDepartmentName(@PathVariable String departmentName) {
      return serv.getBuheadIdByDepartmentName(departmentName);
@@ -97,4 +96,12 @@ public class DepartmentController {
         return serv.getBuheadNameByEmployeeName(businessUnitHeadName);
     }
     
+    //changes for dept in HR
+    @GetMapping("/getDepartmentsNameById/{departmentName}")
+	public String getDepartmentNameById(@PathVariable String departmentName)
+	{
+		Departmentmaster dm = repo.findByDepartmentName(departmentName);
+		return dm.getDepartmentName();
+	}
+   
 }

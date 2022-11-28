@@ -95,7 +95,7 @@ function PMORequisitionApprove(props) {
                 rows={2}
                 className="pmoheadApprove"
                 type="text"
-                controlId="pmoheadApprove"
+                controlid="pmoheadApprove"
                 placeholder="Approve Reason"
                 value={form.pmoheadApprove}
                 onChange={(e) => setField("pmoheadApprove", e.target.value)}
