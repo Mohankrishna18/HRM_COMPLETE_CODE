@@ -30,17 +30,20 @@ const ResetPassword = () => {
         .then((response) => {
           console.log(response.data);
           console.log({ values });
+          if(response.data){
           toast.success("Password Updated Successfully",{
             autoClose: 1000,
           });
-          history.push("/");
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-          toast.error("Invalid EmployeeId and OldPassword", {
-
+        }
+        else{
+          toast.error(response.data, {
             autoClose: 1000,
           });
+        }
+          history.push("/");
+        })
+        .catch((err) => {
+          console.log(err.response.data);
         });
     },
     validate: (values) => {
