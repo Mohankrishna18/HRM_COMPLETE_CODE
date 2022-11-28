@@ -27,10 +27,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      int findapplyingleavescount(@Param("employeeId")String employeeId);
      
      @Query ( value= "select sum(h.`number_of_days`) as total from employeeleaves h WHERE h.`leave_status` IN ('Approved','Pending') and h.`leave_orwfh` IN ('L') and h.`employee_id`=:employeeId GROUP BY MONTH(curdate())",nativeQuery=true)
-     int findLeaveapplyingleavescount(@Param("employeeId")String employeeId);
+     Optional<Integer> findLeaveapplyingleavescount(@Param("employeeId")String employeeId);
 
      @Query ( value= "select sum(h.`number_of_days`) as total from employeeleaves h WHERE h.`leave_orwfh` IN ('W') and h.`employee_id`=:employeeId GROUP BY MONTH(curdate())",nativeQuery=true)
-     int findWFHapplyingleavescount(@Param("employeeId")String employeeId);
+     Optional<Integer> findWFHapplyingleavescount(@Param("employeeId")String employeeId);
 
 
 

@@ -143,6 +143,7 @@ function HRAssign(props) {
   useEffect(() => {
     axios.get("/dept/getAllDepartments").then((response) => {
       setDepartments(response.data);
+      console.log(response.data);
     });
     console.log(departments)
     // .catch(() => {
@@ -289,21 +290,21 @@ function HRAssign(props) {
 
       {checked.offerLetter === true  &&  checked.salarySlip === true && checked.educationalDocuments === true && checked.hikeLetter === true && checked.form16 === true && checked.idProof === true && checked.resignation === true? (
         <div>
-          <Form>
+           <Form>
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Business Unit *</Form.Label>
                 <Form.Select
                     required
                     type="text"
                     placeholder="Businees Unit"
-                    controlid="department"
+                    controlId="department"
                     value={form.department}
                     onChange={(e) => {
                         console.log(e.target.value);
                         //empty commit
                         axios
                             .get(
-                                `/designation/getDesignationByDepartment/${e.target.value}`
+                                `/designation/getDesignationsByDepartment/${e.target.value}`
                             )
                             .then((response) => {
                                 console.log(response.data);

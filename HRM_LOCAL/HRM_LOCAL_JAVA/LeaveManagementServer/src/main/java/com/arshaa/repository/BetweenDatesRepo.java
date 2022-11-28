@@ -38,4 +38,12 @@ BetweenDates findByEmployeeleaveId(Integer employeeleaveId);
 	
 	@Query(value="select count(*) from between_dates where employee_id=?1 and leave_orwfh='L'and applied_date between ?2 and ?3 and leave_status='Approved'",nativeQuery=true)
     int findLeavesCountBetWeenTwoDates(@Param("employee_id") String employeeId, @Param("fromDate") Date fromDate, @Param("toDate") Date toDate);
+	
+	List<BetweenDates> findByEmployeeleaveIdAndEmployeeId(int employeeleaveId, String employeeId);
+	
 }
+
+
+
+
+

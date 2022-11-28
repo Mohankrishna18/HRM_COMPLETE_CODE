@@ -81,7 +81,7 @@ function TAAHeadApproval() {
       type: "date",
       dateSetting: { locale: "en-GB" },
     },
-    { title: "Job Title", field: "jobTitle" },
+    // { title: "Job Title", field: "jobTitle" },
     { title: "Experience", field: "yearsOfExperience" },
     // { title: "Status", field: "status" },
   ]);

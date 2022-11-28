@@ -18,7 +18,12 @@ function IRMResignationMain(props) {
   const [update, setUpdate] = useState(false);
   const [reject, setReject] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {setShow(false)
+    setLoading(true)
+  };
+  const closeLoader=()=>{
+    setLoading(false)
+  }
   const approveHandleClose = () => setUpdate(false);
 
   const [loading, setLoading] = React.useState(false);
@@ -46,6 +51,7 @@ function IRMResignationMain(props) {
   const empID = da.data.employeeId;
 
   const loadData = async () => {
+    setLoading(false);
     const res = await axios.get(`/resignation/getAllResignation/${empID}`);
 
     console.log(res.data);
@@ -77,7 +83,8 @@ function IRMResignationMain(props) {
 
   return (
     <div>
-      {loading ? ( <div>
+      {loading ? ( 
+      <div>
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
               <Modal.Title>Are you sure you want to Approve</Modal.Title>
@@ -87,6 +94,7 @@ function IRMResignationMain(props) {
                 leaveID={leaveID}
                 func={pull_data}
                 handleClose={handleClose}
+                closeLoader={closeLoader}
               />
             </Modal.Body>
           </Modal>
@@ -99,13 +107,14 @@ function IRMResignationMain(props) {
                 leaveID={leaveID}
                 func={pull_dataReject}
                 handleClose={handleCloseReject}
+                closeLoader={closeLoader}
               />
             </Modal.Body>
           </Modal>
 
           <Grid>
             <MaterialTable
-              title="Resignation Approval"
+              title="Exit Approvals"
               columns={columns}
               data={data}
               options={{
@@ -165,7 +174,7 @@ function IRMResignationMain(props) {
               }}
             />
           </Grid>
-        </div>
+      </div>
       
       ) : (
         <Backdrop

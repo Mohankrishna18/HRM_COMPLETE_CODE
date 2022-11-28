@@ -55,6 +55,13 @@ useEffect(() => {
         },
         {
 
+            title: "Priority",
+
+            field: "priority",
+
+        },
+        {
+
             title: "Request Initiated",
             field: "requestInitiatedDate",
              type: 'date',

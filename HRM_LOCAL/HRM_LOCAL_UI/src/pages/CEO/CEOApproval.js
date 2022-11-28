@@ -242,8 +242,11 @@ console.log(data);
                     <div>
                         <Stack direction="horizontal" gap={3}>
                             <Button
-                                style ={{backgroundColor: "#f5896e",
-                                borderColor: "#f5896e",}}
+                            variant="outline-success"
+                                style ={{
+                                  // backgroundColor: "#f5896e",
+                                // borderColor: "#f5896e",
+                              }}
                                 onClick={() => {
                                     setShow(true);
                                     console.log(props)

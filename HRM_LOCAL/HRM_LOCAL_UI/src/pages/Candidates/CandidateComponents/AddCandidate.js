@@ -79,6 +79,7 @@ function AddCandidate(props) {
       email,
       phoneNumber,
       yearsOfExperience,
+      level
       // uploadResume,
     } = form;
 
@@ -119,8 +120,8 @@ function AddCandidate(props) {
     if (!primarySkills || primarySkills === "")
       newErrors.primarySkills = "Please Enter Primary Skills";
 
-    if (!secondarySkills || secondarySkills === "")
-      newErrors.secondarySkills = "Please Enter Secondary Skills";
+    // if (!secondarySkills || secondarySkills === "")
+    //   newErrors.secondarySkills = "Please Enter Secondary Skills";
 
     if (!email || email === "") newErrors.email = "Please Enter Mail Id";
 
@@ -136,8 +137,8 @@ function AddCandidate(props) {
     if (!yearsOfExperience || yearsOfExperience === "")
       newErrors.yearsOfExperience = "Please Enter Years Of Experience";
 
-    // if (!uploadResume || uploadResume === "")
-    //   newErrors.uploadResume = "Please upload uploadResume";
+    if (!level || level === "")
+      newErrors.level = "Please select Level";
     return newErrors;
   };
 
@@ -159,6 +160,7 @@ function AddCandidate(props) {
         { projectName: projectName }
       );
       console.log(lastForm);
+      console.log(form);
       axios
         .post("/candidate/addCandidate", form)
         .then((response) => {
@@ -173,11 +175,12 @@ function AddCandidate(props) {
           // toast.success("Project added Successfully");
           console.log(user);
           // console.log(user);
-          setTimeout(5000);
+          setTimeout(1000);
           setForm({});
           handleClose();
         })
         .catch((err) => {
+          console.log(err);
           toast.error("Something went Wrong");
         });
     }
@@ -462,6 +465,28 @@ const projectName = user.projectName;
                 </Form.Control.Feedback>
                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
               </Form.Group>
+              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Level*</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  // placeholder="Candidate Status"
+                  controlid="level"
+                  value={form.level}
+                  onChange={(e) => setField("level", e.target.value)}
+                  isInvalid={!!errors.level}
+                >
+                  <option value="">Select Level </option>
+                  <option value="Level 1">Level 1</option>
+                  <option value="Level 2">Level 2</option>
+                  <option value="Level 3">Level 3</option>
+                  <option value="Level 4">Level 4</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.level}
+                </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
 
               {/* P Skills */}
               <Form.Group as={Col} md="12" style={{ padding: 10 }}>
@@ -493,10 +518,10 @@ const projectName = user.projectName;
                   value={form.secondarySkills}
                   maxLength={30}
                   onChange={(e) => setField("secondarySkills", e.target.value)}
-                  isInvalid={!!errors.secondarySkills}
+                  //isInvalid={!!errors.secondarySkills}
                 ></Form.Control>
                 <Form.Control.Feedback type="invalid">
-                  {errors.secondarySkills}
+                  {/* {errors.secondarySkills} */}
                 </Form.Control.Feedback>
               </Form.Group>
 
