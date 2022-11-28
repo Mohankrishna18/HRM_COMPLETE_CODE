@@ -11,11 +11,7 @@ import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
 import Backdrop from "@mui/material/Backdrop";
 
 import CircularProgress from "@mui/material/CircularProgress";
-// import RRColumns from "./utils/RRColumns.json";
-import AddRequisition from "./AddRequisition";
-// import AddRR from "./StepperForm";
-// import AddRequisitionRequests from "./AddRequisitionRequests";
-// import UpdateRR from "./UpdateRR";
+
 import DeleteRR from "./DeleteRR";
 import ViewRR from "./ViewRR";
 import { useParams, useHistory } from "react-router-dom";
@@ -30,11 +26,10 @@ const RRTable = () => {
   const viewHandleClose = () => setViewShow(false);
   const [viewStatus, setViewStatus] = useState(false);
  
-  const [updateOnboard, setUpdateOnboard] = useState({});
+
   const [viewOnboard, setViewOnboard] = useState({});
   const [data, setData] = useState([]);
-  const [addStatus, setAddStatus] = useState(false);
-  const [updateStatus, setUpdateStatus] = useState(false);
+ 
   const [deleteOnboard, setDeleteOnboard] = useState({});
   const [deleteStatus, setDeleteStatus] = useState(true);
 
@@ -42,14 +37,6 @@ const RRTable = () => {
   const [loading, setLoading] = React.useState(false);
   const closeLoading = () => setLoading(!loading);
 
-  // const pull_dataAdd = () => {
-  //   setAddStatus(!addStatus);
-  // };
-
-  // // const pull_dataUpdate = () => {
-  // //   setUpdateStatus(!updateStatus);
-
-  // // };
 
   const pull_dataView = () => {
     setViewStatus(!viewStatus);
@@ -175,13 +162,10 @@ const RRTable = () => {
             <Button variant="secondary" onClick={viewHandleClose}>
               Cancel
             </Button>
-            {/* <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button> */}
+
           </Modal.Footer>
         </Modal>
 
-        {/* delete modal */}
         <Modal
           show={deleteLeads}
           onHide={deleteHandleClose}
@@ -236,16 +220,15 @@ const RRTable = () => {
                   borderColor: "#ff9b44",
                   float: "right",
                   borderRadius: "25px",
-                  // paddingBottom: "11.5px",
-                  // marginTop: "100px",
+
                 }}
               >
                 {" "}
                 <MdOutlinePersonAddAlt />
-                {/* <BsPlusLg />  */}
+
                 &nbsp; Raise Requisition
               </Button>
-              {/* <AddRR func={pull_dataAdd} /> */}
+
             </Col>
           </Row>
         </Card.Body>
@@ -264,7 +247,6 @@ const RRTable = () => {
                 pageSizeOptions: [8, 10, 15, 20, 30, 50, 75, 100],
                 maxBodyHeight: 450,
                 headerStyle: {
-                  // backgroundColor: "#FFC47A",
 
                   background: "#f5896e",
 
@@ -281,7 +263,7 @@ const RRTable = () => {
                 },
                 addRowPosition: "first",
                 actionsColumnIndex: -1,
-                // grouping: true,
+ 
                 exportButton: true,
               }}
               actions={[
@@ -300,11 +282,6 @@ const RRTable = () => {
                         variant="info"
                         onClick={(event) => {
 
-                          // setUpdateOnboard(props.data);
-                          // localStorage.setItem(
-                          //   "requisition",
-                          //   JSON.stringify(props)
-                          // );
                           history.push(
                             `/app/updateRequisition/${props.data.requisitionId}`
                           );
@@ -329,6 +306,7 @@ const RRTable = () => {
                           setViewShow(true);
 
                           setViewOnboard(props.data);
+
                         }}
                         style={{
                           backgroundColor: "#0000FF",
