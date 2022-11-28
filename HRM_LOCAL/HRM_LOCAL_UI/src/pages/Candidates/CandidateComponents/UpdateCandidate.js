@@ -343,7 +343,7 @@ const UpdateCandidate = (props) => {
                   // placeholder="Candidate Status"
                   controlid="level"
                   defaultValue={level}
-                  value={level}
+                  // value={level}
                   onChange={(e) => setLevel(e.target.value)}
                   isInvalid={!!errors.level}
                 >
