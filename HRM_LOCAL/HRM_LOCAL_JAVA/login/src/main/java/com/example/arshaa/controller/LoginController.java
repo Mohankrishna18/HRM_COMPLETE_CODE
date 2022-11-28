@@ -113,7 +113,11 @@ public class LoginController
 	public EmployeeLogin findByEmail(@PathVariable String email) {
 		return service.findByEmail(email);
 	}
-		
+	@GetMapping("/getEmployeeEmailByEmployeeId/{employeeId}")
+	public String getEmailByEmployeeId(@PathVariable String employeeId) {
+		return userRepo.findByEmployeeId(employeeId).getEmail();
+	}	
+	
 		
 //changes by MURALI MIRIYALA
     

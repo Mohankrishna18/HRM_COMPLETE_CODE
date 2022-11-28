@@ -2,6 +2,7 @@ package com.example.arshaa.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,12 @@ public class UserService {
 	private EmailRepository repo;
 
 	public ResponseEntity updatePasswordByUsername(ResetPassword reset) {
+		Response response=new Response();
 		try {
 			System.out.println(reset.getOldPassword());
 			EmployeeLogin returnedUser = repository.findByPassword(reset.getOldPassword());
 
-			if (!returnedUser.equals(null)) {
+			if (!Objects.isNull(returnedUser)) {
 
 //				if (returnedUser.getPassword().equals(reset.getOldPassword())) {
 //					// Date cpDate = new Date(reset.getChangePasswordDate().getTime());
@@ -49,13 +51,19 @@ public class UserService {
 				returnedUser.setPassword(reset.getConfirmNewPassword());
 				System.out.println(reset.getConfirmNewPassword());
 				repository.save(returnedUser);
-
-				return new ResponseEntity(reset.getConfirmNewPassword(), HttpStatus.OK);
+				response.setStatus(true);
+				response.setMessage("Password reset successfull");
+				response.setData(returnedUser);
+				return new ResponseEntity(response, HttpStatus.OK);
 			} else {
-				return new ResponseEntity("Enter valid UserName", HttpStatus.OK);
+				response.setStatus(false);
+				response.setMessage("Enter Valid Old Password");
+				return new ResponseEntity(response, HttpStatus.OK);
 			}
 		} catch (Exception e) {
-			return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+			response.setStatus(true);
+			response.setMessage("Something went wrong");
+			return new ResponseEntity(response, HttpStatus.OK);
 		}
 	}
 
