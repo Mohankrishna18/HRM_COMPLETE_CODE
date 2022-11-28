@@ -696,6 +696,7 @@ function AddUserstory(props) {
     const {
       storyTitle,
       projectId,
+      projectName,
       acceptanceCriteria,
       role,
       goal,
@@ -746,11 +747,11 @@ function AddUserstory(props) {
     // else if (!role.match(/^[aA-zZ\s]+$/)) {
     //   newErrors.role = "Please Enter valid role";
     // }
-    if (!goal || goal === "")
-      newErrors.acceptanceCriteria = "Please Enter goal";
-    else if (!goal.match(/^[aA-zZ\s]+$/)) {
-      newErrors.goal = "Please Enter valid goal";
-    }
+    // if (!goal || goal === "")
+    //   newErrors.acceptanceCriteria = "Please Enter goal";
+    // else if (!goal.match(/^[aA-zZ\s]+$/)) {
+    //   newErrors.goal = "Please Enter valid goal";
+    // }
     // if (!reason || reason === "") newErrors.reason = "Please Enter reason";
     // else if (!reason.match(/^[aA-zZ\s]+$/)) {
     //   newErrors.reason = "Please Enter valid reason";
@@ -871,7 +872,7 @@ function AddUserstory(props) {
             onSubmit={handleSubmit}
           >
             <Row className="mb-4">
-              <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+            <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Project *</Form.Label>
                 <Form.Select
                   required
@@ -884,17 +885,17 @@ function AddUserstory(props) {
                   onChange={(e) => setField("projectId", e.target.value)}
                   isInvalid={!!errors.projectId}
                 >
-                   <option>Select project</option>
+                  <option>Select project</option>
                   {projects === null ?(<> <option>Select project</option></>):(<> {projects.map((project) => (
-                    <option value={project.projectName}>
+                    <option value={project.projectId}>
                       {project.projectName}
                     </option>
                   ))}</>)}
+                </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.projectId}
-              
                 </Form.Control.Feedback>
-                </Form.Select>
+           
               </Form.Group>
               <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                 <Form.Label>Story Title *</Form.Label>

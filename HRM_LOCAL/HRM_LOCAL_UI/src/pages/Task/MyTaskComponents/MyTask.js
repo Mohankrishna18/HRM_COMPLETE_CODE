@@ -208,7 +208,7 @@ function MyTask() {
             updateOnboard={updateOnboard}
             func={pull_dataUpdate}
             handleClose={handleClose}
-            assignTo={employeeId} />
+            assig={employeeId}  />
         </Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
