@@ -22,6 +22,7 @@ const UpdateCandidate = (props) => {
   const [phoneNumber, setPhoneNumber] = useState(props.updateOnboard.phoneNumber);
   const [yearsOfExperience, setYearsOfExperience] = useState(props.updateOnboard.yearsOfExperience);
   const [uploadResume, setUploadResume] = useState();
+  const [level,setLevel] = useState(props.updateOnboard.level);
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -35,7 +36,7 @@ const UpdateCandidate = (props) => {
   const [phnError, setPhnError]=useState("");
   const [expyrError, setExpyrError]=useState("");
   const [show, setShow] =useState(false);
-  const [level,setLevel] = useState("");
+  
 
   const handleClose = () => setShow();
   // useState for phone number
@@ -226,7 +227,7 @@ const UpdateCandidate = (props) => {
               defaultValue={jobTitle}
               // onChange={(e) => setJobTitle(e.target.value)}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){  
                   setJobError("Invalid JobTitle");
                 }
                 else if(e.target.value.length>50){
@@ -278,7 +279,7 @@ const UpdateCandidate = (props) => {
               // onChange={(e) => setCandidateName(e.target.value)}
               // isInvalid={!!errors.candidateName}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)){
                   setCandidateNameError ("Invalid Candidate Name");
                 }
                 else if(e.target.value.length>50){
@@ -343,7 +344,7 @@ const UpdateCandidate = (props) => {
                   controlid="level"
                   defaultValue={level}
                   value={level}
-                  onChange={(e) => setField("level", e.target.value)}
+                  onChange={(e) => setLevel(e.target.value)}
                   isInvalid={!!errors.level}
                 >
                   <option value="">Select Level </option>
@@ -370,14 +371,14 @@ const UpdateCandidate = (props) => {
               // onChange={(e) => setCurrentLocation(e.target.value)}
               // isInvalid={!!errors.currentLocation}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){
                   setLocationError  ("Invalid Location");
                 }
                 else if(e.target.value.length>50){
                   setLocationError("Too Long")
                 }
                 else{
-                  setLocationError(e.target.value);
+                  setCurrentLocation(e.target.value);
                   setLocationError("");
                 }
               }}
@@ -404,7 +405,7 @@ const UpdateCandidate = (props) => {
               // onChange={(e) => setPrimarySkills(e.target.value)}
               // isInvalid={!!errors.primarySkills}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){
                   setSkillError ("Invalid");
                 }
                 else if(e.target.value.length>50){
@@ -437,14 +438,14 @@ const UpdateCandidate = (props) => {
               // onChange={(e) => setSecondarySkills(e.target.value)}
               // isInvalid={!!errors.secondarySkills}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){
                   setSecSkillError  ("Invalid");
                 }
                 else if(e.target.value.length>50){
                   setSecSkillError("Too Long")
                 }
                 else{
-                  setSecSkillError(e.target.value);
+                  setSecondarySkills(e.target.value);
                   setSecSkillError("");
                 }
               }}
@@ -527,10 +528,11 @@ const UpdateCandidate = (props) => {
               placeholder="Years Of Experience"
               controlid="yearsOfExperience"
               defaultValue={yearsOfExperience}
+              maxLength={3}
               // onChange={(e) => setYearsOfExperience(e.target.value)}
               // isInvalid={!!errors.yearsOfExperience}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[0-9-,]+(\s[0-9-, ])*$/)){
                   setExpyrError ("Invalid");
                 }
                 else if(e.target.value.length>50){

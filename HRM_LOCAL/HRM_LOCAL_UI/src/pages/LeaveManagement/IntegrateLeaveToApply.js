@@ -510,11 +510,7 @@ function IntegrateLeaveToApply() {
 
 
 
-                    <Col  style={{
-                                   
-                                    paddingBottom: "11.5px",
-                                   
-                                }}>
+                    <Col>
                         <div class="p-3">
                             <Button
                                 variant="warning"

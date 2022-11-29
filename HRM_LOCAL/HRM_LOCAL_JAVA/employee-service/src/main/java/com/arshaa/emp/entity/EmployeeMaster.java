@@ -26,7 +26,7 @@ public class EmployeeMaster {
 	@GenericGenerator(name = "employeeId", strategy = "com.arshaa.emp.entity.IdGenerator", parameters = {
 			@Parameter(name = StringSequenceGenerator.INCREMENT_PARAM, value = "1"),
 			@Parameter(name = StringSequenceGenerator.VALUE_PREFIX_PARAMETER, value = "ATPL"),
-			@Parameter(name = StringSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%05d") })
+			@Parameter(name = StringSequenceGenerator.NUMBER_FORMAT_PARAMETER, value = "%03d") })
 
 	private String employeeId;
 

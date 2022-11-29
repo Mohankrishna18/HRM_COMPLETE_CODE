@@ -3,7 +3,6 @@ import { InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import Backdrop from "@mui/material/Backdrop";
-
 import CircularProgress from "@mui/material/CircularProgress";
 import { Row, Col, Card } from "react-bootstrap";
 import axios from "../../../Uri";
@@ -11,7 +10,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams, useHistory } from "react-router-dom";
 import Moment from "moment";
-import { UserContext } from './UpdateRequisition';
 import './utils/RT.css';
 
 const UpdateRR = (props) => {
@@ -23,7 +21,7 @@ const UpdateRR = (props) => {
   const [reqType2, setReqType2] = useState();
   const [reqType3, setReqType3] = useState();
   const [description, setDescription] = useState();
-  const [rrStatus, setRrStatus] = useState();
+
   const [technology, setTechnology] = useState();
   const [priority, setPriority] = useState();
   const [positions, setPositions] = useState();
@@ -49,18 +47,18 @@ const UpdateRR = (props) => {
   const [uploadDoc, setUploadDoc] = useState();
   const [projectName, setProjectName] = useState();
   const [initDate, setInitDate] = useState();
-  const [resourceRequiredDate, setResourceRequiredDate] = useState();
-  const [interviewPanel1, setInterviewPanel1] = useState([]);
-  const [interviewPanel2, setInterviewPanel2] = useState([]);
+  const [reqDate, setReqDate] = useState();
+ 
   const [hrPanel, setHrPanel] = useState([]);
   const [newInterviewPanel1, setNewInterviewPanel1] = useState();
   const [newInterviewPanel2, setNewInterviewPanel2] = useState();
   const [newHrPanel, setNewHrPanel] = useState();
+  const [date, setDate] = useState();
+  const [requiredDate, setRequiredDate] = useState();
 
   const [loading, setLoading] = React.useState(false);
   const closeLoading = () => setLoading(!loading);
 
-  const [clientName, setClientName] = useState();
   const [comments, setComments] = useState();
 
   const [form, setForm] = useState({});
@@ -70,12 +68,10 @@ const UpdateRR = (props) => {
 
 
   // useState for phone number
-  const [firsterrors, setFirstErrors] = useState("");
+
   const [seconderrors, setSecondErrors] = useState("");
   const [thirderrors, setThirdErrors] = useState("");
 
-  //   const handleClose = () => setShow();
-  //   const handleShow = () => setShow(true);
   const params = useParams();
   const history = useHistory();
   // const forms = useRef(null);
@@ -91,72 +87,10 @@ const UpdateRR = (props) => {
         [field]: null,
       });
   }
-  // const [paymentMethod, setPaymentMethod] = useState(props.data.data);
-
-  // const radioChangeHandler = (e) => {
-  //   setPaymentMethod(e.target.value);
-  // };
-
-  // var initDate = Moment()
-  // .utcOffset('+05:30')
-  // .format('YYYY-MM-DD hh:mm:ss');
-
-  // const loadPocNames = async () => {
-  //   const res = await axios.get("/emp/getAllEmployeeMasterData");
-  //   setPocname(res.data.data);
-
-  // };
-
-  // const loadClients = async () => {
-  //   const res = await axios.get("/clientProjectMapping/getAllClients");
-  //   setClients(res.data.data);
-
-  // };
-
-  // const loadDepartmentsData = async () => {
-  //   const res = await axios.get("/dept/getAllDepartments");
-
-  //   setDepartments(res.data);
-
-  // };
-
-  // const loadHRDeptEmployees = async () => {
-  //   const res = await axios.get("/emp/getEmployeesByDepartment/HR");
-  //  sData1 = res.data.data.filter(item => item.status === 'Active')
-  //   setHrPanel(sData1);
-  //   // console.log(sData1);
-  //   console.log(sData1);
-
-  // }
-  // const loadHRDeptEmployees = () => {
-  //   axios.get("/emp/getEmployeesByDepartment/HR").then((res) => {
-
-  //     const dat = res.data.data.filter(item => item.status == "Active")
-  //     setHrPanel(dat)
-  //   }).catch((err) => {
-  //     console.log(err)
-  //   })
-  // }
-
-  // const loadProjects = async () => {
-  //   const res = await axios.get("/clientProjectMapping/getAllProjects");
-  //   setProjects(res.data.data);
-
-  // };
-  // useEffect(() => {
-  //   loadDepartmentsData();
-  //   loadProjects();
-  //   loadClients();
-  //   loadPocNames();
-  //   loadHRDeptEmployees();
-  // }, []);
 
   const calls = () => {
     setLoading(true)
-    // axios.get(`/emp/getEmployeeDataByEmployeeId/${employeeId}`).then((res) => {
-    // console.log(res)
-    // setResponse(res.data.data);
-    // if (res.data.status) {
+
     axios.get("/clientProjectMapping/getAllProjects").then((resp) => {
       // console.log(resp)
       setProjects(resp.data.data)
@@ -170,7 +104,7 @@ const UpdateRR = (props) => {
               setClients(respon.data.data);
               if (respon.data.status) {
                 axios.get("/emp/getAllEmployeeMasterData").then((respons) => {
-                  console.log(respons)
+                  // console.log(respons)
                   setPocName(respons.data.data);
                   if (respons.data.status) {
                     axios.get("/emp/getEmployeesByDepartment/HR").then((response) => {
@@ -198,52 +132,30 @@ const UpdateRR = (props) => {
         }).catch((err) => {
           console.log("Error3")
         })
-
-
-
       }
 
     }).catch((err) => {
       console.log("Error2")
     })
 
-    // }
-
-    // }
-    // ).catch((err) => {
-    //     console.log("Error1")
-    // })
   }
   useEffect(() => {
     calls();
-
-    // loadProjects();
-    // loadDepartmentsData();
-    // loadClients();
-
-    // loadHRDeptEmployees();
-    // const loadClients = async () => {
-    //     const res = await axios.get("/clientProjectMapping/getAllClients");
-    //     setClients(res.data.data);
-
-    //     console.log(res);
-    //     if (res.data.status) {
-    //         getRequestedBy();
-    //     } else {
-    //         console.log("getRequestedBy failed");
-    //     }
-    // };
   }, []);
   const loadData1 = async () => {
     const response = await axios.get(
       `/recruitmentTracker/getDataById/${params.id}`
     );
-    console.log(response.data.data.raisedOn);
     setRaisedOn(response.data.data.raisedOn);
-
+    setDate(Moment(response.data.data.requestInitiatedDate).format('YYYY-MM-DD'));
+    
+    setRequiredDate(Moment(response.data.data.resourceRequiredDate).format('YYYY-MM-DD'));
+   
+    setReqDate(response.data.data.resourceRequiredDate);
     setRequisitionId(response.data.data.requisitionId);
     setJobTitle(response.data.data.jobTitle);
     setReqType1(response.data.data.reqType1);
+    setInitDate(response.data.data.requestInitiatedDate);
 
     setReqType2(response.data.data.reqType2);
     setReqType3(response.data.data.reqType3);
@@ -258,24 +170,14 @@ const UpdateRR = (props) => {
     setWorkingHours(response.data.data.workingHours);
     setEmpType(response.data.data.empType);
     setRole(response.data.data.role);
-    // setDepartments(response.data.departments);
     setNewDepartmentName(response.data.data.departmentName);
-    // setClients(response.data.clients);
-    // setProjects(response.data.projects);
     setNewProject(response.data.data.projectName);
     setNewClient(response.data.data.clientName);
-    console.log(response.data.data.pocname);
-    // setPocName(response.data.data.pocname);
-   
     setNewPOCName(response.data.data.pocname);
     setYoe(response.data.data.yoe);
     setRate(response.data.data.rate);
     setUploadDoc(response.data.data.uploadDoc);
     setComments(response.data.data.comments);
-    setInitDate(response.data.data.requestInitiatedDate);
-
-    setResourceRequiredDate(response.data.data.resourceRequiredDate);
-    // console(response.data.data.resourceRequiredDate);
     setNewInterviewPanel1(response.data.data.interviewPanel1);
     setNewInterviewPanel2(response.data.data.interviewPanel2);
     setNewHrPanel(response.data.data.hrPanel);
@@ -288,6 +190,7 @@ const UpdateRR = (props) => {
   const routeToRRPage = () => history.push("/app/rrf")
   const handleSubmit = (e) => {
     e.preventDefault();
+ 
     axios
       .put(
         `/recruitmentTracker/updateRR/${params.id}`,
@@ -320,26 +223,25 @@ const UpdateRR = (props) => {
           reqType1: reqType1,
           reqType2: reqType2,
           reqType3: reqType3,
+          requestInitiatedDate: initDate,
+          allocType: allocType,
+          resourceRequiredDate: reqDate
         }
       )
       .then((response) => {
-
         if (response.data.status) {
-
-
           toast.success("Requisition Updated successfully", { autoClose: 500 });
           routeToRRPage();
         } else {
           console.log("Props not Send");
         }
-
-
       })
       .catch((err) => {
-
         toast.error("Something Went Wrong");
       });
-    // props.handleClose();
+
+  
+
   };
   return (
     <div className="example" style={{ paddingLeft: "12px" }}>
@@ -349,8 +251,7 @@ const UpdateRR = (props) => {
           <Form
             // ref={forms}
             className="formone"
-            // noValidate
-            // validated={validated}
+
             style={{ padding: 10 }}
 
 
@@ -364,7 +265,7 @@ const UpdateRR = (props) => {
                   type="text"
                   controlid="requisitionId"
                   value={requisitionId}
-                  disabled
+                  // disabled
                   onChange={(e) => setRequisitionId(e.target.value)}
                   isInvalid={!!errors.requisitionId}
                 ></Form.Control>
@@ -938,8 +839,8 @@ const UpdateRR = (props) => {
                   required
                   type="date"
                   controlid="initDate"
-                  value={Moment(initDate).format("YYYY-MM-DD")}
-                  onChange={(e) => setInitDate(e.target.value)}
+                  defaultValue={date}
+                  onChange={(e) => setInitDate((Moment(e.target.value).format("YYYY-MM-DD")))}
                   isInvalid={!!errors.initDate}
                 >
 
@@ -953,15 +854,15 @@ const UpdateRR = (props) => {
                 <Form.Control
                   required
                   type="date"
-                  controlid="resourceRequiredDate"
-                  value={Moment(resourceRequiredDate).format("YYYY-MM-DD")}
-                  onChange={(e) => setResourceRequiredDate(e.target.value)}
-                  isInvalid={!!errors.resourceRequiredDate}
+                  controlid="reqDate"
+                  defaultValue={requiredDate}
+                  onChange={(e) => setReqDate((Moment(e.target.value).format("YYYY-MM-DD")))}
+                  isInvalid={!!errors.reqDate}
                 >
 
                 </Form.Control>
                 <Form.Control.Feedback type="invalid">
-                  {errors.resourceRequiredDate}
+                  {errors.reqDate}
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="4" style={{ padding: 10 }}>
@@ -983,40 +884,40 @@ const UpdateRR = (props) => {
               </Form.Group>
             </Row>
             <Row>
-            <Form.Group controlid="submit">
-                                        <br />
-                                        <Button
-                                            type="submit"
-                                            onClick={handleSubmit}
+              <Form.Group controlid="submit">
+                <br />
+                <Button
+                  type="submit"
+                  onClick={handleSubmit}
 
-                                            className="'my-2"
-                                            id="submitButton"
-                                            style={{
-                                                backgroundColor: "#f5896e",
-                                                borderColor: "#ff9b44", width: "10rem", borderRadius: "25px"
-                                            }}
-                                            variant="success"
+                  className="'my-2"
+                  id="submitButton"
+                  style={{
+                    backgroundColor: "#f5896e",
+                    borderColor: "#ff9b44", width: "10rem", borderRadius: "25px"
+                  }}
+                  variant="success"
 
 
-                                        >
-                                            Submit
-                                        </Button>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <Button
-                                            type="submit"
+                >
+                  Submit
+                </Button>
+                &nbsp;&nbsp;&nbsp;
+                <Button
+                  type="submit"
 
-                                            className="'my-2"
-                                            id="cancelButton"
-                                            style={{
-                                                backgroundColor: "#B6B6B4",
-                                                borderColor: "#B6B6B4", width: "10rem", borderRadius: "25px"
-                                            }}
-                                            variant="success"
-                                            onClick={() => history.push("/app/rrf")}
-                                        >
-                                            Back
-                                        </Button>
-                                    </Form.Group>
+                  className="'my-2"
+                  id="cancelButton"
+                  style={{
+                    backgroundColor: "#B6B6B4",
+                    borderColor: "#B6B6B4", width: "10rem", borderRadius: "25px"
+                  }}
+                  variant="success"
+                  onClick={() => history.push("/app/rrf")}
+                >
+                  Back
+                </Button>
+              </Form.Group>
             </Row>
           </Form>
         </>) :

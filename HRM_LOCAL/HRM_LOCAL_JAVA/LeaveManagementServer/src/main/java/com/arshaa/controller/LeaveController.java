@@ -387,8 +387,7 @@ public class LeaveController {
     public ResponseEntity<Integer> findLeavesCountBetWeenTwoDates(@PathVariable String employeeId,
             @PathVariable String startDate, @PathVariable String endDate) throws ParseException, Exception {
         return ResponseEntity
-                .ok(br.findLeavesCountBetWeenTwoDates(employeeId, new SimpleDateFormat("yyyy-MM-dd").parse(startDate),
-                        new SimpleDateFormat("yyyy-MM-dd").parse(endDate)));
+                .ok(br.findLeavesCountBetWeenTwoDates(employeeId,startDate,endDate));
     }
 	
 }

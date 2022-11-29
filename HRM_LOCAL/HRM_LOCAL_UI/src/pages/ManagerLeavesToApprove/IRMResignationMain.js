@@ -114,7 +114,7 @@ function IRMResignationMain(props) {
 
           <Grid>
             <MaterialTable
-              title="Resignation Approval"
+              title="Exit Approvals"
               columns={columns}
               data={data}
               options={{
