@@ -151,7 +151,7 @@ const ApprovalView = (props) => {
             </Col>
             <Col md={{ offset: 1 }}>
               <Card.Text style={{ paddingBottom: 0, fontSize: "14px" }}>
-                {moment(props.viewOnboard.endDate ).format("YYYY-MM-DD")}
+                {moment(props.viewOnboard.endDate).format("YYYY-MM-DD")}
               </Card.Text>
             </Col>
           </Row>
@@ -235,6 +235,9 @@ const ApprovalView = (props) => {
               </Card.Text>
             </Col>
           </Row>
+
+        </Col>
+        <Col md="6">
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
@@ -247,9 +250,7 @@ const ApprovalView = (props) => {
               </Card.Text>
             </Col>
           </Row>
-        </Col>
-        <Col md="6"> 
-        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "13px" }}>
                 SourcePhoneNumber   :
@@ -260,8 +261,8 @@ const ApprovalView = (props) => {
                 {props.viewOnboard.sourcePhoneNumber}
               </Card.Text>
             </Col>
-          </Row>  
-        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+          </Row>
+          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
                 POC Name   :
@@ -273,32 +274,7 @@ const ApprovalView = (props) => {
               </Card.Text>
             </Col>
           </Row>
-  
-          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-            <Col>
-              <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
-                POC Email   :
-              </Card.Subtitle>{" "}
-            </Col>
-            <Col md={{ offset: 1 }}>
-              <Card.Text style={{ paddingBottom: 0, fontSize: "14px" }}>
-                {props.viewOnboard.pocEmail}
-              </Card.Text>
-            </Col>
-          </Row>
 
-          <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-            <Col>
-              <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
-                POC PhoneNumber   :
-              </Card.Subtitle>{" "}
-            </Col>
-            <Col md={{ offset: 1 }}>
-              <Card.Text style={{ paddingBottom: 0, fontSize: "14px" }}>
-                {props.viewOnboard.pocPhoneNumber}
-              </Card.Text>
-            </Col>
-          </Row>
           {/* status */}
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>

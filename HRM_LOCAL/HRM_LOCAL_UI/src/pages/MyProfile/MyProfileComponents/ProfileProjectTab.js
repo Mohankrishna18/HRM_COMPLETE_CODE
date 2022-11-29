@@ -86,7 +86,7 @@ const ProfileProjectTab = (props) => {
       <Card.Body>
         <Row>
           <Col md={12}>
-            <table class="table">
+            <table className="table">
               <thead>
                 <tr>
                 <th scope="col">Project ID</th>
@@ -97,7 +97,7 @@ const ProfileProjectTab = (props) => {
                   <th scope="col">Status</th>
                   <th scope="col" >Start Date</th>
                   <th scope="col">End Date</th>
-                  <th scope="col">Allocation</th>
+                  <th scope="col">Allocation (%)</th>
                 </tr>
               </thead>
 

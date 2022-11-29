@@ -143,6 +143,7 @@ function HRAssign(props) {
   useEffect(() => {
     axios.get("/dept/getAllDepartments").then((response) => {
       setDepartments(response.data);
+      console.log(response.data);
     });
     console.log(departments)
     // .catch(() => {
@@ -165,7 +166,7 @@ function HRAssign(props) {
                 rows={2}
                 className="ceoApprovalComment"
                 type="text"
-                controlId="ceoApprovalComment"
+                controlid="ceoApprovalComment"
                 placeholder="Approve Reason"
                 value={form.ceoApprovalComment}
                 onChange={(e) => setField("ceoApprovalComment", e.target.value)}
@@ -289,7 +290,7 @@ function HRAssign(props) {
 
       {checked.offerLetter === true  &&  checked.salarySlip === true && checked.educationalDocuments === true && checked.hikeLetter === true && checked.form16 === true && checked.idProof === true && checked.resignation === true? (
         <div>
-          <Form>
+           <Form>
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                 <Form.Label>Business Unit *</Form.Label>
                 <Form.Select
@@ -303,7 +304,7 @@ function HRAssign(props) {
                         //empty commit
                         axios
                             .get(
-                                `/designation/getDesignationByDepartment/${e.target.value}`
+                                `/designation/getDesignationsByDepartment/${e.target.value}`
                             )
                             .then((response) => {
                                 console.log(response.data);
@@ -331,7 +332,7 @@ function HRAssign(props) {
                     required
                     type="text"
                     placeholder="Designation"
-                    controlId="designation"
+                    controlid="designation"
                     value={form.designation}
                     onChange={(e) => setField("designation", e.target.value)}
                     isInvalid={!!errors.designation}
@@ -354,7 +355,7 @@ function HRAssign(props) {
                     type="text"
                     as="textarea"
                     placeholder="Comment"
-                    controlId="hrcomment"
+                    controlid="hrcomment"
                     value={form.hrcomment}
                     onChange={(e) => setField("hrcomment", e.target.value)}
                     isInvalid={!!errors.hrcomment}
@@ -384,7 +385,7 @@ function HRAssign(props) {
                     required
                     type="text"
                     placeholder="Businees Unit"
-                    controlId="department"
+                    controlid="department"
                     value={form.department}
                     onChange={(e) => {
                         console.log(e.target.value);
@@ -419,7 +420,7 @@ function HRAssign(props) {
                     required
                     type="text"
                     placeholder="Designation"
-                    controlId="designation"
+                    controlid="designation"
                     value={form.designation}
                     onChange={(e) => setField("designation", e.target.value)}
                     isInvalid={!!errors.designation}
@@ -443,7 +444,7 @@ function HRAssign(props) {
                     type="text"
                     as="textarea"
                     placeholder="Comment"
-                    controlId="hrcomment"
+                    controlid="hrcomment"
                     value={form.hrcomment}
                     onChange={(e) => setField("hrcomment", e.target.value)}
                     isInvalid={!!errors.hrcomment}

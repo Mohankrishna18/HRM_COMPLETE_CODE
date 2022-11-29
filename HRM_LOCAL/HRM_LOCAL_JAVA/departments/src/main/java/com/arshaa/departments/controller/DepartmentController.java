@@ -95,5 +95,13 @@ public class DepartmentController {
     public ResponseEntity getDeptHeadbyMatchingEmpName(@PathVariable String businessUnitHeadName) {
         return serv.getBuheadNameByEmployeeName(businessUnitHeadName);
     }
+    
+    //changes for dept in HR
+    @GetMapping("/getDepartmentsNameById/{departmentName}")
+	public String getDepartmentNameById(@PathVariable String departmentName)
+	{
+		Departmentmaster dm = repo.findByDepartmentName(departmentName);
+		return dm.getDepartmentName();
+	}
    
 }

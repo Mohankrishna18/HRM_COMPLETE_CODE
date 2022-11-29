@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
 import com.recruitmenttracker.modal.EmployeeReq;
+import com.recruitmenttracker.modal.JobsPerDepartment;
+import com.recruitmenttracker.modal.RRFClosed;
 import com.recruitmenttracker.repository.RequisitionRequestRepository;
 import com.recruitmenttracker.service.RequisitionRequestInterface;
 
@@ -43,7 +45,14 @@ public class RequisitionTrackerController {
     public ResponseEntity getRequisitions() {
         return serv.getAllRequisitions();
     }
-   
+    
+//  total/overall positions count
+    @GetMapping("/sumOfPosition")
+    public ResponseEntity<Long> sumOfPositions() {
+        Long i = reqRepo.getCountOfPositions();
+        return new ResponseEntity<Long>(i, HttpStatus.OK);
+    }
+    
 //  @GetMapping("/getAllRequisitionRequests")
 //  public ResponseEntity getRequisitions(@PathVariable String departmentName) {
 //      return serv.getAllRequisitions(departmentName);
@@ -59,32 +68,32 @@ public class RequisitionTrackerController {
         return serv.getRequisitionsByRrfStatus();
     }
 
-    @GetMapping("/getDataById/{requisitionId}")
-    public ResponseEntity getRequisitionsByRequisitionId(@PathVariable String requisitionId) {
-        return serv.getRequisitionsByRequisitionId(requisitionId);
-    }
-   
-    //--------------------dfgh----------------
-    @GetMapping("/requiredDataById/{requisitionId}")
-    public ResponseEntity getRequisitionsData(@PathVariable String requisitionId) {
-        return serv.getRequisitionsData(requisitionId);
-    }
-   
-   
-    @DeleteMapping("/deleteRR/{rrfId}")
-    public ResponseEntity DeleteRRequest(@PathVariable long rrfId) {
-        return serv.deleteRRequest(rrfId);
-    }
-   
+	@GetMapping("/getDataById/{requisitionId}")
+	public ResponseEntity getRequisitionsByRequisitionId(@PathVariable String requisitionId) {
+		return serv.getRequisitionsByRequisitionId(requisitionId);
+	}
+	
+	//--------------------dfgh----------------
+	@GetMapping("/requiredDataById/{requisitionId}")
+	public ResponseEntity getRequisitionsData(@PathVariable String requisitionId) {
+		return serv.getRequisitionsData(requisitionId);
+	}
+	
+	
+	@DeleteMapping("/deleteRR/{rrfId}")
+	public ResponseEntity DeleteRRequest(@PathVariable long rrfId) {
+		return serv.deleteRRequest(rrfId);
+	}
+	
     @PutMapping("/updateRR/{requisitionId}")
     public ResponseEntity updateRRs(@PathVariable String requisitionId, @RequestBody RequisitionRequestEntity RRUpdate) {
         return serv.updateRR(requisitionId, RRUpdate);
     }
-   
-    @GetMapping("/updateWorkflowStatus/{rrfId}")
-    public ResponseEntity updateWorkFlowStatus(@PathVariable long rrfId) {
-        return serv.updateWorkflowStatusByJobID(rrfId);
-    }
+	
+	@GetMapping("/updateWorkflowStatus/{rrfId}")
+	public ResponseEntity updateWorkFlowStatus(@PathVariable long rrfId) {
+		return serv.updateWorkflowStatusByJobID(rrfId);
+	}
 
     // GSDR Changes
 
@@ -121,36 +130,45 @@ public class RequisitionTrackerController {
 //    public RequisitionRequestEntity getAProjectsByRrfId(@PathVariable("rrfId") long rrfId) {
 //        return reqRepo.findByRrfId(rrfId);
 
-   
+    
 //    List<Onboarding> on = onrepo.findAll();
-//                List<Onboarding> onboard = new ArrayList<>();
-//                on.forEach(f -> {
-//                        Onboarding o = new  Onboarding(); 
-//                   o.setAadharNumber(f.getAadharNumber());
-//                    o.setAccountNumber(f.getAccountNumber()); 
-//                   o.setOnboardingId(f.getOnboardingId()); 
-//                   o.setFullName(f.getFullName()); 
-//                   o.setEmail(f.getEmail());   
-//                 o.setDateDifference(onrepo.getDateDiff(f.getOnboardingId()));
-//                    onboard.add(o);  
-//              });   
-//             return  onboard ;
-   
-   
+//                List<Onboarding> onboard = new ArrayList<>();
+//                on.forEach(f -> {
+//                        Onboarding o = new  Onboarding(); 
+//                   o.setAadharNumber(f.getAadharNumber());
+//                    o.setAccountNumber(f.getAccountNumber()); 
+//                   o.setOnboardingId(f.getOnboardingId()); 
+//                   o.setFullName(f.getFullName()); 
+//                   o.setEmail(f.getEmail());   
+//                 o.setDateDifference(onrepo.getDateDiff(f.getOnboardingId()));
+//                    onboard.add(o);  
+//              });   
+//             return  onboard ;
+    
+    
     @GetMapping("/{requisitionId}")
     public Integer gets(@PathVariable String requisitionId) {
         Integer i = reqRepo.getDateDiff(requisitionId);
         return i ;
     }
-   
-   
+    
+    
     @GetMapping("/")
     public List<RequisitionRequestEntity> getDataWithAgingDays() {
        List<RequisitionRequestEntity> re = reqRepo.findAll() ;
        List<RequisitionRequestEntity> req = new ArrayList<>();
+       
+      
        re.forEach(o -> {
            RequisitionRequestEntity r = new RequisitionRequestEntity();
-         
+           RRFClosed rr = new RRFClosed();
+//           serv.updateAgeing();
+//           
+//            RequisitionRequestEntity RRsEntity = reqRepo.save();
+           
+           this.updateAgeing(o.getRequisitionId(), rr);
+               
+       
            r.setRequisitionId(o.getRequisitionId());
            r.setDepartmentName(o.getDepartmentName());
            r.setClientName(o.getClientName());
@@ -171,7 +189,7 @@ public class RequisitionTrackerController {
            r.setRrfCat(o.getRrfCat());
            r.setPocname(o.getPocname());
            r.setpSkills(o.getpSkills());
-           r.setsSkills(o.getpSkills());
+           r.setsSkills(o.getsSkills());
            r.setEmpType(o.getEmpType());
            r.setWorkingHours(o.getWorkingHours());
            r.setQualification(o.getQualification());
@@ -187,16 +205,30 @@ public class RequisitionTrackerController {
            r.setAllocType(o.getAllocType());
            r.setResourceRequiredDate(o.getResourceRequiredDate());
            r.setRequestClosedDate(o.getRequestClosedDate());
-           
-//           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
+           r.setAgeing(o.getAgeing());
+//           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId())); 
            req.add(r);
-       });  
+           
+          
+       });   
         return req;
     }
-   
-    @PutMapping("/rrfStatusClosed/{rrfStaus}")
-    public ResponseEntity updateRRfStatus(@PathVariable String rrfStatus, @RequestBody RequisitionRequestEntity RRfStatusUpdate) {
-        return serv.updateRR(rrfStatus, RRfStatusUpdate);
+    
+    
+    @PutMapping("/aeigingUpdate/{requisitionId}")
+    public ResponseEntity updateAgeing(@PathVariable String requisitionId,@RequestBody RRFClosed rrUpdate){
+        return serv.updateAgeing(requisitionId, rrUpdate);
     }
+    
+//  getJobsOpenByDepartments
+  @GetMapping("/getJobsOpenByDepartmentName")
+  public List<JobsPerDepartment> getJobsOpenByDepartmentName(){
+  	return serv.getJobsOpenByDepartmentName();
+  }
+    
+//    @PutMapping("/rrfStatusClosed/{rrfStaus}")
+//    public ResponseEntity updateRRfStatus(@PathVariable String rrfStatus, @RequestBody RequisitionRequestEntity RRfStatusUpdate) {
+//        return serv.updateRRfStatus(rrfStatus, RRfStatusUpdate);
+//    }
 
 }

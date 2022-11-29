@@ -30,6 +30,9 @@ const Graph = () => {
   const Digital = dataa.filter((item) => item.departmentName === "DIGITAL")
   const Oracle = dataa.filter((item) => item.departmentName === "ORACLE")
   const Management = dataa.filter((item) => item.departmentName === "MANAGEMENT")
+  const Cybersecurity = dataa.filter((item) => item.departmentName === "CYBERSECURITY")
+  const CybersecurityMale = Cybersecurity.filter((item) => item.gender === 'Male')
+  const CybersecurityFemale = Cybersecurity.filter((item) => item.gender === 'Female')
   const ManagementMale=Management.filter((item) => item.gender === 'Male')
   const ManagementFemale=Management.filter((item) => item.gender === 'Female')
   const DigitalMale = Digital.filter((item) => item.gender === 'Male')
@@ -91,9 +94,27 @@ const Graph = () => {
 
     },
     {
+      name: 'All',
+      department: 'CYBERSECURITY',
+      count: Cybersecurity.length,
+
+    },
+    {
       name: 'Male',
       department: 'DIGITAL',
       count: DigitalMale.length,
+
+    },
+    {
+      name: 'Male',
+      department: 'CYBERSECURITY',
+      count: CybersecurityMale.length,
+
+    },
+    {
+      name: 'Female',
+      department: 'CYBERSECURITY',
+      count: CybersecurityFemale.length,
 
     },
     {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Form, Row, Col, Table, Tabs, Tab, InputGroup, Button, Accordion } from "react-bootstrap";
+import { toast } from "react-toastify";
 import { BASE_URL } from "../../../Constant";
 import axios from "../../../Uri";
 
@@ -47,6 +48,25 @@ function EducationalDetailsTab(props) {
       });
   }, []);
   console.log(projects)
+
+  
+  const [documents, setDocuments] = useState("");
+  const loadData = () => {
+    axios
+      .get(
+        `${BASE_URL}/api/get/imageByTitle/EducationalDetails/${props.viewOnboard.onboardingId}`
+      )
+      .then((response) => {
+        setDocuments(response);
+      });
+  };
+  useEffect(() => {
+    loadData();
+  }, []);
+
+const handleclick = () =>{
+  toast.error("Educational Documents are not uploaded")
+}
 
 
 
@@ -186,13 +206,25 @@ function EducationalDetailsTab(props) {
                             </Table>
 
                           </Card.Body>
-                          <Col md="6" style={{ padding: 0 }}>
+                          <Row>
+                          {documents.statusText === "OK" ? ( 
+               <Col>
+                <a
+                  href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${props.viewOnboard.onboardingId}`}
+                >
+                  Educational Documents
+                </a>
+              </Col>
+            ) : (
+              <Col> <Button onClick={handleclick} style={{background:"none",color:"blue",border:"none"}}>Educational Documents</Button></Col>
+            )}</Row>
+                          {/* <Col md="6" style={{ padding: 0 }}>
               <a
                 href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${props.viewOnboard.onboardingId}`}
               >
                 Download Documents
               </a>
-            </Col>
+            </Col> */}
                         </div>
     )
 }

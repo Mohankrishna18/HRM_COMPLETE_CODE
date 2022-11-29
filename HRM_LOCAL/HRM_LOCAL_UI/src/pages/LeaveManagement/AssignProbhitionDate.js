@@ -100,7 +100,7 @@ function AssignProbhitionDate(props) {
             disabled
             className="fullName"
             type="text"
-            controlId="fullName"
+            controlid="fullName"
             value={fullName}
           ></Form.Control>
         </Form.Group>
@@ -110,7 +110,7 @@ function AssignProbhitionDate(props) {
             required
             type="date"
             placeholder="confirmation Date"
-            controlId="confirmationDate"
+            controlid="confirmationDate"
             value={form.confirmationDate}
              onChange={(e) => setField("confirmationDate", e.target.value)}
             // onChange ={(e) =>{
@@ -132,7 +132,7 @@ function AssignProbhitionDate(props) {
             type="text"
             value={form.feedBack}
             rows={2}
-            controlId="feedBack"
+            controlid="feedBack"
             onChange={(e) => setField("feedBack", e.target.value)}
             // value={feedBack}
           

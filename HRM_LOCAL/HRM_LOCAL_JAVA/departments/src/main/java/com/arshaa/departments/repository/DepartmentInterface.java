@@ -17,4 +17,6 @@ public interface DepartmentInterface extends JpaRepository<Departmentmaster,Inte
 	Boolean existsByDepartmentName(String departmentName);
 	
 	Departmentmaster getByBusinessUnitHeadName(String businessUnitHeadName);
+	//changes for Dept in Hr
+	public Departmentmaster findByDepartmentName(String departmentName);
 }

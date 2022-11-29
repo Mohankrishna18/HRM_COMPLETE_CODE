@@ -20,6 +20,7 @@ import {
     Description,
 } from "vertical-timeline-component-react";
 import { BASE_URL } from "../../../Constant";
+import { toast } from "react-toastify";
 
 const customTheme = {
     yearColor: "#405b73",
@@ -33,7 +34,6 @@ const customTheme = {
 
 const ProfileAdditionalDetailsTab = (props) => {
 
-    console.log(props.profile);
     const employeeid = props.profile;
 
     // const userData = sessionStorage.getItem("userdata");
@@ -111,7 +111,6 @@ const ProfileAdditionalDetailsTab = (props) => {
       .get(`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${employeeid}`)
       .then((response) => {
         setDocuments(response);
-        console.log(response);
       });
 
   }
@@ -119,10 +118,13 @@ const ProfileAdditionalDetailsTab = (props) => {
     loadData();
 
   }, []);
-  console.log(documents)
 
     var tempDate = new Date(passportExpiryDate);
     var ped = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+
+const handleclick = () =>{
+      toast.error("Additional Documents are not uploaded")
+}
 
     return (
 
@@ -256,7 +258,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                 Additional Documents
 
               </a>
-            </Col>) : (<></>)
+            </Col>) : (<Col > <Button onClick={handleclick} style={{background:"none",color:"blue",border:"none"}}>Additional Documents</Button></Col>)
 }
                         </Col>
                     </Row>
@@ -283,7 +285,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                 <Form.Control
                                     type="text"
                                     placeholder="Passport Number"
-                                    controlId="passportNo"
+                                    controlid="passportNo"
                                     value={passportNo}
                                     maxLength={15}
                                     name="passportNo"
@@ -297,7 +299,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                 <Form.Control
                                     type="date"
                                     placeholder="Passport Expiry Date"
-                                    controlId="passportExpiryDate"
+                                    controlid="passportExpiryDate"
                                     name="passportExpiryDate"
                                     value={passportExpiryDate}
                                     min={new Date()}
@@ -312,7 +314,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                 <Form.Control
                                     type="text"
                                     placeholder="PAN Card Number"
-                                    controlId="panNumber"
+                                    controlid="panNumber"
                                     name="panNumber"
                                     maxLength={50}
                                     value={panNumber}
@@ -325,7 +327,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="number"
                                     placeholder="Aadharcard Number"
-                                    controlId="aadharNumber"
+                                    controlid="aadharNumber"
                                     name="panNumber"
                                     maxLength={12}
                                     isInvalid={nineteenerror}
@@ -353,7 +355,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                 <Form.Control
                                     type="text"
                                     placeholder="UAN Number"
-                                    controlId="uanNumber"
+                                    controlid="uanNumber"
                                     name="uanNumber"
                                     value={uanNumber}
                                     maxLength={12}
@@ -366,7 +368,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="text"
                                     placeholder="Bank Name"
-                                    controlId="bankName"
+                                    controlid="bankName"
                                     name="bankName"
                                     maxLength={50}
                                     value={bankName}
@@ -391,7 +393,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="text"
                                     placeholder="Branch Name"
-                                    controlId="branchName"
+                                    controlid="branchName"
                                     name="branch"
                                     maxLength={50}
                                     value={branch}
@@ -417,7 +419,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="number"
                                     placeholder="Account Number"
-                                    controlId="accountNumber"
+                                    controlid="accountNumber"
                                     name="accountNumber"
                                     maxLength={50}
                                     value={accountNumber}
@@ -445,7 +447,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="text"
                                     placeholder="IFSC Code"
-                                    controlId="ifscCode"
+                                    controlid="ifscCode"
                                     name="ifscCode"
                                     maxLength={50}
                                     value={ifscCode}

@@ -2,24 +2,26 @@ import React, { useEffect, useRef, useLayoutEffect, useContext, useState } from 
 import { InputGroup } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import { Row, Col, Card } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useParams, useHistory } from "react-router-dom";
 import Moment from "moment";
-import { UserContext } from './UpdateRequisition';
 import './utils/RT.css';
 
-const UpdateRR = (props) => {
+const UpdateRR = () => {
 
   const [raisedOn, setRaisedOn] = useState();
   const [jobTitle, setJobTitle] = useState();
   const [reqType1, setReqType1] = useState();
+
   const [reqType2, setReqType2] = useState();
   const [reqType3, setReqType3] = useState();
   const [description, setDescription] = useState();
-  const [rrStatus, setRrStatus] = useState();
+
   const [technology, setTechnology] = useState();
   const [priority, setPriority] = useState();
   const [positions, setPositions] = useState();
@@ -37,7 +39,7 @@ const UpdateRR = (props) => {
   const [newClient, setNewClient] = useState();
   const [projects, setProjects] = useState([]);
   const [newProject, setNewProject] = useState();
-  const [pocname, setPocname] = useState([]);
+  const [pocname, setPocName] = useState([]);
   const [newPOCName, setNewPOCName] = useState();
   const [yoe, setYoe] = useState();
   const [rate, setRate] = useState();
@@ -45,33 +47,31 @@ const UpdateRR = (props) => {
   const [uploadDoc, setUploadDoc] = useState();
   const [projectName, setProjectName] = useState();
   const [initDate, setInitDate] = useState();
-  const [resourceRequiredDate, setResourceRequiredDate] = useState();
-  const [interviewPanel1, setInterviewPanel1] = useState([]);
-  const [interviewPanel2, setInterviewPanel2] = useState([]);
+  const [reqDate, setReqDate] = useState();
+ 
   const [hrPanel, setHrPanel] = useState([]);
   const [newInterviewPanel1, setNewInterviewPanel1] = useState();
   const [newInterviewPanel2, setNewInterviewPanel2] = useState();
   const [newHrPanel, setNewHrPanel] = useState();
+  const [date, setDate] = useState();
+  const [requiredDate, setRequiredDate] = useState();
 
+  const [loading, setLoading] = React.useState(false);
+  const closeLoading = () => setLoading(!loading);
 
-  const [clientName, setClientName] = useState();
   const [comments, setComments] = useState();
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-  const [status1, setStatus1] = useState(false);
-  const pull_data = () => {
-    setStatus1(!status1);
-  };
+
+
 
 
   // useState for phone number
-  const [firsterrors, setFirstErrors] = useState("");
+
   const [seconderrors, setSecondErrors] = useState("");
   const [thirderrors, setThirdErrors] = useState("");
 
-  //   const handleClose = () => setShow();
-  //   const handleShow = () => setShow(true);
   const params = useParams();
   const history = useHistory();
   // const forms = useRef(null);
@@ -87,75 +87,78 @@ const UpdateRR = (props) => {
         [field]: null,
       });
   }
-  // const [paymentMethod, setPaymentMethod] = useState(props.data.data);
 
-  // const radioChangeHandler = (e) => {
-  //   setPaymentMethod(e.target.value);
-  // };
+  const calls = () => {
+    setLoading(true)
 
-  // var initDate = Moment()
-  // .utcOffset('+05:30')
-  // .format('YYYY-MM-DD hh:mm:ss');
+    axios.get("/clientProjectMapping/getAllProjects").then((resp) => {
+      // console.log(resp)
+      setProjects(resp.data.data)
+      if (resp.data.status) {
+        axios.get("/dept/getAllDepartments").then((respo) => {
+          // console.log(respo)
+          setDepartments(respo.data);
+          if (respo.statusText === "OK") {
+            axios.get("/clientProjectMapping/getAllClients").then((respon) => {
+              // console.log(respon)
+              setClients(respon.data.data);
+              if (respon.data.status) {
+                axios.get("/emp/getAllEmployeeMasterData").then((respons) => {
+                  // console.log(respons)
+                  setPocName(respons.data.data);
+                  if (respons.data.status) {
+                    axios.get("/emp/getEmployeesByDepartment/HR").then((response) => {
+                      const sData1 = response.data.data.filter(item => item.status === 'Active')
+                      // console.log(sData1)
+                      setHrPanel(sData1);
+                      closeLoading();
+                    }).catch((err) => {
+                      console.log("Error6");
+                    })
 
-  const loadPocNames = async () => {
-    const res = await axios.get("/emp/getAllEmployeeMasterData");
-    setPocname(res.data.data);
+                  }
 
-  };
+                }).catch((err) => {
+                  console.log("Error5");
+                })
 
-  const loadClients = async () => {
-    const res = await axios.get("/clientProjectMapping/getAllClients");
-    setClients(res.data.data);
+              }
+            }).catch((err) => {
+              console.log("Error4");
+            })
 
-  };
+          }
 
-  const loadDepartmentsData = async () => {
-    const res = await axios.get("/dept/getAllDepartments");
+        }).catch((err) => {
+          console.log("Error3")
+        })
+      }
 
-    setDepartments(res.data);
-
-  };
-
-  // const loadHRDeptEmployees = async () => {
-  //   const res = await axios.get("/emp/getEmployeesByDepartment/HR");
-  //  sData1 = res.data.data.filter(item => item.status === 'Active')
-  //   setHrPanel(sData1);
-  //   // console.log(sData1);
-  //   console.log(sData1);
-
-  // }
-  const loadHRDeptEmployees = () => {
-    axios.get("/emp/getEmployeesByDepartment/HR").then((res) => {
-
-      const dat = res.data.data.filter(item => item.status == "Active")
-      setHrPanel(dat)
     }).catch((err) => {
-      console.log(err)
+      console.log("Error2")
     })
+
   }
-
-  const loadProjects = async () => {
-    const res = await axios.get("/clientProjectMapping/getAllProjects");
-    setProjects(res.data.data);
-
-  };
   useEffect(() => {
-    loadDepartmentsData();
-    loadProjects();
-    loadClients();
-    loadPocNames();
-    loadHRDeptEmployees();
+    calls();
   }, []);
-
   const loadData1 = async () => {
     const response = await axios.get(
       `/recruitmentTracker/getDataById/${params.id}`
     );
     setRaisedOn(response.data.data.raisedOn);
-    console.log(response.data.data.raisedOn);
+    console.log(response.data.data.requestInitiatedDate)
+    console.log(response.data.data.resourceRequiredDate)
+    setDate(Moment(response.data.data.requestInitiatedDate).format('YYYY-MM-DD'));
+    
+    setRequiredDate(Moment(response.data.data.resourceRequiredDate).format('YYYY-MM-DD'));
+   
+    setReqDate(response.data.data.resourceRequiredDate);
     setRequisitionId(response.data.data.requisitionId);
     setJobTitle(response.data.data.jobTitle);
     setReqType1(response.data.data.reqType1);
+    setInitDate(response.data.data.requestInitiatedDate);
+
     setReqType2(response.data.data.reqType2);
     setReqType3(response.data.data.reqType3);
     setDescription(response.data.data.description);
@@ -169,34 +172,28 @@ const UpdateRR = (props) => {
     setWorkingHours(response.data.data.workingHours);
     setEmpType(response.data.data.empType);
     setRole(response.data.data.role);
-    // setDepartments(response.data.departments);
     setNewDepartmentName(response.data.data.departmentName);
-    // setClients(response.data.clients);
-    // setProjects(response.data.projects);
     setNewProject(response.data.data.projectName);
     setNewClient(response.data.data.clientName);
-    // setPocname(response.data.pocname);
     setNewPOCName(response.data.data.pocname);
     setYoe(response.data.data.yoe);
     setRate(response.data.data.rate);
     setUploadDoc(response.data.data.uploadDoc);
     setComments(response.data.data.comments);
-    setInitDate(response.data.data.requestInitiatedDate);
-
-    setResourceRequiredDate(response.data.data.resourceRequiredDate);
-    // console(response.data.data.resourceRequiredDate);
     setNewInterviewPanel1(response.data.data.interviewPanel1);
     setNewInterviewPanel2(response.data.data.interviewPanel2);
     setNewHrPanel(response.data.data.hrPanel);
     setQualification(response.data.data.qualification);
+
   }
 
   useEffect(() => {
     loadData1();
-  }, [status1]);
+  }, []);
   const routeToRRPage = () => history.push("/app/rrf")
   const handleSubmit = (e) => {
     e.preventDefault();
+ 
     axios
       .put(
         `/recruitmentTracker/updateRR/${params.id}`,
@@ -225,719 +222,723 @@ const UpdateRR = (props) => {
           departmentName: newDepartmentName,
           interviewPanel1: newInterviewPanel1,
           interviewPanel2: newInterviewPanel2,
-          hrPanel: newHrPanel
+          hrPanel: newHrPanel,
+          reqType1: reqType1,
+          reqType2: reqType2,
+          reqType3: reqType3,
+          requestInitiatedDate: initDate,
+          allocType: allocType,
+          resourceRequiredDate: reqDate
         }
       )
       .then((response) => {
-        const user = response.data;
         if (response.data.status) {
-          pull_data();
-
-          toast.success("Requisition Updated successfully");
+          toast.success("Requisition Updated successfully", { autoClose: 500 });
           routeToRRPage();
         } else {
-          console.log("Props not Send");
+          console.log("Updation Failed");
         }
-
-
       })
       .catch((err) => {
-
         toast.error("Something Went Wrong");
       });
-    // props.handleClose();
+
+  
+
   };
   return (
     <div className="example" style={{ paddingLeft: "12px" }}>
-      <h5 style={{ paddingTop: "13px" }}>Update Requisition</h5>
-      <Form
-        // ref={forms}
-        className="formone"
-        // noValidate
-        // validated={validated}
-        style={{ padding: 10 }}
-   
+      {loading ?
+        (<>
+          <h5 style={{ paddingTop: "13px" }}>Update Requisition</h5>
+          <Form
+            // ref={forms}
+            className="formone"
 
-      >
-        <Row>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>AERF ID</Form.Label>
-            <Form.Control
-              required
-              className="requisitionId"
-              type="text"
-              controlId="requisitionId"
-              value={requisitionId}
-              disabled
-              onChange={(e) => setRequisitionId(e.target.value)}
-              isInvalid={!!errors.requisitionId}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.requisitionId}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="8" style={{ padding: 10 }}>
-            <Form.Label>Job Title</Form.Label>
-            <Form.Control
-              required
-              className="jobTitle"
-              type="text"
-              controlId="jobTitle"
-              value={jobTitle}
-              onChange={(e) => setJobTitle(e.target.value)}
-              isInvalid={!!errors.jobTitle}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.jobTitle}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-        <Row>
-          <Card as={Col} md="2" style={{ padding: 5 }}>
-            <Form.Check
-              required
-              inline
-              label="Internal"
-              name="reqType1"
-              type='radio'
-              checked={reqType1 === 'Internal' ? true : false}
-              // onChange={(e) => setField("reqType1", e.target.value)}
-              value="Internal"
-            />
-            <Form.Check
-              required
-              inline
-              label="External"
-              name="reqType1"
-              type='radio'
-              checked={reqType1 === 'External' ? true : false}
-              // id={`inline-${type}-2`}
-              // onChange={(event) => setLeaveOrwfh(event.target.value)}
-              onChange={(e) => setField("reqType1", e.target.value)}
-              value="External"
+            style={{ padding: 10 }}
 
-            />
-          </Card>
-          <Card as={Col} md="2" style={{ padding: 5 }}>
-            <Form.Check
-              required
-              inline
-              label="New Recruitment"
-              name="reqType2"
-              type='radio'
-              checked={reqType2 === 'New Recruitment' ? true : false}
-              //id={`inline-${type}-1`}
-              //onChange={(event) => setInternalOrExternal(event.target.value)}
-              onChange={(e) => setField("reqType2", e.target.value)}
-              value="New Recruitment"
-            />
-            <Form.Check
-              required
-              inline
-              label="Replacement"
-              name="reqType2"
-              type='radio'
-              checked={reqType2 === 'Replacement' ? true : false}
-              // id={`inline-${type}-2`}
-              // onChange={(event) => setLeaveOrwfh(event.target.value)}
-              onChange={(e) => setField("reqType2", e.target.value)}
-              value="Replacement"
 
-            />
+          >
+            <Row>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>AERF ID</Form.Label>
+                <Form.Control
+                  required
+                  className="requisitionId"
+                  type="text"
+                  controlid="requisitionId"
+                  value={requisitionId}
+                  // disabled
+                  onChange={(e) => setRequisitionId(e.target.value)}
+                  isInvalid={!!errors.requisitionId}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.requisitionId}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="8" style={{ padding: 10 }}>
+                <Form.Label>Job Title</Form.Label>
+                <Form.Control
+                  required
+                  className="jobTitle"
+                  type="text"
+                  controlid="jobTitle"
+                  value={jobTitle}
+                  onChange={(e) => setJobTitle(e.target.value)}
+                  isInvalid={!!errors.jobTitle}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.jobTitle}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Card as={Col} md="2" style={{ padding: 5 }}>
+                <Form.Check
+                  required
+                  inline
+                  label="Internal"
+                  name="reqType1"
+                  type='radio'
+                  checked={reqType1 === 'Internal' ? true : false}
+                  onChange={(e) => setReqType1(e.target.value)}
+                  value="Internal"
+                />
+                <Form.Check
+                  required
+                  inline
+                  label="External"
+                  name="reqType1"
+                  type='radio'
+                  checked={reqType1 === 'External' ? true : false}
 
-          </Card>
 
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Requirement Type</Form.Label>
-            <Form.Select
-              required
-              className="reqType3"
-              type="text"
-              controlId="reqType3"
-              value={reqType3}
-              onChange={(e) => setReqType3(e.target.value)}
-              isInvalid={!!errors.reqType3}
-            >
-              <option>{reqType3}</option>
-              <option>Staffing</option>
-              <option>Project</option>
-              <option>Pilot</option>
+                  onChange={(e) => setReqType1(e.target.value)}
+                  value="External"
 
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.reqType3}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Employment Type </Form.Label>
-            <Form.Select
-              required
-              type="text"
+                />
+              </Card>
+              <Card as={Col} md="2" style={{ padding: 5 }}>
+                <Form.Check
+                  required
+                  inline
+                  label="New Recruitment"
+                  name="reqType2"
+                  type='radio'
+                  checked={reqType2 === 'New Recruitment' ? true : false}
+                  onChange={(e) => setReqType2(e.target.value)}
+                  value="New Recruitment"
+                />
+                <Form.Check
+                  required
+                  inline
+                  label="Replacement"
+                  name="reqType2"
+                  type='radio'
+                  checked={reqType2 === 'Replacement' ? true : false}
+                  onChange={(e) => setReqType2(e.target.value)}
+                  value="Replacement"
 
-              controlId="empType"
-              value={empType}
-              onChange={(e) => setEmpType(e.target.value)}
-              isInvalid={!!errors.empType}
-            >
-              <option>{empType}</option>
-              <option>Full Time</option>
-              <option>Contract</option>
-              <option>Intern</option>
-              <option>Part Time</option>
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.empType}
-            </Form.Control.Feedback>
-          </Form.Group>
+                />
 
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Business unit</Form.Label>
-            <Form.Select
-              required
-              type="text"
-              controlId="departmentName"
-              defaultValue={newDepartmentName}
-              onChange={(e) => setNewDepartmentName(e.target.value)}
-              isInvalid={!!errors.departmentName}
-            >
-              <option>{newDepartmentName}</option>
-              {departments.map((departmentss) => (
-                <option value={departmentss.departmentName}>{departmentss.departmentName}</option>
-              ))}
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.departments}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Client</Form.Label>
-            <Form.Select
-              required
-              type="text"
-              controlId="clientName"
-              defaultValue={newClient}
-              onChange={(e) => setNewClient(e.target.value)}
-              isInvalid={!!errors.clientName}
-            >
-              <option>{newClient}</option>
-              {clients.map((client) => (
-                <option value={client.clientName}>{client.clientName}</option>
-              ))}
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.clients}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Project</Form.Label>
-            <Form.Select
-              required
-              type="text"
-              controlId="projectName"
-              defaultValue={newProject}
-              onChange={(e) => setNewProject(e.target.value)}
-              isInvalid={!!errors.projectName}
-            >
-              <option>{newProject}</option>
-              {projects.map((project) => (
-                <option value={project.projectName}>{project.projectName}</option>
-              ))}
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.projects}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-        <Row>
+              </Card>
 
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Work Location</Form.Label>
-            <InputGroup hasValidation>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Requirement Type</Form.Label>
+                <Form.Select
+                  required
+                  className="reqType3"
+                  type="text"
+                  controlid="reqType3"
+                  value={reqType3}
+                  onChange={(e) => setReqType3(e.target.value)}
+                  isInvalid={!!errors.reqType3}
+                >
+                  <option>{reqType3}</option>
+                  <option>Staffing</option>
+                  <option>Project</option>
+                  <option>Pilot</option>
 
-              <Form.Control
-                required
-                type="text"
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.reqType3}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Employment Type </Form.Label>
+                <Form.Select
+                  required
+                  type="text"
 
-                controlId="workLocation"
-                isInvalid={seconderrors}
-                value={workLocation}
-                onChange={(e) => {
-                  setWorkLocation(e.target.value);
-                  if (e.target.value.length > 10) {
-                    setSecondErrors("Phonenumber length should be 10 characters");
-                  }
-                  else {
-                    setSecondErrors("")
-                  };
-                }
-                }
+                  controlid="empType"
+                  value={empType}
+                  onChange={(e) => setEmpType(e.target.value)}
+                  isInvalid={!!errors.empType}
+                >
+                  <option>{empType}</option>
+                  <option>Full Time</option>
+                  <option>Contract</option>
+                  <option>Intern</option>
+                  <option>Part Time</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.empType}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-              >
-              </Form.Control>
-              <Form.Control.Feedback type="invalid">
-                {errors.workLocation}
-                {seconderrors}
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Business unit</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  controlid="departmentName"
+                  defaultValue={newDepartmentName}
+                  onChange={(e) => setNewDepartmentName(e.target.value)}
+                  isInvalid={!!errors.departmentName}
+                >
+                  <option>{newDepartmentName}</option>
+                  {departments.map((departmentss, i) => (
+                    <option key={i} value={departmentss.departmentName}>{departmentss.departmentName}</option>
+                  ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.departments}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Client</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  controlid="clientName"
+                  defaultValue={newClient}
+                  onChange={(e) => setNewClient(e.target.value)}
+                  isInvalid={!!errors.clientName}
+                >
+                  <option>{newClient}</option>
+                  {clients.map((client, i) => (
+                    <option key={i} value={client.clientName}>{client.clientName}</option>
+                  ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.clients}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Project</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  controlid="projectName"
+                  defaultValue={newProject}
+                  onChange={(e) => setNewProject(e.target.value)}
+                  isInvalid={!!errors.projectName}
+                >
+                  <option>{newProject}</option>
+                  {projects.map((project, i) => (
+                    <option key={i} value={project.projectName}>{project.projectName}</option>
+                  ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.projects}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
 
-              </Form.Control.Feedback>
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </InputGroup>
-          </Form.Group>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Technology</Form.Label>
-            <Form.Control
-              required
-              className="technology"
-              type="text"
-              controlId="technology"
-              value={technology}
-              onChange={(e) => setTechnology(e.target.value)}
-              isInvalid={!!errors.technology}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.technology}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Role </Form.Label>
-            <Form.Control
-              required
-              type="text"
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Work Location</Form.Label>
+                <InputGroup hasValidation>
 
-              controlId="role"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              isInvalid={!!errors.role}
-            >
+                  <Form.Control
+                    required
+                    type="text"
 
-            </Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.role}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Allocation Type</Form.Label>
-            <Form.Select
-              required
-              type="text"
-              controlId="allocType"
-              value={allocType}
-              onChange={(e) => setAllocType(e.target.value)}
-              isInvalid={!!errors.allocType}
-            >
-              <option>{allocType}</option>
-              <option>Billable</option>
-              <option>Non-Billable</option>
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.allocType}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="2" style={{ padding: 10 }}>
-            <Form.Label>No. of Positions</Form.Label>
-            <Form.Control
-              required
-              name="positions"
-              type="number"
-              controlId="positions"
+                    controlid="workLocation"
+                    isInvalid={seconderrors}
+                    value={workLocation}
+                    onChange={(e) => {
+                      setWorkLocation(e.target.value);
+                      if (e.target.value.length > 10) {
+                        setSecondErrors("Phonenumber length should be 10 characters");
+                      }
+                      else {
+                        setSecondErrors("")
+                      };
+                    }
+                    }
 
-              value={positions}
-              onChange={(e) => setPositions(e.target.value)}
-              isInvalid={!!errors.positions}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.positions}
-            </Form.Control.Feedback>
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="2" style={{ padding: 10 }}>
-            <Form.Label>Years of Experience</Form.Label>
-            <InputGroup hasValidation>
+                  >
+                  </Form.Control>
+                  <Form.Control.Feedback type="invalid">
+                    {errors.workLocation}
+                    {seconderrors}
 
-              <Form.Control
-                required
-                type="text"
+                  </Form.Control.Feedback>
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Technology</Form.Label>
+                <Form.Control
+                  required
+                  className="technology"
+                  type="text"
+                  controlid="technology"
+                  value={technology}
+                  onChange={(e) => setTechnology(e.target.value)}
+                  isInvalid={!!errors.technology}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.technology}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Role </Form.Label>
+                <Form.Control
+                  required
+                  type="text"
 
-                controlId="yoe"
-                isInvalid={thirderrors}
-                value={yoe}
-                onChange={(e) => {
-                  setYoe(e.target.value);
-                  if (e.target.value.length > 10) {
-                    setThirdErrors("YOE length should be 10 characters");
-                  }
-                  else {
-                    setThirdErrors("")
-                  };
-                }
-                }
-              // onChange={(e) => setPhoneNumber(e.target.value)}
-              // isInvalid={!!errors.phoneNumber}
-              >
-              </Form.Control>
-              <Form.Control.Feedback type="invalid">
-                {errors.yoe}
-                {thirderrors}
+                  controlid="role"
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                  isInvalid={!!errors.role}
+                >
 
-              </Form.Control.Feedback>
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </InputGroup>
-          </Form.Group>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Priority</Form.Label>
-            <Form.Select
-              required
-              type="text"
+                </Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.role}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Allocation Type</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  controlid="allocType"
+                  value={allocType}
+                  onChange={(e) => setAllocType(e.target.value)}
+                  isInvalid={!!errors.allocType}
+                >
+                  <option>{allocType}</option>
+                  <option>Billable</option>
+                  <option>Non-Billable</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.allocType}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="2" style={{ padding: 10 }}>
+                <Form.Label>No. of Positions</Form.Label>
+                <Form.Control
+                  required
+                  name="positions"
+                  type="number"
+                  controlid="positions"
 
-              controlId="priority"
-              value={priority}
-              onChange={(e) => setPriority(e.target.value)}
-              isInvalid={!!errors.priority}
-            >
-              <option>{priority}</option>
-              <option>P1</option>
-              <option>P2</option>
-              <option>P3</option>
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.priority}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-            <Form.Label>Primary Skills</Form.Label>
-            <Form.Control
-              required
-              className="pSkills"
-              type="text"
-              controlId="pSkills"
-              value={pSkills}
-              onChange={(e) => setPSkills(e.target.value)}
-              isInvalid={!!errors.pSkills}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.pSkills}
-            </Form.Control.Feedback>
-          </Form.Group>
+                  value={positions}
+                  onChange={(e) => setPositions(e.target.value)}
+                  isInvalid={!!errors.positions}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.positions}
+                </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="2" style={{ padding: 10 }}>
+                <Form.Label>Years of Experience</Form.Label>
+                <InputGroup hasValidation>
+
+                  <Form.Control
+                    required
+                    type="text"
+
+                    controlid="yoe"
+                    isInvalid={thirderrors}
+                    value={yoe}
+                    onChange={(e) => {
+                      setYoe(e.target.value);
+                      if (e.target.value.length > 10) {
+                        setThirdErrors("YOE length should be 10 characters");
+                      }
+                      else {
+                        setThirdErrors("")
+                      };
+                    }
+                    }
+                  // onChange={(e) => setPhoneNumber(e.target.value)}
+                  // isInvalid={!!errors.phoneNumber}
+                  >
+                  </Form.Control>
+                  <Form.Control.Feedback type="invalid">
+                    {errors.yoe}
+                    {thirderrors}
+
+                  </Form.Control.Feedback>
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </InputGroup>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Priority</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+
+                  controlid="priority"
+                  value={priority}
+                  onChange={(e) => setPriority(e.target.value)}
+                  isInvalid={!!errors.priority}
+                >
+                  <option>{priority}</option>
+                  <option>P1</option>
+                  <option>P2</option>
+                  <option>P3</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.priority}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                <Form.Label>Primary Skills</Form.Label>
+                <Form.Control
+                  required
+                  className="pSkills"
+                  type="text"
+                  controlid="pSkills"
+                  value={pSkills}
+                  onChange={(e) => setPSkills(e.target.value)}
+                  isInvalid={!!errors.pSkills}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.pSkills}
+                </Form.Control.Feedback>
+              </Form.Group>
 
 
 
 
-        </Row>
-        <Row>
-          <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-            <Form.Label>Secondary Skills</Form.Label>
-            <Form.Control
-              required
-              name="sSkills"
-              type="text"
-              controlId="sSkills"
-              value={sSkills}
-              onChange={(e) => setSSkills(e.target.value)}
-              isInvalid={!!errors.sSkills}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.sSkills}
-            </Form.Control.Feedback>
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group as={Col} md="12" height="10rem" style={{ padding: 10 }}>
-            <Form.Label>Job Description</Form.Label>
-            <Form.Control
-              required
-              type="textarea"
-              id="description"
-              style={{ height: "80px" }}
-              controlId="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              isInvalid={!!errors.description}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.description}
-            </Form.Control.Feedback>
+            </Row>
+            <Row>
+              <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                <Form.Label>Secondary Skills</Form.Label>
+                <Form.Control
+                  required
+                  name="sSkills"
+                  type="text"
+                  controlid="sSkills"
+                  value={sSkills}
+                  onChange={(e) => setSSkills(e.target.value)}
+                  isInvalid={!!errors.sSkills}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.sSkills}
+                </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group as={Col} md="12" height="10rem" style={{ padding: 10 }}>
+                <Form.Label>Job Description</Form.Label>
+                <Form.Control
+                  required
+                  type="textarea"
+                  id="description"
+                  style={{ height: "80px" }}
+                  controlid="description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  isInvalid={!!errors.description}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.description}
+                </Form.Control.Feedback>
 
-          </Form.Group>
-        </Row>
-        <Row>
-
-
-
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Rate</Form.Label>
-            <Form.Control
-              required
-              className="rate"
-              type="number"
-              controlId="rate"
-              value={rate}
-              onChange={(e) => setRate(e.target.value)}
-              isInvalid={!!errors.rate}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.rate}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Working Hours</Form.Label>
-            <Form.Control
-              required
-              className="workingHours"
-              type="text"
-              controlId="workingHours"
+              </Form.Group>
+            </Row>
+            <Row>
 
 
-              value={workingHours}
-              onChange={(e) => setWorkingHours(e.target.value)}
-              isInvalid={!!errors.workingHours}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.workingHours}
-            </Form.Control.Feedback>
-          </Form.Group>
 
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Educational Qualification</Form.Label>
-            <Form.Control
-              required
-              className="qualification"
-              type="text"
-              controlId="qualification"
-              value={qualification}
-              onChange={(e) => setQualification(e.target.value)}
-              isInvalid={!!errors.qualification}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.qualification}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Rate</Form.Label>
+                <Form.Control
+                  required
+                  className="rate"
+                  type="number"
+                  controlid="rate"
+                  value={rate}
+                  onChange={(e) => setRate(e.target.value)}
+                  isInvalid={!!errors.rate}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.rate}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Working Hours</Form.Label>
+                <Form.Control
+                  required
+                  className="workingHours"
+                  type="text"
+                  controlid="workingHours"
 
-        <Row>
 
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Contact Name</Form.Label>
-            <Form.Select
-              required
-              type="text"
-              controlId="pocname"
-              defaultValue={newPOCName}
-              onChange={(e) => setNewPOCName(e.target.value)}
-              isInvalid={!!errors.pocname}
-            >
-              <option>{newPOCName}</option>
-              {pocname.map((poc) => (
-                <option value={poc.fullName}>{poc.fullName}</option>
-              ))}
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.pocname}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Upload Document </Form.Label>
-            <Form.Control
-              name="uploadDoc"
-              type="file"
-              id="uploadDoc"
-              controlId="uploadDoc"
+                  value={workingHours}
+                  onChange={(e) => setWorkingHours(e.target.value)}
+                  isInvalid={!!errors.workingHours}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.workingHours}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-              value={uploadDoc}
-              onChange={(e) => setUploadDoc(e.target.value)}
-              isInvalid={!!errors.uploadDoc}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.uploadDoc}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Educational Qualification</Form.Label>
+                <Form.Control
+                  required
+                  className="qualification"
+                  type="text"
+                  controlid="qualification"
+                  value={qualification}
+                  onChange={(e) => setQualification(e.target.value)}
+                  isInvalid={!!errors.qualification}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.qualification}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
 
-        <Row>
-          <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-            <Form.Label>Comments</Form.Label>
-            <Form.Control
-              required
-              name="comments"
-              type="textarea"
-              controlId="comments"
-              style={{ height: "80px" }}
-              value={comments}
-              onChange={(e) => setComments(e.target.value)}
-              isInvalid={!!errors.comments}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.comments}
-            </Form.Control.Feedback>
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
+            <Row>
 
-        </Row>
-        <Row>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Interview Panel1</Form.Label>
-            <Form.Select
-              required
-              type="text"
-              controlId="interviewPanel1"
-              defaultValue={newInterviewPanel1}
-              onChange={(e) => setNewInterviewPanel1(e.target.value)}
-              isInvalid={!!errors.interviewPanel1}
-            >
-              <option>{newInterviewPanel1}</option>
-              {pocname.map((panel1) => (
-                <option value={panel1.fullName}>{panel1.fullName}</option>
-              ))}
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.interviewPanel1}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Interview Panel2</Form.Label>
-            <Form.Select
-              required
-              type="text"
-              controlId="interviewPanel2"
-              defaultValue={newInterviewPanel2}
-              onChange={(e) => setNewInterviewPanel2(e.target.value)}
-              isInvalid={!!errors.interviewPanel2}
-            >
-              <option>{newInterviewPanel2}</option>
-              {pocname.map((panel2) => (
-                <option value={panel2.fullName}>{panel2.fullName}</option>
-              ))}
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.interviewPanel2}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>HR Panel</Form.Label>
-            <Form.Select
-              required
-              type="text"
-              controlId="hrPanel"
-              defaultValue={newHrPanel}
-              onChange={(e) => setNewHrPanel(e.target.value)}
-              isInvalid={!!errors.hrPanel}
-            >
-              {/* <option>{hrPanel}</option> */}
-              {hrPanel.map((HRpanel) => (
-                <option value={HRpanel.fullName}>{HRpanel.fullName}</option>
-              ))}
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.hrPanel1}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-        <Row>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Request Initiated Date</Form.Label>
-            <Form.Control
-              required
-              type="date"
-              controlId="initDate"
-              value={Moment(initDate).format("YYYY-MM-DD")}
-              onChange={(e) => setInitDate(e.target.value)}
-              isInvalid={!!errors.initDate}
-            >
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Contact Name</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  controlid="pocname"
+                  // defaultValue={newPOCName}
+                  value={newPOCName}
+                  onChange={(e) => setNewPOCName(e.target.value)}
+                  isInvalid={!!errors.pocname}
+                >
+                  <option>Select</option>
+                  {pocname.map((poc, i) => (
+                    <option key={i} value={poc.fullName}>{poc.fullName}</option>
+                  ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.pocname}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Upload Document </Form.Label>
+                <Form.Control
+                  name="uploadDoc"
+                  type="file"
+                  id="uploadDoc"
+                  controlid="uploadDoc"
 
-            </Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.initDate}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Resource Required Date</Form.Label>
-            <Form.Control
-              required
-              type="date"
-              controlId="resourceRequiredDate"
-              value={Moment(resourceRequiredDate).format("YYYY-MM-DD")}
-              onChange={(e) => setResourceRequiredDate(e.target.value)}
-              isInvalid={!!errors.resourceRequiredDate}
-            >
+                  value={uploadDoc}
+                  onChange={(e) => setUploadDoc(e.target.value)}
+                  isInvalid={!!errors.uploadDoc}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.uploadDoc}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
 
-            </Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.resourceRequiredDate}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-            <Form.Label>Raised Date</Form.Label>
-            <Form.Control
-              required
-              type="date"
-              disabled
-              controlId="raisedOn"
-              value={Moment(raisedOn).format("YYYY-MM-DD")}
-              onChange={(e) => setRaisedOn(e.target.value)}
-              isInvalid={!!errors.raisedOn}
-            >
+            <Row>
+              <Form.Group as={Col} md="12" style={{ padding: 10 }}>
+                <Form.Label>Comments</Form.Label>
+                <Form.Control
+                  required
+                  name="comments"
+                  type="textarea"
+                  controlid="comments"
+                  style={{ height: "80px" }}
+                  value={comments}
+                  onChange={(e) => setComments(e.target.value)}
+                  isInvalid={!!errors.comments}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.comments}
+                </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
 
-            </Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.raisedOn}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Row>
-        <Row>
-          <Col>
-            <Button
-              style={{
-                backgroundColor: "#f5896e",
-                borderColor: "#ff9b44",
-                // float: "right",
-                marginLeft: "200px",
-                width: "40%",
-                height: "120%",
-                borderRadius: "25px",
-              }}
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Submit
-            </Button>
-          </Col>
-          <Col>
-            {/* <Button
-              style={{
-                backgroundColor: "#B6B6B4",
-                borderColor: "#B6B6B4",
-                alignItems: "center",
-                width: "40%",
-                height: "120%",
-                borderRadius: "25px",
-              }}
-              type="cancel"
-              onClick={handleClose}
-            >
-              Close
-            </Button> */}
-            <Button
-              variant="primary"
-              style={{
-                backgroundColor: "#B6B6B4",
-                borderColor: "#B6B6B4",
-                // alignItems: "center",
-                width: "15%",
-                height: "120%",
-                borderRadius: "25px",
-              }}
-              type="cancel"
-              onClick={() => history.push("/app/rrf")}
-            >
-              Back
-            </Button>
-          </Col>
-        </Row>
-      </Form>
+            </Row>
+            <Row>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Interview Panel1</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  controlid="interviewPanel1"
+                  // defaultValue={newInterviewPanel1}
+                  value={newInterviewPanel1}
+                  onChange={(e) => setNewInterviewPanel1(e.target.value)}
+                  isInvalid={!!errors.interviewPanel1}
+                >
+                  <option>Select</option>
+                  {pocname.map((panel1, i) => (
+                    <option key={i} value={panel1.fullName}>{panel1.fullName}</option>
+                  ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.interviewPanel1}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Interview Panel2</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  controlid="interviewPanel2"
+                  // defaultValue={newInterviewPanel2}
+                  value={newInterviewPanel2}
+                  onChange={(e) => setNewInterviewPanel2(e.target.value)}
+                  isInvalid={!!errors.interviewPanel2}
+                >
+                  <option>Select</option>
+                  {pocname.map((panel2, i) => (
+                    <option key={i} value={panel2.fullName}>{panel2.fullName}</option>
+                  ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.interviewPanel2}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>HR Panel</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  controlid="hrPanel"
+                  // defaultValue={newHrPanel}
+                  value={newHrPanel}
+                  onChange={(e) => setNewHrPanel(e.target.value)}
+                  isInvalid={!!errors.hrPanel}
+                >
+                  <option>Select</option>
+                  {hrPanel.map((HRpanel, i) => (
+                    <option key={i} value={HRpanel.fullName}>{HRpanel.fullName}</option>
+                  ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.hrPanel1}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Request Initiated Date</Form.Label>
+                <Form.Control
+                  required
+                  type="date"
+                  controlid="initDate"
+                  defaultValue={date}
+                  onChange={(e) => setInitDate((Moment(e.target.value).format("YYYY-MM-DD")))}
+                  isInvalid={!!errors.initDate}
+                >
+
+                </Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.initDate}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Resource Required Date</Form.Label>
+                <Form.Control
+                  required
+                  type="date"
+                  controlid="reqDate"
+                  min={initDate}
+                  defaultValue={requiredDate}
+                  onChange={(e) => setReqDate((Moment(e.target.value).format("YYYY-MM-DD")))}
+                  isInvalid={!!errors.reqDate}
+                >
+
+                </Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.reqDate}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Raised Date</Form.Label>
+                <Form.Control
+                  required
+                  type="date"
+                  disabled
+                  controlid="raisedOn"
+                  value={Moment(raisedOn).format("YYYY-MM-DD")}
+                  onChange={(e) => setRaisedOn(e.target.value)}
+                  isInvalid={!!errors.raisedOn}
+                >
+
+                </Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.raisedOn}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group controlid="submit">
+                <br />
+                <Button
+                  type="submit"
+                  onClick={handleSubmit}
+
+                  className="'my-2"
+                  id="submitButton"
+                  style={{
+                    backgroundColor: "#f5896e",
+                    borderColor: "#ff9b44", width: "10rem", borderRadius: "25px"
+                  }}
+                  variant="success"
+
+
+                >
+                  Submit
+                </Button>
+                &nbsp;&nbsp;&nbsp;
+                <Button
+                  type="submit"
+
+                  className="'my-2"
+                  id="cancelButton"
+                  style={{
+                    backgroundColor: "#B6B6B4",
+                    borderColor: "#B6B6B4", width: "10rem", borderRadius: "25px"
+                  }}
+                  variant="success"
+                  onClick={() => history.push("/app/rrf")}
+                >
+                  Back
+                </Button>
+              </Form.Group>
+            </Row>
+          </Form>
+        </>) :
+        (<>
+          <Backdrop
+            sx={{
+              color: "#fff",
+              zIndex: (theme) => theme.zIndex.drawer + 1,
+            }}
+            open
+            onClick={closeLoading}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop></>)
+      }
     </div>
   )
 }
 export default UpdateRR;
+

@@ -63,8 +63,8 @@ function AddOnboard(props) {
       raisedBy
     } = form;
     const newErrors = {};
-
-    if (!firstName || firstName === "" || !firstName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
+    /^[\d a-zA-Z ()+-]+$/
+    if (!firstName || firstName === "" || !firstName.match(/^[\d a-zA-Z ()+-]+$/))
       newErrors.firstName = "Please Enter First Name";
     if (!lastName || lastName === "" || !lastName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
       newErrors.lastName = "Please Enter Last Name";
@@ -145,18 +145,19 @@ function AddOnboard(props) {
           console.log(user)
           if (user.status) {
             props.func();
+           
           } else {
             console.log("Props Not Send");
           }
           toast.success("Employee Onboarded Successfully");
           console.log(user);
-          setTimeout(500);
-          handleClose();
+         
         })
         .catch((err) => {
           toast.error("Something Went Wrong");
         });
     }
+    handleClose();
   };
 
   const [designations, setDesignations] = useState([]);
@@ -235,59 +236,6 @@ function AddOnboard(props) {
     loadUsers();
   }, []);
 
-  // //irm onchange and onclick calls
-  // const onChangeHandler = (irm) => {
-  //   let matches = []
-  //   if (irm.length > 0) {
-  //     matches = users.filter(user => {
-  //       const regex = new RegExp(`${irm}`, "gi");
-  //       return user.firstName.match(regex)
-  //     })
-  //     console.log('matches', matches);
-  //     setSuggestions(matches);
-  //   }
-  // }
-  // const onSuggestHandler = (irm) => {
-  //   setField("irm",irm)
-  //   setSuggestions([])
-  // }
-
-  // //srm onchange and onclick calls
-  // const onChangeHandler1 = (srm) => {
-  //   let matches = []
-  //   if (srm.length > 0) {
-  //     matches = users.filter(user => {
-  //       const regex = new RegExp(`${srm}`, "gi");
-  //       return user.firstName.match(regex)
-  //     })
-  //     console.log('matches', matches);
-  //     setSuggestions1(matches);
-  //   }
-  // }
-  // const onSuggestHandler1 = (srm) => {
-  //   setField("srm", srm)
-  //   setSuggestions1([])
-  // }
-
-  // //buh onchange and onclick calls
-  // const onChangeHandler2 = (buh) => {
-  //   let matches = []
-  //   if (buh.length > 0) {
-  //     matches = users.filter(user => {
-  //       const regex = new RegExp(`${buh}`, "gi");
-  //       return user.firstName.match(regex)
-  //     })
-  //     console.log('matches', matches);
-  //     setSuggestions2(matches);
-  //   }
-  // }
-  // const onSuggestHandler2 = (buh) => {
-  //   console.log(buh)
-  //   setField("buh", buh)
-  //   // console.log(buh)
-  //   setSuggestions2([])
-  // }
-
   return (
     <div>
       <Button
@@ -302,7 +250,6 @@ function AddOnboard(props) {
           // marginTop: "100px",
         }}
       >
-        {" "}
         <BsPlusLg />
         Add New Onboard
       </Button>
@@ -400,7 +347,7 @@ function AddOnboard(props) {
                   disabled
                   name="jobTitle"
                   type="text"
-                  controlId="jobTitle"
+                  controlid="jobTitle"
                   placeholder="Job Title "
                   value={jobT.jobTitle}
                   maxLength={30}
@@ -419,7 +366,7 @@ function AddOnboard(props) {
                         required
                         className="firstName"
                         type="text"
-                        controlId="firstName"
+                        controlid="firstName"
                         placeholder="First name"
                         // onChange={(event) => setFirstName(event.target.value)}
                         value={form.firstName}
@@ -436,7 +383,7 @@ function AddOnboard(props) {
                       <Form.Control
                         name="middle_name"
                         type="text"
-                        controlId="middleName"
+                        controlid="middleName"
                         placeholder="Middle name"
                         value={form.middleName}
                         maxLength={30}
@@ -449,7 +396,7 @@ function AddOnboard(props) {
                         required
                         name="last_name"
                         type="text"
-                        controlId="lastName"
+                        controlid="lastName"
                         placeholder="Last name"
                         value={form.lastName}
                         maxLength={30}
@@ -469,7 +416,7 @@ function AddOnboard(props) {
                           required
                           type="text"
                           placeholder="Phone Number"
-                          controlId="phoneNumber"
+                          controlid="phoneNumber"
                           value={form.phoneNumber}
                           maxLength={10}
                           onChange={(e) => {
@@ -479,6 +426,10 @@ function AddOnboard(props) {
                                 " Phone Number length should be 10 characters"
                               );
                             }
+                              else{
+                                setThirdErrors("");
+                              }
+                            
                           }}
                           isInvalid={thirderrors}
                         ></Form.Control>
@@ -494,7 +445,7 @@ function AddOnboard(props) {
                         required
                         type="email"
                         placeholder="Email"
-                        controlId="email"
+                        controlid="email"
                         value={form.email}
                         // maxLength={60}
                         onChange={(e) => {
@@ -525,7 +476,7 @@ function AddOnboard(props) {
                         required
                         type="date"
                         placeholder="Joining Date"
-                        controlId="dateOfJoining"
+                        controlid="dateOfJoining"
                         value={form.dateOfJoining}
                         onChange={(e) => setField("dateOfJoining", e.target.value)}
                         isInvalid={!!errors.dateOfJoining}
@@ -542,7 +493,7 @@ function AddOnboard(props) {
                   type="text"
                   name="primarySkills"
                   placeholder="Primary Skills"
-                  controlId="primarySkills"
+                  controlid="primarySkills"
                   value={form.primarySkills}
                   maxLength={30}
                   onChange={(e) => setField("primarySkills", e.target.value)}
@@ -560,7 +511,7 @@ function AddOnboard(props) {
                   type="text"
                   name="secondarySkills"
                   placeholder="SecondarySkills"
-                  controlId="secondarySkills"
+                  controlid="secondarySkills"
                   value={form.secondarySkills}
                   maxLength={30}
                   onChange={(e) => setField("secondarySkills", e.target.value)}
@@ -581,7 +532,7 @@ function AddOnboard(props) {
                         step="1.00"
                         max="50.00"
                         placeholder="Experience "
-                        controlId="yearsOfExperience"
+                        controlid="yearsOfExperience"
                         value={form.yearsOfExperience}
                         onChange={(e) => {
                           setField("yearsOfExperience", e.target.value);
@@ -622,7 +573,7 @@ function AddOnboard(props) {
                         required
                         type="text"
                         placeholder="Type Of Employment"
-                        controlId="employmentType"
+                        controlid="employmentType"
                         value={form.employmentType}
                         onChange={(e) => setField("employmentType", e.target.value)}
                         isInvalid={!!errors.employmentType}
@@ -642,7 +593,7 @@ function AddOnboard(props) {
                         required
                         type="text"
                         placeholder="Businees Unit"
-                        controlId="department"
+                        controlid="department"
                         value={form.department}
                         onChange={(e) => {
                           console.log(e.target.value);
@@ -676,7 +627,7 @@ function AddOnboard(props) {
                         required
                         type="text"
                         placeholder="Designation"
-                        controlId="designation"
+                        controlid="designation"
                         value={form.designation}
                         onChange={(e) => setField("designation", e.target.value)}
                         isInvalid={!!errors.designation}
@@ -702,7 +653,7 @@ function AddOnboard(props) {
                   required
                   type="text"
                   placeholder="Band"
-                  controlId="band"
+                  controlid="band"
                   value={form.band}
                   onChange={(e) => setField("band", e.target.value)}
                   
@@ -723,7 +674,7 @@ function AddOnboard(props) {
                 <Form.Control
                   name="jobTitle"
                   type="text"
-                  controlId="jobTitle"
+                  controlid="jobTitle"
                   placeholder="Job Title "
                   value={form.jobTitle}
                   maxLength={30}
@@ -740,7 +691,7 @@ function AddOnboard(props) {
                   required
                   type="text"
                   placeholder="client"
-                  controlId="client"
+                  controlid="client"
                   value={form.client}
                   onChange={(e) => setField("client", e.target.value)}
                   isInvalid={!!errors.client}
@@ -761,7 +712,7 @@ function AddOnboard(props) {
                   required
                   type="text"
                   placeholder="projectName"
-                  controlId="projectName"
+                  controlid="projectName"
                   value={form.projectName}
                   onChange={(e) => setField("projectName", e.target.value)}
                 >

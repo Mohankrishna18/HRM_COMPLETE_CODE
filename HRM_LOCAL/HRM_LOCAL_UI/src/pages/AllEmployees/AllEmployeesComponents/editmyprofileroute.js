@@ -172,7 +172,7 @@ function EmployeeMasterForms(props) {
                                             as={Col}
                                             className="mb-3"
                                             md="6"
-                                            controlId="formBasicEmail"
+                                            controlid="formBasicEmail"
                                         >
                                             <Form.Label>First Name *</Form.Label>
                                             <Form.Control
@@ -211,7 +211,7 @@ function EmployeeMasterForms(props) {
                                             as={Col}
                                             className="mb-3"
                                             md="6"
-                                            controlId="formBasicEmail"
+                                            controlid="formBasicEmail"
                                         >
                                             <Form.Label>Last Name *</Form.Label>
                                             <Form.Control
@@ -275,7 +275,7 @@ function EmployeeMasterForms(props) {
                                             className="mb-3"
                                             md="6"
                                             style={{ padding: 10 }}
-                                            controlId="formBasicEmail"
+                                            controlid="formBasicEmail"
                                         >
                                             <Form.Label>Emergency Phone Number </Form.Label>
                                             <InputGroup>
@@ -334,7 +334,7 @@ function EmployeeMasterForms(props) {
                                                 type="date"
                                                 name="dateOfBirth"
                                                 placeholder="DOB"
-                                                controlId="dateOfBirth"
+                                                controlid="dateOfBirth"
                                                 value={dateOfBirth}
                                                 isInvalid={fiveerrors}
                                                 onChange={(e) => {
@@ -361,7 +361,7 @@ function EmployeeMasterForms(props) {
                                                 type="text"
                                                 name="bloodGroup"
                                                 placeholder="Blood Group "
-                                                controlId="bloodGroup"
+                                                controlid="bloodGroup"
                                                 isInvalid={sixerror}
                                                 value={bloodGroup}
 
@@ -397,7 +397,7 @@ function EmployeeMasterForms(props) {
                                                 type="text"
                                                 name="gender"
                                                 placeholder="Gender "
-                                                controlId="gender"
+                                                controlid="gender"
                                                 value={gender}
                                                 isInvalid={sevenerrors}
                                                 onChange={(e) => {
@@ -427,7 +427,7 @@ function EmployeeMasterForms(props) {
                                                 type="text"
                                                 name="maritalStatus"
                                                 placeholder="Marital Status "
-                                                controlId="maritalStatus"
+                                                controlid="maritalStatus"
                                                 value={maritalStatus}
                                                 isInvalid={eighterror}
                                                 onChange={(event) => {
@@ -473,7 +473,7 @@ function EmployeeMasterForms(props) {
                                                         type="text"
                                                         name="permanentAdress"
                                                         placeholder="Address"
-                                                        controlId="permanentAdress"
+                                                        controlid="permanentAdress"
                                                         value={permanentAdress}
                                                         isInvalid={elevenerrors}
                                                         maxLength={125}
@@ -500,7 +500,7 @@ function EmployeeMasterForms(props) {
                                                         type="text"
                                                         placeholder="State"
                                                         name="permanentState"
-                                                        controlId="permanentState"
+                                                        controlid="permanentState"
                                                         maxLength={50}
                                                         isInvalid={tweleveerror}
                                                         value={permanentState}
@@ -526,7 +526,7 @@ function EmployeeMasterForms(props) {
                                                         type="text"
                                                         placeholder="Country"
                                                         name="permanentCountry"
-                                                        controlId="permanentCountry"
+                                                        controlid="permanentCountry"
                                                         maxLength={50}
                                                        
                                                         value={permanentCountry}
@@ -556,7 +556,7 @@ function EmployeeMasterForms(props) {
                                                         required
                                                         type="number"
                                                         placeholder="Pincode"
-                                                        controlId="permanentPincode"
+                                                        controlid="permanentPincode"
                                                         name="permanentPincode"
                                                         isInvalid={fourteenerror}
                                                         value={permanentPincode}
@@ -597,7 +597,7 @@ function EmployeeMasterForms(props) {
                                                         rows={4}
                                                         type="text"
                                                         placeholder="Address"
-                                                        controlId="currentAdress"
+                                                        controlid="currentAdress"
                                                         isInvalid={fifteenerrors}
                                                         value={currentAdress}
                                                         name="currentAdress"
@@ -625,7 +625,7 @@ function EmployeeMasterForms(props) {
                                                         type="text"
                                                         placeholder="State"
                                                         name="currentState"
-                                                        controlId="currentState"
+                                                        controlid="currentState"
                                                         maxLength={50}
                                                         isInvalid={sixteenerror}
                                                         value={currentState}
@@ -650,7 +650,7 @@ function EmployeeMasterForms(props) {
                                                         required
                                                         type="text"
                                                         placeholder="Country"
-                                                        //controlId="currentCountry"
+                                                        //controlid="currentCountry"
                                                         value={currentCountry}
                                                         isInvalid={seventeenerror}
                                                         maxLength={50}
@@ -677,7 +677,7 @@ function EmployeeMasterForms(props) {
                                                         required
                                                         type="number"
                                                         placeholder="Pincode"
-                                                        controlId="currentPincode"
+                                                        controlid="currentPincode"
                                                         value={currentPincode}
                                                         isInvalid={eighteenerror}
                                                         name="currentPincode"
@@ -715,7 +715,7 @@ function EmployeeMasterForms(props) {
                                                 disabled
                                                 type="text"
                                                 placeholder="Primary Skills"
-                                                controlId="primarySkils"
+                                                controlid="primarySkils"
                                                 value={primarySkills}
                                                 maxLength={15}
                                                 name="primarySkills"
@@ -732,7 +732,7 @@ function EmployeeMasterForms(props) {
                                                 disabled
                                                 type="text"
                                                 placeholder="Secondary Skills"
-                                                controlId="secondarySkills"
+                                                controlid="secondarySkills"
                                                 value={secondarySkills}
                                                 maxLength={15}
                                                 name="secondarySkills"
@@ -747,7 +747,7 @@ function EmployeeMasterForms(props) {
                                             <Form.Control
                                                 type="text"
                                                 placeholder="Type of Employee"
-                                                controlId="employmentType"
+                                                controlid="employmentType"
                                                 value={employmentType}
                                                 maxLength={15}
                                                 name="employmentType"
@@ -763,7 +763,7 @@ function EmployeeMasterForms(props) {
                                             <Form.Select
                                                 type="text"
                                                 placeholder="Band"
-                                                controlId="band"
+                                                controlid="band"
 
                                                 name="band"
                                                 value={band}
@@ -780,7 +780,7 @@ function EmployeeMasterForms(props) {
                                             <Form.Control
                                                 type="text"
                                                 placeholder="Department Name"
-                                                controlId="departmentName"
+                                                controlid="departmentName"
                                                 value={departmentName}
                                                 maxLength={15}
                                                 name="departmentName"
@@ -796,7 +796,7 @@ function EmployeeMasterForms(props) {
                                             <Form.Control
                                                 type="text"
                                                 placeholder="Designation Name"
-                                                controlId="designationName"
+                                                controlid="designationName"
                                                 value={designationName}
                                                 maxLength={15}
                                                 name="designationName"
@@ -826,7 +826,7 @@ function EmployeeMasterForms(props) {
                                             <Form.Select
                                                 type="text"
                                                 placeholder="Project"
-                                                controlId="project"
+                                                controlid="project"
                                                 value={projectName}
                                                 maxLength={15}
                                                 name="projectName"
@@ -855,7 +855,7 @@ function EmployeeMasterForms(props) {
                                                 disabled
                                                 type="text"
                                                 placeholder="Passport Number"
-                                                controlId="passportNo"
+                                                controlid="passportNo"
                                                 value={passportNo}
                                                 maxLength={15}
                                                 name="passportNo"
@@ -871,7 +871,7 @@ function EmployeeMasterForms(props) {
                                                 disabled
                                                 type="date"
                                                 placeholder="Passport Expiry Date"
-                                                controlId="passportExpiryDate"
+                                                controlid="passportExpiryDate"
                                                 name="passportExpiryDate"
                                                 value={passportExpiryDate}
                                                 min={new Date()}
@@ -887,7 +887,7 @@ function EmployeeMasterForms(props) {
                                                 disabled
                                                 type="text"
                                                 placeholder="PAN Card Number"
-                                                controlId="panNumber"
+                                                controlid="panNumber"
                                                 name="panNumber"
                                                 maxLength={15}
                                                 value={panNumber}
@@ -901,7 +901,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="number"
                                                 placeholder="Aadhar Card Number"
-                                                controlId="aadharNumber"
+                                                controlid="aadharNumber"
                                                 name="panNumber"
                                                 maxLength={12}
                                                 isInvalid={nineteenerror}
@@ -929,7 +929,7 @@ function EmployeeMasterForms(props) {
                                             <Form.Control
                                                 type="text"
                                                 placeholder="UAN Number"
-                                                controlId="uanNumber"
+                                                controlid="uanNumber"
                                                 name="uanNumber"
                                                 value={uanNumber}
                                                 maxLength={12}
@@ -943,7 +943,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="Bank Name"
-                                                controlId="bankName"
+                                                controlid="bankName"
                                                 name="bankName"
                                                 maxLength={30}
                                                 value={bankName}
@@ -969,7 +969,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="number"
                                                 placeholder="Account Number"
-                                                controlId="accountNumber"
+                                                controlid="accountNumber"
                                                 name="accountNumber"
                                                 maxLength={30}
                                                 value={accountNumber}
@@ -999,7 +999,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="IFSC Code"
-                                                controlId="ifscCode"
+                                                controlid="ifscCode"
                                                 name="ifscCode"
                                                 maxLength={10}
                                                 value={ifscCode}
@@ -1025,7 +1025,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="Branch Name"
-                                                controlId="branchName"
+                                                controlid="branchName"
                                                 name="branch"
                                                 maxLength={30}
                                                 value={branch}
@@ -1084,7 +1084,7 @@ function EmployeeMasterForms(props) {
                                                                 required
                                                                 type="text"
                                                                 placeholder="Type Of Post Graduation"
-                                                                controlId="postgraduationType"
+                                                                controlid="postgraduationType"
                                                                 name="postgraduationType"
                                                                 value={postgraduationType}
                                                                 maxLength={50}
@@ -1111,7 +1111,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="University Name"
-                                                                controlId="postgraduationBoardOfUniversity"
+                                                                controlid="postgraduationBoardOfUniversity"
                                                                 name="postgraduationBoardOfUniversity"
                                                                 maxLength={50}
                                                                 value={postgraduationBoardOfUniversity}
@@ -1128,7 +1128,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Institute Name "
-                                                                controlId="postgraduationInstituteName"
+                                                                controlid="postgraduationInstituteName"
                                                                 value={postgraduationInstituteName}
                                                                 maxLength={50}
                                                                 name="postgraduationInstituteName"
@@ -1143,7 +1143,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Institute City"
-                                                                controlId="postgraduationInstituteCity"
+                                                                controlid="postgraduationInstituteCity"
                                                                 value={postgraduationInstituteCity}
                                                                 maxLength={30}
                                                                 name="postgraduationInstituteCity"
@@ -1158,7 +1158,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Course Name"
-                                                                controlId="postgraduationCourseName"
+                                                                controlid="postgraduationCourseName"
                                                                 value={postgraduationCourseName}
                                                                 maxLength={30}
                                                                 name="postgraduationCourseName"
@@ -1173,7 +1173,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="date"
                                                                 placeholder="Joining Year"
-                                                                controlId="postgraduationJoiningYear"
+                                                                controlid="postgraduationJoiningYear"
                                                                 value={postgraduationJoiningYear}
                                                                 maxLength={30}
                                                                 name="postgraduationJoiningYear"
@@ -1188,7 +1188,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="date"
                                                                 placeholder="Passed out year"
-                                                                controlId="postgraduationPassedYear"
+                                                                controlid="postgraduationPassedYear"
                                                                 value={postgraduationPassedYear}
 
                                                                 min={postgraduationJoiningYear}
@@ -1205,7 +1205,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Percentage/Grade/CGPA/GPA"
-                                                                controlId="postgraduationGrade"
+                                                                controlid="postgraduationGrade"
                                                                 value={postgraduationGrade}
 
                                                                 name="postgraduationGrade"
@@ -1240,7 +1240,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="Type Of Graduation"
-                                                controlId="graduationType"
+                                                controlid="graduationType"
                                                 maxLength={30}
                                                 name="graduationType"
                                                 value={graduationType}
@@ -1278,7 +1278,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="University Name"
-                                                controlId="graduationBoardOfUniversity"
+                                                controlid="graduationBoardOfUniversity"
                                                 name="graduationBoardOfUniversity"
                                                 // pattern="/^[a-zA-Z\s]*$/"
 
@@ -1313,7 +1313,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="Institute Name "
-                                                controlId="graduationInstituteName"
+                                                controlid="graduationInstituteName"
                                                 name="graduationInstituteName"
                                                 maxLength={30}
                                                 value={graduationInstituteName}
@@ -1340,7 +1340,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="Institute City"
-                                                controlId="graduationInstituteCity"
+                                                controlid="graduationInstituteCity"
                                                 maxLength={30}
                                                 value={graduationInstituteCity}
                                                 isInvalid={twentysevenerror}
@@ -1394,7 +1394,7 @@ function EmployeeMasterForms(props) {
                                                 type="date"
                                                 placeholder="Joining Year"
                                                 name="graduationJoiningYear"
-                                                controlId="graduationJoiningYear"
+                                                controlid="graduationJoiningYear"
                                                 maxLength={30}
                                                 value={graduationJoiningYear}
                                                 isInvalid={twentynineerror}
@@ -1420,7 +1420,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="date"
                                                 placeholder="Passed out year"
-                                                controlId="graduationPassedYear"
+                                                controlid="graduationPassedYear"
                                                 name="graduationPassedYear"
                                                 maxLength={30}
                                                 min={graduationJoiningYear}
@@ -1447,7 +1447,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="Percentage/Grade/GPA/CGPA"
-                                                controlId="graduationGrade"
+                                                controlid="graduationGrade"
                                                 isInvalid={thirtyoneerror}
                                                 value={graduationGrade}
                                                 name="graduationGrade"
@@ -1482,7 +1482,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="Board"
-                                                controlId="intermediateBoardOfUniversity"
+                                                controlid="intermediateBoardOfUniversity"
                                                 value={intermediateBoardOfUniversity}
                                                 isInvalid={thirtytwoerror}
                                                 maxLength={30}
@@ -1509,7 +1509,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="School/College Name "
-                                                controlId="intermediateCollegeName"
+                                                controlid="intermediateCollegeName"
                                                 value={intermediateCollegeName}
                                                 isInvalid={thirtythreeerror}
                                                 maxLength={30}
@@ -1535,7 +1535,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="School/College City"
-                                                controlId="intermediateCollegeCity"
+                                                controlid="intermediateCollegeCity"
                                                 value={intermediateCollegeCity}
                                                 isInvalid={thirtyfourerror}
                                                 maxLength={30}
@@ -1562,7 +1562,7 @@ function EmployeeMasterForms(props) {
                                                 type="text"
                                                 placeholder="Course Name"
                                                 name="intermediateCourseName"
-                                                controlId="intermediateCourseName"
+                                                controlid="intermediateCourseName"
                                                 maxLength={30}
                                                 value={intermediateCourseName}
                                                 isInvalid={thirtyfiveerror}
@@ -1588,7 +1588,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="date"
                                                 placeholder="Joining Year"
-                                                controlId="intermediateJoiningYear"
+                                                controlid="intermediateJoiningYear"
                                                 name="intermediateJoiningYear"
                                                 value={intermediateJoiningYear}
                                                 isInvalid={thirtysixerror}
@@ -1614,7 +1614,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="date"
                                                 placeholder="Passed out year"
-                                                controlId="intermediatePassedYear"
+                                                controlid="intermediatePassedYear"
                                                 value={intermediatePassedYear}
                                                 min={intermediateJoiningYear}
                                                 isInvalid={thirtysevenerror}
@@ -1640,7 +1640,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="Percentage/Grade/GPA/CGPA"
-                                                controlId="intermediateGrade"
+                                                controlid="intermediateGrade"
                                                 maxLength={5}
                                                 value={intermediateGrade}
                                                 isInvalid={thirtyeighterror}
@@ -1676,7 +1676,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="Board"
-                                                controlId="sscBoardOfUniversity"
+                                                controlid="sscBoardOfUniversity"
                                                 maxLength={30}
                                                 value={sscBoardOfUniversity}
                                                 isInvalid={thirtynineerror}
@@ -1703,7 +1703,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="School Name "
-                                                controlId="sscSchoolName"
+                                                controlid="sscSchoolName"
                                                 maxLength={30}
                                                 value={sscSchoolName}
                                                 isInvalid={fourty}
@@ -1729,7 +1729,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="School City"
-                                                controlId="sscSchoolCity"
+                                                controlid="sscSchoolCity"
                                                 maxLength={30}
                                                 value={sscSchoolCity}
                                                 isInvalid={fourtyone}
@@ -1755,7 +1755,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="Course Name"
-                                                controlId="sscCourseName"
+                                                controlid="sscCourseName"
                                                 maxLength={30}
                                                 value={sscCourseName}
                                                 isInvalid={fourtytwo}
@@ -1782,7 +1782,7 @@ function EmployeeMasterForms(props) {
                                                 type="date"
                                                 name="sscJoiningYear"
                                                 placeholder="Joining Year"
-                                                controlId="sscJoiningYear"
+                                                controlid="sscJoiningYear"
                                                 value={sscJoiningYear}
                                                 isInvalid={fourtythree}
                                                 onChange={(e) => {
@@ -1807,7 +1807,7 @@ function EmployeeMasterForms(props) {
                                                 type="date"
                                                 name="sscPassedYear"
                                                 placeholder="Passed out year"
-                                                controlId="sscPassedYear"
+                                                controlid="sscPassedYear"
                                                 value={sscPassedYear}
                                                 min={sscJoiningYear}
                                                 isInvalid={fourtyfour}
@@ -1832,7 +1832,7 @@ function EmployeeMasterForms(props) {
                                                 required
                                                 type="text"
                                                 placeholder="Percentage/Grade/GPA/CGPA"
-                                                controlId="sscGrade"
+                                                controlid="sscGrade"
                                                 value={sscGrade}
                                                 maxLength={5}
                                                 name="sscGrade"
@@ -1874,7 +1874,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Company Name"
-                                                                controlId="previousCompany1_name"
+                                                                controlid="previousCompany1_name"
                                                                 value={previousCompany1_name}
                                                                 maxLength={30}
                                                                 onChange={(e) =>
@@ -1889,7 +1889,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Designation"
-                                                                controlId="previousCompany1_designation"
+                                                                controlid="previousCompany1_designation"
                                                                 value={previousCompany1_designation}
                                                                 maxLength={30}
                                                                 onChange={(e) =>
@@ -1906,7 +1906,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="date"
                                                                 placeholder="Date of Joining"
-                                                                controlId="previousCompany1_joiningDate"
+                                                                controlid="previousCompany1_joiningDate"
                                                                 value={previousCompany1_joiningDate}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany1_joiningDate(
@@ -1922,7 +1922,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="Date"
                                                                 placeholder="Date of Relieving"
-                                                                controlId="previousCompany1_relievingDate"
+                                                                controlid="previousCompany1_relievingDate"
                                                                 value={previousCompany1_relievingDate}
                                                                 min={previousCompany1_joiningDate}
                                                                 onChange={(e) =>
@@ -1939,7 +1939,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Employee ID"
-                                                                controlId="previousCompany1_employeeId"
+                                                                controlid="previousCompany1_employeeId"
                                                                 value={previousCompany1_employeeId}
                                                                 maxLength={30}
                                                                 onChange={(e) =>
@@ -1955,7 +1955,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Employment Type"
-                                                                controlId="previousCompany1_typeOfEmployeement"
+                                                                controlid="previousCompany1_typeOfEmployeement"
                                                                 value={previousCompany1_typeOfEmployment}
 
                                                                 onChange={(e) =>
@@ -1984,7 +1984,7 @@ function EmployeeMasterForms(props) {
                                                                 type="text"
                                                                 maxLength={120}
                                                                 placeholder="Reason"
-                                                                controlId="previousCompany1_reasonForRelieving"
+                                                                controlid="previousCompany1_reasonForRelieving"
                                                                 value={previousCompany1_reasonForRelieving}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany1_reasonForRelieving(
@@ -2009,7 +2009,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Company Name"
-                                                                controlId="previousCompany2_name"
+                                                                controlid="previousCompany2_name"
                                                                 maxLength={30}
                                                                 value={previousCompany2_name}
                                                                 onChange={(event) =>
@@ -2024,7 +2024,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Designation"
-                                                                controlId="previousCompany2_designation"
+                                                                controlid="previousCompany2_designation"
                                                                 maxLength={30}
                                                                 value={previousCompany2_designation}
                                                                 onChange={(e) =>
@@ -2041,7 +2041,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="date"
                                                                 placeholder="Date of Joining"
-                                                                controlId="previousCompany2_joiningDate"
+                                                                controlid="previousCompany2_joiningDate"
                                                                 value={previousCompany2_joiningDate}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany2_joiningDate(
@@ -2058,7 +2058,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="Date"
                                                                 placeholder="Date of Relieving"
-                                                                controlId="previousCompany2_relievingDate"
+                                                                controlid="previousCompany2_relievingDate"
                                                                 value={previousCompany2_relievingDate}
                                                                 min={previousCompany2_joiningDate}
                                                                 onChange={(e) =>
@@ -2075,7 +2075,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Employee ID"
-                                                                controlId="previousCompany2_employeeId"
+                                                                controlid="previousCompany2_employeeId"
                                                                 value={previousCompany2_employeeId}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany2_employeeId(e.target.value)
@@ -2090,7 +2090,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Employment Type"
-                                                                controlId="previousCompany2_typeOfEmployment"
+                                                                controlid="previousCompany2_typeOfEmployment"
                                                                 value={previousCompany2_typeOfEmployment}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany2_typeOfEmployement(
@@ -2117,7 +2117,7 @@ function EmployeeMasterForms(props) {
                                                                 rows={2}
                                                                 type="text"
                                                                 placeholder="Reason"
-                                                                controlId="previousCompany2_reasonForRelieving"
+                                                                controlid="previousCompany2_reasonForRelieving"
                                                                 value={previousCompany2_reasonForRelieving}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany2_reasonForRelieving(
@@ -2142,7 +2142,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Company Name"
-                                                                controlId="previousCompany3_name"
+                                                                controlid="previousCompany3_name"
                                                                 maxLength={30}
                                                                 value={previousCompany3_name}
                                                                 onChange={(e) =>
@@ -2157,7 +2157,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Designation"
-                                                                controlId="previousCompany3_designation"
+                                                                controlid="previousCompany3_designation"
                                                                 maxLength={30}
                                                                 value={previousCompany3_designation}
                                                                 onChange={(e) =>
@@ -2174,7 +2174,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="date"
                                                                 placeholder="Date of Joining"
-                                                                controlId="previousCompany3_joiningDate"
+                                                                controlid="previousCompany3_joiningDate"
                                                                 value={previousCompany3_joiningDate}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany3_joiningDate(
@@ -2190,7 +2190,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="Date"
                                                                 placeholder="Date of Relieving"
-                                                                controlId="prevoiusCompany3_relievingDate"
+                                                                controlid="prevoiusCompany3_relievingDate"
                                                                 value={previousCompany3_relievingDate}
                                                                 min={previousCompany3_joiningDate}
                                                                 onChange={(e) =>
@@ -2207,7 +2207,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Employee ID"
-                                                                controlId="previousCompany3_employeeId"
+                                                                controlid="previousCompany3_employeeId"
                                                                 maxLength={30}
                                                                 value={previousCompany3_employeeId}
                                                                 onChange={(e) =>
@@ -2222,7 +2222,7 @@ function EmployeeMasterForms(props) {
                                                                 disabled
                                                                 type="text"
                                                                 placeholder="Employment Type"
-                                                                controlId="previousCompany3_typeOfEmployment"
+                                                                controlid="previousCompany3_typeOfEmployment"
                                                                 value={previousCompany3_typeOfEmployment}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany3_typeOfEmployement(
@@ -2250,7 +2250,7 @@ function EmployeeMasterForms(props) {
                                                                 type="text"
                                                                 maxLength={120}
                                                                 placeholder="Reason"
-                                                                controlId="previousCompany3_reasonForRelieving"
+                                                                controlid="previousCompany3_reasonForRelieving"
                                                                 value={previousCompany3_reasonForRelieving}
                                                                 onChange={(e) =>
                                                                     setPreviousCompany3_reasonForRelieving(
@@ -2274,7 +2274,7 @@ function EmployeeMasterForms(props) {
                                             <Form.Control
                                                 type="date"
                                                 placeholder="Exit Date"
-                                                controlId="exitDate"
+                                                controlid="exitDate"
                                                 value={exitDate}
                                                 onChange={(e) => setExitDate(e.target.value)}
                                                 name="exitDate"

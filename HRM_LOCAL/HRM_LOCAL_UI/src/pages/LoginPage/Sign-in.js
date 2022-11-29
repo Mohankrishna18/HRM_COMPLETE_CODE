@@ -112,7 +112,7 @@
 //                 }}
 //               ></img> */}
 //               <h2 style={{ textAlign: "center", paddingTop: "10px" }}>Arshaa Login</h2>
-//               <Form.Group as={Col} md="12" controlId="validationCustom03">
+//               <Form.Group as={Col} md="12" controlid="validationCustom03">
 //                 <Form.Label style={{ marginTop: "20px", fontWeight: "bold" }}>Employee ID</Form.Label>
 //                 <Form.Control type="text" placeholder="Enter your Employee Id " required style={{ borderRadius: "15px" }}
 //                   size="lg"
@@ -130,11 +130,11 @@
 //                     }
 //                   }
 //                   } />
-//                 <Form.Control.Feedback class="valid-tooltip" type="invalid" style={{ color: 'blue' }}>
+//                 <Form.Control.Feedback ="valid-tooltip" type="invalid" style={{ color: 'blue' }}>
 //                   Please Enter valid Employee Id.
 //                 </Form.Control.Feedback>
 //               </Form.Group>
-//               <Form.Group as={Col} md="12" controlId="validationCustom04">
+//               <Form.Group as={Col} md="12" controlid="validationCustom04">
 //                 <Form.Label style={{ marginTop: "20px", fontWeight: "bold" }}>Password</Form.Label>
 //                 <Form.Control type="Password" placeholder="Enter your Password" required
 //                   style={{ borderRadius: "15px" }}
@@ -180,7 +180,7 @@
 //               </Form.Group>
 //               <Form.Group className="mb-3">
 //                 <NavLink
-//                   class="text-muted"
+//                   className="text-muted"
 //                   href="/resetPassword"
 //                   style={{
 //                     fontWeight: "bold",
@@ -369,7 +369,7 @@ const Sign = () => {
                   >
                     {fourtytwo}
                   </Form.Control.Feedback>
-                  {/* <Form.Control.Feedback class="valid-tooltip" type="invalid" style={{ color: 'blue' }}>
+                  {/* <Form.Control.Feedback className="valid-tooltip" type="invalid" style={{ color: 'blue' }}>
                   Please Enter valid Employee Id.
                 </Form.Control.Feedback> */}
                 </Form.Group>

@@ -31,6 +31,8 @@ import com.recruitmenttracker.modal.EmailTemplate;
 
 import com.recruitmenttracker.modal.EmployeeReq;
 import com.recruitmenttracker.modal.GetMail;
+import com.recruitmenttracker.modal.JobsPerDepartment;
+import com.recruitmenttracker.modal.RRFClosed;
 import com.recruitmenttracker.modal.RequisitionRequestResponse;
 import com.recruitmenttracker.modal.UserServiceEmail;
 import com.recruitmenttracker.repository.RequisitionRequestRepository;
@@ -45,10 +47,10 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 
     @Autowired
     private WebClient webClient;
-   
+    
     @Autowired
     private RestTemplate template;
-   
+    
     public static final String preEmailURL = "http://emailService/mail/sendmail";
 
 
@@ -59,19 +61,16 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
             // newRR.setWorkflowStatus("Waiting for BUHead Approval");
             newRR.setRrfStatus("Open");
             RequisitionRequestEntity raiseRequest = rrRepository.save(newRR);
-
-
+            //rrRepository.getDateDiff(newRR.getRequisitionId())
+            newRR.setAgeing(0);
+            
+            RequisitionRequestEntity raiseRequest1 = rrRepository.save(raiseRequest);
 
 //            String p = StringUtils.substring(raiseRequest.getProjectName(), 0, 3);
 //            String c = StringUtils.substring(raiseRequest.getClientName(), 0, 3);
-
-
-
 //           String p = "REQ";
 //            raiseRequest.setRequisitionId(p + 0 + (raiseRequest.getRrfId()));
-            RequisitionRequestEntity rreq = rrRepository.save(raiseRequest);
-
-
+            RequisitionRequestEntity rreq = rrRepository.save(raiseRequest1);
 
            rrr.setStatus(true);
             rrr.setMessage("Data Submitted Successfully!!!");
@@ -84,8 +83,8 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
         }
     }
 
-   
-   
+    
+    
 //  @Override
 //  public ResponseEntity getAllRequisitions(String departmentName) {
 //      RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
@@ -101,7 +100,7 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
 //                  
 //                  
 //              });
-//            
+//             
 //              rrr.setStatus(true);
 //              rrr.setMessage("Data Fetching");
 //              rrr.setData(getDataa);
@@ -142,7 +141,7 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
             return new ResponseEntity(rrr, HttpStatus.OK);
         }
     }
-   
+    
     @Override
     public ResponseEntity deleteRRequest(long rrfId) {
         RequisitionRequestResponse rrr =new RequisitionRequestResponse<>();
@@ -155,7 +154,7 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
             rrr.setMessage("Can't delete Requisition Request");
             rrr.setStatus(false);
             return new ResponseEntity(rrr,HttpStatus.OK);
-           
+            
         }
     }
 
@@ -167,7 +166,7 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
             RequisitionRequestEntity rrEntity = rrRepository.findByRequisitionId(requisitionId);
             rrEntity.setJobTitle(rrUpdate.getJobTitle());
             rrEntity.setDescription(rrUpdate.getDescription());
-            rrEntity.setRrfCat(rrUpdate.getRrfCat());
+//          rrEntity.setRrfCat(rrUpdate.getRrfCat());
             rrEntity.setTechnology(rrUpdate.getTechnology());
             rrEntity.setRequisitionId(rrUpdate.getRequisitionId());
             rrEntity.setPocname(rrUpdate.getPocname());
@@ -192,15 +191,21 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
             rrEntity.setInterviewPanel1(rrUpdate.getInterviewPanel1());
             rrEntity.setInterviewPanel2(rrUpdate.getInterviewPanel2());
             rrEntity.setHrPanel(rrUpdate.getHrPanel());
-           
-           
+            rrEntity.setReqType1(rrUpdate.getReqType1());
+            rrEntity.setReqType2(rrUpdate.getReqType2());
+            rrEntity.setReqType3(rrUpdate.getReqType3());
+            rrEntity.setRequestInitiatedDate(rrUpdate.getRequestInitiatedDate());
+            rrEntity.setResourceRequiredDate(rrUpdate.getResourceRequiredDate());
+            rrEntity.setAllocType(rrUpdate.getAllocType());
+            rrEntity.setQualification(rrUpdate.getQualification());
+            
             RequisitionRequestEntity RRsEntity = rrRepository.save(rrEntity);
             System.out.println(RRsEntity);
             rrr.setStatus(true);
             rrr.setMessage("Update successfully");
             rrr.setData(RRsEntity);
             return new ResponseEntity(rrr,HttpStatus.OK);
-           
+            
         }catch(Exception e){
             rrr.setStatus(true);
             rrr.setMessage("Something went wrong");
@@ -216,14 +221,14 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
             rrEntity.setWorkflowStatus("Waiting for Buhead approval");
             RequisitionRequestEntity RRsEntity = rrRepository.save(rrEntity);
         } catch (Exception e) {
-           
+            
         }
         return null;
     }
 
     // GSDR Changes
     @Override
-        public List<RequisitionRequestEntity> getByWorkflowStatus(String userType) {
+        public List<RequisitionRequestEntity> getByWorkflowStatus(String userType) { 
 
             if(userType.equalsIgnoreCase("buhead")){
             List<RequisitionRequestEntity> requisitionAll = rrRepository.getByWorkflowStatus("Waiting for BUHead Approval");
@@ -239,17 +244,17 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
         public RequisitionRequestEntity modifyRequisitionStatus(RequisitionRequestEntity requisition, long rrfId, String userType)
         {
             String OnboardUrl = "http://loginservice/login/getEmployeeByUserType/";
-           
+            
             RequisitionRequestEntity requisitionUpdate = rrRepository.findByRrfId(rrfId);
             System.out.println("userType:"+userType);
             if(userType.equalsIgnoreCase("buhead")) {
-               
+                
                 UserServiceEmail response = template.getForObject(
                         OnboardUrl+"buhead",
                         UserServiceEmail.class);
                 List<GetMail> hrApp = response.getMails();
 //              List<GetMail> hrApp= template.getForObject(OnboardUrl+"buhead", GetMail.class);
-               
+                
                 requisitionUpdate.setBuheadApprove(requisition.getBuheadApprove());
                 requisitionUpdate.setWorkflowStatus(requisition.getWorkflowStatus());
                 requisitionUpdate.setBuheadApprovedOn(new Date());
@@ -258,31 +263,31 @@ public class RequisitionRequestServiceImpl implements RequisitionRequestInterfac
                 System.out.println(bName);
                 requisitionUpdate.setBuheadName(bName);
                 RequisitionRequestEntity requisitionModify = rrRepository.save(requisitionUpdate);
-               
+                
                 EmailTemplate mailTemp=new EmailTemplate();
                 Map<String,String> map=new HashMap();
 hrApp.forEach(e->{
-                   
+                    
     mailTemp.setEmailType("BUH_RESIGN_APPROVED");
 //  map.put("employeeName",resignation.getResigningEmployee());
     map.put("email", e.getEmail());
 //  map.put("email","muralikrishna.miriyala@arshaa.com");
     mailTemp.setMap(map);
-    template.postForObject(preEmailURL,mailTemp,EmailTemplate.class);
+    template.postForObject(preEmailURL,mailTemp,EmailTemplate.class); 
                 });
-               
-               
+                
+                
                 return requisitionModify;
-               
+                
                 //rest template for buh name
 //              String bName =template.getForObject(approvalUrl,String.class,requisitionUpdate.getBuheadId());
 //              updated.setBuheadName(bName);
 //              updated.setBuheadName(approvalUrl+requisitionUpdate.getBuheadId());
 //              RequisitionRequestEntity requisitionModify = rrRepository.save(updated);
 //              return requisitionModify;
-               
+                
             }
-           
+            
             else if(userType.equalsIgnoreCase("pmohead")) {
                 String bName = webClient.get().uri("/emp/getEmployeeFullNameByEmployeeId/" + requisition.getPmoheadId()).retrieve().bodyToMono(String.class).block();
                 requisitionUpdate.setPmoheadApprove(requisition.getPmoheadApprove());
@@ -292,15 +297,15 @@ hrApp.forEach(e->{
                 requisitionUpdate.setRrfStatus("Open");
                 requisitionUpdate.setPmoheadApprovedOn(new Date());
                 return rrRepository.save(requisitionUpdate);
-               
+                
             }
-           
+            
             else {
                 return requisitionUpdate;
             }
         }
-       
-       
+        
+        
 
         @Override
         public RequisitionRequestEntity rejectRequisition(RequisitionRequestEntity requisition, long rrfId, String userType) {
@@ -317,11 +322,11 @@ hrApp.forEach(e->{
                 RequisitionRequestEntity resignReject1 = rrRepository.save(requisitionReject);
                 return resignReject1;
             }
-           
+            
             else {
                 return requisitionReject;
             }
-           
+            
         }
 
        @Override
@@ -366,6 +371,7 @@ hrApp.forEach(e->{
             re.setJobTitle(rfs.getJobTitle());
             re.setRaisedBy(rfs.getRaisedBy());
             re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
+            re.setResourceRequiredDate(rfs.getResourceRequiredDate());
             rrr.setStatus(true);
             rrr.setMessage("Geting Data Succussfully");
             rrr.setData(re);
@@ -383,10 +389,10 @@ hrApp.forEach(e->{
             try {
                 EmployeeReq re = new EmployeeReq();
                 RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
-               
+                
                 re.setClientName(rfs.getClientName());
                 re.setRaisedBy(rfs.getRaisedBy());
-                re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
+//                re.setRequestInitiatedDate(rfs.getRequestInitiatedDate());
                 re.setJobTitle(rfs.getJobTitle());
 
 //                re.setProjectName(rfs.getProjectName());
@@ -431,7 +437,7 @@ hrApp.forEach(e->{
                 return new ResponseEntity(e.getMessage(), HttpStatus.OK);
             }
     }
-
+    
 
 
     @Override
@@ -441,14 +447,38 @@ hrApp.forEach(e->{
     }
 
 
-
+//  get position by departmentName
     @Override
-    public ResponseEntity updateRrfStatus(String requisitionId, RequisitionRequestEntity RRfStatusUpdate) {
-       
-        return null;
+    public List<JobsPerDepartment> getJobsOpenByDepartmentName() {
+        
+        List<JobsPerDepartment> openJobsPerDepartment = rrRepository.getJobsOpenByDepartmentName();
+        return openJobsPerDepartment;
     }
-   
-   
-   
 
+
+  
+    @Override
+    public ResponseEntity updateAgeing(String requisitionId, RRFClosed rrUpdate) {
+        RequisitionRequestResponse rrr = new RequisitionRequestResponse<>();
+        try {
+            RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
+            RRFClosed gg = new RRFClosed();
+                
+            rfs.setAgeing(rrRepository.getDateDiff(rfs.getRequisitionId()));
+                      
+            rrRepository.save(rfs);
+            
+            System.out.println(rrUpdate);
+            rrr.setStatus(true);
+            rrr.setMessage("Update successfully");
+            rrr.setData(rrUpdate);
+            return new ResponseEntity(rrr,HttpStatus.OK);
+            
+        }catch(Exception e){
+            rrr.setStatus(true);
+            rrr.setMessage("Something went wrong");
+            return new ResponseEntity(rrr,HttpStatus.OK);
+        }
     }
+    
+}

@@ -47,7 +47,7 @@
 
 //               <Button
 //                 type="button"
-//                 class="btn btn-primary punch-btn"
+//                 className="btn btn-primary punch-btn"
 //                 style={{
 //                   marginTop: "150px",
 //                   marginLeft: "50px",
@@ -60,16 +60,16 @@
 //                 Punch Out
 //               </Button>
 
-//               <div class="statistics" style={{ marginTop: "40px" }}>
-//                 <div class="row">
-//                   <div class="col-md-6 col-6 text-center">
-//                     <div class="stats-box">
+//               <div className="statistics" style={{ marginTop: "40px" }}>
+//                 <div className="row">
+//                   <div className="col-md-6 col-6 text-center">
+//                     <div className="stats-box">
 //                       <p>Break</p>
 //                       <h6>1.21 hrs</h6>
 //                     </div>
 //                   </div>
-//                   <div class="col-md-6 col-6 text-center">
-//                     <div class="stats-box">
+//                   <div className="col-md-6 col-6 text-center">
+//                     <div className="stats-box">
 //                       <p>Overtime</p>
 //                       <h6>3 hrs</h6>
 //                     </div>

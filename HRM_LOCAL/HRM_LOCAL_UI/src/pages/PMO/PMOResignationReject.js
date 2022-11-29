@@ -25,17 +25,19 @@ function PMOResignationReject(props) {
     const RejectHandler = (e) => {
         // e.prevetDefault();
         const notify = () => toast("Resignation is Rejected");
-        // handleClose();
-        // const form1 = Object.assign(form, obj);
+       
         let employeeId = props.leaveID.employeeId;
     console.log(employeeId);
     const da = JSON.parse(sessionStorage.getItem("userdata"));
     const empID = da.data.employeeId;
+    const values = Object.assign(initialValues,{resignationId:props.leaveID.resignationId})
+    console.log(values);
+    
 
     axios
       .put(
         `/resignation/rejectResignation/${employeeId}/${empID}`,
-        initialValues
+        values
       )
       .then((res) => {
         console.log(res);
@@ -70,7 +72,7 @@ function PMOResignationReject(props) {
                         rows={2}
                         className="srmReject"
                         type="text"
-                        controlId="srmReject"
+                        controlid="srmReject"
                         placeholder="Reject Reason"
                         value={srmReject}
                         onChange={(e) => setSrmReject(e.target.value)}

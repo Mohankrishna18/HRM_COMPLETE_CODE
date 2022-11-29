@@ -37,10 +37,13 @@ function HRResignationApprove(props) {
     console.log(props.leaveID);
     // const obj = { leaveStatus: "Approved" };
     // const form1 = Object.assign(form, obj);
+    const values = Object.assign(initialValues,{resignationId:props.leaveID.resignationId})
+    console.log(values);
+    
     axios
       .put(
         `/resignation/modifyResignationStatus/${employeeId}/${empID}`,
-        initialValues
+        values
       )
       .then((res) => {
         console.log(res);
@@ -104,7 +107,7 @@ function HRResignationApprove(props) {
                         rows={2}
                         className="hrApprove"
                         type="text"
-                        controlId="hrApprove"
+                        controlid="hrApprove"
                         placeholder="Approve Reason"
                         value={hrApprove}
                         onChange={(e) => setHrApprove(e.target.value)}

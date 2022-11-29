@@ -12,6 +12,7 @@ import image from "../../Images/arshaalogo.png"
 import { useFormik } from "formik";
 import BlockImage from 'react-block-image'
 import { BsArrowLeftShort } from 'react-icons/bs';
+import { toolbarClasses } from "@mui/material";
 
 const ResetPassword = () => {
   const history = useHistory();
@@ -27,13 +28,23 @@ const ResetPassword = () => {
     onSubmit: (values) => {
       axios
         .put("/login/resetPassword", values)
-        .then((response) => {
+        .then((response) => 
+        {
           console.log(response.data);
           console.log({ values });
+          if(response.data.status){
           toast.success("Password Updated Successfully",{
             autoClose: 1000,
           });
           history.push("/");
+        }
+          else{
+            toast.error("Enter Valid Old Password",{
+              autoClose:1000,
+            });
+          }
+        
+          
         })
         .catch((error) => {
           console.log(error.response.data);
@@ -42,6 +53,7 @@ const ResetPassword = () => {
             autoClose: 1000,
           });
         });
+        
     },
     validate: (values) => {
       let errors = {};

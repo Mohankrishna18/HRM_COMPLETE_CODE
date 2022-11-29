@@ -19,7 +19,6 @@ const customTheme = {
 
 const ProfileEmploymentDetailsTab = (props) => {
 
-  console.log(props.profile);
   const employeeid = props.profile;
 
   const userData = sessionStorage.getItem("userdata");
@@ -28,7 +27,6 @@ const ProfileEmploymentDetailsTab = (props) => {
   // const employeeid = userData1.data.employeeId;
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
   var dateTime = getEmployeeDetails.dateOfJoining;
-  const [imge, setImge] = useState({});
 //commit
   useEffect(() => {
     axios
@@ -37,22 +35,8 @@ const ProfileEmploymentDetailsTab = (props) => {
         setGetEmployeeDetails(response.data.data);
       });
   }, []);
-  console.log(getEmployeeDetails)
 
-  useEffect(() => {
-    axios
-      .get(`/emp/files/${employeeid}`)
-      .then((response) => {
-        console.log(response.data);
-        setImge(response.data)
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log("something wrong");
-      });
-  }, []);
-  console.log(imge)
-  console.log(getEmployeeDetails.primarySkills)
+  
 
   return (
  

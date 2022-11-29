@@ -48,6 +48,8 @@ public class CandidateServiceImpl implements CandidateService{
 	@Override
 	public CandidateEntity update(CandidateEntity candidate, int candidateId) {
 		CandidateEntity cd = candidateRepo.getById(candidateId);  
+		
+		try {
 		cd.setCandidateName(candidate.getCandidateName());
 		cd.setCandidateStatus(candidate.getCandidateStatus());
 		cd.setBusinessUnit(candidate.getBusinessUnit());
@@ -59,7 +61,13 @@ public class CandidateServiceImpl implements CandidateService{
 		cd.setEmail(candidate.getEmail());
 		cd.setPhoneNumber(candidate.getPhoneNumber());
 		cd.setYearsOfExperience(candidate.getYearsOfExperience());
+		cd.setLevel(candidate.getLevel());
 		return candidateRepo.save(cd);
+		}
+		catch(Exception e) {
+        	e.getMessage();	
+        }
+		return cd;
 		
 	}
 //	@Override

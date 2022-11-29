@@ -8,7 +8,6 @@ import { FaRegAddressCard } from "react-icons/fa";
 
 function ProfileAddressTab(props) {
 
-    console.log(props.profile);
     const employeeid = props.profile;
 
     // const userData = sessionStorage.getItem("userdata");
@@ -147,7 +146,7 @@ function ProfileAddressTab(props) {
                         </Card.Subtitle>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 0 }}>
+                                <Card.Subtitle style={{ padding: 10 }}>
                                     Address:
                                 </Card.Subtitle>
                             </Col>
@@ -159,7 +158,7 @@ function ProfileAddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 0 }}>
+                                <Card.Subtitle style={{ padding: 10 }}>
                                     State:
                                 </Card.Subtitle>
                             </Col>
@@ -171,7 +170,7 @@ function ProfileAddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 0 }}>
+                                <Card.Subtitle style={{ padding: 10 }}>
                                     Country:
                                 </Card.Subtitle>
                             </Col>
@@ -183,7 +182,7 @@ function ProfileAddressTab(props) {
                         </Row>
                         <Row style={{ paddingLeft: 50 }}>
                             <Col>
-                                <Card.Subtitle style={{ padding: 0 }}>
+                                <Card.Subtitle style={{ padding: 10 }}>
                                     Pincode:
                                 </Card.Subtitle>{" "}
                             </Col>
@@ -228,7 +227,7 @@ function ProfileAddressTab(props) {
                                             type="text"
                                             name="permanentAdress"
                                             placeholder="Address"
-                                            controlId="permanentAdress"
+                                            controlid="permanentAdress"
                                             value={permanentAdress}
                                             isInvalid={elevenerrors}
                                             disabled
@@ -257,7 +256,7 @@ function ProfileAddressTab(props) {
                                                     type="text"
                                                     placeholder="State"
                                                     name="permanentState"
-                                                    controlId="permanentState"
+                                                    controlid="permanentState"
                                                     maxLength={50}
                                                     isInvalid={tweleveerror}
                                                     value={permanentState}
@@ -291,7 +290,7 @@ function ProfileAddressTab(props) {
                                                     type="text"
                                                     placeholder="Country"
                                                     name="permanentCountry"
-                                                    controlId="permanentCountry"
+                                                    controlid="permanentCountry"
                                                     maxLength={50}
                                                     // options={countries}
                                                     value={permanentCountry}
@@ -331,7 +330,7 @@ function ProfileAddressTab(props) {
                                                     required
                                                     type="number"
                                                     placeholder="Pincode"
-                                                    controlId="permanentPincode"
+                                                    controlid="permanentPincode"
                                                     name="permanentPincode"
                                                     isInvalid={fourteenerror}
                                                     value={permanentPincode}
@@ -379,7 +378,7 @@ function ProfileAddressTab(props) {
                                             rows={4}
                                             type="text"
                                             placeholder="Address"
-                                            controlId="currentAdress"
+                                            controlid="currentAdress"
                                             isInvalid={fifteenerrors}
                                             value={currentAdress}
                                             name="currentAdress"
@@ -411,7 +410,7 @@ function ProfileAddressTab(props) {
                                                     type="text"
                                                     placeholder="State"
                                                     name="currentState"
-                                                    controlId="currentState"
+                                                    controlid="currentState"
                                                     maxLength={50}
                                                     isInvalid={sixteenerror}
                                                     value={currentState}
@@ -449,7 +448,7 @@ function ProfileAddressTab(props) {
                                                     required
                                                     type="text"
                                                     placeholder="Country"
-                                                    //controlId="currentCountry"
+                                                    //controlid="currentCountry"
                                                     value={currentCountry}
                                                     isInvalid={seventeenerror}
                                                     maxLength={50}
@@ -499,7 +498,7 @@ function ProfileAddressTab(props) {
                                                     required
                                                     type="number"
                                                     placeholder="Pincode"
-                                                    controlId="currentPincode"
+                                                    controlid="currentPincode"
                                                     value={currentPincode}
                                                     isInvalid={eighteenerror}
                                                     name="currentPincode"
