@@ -35,6 +35,7 @@ public class TaskEntity {
     private double actualHours=0.0;
     private double remainingHours=0.0;
    private double estimatedHours;
+   private String complexity;
 public int getTaskId() {
 	return taskId;
 }
@@ -155,10 +156,16 @@ public double getEstimatedHours() {
 public void setEstimatedHours(double estimatedHours) {
 	this.estimatedHours = estimatedHours;
 }
+public String getComplexity() {
+	return complexity;
+}
+public void setComplexity(String complexity) {
+	this.complexity = complexity;
+}
 public TaskEntity(int taskId, String description, String projectName, Date plannedStartDate, String priority,
 		String status, String taskTitle, String taskType, Date plannedEndDate, String userId, String userStory,
 		Date assignDate, int projectId, String assignedTo, String employeeName, String employeeId, double sumOfActual,
-		double actualHours, double remainingHours, double estimatedHours) {
+		double actualHours, double remainingHours, double estimatedHours, String complexity) {
 	super();
 	this.taskId = taskId;
 	this.description = description;
@@ -180,11 +187,23 @@ public TaskEntity(int taskId, String description, String projectName, Date plann
 	this.actualHours = actualHours;
 	this.remainingHours = remainingHours;
 	this.estimatedHours = estimatedHours;
+	this.complexity = complexity;
 }
 public TaskEntity() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-  
+@Override
+public String toString() {
+	return "TaskEntity [taskId=" + taskId + ", description=" + description + ", projectName=" + projectName
+			+ ", plannedStartDate=" + plannedStartDate + ", priority=" + priority + ", status=" + status
+			+ ", taskTitle=" + taskTitle + ", taskType=" + taskType + ", plannedEndDate=" + plannedEndDate + ", userId="
+			+ userId + ", userStory=" + userStory + ", assignDate=" + assignDate + ", projectId=" + projectId
+			+ ", assignedTo=" + assignedTo + ", employeeName=" + employeeName + ", employeeId=" + employeeId
+			+ ", sumOfActual=" + sumOfActual + ", actualHours=" + actualHours + ", remainingHours=" + remainingHours
+			+ ", estimatedHours=" + estimatedHours + ", complexity=" + complexity + "]";
+}
+
+   
    
 }

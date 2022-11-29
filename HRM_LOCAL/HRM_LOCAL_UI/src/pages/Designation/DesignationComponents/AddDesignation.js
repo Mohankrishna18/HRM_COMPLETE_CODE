@@ -154,7 +154,7 @@ function AddDesignation(props) {
                   required
                   className="departmentName"
                   type="text"
-                  controlId="departmentName"
+                  controlid="departmentName"
                   placeholder="Business Unit Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.departmentId}
@@ -179,7 +179,7 @@ function AddDesignation(props) {
                   required
                   className="designationName"
                   type="text"
-                  controlId="designationName"
+                  controlid="designationName"
                   placeholder="Designation Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.designationName}

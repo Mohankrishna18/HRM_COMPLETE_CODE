@@ -101,7 +101,7 @@ const ModuleUpdate = (props) => {
                   required
                   type="text"
                   placeholder="Module Name"
-                  controlId="moduleName"
+                  controlid="moduleName"
                   value={moduleName}
                   onChange={(e) => setModuleName(e.target.value)}
                   isInvalid={!!errors.moduleName}

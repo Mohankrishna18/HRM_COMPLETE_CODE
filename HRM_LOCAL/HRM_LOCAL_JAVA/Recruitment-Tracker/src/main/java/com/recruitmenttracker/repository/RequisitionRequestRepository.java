@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
+import com.recruitmenttracker.modal.JobsPerDepartment;
 
 @Repository
 public interface RequisitionRequestRepository extends JpaRepository<RequisitionRequestEntity, Long>{
@@ -32,8 +33,16 @@ public interface RequisitionRequestRepository extends JpaRepository<RequisitionR
 
        List<RequisitionRequestEntity> getDataWithAgingDays();
        
-       @Query(value=" SELECT DATEDIFF(now(),raised_on) AS ageing from requisition_requests   where requisition_id=?1 ", nativeQuery=true)
+       @Query(value=" SELECT DATEDIFF(now(),request_initiated_date) AS ageing from requisition_requests   where requisition_id=?1 ", nativeQuery=true)
           Integer  getDateDiff(@Param("requisition_id")  String requisitionId);
-     
+       
+//     jobsOpenPerDepartment 
+      @Query(value= "select new com.recruitmenttracker.modal.JobsPerDepartment(r.departmentName as departmentName, count(jobTitle) as jobsOpen) from requisition_requests r where r.rrfStatus='Open' group by r.departmentName")  
+       List<JobsPerDepartment> getJobsOpenByDepartmentName();
+
+      
+//    total/overall positions count  
+      @Query(value="SELECT  sum(positions) FROM requisition_requests",nativeQuery=true)
+      Long getCountOfPositions();
    
 }

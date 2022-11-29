@@ -22,6 +22,7 @@ const UpdateCandidate = (props) => {
   const [phoneNumber, setPhoneNumber] = useState(props.updateOnboard.phoneNumber);
   const [yearsOfExperience, setYearsOfExperience] = useState(props.updateOnboard.yearsOfExperience);
   const [uploadResume, setUploadResume] = useState();
+  const [level,setLevel] = useState(props.updateOnboard.level);
 
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
@@ -35,6 +36,7 @@ const UpdateCandidate = (props) => {
   const [phnError, setPhnError]=useState("");
   const [expyrError, setExpyrError]=useState("");
   const [show, setShow] =useState(false);
+  
 
   const handleClose = () => setShow();
   // useState for phone number
@@ -73,6 +75,7 @@ const UpdateCandidate = (props) => {
       phoneNumber,
       yearsOfExperience,
       uploadResume,
+      level
     } = form;
     const newErrors = {};
 
@@ -102,8 +105,8 @@ const UpdateCandidate = (props) => {
     if (!primarySkills || primarySkills === "")
       newErrors.primarySkills = "Please Enter Primary Skills";
 
-    if (!secondarySkills || secondarySkills === "")
-      newErrors.secondarySkills = "Please Enter Secondary Skills";
+    // if (!secondarySkills || secondarySkills === "")
+    //   newErrors.secondarySkills = "Please Enter Secondary Skills";
 
     if (!email || email === "") newErrors.email = "Please Enter Mail Id";
 
@@ -118,6 +121,9 @@ const UpdateCandidate = (props) => {
 
     if (!yearsOfExperience || yearsOfExperience === "")
       newErrors.yearsOfExperience = "Please Enter Years Of Experience";
+
+      if (!level || level === "")
+      newErrors.level = "Please Enter Level";
 
     if (!uploadResume || uploadResume === "")
       newErrors.uploadResume = "Please upload uploadResume";
@@ -172,6 +178,7 @@ const UpdateCandidate = (props) => {
         email,
         phoneNumber,
         yearsOfExperience,
+        level,
         uploadResume,
       })
       .then((response) => {
@@ -182,7 +189,7 @@ const UpdateCandidate = (props) => {
         } else {
           console.log("Props not Send");
         }
-        // toast.success("Candidate updated successfully");
+       toast.success("Candidate updated successfully");
         // console.log(user);
       })
       .catch((err) => {
@@ -215,12 +222,12 @@ const UpdateCandidate = (props) => {
               required
               className="jobTitle"
               type="text"
-              controlId="jobTitle"
+              controlid="jobTitle"
               placeholder="Job Title"
               defaultValue={jobTitle}
               // onChange={(e) => setJobTitle(e.target.value)}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){  
                   setJobError("Invalid JobTitle");
                 }
                 else if(e.target.value.length>50){
@@ -246,7 +253,7 @@ const UpdateCandidate = (props) => {
               disabled
               className="requisitionId"
               type="text"
-              controlId="requisitionId"
+              controlid="requisitionId"
               placeholder="Requisition ID"
               defaultValue={requisitionId}
               onChange={(e) => setRequisitionId(e.target.value)}
@@ -265,14 +272,14 @@ const UpdateCandidate = (props) => {
               // defaultvalue={candidateName}
               className="candidateName"
               type="text"
-              controlId="candidateName"
+              controlid="candidateName"
               placeholder="Candidate Name"
               defaultValue={candidateName}
               maxLength={30}
               // onChange={(e) => setCandidateName(e.target.value)}
               // isInvalid={!!errors.candidateName}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)){
                   setCandidateNameError ("Invalid Candidate Name");
                 }
                 else if(e.target.value.length>50){
@@ -297,7 +304,7 @@ const UpdateCandidate = (props) => {
               required
               type="text"
               placeholder="Candidate Status"
-              controlId="candidateStatus"
+              controlid="candidateStatus"
               defaultValue={candidateStatus}
               // onChange={(e) => setCandidateStatus(e.target.value)}
               // isInvalid={!!errors.candidateStatus}
@@ -328,7 +335,29 @@ const UpdateCandidate = (props) => {
             </Form.Control.Feedback>
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
-
+          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
+                <Form.Label>Level*</Form.Label>
+                <Form.Select
+                  required
+                  type="text"
+                  // placeholder="Candidate Status"
+                  controlid="level"
+                  defaultValue={level}
+                  value={level}
+                  onChange={(e) => setLevel(e.target.value)}
+                  isInvalid={!!errors.level}
+                >
+                  <option value="">Select Level </option>
+                  <option value="Level 1">Level 1</option>
+                  <option value="Level 2">Level 2</option>
+                  <option value="Level 3">Level 3</option>
+                  <option value="Level 4">Level 4</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.level}
+                </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
 
           {/* Current LOCation */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -337,19 +366,19 @@ const UpdateCandidate = (props) => {
               required
               type="text"
               placeholder="Current Location"
-              controlId="currentLocation"
+              controlid="currentLocation"
               defaultValue={currentLocation}
               // onChange={(e) => setCurrentLocation(e.target.value)}
               // isInvalid={!!errors.currentLocation}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){
                   setLocationError  ("Invalid Location");
                 }
                 else if(e.target.value.length>50){
                   setLocationError("Too Long")
                 }
                 else{
-                  setLocationError(e.target.value);
+                  setCurrentLocation(e.target.value);
                   setLocationError("");
                 }
               }}
@@ -371,12 +400,12 @@ const UpdateCandidate = (props) => {
               required
               type="text"
               placeholder="Primary Skills"
-              controlId="primarySkills"
+              controlid="primarySkills"
               defaultValue={primarySkills}
               // onChange={(e) => setPrimarySkills(e.target.value)}
               // isInvalid={!!errors.primarySkills}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){
                   setSkillError ("Invalid");
                 }
                 else if(e.target.value.length>50){
@@ -402,21 +431,21 @@ const UpdateCandidate = (props) => {
               required
               className="secondarySkills"
               type="text"
-              controlId="secondarySkills"
+              controlid="secondarySkills"
               placeholder="Secondary Skills"
               defaultValue={secondarySkills}
               maxLength={30}
               // onChange={(e) => setSecondarySkills(e.target.value)}
               // isInvalid={!!errors.secondarySkills}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){
                   setSecSkillError  ("Invalid");
                 }
                 else if(e.target.value.length>50){
                   setSecSkillError("Too Long")
                 }
                 else{
-                  setSecSkillError(e.target.value);
+                  setSecondarySkills(e.target.value);
                   setSecSkillError("");
                 }
               }}
@@ -434,7 +463,7 @@ const UpdateCandidate = (props) => {
               required
               type="mail"
               placeholder="Mail ID"
-              controlId="email"
+              controlid="email"
               defaultValue={email}
               // onChange={(e) => setEmail(e.target.value)}
               // isInvalid={!!errors.email}
@@ -466,7 +495,7 @@ const UpdateCandidate = (props) => {
               type="number"
               maxLength={10}
               placeholder="Phone Number"
-              controlId="phoneNumber"
+              controlid="phoneNumber"
               defaultValue={phoneNumber}
               // onChange={(e) => setPhoneNumber(e.target.value)}
               // isInvalid={!!errors.phoneNumber}
@@ -497,12 +526,13 @@ const UpdateCandidate = (props) => {
               required
               type="text"
               placeholder="Years Of Experience"
-              controlId="yearsOfExperience"
+              controlid="yearsOfExperience"
               defaultValue={yearsOfExperience}
+              maxLength={3}
               // onChange={(e) => setYearsOfExperience(e.target.value)}
               // isInvalid={!!errors.yearsOfExperience}
               onChange ={(e) =>{
-                if(e.target.value === ""){
+                if(e.target.value === "" || !e.target.value.match(/^[0-9-,]+(\s[0-9-, ])*$/)){
                   setExpyrError ("Invalid");
                 }
                 else if(e.target.value.length>50){
@@ -528,7 +558,7 @@ const UpdateCandidate = (props) => {
               required
               type="file"
               placeholder="Upload Resume"
-              controlId="uploadResume"
+              controlid="uploadResume"
               value={uploadResume}
               onChange={(e) => setUploadResume("uploadResume", e.target.value)}
               isInvalid={!!errors.uploadResume}

@@ -229,7 +229,7 @@ function AddProject(props) {
                   required
                   className="projectName"
                   type="text"
-                  controlId="projectName"
+                  controlid="projectName"
                   placeholder="Project Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.projectName}
@@ -248,7 +248,7 @@ function AddProject(props) {
                   required
                   className="clientName"
                   type="text"
-                  controlId="clientName"
+                  controlid="clientName"
                   placeholder="Client Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.clientId}
@@ -273,7 +273,7 @@ function AddProject(props) {
                   required
                   type="text"
                   placeholder="Business Unit Head"
-                  controlId="businessUnit"
+                  controlid="businessUnit"
                   value={form.businessUnit}
                   onChange={(e) => setField("businessUnit", e.target.value)}
                   isInvalid={!!errors.businessUnit}
@@ -297,7 +297,7 @@ function AddProject(props) {
                   required
                   type="date"
                   placeholder="Start Date"
-                  controlId="startDate"
+                  controlid="startDate"
                   value={form.startDate}
                   onChange={(e) => setField("startDate", e.target.value)}
                   isInvalid={!!errors.startDate}
@@ -314,7 +314,7 @@ function AddProject(props) {
                   required
                   className="projectManager"
                   type="text"
-                  controlId="projectManager"
+                  controlid="projectManager"
                   placeholder="Project Manager"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.projectManager}
@@ -339,7 +339,7 @@ function AddProject(props) {
                   required
                   type="date"
                   placeholder="End Date"
-                  controlId="endDate"
+                  controlid="endDate"
                   value={form.endDate}
                   min={form.startDate}
                   onChange={(e) => setField("endDate", e.target.value)}
@@ -357,7 +357,7 @@ function AddProject(props) {
                   required
                   type="text"
                   placeholder="Status"
-                  controlId="status"
+                  controlid="status"
                   value={form.status}
                   onChange={(e) => setField("status", e.target.value)}
                   isInvalid={!!errors.status}
@@ -377,7 +377,7 @@ function AddProject(props) {
                   required
                   type="text"
                   placeholder="Total Cost"
-                  controlId="rate"
+                  controlid="rate"
                   value={form.rate}
                   onChange={(e) => setField("rate", e.target.value)}
                   isInvalid={!!errors.rate}
@@ -394,7 +394,7 @@ function AddProject(props) {
                   required
                   type="text"
                   placeholder="priority"
-                  controlId="priority"
+                  controlid="priority"
                   value={form.priority}
                   onChange={(e) => setField("priority", e.target.value)}
                   isInvalid={!!errors.priority}
@@ -417,7 +417,7 @@ function AddProject(props) {
                   className="mb-3"
                   type="text"
                   placeholder="Description"
-                  controlId="description"
+                  controlid="description"
                   value={form.description}
                   onChange={(e) => setField("description", e.target.value)}
                   isInvalid={!!errors.description}

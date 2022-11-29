@@ -25,7 +25,7 @@ public class ProjectTeamMaster {
 	private String projectManager;
 
 	@Column
-	private String employeeName;
+	private String fullName;
 
 	@Column
 	private String designationName;
@@ -49,7 +49,7 @@ public class ProjectTeamMaster {
 	private Date assignedDate;
 
 	@Column
-	private String projectAllocation;
+	private Integer projectAllocation;
 	
 	@Column
 	private Integer projectId;
@@ -58,13 +58,13 @@ public class ProjectTeamMaster {
 		super();
 	}
 
-	public ProjectTeamMaster(String employeeId, String employeeName, String designationName, String departmentName,
+	public ProjectTeamMaster(String employeeId, String fullName, String designationName, String departmentName,
 			Integer prmasterId, Date startDate, Date endDate, String status, Date assignedDate,String projectName,String clientName,String projectManager,	
 
-			String projectAllocation) {
+			Integer projectAllocation) {
 		super();
 		this.employeeId = employeeId;
-		this.employeeName = employeeName;
+		this.fullName = fullName;
 		this.designationName = designationName;
 		this.departmentName = departmentName;
 //		this.projectName = projectName;
@@ -79,6 +79,14 @@ public class ProjectTeamMaster {
 		this.projectAllocation = projectAllocation;
 	}
 
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
 	public Integer getEmployeeprojectId() {
 		return employeeprojectId;
@@ -96,13 +104,7 @@ public class ProjectTeamMaster {
 		this.employeeId = employeeId;
 	}
 
-	public String getEmployeeName() {
-		return employeeName;
-	}
-
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
-	}
+	
 
 	public String getDesignationName() {
 		return designationName;
@@ -160,11 +162,11 @@ public class ProjectTeamMaster {
 		this.assignedDate = assignedDate;
 	}
 
-	public String getProjectAllocation() {
+	public Integer getProjectAllocation() {
 		return projectAllocation;
 	}
 
-	public void setProjectAllocation(String projectAllocation) {
+	public void setProjectAllocation(Integer projectAllocation) {
 		this.projectAllocation = projectAllocation;
 	}
 

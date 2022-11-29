@@ -180,6 +180,11 @@ function MyTask() {
       // type: { name: "date", options: { format: "DD/MM/YYYY" } },
     },
     {
+      title: "Complexity",
+      field: "complexity",
+      type: "text"
+    },
+    {
       title: "Status",
       field: "status",
       type: "text",
@@ -203,7 +208,7 @@ function MyTask() {
             updateOnboard={updateOnboard}
             func={pull_dataUpdate}
             handleClose={handleClose}
-            assignTo={employeeId} />
+            assig={employeeId}  />
         </Modal.Body>
         {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import moment from "moment";
 
 function JobPositionDetails(props) {
+
   console.log(props.viewOnboard);
   const userData = sessionStorage.getItem("userdata");
   const userData1 = JSON.parse(userData);
@@ -18,10 +19,9 @@ function JobPositionDetails(props) {
       setJobDetails(response.data.data);
     });
   }, []);
-  console.log(jobDetails)
+  console.log(jobDetails);
 
   var tempDate = new Date(props.viewOnboard.dateOfBirth);
-
   var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 console.log(dob)
   return (
@@ -30,7 +30,6 @@ console.log(dob)
        <Card.Title>
         <Row>
           <Col> <h5> Job Position Details:</h5></Col>
-          
        </Row>
       
       </Card.Title>

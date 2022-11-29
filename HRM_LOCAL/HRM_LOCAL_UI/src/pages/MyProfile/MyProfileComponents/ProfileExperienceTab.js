@@ -17,6 +17,9 @@ import {
   Section,
   Description,
 } from "vertical-timeline-component-react";
+import { BASE_URL } from "../../../Constant";
+import { toast } from "react-toastify";
+import moment from "moment";
 
 const customTheme = {
   yearColor: "#405b73",
@@ -30,7 +33,6 @@ const customTheme = {
 
 const ProfileExperienceTab = (props) => {
 
-  console.log(props.profile);
   const employeeid = props.profile;
   // const userData = sessionStorage.getItem("userdata");
   // console.log(userData);
@@ -40,7 +42,7 @@ const ProfileExperienceTab = (props) => {
   var dateTime = getEmployeeDetails.dateOfJoining;
 
   const [imge, setImge] = useState({});
-//commit
+  //commit
   useEffect(() => {
     axios
       .get(`/emp/getEmployeeDataByEmployeeId/${employeeid}`)
@@ -48,32 +50,24 @@ const ProfileExperienceTab = (props) => {
         setGetEmployeeDetails(response.data.data);
       });
   }, []);
-  console.log(getEmployeeDetails)
 
-  useEffect(() => {
+
+  const [documents, setDocuments] = useState("");
+  const loadData = () => {
     axios
-      .get(`/emp/files/${employeeid}`)
+      .get(`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${employeeid}`)
       .then((response) => {
-        console.log(response.data);
-        setImge(response.data)
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log("something wrong");
+        setDocuments(response);
       });
-  }, []);
-  console.log(imge)
-
-  const [projects, setProjects] = useState(false)
-
+  }
   useEffect(() => {
-    axios
-      .get(`/emp/getUserClientDetailsbyEmployeeId/${employeeid}`)
-      .then((response) => {
-        setProjects(response.data);
-      });
+    loadData();
   }, []);
-  console.log(projects)
+
+
+  const handleclick = () => {
+    toast.error("Experience Documents are not uploaded")
+  }
 
 
 
@@ -93,155 +87,82 @@ const ProfileExperienceTab = (props) => {
   var mm = String(doj.getMonth() + 1).padStart(2, '0');
   var yyyy = doj.getFullYear();
   var doj1 = dd + '-' + mm + '-' + yyyy;
-  console.log(doj1);
-
-
-
-  console.log(getEmployeeDetails.dateOfBirth)
-
-  // function ChangeFormateDate(getEmployeeDetails.dateOfBirth)
-  // {
-  //    return oldDate.toString().split("/").reverse().join("/");
-  // }
-
-  // console.log(dob)
-  //  var dob12 = dob.split("-").reverse().join("-");
-  //  console.log(dob12)
-
-  // var dd = dob.getDate();
-  // var mm = dob.getMonth()+1;
-  // var yyyy = dob.getFullYear();
-  // var dob1 = dd + '-' + mm + '-' + yyyy;
-  //  console.log(dob1);
-  //comment for pull req
-  // console.log(getEmployeeDetails.passportExpiryDate)
-  var passportDate = new Date(getEmployeeDetails.passportExpiryDate);
-  var dd = String(passportDate.getDate()).padStart(2, '0');
-  var mm = String(passportDate.getMonth() + 1).padStart(2, '0');
-  var yyyy = passportDate.getFullYear();
-  var passportDate1 = dd + '-' + mm + '-' + yyyy;
-  console.log(passportDate1);
-
-  var GraduationJoiningYear = new Date(getEmployeeDetails.graduationJoiningYear);
-  var dd = String(GraduationJoiningYear.getDate()).padStart(2, '0');
-  var mm = String(GraduationJoiningYear.getMonth() + 1).padStart(2, '0');
-  var yyyy = GraduationJoiningYear.getFullYear();
-  var GraduationJoiningYear1 = dd + '-' + mm + '-' + yyyy;
-  console.log(GraduationJoiningYear1);
-
-
-  var tempDate = new Date(getEmployeeDetails.dateOfBirth);
-  var dob = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.passportExpiryDate);
-  var ped = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.postgraduationJoiningYear);
-  var postgraduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.postgraduationPassedYear);
-  var postgraduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.graduationJoiningYear);
-  var graduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.graduationPassedYear);
-  var graduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.intermediateJoiningYear);
-  var intermediateJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.intermediatePassedYear);
-  var intermediatePassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.sscJoiningYear);
-  var sscJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.sscPassedYear);
- 
-  var sscPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.previousCompany1_joiningDate);
-  var previousCompany1_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.previousCompany1_relievingDate);
-  var previousCompany1_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.previousCompany2_joiningDate);
-    var previousCompany2_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-    var tempDate = new Date(getEmployeeDetails.previousCompany2_relievingDate);
-    var previousCompany2_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-    var tempDate = new Date(getEmployeeDetails.previousCompany3_joiningDate);
-    var previousCompany3_joiningDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-    var tempDate = new Date(getEmployeeDetails.previousCompany3_relievingDate);
-    var previousCompany3_relievingDate1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-    var dob11 = getEmployeeDetails.dateOfBirth
 
   return (
     <>
-      
 
-                        <div style={{ padding: 10, marginTop: 0, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
-                          {/* <Card.Title>
+
+      <div style={{ padding: 10, marginTop: 0, paddingBottom: 0, marginLeft: 10, marginRight: 20 }}>
+        {/* <Card.Title>
                             <h5>Experience:</h5>
                           </Card.Title> */}
-                          <Card.Body style={{ paddingLeft: 20, paddingRight: 20 }}>
-                            <Table>
-                              <thead>
-                                <tr>
+        <Card.Body style={{ paddingLeft: 20, paddingRight: 20 }}>
+          <Table>
+            <thead>
+              <tr>
 
-                                  <th>Company Name</th>
-                                  <th>Employee ID</th>
-                                  <th>Designation</th>
-                                  <th>Joining Date</th>
-                                  <th>Relieving Date</th>
+                <th>Company Name</th>
+                <th>Employee ID</th>
+                <th>Designation</th>
+                <th>Joining Date</th>
+                <th>Relieving Date</th>
 
 
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>{getEmployeeDetails.previousCompany1_name}</td>
-                                  <td>{getEmployeeDetails.previousCompany1_employeeId}</td>
-                                  <td>{getEmployeeDetails.previousCompany1_designation}</td>
-                                  <td> {getEmployeeDetails.previousCompany1_joiningDate ? (<td>
-                                    {previousCompany1_joiningDate1}
-                                  </td>) : (<div></div>)}</td>
-                                  <td>{getEmployeeDetails.previousCompany1_relievingDate ? (<td>
-                                    {previousCompany1_relievingDate1}
-                                  </td>) : (<div></div>)}</td>
-                                </tr>
-                                <tr>
-                                  <td>{getEmployeeDetails.previousCompany2_name}</td>
-                                  <td>{getEmployeeDetails.previousCompany2_employeeId}</td>
-                                  <td>{getEmployeeDetails.previousCompany2_designation}</td>
-                                  <td> {getEmployeeDetails.previousCompany2_joiningDate ? (<td>
-                                    {previousCompany2_joiningDate1}
-                                  </td>) : (<div></div>)}</td>
-                                  <td>{getEmployeeDetails.previousCompany2_relievingDate ? (<td>
-                                    {previousCompany2_relievingDate1}
-                                  </td>) : (<div></div>)}</td>
-                                </tr>
-                                <tr>
-                                  <td>{getEmployeeDetails.previousCompany3_name}</td>
-                                  <td>{getEmployeeDetails.previousCompany3_employeeId}</td>
-                                  <td>{getEmployeeDetails.previousCompany3_designation}</td>
-                                  <td> {getEmployeeDetails.previousCompany3_joiningDate ? (<td>
-                                    {previousCompany3_joiningDate1}
-                                  </td>) : (<div></div>)}</td>
-                                  <td>{getEmployeeDetails.previousCompany3_relievingDate ? (<td>
-                                    {previousCompany3_relievingDate1}
-                                  </td>) : (<div></div>)}</td>
-                                </tr>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{getEmployeeDetails.previousCompany1_name}</td>
+                <td>{getEmployeeDetails.previousCompany1_employeeId}</td>
+                <td>{getEmployeeDetails.previousCompany1_designation}</td>
+                <td>
+                  {getEmployeeDetails.previousCompany1_joiningDate === null ? " " : moment(getEmployeeDetails.previousCompany1_joiningDate).format("DD/MM/YYYY")}
+                </td>
+                <td>
+                  {getEmployeeDetails.previousCompany1_relievingDate === null ? " " : moment(getEmployeeDetails.previousCompany1_relievingDate).format("DD/MM/YYYY")}
+                </td>
 
-                              </tbody>
-                            </Table>
-                          </Card.Body>
-                        </div>
+              </tr>
+              <tr>
+                <td>{getEmployeeDetails.previousCompany2_name}</td>
+                <td>{getEmployeeDetails.previousCompany2_employeeId}</td>
+                <td>{getEmployeeDetails.previousCompany2_designation}</td>
+                <td>
+                  {getEmployeeDetails.previousCompany2_joiningDate === null ? " " : moment(getEmployeeDetails.previousCompany2_joiningDate).format("DD/MM/YYYY")}
+                </td>
+                <td>
+                  {getEmployeeDetails.previousCompany2_relievingDate === null ? " " : moment(getEmployeeDetails.previousCompany2_relievingDate).format("DD/MM/YYYY")}
+                </td>
+
+              </tr>
+              <tr>
+                <td>{getEmployeeDetails.previousCompany3_name}</td>
+                <td>{getEmployeeDetails.previousCompany3_employeeId}</td>
+                <td>{getEmployeeDetails.previousCompany3_designation}</td>
+                <td>
+                  {getEmployeeDetails.previousCompany3_joiningDate === null ? " " : moment(getEmployeeDetails.previousCompany3_joiningDate).format("DD/MM/YYYY")}
+                </td>
+                <td>
+                  {getEmployeeDetails.previousCompany3_relievingDate === null ? " " : moment(getEmployeeDetails.previousCompany3_relievingDate).format("DD/MM/YYYY")}
+                </td>
+
+              </tr>
+
+            </tbody>
+          </Table>
+        </Card.Body>
+        <Row>
+          {documents.statusText === "OK" ? (<Col>
+            <a href={`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${employeeid}`}>
+              Experience Documents
+
+            </a>
+          </Col>) : (<Col style={{ color: "blue" }}> <Button onClick={handleclick} style={{ background: "none", color: "blue", border: "none" }}>Experience Documents</Button></Col>
+          )
+          }
+
+        </Row>
+      </div>
 
     </>
   );

@@ -205,7 +205,7 @@ const UserstoryUpdate = (props) => {
               required
               type="text"
               placeholder="User Id"
-              controlId="projectName"
+              controlid="projectName"
               defaultValue={projectName}
               value={form.projectName}
               onChange={(e) => setField("projectName", e.target.value)}
@@ -222,7 +222,7 @@ const UserstoryUpdate = (props) => {
             <Form.Control
               required
               type="text"
-              controlId="storyTitle"
+              controlid="storyTitle"
               placeholder="Story Title"
               // onChange={(event) => setclientName(event.target.value)}
 
@@ -244,7 +244,7 @@ const UserstoryUpdate = (props) => {
             <Form.Control
               required
               type="text"
-              controlId="acceptanceCriteria"
+              controlid="acceptanceCriteria"
               as="textarea"
               placeholder="acceptance Criteria"
               // onChange={(event) => setclientName(event.target.value)}
@@ -265,7 +265,7 @@ const UserstoryUpdate = (props) => {
               required
               type="text"
               placeholder="role "
-              controlId="role"
+              controlid="role"
               defaultValue={props.updateOnboard.role}
               // value={role}
               onChange={(e) => setRole(e.target.value)}
@@ -283,7 +283,7 @@ const UserstoryUpdate = (props) => {
               required
               type="text"
               placeholder="reason"
-              controlId="reason"
+              controlid="reason"
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               isInvalid={!!errors.reason}
@@ -299,7 +299,7 @@ const UserstoryUpdate = (props) => {
               type="text"
               name="goal"
               placeholder="goal"
-              controlId="goal"
+              controlid="goal"
               value={goal}
               onChange={(e) => setGoal(e.target.value)}
               isInvalid={!!errors.role}
@@ -314,7 +314,7 @@ const UserstoryUpdate = (props) => {
               required
               type="text"
               placeholder="estimatedHours"
-              controlId="estimatedHours"
+              controlid="estimatedHours"
               value={estimatedHours}
               onChange={(e) => setEstimatedHours(e.target.value)}
               isInvalid={!!errors.estimatedHours}
@@ -330,7 +330,7 @@ const UserstoryUpdate = (props) => {
               required
               type="text"
               placeholder="Priority"
-              controlId="priority"
+              controlid="priority"
               defaultValue={props.updateOnboard.priority}
               onChange={(e) => setPriority(e.target.value)}
               isInvalid={!!errors.priority}
@@ -351,7 +351,7 @@ const UserstoryUpdate = (props) => {
               required
               type="text"
               placeholder="Status"
-              controlId="status"
+              controlid="status"
               // value={status}
               defaultValue={props.updateOnboard.status}
               onChange={(e) => setStatus(e.target.value)}
@@ -377,7 +377,7 @@ const UserstoryUpdate = (props) => {
               required
               type="text"
               placeholder="actualHours"
-              controlId="actualHours"
+              controlid="actualHours"
               value={actualHours}
               onChange={(e) => setActualHours(e.target.value)}
               isInvalid={!!errors.actualHours}
@@ -392,7 +392,7 @@ const UserstoryUpdate = (props) => {
               required
               type="text"
               placeholder="remainingHours"
-              controlId="remainingHours"
+              controlid="remainingHours"
               value={remainingHours}
               onChange={(e) => setRemainingHours(e.target.value)}
               isInvalid={!!errors.remainingHours}
@@ -407,7 +407,7 @@ const UserstoryUpdate = (props) => {
               required
               type="date"
               placeholder="Start Date"
-              controlId="startDate"
+              controlid="startDate"
               defaultValue={props.updateOnboard.startDate}
               value={startDate.split("T")[0]}
               //value={startDate}
@@ -425,7 +425,7 @@ const UserstoryUpdate = (props) => {
               required
               type="date"
               placeholder="End Date"
-              controlId="endDate"
+              controlid="endDate"
               defaultValue={props.updateOnboard.endDate}
               value={endDate.split("T")[0]}
               //value={endDate}
@@ -446,7 +446,7 @@ const UserstoryUpdate = (props) => {
               required
               type="text"
               placeholder="assignedTo"
-              controlId="assignedTo"
+              controlid="assignedTo"
               value={assignedTo}
               onChange={(e) => setAssignedTo(e.target.value)}
               isInvalid={!!errors.assignedTo}
@@ -461,7 +461,7 @@ const UserstoryUpdate = (props) => {
               required
               type="date"
               placeholder="Assigned Date"
-              controlId="assignedDate"
+              controlid="assignedDate"
               defaultValue={props.updateOnboard.assignedDate.split("T")[0]}
               value={assignedDate.split("T")[0]}
               onChange={(e) => setAssignDate(e.target.value)}

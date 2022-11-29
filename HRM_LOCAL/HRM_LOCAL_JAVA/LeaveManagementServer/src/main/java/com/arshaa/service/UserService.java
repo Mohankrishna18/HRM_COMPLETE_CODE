@@ -16,7 +16,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
+
 import com.arshaa.model.DepartmentName;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -27,8 +31,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.client.RestTemplate;
 
+
 import com.arshaa.entity.BetweenDates;
 import com.arshaa.entity.EntitledLeaves;
+import com.arshaa.entity.LeaveMaster;
 import com.arshaa.model.UserModel;
 import com.arshaa.entity.User;
 import com.arshaa.mapper.UserMapper;
@@ -38,14 +44,17 @@ import com.arshaa.model.EmailTemplate;
 import com.arshaa.model.EmployeeName;
 import com.arshaa.model.GetIrmId;
 import com.arshaa.model.GetSrmId;
+import com.arshaa.model.LeaveBalanceModel;
 import com.arshaa.model.LeavesDataForHr;
 import com.arshaa.model.StoreDatesList;
 import com.arshaa.model.UsersByIrm;
 import com.arshaa.repository.BetweenDatesRepo;
+import com.arshaa.repository.LeaveMasterRepository;
 import com.arshaa.repository.UserRepository;
 import com.arshaa.repository.leaveEntitlementRepository;
 
 @Service
+@Transactional
 public class UserService {
 	@Autowired
 	private UserRepository repository;
@@ -57,10 +66,14 @@ public class UserService {
 
 	@Autowired
 	private BetweenDatesRepo bro;
+
+	 @Autowired
+	 private LeaveMasterRepository leee;
 	@Autowired
 	private UserMapper userMapper;
-	
+
 	public static final String preEmailURL = "http://emailService/mail/sendmail";
+	public static final String getEmailByEmployeeIdURL="http://loginservice/login/getEmployeeEmailByEmployeeId/";
 
 	public UserModel findById(int employeeleaveId) {
 
@@ -122,10 +135,10 @@ public class UserService {
 //	}return null;
 //}
 	public List<BetweenDates> save(User user) {
-		
-//		String OnboardUrl = "http://loginservice/login/getEmployeeDataByUserType/";
+
+		String OnboardUrl = "http://loginservice/login/getEmployeeByUserType/";
 //		String empUrl = "http://empService/emp/getEmployeeNameByEmployeeId/";
-		
+
 		try
 
 		{
@@ -151,9 +164,10 @@ public class UserService {
 					GetIrmId.class);
 			GetSrmId as = template.getForObject("http://empService/emp/getSrmByEmployeeId/" + user.getEmployeeId(),
 					GetSrmId.class);
-			EmployeeName en = template.getForObject("http://empService/emp/getEmployeeNameByEmployeeId/" + user.getEmployeeId(),
-					EmployeeName.class);
-			DepartmentName dn = template.getForObject("http://empService/emp/getDepartmentNameByEmployeeId/" + user.getEmployeeId(),
+			EmployeeName en = template.getForObject(
+					"http://empService/emp/getEmployeeNameByEmployeeId/" + user.getEmployeeId(), EmployeeName.class);
+			DepartmentName dn = template.getForObject(
+					"http://empService/emp/getDepartmentNameByEmployeeId/" + user.getEmployeeId(),
 					DepartmentName.class);
 			java.sql.Date tSqlDate = new java.sql.Date(user.getSubmittedDate().getTime());
 			user.setSubmittedDate(tSqlDate);
@@ -168,7 +182,30 @@ public class UserService {
 			user.setDepartmentName(dn.getDepartmentName());
 
 			User savedUser = repository.save(user);
+          String email=template.getForObject(getEmailByEmployeeIdURL+al.getIrmId(), String.class);
+          EmailTemplate mailTemp = new EmailTemplate();
+			Map<String, String> map = new HashMap();
 
+			mailTemp.setEmailType("LEAVE_APPLY");
+			map.put("employeeName", "Team Arshaa");
+			map.put("employeeId", user.getEmployeeId());
+			map.put("name", user.getEmployeeName());
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
+			String strDate = dateFormat.format(user.getFromDate());  
+			map.put("fromDate",strDate );
+			String toDate = dateFormat.format(user.getToDate()); 
+			map.put("toDate", toDate);
+			String number = String.valueOf(user.getNumberOfDays());
+			map.put("NoOfDays", number);
+			map.put("reason", user.getLeaveReason());
+			
+			
+			
+			
+			map.put("email", email);
+//			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			mailTemp.setMap(map);
+			template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 			List<StoreDatesList> u = getDaysBetweenDates(user.getFromDate(), user.getToDate());
 //			 bro.saveAll(u);
 			u.forEach(e -> {
@@ -178,6 +215,7 @@ public class UserService {
 				d.setAppliedDate(e.getBetWeenDates());
 				d.setLeaveOrwfh(savedUser.getLeaveOrwfh());
 				d.setDepartmentName(savedUser.getDepartmentName());
+				d.setLeaveStatus(savedUser.getLeaveStatus());
 				BetweenDates bd = bro.save(d);
 				bdatesList.add(bd);
 
@@ -279,39 +317,43 @@ public class UserService {
 
 	public User UpdateManagerUsers(User user, Integer employeeleaveId, String userType) {
 		try {
+			 String url = "http://empService/emp/leavespermonth/";
 			User u = repository.findById(employeeleaveId).get();
 			user.getEmployeeleaveId();
 			u.getToDate();
 			u.getLeaveReason();
-//			user.getManagerApproval();
 			user.getLeaveStatus();
 			user.getNumberOfDays();
-//			u.setManagerApproval(user.getManagerApproval());
 			u.setLeaveStatus(user.getLeaveStatus());
-//u.setLeaveReason(user.getLeaveReason()); 
 			u.setRejectReason(user.getRejectReason());
-//      user.getManagersRejectReason();
 			u.setManagersRejectReason(user.getManagersRejectReason());
 			u.setIrmApproveReason(user.getIrmApproveReason());
 			u.setSrmApproveReason(user.getSrmApproveReason());
 
-//u.setEmployeeId(user.getEmployeeId());
-//u.setFromDate(user.getFromDate());
-//u.setToDate(user.getToDate());
-// u.setNumberOfDays(user.getNumberOfDays());
-//u.setLeaveType(user.getLeaveType());
 			User savedU = repository.save(u);
+			List<BetweenDates> bdates=bro.findByEmployeeleaveIdAndEmployeeId(savedU.getEmployeeleaveId(),savedU.getEmployeeId());
 
-			EmailTemplate mailTemp = new EmailTemplate();
+            bdates.forEach(e->{
+
+                e.setLeaveStatus(savedU.getLeaveStatus());
+
+                  bro.save(e);
+
+            });
+        	EmailTemplate mailTemp = new EmailTemplate();
 			Map<String, String> map = new HashMap();
 			EmployeeName al = template.getForObject(
 					"http://empService/emp/getEmployeeNameByEmployeeId/" + u.getEmployeeId(), EmployeeName.class);
+			String email=template.getForObject(getEmailByEmployeeIdURL+u.getEmployeeId(), String.class);
+//			System.out.println("HELLO........"+userType);
+			
 			switch (userType) {
 			case "irm":
+				
 
-				map.put("employeeName", al.getEmployeeName());
+				map.put("employeeName", "s");
 //				map.put("email",hrApp.getEmail());
-				map.put("email", "muralikrishna.miriyala@arshaa.com");
+				map.put("email",email);
 				mailTemp.setMap(map);
 				if (user.getLeaveStatus().equalsIgnoreCase("Approved")) {
 					mailTemp.setEmailType("IRM_APPROVED");
@@ -319,11 +361,11 @@ public class UserService {
 					mailTemp.setEmailType("IRM_REJECTED");
 				}
 
-//				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 				break;
 			case "pmohead":
 //				EmailTemplate mailTemp = new EmailTemplate();
-				map.put("employeeName", al.getEmployeeName());
+				map.put("employeeName","a");
 //				map.put("email",hrApp.getEmail());
 				map.put("email", "muralikrishna.miriyala@arshaa.com");
 				mailTemp.setMap(map);
@@ -333,11 +375,11 @@ public class UserService {
 					mailTemp.setEmailType("SRM_REJECTED");
 				}
 
-//				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 				break;
 			case "srm":
 //				EmailTemplate mailTemp = new EmailTemplate();
-				map.put("employeeName", al.getEmployeeName());
+				map.put("employeeName", "d");
 //				map.put("email",hrApp.getEmail());
 				map.put("email", "muralikrishna.miriyala@arshaa.com");
 				mailTemp.setMap(map);
@@ -347,19 +389,39 @@ public class UserService {
 					mailTemp.setEmailType("SRM_REJECTED");
 				}
 
-//				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 				break;
 			default:
 				break;
 			}
-			return savedU;
+			if (savedU.getLeaveStatus().equals("Approved")) {
+				System.out.println("HELLO........"+userType+savedU.getLeaveStatus());
 
+                LeaveMaster m = leee.findByEmployeeId(savedU.getEmployeeId());
+            //    m.setEmployeeId(u.getEmployeeId());
+               
+                Integer totalLeaves =  template.getForObject(url + u.getEmployeeId(), Integer.class);
+                System.out.println(totalLeaves);
+                int temp = Objects.isNull(m.getUsedLeaves()) ? 0 : m.getUsedLeaves();
+                m.setUsedLeaves(savedU.getNumberOfDays() + temp);
+                m.setLeaveBalance(totalLeaves - m.getUsedLeaves() - savedU.getNumberOfDays());
+               
+                m.setTotalLeaves(totalLeaves);
+
+               leee.save(m);
+
+           
+
+		
+			return savedU;
+			} else {
+                System.out.println("no data");
+            }
 		} catch (Exception e) {
 			e.getMessage();
 		}
 		return user;
 	}
-
 
 // this logic will give employees related to particular manager-->Chandrika
 	public ResponseEntity getUserByIrm(String irmId) {
@@ -397,21 +459,21 @@ public class UserService {
 //				getList.add(usrm);
 //			});
 
-			u.forEach(g->{
-				UsersByIrm usrm=new UsersByIrm();
+			u.forEach(g -> {
+				UsersByIrm usrm = new UsersByIrm();
 				usrm.setEmployeeId(g.getEmployeeId());
 				usrm.setLeaveType(g.getLeaveType());
 				usrm.setFromDate(g.getFromDate());
 				usrm.setToDate(g.getToDate());
 				usrm.setNumberOfDays(g.getNumberOfDays());
-				usrm.setLeaveReason(g.getLeaveReason()); 
+				usrm.setLeaveReason(g.getLeaveReason());
 				usrm.setManagerApproval(g.getManagerApproval());
 				usrm.setEmployeeleaveId(g.getEmployeeleaveId());
 				usrm.setLeaveStatus(g.getLeaveStatus());
 				usrm.setLeaveOrwfh(g.getLeaveOrwfh());
-				EmployeeName al=template.getForObject(url + g.getEmployeeId(),EmployeeName.class);
-                usrm.setName(al.getEmployeeName());
-                getList.add(usrm);
+				EmployeeName al = template.getForObject(url + g.getEmployeeId(), EmployeeName.class);
+				usrm.setName(al.getEmployeeName());
+				getList.add(usrm);
 			});
 			return new ResponseEntity(getList, HttpStatus.OK);
 		} catch (Exception e) {
@@ -439,7 +501,7 @@ public class UserService {
 			Date date = new Date(System.currentTimeMillis());
 			u.stream().filter(user -> date.after(getValidateDat(user.getSubmittedDate()))).forEach(g -> {
 				System.out.println("Current Date" + date + "5 days after" + getValidateDat(g.getSubmittedDate()));
-				
+
 				EmailModel email = template.getForObject(OnboardUrl + "srm", EmailModel.class);
 				EmailModel emp = template.getForObject(url + g.getEmployeeId(), EmailModel.class);
 
@@ -614,16 +676,17 @@ public class UserService {
 		}
 
 	}
+
 	public List<User> findByEmployeeIdAndLeaveOrwfh(String employeeId, String leaveOrwfh) {
 		try {
 // TODO Auto-generated method stub
-			return (List<User>) repository.findByEmployeeIdAndLeaveOrwfh(employeeId,leaveOrwfh);
+			return (List<User>) repository.findByEmployeeIdAndLeaveOrwfh(employeeId, leaveOrwfh);
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		return findByEmployeeIdAndLeaveOrwfh(employeeId,leaveOrwfh);
+		return findByEmployeeIdAndLeaveOrwfh(employeeId, leaveOrwfh);
 	}
-	
+
 	public List<User> findLeavesByLeaveStatusAndEmployeeId(String leaveStatus, String employeeId) {
 		try {
 			// TODO Auto-generated method stub
@@ -635,40 +698,51 @@ public class UserService {
 		}
 //					return findLeavesByLeaveStatusAndEmployeeId(leaveStatus, employeeId);
 	}
+
 	public List<String> getMonthsForEmployeeLeaves(String employeeId) {
 
-
-
-	       List<BetweenDates> getAllBetweenDates = bro.findByEmployeeId(employeeId);
-	        List<String> splitMonth = new ArrayList();
-	        getAllBetweenDates.forEach(date -> {
-	            String appliedDateString = date.getAppliedDate();
-	            String[] splittedDate = appliedDateString.split("-");
-	            splitMonth.add(splittedDate[1]);
-	        });
-	        return splitMonth;
-	    }
+		List<BetweenDates> getAllBetweenDates = bro.findByEmployeeId(employeeId);
+		List<String> splitMonth = new ArrayList();
+		getAllBetweenDates.forEach(date -> {
+			String appliedDateString = date.getAppliedDate();
+			String[] splittedDate = appliedDateString.split("-");
+			splitMonth.add(splittedDate[1]);
+		});
+		return splitMonth;
+	}
 	
-
+	
+	 public List<LeaveMaster> listAll() {
+	        return leee.findAll();
+	    }
+	 
+	 public LeaveMaster get(String employeeId) {
+	        return leee.findByEmployeeId(employeeId);
+	    }
+//	 public LeaveMaster get(String employeeId) {
+//	        return leee.findByemployeeId(employeeId);
+//	    }
+	     
+	    public void save(LeaveMaster leaveMaster) {
+	    	leee.save(leaveMaster);
+	    }
+	    
+	  //Update Leave Balance for an Employee
+	    public LeaveBalanceModel updateLeaveBalnce(LeaveBalanceModel leavebalance,String employeeId) {
+	    	try {
+	    		LeaveMaster lb = leee.findByEmployeeId(employeeId);
+	    		lb.setLeaveBalance(leavebalance.getLeaveBalance());
+	    		leee.save(lb);
+	    		
+	    		return leavebalance;
+	    	
+	    	}
+	    	catch (Exception e) {
+				e.getMessage();
+			}
+	    	return leavebalance;
+	  }
+	       
 }
 
-//	public UpdateLeaveStatus updateLeaveStatusByEmployeeId(UpdateLeaveStatus uls ,Integer employeeleaveId ) {
-//		try {
-//			
-//			User u = repository.findById(employeeleaveId).get();
-//			java.util.Date dt = u.getSubmittedDate();
-//		LocalDateTime lc =	LocalDateTime.from(dt.toInstant()).plusDays(4);
-//			
-//			if(u.getLeaveStatus().equalsIgnoreCase("pending") && dt.before(u.getFromDate())) {
-//				if(dt.before(u.getFromDate())) {
-//					u.setEmployeeleaveId(employeeleaveId);
-//					u.setLeaveStatus(uls.getLeaveStatus());
-//					 repository.save(u);
-//					 return uls ;
-//				}
-//			}
-//		}catch(Exception e) {
-//			e.getMessage();
-//		}
-//		return uls;
-//	}
+

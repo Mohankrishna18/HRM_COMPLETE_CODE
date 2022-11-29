@@ -9,6 +9,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
 import com.recruitmenttracker.modal.EmployeeReq;
+import com.recruitmenttracker.modal.JobsPerDepartment;
+import com.recruitmenttracker.modal.RRFClosed;
 
 public interface RequisitionRequestInterface {
 
@@ -30,11 +32,15 @@ public interface RequisitionRequestInterface {
 		//Nikhil changes
 		 public ResponseEntity getRequisitionsByRrfStatus();
 	
-	
+//	    get positionByDepartment => chetan
+    public List<JobsPerDepartment> getJobsOpenByDepartmentName();
+    
 	public ResponseEntity getRequisitionsByRequisitionId(String requisitionId);
     public ResponseEntity getRequisitionsData(String requisitionId);
     public int getDaysBetweenDates(String requisitionId,String requestInitiatedDate) throws ParseException;
 
     public ResponseEntity getAllRequisitions();
+    
+    public ResponseEntity updateAgeing(String requisitionId, RRFClosed rrUpdate);
 
 }

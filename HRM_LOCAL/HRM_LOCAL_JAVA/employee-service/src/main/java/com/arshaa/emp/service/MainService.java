@@ -1,5 +1,7 @@
 package com.arshaa.emp.service;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,6 +10,7 @@ import com.arshaa.emp.entity.EmployeeMaster;
 import com.arshaa.emp.entity.Onboarding;
 import com.arshaa.emp.model.AdditionalDetails;
 import com.arshaa.emp.model.Address;
+import com.arshaa.emp.model.AssignProjectName;
 import com.arshaa.emp.model.DesignationName;
 import com.arshaa.emp.model.EducationalDetails;
 import com.arshaa.emp.model.EmploymentDetails;
@@ -15,6 +18,7 @@ import com.arshaa.emp.model.Experience;
 import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.PersonalDetails;
 import com.arshaa.emp.model.ProbationEmployeeFeedBack;
+import com.arshaa.emp.model.TermsAndConditions;
 
 
 public interface MainService {
@@ -103,8 +107,13 @@ public interface MainService {
 	public ResponseEntity getActiveEmployeesByStatus(String status);
 	public ResponseEntity getDateOfJoiningByEmployeeId(String employeeId);
 	public ResponseEntity probationEmployeeFeedBack(String employeeId, ProbationEmployeeFeedBack prb);
+	
+	// latest changes
+	public List<EmployeeMaster> employeesToDisplayByTheirProjectAllocation(String projectName);
+	
+	public Boolean saveProjectAllocationPercentAfterMapping(String employeeId,AssignProjectName apn);
 
-
+	public ResponseEntity updateTermsAndConditions(String onboardingId, TermsAndConditions terms);
     
     
 }

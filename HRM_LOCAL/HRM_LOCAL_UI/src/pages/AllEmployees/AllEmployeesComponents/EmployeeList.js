@@ -146,15 +146,15 @@ function EmployeeList() {
                             grouping: true,
                             addRowPosition: "first",
                             headerStyle: {
-                                backgroundColor: "#f5896e",
+                                // backgroundColor: "#FFC47A",
+                                background: "#f5896e",
+                                fontSize:"13px",
+                                paddingBottom:"4px",
+                                paddingTop:"8px",
                                 color: "white",
-                                fontSize: "12px",
-                                //height: "10px",
-                                //fontWeight: 'bold'
-                            },
                             rowStyle: {
-                                fontSize: 14,
-                            },
+                                fontSize: 12,
+                            }}
                         }}
                         components={{
                             Action: (props) => (

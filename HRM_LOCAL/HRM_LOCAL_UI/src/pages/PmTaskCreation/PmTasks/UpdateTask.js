@@ -43,6 +43,8 @@ const UpdateTask = (props) => {
   const [description, setDescription] = useState(
     props.updateOnboard.description
   );
+  const [complexity,setComplexity] = useState(props.updateOnboard.complexity);
+  console.log(props.updateOnboard.complexity)
   const [assignDate, setAssignDate] = useState(props.updateOnboard.assignDate);
   const [assignedTo, setAssignedto] = useState(props.updateOnboard.assignedTo);
   console.log(assignedTo);
@@ -105,6 +107,9 @@ const UpdateTask = (props) => {
 
     if (!plannedEndDate || plannedEndDate === "")
       newErrors.plannedEndDate = "Please Enter Start date";
+      if (!assignedTo || assignedTo === "" || assignedTo === "Assigned To")
+
+      newErrors.assignedTo = "Please Enter Assigned To";
     // if (!toDate || toDate === "")
     //   newErrors.toDate = "Please Enter End date";
     //   if (!fromDate || fromDate === "")
@@ -151,6 +156,7 @@ const UpdateTask = (props) => {
           assignDate: assignDate,
           status: status,
           priority: priority,
+          complexity:complexity
         })
         .then((response) => {
           const user = response.data;
@@ -210,7 +216,7 @@ const UpdateTask = (props) => {
               required
               type="text"
               placeholder="Project Name"
-              controlId="projectName"
+              controlid="projectName"
               defaultValue={props.updateOnboard.projectName}
               value={projectName}
               onChange={(e) => setField("projectName", e.target.value)}
@@ -248,7 +254,7 @@ const UpdateTask = (props) => {
               required
               type="text"
               placeholder="Task Title"
-              controlId="taskTitle"
+              controlid="taskTitle"
               defaultValue={props.updateOnboard.taskTitle}
               value={taskTitle}
               onChange={(e) => setTaskTitle(e.target.value)}
@@ -258,13 +264,13 @@ const UpdateTask = (props) => {
               {errors.taskTitle}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-3" as={Col} md="6">
+          <Form.Group className="mb-3" as={Col} md="3">
             <Form.Label>Task Type *</Form.Label>
             <Form.Select
               required
               type="text"
               placeholder="Task Type"
-              controlId="taskType"
+              controlid="taskType"
               value={form.taskType}
               defaultValue={props.updateOnboard.taskType}
               onChange={(e) => setField("taskType", e.target.value)}
@@ -295,7 +301,7 @@ const UpdateTask = (props) => {
               required
               type="text"
               placeholder="Estimated Hours"
-              controlId="estimatedHours"
+              controlid="estimatedHours"
               defaultValue={props.updateOnboard.estimatedHours}
               value={estimatedHours}
               onChange={(e) => setEstimatedHours(e.target.value)}
@@ -312,7 +318,7 @@ const UpdateTask = (props) => {
               required
               type="text"
               placeholder="priority"
-              controlId="priority"
+              controlid="priority"
               value={priority}
               defaultValue={props.updateOnboard.priority}
               onChange={(e) => setPriority(e.target.value)}
@@ -328,13 +334,39 @@ const UpdateTask = (props) => {
               {errors.priority}
             </Form.Control.Feedback>
           </Form.Group>
+          <Form.Group className="mb-3" as={Col} md="3">
+              <Form.Label> complexity *</Form.Label>
+            <Form.Select
+              required
+              type="text"
+              placeholder=" complexity"
+              controlid=" complexity"
+              defaultValue={props.updateOnboard.complexity}
+              value={complexity}
+              onChange={(e) => setComplexity(e.target.value)}
+              isInvalid={!!errors.complexity}
+            >
+              {/* <option>Select status </option> */}
+              {/* <option>props.updateOnboard.status</option> */}
+              <option> Select Complexity</option>
+                  <option value="Highly Complex">Highly Complex</option>
+                  <option value="Medium Complex">Medium Complex</option>
+                  <option value="Moderate">Moderate</option>
+                  <option value="Simple">Simple</option>
+            </Form.Select>
+
+            <Form.Control.Feedback type="invalid">
+              {errors.complexity}
+            </Form.Control.Feedback>
+          </Form.Group>
+
           <Form.Group className="mb-3" as={Col} md="6">
             <Form.Label>Planned Start Date*</Form.Label>
             <Form.Control
               required
               type="date"
               placeholder="Planned Start Date"
-              controlId="plannedStartDate "
+              controlid="plannedStartDate "
               defaultValue={props.updateOnboard.plannedStartDate.split("T")[0]}
               value={plannedStartDate.split("T")[0]}
               onChange={(e) => setPlannedStartDate(e.target.value)}
@@ -350,7 +382,7 @@ const UpdateTask = (props) => {
               required
               type="text"
               placeholder="status"
-              controlId="status"
+              controlid="status"
               defaultValue={props.updateOnboard.status}
               value={status}
               onChange={(e) => setStatus(e.target.value)}
@@ -374,7 +406,7 @@ const UpdateTask = (props) => {
                   required
                   type="date"
                   placeholder="plannedStartDate"
-                  controlId="plannedStartDate"
+                  controlid="plannedStartDate"
                   value={form.plannedStartDate}
                   onChange={(e) => setField("plannedStartDate", e.target.value)}
                   isInvalid={!!errors.plannedStartDate}
@@ -390,7 +422,7 @@ const UpdateTask = (props) => {
               required
               type="date"
               placeholder="Planned End Date"
-              controlId="plannedEndDate "
+              controlid="plannedEndDate "
               defaultValue={props.updateOnboard.plannedEndDate.split("T")[0]}
               value={plannedEndDate.split("T")[0]}
               onChange={(e) => setPlannedEndDate(e.target.value)}
@@ -407,7 +439,7 @@ const UpdateTask = (props) => {
               required
               type="date"
               placeholder="Assign Date"
-              controlId="assignDate"
+              controlid="assignDate"
               value={form.assignDate}
               onChange={(e) => setField("assignDate", e.target.value)}
               isInvalid={!!errors.assignDate}
@@ -423,7 +455,7 @@ const UpdateTask = (props) => {
                   required
                   type="text"
                   placeholder="priority"
-                  controlId="priority"
+                  controlid="priority"
                   value={form.priority}
                   onChange={(e) => setField("priority", e.target.value)}
                   isInvalid={!!errors.priority}
@@ -446,7 +478,7 @@ const UpdateTask = (props) => {
                   required
                   type="date"
                   placeholder="Assign Date"
-                  controlId="assignDate"
+                  controlid="assignDate"
                   value={form.assignDate}
                   onChange={(e) => setField("assignDate", e.target.value)}
                   isInvalid={!!errors.assignDate}
@@ -464,7 +496,7 @@ const UpdateTask = (props) => {
               required
               type="text"
               //placeholder="assignedTo"
-              controlId="assignedTo"
+              controlid="assignedTo"
               // value={assignedTo}
               defaultValue={assignedTo}
               onChange={(e) => setAssignedto(e.target.value)}
@@ -491,7 +523,7 @@ const UpdateTask = (props) => {
             <Form.Control
               type="text"
               placeholder="Enter the Description "
-              controlId="description"
+              controlid="description"
               as="textarea"
               value={form.description}
               onChange={(e) => setField("description", e.target.value)}

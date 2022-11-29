@@ -27,6 +27,7 @@ import com.arshaa.emp.entity.Onboarding;
 import com.arshaa.emp.entity.ReportingManager;
 import com.arshaa.emp.model.AdditionalDetails;
 import com.arshaa.emp.model.Address;
+import com.arshaa.emp.model.AssignProjectName;
 import com.arshaa.emp.model.DesignationName;
 import com.arshaa.emp.model.EducationalDetails;
 import com.arshaa.emp.model.EmployeeLeavesData;
@@ -40,6 +41,7 @@ import com.arshaa.emp.model.ResignationModel;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.ResponseFile;
 import com.arshaa.emp.model.ResponseMessage;
+import com.arshaa.emp.model.TermsAndConditions;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
 import com.arshaa.emp.repository.OnboardRepository;
 import com.arshaa.emp.service.EmployeeProfileService;
@@ -56,8 +58,8 @@ public class MainController {
 
 	@Autowired
 	OnboardRepository onrepo;
-	@Autowired
-	EmployeeMasterRepository emRepo;
+	@Autowired(required=true)
+	private EmployeeMasterRepository emRepo;
 	@Autowired
 	MainService serv;
 	@Autowired
@@ -617,4 +619,36 @@ public class MainController {
     			@RequestBody ProbationEmployeeFeedBack prb) {
     		return serv.probationEmployeeFeedBack(employeeId, prb);
     	}
+        
+        
+        @PutMapping("/updateEmployeeAfterResignApply/{employeeId}")
+        public ResponseEntity updateEmployeeAfterResignApply(@PathVariable String employeeId,@RequestBody ResignationModel rmodel)
+        {
+        	return new ResponseEntity(resignationServ.updateEmployeeAfterResignApply(employeeId, rmodel),HttpStatus.OK);
+        }
+        
+        @PutMapping("/updateEmployeeAfterResignConfirmed/{employeeId}")
+        public ResponseEntity updateEmployeeAfterResignConfirmed(@PathVariable String employeeId,@RequestBody ResignationModel rmodel)
+        {
+        	return new ResponseEntity(resignationServ.updateEmployeeAfterResignConfirmed(employeeId, rmodel),HttpStatus.OK);
+        }
+        
+        //changes
+        @GetMapping("/employeesToDisplayByTheirProjectAllocation/{projectName}")
+        public List<EmployeeMaster> employeesToDisplayByTheirProjectAllocation(@PathVariable("projectName") String projectName){
+        	return serv.employeesToDisplayByTheirProjectAllocation(projectName);
+        }
+        
+        @PostMapping("saveProjectAllocationPercentAfterMapping/{employeeId}")
+        public Boolean saveProjectAllocationPercentAfterMapping(@PathVariable("employeeId") String employeeId, @RequestBody AssignProjectName apn) {
+        	return serv.saveProjectAllocationPercentAfterMapping(employeeId, apn);
+        }
+        
+        @PutMapping("/updateTermsAndConditiions/{onboardingId}")
+        public ResponseEntity updateTermsAndConditions(@PathVariable String onboardingId,
+                @RequestBody TermsAndConditions terms) {
+            return serv.updateTermsAndConditions(onboardingId, terms);
+        }
+
+
 }

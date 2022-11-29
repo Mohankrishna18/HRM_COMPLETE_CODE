@@ -45,7 +45,7 @@
 //             <Form>
 //               <Form.Group
 //                 className="mb-3"
-//                 controlId="exampleForm.ControlInput1"
+//                 controlid="exampleForm.ControlInput1"
 //               >
 //                 <Form.Label>Department Name</Form.Label>
 //                 <Form.Control type="text" autoFocus />

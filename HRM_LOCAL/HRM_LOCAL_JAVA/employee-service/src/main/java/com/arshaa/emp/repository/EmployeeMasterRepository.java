@@ -1,5 +1,6 @@
 package com.arshaa.emp.repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,11 +9,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 
 import com.arshaa.emp.entity.EmployeeMaster;
 import com.arshaa.emp.entity.Onboarding;
 import com.arshaa.emp.model.DesignationName;
 
+@Repository
 public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster,String>{
 	//public ResponseEntity updateDesignationName(String employeeId,DesignationName name);
 
@@ -40,8 +43,15 @@ public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster,S
 	
 	List<EmployeeMaster> getBydepartmentName(String departmentName);   
 //    List<EmployeeMaster> findAllByOrderByFullNameAscAndStatus(String status);
-
-    List<EmployeeMaster> getActiveEmployeesByStatus(String status);
+	
+	List<EmployeeMaster> getActiveEmployeesByStatus(String status);
     EmployeeMaster getDateOfJoiningByEmployeeId(String employeeId);
+    List<EmployeeMaster> findByStatusAndProjectNameIsNotOrProjectNameIsNull(String status, String projectName);
     
+    @Query(value= "select * from employeemaster where status=:status and project_allocation<:value and (project_name<> :projectName or project_name is null)", nativeQuery=true)
+    List<EmployeeMaster> findByStatusEqualsAndProjectAllocationLessThanAndProjectNameIsNullOrIsNotEquals(@Param("status") String status, @Param("value") Integer value, @Param("projectName") String projectName);
+    
+    List<EmployeeMaster> findByDateOfJoiningBefore(Date date);
+    List<EmployeeMaster> findByDateOfJoiningBeforeAndDepartmentName(Date date,String dept);
+
 }

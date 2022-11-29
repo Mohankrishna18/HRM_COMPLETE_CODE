@@ -74,7 +74,7 @@ function HrEmployeeReject(props) {
                                     rows={2}
                                     className="rejectReason"
                                     type="text"
-                                    controlId="rejectReason"
+                                    controlid="rejectReason"
                                     placeholder="Reject Reason"
                                     value={form.rejectReason}
                                     onChange={(e) => setField("rejectReason", e.target.value)}

@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.recruitmenttracker.entity.RequisitionRequestEntity;
 import com.recruitmenttracker.modal.EmployeeReq;
+import com.recruitmenttracker.modal.JobsPerDepartment;
+import com.recruitmenttracker.modal.RRFClosed;
 import com.recruitmenttracker.repository.RequisitionRequestRepository;
 import com.recruitmenttracker.service.RequisitionRequestInterface;
 
@@ -42,6 +44,13 @@ public class RequisitionTrackerController {
     @GetMapping("/getAllRequisitionRequests")
     public ResponseEntity getRequisitions() {
         return serv.getAllRequisitions();
+    }
+    
+//  total/overall positions count
+    @GetMapping("/sumOfPosition")
+    public ResponseEntity<Long> sumOfPositions() {
+        Long i = reqRepo.getCountOfPositions();
+        return new ResponseEntity<Long>(i, HttpStatus.OK);
     }
     
 //  @GetMapping("/getAllRequisitionRequests")
@@ -148,9 +157,18 @@ public class RequisitionTrackerController {
     public List<RequisitionRequestEntity> getDataWithAgingDays() {
        List<RequisitionRequestEntity> re = reqRepo.findAll() ;
        List<RequisitionRequestEntity> req = new ArrayList<>();
+       
+      
        re.forEach(o -> {
            RequisitionRequestEntity r = new RequisitionRequestEntity();
-          
+           RRFClosed rr = new RRFClosed();
+//           serv.updateAgeing();
+//           
+//            RequisitionRequestEntity RRsEntity = reqRepo.save();
+           
+           this.updateAgeing(o.getRequisitionId(), rr);
+               
+       
            r.setRequisitionId(o.getRequisitionId());
            r.setDepartmentName(o.getDepartmentName());
            r.setClientName(o.getClientName());
@@ -171,7 +189,7 @@ public class RequisitionTrackerController {
            r.setRrfCat(o.getRrfCat());
            r.setPocname(o.getPocname());
            r.setpSkills(o.getpSkills());
-           r.setsSkills(o.getpSkills());
+           r.setsSkills(o.getsSkills());
            r.setEmpType(o.getEmpType());
            r.setWorkingHours(o.getWorkingHours());
            r.setQualification(o.getQualification());
@@ -187,11 +205,30 @@ public class RequisitionTrackerController {
            r.setAllocType(o.getAllocType());
            r.setResourceRequiredDate(o.getResourceRequiredDate());
            r.setRequestClosedDate(o.getRequestClosedDate());
-           
-           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId()));
+           r.setAgeing(o.getAgeing());
+//           r.setAgeing(reqRepo.getDateDiff(o.getRequisitionId())); 
            req.add(r);
+           
+          
        });   
         return req;
     }
+    
+    
+    @PutMapping("/aeigingUpdate/{requisitionId}")
+    public ResponseEntity updateAgeing(@PathVariable String requisitionId,@RequestBody RRFClosed rrUpdate){
+        return serv.updateAgeing(requisitionId, rrUpdate);
+    }
+    
+//  getJobsOpenByDepartments
+  @GetMapping("/getJobsOpenByDepartmentName")
+  public List<JobsPerDepartment> getJobsOpenByDepartmentName(){
+  	return serv.getJobsOpenByDepartmentName();
+  }
+    
+//    @PutMapping("/rrfStatusClosed/{rrfStaus}")
+//    public ResponseEntity updateRRfStatus(@PathVariable String rrfStatus, @RequestBody RequisitionRequestEntity RRfStatusUpdate) {
+//        return serv.updateRRfStatus(rrfStatus, RRfStatusUpdate);
+//    }
 
 }

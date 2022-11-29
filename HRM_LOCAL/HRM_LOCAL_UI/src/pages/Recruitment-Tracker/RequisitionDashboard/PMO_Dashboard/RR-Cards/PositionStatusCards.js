@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Col, Row } from 'react-bootstrap'
+import {  Col, Row,Card } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
 import axios from '../../../../../Uri'
 
@@ -25,6 +25,27 @@ const PositionStatusCards = () => {
     }, [])
     console.log(positionStatus)
 
+    // for overall positions
+    const [TotalPosition , setTotalPosition] = useState(0)
+
+    useEffect(()=> {
+        axios.get("/recruitmentTracker/sumOfPosition")
+            .then((response)=> {
+                console.log(response.data)
+                setTotalPosition(response.data)
+
+            })
+            .catch((err) => {
+                err.error
+            })
+
+    }, [])
+    console.log(TotalPosition)
+
+//     const tt = TotalPosition ? TotalPosition : 0
+// console.log(tt)
+     
+
     // count/length for onHold position
      // count/length for onHold position
      const data = positionStatus ? positionStatus.filter((item) => item.rrfStatus === "On Hold"): 0
@@ -44,7 +65,7 @@ const PositionStatusCards = () => {
  
      // count/length for Pending Open position
      const data4 = positionStatus ? positionStatus.filter((item) => item.rrfStatus === "Open"):0
-     // console.log(data4)
+     console.log(data4)
 
     return (
         <div>
@@ -80,6 +101,24 @@ const PositionStatusCards = () => {
                     {/* card2 */}
 
                     <SingleCard data={data3} name='Pending Approval'   color='#4f4f4f' />
+
+                </Col>
+
+                <Col sm={2}>
+                    {/* Total/OverAll positions */}
+
+                    <Card style={{ marginBottom: '6px' }}>
+                        <h6 align='center' style={{  fontSize: '16px', paddingTop: '6px'}}>  Total Positions </h6>
+                    </Card>
+
+                    <Card >
+                        <h6 align='center' style={{ color: "black", fontSize: '17px', paddingTop: '8px', }}>
+                            {/* this will give the count or else zero(0) if nothing returns  */}
+                            {TotalPosition ? TotalPosition : 0}
+                            {/* 16 */}
+                        </h6>
+                    </Card>
+
 
                 </Col>
                 

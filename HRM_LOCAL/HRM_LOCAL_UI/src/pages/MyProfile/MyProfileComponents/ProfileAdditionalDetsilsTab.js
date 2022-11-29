@@ -19,6 +19,8 @@ import {
     Section,
     Description,
 } from "vertical-timeline-component-react";
+import { BASE_URL } from "../../../Constant";
+import { toast } from "react-toastify";
 
 const customTheme = {
     yearColor: "#405b73",
@@ -32,7 +34,6 @@ const customTheme = {
 
 const ProfileAdditionalDetailsTab = (props) => {
 
-    console.log(props.profile);
     const employeeid = props.profile;
 
     // const userData = sessionStorage.getItem("userdata");
@@ -104,8 +105,26 @@ const ProfileAdditionalDetailsTab = (props) => {
         }
     };
 
+    const [documents, setDocuments] = useState("");
+  const loadData = () => {
+    axios
+      .get(`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${employeeid}`)
+      .then((response) => {
+        setDocuments(response);
+      });
+
+  }
+  useEffect(() => {
+    loadData();
+
+  }, []);
+
     var tempDate = new Date(passportExpiryDate);
     var ped = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+
+const handleclick = () =>{
+      toast.error("Additional Documents are not uploaded")
+}
 
     return (
 
@@ -177,12 +196,12 @@ const ProfileAdditionalDetailsTab = (props) => {
                 </Col>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                    Bank Name:
+                        Bank Name:
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                    {bankName}
+                        {bankName}
                     </Card.Text>
                 </Col>
             </Row>
@@ -190,22 +209,22 @@ const ProfileAdditionalDetailsTab = (props) => {
             <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                    Account Number:
+                        Account Number:
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                    {accountNumber}
+                        {accountNumber}
                     </Card.Text>
                 </Col>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                    IFSC Code:
+                        IFSC Code:
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                    {ifscCode}
+                        {ifscCode}
                     </Card.Text>
                 </Col>
             </Row>
@@ -213,27 +232,38 @@ const ProfileAdditionalDetailsTab = (props) => {
             <Row style={{ paddingBottom: 10, paddingLeft: 20 }}>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                    Branch:
+                        Branch:
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                    {branch}
+                        {branch}
                     </Card.Text>
                 </Col>
                 <Col>
                     <Card.Subtitle style={{ padding: 10 }}>
-                       
+
                     </Card.Subtitle>{" "}
                 </Col>
                 <Col md={{ offset: 1 }}>
                     <Card.Text style={{ paddingBottom: 0, color: "#999897" }}>
-                        
+
                     </Card.Text>
                 </Col>
-            </Row>
+            </Row> 
+            <Row>
+                        <Col md="6" style={{ paddingTop: 0 }}>
+                             {documents.statusText === "OK" ? (<Col>
+              <a href={`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${employeeid}`}>
+                Additional Documents
 
-            <Modal
+              </a>
+            </Col>) : (<Col > <Button onClick={handleclick} style={{background:"none",color:"blue",border:"none"}}>Additional Documents</Button></Col>)
+}
+                        </Col>
+                    </Row>
+
+            {/* <Modal
                 show={show}
                 onHide={handleClose}
                 backdrop="static"
@@ -241,7 +271,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                 size="lg"
                 centered
             >
-                <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color : "white"}}>
+                <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
                     <Modal.Title>Additional Details</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -255,7 +285,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                 <Form.Control
                                     type="text"
                                     placeholder="Passport Number"
-                                    controlId="passportNo"
+                                    controlid="passportNo"
                                     value={passportNo}
                                     maxLength={15}
                                     name="passportNo"
@@ -269,7 +299,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                 <Form.Control
                                     type="date"
                                     placeholder="Passport Expiry Date"
-                                    controlId="passportExpiryDate"
+                                    controlid="passportExpiryDate"
                                     name="passportExpiryDate"
                                     value={passportExpiryDate}
                                     min={new Date()}
@@ -284,7 +314,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                 <Form.Control
                                     type="text"
                                     placeholder="PAN Card Number"
-                                    controlId="panNumber"
+                                    controlid="panNumber"
                                     name="panNumber"
                                     maxLength={50}
                                     value={panNumber}
@@ -297,7 +327,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="number"
                                     placeholder="Aadharcard Number"
-                                    controlId="aadharNumber"
+                                    controlid="aadharNumber"
                                     name="panNumber"
                                     maxLength={12}
                                     isInvalid={nineteenerror}
@@ -325,7 +355,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                 <Form.Control
                                     type="text"
                                     placeholder="UAN Number"
-                                    controlId="uanNumber"
+                                    controlid="uanNumber"
                                     name="uanNumber"
                                     value={uanNumber}
                                     maxLength={12}
@@ -338,7 +368,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="text"
                                     placeholder="Bank Name"
-                                    controlId="bankName"
+                                    controlid="bankName"
                                     name="bankName"
                                     maxLength={50}
                                     value={bankName}
@@ -363,7 +393,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="text"
                                     placeholder="Branch Name"
-                                    controlId="branchName"
+                                    controlid="branchName"
                                     name="branch"
                                     maxLength={50}
                                     value={branch}
@@ -389,7 +419,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="number"
                                     placeholder="Account Number"
-                                    controlId="accountNumber"
+                                    controlid="accountNumber"
                                     name="accountNumber"
                                     maxLength={50}
                                     value={accountNumber}
@@ -417,7 +447,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                                     required
                                     type="text"
                                     placeholder="IFSC Code"
-                                    controlId="ifscCode"
+                                    controlid="ifscCode"
                                     name="ifscCode"
                                     maxLength={50}
                                     value={ifscCode}
@@ -440,17 +470,19 @@ const ProfileAdditionalDetailsTab = (props) => {
                         </Row>
                         <Button
                             className="rounded-pill" md="3"
-                            style={{ backgroundColor: "#f5896e",
-                            borderColor: "#f5896e", float: "right" }}
+                            style={{
+                                backgroundColor: "#f5896e",
+                                borderColor: "#f5896e", float: "right"
+                            }}
                             type="submit"
                             size="lg"
                         >
                             Submit
                         </Button>
                     </Form>
-
+                    
                 </Modal.Body>
-            </Modal>
+            </Modal> */}
 
         </div>
 

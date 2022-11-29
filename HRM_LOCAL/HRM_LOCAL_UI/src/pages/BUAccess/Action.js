@@ -42,6 +42,14 @@ export default function Action(props) {
     const [band, setBand] = useState("");
     const [employmentType, setEmploymentType] = useState("");
     const [status, setStatus] = useState("");
+    const [getLeaveBalance, setGetLeaveBalance] = useState([{}]);
+
+    //displaying date in fields
+    const [resDate,setResDate] = useState("");
+    const [exDate,setExDate] = useState("");
+    const [confirmDate, setConfirmDate] = useState("");
+
+
 
     const forms = useRef(null);
     console.log(props);
@@ -50,11 +58,24 @@ export default function Action(props) {
         loadData();
         loadDesignations();
         loadEmploymentDetails();
+        // loadLeaveBalance();
     }, []);
+
+    
+    // const loadLeaveBalance = async () => {
+    //     const res = await axios.get(`/leave/leaveBalanceByEmployeeId/ATPL014`);
+    //     // console.log(res.data)
+    //     // console.log(res.data.leaveBalance)
+    //     setLeaveBalance(res.data.leaveBalance)
+        
+
+    //     // setGetLeaveBalance(res.data);
+
+    // };
 
     const loadData = async () => {
         const res = await axios.get("/dept/getAllDepartments");
-        console.log(res.data)
+        // console.log(res.data)
         setDepartments(res.data);
 
     };
@@ -68,11 +89,11 @@ export default function Action(props) {
     console.log(props.data)
     const loadEmploymentDetails = async () => {
         const res = await axios.get(`/emp/getEmploymentDetails/${props.data}`);
-        console.log(res.data.data);
+        // console.log(res.data.data);
         setData(res.data.data);
-        console.log(data);
+       
         setDepartmentName(res.data.data.departmentName);
-        console.log(res.data.data.departmentName);
+    
         setDesignationName(res.data.data.designationName);
         setExitDate(res.data.data.exitDate);
         setResignationDate(res.data.data.resignationDate);
@@ -81,24 +102,27 @@ export default function Action(props) {
         setProjectName(res.data.data.projectName); 
        
         setConfirmationDate(res.data.data.confirmationDate);
-        console.log(res.data.data.confirmationDate);
+       
         setBand(res.data.data.band);
         setEmploymentType(res.data.data.employmentType);
         setStatus(res.data.data.status);
         setPrimarySkills(res.data.data.primarySkills);
         setSecondarySkills(res.data.data.secondarySkills);
         setReportingManager(res.data.data.reportingManager);
-        setLeaveBalance(res.data.leaveBalance);
-        
+       setLeaveBalance(res.data.data.leaveBalance);
         setBuh(res.data.data.buh);
+
+        setExDate(Moment(res.data.data.exitDate).format('YYYY-MM-DD'));
+        setResDate(Moment(res.data.data.resignationDate).format('YYYY-MM-DD'));
+        setConfirmDate(Moment(res.data.data.confirmationDate).format('YYYY-MM-DD'));
        
     };
-console.log(confirmationDate)
+// console.log(confirmationDate)
     // const exitdatef=  moment(res.data.data.exitDate).format('YYYY-MM-DD');
     // const confirmationDatef = moment(res.data.data.confirmationDate).format('YYYY-MM-DD');
     // const resignationDatef =  moment(res.data.data.resignationDate).format('YYYY-MM-DD')
-    console.log(departmentName);
-    console.log(employmentType, designationName);
+    // console.log(departmentName);
+    // console.log(employmentType, designationName);
     const [bands, setBands] = useState([]);
     useEffect(() => {
         axios.get("/bands/getAllBands").then((response) => {
@@ -110,7 +134,7 @@ console.log(confirmationDate)
     const [empType, setEmpType] = useState([]);
     useEffect(() => {
         axios.get("/employmentType/getAllEmployments").then((response) => {
-            console.log(response.data.data);
+            // console.log(response.data.data);
             setEmpType(response.data.data);
         });
     }, []);
@@ -121,7 +145,7 @@ console.log(confirmationDate)
             const response = await axios.get("/emp/getAllEmployeeMasterData");
             // const result = response.data.data.sort((a, b) => a.departmentName.localCompare(b.departmentName))
             // console.log(result);
-            console.log(response.data.data);
+            // console.log(response.data.data);
             setUsers(response.data.data);
 
         };
@@ -167,8 +191,7 @@ console.log(confirmationDate)
                 srm,
                 band,
                 projectName,
-                leaveBalance    
-
+                leaveBalance   
             })
             .then((response) => {
                 if (response.status == 200) {
@@ -183,6 +206,7 @@ console.log(confirmationDate)
             .catch((err) => {
                 toast.error("went wrong");
             });
+
     }
 
     
@@ -215,7 +239,7 @@ console.log(confirmationDate)
                             required
                             className="departmentName"
                             type="text"
-                            controlId="departmentName"
+                            controlid="departmentName"
                             placeholder="Business Unit Name"
                             defaultValue={data.departmentName}
                             value={departmentName}
@@ -233,7 +257,7 @@ console.log(confirmationDate)
                             required
                             className="designationName"
                             type="text"
-                            controlId="designationName"
+                            controlid="designationName"
                             placeholder="Designation Name"
                             defaultValue={data.designationName}
                             value={designationName}
@@ -250,10 +274,10 @@ console.log(confirmationDate)
                             required
                             type="date"
                             placeholder="Resignation Date"
-                            controlId="resignationDate"
-                            defaultValue={resignationDate}
-                            value={resignationDate}
-                            onChange={(e) => setResignationDate(e.target.value)}
+                            controlid="resignationDate"
+                            defaultValue={resDate}
+                            value={resDate}
+                            onChange={(e) => setResignationDate((Moment(e.target.value).format("YYYY-MM-DD")))}
                         ></Form.Control>
 
 
@@ -264,10 +288,10 @@ console.log(confirmationDate)
                             required
                             type="date"
                             placeholder="exitDate"
-                            controlId="exitDate"
-                            defaultValue={exitDate}
-                            value={exitDate}
-                            onChange={(e) => setExitDate(e.target.value)}
+                            controlid="exitDate"
+                            defaultValue={exDate}
+                            value={exDate}
+                            onChange={(e) => setExitDate((Moment(e.target.value).format("YYYY-MM-DD")))}
 
                         ></Form.Control>
                     </Form.Group>
@@ -277,7 +301,7 @@ console.log(confirmationDate)
                             required
                             className="status"
                             type="text"
-                            controlId="status"
+                            controlid="status"
                             placeholder="status"
                             defaultValue={status}
                             value={status}
@@ -296,7 +320,7 @@ console.log(confirmationDate)
                             required
                             type="text"
                             placeholder="Type Of Employment"
-                            controlId="employmentType"
+                            controlid="employmentType"
                             value={employmentType}
                             defaultValue={employmentType}
                             onChange={(e) => setEmploymentType(e.target.value)}
@@ -315,7 +339,7 @@ console.log(confirmationDate)
                             required
                             type="text"
                             placeholder="Band"
-                            controlId="band"
+                            controlid="band"
                             value={band}
                             onChange={(e) => setBand(e.target.value)}
                         >
@@ -334,7 +358,7 @@ console.log(confirmationDate)
                             required
                             type="text"
                             placeholder="select IRM"
-                            controlId="irm"
+                            controlid="irm"
                             value={irm}
 
                             onChange={(e) => setIrm(e.target.value)}
@@ -354,7 +378,7 @@ console.log(confirmationDate)
                             required
                             type="text"
                             placeholder="select srm"
-                            controlId="srm"
+                            controlid="srm"
                             value={srm}
                             onChange={(e) => setSrm(e.target.value)}
                         >
@@ -372,10 +396,10 @@ console.log(confirmationDate)
                             required
                             type="date"
                             placeholder="confirmationDate"
-                            controlId="confirmationDate"
-                            defaultValue={confirmationDate}
-                            value={confirmationDate}
-                            onChange={(e) => setConfirmationDate(e.target.value)}
+                            controlid="confirmationDate"
+                            defaultValue={confirmDate}
+                            value={confirmDate}
+                            onChange={(e) => setConfirmationDate((Moment(e.target.value).format("YYYY-MM-DD")))}
 
                         ></Form.Control>
                     </Form.Group>
@@ -386,7 +410,7 @@ console.log(confirmationDate)
                             required
                             type="text"
                             placeholder="Leave Balance"
-                            controlId="leaveBalance"
+                            controlid="leaveBalance"
                             defaultValue={leaveBalance}
                             value={leaveBalance}
                             onChange={(e) => setLeaveBalance(e.target.value)}

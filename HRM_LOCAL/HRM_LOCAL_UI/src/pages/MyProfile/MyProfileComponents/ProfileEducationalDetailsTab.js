@@ -17,6 +17,9 @@ import {
   Section,
   Description,
 } from "vertical-timeline-component-react";
+import { BASE_URL } from "../../../Constant";
+import { toast } from "react-toastify";
+import moment from "moment";
 
 const customTheme = {
   yearColor: "#405b73",
@@ -30,10 +33,8 @@ const customTheme = {
 
 const ProfileEducationalDetailsTab = (props) => {
 
-  console.log(props.profile);
   const employeeid = props.profile;
   // const userData = sessionStorage.getItem("userdata");
-  // console.log(userData);
   // const userData1 = JSON.parse(userData);
   // const employeeid = userData1.data.employeeId;
   const [getEmployeeDetails, setGetEmployeeDetails] = useState([]);
@@ -48,70 +49,40 @@ const ProfileEducationalDetailsTab = (props) => {
         setGetEmployeeDetails(response.data.data);
       });
   }, []);
-  console.log(getEmployeeDetails)
 
   useEffect(() => {
     axios
       .get(`/emp/files/${employeeid}`)
       .then((response) => {
-        console.log(response.data);
         setImge(response.data)
       })
       .catch((error) => {
-        console.log(error);
-        console.log("something wrong");
+       
+        toast.error("")
       });
   }, []);
-  console.log(imge)
 
-  const [projects, setProjects] = useState(false)
 
-  useEffect(() => {
+  const [documents, setDocuments] = useState("");
+  const loadData = () => {
     axios
-      .get(`/emp/getUserClientDetailsbyEmployeeId/${employeeid}`)
+      .get(
+        `${BASE_URL}/api/get/imageByTitle/EducationalDetails/${employeeid}`
+      )
       .then((response) => {
-        setProjects(response.data);
+        setDocuments(response);
       });
+  };
+  useEffect(() => {
+    loadData();
   }, []);
-  console.log(projects)
 
-
-
-  var GraduationJoiningYear = new Date(getEmployeeDetails.graduationJoiningYear);
-  var dd = String(GraduationJoiningYear.getDate()).padStart(2, '0');
-  var mm = String(GraduationJoiningYear.getMonth() + 1).padStart(2, '0');
-  var yyyy = GraduationJoiningYear.getFullYear();
-  var GraduationJoiningYear1 = dd + '-' + mm + '-' + yyyy;
-  console.log(GraduationJoiningYear1);
-
-
-
-  var tempDate = new Date(getEmployeeDetails.postgraduationJoiningYear);
-  var postgraduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.postgraduationPassedYear);
-  var postgraduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.graduationJoiningYear);
-  var graduationJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.graduationPassedYear);
-  var graduationPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.intermediateJoiningYear);
-  var intermediateJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.intermediatePassedYear);
-  console.log(tempDate);
-  var intermediatePassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
-  var tempDate = new Date(getEmployeeDetails.sscJoiningYear);
-  var sscJoiningYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+const handleclick = () =>{
+  toast.error("Educational Documents are not uploaded")
+}
 
   var tempDate = new Date(getEmployeeDetails.sscPassedYear);
  
-  var sscPassedYear1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-
 
   return (
     <>
@@ -141,12 +112,13 @@ const ProfileEducationalDetailsTab = (props) => {
                                   <td>{getEmployeeDetails.postgraduationInstituteName}</td>
                                   <td>{getEmployeeDetails.postgraduationCourseName}</td>
                                   <td>{getEmployeeDetails.postgraduationGrade}</td>
-                                  <td> {getEmployeeDetails.postgraduationJoiningYear ? (<td>
-                                    {postgraduationJoiningYear1}
-                                  </td>) : (<div></div>)}</td>
-                                  <td>{getEmployeeDetails.postgraduationPassedYear ? (<td>
-                                    {postgraduationPassedYear1}
-                                  </td>) : (<div></div>)}</td>
+                                  <td>
+                  {getEmployeeDetails.postgraduationJoiningYear === null ? " " : moment(getEmployeeDetails.postgraduationJoiningYear).format("DD/MM/YYYY")}
+                </td>
+                <td>
+                  {getEmployeeDetails.postgraduationPassedYear === null ? " " : moment(getEmployeeDetails.postgraduationPassedYear).format("DD/MM/YYYY")}
+                </td>
+                                
 
                                 </tr>
                                 <tr>
@@ -155,13 +127,13 @@ const ProfileEducationalDetailsTab = (props) => {
                                   <td>{getEmployeeDetails.graduationInstituteName}</td>
                                   <td>{getEmployeeDetails.graduationCourseName}</td>
                                   <td>{getEmployeeDetails.graduationGrade}</td>
-                                  <td> {getEmployeeDetails.graduationJoiningYear ? (<td>
-                                    {graduationJoiningYear1}
-                                  </td>) : (<div></div>)}</td>
-                                  <td>{getEmployeeDetails.graduationPassedYear ? (<td>
-                                    {graduationPassedYear1}
-                                  </td>) : (<div></div>)}</td>
-
+                                  <td>
+                  {getEmployeeDetails.graduationJoiningYear === null ? " " : moment(getEmployeeDetails.graduationJoiningYear).format("DD/MM/YYYY")}
+                </td>
+                <td>
+                  {getEmployeeDetails.graduationPassedYear === null ? " " : moment(getEmployeeDetails.graduationPassedYear).format("DD/MM/YYYY")}
+                </td>
+                                 
                                 </tr>
                                 <tr>
                                   <td>{getEmployeeDetails.intermediateQualification}</td>
@@ -169,12 +141,13 @@ const ProfileEducationalDetailsTab = (props) => {
                                   <td>{getEmployeeDetails.intermediateCollegeName}</td>
                                   <td>{getEmployeeDetails.intermediateCourseName}</td>
                                   <td>{getEmployeeDetails.intermediateGrade}</td>
-                                  <td> {getEmployeeDetails.intermediateJoiningYear ? (<td>
-                                    {intermediateJoiningYear1}
-                                  </td>) : (<div></div>)}</td>
-                                  <td> {getEmployeeDetails.intermediatePassedYear ? (<td>
-                                    {intermediatePassedYear1}
-                                  </td>) : (<div></div>)}</td>
+                                  <td>
+                  {getEmployeeDetails.intermediateJoiningYear === null ? " " : moment(getEmployeeDetails.intermediateJoiningYear).format("DD/MM/YYYY")}
+                </td>
+                <td>
+                  {getEmployeeDetails.intermediatePassedYear === null ? " " : moment(getEmployeeDetails.intermediatePassedYear).format("DD/MM/YYYY")}
+                </td>
+                                  
 
                                 </tr>
                                 <tr>
@@ -183,12 +156,13 @@ const ProfileEducationalDetailsTab = (props) => {
                                   <td>{getEmployeeDetails.sscSchoolName}</td>
                                   <td>{getEmployeeDetails.sscCourseName}</td>
                                   <td>{getEmployeeDetails.sscGrade}</td>
-                                  <td> {getEmployeeDetails.sscJoiningYear ? (<td>
-                                    {sscJoiningYear1}
-                                  </td>) : (<div></div>)}</td>
-                                  <td>{getEmployeeDetails.sscPassedYear ? (<td>
-                                    {sscPassedYear1}
-                                  </td>) : (<div></div>)}</td>
+                                  <td>
+                  {getEmployeeDetails.sscJoiningYear === null ? " " : moment(getEmployeeDetails.sscJoiningYear).format("DD/MM/YYYY")}
+                </td>
+                <td>
+                  {getEmployeeDetails.sscPassedYear === null ? " " : moment(getEmployeeDetails.sscPassedYear).format("DD/MM/YYYY")}
+                </td>
+                                 
                                 </tr>
 
 
@@ -196,6 +170,18 @@ const ProfileEducationalDetailsTab = (props) => {
                             </Table>
 
                           </Card.Body>
+                          <Row>
+                          {documents.statusText === "OK" ? ( 
+               <Col>
+                <a
+                  href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${employeeid}`}
+                >
+                  Educational Documents
+                </a>
+              </Col>
+            ) : (
+              <Col> <Button onClick={handleclick} style={{background:"none",color:"blue",border:"none"}}>Educational Documents</Button></Col>
+            )}</Row>
                         </div>
 
                      
