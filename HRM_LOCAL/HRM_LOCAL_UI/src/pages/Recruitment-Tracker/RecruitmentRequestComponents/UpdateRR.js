@@ -12,7 +12,7 @@ import { useParams, useHistory } from "react-router-dom";
 import Moment from "moment";
 import './utils/RT.css';
 
-const UpdateRR = (props) => {
+const UpdateRR = () => {
 
   const [raisedOn, setRaisedOn] = useState();
   const [jobTitle, setJobTitle] = useState();
@@ -236,7 +236,7 @@ const UpdateRR = (props) => {
           toast.success("Requisition Updated successfully", { autoClose: 500 });
           routeToRRPage();
         } else {
-          console.log("Props not Send");
+          console.log("Updation Failed");
         }
       })
       .catch((err) => {
@@ -858,6 +858,7 @@ const UpdateRR = (props) => {
                   required
                   type="date"
                   controlid="reqDate"
+                  min={initDate}
                   defaultValue={requiredDate}
                   onChange={(e) => setReqDate((Moment(e.target.value).format("YYYY-MM-DD")))}
                   isInvalid={!!errors.reqDate}
@@ -940,14 +941,4 @@ const UpdateRR = (props) => {
   )
 }
 export default UpdateRR;
-
-
-
-
-    
-    
-    
-
-    
-
 
