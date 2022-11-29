@@ -18,6 +18,7 @@ import {
     Section,
     Description,
 } from "vertical-timeline-component-react";
+import moment from 'moment';
 
 function EmployeeMasterCard(props) {
 
@@ -51,6 +52,8 @@ function EmployeeMasterCard(props) {
                 setEmployeeDetails(response.data.data);
             })
     }, [])
+   console.log(employeedetails);
+
     useEffect(() => {
         axios
             .get(`/emp/files/${employeeid}`)
@@ -166,6 +169,19 @@ function EmployeeMasterCard(props) {
                             <Col md={{ offset: 1 }}>
                                 <Card.Text style={{color:"#999897"}}>
                                     {employeedetails.irm}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10 }}>
+                            <Col>
+                                <Card.Text style={{}}>
+                                    <h6>Confirmation Date: </h6>
+                                </Card.Text>
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{color:"#999897"}}>
+                                {employeedetails.confirmationDate === null ? " " : moment(employeedetails.confirmationDate).format("DD-MM-YYYY")}
+
                                 </Card.Text>
                             </Col>
                         </Row>
