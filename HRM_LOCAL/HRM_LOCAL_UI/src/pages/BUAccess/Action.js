@@ -44,6 +44,13 @@ export default function Action(props) {
     const [status, setStatus] = useState("");
     const [getLeaveBalance, setGetLeaveBalance] = useState([{}]);
 
+    //displaying date in fields
+    const [resDate,setResDate] = useState("");
+    const [exDate,setExDate] = useState("");
+    const [confirmDate, setConfirmDate] = useState("");
+
+
+
     const forms = useRef(null);
     console.log(props);
     console.log(props.data);
@@ -104,6 +111,10 @@ export default function Action(props) {
         setReportingManager(res.data.data.reportingManager);
        setLeaveBalance(res.data.data.leaveBalance);
         setBuh(res.data.data.buh);
+
+        setExDate(Moment(res.data.data.exitDate).format('YYYY-MM-DD'));
+        setResDate(Moment(res.data.data.resignationDate).format('YYYY-MM-DD'));
+        setConfirmDate(Moment(res.data.data.confirmationDate).format('YYYY-MM-DD'));
        
     };
 // console.log(confirmationDate)
@@ -264,9 +275,9 @@ console.log(confirmationDate)
                             type="date"
                             placeholder="Resignation Date"
                             controlid="resignationDate"
-                            defaultValue={resignationDate}
-                            value={resignationDate}
-                            onChange={(e) => setResignationDate(e.target.value)}
+                            defaultValue={resDate}
+                            value={resDate}
+                            onChange={(e) => setResignationDate((Moment(e.target.value).format("YYYY-MM-DD")))}
                         ></Form.Control>
 
 
@@ -278,9 +289,9 @@ console.log(confirmationDate)
                             type="date"
                             placeholder="exitDate"
                             controlid="exitDate"
-                            defaultValue={exitDate}
-                            value={exitDate}
-                            onChange={(e) => setExitDate(e.target.value)}
+                            defaultValue={exDate}
+                            value={exDate}
+                            onChange={(e) => setExitDate((Moment(e.target.value).format("YYYY-MM-DD")))}
 
                         ></Form.Control>
                     </Form.Group>
@@ -386,9 +397,9 @@ console.log(confirmationDate)
                             type="date"
                             placeholder="confirmationDate"
                             controlid="confirmationDate"
-                            defaultValue={confirmationDate}
-                            value={confirmationDate}
-                            onChange={(e) => setConfirmationDate(e.target.value)}
+                            defaultValue={confirmDate}
+                            value={confirmDate}
+                            onChange={(e) => setConfirmationDate((Moment(e.target.value).format("YYYY-MM-DD")))}
 
                         ></Form.Control>
                     </Form.Group>
