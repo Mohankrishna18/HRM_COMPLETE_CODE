@@ -145,7 +145,7 @@ function AddOnboard(props) {
           console.log(user)
           if (user.status) {
             props.func();
-            handleClose();
+           
           } else {
             console.log("Props Not Send");
           }
@@ -157,6 +157,7 @@ function AddOnboard(props) {
           toast.error("Something Went Wrong");
         });
     }
+    handleClose();
   };
 
   const [designations, setDesignations] = useState([]);
