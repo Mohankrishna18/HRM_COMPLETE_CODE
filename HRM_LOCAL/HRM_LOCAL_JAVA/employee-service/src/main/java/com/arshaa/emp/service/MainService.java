@@ -18,6 +18,7 @@ import com.arshaa.emp.model.Experience;
 import com.arshaa.emp.model.HrApprovalStatus;
 import com.arshaa.emp.model.PersonalDetails;
 import com.arshaa.emp.model.ProbationEmployeeFeedBack;
+import com.arshaa.emp.model.TermsAndConditions;
 
 
 public interface MainService {
@@ -112,7 +113,7 @@ public interface MainService {
 	
 	public Boolean saveProjectAllocationPercentAfterMapping(String employeeId,AssignProjectName apn);
 
-
+	public ResponseEntity updateTermsAndConditions(String onboardingId, TermsAndConditions terms);
     
     
 }
