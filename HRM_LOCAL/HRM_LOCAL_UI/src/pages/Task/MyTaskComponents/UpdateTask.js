@@ -150,7 +150,7 @@ const UpdateTask = (props) => {
           assignedTo: assignedTo,
           status: status,
           priority: priority,
-          complexity:complexity
+          complexity: complexity
         })
         .then((response) => {
           const user = response.data;
@@ -342,12 +342,12 @@ disabled
             </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="mb-3" as={Col} md="3">
-              <Form.Label>complexity *</Form.Label>
+              <Form.Label> complexity *</Form.Label>
             <Form.Select
               required
               type="text"
-              placeholder="complexity"
-              controlid="complexity"
+              placeholder=" complexity"
+              controlid=" complexity"
               defaultValue={props.updateOnboard.complexity}
               value={complexity}
               onChange={(e) => setComplexity(e.target.value)}
