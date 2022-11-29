@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../../Uri";
-import { Card, Container, Row, Col, Table, Tabs, Tab } from "react-bootstrap";
+import { Card, Container, Row, Col, Table, Tabs, Tab, Button } from "react-bootstrap";
 import { BASE_URL } from "../../../Constant";
+import { toast } from "react-toastify";
 
 const customTheme = {
   yearColor: "#405b73",
@@ -59,6 +60,21 @@ function ExperienceTab(props) {
   console.log(projects)
 
 
+  const [documents, setDocuments] = useState("");
+  const loadData = () => {
+    axios
+      .get(`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${props.viewOnboard.onboardingId}`)
+      .then((response) => {
+        setDocuments(response);
+      });
+  }
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const handleclick = () => {
+    toast.error("Experience Documents are not uploaded")
+  }
 
 
   // function formatDate(fromDate){
@@ -151,269 +167,7 @@ function ExperienceTab(props) {
     };
 
   return (
-    // <div className= "scroll">
-    //   {/* <Card style={{ marginLeft: 8, marginRight: 8, marginTop: 0, backgroundColor: "#FAFDD0" }}>
-    //             <Card.Title style={{ margin: 20, textAlign: "center" }}>
-    //                 Work Experience
-    //             </Card.Title>
-    //         </Card> */}
-
-    //   <Form style={{ padding: 10 }}>
-    //     {/* <Card
-    //       style={{
-    //         marginLeft: 8,
-    //         marginRight: 8,
-    //         marginTop: 15,
-    //         backgroundColor: "#FAFDD0",
-    //       }}
-    //     >
-    //       <Card.Title style={{ margin: 8, textAlign: "center" }}>
-    //         Experience-1
-    //       </Card.Title>
-    //     </Card> */}
-    //     <h5><b>Experience 1 : </b></h5>
-    //     <Row>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Company Name</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           controlid="previousCompany1_name"
-
-    //           value={props.viewOnboard.previousCompany1_name}
-    //           maxLength={50}
-    //           name="previousCompany1_name"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Designation</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           controlid="previousCompany1_designation"
-    //           value={props.viewOnboard.previousCompany1_designation}
-    //           maxLength={50}
-    //           name="previousCompany1_designation"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Joining date</Form.Label>
-    //         <Form.Control
-    //           type="date"
-    //           controlid="previousCompany1_joiningDate"
-    //           value={props.viewOnboard.previousCompany1_joiningDate}
-    //           name="previousCompany1_joiningDate"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Relieving Date</Form.Label>
-    //         <Form.Control
-    //           type="Date"
-    //           controlid="previousCompany1_relievingDate"
-    //           value={props.viewOnboard.previousCompany1_relievingDate}
-    //           name="previousCompany1_relievingDate"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Employee ID</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           controlid="previousCompany1_employeeId"
-    //           value={props.viewOnboard.previousCompany1_employeeId}
-    //           maxLength={50}
-    //           name="previousCompany1_employeeId"
-    //         />
-    //       </Form.Group>
-
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Employment Type</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           controlid="previousCompany1_typeOfEmployeement"
-    //           value={props.viewOnboard.previousCompany1_typeOfEmployment}
-    //           name="previousCompany1_typeOfEmployment"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Reason for Exit</Form.Label>
-    //         <Form.Control
-    //           as="textarea"
-    //           rows={2}
-    //           type="text"
-    //           controlid="previousCompany1_reasonForRelieving"
-    //           value={props.viewOnboard.previousCompany1_reasonForRelieving}
-    //           name="previousCompany1_reasonForRelieving"
-    //         />
-    //       </Form.Group>
-    //     </Row>
-    //     {/* <Card
-    //       style={{
-    //         marginLeft: 8,
-    //         marginRight: 8,
-    //         marginTop: 15,
-    //         backgroundColor: "#FAFDD0",
-    //       }}
-    //     >
-    //       <Card.Title style={{ margin: 20, textAlign: "center" }}>
-    //         Experience-2
-    //       </Card.Title>
-    //     </Card> */}
-    //     <br></br>
-    //     <h5><b>Experience 2 : </b></h5>
-    //     <Row>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Company Name</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           controlid="previousCompany2_name"
-    //           maxLength={50}
-    //           value={props.viewOnboard.previousCompany2_name}
-    //           name="previousCompany2_name"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Designation</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           controlid="previousCompany2_designation"
-    //           maxLength={50}
-    //           value={props.viewOnboard.previousCompany2_designation}
-    //           name="previousCompany2_designation"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Joining date</Form.Label>
-    //         <Form.Control
-    //           type="date"
-    //           controlid="previousCompany2_joiningDate"
-    //           value={props.viewOnboard.previousCompany2_joiningDate}
-    //           name="previousCompany2_joiningDate"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Relieving Date</Form.Label>
-    //         <Form.Control
-    //           type="Date"
-    //           controlid="previousCompany2_relievingDate"
-    //           value={props.viewOnboard.previousCompany2_relievingDate}
-    //           name="previousCompany2_relievingDate"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Employee ID</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           controlid="previousCompany2_employeeId"
-    //           value={props.viewOnboard.previousCompany2_employeeId}
-    //           name="previousCompany2_employeeId"
-    //         />
-    //       </Form.Group>
-
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Employment Type</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           controlid="previousCompany2_typeOfEmployment"
-    //           value={props.viewOnboard.previousCompany2_typeOfEmployment}
-    //           name="previousCompany2_typeOfEmployment"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 15 }}>
-    //         <Form.Label>Reason for Exit</Form.Label>
-    //         <Form.Control
-    //           as="textarea"
-    //           rows={2}
-    //           type="text"
-    //           controlid="previousCompany2_reasonForRelieving"
-    //           value={props.viewOnboard.previousCompany2_reasonForRelieving}
-    //           name="previousCompany2_reasonForRelieving"
-    //         />
-    //       </Form.Group>
-    //     </Row>
-    //     {/* <Card
-    //       style={{
-    //         marginLeft: 8,
-    //         marginRight: 8,
-    //         marginTop: 15,
-    //         backgroundColor: "#FAFDD0",
-    //       }}
-    //     >
-    //       <Card.Title style={{ margin: 20, textAlign: "center" }}>
-    //         Experience-3
-    //       </Card.Title>
-    //     </Card> */}
-    //      <h5><b>Experience 3 : </b></h5>
-    //     <Row>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Company Name</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           controlid="previousCompany3_name"
-    //           maxLength={50}
-    //           value={props.viewOnboard.previousCompany3_name}
-    //           name="previousCompany3_name"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Designation</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           controlid="previousCompany3_designation"
-    //           maxLength={50}
-    //           value={props.viewOnboard.previousCompany3_designation}
-    //           name="previousCompany3_designation"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Joining date</Form.Label>
-    //         <Form.Control
-    //           type="date"
-    //           controlid="previousCompany3_joiningDate"
-    //           value={props.viewOnboard.previousCompany3_joiningDate}
-    //           name="previousCompany3_joiningDate"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Relieving Date</Form.Label>
-    //         <Form.Control
-    //           type="Date"
-    //           controlid="prevoiusCompany3_relievingDate"
-    //           value={props.viewOnboard.previousCompany3_relievingDate}
-    //           name="previousCompany3_relievingDate"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Employee ID</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           controlid="previousCompany3_employeeId"
-    //           maxLength={50}
-    //           value={props.viewOnboard.previousCompany3_employeeId}
-    //           name="previousCompany3_employeeId"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Employment Type</Form.Label>
-    //         <Form.Control
-    //           type="text"
-    //           controlid="previousCompany3_typeOfEmployment"
-    //           value={props.viewOnboard.previousCompany3_typeOfEmployment}
-    //           name="previousCompany3_typeOfEmployment"
-    //         />
-    //       </Form.Group>
-    //       <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-    //         <Form.Label>Reason for Exit</Form.Label>
-    //         <Form.Control
-    //           as="textarea"
-    //           rows={2}
-    //           type="text"
-    //           controlid="previousCompany3_reasonForRelieving"
-    //           value={props.viewOnboard.previousCompany3_reasonForRelieving}
-    //           name="previousCompany3_reasonForRelieving"
-    //         />
-    //       </Form.Group>
-    //     </Row>
-    //   </Form>
-    // </div>
-    
+   
     <div style={{ padding: 20, marginTop: 0, paddingBottom:"53px", marginLeft: 10, marginRight: 20 }}>
     <Card.Title>
       <h5>Experience:</h5>
@@ -470,11 +224,19 @@ function ExperienceTab(props) {
         </tbody>
       </Table>
       <Col md="6" style={{padding: 0 }}>
-              <a
+      {documents.statusText === "OK" ? (<Col>
+            <a href={`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${props.viewOnboard.onboardingId}`}>
+              Experience Documents
+
+            </a>
+          </Col>) : (<Col style={{ color: "blue" }}> <Button onClick={handleclick} style={{ background: "none", color: "blue", border: "none" }}>Experience Documents</Button></Col>
+          )
+          }
+              {/* <a
                 href={`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${props.viewOnboard.onboardingId}`}
               >
                 Download Documents
-              </a>
+              </a> */}
             </Col>
     </Card.Body>
   </div>

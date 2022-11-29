@@ -110,6 +110,7 @@ public class TaskServiceImpl implements TaskService {
 			taskEntity.setAssignedTo(taskUpdate.getAssignedTo());
 			taskEntity.setProjectName(taskUpdate.getProjectName());
 			taskEntity.setProjectId(taskUpdate.getProjectId());
+			taskEntity.setComplexity(taskUpdate.getComplexity());
 
 			TaskEntity task1 = taskRepo.save(taskEntity);
 			System.out.println(task1);

@@ -27,6 +27,22 @@ function AditionalDetailsTab(props) {
       });
   };
 
+  const [documents, setDocuments] = useState("");
+  const loadData = () => {
+    axios
+      .get(`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${props.viewOnboard.onboardingId}`)
+      .then((response) => {
+        setDocuments(response);
+      });
+
+  }
+  useEffect(() => {
+    loadData();
+  }, []);
+  const handleclick = () =>{
+    toast.error("Additional Documents are not uploaded")
+}
+
   var tempDate = new Date(props.viewOnboard.passportExpiryDate);
   var ped = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
  
@@ -155,12 +171,21 @@ function AditionalDetailsTab(props) {
     </Row>
     <Row>
     <Col md="6" style={{ paddingTop: 0 }}>
+                             {documents.statusText === "OK" ? (<Col>
+              <a href={`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${props.viewOnboard.onboardingId}`}>
+                Additional Documents
+
+              </a>
+            </Col>) : (<Col > <Button onClick={handleclick} style={{background:"none",color:"blue",border:"none"}}>Additional Documents</Button></Col>)
+}
+                        </Col>
+    {/* <Col md="6" style={{ paddingTop: 0 }}>
               <a
                 href={`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${props.viewOnboard.onboardingId}`}
               >
                 Download Documents
               </a>
-            </Col>
+            </Col> */}
     </Row>
     
 
