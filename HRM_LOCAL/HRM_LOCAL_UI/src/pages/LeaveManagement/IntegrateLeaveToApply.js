@@ -491,7 +491,7 @@ function IntegrateLeaveToApply() {
     >
     <h4 style={{color: 'black'}}>Add Leave</h4> </Button> */}
       <Card bg="white">
-        <Row>
+        <Row style={{padding:"10px"}}>
           <Col xs={6} md={8}>
             <Card.Body>
               <Card.Title>Leaves/WFH</Card.Title>
@@ -501,16 +501,7 @@ function IntegrateLeaveToApply() {
             </Card.Body>
           </Col>
 
-
-
-
-
-
-
-
-
-
-                    <Col>
+                    <Col >
                         <div class="p-3">
                             <Button
                                 variant="warning"
@@ -524,7 +515,6 @@ function IntegrateLeaveToApply() {
                                     paddingTop: "11.5px",
                                 }}
                             >
-                                {" "}
                                 <BsPlusLg />
                                 Apply Leave/WFH
                             </Button>
