@@ -145,13 +145,13 @@ function AddOnboard(props) {
           console.log(user)
           if (user.status) {
             props.func();
+            handleClose();
           } else {
             console.log("Props Not Send");
           }
           toast.success("Employee Onboarded Successfully");
           console.log(user);
-          setTimeout(100);
-          handleClose();
+         
         })
         .catch((err) => {
           toast.error("Something Went Wrong");
@@ -235,59 +235,6 @@ function AddOnboard(props) {
     loadUsers();
   }, []);
 
-  // //irm onchange and onclick calls
-  // const onChangeHandler = (irm) => {
-  //   let matches = []
-  //   if (irm.length > 0) {
-  //     matches = users.filter(user => {
-  //       const regex = new RegExp(`${irm}`, "gi");
-  //       return user.firstName.match(regex)
-  //     })
-  //     console.log('matches', matches);
-  //     setSuggestions(matches);
-  //   }
-  // }
-  // const onSuggestHandler = (irm) => {
-  //   setField("irm",irm)
-  //   setSuggestions([])
-  // }
-
-  // //srm onchange and onclick calls
-  // const onChangeHandler1 = (srm) => {
-  //   let matches = []
-  //   if (srm.length > 0) {
-  //     matches = users.filter(user => {
-  //       const regex = new RegExp(`${srm}`, "gi");
-  //       return user.firstName.match(regex)
-  //     })
-  //     console.log('matches', matches);
-  //     setSuggestions1(matches);
-  //   }
-  // }
-  // const onSuggestHandler1 = (srm) => {
-  //   setField("srm", srm)
-  //   setSuggestions1([])
-  // }
-
-  // //buh onchange and onclick calls
-  // const onChangeHandler2 = (buh) => {
-  //   let matches = []
-  //   if (buh.length > 0) {
-  //     matches = users.filter(user => {
-  //       const regex = new RegExp(`${buh}`, "gi");
-  //       return user.firstName.match(regex)
-  //     })
-  //     console.log('matches', matches);
-  //     setSuggestions2(matches);
-  //   }
-  // }
-  // const onSuggestHandler2 = (buh) => {
-  //   console.log(buh)
-  //   setField("buh", buh)
-  //   // console.log(buh)
-  //   setSuggestions2([])
-  // }
-
   return (
     <div>
       <Button
@@ -302,7 +249,6 @@ function AddOnboard(props) {
           // marginTop: "100px",
         }}
       >
-        {" "}
         <BsPlusLg />
         Add New Onboard
       </Button>

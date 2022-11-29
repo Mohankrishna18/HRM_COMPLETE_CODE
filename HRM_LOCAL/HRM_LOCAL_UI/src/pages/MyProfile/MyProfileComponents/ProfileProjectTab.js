@@ -97,7 +97,7 @@ const ProfileProjectTab = (props) => {
                   <th scope="col">Status</th>
                   <th scope="col" >Start Date</th>
                   <th scope="col">End Date</th>
-                  <th scope="col">Allocation</th>
+                  <th scope="col">Allocation (%)</th>
                 </tr>
               </thead>
 
