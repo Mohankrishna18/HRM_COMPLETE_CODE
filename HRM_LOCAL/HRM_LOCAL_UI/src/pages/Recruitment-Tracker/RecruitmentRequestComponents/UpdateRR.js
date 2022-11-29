@@ -147,6 +147,8 @@ const UpdateRR = (props) => {
       `/recruitmentTracker/getDataById/${params.id}`
     );
     setRaisedOn(response.data.data.raisedOn);
+    console.log(response.data.data.requestInitiatedDate)
+    console.log(response.data.data.resourceRequiredDate)
     setDate(Moment(response.data.data.requestInitiatedDate).format('YYYY-MM-DD'));
     
     setRequiredDate(Moment(response.data.data.resourceRequiredDate).format('YYYY-MM-DD'));
@@ -182,6 +184,7 @@ const UpdateRR = (props) => {
     setNewInterviewPanel2(response.data.data.interviewPanel2);
     setNewHrPanel(response.data.data.hrPanel);
     setQualification(response.data.data.qualification);
+
   }
 
   useEffect(() => {
@@ -856,7 +859,7 @@ const UpdateRR = (props) => {
                   type="date"
                   controlid="reqDate"
                   defaultValue={requiredDate}
-                  onChange={(e) => setReqDate((Moment(e.target.value).format("YYYY-MM-DD")))}
+                  onChange={(e) => console.log((Moment(e.target.value).format("YYYY-MM-DD")))}
                   isInvalid={!!errors.reqDate}
                 >
 
@@ -937,3 +940,14 @@ const UpdateRR = (props) => {
   )
 }
 export default UpdateRR;
+
+
+
+
+    
+    
+    
+
+    
+
+
