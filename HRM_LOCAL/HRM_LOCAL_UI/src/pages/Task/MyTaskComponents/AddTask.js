@@ -151,7 +151,9 @@ function AddUser(props) {
             console.log("Props Not Send");
           }
           setTimeout(5000);
+          setForm({})
           handleClose();
+  
         })
         .catch((err) => {
           toast.error("Something Went Wrong");
