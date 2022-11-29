@@ -63,6 +63,7 @@ import com.arshaa.emp.model.PreOnboarding;
 import com.arshaa.emp.model.ProbationEmployeeFeedBack;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.StringConstants;
+import com.arshaa.emp.model.TermsAndConditions;
 import com.arshaa.emp.model.WaitingForApproval;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
 import com.arshaa.emp.repository.EmployeeProfileRepository;
@@ -244,7 +245,7 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
-				getOnboarding.setTermsAndConditions(newOnboard.isTermsAndConditions());
+//				getOnboarding.setTermsAndConditions(newOnboard.isTermsAndConditions());
 ///				getOnboarding.setIrm(newOnboard.getIrm());
 //				getOnboarding.setTaaApprovalComment(newOnboard.getTaaApprovalComment());
 //				getOnboarding.setTaaHeadApprovalComment(newOnboard.getTaaHeadApprovalComment());
@@ -1231,21 +1232,28 @@ public class MainServiceImpl implements MainService {
                 em.setSrm(empd.getSrm());
                 em.setConfirmationDate(empd.getConfirmationDate());
                 em.setLeaveBalance(empd.getLeaveBalance());
-                emRepo.save(em);
+               
+                EmployeeMaster emd = emRepo.save(em);
+                
+                emd.setBuhId(this.getEmployeeIdByName(em.getBuh()));
+                emd.setSrmId(this.getEmployeeIdByName(em.getSrm()));
+                emd.setIrmId(this.getEmployeeIdByName(em.getIrm()));
+               
+                emRepo.save(emd);
                 
                 LeaveMaster lm = new LeaveMaster();
                 
                 //get data from Leave Master Table  
                 String Listemployees="http://leaveservice/leave/leaveBalanceByEmployeeId/";
-                LeaveMaster getData =  template.getForObject(Listemployees+em.getEmployeeId(), LeaveMaster.class);
+                LeaveMaster getData =  template.getForObject(Listemployees+emd.getEmployeeId(), LeaveMaster.class);
             
                 if(getData == null) {
                     
                     //Post employeeId and Leave Balance to Leave Mater Table
                     String post="http://leaveservice/leave/postLeaves";
                     
-                    lm.setEmployeeId(em.getEmployeeId());
-                    lm.setLeaveBalance(em.getLeaveBalance());
+                    lm.setEmployeeId(emd.getEmployeeId());
+                    lm.setLeaveBalance(emd.getLeaveBalance());
                     template.postForObject(post,lm, LeaveMaster.class);    
                 }else {
                     
@@ -1254,7 +1262,7 @@ public class MainServiceImpl implements MainService {
                     LeaveBalanceModel lbm = new LeaveBalanceModel();
                     
                     lbm.setLeaveBalance(empd.getLeaveBalance());
-                    template.put(updateLeaveBalance+em.getEmployeeId(),lbm,LeaveBalanceModel.class);
+                    template.put(updateLeaveBalance+emd.getEmployeeId(),lbm,LeaveBalanceModel.class);
                 }
                 
                 
@@ -1272,12 +1280,12 @@ public class MainServiceImpl implements MainService {
                     
                     //updating status in login table
                     String updateStatus = "http://loginservice/login/makeLoginsInActive/";
-                     String restemplate = template.getForObject(updateStatus+em.getEmployeeId(),String.class);
+                     String restemplate = template.getForObject(updateStatus+emd.getEmployeeId(),String.class);
                 }
                 
                 r.setStatus(true);
                 r.setMessage("Data Fetching");
-                r.setData(em);
+                r.setData(emd);
                 return new ResponseEntity(r, HttpStatus.OK);
             } else {
                 r.setStatus(false);
@@ -2400,5 +2408,32 @@ public class MainServiceImpl implements MainService {
 		emRepo.save(master);
 		return true;
 	}
+	
+	public ResponseEntity updateTermsAndConditions(String onboardingId, TermsAndConditions terms) {
+        Response response = new Response();
+        
+        try {
+            Onboarding getData = onRepo.getByOnboardingId(onboardingId);
+
+
+
+               getData.setOnboardingStatus(terms.getOnboardingStatus());
+                getData.setTermsAndConditions(terms.isTermsAndConditions());
+                
+                onRepo.save(getData);
+                
+                response.setStatus(true);
+                response.setMessage("Terms And Conditions Acceopted Succussfully");
+                response.setData(getData);
+                return new ResponseEntity(response, HttpStatus.OK);
+            
+        }catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+
+
+
+       }
+        
+    }
 
 }

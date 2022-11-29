@@ -337,7 +337,7 @@ function AddUser(props) {
                   placeholder="Task Title"
                   controlid="taskTitle"
                   value={form.taskTitle}
-                  maxLength={30}
+                  maxLength={225}
                   onChange={(e) => setField('taskTitle', e.target.value)}
                   isInvalid={!!errors.taskTitle}
                 ></Form.Control>
@@ -613,7 +613,7 @@ function AddUser(props) {
                 <Button
                   style={{
                     backgroundColor: "#f5896e",
- borderColor: "#f5896e",
+                    borderColor: "#f5896e",
                     float: 'right',
                     width: '40%',
                     height: '120%',

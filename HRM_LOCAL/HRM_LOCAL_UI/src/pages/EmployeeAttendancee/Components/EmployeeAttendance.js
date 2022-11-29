@@ -37,7 +37,7 @@ const EmployeeAttendance = () => {
   // const [holiday, setHoliday] = useState([])
 
   const [loading, setLoading] = React.useState(true);
-  const [path, setPath] = useState("All");
+  const [path, setPath] = useState("Select");
   const closeLoading = () => setLoading(!loading);
 
   console.log(month)
@@ -263,8 +263,8 @@ const EmployeeAttendance = () => {
                     }}
                   >
                     <option value="">{path}</option>
-                    <option value="all">
-                      All
+                    <option value="select">
+                      Select
                     </option>
                     {departments.map((departmentss) => (
                       <option value={departmentss.departmentName}>
