@@ -1235,11 +1235,11 @@ public class MainServiceImpl implements MainService {
                
                 EmployeeMaster emd = emRepo.save(em);
                 
-                emd.setBuhId(this.getEmployeeIdByName(em.getBuh()));
-                emd.setSrmId(this.getEmployeeIdByName(em.getSrm()));
-                emd.setIrmId(this.getEmployeeIdByName(em.getIrm()));
-               
-                emRepo.save(emd);
+//                emd.setBuhId(this.getEmployeeIdByName(em.getBuh()));
+//                emd.setSrmId(this.getEmployeeIdByName(em.getSrm()));
+//                emd.setIrmId(this.getEmployeeIdByName(em.getIrm()));
+//               
+//                emRepo.save(emd);
                 
                 LeaveMaster lm = new LeaveMaster();
                 
