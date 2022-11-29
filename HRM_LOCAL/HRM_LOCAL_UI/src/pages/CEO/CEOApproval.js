@@ -71,7 +71,7 @@ function CEOApproval() {
         { title: 'Email', field: 'email' },
         { title: 'Contact', field: 'phoneNumber' },
         { title: 'DOJ', field: 'dateOfJoining', type: 'date', dateSetting: { locale: "en-GB" }},
-        { title: 'Job Title', field: 'jobTitle' },
+        // { title: 'Job Title', field: 'jobTitle' },
         { title: 'Experience', field: 'yearsOfExperience' },
         // { title: 'Status', field: 'status' }
 

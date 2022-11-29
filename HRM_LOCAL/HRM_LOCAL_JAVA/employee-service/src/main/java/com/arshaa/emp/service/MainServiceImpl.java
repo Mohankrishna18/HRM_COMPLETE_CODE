@@ -224,7 +224,7 @@ public class MainServiceImpl implements MainService {
 
 	public ResponseEntity updateApprovStatus(String onboardingId, HrApprovalStatus newOnboard) {
 		Response response = new Response();
-		String dUrl="http://departments/dept/getDepartmentNameById/";
+		String dUrl="http://departments/dept/getDepartmentsNameById/";
 //		String userURL = "http://urpService/user/addUser";
 		String loginURL = "http://loginservice/login/addUsers";
 //		String emailURL = "http://emailService/mail/sendmail";
@@ -1913,8 +1913,8 @@ public class MainServiceImpl implements MainService {
 				Map<String, String> map = new HashMap();
 
 				map.put("employeeName", getOnboarding.getFirstName() + getOnboarding.getLastName());
-//			map.put("email",hrApp.getEmail());
-				map.put("email", "muralikrishna.miriyala@arshaa.com");
+			map.put("email",hrApp.getEmail());
+//				map.put("email", "muralikrishna.miriyala@arshaa.com");
 				mailTemp.setMap(map);
 				mailTemp.setEmailType("TAG_HEAD_REJECT");
 
@@ -1936,8 +1936,8 @@ public class MainServiceImpl implements MainService {
 				Map<String, String> map = new HashMap();
 
 				map.put("employeeName", getOnboarding.getFirstName() + getOnboarding.getLastName());
-//			map.put("email",hrApp.getEmail());
-				map.put("email", "muralikrishna.miriyala@arshaa.com");
+			map.put("email",hrApp.getEmail());
+//				map.put("email", "muralikrishna.miriyala@arshaa.com");
 				mailTemp.setMap(map);
 				mailTemp.setEmailType("PMO_REJECT");
 
@@ -1959,8 +1959,8 @@ public class MainServiceImpl implements MainService {
 				Map<String, String> map = new HashMap();
 
 				map.put("employeeName", getOnboarding.getFirstName() + getOnboarding.getLastName());
-//			map.put("email",hrApp.getEmail());
-				map.put("email", "muralikrishna.miriyala@arshaa.com");
+			map.put("email",hrApp.getEmail());
+//				map.put("email", "muralikrishna.miriyala@arshaa.com");
 				mailTemp.setMap(map);
 				mailTemp.setEmailType("CEO_REJECT");
 

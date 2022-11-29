@@ -341,7 +341,7 @@ public class EmailSender {
 	}
 
 	private String leaveApplied(MainEmailTemplate uModel) {
-		String text="Leave was Applied"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Hi Sir"+"\n"+"\n"+"Hope You doing well.  I would like to have a leave on these days from "+uModel.getMap().get("fromDate")+" to "+uModel.getMap().get("toDate")+"\n"+"\n"+"\n"+"1) Employee ID :  "+uModel.getMap().get("employeeId")+"\n"+"2) Employee Name :  "+uModel.getMap().get("name")+"\n"+"3) From Date :  "+uModel.getMap().get("fromDate")+"\n"+"4) To Date :  "+uModel.getMap().get("toDate")+"\n"+"5) Leave Reason :  "+uModel.getMap().get("reason")+"\n"+"\n"+"Please Grant me Leave."+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
 		return text;
 	}
 
