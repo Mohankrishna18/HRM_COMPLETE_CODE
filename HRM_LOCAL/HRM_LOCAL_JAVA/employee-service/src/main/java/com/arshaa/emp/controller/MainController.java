@@ -41,6 +41,7 @@ import com.arshaa.emp.model.ResignationModel;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.ResponseFile;
 import com.arshaa.emp.model.ResponseMessage;
+import com.arshaa.emp.model.TermsAndConditions;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
 import com.arshaa.emp.repository.OnboardRepository;
 import com.arshaa.emp.service.EmployeeProfileService;
@@ -642,4 +643,12 @@ public class MainController {
         public Boolean saveProjectAllocationPercentAfterMapping(@PathVariable("employeeId") String employeeId, @RequestBody AssignProjectName apn) {
         	return serv.saveProjectAllocationPercentAfterMapping(employeeId, apn);
         }
+        
+        @PutMapping("/updateTermsAndConditiions/{onboardingId}")
+        public ResponseEntity updateTermsAndConditions(@PathVariable String onboardingId,
+                @RequestBody TermsAndConditions terms) {
+            return serv.updateTermsAndConditions(onboardingId, terms);
+        }
+
+
 }

@@ -63,6 +63,7 @@ import com.arshaa.emp.model.PreOnboarding;
 import com.arshaa.emp.model.ProbationEmployeeFeedBack;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.StringConstants;
+import com.arshaa.emp.model.TermsAndConditions;
 import com.arshaa.emp.model.WaitingForApproval;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
 import com.arshaa.emp.repository.EmployeeProfileRepository;
@@ -244,7 +245,7 @@ public class MainServiceImpl implements MainService {
 				getOnboarding.setWaitingforapprovalStatus(newOnboard.isWaitingforapprovalStatus());
 				getOnboarding.setApprovedDate(newOnboard.getApprovedDate());
 				getOnboarding.setReportingManager(newOnboard.getReportingManager());
-				getOnboarding.setTermsAndConditions(newOnboard.isTermsAndConditions());
+//				getOnboarding.setTermsAndConditions(newOnboard.isTermsAndConditions());
 ///				getOnboarding.setIrm(newOnboard.getIrm());
 //				getOnboarding.setTaaApprovalComment(newOnboard.getTaaApprovalComment());
 //				getOnboarding.setTaaHeadApprovalComment(newOnboard.getTaaHeadApprovalComment());
@@ -2407,5 +2408,32 @@ public class MainServiceImpl implements MainService {
 		emRepo.save(master);
 		return true;
 	}
+	
+	public ResponseEntity updateTermsAndConditions(String onboardingId, TermsAndConditions terms) {
+        Response response = new Response();
+        
+        try {
+            Onboarding getData = onRepo.getByOnboardingId(onboardingId);
+
+
+
+               getData.setOnboardingStatus(terms.getOnboardingStatus());
+                getData.setTermsAndConditions(terms.isTermsAndConditions());
+                
+                onRepo.save(getData);
+                
+                response.setStatus(true);
+                response.setMessage("Terms And Conditions Acceopted Succussfully");
+                response.setData(getData);
+                return new ResponseEntity(response, HttpStatus.OK);
+            
+        }catch (Exception e) {
+            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+
+
+
+       }
+        
+    }
 
 }
