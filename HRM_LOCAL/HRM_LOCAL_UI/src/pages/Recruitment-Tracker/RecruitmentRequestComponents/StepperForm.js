@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useState, useEffect } from "react";
 import { Form, Button, Row, Col, Card } from "react-bootstrap";
@@ -941,7 +942,7 @@ const StepperForm = (props) => {
                                                 </Form.Control.Feedback>
                                             </Form.Group>
                                             <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                                                <Form.Label>Request Initiated Date *</Form.Label>
+                                                <Form.Label>Request Initiated Date</Form.Label>
                                                 <Form.Control
                                                     required
                                                     className="requestInitiatedDate"
@@ -965,7 +966,7 @@ const StepperForm = (props) => {
                                                     className="resourceRequiredDate"
                                                     type="date"
                                                     controlid="resourceRequiredDate"
-
+                                                    min={form.requestInitiatedDate}
                                                     value={form.resourceRequiredDate}
                                                     onChange={(e) => setField("resourceRequiredDate", e.target.value)}
                                                     isInvalid={!!errors.resourceRequiredDate}
@@ -1082,3 +1083,12 @@ const StepperForm = (props) => {
     );
 };
 export default StepperForm;
+
+
+    
+    
+    
+
+    
+
+
