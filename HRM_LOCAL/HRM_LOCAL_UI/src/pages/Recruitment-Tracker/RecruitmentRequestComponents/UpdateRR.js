@@ -859,7 +859,7 @@ const UpdateRR = (props) => {
                   type="date"
                   controlid="reqDate"
                   defaultValue={requiredDate}
-                  onChange={(e) => console.log((Moment(e.target.value).format("YYYY-MM-DD")))}
+                  onChange={(e) => setReqDate((Moment(e.target.value).format("YYYY-MM-DD")))}
                   isInvalid={!!errors.reqDate}
                 >
 
