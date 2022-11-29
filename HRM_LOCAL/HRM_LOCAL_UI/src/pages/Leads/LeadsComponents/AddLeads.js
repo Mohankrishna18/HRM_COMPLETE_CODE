@@ -86,7 +86,7 @@ function AddLeads(props) {
     if (
       !companyName ||
       companyName === "" ||
-      !companyName.match(/^[aA-zZ\s]+$/)
+      !companyName.match(/^[\d a-zA-Z0-9 ()+-._&'",:;@$]+$/)
     )
       newErrors.companyName = "Please Enter Company Name";
     if (!companyEmail || companyEmail === "")
@@ -131,10 +131,10 @@ function AddLeads(props) {
     if (
       !businessValue ||
       businessValue === "" ||
-      !businessValue.match(/^[0-9a-zA-Z]*$/)
+      !businessValue.match(/^[\d a-zA-Z0-9 ()+-._&'",:;@$]+$/)
     )
       newErrors.businessValue = "Please Enter Business Value";
-    if (!leadNotes || leadNotes === "" || !leadNotes.match(/^[0-9a-zA-Z]*$/))
+    if (!leadNotes || leadNotes === "" || !leadNotes.match(/^[\d a-zA-Z0-9 ()+-._&'",:;@$]+$/))
       newErrors.leadNotes = "Please Enter Lead Notes";
     return newErrors;
   };
@@ -769,9 +769,10 @@ const Active="Active"
                   style={{
                     backgroundColor: "#f5896e",
                     borderColor: "#f5896e",
-                    float: "right",
+                    float: "center",
                     width: "40%",
                     height: "120%",
+                    marginLeft: "200px",
                     borderRadius: "25px",
                   }}
                   type="submit"
@@ -780,7 +781,7 @@ const Active="Active"
                   Submit
                 </Button>
               </Col>
-              <Col>
+              {/* <Col>
                 <Button
                   style={{
                     backgroundColor: "#B6B6B4",
@@ -795,7 +796,7 @@ const Active="Active"
                 >
                   Close
                 </Button>
-              </Col>
+              </Col> */}
             </Row>
           </Form>
         </Modal.Body>

@@ -181,7 +181,7 @@ function CandidatesMain() {
     <div>
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton style={{ backgroundColor: "#f5896e",paddingTop:"5px",paddingBottom:"5px",color:"white" }}>
-          <Modal.Title style={{ backgroundColor: "#FF9E14", color: "white" }}>
+          <Modal.Title style={{  color: "white" }}>
             Edit Candidate Details
           </Modal.Title>
         </Modal.Header>

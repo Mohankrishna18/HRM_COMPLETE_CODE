@@ -35,6 +35,7 @@ public class ResignationServiceImpl implements ResignationService {
 	public static final String getHrIdFromDepURL = "http://departments/dept/getBuheadEmployeeIdByBusinessUnitName/";
 	public static final String empResiApplyURL = "http://empService/emp/updateEmployeeAfterResignApply/";
 	public static final String empResiConfirmURL = "http://empService/emp/updateEmployeeAfterResignConfirmed/";
+	public static final String getEmailByEmployeeIdURL="http://loginservice/login/getEmployeeEmailByEmployeeId/";
 
 	@Override
 	public Resignation createResignation(Resignation resignation) {
@@ -48,6 +49,7 @@ public class ResignationServiceImpl implements ResignationService {
 
 		resignation.setStatus(rm.getIrm());
 		Resignation res = resignationRepo.save(resignation);
+		String email=template.getForObject(getEmailByEmployeeIdURL+rm.getIrm(), String.class);
 
 		EmailTemplate mailTemp = new EmailTemplate();
 		Map<String, String> map = new HashMap();
@@ -55,6 +57,7 @@ public class ResignationServiceImpl implements ResignationService {
 		mailTemp.setEmailType("RESIGNATION_APPLY");
 		map.put("employeeName", resignation.getResigningEmployee());
 		map.put("email", "muralikrishna.miriyala@arshaa.com");
+//		map.put("email", email);
 		mailTemp.setMap(map);
 //		template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 		ResignationModel resi = new ResignationModel();
@@ -116,10 +119,12 @@ public class ResignationServiceImpl implements ResignationService {
 			}
 			EmailTemplate mailTemp = new EmailTemplate();
 			Map<String, String> map = new HashMap();
+			String email=template.getForObject(getEmailByEmployeeIdURL+rm.getIrm(), String.class);
+
 
 			mailTemp.setEmailType("IRM_RESIGN_APPROVED");
 			map.put("employeeName", resignation.getResigningEmployee());
-			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			map.put("email", email);
 			mailTemp.setMap(map);
 			template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 
@@ -132,13 +137,14 @@ public class ResignationServiceImpl implements ResignationService {
 			resignUpdate.setStatus(hrId.getBusinessUnitHeadName());
 			resignModify = resignationRepo.save(resignUpdate);
 			GetMail hrApp = template.getForObject(OnboardUrl+"hrmanager", GetMail.class);
+			String email=template.getForObject(getEmailByEmployeeIdURL+rm.getBuh(), String.class);
 
 			EmailTemplate mailTemp = new EmailTemplate();
 			Map<String, String> map = new HashMap();
 
 			mailTemp.setEmailType("SRM_RESIGN_APPROVED");
 			map.put("employeeName", resignation.getResigningEmployee());
-			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			map.put("email", email);
 			mailTemp.setMap(map);
 			template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 
@@ -176,11 +182,13 @@ public class ResignationServiceImpl implements ResignationService {
 			template.put(empResiConfirmURL + employeeId, resi);
 			EmailTemplate mailTemp = new EmailTemplate();
 			Map<String, String> map = new HashMap();
+			
+			String employeeEmail=template.getForObject(getEmailByEmployeeIdURL+employeeId, String.class);
 
 			mailTemp.setEmailType("HR_RESIGN_APPROVED");
 			map.put("employeeName", resignation.getResigningEmployee());
-			map.put("email", "muralikrishna.miriyala@arshaa.com");
-//			map.put("email",hrApp.getEmail());
+			map.put("email", employeeEmail);
+//			map.put("email", "muralikrishna.miriyala@arshaa.com");
 			mailTemp.setMap(map);
 
 			template.getForObject(makeInactiveURL+employeeId, String.class);
@@ -207,10 +215,13 @@ public class ResignationServiceImpl implements ResignationService {
 
 			EmailTemplate mailTemp = new EmailTemplate();
 			Map<String, String> map = new HashMap();
+			String employeeEmail=template.getForObject(getEmailByEmployeeIdURL+employeeId, String.class);
 
 			mailTemp.setEmailType("IRM_RESIGN_REJECT");
 			map.put("employeeName", resignation.getResigningEmployee());
-			map.put("email", "muralikrishna.miriyala@arshaa.com");
+//			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			map.put("email", employeeEmail);
+
 			mailTemp.setMap(map);
 			template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 
@@ -222,10 +233,13 @@ public class ResignationServiceImpl implements ResignationService {
 
 			EmailTemplate mailTemp = new EmailTemplate();
 			Map<String, String> map = new HashMap();
+			String employeeEmail=template.getForObject(getEmailByEmployeeIdURL+employeeId, String.class);
 
 			mailTemp.setEmailType("SRM_RESIGN_REJECT");
 			map.put("employeeName", resignation.getResigningEmployee());
-			map.put("email", "muralikrishna.miriyala@arshaa.com");
+//			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			map.put("email", employeeEmail);
+
 			mailTemp.setMap(map);
 			template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 
@@ -254,10 +268,12 @@ public class ResignationServiceImpl implements ResignationService {
 
 			EmailTemplate mailTemp = new EmailTemplate();
 			Map<String, String> map = new HashMap();
+			String employeeEmail=template.getForObject(getEmailByEmployeeIdURL+employeeId, String.class);
 
 			mailTemp.setEmailType("HR_RESIGN_REJECT");
 			map.put("employeeName", resignation.getResigningEmployee());
-			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			map.put("email", employeeEmail);
+//			map.put("email", "muralikrishna.miriyala@arshaa.com");
 			mailTemp.setMap(map);
 			template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 
