@@ -19,7 +19,7 @@ const UpdateTask = (props) => {
   const [taskTitle, setTaskTitle] = useState(props.updateOnboard.taskTitle)
   const [taskType, setTaskType] = useState(props.updateOnboard.taskType)
   const [assignedTo, setAssignedTo] = useState(props.updateOnboard.assignedTo)
- 
+  const [complexity,setComplexity] = useState(props.updateOnboard.complexity)
   console.log(props.updateOnboard);
   const [estimatedHours, setEstimatedHours] = useState(
     props.updateOnboard.estimatedHours,
@@ -165,6 +165,7 @@ const UpdateTask = (props) => {
           assignedTo: assignedTo,
           status: status,
           priority: priority,
+          complexity:complexity,
           plannedStartDate: plannedStartDate,
           plannedEndDate: plannedEndDate,
         })
@@ -388,27 +389,31 @@ const UpdateTask = (props) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3" as={Col} md="3">
-                <Form.Label>Complexity </Form.Label>
-                <Form.Select
-                  required
-                  type="text"
-                  placeholder="complexity"
-                  controlid="complexity"
-                  defaultValue={props.updateOnboard.complexity}
-                  value={form.complexity}
-                  onChange={(e) => setField("complexity", e.target.value)}
-                  isInvalid={!!errors.complexity}
-                >
-                  <option>Select Complexity</option>
-                  <option>Highly Complex</option>
-                  <option>Medium Complex</option>
-                  <option>Moderate</option>
-                  <option>Simple</option>
-                </Form.Select>
-                <Form.Control.Feedback type="invalid">
-                  {errors.complexity}
-                </Form.Control.Feedback>
-              </Form.Group>
+              <Form.Label> complexity *</Form.Label>
+            <Form.Select
+              required
+              type="text"
+              placeholder=" complexity"
+              controlid=" complexity"
+              defaultValue={props.updateOnboard.complexity}
+              value={complexity}
+              onChange={(e) => setComplexity(e.target.value)}
+              isInvalid={!!errors.complexity}
+            >
+              {/* <option>Select status </option> */}
+              {/* <option>props.updateOnboard.status</option> */}
+              <option> Select Complexity</option>
+                  <option value="Highly Complex">Highly Complex</option>
+                  <option value="Medium Complex">Medium Complex</option>
+                  <option value="Moderate">Moderate</option>
+                  <option value="Simple">Simple</option>
+            </Form.Select>
+
+            <Form.Control.Feedback type="invalid">
+              {errors.complexity}
+            </Form.Control.Feedback>
+          </Form.Group>
+
 
           <Form.Group className="mb-3" as={Col} md="6">
             <Form.Label>Planned Start Date*</Form.Label>
