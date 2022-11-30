@@ -263,8 +263,8 @@ const EmployeeAttendance = () => {
                     }}
                   >
                     <option value="">{path}</option>
-                    <option value="select">
-                      Select
+                    <option value="all">
+                     All
                     </option>
                     {departments.map((departmentss) => (
                       <option value={departmentss.departmentName}>

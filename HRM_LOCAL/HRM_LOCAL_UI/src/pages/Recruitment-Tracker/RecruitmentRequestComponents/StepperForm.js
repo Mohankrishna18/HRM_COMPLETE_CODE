@@ -178,11 +178,14 @@ const StepperForm = (props) => {
         // validations for forms
 
         if (
+
             !jobTitle ||
             jobTitle === ""
 
         )
+
             newErrors.jobTitle =
+
                 "Please enter Job Title";
         if (
             !requisitionId ||
