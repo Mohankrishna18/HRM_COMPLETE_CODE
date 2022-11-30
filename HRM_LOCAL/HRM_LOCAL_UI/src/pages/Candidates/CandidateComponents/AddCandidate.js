@@ -93,14 +93,15 @@ function AddCandidate(props) {
     if (
       !candidateName ||
       candidateName === "" ||
-      !candidateName.match(/^[aA-zZ\s]+$/)
+      !candidateName.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$/)
     )
-      newErrors.candidateName = "Please Enter Full Name";
+      newErrors.candidateName = "Please Enter valid Full Name";
 
     if (
       !candidateStatus ||
       candidateStatus === "" ||
       !candidateStatus.match(/^[aA-zZ\s]+$/)
+      
     )
       newErrors.candidateStatus = "Please Enter Candidate Status";
 
@@ -114,16 +115,27 @@ function AddCandidate(props) {
     // if (!project || project === "" || !project.match(/^[aA-zZ\s]+$/))
     //   newErrors.project = "Please Select project";
 
-    if (!currentLocation || currentLocation === "")
+    if (!currentLocation || currentLocation === "" || !currentLocation.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/))
       newErrors.currentLocation = "Please Enter Current Location";
 
-    if (!primarySkills || primarySkills === "")
+    if (!primarySkills || primarySkills === "" || !primarySkills.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/))
       newErrors.primarySkills = "Please Enter Primary Skills";
 
     // if (!secondarySkills || secondarySkills === "")
     //   newErrors.secondarySkills = "Please Enter Secondary Skills";
 
-    if (!email || email === "") newErrors.email = "Please Enter Mail Id";
+    // if (!email || email === "") newErrors.email = "Please Enter Mail Id";
+    if (
+
+      !email ||
+
+      email === "" ||
+
+      !email.match(/^[ ]*([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})[ ]*$/i)
+
+    )
+
+      newErrors.email = "Please Enter valid email";
 
     if (
       !phoneNumber ||
@@ -131,10 +143,11 @@ function AddCandidate(props) {
       !phoneNumber.match(
         /^((\\+[1-9]{1}[ \\-]*)|(\\([0-9]{9}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
       )
+      || phoneNumber.length !== 10
     )
-      newErrors.phoneNumber = "Please Enter Phone Number";
+      newErrors.phoneNumber = "Please Enter valid Phone Number";
 
-    if (!yearsOfExperience || yearsOfExperience === "")
+    if (!yearsOfExperience || yearsOfExperience === "" || !yearsOfExperience.match(/^[0-9-,]+(\s[0-9-, ])*$/))
       newErrors.yearsOfExperience = "Please Enter Years Of Experience";
 
     if (!level || level === "")
@@ -409,7 +422,7 @@ const projectName = user.projectName;
                   controlid="yearsOfExperience"
                   // placeholder="Years Of Experience"
                   value={form.yearsOfExperience}
-                  maxLength={30}
+                  maxLength={3}
                   onChange={(e) =>
                     setField("yearsOfExperience", e.target.value)
                   }

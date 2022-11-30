@@ -153,17 +153,18 @@ function UserStorymain() {
       type: 'date',
       dateSetting: { locale: 'en-GB' },
     },
-
-    {
-      title: 'Status',
-      field: 'status',
-    },
     {
       title: 'Actual Start Date',
       field: 'assignedDate',
       type: 'date',
       dateSetting: { locale: 'en-GB' },
     },
+
+    {
+      title: 'Status',
+      field: 'status',
+    },
+    
     {
       title: 'Action',
       render: (rowData) => (

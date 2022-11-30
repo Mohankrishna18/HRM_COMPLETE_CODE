@@ -189,7 +189,7 @@ public class RequisitionTrackerController {
            r.setRrfCat(o.getRrfCat());
            r.setPocname(o.getPocname());
            r.setpSkills(o.getpSkills());
-           r.setsSkills(o.getpSkills());
+           r.setsSkills(o.getsSkills());
            r.setEmpType(o.getEmpType());
            r.setWorkingHours(o.getWorkingHours());
            r.setQualification(o.getQualification());

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useState, useEffect } from "react";
 import { Form, Button, Row, Col, Card } from "react-bootstrap";
@@ -177,11 +178,14 @@ const StepperForm = (props) => {
         // validations for forms
 
         if (
+
             !jobTitle ||
             jobTitle === ""
 
         )
+
             newErrors.jobTitle =
+
                 "Please enter Job Title";
         if (
             !requisitionId ||
@@ -965,7 +969,7 @@ const StepperForm = (props) => {
                                                     className="resourceRequiredDate"
                                                     type="date"
                                                     controlid="resourceRequiredDate"
-
+                                                    min={form.requestInitiatedDate}
                                                     value={form.resourceRequiredDate}
                                                     onChange={(e) => setField("resourceRequiredDate", e.target.value)}
                                                     isInvalid={!!errors.resourceRequiredDate}
@@ -1082,3 +1086,12 @@ const StepperForm = (props) => {
     );
 };
 export default StepperForm;
+
+
+    
+    
+    
+
+    
+
+

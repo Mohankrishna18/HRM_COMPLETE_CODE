@@ -52,7 +52,7 @@ public class LeaveService {
 			EmployeeLeavesData getLeaves = new EmployeeLeavesData();
 			if(e.getStatus().equalsIgnoreCase("active")) {
 				LeavesCount wfhCount = template.getForObject(
-						leaveURL + month + "/" + year + "/L/" + dept + "/" + e.getEmployeeId(), LeavesCount.class);
+						leaveURL + month + "/" + year + "/W/" + dept + "/" + e.getEmployeeId(), LeavesCount.class);
 
 				getLeaves.setEmployeeId(e.getEmployeeId());
 				getLeaves.setEmployeeName(e.getFirstName() + e.getLastName());

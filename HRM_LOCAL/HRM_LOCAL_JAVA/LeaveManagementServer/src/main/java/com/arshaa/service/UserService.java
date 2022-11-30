@@ -73,6 +73,7 @@ public class UserService {
 	private UserMapper userMapper;
 
 	public static final String preEmailURL = "http://emailService/mail/sendmail";
+	public static final String getEmailByEmployeeIdURL="http://loginservice/login/getEmployeeEmailByEmployeeId/";
 
 	public UserModel findById(int employeeleaveId) {
 
@@ -135,7 +136,7 @@ public class UserService {
 //}
 	public List<BetweenDates> save(User user) {
 
-//		String OnboardUrl = "http://loginservice/login/getEmployeeDataByUserType/";
+		String OnboardUrl = "http://loginservice/login/getEmployeeByUserType/";
 //		String empUrl = "http://empService/emp/getEmployeeNameByEmployeeId/";
 
 		try
@@ -181,7 +182,36 @@ public class UserService {
 			user.setDepartmentName(dn.getDepartmentName());
 
 			User savedUser = repository.save(user);
+			System.out.println(savedUser.getFromDate()+"savedUser FROM");
+			System.out.println(savedUser.getToDate()+"savedUser TO");
+			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");  
+			String strDate = dateFormat.format(user.getFromDate());
+			System.out.println(strDate+"Coverted frOM");
+			String convetToDate=dateFormat.format(savedUser.getToDate());
+					String email=template.getForObject(getEmailByEmployeeIdURL+al.getIrmId(), String.class);
+          EmailTemplate mailTemp = new EmailTemplate();
+			Map<String, String> map = new HashMap();
 
+			mailTemp.setEmailType("LEAVE_APPLY");
+			map.put("employeeName", "Team Arshaa");
+			map.put("employeeId", user.getEmployeeId());
+			map.put("name", user.getEmployeeName());
+			 
+			map.put("fromDate",strDate );
+			
+			String toDate = dateFormat.format(user.getToDate()); 
+			map.put("toDate", convetToDate);
+			String number = String.valueOf(user.getNumberOfDays());
+			map.put("NoOfDays", number);
+			map.put("reason", user.getLeaveReason());
+			
+			
+			
+			
+			map.put("email", email);
+//			map.put("email", "muralikrishna.miriyala@arshaa.com");
+			mailTemp.setMap(map);
+			template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 			List<StoreDatesList> u = getDaysBetweenDates(user.getFromDate(), user.getToDate());
 //			 bro.saveAll(u);
 			u.forEach(e -> {
@@ -316,8 +346,62 @@ public class UserService {
                   bro.save(e);
 
             });
-            
+        	EmailTemplate mailTemp = new EmailTemplate();
+			Map<String, String> map = new HashMap();
+			EmployeeName al = template.getForObject(
+					"http://empService/emp/getEmployeeNameByEmployeeId/" + u.getEmployeeId(), EmployeeName.class);
+			String email=template.getForObject(getEmailByEmployeeIdURL+u.getEmployeeId(), String.class);
+//			System.out.println("HELLO........"+userType);
+			
+			switch (userType) {
+			case "irm":
+				
+
+				map.put("employeeName", "Team Arshaa");
+//				map.put("email",hrApp.getEmail());
+				map.put("email",email);
+				mailTemp.setMap(map);
+				if (user.getLeaveStatus().equalsIgnoreCase("Approved")) {
+					mailTemp.setEmailType("IRM_APPROVED");
+				} else {
+					mailTemp.setEmailType("IRM_REJECTED");
+				}
+
+				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+				break;
+			case "pmohead":
+//				EmailTemplate mailTemp = new EmailTemplate();
+				map.put("employeeName","Team Arshaa");
+				map.put("email",email);
+//				map.put("email", "muralikrishna.miriyala@arshaa.com");
+				mailTemp.setMap(map);
+				if (user.getLeaveStatus().equalsIgnoreCase("Approved")) {
+					mailTemp.setEmailType("SRM_APPROVED");
+				} else {
+					mailTemp.setEmailType("SRM_REJECTED");
+				}
+
+				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+				break;
+			case "srm":
+//				EmailTemplate mailTemp = new EmailTemplate();
+				map.put("employeeName", "Team Arshaa");
+				map.put("email",email);
+//				map.put("email", "muralikrishna.miriyala@arshaa.com");
+				mailTemp.setMap(map);
+				if (user.getLeaveStatus().equalsIgnoreCase("Approved")) {
+					mailTemp.setEmailType("SRM_APPROVED");
+				} else {
+					mailTemp.setEmailType("SRM_REJECTED");
+				}
+
+				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+				break;
+			default:
+				break;
+			}
 			if (savedU.getLeaveStatus().equals("Approved")) {
+				System.out.println("HELLO........"+userType+savedU.getLeaveStatus());
 
                 LeaveMaster m = leee.findByEmployeeId(savedU.getEmployeeId());
             //    m.setEmployeeId(u.getEmployeeId());
@@ -330,71 +414,15 @@ public class UserService {
                
                 m.setTotalLeaves(totalLeaves);
 
-
-
                leee.save(m);
-               
-               
-               
 
+           
 
-
-           } else {
+		
+			return savedU;
+			} else {
                 System.out.println("no data");
             }
-
-			EmailTemplate mailTemp = new EmailTemplate();
-			Map<String, String> map = new HashMap();
-			EmployeeName al = template.getForObject(
-					"http://empService/emp/getEmployeeNameByEmployeeId/" + u.getEmployeeId(), EmployeeName.class);
-			switch (userType) {
-			case "irm":
-
-				map.put("employeeName", al.getEmployeeName());
-//				map.put("email",hrApp.getEmail());
-				map.put("email", "muralikrishna.miriyala@arshaa.com");
-				mailTemp.setMap(map);
-				if (user.getLeaveStatus().equalsIgnoreCase("Approved")) {
-					mailTemp.setEmailType("IRM_APPROVED");
-				} else {
-					mailTemp.setEmailType("IRM_REJECTED");
-				}
-
-//				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
-				break;
-			case "pmohead":
-//				EmailTemplate mailTemp = new EmailTemplate();
-				map.put("employeeName", al.getEmployeeName());
-//				map.put("email",hrApp.getEmail());
-				map.put("email", "muralikrishna.miriyala@arshaa.com");
-				mailTemp.setMap(map);
-				if (user.getLeaveStatus().equalsIgnoreCase("Approved")) {
-					mailTemp.setEmailType("SRM_APPROVED");
-				} else {
-					mailTemp.setEmailType("SRM_REJECTED");
-				}
-
-//				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
-				break;
-			case "srm":
-//				EmailTemplate mailTemp = new EmailTemplate();
-				map.put("employeeName", al.getEmployeeName());
-//				map.put("email",hrApp.getEmail());
-				map.put("email", "muralikrishna.miriyala@arshaa.com");
-				mailTemp.setMap(map);
-				if (user.getLeaveStatus().equalsIgnoreCase("Approved")) {
-					mailTemp.setEmailType("SRM_APPROVED");
-				} else {
-					mailTemp.setEmailType("SRM_REJECTED");
-				}
-
-//				template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
-				break;
-			default:
-				break;
-			}
-			return savedU;
-
 		} catch (Exception e) {
 			e.getMessage();
 		}

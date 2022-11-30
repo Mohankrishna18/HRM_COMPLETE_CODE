@@ -48,6 +48,7 @@ const LeadsUpdatedForm = (props) => {
   const [thirderrors, setThirdErrors] = useState("");
   const handleClose = () => setShow();
   const [comment, setComment] = useState([]);
+  const [getClient, setGetClient] = useState([]);
   const forms = useRef(null);
 
   function setField(field, value) {
@@ -72,7 +73,7 @@ const LeadsUpdatedForm = (props) => {
       newErrors.startDate = "Please Enter Start Date";
     // if (!endDate || endDate === "")
     //   newErrors.endDate = "Please Enter End Date";
-    if (!companyName || companyName === "" || !companyName.match(/^[aA-zZ\s]+$/))
+    if (!companyName || companyName === "" || !companyName.match(/^[\d a-zA-Z0-9 ()+-._&'",:;@$]+$/))
       newErrors.companyName = "Please Enter Company Name";
     if (!companyEmail || companyEmail === "") newErrors.companyEmail = "Please Enter company Email";
     // if (!companyPhoneNumber || companyPhoneNumber === "" || !companyPhoneNumber.match(/^((\\+[1-9]{1}[ \\-]*)|(\\([0-9]{9}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/))
@@ -109,9 +110,16 @@ const LeadsUpdatedForm = (props) => {
     };
     loadData();
   }, []);
-
-
-
+  useEffect(() => {
+    const loadData = async () => {
+      const res = await axios.get(
+        "/clientProjectMapping/getAllClients"
+      );
+      setGetClient(res.data.data);
+      console.log(res.data.data);
+    };
+    loadData();
+  }, []);
   //testing for commit
   const [user, setUser] = useState("");
   const[activeEmp,setActiveEmp]=useState([]);
@@ -398,19 +406,26 @@ console.log(dro)
               <Col md="6">
               <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                   <Form.Label>Company/Client*</Form.Label>
-                  <Form.Control
+                  <Form.Select
                     required
                     className="companyName"
                     type="text"
                     controlid="companyName"
                     placeholder="Company Name"
                     // onChange={(event) => setclientName(event.target.value)}
+                    defaultValue={companyName}
                     value={companyName}
                     maxLength={100}
                     onChange={(e) => setcompanyName(e.target.value)}
                     isInvalid={!!errors.companyName}
                   >
-                  </Form.Control>
+                     <option>Select </option>
+                    {getClient.map((r) => (
+                      <option value={r.clientName}>
+                        {r.clientName}
+                      </option>
+                    ))}
+                  </Form.Select>
                   <Form.Control.Feedback type="invalid">
                     {companyName}
                   </Form.Control.Feedback>
@@ -654,7 +669,8 @@ console.log(dro)
                   style={{
                     backgroundColor: "#f5896e",
                     borderColor: "#f5896e",
-                    float: "right",
+                    float: "center",
+                    marginLeft: "200px",
                     width: "40%",
                     height: "120%",
                     borderRadius: "25px",
@@ -665,7 +681,7 @@ console.log(dro)
                   Submit
                 </Button>
               </Col>
-              <Col>
+              {/* <Col>
                 <Button
                   style={{
                     backgroundColor: "#B6B6B4",
@@ -680,7 +696,7 @@ console.log(dro)
                 >
                   Close
                 </Button>
-              </Col>
+              </Col> */}
             </Row>
       </Form>
     </>
