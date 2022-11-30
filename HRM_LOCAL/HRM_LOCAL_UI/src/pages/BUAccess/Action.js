@@ -56,15 +56,18 @@ export default function Action(props) {
     }, []);
 
    
-    const leaveBalanceCall = async () => {
-        await axios.get(`leave/leaveBalanceByEmployeeId/${props.data}`)
-        .then((res) => {
-            if (res.data.leaveBalance == null){
-                setGetLeaveBalance(0)
-            }else {
-                setGetLeaveBalance(res.data.leaveBalance);
-            } 
+    const leaveBalanceCall = () => {
+        axios.get(`leave/leaveBalanceByEmployeeId/${props.data}`).then((res) => {
+          console.log(res.data);
+    
+          console.log(res.data.leaveBalance);
+          if(res.data.leaveBalance == null){
+            setLeaveBalance(0)
+          }else{
+            setLeaveBalance(res.data.leaveBalance);
+          }
           
+        //   setGetLeaveBalance(res.data.leaveBalance);
         });
       };
 
@@ -104,7 +107,7 @@ export default function Action(props) {
         setPrimarySkills(res.data.data.primarySkills);
         setSecondarySkills(res.data.data.secondarySkills);
         setReportingManager(res.data.data.reportingManager);
-       setLeaveBalance(res.data.data.leaveBalance);
+    //    setLeaveBalance(res.data.data.leaveBalance);
         setBuh(res.data.data.buh);
 
         // setExDate(Moment(res.data.data.exitDate).format('YYYY-MM-DD'));
@@ -399,9 +402,10 @@ console.log(data);
                             type="text"
                             placeholder="Leave Balance"
                             controlid="leaveBalance"
-                            defaultValue={getLeaveBalance}
-                            value={getLeaveBalance}
+                            // defaultValue={leaveBalance}
+                            value={leaveBalance}
                             onChange={(e) => setLeaveBalance(e.target.value)}
+
                         ></Form.Control>
                     </Form.Group>
 
