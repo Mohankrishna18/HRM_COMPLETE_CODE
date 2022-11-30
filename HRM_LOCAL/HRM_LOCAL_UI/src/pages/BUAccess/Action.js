@@ -59,9 +59,12 @@ export default function Action(props) {
     const leaveBalanceCall = async () => {
         await axios.get(`leave/leaveBalanceByEmployeeId/${props.data}`)
         .then((res) => {
-          console.log(res.data);   
-          console.log(res.data.leaveBalance);   
-          setGetLeaveBalance(res.data.leaveBalance);
+            if (res.data.leaveBalance == null){
+                setGetLeaveBalance(0)
+            }else {
+                setGetLeaveBalance(res.data.leaveBalance);
+            } 
+          
         });
       };
 
@@ -203,8 +206,10 @@ console.log(data);
     var sortedDesignations = _.sortBy(designations, 'designationName');
     var sortedUsers = _.sortBy(users, 'fullName');
 
-    var tempDate = new Date(confirmationDate);
+    var tempDate = new Date(resignationDate);
     var Year1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+    console.log(Year1);
+
 
     return (
         <>
