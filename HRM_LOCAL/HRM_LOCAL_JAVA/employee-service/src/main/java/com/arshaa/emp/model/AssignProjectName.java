@@ -4,6 +4,15 @@ public class AssignProjectName {
 
 	private String projectName;
 	private Integer projectAllocation;
+	private Integer employeeprojectId;
+
+	public Integer getEmployeeprojectId() {
+		return employeeprojectId;
+	}
+
+	public void setEmployeeprojectId(Integer employeeprojectId) {
+		this.employeeprojectId = employeeprojectId;
+	}
 
 	public String getProjectName() {
 		return projectName;

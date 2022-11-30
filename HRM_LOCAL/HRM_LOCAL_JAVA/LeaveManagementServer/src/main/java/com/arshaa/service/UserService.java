@@ -357,7 +357,7 @@ public class UserService {
 			case "irm":
 				
 
-				map.put("employeeName", "s");
+				map.put("employeeName", "Team Arshaa");
 //				map.put("email",hrApp.getEmail());
 				map.put("email",email);
 				mailTemp.setMap(map);
@@ -371,7 +371,7 @@ public class UserService {
 				break;
 			case "pmohead":
 //				EmailTemplate mailTemp = new EmailTemplate();
-				map.put("employeeName","a");
+				map.put("employeeName","Team Arshaa");
 				map.put("email",email);
 //				map.put("email", "muralikrishna.miriyala@arshaa.com");
 				mailTemp.setMap(map);
@@ -385,7 +385,7 @@ public class UserService {
 				break;
 			case "srm":
 //				EmailTemplate mailTemp = new EmailTemplate();
-				map.put("employeeName", "d");
+				map.put("employeeName", "Team Arshaa");
 				map.put("email",email);
 //				map.put("email", "muralikrishna.miriyala@arshaa.com");
 				mailTemp.setMap(map);

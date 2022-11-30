@@ -29,6 +29,7 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
 	
 	@Autowired
 	private RestTemplate template;
+	
 
 	@Autowired(required = true)
 	private ProjectRepository projectRepo;
@@ -38,8 +39,17 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
 
 	// To Add(Create) Project Team
 	public ResponseEntity addProjectTeam(ProjectTeamMaster newTeam) {
+		
+		String paUrl ="http://empService/emp/getProjectAllocationByEmployeeId/";
+		
 		ProjectTeamResponse ptrm = new ProjectTeamResponse<>();
 		try {
+			Integer currentPercentage = template.getForObject(paUrl+newTeam.getEmployeeId(), Integer.class);
+			Integer percentageToAllocate = newTeam.getProjectAllocation();
+			
+			Integer percentageCanBeAllocated = 100-currentPercentage;
+			if(percentageToAllocate <= percentageCanBeAllocated) {
+				
 			ProjectTeamMaster newProjectTeamData = ptmrepo.save(newTeam);
 			Projects p= projectRepo.getById(newTeam.getProjectId());
 			newProjectTeamData.setClientName(p.getClientName());
@@ -50,16 +60,20 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
 			apn.setProjectName(newTeam.getProjectName());
 			apn.setProjectAllocation(newTeam.getProjectAllocation());
 			//Integer projectAllocation =newProjectTeamData.getProjectAllocation();
-			template.postForEntity("http://empService/emp/saveProjectAllocationPercentAfterMapping/"+newProjectTeamData.getEmployeeId(), apn, AssignProjectName.class);
+			template.postForEntity("http://empService/emp/saveProjectAllocationPercentAfterMapping/"+newProjectTeamData.getEmployeeId(), apn, Boolean.class);
 			ptrm.setStatus(true);
 			ptrm.setMessage("Data added successfully");
 			ptrm.setData(newProjectTeamData);
 			return new ResponseEntity(ptrm, HttpStatus.OK);
+			}else {
+				throw new Exception("Cannot be allocated more than " + percentageCanBeAllocated + " %");
+			}
+			
 		} catch (Exception e) {
 
 			ptrm.setStatus(false);
 			ptrm.setMessage(e.getMessage());
-			return new ResponseEntity(ptrm, HttpStatus.OK);
+			return new ResponseEntity(ptrm, HttpStatus.NOT_ACCEPTABLE);
 		}
 	}
 
@@ -100,6 +114,12 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
 			updateProjectTeam.setAssignedDate(newTeamUpdate.getAssignedDate());
 			updateProjectTeam.setProjectAllocation(newTeamUpdate.getProjectAllocation());
 
+			AssignProjectName uapn = new AssignProjectName();
+			uapn.setProjectName(newTeamUpdate.getProjectName());
+			uapn.setProjectAllocation(newTeamUpdate.getProjectAllocation());
+			//Integer projectAllocation =newProjectTeamData.getProjectAllocation();
+			template.postForEntity("http://empService/emp/updateProjectAllocationPercentAfterMapping/"+updateProjectTeam.getEmployeeId(), uapn, AssignProjectName.class);
+			
 			ProjectTeamMaster latestTeam = ptmrepo.save(updateProjectTeam);
 			System.out.println(latestTeam);
 			ptrm.setStatus(true);
@@ -111,7 +131,7 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
 
 			ptrm.setStatus(false);
 			ptrm.setMessage(e.getMessage());
-			return new ResponseEntity(ptrm, HttpStatus.OK);
+			return new ResponseEntity(ptrm, HttpStatus.EXPECTATION_FAILED);
 		}
 
 	}
@@ -125,12 +145,17 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
 			ptmrepo.deleteById(deleteProjectTeam.getEmployeeprojectId());
 			ptrm.setStatus(true);
 			ptrm.setMessage("Deleted successfully");
+//			AssignProjectName uapn = new AssignProjectName();
+//			uapn.setProjectName(deleteProjectTeam.getProjectName());
+//			uapn.setProjectAllocation(deleteProjectTeam.getProjectAllocation());
+//			template.postForEntity("http://empService/emp/updateProjectAllocationPercentAfterMapping/"+deleteProjectTeam.getEmployeeprojectId(), uapn, AssignProjectName.class);
+//			
 			return new ResponseEntity(ptrm, HttpStatus.OK);
 		} catch (Exception e) {
 			ptrm.setStatus(false);
 			ptrm.setMessage(e.getMessage());
 		}
-		return new ResponseEntity(ptrm, HttpStatus.OK);
+		return new ResponseEntity(ptrm, HttpStatus.EXPECTATION_FAILED);
 	}
 
 	// Madhu Changes
