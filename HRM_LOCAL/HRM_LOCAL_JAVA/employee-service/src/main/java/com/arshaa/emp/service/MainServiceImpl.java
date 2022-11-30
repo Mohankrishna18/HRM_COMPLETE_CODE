@@ -1274,8 +1274,6 @@ public class MainServiceImpl implements MainService {
 //                template.put(updateLeaveBalance+em.getEmployeeId(),lbm,LeaveBalanceModel.class);
                 
 
-
-
                if (em.getStatus().equalsIgnoreCase("InActive")) {
                     
                     //updating status in login table
