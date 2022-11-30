@@ -1233,27 +1233,27 @@ public class MainServiceImpl implements MainService {
                 em.setConfirmationDate(empd.getConfirmationDate());
                 em.setLeaveBalance(empd.getLeaveBalance());
                
-//                EmployeeMaster emd = emRepo.save(em);
+                EmployeeMaster emd = emRepo.save(em);
                 
-//                emd.setBuhId(this.getEmployeeIdByName(em.getBuh()));
-//                emd.setSrmId(this.getEmployeeIdByName(em.getSrm()));
-//                emd.setIrmId(this.getEmployeeIdByName(em.getIrm()));
-//               
-                emRepo.save(em);
-    //            
+                emd.setBuhId(this.getEmployeeIdByName(em.getBuh()));
+                emd.setSrmId(this.getEmployeeIdByName(em.getSrm()));
+                emd.setIrmId(this.getEmployeeIdByName(em.getIrm()));
+               
+                emRepo.save(emd);
+            
                 LeaveMaster lm = new LeaveMaster();
                 
                 //get data from Leave Master Table  
                 String Listemployees="http://leaveservice/leave/leaveBalanceByEmployeeId/";
-                LeaveMaster getData =  template.getForObject(Listemployees+em.getEmployeeId(), LeaveMaster.class);
+                LeaveMaster getData =  template.getForObject(Listemployees+emd.getEmployeeId(), LeaveMaster.class);
             
                 if(getData == null) {
                     
                     //Post employeeId and Leave Balance to Leave Mater Table
                     String post="http://leaveservice/leave/postLeaves";
                     
-                    lm.setEmployeeId(em.getEmployeeId());
-                    lm.setLeaveBalance(em.getLeaveBalance());
+                    lm.setEmployeeId(emd.getEmployeeId());
+                    lm.setLeaveBalance(emd.getLeaveBalance());
                     template.postForObject(post,lm, LeaveMaster.class);    
                 }else {
                     
@@ -1262,7 +1262,7 @@ public class MainServiceImpl implements MainService {
                     LeaveBalanceModel lbm = new LeaveBalanceModel();
                     
                     lbm.setLeaveBalance(empd.getLeaveBalance());
-                    template.put(updateLeaveBalance+em.getEmployeeId(),lbm,LeaveBalanceModel.class);
+                    template.put(updateLeaveBalance+emd.getEmployeeId(),lbm,LeaveBalanceModel.class);
                 }
                 
                 
@@ -1274,11 +1274,11 @@ public class MainServiceImpl implements MainService {
 //                template.put(updateLeaveBalance+em.getEmployeeId(),lbm,LeaveBalanceModel.class);
                 
 
-               if (em.getStatus().equalsIgnoreCase("InActive")) {
+               if (empd.getStatus().equalsIgnoreCase("InActive")) {
                     
                     //updating status in login table
                     String updateStatus = "http://loginservice/login/makeLoginsInActive/";
-                     String restemplate = template.getForObject(updateStatus+em.getEmployeeId(),String.class);
+                     String restemplate = template.getForObject(updateStatus+emd.getEmployeeId(),String.class);
                 }
                 
                 r.setStatus(true);
