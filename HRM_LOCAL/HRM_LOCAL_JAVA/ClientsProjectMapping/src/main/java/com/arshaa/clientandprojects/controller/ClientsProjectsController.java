@@ -184,6 +184,11 @@ public class ClientsProjectsController {
 	public ResponseEntity getProjectsByClientId(@PathVariable int clientId) {
 		return projectServ.getProjectNamesByClientId(clientId);
 	}
+	
+	@GetMapping("/getProjectsByClientName/{clientName}")
+	public ResponseEntity getProjectsByClientId(@PathVariable String clientName) {
+		return projectServ.getProjectNamesByClientName(clientName);
+	}
 
 //	@GetMapping("/getClientIdByName/{clientName}")
 //	public int getClientIdByClientName(@PathVariable String clientName) {

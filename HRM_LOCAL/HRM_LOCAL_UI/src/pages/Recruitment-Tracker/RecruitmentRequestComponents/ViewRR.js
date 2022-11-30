@@ -269,6 +269,31 @@ const ViewRR=(props)=> {
                                 </Card.Text>
                             </Col>
                         </Row>
+                        {/* <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Request Initiated Date   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.viewOnboard.requestInitiatedDate}
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                        <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
+                            <Col>
+                                <Card.Subtitle style={{ padding: 10 }}>
+                                    Resource Required Date   :
+                                </Card.Subtitle>{" "}
+                            </Col>
+                            <Col md={{ offset: 1 }}>
+                                <Card.Text style={{ paddingBottom: 0 }}>
+                                    {props.viewOnboard.resourceRequiredDate}
+                                </Card.Text>
+                            </Col>
+                        </Row> */}
+                        
                         <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
                             <Col>
                                 <Card.Subtitle style={{ padding: 10 }}>
@@ -336,4 +361,4 @@ const ViewRR=(props)=> {
     )
 }
 
-export default ViewRR
+export default ViewRR;
