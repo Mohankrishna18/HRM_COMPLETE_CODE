@@ -468,8 +468,9 @@ public class MainServiceImpl implements MainService {
 					Map<String, String> map1 = new HashMap();
 
 					mailTemp1.setEmailType("IT_TEAM");
-					map1.put("employeeName", "Raj");
-					map1.put("email", "muralikrishna.miriyala@arshaa.com");
+					map1.put("employeeName", getOnboarding.getFullName());
+					map1.put("employeeId", em.getEmployeeId());
+					map1.put("email", "nagarjuna.veera@arshaa.com");
 					mailTemp1.setMap(map1);
 					template.postForObject(preEmailURL, mailTemp1, MainEmailTemplate.class);
 
@@ -477,8 +478,9 @@ public class MainServiceImpl implements MainService {
 					Map<String, String> map2 = new HashMap();
 
 					mailTemp2.setEmailType("ADMIN");
-					map2.put("employeeName", "Dheeraj");
-					map2.put("email", "muralikrishna.miriyala@arshaa.com");
+					map2.put("employeeName", getOnboarding.getFullName());
+					map2.put("employeeId", em.getEmployeeId());
+					map2.put("email", "srimukha.lingampally@arshaa.com");
 					mailTemp2.setMap(map2);
 					template.postForObject(preEmailURL, mailTemp2, MainEmailTemplate.class);
 
@@ -493,6 +495,7 @@ public class MainServiceImpl implements MainService {
 		        	hrApp.forEach(e->{
 					mailTemp3.setEmailType("PMO");
 					map3.put("employeeName", em.getFullName());
+					map3.put("employeeId", em.getEmployeeId());
 					map3.put("email", e.getEmail());
 					mailTemp3.setMap(map3);
 					template.postForObject(preEmailURL, mailTemp3, MainEmailTemplate.class);
@@ -1921,6 +1924,7 @@ public class MainServiceImpl implements MainService {
 				map.put("employeeName", getOnboarding.getFirstName() + getOnboarding.getLastName());
 			map.put("email",hrApp.getEmail());
 //				map.put("email", "muralikrishna.miriyala@arshaa.com");
+			
 				mailTemp.setMap(map);
 				mailTemp.setEmailType("TAG_HEAD_REJECT");
 
