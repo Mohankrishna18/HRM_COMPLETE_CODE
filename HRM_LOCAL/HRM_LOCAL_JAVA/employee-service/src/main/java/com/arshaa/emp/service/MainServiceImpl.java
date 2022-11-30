@@ -2385,6 +2385,8 @@ public class MainServiceImpl implements MainService {
 		}
 	}
 
+	// For Projects Screen Team allocation
+	
 	// latest changes
 	@Override
 	public List<EmployeeMaster> employeesToDisplayByTheirProjectAllocation(String projectName) {
@@ -2435,5 +2437,25 @@ public class MainServiceImpl implements MainService {
        }
         
     }
+	
+	@Override
+	@Transactional
+	public AssignProjectName updateProjectAllocationPercentAfterMapping(String employeeId,AssignProjectName uapn) {
+		EmployeeMaster master = emRepo.getByEmployeeId(employeeId);
+		master.setProjectName(uapn.getProjectName());
+		master.setProjectAllocation(uapn.getProjectAllocation());
+		emRepo.save(master);
+//		Optional op = Optional.empty();
+//		op.isPresent() ? op.get(): 0;
+		return (new AssignProjectName());
+	}
+	
+	// For Project Allocation Validation
+	
+	@Override
+	public Integer getProjectAllocationByEmployeeId(String employeeId) {
+		EmployeeMaster master = emRepo.getByEmployeeId(employeeId);
+		return master.getProjectAllocation();
+	}
 
 }
