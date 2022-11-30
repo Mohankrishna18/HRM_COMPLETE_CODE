@@ -23,5 +23,6 @@ public interface ProjectRepository extends JpaRepository<Projects,Integer> {
 		List<Projects> getActiveProjectsBybuhId(String buhId);
 
 		List<Projects> getProjectsByClientId(int clientId);
+		List<Projects> getProjectsByClientName(String clientName);
 		List<Projects> getProjectsByEmployeeId(String employeeId);
 }
