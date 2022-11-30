@@ -368,7 +368,7 @@ public class LeaveController {
 		service.save(leaveMaster);
 	}
 
-	@PutMapping("updateLeaveBalance/{employeeId}")
+	@PutMapping("/updateLeaveBalance/{employeeId}")
 	public LeaveBalanceModel updateLeaveBalnce(@RequestBody LeaveBalanceModel leavebalance,@PathVariable String employeeId) {
 	      return service.updateLeaveBalnce(leavebalance, employeeId);
 	}
