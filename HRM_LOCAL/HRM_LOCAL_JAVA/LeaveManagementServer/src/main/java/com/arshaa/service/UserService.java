@@ -400,21 +400,21 @@ public class UserService {
 			default:
 				break;
 			}
-			if (savedU.getLeaveStatus().equals("Approved")) {
-				System.out.println("HELLO........"+userType+savedU.getLeaveStatus());
+			if (savedU.getLeaveStatus().equals("Approved") &&( savedU.getLeaveOrwfh().equals("L"))) {
+                System.out.println("HELLO........"+userType+savedU.getLeaveStatus());
 
-                LeaveMaster m = leee.findByEmployeeId(savedU.getEmployeeId());
+               LeaveMaster m = leee.findByEmployeeId(savedU.getEmployeeId());
             //    m.setEmployeeId(u.getEmployeeId());
                
                 Integer totalLeaves =  template.getForObject(url + u.getEmployeeId(), Integer.class);
                 System.out.println(totalLeaves);
                 int temp = Objects.isNull(m.getUsedLeaves()) ? 0 : m.getUsedLeaves();
+                m.setLeaveBalance(totalLeaves - (temp + savedU.getNumberOfDays()));
                 m.setUsedLeaves(savedU.getNumberOfDays() + temp);
-                m.setLeaveBalance(totalLeaves - m.getUsedLeaves() - savedU.getNumberOfDays());
-               
+                            
                 m.setTotalLeaves(totalLeaves);
 
-               leee.save(m);
+              leee.save(m);
 
            
 
