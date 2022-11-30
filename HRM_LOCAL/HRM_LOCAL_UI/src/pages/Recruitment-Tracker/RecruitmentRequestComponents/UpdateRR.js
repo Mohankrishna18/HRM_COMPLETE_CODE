@@ -104,8 +104,8 @@ const UpdateRR = () => {
               setClients(respon.data.data);
               if (respon.data.status) {
                 axios.get("/emp/getAllEmployeeMasterData").then((respons) => {
-                  // console.log(respons)
-                  setPocName(respons.data.data);
+                  const sData2 = respons.data.data.filter(item => item.status === 'Active')
+                  setPocName(sData2);
                   if (respons.data.status) {
                     axios.get("/emp/getEmployeesByDepartment/HR").then((response) => {
                       const sData1 = response.data.data.filter(item => item.status === 'Active')
