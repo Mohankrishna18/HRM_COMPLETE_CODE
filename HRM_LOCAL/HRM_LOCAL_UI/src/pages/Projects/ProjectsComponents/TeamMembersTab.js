@@ -1,27 +1,27 @@
-import React, { useState, useEffect,useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import MaterialTable from "material-table";
-import {useParams} from 'react-router-dom'
+import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Grid from "@mui/material/Grid";
 import axios from "../../../Uri";
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "./ProjectUpdateTabs";
 
-
 function TeamMembersTab(props) {
-  const {data,updateStatus } = useContext(UserContext)
-  console.log(props.rowData.data.projectId)
- // const rowData = props.rowData;
+  const { data, updateStatus } = useContext(UserContext);
+
+  // const rowData = props.rowData;
   useEffect(() => {
     loadData();
   }, [updateStatus]);
-const params = useParams()
-console.log(params)
+  const params = useParams();
+
   const loadData = async (e) => {
-    const response = await axios.get(`clientProjectMapping/getAllProjectTeams/Active/${params.id}`);
+    const response = await axios.get(
+      `clientProjectMapping/getAllProjectTeams/Active/${params.id}`
+    );
     setData(response.data.data);
-    console.log(response.data.data);
   };
 
   const [columns, setColumns] = useState([
@@ -54,26 +54,26 @@ console.log(params)
       field: "startDate",
       type: "date",
       editable: "never",
+      dateSetting: { locale: "en-GB" },
     },
     {
       title: "Allocation End Date",
       field: "endDate",
       type: "date",
       editable: "never",
+      dateSetting: { locale: "en-GB" },
     },
-   
+
     {
       title: "Project Allocation(%)",
       field: "projectAllocation",
       type: "text",
-     
     },
     {
       title: "Status",
       field: "status",
       type: "text",
-      lookup:{Active: "Active",InActive:"InActive"},
-     
+      lookup: { Active: "Active", InActive: "InActive" },
     },
   ]);
 
@@ -85,7 +85,7 @@ console.log(params)
 
   return (
     <MaterialTable
-      title= {" Project Name  : " + data}
+      title={" Project Name  : " + data}
       columns={columns}
       data={data1}
       options={{
@@ -95,10 +95,10 @@ console.log(params)
           fontSize: "12px",
           //height: "10px",
           //fontWeight: 'bold'
-      },
-      rowStyle: {
+        },
+        rowStyle: {
           fontSize: 14,
-      },
+        },
 
         pageSize: 10,
 
@@ -123,60 +123,47 @@ console.log(params)
         //       resolve();
         //     }, 1000);
         //   }),
-          onRowUpdate: (updatedRow, oldRow) =>
+        onRowUpdate: (updatedRow, oldRow) =>
           new Promise((resolve, reject) => {
-            console.log(oldRow);
-            console.log(updatedRow);
             const index = oldRow.employeeprojectId;
-            console.log(index);
             const updatedRows = [...data1];
-            console.log(updatedRows);
             updatedRows[oldRow.tableData.id] = updatedRow;
-            console.log(updatedRows);
-
-            setTimeout(async() => {
-              console.log(index);
-              console.log(updatedRow);
+            setTimeout(async () => {
               const res = await axios
-                .put(`/clientProjectMapping/updateProjectTeamById/${index}`, updatedRow)
+                .put(
+                  `/clientProjectMapping/updateProjectTeamById/${index}`,
+                  updatedRow
+                )
                 .then((resp) => {
-                  console.log(resp);
                   loadData();
                   setData(updatedRows);
                 })
-
                 .catch((err) => {
-                  console.log("not updated");
                   // toast.error("Server error");
                 });
-
               setData(updatedRows);
-              console.log("updated");
               toast.success(" Updated Successfully");
-              console.log(updatedRows);
               resolve();
             });
           }),
-       
-          onRowDelete: (oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                console.log(oldData);
-                const dataDelete = [...data];
-                const index = oldData.employeeprojectId;
-                dataDelete.splice(index, 1);
-                const res = axios
-                  .delete(`/clientProjectMapping/deleteProjectTeam/${index}`)
-                  .then((res) => {
-                    console.log(res);
-                    loadData();
-                  });
-                console.log(dataDelete);
-                //setData(dataDelete);
 
-                resolve();
-              }, 1000);
-            }),
+        onRowDelete: (oldData) =>
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              const dataDelete = [...data];
+              const index = oldData.employeeprojectId;
+              dataDelete.splice(index, 1);
+              const res = axios
+                .delete(`/clientProjectMapping/deleteProjectTeam/${index}`)
+                .then((res) => {
+                  loadData();
+                });
+
+              //setData(dataDelete);
+
+              resolve();
+            }, 1000);
+          }),
       }}
     />
   );

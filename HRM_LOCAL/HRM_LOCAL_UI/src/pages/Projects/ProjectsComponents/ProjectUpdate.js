@@ -77,23 +77,19 @@ const ProjectUpdate = (props) => {
   }, []);
 
   const startdate = Moment(startDate).format("YYYY-MM-DD");
-  console.log(startdate);
 
   const enddate = Moment(endDate).format("YYYY-MM-DD");
-  console.log(enddate);
 
   const [clients, setClients] = useState([]);
   // Client Name
   const loadData = async () => {
     const res = await axios.get("/clientProjectMapping/getAllClients");
     setClients(res.data.data);
-    console.log(res.data.data);
   };
 
   const loadDepartmentsData = async () => {
     const res = await axios.get("/dept/getAllDepartments");
     setDepartments(res.data);
-    console.log(res.data);
   };
 
   // // Get API's for reportingManager(projectManger)
@@ -113,7 +109,6 @@ const ProjectUpdate = (props) => {
       .get(`/emp/getActiveEmployees/${statusEmp}`)
       .then((response) => {
         setReportingManager(response.data.data);
-        console.log(response.data.data);
       })
       .catch(() => {
         toast.error("Data is not getting");
@@ -123,24 +118,22 @@ const ProjectUpdate = (props) => {
 
   const forms = useRef(null);
 
-  console.log(projectName);
-  //console.log(props.updateOnboard.businessUnit);
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log({
-      clientName,
-      projectName,
-      businessUnit,
-      startDate,
-      endDate,
-      rate,
-      priority,
-      status,
-      projectManager,
-      employeeId,
-      description,
-    });
+    // console.log({
+    //   clientName,
+    //   projectName,
+    //   businessUnit,
+    //   startDate,
+    //   endDate,
+    //   rate,
+    //   priority,
+    //   status,
+    //   projectManager,
+    //   employeeId,
+    //   description,
+    // });
     if (errors == "") {
       axios
         .put(`/clientProjectMapping/updateProjectById/${params.id}`, {
@@ -165,8 +158,6 @@ const ProjectUpdate = (props) => {
           } else {
             console.log("Props not Send");
           }
-
-          // console.log(user);
         })
         .catch((err) => {
           console.log(err);

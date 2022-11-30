@@ -1,6 +1,7 @@
 package com.arshaa.emp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -112,6 +113,11 @@ public interface MainService {
 	public List<EmployeeMaster> employeesToDisplayByTheirProjectAllocation(String projectName);
 	
 	public Boolean saveProjectAllocationPercentAfterMapping(String employeeId,AssignProjectName apn);
+	public AssignProjectName updateProjectAllocationPercentAfterMapping(String employeeId,AssignProjectName uapn);
+	
+	// For Project Allocation Validation
+	public Integer getProjectAllocationByEmployeeId(String employeeId);
+	
 
 	public ResponseEntity updateTermsAndConditions(String onboardingId, TermsAndConditions terms);
     
