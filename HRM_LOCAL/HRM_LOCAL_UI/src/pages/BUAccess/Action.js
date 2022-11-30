@@ -48,29 +48,22 @@ export default function Action(props) {
     const [exDate,setExDate] = useState("");
     const [confirmDate, setConfirmDate] = useState("");
 
-
-
-    const forms = useRef(null);
-    console.log(props);
-    console.log(props.data);
     useEffect(() => {
         loadData();
         loadDesignations();
         loadEmploymentDetails();
-        // loadLeaveBalance();
+        leaveBalanceCall();
     }, []);
 
    
-    // const loadLeaveBalance = async () => {
-    //     const res = await axios.get(`/leave/leaveBalanceByEmployeeId/ATPL014`);
-    //     // console.log(res.data)
-    //     // console.log(res.data.leaveBalance)
-    //     setLeaveBalance(res.data.leaveBalance)
-       
-
-    //     // setGetLeaveBalance(res.data);
-
-    // };
+    const leaveBalanceCall = async () => {
+        await axios.get(`leave/leaveBalanceByEmployeeId/${props.data}`)
+        .then((res) => {
+          console.log(res.data);   
+          console.log(res.data.leaveBalance);   
+          setGetLeaveBalance(res.data.leaveBalance);
+        });
+      };
 
     const loadData = async () => {
         const res = await axios.get("/dept/getAllDepartments");
@@ -116,12 +109,7 @@ export default function Action(props) {
         // setConfirmDate(Moment(res.data.data.confirmationDate).format('YYYY-MM-DD'));
        
     };
-// console.log(confirmationDate)
-    // const exitdatef=  moment(res.data.data.exitDate).format('YYYY-MM-DD');
-    // const confirmationDatef = moment(res.data.data.confirmationDate).format('YYYY-MM-DD');
-    // const resignationDatef =  moment(res.data.data.resignationDate).format('YYYY-MM-DD')
-    // console.log(departmentName);
-    // console.log(employmentType, designationName);
+
     const [bands, setBands] = useState([]);
     useEffect(() => {
         axios.get("/bands/getAllBands").then((response) => {
@@ -168,8 +156,7 @@ export default function Action(props) {
     }
 
 
-//     setPrimarySkills setSecondarySkills setEmploymentType setBand setDepartmentName setStatus
-// setDepartmentName setDesignationName setReportingManager setProjectName setExitDate setResignationDate setConfirmationDate
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // e.target.reset();
@@ -212,17 +199,13 @@ export default function Action(props) {
 console.log(data);
 
     //sorting Array of Objects
-
     var sortedDepartments = _.sortBy(departments, 'departmentName');
     var sortedDesignations = _.sortBy(designations, 'designationName');
     var sortedUsers = _.sortBy(users, 'fullName');
 
     var tempDate = new Date(confirmationDate);
-  var Year1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
-console.log(Year1)
-console.log(confirmationDate)
+    var Year1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
 
-// const confirmationDatef = {<Moment format= {dd-mm-yyyy}>confirmationDate</Moment>}
     return (
         <>
             <Form
@@ -411,8 +394,8 @@ console.log(confirmationDate)
                             type="text"
                             placeholder="Leave Balance"
                             controlid="leaveBalance"
-                            defaultValue={leaveBalance}
-                            value={leaveBalance}
+                            defaultValue={getLeaveBalance}
+                            value={getLeaveBalance}
                             onChange={(e) => setLeaveBalance(e.target.value)}
                         ></Form.Control>
                     </Form.Group>
