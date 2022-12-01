@@ -265,121 +265,121 @@ public class EmailSender {
 	    }  
 	
 	private String approveRequistionByBuhead(MainEmailTemplate uModel) {
-		String text="Requistion was approved"+"\n"+"\n"+"Regards,"+"\n"+"Murali";
+		String text="Requistion was approved"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String applyRequistion(MainEmailTemplate uModel) {
-		String text="Requistion was applied"+"\n"+"\n"+"Regards,"+"\n"+"Murali";
+		String text="Requistion was applied"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String rejectResignByHR(MainEmailTemplate uModel) {
-		String text="Resignation was Reject by HR"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Resignation was Reject by HR"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String rejectResignByPMO(MainEmailTemplate uModel) {
-		String text="Resignation was Reject by PMO"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Resignation was Reject by PMO"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String rejectResignBySRM(MainEmailTemplate uModel) {
-		String text="Resignation was Reject by SRM"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Resignation was Reject by SRM"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String rejectResignByIRM(MainEmailTemplate uModel) {
-		String text="Resignation was Reject by IRM"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Resignation was Reject by IRM"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String approveResignByHR(MainEmailTemplate uModel) {
-		String text="Resignation was Approved by HR"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Resignation was Approved by HR"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String approveResignByPMO(MainEmailTemplate uModel) {
-		String text="Resignation was Approved by PMO"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Resignation was Approved by PMO"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String approveResignBySRM(MainEmailTemplate uModel) {
-		String text="Resignation was Approved by SRM"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Resignation was Approved by SRM"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String approveResignByIRM(MainEmailTemplate uModel) {
-		String text="Resignation was Approved by IRM"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Resignation was Approved by IRM"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String applyResignation(MainEmailTemplate uModel) {
-		String text="Resignation was applied"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Resignation was applied"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String srmReject(MainEmailTemplate uModel) {
-		String text="SRM Approved  your leave"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Your Leave Was Approved by IRM"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String srmApproved(MainEmailTemplate uModel) {
-		String text="SRM Rejected  your leave"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Your Leave was Rejected by SRM"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String irmApproved(MainEmailTemplate uModel) {
-		String text="IRM Approved  your leave"+"\n"+"\n"+"Regards,"+"\n";
+		String text="Your Leave Was Approved by IRM "+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String irmReject(MainEmailTemplate uModel) {
 
-		String text="IRM Rejected your leave"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Your Leave was Rejected by IRM"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String leaveApplied(MainEmailTemplate uModel) {
-		String text="Hi Sir"+"\n"+"\n"+"Hope You doing well.  I would like to have a leave on these days from "+uModel.getMap().get("fromDate")+" to "+uModel.getMap().get("toDate")+"\n"+"\n"+"\n"+"1) Employee ID :  "+uModel.getMap().get("employeeId")+"\n"+"2) Employee Name :  "+uModel.getMap().get("name")+"\n"+"3) From Date :  "+uModel.getMap().get("fromDate")+"\n"+"4) To Date :  "+uModel.getMap().get("toDate")+"\n"+"5) Leave Reason :  "+uModel.getMap().get("reason")+"\n"+"\n"+"Please Grant me Leave."+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Hi Sir"+"\n"+"\n"+"Hope You doing well.  I would like to have a leave on these days from "+uModel.getMap().get("fromDate")+" to "+uModel.getMap().get("toDate")+"\n"+"\n"+"\n"+"1) Employee ID :  "+uModel.getMap().get("employeeId")+"\n"+"2) Employee Name :  "+uModel.getMap().get("name")+"\n"+"3) From Date :  "+uModel.getMap().get("fromDate")+"\n"+"4) To Date :  "+uModel.getMap().get("toDate")+"\n"+"5) Leave Reason :  "+uModel.getMap().get("reason")+"\n"+"\n"+"Please Grant me Leave."+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String pmoAssignText(MainEmailTemplate uModel) {
-		String text="PMO Assign "+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Candidate was onboarded Please assign the Employment Details "+"\n"+"Candidate Name : "+uModel.getMap().get("employeeName")+"\n"+"Employee ID : "+uModel.getMap().get("employeeId")+"\n"+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String adminText(MainEmailTemplate uModel) {
-		String text="Admin Approved "+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Candidate was onboarded Please assign Official Mail "+"\n"+"Candidate Name : "+uModel.getMap().get("employeeName")+"\n"+"Employee ID : "+uModel.getMap().get("employeeId")+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String itTeamText(MainEmailTemplate uModel) {
-		String text="IT Team Approve"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="Candidate was onboarded Please allocate the assets "+"\n"+"Candidate Name : "+uModel.getMap().get("employeeName")+"\n"+"Employee ID : "+uModel.getMap().get("employeeId")+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 	private String hrApprovalText(MainEmailTemplate uModel) {
-		String text="Hello "+uModel.getMap().get("employeeName")+"\n"+"\n"+"Welcome to Arshaa Technologies."+"\n"+"\n"+"Please login with your Employee-ID and password as we mentioned here, There are your credentials Employee-ID : "+uModel.getMap().get("employeeId")+" and Password :"+uModel.getMap().get("password")+"\n"+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
+		String text="Hi "+uModel.getMap().get("employeeName")+"\n"+"\n"+"Welcome to Arshaa Technologies."+"\n"+"\n"+"Please login with your Employee-ID and password as we mentioned here, There are your credentials Employee-ID : "+uModel.getMap().get("employeeId")+" and Password :"+uModel.getMap().get("password")+"\n"+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 	
 	
 	private String ceoReject(MainEmailTemplate uModel) {
-		String text="CEO Rejected"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
+		String text="CEO Rejected"+"\n"+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 
 	private String pmoReject(MainEmailTemplate uModel) {
-		String text="PMO Rejected"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
+		String text="PMO Rejected"+"\n"+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 
 	private String tagHeadReject(MainEmailTemplate uModel) {
-		String text="TAG Head Rejected"+"\n"+"\n"+"Regards,"+"\n"+uModel.getMap().get("employeeName");
+		String text="TAG Head Rejected"+"\n"+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
@@ -393,19 +393,19 @@ public class EmailSender {
 
 
 	private String pmoApprovalText(MainEmailTemplate uModel) {
-		String text="Hai Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
+		String text="Hi Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 
 	private String tagApprovalText(MainEmailTemplate uModel) {
-		String text="Hai Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
+		String text="Hi Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 
 	private String taaApprovalText(MainEmailTemplate uModel) {
-        String text="Hai Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
+        String text="Hi Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
@@ -420,7 +420,7 @@ public class EmailSender {
 	
 	public String registrationSubmissionText(MainEmailTemplate uModel)
 	{
-		String text="All Details are submitted successfully, Please Check those details in the below link : "+uModel.getMap().get("LOGIN_LINK") +"\n"+"\n"+"Regards"+"\n"+uModel.getMap().get("employeeName")+".";
+		String text="All Details are submitted successfully, Please Check those details in the below link : "+uModel.getMap().get("LOGIN_LINK") +"\n"+"\n"+"Regards"+"\n"+"Team Arshaa";
 		return text;
 	}
 	

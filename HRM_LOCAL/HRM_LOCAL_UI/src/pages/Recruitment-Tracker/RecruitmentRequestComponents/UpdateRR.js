@@ -48,7 +48,7 @@ const UpdateRR = () => {
   const [projectName, setProjectName] = useState();
   const [initDate, setInitDate] = useState();
   const [reqDate, setReqDate] = useState();
- 
+
   const [hrPanel, setHrPanel] = useState([]);
   const [newInterviewPanel1, setNewInterviewPanel1] = useState();
   const [newInterviewPanel2, setNewInterviewPanel2] = useState();
@@ -93,7 +93,7 @@ const UpdateRR = () => {
 
     axios.get("/clientProjectMapping/getAllProjects").then((resp) => {
       // console.log(resp)
-      setProjects(resp.data.data)
+      // setProjects(resp.data.data)
       if (resp.data.status) {
         axios.get("/dept/getAllDepartments").then((respo) => {
           // console.log(respo)
@@ -104,8 +104,8 @@ const UpdateRR = () => {
               setClients(respon.data.data);
               if (respon.data.status) {
                 axios.get("/emp/getAllEmployeeMasterData").then((respons) => {
-                  // console.log(respons)
-                  setPocName(respons.data.data);
+                  const sData2 = respons.data.data.filter(item => item.status === 'Active')
+                  setPocName(sData2);
                   if (respons.data.status) {
                     axios.get("/emp/getEmployeesByDepartment/HR").then((response) => {
                       const sData1 = response.data.data.filter(item => item.status === 'Active')
@@ -150,9 +150,9 @@ const UpdateRR = () => {
     console.log(response.data.data.requestInitiatedDate)
     console.log(response.data.data.resourceRequiredDate)
     setDate(Moment(response.data.data.requestInitiatedDate).format('YYYY-MM-DD'));
-    
+
     setRequiredDate(Moment(response.data.data.resourceRequiredDate).format('YYYY-MM-DD'));
-   
+
     setReqDate(response.data.data.resourceRequiredDate);
     setRequisitionId(response.data.data.requisitionId);
     setJobTitle(response.data.data.jobTitle);
@@ -193,7 +193,7 @@ const UpdateRR = () => {
   const routeToRRPage = () => history.push("/app/rrf")
   const handleSubmit = (e) => {
     e.preventDefault();
- 
+
     axios
       .put(
         `/recruitmentTracker/updateRR/${params.id}`,
@@ -243,7 +243,7 @@ const UpdateRR = () => {
         toast.error("Something Went Wrong");
       });
 
-  
+
 
   };
   return (
@@ -412,7 +412,15 @@ const UpdateRR = () => {
                   type="text"
                   controlid="clientName"
                   defaultValue={newClient}
-                  onChange={(e) => setNewClient(e.target.value)}
+                  onChange={(e) => {
+                    console.log(e.target.value)
+                    setNewClient(e.target.value)
+                    axios.get(`/clientProjectMapping/getProjectsByClientName/${e.target.value}`).then((response) => {
+                      console.log(response.data.data);
+                      setProjects(response.data.data);
+                    })
+                  }
+                  }
                   isInvalid={!!errors.clientName}
                 >
                   <option>{newClient}</option>
@@ -431,7 +439,12 @@ const UpdateRR = () => {
                   type="text"
                   controlid="projectName"
                   defaultValue={newProject}
-                  onChange={(e) => setNewProject(e.target.value)}
+                  onChange={(e) => {
+
+                    setNewProject(e.target.value)
+
+                  }
+                  }
                   isInvalid={!!errors.projectName}
                 >
                   <option>{newProject}</option>

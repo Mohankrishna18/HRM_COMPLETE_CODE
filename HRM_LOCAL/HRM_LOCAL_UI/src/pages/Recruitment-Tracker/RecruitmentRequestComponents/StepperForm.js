@@ -29,6 +29,7 @@ const StepperForm = (props) => {
     const [clientId, setClientId] = useState([]);
     const [clients, setClients] = useState([]);
     const [projects, setProjects] = useState([]);
+  
     const [departments, setDepartments] = useState([]);
     const [pocname, setPocName] = useState([]);
     const [interviewPanel1, setInterviewPanel1] = useState([]);
@@ -59,7 +60,7 @@ const StepperForm = (props) => {
             if (res.data.status) {
                 axios.get("/clientProjectMapping/getAllProjects").then((resp) => {
                     // console.log(resp)
-                    setProjects(resp.data.data)
+                   // setProjects(resp.data.data)
                     if (resp.data.status) {
                         axios.get("/dept/getAllDepartments").then((respo) => {
                             // console.log(respo)
@@ -71,7 +72,8 @@ const StepperForm = (props) => {
                                     if (respon.data.status) {
                                         axios.get("/emp/getAllEmployeeMasterData").then((respons) => {
                                             console.log(respons)
-                                            setPocName(respons.data.data);
+                                            const sData2 = respons.data.data.filter(item => item.status === 'Active')
+                                            setPocName(sData2);
                                             if (respons.data.status) {
                                                 axios.get("/emp/getEmployeesByDepartment/HR").then((response) => {
                                                     const sData1 = response.data.data.filter(item => item.status === 'Active')
@@ -178,14 +180,11 @@ const StepperForm = (props) => {
         // validations for forms
 
         if (
-
             !jobTitle ||
             jobTitle === ""
 
         )
-
             newErrors.jobTitle =
-
                 "Please enter Job Title";
         if (
             !requisitionId ||
@@ -525,8 +524,8 @@ const StepperForm = (props) => {
                                                     onChange={(e) => {
 
 
-                                                        axios.get(`/clientProjectMapping/getProjectsByClientId/${e.target.value}`).then((response) => {
-
+                                                        axios.get(`/clientProjectMapping/getProjectsByClientName/${e.target.value}`).then((response) => {
+                                                            console.log(response.data.data);
                                                             setProjects(response.data.data);
 
 
@@ -540,7 +539,7 @@ const StepperForm = (props) => {
                                                 >
                                                     <option>Select </option>
                                                     {clients.map((client, i) => (
-                                                        <option key={i} value={client.clientId}>
+                                                        <option key={i} value={client.clientName}>
                                                             {client.clientName}
                                                         </option>
                                                     ))}

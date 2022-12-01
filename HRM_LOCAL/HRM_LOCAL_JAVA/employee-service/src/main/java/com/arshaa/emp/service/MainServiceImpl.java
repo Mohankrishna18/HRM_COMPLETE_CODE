@@ -468,8 +468,9 @@ public class MainServiceImpl implements MainService {
 					Map<String, String> map1 = new HashMap();
 
 					mailTemp1.setEmailType("IT_TEAM");
-					map1.put("employeeName", "Raj");
-					map1.put("email", "muralikrishna.miriyala@arshaa.com");
+					map1.put("employeeName", getOnboarding.getFullName());
+					map1.put("employeeId", em.getEmployeeId());
+					map1.put("email", "nagarjuna.veera@arshaa.com");
 					mailTemp1.setMap(map1);
 					template.postForObject(preEmailURL, mailTemp1, MainEmailTemplate.class);
 
@@ -477,8 +478,9 @@ public class MainServiceImpl implements MainService {
 					Map<String, String> map2 = new HashMap();
 
 					mailTemp2.setEmailType("ADMIN");
-					map2.put("employeeName", "Dheeraj");
-					map2.put("email", "muralikrishna.miriyala@arshaa.com");
+					map2.put("employeeName", getOnboarding.getFullName());
+					map2.put("employeeId", em.getEmployeeId());
+					map2.put("email", "srimukha.lingampally@arshaa.com");
 					mailTemp2.setMap(map2);
 					template.postForObject(preEmailURL, mailTemp2, MainEmailTemplate.class);
 
@@ -493,6 +495,7 @@ public class MainServiceImpl implements MainService {
 		        	hrApp.forEach(e->{
 					mailTemp3.setEmailType("PMO");
 					map3.put("employeeName", em.getFullName());
+					map3.put("employeeId", em.getEmployeeId());
 					map3.put("email", e.getEmail());
 					mailTemp3.setMap(map3);
 					template.postForObject(preEmailURL, mailTemp3, MainEmailTemplate.class);
@@ -1233,27 +1236,27 @@ public class MainServiceImpl implements MainService {
                 em.setConfirmationDate(empd.getConfirmationDate());
                 em.setLeaveBalance(empd.getLeaveBalance());
                
-//                EmployeeMaster emd = emRepo.save(em);
+                EmployeeMaster emd = emRepo.save(em);
                 
-//                emd.setBuhId(this.getEmployeeIdByName(em.getBuh()));
-//                emd.setSrmId(this.getEmployeeIdByName(em.getSrm()));
-//                emd.setIrmId(this.getEmployeeIdByName(em.getIrm()));
-//               
-                emRepo.save(em);
-    //            
+                emd.setBuhId(this.getEmployeeIdByName(em.getBuh()));
+                emd.setSrmId(this.getEmployeeIdByName(em.getSrm()));
+                emd.setIrmId(this.getEmployeeIdByName(em.getIrm()));
+               
+                emRepo.save(emd);
+            
                 LeaveMaster lm = new LeaveMaster();
                 
                 //get data from Leave Master Table  
                 String Listemployees="http://leaveservice/leave/leaveBalanceByEmployeeId/";
-                LeaveMaster getData =  template.getForObject(Listemployees+em.getEmployeeId(), LeaveMaster.class);
+                LeaveMaster getData =  template.getForObject(Listemployees+emd.getEmployeeId(), LeaveMaster.class);
             
                 if(getData == null) {
                     
                     //Post employeeId and Leave Balance to Leave Mater Table
                     String post="http://leaveservice/leave/postLeaves";
                     
-                    lm.setEmployeeId(em.getEmployeeId());
-                    lm.setLeaveBalance(em.getLeaveBalance());
+                    lm.setEmployeeId(emd.getEmployeeId());
+                    lm.setLeaveBalance(emd.getLeaveBalance());
                     template.postForObject(post,lm, LeaveMaster.class);    
                 }else {
                     
@@ -1262,7 +1265,7 @@ public class MainServiceImpl implements MainService {
                     LeaveBalanceModel lbm = new LeaveBalanceModel();
                     
                     lbm.setLeaveBalance(empd.getLeaveBalance());
-                    template.put(updateLeaveBalance+em.getEmployeeId(),lbm,LeaveBalanceModel.class);
+                    template.put(updateLeaveBalance+emd.getEmployeeId(),lbm,LeaveBalanceModel.class);
                 }
                 
                 
@@ -1274,11 +1277,11 @@ public class MainServiceImpl implements MainService {
 //                template.put(updateLeaveBalance+em.getEmployeeId(),lbm,LeaveBalanceModel.class);
                 
 
-               if (em.getStatus().equalsIgnoreCase("InActive")) {
+               if (empd.getStatus().equalsIgnoreCase("InActive")) {
                     
                     //updating status in login table
                     String updateStatus = "http://loginservice/login/makeLoginsInActive/";
-                     String restemplate = template.getForObject(updateStatus+em.getEmployeeId(),String.class);
+                     String restemplate = template.getForObject(updateStatus+emd.getEmployeeId(),String.class);
                 }
                 
                 r.setStatus(true);
@@ -1921,6 +1924,7 @@ public class MainServiceImpl implements MainService {
 				map.put("employeeName", getOnboarding.getFirstName() + getOnboarding.getLastName());
 			map.put("email",hrApp.getEmail());
 //				map.put("email", "muralikrishna.miriyala@arshaa.com");
+			
 				mailTemp.setMap(map);
 				mailTemp.setEmailType("TAG_HEAD_REJECT");
 
