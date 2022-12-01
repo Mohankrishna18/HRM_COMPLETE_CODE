@@ -421,7 +421,7 @@ function IntegrateLeaveToApply() {
       }
     } catch (err) {
       console.log(err);
-      notifyError("Leave Already Applied");
+      notifyError("Something went wrong/Leave Already Applied");
     }
     setDay("");
     setFromDate("");
