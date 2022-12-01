@@ -13,7 +13,7 @@ import Moment from "moment";
 import './utils/RT.css';
 
 const UpdateRR = () => {
-
+  const [raisedBy, setRaisedBy] = useState();
   const [raisedOn, setRaisedOn] = useState();
   const [jobTitle, setJobTitle] = useState();
   const [reqType1, setReqType1] = useState();
@@ -147,6 +147,8 @@ const UpdateRR = () => {
       `/recruitmentTracker/getDataById/${params.id}`
     );
     setRaisedOn(response.data.data.raisedOn);
+   
+    setRaisedBy(response.data.data.raisedBy);
     console.log(response.data.data.requestInitiatedDate)
     console.log(response.data.data.resourceRequiredDate)
     setDate(Moment(response.data.data.requestInitiatedDate).format('YYYY-MM-DD'));
@@ -207,6 +209,7 @@ const UpdateRR = () => {
           pSkills: pSkills,
           sSkills: sSkills,
           pocname: newPOCName,
+          raisedBy: raisedBy,
           qualification: qualification,
           workLocation: workLocation,
           workingHours: workingHours,
@@ -883,6 +886,24 @@ const UpdateRR = () => {
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Raised By</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  disabled
+                  controlid="raisedBy"
+
+                  value={raisedBy}
+                  onChange={(e) => setRaisedBy(e.target.value)}
+                  isInvalid={!!errors.raisedBy}
+                >
+
+                </Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.raisedBy}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                 <Form.Label>Raised Date</Form.Label>
                 <Form.Control
                   required
@@ -954,4 +975,12 @@ const UpdateRR = () => {
   )
 }
 export default UpdateRR;
+
+
+    
+    
+    
+
+    
+
 
