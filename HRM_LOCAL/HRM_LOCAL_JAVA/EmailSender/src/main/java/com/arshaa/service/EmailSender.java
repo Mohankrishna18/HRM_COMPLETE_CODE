@@ -115,17 +115,17 @@ public class EmailSender {
 	              break;
 
 	          case "TAA_APPROVAL":
-	        	  sub="Need Your Approval";
+	        	  sub="Offer Approval - "+uModel.getMap().get("employeeName");
 	        	  text=taaApprovalText(uModel);
  	        	  sendEmail(uModel,sub,text);
  	             break;
 	          case "TAG_APPROVAL":
-	        	  sub="Need Your Approval";
+	        	  sub="Offer Approval - "+uModel.getMap().get("employeeName");
 	        	  text=tagApprovalText(uModel);
 	        	  sendEmail(uModel,sub,text);
 	        	  break;
 	          case "PMO_APPROVAL":
-	        	  sub="Need Your Approval";
+	        	  sub="Offer Approval - "+uModel.getMap().get("employeeName");
 	        	  text=pmoApprovalText(uModel);
 	        	  sendEmail(uModel,sub,text);
 	        	  break;
@@ -315,7 +315,7 @@ public class EmailSender {
 	}
 
 	private String applyResignation(MainEmailTemplate uModel) {
-		String text="Resignation was applied"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
+		String text="Please consider this as my formal resignation from the position of "+uModel.getMap().get("designationName")+" at Arshaa Technologies Pvt.Ltd."+"\n"+"\n"+"   Employee ID :- "+uModel.getMap().get("EmployeeId")+"\n"+"   Candidate Name :- "+uModel.getMap().get("employeeName")+"\n"+"   Business Unit :- "+uModel.getMap().get("Department")+"\n"+"   Designation :- "+uModel.getMap().get("designationName")+"\n"+"   Resignation Date :- "+uModel.getMap().get("ResignationDate")+"\n"+"   Exit Date :- "+uModel.getMap().get("ExitDate")+"\n"+"   Reason for Resignation :- "+uModel.getMap().get("reason")+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
@@ -341,7 +341,7 @@ public class EmailSender {
 	}
 
 	private String leaveApplied(MainEmailTemplate uModel) {
-		String text="Hi Sir"+"\n"+"\n"+"Hope You doing well.  I would like to have a leave on these days from "+uModel.getMap().get("fromDate")+" to "+uModel.getMap().get("toDate")+"\n"+"\n"+"\n"+"1) Employee ID :  "+uModel.getMap().get("employeeId")+"\n"+"2) Employee Name :  "+uModel.getMap().get("name")+"\n"+"3) From Date :  "+uModel.getMap().get("fromDate")+"\n"+"4) To Date :  "+uModel.getMap().get("toDate")+"\n"+"5) Leave Reason :  "+uModel.getMap().get("reason")+"\n"+"\n"+"Please Grant me Leave."+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
+		String text="Hi Sir"+"\n"+"\n"+"I would like to have a leave on these days from "+uModel.getMap().get("fromDate")+" to "+uModel.getMap().get("toDate")+"\n"+"\n"+"\n"+"1) Employee ID :  "+uModel.getMap().get("employeeId")+"\n"+"2) Employee Name :  "+uModel.getMap().get("name")+"\n"+"3) From Date :  "+uModel.getMap().get("fromDate")+"\n"+"4) To Date :  "+uModel.getMap().get("toDate")+"\n"+"5) Leave Reason :  "+uModel.getMap().get("reason")+"\n"+"\n"+"Please Grant me Leave."+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
@@ -385,7 +385,7 @@ public class EmailSender {
 
 
 	private String ceoApprovalText(MainEmailTemplate uModel) {
-		String text="Hi "+uModel.getMap().get("employeeName")+"\n"+"\n"+"\n"+"Welcome to Arshaa Technologies"+"\n"+"\n"+"\n"+"We are glad to infrom on the joining date of yours at Arshaa Technologies on "+uModel.getMap().get("dateOfJoining")+"\n"+"\n"+"\n"+"As per the discussion with me, please find the below documents to be carried on your Day of joining."+"\n"+"\n"+"\n"+"1] Offer letter."+"\n"+"2] Pan and Aadhar Copies (ID Proof)."+"\n"+"3] Educational Documents."+"\n"+"4] Hike Letter."+"\n"+"5] Form-16."+"\n"+"6] Resignation Copy"+"\n"+"\n"+"\n"+"Venue Details :-"+"\n"+"Reporting Time - 10:00 AM"+"\n"+"Reporting Address -Arshaa Technologies, SALARPURIA SATTVA KNOWLEDGE CITY, "+"\n"+"Level 1, 2A&2B Octave Block, Parcel 4, Rai Durg, "+"\n"+"Hyderabad, Telangana-500081"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
+		String text="Hi "+uModel.getMap().get("employeeName")+"\n"+"\n"+"\n"+"Welcome to Arshaa Technologies"+"\n"+"\n"+"\n"+"We are glad to infrom on the joining date at Arshaa Technologies on "+uModel.getMap().get("DateofJoining")+"\n"+"\n"+"\n"+"As per the discussion with me, please find the below documents to be carried on your Day of joining."+"\n"+"\n"+"\n"+"1] Offer letter."+"\n"+"2] Pan and Aadhar Copies (ID Proof)."+"\n"+"3] Educational Documents."+"\n"+"4] Hike Letter."+"\n"+"5] Form-16."+"\n"+"6] Resignation Copy"+"\n"+"\n"+"\n"+"Venue Details :-"+"\n"+"Reporting Time - 10:00 AM"+"\n"+"Reporting Address -Arshaa Technologies, SALARPURIA SATTVA KNOWLEDGE CITY, "+"\n"+"Level 1, 2A&2B Octave Block, Parcel 4, Rai Durg, "+"\n"+"Hyderabad, Telangana-500081"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 
 	
 				return text;
@@ -393,19 +393,19 @@ public class EmailSender {
 
 
 	private String pmoApprovalText(MainEmailTemplate uModel) {
-		String text="Hi Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
+		String text="Request your confirmation for the following candidate onboarding"+"\n"+"\n"+"   AERF ID :- "+uModel.getMap().get("RequisitionId")+"\n"+"   Candidate Name :- "+uModel.getMap().get("employeeName")+"\n"+"   Job Title :- "+uModel.getMap().get("JobTitle")+"\n"+"   Practice :- "+uModel.getMap().get("department")+"\n"+"   Date of Joining :- "+uModel.getMap().get("DateofJoining")+"\n"+"\n"+"   HRM :- http://15.206.247.212:3000/"+"\n"+"\n"+"Kindly approve the candidate's onboarding, after your confirmation the conditional offer letter will be released."+"\n"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 
 	private String tagApprovalText(MainEmailTemplate uModel) {
-		String text="Hi Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
+		String text="Request your confirmation for the following candidate onboarding"+"\n"+"\n"+"   AERF ID :- "+uModel.getMap().get("RequisitionId")+"\n"+"   Candidate Name :- "+uModel.getMap().get("employeeName")+"\n"+"   Job Title :- "+uModel.getMap().get("JobTitle")+"\n"+"   Practice :- "+uModel.getMap().get("department")+"\n"+"   Date of Joining :- "+uModel.getMap().get("DateofJoining")+"\n"+"\n"+"   HRM :- http://15.206.247.212:3000/"+"\n"+"\n"+"Kindly approve the candidate's onboarding"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
 
 	private String taaApprovalText(MainEmailTemplate uModel) {
-        String text="Hi Sir"+"\n"+"\n"+"Need your approval in onboarding the candidate."+"\n"+"\n"+"Candidate Name -"+uModel.getMap().get("employeeName")+"\n"+"\n"+"Please verify the candidate details."+"\n"+"\n"+"Link to login : http://15.206.247.212:3000/"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
+		String text="Request your confirmation for the following candidate onboarding"+"\n"+"\n"+"   AERF ID :- "+uModel.getMap().get("RequisitionId")+"\n"+"   Candidate Name :- "+uModel.getMap().get("employeeName")+"\n"+"   Job Title :- "+uModel.getMap().get("JobTitle")+"\n"+"   Practice :- "+uModel.getMap().get("department")+"\n"+"   Date of Joining :- "+uModel.getMap().get("DateofJoining")+"\n"+"\n"+"   HRM :- http://15.206.247.212:3000/"+"\n"+"\n"+"Kindly approve the candidate's onboarding"+"\n"+"\n"+"Regards,"+"\n"+"Team Arshaa";
 		return text;
 	}
 
