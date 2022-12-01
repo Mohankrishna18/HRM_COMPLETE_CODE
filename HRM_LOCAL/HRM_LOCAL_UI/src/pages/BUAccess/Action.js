@@ -31,7 +31,10 @@ export default function Action(props) {
     const [bands, setBands] = useState([]);
     const [empType, setEmpType] = useState([]);
     const [users, setUsers] = useState([]);
-   
+
+    const [ed, setEd] = useState("");
+    const [rd, setRd] = useState("");
+    const [cd, setCd] = useState("");
 
     useEffect(() => {
        EndPoints();
@@ -92,18 +95,23 @@ export default function Action(props) {
         // console.log(res.data.data.exitDate);  
         setDepartmentName(res.data.data.departmentName);
         setDesignationName(res.data.data.designationName);
-        setExitDate(moment(res.data.data.exitDate).format('YYYY-MM-DD'));
-        setResignationDate(moment(res.data.data.resignationDate).format('YYYY-MM-DD'));
+        setExitDate(res.data.data.exitDate);
+        setResignationDate(res.data.data.resignationDate);
         setSrm(res.data.data.srm);
         setIrm(res.data.data.irm);
         setProjectName(res.data.data.projectName);    
-        setConfirmationDate(moment(res.data.data.confirmationDate).format('YYYY-MM-DD'));    
+        setConfirmationDate(res.data.data.confirmationDate);    
         setBand(res.data.data.band);
         setEmploymentType(res.data.data.employmentType);
         setStatus(res.data.data.status);
         setPrimarySkills(res.data.data.primarySkills);
         setSecondarySkills(res.data.data.secondarySkills);
-        setReportingManager(res.data.data.reportingManager);    
+        setReportingManager(res.data.data.reportingManager);  
+
+        setEd(moment(res.data.data.exitDate).format('YYYY-MM-DD'));
+        setRd(moment(res.data.data.resignationDate).format('YYYY-MM-DD'));
+        setCd(moment(res.data.data.confirmationDate).format('YYYY-MM-DD'));
+        
     };
 
     const handleSubmit = (e) => {
@@ -205,9 +213,9 @@ export default function Action(props) {
                             type="date"
                             placeholder="Resignation Date"
                             controlid="resignationDate"
-                            defaultValue={resignationDate}
-                            value={resignationDate}
-                            onChange={(e) => setResignationDate(e.target.value)}
+                            defaultValue={rd}
+                            value={rd}
+                            onChange={(e) => setResignationDate((moment(e.target.value).format("YYYY-MM-DD")))}
                         ></Form.Control>
 
 
@@ -220,8 +228,8 @@ export default function Action(props) {
                             placeholder="exitDate"
                             controlid="exitDate"
                             // defaultValue={exitDate}
-                            value={exitDate}
-                            onChange={(e) => setExitDate(e.target.value)}
+                            value={ed}
+                            onChange={(e) => setExitDate((moment(e.target.value).format("YYYY-MM-DD")))}
 
                         ></Form.Control>
                     </Form.Group>
@@ -327,10 +335,10 @@ export default function Action(props) {
                             type="date"
                             placeholder="confirmationDate"
                             controlid="confirmationDate"
-                            defaultValue={confirmationDate}
-                            value={confirmationDate}
+                            defaultValue={cd}
+                            value={cd}
 
-                            onChange={(e) => setConfirmationDate(e.target.value)}
+                            onChange={(e) => setConfirmationDate((moment(e.target.value).format("YYYY-MM-DD")))}
 
                         ></Form.Control>
                     </Form.Group>
