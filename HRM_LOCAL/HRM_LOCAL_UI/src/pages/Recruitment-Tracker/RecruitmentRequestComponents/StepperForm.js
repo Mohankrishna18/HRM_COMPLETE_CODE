@@ -173,6 +173,7 @@ const StepperForm = (props) => {
             empType,
             yoe,
             reqType3,
+            raisedby,
             departmentName
         } = form;
         const newErrors = {};
@@ -198,6 +199,12 @@ const StepperForm = (props) => {
 
         )
             newErrors.technology = "Please Enter Technology";
+            if (
+                !raisedBy ||
+                raisedBy === ""
+    
+            )
+                newErrors.raisedBy = "Raised by is empty";
         if (
             !allocType ||
             allocType === ""
@@ -320,7 +327,7 @@ const StepperForm = (props) => {
                 .post("/recruitmentTracker/createRequisitionRequest", form1)
                 .then((response) => {
 
-                   
+                    console.log(form1);
 
                     if (response.data.status) {
                         toast.success("Requisition Raised Successfully", { autoClose: 500 });
@@ -1085,12 +1092,3 @@ const StepperForm = (props) => {
     );
 };
 export default StepperForm;
-
-
-    
-    
-    
-
-    
-
-
