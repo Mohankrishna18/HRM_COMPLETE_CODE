@@ -31,20 +31,18 @@ export default function ChangeUserDetails(props) {
       .then((res) => {
         setData(res.data.data);
         setSearchApiData(res.data.data);
-        console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [updateStatus]);
 
-  console.log(searchApiData)
   const handleFilter = (e) => {
     if (e.target.value == "") {
       setData(searchApiData)
     } else {
       const fetchResult = searchApiData.filter(item => item.fullName.toLowerCase().includes(e.target.value.toLowerCase()));
-      console.log(fetchResult);
+      // console.log(fetchResult);
       setData(fetchResult);
       // if (fetchResult > 0) {
       //     setData(fetchResult);
@@ -55,13 +53,7 @@ export default function ChangeUserDetails(props) {
     setFilteredVal(e.target.value);
   }
 
-  console.log(data);
 
-
-  // const exitdate = moment(data.exitDate).format('YYYY-MM-DD')
-  // const resignationdate= moment(data.resignationDate).format('YYYY-MM-DD')
-  // console.log(exitdate);
-  // console.log(resignationdate);
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -75,14 +67,7 @@ export default function ChangeUserDetails(props) {
             handleClose={handleClose}
           />
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer> */}
+       
       </Modal>
       <Row col="6" >
         <Col >
@@ -99,7 +84,7 @@ export default function ChangeUserDetails(props) {
             />
           </div>
         </Col>
-        <Col style ={{paddingLeft:"60%"}}>
+        <Col style={{ paddingLeft: "60%" }}>
           <ReactHTMLTableToExcel
             id="test-table-xls-button"
             className="download-table-xls-button btn btn-warning btn-sm mb-3"
@@ -109,7 +94,7 @@ export default function ChangeUserDetails(props) {
             buttonText="Export Data to Excel Sheet"
             style={{
               width: "240px",
-              height:"30px",
+              height: "30px",
               backgroundColor: "#f5896e"
             }}
           />
@@ -138,43 +123,44 @@ export default function ChangeUserDetails(props) {
 
               </tr>
             </thead>
+            {data == null ? (<tbody><tr>Data is Null</tr></tbody>)
+              : (<tbody className="scroll">
+                {data.map(data => {
+                  return (
+                    <tr>
+                      <td>{data.employeeId}</td>
+                      <td>{data.fullName}</td>
+                      <td>{data.departmentName}</td>
+                      <td>{data.designationName}</td>
+                      <td>{data.status}</td>
+                      <td>{data.band}</td>
+                      <td>{data.employmentType}</td>
+                      <td>{data.irm}</td>
+                      <td>{data.srm}</td>
+                      {/* <td>{data.leaveBalance}</td> */}
+                      <td> {data.resignationDate ? <Moment format="DD/MM/YYYY">
+                        {data.resignationDate}
+                      </Moment> : <></>}</td>
+                      <td>{data.exitDate ? <Moment format="DD/MM/YYYY">
+                        {data.exitDate}
+                      </Moment> : <></>}</td>
+                      <td><Button
+                        style={{ backgroundColor: "#f5896e" }}
+                        data={data}
 
-            <tbody className="scroll">
-              {data.map(data => {
-                return (
-                  <tr>
-                    <td>{data.employeeId}</td>
-                    <td>{data.fullName}</td>
-                    <td>{data.departmentName}</td>
-                    <td>{data.designationName}</td>
-                    <td>{data.status}</td>
-                    <td>{data.band}</td>
-                    <td>{data.employmentType}</td>
-                    <td>{data.irm}</td>
-                    <td>{data.srm}</td>
-                    {/* <td>{data.leaveBalance}</td> */}
-                    <td> {data.resignationDate ? <Moment format="DD/MM/YYYY">
-                      {data.resignationDate}
-                    </Moment> : <></>}</td>
-                    <td>{data.exitDate ? <Moment format="DD/MM/YYYY">
-                      {data.exitDate}
-                    </Moment> : <></>}</td>
-                    <td><Button
-                      style={{ backgroundColor: "#f5896e" }}
-                      data={data}
+                        onClick={() => {
+                          setShow(true)
+                          setAction(data.employeeId)
+                        }}
+                      > update
+                      </Button>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>)}
 
-                      onClick={() => {
-                        setShow(true)
-                        console.log(props);
-                        setAction(data.employeeId)
-                      }}
-                    > update
-                    </Button>
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
+
           </Table>
         </div>
       </Row>

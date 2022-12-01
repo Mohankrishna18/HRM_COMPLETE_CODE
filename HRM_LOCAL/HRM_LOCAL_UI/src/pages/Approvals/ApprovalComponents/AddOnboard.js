@@ -527,7 +527,7 @@ function AddOnboard(props) {
                       <Form.Label>Years Of Experience *</Form.Label>
                       <Form.Control
                         required
-                        type="text"
+                        type="number"
                         min="0.00"
                         step="1.00"
                         max="50.00"
