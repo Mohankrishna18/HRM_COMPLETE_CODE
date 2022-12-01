@@ -1,14 +1,16 @@
 package com.arshaa.service;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -184,7 +186,9 @@ public class UserService {
 			User savedUser = repository.save(user);
 			System.out.println(savedUser.getFromDate()+"savedUser FROM");
 			System.out.println(savedUser.getToDate()+"savedUser TO");
-			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");  
+			java.text.DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");  
+			
+			
 			String strDate = dateFormat.format(user.getFromDate());
 			System.out.println(strDate+"Coverted frOM");
 			String convetToDate=dateFormat.format(savedUser.getToDate());
@@ -213,17 +217,37 @@ public class UserService {
 			mailTemp.setMap(map);
 			template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 			List<StoreDatesList> u = getDaysBetweenDates(user.getFromDate(), user.getToDate());
+			System.out.println("Between loop up");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+//			System.out.println(isWeekend(LocalDate.parse("2022-12-3")));
 //			 bro.saveAll(u);
 			u.forEach(e -> {
+				
 				BetweenDates d = new BetweenDates();
-				d.setEmployeeId(savedUser.getEmployeeId());
-				d.setEmployeeleaveId(savedUser.getEmployeeleaveId());
-				d.setAppliedDate(e.getBetWeenDates());
-				d.setLeaveOrwfh(savedUser.getLeaveOrwfh());
-				d.setDepartmentName(savedUser.getDepartmentName());
-				d.setLeaveStatus(savedUser.getLeaveStatus());
-				BetweenDates bd = bro.save(d);
-				bdatesList.add(bd);
+				System.out.println("Between loop");
+			    Date date1=null;
+				try {
+					date1 = new SimpleDateFormat("yyyy-MM-dd").parse(e.getBetWeenDates());
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}  
+
+//				boolean check=isWeekend(LocalDate.parse(e.getBetWeenDates(), formatter));
+			    boolean check=isWeekend(date1);
+				System.out.println("iseakend"+check);
+
+				if(!check) {
+					d.setEmployeeId(savedUser.getEmployeeId());
+					d.setEmployeeleaveId(savedUser.getEmployeeleaveId());
+					d.setAppliedDate(e.getBetWeenDates());
+					d.setLeaveOrwfh(savedUser.getLeaveOrwfh());
+					d.setDepartmentName(savedUser.getDepartmentName());
+					d.setLeaveStatus(savedUser.getLeaveStatus());
+					BetweenDates bd = bro.save(d);
+					bdatesList.add(bd);
+				}
+				
 
 //				 Date date1;
 //				try {
@@ -245,6 +269,24 @@ public class UserService {
 		}
 		return null;
 	}
+	
+//	public boolean isWeekend(LocalDate ld)
+//    {
+//        DayOfWeek day = DayOfWeek.of(ld.get(ChronoField.DAY_OF_WEEK));
+//       
+//      return day==DayOfWeek.SUNDAY || day == DayOfWeek.SATURDAY;
+//        	
+//    }
+	
+	 public static boolean isWeekend( Date d)
+	    {
+	        Calendar cal = Calendar.getInstance();
+	        cal.setTime(d);
+
+	        int day = cal.get(Calendar.DAY_OF_WEEK);
+	        System.out.println("DAY"+day);
+	        return day == Calendar.SATURDAY || day == Calendar.SUNDAY;
+	    }
 
 	public ResponseEntity findAll() {
 		String url = "http://empService/emp/getEmployeeNameByEmployeeId/";
@@ -406,13 +448,16 @@ public class UserService {
                LeaveMaster m = leee.findByEmployeeId(savedU.getEmployeeId());
             //    m.setEmployeeId(u.getEmployeeId());
                
-                Integer totalLeaves =  template.getForObject(url + u.getEmployeeId(), Integer.class);
-                System.out.println(totalLeaves);
-                int temp = Objects.isNull(m.getUsedLeaves()) ? 0 : m.getUsedLeaves();
-                m.setLeaveBalance(totalLeaves - (temp + savedU.getNumberOfDays()));
-                m.setUsedLeaves(savedU.getNumberOfDays() + temp);
-                            
-                m.setTotalLeaves(totalLeaves);
+               Integer totalLeaves =  template.getForObject(url + u.getEmployeeId(), Integer.class);
+               System.out.println(totalLeaves);
+               int temp = Objects.isNull(m.getUsedLeaves()) ? 0 : m.getUsedLeaves();
+               
+               m.setLeaveBalance(m.getLeaveBalance() - savedU.getNumberOfDays());
+               m.setUsedLeaves(savedU.getNumberOfDays() + temp);
+                           
+               m.setTotalLeaves(totalLeaves);
+
+
 
               leee.save(m);
 
@@ -608,7 +653,7 @@ public class UserService {
 	}
 
 	public List<StoreDatesList> getDaysBetweenDates(Date startDate, Date endDate) {
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		java.text.DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		ArrayList<Date> dates = new ArrayList<Date>();
 		List<StoreDatesList> getBTDates = new ArrayList<>();
 		Calendar cal1 = Calendar.getInstance();
@@ -623,9 +668,19 @@ public class UserService {
 			StoreDatesList sd = new StoreDatesList();
 			Date d = cal1.getTime();
 			System.out.println(d);
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			java.text.DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			String strDate = dateFormat.format(d);
-			sd.setBetWeenDates(strDate);
+//			 Date date1=null;
+//				try {
+//					date1 = new SimpleDateFormat("dd-MM-yyyy").parse(strDate);
+//				} catch (ParseException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				} 
+//			if(!this.isWeekend(new LocalDate(strDate)))
+//			{
+				sd.setBetWeenDates(strDate);
+//			}
 			getBTDates.add(sd);
 			dates.add(cal1.getTime());
 			System.out.println(strDate);
