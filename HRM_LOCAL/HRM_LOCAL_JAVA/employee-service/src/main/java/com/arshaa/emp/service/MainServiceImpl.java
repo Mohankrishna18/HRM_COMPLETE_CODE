@@ -411,6 +411,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setOnboardingStatus(getOnboarding.getOnboardingStatus());
 					employeeMaster.setHrcomment(getOnboarding.getHrcomment());
 					employeeMaster.setProjectAllocation(0);
+					employeeMaster.setStatus("Active");
 					EmployeeMaster em = emRepo.save(employeeMaster);
 
 					// posting EmployeeId in Userproject Table
