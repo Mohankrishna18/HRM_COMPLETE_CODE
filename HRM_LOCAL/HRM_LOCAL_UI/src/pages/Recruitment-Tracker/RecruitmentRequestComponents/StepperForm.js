@@ -72,7 +72,8 @@ const StepperForm = (props) => {
                                     if (respon.data.status) {
                                         axios.get("/emp/getAllEmployeeMasterData").then((respons) => {
                                             console.log(respons)
-                                            setPocName(respons.data.data);
+                                            const sData2 = respons.data.data.filter(item => item.status === 'Active')
+                                            setPocName(sData2);
                                             if (respons.data.status) {
                                                 axios.get("/emp/getEmployeesByDepartment/HR").then((response) => {
                                                     const sData1 = response.data.data.filter(item => item.status === 'Active')
@@ -172,6 +173,7 @@ const StepperForm = (props) => {
             empType,
             yoe,
             reqType3,
+            raisedby,
             departmentName
         } = form;
         const newErrors = {};
@@ -197,6 +199,12 @@ const StepperForm = (props) => {
 
         )
             newErrors.technology = "Please Enter Technology";
+            if (
+                !raisedBy ||
+                raisedBy === ""
+    
+            )
+                newErrors.raisedBy = "Raised by is empty";
         if (
             !allocType ||
             allocType === ""
@@ -319,7 +327,7 @@ const StepperForm = (props) => {
                 .post("/recruitmentTracker/createRequisitionRequest", form1)
                 .then((response) => {
 
-                   
+                    console.log(form1);
 
                     if (response.data.status) {
                         toast.success("Requisition Raised Successfully", { autoClose: 500 });
@@ -1084,12 +1092,3 @@ const StepperForm = (props) => {
     );
 };
 export default StepperForm;
-
-
-    
-    
-    
-
-    
-
-

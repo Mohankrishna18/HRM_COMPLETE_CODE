@@ -1,15 +1,18 @@
 package com.arshaa.service;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,12 +34,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.client.RestTemplate;
 
-
 import com.arshaa.entity.BetweenDates;
 import com.arshaa.entity.EntitledLeaves;
 import com.arshaa.entity.LeaveMaster;
 import com.arshaa.model.UserModel;
 import com.arshaa.entity.User;
+
 import com.arshaa.mapper.UserMapper;
 import com.arshaa.model.AllEmployeesForHr;
 import com.arshaa.model.EmailModel;
@@ -44,8 +47,10 @@ import com.arshaa.model.EmailTemplate;
 import com.arshaa.model.EmployeeName;
 import com.arshaa.model.GetIrmId;
 import com.arshaa.model.GetSrmId;
+import com.arshaa.model.Holidaymanagement;
 import com.arshaa.model.LeaveBalanceModel;
 import com.arshaa.model.LeavesDataForHr;
+import com.arshaa.model.Response;
 import com.arshaa.model.StoreDatesList;
 import com.arshaa.model.UsersByIrm;
 import com.arshaa.repository.BetweenDatesRepo;
@@ -67,13 +72,13 @@ public class UserService {
 	@Autowired
 	private BetweenDatesRepo bro;
 
-	 @Autowired
-	 private LeaveMasterRepository leee;
+	@Autowired
+	private LeaveMasterRepository leee;
 	@Autowired
 	private UserMapper userMapper;
 
 	public static final String preEmailURL = "http://emailService/mail/sendmail";
-	public static final String getEmailByEmployeeIdURL="http://loginservice/login/getEmployeeEmailByEmployeeId/";
+	public static final String getEmailByEmployeeIdURL = "http://loginservice/login/getEmployeeEmailByEmployeeId/";
 
 	public UserModel findById(int employeeleaveId) {
 
@@ -169,6 +174,7 @@ public class UserService {
 			DepartmentName dn = template.getForObject(
 					"http://empService/emp/getDepartmentNameByEmployeeId/" + user.getEmployeeId(),
 					DepartmentName.class);
+
 			java.sql.Date tSqlDate = new java.sql.Date(user.getSubmittedDate().getTime());
 			user.setSubmittedDate(tSqlDate);
 
@@ -184,46 +190,78 @@ public class UserService {
 			User savedUser = repository.save(user);
 			System.out.println(savedUser.getFromDate()+"savedUser FROM");
 			System.out.println(savedUser.getToDate()+"savedUser TO");
-			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");  
+			java.text.DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");  
+			
+			
 			String strDate = dateFormat.format(user.getFromDate());
-			System.out.println(strDate+"Coverted frOM");
-			String convetToDate=dateFormat.format(savedUser.getToDate());
-					String email=template.getForObject(getEmailByEmployeeIdURL+al.getIrmId(), String.class);
-          EmailTemplate mailTemp = new EmailTemplate();
+			System.out.println(strDate + "Coverted frOM");
+			String convetToDate = dateFormat.format(savedUser.getToDate());
+			String email = template.getForObject(getEmailByEmployeeIdURL + al.getIrmId(), String.class);
+			EmailTemplate mailTemp = new EmailTemplate();
 			Map<String, String> map = new HashMap();
 
 			mailTemp.setEmailType("LEAVE_APPLY");
 			map.put("employeeName", "Team Arshaa");
 			map.put("employeeId", user.getEmployeeId());
 			map.put("name", user.getEmployeeName());
-			 
-			map.put("fromDate",strDate );
-			
-			String toDate = dateFormat.format(user.getToDate()); 
+
+			map.put("fromDate", strDate);
+
+			String toDate = dateFormat.format(user.getToDate());
 			map.put("toDate", convetToDate);
 			String number = String.valueOf(user.getNumberOfDays());
 			map.put("NoOfDays", number);
 			map.put("reason", user.getLeaveReason());
-			
-			
-			
-			
+
 			map.put("email", email);
 //			map.put("email", "muralikrishna.miriyala@arshaa.com");
 			mailTemp.setMap(map);
 			template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 			List<StoreDatesList> u = getDaysBetweenDates(user.getFromDate(), user.getToDate());
+			System.out.println("Between loop up");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+//			System.out.println(isWeekend(LocalDate.parse("2022-12-3")));
 //			 bro.saveAll(u);
+			Response array = template.getForObject("http://holidayService/holiday/getAllHolidays/", Response.class);
+
+			List<Holidaymanagement> list = array.getData();
 			u.forEach(e -> {
+
 				BetweenDates d = new BetweenDates();
-				d.setEmployeeId(savedUser.getEmployeeId());
-				d.setEmployeeleaveId(savedUser.getEmployeeleaveId());
-				d.setAppliedDate(e.getBetWeenDates());
-				d.setLeaveOrwfh(savedUser.getLeaveOrwfh());
-				d.setDepartmentName(savedUser.getDepartmentName());
-				d.setLeaveStatus(savedUser.getLeaveStatus());
-				BetweenDates bd = bro.save(d);
-				bdatesList.add(bd);
+				System.out.println("Between loop");
+				Date date1 = null;
+				try {
+
+					date1 = new SimpleDateFormat("yyyy-MM-dd").parse(e.getBetWeenDates());
+					System.out.println("DATE" + date1);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+//				boolean check=isWeekend(LocalDate.parse(e.getBetWeenDates(), formatter));
+				boolean check = isWeekend(date1);
+				System.out.println("iseakend" + check);
+
+				if(!check)
+				{
+					System.out.println("DATE"+date1+ "STATUS"+isHolidayDate(list, date1));
+					 check= isHolidayDate(list, date1);
+				}
+				
+				System.out.println("isholiday"+check);
+
+				if (!check) {
+					d.setEmployeeId(savedUser.getEmployeeId());
+					d.setEmployeeleaveId(savedUser.getEmployeeleaveId());
+					d.setAppliedDate(e.getBetWeenDates());
+					d.setLeaveOrwfh(savedUser.getLeaveOrwfh());
+					d.setDepartmentName(savedUser.getDepartmentName());
+					d.setLeaveStatus(savedUser.getLeaveStatus());
+					BetweenDates bd = bro.save(d);
+					bdatesList.add(bd);
+				}
+				
 
 //				 Date date1;
 //				try {
@@ -244,6 +282,40 @@ public class UserService {
 			e.getMessage();
 		}
 		return null;
+	}
+	
+
+//	public boolean isWeekend(LocalDate ld)
+//    {
+//        DayOfWeek day = DayOfWeek.of(ld.get(ChronoField.DAY_OF_WEEK));
+//       
+//      return day==DayOfWeek.SUNDAY || day == DayOfWeek.SATURDAY;
+//        	
+//    }
+
+	public boolean isWeekend(Date d) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(d);
+
+		int day = cal.get(Calendar.DAY_OF_WEEK);
+		System.out.println("DAY" + day);
+		return day == Calendar.SATURDAY || day == Calendar.SUNDAY;
+	}
+
+	public Boolean isHolidayDate(List<Holidaymanagement> list, Date dt) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+	    String strDate= formatter.format(dt);  
+		boolean res = false;
+		for (int i = 0; i < list.size(); i++) {
+			Date d = list.get(i).getHolidayDate();
+			System.out.println("DATEINH"+d);
+			if (formatter.format(d).equals(strDate)) {
+				res =true;
+				break;
+			}
+		}
+	
+		return res;
 	}
 
 	public ResponseEntity findAll() {
@@ -323,7 +395,7 @@ public class UserService {
 
 	public User UpdateManagerUsers(User user, Integer employeeleaveId, String userType) {
 		try {
-			 String url = "http://empService/emp/leavespermonth/";
+			String url = "http://empService/emp/leavespermonth/";
 			User u = repository.findById(employeeleaveId).get();
 			user.getEmployeeleaveId();
 			u.getToDate();
@@ -337,29 +409,45 @@ public class UserService {
 			u.setSrmApproveReason(user.getSrmApproveReason());
 
 			User savedU = repository.save(u);
-			List<BetweenDates> bdates=bro.findByEmployeeleaveIdAndEmployeeId(savedU.getEmployeeleaveId(),savedU.getEmployeeId());
+			List<BetweenDates> bdates = bro.findByEmployeeleaveIdAndEmployeeId(savedU.getEmployeeleaveId(),
+					savedU.getEmployeeId());
 
-            bdates.forEach(e->{
+			bdates.forEach(e -> {
 
-                e.setLeaveStatus(savedU.getLeaveStatus());
+				e.setLeaveStatus(savedU.getLeaveStatus());
 
-                  bro.save(e);
+				bro.save(e);
 
-            });
-        	EmailTemplate mailTemp = new EmailTemplate();
+			});
+			if (savedU.getLeaveStatus().equals("Approved") && (savedU.getLeaveOrwfh().equals("L"))) {
+				System.out.println("HELLO........" + userType + savedU.getLeaveStatus());
+
+				LeaveMaster m = leee.findByEmployeeId(savedU.getEmployeeId());
+				// m.setEmployeeId(u.getEmployeeId());
+
+				   Integer totalLeaves =  template.getForObject(url + u.getEmployeeId(), Integer.class);
+	                System.out.println(totalLeaves);
+	                int temp = Objects.isNull(m.getUsedLeaves()) ? 0 : m.getUsedLeaves();
+	                
+	                m.setLeaveBalance(m.getLeaveBalance() - savedU.getNumberOfDays());
+	                m.setUsedLeaves(savedU.getNumberOfDays() + temp);
+	                            
+	                m.setTotalLeaves(totalLeaves);
+
+				leee.save(m);
+			EmailTemplate mailTemp = new EmailTemplate();
 			Map<String, String> map = new HashMap();
 			EmployeeName al = template.getForObject(
 					"http://empService/emp/getEmployeeNameByEmployeeId/" + u.getEmployeeId(), EmployeeName.class);
-			String email=template.getForObject(getEmailByEmployeeIdURL+u.getEmployeeId(), String.class);
+			String email = template.getForObject(getEmailByEmployeeIdURL + u.getEmployeeId(), String.class);
 //			System.out.println("HELLO........"+userType);
-			
+
 			switch (userType) {
 			case "irm":
-				
 
 				map.put("employeeName", "Team Arshaa");
 //				map.put("email",hrApp.getEmail());
-				map.put("email",email);
+				map.put("email", email);
 				mailTemp.setMap(map);
 				if (user.getLeaveStatus().equalsIgnoreCase("Approved")) {
 					mailTemp.setEmailType("IRM_APPROVED");
@@ -371,8 +459,8 @@ public class UserService {
 				break;
 			case "pmohead":
 //				EmailTemplate mailTemp = new EmailTemplate();
-				map.put("employeeName","Team Arshaa");
-				map.put("email",email);
+				map.put("employeeName", "Team Arshaa");
+				map.put("email", email);
 //				map.put("email", "muralikrishna.miriyala@arshaa.com");
 				mailTemp.setMap(map);
 				if (user.getLeaveStatus().equalsIgnoreCase("Approved")) {
@@ -386,7 +474,7 @@ public class UserService {
 			case "srm":
 //				EmailTemplate mailTemp = new EmailTemplate();
 				map.put("employeeName", "Team Arshaa");
-				map.put("email",email);
+				map.put("email", email);
 //				map.put("email", "muralikrishna.miriyala@arshaa.com");
 				mailTemp.setMap(map);
 				if (user.getLeaveStatus().equalsIgnoreCase("Approved")) {
@@ -400,29 +488,12 @@ public class UserService {
 			default:
 				break;
 			}
-			if (savedU.getLeaveStatus().equals("Approved") &&( savedU.getLeaveOrwfh().equals("L"))) {
-                System.out.println("HELLO........"+userType+savedU.getLeaveStatus());
+			
 
-               LeaveMaster m = leee.findByEmployeeId(savedU.getEmployeeId());
-            //    m.setEmployeeId(u.getEmployeeId());
-               
-                Integer totalLeaves =  template.getForObject(url + u.getEmployeeId(), Integer.class);
-                System.out.println(totalLeaves);
-                int temp = Objects.isNull(m.getUsedLeaves()) ? 0 : m.getUsedLeaves();
-                m.setLeaveBalance(totalLeaves - (temp + savedU.getNumberOfDays()));
-                m.setUsedLeaves(savedU.getNumberOfDays() + temp);
-                            
-                m.setTotalLeaves(totalLeaves);
-
-              leee.save(m);
-
-           
-
-		
-			return savedU;
+				return savedU;
 			} else {
-                System.out.println("no data");
-            }
+				System.out.println("no data");
+			}
 		} catch (Exception e) {
 			e.getMessage();
 		}
@@ -608,7 +679,7 @@ public class UserService {
 	}
 
 	public List<StoreDatesList> getDaysBetweenDates(Date startDate, Date endDate) {
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		java.text.DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		ArrayList<Date> dates = new ArrayList<Date>();
 		List<StoreDatesList> getBTDates = new ArrayList<>();
 		Calendar cal1 = Calendar.getInstance();
@@ -623,9 +694,19 @@ public class UserService {
 			StoreDatesList sd = new StoreDatesList();
 			Date d = cal1.getTime();
 			System.out.println(d);
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			java.text.DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			String strDate = dateFormat.format(d);
-			sd.setBetWeenDates(strDate);
+//			 Date date1=null;
+//				try {
+//					date1 = new SimpleDateFormat("dd-MM-yyyy").parse(strDate);
+//				} catch (ParseException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				} 
+//			if(!this.isWeekend(new LocalDate(strDate)))
+//			{
+				sd.setBetWeenDates(strDate);
+//			}
 			getBTDates.add(sd);
 			dates.add(cal1.getTime());
 			System.out.println(strDate);
@@ -716,39 +797,35 @@ public class UserService {
 		});
 		return splitMonth;
 	}
-	
-	
-	 public List<LeaveMaster> listAll() {
-	        return leee.findAll();
-	    }
-	 
-	 public LeaveMaster get(String employeeId) {
-	        return leee.findByEmployeeId(employeeId);
-	    }
+
+	public List<LeaveMaster> listAll() {
+		return leee.findAll();
+	}
+
+	public LeaveMaster get(String employeeId) {
+		return leee.findByEmployeeId(employeeId);
+	}
 //	 public LeaveMaster get(String employeeId) {
 //	        return leee.findByemployeeId(employeeId);
 //	    }
-	     
-	    public void save(LeaveMaster leaveMaster) {
-	    	leee.save(leaveMaster);
-	    }
-	    
-	  //Update Leave Balance for an Employee
-	    public LeaveBalanceModel updateLeaveBalnce(LeaveBalanceModel leavebalance,String employeeId) {
-	    	try {
-	    		LeaveMaster lb = leee.findByEmployeeId(employeeId);
-	    		lb.setLeaveBalance(leavebalance.getLeaveBalance());
-	    		leee.save(lb);
-	    		
-	    		return leavebalance;
-	    	
-	    	}
-	    	catch (Exception e) {
-				e.getMessage();
-			}
-	    	return leavebalance;
-	  }
-	       
+
+	public void save(LeaveMaster leaveMaster) {
+		leee.save(leaveMaster);
+	}
+
+	// Update Leave Balance for an Employee
+	public LeaveBalanceModel updateLeaveBalnce(LeaveBalanceModel leavebalance, String employeeId) {
+		try {
+			LeaveMaster lb = leee.findByEmployeeId(employeeId);
+			lb.setLeaveBalance(leavebalance.getLeaveBalance());
+			leee.save(lb);
+
+			return leavebalance;
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return leavebalance;
+	}
+
 }
-
-

@@ -440,6 +440,11 @@ hrApp.forEach(e->{
     
 
 
+    public RequisitionRequestEntity getRequisitionDataById(String requisitionId)
+    {
+    	RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
+    	return rfs;
+    }
     @Override
     public int getDaysBetweenDates(String requisitionId, String requestInitiatedDate) throws ParseException {
         // TODO Auto-generated method stub
