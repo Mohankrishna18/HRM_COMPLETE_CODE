@@ -165,7 +165,9 @@ function AddOnboard(props) {
           }
           else if (user.message == "could not execute statement; SQL [n/a]; constraint [onboarding.phone_number_UNIQUE]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement") {
             toast.error("PhoneNumber already exixts")
-          }
+          }else if(user.message == "could not execute statement; SQL [n/a]; constraint [onboarding.UC_Person]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement"){
+            toast.error("Email and Phone Number are already exists");
+        }
           else {
             console.log("Props Not Send");
           }
@@ -434,14 +436,14 @@ function AddOnboard(props) {
                     <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
                     <Form.Control
                       required
-                      type="text"
+                      type="number"
                       placeholder="Phone Number"
                       controlid="phoneNumber"
                       value={form.phoneNumber}
                       maxLength={10}
                       onChange={(e) => {
                         setField("phoneNumber", e.target.value);
-                        if (e.target.value.length < 10) {
+                        if (e.target.value.length < 10 ||  e.target.value.length > 10) {
                           setThirdErrors(
                             " Phone Number length should be 10 characters"
                           );
