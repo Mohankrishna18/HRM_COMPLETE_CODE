@@ -190,6 +190,10 @@ public class ClientsProjectsController {
 		return projectServ.getProjectNamesByClientName(clientName);
 	}
 
+	@GetMapping("/getClientsByBusinessUnits/{businessUnit}")
+	public ResponseEntity getClientsByBusinessUnits(@PathVariable String businessUnit) {
+        return projectServ.getClientsByBusinessUnits(businessUnit);
+	}
 //	@GetMapping("/getClientIdByName/{clientName}")
 //	public int getClientIdByClientName(@PathVariable String clientName) {
 //     return clientServ.getClientIdByClientName(clientName);

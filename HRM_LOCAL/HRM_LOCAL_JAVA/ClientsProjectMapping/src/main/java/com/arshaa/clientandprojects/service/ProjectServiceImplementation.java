@@ -37,6 +37,9 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 
 	@Autowired(required = true)
 	private ClientRepository repo;
+	
+	@Autowired(required = true)
+	private ClientRepository clientRepo;
 
 	@Autowired
 	@Lazy
@@ -423,6 +426,22 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 			pr.setMessage("Something went wrong");
 			return new ResponseEntity(pr, HttpStatus.OK);
 		}
+	}
+
+	@Override
+	public ResponseEntity getClientsByBusinessUnits(String businessUnit) {
+		try {
+			List<Projects> getClients = projectRepo.getProjectsByBusinessUnit(businessUnit);
+			List<Clients> clients = new ArrayList<>();
+			getClients.forEach(p -> {
+				Clients client = clientRepo.findByClientId(p.getClientId());
+				clients.add(client);
+			});
+			return new ResponseEntity(clients, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity("Something went wrong", HttpStatus.OK);
+		}
+
 	}
 
 
