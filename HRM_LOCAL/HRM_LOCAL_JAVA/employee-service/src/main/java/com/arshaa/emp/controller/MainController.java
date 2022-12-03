@@ -79,6 +79,10 @@ public class MainController {
 		return serv.onBoardUser(newOnboard);
 	}
 
+	@GetMapping("/getOnboardList")
+	public List<Onboarding> getAllOnboard() {
+		return onrepo.findAll();
+	}
 	@GetMapping("/waitingForApprovelStatus")
 	public ResponseEntity<Onboarding> waitingForApprovelStatus() {
 		return serv.waitingForApprovelStatus();
