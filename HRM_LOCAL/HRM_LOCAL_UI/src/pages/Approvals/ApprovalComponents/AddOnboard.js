@@ -68,7 +68,7 @@ function AddOnboard(props) {
     if (
       !firstName ||
       firstName === "" ||
-      !firstName.match(/^[\d a-zA-Z ()+-]+$/)
+      !firstName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/)
     )
       newErrors.firstName = "Please Enter First Name";
     if (
