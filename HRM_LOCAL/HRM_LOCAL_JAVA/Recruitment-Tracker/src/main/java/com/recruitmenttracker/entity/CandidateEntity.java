@@ -36,11 +36,11 @@ public class CandidateEntity
 	private String secondarySkills;
 	private String email;
 	private String phoneNumber;
-	private int yearsOfExperience;
+	private float yearsOfExperience;
 	private Date candidateCreatedOn;
 	private String level;
 	
 	
 	
-	
+
 }

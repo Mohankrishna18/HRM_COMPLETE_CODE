@@ -139,18 +139,25 @@ function AddCandidate(props) {
     )
 
       newErrors.email = "Please Enter valid email";
-
+      if(
+        candidateEmail.includes(email)
+      )
+      newErrors.email = "email already Exists"
     if (
       !phoneNumber ||
       phoneNumber === "" ||
       !phoneNumber.match(
         /^((\\+[1-9]{1}[ \\-]*)|(\\([0-9]{9}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
       )
-      || phoneNumber.length !== 10
+      || phoneNumber.length !== 10 
     )
       newErrors.phoneNumber = "Please Enter valid Phone Number";
+      if(
+        candidatePhno.includes(phoneNumber)
+      )
+      newErrors.phoneNumber = "Phone Number already Exists";
 
-    if (!yearsOfExperience || yearsOfExperience === "" || !yearsOfExperience.match(/^[0-9-,]+(\s[0-9-, ])*$/))
+    if (!yearsOfExperience || yearsOfExperience === "" || !yearsOfExperience.match(/^[0-9-.,]+(\s[0-9-, ])*$/))
       newErrors.yearsOfExperience = "Please Enter Years Of Experience";
 
     if (!level || level === "")
@@ -205,6 +212,10 @@ const jobTitle=user.jobTitle;
 const departmentName = user.departmentName;
 const projectName = user.projectName;
   const [candidateData, setCandidateData] = useState([]);
+  const [candidatePhno, setCandidatePhno] = useState([]);
+  const [candidateEmail, setCandidateEmail] = useState([]);
+  let phNo=[];
+  let emailarray=[];
 
   useEffect(() => {
     const loadUsers = async () => {
@@ -218,6 +229,27 @@ const projectName = user.projectName;
   }, []);
   console.log(candidateData);
   console.log(user.jobTitle)
+
+  useEffect(() => {
+    const loadCandidates = async () => {
+      const res = await axios.get(
+        "/candidate/getCandidate"
+      );
+      console.log(res.data);
+      res.data.map((item) => {
+        phNo.push(item.phoneNumber);
+        console.log(phNo);
+        setCandidatePhno(phNo);
+        emailarray.push(item.email);
+        console.log(emailarray);
+        setCandidateEmail(emailarray);
+      })
+    };
+    loadCandidates();
+  }, []);
+  console.log(candidatePhno);
+  console.log(candidateEmail);
+
 
   return (
     <div>

@@ -405,7 +405,7 @@ const UpdateCandidate = (props) => {
               // onChange={(e) => setPrimarySkills(e.target.value)}
               // isInvalid={!!errors.primarySkills}
               onChange ={(e) =>{
-                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9.#+, ])*$/)){
                   setSkillError ("Invalid");
                 }
                 else if(e.target.value.length>50){
@@ -438,7 +438,7 @@ const UpdateCandidate = (props) => {
               // onChange={(e) => setSecondarySkills(e.target.value)}
               // isInvalid={!!errors.secondarySkills}
               onChange ={(e) =>{
-                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/)){
+                if(e.target.value === "" || !e.target.value.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9.#+, ])*$/)){
                   setSecSkillError  ("Invalid");
                 }
                 else if(e.target.value.length>50){
@@ -532,7 +532,7 @@ const UpdateCandidate = (props) => {
               // onChange={(e) => setYearsOfExperience(e.target.value)}
               // isInvalid={!!errors.yearsOfExperience}
               onChange ={(e) =>{
-                if(e.target.value === "" || !e.target.value.match(/^[0-9-,]+(\s[0-9-, ])*$/)){
+                if(e.target.value === "" || !e.target.value.match(/^[0-9-.,]+(\s[0-9-, ])*$/)){
                   setExpyrError ("Invalid");
                 }
                 else if(e.target.value.length>50){
