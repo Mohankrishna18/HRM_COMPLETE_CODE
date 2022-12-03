@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useState, useEffect } from "react";
 import { Form, Button, Row, Col, Card } from "react-bootstrap";
@@ -55,7 +54,7 @@ const StepperForm = (props) => {
     const calls = () => {
         setLoading(true)
         axios.get(`/emp/getEmployeeDataByEmployeeId/${employeeId}`).then((res) => {
-            console.log(res)
+            // console.log(res)
             setResponse(res.data.data);
             if (res.data.status) {
                 axios.get("/clientProjectMapping/getAllProjects").then((resp) => {
@@ -68,10 +67,10 @@ const StepperForm = (props) => {
                             if (respo.statusText === "OK") {
                                 axios.get("/clientProjectMapping/getAllClients").then((respon) => {
                                     // console.log(respon)
-                                    setClients(respon.data.data);
+                                    // setClients(respon.data.data);
                                     if (respon.data.status) {
                                         axios.get("/emp/getAllEmployeeMasterData").then((respons) => {
-                                            console.log(respons)
+                                            // console.log(respons)
                                             const sData2 = respons.data.data.filter(item => item.status === 'Active')
                                             setPocName(sData2);
                                             if (respons.data.status) {
@@ -305,6 +304,7 @@ const StepperForm = (props) => {
     var raisedOn = Moment()
         .utcOffset('+05:30')
         .format('YYYY-MM-DD hh:mm:ss');
+        
 
     // const raisedOn = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
     const raisedBy = response.fullName;
@@ -327,7 +327,7 @@ const StepperForm = (props) => {
                 .post("/recruitmentTracker/createRequisitionRequest", form1)
                 .then((response) => {
 
-                    console.log(form1);
+                    // console.log(form1);
 
                     if (response.data.status) {
                         toast.success("Requisition Raised Successfully", { autoClose: 500 });
@@ -335,7 +335,7 @@ const StepperForm = (props) => {
                     } else {
                         console.log("Not updated")
                     }
-                    console.log("form submitted");
+                    // console.log("form submitted");
                     // notify();
                 })
                 .catch((err) => {
@@ -499,10 +499,18 @@ const StepperForm = (props) => {
                                                     className="departmentName"
                                                     type="text"
                                                     controlid="departmentName"
-                                                    // placeholder="Business Unit"
+                                                    
                                                     value={form.departmentName}
+                                                    // name={form.departmentName}
                                                     maxLength={30}
-                                                    onChange={(e) => setField("departmentName", e.target.value)}
+                                                    // onChange={(e) => setField("departmentName", e.target.value)}
+                                                    onChange={(e) => {
+                                                        setField("departmentName", e.target.value)
+                                                        axios.get(`/clientProjectMapping/getClientsByBusinessUnits/${e.target.value}`).then((response) => {
+                                                            // console.log(response.data);
+                                                            setClients(response.data);
+                                                        });
+                                                    }}
                                                     isInvalid={!!errors.departmentName}
                                                 >
                                                     <option>Select </option>
@@ -532,7 +540,7 @@ const StepperForm = (props) => {
 
 
                                                         axios.get(`/clientProjectMapping/getProjectsByClientName/${e.target.value}`).then((response) => {
-                                                            console.log(response.data.data);
+                                                            // console.log(response.data.data);
                                                             setProjects(response.data.data);
 
 
@@ -545,11 +553,12 @@ const StepperForm = (props) => {
                                                     isInvalid={!!errors.clientName}
                                                 >
                                                     <option>Select </option>
-                                                    {clients.map((client, i) => (
+                                                    {(clients && clients.length > 0)?(
+                                                    clients.map((client, i) => (
                                                         <option key={i} value={client.clientName}>
                                                             {client.clientName}
                                                         </option>
-                                                    ))}
+                                                    ))):(<></>)}
                                                 </Form.Select>
                                                 <Form.Control.Feedback type="invalid">
                                                     {errors.clientName}
@@ -1002,7 +1011,7 @@ const StepperForm = (props) => {
                                                 <Form.Control
 
                                                     disabled
-                                                    value={raisedOn}
+                                                    value={Moment(raisedOn).format("DD-MM-YYYY")}
                                                 >
                                                 </Form.Control>
                                                 <Form.Control.Feedback type="invalid">
