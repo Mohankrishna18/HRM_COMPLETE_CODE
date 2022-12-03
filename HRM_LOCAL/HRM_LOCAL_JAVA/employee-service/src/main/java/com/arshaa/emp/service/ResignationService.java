@@ -25,6 +25,7 @@ public class ResignationService {
 			rm.setIrm(emp.get().getIrmId());
 			rm.setSrm(emp.get().getSrmId());
 			rm.setConfirmationDate(emp.get().getConfirmationDate());
+			rm.setDesignationName(emp.get().getDesignationName());
 			
 			return rm;
 		}

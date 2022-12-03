@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,6 +62,7 @@ import com.arshaa.emp.model.LeaveMaster;
 import com.arshaa.emp.model.PersonalDetails;
 import com.arshaa.emp.model.PreOnboarding;
 import com.arshaa.emp.model.ProbationEmployeeFeedBack;
+import com.arshaa.emp.model.RequsitionModel;
 import com.arshaa.emp.model.Response;
 import com.arshaa.emp.model.StringConstants;
 import com.arshaa.emp.model.TermsAndConditions;
@@ -88,6 +90,7 @@ public class MainServiceImpl implements MainService {
 	@LoadBalanced
 	private RestTemplate template;
 	public static final String preEmailURL = "http://emailService/mail/sendmail";
+	public static final String onReqUrl = "http://RecruitmentTracker/recruitmentTracker/getRequisitionDataById/";
 
 	StringConstants sConstants = new StringConstants();
 
@@ -408,6 +411,7 @@ public class MainServiceImpl implements MainService {
 					employeeMaster.setOnboardingStatus(getOnboarding.getOnboardingStatus());
 					employeeMaster.setHrcomment(getOnboarding.getHrcomment());
 					employeeMaster.setProjectAllocation(0);
+					employeeMaster.setStatus("Active");
 					EmployeeMaster em = emRepo.save(employeeMaster);
 
 					// posting EmployeeId in Userproject Table
@@ -2036,13 +2040,22 @@ public class MainServiceImpl implements MainService {
 			Onboarding saveList = onRepo.save(getOnboarding);
 			MainEmailTemplate mailTemp = new MainEmailTemplate();
 			Map<String, String> map = new HashMap();
+			RequsitionModel onReq = template.getForObject(onReqUrl+saveList.getRequisitionId(), RequsitionModel.class);
+
 
 			UserMail response = template.getForObject(OnboardUrl + "pmohead", UserMail.class);
 			List<MailGet> hrApp = response.getMails();
 
+			
 			hrApp.forEach(e -> {
 				mailTemp.setEmailType("TAG_APPROVAL");
 				map.put("employeeName", getOnboarding.getFullName());
+				map.put("RequisitionId", onReq.getRequisitionId());
+				map.put("department", onReq.getDepartmentName());
+				map.put("JobTitle", onReq.getJobTitle());
+				DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+				String strDate = dateFormat.format(getOnboarding.getDateOfJoining());
+				map.put("DateofJoining", strDate);
 				map.put("email", e.getEmail());
 				mailTemp.setMap(map);
 				template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
@@ -2069,15 +2082,23 @@ public class MainServiceImpl implements MainService {
 			getOnboarding.setPmoApprovalComment(newOnboard.getPmoApprovalComment());
 			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
 			Onboarding saveList = onRepo.save(getOnboarding);
+			System.out.println(saveList.getRequisitionId());
 			MainEmailTemplate mailTemp = new MainEmailTemplate();
 			Map<String, String> map = new HashMap();
-
+			RequsitionModel onReq = template.getForObject(onReqUrl+saveList.getRequisitionId(), RequsitionModel.class);
+System.out.println("DEP"+onReq.getDepartmentName());
 			UserMail response = template.getForObject(OnboardUrl + "ceo", UserMail.class);
 			List<MailGet> hrApp = response.getMails();
 
 			hrApp.forEach(e -> {
 				mailTemp.setEmailType("PMO_APPROVAL");
 				map.put("employeeName", getOnboarding.getFullName());
+				map.put("RequisitionId", onReq.getRequisitionId());
+				map.put("department", onReq.getDepartmentName());
+				map.put("JobTitle", onReq.getJobTitle());
+				DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+				String strDate = dateFormat.format(getOnboarding.getDateOfJoining());
+				map.put("DateofJoining", strDate);
 				map.put("email", e.getEmail());
 				mailTemp.setMap(map);
 				template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
@@ -2104,8 +2125,10 @@ public class MainServiceImpl implements MainService {
 			getOnboarding.setTaaApprovalComment(newOnboard.getTaaApprovalComment());
 			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
 			Onboarding saveList = onRepo.save(getOnboarding);
+			
 			MainEmailTemplate mailTemp = new MainEmailTemplate();
 			Map<String, String> map = new HashMap();
+			RequsitionModel onReq = template.getForObject(onReqUrl+saveList.getRequisitionId(), RequsitionModel.class);
 
 			UserMail response = template.getForObject(OnboardUrl + "taahead", UserMail.class);
 			List<MailGet> hrApp = response.getMails();
@@ -2113,6 +2136,12 @@ public class MainServiceImpl implements MainService {
 			hrApp.forEach(e -> {
 				mailTemp.setEmailType("TAA_APPROVAL");
 				map.put("employeeName", getOnboarding.getFullName());
+				map.put("RequisitionId", onReq.getRequisitionId());
+				map.put("department", onReq.getDepartmentName());
+				map.put("JobTitle", onReq.getJobTitle());
+				DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+				String strDate = dateFormat.format(getOnboarding.getDateOfJoining());
+				map.put("DateofJoining", strDate);
 				map.put("email", e.getEmail());
 				mailTemp.setMap(map);
 				template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);
@@ -2137,15 +2166,18 @@ public class MainServiceImpl implements MainService {
 			getOnboarding.setCeoApprovalComment(newOnboard.getCeoApprovalComment());
 			getOnboarding.setOnboardingStatus(newOnboard.getOnboardingStatus());
 			Onboarding saveList = onRepo.save(getOnboarding);
-
+			
 //			Email rest template call
 			MainEmailTemplate mailTemp = new MainEmailTemplate();
 			Map<String, String> map = new HashMap();
 
 			mailTemp.setEmailType("CEO_APPROVAL");
 			map.put("employeeName", getOnboarding.getFullName());
+			
 			map.put("email", getOnboarding.getEmail());
-			map.put("dateOfJoining", getOnboarding.getDateOfJoining().toString());
+			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+			String strDate = dateFormat.format(getOnboarding.getDateOfJoining());
+			map.put("DateofJoining", strDate);
 			System.out.println(getOnboarding.getDateOfJoining().toString());
 			mailTemp.setMap(map);
 			template.postForObject(preEmailURL, mailTemp, MainEmailTemplate.class);

@@ -47,7 +47,10 @@ function AddCandidate(props) {
   //   });
   // }, []);
 
-  const handleClose = () => setShow();
+  const handleClose = () => {
+    setShow(),
+    setForm({})
+  }
   const handleShow = () => setShow(true);
 
   const forms = useRef(null);
@@ -118,7 +121,7 @@ function AddCandidate(props) {
     if (!currentLocation || currentLocation === "" || !currentLocation.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/))
       newErrors.currentLocation = "Please Enter Current Location";
 
-    if (!primarySkills || primarySkills === "" || !primarySkills.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9, ])*$/))
+    if (!primarySkills || primarySkills === "" || !primarySkills.match(/^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-0-9.#+, ])*$/))
       newErrors.primarySkills = "Please Enter Primary Skills";
 
     // if (!secondarySkills || secondarySkills === "")

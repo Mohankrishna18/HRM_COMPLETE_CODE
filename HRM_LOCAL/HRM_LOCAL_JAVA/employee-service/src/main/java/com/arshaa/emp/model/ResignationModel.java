@@ -13,9 +13,18 @@ public class ResignationModel {
     private String resignedReason;
 
 	private Date resignationDate;
+	private String designationName;
 
     
 	
+	
+	
+	public String getDesignationName() {
+		return designationName;
+	}
+	public void setDesignationName(String designationName) {
+		this.designationName = designationName;
+	}
 	public String getResignedReason() {
 		return resignedReason;
 	}

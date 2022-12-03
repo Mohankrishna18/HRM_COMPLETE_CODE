@@ -1,5 +1,6 @@
 package com.arshaa.service;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
@@ -44,22 +45,35 @@ public class ResignationServiceImpl implements ResignationService {
 //	Resignation resign=	restTemplate.getForObject(empURL+resignation.getEmployeeId(), Resignation.class);
 //	resignation.setDepartmentName(resign.getDepartmentName());
 //	resignation.setEmployeeId(resign.getEmployeeId());
+		
 		ResignationModel rm = template.getForObject(this.empResiInfoURL + resignation.getEmployeeId(),
 				ResignationModel.class);
 
 		resignation.setStatus(rm.getIrm());
 		Resignation res = resignationRepo.save(resignation);
+		System.out.println("Befor"+rm.getDesignationName());
 		String email=template.getForObject(getEmailByEmployeeIdURL+rm.getIrm(), String.class);
-
+		System.out.println("After"+rm.getDesignationName());
 		EmailTemplate mailTemp = new EmailTemplate();
 		Map<String, String> map = new HashMap();
 
 		mailTemp.setEmailType("RESIGNATION_APPLY");
 		map.put("employeeName", resignation.getResigningEmployee());
+		map.put("EmployeeId", res.getEmployeeId());
+		map.put("Department", rm.getDepartmentName());
+		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		String resignDate = dateFormat.format(res.getResignationDate());
+		map.put("ResignationDate",resignDate);
+		String exitDate = dateFormat.format(res.getExitDate());
+		map.put("ExitDate", exitDate);
+		map.put("designationName", rm.getDesignationName());
+		map.put("reason", res.getReason());
+
+		
 		map.put("email", "muralikrishna.miriyala@arshaa.com");
 //		map.put("email", email);
 		mailTemp.setMap(map);
-//		template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
+		template.postForObject(preEmailURL, mailTemp, EmailTemplate.class);
 		ResignationModel resi = new ResignationModel();
 		resi.setResignationDate(res.getResignationDate());
 		resi.setResignedReason(res.getReason());

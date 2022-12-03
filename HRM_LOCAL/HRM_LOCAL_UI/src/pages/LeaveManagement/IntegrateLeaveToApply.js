@@ -421,7 +421,7 @@ function IntegrateLeaveToApply() {
       }
     } catch (err) {
       console.log(err);
-      notifyError("Leave Already Applied");
+      notifyError("Something went wrong/Leave Already Applied");
     }
     setDay("");
     setFromDate("");
@@ -566,12 +566,12 @@ function IntegrateLeaveToApply() {
                   <Card.Title style={{ paddingLeft: "25%" }}>
                     Loss of Pay
                   </Card.Title>
-                  {LossOfPay > 0 ? (
+                  {leaveBalance < 0 ? (
                     <Card.Subtitle
                       className="mb-2 text-muted"
                       style={{ paddingLeft: "42%" }}
                     >
-                      {LossOfPay}
+                      {-leaveBalance}
                     </Card.Subtitle>
                   ) : (
                     <Card.Subtitle
