@@ -53,18 +53,20 @@ public class ResignationService {
 	
 	
 	public String updateEmployeeAfterResignConfirmed(String employeeId,ResignationModel rmodel)
-	{
-		try {
-			EmployeeMaster getEmployee=empRepo.getById(employeeId);
-			getEmployee.setStatus("InActive");
-			getEmployee.setExitDate(rmodel.getExitDate());
-			empRepo.save(getEmployee);
-			return "success";
-		}
-		catch(Exception e)
-		{
-			return "Failed";
-		}
-		
-	}
+    {
+        try {
+            EmployeeMaster getEmployee=empRepo.getById(employeeId);
+            getEmployee.setResignationDate(getEmployee.getResignationDate());
+            getEmployee.setResignedReason(getEmployee.getResignedReason());
+            getEmployee.setStatus("InActive");
+            getEmployee.setExitDate(rmodel.getExitDate());
+            empRepo.save(getEmployee);
+            return "success";
+        }
+        catch(Exception e)
+        {
+            return "Failed";
+        }
+        
+    }
 }
