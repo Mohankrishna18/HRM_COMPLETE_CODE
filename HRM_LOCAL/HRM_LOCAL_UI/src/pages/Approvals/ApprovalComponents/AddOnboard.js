@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { Modal } from "react-bootstrap";
@@ -11,10 +10,9 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { InputGroup } from "react-bootstrap";
 import "react-toastify/dist/ReactToastify.css";
-import './custom.css';
-import { AutoCompleteComponent } from '@syncfusion/ej2-react-dropdowns';
+import "./custom.css";
+import { AutoCompleteComponent } from "@syncfusion/ej2-react-dropdowns";
 import "./AddOnboard.css";
-
 
 function AddOnboard(props) {
   const [users, setUsers] = useState({});
@@ -25,13 +23,12 @@ function AddOnboard(props) {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [thirderrors, setThirdErrors] = useState("");
-  const [irm, setIrm] = useState('');
+  const [irm, setIrm] = useState("");
   const [step, setStep] = useState(0);
-  const handleClose = () => setShow();
-  const handleShow = () => setShow(true);
   const [jobT, setJobT] = useState("");
   const [list, setList] = useState([]);
-
+  const handleClose = () => setShow();
+  const handleShow = () => setShow(true);
 
   const forms = useRef(null);
 
@@ -46,6 +43,8 @@ function AddOnboard(props) {
         [field]: null,
       });
   }
+
+ 
 
   const validateForm = () => {
     const {
@@ -62,22 +61,47 @@ function AddOnboard(props) {
       jobTitle,
       clientName,
       requestInitiatedDate,
-      raisedBy
+      raisedBy,
     } = form;
     const newErrors = {};
-    /^[\d a-zA-Z ()+-]+$/
-    if (!firstName || firstName === "" || !firstName.match(/^[\d a-zA-Z ()+-]+$/))
-      newErrors.firstName = "Please Enter First Name";
-    if (!lastName || lastName === "" || !lastName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/))
-      newErrors.lastName = "Please Enter Last Name";
-    if (!email || email === "" || !email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i))
-      newErrors.email = "Please Enter Valid Email";
+    /^[\d a-zA-Z ()+-]+$/;
     if (
-      !phoneNumber ||
-      phoneNumber === "" ||
-      !phoneNumber.match(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/)
+      !firstName ||
+      firstName === "" ||
+      !firstName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/)
     )
-      newErrors.phoneNumber = "Please Enter Phone Number";
+      newErrors.firstName = "Please Enter First Name";
+    if (
+      !lastName ||
+      lastName === "" ||
+      !lastName.match(/^[a-zA-Z]+(\s[a-zA-Z]+)?$/)
+    )
+      newErrors.lastName = "Please Enter Last Name";
+      if (
+        !phoneNumber ||
+        phoneNumber === "" ||
+        !phoneNumber.match(
+          /^((\\+[1-9]{1}[ \\-]*)|(\\([0-9]{9}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+        )
+        || phoneNumber.length !== 10 
+      )
+        newErrors.phoneNumber = "Please Enter valid Phone Number";
+        if(
+          onboardedPhoneNumber.includes(phoneNumber)
+        )
+        newErrors.phoneNumber = "Phone Number already Exists";
+  
+    if (
+      !email ||
+      email === "" ||
+      !email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)
+    )
+      newErrors.email = "Please Enter Valid Email";
+      if(
+        onboardedEmail.includes(email)
+      )
+      newErrors.email = "Email already Exists";
+    
     if (!dateOfJoining || dateOfJoining === "")
       newErrors.dateOfJoining = "Please Enter Date of Joining";
     if (!primarySkills || primarySkills === "")
@@ -111,81 +135,75 @@ function AddOnboard(props) {
     //   if (!srm || srm === "") newErrors.srm = "Please Select srm";
     //   if (!buh || buh === "") newErrors.buh = "Please Select buh";
     return newErrors;
-
   };
+const [onboardedPhoneNumber,setOnboardedPhoneNumber] = useState([]);
+const [onboardedEmail, setOnboardedEmail] = useState([]);
+
+let phNo=[];
+let emailarray=[];
 
   useEffect(() => {
-    axios.get("/emp/getOnboardList").then((response) => {
-      console.log(response.data);
-      setList(response.data);
-    });
-
+    const loadData = async () => {
+      const res = await axios.get("/emp/getOnboardList");
+      res.data.map((item) => {
+        phNo.push(item.phoneNumber);
+        // console.log(phNo);
+        setOnboardedPhoneNumber(phNo);
+        const emaillist = item.email;
+        // console.log(emaillist);
+        emailarray.push(emaillist);
+        // console.log(emailarray);
+        setOnboardedEmail(emailarray);
+      })
+    };
+    loadData();
   }, []);
+ 
 
   const handleNext = (e) => {
     e.preventDefault();
     const formErrors = validateForm();
-    console.log(Object.keys(formErrors).length);
+    // console.log(Object.keys(formErrors).length);
     if (Object.keys(formErrors).length > 13) {
       setErrors(formErrors);
       console.log("Form validation error");
     } else {
       console.log("Form validation success");
       setStep((nextStep) => nextStep + 1);
-      console.log(form.value);
+      // console.log(form.value);
     }
   };
 
-  console.log(list);
-  console.log(list.email, list.phoneNumber)
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // e.target.reset();
     const formErrors = validateForm();
-    console.log(Object.keys(formErrors).length);
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
-      console.log("Form validation error");
     } else {
       axios
         .post("/emp/createNewPotentialEmployee", form)
         .then((response) => {
-          const user = response.data;
-          console.log(user)
-
-          if (user.status) {
+          const user = response.data;   
             props.func();
             setForm("");
-            handleClose();
-            toast.success("Employee Onboarded Successfully");
-          } else if (user.message == "could not execute statement; SQL [n/a]; constraint [onboarding.email_UNIQUE]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement") {
-            toast.error("Email already exixts")
-          }
-          else if (user.message == "could not execute statement; SQL [n/a]; constraint [onboarding.phone_number_UNIQUE]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement") {
-            toast.error("PhoneNumber already exixts")
-          }else if(user.message == "could not execute statement; SQL [n/a]; constraint [onboarding.UC_Person]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement"){
-            toast.error("Email and Phone Number are already exists");
-        }
-          else {
-            console.log("Props Not Send");
-          }
-          console.log(user);
-
+          toast.success("Employee Onboarded Successfully");
+          // console.log(user);
+          setTimeout(1000);
+          handleClose();
         })
         .catch((err) => {
           toast.error("Something Went Wrong");
         });
     }
-
   };
-
 
   const [designations, setDesignations] = useState([]);
   useEffect(() => {
     axios.get("/designation/getAllDesignations").then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       setDesignations(response.data);
     });
     // .catch(() => {
@@ -207,7 +225,7 @@ function AddOnboard(props) {
   const [reportingManager, setReportingManager] = useState([]);
   useEffect(() => {
     axios.get("/emp/getreportingmanager").then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       setReportingManager(response.data.data);
     });
   }, []);
@@ -215,7 +233,7 @@ function AddOnboard(props) {
   const [bands, setBands] = useState([]);
   useEffect(() => {
     axios.get("/bands/getAllBands").then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       setBands(response.data.data);
     });
   }, []);
@@ -223,7 +241,7 @@ function AddOnboard(props) {
   const [client, setClient] = useState([]);
   useEffect(() => {
     axios.get("/clientProjectMapping/getAllClients").then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       setClient(response.data.data);
     });
   }, []);
@@ -231,28 +249,27 @@ function AddOnboard(props) {
   const [project, setProject] = useState([]);
   useEffect(() => {
     axios.get("/clientProjectMapping/getAllProjects").then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       setProject(response.data.data);
     });
   }, []);
 
   const [rrf, setRrf] = useState([]);
   useEffect(() => {
-    axios.get("/recruitmentTracker/getAllRequisitionRequestsByStatus").then((response) => {
-      setRrf(response.data.data);
-    });
+    axios
+      .get("/recruitmentTracker/getAllRequisitionRequestsByStatus")
+      .then((response) => {
+        setRrf(response.data.data);
+      });
   }, []);
-  console.log(rrf)
 
-  console.log(jobT);
   const jobTitle = jobT.jobTitle;
-  console.log(jobT.jobTitle);
-
+ 
 
   useEffect(() => {
     const loadUsers = async () => {
       const response = await axios.get("/emp/getAllEmployeeMasterData");
-      console.log(response.data.data);
+      // console.log(response.data.data);
       setUsers(response.data.data);
     };
     loadUsers();
@@ -299,7 +316,7 @@ function AddOnboard(props) {
               // noValidate
               // validated={validated}
               style={{ padding: 10 }}
-            // onSubmit={handleSubmit}
+              // onSubmit={handleSubmit}
             >
               <Row className="mb-4">
                 <Row md="12">
@@ -309,7 +326,10 @@ function AddOnboard(props) {
                       outlined
                       dataSource={rrf}
                       placeholder="Select AERF ID"
-                      fields={{ value: "requisitionId", display: "requisitionId" }}
+                      fields={{
+                        value: "requisitionId",
+                        display: "requisitionId",
+                      }}
                       value={form.requisitionId}
                       isInvalid={!!errors.requisitionId}
                       onChange={(e) => {
@@ -318,13 +338,13 @@ function AddOnboard(props) {
                             `/recruitmentTracker/getDataById/${e.target.value}`
                           )
                           .then((response) => {
-                            console.log(response.data.data);
-                            setJobT(response.data.data)
+                            // console.log(response.data.data);
+                            setJobT(response.data.data);
                           });
                         setField("requisitionId", e.target.value);
                       }}
 
-                    // query={dataQuery}
+                      // query={dataQuery}
                     >
                       <option value="">Select </option>
                       {rrf.map((requisitionId) => (
@@ -332,7 +352,6 @@ function AddOnboard(props) {
                           {requisitionId.requisitionId}
                         </option>
                       ))}
-
                     </Form.Select>
                   </Form.Group>
                   <Form.Control.Feedback type="invalid">
@@ -363,7 +382,11 @@ function AddOnboard(props) {
                 // query={dataQuery}
                 ></AutoCompleteComponent>
             </Form.Group> */}
-                  <Form.Group as={Col} md="6" style={{ padding: 10, paddingLeft: 20 }}>
+                  <Form.Group
+                    as={Col}
+                    md="6"
+                    style={{ padding: 10, paddingLeft: 20 }}
+                  >
                     <Form.Label>Job Title *</Form.Label>
                     <Form.Control
                       disabled
@@ -373,9 +396,8 @@ function AddOnboard(props) {
                       placeholder="Job Title "
                       value={jobT.jobTitle}
                       maxLength={30}
-                      onChange={(e) =>
-                        setField("jobTitle", e.target.value)}
-                    //isInvalid={!!errors.jobTitle}
+                      onChange={(e) => setField("jobTitle", e.target.value)}
+                      //isInvalid={!!errors.jobTitle}
                     ></Form.Control>
                     <Form.Control.Feedback type="invalid">
                       {errors.jobTitle}
@@ -413,7 +435,7 @@ function AddOnboard(props) {
                   ></Form.Control>
                 </Form.Group>
                 <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                  <Form.Label>Last name *</Form.Label>
+                  <Form.Label>Last Name *</Form.Label>
                   <Form.Control
                     required
                     name="last_name"
@@ -433,7 +455,9 @@ function AddOnboard(props) {
                 <Form.Group as={Col} md="6" style={{ padding: 10 }}>
                   <Form.Label>Phone Number *</Form.Label>
                   <InputGroup hasValidation>
-                    <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
+                    <InputGroup.Text id="inputGroupPrepend">
+                      +91
+                    </InputGroup.Text>
                     <Form.Control
                       required
                       type="number"
@@ -443,20 +467,21 @@ function AddOnboard(props) {
                       maxLength={10}
                       onChange={(e) => {
                         setField("phoneNumber", e.target.value);
-                        if (e.target.value.length < 10 ||  e.target.value.length > 10) {
+                        if (
+                          e.target.value.length < 10 ||
+                          e.target.value.length > 10
+                        ) {
                           setThirdErrors(
                             " Phone Number length should be 10 characters"
                           );
-                        }
-                        else {
+                        } else {
                           setThirdErrors("");
                         }
-
                       }}
-                      isInvalid={thirderrors}
+                      isInvalid={!!errors.phoneNumber}
                     ></Form.Control>
                     <Form.Control.Feedback type="invalid">
-                      {thirderrors}
+                      {errors.phoneNumber}
                     </Form.Control.Feedback>
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                   </InputGroup>
@@ -478,7 +503,6 @@ function AddOnboard(props) {
                       // else{
                       //   email
                       // }
-
 
                       if (form.phoneNumber === "") {
                         setThirdErrors(" Phone Number is Required");
@@ -536,9 +560,11 @@ function AddOnboard(props) {
                     controlid="secondarySkills"
                     value={form.secondarySkills}
                     maxLength={30}
-                    onChange={(e) => setField("secondarySkills", e.target.value)}
-                  // onChange={changeHandler}
-                  //isInvalid={!!errors.secondarySkills}
+                    onChange={(e) =>
+                      setField("secondarySkills", e.target.value)
+                    }
+                    // onChange={changeHandler}
+                    //isInvalid={!!errors.secondarySkills}
                   />
                   <Form.Control.Feedback type="invalid">
                     {/* {errors.secondarySkills} */}
@@ -570,7 +596,6 @@ function AddOnboard(props) {
                     {errors.yearsOfExperience}
                   </Form.Control.Feedback>
                 </Form.Group>
-
               </Row>
             </Form>
             <Button onClick={handleSubmit}>Submit</Button>
@@ -797,7 +822,7 @@ function AddOnboard(props) {
           </div>
         </Modal.Body>
       </Modal>
-    </div >
+    </div>
   );
 }
 export default AddOnboard;

@@ -71,7 +71,10 @@ function OnboardedEmployeesTable() {
 
   useEffect(() => {
     loadData();
-  }, [addStatus, updateStatus]);
+  }, [updateStatus]);
+  useEffect(() => {
+    loadData();
+  }, [addStatus]);
   // useEffect(() => {
   //   loadData();
   // }, [viewStatus]);
@@ -79,7 +82,7 @@ function OnboardedEmployeesTable() {
   const loadData = async (e) => {
     const response = await axios.get(`/emp/getDetailsforPMOApprovalByOnboardingStatus/${onboardingStatus}`);// u ned to change this
     setData(response.data.data);
-    console.log(response.data);
+    // console.log(response.data);
   };
 
   const [columns, setColumns] = useState([
@@ -309,7 +312,7 @@ function OnboardedEmployeesTable() {
                       <Button
                         onClick={(event) => {
                           setShow(true);
-                          console.log(props);
+                          // console.log(props);
                           setUpdateOnboard(props.data);
                         }}
                         variant="white "
@@ -323,7 +326,7 @@ function OnboardedEmployeesTable() {
                         className="rounded-pill"
                         onClick={(event) => {
                           setViewShow(true);
-                          console.log(props);
+                          // console.log(props);
                           setViewOnboard(props.data);
                         }}
                       >
@@ -339,7 +342,7 @@ function OnboardedEmployeesTable() {
                       className="rounded-pill"
                       onClick={(event) => {
                         setViewShow(true);
-                        console.log(props);
+                        // console.log(props);
                         setViewOnboard(props.data);
                       }}
                     >
