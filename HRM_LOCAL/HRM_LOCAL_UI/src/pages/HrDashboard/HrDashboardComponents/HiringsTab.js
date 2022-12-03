@@ -106,7 +106,8 @@ export default function HiringsTab(props) {
     axios
       .get(`emp/getData`)
       .then((res) => {
-        setMonth(res.data);
+        const sata1 = res.data.filter(item => item.onboardingStatus === 'CEOApproved')
+        setMonth(sata1);
         console.log(res.data);
       });
   }, []);
@@ -115,7 +116,8 @@ export default function HiringsTab(props) {
     axios
       .get(`emp/getDataByDATE`)
       .then((res) => {
-        setToday(res.data);
+        const sata2 = res.data.filter(item => item.onboardingStatus === 'CEOApproved')
+        setToday(sata2);
         console.log(res.data);
       });
   }, []);
@@ -162,5 +164,3 @@ export default function HiringsTab(props) {
     </div>
   )
 }
-
-
