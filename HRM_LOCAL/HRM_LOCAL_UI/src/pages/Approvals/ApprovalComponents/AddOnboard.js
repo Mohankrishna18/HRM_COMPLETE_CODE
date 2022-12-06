@@ -191,7 +191,7 @@ let emailarray=[];
             setForm("");
           toast.success("Employee Onboarded Successfully");
           // console.log(user);
-          setTimeout(1000);
+          setTimeout(10);
           handleClose();
         })
         .catch((err) => {
