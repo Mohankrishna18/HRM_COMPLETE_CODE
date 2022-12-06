@@ -509,6 +509,7 @@ const StepperForm = (props) => {
                                                         axios.get(`/clientProjectMapping/getClientsByBusinessUnits/${e.target.value}`).then((response) => {
                                                             // console.log(response.data);
                                                             setClients(response.data);
+                                                            setProjects([{projectName:"None"}]);
                                                         });
                                                     }}
                                                     isInvalid={!!errors.departmentName}
