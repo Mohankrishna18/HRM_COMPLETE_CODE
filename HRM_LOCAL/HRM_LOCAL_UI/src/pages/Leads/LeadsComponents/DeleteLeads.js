@@ -5,7 +5,6 @@ import { toast } from 'react-toastify';
 import Modal from "react-bootstrap/Modal";
 import axios from "../../../Uri";
 
-// To Delete Lead
 const DeleteLeads = (props) => {
     console.log(props.deleteOnboard)
     const Delete = () => {
@@ -15,17 +14,13 @@ const DeleteLeads = (props) => {
         try {
             const res = await axios.delete(`/Leads/deleteLead/${props.deleteOnboard.id}`)
                 .then((deletedResponse) => {
-                    // const user = deletedResponse.data
-                    // console.log(deletedResponse);
                     if (deletedResponse.data) {
                         props.func();
-                        toast.success("Lead deleted successfully!!!");
+                        toast.success("Lead deleted successfully!!!",{autoClose:1000});
                     }
                     else {
                         console.log("Props not Send")
                     }
-
-                    // console.log(user);
                 })
         }
         catch (error) {

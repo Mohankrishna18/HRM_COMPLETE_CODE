@@ -8,15 +8,7 @@ import axios from "../../../Uri";
 import { toast } from "react-toastify";
 import moment from "moment";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  Timeline,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineContent,
-  TimelineDot,
-  TimelineConnector,
-} from "@mui/lab";
-// Empty commit
+
 const LeadsUpdatedForm = (props) => {
   console.log(props.updateOnboard);
 
@@ -42,7 +34,6 @@ const LeadsUpdatedForm = (props) => {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
   const [show, setShow] = useState(false);
-  // useState for phone number
   const [firsterrors, setFirstErrors] = useState("");
   const [seconderrors, setSecondErrors] = useState("");
   const [thirderrors, setThirdErrors] = useState("");
@@ -71,15 +62,9 @@ const LeadsUpdatedForm = (props) => {
       newErrors.leadName = "Please Enter Lead Name";
     if (!startDate || startDate === "")
       newErrors.startDate = "Please Enter Start Date";
-    // if (!endDate || endDate === "")
-    //   newErrors.endDate = "Please Enter End Date";
     if (!companyName || companyName === "" || !companyName.match(/^[\d a-zA-Z0-9 ()+-._&'",:;@$]+$/))
       newErrors.companyName = "Please Enter Company Name";
     if (!companyEmail || companyEmail === "") newErrors.companyEmail = "Please Enter company Email";
-    // if (!companyPhoneNumber || companyPhoneNumber === "" || !companyPhoneNumber.match(/^((\\+[1-9]{1}[ \\-]*)|(\\([0-9]{9}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/))
-    //   newErrors.companyPhoneNumber = "Please Enter company PhoneNumber";
-    // if (!companyCountry || companyCountry === "") newErrors.companyCountry = "Please Enter Company Country ";
-    // if (!companyAddress || companyAddress === "") newErrors.companyAddress = "Please Enter Company Address";
     if (!sourceName || sourceName === "" || !sourceName.match(/^[aA-zZ\s]+$/))
       newErrors.sourceName = "Please Enter Source Name";
     if (!sourceEmail || sourceEmail === "") newErrors.sourceEmail = "Please Enter source Email";
@@ -87,9 +72,6 @@ const LeadsUpdatedForm = (props) => {
       newErrors.sourcePhoneNumber = "Please Enter source PhoneNumber";
     if (!pocName || pocName === "" || !pocName.match(/^[aA-zZ\s]+$/))
       newErrors.pocName = "Please Enter POC Name";
-    // if (!pocEmail || pocEmail === "") newErrors.pocEmail = "Please Enter POC Email";
-    // if (!pocPhoneNumber || pocPhoneNumber === "" || !pocPhoneNumber.match(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/))
-    //   newErrors.pocPhoneNumber = "Please Enter POC PhoneNumber";
     if (!status || status === "") newErrors.status = "Please Enter Status";
     if (!businessValue || businessValue === "" || !businessValue.match(/^[0-9a-zA-Z]*$/))
       newErrors.businessValue = "Please Enter Business Value";
@@ -98,7 +80,6 @@ const LeadsUpdatedForm = (props) => {
     return newErrors;
   };
 
-  // Countries
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState({});
 
@@ -106,7 +87,6 @@ const LeadsUpdatedForm = (props) => {
     const loadData = async () => {
       const res = await axios.get("https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code");
       setCountries(res.data.countries);
-      console.log(res.data);
     };
     loadData();
   }, []);
@@ -116,11 +96,10 @@ const LeadsUpdatedForm = (props) => {
         "/clientProjectMapping/getAllClients"
       );
       setGetClient(res.data.data);
-      console.log(res.data.data);
     };
     loadData();
   }, []);
-  //testing for commit
+
   const [user, setUser] = useState("");
   const[activeEmp,setActiveEmp]=useState([]);
   var sortedActiveEmp = _.sortBy(activeEmp,'fullName');
@@ -135,13 +114,10 @@ const Active="Active"
       res.data.data.map((it)=>{
         dropdown.push((it.firstName))
       })
-      console.log(res.data.data);
     };
     loadData();
   }, []);
-  console.log(dropdown);
 const dro = dropdown.sort()
-console.log(dro)
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -170,17 +146,16 @@ console.log(dro)
       .then((response) => {
         const user = response.data;
         if (response.data.status) {
-          toast.success("Form Submitted successfully");
+          toast.success("Form Submitted successfully",{autoClose:1000});
           props.func();
         } else {
           console.log("Props not Send");
         }
-        console.log(user);
-
+        setTimeout(1000);
       })
       .catch((err) => {
         console.log(err);
-        toast.error("Something Went Wrong");
+        toast.error("Something Went Wrong",{autoClose:1000});
       });
     props.handleClose();
   };
@@ -190,8 +165,6 @@ console.log(dro)
       <Form
         ref={forms}
         className="formone"
-        // noValidate
-        // validated={validated}
         style={{ padding: 10 }}
         onSubmit={handleSubmit}
       >
@@ -205,7 +178,6 @@ console.log(dro)
                     type="text"
                     controlid="leadName"
                     placeholder="Lead Name"
-                    // onChange={(event) => setclientName(event.target.value)}
                     value={leadName}
                     maxLength={50}
                     onChange={(e) => setleadName(e.target.value)}
@@ -229,7 +201,6 @@ console.log(dro)
                     type="date"
                     controlid="startDate"
                     placeholder="Start Date"
-                    // onChange={(event) => setclientName(event.target.value)}
                     value={startDate}
                     maxLength={30}
                     onChange={(e) => setstartDate(e.target.value)}
@@ -249,7 +220,6 @@ console.log(dro)
                     type="date"
                     controlid="endDate"
                     placeholder="End Date"
-                    // onChange={(event) => setclientName(event.target.value)}
                     value={endDate}
                     maxLength={30}
                     onChange={(e) => setendDate(e.target.value)}
@@ -269,7 +239,6 @@ console.log(dro)
                     type="text"
                     controlid="sourceName"
                     placeholder="Source Name"
-                    // onChange={(event) => setclientName(event.target.value)}
                     value={sourceName}
                     maxLength={50}
                     onChange={(e) => setsourceName(e.target.value)}
@@ -319,90 +288,7 @@ console.log(dro)
                     {errors.status}
                   </Form.Control.Feedback>
                 </Form.Group>
-
-                {/* phone number */}
-                {/* <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>Company PhoneNumber</Form.Label>
-                  <InputGroup hasValidation>
-                    <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
-                    <Form.Control
-                      required
-                      type="number"
-                      maxLength={10}
-                      placeholder="company PhoneNumber"
-                      controlid="companyPhoneNumber"
-                      value={form.phoneNumber}
-                      onChange={(e) => {
-                        setField("companyPhoneNumber", e.target.value);
-                        if (e.target.value.length > 10) {
-                          setFirstErrors(
-                            " Phonenumber length should be 10 characters"
-                          );
-                        } else {
-                          setFirstErrors("");
-                        }
-                      }}
-                      isInvalid={firsterrors}
-                    ></Form.Control>
-                    <Form.Control.Feedback type="invalid">
-                      {errors.companyPhoneNumber}
-                      {firsterrors}
-                    </Form.Control.Feedback>
-                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  </InputGroup>
-                </Form.Group> */}
-
-                {/* <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>Company Country </Form.Label>
-                  <Form.Select
-                    required
-                    className="companyCountry"
-                    type="text"
-                    controlid="companyCountry"
-                    placeholder="Select Country"
-                    // onChange={(event) => setclientName(event.target.value)}
-                    value={form.companyCountry}
-                    maxLength={30}
-                    onChange={(e) => setField("companyCountry", e.target.value)}
-                    isInvalid={!!errors.companyCountry}
-                  >
-                    <option>Select Country</option>
-
-                    {countries.map((companyCountry) => (
-                      <option value={companyCountry.label}>
-                        {companyCountry.label}
-                      </option>
-                    ))}
-                  </Form.Select>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.companyCountry}
-                  </Form.Control.Feedback>
-                </Form.Group>
-
-                {/* Address */}
-                {/* <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>Company Address </Form.Label>
-                  <Form.Control
-                    required
-                    as="textarea"
-                    className="address"
-                    type="text"
-                    controlid="companyAddress"
-                    placeholder="Company Address"
-                    // onChange={(event) => setclientName(event.target.value)}
-                    value={form.companyAddress}
-                    maxLength={30}
-                    onChange={(e) => setField("companyAddress", e.target.value)}
-                    isInvalid={!!errors.companyAddress}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.companyAddress}
-                  </Form.Control.Feedback>
-                </Form.Group>  */}
               </Col>
-              {/* <Col md="1">
-                <div className="vr" style={{ height: "98%" }}></div>
-              </Col> */}
               <Col md="6">
               <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                   <Form.Label>Company/Client*</Form.Label>
@@ -412,7 +298,6 @@ console.log(dro)
                     type="text"
                     controlid="companyName"
                     placeholder="Company Name"
-                    // onChange={(event) => setclientName(event.target.value)}
                     defaultValue={companyName}
                     value={companyName}
                     maxLength={100}
@@ -450,7 +335,6 @@ console.log(dro)
                 <Form.Group as={Col} md="12" style={{ padding: 10 }}>
                   <Form.Label>Source Contact*</Form.Label>
                   <InputGroup hasValidation>
-                    {/* <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text> */}
                     <Form.Control
                       required
                       type="number"
@@ -486,7 +370,6 @@ console.log(dro)
                     type="text"
                     controlid="pocName"
                     placeholder="POC Name"
-                    // onChange={(event) => setclientName(event.target.value)}
                     value={pocName}
                     maxLength={50}
                     onChange={(e) => setpocName(e.target.value)}
@@ -503,52 +386,6 @@ console.log(dro)
                     {errors.pocName}
                   </Form.Control.Feedback>
                 </Form.Group>
-
-                {/* <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>POC Email</Form.Label>
-                  <Form.Control
-                    required
-                    type="email"
-                    placeholder="POC Email"
-                    controlid="pocEmail"
-                    value={form.pocEmail}
-                    onChange={(e) => setField("pocEmail", e.target.value)}
-                    isInvalid={!!errors.pocEmail}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.pocEmail}
-                  </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group as={Col} md="12" style={{ padding: 10 }}>
-                  <Form.Label>POC PhoneNumber</Form.Label>
-                  <InputGroup hasValidation>
-                    <Form.Control
-                      required
-                      type="number"
-                      maxLength={10}
-                      placeholder="POC PhoneNumber"
-                      controlid="pocPhoneNumber"
-                      value={form.pocPhoneNumber}
-                      onChange={(e) => {
-                        setField("pocPhoneNumber", e.target.value);
-                        if (e.target.value.length > 10) {
-                          setThirdErrors(
-                            "Phonenumber length should be 10 characters"
-                          );
-                        } else {
-                          setThirdErrors("");
-                        }
-                      }}
-                      isInvalid={thirderrors}
-                    ></Form.Control>
-                    <Form.Control.Feedback type="invalid">
-                      {errors.pocPhoneNumber}
-                      {thirderrors}
-                    </Form.Control.Feedback>
-                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  </InputGroup>
-                </Form.Group> */}
               </Col>
               <Row>
                 <Col md="12">
@@ -561,7 +398,6 @@ console.log(dro)
                     type="text"
                     controlid="businessValue"
                     placeholder="Business Value"
-                    // onChange={(event) => setclientName(event.target.value)}
                     value={businessValue}
                     maxLength={225}
                     onChange={(e) => setBusinessValue(e.target.value)}
@@ -584,7 +420,6 @@ console.log(dro)
                     type="text"
                     controlid="leadNotes"
                     placeholder="lead Notes"
-                    // onChange={(event) => setclientName(event.target.value)}
                     value={leadNotes}
                     maxLength={225}
                     onChange={(e) => setleadNotes(e.target.value)}
@@ -596,68 +431,6 @@ console.log(dro)
                 </Form.Group>
                 </Col>
               </Row>
-
-              {/* <Row>
-                <Col md="12">
-                  <div style={{ height: "98%" }}>
-                    <div>
-                      <Form>
-                        <Col>
-                          <Form.Group as={Col} md="12" style={{ padding: 5 }}>
-                            <Form.Label>Comment </Form.Label>
-                            <Form.Control
-                              required
-                              as="textarea"
-                              className="comment"
-                              type="text"
-                              controlid="comment"
-                              placeholder="Comment"
-                              value={form.comment}
-                              maxLength={200}
-                              onChange={(e) =>
-                                setField("comment", e.target.value)
-                              }
-                              isInvalid={!!errors.comment}
-                            ></Form.Control>
-                            <Form.Control.Feedback type="invalid">
-                              {errors.comment}
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </Col>
-                        <Col>
-                        </Col>
-                        <Button
-                          style={{
-                            backgroundColor: "#f5896e",
-                            borderColor: "#f5896e",
-                            width: "20%",
-                            height: "120%",
-                            borderRadius: "25px",
-                            marginBottom: "45px"
-                          }}
-                          type="submit" onClick={postdata}>
-                          Post
-                        </Button>
-                      </Form>
-                      <Timeline style={{ paddingRight: "140%" }}>
-                        {comment.map((m) => (
-                          <TimelineItem>
-                            <TimelineSeparator>
-                              <TimelineDot />
-                              <TimelineConnector />
-                            </TimelineSeparator>
-                            <TimelineContent>
-                              {m.comment}
-                              <br />
-                              {m.date}
-                            </TimelineContent>
-                          </TimelineItem>
-                        ))}
-                      </Timeline>
-                    </div>
-                  </div>
-                </Col>
-              </Row> */}
               <Row>
                 <Col md="12">
                 </Col>
@@ -681,22 +454,6 @@ console.log(dro)
                   Submit
                 </Button>
               </Col>
-              {/* <Col>
-                <Button
-                  style={{
-                    backgroundColor: "#B6B6B4",
-                    borderColor: "#B6B6B4",
-                    alignItems: "center",
-                    width: "40%",
-                    height: "120%",
-                    borderRadius: "25px",
-                  }}
-                  type="cancel"
-                  onClick={handleClose}
-                >
-                  Close
-                </Button>
-              </Col> */}
             </Row>
       </Form>
     </>

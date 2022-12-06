@@ -6,15 +6,11 @@ import { Form } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import axios from "../../../Uri";
 import { toast } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
 import moment from "moment";
 
 const ApprovalView = (props) => {
   console.log(props.viewOnboard);
-  // console.log(props.firstName)
-
-
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -87,23 +83,18 @@ const ApprovalView = (props) => {
     return newErrors;
 
   };
-  //testing for commit
   const [user, setUser] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    // e.target.reset();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
     } else {
-      // console.log(form);
-      // console.log("form submitted");
       axios
         .post("/emp/createNewPotentialEmployee", form)
         .then((response) => {
           const user = response.data;
           toast.success("Form Submitted successfully");
-          // console.log(user);
         })
         .catch((err) => {
           toast.error("Unable to fetch data");
@@ -114,10 +105,8 @@ const ApprovalView = (props) => {
 
   return (
     <div className="scroll">
-      {/* Attributes / fields */}
       <Row style={{ marginTop: 20 }}>
         <Col md="5">
-          {/* Lead name */}
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
@@ -182,46 +171,6 @@ const ApprovalView = (props) => {
               </Card.Text>
             </Col>
           </Row>
-
-
-          {/* <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-            <Col>
-              <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
-                Company PhoneNumber   :
-              </Card.Subtitle>{" "}
-            </Col>
-            <Col md={{ offset: 1 }}>
-              <Card.Text style={{ paddingBottom: 0, fontSize: "14px" }}>
-                {props.viewOnboard.companyPhoneNumber}
-              </Card.Text>
-            </Col>
-          </Row> */}
-
-          {/* <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-            <Col>
-              <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
-                Company Country   :
-              </Card.Subtitle>{" "}
-            </Col>
-            <Col md={{ offset: 1 }}>
-              <Card.Text style={{ paddingBottom: 0, fontSize: "14px" }}>
-                {props.viewOnboard.companyCountry}
-              </Card.Text>
-            </Col>
-          </Row> */}
-
-          {/* <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
-            <Col>
-              <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
-                Company Address   :
-              </Card.Subtitle>{" "}
-            </Col>
-            <Col md={{ offset: 1 }}>
-              <Card.Text style={{ paddingBottom: 0, fontSize: "14px" }}>
-                {props.viewOnboard.companyAddress}
-              </Card.Text>
-            </Col>
-          </Row> */}
         </Col>
         <Col md="2">
           <div className="vr" style={{height:"200px"}}>
@@ -277,8 +226,6 @@ const ApprovalView = (props) => {
               </Card.Text>
             </Col>
           </Row>
-
-          {/* status */}
           <Row style={{ paddingBottom: 10, paddingLeft: 10 }}>
             <Col>
               <Card.Subtitle style={{ padding: 10, fontSize: "14px" }}>
