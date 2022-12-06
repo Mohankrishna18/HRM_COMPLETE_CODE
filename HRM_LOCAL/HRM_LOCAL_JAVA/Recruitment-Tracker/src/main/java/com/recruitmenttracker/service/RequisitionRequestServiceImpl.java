@@ -438,6 +438,17 @@ hrApp.forEach(e->{
             }
     }
     
+    public void getBusinessunit( ) {
+        // all businessunits
+    }
+    
+    public void getClients(String businessUnit ) {
+        // all clients related to businessUnit
+    }
+    
+    public void getprojects(String clientName ) {
+        // all projects related to clientname
+    }
 
 
     public RequisitionRequestEntity getRequisitionDataById(String requisitionId)
