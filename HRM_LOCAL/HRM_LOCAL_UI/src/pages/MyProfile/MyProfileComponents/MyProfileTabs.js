@@ -27,11 +27,13 @@ function MyProfileTabs(props) {
   const [data, setData] = useState();
   useEffect(() => {
       loadData();
+      getOnboarding();
   }, []);
 
   const da = JSON.parse(sessionStorage.getItem('userdata'))
   const empID = da.data.employeeId;
   const[profile,setProfile] = useState(empID);
+  
 
   const currentdate = new Date();
   var cd = String(currentdate.getDate()).padStart(2, '0');
@@ -47,6 +49,20 @@ function MyProfileTabs(props) {
       setData(res.data.data);
       
   };
+  const [onboardingId, setOnboardingId] = useState("");
+
+    const getOnboarding = () => {
+        axios
+            .get(`/emp/getEmployeeDataByEmployeeId/${empID}`)
+            .then((res) => {
+                console.log(res.data.data);
+                setOnboardingId(res.data.data)
+            });
+    }
+    console.log(onboardingId)
+console.log(onboardingId.onboardingId);
+    const obdId = onboardingId.onboardingId;
+    console.log(obdId);
   var today = new Date(data);
   var dd = String(today.getDate()).padStart(2, '0');
   var mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -92,7 +108,7 @@ var total_days = (day_end - day_start) / (1000 * 60 * 60 * 24);
 
   <TabPanel value="1"><ProfilePersonalDetailsTab profile={profile}/></TabPanel>
   <TabPanel value="2"> <ProfileAddressTab profile={profile}/></TabPanel>
-  <TabPanel value="3"><ProfileAdditionalDetailsTab profile={profile}/></TabPanel>
+  <TabPanel value="3"><ProfileAdditionalDetailsTab profile={profile} obid={obdId}/></TabPanel>
   <TabPanel value="4"><ProfileEmploymentDetailsTab profile={profile}/></TabPanel>
   <TabPanel value="5"><ProfileEducationalDetailsTab profile={profile}/></TabPanel>
   <TabPanel value="6"><ProfileExperienceTab profile={profile}/></TabPanel>
