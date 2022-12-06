@@ -16,8 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.arshaa.emp.entity.EmployeeMaster;
 import com.arshaa.emp.entity.EmployeeProfile;
+import com.arshaa.emp.model.EmpProfile;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
 import com.arshaa.emp.repository.EmployeeProfileRepository;
+
 
 @Service
 public class EmployeeProfileService {
@@ -171,12 +173,7 @@ public class EmployeeProfileService {
     
     public EmployeeProfile update(MultipartFile file, String employeeId) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-//        
-//        EmployeeProfile newFile = new EmployeeProfile();
-//       
-//        emp.setName(newFile.getName());
-//        emp.setData(newFile.getData());
-//        emp.setType(newFile.getType());
+
         EmployeeProfile emp = epRepo.findByEmployeeId(employeeId);
 //        EmployeeProfile newFile = new EmployeeProfile();
         emp.setData(file.getBytes());
@@ -186,7 +183,19 @@ public class EmployeeProfileService {
         return epRepo.save(emp);
     }
 
-
+ 
+public EmpProfile updateEmployeeIdByOnboardingId(String onboardingId, EmpProfile emprofile) {
+	try {
+		EmployeeProfile ep = epRepo.findByOnboardingId(onboardingId);
+		ep.setEmployeeId(emprofile.getEmployeeId());	
+		epRepo.save(ep);	
+		return emprofile;
+	} catch (Exception e) {
+		e.getMessage();
+	}
+	return emprofile;
+	
+}
 
    public EmployeeProfile getFile(String id) {
         return epRepo.findById(id).get();
