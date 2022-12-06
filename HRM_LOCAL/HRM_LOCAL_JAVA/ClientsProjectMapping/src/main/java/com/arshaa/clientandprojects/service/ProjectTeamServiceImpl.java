@@ -98,65 +98,83 @@ public class ProjectTeamServiceImpl implements ProjectTeamInterface {
 	}
 
 	// To Edit(Update) Project Team
+	
 	@Override
 	public ResponseEntity updateProjectTeamById(int employeeprojectId, ProjectTeamMaster newTeamUpdate) {
-		ProjectTeamResponse ptrm = new ProjectTeamResponse<>();
-		try {
-			ProjectTeamMaster updateProjectTeam = ptmrepo.findByemployeeprojectId(employeeprojectId);
-//               updateProjectTeam.setEmployeeprojectId(employeeprojectId);
-			updateProjectTeam.setFullName(newTeamUpdate.getFullName());
-			updateProjectTeam.setDesignationName(newTeamUpdate.getDesignationName());
-			updateProjectTeam.setDepartmentName(newTeamUpdate.getDepartmentName());
-			updateProjectTeam.setStartDate(newTeamUpdate.getStartDate());
-			updateProjectTeam.setEndDate(newTeamUpdate.getEndDate());
-			updateProjectTeam.setStatus(newTeamUpdate.getStatus());
-			updateProjectTeam.setPrmasterId(newTeamUpdate.getPrmasterId());
-			updateProjectTeam.setAssignedDate(newTeamUpdate.getAssignedDate());
-			updateProjectTeam.setProjectAllocation(newTeamUpdate.getProjectAllocation());
+	   ProjectTeamResponse ptrm = new ProjectTeamResponse<>();
+	   try {
+	      List<ProjectTeamMaster> projectTeamMasterList = ptmrepo.findAllByEmployeeId(newTeamUpdate.getEmployeeId());
+	      projectTeamMasterList = projectTeamMasterList.stream()
+	            .map(db -> transformProjectTeamMaster(db,newTeamUpdate)).collect(Collectors.toList());
+	      Integer allocation = projectTeamMasterList.stream().map(ProjectTeamMaster::getProjectAllocation).collect(Collectors.summingInt(Integer::intValue));
+	      if(allocation > 100) {
+	    	  
+	    	  throw new Exception("Allocated is exceeding 100%.");
+//	         ptrm.setStatus(false);
+//	         ptrm.setMessage("Allocation exceeding 100%");
+//	         //ptrm.setData(newTeamUpdate);
+//	         return new ResponseEntity(ptrm, HttpStatus.EXPECTATION_FAILED);
+	      }
 
-			AssignProjectName uapn = new AssignProjectName();
-			uapn.setProjectName(newTeamUpdate.getProjectName());
-			uapn.setProjectAllocation(newTeamUpdate.getProjectAllocation());
-			//Integer projectAllocation =newProjectTeamData.getProjectAllocation();
-			template.postForEntity("http://empService/emp/updateProjectAllocationPercentAfterMapping/"+updateProjectTeam.getEmployeeId(), uapn, AssignProjectName.class);
-			
-			ProjectTeamMaster latestTeam = ptmrepo.save(updateProjectTeam);
-			System.out.println(latestTeam);
-			ptrm.setStatus(true);
-			ptrm.setMessage("Data added successfully");
-			ptrm.setData(latestTeam);
+	      ptmrepo.saveAll(projectTeamMasterList);
+	      AssignProjectName uapn = new AssignProjectName();
+	      uapn.setProjectName(newTeamUpdate.getProjectName());
+	      uapn.setProjectAllocation(projectTeamMasterList.stream()
+	            .map(ProjectTeamMaster::getProjectAllocation).collect(Collectors.summingInt(Integer::intValue)));
+	      template.postForEntity("http://empService/emp/updateProjectAllocationPercentAfterMapping/"+newTeamUpdate.getEmployeeId(), uapn, AssignProjectName.class);
+	      System.out.println(newTeamUpdate);
+	      ptrm.setStatus(true);
+	      ptrm.setMessage("Data added successfully");
+	      ptrm.setData(newTeamUpdate);
+	      return new ResponseEntity(ptrm, HttpStatus.OK);
+	   } catch (Exception e) {
 
-			return new ResponseEntity(ptrm, HttpStatus.OK);
-		} catch (Exception e) {
+	      ptrm.setStatus(false);
+	      ptrm.setMessage(e.getMessage());
+	      return new ResponseEntity(ptrm, HttpStatus.EXPECTATION_FAILED);
+	   }
 
-			ptrm.setStatus(false);
-			ptrm.setMessage(e.getMessage());
-			return new ResponseEntity(ptrm, HttpStatus.EXPECTATION_FAILED);
-		}
+	}
 
+	public ProjectTeamMaster transformProjectTeamMaster(ProjectTeamMaster db, ProjectTeamMaster form) {
+	   if(db.getProjectId() == form.getProjectId()) {
+	      db.setFullName(form.getFullName());
+	      db.setDesignationName(form.getDesignationName());
+	      db.setDepartmentName(form.getDepartmentName());
+	      db.setStartDate(form.getStartDate());
+	      db.setEndDate(form.getEndDate());
+	      db.setStatus(form.getStatus());
+	      db.setPrmasterId(form.getPrmasterId());
+	      db.setAssignedDate(form.getAssignedDate());
+	      db.setProjectAllocation(form.getProjectAllocation());
+	   }
+	   return db;
 	}
 
 	// To Delete Project Team
 	@Override
 	public ResponseEntity deleteProjectTeam(Integer employeeprojectId) {
-		ProjectTeamResponse ptrm = new ProjectTeamResponse<>();
-		try {
-			ProjectTeamMaster deleteProjectTeam = ptmrepo.findByemployeeprojectId(employeeprojectId);
-			ptmrepo.deleteById(deleteProjectTeam.getEmployeeprojectId());
-			ptrm.setStatus(true);
-			ptrm.setMessage("Deleted successfully");
-//			AssignProjectName uapn = new AssignProjectName();
-//			uapn.setProjectName(deleteProjectTeam.getProjectName());
-//			uapn.setProjectAllocation(deleteProjectTeam.getProjectAllocation());
-//			template.postForEntity("http://empService/emp/updateProjectAllocationPercentAfterMapping/"+deleteProjectTeam.getEmployeeprojectId(), uapn, AssignProjectName.class);
-//			
-			return new ResponseEntity(ptrm, HttpStatus.OK);
-		} catch (Exception e) {
-			ptrm.setStatus(false);
-			ptrm.setMessage(e.getMessage());
-		}
-		return new ResponseEntity(ptrm, HttpStatus.EXPECTATION_FAILED);
+	   ProjectTeamResponse ptrm = new ProjectTeamResponse<>();
+	   try {
+	      ProjectTeamMaster deleteProjectTeam = ptmrepo.findByemployeeprojectId(employeeprojectId);
+	      ptmrepo.deleteById(deleteProjectTeam.getEmployeeprojectId());
+	      List<ProjectTeamMaster> projectTeamMasterList = ptmrepo.findAllByEmployeeId(deleteProjectTeam.getEmployeeId());
+	      ptrm.setStatus(true);
+	      ptrm.setMessage("Deleted successfully");
+	      AssignProjectName uapn = new AssignProjectName();
+	      uapn.setProjectName("");
+	      uapn.setProjectAllocation(projectTeamMasterList.stream()
+	            .map(ProjectTeamMaster::getProjectAllocation).collect(Collectors.summingInt(Integer::intValue)));
+	      template.postForEntity("http://empService/emp/updateProjectAllocationPercentAfterMapping/"+deleteProjectTeam.getEmployeeId(), uapn, AssignProjectName.class);
+	      return new ResponseEntity(ptrm, HttpStatus.OK);
+	   } catch (Exception e) {
+	      ptrm.setStatus(false);
+	      ptrm.setMessage(e.getMessage());
+	   }
+	   return new ResponseEntity(ptrm, HttpStatus.EXPECTATION_FAILED);
 	}
+
+
 
 	// Madhu Changes
 	@Override

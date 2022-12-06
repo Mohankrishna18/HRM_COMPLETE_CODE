@@ -163,7 +163,7 @@ function AddProject(props) {
           handleClose();
         })
         .catch((err) => {
-          toast.error("Something went Wrong");
+          toast.error("Please Check the Details");
         });
     }
 

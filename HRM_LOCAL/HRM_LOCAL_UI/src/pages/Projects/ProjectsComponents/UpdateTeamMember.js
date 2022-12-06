@@ -96,19 +96,20 @@ const UpdateTeamMember = (props) => {
       projectAllocation,
     } = form;
     const newErrors = {};
-
-    if (!employeeId || employeeId === "" || !employeeId.match(/^[aA-zZ\s]+$/))
-      newErrors.employeeId = "";
+    /^[\d a-zA-Z ()+-]+$/;
+    // if (!employeeId || employeeId === "" || !employeeId.match(/^[aA-zZ\s]+$/))
+    //   newErrors.employeeId = "";
+    // 
     if (!fullName || fullName === "" || !fullName.match(/^[aA-zZ\s]+$/))
-      newErrors.fullName = "Please Enter Employee Name";
-    if (
-      !designationName ||
-      designationName === "" ||
-      !designationName.match(/^[aA-zZ\s]+$/)
-    )
-      newErrors.designation = "Please Enter Designation";
-    if (!departmentName || departmentName === "")
-      newErrors.departmentName = "Please Enter a Business Unit Head";
+    //   // newErrors.fullName = "Please Enter Employee Name";
+    // if (
+    //   !designationName ||
+    //   designationName === "" ||
+    //   !designationName.match(/^[aA-zZ\s]+$/)
+    // )
+    //   newErrors.designation = "Please Enter Designation";
+    // if (!departmentName || departmentName === "")
+    //   // newErrors.departmentName = "Please Enter a Business Unit Head";
 
     if (!projectName || projectName === "")
       newErrors.projectName = "project Name";
@@ -138,27 +139,19 @@ const UpdateTeamMember = (props) => {
     if (!projectAllocation || projectAllocation === "")
       newErrors.projectAllocation = "Please Enter projectAllocation";
 
+      if (!status || status === "")
+      newErrors.status = "Please Enter projectAllocation";
+
     return newErrors;
   };
 
-  //testing for commit
-  const [user, setUser] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log({
-    //   employeeId,
-    //   fullName,
-    //   designationName,
-    //   departmentName,
-    //   startDate,
-    //   endDate,
-    //   prmasterId,
-    //   assignedDate,
-    //   status,
-    //   projectAllocation,
-    //   projectId,
-    // });
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 4) {
+      setErrors(formErrors);
+    } else {
     await axios
       .post(`/clientProjectMapping/addProjectTeam`, {
         employeeId,
@@ -174,20 +167,25 @@ const UpdateTeamMember = (props) => {
         projectId,
       })
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         if (response.statusText === "OK") {
           // props.func();
           // props.pull_dataUpdate();
           teamUpdate();
+          props.handleClose();
+          toast.success("Assigned successfully");
+
         } else {
-          console.log("Props not Send");
-        }
-        toast.success("Assigned successfully");
+          // console.log("Props not Send");
+          toast.error("Something went wrong");
+        }     
       })
       .catch((err) => {
-        toast.error(err.response.data.message);
+        // toast.error(err.response.data.message);
+        toast.error("Something went wrong");
       });
-    props.handleClose();
+    }
+    
   };
 
   return (
@@ -307,7 +305,7 @@ const UpdateTeamMember = (props) => {
           </Form.Group> */}
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Allocation Start Date</Form.Label>
+            <Form.Label>Allocation Start Date *</Form.Label>
             <Form.Control
               required
               type="date"
@@ -323,7 +321,7 @@ const UpdateTeamMember = (props) => {
           </Form.Group>
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Role</Form.Label>
+            <Form.Label>Role *</Form.Label>
             <Form.Select
               required
               className="projectRolesName"
@@ -352,7 +350,7 @@ const UpdateTeamMember = (props) => {
           </Form.Group>
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Allocation End Date</Form.Label>
+            <Form.Label>Allocation End Date *</Form.Label>
             <Form.Control
               required
               type="date"
@@ -371,13 +369,13 @@ const UpdateTeamMember = (props) => {
               isInvalid={errors}
             ></Form.Control>
             <Form.Control.Feedback type="invalid">
-              {errors}
+              {errors.endDate}
             </Form.Control.Feedback>
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Status</Form.Label>
+            <Form.Label>Status *</Form.Label>
             <Form.Select
               required
               type="text"
@@ -415,7 +413,7 @@ const UpdateTeamMember = (props) => {
           
 
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Project Allocation Percentage</Form.Label>
+            <Form.Label>Project Allocation Percentage *</Form.Label>
             <Form.Control
               required
               className="projectAllocation"

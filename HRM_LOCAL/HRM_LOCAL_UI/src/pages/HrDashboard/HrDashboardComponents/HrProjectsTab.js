@@ -132,7 +132,7 @@ function HrProjectsTab() {
 
   return (
     <div>
-<Modal show={show} onHide={handleClose} size="md" centered>
+<Modal show={show} onHide={handleClose} size="lg" centered>
         <Modal.Header
           closeButton
           style={{

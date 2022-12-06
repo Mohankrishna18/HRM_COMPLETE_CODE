@@ -60,7 +60,7 @@ const PositionStatusCards = () => {
      // console.log(data2)
  
      // count/length for Pending approval position
-     const data3 = positionStatus  ? positionStatus.filter((item) => item.rrfStatus === "Pending Approval"):0
+    // const data3 = positionStatus  ? positionStatus.filter((item) => item.rrfStatus === "Pending Approval"):0
      // console.log(data3)
  
      // count/length for Pending Open position
@@ -97,12 +97,12 @@ const PositionStatusCards = () => {
 
                 </Col>
 
-                <Col sm={2}>
+                {/* <Col sm={2}> */}
                     {/* card2 */}
 
-                    <SingleCard data={data3} name='Pending Approval'   color='#4f4f4f' />
+                    {/* <SingleCard data={data3} name='Pending Approval'   color='#4f4f4f' />
 
-                </Col>
+                </Col> */}
 
                 <Col sm={2}>
                     {/* Total/OverAll positions */}

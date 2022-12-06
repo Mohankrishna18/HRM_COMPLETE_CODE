@@ -4,6 +4,8 @@ import axios from "../../../../Uri"
 import { FcWebcam } from 'react-icons/fc';
 import { Grid } from '@mui/material';
 import MaterialTable from 'material-table';
+import { BsFillEyeFill } from 'react-icons/bs';
+import ClientView from "../../../Client/ClientComponents/ClientView";
 
 function ClientTable(props) {
     const [data, setData] = useState([]);
@@ -34,12 +36,54 @@ function ClientTable(props) {
       { title: "Client Name", field: "clientName",color:"black" },
       { title: "Email", field: "email" },
       { title: "Contact", field: "phoneNumber" },  
+      {
+        title: "Start Date",
+        field: "startDate",
+        type: "date",
+        dateSetting: { locale: "en-GB" },
+      },
+      {
+        title: "End Date",
+        field: "endDate",
+        type: "date",
+        dateSetting: { locale: "en-GB" },
+      },
+  
+      {
+        title: "Status",
+        field: "status",
+      },
+      {
+        title: "POC Name",
+        field: "pocName",
+      },
 
     ]);
     console.log(data);
 
     return (
         <div>
+           <Modal style={{ maxHeight: "1200px", maxWidth: "1550px", position: "absolute", }} show={viewShow} onHide={viewHandleClose} size="lg">
+        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
+          <Modal.Title>Company Overall Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="scroll">
+          <ClientView
+            viewOnboard={viewOnboard}
+            // func={pull_data}
+            viewHandleClose={viewHandleClose}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button style ={{backgroundColor: "#f5896e",
+                    borderColor: "#f5896e",}} onClick={viewHandleClose}>
+            Close
+          </Button>
+          {/* <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button> */}
+        </Modal.Footer>
+      </Modal>
         <Grid>
           <MaterialTable 
             title="Clients"
@@ -66,6 +110,30 @@ function ClientTable(props) {
                 fontSize: 14,
             },
               exportButton: true,
+            }}
+            actions={[
+              {
+                icon: "button",
+                tooltip: "Save User",
+                onClick: (event, rowData) =>
+                  alert("You want to delete " + rowData.firstName),
+              },
+            ]}
+            components={{
+              Action: (props) => (
+                <div>
+                  <Stack direction="horizontal" gap={3}>
+                    <Button
+                      variant="primary"
+                      onClick={(event) => {
+                        setViewShow(true);
+                        console.log(props);
+                        setViewOnboard(props.data);
+                      }}
+                    ><BsFillEyeFill /></Button>
+                  </Stack>
+                </div>
+              ),
             }}
           />
         </Grid>

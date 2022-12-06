@@ -55,6 +55,9 @@ public class Resignation
 	private String hrReject;
 	@Column
 	private String status;
+	@Column
+	private String workflowStatus;
+	
 	public int getResignationId() {
 		return resignationId;
 	}
