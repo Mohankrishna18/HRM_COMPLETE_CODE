@@ -91,17 +91,19 @@ const UpdateRR = () => {
   const calls = () => {
     setLoading(true)
 
-    axios.get("/clientProjectMapping/getAllProjects").then((resp) => {
+    axios.get("/dept/getAllDepartments").then((resp) => {
       // console.log(resp)
-      // setProjects(resp.data.data)
+      
+      setDepartments(resp.data);
       if (resp.data.status) {
-        axios.get("/dept/getAllDepartments").then((respo) => {
+        axios.get("/clientProjectMapping/getAllClients").then((respo) => {
           // console.log(respo)
-          setDepartments(respo.data);
+         
+          setClients(respo.data.data);
           if (respo.statusText === "OK") {
-            axios.get("/clientProjectMapping/getAllClients").then((respon) => {
+            axios.get("/clientProjectMapping/getAllProjects").then((respon) => {
               // console.log(respon)
-              setClients(respon.data.data);
+               // setProjects(respon.data.data)
               if (respon.data.status) {
                 axios.get("/emp/getAllEmployeeMasterData").then((respons) => {
                   const sData2 = respons.data.data.filter(item => item.status === 'Active')
@@ -149,8 +151,7 @@ const UpdateRR = () => {
     setRaisedOn(response.data.data.raisedOn);
 
     setRaisedBy(response.data.data.raisedBy);
-    // console.log(response.data.data.requestInitiatedDate)
-    // console.log(response.data.data.resourceRequiredDate)
+ 
     setDate(Moment(response.data.data.requestInitiatedDate).format('YYYY-MM-DD'));
 
     setRequiredDate(Moment(response.data.data.resourceRequiredDate).format('YYYY-MM-DD'));
@@ -403,11 +404,16 @@ const UpdateRR = () => {
                     axios.get(`/clientProjectMapping/getClientsByBusinessUnits/${e.target.value}`).then((response) => {
                       // console.log(response.data);
                       setClients(response.data);
+                      setNewProject("");
+                      setNewClient("")
+                   
+                      
                     })
                   }
                   }
                   isInvalid={!!errors.departmentName}
                 >
+                 
                   <option>{newDepartmentName}</option>
                   {departments.map((departmentss, i) => (
                     <option key={i} value={departmentss.departmentName}>{departmentss.departmentName}</option>
@@ -429,7 +435,9 @@ const UpdateRR = () => {
                     setNewClient(e.target.value)
                     axios.get(`/clientProjectMapping/getProjectsByClientName/${e.target.value}`).then((response) => {
                       // console.log(response.data.data);
+                     
                       setProjects(response.data.data);
+                      setNewProject("");
                     })
                   }
                   }
@@ -997,11 +1005,6 @@ const UpdateRR = () => {
   )
 }
 export default UpdateRR;
-
-
-
-
-
 
 
 

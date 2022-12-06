@@ -432,11 +432,15 @@ public class ProjectServiceImplementation implements ProjectServiceInterface {
 	public ResponseEntity getClientsByBusinessUnits(String businessUnit) {
 		try {
 			List<Projects> getClients = projectRepo.getProjectsByBusinessUnit(businessUnit);
-			List<Clients> clients = new ArrayList<>();
-			getClients.forEach(p -> {
-				Clients client = clientRepo.findByClientId(p.getClientId());
-				clients.add(client);
-			});
+			//List<Clients> clients = new ArrayList<>();
+			List<Integer> list = getClients.stream().map(Projects::getClientId).collect(Collectors.toList());
+			
+			List<Clients> clients = clientRepo.findAllById(list);
+			
+			/*
+			 * getClients.forEach(p -> { Clients client =
+			 * clientRepo.findByClientId(p.getClientId()); clients.add(client); });
+			 */
 			return new ResponseEntity(clients, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity("Something went wrong", HttpStatus.OK);
