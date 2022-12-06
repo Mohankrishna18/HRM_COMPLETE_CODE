@@ -80,24 +80,24 @@ const StepperForm = (props) => {
                                                     setHrPanel(sData1);
                                                     closeLoading();
                                                 }).catch((err) => {
-                                                    console.log("Error6");
+                                                    // console.log("Error6");
                                                 })
 
                                             }
 
                                         }).catch((err) => {
-                                            console.log("Error5");
+                                            // console.log("Error5");
                                         })
 
                                     }
                                 }).catch((err) => {
-                                    console.log("Error4");
+                                    // console.log("Error4");
                                 })
 
                             }
 
                         }).catch((err) => {
-                            console.log("Error3")
+                            // console.log("Error3")
                         })
 
 
@@ -105,14 +105,14 @@ const StepperForm = (props) => {
                     }
 
                 }).catch((err) => {
-                    console.log("Error2")
+                    // console.log("Error2")
                 })
 
             }
 
         }
         ).catch((err) => {
-            console.log("Error1")
+            // console.log("Error1")
         })
     }
     useEffect(() => {
@@ -540,9 +540,9 @@ const StepperForm = (props) => {
 
 
                                                         axios.get(`/clientProjectMapping/getProjectsByClientName/${e.target.value}`).then((response) => {
-                                                            // console.log(response.data.data);
+                                                         
                                                             setProjects(response.data.data);
-
+                                                            
 
                                                             setField("clientName", response.data.clientName)
 
@@ -1101,3 +1101,9 @@ const StepperForm = (props) => {
     );
 };
 export default StepperForm;
+
+
+
+
+
+
