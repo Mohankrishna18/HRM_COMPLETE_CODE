@@ -40,7 +40,10 @@ function LeadTable(props) {
   const [columns, setColumns] = useState([
     { title: "Lead ID", field: "id", color: "black" },
     { title: "Lead Title", field: "leadName", color: "black" },
-    { title: "Lead Notes", field: "leadNotes" },
+    {
+      title: "Status",
+      field: "status",
+    },
     { title: "Client Title", field: "companyName", defaultGroupOrder: 0 },
     {
       title: "Start Date", field: "startDate", type: "date",
