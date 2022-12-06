@@ -483,7 +483,7 @@ public class MainServiceImpl implements MainService {
 					mailTemp1.setEmailType("IT_TEAM");
 					map1.put("employeeName", getOnboarding.getFullName());
 					map1.put("employeeId", em.getEmployeeId());
-					map1.put("email", "nagarjuna.veera@arshaa.com");
+					map1.put("email", "muralikrishna.miriyala@arshaa.com");
 					mailTemp1.setMap(map1);
 					template.postForObject(preEmailURL, mailTemp1, MainEmailTemplate.class);
 
@@ -493,7 +493,7 @@ public class MainServiceImpl implements MainService {
 					mailTemp2.setEmailType("ADMIN");
 					map2.put("employeeName", getOnboarding.getFullName());
 					map2.put("employeeId", em.getEmployeeId());
-					map2.put("email", "srimukha.lingampally@arshaa.com");
+					map2.put("email", "muralikrishna.miriyala@arshaa.com");
 					mailTemp2.setMap(map2);
 					template.postForObject(preEmailURL, mailTemp2, MainEmailTemplate.class);
 
