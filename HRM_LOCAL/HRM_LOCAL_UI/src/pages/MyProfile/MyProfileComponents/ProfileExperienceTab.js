@@ -34,6 +34,7 @@ const customTheme = {
 const ProfileExperienceTab = (props) => {
 
   const employeeid = props.profile;
+  const obdId = props.obid;
   // const userData = sessionStorage.getItem("userdata");
   // console.log(userData);
   // const userData1 = JSON.parse(userData);
@@ -55,7 +56,7 @@ const ProfileExperienceTab = (props) => {
   const [documents, setDocuments] = useState("");
   const loadData = () => {
     axios
-      .get(`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${employeeid}`)
+      .get(`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${obdId}`)
       .then((response) => {
         setDocuments(response);
       });
@@ -153,7 +154,7 @@ const ProfileExperienceTab = (props) => {
         </Card.Body>
         <Row>
           {documents.statusText === "OK" ? (<Col>
-            <a href={`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${employeeid}`}>
+            <a href={`${BASE_URL}/api/get/imageByTitle/ExperienceDetails/${obdId}`}>
               Experience Documents
 
             </a>
