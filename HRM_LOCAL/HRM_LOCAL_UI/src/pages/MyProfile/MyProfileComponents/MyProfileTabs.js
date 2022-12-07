@@ -110,8 +110,8 @@ var total_days = (day_end - day_start) / (1000 * 60 * 60 * 24);
   <TabPanel value="2"> <ProfileAddressTab profile={profile}/></TabPanel>
   <TabPanel value="3"><ProfileAdditionalDetailsTab profile={profile} obid={obdId}/></TabPanel>
   <TabPanel value="4"><ProfileEmploymentDetailsTab profile={profile}/></TabPanel>
-  <TabPanel value="5"><ProfileEducationalDetailsTab profile={profile}/></TabPanel>
-  <TabPanel value="6"><ProfileExperienceTab profile={profile}/></TabPanel>
+  <TabPanel value="5"><ProfileEducationalDetailsTab profile={profile} obid={obdId}/></TabPanel>
+  <TabPanel value="6"><ProfileExperienceTab profile={profile} obid={obdId}/></TabPanel>
   <TabPanel value="7"><ProfileProjectTab profile={profile}/></TabPanel>
   {/* <TabPanel value="8"><ProfileRecognizationTab/></TabPanel> */}
   <TabPanel value="8"></TabPanel>
