@@ -9,6 +9,7 @@ import axios from "../../../Uri";
 import { useParams, useHistory } from "react-router-dom";
 import { UserContext } from "./ProjectUpdateTabs";
 import { toast } from "react-toastify";
+import moment from "moment";
 import "react-toastify/dist/ReactToastify.css";
 
 const ProjectUpdate = (props) => {
@@ -370,8 +371,15 @@ const ProjectUpdate = (props) => {
                 placeholder="End Date"
                 controlid="endDate"
                 value={enddate}
-                //min={startDate}
-                onChange={(e) => setEndDate(e.target.value)}
+                min={moment(startDate).format("YYYY-MM-DD")}
+              onChange={(e) => {
+                if (startDate === "") {
+                  setErrors("please select the start date");
+                } else {
+                  setEndDate(e.target.value);
+                  setErrors("");
+                }
+              }}
                 isInvalid={!!errors.endDate}
               ></Form.Control>
               <Form.Control.Feedback type="invalid">
