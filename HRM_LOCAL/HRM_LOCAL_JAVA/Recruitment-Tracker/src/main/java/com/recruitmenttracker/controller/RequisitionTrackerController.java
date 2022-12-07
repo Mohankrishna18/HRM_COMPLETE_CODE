@@ -85,6 +85,11 @@ public class RequisitionTrackerController {
 		return serv.deleteRRequest(rrfId);
 	}
 	
+	@GetMapping("/getRequisitionDataById/{requisitionId}")
+    public RequisitionRequestEntity getRequisitionDataById(@PathVariable String requisitionId)
+    {
+    	return serv.getRequisitionDataById(requisitionId);
+    }
     @PutMapping("/updateRR/{requisitionId}")
     public ResponseEntity updateRRs(@PathVariable String requisitionId, @RequestBody RequisitionRequestEntity RRUpdate) {
         return serv.updateRR(requisitionId, RRUpdate);

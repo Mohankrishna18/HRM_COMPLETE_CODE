@@ -16,12 +16,12 @@ import AssignTeamMembers from "./AssignTeamMembers";
 import TeamMembersTab from "./TeamMembersTab";
 export const UserContext = createContext(null);
 function ProjectUpdateTabs(props) {
-  // console.log(props.rowData)
+ 
   const [data, setData] = useState([]);
   //const {rowData} = props
   const rowData = JSON.parse(localStorage.getItem("project"));
-  console.log(rowData);
 
+  
   // const rowData = props.rowData
   const [show, setShow] = useState(false);
   const handleClose = () => setShow();

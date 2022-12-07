@@ -24,7 +24,6 @@ function AddProject(props) {
   const loadData = async () => {
     const res = await axios.get("/clientProjectMapping/getAllClients");
     setClients(res.data.data);
-    console.log(res.data);
   };
 
   // Get API's for Departments(Business Unit Head) Dropdown
@@ -35,7 +34,6 @@ function AddProject(props) {
   const loadDepartmentsData = async () => {
     const res = await axios.get("/dept/getAllDepartments");
     setDepartments(res.data);
-    console.log(res.data);
   };
 
   // Get API's for reportingManager(projectManger)
@@ -56,7 +54,6 @@ function AddProject(props) {
       .get(`/emp/getActiveEmployees/${status}`)
       .then((response) => {
         setReportingManager(response.data.data);
-        console.log(response.data.data)
       })
       .catch(() => {
         toast.error("Data is not getting");
@@ -166,7 +163,7 @@ function AddProject(props) {
           handleClose();
         })
         .catch((err) => {
-          toast.error("Something went Wrong");
+          toast.error("Please Check the Details");
         });
     }
 

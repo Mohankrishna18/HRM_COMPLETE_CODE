@@ -6,32 +6,19 @@ import { toast } from "react-toastify";
 import { Button } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import axios from '../../Uri';
-import Moment from 'react-moment';
+import moment from 'moment';
 import { BASE_URL } from '../../Constant';
 
 export default function Action(props) {
-    console.log(props);
-    const [form, setForm] = useState({});
-    const [errors, setErrors] = useState({});
     const [departments, setDepartments] = useState([]);
     const [designations, setDesignations] = useState([]);
     const [data, setData] = useState({});
-
-
-
     const [primarySkills, setPrimarySkills] = useState("");
     const [secondarySkills, setSecondarySkills] = useState("");
     const [reportingManager, setReportingManager] = useState("");
-    const [jobTitle, setJobTitle] = useState("");
-    const [client, setClient] = useState("");
     const [projectName, setProjectName] = useState("");
-    const [buh, setBuh] = useState(data.buh);
-    const [irmId, setirmId] = useState("");
-    const [srmId, setSrmId] = useState("");
     const [leaveBalance, setLeaveBalance] = useState("");
-
-    const [departmentName, setDepartmentName] = useState("");
-   
+    const [departmentName, setDepartmentName] = useState("");  
     const [designationName, setDesignationName] = useState("");
     const [exitDate, setExitDate] = useState("");
     const [resignationDate, setResignationDate] = useState("");
@@ -41,121 +28,91 @@ export default function Action(props) {
     const [band, setBand] = useState("");
     const [employmentType, setEmploymentType] = useState("");
     const [status, setStatus] = useState("");
-    const [getLeaveBalance, setGetLeaveBalance] = useState([{}]);
+    const [bands, setBands] = useState([]);
+    const [empType, setEmpType] = useState([]);
+    const [users, setUsers] = useState([]);
 
-    //displaying date in fields
-    const [resDate,setResDate] = useState("");
-    const [exDate,setExDate] = useState("");
-    const [confirmDate, setConfirmDate] = useState("");
+    const [ed, setEd] = useState("");
+    const [rd, setRd] = useState("");
+    const [cd, setCd] = useState("");
 
     useEffect(() => {
-        loadData();
-        loadDesignations();
-        loadEmploymentDetails();
+       EndPoints();
         leaveBalanceCall();
+        loadEmploymentDetails();
     }, []);
 
+    const EndPoints = () => {
+        axios.get("/emp/getAllEmployeeMasterData").then((resp) => {
+           setUsers(resp.data.data);
+          if (resp.data.status) {
+            axios.get("/dept/getAllDepartments").then((respo) => {
+              setDepartments(respo.data);
+              if (respo.statusText === "OK") {
+                axios.get("/designation/getAllDesignations").then((respon) => {
+                  setDesignations(respon.data);
+                  if (respon.statusText =="OK") {
+                    axios.get("/bands/getAllBands").then((respons) => {
+                      setBands(respons.data.data);
+                      if (respons.data.status) {
+                        axios.get("/employmentType/getAllEmployments").then((response) => {
+                          setEmpType(response.data.data);
+                        }).catch((err) => {
+                          console.log("EmploymentType error");
+                        })
+                      }
+                    }).catch((err) => {
+                      console.log("Bands Error");
+                    })
+                  }
+                }).catch((err) => {
+                  console.log("Designation Error");
+                })
+              }
+            }).catch((err) => {
+              console.log("Department Error")
+            })
+          }
+        }).catch((err) => {
+          console.log("Employee master Data Error")
+        })
+      }
+    
    
-    const leaveBalanceCall = async () => {
-        await axios.get(`leave/leaveBalanceByEmployeeId/${props.data}`)
-        .then((res) => {
-          console.log(res.data);   
-          console.log(res.data.leaveBalance);   
-          setGetLeaveBalance(res.data.leaveBalance);
+    const leaveBalanceCall = () => {
+        axios.get(`leave/leaveBalanceByEmployeeId/${props.data}`).then((res) => {
+          if(res.data.leaveBalance == null){
+            setLeaveBalance(0)
+          }else{
+            setLeaveBalance(res.data.leaveBalance);
+          }
         });
       };
 
-    const loadData = async () => {
-        const res = await axios.get("/dept/getAllDepartments");
-        // console.log(res.data)
-        setDepartments(res.data);
-
-    };
-
-    const loadDesignations = async () => {
-        const res = await axios.get("/designation/getAllDesignations");
-        setDesignations(res.data);
-    };
-
-
-    console.log(props.data)
     const loadEmploymentDetails = async () => {
         const res = await axios.get(`/emp/getEmploymentDetails/${props.data}`);
-        // console.log(res.data.data);
-        setData(res.data.data);
-       
+        setData(res.data.data);  
+        // console.log(res.data.data.exitDate);  
         setDepartmentName(res.data.data.departmentName);
-   
         setDesignationName(res.data.data.designationName);
         setExitDate(res.data.data.exitDate);
         setResignationDate(res.data.data.resignationDate);
         setSrm(res.data.data.srm);
         setIrm(res.data.data.irm);
-        setProjectName(res.data.data.projectName);
-       
-        setConfirmationDate(res.data.data.confirmationDate);
-       
+        setProjectName(res.data.data.projectName);    
+        setConfirmationDate(res.data.data.confirmationDate);    
         setBand(res.data.data.band);
         setEmploymentType(res.data.data.employmentType);
         setStatus(res.data.data.status);
         setPrimarySkills(res.data.data.primarySkills);
         setSecondarySkills(res.data.data.secondarySkills);
-        setReportingManager(res.data.data.reportingManager);
-       setLeaveBalance(res.data.data.leaveBalance);
-        setBuh(res.data.data.buh);
+        setReportingManager(res.data.data.reportingManager);  
 
-        // setExDate(Moment(res.data.data.exitDate).format('YYYY-MM-DD'));
-        // setResDate(Moment(res.data.data.resignationDate).format('YYYY-MM-DD'));
-        // setConfirmDate(Moment(res.data.data.confirmationDate).format('YYYY-MM-DD'));
-       
+        setEd(moment(res.data.data.exitDate).format('YYYY-MM-DD'));
+        setRd(moment(res.data.data.resignationDate).format('YYYY-MM-DD'));
+        setCd(moment(res.data.data.confirmationDate).format('YYYY-MM-DD'));
+        
     };
-
-    const [bands, setBands] = useState([]);
-    useEffect(() => {
-        axios.get("/bands/getAllBands").then((response) => {
-            console.log(response.data);
-            setBands(response.data.data);
-        });
-    }, []);
-
-    const [empType, setEmpType] = useState([]);
-    useEffect(() => {
-        axios.get("/employmentType/getAllEmployments").then((response) => {
-            // console.log(response.data.data);
-            setEmpType(response.data.data);
-        });
-    }, []);
-
-    const [users, setUsers] = useState([]);
-    useEffect(() => {
-        const loadUsers = async () => {
-            const response = await axios.get("/emp/getAllEmployeeMasterData");
-            // const result = response.data.data.sort((a, b) => a.departmentName.localCompare(b.departmentName))
-            // console.log(result);
-            // console.log(response.data.data);
-            setUsers(response.data.data);
-
-        };
-        loadUsers();
-    }, []);
-
-    // console.log(designations.departmentName.sort());
-    // const sortedKeys=Object.keys(obj).sort();
-
-    function setField(field, value) {
-        setForm({
-            ...form,
-            [field]: value,
-        });
-
-        if (!!errors[field])
-            setErrors({
-                ...errors,
-                [field]: null,
-            });
-    }
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -195,21 +152,20 @@ export default function Action(props) {
 
     }
 
-   
-console.log(data);
 
     //sorting Array of Objects
     var sortedDepartments = _.sortBy(departments, 'departmentName');
     var sortedDesignations = _.sortBy(designations, 'designationName');
     var sortedUsers = _.sortBy(users, 'fullName');
 
-    var tempDate = new Date(confirmationDate);
-    var Year1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+    // var tempDate = new Date(resignationDate);
+    // var Year1 = [String(tempDate.getDate()).padStart(2, '0'), String(tempDate.getMonth() + 1).padStart(2, '0'), tempDate.getFullYear()].join('-');
+
+
 
     return (
         <>
             <Form
-                // ref={forms}
                 className="formone"
                 style={{ padding: 10 }}
                 onSubmit={handleSubmit}
@@ -257,9 +213,9 @@ console.log(data);
                             type="date"
                             placeholder="Resignation Date"
                             controlid="resignationDate"
-                            defaultValue={resignationDate}
-                            value={resignationDate}
-                            onChange={(e) => setResignationDate(e.target.value)}
+                            defaultValue={rd}
+                            value={rd}
+                            onChange={(e) => setResignationDate((moment(e.target.value).format("YYYY-MM-DD")))}
                         ></Form.Control>
 
 
@@ -271,9 +227,9 @@ console.log(data);
                             type="date"
                             placeholder="exitDate"
                             controlid="exitDate"
-                            defaultValue={exitDate}
-                            value={exitDate}
-                            onChange={(e) => setExitDate(e.target.value)}
+                            // defaultValue={exitDate}
+                            value={ed}
+                            onChange={(e) => setExitDate((moment(e.target.value).format("YYYY-MM-DD")))}
 
                         ></Form.Control>
                     </Form.Group>
@@ -379,10 +335,10 @@ console.log(data);
                             type="date"
                             placeholder="confirmationDate"
                             controlid="confirmationDate"
-                            defaultValue={confirmationDate}
-                            value={confirmationDate}
+                            defaultValue={cd}
+                            value={cd}
 
-                            onChange={(e) => setConfirmationDate(e.target.value)}
+                            onChange={(e) => setConfirmationDate((moment(e.target.value).format("YYYY-MM-DD")))}
 
                         ></Form.Control>
                     </Form.Group>
@@ -394,9 +350,10 @@ console.log(data);
                             type="text"
                             placeholder="Leave Balance"
                             controlid="leaveBalance"
-                            defaultValue={getLeaveBalance}
-                            value={getLeaveBalance}
+                            // defaultValue={leaveBalance}
+                            value={leaveBalance}
                             onChange={(e) => setLeaveBalance(e.target.value)}
+
                         ></Form.Control>
                     </Form.Group>
 

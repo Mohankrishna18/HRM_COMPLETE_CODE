@@ -12,7 +12,6 @@ import { UserContext } from "./ProjectUpdateTabs";
 
 function AssignTeamMembers(props) {
   const projectName = props.data.data.projectName;
-  console.log(props.data.data.projectName);
   const { data,updateStatus } = useContext(UserContext);
   const [show, setShow] = useState(false);
   const [viewShow, setViewShow] = useState(false);
@@ -36,7 +35,7 @@ function AssignTeamMembers(props) {
   // const pull_dataUpdate = () => {
   //   setUpdateStatus(!updateStatus);
   // };
-  // console.log(pull_dataUpdate);
+ 
   useEffect(() => {
     loadData();
   }, [addStatus, updateStatus]);
@@ -44,7 +43,6 @@ function AssignTeamMembers(props) {
   const loadData = async (e) => {
     const response = await axios.get(`emp/employeesToDisplayByTheirProjectAllocation/${projectName}`);
     setData(response.data);
-    console.log(response.data);
   };    
 
   const [columns, setColumns] = useState([
@@ -173,34 +171,12 @@ function AssignTeamMembers(props) {
                     variant="info"
                     onClick={(event) => {
                       setShow(true);
-                      console.log(props);
                       setUpdateOnboard(props.data);
                     }}
                   >
                     Assign
                     {/* <FiEdit /> */}
                   </Button>{" "}
-                  {/* <Button
-                     variant="danger"
-                              onClick={(event) => {
-                                setDeleteProjects(true);
-                                console.log(props);
-                                setDeleteOnboard(props.data);
-                    }}
-                    >
-                     
-                      <RiDeleteBin6Line />
-                    </Button> */}
-                  {/* <Button
-                       variant="primary"
-                       onClick={(event) => {
-                         setViewShow(true);
-                         console.log(props);
-                         setViewOnboard(props.data);
-                       }}
-                     >
-                       <BsFillEyeFill />
-                     </Button> */}
                 </Stack>
               </div>
             ),

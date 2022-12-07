@@ -438,8 +438,24 @@ hrApp.forEach(e->{
             }
     }
     
+    public void getBusinessunit( ) {
+        // all businessunits
+    }
+    
+    public void getClients(String businessUnit ) {
+        // all clients related to businessUnit
+    }
+    
+    public void getprojects(String clientName ) {
+        // all projects related to clientname
+    }
 
 
+    public RequisitionRequestEntity getRequisitionDataById(String requisitionId)
+    {
+    	RequisitionRequestEntity rfs = rrRepository.findByRequisitionId(requisitionId);
+    	return rfs;
+    }
     @Override
     public int getDaysBetweenDates(String requisitionId, String requestInitiatedDate) throws ParseException {
         // TODO Auto-generated method stub

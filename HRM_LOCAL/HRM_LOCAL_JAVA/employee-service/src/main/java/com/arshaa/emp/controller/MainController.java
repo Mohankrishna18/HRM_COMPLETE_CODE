@@ -79,6 +79,10 @@ public class MainController {
 		return serv.onBoardUser(newOnboard);
 	}
 
+	@GetMapping("/getOnboardList")
+	public List<Onboarding> getAllOnboard() {
+		return onrepo.findAll();
+	}
 	@GetMapping("/waitingForApprovelStatus")
 	public ResponseEntity<Onboarding> waitingForApprovelStatus() {
 		return serv.waitingForApprovelStatus();
@@ -639,7 +643,7 @@ public class MainController {
         	return serv.employeesToDisplayByTheirProjectAllocation(projectName);
         }
         
-        @PostMapping("saveProjectAllocationPercentAfterMapping/{employeeId}")
+        @PostMapping("/saveProjectAllocationPercentAfterMapping/{employeeId}")
         public Boolean saveProjectAllocationPercentAfterMapping(@PathVariable("employeeId") String employeeId, @RequestBody AssignProjectName apn) {
         	return serv.saveProjectAllocationPercentAfterMapping(employeeId, apn);
         }
@@ -651,4 +655,16 @@ public class MainController {
         }
 
 
+        @PostMapping("/updateProjectAllocationPercentAfterMapping/{employeeId}")
+        public ResponseEntity<AssignProjectName> updateProjectAllocationPercentAfterMapping(@PathVariable("employeeId") String employeeId, @RequestBody AssignProjectName apn) {
+        	AssignProjectName ap = serv.updateProjectAllocationPercentAfterMapping(employeeId,apn);
+        	
+        	 return new ResponseEntity(ap, HttpStatus.OK);
+        }
+        
+        @GetMapping("/getProjectAllocationByEmployeeId/{employeeId}")
+        public Integer getProjectAllocationByEmployeeId(@PathVariable("employeeId") String employeeId ) {
+			return serv.getProjectAllocationByEmployeeId(employeeId);
+        	
+        }
 }

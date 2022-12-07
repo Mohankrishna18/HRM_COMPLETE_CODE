@@ -13,7 +13,7 @@ import Moment from "moment";
 import './utils/RT.css';
 
 const UpdateRR = () => {
-
+  const [raisedBy, setRaisedBy] = useState();
   const [raisedOn, setRaisedOn] = useState();
   const [jobTitle, setJobTitle] = useState();
   const [reqType1, setReqType1] = useState();
@@ -48,7 +48,7 @@ const UpdateRR = () => {
   const [projectName, setProjectName] = useState();
   const [initDate, setInitDate] = useState();
   const [reqDate, setReqDate] = useState();
- 
+
   const [hrPanel, setHrPanel] = useState([]);
   const [newInterviewPanel1, setNewInterviewPanel1] = useState();
   const [newInterviewPanel2, setNewInterviewPanel2] = useState();
@@ -91,21 +91,23 @@ const UpdateRR = () => {
   const calls = () => {
     setLoading(true)
 
-    axios.get("/clientProjectMapping/getAllProjects").then((resp) => {
+    axios.get("/dept/getAllDepartments").then((resp) => {
       // console.log(resp)
-      setProjects(resp.data.data)
+      
+      setDepartments(resp.data);
       if (resp.data.status) {
-        axios.get("/dept/getAllDepartments").then((respo) => {
+        axios.get("/clientProjectMapping/getAllClients").then((respo) => {
           // console.log(respo)
-          setDepartments(respo.data);
+         
+          setClients(respo.data.data);
           if (respo.statusText === "OK") {
-            axios.get("/clientProjectMapping/getAllClients").then((respon) => {
+            axios.get("/clientProjectMapping/getAllProjects").then((respon) => {
               // console.log(respon)
-              setClients(respon.data.data);
+               // setProjects(respon.data.data)
               if (respon.data.status) {
                 axios.get("/emp/getAllEmployeeMasterData").then((respons) => {
-                  // console.log(respons)
-                  setPocName(respons.data.data);
+                  const sData2 = respons.data.data.filter(item => item.status === 'Active')
+                  setPocName(sData2);
                   if (respons.data.status) {
                     axios.get("/emp/getEmployeesByDepartment/HR").then((response) => {
                       const sData1 = response.data.data.filter(item => item.status === 'Active')
@@ -147,12 +149,13 @@ const UpdateRR = () => {
       `/recruitmentTracker/getDataById/${params.id}`
     );
     setRaisedOn(response.data.data.raisedOn);
-    console.log(response.data.data.requestInitiatedDate)
-    console.log(response.data.data.resourceRequiredDate)
+
+    setRaisedBy(response.data.data.raisedBy);
+ 
     setDate(Moment(response.data.data.requestInitiatedDate).format('YYYY-MM-DD'));
-    
+
     setRequiredDate(Moment(response.data.data.resourceRequiredDate).format('YYYY-MM-DD'));
-   
+
     setReqDate(response.data.data.resourceRequiredDate);
     setRequisitionId(response.data.data.requisitionId);
     setJobTitle(response.data.data.jobTitle);
@@ -193,7 +196,7 @@ const UpdateRR = () => {
   const routeToRRPage = () => history.push("/app/rrf")
   const handleSubmit = (e) => {
     e.preventDefault();
- 
+
     axios
       .put(
         `/recruitmentTracker/updateRR/${params.id}`,
@@ -207,6 +210,7 @@ const UpdateRR = () => {
           pSkills: pSkills,
           sSkills: sSkills,
           pocname: newPOCName,
+          raisedBy: raisedBy,
           qualification: qualification,
           workLocation: workLocation,
           workingHours: workingHours,
@@ -243,7 +247,7 @@ const UpdateRR = () => {
         toast.error("Something Went Wrong");
       });
 
-  
+
 
   };
   return (
@@ -393,9 +397,23 @@ const UpdateRR = () => {
                   type="text"
                   controlid="departmentName"
                   defaultValue={newDepartmentName}
-                  onChange={(e) => setNewDepartmentName(e.target.value)}
+                  // onChange={(e) => setNewDepartmentName(e.target.value)}
+                  onChange={(e) => {
+                    // console.log(e.target.value)
+                    setNewDepartmentName(e.target.value)
+                    axios.get(`/clientProjectMapping/getClientsByBusinessUnits/${e.target.value}`).then((response) => {
+                      // console.log(response.data);
+                      setClients(response.data);
+                      setNewProject("");
+                      setNewClient("")
+                   
+                      
+                    })
+                  }
+                  }
                   isInvalid={!!errors.departmentName}
                 >
+                 
                   <option>{newDepartmentName}</option>
                   {departments.map((departmentss, i) => (
                     <option key={i} value={departmentss.departmentName}>{departmentss.departmentName}</option>
@@ -412,13 +430,32 @@ const UpdateRR = () => {
                   type="text"
                   controlid="clientName"
                   defaultValue={newClient}
-                  onChange={(e) => setNewClient(e.target.value)}
+                  onChange={(e) => {
+                    // console.log(e.target.value)
+                    setNewClient(e.target.value)
+                    axios.get(`/clientProjectMapping/getProjectsByClientName/${e.target.value}`).then((response) => {
+                      // console.log(response.data.data);
+                     
+                      setProjects(response.data.data);
+                      setNewProject("");
+                    })
+                  }
+                  }
                   isInvalid={!!errors.clientName}
                 >
+
                   <option>{newClient}</option>
+
                   {clients.map((client, i) => (
                     <option key={i} value={client.clientName}>{client.clientName}</option>
                   ))}
+                  <option value="">None</option>
+                  {/* {(clients && clients.length > 0) ? (
+                    clients.map((client, i) => (
+                      <option key={i} value={client.clientName}>
+                        {client.clientName}
+                      </option>
+                    ))) : (<option></option>)} */}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.clients}
@@ -431,13 +468,20 @@ const UpdateRR = () => {
                   type="text"
                   controlid="projectName"
                   defaultValue={newProject}
-                  onChange={(e) => setNewProject(e.target.value)}
+                  onChange={(e) => {
+
+                    setNewProject(e.target.value)
+
+                  }
+                  }
                   isInvalid={!!errors.projectName}
                 >
                   <option>{newProject}</option>
+
                   {projects.map((project, i) => (
                     <option key={i} value={project.projectName}>{project.projectName}</option>
                   ))}
+                  <option value="">None</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.projects}
@@ -870,13 +914,33 @@ const UpdateRR = () => {
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group as={Col} md="4" style={{ padding: 10 }}>
-                <Form.Label>Raised Date</Form.Label>
+                <Form.Label>Raised By</Form.Label>
+                <Form.Control
+                  required
+                  type="text"
+                  disabled
+                  controlid="raisedBy"
+
+                  value={raisedBy}
+                  onChange={(e) => setRaisedBy(e.target.value)}
+                  isInvalid={!!errors.raisedBy}
+                >
+
+                </Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.raisedBy}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+                <Form.Label>Request Raised Date</Form.Label>
                 <Form.Control
                   required
                   type="date"
                   disabled
                   controlid="raisedOn"
+                  // value={raisedOn}
                   value={Moment(raisedOn).format("YYYY-MM-DD")}
+                  // value={Moment(raisedOn).format("DD-MM-YYYY")}
                   onChange={(e) => setRaisedOn(e.target.value)}
                   isInvalid={!!errors.raisedOn}
                 >
@@ -941,4 +1005,7 @@ const UpdateRR = () => {
   )
 }
 export default UpdateRR;
+
+
+
 

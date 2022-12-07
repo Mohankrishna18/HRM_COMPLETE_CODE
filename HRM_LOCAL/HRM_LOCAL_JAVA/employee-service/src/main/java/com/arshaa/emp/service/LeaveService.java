@@ -77,7 +77,7 @@ public class LeaveService {
 						lastDay = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(lastDayOfMonth);
 					}
 					
-					workingDays = (int) (days(join.toLocalDate(), lastDayOfMonth));
+					workingDays = getWorkingDays(year, month, join, lastDayOfMonth);
 					holidayCount = template.getForObject(holidayCountBtwDatesURL + begindate + "/" + lastDay, Integer.class);
 					leaveCount = template.getForObject(leaveCountBtwDatesURL+e.getEmployeeId()+"/"+begindate+"/"+lastDay, Integer.class);
 					presentDays = workingDays - (leaveCount + holidayCount);
@@ -102,7 +102,8 @@ public class LeaveService {
 						lastDay = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(lastDayOfMonth);
 					}
 					
-					workingDays = (int) (days(monthStart, lastDayOfMonth));
+					workingDays = getWorkingDays(year, month,  monthStart.atStartOfDay(ZoneId.systemDefault()), lastDayOfMonth);
+
 					holidayCount = template.getForObject(holidayCountBtwDatesURL + begindate + "/" + lastDay, Integer.class);
 					leaveCount = template.getForObject(leaveCountBtwDatesURL+e.getEmployeeId()+"/"+begindate+"/"+lastDay, Integer.class);
 					presentDays = workingDays - (leaveCount + holidayCount);
@@ -182,6 +183,14 @@ public class LeaveService {
 		});
 		return getLeavesList;
 	}
+
+	public Integer getWorkingDays(int year, int month, ZonedDateTime join, LocalDate lastDayOfMonth) {
+		   if(isCurrentYear(year) && isCurrentMonth(month)) {
+		      return ((int) (days(join.toLocalDate(), lastDayOfMonth))) + 1;
+		   } else {
+		      return (int) (days(join.toLocalDate(), lastDayOfMonth));
+		   }
+		}
 
 	public static int addDaysSkippingWeekends(LocalDate date, int days) {
 		LocalDate result = date;
@@ -341,7 +350,7 @@ public class LeaveService {
 						lastDay = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(lastDayOfMonth);
 					}
 					
-					workingDays = (int) (days(join.toLocalDate(), lastDayOfMonth));
+					workingDays = getWorkingDays(year, month,join,lastDayOfMonth);
 					holidayCount = template.getForObject(holidayCountBtwDatesURL + begindate + "/" + lastDay, Integer.class);
 					leaveCount = template.getForObject(leaveCountBtwDatesURL+e.getEmployeeId()+"/"+begindate+"/"+lastDay, Integer.class);
 					presentDays = workingDays - (leaveCount + holidayCount);
@@ -366,7 +375,7 @@ public class LeaveService {
 						lastDay = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(lastDayOfMonth);
 					}
 					
-					workingDays = (int) (days(monthStart, lastDayOfMonth));
+					workingDays = getWorkingDays(year, month,monthStart.atStartOfDay(ZoneId.systemDefault()),lastDayOfMonth);
 					holidayCount = template.getForObject(holidayCountBtwDatesURL + begindate + "/" + lastDay, Integer.class);
 					leaveCount = template.getForObject(leaveCountBtwDatesURL+e.getEmployeeId()+"/"+begindate+"/"+lastDay, Integer.class);
 					presentDays = workingDays - (leaveCount + holidayCount);

@@ -42,5 +42,6 @@ public interface RequisitionRequestInterface {
     public ResponseEntity getAllRequisitions();
     
     public ResponseEntity updateAgeing(String requisitionId, RRFClosed rrUpdate);
+    public RequisitionRequestEntity getRequisitionDataById(String requisitionId);
 
 }

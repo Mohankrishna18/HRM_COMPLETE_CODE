@@ -31,6 +31,8 @@ public interface ProjectServiceInterface {
 		public ResponseEntity getProjectNamesByClientId(int clientId);
 		//get projects by employeeId
 		public ResponseEntity getAllProjectsById(String employeeId);
+		public ResponseEntity getProjectNamesByClientName(String clientName);
+		public ResponseEntity getClientsByBusinessUnits(String businessUnit);
 
 	
 }

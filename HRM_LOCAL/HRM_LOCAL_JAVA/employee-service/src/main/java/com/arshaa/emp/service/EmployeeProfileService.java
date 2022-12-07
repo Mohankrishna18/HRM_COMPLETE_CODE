@@ -7,6 +7,7 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.Objects;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.arshaa.emp.entity.EmployeeMaster;
 import com.arshaa.emp.entity.EmployeeProfile;
+import com.arshaa.emp.model.EmpProfile;
 import com.arshaa.emp.repository.EmployeeMasterRepository;
 import com.arshaa.emp.repository.EmployeeProfileRepository;
+
 
 @Service
 public class EmployeeProfileService {
@@ -29,66 +32,119 @@ public class EmployeeProfileService {
 	private String onboardingId;
 
 	public int Lossofpayservice(String employeeId) {
+	    EmployeeMaster e1 = new EmployeeMaster();
+	    EmployeeMaster n = ee.getById(employeeId);
+	    LocalDate localDate = LocalDate.now();
+	    // Date doj =e1.getDateOfJoining();
 
-		EmployeeMaster e1 = new EmployeeMaster();
-		EmployeeMaster n = ee.getById(employeeId);
-		LocalDate localDate = LocalDate.now();
-		// Date doj =e1.getDateOfJoining();
+	    Date doj = new Date();
+	    Date pcd = new Date();
+	    doj = n.getDateOfJoining();
+	    pcd  = n.getConfirmationDate();
 
-		Date doj = new Date();
-		Date pcd = new Date();
-		doj = e1.getDateOfJoining();
-		pcd  = n.getConfirmationDate(); 
-		
+	    Instant instant = n.getDateOfJoining().toInstant();
+	    ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
+	    LocalDate date = zdt.toLocalDate();
 
-		Instant instant = n.getDateOfJoining().toInstant();
-		ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
-		LocalDate date = zdt.toLocalDate();
-		
-		
+	    int companyProvidedLeave = 1;//
 
-		int companyProvidedLeave = 1;//
-		// int employeeLeaveTakenInThisMonth = 7;
+	    Period age = Period.between(date, localDate);
+	    int years = age.getYears();
+	    int monthsBetween = age.getMonths() ;
+	    int result=(monthsBetween+years*12);
+	    System.out.println(result);
 
-		// int leaveDifference = companyProvidedLeave-employeeLeaveTakenInThisMonth;
-//      int lossOfPay = 0;
-//      if(leaveDifference<0){
-//          lossOfPay = Math.abs(leaveDifference);
-//          companyProvidedLeave = 0;
-//      }else{
-//          companyProvidedLeave = leaveDifference;//5
-//      }
+	    int temp1 = 0;
+	    if(isJoinedCurrentYear(doj)) {
+	        if(Objects.nonNull(pcd) && isPermanent(pcd) && isJoinedBeforeMidOfMonth(doj)) {
+	            Period period = Period.between(date,pcd.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+	            temp1 = period.getMonths() + (period.getYears()*12);
+	        } else {
+	        	if(isJoinedBeforeMidOfMonth(doj)) {
+	        	    temp1 = result+1;
+	        	} else {
+	        	    if (Objects.nonNull(pcd) && isPermanent(pcd)) {
+	        	        Period period = Period.between(date, pcd.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+	        	        temp1 = (period.getMonths() + (period.getYears() * 12));
+	        	    } else {
+	        	        temp1 = result;
+	        	    }
+	        }
+	        }
+	    } else {
+	        if(Objects.nonNull(pcd) && isPermanent(pcd) && isJoinedBeforeMidOfMonth(doj)) {
+	            result++;
+	            Period period = Period.between(date,pcd.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+	            temp1 = (period.getMonths() + (period.getYears()*12))+1;
+	        } else {
+	        	if(isJoinedBeforeMidOfMonth(doj)) {
+	        	    temp1 = result+1;
+	        	} else {
+	        	    if (Objects.nonNull(pcd) && isPermanent(pcd)) {
+	        	        Period period = Period.between(date, pcd.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+	        	        temp1 = (period.getMonths() + (period.getYears() * 12));
+	        	    } else {
+	        	        temp1 = result;
+	        	    }
+	        	}
+	            
+	        }
+	    }
 
-		Period age = Period.between(date, localDate);
-		int monthsBetween = age.getMonths() + 1;
-		System.out.println(monthsBetween);
-		
+	    int temp2 = (result - temp1) > 0 ? (result - temp1) : 0;
+	    return ((temp1 * 1) + (temp2 * 2));
+
+	    /*int temp1=0;
+	    if(Objects.nonNull(pcd)) {
+	        Period period = Period.between(date,pcd.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+	        temp1 = (period.getMonths() + (period.getYears()*12))+1;
+	    }
+	    int temp2 = result - temp1;
+	    int temp3 = (temp1 * 1) + (temp2 * 2);*/
 
 
-		
-		if (monthsBetween <= 6 ) {
-			companyProvidedLeave = monthsBetween;// 5+1=6
-		} 
-		else if(monthsBetween >=6 && pcd == null) {
-			
-			companyProvidedLeave = monthsBetween;
-		}
-		else {
-			Instant instant1 = n.getConfirmationDate().toInstant();
-			ZonedDateTime zdt1 = instant.atZone(ZoneId.systemDefault());
-			LocalDate date1 = zdt.toLocalDate();
-			
-			 Period ctg =Period.between(date, date1); 
-			 int monthsBetween1 = age.getMonths() + 1;
-			 
-			 System.out.println(monthsBetween1);
-			
-			companyProvidedLeave = monthsBetween1 + 2;
-		}
+	    /*if (result <= 6 ) {
+	        companyProvidedLeave = result;// 5+1=6
+	    }
+	    else if(result >=6 && pcd == null) {
 
-//      int a=monthsBetween+companyProvidedLeave;
-		return companyProvidedLeave;
+	        companyProvidedLeave = result;
+	    }
+	    else {
+	        Instant instant1 = n.getConfirmationDate().toInstant();
+	        ZonedDateTime zdt1 = instant.atZone(ZoneId.systemDefault());
+	        LocalDate date1 = zdt.toLocalDate();
+	        Period ctg =Period.between(date, date1);
+	        int monthsBetween1 = (age.getMonths()+(age.getYears()*12)) + 1;
 
+	        System.out.println(monthsBetween1);
+	        companyProvidedLeave = monthsBetween1+ 2;
+	        //companyProvidedLeave = result+ 2;
+	    }
+
+	    return companyProvidedLeave;*/
+	}
+	public Boolean isJoinedCurrentYear(Date joiningDate) {
+	    ZonedDateTime zd = ZonedDateTime.now();
+	    ZonedDateTime join = joiningDate.toInstant().atZone(ZoneId.systemDefault());
+	    return (zd.getYear() == join.getYear());
+
+	}
+
+	public Boolean isJoinedBeforeMidOfMonth(Date joiningDate) {
+	    ZonedDateTime join = joiningDate.toInstant().atZone(ZoneId.systemDefault());
+	    return (join.getDayOfMonth() <= 15);
+	}
+
+	public Boolean isJoinedSameMonth(Date joinedDate) {
+	    ZonedDateTime zd = ZonedDateTime.now();
+	    ZonedDateTime join = joinedDate.toInstant().atZone(ZoneId.systemDefault());
+	    return (zd.getMonthValue() == join.getMonthValue());
+	}
+	public Boolean isPermanent(Date conformationDate) {
+	    ZonedDateTime join = conformationDate.toInstant().atZone(ZoneId.systemDefault());
+	    ZonedDateTime zd = ZonedDateTime.now();
+	    return zd.isAfter(join);
 	}
 
 	public EmployeeProfile store(MultipartFile file, String onboardingId) throws IOException {
@@ -117,12 +173,7 @@ public class EmployeeProfileService {
     
     public EmployeeProfile update(MultipartFile file, String employeeId) throws IOException {
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-//        
-//        EmployeeProfile newFile = new EmployeeProfile();
-//       
-//        emp.setName(newFile.getName());
-//        emp.setData(newFile.getData());
-//        emp.setType(newFile.getType());
+
         EmployeeProfile emp = epRepo.findByEmployeeId(employeeId);
 //        EmployeeProfile newFile = new EmployeeProfile();
         emp.setData(file.getBytes());
@@ -132,7 +183,19 @@ public class EmployeeProfileService {
         return epRepo.save(emp);
     }
 
-
+ 
+public EmpProfile updateEmployeeIdByOnboardingId(String onboardingId, EmpProfile emprofile) {
+	try {
+		EmployeeProfile ep = epRepo.findByOnboardingId(onboardingId);
+		ep.setEmployeeId(emprofile.getEmployeeId());	
+		epRepo.save(ep);	
+		return emprofile;
+	} catch (Exception e) {
+		e.getMessage();
+	}
+	return emprofile;
+	
+}
 
    public EmployeeProfile getFile(String id) {
         return epRepo.findById(id).get();

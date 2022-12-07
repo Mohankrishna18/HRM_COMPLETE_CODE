@@ -53,5 +53,8 @@ public interface EmployeeMasterRepository extends JpaRepository<EmployeeMaster,S
     
     List<EmployeeMaster> findByDateOfJoiningBefore(Date date);
     List<EmployeeMaster> findByDateOfJoiningBeforeAndDepartmentName(Date date,String dept);
+    
+    
+
 
 }

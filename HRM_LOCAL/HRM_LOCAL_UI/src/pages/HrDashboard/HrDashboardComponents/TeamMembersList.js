@@ -26,21 +26,103 @@ function TeamMembersList(props) {
   };
 
   const [data, setData] = useState([]);
-  //const [filteredData, setFileteredData] = useState([]);
 
-  //const result = data.filter(emp => emp.status === "Active")
-  //setFileteredData(result)
+  const [columns, setColumns] = useState([
+    {
+      title: "Employee ID",
+      field: "employeeId",
+      type: "text",
+      editable: "never",
+    },
+    {
+      title: "Name",
+      field: "fullName",
+      type: "text",
+      editable: "never",
+    },
+    {
+      title: "Designation",
+      field: "designationName",
+      type: "text",
+      editable: "never",
+    },
+    {
+      title: "Business Unit",
+      field: "departmentName",
+      type: "text",
+      editable: "never",
+    },
+    {
+      title: "Allocation Start Date",
+      field: "startDate",
+      type: "date",
+      editable: "never",
+      dateSetting: { locale: "en-GB" },
+    },
+    {
+      title: "Allocation End Date",
+      field: "endDate",
+      type: "date",
+      editable: "never",
+      dateSetting: { locale: "en-GB" },
+    },
 
+    {
+      title: "Project Allocation(%)",
+      field: "projectAllocation",
+      type: "text",
+    },
+    {
+      title: "Status",
+      field: "status",
+      type: "text",
+      lookup: { Active: "Active", InActive: "InActive" },
+    },
+  ]);
+
+ 
   return (
-    <>
-      <ListGroup as="ol" numbered>
-        {data.map((team) => (
-          <ListGroup.Item as="li" value={team.employeeprojectId}>
-            {team.employeeName}
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
-    </>
+    // <>
+    //   <ListGroup as="ol" numbered>
+    //     {data.map((team) => (
+    //       <ListGroup.Item as="li" value={team.employeeprojectId}>
+    //         {team.employeeName}
+    //       </ListGroup.Item>
+    //     ))}
+    //   </ListGroup>
+    // </>
+    <MaterialTable
+    title={" Project Name  : " + props.data.projectName}
+    columns={columns}
+    data={data}
+    options={{
+      headerStyle: {
+        backgroundColor: "#f5896e",
+        color: "white",
+        fontSize: "12px",
+        //height: "10px",
+        //fontWeight: 'bold'
+      },
+      rowStyle: {
+        fontSize: 14,
+      },
+
+      pageSize: 10,
+
+      pageSizeOptions: [10, 15, 20, 30, 50, 75, 100],
+
+      maxBodyHeight: 1050,
+
+      addRowPosition: "first",
+
+      actionsColumnIndex: -1,
+
+      //grouping: true,
+
+      exportButton: true,
+    }}
+   
+  />
   );
 }
 

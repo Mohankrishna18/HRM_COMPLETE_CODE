@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ProjectUpdate = (props) => {
-  console.log(props);
+  // console.log(props);
   const { data, setData } = useContext(UserContext);
   const [updateOnboard, setUpdateOnboard] = useState([]);
   const [projectName, setProjectName] = useState("");
@@ -23,7 +23,6 @@ const ProjectUpdate = (props) => {
   const [businessUnit, setBusinessUnit] = useState();
 
   const [startDate, setStartDate] = useState();
-  console.log();
 
   const [endDate, setEndDate] = useState();
   const [status, setStatus] = useState();
@@ -37,7 +36,55 @@ const ProjectUpdate = (props) => {
     setStatus1(!status1);
   };
 
-  console.log(params);
+  const [departments, setDepartments] = useState([]);
+  const [clients, setClients] = useState([]);
+  const statusEmp = "Active";
+  const [reportingManager, setReportingManager] = useState([]);
+
+  useEffect(() => {
+    calls();
+  }, [status1]);
+
+  const calls = () => {
+    axios
+      .get("/clientProjectMapping/getAllClients")
+      .then((resp) => {
+        // console.log(resp);
+        setClients(resp.data.data);
+        if (resp.data.status) {
+          axios
+            .get("/dept/getAllDepartments")
+            .then((respo) => {
+              // console.log(respo);
+              setDepartments(respo.data);
+              if (respo.statusText === "OK") {
+                axios
+                  .get(`/emp/getActiveEmployees/${statusEmp}`)
+                  .then((respon) => {
+                    // console.log(respon);
+                    setReportingManager(respon.data.data);
+                    if (respon.data.status) {
+                      loadData1();
+                    } else {
+                      // console.log("emplty");
+                    }
+                  })
+                  .catch((err) => {
+                    // console.log("Error4");
+                  });
+              }
+            })
+            .catch((err) => {
+              // console.log("Error3");
+            });
+        }
+      })
+      .catch((err) => {
+        // console.log("Error2");
+      });
+  };
+
+  // console.log(params);
   const loadData1 = async () => {
     const response = await axios.get(
       `/clientProjectMapping/getOneProjectByProjectId/${params.id}`
@@ -54,93 +101,74 @@ const ProjectUpdate = (props) => {
     setPriority(response.data.priority);
     setDescription(response.data.description);
 
-    console.log(response.data);
+    // console.log(response.data);
   };
-  useLayoutEffect(() => {
-    loadData1();
-  }, [status1]);
-  console.log(updateOnboard);
+  // useLayoutEffect(() => {
+  //   loadData1();
+  // }, [status1]);
+  // console.log(updateOnboard);
 
   const [employeeId, setEmployeeId] = useState(updateOnboard.employeeId);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState("");
   const [errors1, setErrors1] = useState("");
 
-  //   const handleClose = () => setShow();
-  //   const handleShow = () => setShow(true);
-
-  // Get API's for Departments(Business Unit Head) Dropdown
-  const [departments, setDepartments] = useState([]);
-  useEffect(() => {
-    loadDepartmentsData();
-    loadData();
-  }, []);
-
-  const startdate = Moment(startDate).format("YYYY-MM-DD");
-  console.log(startdate);
-
-  const enddate = Moment(endDate).format("YYYY-MM-DD");
-  console.log(enddate);
-
-  const [clients, setClients] = useState([]);
-  // Client Name
-  const loadData = async () => {
-    const res = await axios.get("/clientProjectMapping/getAllClients");
-    setClients(res.data.data);
-    console.log(res.data.data);
-  };
-
-  const loadDepartmentsData = async () => {
-    const res = await axios.get("/dept/getAllDepartments");
-    setDepartments(res.data);
-    console.log(res.data);
-  };
-
-  // // Get API's for reportingManager(projectManger)
-  // const [reportingManager, setReportingManager] = useState([]);
+  // // Get API's for Departments(Business Unit Head) Dropdown
+  // const [departments, setDepartments] = useState([]);
   // useEffect(() => {
-  //   axios.get("/emp/getUsersNamesByBand").then((response) => {
-  //     console.log(response.data);
-  //     setReportingManager(response.data);
-  //   });
+  //   loadDepartmentsData();
+  //   loadData();
   // }, []);
 
-  // Get API's for reportingManager(projectManger)
-  const statusEmp = "Active";
-  const [reportingManager, setReportingManager] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`/emp/getActiveEmployees/${statusEmp}`)
-      .then((response) => {
-        setReportingManager(response.data.data);
-        console.log(response.data.data);
-      })
-      .catch(() => {
-        toast.error("Data is not getting");
-      });
-    // console.log(departments)
-  }, []);
+ 
+  const startdate = Moment(startDate).format("YYYY-MM-DD");
+
+  const enddate = Moment(endDate).format("YYYY-MM-DD");
+
+  // Client Name
+  // const loadData = async () => {
+  //   const res = await axios.get("/clientProjectMapping/getAllClients");
+  //   setClients(res.data.data);
+  // };
+
+  // const loadDepartmentsData = async () => {
+  //   const res = await axios.get("/dept/getAllDepartments");
+  //   setDepartments(res.data);
+  // };
+
+  // // Get API's for reportingManager(projectManger)
+  // const statusEmp = "Active";
+  // const [reportingManager, setReportingManager] = useState([]);
+  // useEffect(() => {
+  //   axios
+  //     .get(`/emp/getActiveEmployees/${statusEmp}`)
+  //     .then((response) => {
+  //       setReportingManager(response.data.data);
+  //     })
+  //     .catch(() => {
+  //       toast.error("Data is not getting");
+  //     });
+  //   // console.log(departments)
+  // }, []);
 
   const forms = useRef(null);
 
-  console.log(projectName);
-  //console.log(props.updateOnboard.businessUnit);
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log({
-      clientName,
-      projectName,
-      businessUnit,
-      startDate,
-      endDate,
-      rate,
-      priority,
-      status,
-      projectManager,
-      employeeId,
-      description,
-    });
+    // console.log({
+    //   clientName,
+    //   projectName,
+    //   businessUnit,
+    //   startDate,
+    //   endDate,
+    //   rate,
+    //   priority,
+    //   status,
+    //   projectManager,
+    //   employeeId,
+    //   description,
+    // });
     if (errors == "") {
       axios
         .put(`/clientProjectMapping/updateProjectById/${params.id}`, {
@@ -157,16 +185,15 @@ const ProjectUpdate = (props) => {
           description,
         })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           if (response.data.status) {
             pull_data();
             // props.func();
+            history.push("/app/Projects");
             toast.success("Project Updated successfully");
           } else {
             console.log("Props not Send");
           }
-
-          // console.log(user);
         })
         .catch((err) => {
           console.log(err);
@@ -202,11 +229,11 @@ const ProjectUpdate = (props) => {
                 onChange={(e) => {
                   if (e.target.value === "") {
                     setErrors("Invalid Project Name");
-                    console.log(e.target.value);
+                    // console.log(e.target.value);
                   } else if (e.target.value.length > 50) {
                     setErrors("Too Long");
                   } else {
-                    console.log(e.target.value);
+                    // console.log(e.target.value);
                     setProjectName(e.target.value);
                     setErrors("");
                   }
@@ -360,10 +387,13 @@ const ProjectUpdate = (props) => {
                 type="text"
                 placeholder="Status"
                 controlid="status"
-                defaultValue={updateOnboard.status}
+                className="status"
+                defaultValue={status}
+                value={status}
                 onChange={(e) => setStatus(e.target.value)}
                 isInvalid={!!errors.status}
               >
+                <option value="">Select Status</option>
                 <option value="Active">Active</option>
 
                 <option value="InActive">InActive</option>
@@ -380,7 +410,7 @@ const ProjectUpdate = (props) => {
                 required
                 type="text"
                 placeholder="Cost "
-                controlid="rate"
+                controlid="Cost"
                 defaultValue={updateOnboard.rate}
                 onChange={(e) => setRate(e.target.value)}
                 isInvalid={!!errors.rate}
@@ -397,10 +427,12 @@ const ProjectUpdate = (props) => {
                 type="text"
                 placeholder="Priority"
                 controlid="priority"
-                defaultValue={updateOnboard.priority}
+                defaultValue={priority}
+                value={priority}
                 onChange={(e) => setPriority(e.target.value)}
                 isInvalid={!!errors.priority}
               >
+                <option value="">Select priority</option>
                 <option value="P1">P1</option>
                 <option value="P2">P2</option>
                 <option value="P3">P3</option>
