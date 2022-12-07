@@ -31,8 +31,9 @@ function OnboardingsMonth() {
     axios
         .get(`emp/getData`)
         .then((res) => {
-            setData(res.data);
-            console.log(res.data);
+          const sata1 = res.data.filter(item => item.onboardingStatus === 'CEOApproved')
+            setData(sata1);
+            console.log(sata1);
         });
 }, []);
 console.log(data)

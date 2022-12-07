@@ -43,7 +43,7 @@ function AddResignation(props) {
   
   
   const [step, setStep] = useState(0);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState({});
   const[exitDate, setExitDate]= useState(null);
 
   const da = JSON.parse(sessionStorage.getItem("userdata"));
@@ -135,7 +135,7 @@ const todays =()=>{
         .post("/resignation/resignationApplied", form1)
         .then((response) => {
           const user = response.data;
-          if (user.status) {
+          if (user.workflowStatus) {
             // props.func();
           } else {
             console.log("Props Not Send");
@@ -164,7 +164,7 @@ const todays =()=>{
      .then((res)=>{
       setValue(res.data);
     console.log(res.data);
-    let statuss = res.data.length > 0 ? res.data[0].status :""
+    let statuss = res.data.length > 0 ? res.data[0].workflowStatus :""
     console.log(statuss)
     if(statuss == "irm"){
       setActiveStep(0)
@@ -172,6 +172,7 @@ const todays =()=>{
       setActiveStep(1)
     }else if(statuss == "hrmanager"){
     setActiveStep(2)
+    
 
   }
   else {
@@ -238,6 +239,7 @@ const todays =()=>{
               <Form.Label>Resignation Date *</Form.Label>
               <Form.Control
                 required
+                disabled
                 // type="date"
                 min={today}
                 max={today}
@@ -262,6 +264,7 @@ const todays =()=>{
               <Form.Label>Exit Date</Form.Label>
               <Form.Control
                 required
+                disabled
                 name="exitDate"
                 type="text"
                 controlid="exitDate"
@@ -336,11 +339,11 @@ const todays =()=>{
             {activeStep === steps.length && (
               <Paper square elevation={0} sx={{ p: 3 }}>
                 <Typography component="span">
-                  All steps completed - you&apos;re finished
+                  {/* All steps completed - you&apos;re finished */}
                 </Typography>
-                <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+                {/* <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
                   Reset
-                </Button>
+                </Button> */}
               </Paper>
             )}
           </Box>

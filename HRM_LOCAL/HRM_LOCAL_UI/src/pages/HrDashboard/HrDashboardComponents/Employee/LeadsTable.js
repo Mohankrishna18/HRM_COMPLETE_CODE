@@ -40,7 +40,10 @@ function LeadTable(props) {
   const [columns, setColumns] = useState([
     { title: "Lead ID", field: "id", color: "black" },
     { title: "Lead Title", field: "leadName", color: "black" },
-    { title: "Lead Notes", field: "leadNotes" },
+    {
+      title: "Status",
+      field: "status",
+    },
     { title: "Client Title", field: "companyName", defaultGroupOrder: 0 },
     {
       title: "Start Date", field: "startDate", type: "date",
@@ -55,9 +58,9 @@ function LeadTable(props) {
 
   return (
     <div>
-        <Modal  show={viewShow} onHide={viewHandleClose} size="lg">
+        <Modal  show={viewShow} onHide={viewHandleClose} size="xl">
         <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
-          <Modal.Title>Lead Overall Details</Modal.Title>
+          <Modal.Title>Lead Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <LeadsView

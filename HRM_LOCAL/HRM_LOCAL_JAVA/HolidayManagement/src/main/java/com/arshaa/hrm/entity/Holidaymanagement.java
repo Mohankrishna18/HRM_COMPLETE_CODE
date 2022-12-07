@@ -18,8 +18,8 @@ public class Holidaymanagement {
 	private int holidayId;
 	@Column
 	private String holidayTitle;
-	@Column
-	private Date holidayDate;
+	@Temporal(TemporalType.DATE)
+	private java.util.Date holidayDate;
 
 	@Column
 	private String updatedBy;
@@ -37,10 +37,10 @@ public class Holidaymanagement {
 	public void setHolidayTitle(String holidayTitle) {
 		this.holidayTitle = holidayTitle;
 	}
-	public Date getHolidayDate() {
+	public java.util.Date getHolidayDate() {
 		return holidayDate;
 	}
-	public void setHolidayDate(Date holidayDate) {
+	public void setHolidayDate(java.util.Date holidayDate) {
 		this.holidayDate = holidayDate;
 	}
 

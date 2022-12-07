@@ -35,6 +35,8 @@ const customTheme = {
 const ProfileAdditionalDetailsTab = (props) => {
 
     const employeeid = props.profile;
+    const obdId = props.obid;
+    console.log(obdId);
 
     // const userData = sessionStorage.getItem("userdata");
     // const userData1 = JSON.parse(userData);
@@ -63,6 +65,8 @@ const ProfileAdditionalDetailsTab = (props) => {
     const [branch, setBranch] = useState("");
     const [band, setBand] = useState("");
     const [exitDate, setExitDate] = useState("");
+   
+   
 
 
     useEffect(() => {
@@ -81,7 +85,7 @@ const ProfileAdditionalDetailsTab = (props) => {
                 setPassportNo(response.data.data.passportNo);
             });
     }, []);
-
+    
     const changeHandler = async (e) => {
         e.preventDefault();
         try {
@@ -106,17 +110,19 @@ const ProfileAdditionalDetailsTab = (props) => {
     };
 
     const [documents, setDocuments] = useState("");
+    
+    
   const loadData = () => {
     axios
-      .get(`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${employeeid}`)
+      .get(`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${obdId}`)
       .then((response) => {
         setDocuments(response);
+        console.log(response);
       });
 
   }
   useEffect(() => {
     loadData();
-
   }, []);
 
     var tempDate = new Date(passportExpiryDate);
@@ -254,7 +260,7 @@ const handleclick = () =>{
             <Row>
                         <Col md="6" style={{ paddingTop: 0 }}>
                              {documents.statusText === "OK" ? (<Col>
-              <a href={`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${employeeid}`}>
+              <a href={`${BASE_URL}/api/get/imageByTitle/AdditionalDetails/${obdId}`}>
                 Additional Documents
 
               </a>
@@ -489,4 +495,3 @@ const handleclick = () =>{
     );
 };
 export default ProfileAdditionalDetailsTab;
-
