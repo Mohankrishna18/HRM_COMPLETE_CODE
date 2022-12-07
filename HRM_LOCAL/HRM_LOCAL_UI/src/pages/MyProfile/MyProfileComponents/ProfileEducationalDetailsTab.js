@@ -34,6 +34,7 @@ const customTheme = {
 const ProfileEducationalDetailsTab = (props) => {
 
   const employeeid = props.profile;
+  const obdId = props.obid;
   // const userData = sessionStorage.getItem("userdata");
   // const userData1 = JSON.parse(userData);
   // const employeeid = userData1.data.employeeId;
@@ -67,7 +68,7 @@ const ProfileEducationalDetailsTab = (props) => {
   const loadData = () => {
     axios
       .get(
-        `${BASE_URL}/api/get/imageByTitle/EducationalDetails/${employeeid}`
+        `${BASE_URL}/api/get/imageByTitle/EducationalDetails/${obdId}`
       )
       .then((response) => {
         setDocuments(response);
@@ -174,7 +175,7 @@ const handleclick = () =>{
                           {documents.statusText === "OK" ? ( 
                <Col>
                 <a
-                  href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${employeeid}`}
+                  href={`${BASE_URL}/api/get/imageByTitle/EducationalDetails/${obdId}`}
                 >
                   Educational Documents
                 </a>
