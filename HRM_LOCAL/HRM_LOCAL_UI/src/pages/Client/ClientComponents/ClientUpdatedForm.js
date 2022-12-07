@@ -18,12 +18,9 @@ const ClientUpdatedForm = (props) => {
   const [email, setEmail] = useState(props.updateOnboard.email);
   const [phoneNumber, setPhoneNumber] = useState(props.updateOnboard.phoneNumber);
   const [pocName, setPocName] = useState(props.updateOnboard.pocName);
-  const [startDate, setstartDate] = useState(moment(props.updateOnboard.startDate).format('YYYY-MM-DD'));
-  const strtdt = moment(props.updateOnboard.startDate).format("DD-MM-YYYY");
-  // <Moment format="DD/MM/YYYY">
-  //                     {data.dateOfJoining}
-  //                   </Moment>
- 
+
+  const [startDate, setstartDate] = useState(props.updateOnboard.startDate);
+  const strtdt = moment(props.updateOnboard.startDate).format("YYYY-MM-DD");
 
   const [endDate, setEndDate] = useState(props.updateOnboard.endDate);
   const enddt = moment(props.updateOnboard.endDate).format('YYYY-MM-DD')
@@ -34,16 +31,18 @@ const ClientUpdatedForm = (props) => {
   // const [tag, setTag] = useState(props.updateOnboard.tag);
   const [note, setNote] = useState(props.updateOnboard.note);
 
+  // loader
+  const [loading, setLoading] = React.useState(false);
+  const closeLoading = () => setLoading(!loading);
 
-
-
+  const [errors, setErrors] = useState("");
   const [errors1, setErrors1] = useState("");
   const [errors2, setErrors2] = useState("");
   const [errors3, setErrors3] = useState("");
   const [errors4, setErrors4] = useState("");
   const [errors5, setErrors5] = useState("");
-  
- 
+
+
 
 
   // useState for phone number
@@ -72,18 +71,18 @@ const ClientUpdatedForm = (props) => {
         }
       )
       .then((res) => {
-        console.log(res)
-        toast.success("Client Updated Successfully")
+        // console.log(res)
+        toast.success("Client Updated Successfully", {autoClose:1000})
         if (res.status == 200) {
           props.func();
         }
         else {
-          console.log("props not send")
+          // console.log("props not send")
         }
       })
       .catch((err) => {
-        console.log(err);
-        toast.error("Something Went Wrong");
+        // console.log(err);
+        toast.error("Something Went Wrong", {autoClose:1000});
       });
     props.handleClose();
   }
@@ -118,7 +117,7 @@ const ClientUpdatedForm = (props) => {
                   !e.target.value.match(/^[\d a-zA-Z0-9 ()+-.]+$/)
                 ) {
                   setErrors1("Invalid Name");
-                } else if (e.target.value.length > 30) {
+                } else if (e.target.value.length > 60) {
                   setErrors1("Too Long");
                 } else {
                   setclientName(e.target.value);
@@ -165,7 +164,7 @@ const ClientUpdatedForm = (props) => {
 
           {/* phone number */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Phone No.</Form.Label>
+            <Form.Label>Phone#</Form.Label>
             <Form.Control
               required
               type="text"
@@ -195,39 +194,7 @@ const ClientUpdatedForm = (props) => {
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
 
-          {/* phone number
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Phone No</Form.Label>
-            <InputGroup hasValidation>
-              <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text>
-              <Form.Control
-                required
-                type="text"
-                placeholder="Phone Number"
-                controlid="phoneNumber"
-                isInvalid={thirderrors}
-                value={phoneNumber}
-                onChange={(e) => {
-                  setPhoneNumber(e.target.value);
-                  if (e.target.value.length > 10) {
-                    setThirdErrors("Phonenumber length should be 10 characters");
-                  }
-                  else {
-                    setThirdErrors("")
-                  };
-                }
-                }
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              isInvalid={!!errors.phoneNumber}
-              >
-              </Form.Control>
-              <Form.Control.Feedback type="invalid">
-                {errors.phoneNumber}{thirderrors}
 
-              </Form.Control.Feedback>
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </InputGroup>
-          </Form.Group> */}
 
           {/* POC Name */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -246,7 +213,7 @@ const ClientUpdatedForm = (props) => {
                   !e.target.value.match(/^[aA-zZ ()+-]+$/)
                 ) {
                   setErrors4("Invalid Name");
-                } else if (e.target.value.length > 30) {
+                } else if (e.target.value.length > 50) {
                   setErrors4("Too Long");
                 } else {
                   setPocName(e.target.value);
@@ -266,14 +233,17 @@ const ClientUpdatedForm = (props) => {
             <Form.Label>Start Date</Form.Label>
             <Form.Control
               required
-              name="startDate"
-              type="text"
-              disabled
+              // name="startDate"
+              type="date"
+              // disabled
+              formate="dd-mm-yyyy"
               controlid="startDate"
               placeholder="Start Date"
               defaultValue={strtdt}
-              // onChange={(e) => setstartDate(e.target.value)}
-              // isInvalid={!!errors5.startDate}
+              // min date is end date.
+              // min={endDate}
+              onChange={(e) => setstartDate(e.target.value)}
+            // isInvalid={!!errors5.startDate}
             ></Form.Control>
             {/* <Form.Control.Feedback type="invalid">
               {errors5.startDate}
@@ -289,13 +259,13 @@ const ClientUpdatedForm = (props) => {
             <Form.Control
               required
               type="date"
-              formate ="dd-mm-yyyy"
-              placeholder="endDate"
+              formate="dd-mm-yyyy"
+              placeholder="End Date"
               controlid="endDate"
               defaultValue={enddt}
               min={startDate}
               onChange={(e) => setEndDate(e.target.value)}
-              // isInvalid={!!errors5.endDate}
+            // isInvalid={!!errors5.endDate}
             ></Form.Control>
             {/* <Form.Control.Feedback type="invalid">
               {errors5.endDate}
@@ -312,9 +282,9 @@ const ClientUpdatedForm = (props) => {
               controlid="status"
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              // isInvalid={!!errors.status}
+            // isInvalid={!!errors.status}
             >
-              <option> Select Status</option>
+              {/* <option> Select Status</option> */}
               <option value="Active">Active</option>
               <option value="InActive">InActive</option>
             </Form.Select>
@@ -323,31 +293,7 @@ const ClientUpdatedForm = (props) => {
             </Form.Control.Feedback> */}
           </Form.Group>
 
-          {/* Country
-          <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-            <Form.Label>Country</Form.Label>
-            <Form.Select
-              required
-              name="country"
-              type="text"
-              controlid="country"
-              placeholder="Select Country"
-              value={country}
-              maxLength={30}
-              onChange={(e) => setCountry(e.target.value)}
-              isInvalid={!!errors.country}
-            ><option>Select Country</option>
 
-              {countries.map((country) => (
-
-                <option value={country.label}>{country.label}</option>
-
-              ))}</Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.country}
-            </Form.Control.Feedback>
-
-          </Form.Group> */}
 
           {/* country */}
           <Form.Group as={Col} md="6" style={{ padding: 10 }}>
@@ -388,10 +334,10 @@ const ClientUpdatedForm = (props) => {
               name="address"
               type="text"
               controlid="address"
-              placeholder="address"
+              placeholder="Address"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              // isInvalid={!!errors.address}
+            // isInvalid={!!errors.address}
             ></Form.Control>
             {/* <Form.Control.Feedback type="invalid">
               {errors.address}
@@ -426,10 +372,10 @@ const ClientUpdatedForm = (props) => {
               name="note"
               type="text"
               controlid="note"
-              placeholder="note"
+              placeholder="Notes"
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              // isInvalid={!!errors.note}
+            // isInvalid={!!errors.note}
             ></Form.Control>
             {/* <Form.Control.Feedback type="invalid">
               {errors.note}

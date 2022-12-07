@@ -18,10 +18,24 @@ function AddClient(props) {
   // initially the form will be emty becoz => useState is empty.
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
-  const [thirderrors, setThirdErrors] = useState("");
+  // const [thirderrors, setThirdErrors] = useState("");
 
-  const handleClose = () => setShow();
+  const handleClose = () => {
+    setShow();
+    setLoading(true)
+
+  };
+
+  const closeLoader = () => {
+    setLoading(false)
+  }
+
   const handleShow = () => setShow(true);
+
+  // loader
+  const [loading, setLoading] = React.useState(false);
+  const closeLoading = () => setLoading(!loading);
+
 
   const forms = useRef(null);
 
@@ -95,20 +109,7 @@ function AddClient(props) {
     return newErrors;
   };
 
-  const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState({});
-
-  useEffect(() => {
-    const loadData = async () => {
-      const res = await axios.get("https://valid.layercode.workers.dev/list/countries?format=select&flags=true&value=code");
-      setCountries(res.data.countries);
-      console.log(res.data);
-    };
-    loadData();
-  }, []);
-
-  //testing for commit
-  const [user, setUser] = useState("");
+  // const [user, setUser] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -123,17 +124,17 @@ function AddClient(props) {
         .post("/clientProjectMapping/addClients", form)
         .then((response) => {
           const user = response.data;
-          console.log(user);
+          // console.log(user);
           if (user.status) {
             props.func();
-          } else {
-            console.log("Props Not Send");
+          } else {  
+            // console.log("Props Not Send");
           }
-          toast.success("Client Added Successfully");
-          console.log(user);
+          toast.success("Client Added Successfully", {autoClose:1000});
+          // console.log(user);
 
           // console.log(user);
-          // setTimeout(5000);
+          setTimeout(900);
           // here we have set form as again empty, i.e after submitting the form , the form should again become empty..(before it was not getting cleared)
           setForm({});
           handleClose();
@@ -176,7 +177,7 @@ function AddClient(props) {
         keyboard={false}
       >
         <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
-          <Modal.Title style={{ color: "white" }}>Add Client/Company</Modal.Title>
+          <Modal.Title style={{ color: "white" }}>Add Client</Modal.Title>
         </Modal.Header>
 
         <Modal.Body className="scroll">
@@ -192,13 +193,13 @@ function AddClient(props) {
 
               {/* Client Name */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Client / Company Name *</Form.Label>
+                <Form.Label>Client Name *</Form.Label>
                 <Form.Control
                   required
                   className="clientName"
                   type="text"
                   controlid="clientName"
-                  placeholder="Client/Company Name"
+                  placeholder="Client Name"
                   // onChange={(event) => setclientName(event.target.value)}
                   value={form.clientName}
                   maxLength={100}
@@ -212,7 +213,7 @@ function AddClient(props) {
 
               {/* email */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label> Email</Form.Label>
+                <Form.Label> Email*</Form.Label>
                 <Form.Control
                   required
                   type="email"
@@ -230,7 +231,7 @@ function AddClient(props) {
 
               {/* phone number */}
               <Form.Group as={Col} md="6" style={{ padding: 10 }}>
-                <Form.Label>Phone No</Form.Label>
+                <Form.Label>Phone No*</Form.Label>
                 <InputGroup hasValidation>
                   {/* <InputGroup.Text id="inputGroupPrepend">+91</InputGroup.Text> */}
                   <Form.Control
@@ -471,6 +472,7 @@ function AddClient(props) {
                   }}
                   type="cancel"
                   onClick={handleClose}
+                  closeLoader = {closeLoader}
                 >
                   Close
                 </Button>

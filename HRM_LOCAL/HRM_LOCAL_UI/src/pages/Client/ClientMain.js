@@ -6,12 +6,15 @@ import axios from "../../Uri";
 import { FiEdit } from "react-icons/fi";
 import { BsFillEyeFill } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
-
 import { Button, Col, Modal, Row, Stack } from "react-bootstrap";
 import ClientUpdatedForm from "../Client/ClientComponents/ClientUpdatedForm";
 import AddClient from "./ClientComponents/AddClient";
 import DeleteClient from "./ClientComponents/DeleteClient";
 import ClientView from "./ClientComponents/ClientView";
+// import { Backdrop } from "@material-ui/core";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+
 
 function ClientMain() {
   const [show, setShow] = useState(false);
@@ -21,7 +24,20 @@ function ClientMain() {
 
   const deleteHandleClose = () => setDeleteClients(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false)
+    // setLoading(true)
+  };
+
+  // close loader
+  // const closeLoader = () => {
+  //   setLoading(false)
+  // }
+
+  // loader
+  const [loading, setLoading] = useState(false);
+  const closeLoading = () => setLoading(!loading);
+
   const viewHandleClose = () => setViewShow(false);
 
   const [updateOnboard, setUpdateOnboard] = useState({});
@@ -50,17 +66,19 @@ function ClientMain() {
 
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     loadData();
   }, [addStatus, updateStatus, deleteStatus]);
-  // useEffect(() => {
-  //   loadData();
-  // }, [viewStatus]);
+
 
   const loadData = async (e) => {
+
     const response = await axios.get("/clientProjectMapping/getAllClients");
+
     setData(response.data.data);
-    console.log(response.data);
+    response ? setLoading(false) : setLoading(true)
+    // console.log(response.data);
+    // setLoading(true);
   };
 
   const [columns, setColumns] = useState([
@@ -106,6 +124,17 @@ function ClientMain() {
       field: "pocName",
     },
 
+    // // testing
+    // {
+    //   title:" Client created ",
+    //   field:"clientCreated",
+    // },
+
+    // {
+    //   title:"Country",
+    //   field:"country",
+    // }
+
     // {
     //   title: "Country",
     //   field: "country",
@@ -119,171 +148,195 @@ function ClientMain() {
 
   return (
     <div>
-      {/* edit modal */}
-      <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
-          <Modal.Title>Edit Client</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="scroll">
-          <ClientUpdatedForm
-            updateOnboard={updateOnboard}
-            func={pull_dataUpdate}
-            handleClose={handleClose}
-          />
-        </Modal.Body>
+      {loading ?
+        (
+          <Backdrop
+            sx={{
+              color: 'blue',
+              zIndex: (theme) => theme.zIndex.drawer + 1,
 
-      </Modal>
+            }}
+            open
+            onClick={closeLoading}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
+        ) :
+        (
+          <div>
+            {/* edit modal */}
+            < Modal show={show} onHide={handleClose} size="lg">
+              <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
+                <Modal.Title>Edit Client</Modal.Title>
+              </Modal.Header>
+              <Modal.Body className="scroll">
+                <ClientUpdatedForm
+                  updateOnboard={updateOnboard}
+                  func={pull_dataUpdate}
+                  handleClose={handleClose}
+                />
+              </Modal.Body>
+
+            </Modal>
 
 
-      {/* view modal */}
-      <Modal style={{ maxHeight: "1200px", maxWidth: "1550px", position: "absolute", }} show={viewShow} onHide={viewHandleClose} size="lg">
-        <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
-          <Modal.Title>Company Overall Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="scroll">
-          <ClientView
-            viewOnboard={viewOnboard}
-            // func={pull_data}
-            viewHandleClose={viewHandleClose}
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button style ={{backgroundColor: "#f5896e",
-                    borderColor: "#f5896e",}} onClick={viewHandleClose}>
-            Close
-          </Button>
-          {/* <Button variant="primary" onClick={handleClose}>
+            {/* view modal */}
+            <Modal style={{ maxHeight: "1200px", maxWidth: "1550px", position: "absolute", }} show={viewShow} onHide={viewHandleClose} size="lg">
+              <Modal.Header closeButton style={{ backgroundColor: "#f5896e" }}>
+                <Modal.Title>Client Details</Modal.Title>
+              </Modal.Header>
+              <Modal.Body className="scroll">
+                <ClientView
+                  viewOnboard={viewOnboard}
+                  // func={pull_data}
+                  viewHandleClose={viewHandleClose}
+                  // closeLoader={closeLoader}
+                />
+              </Modal.Body>
+              <Modal.Footer>
+                <Button style={{
+                  backgroundColor: "#f5896e",
+                  borderColor: "#f5896e",
+                }} onClick={viewHandleClose}>
+                  Close
+                </Button>
+                {/* <Button variant="primary" onClick={handleClose}>
             Save Changes
           </Button> */}
-        </Modal.Footer>
-      </Modal>
+              </Modal.Footer>
+            </Modal>
 
-      {/* delete modal */}
-      <Modal show={deleteClients} onHide={deleteHandleClose}
-        size="md"
-        backdrop="static"
-        keyboard={false}
-        centered>
-        <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
-          <Modal.Title>Delete Client</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <DeleteClient deleteOnboard={deleteOnboard} func={pull_dataDelete} deleteHandleClose={deleteHandleClose} />
-        </Modal.Body>
-      </Modal>
+            {/* delete modal */}
+            <Modal show={deleteClients} onHide={deleteHandleClose}
+              size="md"
+              backdrop="static"
+              keyboard={false}
+              centered>
+              <Modal.Header closeButton style={{ backgroundColor: "#f5896e", color: "white" }}>
+                <Modal.Title>Delete Client</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <DeleteClient deleteOnboard={deleteOnboard} func={pull_dataDelete} deleteHandleClose={deleteHandleClose}  />
+
+              </Modal.Body>
+            </Modal>
 
 
 
-      <Card
-        style={{
-          paddingTop: "10px",
-          paddingRight: "10px",
-          paddingLeft: "10px",
-          paddingBottom: "10px",
-        }}
-      >
-        
-        <Card.Body>
-          <Row>
-            <Col>
-              <Card.Title>Clients/Company</Card.Title>
-              
-            </Col>
-            <Col>
-              <AddClient func={pull_dataAdd} />
-            </Col>
-          </Row>
-        </Card.Body>
+            <Card
+              style={{
+                paddingTop: "10px",
+                paddingRight: "10px",
+                paddingLeft: "10px",
+                paddingBottom: "10px",
+              }}
+            >
 
-        <Grid style={{ borderBlockEndWidth: "2px" }}>
-          <MaterialTable
-            title="Clients"
-            columns={columns}
-            style={{ color: "black", fontSize: "1rem" }}
-            data={data}
-            editable={{}}
-            options={{          
-              showTitle: false,
-              pageSize: 10,
-              maxBodyHeight: 480,
-              pageSizeOptions: [6, 10, 15, 20, 30, 50, 75, 100],
+              <Card.Body>
+                <Row>
+                  <Col>
+                    <Card.Title>Clients</Card.Title>
 
-              headerStyle: {
-                backgroundColor: "#f5896e",
-                color: "white",
-                fontSize: "12px",
-                //height: "10px",
-                //fontWeight: 'bold'
-            },
-            rowStyle: {
-                fontSize: 14,
-            },
-              addRowPosition: "first",
-              actionsColumnIndex: -1,
-              // grouping: true,
-              exportButton: true,
-            }}
-            actions={[
-              {
-                icon: "button",
-                tooltip: "Save User",
-                onClick: (event, rowData) =>
-                  alert("You want to delete " + rowData.firstName),
-              },
-            ]}
-            components={{
-              Action: (props) => (
-                <div>
-                  <Stack direction="horizontal" gap={3}>
-                    {/* edit button */}
-                    <Button
-                      variant="info"
-                      onClick={(event) => {
-                        setShow(true);
-                        console.log(props);
-                        setUpdateOnboard(props.data);
-                      }}
-                    >
-                      {/* Edit icon */}
-                      <FiEdit />
-                    </Button>{" "}
+                  </Col>
+                  <Col>
+                    <AddClient func={pull_dataAdd} />
+                  </Col>
+                </Row>
+              </Card.Body>
 
-                    {/* delete button */}
-                    <Button
-                      variant="danger"
+              <Grid style={{ borderBlockEndWidth: "2px" }}>
+                <MaterialTable
+                  title="Clients"
+                  columns={columns}
+                  style={{ color: "black", fontSize: "1rem" }}
+                  data={data}
+                  editable={{}}
+                  options={{
+                    showTitle: false,
+                    pageSize: 10,
+                    maxBodyHeight: 480,
+                    pageSizeOptions: [6, 10, 15, 20, 30, 50, 75, 100],
 
-                      onClick={(event) => {
-                        setDeleteClients(true);
-                        console.log(props);
-                        setDeleteOnboard(props.data);
-                      }}
-                    >
-                      {/* Delete icon*/}
-                      <RiDeleteBin6Line />
-                    </Button>                    
+                    headerStyle: {
+                      backgroundColor: "#f5896e",
+                      color: "white",
+                      fontSize: "12px",
+                      //height: "10px",
+                      //fontWeight: 'bold'
+                    },
+                    rowStyle: {
+                      fontSize: 14,
+                    },
+                    addRowPosition: "first",
+                    actionsColumnIndex: -1,
+                    // grouping: true,
+                    exportButton: true,
+                  }}
+                  actions={[
+                    {
+                      icon: "button",
+                      tooltip: "Save User",
+                      onClick: (event, rowData) =>
+                        alert("You want to delete " + rowData.firstName),
+                    },
+                  ]}
+                  components={{
+                    Action: (props) => (
+                      <div>
+                        <Stack direction="horizontal" gap={3}>
+                          {/* edit button */}
+                          <Button
+                            variant="info"
+                            onClick={(event) => {
+                              setShow(true);
+                              // console.log(props);
+                              setUpdateOnboard(props.data);
+                            }}
+                          >
+                            {/* Edit icon */}
+                            <FiEdit />
+                          </Button>{" "}
 
-                    {/* view button */}
-                    <Button
-                      variant="primary"
-                      onClick={(event) => {
-                        setViewShow(true);
-                        console.log(props);
-                        setViewOnboard(props.data);
-                      }}
-                    >
-                      {/* view icon */}
-                      <BsFillEyeFill />
-                    </Button>
+                          {/* delete button */}
+                          <Button
+                            variant="danger"
 
-                  </Stack>
-                </div>
-              ),
-            }}
-          />
-        </Grid>
-      </Card>
-      {/* <Example /> */}
+                            onClick={(event) => {
+                              setDeleteClients(true);
+                              // console.log(props);
+                              setDeleteOnboard(props.data); 
+                            }}
+                          >
+                            {/* Delete icon*/}
+                            <RiDeleteBin6Line />
+                          </Button>
+
+                          {/* view button */}
+                          <Button
+                            variant="primary"
+                            onClick={(event) => {
+                              setViewShow(true);
+                              // console.log(props);
+                              setViewOnboard(props.data);
+                            }}
+                          >
+                            {/* view icon */}
+                            <BsFillEyeFill />
+                          </Button>
+
+                        </Stack>
+                      </div>
+                    ),
+                  }}
+                />
+              </Grid>
+            </Card>
+
+          </div >
+        )
+      }
     </div>
   );
 }
+
 export default ClientMain;
