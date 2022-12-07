@@ -422,7 +422,7 @@ function ProfileAddressTab(props) {
                                                         else {
                                                             setFifteenErrors("")
                                                         }
-                                                        if (!e.target.value.match(/^[a-zA-Z]+$/)) {
+                                                        if (!e.target.value.match(/^[a-zA-Z\s]*$/)) {
                                                             setSixteenerror(" State is Invalid/Required");
                                                         }
                                                         else {

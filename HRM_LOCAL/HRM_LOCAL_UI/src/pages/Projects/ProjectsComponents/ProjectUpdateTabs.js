@@ -50,7 +50,7 @@ function ProjectUpdateTabs(props) {
               id="noanim-tab-example"
               className="mb-3"
               color="Black"
-              fontColour="white"
+              // fontColour="white"
               style={{
                 justifyContent: "left",
                 color: "white",
@@ -78,7 +78,7 @@ function ProjectUpdateTabs(props) {
                 title="Team Members"
                 style={{ backgroundColor: "white", height: 700 }}
               >
-                <TeamMembersTab data={updateLoading} rowData={rowData} />
+                <TeamMembersTab rowData={rowData} />
               </Tab>
               <Tab
                 eventKey="AssignTeamMembers"
