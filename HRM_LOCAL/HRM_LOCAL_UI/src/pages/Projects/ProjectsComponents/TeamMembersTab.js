@@ -135,15 +135,19 @@ function TeamMembersTab(props) {
                   updatedRow
                 )
                 .then((resp) => {
-                  loadData();
-                  setData(updatedRows);
+                  //  loadData();
+                  const re = resp.data;
+                  if(re.status === true){
+                    setData(updatedRows);
+                  // setData(updatedRows);
+                  toast.success(re.message);  
+                  resolve();
+                  }  
                 })
                 .catch((err) => {
-                  // toast.error("Server error");
+                  toast.error("Allocated is exceeding 100%.");
                 });
-              setData(updatedRows);
-              toast.success(" Updated Successfully");
-              resolve();
+               
             });
           }),
 

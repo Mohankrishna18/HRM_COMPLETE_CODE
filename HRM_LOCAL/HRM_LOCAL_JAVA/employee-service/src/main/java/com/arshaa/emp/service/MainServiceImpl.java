@@ -429,7 +429,7 @@ public class MainServiceImpl implements MainService {
 
 					// updating employeeId to employee profile table
                 	EmpProfile eprofile = new EmpProfile();
-                	eprofile.setEmployeeId(employeeMaster.getEmployeeId());
+                	eprofile.setEmployeeId(em.getEmployeeId());
                 	empProfileService.updateEmployeeIdByOnboardingId(em.getOnboardingId(), eprofile);
 					
 
@@ -1292,10 +1292,7 @@ public class MainServiceImpl implements MainService {
                     lm.setEmployeeId(emd.getEmployeeId());
                     lm.setLeaveBalance(emd.getLeaveBalance());
                     template.postForObject(post,lm, LeaveMaster.class);    
-                }else {
-                    
-                	
-                	
+                }else {        	
                     //update call for Leava Balance in Leave Table
                     String updateLeaveBalance = "http://leaveservice/leave/updateLeaveBalance/";
                     LeaveBalanceModel lbm = new LeaveBalanceModel();
