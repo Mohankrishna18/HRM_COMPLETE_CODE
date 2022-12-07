@@ -2482,8 +2482,8 @@ System.out.println("DEP"+onReq.getDepartmentName());
 
 
 
-               getData.setOnboardingStatus(terms.getOnboardingStatus());
-//                getData.setTermsAndConditions(terms.isTermsAndConditions());
+       //        getData.setOnboardingStatus(terms.getOnboardingStatus());
+               getData.setTermsAndConditions(terms.isTermsAndConditions());
                 
                 onRepo.save(getData);
                 
