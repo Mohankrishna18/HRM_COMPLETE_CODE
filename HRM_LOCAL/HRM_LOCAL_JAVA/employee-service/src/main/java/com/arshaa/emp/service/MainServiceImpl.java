@@ -237,7 +237,7 @@ public class MainServiceImpl implements MainService {
 	public ResponseEntity updateApprovStatus(String onboardingId, HrApprovalStatus newOnboard) {
 		Response response = new Response();
 		String dUrl="http://departments/dept/getDepartmentsNameById/";
-//		String userURL = "http://urpService/user/addUser";
+		String userURL = "http://urpService/user/addUser";
 		String loginURL = "http://loginservice/login/addUsers";
 //		String emailURL = "http://emailService/mail/sendmail";
 		// String employee="ATPL";
@@ -424,13 +424,13 @@ public class MainServiceImpl implements MainService {
 
 					// posting EmployeeId in Userproject Table
 					UserClientProjectManagement userclient = userClientRepo.getByOnboardingId(onboardingId);
-					userclient.setEmployeeId(em.getEmployeeId());
+					userclient.setEmployeeId(employeeMaster.getEmployeeId());
 					userClientRepo.save(userclient);
 
 					// updating employeeId to employee profile table
                 	EmpProfile eprofile = new EmpProfile();
                 	eprofile.setEmployeeId(employeeMaster.getEmployeeId());
-                	empProfileService.updateEmployeeIdByOnboardingId(em.getOnboardingId(), eprofile);
+                	empProfileService.updateEmployeeIdByOnboardingId(employeeMaster.getOnboardingId(), eprofile);
 					
 
 					// Generating Random userId and Password
@@ -444,10 +444,10 @@ public class MainServiceImpl implements MainService {
 					// System.out.println("Username :" + userId + "Password" + password);
 
 //					// Posting data to UserMaster table
-//					Users users = new Users();
-//					users.setEmployeeId(employeeMaster.getEmployeeId());
-//					users.setUserName(userId);
-//					template.postForObject(userURL, users, Users.class);
+					Users users = new Users();
+					users.setEmployeeId(employeeMaster.getEmployeeId());
+					users.setUserName(userId);
+					template.postForObject(userURL, users, Users.class);
 
 					// Posting data to Employee login table
 					EmployeeLogin login = new EmployeeLogin();
@@ -1292,10 +1292,7 @@ public class MainServiceImpl implements MainService {
                     lm.setEmployeeId(emd.getEmployeeId());
                     lm.setLeaveBalance(emd.getLeaveBalance());
                     template.postForObject(post,lm, LeaveMaster.class);    
-                }else {
-                    
-                	
-                	
+                }else {        	
                     //update call for Leava Balance in Leave Table
                     String updateLeaveBalance = "http://leaveservice/leave/updateLeaveBalance/";
                     LeaveBalanceModel lbm = new LeaveBalanceModel();
@@ -2485,8 +2482,8 @@ System.out.println("DEP"+onReq.getDepartmentName());
 
 
 
-               getData.setOnboardingStatus(terms.getOnboardingStatus());
-                getData.setTermsAndConditions(terms.isTermsAndConditions());
+       //        getData.setOnboardingStatus(terms.getOnboardingStatus());
+               getData.setTermsAndConditions(terms.isTermsAndConditions());
                 
                 onRepo.save(getData);
                 

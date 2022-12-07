@@ -16,7 +16,7 @@ const DeleteClient = (props) => {
                     // console.log(deletedResponse);
                     if (deletedResponse.data) {
                         props.func();
-                        toast.success("Client deleted successfully!!!");
+                        toast.success("Client deleted successfully!!", {autoClose:1000});
                     }
                     else {
                         console.log("Props not Send")
