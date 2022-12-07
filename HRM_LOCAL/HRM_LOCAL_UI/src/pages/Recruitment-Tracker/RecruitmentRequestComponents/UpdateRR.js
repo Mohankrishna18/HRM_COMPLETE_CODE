@@ -92,18 +92,18 @@ const UpdateRR = () => {
     setLoading(true)
 
     axios.get("/dept/getAllDepartments").then((resp) => {
-      // console.log(resp)
-      
+      console.log(resp)
+
       setDepartments(resp.data);
       if (resp.data.status) {
         axios.get("/clientProjectMapping/getAllClients").then((respo) => {
-          // console.log(respo)
-         
+          console.log(respo)
+
           setClients(respo.data.data);
           if (respo.statusText === "OK") {
             axios.get("/clientProjectMapping/getAllProjects").then((respon) => {
-              // console.log(respon)
-               // setProjects(respon.data.data)
+              console.log(respon)
+              //  setProjects(respon.data.data)
               if (respon.data.status) {
                 axios.get("/emp/getAllEmployeeMasterData").then((respons) => {
                   const sData2 = respons.data.data.filter(item => item.status === 'Active')
@@ -151,7 +151,7 @@ const UpdateRR = () => {
     setRaisedOn(response.data.data.raisedOn);
 
     setRaisedBy(response.data.data.raisedBy);
- 
+
     setDate(Moment(response.data.data.requestInitiatedDate).format('YYYY-MM-DD'));
 
     setRequiredDate(Moment(response.data.data.resourceRequiredDate).format('YYYY-MM-DD'));
@@ -188,10 +188,36 @@ const UpdateRR = () => {
     setNewHrPanel(response.data.data.hrPanel);
     setQualification(response.data.data.qualification);
 
+
+    axios.get(`/clientProjectMapping/getClientsByBusinessUnits/${response.data.data.departmentName}`).then((res) => {
+      console.log(res.data);
+      setClients(res.data);
+    }).catch((error) => {
+      console.log(error);
+    });
+
+    axios.get(`/clientProjectMapping/getProjectsByClientName/${response.data.data.clientName}`).then((res) => {
+      console.log(res.data.data);
+      setProjects(res.data.data);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
+
+
+
+  //  const loadClientsAndProjectsInitially=()=>{
+  //    axios.get(`/clientProjectMapping/getClientsByBusinessUnits/${newDepartmentName}`).then((res)=>{
+  //  // console.log(response.data);
+  //  setClients(response.data);
+  //    }).catch((error)=>{
+  //        console.log(error);
+  //    });
+  //   }
 
   useEffect(() => {
     loadData1();
+    // loadClientsAndProjectsInitially();
   }, []);
   const routeToRRPage = () => history.push("/app/rrf")
   const handleSubmit = (e) => {
@@ -406,17 +432,17 @@ const UpdateRR = () => {
                       setClients(response.data);
                       setNewProject("");
                       setNewClient("")
-                   
-                      
+
+
                     })
                   }
                   }
                   isInvalid={!!errors.departmentName}
                 >
-                 
+
                   <option>{newDepartmentName}</option>
                   {departments.map((departmentss, i) => (
-                    <option key={i} value={departmentss.departmentName}>{departmentss.departmentName}</option>
+                    <option key={i} value={departmentss.departmentName} active={departmentss.departmentName}>{departmentss.departmentName}</option>
                   ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
@@ -435,7 +461,7 @@ const UpdateRR = () => {
                     setNewClient(e.target.value)
                     axios.get(`/clientProjectMapping/getProjectsByClientName/${e.target.value}`).then((response) => {
                       // console.log(response.data.data);
-                     
+
                       setProjects(response.data.data);
                       setNewProject("");
                     })
@@ -444,12 +470,13 @@ const UpdateRR = () => {
                   isInvalid={!!errors.clientName}
                 >
 
-                  <option>{newClient}</option>
+                  {/* <option>{newClient}</option> */}
+                  {clients && clients.length > 0 ?
+                    (clients.map((client, i) => (
+                      <option key={i} value={client.clientName} active>{client.clientName}</option>
+                    )))
+                    : (<option value="">None </option>)}
 
-                  {clients.map((client, i) => (
-                    <option key={i} value={client.clientName}>{client.clientName}</option>
-                  ))}
-                  <option value="">None</option>
                   {/* {(clients && clients.length > 0) ? (
                     clients.map((client, i) => (
                       <option key={i} value={client.clientName}>
@@ -476,12 +503,19 @@ const UpdateRR = () => {
                   }
                   isInvalid={!!errors.projectName}
                 >
-                  <option>{newProject}</option>
 
-                  {projects.map((project, i) => (
+                  {/* <option>{newProject}</option> */}
+                  {projects && projects.length > 0 ?
+                    (projects.map((project, i) => (
+                      <option key={i} value={project.projectName}>{project.projectName}</option>
+                    )))
+                    : (<option value="">None </option>)}
+
+
+                  {/* {projects.map((project, i) => (
                     <option key={i} value={project.projectName}>{project.projectName}</option>
                   ))}
-                  <option value="">None</option>
+                  <option value="">None</option> */}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.projects}
