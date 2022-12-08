@@ -76,6 +76,7 @@ const UpdateRR = () => {
   const history = useHistory();
   // const forms = useRef(null);
 
+
   function setField(field, value) {
     setForm({
       ...form,
@@ -92,18 +93,18 @@ const UpdateRR = () => {
     setLoading(true)
 
     axios.get("/dept/getAllDepartments").then((resp) => {
-      console.log(resp)
+      // console.log(resp)
 
       setDepartments(resp.data);
       if (resp.data.status) {
         axios.get("/clientProjectMapping/getAllClients").then((respo) => {
-          console.log(respo)
+          // console.log(respo)
 
           setClients(respo.data.data);
           if (respo.statusText === "OK") {
             axios.get("/clientProjectMapping/getAllProjects").then((respon) => {
-              console.log(respon)
-              //  setProjects(respon.data.data)
+              // console.log(respon)
+              // setProjects(respon.data.data)
               if (respon.data.status) {
                 axios.get("/emp/getAllEmployeeMasterData").then((respons) => {
                   const sData2 = respons.data.data.filter(item => item.status === 'Active')
@@ -188,37 +189,28 @@ const UpdateRR = () => {
     setNewHrPanel(response.data.data.hrPanel);
     setQualification(response.data.data.qualification);
 
-
-    axios.get(`/clientProjectMapping/getClientsByBusinessUnits/${response.data.data.departmentName}`).then((res) => {
-      console.log(res.data);
-      setClients(res.data);
-    }).catch((error) => {
-      console.log(error);
-    });
-
-    axios.get(`/clientProjectMapping/getProjectsByClientName/${response.data.data.clientName}`).then((res) => {
-      console.log(res.data.data);
-      setProjects(res.data.data);
-    }).catch((error) => {
-      console.log(error);
-    });
   }
-
-
-
-  //  const loadClientsAndProjectsInitially=()=>{
-  //    axios.get(`/clientProjectMapping/getClientsByBusinessUnits/${newDepartmentName}`).then((res)=>{
-  //  // console.log(response.data);
-  //  setClients(response.data);
-  //    }).catch((error)=>{
-  //        console.log(error);
-  //    });
-  //   }
 
   useEffect(() => {
     loadData1();
-    // loadClientsAndProjectsInitially();
   }, []);
+
+  //number validation
+  const preventMinus = (e) => {
+    if (e.code === 'Minus') {
+      e.preventDefault();
+    }
+  };
+  //number validation - pasting negative numbers
+  const preventPasteNegative = (e) => {
+    const clipboardData = e.clipboardData || window.clipboardData;
+    const pastedData = parseFloat(clipboardData.getData('text'));
+
+    if (pastedData < 0) {
+      e.preventDefault();
+    }
+  };
+
   const routeToRRPage = () => history.push("/app/rrf")
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -442,7 +434,7 @@ const UpdateRR = () => {
 
                   <option>{newDepartmentName}</option>
                   {departments.map((departmentss, i) => (
-                    <option key={i} value={departmentss.departmentName} active={departmentss.departmentName}>{departmentss.departmentName}</option>
+                    <option key={i} value={departmentss.departmentName}>{departmentss.departmentName}</option>
                   ))}
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
@@ -470,13 +462,12 @@ const UpdateRR = () => {
                   isInvalid={!!errors.clientName}
                 >
 
-                  {/* <option>{newClient}</option> */}
-                  {clients && clients.length > 0 ?
-                    (clients.map((client, i) => (
-                      <option key={i} value={client.clientName} active>{client.clientName}</option>
-                    )))
-                    : (<option value="">None </option>)}
+                  <option>{newClient}</option>
 
+                  {clients.map((client, i) => (
+                    <option key={i} value={client.clientName}>{client.clientName}</option>
+                  ))}
+                  <option value="">None</option>
                   {/* {(clients && clients.length > 0) ? (
                     clients.map((client, i) => (
                       <option key={i} value={client.clientName}>
@@ -503,19 +494,12 @@ const UpdateRR = () => {
                   }
                   isInvalid={!!errors.projectName}
                 >
+                  <option>{newProject}</option>
 
-                  {/* <option>{newProject}</option> */}
-                  {projects && projects.length > 0 ?
-                    (projects.map((project, i) => (
-                      <option key={i} value={project.projectName}>{project.projectName}</option>
-                    )))
-                    : (<option value="">None </option>)}
-
-
-                  {/* {projects.map((project, i) => (
+                  {projects.map((project, i) => (
                     <option key={i} value={project.projectName}>{project.projectName}</option>
                   ))}
-                  <option value="">None</option> */}
+                  <option value="">None</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.projects}
@@ -614,8 +598,11 @@ const UpdateRR = () => {
                   required
                   name="positions"
                   type="number"
+                 
                   controlid="positions"
-
+                  min="0"
+                  onKeyPress={preventMinus}
+                  onPaste={preventPasteNegative}
                   value={positions}
                   onChange={(e) => setPositions(e.target.value)}
                   isInvalid={!!errors.positions}
@@ -631,9 +618,11 @@ const UpdateRR = () => {
 
                   <Form.Control
                     required
-                    type="text"
-
+                    type="number"
                     controlid="yoe"
+                    min="0"
+                    onKeyPress={preventMinus}
+                    onPaste={preventPasteNegative}
                     isInvalid={thirderrors}
                     value={yoe}
                     onChange={(e) => {
@@ -723,7 +712,7 @@ const UpdateRR = () => {
                 <Form.Label>Job Description</Form.Label>
                 <Form.Control
                   required
-                  type="textarea"
+                  as="textarea"
                   id="description"
                   style={{ height: "80px" }}
                   controlid="description"
@@ -749,6 +738,10 @@ const UpdateRR = () => {
                   type="number"
                   controlid="rate"
                   value={rate}
+
+                  min="0"
+                  onKeyPress={preventMinus}
+                  onPaste={preventPasteNegative}
                   onChange={(e) => setRate(e.target.value)}
                   isInvalid={!!errors.rate}
                 ></Form.Control>
@@ -761,9 +754,11 @@ const UpdateRR = () => {
                 <Form.Control
                   required
                   className="workingHours"
-                  type="text"
+                  type="number"
                   controlid="workingHours"
-
+                  min="0"
+                  onKeyPress={preventMinus}
+                  onPaste={preventPasteNegative}
 
                   value={workingHours}
                   onChange={(e) => setWorkingHours(e.target.value)}
@@ -813,7 +808,7 @@ const UpdateRR = () => {
                   {errors.pocname}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group as={Col} md="4" style={{ padding: 10 }}>
+              {/* <Form.Group as={Col} md="4" style={{ padding: 10 }}>
                 <Form.Label>Upload Document </Form.Label>
                 <Form.Control
                   name="uploadDoc"
@@ -828,7 +823,7 @@ const UpdateRR = () => {
                 <Form.Control.Feedback type="invalid">
                   {errors.uploadDoc}
                 </Form.Control.Feedback>
-              </Form.Group>
+              </Form.Group> */}
             </Row>
 
             <Row>
@@ -837,7 +832,7 @@ const UpdateRR = () => {
                 <Form.Control
                   required
                   name="comments"
-                  type="textarea"
+                  as="textarea"
                   controlid="comments"
                   style={{ height: "80px" }}
                   value={comments}
@@ -1039,7 +1034,6 @@ const UpdateRR = () => {
   )
 }
 export default UpdateRR;
-
 
 
 

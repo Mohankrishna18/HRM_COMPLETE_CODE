@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { Modal } from "react-bootstrap";
@@ -151,7 +150,7 @@ function AddUser(props) {
             console.log("Props Not Send");
           }
           setTimeout(5000);
-          setForm({})
+          // setForm({})
           handleClose();
   
         })
@@ -568,3 +567,10 @@ function AddUser(props) {
   );
 }
 export default AddUser;
+
+
+
+
+
+
+
