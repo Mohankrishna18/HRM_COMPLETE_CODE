@@ -76,7 +76,6 @@ const UpdateRR = () => {
   const history = useHistory();
   // const forms = useRef(null);
 
-
   function setField(field, value) {
     setForm({
       ...form,
@@ -92,27 +91,26 @@ const UpdateRR = () => {
   const calls = () => {
     setLoading(true)
 
-    axios.get("/dept/getAllDepartments").then((resp) => {
+    axios.get("/clientProjectMapping/getAllProjects").then((resp) => {
       // console.log(resp)
-
-      setDepartments(resp.data);
+      // setProjects(resp.data.data)
       if (resp.data.status) {
-        axios.get("/clientProjectMapping/getAllClients").then((respo) => {
+        axios.get("/dept/getAllDepartments").then((respo) => {
           // console.log(respo)
-
-          setClients(respo.data.data);
+          setDepartments(respo.data);
           if (respo.statusText === "OK") {
-            axios.get("/clientProjectMapping/getAllProjects").then((respon) => {
+            axios.get("/clientProjectMapping/getAllClients").then((respon) => {
               // console.log(respon)
-              // setProjects(respon.data.data)
+              setClients(respon.data.data);
               if (respon.data.status) {
                 axios.get("/emp/getAllEmployeeMasterData").then((respons) => {
                   const sData2 = respons.data.data.filter(item => item.status === 'Active')
                   setPocName(sData2);
+                  console.log(sData2)
                   if (respons.data.status) {
                     axios.get("/emp/getEmployeesByDepartment/HR").then((response) => {
                       const sData1 = response.data.data.filter(item => item.status === 'Active')
-                      // console.log(sData1)
+                      console.log(sData1)
                       setHrPanel(sData1);
                       closeLoading();
                     }).catch((err) => {
@@ -152,7 +150,8 @@ const UpdateRR = () => {
     setRaisedOn(response.data.data.raisedOn);
 
     setRaisedBy(response.data.data.raisedBy);
-
+    // console.log(response.data.data.requestInitiatedDate)
+    // console.log(response.data.data.resourceRequiredDate)
     setDate(Moment(response.data.data.requestInitiatedDate).format('YYYY-MM-DD'));
 
     setRequiredDate(Moment(response.data.data.resourceRequiredDate).format('YYYY-MM-DD'));
@@ -431,7 +430,6 @@ const UpdateRR = () => {
                   }
                   isInvalid={!!errors.departmentName}
                 >
-
                   <option>{newDepartmentName}</option>
                   {departments.map((departmentss, i) => (
                     <option key={i} value={departmentss.departmentName}>{departmentss.departmentName}</option>
@@ -453,7 +451,6 @@ const UpdateRR = () => {
                     setNewClient(e.target.value)
                     axios.get(`/clientProjectMapping/getProjectsByClientName/${e.target.value}`).then((response) => {
                       // console.log(response.data.data);
-
                       setProjects(response.data.data);
                       setNewProject("");
                     })
@@ -598,7 +595,6 @@ const UpdateRR = () => {
                   required
                   name="positions"
                   type="number"
-                 
                   controlid="positions"
                   min="0"
                   onKeyPress={preventMinus}
@@ -1034,6 +1030,12 @@ const UpdateRR = () => {
   )
 }
 export default UpdateRR;
+
+
+
+
+
+
 
 
 
